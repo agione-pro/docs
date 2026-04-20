@@ -1,3 +1,3 @@
-# 产品部署配置单
+# Deployment Configuration Sheet
 
-> 待补充：操作系统版本、节点数量、CPU/内存/存储、依赖软件、网络、云原生服务等，分为最小化部署和高可用部署
+> TODO: OS version, node count, CPU/memory/storage, dependencies, network, cloud-native services for minimal and HA deployments

@@ -1,3 +1,3 @@
-# License授权管理及购买
+# License Management
 
-> 待补充：AGIOne平台License管理流程，不同角色License操作手册
+> TODO: AGIOne platform license management workflow, role-based license operations manual

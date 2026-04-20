@@ -3,18 +3,18 @@ prev: false
 next: true
 ---
 
-# AGIOne 售前资料
+# Pre-Sales
 
-本章节包含 AGIOne 产品的售前相关文档，用于客户决策、技术评估和方案设计。
+This section contains pre-sales documentation for AGIOne products.
 
-## 文档清单
+## Documents
 
-| 文档 | 用途 |
+| Document | Purpose |
 |------|------|
-| [产品技术白皮书](./whitepaper) | 产品定位、架构、核心能力、优势 |
-| [产品功能及能力清单](./feature-list) | 支持框架、模型、协议、部署方式等 |
-| [产品支持矩阵及限制条件](./compatibility) | GPU/OS/CUDA/模型支持列表及限制 |
-| [需求/环境调研表](./survey/requirement-survey) | 收集客户场景需求和环境信息 |
-| [网络架构及端口访问策略表](./network) | 各节点端口开放策略 |
-| [产品部署配置单](./config-sheet) | 最小化/高可用部署资源配置 |
-| [最佳实践](./best-practices/deployment) | 部署和使用最佳实践推荐 |
+| [Technical Whitepaper](./whitepaper) | Product positioning, architecture, core capabilities, advantages |
+| [Feature & Capability List](./feature-list) | Supported frameworks, models, protocols, deployment methods, Token capabilities |
+| [Compatibility Matrix & Limitations](./compatibility) | GPU/OS/CUDA/model support list and limitations |
+| [Requirement & Environment Survey](./survey/requirement-survey) | Collect customer scenario requirements and environment information |
+| [Network Architecture & Port Policy](./network) | Node port opening policies |
+| [Deployment Configuration Sheet](./config-sheet) | Minimal/HA deployment resource configuration |
+| [Best Practices](./best-practices/deployment) | Deployment and usage best practices |

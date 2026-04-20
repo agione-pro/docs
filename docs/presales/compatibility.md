@@ -1,3 +1,3 @@
-# 产品支持矩阵及限制条件
+# Compatibility Matrix & Limitations
 
-> 待补充：GPU/OS/CUDA/模型支持列表以及限制条件
+> TODO: GPU/OS/CUDA/model support list and limitations

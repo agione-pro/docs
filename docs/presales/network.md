@@ -1,3 +1,3 @@
-# 网络架构及端口访问策略表
+# Network Architecture & Port Policy
 
-> 待补充：AGIOne各节点端口开放、内部服务访问、第三方服务访问、对外开放端口等
+> TODO: AGIOne node port policies, internal service access, third-party service access, public-facing ports

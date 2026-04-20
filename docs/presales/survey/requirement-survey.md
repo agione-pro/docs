@@ -1,9 +1,9 @@
-# 调研表
+# Survey
 
-## 需求调研表
+## Requirement Survey
 
-> 待补充：客户使用场景，Token转发、GPU纳管、模型聚合等
+> TODO: Customer usage scenarios, Token forwarding, GPU management, model aggregation
 
-## 环境调研表
+## Environment Survey
 
-> 待补充：底层硬件GPU型号、网络/GPU/K8s/安全等
+> TODO: Underlying hardware GPU models, network/GPU/K8s/security

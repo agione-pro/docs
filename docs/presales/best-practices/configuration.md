@@ -1,3 +1,3 @@
-# 配置使用最佳实践
+# Configuration Best Practices
 
-> 待补充：模型与框架选择、网络配置等
+> TODO: Model and framework selection, network configuration

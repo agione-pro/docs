@@ -1,3 +1,3 @@
-# 产品手册
+# User Manual
 
-> 待补充：用户注册、创建及产品使用相关文档，产品平台各类配置使用文档
+> TODO: User registration, creation, platform usage documentation, configuration documentation

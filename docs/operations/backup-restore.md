@@ -1,3 +1,3 @@
-# 备份恢复指南
+# Backup & Recovery Guide
 
-> 待补充：备份策略、恢复流程
+> TODO: Backup strategy, recovery procedures

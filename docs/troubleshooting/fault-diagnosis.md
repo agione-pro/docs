@@ -1,3 +1,3 @@
-# 故障排查手册
+# Fault Diagnosis Manual
 
-> 待补充：现象→原因→解决，Error Code 对照表
+> TODO: Symptom → Cause → Resolution, Error Code reference table

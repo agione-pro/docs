@@ -1,3 +1,3 @@
-# 产品运维手册
+# Operations Manual
 
-> 待补充：服务启停、扩容、升级、日常维护脚本、定期清理脚本等
+> TODO: Service start/stop, scaling, upgrades, maintenance scripts, cleanup scripts

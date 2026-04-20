@@ -1,3 +1,3 @@
-# 产品功能及能力清单
+# Feature & Capability List
 
-> 待补充：支持框架、模型支持、协议、部署方式、Token能力等
+> TODO: Supported frameworks, models, protocols, deployment methods, Token capabilities

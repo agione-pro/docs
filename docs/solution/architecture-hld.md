@@ -1,3 +1,3 @@
-# 技术方案书(HLD)
+# Technical Solution (HLD)
 
-> 待补充：架构图、网络规划、数据流、高可用设计等
+> TODO: Architecture diagram, network planning, data flow, HA design

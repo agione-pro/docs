@@ -1,3 +1,3 @@
-# 网络与安全方案
+# Network & Security
 
-> 待补充：网络拓扑、端口、认证
+> TODO: Network topology, ports, authentication

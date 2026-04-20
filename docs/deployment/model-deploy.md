@@ -1,3 +1,3 @@
-# 模型部署指南
+# Model Deployment Guide
 
-> 待补充：模型加载方式、显存要求
+> TODO: Model loading methods, memory requirements

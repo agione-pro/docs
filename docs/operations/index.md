@@ -3,19 +3,19 @@ prev: false
 next: true
 ---
 
-# 运维运营
+# Operations
 
-本章节包含 AGIOne 产品的运维运营相关文档。
+This section contains operations and maintenance documentation for AGIOne products.
 
-## 文档清单
+## Documents
 
-| 文档 | 用途 |
+| Document | Purpose |
 |------|------|
-| [API使用指南](./api-guide) | 接口说明、示例 |
-| [SDK示例](./sdk-examples) | Python/Java Demo |
-| [产品手册](./user-manual) | 用户侧、运营侧使用文档 |
-| [产品运维手册](./ops-manual) | 服务启停、扩容、升级、维护脚本 |
-| [产品监控指南](./monitoring) | GPU/QPS/Token 监控，可观测性平台 |
-| [备份恢复指南](./backup-restore) | 备份策略、恢复流程 |
-| [License授权管理及购买](./license) | License管理平台及操作手册 |
-| [Release Notes](./release-notes) | 每个版本的产品发布说明 |
+| [API Guide](./api-guide) | API reference, examples |
+| [SDK Examples](./sdk-examples) | Python/Java demos |
+| [User Manual](./user-manual) | User-side and admin-side usage documentation |
+| [Operations Manual](./ops-manual) | Service start/stop, scaling, upgrades, maintenance scripts |
+| [Monitoring Guide](./monitoring) | GPU/QPS/Token monitoring, observability platform |
+| [Backup & Recovery](./backup-restore) | Backup strategy, recovery procedures |
+| [License Management](./license) | License management platform and operations manual |
+| [Release Notes](./release-notes) | Product release notes for each version |

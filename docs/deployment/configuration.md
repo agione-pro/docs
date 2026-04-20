@@ -1,3 +1,3 @@
-# 产品配置指南
+# Configuration Guide
 
-> 待补充：模型、Token、路由等系统配置参数
+> TODO: Model, Token, routing system configuration parameters

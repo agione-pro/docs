@@ -1,3 +1,3 @@
-# 产品监控指南
+# Monitoring Guide
 
-> 待补充：GPU/QPS/Token 监控，可观测性平台 Hub
+> TODO: GPU/QPS/Token monitoring, observability platform Hub

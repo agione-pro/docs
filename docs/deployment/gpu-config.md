@@ -1,3 +1,3 @@
-# 算力卡对接配置指南
+# GPU Card Configuration Guide
 
-> 待补充：底层各类算力卡的对接配置步骤
+> TODO: GPU card integration configuration steps

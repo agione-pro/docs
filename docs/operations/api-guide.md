@@ -1,3 +1,3 @@
-# API使用指南
+# API Guide
 
-> 待补充：接口说明、示例
+> TODO: API reference, examples

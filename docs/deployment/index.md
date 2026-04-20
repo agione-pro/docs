@@ -3,18 +3,18 @@ prev: false
 next: true
 ---
 
-# 交付部署
+# Deployment
 
-本章节包含 AGIOne 产品的部署、配置、验收相关文档。
+This section contains deployment, configuration, and acceptance documentation for AGIOne products.
 
-## 文档清单
+## Documents
 
-| 文档 | 用途 |
+| Document | Purpose |
 |------|------|
-| [部署检查文档](./precheck) | 环境预检查，驱动/CUDA/磁盘/端口检查 |
-| [安装部署指南](./installation) | 最小化/高可用节点安装部署 |
-| [产品配置指南](./configuration) | 模型、Token、路由等系统配置 |
-| [算力卡对接配置指南](./gpu-config) | 各类算力卡对接配置 |
-| [模型部署指南](./model-deploy) | 模型加载方式、显存要求 |
-| [模型配置及调优](./tuning) | 各类模型及硬件卡参数调优 |
-| [验收测试文档](./acceptance) | GPU卡管理、模型管理、API/性能测试验证 |
+| [Pre-Check](./precheck) | Environment pre-check: drivers/CUDA/disk/ports |
+| [Installation Guide](./installation) | Minimal/HA node installation |
+| [Configuration Guide](./configuration) | Model, Token, routing system configuration |
+| [GPU Card Configuration](./gpu-config) | GPU card integration configuration |
+| [Model Deployment Guide](./model-deploy) | Model loading methods, memory requirements |
+| [Model Tuning](./tuning) | Model and hardware parameter tuning |
+| [Acceptance Testing](./acceptance) | GPU management, model management, API/performance testing |

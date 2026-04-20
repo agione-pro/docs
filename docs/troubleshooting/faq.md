@@ -1,3 +1,3 @@
-# 常见故障FAQ
+# FAQ
 
-> 待补充：常规产品问题、故障类型、配置类型常见FAQ文档
+> TODO: Common product issues, fault types, configuration issues

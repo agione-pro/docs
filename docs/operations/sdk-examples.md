@@ -1,3 +1,3 @@
-# SDK示例
+# SDK Examples
 
-> 待补充：Python/Java Demo
+> TODO: Python/Java demos

@@ -1,3 +1,3 @@
-# 容量规划文档
+# Capacity Planning
 
-> 待补充：部署AGIGPU/QPS/存储/带宽评估
+> TODO: AGIGPU/QPS/storage/bandwidth assessment

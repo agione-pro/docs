@@ -1,3 +1,3 @@
-# 产品技术白皮书
+# Technical Whitepaper
 
-> 待补充：产品定位、架构、核心能力、优势
+> TODO: Product positioning, architecture, core capabilities, advantages

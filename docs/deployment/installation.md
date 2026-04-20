@@ -1,3 +1,3 @@
-# 安装部署指南
+# Installation Guide
 
-> 待补充：最小化节点/高可用节点安装部署步骤
+> TODO: Minimal/HA node installation steps

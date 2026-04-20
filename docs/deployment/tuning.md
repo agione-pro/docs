@@ -1,3 +1,3 @@
-# 模型配置及调优
+# Model Configuration & Tuning
 
-> 待补充：各类模型及硬件卡的参数调优
+> TODO: Model and hardware parameter tuning

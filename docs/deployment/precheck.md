@@ -1,3 +1,3 @@
-# 部署检查文档
+# Pre-Check Document
 
-> 待补充：驱动/CUDA/磁盘/端口检查，precheck脚本使用说明
+> TODO: Driver/CUDA/disk/port checks, precheck script usage

@@ -3,16 +3,16 @@ prev: false
 next: true
 ---
 
-# 最佳实践
+# Best Practices
 
-## 部署最佳实践
+## Deployment Best Practices
 
-[部署最佳实践](./deployment) - 依照客户场景需求推荐产品部署模式（单机、高可用等）
+[Deployment Best Practices](./deployment) - Recommended deployment modes based on customer scenarios (standalone, HA, etc.)
 
-## 配置使用最佳实践
+## Configuration Best Practices
 
-[配置使用最佳实践](./configuration) - 模型与框架选择、网络配置等
+[Configuration Best Practices](./configuration) - Model and framework selection, network configuration
 
-## 项目最佳实践
+## Project Best Practices
 
-[项目最佳实践](./project) - 对外分享项目成功案例
+[Project Best Practices](./project) - External sharing of project success stories

@@ -1,3 +1,3 @@
-# 验收测试文档
+# Acceptance Testing Document
 
-> 待补充：GPU卡管理、模型管理、推理框架、API/性能测试验证
+> TODO: GPU management, model management, inference framework, API/performance testing validation

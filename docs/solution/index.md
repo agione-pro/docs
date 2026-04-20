@@ -3,14 +3,14 @@ prev: false
 next: true
 ---
 
-# 方案设计
+# Solution Design
 
-本章节包含 AGIOne 产品的方案设计相关文档。
+This section contains solution design documentation for AGIOne products.
 
-## 文档清单
+## Documents
 
-| 文档 | 用途 |
+| Document | Purpose |
 |------|------|
-| [技术方案书(HLD)](./architecture-hld) | 架构图、网络规划、数据流、高可用设计等 |
-| [容量规划文档](./capacity-plan) | 部署AGIGPU/QPS/存储/带宽评估 |
-| [网络与安全方案](./security-design) | 网络拓扑、端口、认证 |
+| [Technical Solution (HLD)](./architecture-hld) | Architecture diagram, network planning, data flow, HA design |
+| [Capacity Planning](./capacity-plan) | AGIGPU/QPS/storage/bandwidth assessment |
+| [Network & Security](./security-design) | Network topology, ports, authentication |

@@ -1,3 +1,3 @@
-# 项目最佳实践
+# Project Best Practices
 
-> 待补充：项目概述、方案与架构、规模、硬件配置、模型、Token消耗、项目价值等
+> TODO: Project overview, solution architecture, scale, hardware configuration, models, Token consumption, project value

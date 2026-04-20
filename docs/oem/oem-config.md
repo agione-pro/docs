@@ -1,3 +1,3 @@
-# 产品OEM配置
+# OEM Configuration
 
-> 待补充：第三方部署产品后的OEM配置手册
+> TODO: OEM configuration manual for third-party product deployments
