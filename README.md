@@ -62,7 +62,23 @@ npm run docs:preview
 .
 ├── docs/
 │   ├── .vitepress/
-│   │   └── config.mts          # VitePress 站点配置 (i18n)
+│   │   ├── config/
+│   │   │   ├── index.ts        # 主配置入口
+│   │   │   └── shared.ts       # 共享基础配置
+│   │   ├── theme/
+│   │   │   ├── index.ts        # 主题入口（扩展默认主题）
+│   │   │   ├── en.ts           # 英文主题配置
+│   │   │   ├── zh.ts           # 中文主题配置
+│   │   │   ├── navbar/
+│   │   │   │   ├── en.ts       # 英文导航栏配置
+│   │   │   │   └── zh.ts       # 中文导航栏配置
+│   │   │   └── sidebar/
+│   │   │       ├── en.ts       # 英文侧边栏配置
+│   │   │       └── zh.ts       # 中文侧边栏配置
+│   │   └── social.ts           # 社交链接配置
+│   ├── assets/
+│   │   └── images/             # 文档图片资源
+│   ├── public/                 # 静态资源（favicon, logo 等）
 │   ├── index.md                # English homepage
 │   ├── presales/               # English pre-sales docs
 │   ├── solution/               # English solution docs
@@ -83,6 +99,20 @@ npm run docs:preview
 └── package-lock.json
 ```
 
+## 配置说明
+
+本项目采用模块化配置结构：
+
+| 配置文件 | 说明 |
+|----------|------|
+| `config/index.ts` | 主配置入口，合并所有配置 |
+| `config/shared.ts` | 共享基础配置（title, description） |
+| `theme/navbar/en.ts` | 英文导航栏配置 |
+| `theme/navbar/zh.ts` | 中文导航栏配置 |
+| `theme/sidebar/en.ts` | 英文侧边栏配置 |
+| `theme/sidebar/zh.ts` | 中文侧边栏配置 |
+| `social.ts` | 社交链接配置 |
+
 ## 添加文档
 
 在 `docs/` 目录下新增 `.md` 文件，VitePress 会自动生成路由。路由路径即文件路径：
@@ -92,7 +122,10 @@ npm run docs:preview
 | `docs/presales/new-doc.md` | `/presales/new-doc` |
 | `docs/zh/presales/new-doc.md` | `/zh/presales/new-doc` |
 
-侧边栏和导航栏配置在 `docs/.vitepress/config.mts` 中同步更新。
+添加文档后，需要同步更新导航栏和侧边栏配置：
+
+- **导航栏配置**：`docs/.vitepress/theme/navbar/en.ts`（英文）和 `zh.ts`（中文）
+- **侧边栏配置**：`docs/.vitepress/theme/sidebar/en.ts`（英文）和 `zh.ts`（中文）
 
 ## License
 
