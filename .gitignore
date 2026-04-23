@@ -1,7 +1,7 @@
 node_modules/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+docs/.vitepress/.temp/
 docs/dist/
 .opencode/
 .github/workflows/main-test.yml
-AGIOne.md

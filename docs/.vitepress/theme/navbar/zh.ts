@@ -31,7 +31,7 @@ export const zhNavbar = [
       },
     ]
   },
-  { text: 'AGIOne', link: 'https://zh.agione.cc/' },
+  { text: 'AGIOne', link: 'https://agione.cc/' },
   // { text: '技术支持', link: 'https://support.oneprocloud.com/' },
   // { text: '常见问题', link: 'https://qa.oneprocloud.com/' },
   { text: 'OneProCloud', link: 'https://oneprocloud.com/' },

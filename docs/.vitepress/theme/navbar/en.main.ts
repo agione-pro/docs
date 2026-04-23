@@ -32,7 +32,7 @@ export const enNavbar = [
       },
     ],
   },
-  { text: 'AGIOne', link: 'https://zh.agione.cc/' },
+  { text: 'AGIOne', link: 'https://agione.cc/' },
   // { text: 'Get Support', link: 'https://support.oneprocloud.com/' },
   // { text: 'FAQ', link: 'https://qa.oneprocloud.com/' },
   { text: 'OneProCloud', link: 'https://oneprocloud.com/' },
