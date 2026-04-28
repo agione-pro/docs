@@ -160,9 +160,9 @@ At publication time, **differentiated pricing strategies** can be configured for
 
 | Pricing Model | Use Case | Example Configuration |
 |---|---|---|
-| **Per-Token (separate input / output rates)** | General dialogue, document generation | DeepSeek-V3: input ¥0.12 / 1K tokens, output ¥0.48 / 1K tokens |
-| **Per-call** | Fixed-structure requests (OCR, embeddings) | Embedding: ¥0.001 / call |
-| **Per-duration** | Streaming output, long-running tasks | Speech synthesis: ¥0.05 / second |
+| **Per-Token (separate input / output rates)** | General dialogue, document generation | DeepSeek-V3: input $0.12 / 1K tokens, output $0.48 / 1K tokens |
+| **Per-call** | Fixed-structure requests (OCR, embeddings) | Embedding: $0.001 / call |
+| **Per-duration** | Streaming output, long-running tasks | Speech synthesis: $0.05 / second |
 
 ### 4.5 Multi-dimensional Rate Limiting
 
@@ -268,7 +268,7 @@ For every API call, AGIOne accurately records the following metering data:
 AGIOne uses **credits** as the unified internal unit of pricing, which offers significant advantages over direct monetary pricing:
 
 - **Uniform comparability**: Credits provide a common unit across models, business units, and billing cycles, insulating accounting from FX and price fluctuations.
-- **Flexible conversion**: Credits convert to currency at a configurable ratio (e.g., ¥1 = 100 credits), adjustable to business needs.
+- **Flexible conversion**: Credits convert to currency at a configurable ratio (e.g., $1 = 100 credits), adjustable to business needs.
 - **Cross-period rollover**: Credits can roll over on a monthly, quarterly, or annual basis.
 - **Flexible allocation**: Administrators can issue credit packages to departments in bulk; departments then consume them freely.
 
@@ -284,9 +284,9 @@ AGIOne uses **credits** as the unified internal unit of pricing, which offers si
 
 > **💡 Credit ⇄ Currency Example**
 >
-> Assume a conversion ratio of `¥1 = 100 credits`:
-> - A single DeepSeek-V3 call with 1,000 input tokens + 500 output tokens = 12 + 24 = **36 credits** = ¥0.36
-> - The Smart Manufacturing Division receives **10,000,000 credits** at the start of the month (equivalent to ¥100,000), to be consumed freely throughout the month.
+> Assume a conversion ratio of `$1 = 100 credits`:
+> - A single DeepSeek-V3 call with 1,000 input tokens + 500 output tokens = 12 + 24 = **36 credits** = $0.36
+> - The Smart Manufacturing Division receives **10,000,000 credits** at the start of the month (equivalent to $100,000), to be consumed freely throughout the month.
 
 ### 6.4 Metering Logs and Deduction Logs
 
