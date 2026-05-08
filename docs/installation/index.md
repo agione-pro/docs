@@ -9,9 +9,9 @@ This section contains deployment, configuration, and acceptance documentation fo
 
 ## Documents
 
-| Document | Purpose |
-|------|------|
-| [(AGIOne) Deployment Configuration Requirements](./agione-deployment-requirements) | Minimum and recommended deployment requirements for AGIOne |
-| [(Calculator) Deployment Configuration Requirements](./deployment-requirements-for-managing-compute-nodes) | Environment and resource requirements for Calculator deployment |
-| [(AGIOne) Quick Installation Guide](./agione-quick-install) | Fast installation and baseline verification for AGIOne |
-| [(Calculator) Quick Installation Guide](./quick-install-for-managing-compute-nodes) | Fast installation and baseline verification for Calculator |
+| Document                                                                          | Purpose |
+|-----------------------------------------------------------------------------------|------|
+| [AGIOne-Requirements](./agione-deployment-requirements)  | Minimum and recommended deployment requirements for AGIOne |
+| [AGIOne-Installation](./agione-quick-install)                          | Fast installation and baseline verification for AGIOne |
+| [Compute Nodes-Requirements](./deployment-requirements-for-managing-compute-nodes) | Environment and resource requirements for Calculator deployment |
+| [Compute Nodes-Installation](./quick-install-for-managing-compute-nodes)          | Fast installation and baseline verification for Calculator |
