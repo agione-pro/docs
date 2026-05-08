@@ -63,19 +63,19 @@ export const enSidebar: DefaultTheme.Sidebar = {
       collapsed: false,
       items: [
         {
-          text: "(AGIOne)Deployment Configuration Requirements",
+          text: "AGIOne - Requirements",
           link: "/installation/agione-deployment-requirements"
         },
         {
-          text: "Deployment Configuration Requirements for Managing Compute Nodes",
-          link: "/installation/deployment-requirements-for-managing-compute-nodes"
-        },
-        {
-          text: "(AGIOne)Quick Installation Guide",
+          text: "AGIOne-Installation",
           link: "/installation/agione-quick-install"
         },
         {
-          text: "Quick Installation Guide for Managing Compute Nodes",
+          text: "Compute Nodes-Requirements",
+          link: "/installation/deployment-requirements-for-managing-compute-nodes"
+        },
+        {
+          text: "Compute Nodes-Installation",
           link: "/installation/quick-install-for-managing-compute-nodes"
         },
       ],
