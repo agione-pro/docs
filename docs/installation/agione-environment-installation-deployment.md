@@ -29,7 +29,7 @@ Standard paths:
 
 | Type | Path |
 | --- | --- |
-| Bundle source directory | `agione-bundle-set-*` |
+| Release source directory | `agione-release-v1.0-YYYYMMDD` |
 | Installer runtime directory | `/opt/agione-installer-bundle` |
 | AGIOne runtime data directory | `/opt/hyperone` |
 | Offline Python runtime | `/opt/agione-python` |
@@ -131,14 +131,16 @@ Cloud hosts, hypervisors, and operating systems usually reserve part of the requ
 
 ### 4.2 Package acquisition
 
-The installation package is usually delivered as an `agione-bundle-set-*` directory.
+The installation package is usually delivered as an `agione-release-v1.0-YYYYMMDD.tar.gz` archive. After extraction, the directory name is the archive basename without `.tar.gz`, for example `agione-release-v1.0-20260513/`.
 
 Upload example:
 
 ```bash
-scp -r agione-bundle-set-* root@<target-host>:/opt/hyperone/
+scp -r agione-release-v1.0-20260513.tar.gz root@<target-host>:/opt/hyperone/
 ssh root@<target-host>
-cd /opt/hyperone/agione-bundle-set-*
+cd /opt/hyperone && \
+tar -zxvf agione-release-v1.0-20260513.tar.gz && \
+cd /opt/hyperone/agione-release-v1.0-20260513
 ```
 
 Typical bundle contents:
@@ -233,7 +235,7 @@ After successful installation, export a handover bundle:
 
 For operator training, the demo video should cover:
 
-1. upload `agione-bundle-set-*`
+1. upload `agione-release-v1.0-YYYYMMDD.tar.gz`
 2. run `./agione verify-bundle`
 3. run `./agione quick`
 4. review the installation result
