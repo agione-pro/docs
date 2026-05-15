@@ -4,7 +4,7 @@
 
 ## 1. 登录 AGIOne
 
-1. 打开 AGIOne 登录页面（http://demo.agione.pro/user/login）。
+1. 打开 AGIOne 登录页面（http://agione.pro/user/login）。
 2. 选择 **"密码"** 登录方式。
 3. 输入您的 **"用户名或邮箱"** 和 **"密码"**。
 4. 勾选 **"我同意隐私政策和服务条款"**。

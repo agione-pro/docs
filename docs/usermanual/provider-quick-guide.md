@@ -4,7 +4,7 @@ This guide keeps only the practical steps: sign in, publish a model, and check t
 
 ## 1. Sign In To AGIOne
 
-1. Open the AGIOne （http://demo.agione.pro/user/login）sign-in page.
+1. Open the AGIOne （http://agione.pro/user/login）sign-in page.
 2. Select **"Password"** sign-in.
 3. Enter your **"Username or email"** and **"Password"**.
 4. Tick **"I agree to the Privacy Policy and Terms of Service"**.
