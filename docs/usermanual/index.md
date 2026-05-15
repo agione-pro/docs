@@ -5,12 +5,17 @@ next: true
 
 # User Manual
 
-This section provides quick-start instructions for account registration, login, and dashboard usage.
-
 ## Documents
 
-| Document | Purpose |
+| Document | Description |
 |------|------|
-| [Register](./register) | Create a new user account and complete initial profile setup |
-| [Login](./login) | Sign in securely and handle common login scenarios |
-| [Dashboard](./dashboard) | Understand dashboard modules and daily operations |
+| [User Quick Guide](./user-quick-guide) | Pending update |
+| [Vendor Quick Guide](./provider-quick-guide) | Pending update |
+
+## Projects
+
+| Project | Description |
+|------|------|
+| [Model Services](./model-services) | Pending update |
+| [AI Infra on Cloud](./ai-infra-on-cloud) | Pending update |
+| [AI Infra on Prem](./ai-infra-on-prem) | Pending update |

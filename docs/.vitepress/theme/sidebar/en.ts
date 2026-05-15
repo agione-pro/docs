@@ -71,10 +71,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           link: "/installation/agione-environment-installation-deployment"
         },
         {
-          text: "AGIOne-Installation",
-          link: "/installation/agione-quick-install"
-        },
-        {
           text: "Compute Nodes-Requirements",
           link: "/installation/deployment-requirements-for-managing-compute-nodes"
         },
@@ -136,16 +132,24 @@ export const enSidebar: DefaultTheme.Sidebar = {
       collapsed: false,
       items: [
         {
-          text: "Register",
-          link: "/usermanual/register"
+          text: "User Quick Guide",
+          link: "/usermanual/user-quick-guide"
         },
         {
-          text: "Login",
-          link: "/usermanual/login"
+          text: "Provider Quick Guide",
+          link: "/usermanual/provider-quick-guide"
         },
         {
-          text: "Dashboard",
-          link: "/usermanual/dashboard"
+          text: "Model Services",
+          link: "/usermanual/model-services/"
+        },
+        {
+          text: "AI Infra on Cloud",
+          link: "/usermanual/ai-infra-on-cloud/"
+        },
+        {
+          text: "AI Infra on Prem",
+          link: "/usermanual/ai-infra-on-prem/"
         }
       ]
     }
@@ -159,14 +163,20 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "AI Coding Integration",
           collapsed: false,
           items: [
-            {
-              text: "OpenClaw",
-              link: "/practices/technical/ai-coding-client/openclaw",
-            },
-            {
-              text: "Claude Code",
-              link: "/practices/technical/ai-coding-client/claude-code",
-            }
+            { text: "CherryStudio", link: "/practices/technical/CherryStudio/" },
+            { text: "claudeCode", link: "/practices/technical/claudeCode/" },
+            { text: "ClaudeCode-plugin", link: "/practices/technical/ClaudeCode-plugin/" },
+            { text: "Cline", link: "/practices/technical/Cline/" },
+            { text: "Codex", link: "/practices/technical/Codex/" },
+            { text: "Crush", link: "/practices/technical/Crush/" },
+            { text: "Cursor", link: "/practices/technical/Cursor/" },
+            { text: "dify", link: "/practices/technical/dify/" },
+            { text: "KiloCode", link: "/practices/technical/KiloCode/" },
+            { text: "n8n", link: "/practices/technical/n8n/" },
+            { text: "open-webui", link: "/practices/technical/open-webui/" },
+            { text: "openclaw", link: "/practices/technical/openclaw/" },
+            { text: "OpenCode", link: "/practices/technical/OpenCode/" },
+            { text: "RooCode", link: "/practices/technical/RooCode/" },
           ]
         },
       ]
@@ -177,7 +187,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
       text: "Project Practices",
       collapsed: false,
       items: [
-        { text: "Bare Metal Compute Resource Management and Services for Thailand CP", link: "/practices/project/thailand-cp" }
+        { text: "Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice", link: "/practices/project/multi-compute-pool-heterogeneous-inference-scheduling" }
       ]
     }
   ],
