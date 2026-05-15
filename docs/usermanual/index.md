@@ -9,8 +9,8 @@ next: true
 
 | Document | Description |
 |------|------|
-| [User Quick Guide](./user-quick-guide) | Pending update |
-| [Vendor Quick Guide](./provider-quick-guide) | Pending update |
+| [User Quick Guide](./user-quick-guide) | Quick guide for end users |
+| [Vendor Quick Guide](./vendor-quick-guide) | Quick guide for model publishers |
 
 ## Projects
 
