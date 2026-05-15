@@ -141,7 +141,54 @@ export const enSidebar: DefaultTheme.Sidebar = {
         },
         {
           text: "Model Services",
-          link: "/usermanual/model-services/"
+          collapsed: false,
+          items: [
+            {
+              text: "Overview",
+              link: "/usermanual/model-services/"
+            },
+            {
+              text: "Customer Calls",
+              collapsed: false,
+              items: [
+                { text: "Overview", link: "/usermanual/model-services/customer-calls/overview/" },
+                { text: "Call Analytics", link: "/usermanual/model-services/customer-calls/call-analytics/" },
+                { text: "Call Logs", link: "/usermanual/model-services/customer-calls/call-logs/" },
+              ]
+            },
+            {
+              text: "Discover",
+              collapsed: false,
+              items: [
+                { text: "Models", link: "/usermanual/model-services/discover/models/" },
+              ]
+            },
+            {
+              text: "Playground",
+              collapsed: false,
+              items: [
+                { text: "Text", link: "/usermanual/model-services/playground/text/" },
+                { text: "Audio", link: "/usermanual/model-services/playground/audio/" },
+                { text: "Images", link: "/usermanual/model-services/playground/images/" },
+                { text: "Video", link: "/usermanual/model-services/playground/video/" },
+              ]
+            },
+            {
+              text: "Studio",
+              collapsed: false,
+              items: [
+                { text: "My Models", link: "/usermanual/model-services/studio/my-models/" },
+              ]
+            },
+            {
+              text: "Usage & Revenue",
+              collapsed: false,
+              items: [
+                { text: "Usage", link: "/usermanual/model-services/usage-revenue/usage/" },
+                { text: "Revenue", link: "/usermanual/model-services/usage-revenue/revenue/" },
+              ]
+            },
+          ]
         },
         {
           text: "AI Infra on Cloud",

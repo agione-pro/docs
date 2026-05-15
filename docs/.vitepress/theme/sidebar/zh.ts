@@ -91,7 +91,57 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       items: [
         { text: '用户快速指引', link: '/zh/usermanual/user-quick-guide' },
         { text: '供应商快速指引', link: '/zh/usermanual/vendor-quick-guide' },
-        { text: '模型及AI服务', link: '/zh/usermanual/model-services/' },
+        {
+          text: '模型及AI服务',
+          collapsed: false,
+          items: [
+            {
+              text: '概览',
+              link: '/zh/usermanual/model-services/'
+            },
+            {
+              text: '客户调用',
+              collapsed: false,
+              items: [
+                { text: '概览', link: '/zh/usermanual/model-services/customer-calls/overview/' },
+                { text: '调用分析', link: '/zh/usermanual/model-services/customer-calls/call-analytics/' },
+                { text: '调用日志', link: '/zh/usermanual/model-services/customer-calls/call-logs/' },
+              ]
+            },
+            {
+              text: '发现',
+              collapsed: false,
+              items: [
+                { text: '模型', link: '/zh/usermanual/model-services/discover/models/' },
+              ]
+            },
+            {
+              text: '体验中心',
+              collapsed: false,
+              items: [
+                { text: '文本对话', link: '/zh/usermanual/model-services/playground/text/' },
+                { text: '语音', link: '/zh/usermanual/model-services/playground/audio/' },
+                { text: '图片', link: '/zh/usermanual/model-services/playground/images/' },
+                { text: '视频', link: '/zh/usermanual/model-services/playground/video/' },
+              ]
+            },
+            {
+              text: '创作空间',
+              collapsed: false,
+              items: [
+                { text: '我的模型', link: '/zh/usermanual/model-services/studio/my-models/' },
+              ]
+            },
+            {
+              text: '用量与收益',
+              collapsed: false,
+              items: [
+                { text: '用量', link: '/zh/usermanual/model-services/usage-revenue/usage/' },
+                { text: '收益', link: '/zh/usermanual/model-services/usage-revenue/revenue/' },
+              ]
+            },
+          ]
+        },
         { text: '多云平台调度', link: '/zh/usermanual/ai-infra-on-cloud/' },
         { text: '异构卡纳管', link: '/zh/usermanual/ai-infra-on-prem/' },
       ],
