@@ -157,6 +157,15 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ]
             },
             {
+              text: "My Calls",
+              collapsed: false,
+              items: [
+                { text: "Overview", link: "/usermanual/model-services/my-calls/overview/" },
+                { text: "Call Analytics", link: "/usermanual/model-services/my-calls/call-analytics/" },
+                { text: "Call Logs", link: "/usermanual/model-services/my-calls/call-logs/" },
+              ]
+            },
+            {
               text: "Discover",
               collapsed: false,
               items: [

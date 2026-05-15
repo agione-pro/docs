@@ -109,6 +109,15 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ]
             },
             {
+              text: '我的调用',
+              collapsed: false,
+              items: [
+                { text: '概览', link: '/zh/usermanual/model-services/my-calls/overview/' },
+                { text: '调用分析', link: '/zh/usermanual/model-services/my-calls/call-analytics/' },
+                { text: '调用日志', link: '/zh/usermanual/model-services/my-calls/call-logs/' },
+              ]
+            },
+            {
               text: '发现',
               collapsed: false,
               items: [
