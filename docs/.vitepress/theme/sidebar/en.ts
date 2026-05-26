@@ -25,6 +25,13 @@ export const enSidebar: DefaultTheme.Sidebar = {
       ]
     },
     {
+      text: "Role System",
+      collapsed: false,
+      items: [
+        { text: "Role Comparison", link: "/product/role-comparison" },
+      ],
+    },
+    {
       text: "Compatibility & Limitations",
       collapsed: false,
       items: [

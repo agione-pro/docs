@@ -13,6 +13,13 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       ],
     },
     {
+      text: '角色体系',
+      collapsed: false,
+      items: [
+        { text: '角色对比总览', link: '/zh/product/role-comparison' },
+      ],
+    },
+    {
       text: '兼容性与限制',
       collapsed: false,
       items: [
