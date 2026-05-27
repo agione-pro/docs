@@ -10,8 +10,8 @@ This document constitutes a draft support matrix, applicable to product introduc
 
 | Scope | Support Description | Constraints |
 | --- | --- | --- |
-| Management Node Deployment | Supports All-in-One, local multi-node, Kubernetes/cloud-native, private deployment, and offline or low-connectivity delivery | Specific specifications must be confirmed based on deployment form, managed scale, and delivery package version |
-| Compute Node Management | Supports NVIDIA Hopper / Ampere / Ada, Ascend 910B/910C, Enflame 106, Biren S60 | Chip manageability does not imply that all model, driver, CUDA, and inference engine combinations have been validated |
+| Management Node Deployment | Supports All-in-One, local multi-node, private deployment, and offline or low-connectivity delivery | Specific specifications must be confirmed based on deployment form, managed scale, and delivery package version |
+| Compute Node Management | Supports NVIDIA Hopper / Ampere / Ada, Ascend 910B/910C, Enflame 106, Biren S60, Hygon BW200 | Chip manageability does not imply that all model, driver, CUDA, and inference engine combinations have been validated |
 | Compute Platform Management | Supports Alibaba Cloud, AWS, Google Cloud, AGIOne heterogeneous card management (PowerOne), and other cloud platforms; Huawei Cloud not currently supported | Account permissions, network connectivity, API credentials, and security policies for different cloud platforms require separate evaluation |
 | Model Service Capabilities | Supports text generation, reasoning, multimodal, OCR, embedding, reranking, RAG（Planning）, function calling（Planning）, aggregate models, streaming output, and usage metering | Specific capabilities depend on the model itself, inference engine, protocol adaptation, and product version |
 |Rapid-Deployment Models | Supports DeepSeek, Qwen, Kimi, MiniMax, GLM, Llama, and other model series | Ultra-large models require evaluation of VRAM, parallelism strategy, quantization method, storage, and network conditions |
@@ -22,7 +22,6 @@ This document constitutes a draft support matrix, applicable to product introduc
 | --- | --- | --- | --- | --- |
 | All-in-One Single-Node Deployment | Supported | Single Linux physical server or VM | Recommended: 8C / 16GiB / 200GiB available disk; root or equivalent privileges; Docker / Compose | Suitable for demonstrations, testing, PoC, or small-scale deployments; not recommended for high-availability production workloads |
 | Local Host-Mode Multi-Node Deployment | Supported | Multiple Linux physical servers or VMs | Minimum 4 machines: 2 application nodes, 1 middleware node, 1 database standby node; fixed node IPs; SSH reachability; time synchronization | Historical data, port occupancy, directory permissions, and database primary-standby risks must be confirmed before deployment |
-| Kubernetes / Cloud-Native Deployment | Supported | Existing Kubernetes cluster or AGIOne-delivered kube-cluster | kubeconfig available; nodes Ready; sufficient namespace permissions; image registry, StorageClass, Ingress, DNS, and certificates ready | Kubernetes version must be confirmed against the delivery package compatibility matrix; storage, CNI, and Ingress differences may affect delivery |
 | Private Deployment | Supported | Enterprise intranet, IDC, private cloud, dedicated cloud | Management plane, model services, resource management, and unified entry point deployable; supports data residency compliance scenarios | Network isolation, offline packages, certificates, DNS, proxy, security baseline, and audit policies require on-site evaluation |
 | Offline or Low-Connectivity Deployment | Supported | No public network or restricted public network environment | Offline bundle, offline Python, image packages, checksum verification, Docker/Compose installation or repair capability | Missing offline resources, failed image imports, or unreachable registries will block deployment |
 
@@ -32,7 +31,6 @@ This document constitutes a draft support matrix, applicable to product introduc
 | --- | --- | --- |
 | Operating System | Ubuntu 22.04 recommended; Ubuntu 20.04 within acceptable recommendation scope; CentOS/Rocky 7.x/8.x conditionally supported; Kylin/UOS requires evaluation | Production deployments should follow official release notes, delivery package compatibility matrix, and on-site validation results |
 | Docker | Docker 24.x+ recommended | Must be compatible with the OS, kernel, image packages, and offline installation method |
-| Kubernetes | Kubernetes 1.24–1.29 recommended | Must be validated in conjunction with the delivery package, GPU/NPU plugins, CNI, CSI, and Ingress Controller |
 | Helm | Helm 3.10+ recommended | Applicable only to Helm or chart-based delivery forms |
 | Middleware | MariaDB, Redis, Nacos, Kafka, MinIO, OpenResty/Nginx | Port conflicts, storage persistence, backup and recovery, and security baselines must be confirmed before deployment |
 
@@ -46,6 +44,7 @@ This document constitutes a draft support matrix, applicable to product introduc
 | Huawei Ascend | Ascend 910 | Ascend 910B, Ascend 910C | Domestic compliance, localized inference, batch inference | Must be confirmed against CANN, MindIE, model adaptation, and image versions |
 | Enflame | Enflame | 106 | Domestic accelerator card management and adaptation | Must be validated against driver, inference framework, and model adaptation |
 | Biren | Biren | S60 | Domestic accelerator card management and adaptation | Must be validated against driver, inference framework, and model adaptation |
+| Hygon | BW Series | BW200 | Domestic accelerator card management and adaptation | Must be validated against driver, inference framework, and model adaptation |
 
 ## 6. AGIOne Managed Compute Node Operating System Requirements
 

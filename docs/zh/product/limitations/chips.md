@@ -38,3 +38,4 @@
 | ascend910 | Ascend 910 | Ascend 910C |
 | enflame | Enflame | 106 |
 | biren | Biren | S60 |
+| 海光 | BW | BW200 |

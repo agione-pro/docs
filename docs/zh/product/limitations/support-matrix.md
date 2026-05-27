@@ -10,8 +10,8 @@
 
 | 范围             | 支持说明                                                                 | 限制条件                            |
 | -------------- | -------------------------------------------------------------------- | ------------------------------- |
-| 管理节点部署         | 支持 All-in-One、本地多节点、Kubernetes / 云原生、私有化、离线或弱网交付                     | 具体规格需按部署形态、纳管规模和交付包版本确认         |
-| 算力节点纳管         | 支持 NVIDIA Hopper / Ampere / Ada，Ascend910B/910C，Enflame106，Biren S60 | 芯片可纳管不等于所有模型、驱动、CUDA、推理引擎组合均已验证 |
+| 管理节点部署         | 支持 All-in-One、本地多节点、私有化、离线或弱网交付                     | 具体规格需按部署形态、纳管规模和交付包版本确认         |
+| 算力节点纳管         | 支持 NVIDIA Hopper / Ampere / Ada，Ascend910B/910C，Enflame106，Biren S60，海光 BW200 | 芯片可纳管不等于所有模型、驱动、CUDA、推理引擎组合均已验证 |
 | 算力平台纳管         | 支持阿里云、AWS、Google Cloud、AGIOne 异构卡纳管（算模方）等云平台，暂不支持华为云             | 不同云平台的账号权限、网络互通、API 密钥和安全策略需单独评估    |
 | 模型服务能力         | 支持文本生成、推理、多模态、OCR、Embedding、Reranker、RAG（规划中）、工具调用（规划中）、聚合模型、流式输出和 usage计量等    | 具体能力依赖模型本身、推理引擎、协议适配和产品版本       |
 | 快速部署模型         | 支持 DeepSeek、Qwen、Kimi、MiniMax、GLM、Llama 等系列                          | 超大模型需评估显存、并行策略、量化方式、存储和网络条件     |
@@ -22,7 +22,6 @@
 | --- | --- | --- | --- | --- |
 | All-in-One 单机部署 | 支持 | 单台 Linux物理机或虚拟机 | 推荐8C /16GiB /200GiB 可用磁盘，root 或等效权限，Docker / Compose |适合演示、测试、PoC 或小规模部署，不建议承载高可用生产负载 |
 | 本地 Host-mode 多节点部署 | 支持 | 多台 Linux物理机或虚拟机 | 至少4 台机器：2 台应用节点、1 台中间件节点、1 台数据库备库节点；节点 IP 固定；SSH 可达；时间同步 | 历史数据、端口占用、目录权限和数据库主备风险需部署前确认 |
-| Kubernetes / 云原生部署 | 支持 |既有 Kubernetes 集群或 AGIOne交付 kube-cluster | kubeconfig 可用，节点 Ready，命名空间权限充足，镜像仓库、StorageClass、Ingress、DNS、证书就绪 | Kubernetes版本需按交付包兼容矩阵确认；存储、CNI 和 Ingress 差异会影响交付 |
 | 私有化部署 | 支持 | 企业内网、IDC、私有云、专有云 | 可部署管理平面、模型服务、资源纳管和统一入口；支持数据不出域场景 | 网络隔离、离线包、证书、DNS、代理、安全基线和审计策略需现场评估 |
 | 离线或弱网部署 | 支持 | 无公网或受限公网环境 | 离线 bundle、离线 Python、镜像包、checksum 校验、Docker/Compose 安装或修复能力 | 缺失离线资源、镜像导入失败、仓库不可达会阻塞部署 |
 
@@ -32,7 +31,6 @@
 | --- | --- | --- |
 | 操作系统 | Ubuntu22.04 推荐；Ubuntu20.04 可作为推荐范围；CentOS/Rocky7.x/8.x 条件支持；Kylin/UOS需评估 |生产应以正式 release note、交付包兼容矩阵和现场验证结果为准 |
 | Docker | Docker24.x+ 建议 |需匹配操作系统、内核、镜像包和离线安装方式 |
-| Kubernetes | Kubernetes1.24-1.29 建议 |需结合交付包、GPU/NPU 插件、CNI、CSI、Ingress Controller 验证 |
 | Helm | Helm3.10+ 建议 |仅适用于 Helm 或 chart交付形态 |
 | 中间件 | MariaDB、Redis、Nacos、Kafka、MinIO、OpenResty/Nginx |端口冲突、存储持久化、备份恢复和安全基线需部署前确认 |
 
@@ -46,6 +44,7 @@
 | Huawei Ascend | Ascend910 | Ascend910B、Ascend910C | 国产化、信创、本地化推理、批量推理 |需结合 CANN、MindIE、模型适配和镜像版本确认 |
 | Enflame | Enflame |106 | 国产加速卡纳管与适配 |需结合驱动、推理框架和模型适配验证 |
 | Biren | Biren | S60 | 国产加速卡纳管与适配 |需结合驱动、推理框架和模型适配验证 |
+| 海光 | BW 系列 | BW200 | 国产加速卡纳管与适配 |需结合驱动、推理框架和模型适配验证 |
 
 ## 6. AGIOne 纳管算力节点操作系统要求
 

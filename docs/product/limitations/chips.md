@@ -38,6 +38,7 @@ The following chip list has been verified and tested by the AGIOne official team
 | Huawei Ascend | Ascend 910 | Ascend 910C |
 | Enflame | Enflame | 106 |
 | Biren | Biren | S60 |
+| Hygon | BW | BW200 |
 
 ## Version and Dependency Requirements (Example)
 
