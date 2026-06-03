@@ -5,11 +5,11 @@ next: true
 
 # Product Overview
 
-This section contains product technical documentation for AGIOne products.
+This section contains product technical documentation for AGIOne products, organized by topic for quick reference and reuse.
 
 ## Documentation Structure
 
-The product pre-sales documents are organized into three directories:
+The product pre-sales documents are organized into four topics:
 
 ### `technical/`
 
@@ -20,6 +20,15 @@ Technical overview and product capability details.
 | [Overview](./technical/overview) | Product positioning, architecture, and core capabilities |
 | [Features & Ability](./technical/features) | Supported frameworks, models, protocols, and functional abilities |
 | [Technical Highlights](./technical/tech-highlights) | Key technical advantages and differentiated highlights |
+
+### Identity and Access Model
+
+Design logic for accounts, tenants, roles, and permissions.
+
+| Document | Purpose |
+|------|------|
+| [User, Tenant, and Role Design Logic](./identity-access-model) | Explains tenant boundaries, default roles, and authorization control logic |
+| [Role Comparison](./role-comparison) | Compares the capability boundaries of admin, operator, provider, and enduser |
 
 ### `limitations/`
 

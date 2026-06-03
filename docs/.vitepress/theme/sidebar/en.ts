@@ -25,9 +25,10 @@ export const enSidebar: DefaultTheme.Sidebar = {
       ]
     },
     {
-      text: "Role System",
+      text: "Identity and Access Model",
       collapsed: false,
       items: [
+        { text: "User, Tenant, and Role Design Logic", link: "/product/identity-access-model" },
         { text: "Role Comparison", link: "/product/role-comparison" },
       ],
     },

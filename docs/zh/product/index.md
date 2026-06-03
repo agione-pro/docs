@@ -5,11 +5,11 @@ next: true
 
 # 产品技术文档
 
-本章节包含 AGIOne 产品相关文档，按目录结构组织，便于快速查阅与交付复用。
+本章节包含 AGIOne 产品相关文档，按主题结构组织，便于快速查阅与交付复用。
 
 ## 文档结构
 
-产品售前文档分为三个目录：
+产品售前文档分为四个主题：
 
 ### `technical/`
 
@@ -21,6 +21,15 @@ next: true
 | [功能与能力](./technical/features) | 支持场景、关键功能与性能口径 |
 | [网络规划](./technical/network) | 典型网络架构与端口规划建议 |
 | [技术亮点](./technical/tech-highlights) | 产品差异化能力与技术优势 |
+
+### 账号与权限模型
+
+账号、租户、角色和权限之间的设计逻辑说明。
+
+| 文档 | 用途 |
+|------|------|
+| [用户、租户与角色设计逻辑](./identity-access-model) | 说明租户边界、默认角色和授权控制逻辑 |
+| [角色对比总览](./role-comparison) | 对比 admin、operator、provider、enduser 的能力边界 |
 
 ### `limitations/`
 

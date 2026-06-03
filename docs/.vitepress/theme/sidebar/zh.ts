@@ -13,9 +13,10 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       ],
     },
     {
-      text: '角色体系',
+      text: '账号与权限模型',
       collapsed: false,
       items: [
+        { text: '用户、租户与角色设计逻辑', link: '/zh/product/identity-access-model' },
         { text: '角色对比总览', link: '/zh/product/role-comparison' },
       ],
     },

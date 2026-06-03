@@ -1,8 +1,6 @@
 # AGIOne Platform — Role Comparison Overview
 
-admin · operator · provider · eu (End User) — Role boundaries and core capabilities at a glance
-
----
+admin · operator · provider · enduser (End User) — Role boundaries and core capabilities at a glance
 
 ## Role Summary
 
@@ -11,7 +9,7 @@ admin · operator · provider · eu (End User) — Role boundaries and core capa
 | **admin** — System Administrator | Platform-wide System Metadata Governor | Platform Governance (credentials & qualifications) |
 | **operator** — Platform Operator | Platform Standards & Review Governor | Mall Operations Team (rules & review) |
 | **provider** — Supplier / Vendor | AI Capability Producer & Deployer | Brand / Vendor (stock shelves) |
-| **eu** — End User | AI Capability User | Customer (buy & use) |
+| **enduser** — End User | AI Capability User | Customer (buy & use) |
 
 ---
 
@@ -140,7 +138,7 @@ admin · operator · provider · eu (End User) — Role boundaries and core capa
 
 ---
 
-## eu — End User
+## enduser — End User
 
 **Positioning**: AI Capability User
 
