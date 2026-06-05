@@ -161,7 +161,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             {
-              text: "Provider & User",
+              text: "Provider",
               collapsed: false,
               items: [
                 {
