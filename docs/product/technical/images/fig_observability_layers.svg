@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1560" viewBox="0 0 2560 1560" role="img" aria-labelledby="title desc">
+  <title id="title">AGIOne Observability Layers</title>
+  <desc id="desc">AGIOne styled SVG recreation preserving the original technical diagram structure.</desc>
+  <defs>
+    <marker id="arrow-dark" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#3F3F46"/>
+    </marker>
+    <marker id="arrow-primary" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#5F4ECF"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#3A7252"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#8A5E38"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#6A4E9A"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#4A6298"/>
+    </marker>
+    <style>
+      .agione-text { font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; letter-spacing: 0; }
+      .node { stroke-width: 2.4; }
+      .section { stroke-width: 2.4; }
+      .flow { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .small { font-size: 16px; }
+      .tiny { font-size: 13px; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FFFFFF"/>
+  <rect x="80" y="40" width="2400" height="350" rx="26" ry="26" fill="#EEF1F8" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="200" y="125" class="agione-text" font-size="52" font-weight="700" fill="#4A6298" text-anchor="start">Application Layer Metrics (User Perspective)</text>
+  <circle cx="200" cy="195" r="6" fill="#4A6298"/>
+  <text x="240" y="205" class="agione-text" font-size="40" font-weight="400" fill="#4A6298" text-anchor="start">RPM / RPH / RPD</text>
+  <circle cx="200" cy="275" r="6" fill="#4A6298"/>
+  <text x="240" y="285" class="agione-text" font-size="40" font-weight="400" fill="#4A6298" text-anchor="start">TTFT / P50 / P95 / P99</text>
+  <circle cx="1200" cy="195" r="6" fill="#4A6298"/>
+  <text x="1240" y="205" class="agione-text" font-size="40" font-weight="400" fill="#4A6298" text-anchor="start">TPM / TPH / TPD</text>
+  <circle cx="1200" cy="275" r="6" fill="#4A6298"/>
+  <text x="1240" y="285" class="agione-text" font-size="40" font-weight="400" fill="#4A6298" text-anchor="start">Success Rate / Error Classification</text>
+  <path d="M1280 405 L1280 560" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <text x="1320" y="500" class="agione-text" font-size="34" font-weight="400" fill="#3F3F46" text-anchor="start">Drill down on anomaly</text>
+  <rect x="80" y="600" width="2400" height="340" rx="26" ry="26" fill="#EEF5F0" stroke="#3A7252" stroke-width="2.4" class="node" />
+  <text x="200" y="695" class="agione-text" font-size="50" font-weight="700" fill="#3A7252" text-anchor="start">Scheduling Layer Metrics (Aggregated Model Perspective)</text>
+  <circle cx="200" cy="780" r="6" fill="#3A7252"/>
+  <text x="240" y="790" class="agione-text" font-size="38" font-weight="400" fill="#3A7252" text-anchor="start">Per-instance Running Tasks distribution</text>
+  <circle cx="200" cy="860" r="6" fill="#3A7252"/>
+  <text x="240" y="870" class="agione-text" font-size="38" font-weight="400" fill="#3A7252" text-anchor="start">Circuit-breaker / Fallback counts</text>
+  <circle cx="1360" cy="780" r="6" fill="#3A7252"/>
+  <text x="1400" y="790" class="agione-text" font-size="38" font-weight="400" fill="#3A7252" text-anchor="start">Real-time weights &amp; routing ratios</text>
+  <circle cx="1360" cy="860" r="6" fill="#3A7252"/>
+  <text x="1400" y="870" class="agione-text" font-size="38" font-weight="400" fill="#3A7252" text-anchor="start">Queue depth &amp; queue wait time</text>
+  <path d="M1280 955 L1280 1115" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <text x="1320" y="1045" class="agione-text" font-size="34" font-weight="400" fill="#3F3F46" text-anchor="start">Pinpoint further</text>
+  <rect x="80" y="1130" width="2400" height="430" rx="26" ry="26" fill="#F8F1EC" stroke="#8A5E38" stroke-width="2.4" class="node" />
+  <text x="200" y="1235" class="agione-text" font-size="50" font-weight="700" fill="#8A5E38" text-anchor="start">Infrastructure Layer Metrics (Instance Resource Perspective)</text>
+  <circle cx="200" cy="1330" r="6" fill="#8A5E38"/>
+  <text x="240" y="1340" class="agione-text" font-size="38" font-weight="400" fill="#8A5E38" text-anchor="start">GPU / NPU utilization / VRAM / Temperature / Power</text>
+  <circle cx="200" cy="1410" r="6" fill="#8A5E38"/>
+  <text x="240" y="1420" class="agione-text" font-size="38" font-weight="400" fill="#8A5E38" text-anchor="start">CPU / Memory / Disk IO / Network bandwidth</text>
+  <circle cx="200" cy="1490" r="6" fill="#8A5E38"/>
+  <text x="240" y="1500" class="agione-text" font-size="38" font-weight="400" fill="#8A5E38" text-anchor="start">K8s Node Condition / Pod status</text>
+</svg>

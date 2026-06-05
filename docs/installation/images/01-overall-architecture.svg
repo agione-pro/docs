@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="agione-01-overall-architecture-title agione-01-overall-architecture-desc">
+<title id="agione-01-overall-architecture-title">AGIOne Overall Platform Architecture</title>
+<desc id="agione-01-overall-architecture-desc">Overall architecture showing access, management control plane, and compute data plane layers.</desc>
+<metadata>AGIOne diagrams semantic palette applied: primary #5F4ECF, primary-hover #4A3EB0, primary-subtle #ECE9F9, subtle-border #D8D2F0, terminal #1A1025, text #09090B/#3F3F46/#71717A, surfaces #FFFFFF/#F4F4F5/#FAFAFA, border #E4E4E7/#A1A1AA, blue #EEF1F8/#4A6298, success #EEF5F0/#3A7252, warning #F8F1EC/#8A5E38.</metadata>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3F3F46"/></marker>
+  <marker id="arrowPrimary" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5F4ECF"/></marker>
+  <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8A5E38"/></marker>
+  <style>
+    :root{
+      --agione-primary:#5F4ECF;
+      --agione-primary-hover:#4A3EB0;
+      --agione-primary-subtle:#ECE9F9;
+      --agione-primary-subtle-border:#D8D2F0;
+      --agione-topnav-bg:#1A1025;
+      --agione-topnav-accent:#2D2240;
+      --agione-page:#FFFFFF;
+      --agione-muted:#F4F4F5;
+      --agione-cluster:#FAFAFA;
+      --agione-text:#09090B;
+      --agione-text-secondary:#3F3F46;
+      --agione-text-muted:#71717A;
+      --agione-border:#E4E4E7;
+      --agione-border-strong:#A1A1AA;
+      --agione-blue-surface:#EEF1F8;
+      --agione-blue-text:#4A6298;
+      --agione-success-surface:#EEF5F0;
+      --agione-success-text:#3A7252;
+      --agione-warning-surface:#F8F1EC;
+      --agione-warning-text:#8A5E38;
+    }
+    svg{background:#FFFFFF;shape-rendering:geometricPrecision;text-rendering:optimizeLegibility}
+    text{font-family:"Inter Variable",Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;letter-spacing:0}
+    line,path,rect,circle,polyline,polygon{vector-effect:non-scaling-stroke}
+    .mono{font-family:"SFMono-Regular",Consolas,Menlo,monospace}
+  </style>
+</defs>
+<rect width="1200" height="760" fill="#FFFFFF"/>
+<text x="600" y="36" font-size="22" font-weight="700" fill="#09090B" text-anchor="middle"><tspan x="600" dy="0">AGIOne Overall Platform Architecture</tspan></text>
+<text x="600" y="58" font-size="12" font-weight="400" fill="#71717A" text-anchor="middle"><tspan x="600" dy="0">Overall Architecture - Access - Management - Compute</tspan></text>
+<rect x="520" y="78" width="160" height="56" rx="28" fill="#1A1025" stroke="none" stroke-width="0"/>
+<circle cx="551" cy="100" r="9" fill="#FFFFFF"/>
+<path d="M 537 120 C 544 107, 559 107, 566 120" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+<text x="625" y="113" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="625" dy="0">Users / Admin</tspan></text>
+<line x1="600" y1="134" x2="600" y2="152" stroke="#3F3F46" stroke-width="2.2" fill="none"  marker-end="url(#arrow)"/>
+<rect x="80" y="155" width="1040" height="90" rx="8" fill="#EEF1F8" stroke="#4A6298" stroke-width="1.8" />
+<text x="100" y="185" font-size="11" font-weight="700" fill="#4A6298" text-anchor="start"><tspan x="100" dy="0">ACCESS LAYER</tspan></text>
+<rect x="450" y="178" width="300" height="58" rx="8" fill="#FFFFFF" stroke="#4A6298" stroke-width="1.5" />
+<rect x="464" y="194" width="24" height="24" rx="6" fill="#4A6298" stroke="#4A6298" stroke-width="0" />
+<text x="476" y="211" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="476" dy="0">LB</tspan></text>
+<text x="498" y="205" font-size="13" font-weight="700" fill="#4A6298" text-anchor="start"><tspan x="498" dy="0">ELB Load Balancer</tspan></text>
+<text x="498" y="226" font-size="10" font-weight="400" fill="#4A6298" text-anchor="start"><tspan x="498" dy="0">External entry - 443 / 80 / 18090</tspan></text>
+<text x="882" y="211" font-size="11" font-weight="400" fill="#4A6298" text-anchor="middle"><tspan x="882" dy="0">Domain + HTTPS recommended in production</tspan></text>
+<line x1="600" y1="245" x2="600" y2="278" stroke="#3F3F46" stroke-width="2.2" fill="none"  marker-end="url(#arrow)"/>
+<rect x="80" y="285" width="1040" height="210" rx="8" fill="#ECE9F9" stroke="#5F4ECF" stroke-width="1.8" />
+<text x="100" y="315" font-size="11" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="100" dy="0">MANAGEMENT LAYER - CONTROL PLANE</tspan></text>
+<rect x="120" y="330" width="470" height="150" rx="8" fill="#FFFFFF" stroke="#D8D2F0" stroke-width="1.3" stroke-dasharray="5 4"/>
+<text x="135" y="352" font-size="12" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="135" dy="0">Business Nodes (&gt;=2)</tspan></text>
+<rect x="140" y="370" width="210" height="78" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5" />
+<rect x="154" y="386" width="24" height="24" rx="6" fill="#5F4ECF" stroke="#5F4ECF" stroke-width="0" />
+<text x="166" y="403" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="166" dy="0">OK</tspan></text>
+<text x="188" y="397" font-size="13" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="188" dy="0">AGIOne Core #1</tspan></text>
+<text x="188" y="418" font-size="10" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="188" dy="0">8C / 16G</tspan><tspan x="188" dy="16">Business service instance</tspan></text>
+<rect x="365" y="370" width="210" height="78" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5" />
+<rect x="379" y="386" width="24" height="24" rx="6" fill="#5F4ECF" stroke="#5F4ECF" stroke-width="0" />
+<text x="391" y="403" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="391" dy="0">OK</tspan></text>
+<text x="413" y="397" font-size="13" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="413" dy="0">AGIOne Core #2</tspan></text>
+<text x="413" y="418" font-size="10" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="413" dy="0">8C / 16G</tspan><tspan x="413" dy="16">Horizontal scale-out</tspan></text>
+<rect x="620" y="330" width="460" height="150" rx="8" fill="#FFFFFF" stroke="#D8D2F0" stroke-width="1.3" stroke-dasharray="5 4"/>
+<text x="635" y="352" font-size="12" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="635" dy="0">Database &amp; Middleware Nodes (&gt;=2)</tspan></text>
+<rect x="640" y="366" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#D8D2F0" stroke-width="1.5" />
+<text x="656" y="393" font-size="12" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="656" dy="0">RDS</tspan></text>
+<text x="656" y="414" font-size="9" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="656" dy="0">Primary / Replica</tspan></text>
+<rect x="835" y="366" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#D8D2F0" stroke-width="1.5" />
+<text x="851" y="393" font-size="12" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="851" dy="0">Nacos</tspan></text>
+<text x="851" y="414" font-size="9" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="851" dy="0">Service discovery</tspan></text>
+<rect x="640" y="422" width="125" height="54" rx="8" fill="#FFFFFF" stroke="#D8D2F0" stroke-width="1.5" />
+<text x="656" y="449" font-size="11" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="656" dy="0">Redis</tspan></text>
+<text x="656" y="470" font-size="8" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="656" dy="0">Cache</tspan></text>
+<rect x="785" y="422" width="125" height="54" rx="8" fill="#FFFFFF" stroke="#D8D2F0" stroke-width="1.5" />
+<text x="801" y="449" font-size="11" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="801" dy="0">Kafka</tspan></text>
+<text x="801" y="470" font-size="8" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="801" dy="0">Messaging</tspan></text>
+<rect x="930" y="422" width="125" height="54" rx="8" fill="#FFFFFF" stroke="#D8D2F0" stroke-width="1.5" />
+<text x="946" y="449" font-size="11" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="946" dy="0">MinIO</tspan></text>
+<text x="946" y="470" font-size="8" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="946" dy="0">Object storage</tspan></text>
+<rect x="500" y="507" width="200" height="24" rx="12" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.2"/>
+<text x="600" y="523" font-size="11" font-weight="700" fill="#4A3EB0" text-anchor="middle"><tspan x="600" dy="0">6443 - 32761-32765</tspan></text>
+<line x1="330" y1="495" x2="330" y2="542" stroke="#5F4ECF" stroke-width="2.2" fill="none"  marker-end="url(#arrowPrimary)"/>
+<line x1="900" y1="495" x2="900" y2="542" stroke="#5F4ECF" stroke-width="2.2" fill="none"  marker-end="url(#arrowPrimary)"/>
+<rect x="80" y="550" width="1040" height="180" rx="8" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1.8" />
+<text x="100" y="575" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="100" dy="0">COMPUTE LAYER - DATA PLANE</tspan></text>
+<rect x="120" y="595" width="470" height="118" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="134" y="616" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="134" dy="0">Compute Pool A - Region 1</tspan></text>
+<rect x="136" y="632" width="140" height="70" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5" />
+<rect x="150" y="648" width="24" height="24" rx="6" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="162" y="665" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="162" dy="0">K8s</tspan></text>
+<text x="184" y="659" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="184" dy="0">K8s Control</tspan></text>
+<text x="184" y="680" font-size="8" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="184" dy="0">1 or 3 nodes</tspan><tspan x="184" dy="12">API / scheduling / etcd</tspan></text>
+<rect x="286" y="632" width="140" height="70" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5" />
+<rect x="300" y="648" width="24" height="24" rx="6" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="312" y="665" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="312" dy="0">IMG</tspan></text>
+<text x="334" y="659" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="334" dy="0">Image Service</tspan></text>
+<text x="334" y="680" font-size="8" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="334" dy="0">Near-node registry</tspan><tspan x="334" dy="12">Image acceleration</tspan></text>
+<rect x="436" y="632" width="140" height="70" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5" />
+<rect x="450" y="648" width="24" height="24" rx="6" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="462" y="665" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="462" dy="0">GPU</tspan></text>
+<text x="484" y="659" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="484" dy="0">Worker Nodes</tspan></text>
+<text x="484" y="680" font-size="8" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="484" dy="0">GPU / NPU nodes</tspan><tspan x="484" dy="12">Training / inference</tspan></text>
+<rect x="610" y="595" width="470" height="118" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="624" y="616" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="624" dy="0">Compute Pool B - Region 2</tspan></text>
+<rect x="626" y="632" width="140" height="70" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5" />
+<rect x="640" y="648" width="24" height="24" rx="6" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="652" y="665" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="652" dy="0">K8s</tspan></text>
+<text x="674" y="659" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="674" dy="0">K8s Control</tspan></text>
+<text x="674" y="680" font-size="8" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="674" dy="0">1 or 3 nodes</tspan><tspan x="674" dy="12">API / scheduling / etcd</tspan></text>
+<rect x="776" y="632" width="140" height="70" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5" />
+<rect x="790" y="648" width="24" height="24" rx="6" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="802" y="665" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="802" dy="0">IMG</tspan></text>
+<text x="824" y="659" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="824" dy="0">Image Service</tspan></text>
+<text x="824" y="680" font-size="8" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="824" dy="0">Near-node registry</tspan><tspan x="824" dy="12">Image acceleration</tspan></text>
+<rect x="926" y="632" width="140" height="70" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5" />
+<rect x="940" y="648" width="24" height="24" rx="6" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="952" y="665" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="952" dy="0">NPU</tspan></text>
+<text x="974" y="659" font-size="11" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="974" dy="0">Worker Nodes</tspan></text>
+<text x="974" y="680" font-size="8" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="974" dy="0">GPU / NPU nodes</tspan><tspan x="974" dy="12">Training / inference</tspan></text>
+<rect x="80" y="736" width="12" height="12" rx="3" fill="#EEF1F8" stroke="#4A6298" stroke-width="1" />
+<text x="98" y="745" font-size="10" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="98" dy="0">Access Layer</tspan></text>
+<rect x="168" y="736" width="12" height="12" rx="3" fill="#ECE9F9" stroke="#5F4ECF" stroke-width="1" />
+<text x="186" y="745" font-size="10" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="186" dy="0">Management Layer</tspan></text>
+<rect x="286" y="736" width="12" height="12" rx="3" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1" />
+<text x="304" y="745" font-size="10" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="304" dy="0">Compute Layer</tspan></text>
+</svg>

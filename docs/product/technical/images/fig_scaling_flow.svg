@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3280" height="1000" viewBox="0 0 3280 1000" role="img" aria-labelledby="title desc">
+  <title id="title">AGIOne Scaling Flow</title>
+  <desc id="desc">AGIOne styled SVG recreation preserving the original technical diagram structure.</desc>
+  <defs>
+    <marker id="arrow-dark" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#3F3F46"/>
+    </marker>
+    <marker id="arrow-primary" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#5F4ECF"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#3A7252"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#8A5E38"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#6A4E9A"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#4A6298"/>
+    </marker>
+    <style>
+      .agione-text { font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; letter-spacing: 0; }
+      .node { stroke-width: 2.4; }
+      .section { stroke-width: 2.4; }
+      .flow { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .small { font-size: 16px; }
+      .tiny { font-size: 13px; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FFFFFF"/>
+  <rect x="40" y="40" width="3200" height="400" rx="24" ry="24" fill="#F8F1EC" stroke="#8A5E38" stroke-width="2.4" class="node" />
+  <text x="100" y="110" class="agione-text" font-size="42" font-weight="700" fill="#8A5E38" text-anchor="start">Scale-down workflow (graceful drain)</text>
+  <rect x="100" y="190" width="400" height="125" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="300.0" y="262.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="300.0" dy="0">Mark as disabled</tspan>
+  </text>
+  <rect x="620" y="190" width="480" height="125" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="860.0" y="262.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="860.0" dy="0">Stop routing new requests</tspan>
+  </text>
+  <rect x="1220" y="190" width="440" height="125" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="1440.0" y="243.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="1440.0" dy="0">Wait for</tspan>
+    <tspan x="1440.0" dy="38">Running Tasks -&gt; 0</tspan>
+  </text>
+  <rect x="1820" y="190" width="420" height="125" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="2030.0" y="262.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="2030.0" dy="0">Evict instance</tspan>
+  </text>
+  <rect x="2340" y="190" width="420" height="125" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="2550.0" y="262.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="2550.0" dy="0">Destroy container</tspan>
+  </text>
+  <rect x="2860" y="190" width="300" height="125" rx="16" ry="16" fill="#F8F1EC" stroke="#8A5E38" stroke-width="2.4" class="node" />
+  <text x="3010.0" y="262.7" class="agione-text" font-size="30" font-weight="500" fill="#8A5E38" text-anchor="middle">
+    <tspan x="3010.0" dy="0">Done</tspan>
+  </text>
+  <path d="M500 252 L600 252" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <path d="M1100 252 L1200 252" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <path d="M1660 252 L1800 252" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <path d="M2240 252 L2320 252" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <path d="M2760 252 L2840 252" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <rect x="40" y="510" width="3200" height="440" rx="24" ry="24" fill="#EEF5F0" stroke="#3A7252" stroke-width="2.4" class="node" />
+  <text x="100" y="585" class="agione-text" font-size="42" font-weight="700" fill="#3A7252" text-anchor="start">Scale-up workflow (transparent to traffic)</text>
+  <rect x="100" y="680" width="400" height="135" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="300.0" y="757.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="300.0" dy="0">Provision new node</tspan>
+  </text>
+  <rect x="620" y="680" width="480" height="135" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="860.0" y="738.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="860.0" dy="0">Auto-register</tspan>
+    <tspan x="860.0" dy="38">(weight = 0)</tspan>
+  </text>
+  <rect x="1220" y="680" width="480" height="135" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="1460.0" y="757.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="1460.0" dy="0">Join aggregation pool</tspan>
+  </text>
+  <rect x="1820" y="680" width="500" height="135" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="2070.0" y="757.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="2070.0" dy="0">Health check passes</tspan>
+  </text>
+  <rect x="2420" y="680" width="520" height="135" rx="16" ry="16" fill="#FFFFFF" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="2680.0" y="738.7" class="agione-text" font-size="30" font-weight="500" fill="#4A6298" text-anchor="middle">
+    <tspan x="2680.0" dy="0">Weight 0 -&gt; baseline</tspan>
+    <tspan x="2680.0" dy="38">(5-min warm-up)</tspan>
+  </text>
+  <rect x="3000" y="680" width="200" height="135" rx="16" ry="16" fill="#EEF5F0" stroke="#3A7252" stroke-width="2.4" class="node" />
+  <text x="3100.0" y="757.7" class="agione-text" font-size="30" font-weight="500" fill="#3A7252" text-anchor="middle">
+    <tspan x="3100.0" dy="0">Done</tspan>
+  </text>
+  <path d="M500 748 L600 748" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <path d="M1100 748 L1200 748" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <path d="M1700 748 L1800 748" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <path d="M2320 748 L2400 748" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+  <path d="M2940 748 L2980 748" class="flow" stroke="#3F3F46" stroke-width="4" marker-end="url(#arrow-dark)" />
+</svg>

@@ -1,144 +1,75 @@
 # AGIOne Pre-install Environment Check Guide
 
-This document describes how to run a precheck / doctor workflow before executing `./agione quick` or `./agione install`. It focuses on driver, CUDA, disk, and port risks that should be identified before formal installation.
+This document describes the environment checks that should be completed before running `./agione quick` or `./agione install`. The current checks focus on the `agione-app` installation scope: host resources, runtime directories, Docker and Compose, SSH access, ports, offline assets, and middleware connectivity.
 
-The purpose of the precheck is to find blocking issues as early as possible, instead of discovering insufficient resources, occupied ports, incompatible drivers, or unwritable runtime directories after the installation workflow has already started.
+The goal is to find blocking issues before the installation workflow starts.
 
----
-
-## Applicable Scenarios
+## 1. Applicable Scenarios
 
 | Scenario | Recommended | Description |
 | --- | --- | --- |
-| All-in-One single-node installation | Yes | Check CPU, memory, disk, ports, Docker, Compose, and basic commands before installation |
-| Compute node with GPU / XPU | Yes | Additionally check drivers, CUDA / CANN, container runtime, and device visibility |
-| Offline or restricted-network delivery | Yes | Confirm the bundle, offline images, offline Python runtime, and runtime directories |
+| Single-node installation | Yes | Check CPU, memory, disk, ports, Docker, Compose, and basic commands |
+| Host-mode multi-node installation | Yes | Check SSH access, private node addresses, remote resources, remote commands, Docker status, and required ports |
+| Offline or restricted-network delivery | Yes | Confirm the release bundle, offline images, offline Python runtime, and runtime directories |
 | Reinstallation on an existing host | Yes | Confirm old data, old containers, occupied ports, and old directories before installation |
+| External managed middleware | Yes | Confirm endpoint reachability, credentials, and access policies before installation |
 
----
+## 2. Recommended Commands
 
-## Execution Methods
-
-### Recommended: use installer doctor
-
-The AGIOne installer can use `doctor` as the pre-install environment check:
+Run `doctor` before formal installation:
 
 ```bash
-cd /opt/hyperone/agione-release-v1.0-20260514
+cd /opt/hyperone/agione-release-v1.0-20260527
 chmod +x ./agione
 ./agione doctor
 ```
 
-`doctor` generates diagnostic reports and support bundles. It is suitable for archiving before formal installation and for troubleshooting after installation failures.
-
-For first-time installation, `doctor` uses a temporary `/tmp` check workspace and does not create or overwrite `/opt/agione-installer-bundle`.
-
-### If the bundle provides an independent precheck script
-
-If the delivery bundle provides `precheck.sh` or a similar script, run it separately before installation:
+Verify the release bundle after transfer:
 
 ```bash
-chmod +x ./precheck.sh
-./precheck.sh
+./agione verify-bundle
 ```
 
-The precheck script should cover at least the driver / CUDA, disk, port, and basic runtime environment checks listed in this document. The script output should use three result levels: `PASS`, `WARN`, and `FAIL`.
+For host-mode multi-node installation, run the precheck with the same configuration file that will be used for installation:
+
+```bash
+./agione doctor --file /root/agione-install.yml
+```
+
+## 3. Check Result Levels
 
 | Result | Meaning | Suggested Action |
 | --- | --- | --- |
 | `PASS` | Meets installation requirements | Continue to installation |
-| `WARN` | Risk exists but may not block installation | Delivery owner must confirm whether to accept the risk |
-| `FAIL` | Key prerequisite is not met | Stop installation, remediate, and run precheck again |
+| `WARN` | Risk exists but may not block installation | Delivery owner and customer owner must confirm whether to accept the risk |
+| `FAIL` | Key prerequisite is not met | Stop installation, remediate, and run the check again |
 
----
+## 4. Check Item Overview
 
-## Check Item Overview
-
-| Category | Can Be Checked in Advance | Blocking Level | Description |
-| --- | --- | --- | --- |
-| Operating system and permissions | Yes | High | Confirm Linux distribution, root or equivalent permission, and basic commands |
-| CPU / memory | Yes | High | All-in-One recommends 8 cores / 16 GiB |
-| Disk space | Yes | High | The partition hosting `/opt/hyperone` recommends 200 GiB; about 160 GiB or above can pass the basic check |
-| Port occupation | Yes | High | Local port occupation can be checked automatically; cross-node access must be verified with network policies |
-| NVIDIA driver | Yes | Medium / High | Management nodes do not require GPU; compute nodes or local inference scenarios must be checked |
-| CUDA | Yes | Medium / High | Must be confirmed with GPU driver, images, inference engine, and delivery bundle compatibility matrix |
-| Docker / Compose | Yes | High | If installed, check version and status; if not installed, confirm it can be installed from offline assets |
-| Offline assets | Yes | High | Run `./agione verify-bundle` as well |
-
----
-
-## Driver and CUDA Checks
-
-### Check principles
-
-The AGIOne management node does not require GPU by default. If the target host also acts as a compute node, model inference node, or GPU resource management node, driver, CUDA, and container runtime checks must be completed before installation.
-
-Driver / CUDA compatibility should not be judged by a single version number. Confirm the following together:
-
-- GPU model
-- NVIDIA Driver version
-- CUDA Runtime / Toolkit version
-- Inference engine version
-- AGIOne delivery bundle and image versions
-- Whether GPU container runtime is required
-
-### Recommended commands
-
-```bash
-# Check whether GPU and driver are visible
-nvidia-smi
-
-# Check CUDA Toolkit. Missing nvcc is not always blocking; follow delivery bundle requirements.
-nvcc --version
-
-# Check kernel modules
-lsmod | grep -i nvidia
-
-# Check whether the container runtime recognizes NVIDIA, if the command exists
-nvidia-container-cli info
-```
-
-### Acceptance criteria
-
-| Check Item | Pass Criteria | Failure or Risk Signal |
+| Category | Blocking Level | Description |
 | --- | --- | --- |
-| `nvidia-smi` | Outputs GPU, Driver Version, and CUDA Version normally | Command missing, command error, or GPU not visible |
-| Driver version | Compatible with GPU model, image, and delivery bundle | Driver too old, kernel mismatch, or module not loaded after reboot |
-| CUDA version | Compatible with inference engine and image | CUDA version unclear or inconsistent with image requirements |
-| GPU container runtime | GPU can be accessed inside containers | GPU devices are not visible after container startup |
+| Operating system and permissions | High | Confirm Linux distribution, root or equivalent permission, and basic commands |
+| CPU and memory | High | Confirm that the host meets the selected deployment mode |
+| Disk space | High | With the default `runtime_root`, the installer prefers a suitable data disk and falls back to `/opt/hyperone` on the system disk only when needed; about 160 GiB or above is required |
+| Runtime directory | High | Confirm that the selected runtime root can be created, written, and cleaned when reinstalling |
+| Port occupation | High | Confirm that required ports are not occupied by unmanaged processes |
+| Docker and Compose | High | If installed, check version and status; if missing, confirm that offline installation assets are available |
+| SSH access | High for host-mode | Confirm that the initiating host can access all host-mode nodes |
+| Host-mode node addresses | High | Confirm that runtime node addresses are private IPv4 addresses |
+| Offline assets | High | Confirm release bundle checksums and offline resource availability |
+| External managed middleware | High when selected | Confirm endpoint, username, password, protocol, and network policy |
 
-### Notes
+## 5. Resource Checks
 
-- The CUDA Version shown by `nvidia-smi` represents the CUDA capability supported by the driver. It is not always the same as the CUDA Toolkit installed on the system.
-- If AGIOne only deploys the management plane, missing driver / CUDA should not block installation, but should be marked as "Not applicable" in the precheck report.
-- If deployment includes local inference or compute resource management, unconfirmed driver / CUDA status should be treated as high risk.
-
----
-
-## Disk Checks
-
-### Check target
-
-Focus on available space, write permission, and inode status for the partition hosting `/opt/hyperone`.
-
-For All-in-One single-node installation, the partition hosting `/opt/hyperone` recommends 200 GiB free space. The installer tolerates about 20% filesystem reservation loss, and about 160 GiB or above can pass the basic check.
-
-### Recommended commands
+Focus on the partition hosting `/opt/hyperone`.
 
 ```bash
-# Check capacity of the partition hosting /opt/hyperone
 df -h /opt/hyperone 2>/dev/null || df -h /opt
-
-# Check inode availability
 df -ih /opt/hyperone 2>/dev/null || df -ih /opt
-
-# Check whether the directory can be created and written
 mkdir -p /opt/hyperone
 touch /opt/hyperone/.agione-precheck-write-test
 rm -f /opt/hyperone/.agione-precheck-write-test
 ```
-
-### Acceptance criteria
 
 | Check Item | Pass Criteria | Suggested Action |
 | --- | --- | --- |
@@ -147,108 +78,98 @@ rm -f /opt/hyperone/.agione-precheck-write-test
 | inode | inode usage is not close to 100% | Clean small files or adjust filesystem |
 | Historical data | Confirm whether to keep, back up, or clean it | Complete data confirmation before reinstallation |
 
----
+## 6. Port Checks
 
-## Port Checks
-
-### Check target
-
-Port precheck contains two parts:
-
-- Local port occupation check: confirm AGIOne ports are not occupied by unmanaged processes.
-- Network connectivity check: confirm clients, management nodes, compute nodes, or middleware nodes can access required ports.
-
-The precheck script can automatically complete local port occupation checks. Cross-host network connectivity still needs to be verified with firewall, security group, routing, and customer network policies.
-
-### All-in-One key ports
+### 6.1 Key Ports
 
 | Port | Purpose | Precheck Focus |
 | --- | --- | --- |
 | `22/TCP` | SSH operations | Operations side can log in to the target host |
 | `18090/TCP` | AGIOne Web entry | Not occupied; clients can access it |
 | `80/TCP` | Nginx / OpenResty entry | Not occupied by unmanaged processes |
+| `443/TCP` | HTTPS entry, optional | Plan in advance if HTTPS is enabled |
 | `8089/TCP` | Job access proxy | Not occupied by unmanaged processes |
 | `3306/TCP` | MariaDB | Not occupied by old database or other services |
 | `6379/TCP` | Redis | Not occupied by old Redis or other services |
 | `8848/8849/TCP` | Nacos | Not occupied by old Nacos or other services |
-| `9000/9001/TCP` | MinIO API / Console | Not occupied by old MinIO or other services |
+| `9848/9849/TCP` | Nacos internal communication | Not occupied by old Nacos or other services |
+| `9000/9001/TCP` | MinIO API and console | Not occupied by old MinIO or other services |
 | `9092/TCP` | Kafka | Not occupied by old Kafka or other services |
-| `443/TCP` | HTTPS entry, optional | Plan in advance if HTTPS is enabled |
 
-### Recommended commands
+### 6.2 Recommended Commands
 
 ```bash
-# Check local listening ports
-ss -lntup | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|18090)\b'
-
-# Or use lsof
-lsof -iTCP -sTCP:LISTEN -P -n | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|18090)\b'
-
-# Verify entry port connectivity from client or other nodes
+ss -lntup | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9848|9849|18090)\b'
+lsof -iTCP -sTCP:LISTEN -P -n | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9848|9849|18090)\b'
 nc -vz <target-host-ip> 18090
 nc -vz <target-host-ip> 22
 ```
 
-### Acceptance criteria
+## 7. Host-mode Remote Checks
 
-| Check Item | Pass Criteria | Failure or Risk Signal |
+For host-mode multi-node installation, check every node defined in `agione-install.yml`.
+
+| Check Item | Pass Criteria | Failure Signal |
 | --- | --- | --- |
-| Local port occupation | Ports are not occupied by non-AGIOne processes | Old services occupy ports and cause container startup failure |
-| Firewall / security group | Access side can connect to target ports | Browser cannot access the page or services cannot reach each other |
-| Port planning | Default or custom ports have been approved | Ports are changed temporarily during deployment, causing inconsistent access address and configuration |
+| SSH connectivity | Target node can be reached through the configured user and port | Authentication failure or timeout |
+| Private IPv4 address | Node address is an RFC1918 private IPv4 address | Public IP address, public DNS name, or placeholder hostname |
+| Remote commands | `bash`, `tar`, and Python are available or repairable from bundled assets | Required commands are missing and cannot be repaired |
+| Remote resources | CPU, memory, and selected install disk meet the selected role | Node resource below the threshold |
+| Existing data | Old runtime data is either absent or explicitly overwritten with `-f` | Old runtime data exists and overwrite was not confirmed |
+| Docker status | Docker and Compose are running or can be installed from offline assets | Docker repair failed |
+| Ports | Required ports are free on the node that will bind them | Existing process occupies a required port |
 
----
+## 8. External Managed Middleware Checks
 
-## Recommended precheck Output
+When external managed middleware is selected in `agione-install.yml`, verify connectivity before installation.
 
-The precheck / doctor report should contain at least the following information:
+| Component | Required Check |
+| --- | --- |
+| Database | Host, port, root user, root password, SSL mode, and schema initialization permission |
+| Redis | Host, port, password, and network policy |
+| Nacos | Host, API port, namespace, username, password, and health endpoint |
+| Kafka | Bootstrap servers, protocol, authentication settings, and topic creation permission |
+| Object storage | Endpoint, access key, secret key, bucket access, and upload/download permission |
+
+## 9. Recommended Report Content
+
+The precheck or doctor report should contain at least:
 
 | Module | Output |
 | --- | --- |
 | Host information | hostname, IP, operating system, kernel, CPU architecture |
 | Resource information | CPU cores, memory, disk, inode, runtime directory permission |
-| Driver and CUDA | GPU model, Driver, CUDA, container runtime, check conclusion |
 | Ports | Occupying process, listening address, conflicting port list |
 | Docker / Compose | Version, service status, whether offline installation is available |
+| Host-mode nodes | SSH result, private address validation, remote resources, remote commands, old data, Docker, and ports |
 | Offline assets | bundle manifest, checksum, image package, offline Python |
+| External middleware | Endpoint reachability and credential validation result |
 | Conclusion | PASS / WARN / FAIL, blocking items, remediation suggestions |
 
----
+## 10. Installation Admission Recommendations
 
-## Installation Admission Recommendations
-
-Enter formal installation only after the following conditions are met:
+Enter formal installation only after:
 
 1. `./agione doctor` or the precheck script has completed, and the report has been archived.
-2. Basic items such as CPU, memory, disk, ports, and permissions are all `PASS`.
-3. If GPU / XPU is involved, driver, CUDA / CANN, and container runtime have been confirmed.
-4. All `FAIL` items have been remediated and passed recheck.
-5. All `WARN` items have been accepted by the delivery owner and customer owner.
-6. Offline delivery has passed `./agione verify-bundle`.
+2. CPU, memory, disk, ports, permissions, and Docker checks are all `PASS`.
+3. Host-mode remote precheck is `PASS` when host-mode nodes are configured.
+4. External managed middleware connectivity is `PASS` when external managed middleware is selected.
+5. All `FAIL` items have been remediated and passed recheck.
+6. All `WARN` items have been accepted by the delivery owner and customer owner.
+7. Offline delivery has passed `./agione verify-bundle`.
 
----
-
-## Relationship with the Installation Workflow
+## 11. Relationship with the Installation Workflow
 
 Recommended execution sequence:
 
 ```bash
-# 1. Download and extract the release bundle
-cd /opt/hyperone/agione-release-v1.0-20260514
-
-# 2. Run the pre-install environment check
+cd /opt/hyperone/agione-release-v1.0-20260527
 chmod +x ./agione
-./agione doctor
-
-# 3. Verify delivery artifact integrity
+./agione doctor --file /root/agione-install.yml
 ./agione verify-bundle
-
-# 4. Formal installation
-./agione quick
-
-# 5. Post-install acceptance
+./agione quick --file /root/agione-install.yml
 ./agione health
 ./agione ps
 ```
 
-`precheck` or `doctor` is used to identify risks early. It does not replace the system checks in the installation workflow. During formal installation, `quick` still runs pre-install checks again and continues with unpacking, configuration, image loading, and service startup only after the checks pass.
+`doctor` identifies risks early. It does not replace the system checks in the installation workflow. During formal installation, `quick` still runs installation checks again and continues with unpacking, configuration, image loading, and service startup only after the checks pass.

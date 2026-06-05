@@ -4,7 +4,7 @@
 
 AGIOne is a **one-stop intelligent compute and model management platform** purpose-built for enterprise-grade large model productionization. Centered on the end-to-end closed loop of **"Compute → Model → Service → Operations"**, it delivers six core capabilities:
 
-![Figure 1   Overview of AGIOne's Six Core Capabilities (with end-to-end Invocation Observability)](./images/fig_overview_capabilities.png)
+![Figure 1   Overview of AGIOne's Six Core Capabilities (with end-to-end Invocation Observability)](./images/fig_overview_capabilities.svg)
 
 <p align="center"><i>Figure 1   Overview of AGIOne's Six Core Capabilities (with end-to-end Invocation Observability)</i></p>
 
@@ -68,7 +68,7 @@ Drawing on **accumulated deployment experience**, AGIOne distills the deployment
 
 Each model template encapsulates the following five categories of information, forming a complete deployment knowledge asset:
 
-![Figure 2   The Five Components of a Model Template](./images/fig_model_template.png)
+![Figure 2   The Five Components of a Model Template](./images/fig_model_template.svg)
 
 <p align="center"><i>Figure 2   The Five Components of a Model Template</i></p>
 
@@ -98,7 +98,7 @@ Building on the model template capability, AGIOne transforms model deployment �
 
 ### 3.2 Three-Step Rapid Deployment Workflow
 
-![Figure 3   Three-Step Rapid Deployment Workflow](./images/fig_quick_deploy_flow.png)
+![Figure 3   Three-Step Rapid Deployment Workflow](./images/fig_quick_deploy_flow.svg)
 
 <p align="center"><i>Figure 3   Three-Step Rapid Deployment Workflow</i></p>
 
@@ -182,7 +182,7 @@ The **Aggregated Model** is AGIOne's **core abstraction for value delivery**: **
 
 ### 5.2 Five Optimization Objectives of the Aggregated Model
 
-![Figure 4   Five Optimization Objectives of the Aggregated Model](./images/fig_aggregate_targets.png)
+![Figure 4   Five Optimization Objectives of the Aggregated Model](./images/fig_aggregate_targets.svg)
 
 <p align="center"><i>Figure 4   Five Optimization Objectives of the Aggregated Model</i></p>
 
@@ -237,7 +237,7 @@ The scheduler **refreshes weights every minute**, biasing requests toward health
 
 ### 5.5 Transparent Scaling of Aggregated Models
 
-![Figure 5   Transparent Scaling Workflow for Aggregated Models](./images/fig_scaling_flow.png)
+![Figure 5   Transparent Scaling Workflow for Aggregated Models](./images/fig_scaling_flow.svg)
 
 <p align="center"><i>Figure 5   Transparent Scaling Workflow for Aggregated Models</i></p>
 
@@ -327,7 +327,7 @@ Invocation observability runs **horizontally across** all six capabilities descr
 
 ### 7.2 Three-Tier Monitoring Metric Framework
 
-![Figure 6   Three-Tier Monitoring Metric Framework for Invocation Observability](./images/fig_observability_layers.png)
+![Figure 6   Three-Tier Monitoring Metric Framework for Invocation Observability](./images/fig_observability_layers.svg)
 
 <p align="center"><i>Figure 6   Three-Tier Monitoring Metric Framework for Invocation Observability</i></p>
 
@@ -356,7 +356,7 @@ Invocation observability runs **horizontally across** all six capabilities descr
 
 When users report abnormal invocations, AGIOne provides a standardized, minute-scale diagnostic path **from application → scheduling → infrastructure**:
 
-![Figure 7   Coordinated Anomaly Diagnostic Workflow](./images/fig_diagnostic_flow.png)
+![Figure 7   Coordinated Anomaly Diagnostic Workflow](./images/fig_diagnostic_flow.svg)
 
 <p align="center"><i>Figure 7   Coordinated Anomaly Diagnostic Workflow</i></p>
 
@@ -365,7 +365,7 @@ When users report abnormal invocations, AGIOne provides a standardized, minute-s
 
 AGIOne's six core capabilities are not standalone; together they form an organic whole that **interlocks and reinforces** end-to-end:
 
-![Figure 8   Closed-loop Synergy Across AGIOne's Six Core Capabilities](./images/fig_capability_loop.png)
+![Figure 8   Closed-loop Synergy Across AGIOne's Six Core Capabilities](./images/fig_capability_loop.svg)
 
 <p align="center"><i>Figure 8   Closed-loop Synergy Across AGIOne's Six Core Capabilities</i></p>
 

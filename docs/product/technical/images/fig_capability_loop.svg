@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2720" height="2200" viewBox="0 0 2720 2200" role="img" aria-labelledby="title desc">
+  <title id="title">AGIOne Capability Loop</title>
+  <desc id="desc">AGIOne styled SVG recreation preserving the original technical diagram structure.</desc>
+  <defs>
+    <marker id="arrow-dark" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#3F3F46"/>
+    </marker>
+    <marker id="arrow-primary" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#5F4ECF"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#3A7252"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#8A5E38"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#6A4E9A"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#4A6298"/>
+    </marker>
+    <style>
+      .agione-text { font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; letter-spacing: 0; }
+      .node { stroke-width: 2.4; }
+      .section { stroke-width: 2.4; }
+      .flow { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .small { font-size: 16px; }
+      .tiny { font-size: 13px; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FFFFFF"/>
+  <rect x="120" y="1530" width="560" height="190" rx="26" ry="26" fill="#EEF1F8" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="400.0" y="1610.92" class="agione-text" font-size="38" font-weight="600" fill="#4A6298" text-anchor="middle">
+    <tspan x="400.0" dy="0">(1) Compute</tspan>
+    <tspan x="400.0" dy="54">Governance</tspan>
+  </text>
+  <rect x="760" y="1260" width="560" height="180" rx="26" ry="26" fill="#EEF5F0" stroke="#3A7252" stroke-width="2.4" class="node" />
+  <text x="1040.0" y="1362.92" class="agione-text" font-size="38" font-weight="600" fill="#3A7252" text-anchor="middle">
+    <tspan x="1040.0" dy="0">(2) Model Templates</tspan>
+  </text>
+  <rect x="1120" y="1015" width="560" height="175" rx="26" ry="26" fill="#F8F1EC" stroke="#8A5E38" stroke-width="2.4" class="node" />
+  <text x="1400.0" y="1115.42" class="agione-text" font-size="38" font-weight="600" fill="#8A5E38" text-anchor="middle">
+    <tspan x="1400.0" dy="0">(3) Rapid Deployment</tspan>
+  </text>
+  <rect x="1460" y="710" width="600" height="180" rx="26" ry="26" fill="#F2EEF8" stroke="#6A4E9A" stroke-width="2.4" class="node" />
+  <text x="1760.0" y="812.92" class="agione-text" font-size="38" font-weight="600" fill="#6A4E9A" text-anchor="middle">
+    <tspan x="1760.0" dy="0">(4) Model Publishing</tspan>
+  </text>
+  <rect x="1660" y="450" width="620" height="180" rx="26" ry="26" fill="#ECE9F9" stroke="#4A3EB0" stroke-width="2.4" class="node" />
+  <text x="1970.0" y="552.92" class="agione-text" font-size="38" font-weight="600" fill="#4A3EB0" text-anchor="middle">
+    <tspan x="1970.0" dy="0">(5) Model Aggregation</tspan>
+  </text>
+  <rect x="1860" y="170" width="620" height="180" rx="26" ry="26" fill="#F8F1EC" stroke="#8A5E38" stroke-width="2.4" class="node" />
+  <text x="2170.0" y="272.92" class="agione-text" font-size="38" font-weight="600" fill="#8A5E38" text-anchor="middle">
+    <tspan x="2170.0" dy="0">(6) Metering &amp; Billing</tspan>
+  </text>
+  <rect x="2225" y="835" width="450" height="250" rx="26" ry="26" fill="#1A1025" stroke="#2D2240" stroke-width="2.4" class="node" />
+  <text x="2450.0" y="918.92" class="agione-text" font-size="38" font-weight="600" fill="#FFFFFF" text-anchor="middle">
+    <tspan x="2450.0" dy="0">(7) Invocation</tspan>
+    <tspan x="2450.0" dy="54">Observability</tspan>
+    <tspan x="2450.0" dy="54">(End-to-End)</tspan>
+  </text>
+  <text x="500" y="1480" class="agione-text" font-size="32" font-weight="400" fill="#4A6298" text-anchor="start">Provide Compute</text>
+  <path d="M680 1605 C705 1515 730 1410 760 1348" class="flow" stroke="#4A6298" stroke-width="5" marker-end="url(#arrow-blue)" />
+  <text x="790" y="1220" class="agione-text" font-size="32" font-weight="400" fill="#3A7252" text-anchor="start">Choose the Best</text>
+  <path d="M1045 1260 C1055 1208 1080 1140 1120 1115" class="flow" stroke="#3A7252" stroke-width="5" marker-end="url(#arrow-green)" />
+  <text x="1185" y="965" class="agione-text" font-size="32" font-weight="400" fill="#8A5E38" text-anchor="start">Instance Ready</text>
+  <path d="M1405 1015 C1405 930 1425 845 1460 800" class="flow" stroke="#8A5E38" stroke-width="5" marker-end="url(#arrow-orange)" />
+  <text x="1615" y="680" class="agione-text" font-size="32" font-weight="400" fill="#6A4E9A" text-anchor="start">Endpoint</text>
+  <path d="M1760 710 L1760 630" class="flow" stroke="#6A4E9A" stroke-width="5" marker-end="url(#arrow-purple)" />
+  <text x="1735" y="405" class="agione-text" font-size="32" font-weight="400" fill="#4A3EB0" text-anchor="start">Invocation Data</text>
+  <path d="M1965 450 L2050 350" class="flow" stroke="#5F4ECF" stroke-width="5" marker-end="url(#arrow-primary)" />
+  <path d="M680 1625 C1120 1700 1820 1280 2225 1040" class="flow" stroke="#4A6298" stroke-width="2.5" stroke-dasharray="8 12" opacity="0.6" marker-end="url(#arrow-blue)" />
+  <path d="M1320 1350 C1580 1350 1890 1070 2225 1005" class="flow" stroke="#4A6298" stroke-width="2.5" stroke-dasharray="8 12" opacity="0.6" marker-end="url(#arrow-blue)" />
+  <path d="M1680 1080 C1840 1080 2025 1000 2225 970" class="flow" stroke="#4A6298" stroke-width="2.5" stroke-dasharray="8 12" opacity="0.6" marker-end="url(#arrow-blue)" />
+  <path d="M2060 800 C2135 800 2175 900 2225 930" class="flow" stroke="#4A6298" stroke-width="2.5" stroke-dasharray="8 12" opacity="0.6" marker-end="url(#arrow-blue)" />
+  <path d="M2225 630 C2240 705 2295 785 2360 835" class="flow" stroke="#4A6298" stroke-width="2.5" stroke-dasharray="8 12" opacity="0.6" marker-end="url(#arrow-blue)" />
+  <path d="M2450 350 C2475 505 2475 680 2470 835" class="flow" stroke="#4A6298" stroke-width="2.5" stroke-dasharray="8 12" opacity="0.6" marker-end="url(#arrow-blue)" />
+  <path d="M2450 1085 C2360 1400 1900 1720 680 1650" class="flow" stroke="#8A5E38" stroke-width="4" stroke-dasharray="16 16" marker-end="url(#arrow-orange)" />
+  <rect x="1180" y="1885" width="630" height="105" rx="14" ry="14" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="2.4" class="node" />
+  <text x="1495.0" y="1927.7" class="agione-text" font-size="30" font-weight="500" fill="#3F3F46" text-anchor="middle">
+    <tspan x="1495.0" dy="0">Resource Utilization Feedback</tspan>
+    <tspan x="1495.0" dy="40">(drives planning and scaling)</tspan>
+  </text>
+</svg>

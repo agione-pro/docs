@@ -8,6 +8,10 @@ export default defineConfig({
   ...baseConfig,
   ignoreDeadLinks: true,
   themeConfig: {
+    outline: {
+      level: [2, 3],
+    },
+
     // Local Search (enabled)
     search: {
       provider: 'local',

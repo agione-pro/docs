@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1720" height="2000" viewBox="0 0 1720 2000" role="img" aria-labelledby="title desc">
+  <title id="title">AGIOne Model Template</title>
+  <desc id="desc">AGIOne styled SVG recreation preserving the original technical diagram structure.</desc>
+  <defs>
+    <marker id="arrow-dark" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#3F3F46"/>
+    </marker>
+    <marker id="arrow-primary" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#5F4ECF"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#3A7252"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#8A5E38"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#6A4E9A"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L14,7 L0,14 Z" fill="#4A6298"/>
+    </marker>
+    <style>
+      .agione-text { font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; letter-spacing: 0; }
+      .node { stroke-width: 2.4; }
+      .section { stroke-width: 2.4; }
+      .flow { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .small { font-size: 16px; }
+      .tiny { font-size: 13px; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#FFFFFF"/>
+  <rect x="80" y="760" width="560" height="460" rx="34" ry="34" fill="#1A1025" stroke="#2D2240" stroke-width="2.4" class="node" />
+  <text x="360.0" y="968.76" class="agione-text" font-size="64" font-weight="600" fill="#FFFFFF" text-anchor="middle">
+    <tspan x="360.0" dy="0">Model</tspan>
+    <tspan x="360.0" dy="86">Template</tspan>
+  </text>
+  <rect x="970" y="120" width="620" height="260" rx="26" ry="26" fill="#EEF1F8" stroke="#4A6298" stroke-width="2.4" class="node" />
+  <text x="1280.0" y="201.6" class="agione-text" font-size="40" font-weight="600" fill="#4A6298" text-anchor="middle">
+    <tspan x="1280.0" dy="0">(1) Basic Model Info</tspan>
+    <tspan x="1280.0" dy="62">Name / Version /</tspan>
+    <tspan x="1280.0" dy="62">Parameter Size / License</tspan>
+  </text>
+  <path d="M640 860 C760 860 780 250 950 250" class="flow" stroke="#3A7252" stroke-width="5" marker-end="url(#arrow-green)" />
+  <rect x="970" y="500" width="620" height="260" rx="26" ry="26" fill="#EEF5F0" stroke="#3A7252" stroke-width="2.4" class="node" />
+  <text x="1280.0" y="581.6" class="agione-text" font-size="40" font-weight="600" fill="#3A7252" text-anchor="middle">
+    <tspan x="1280.0" dy="0">(2) Inference Engine Support</tspan>
+    <tspan x="1280.0" dy="62">vLLM / MindIE /</tspan>
+    <tspan x="1280.0" dy="62">SGLang / TensorRT-LLM</tspan>
+  </text>
+  <path d="M640 915 C760 915 780 630 950 630" class="flow" stroke="#3A7252" stroke-width="5" marker-end="url(#arrow-green)" />
+  <rect x="970" y="880" width="620" height="260" rx="26" ry="26" fill="#F8F1EC" stroke="#8A5E38" stroke-width="2.4" class="node" />
+  <text x="1280.0" y="961.6" class="agione-text" font-size="40" font-weight="600" fill="#8A5E38" text-anchor="middle">
+    <tspan x="1280.0" dy="0">(3) Compute Spec Profiles</tspan>
+    <tspan x="1280.0" dy="62">Chip model x GPU count x</tspan>
+    <tspan x="1280.0" dy="62">VRAM x Context length</tspan>
+  </text>
+  <path d="M640 968 C760 968 780 1010 950 1010" class="flow" stroke="#3A7252" stroke-width="5" marker-end="url(#arrow-green)" />
+  <rect x="970" y="1260" width="620" height="260" rx="26" ry="26" fill="#F2EEF8" stroke="#6A4E9A" stroke-width="2.4" class="node" />
+  <text x="1280.0" y="1341.6" class="agione-text" font-size="40" font-weight="600" fill="#6A4E9A" text-anchor="middle">
+    <tspan x="1280.0" dy="0">(4) Model Artifact Manifest</tspan>
+    <tspan x="1280.0" dy="62">Weights path / Tokenizer /</tspan>
+    <tspan x="1280.0" dy="62">Config files / Checksum</tspan>
+  </text>
+  <path d="M640 1025 C760 1025 780 1390 950 1390" class="flow" stroke="#3A7252" stroke-width="5" marker-end="url(#arrow-green)" />
+  <rect x="970" y="1640" width="620" height="260" rx="26" ry="26" fill="#ECE9F9" stroke="#4A3EB0" stroke-width="2.4" class="node" />
+  <text x="1280.0" y="1721.6" class="agione-text" font-size="40" font-weight="600" fill="#4A3EB0" text-anchor="middle">
+    <tspan x="1280.0" dy="0">(5) Default Launch Parameters</tspan>
+    <tspan x="1280.0" dy="62">Parallelism / VRAM ratio /</tspan>
+    <tspan x="1280.0" dy="62">Batching / Quantization</tspan>
+  </text>
+  <path d="M640 1080 C760 1080 780 1770 950 1770" class="flow" stroke="#3A7252" stroke-width="5" marker-end="url(#arrow-green)" />
+</svg>

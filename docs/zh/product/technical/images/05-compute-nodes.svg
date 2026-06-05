@@ -1,0 +1,298 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="Inter Variable, Inter, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F4F4F5"/>
+    </linearGradient>
+    <linearGradient id="poolGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8F1EC" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#F8F1EC" stop-opacity="0.5"/>
+    </linearGradient>
+    <filter id="cardShadow5" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1A1025" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3F3F46"/>
+    </marker>
+    <marker id="arrow5p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5F4ECF"/>
+    </marker>
+    <marker id="arrow5o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8A5E38"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="720" fill="url(#bg5)"/>
+
+  <text x="600" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#1A1025">算力节点纳管架构</text>
+  <text x="600" y="58" text-anchor="middle" font-size="12" fill="#71717A">Compute Pool Management · Kubernetes · 近端镜像 · GPU/NPU 调度</text>
+
+  <!-- AGIOne Platform Management top -->
+  <g transform="translate(380, 90)">
+    <rect x="0" y="0" width="440" height="74" rx="10" fill="#ECE9F9" stroke="#5F4ECF" stroke-width="2" filter="url(#cardShadow5)"/>
+    <rect x="0" y="0" width="6" height="74" rx="3" fill="#5F4ECF"/>
+    <g transform="translate(22, 18)">
+      <rect x="0" y="0" width="32" height="32" rx="5" fill="#5F4ECF"/>
+      <path d="M 8 16 L 13 21 L 24 10" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="68" y="32" font-size="14" font-weight="700" fill="#4A3EB0">AGIOne 平台管理层</text>
+    <text x="68" y="54" font-size="11.5" fill="#4A3EB0">Management Plane · 调度入口 · 监控聚合</text>
+  </g>
+
+  <!-- Port label band -->
+  <g transform="translate(380, 184)">
+    <rect x="0" y="0" width="440" height="40" rx="6" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.2" stroke-dasharray="4 2"/>
+    <text x="220" y="16" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5F4ECF">通过以下端口管控算力集群:</text>
+    <text x="20" y="32" font-size="10.5" fill="#4A3EB0" font-weight="600">6443</text>
+    <text x="52" y="32" font-size="10" fill="#71717A">K8s API</text>
+    <text x="115" y="32" font-size="10.5" fill="#4A3EB0" font-weight="600">32761</text>
+    <text x="150" y="32" font-size="10" fill="#71717A">监控</text>
+    <text x="195" y="32" font-size="10.5" fill="#4A3EB0" font-weight="600">32762</text>
+    <text x="230" y="32" font-size="10" fill="#71717A">模型/IDE</text>
+    <text x="295" y="32" font-size="10.5" fill="#4A3EB0" font-weight="600">32763</text>
+    <text x="332" y="32" font-size="10" fill="#71717A">备用</text>
+    <text x="370" y="32" font-size="10.5" fill="#4A3EB0" font-weight="600">32764/65</text>
+  </g>
+
+  <!-- Arrows down from management to two pools -->
+  <path d="M 460 224 Q 460 250 280 280" stroke="#5F4ECF" stroke-width="2" fill="none" marker-end="url(#arrow5p)"/>
+  <path d="M 740 224 Q 740 250 920 280" stroke="#5F4ECF" stroke-width="2" fill="none" marker-end="url(#arrow5p)"/>
+
+  <!-- Pool A (left): <3 nodes scenario -->
+  <g transform="translate(40, 280)">
+    <rect x="0" y="0" width="540" height="380" rx="12" fill="url(#poolGrad)" stroke="#8A5E38" stroke-width="1.8" stroke-dasharray="6 3"/>
+    <g transform="translate(20, -14)">
+      <rect x="0" y="0" width="200" height="28" rx="14" fill="#8A5E38"/>
+      <text x="100" y="19" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="1">算力池 A · 节点数 &lt; 3</text>
+    </g>
+
+    <!-- K8s control plane (single) -->
+    <g transform="translate(30, 40)">
+      <text x="0" y="0" font-size="11" font-weight="700" fill="#8A5E38" letter-spacing="1">KUBERNETES 控制面 · 单节点</text>
+      <g transform="translate(0, 14)">
+        <rect x="0" y="0" width="160" height="80" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <g transform="translate(14, 16)">
+          <polygon points="14,2 24,8 24,18 14,24 4,18 4,8" fill="#8A5E38"/>
+          <polygon points="14,2 24,8 14,14 4,8" fill="#8A5E38"/>
+          <text x="14" y="14" text-anchor="middle" font-size="8" font-weight="700" fill="#8A5E38">k8s</text>
+        </g>
+        <text x="50" y="26" font-size="12" font-weight="700" fill="#8A5E38">Master Node</text>
+        <text x="50" y="42" font-size="10" fill="#8A5E38">API · Scheduler · etcd</text>
+        <line x1="14" y1="56" x2="146" y2="56" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="14" y="72" font-size="10" fill="#71717A">仅 1 节点 (节点总数 &lt; 3)</text>
+      </g>
+    </g>
+
+    <!-- Registry -->
+    <g transform="translate(220, 40)">
+      <text x="0" y="0" font-size="11" font-weight="700" fill="#8A5E38" letter-spacing="1">近端镜像服务</text>
+      <g transform="translate(0, 14)">
+        <rect x="0" y="0" width="160" height="80" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <g transform="translate(14, 16)">
+          <rect x="0" y="4" width="28" height="20" rx="3" fill="#8A5E38"/>
+          <rect x="3" y="7" width="7" height="3" fill="#8A5E38"/>
+          <rect x="13" y="7" width="7" height="3" fill="#8A5E38"/>
+          <rect x="3" y="13" width="7" height="3" fill="#8A5E38"/>
+          <rect x="13" y="13" width="7" height="3" fill="#8A5E38"/>
+          <rect x="3" y="19" width="7" height="3" fill="#8A5E38"/>
+        </g>
+        <text x="50" y="26" font-size="12" font-weight="700" fill="#8A5E38">Registry</text>
+        <text x="50" y="42" font-size="10" fill="#8A5E38">镜像分发</text>
+        <line x1="14" y1="56" x2="146" y2="56" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="14" y="72" font-size="10" fill="#71717A">复用算力节点资源</text>
+      </g>
+    </g>
+
+    <!-- Addons -->
+    <g transform="translate(400, 40)">
+      <text x="0" y="0" font-size="11" font-weight="700" fill="#8A5E38" letter-spacing="1">配套插件</text>
+      <g transform="translate(0, 14)">
+        <rect x="0" y="0" width="110" height="80" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <text x="55" y="22" text-anchor="middle" font-size="10.5" fill="#8A5E38" font-weight="600">调度插件</text>
+        <text x="55" y="40" text-anchor="middle" font-size="10.5" fill="#8A5E38" font-weight="600">监控插件</text>
+        <text x="55" y="58" text-anchor="middle" font-size="10.5" fill="#8A5E38" font-weight="600">日志组件</text>
+        <text x="55" y="74" text-anchor="middle" font-size="9.5" fill="#8A5E38">…</text>
+      </g>
+    </g>
+
+    <!-- GPU/NPU Workers -->
+    <g transform="translate(30, 170)">
+      <text x="0" y="0" font-size="11" font-weight="700" fill="#8A5E38" letter-spacing="1">算力工作节点 · GPU / NPU</text>
+      <g transform="translate(0, 14)">
+        <rect x="0" y="0" width="120" height="170" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <g transform="translate(46, 16)">
+          <rect x="0" y="0" width="28" height="28" rx="4" fill="#8A5E38"/>
+          <text x="14" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">GPU</text>
+        </g>
+        <text x="60" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#8A5E38">Worker #1</text>
+        <line x1="14" y1="72" x2="106" y2="72" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="60" y="90" text-anchor="middle" font-size="10" fill="#3F3F46">GPU 卡 ×N</text>
+        <text x="60" y="106" text-anchor="middle" font-size="10" fill="#3F3F46">驱动 + RT</text>
+        <text x="60" y="122" text-anchor="middle" font-size="10" fill="#3F3F46">device plugin</text>
+        <text x="60" y="148" text-anchor="middle" font-size="10" font-style="italic" fill="#8A5E38">训练 / 推理</text>
+      </g>
+
+      <g transform="translate(140, 14)">
+        <rect x="0" y="0" width="120" height="170" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <g transform="translate(46, 16)">
+          <rect x="0" y="0" width="28" height="28" rx="4" fill="#8A5E38"/>
+          <text x="14" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">NPU</text>
+        </g>
+        <text x="60" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#8A5E38">Worker #2</text>
+        <line x1="14" y1="72" x2="106" y2="72" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="60" y="90" text-anchor="middle" font-size="10" fill="#3F3F46">NPU 卡 ×N</text>
+        <text x="60" y="106" text-anchor="middle" font-size="10" fill="#3F3F46">驱动 + RT</text>
+        <text x="60" y="122" text-anchor="middle" font-size="10" fill="#3F3F46">device plugin</text>
+        <text x="60" y="148" text-anchor="middle" font-size="10" font-style="italic" fill="#8A5E38">推理 / IDE</text>
+      </g>
+
+      <g transform="translate(280, 14)">
+        <rect x="0" y="0" width="220" height="170" rx="8" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="110" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#8A5E38">规模规则</text>
+        <line x1="20" y1="38" x2="200" y2="38" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="20" y="58" font-size="11" font-weight="600" fill="#8A5E38">节点总数 &lt; 3</text>
+        <text x="20" y="74" font-size="10.5" fill="#8A5E38">→ 1 台部署 K8s 控制面</text>
+        <text x="20" y="98" font-size="11" font-weight="600" fill="#8A5E38">节点总数 ≥ 3</text>
+        <text x="20" y="114" font-size="10.5" fill="#8A5E38">→ 3 台部署 K8s 控制面</text>
+        <text x="20" y="138" font-size="10" fill="#71717A">高可用 etcd 集群多副本</text>
+        <text x="20" y="154" font-size="10" fill="#71717A">避免单点故障</text>
+      </g>
+    </g>
+
+    <!-- Internal arrows -->
+    <line x1="190" y1="100" x2="219" y2="100" stroke="#8A5E38" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <line x1="100" y1="124" x2="100" y2="180" stroke="#8A5E38" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <line x1="300" y1="124" x2="220" y2="180" stroke="#8A5E38" stroke-width="1.5" stroke-dasharray="3 2"/>
+  </g>
+
+  <!-- Pool B (right): >=3 nodes scenario -->
+  <g transform="translate(620, 280)">
+    <rect x="0" y="0" width="540" height="380" rx="12" fill="url(#poolGrad)" stroke="#8A5E38" stroke-width="1.8" stroke-dasharray="6 3"/>
+    <g transform="translate(20, -14)">
+      <rect x="0" y="0" width="200" height="28" rx="14" fill="#8A5E38"/>
+      <text x="100" y="19" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="1">算力池 B · 节点数 ≥ 3</text>
+    </g>
+
+    <!-- K8s control plane (HA, 3 masters) -->
+    <g transform="translate(30, 40)">
+      <text x="0" y="0" font-size="11" font-weight="700" fill="#8A5E38" letter-spacing="1">KUBERNETES 控制面 · 3 节点高可用</text>
+      <g transform="translate(0, 14)">
+        <rect x="0" y="0" width="320" height="80" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+
+        <g transform="translate(14, 12)">
+          <polygon points="14,2 24,8 24,18 14,24 4,18 4,8" fill="#8A5E38"/>
+          <polygon points="14,2 24,8 14,14 4,8" fill="#8A5E38"/>
+        </g>
+        <text x="14" y="62" font-size="10" font-weight="700" fill="#8A5E38">Master 1</text>
+        <text x="14" y="74" font-size="9" fill="#8A5E38">API/etcd</text>
+
+        <g transform="translate(114, 12)">
+          <polygon points="14,2 24,8 24,18 14,24 4,18 4,8" fill="#8A5E38"/>
+          <polygon points="14,2 24,8 14,14 4,8" fill="#8A5E38"/>
+        </g>
+        <text x="114" y="62" font-size="10" font-weight="700" fill="#8A5E38">Master 2</text>
+        <text x="114" y="74" font-size="9" fill="#8A5E38">API/etcd</text>
+
+        <g transform="translate(214, 12)">
+          <polygon points="14,2 24,8 24,18 14,24 4,18 4,8" fill="#8A5E38"/>
+          <polygon points="14,2 24,8 14,14 4,8" fill="#8A5E38"/>
+        </g>
+        <text x="214" y="62" font-size="10" font-weight="700" fill="#8A5E38">Master 3</text>
+        <text x="214" y="74" font-size="9" fill="#8A5E38">API/etcd</text>
+
+        <!-- etcd raft connection lines -->
+        <line x1="42" y1="22" x2="118" y2="22" stroke="#8A5E38" stroke-width="1" stroke-dasharray="2 2"/>
+        <line x1="142" y1="22" x2="218" y2="22" stroke="#8A5E38" stroke-width="1" stroke-dasharray="2 2"/>
+        <path d="M 28 30 Q 128 50 228 30" fill="none" stroke="#8A5E38" stroke-width="1" stroke-dasharray="2 2"/>
+      </g>
+    </g>
+
+    <!-- Registry -->
+    <g transform="translate(380, 40)">
+      <text x="0" y="0" font-size="11" font-weight="700" fill="#8A5E38" letter-spacing="1">近端镜像</text>
+      <g transform="translate(0, 14)">
+        <rect x="0" y="0" width="130" height="80" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <g transform="translate(14, 16)">
+          <rect x="0" y="4" width="28" height="20" rx="3" fill="#8A5E38"/>
+          <rect x="3" y="7" width="7" height="3" fill="#8A5E38"/>
+          <rect x="13" y="7" width="7" height="3" fill="#8A5E38"/>
+          <rect x="3" y="13" width="7" height="3" fill="#8A5E38"/>
+          <rect x="13" y="13" width="7" height="3" fill="#8A5E38"/>
+        </g>
+        <text x="50" y="26" font-size="11" font-weight="700" fill="#8A5E38">Registry</text>
+        <text x="50" y="42" font-size="10" fill="#8A5E38">独立部署</text>
+        <line x1="14" y1="56" x2="116" y2="56" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="14" y="72" font-size="9.5" fill="#71717A">每地域独立</text>
+      </g>
+    </g>
+
+    <!-- GPU Workers -->
+    <g transform="translate(30, 170)">
+      <text x="0" y="0" font-size="11" font-weight="700" fill="#8A5E38" letter-spacing="1">算力工作节点 · WORKERS</text>
+
+      <g transform="translate(0, 14)">
+        <rect x="0" y="0" width="110" height="170" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <g transform="translate(41, 16)">
+          <rect x="0" y="0" width="28" height="28" rx="4" fill="#8A5E38"/>
+          <text x="14" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">GPU</text>
+        </g>
+        <text x="55" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#8A5E38">Worker 1</text>
+        <line x1="14" y1="72" x2="96" y2="72" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="55" y="92" text-anchor="middle" font-size="10" fill="#3F3F46">GPU ×N</text>
+        <text x="55" y="108" text-anchor="middle" font-size="10" fill="#3F3F46">驱动 + RT</text>
+        <text x="55" y="148" text-anchor="middle" font-size="10" font-style="italic" fill="#8A5E38">训练任务</text>
+      </g>
+
+      <g transform="translate(120, 14)">
+        <rect x="0" y="0" width="110" height="170" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <g transform="translate(41, 16)">
+          <rect x="0" y="0" width="28" height="28" rx="4" fill="#8A5E38"/>
+          <text x="14" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">GPU</text>
+        </g>
+        <text x="55" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#8A5E38">Worker 2</text>
+        <line x1="14" y1="72" x2="96" y2="72" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="55" y="92" text-anchor="middle" font-size="10" fill="#3F3F46">GPU ×N</text>
+        <text x="55" y="108" text-anchor="middle" font-size="10" fill="#3F3F46">驱动 + RT</text>
+        <text x="55" y="148" text-anchor="middle" font-size="10" font-style="italic" fill="#8A5E38">推理任务</text>
+      </g>
+
+      <g transform="translate(240, 14)">
+        <rect x="0" y="0" width="110" height="170" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+        <g transform="translate(41, 16)">
+          <rect x="0" y="0" width="28" height="28" rx="4" fill="#8A5E38"/>
+          <text x="14" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">NPU</text>
+        </g>
+        <text x="55" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#8A5E38">Worker 3</text>
+        <line x1="14" y1="72" x2="96" y2="72" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="55" y="92" text-anchor="middle" font-size="10" fill="#3F3F46">NPU ×N</text>
+        <text x="55" y="108" text-anchor="middle" font-size="10" fill="#3F3F46">驱动 + RT</text>
+        <text x="55" y="148" text-anchor="middle" font-size="10" font-style="italic" fill="#8A5E38">IDE / 长任务</text>
+      </g>
+
+      <g transform="translate(360, 14)">
+        <rect x="0" y="0" width="150" height="170" rx="8" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="75" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#8A5E38">规模特性</text>
+        <line x1="14" y1="38" x2="136" y2="38" stroke="#F8F1EC" stroke-width="1"/>
+        <text x="14" y="58" font-size="10" fill="#8A5E38">✓ 控制面高可用</text>
+        <text x="14" y="76" font-size="10" fill="#8A5E38">✓ etcd 多副本</text>
+        <text x="14" y="94" font-size="10" fill="#8A5E38">✓ Worker 可扩展</text>
+        <text x="14" y="112" font-size="10" fill="#8A5E38">✓ 镜像就近拉取</text>
+        <text x="75" y="148" text-anchor="middle" font-size="9.5" font-style="italic" fill="#8A5E38">推荐用于生产</text>
+      </g>
+    </g>
+
+    <!-- Internal arrows -->
+    <line x1="350" y1="100" x2="378" y2="100" stroke="#8A5E38" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <line x1="170" y1="124" x2="100" y2="180" stroke="#8A5E38" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <line x1="190" y1="124" x2="180" y2="180" stroke="#8A5E38" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <line x1="210" y1="124" x2="280" y2="180" stroke="#8A5E38" stroke-width="1.5" stroke-dasharray="3 2"/>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(40, 685)">
+    <text x="0" y="0" font-size="11" font-weight="700" fill="#1A1025">说明:</text>
+    <text x="50" y="0" font-size="10.5" fill="#3F3F46">• 每个地域算力池独立部署</text>
+    <text x="250" y="0" font-size="10.5" fill="#3F3F46">• 镜像服务部署于算力节点近端，可复用纳管节点</text>
+    <text x="610" y="0" font-size="10.5" fill="#3F3F46">• 平台管理层通过 6443 与 32761–32765 端口管控集群</text>
+  </g>
+</svg>

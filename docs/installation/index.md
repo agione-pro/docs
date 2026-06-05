@@ -9,10 +9,11 @@ This section contains deployment, configuration, and acceptance documentation fo
 
 ## Documents
 
-| Document                                                                          | Purpose |
-|-----------------------------------------------------------------------------------|------|
-| [AGIOne-Requirements](./agione-deployment-requirements)  | Minimum and recommended deployment requirements for AGIOne |
-| [AGIOne-Pre-install Environment Check](./agione-precheck-environment-check) | Use precheck / doctor to check drivers, CUDA, disk, and ports before installation |
-| [AGIOne-Installation & Deployment](./agione-quick-install)  | Offline or restricted-network AGIOne installation workflow and delivery handover |
-| [Compute Nodes-Requirements](./deployment-requirements-for-managing-compute-nodes) | Environment and resource requirements for Calculator deployment |
-| [Compute Nodes-Installation](./quick-install-for-managing-compute-nodes)          | Fast installation and baseline verification for Calculator |
+| Document                                                                           | Purpose                                                                           |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| [AGIOne-Overview](./agione-deployment-requirements)                                | Deployment Overview for AGIOne                                                    |
+| [AGIOne-Pre-install Environment Check](./agione-precheck-environment-check)        | Use precheck / doctor to check drivers, CUDA, disk, and ports before installation |
+| [AGIOne-Installation & Deployment](./agione-quick-install)                         | Offline or restricted-network AGIOne installation workflow and delivery handover  |
+| [AGIOne-Multi-Node Installation](./agione-multi-node-install)                      | Host-mode multi-node installation workflow for AGIOne                             |
+| [AGIOne-Managed Middleware Summary](./agione-managed-middleware-deployment-summary) | Multi-node managed middleware deployment summary for delivery review              |
+| [AGIOne-Installation Configuration Reference](./agione-install-config-reference)    | Field reference for `/root/agione-install.yml`                                    |

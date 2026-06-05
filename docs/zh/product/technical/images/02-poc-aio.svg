@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Inter Variable, Inter, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F4F4F5"/>
+    </linearGradient>
+    <linearGradient id="aioGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EEF1F8"/>
+      <stop offset="100%" stop-color="#EEF1F8"/>
+    </linearGradient>
+    <filter id="cardShadow2" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1A1025" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3F3F46"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="500" fill="url(#bg2)"/>
+
+  <text x="500" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#1A1025">PoC 部署架构 · All in One</text>
+  <text x="500" y="58" text-anchor="middle" font-size="12" fill="#71717A">单节点 · 8C / 24G / 200G · 仅用于概念验证与功能演示</text>
+
+  <!-- User -->
+  <g transform="translate(80, 220)">
+    <rect x="0" y="0" width="110" height="52" rx="26" fill="#1A1025" filter="url(#cardShadow2)"/>
+    <circle cx="30" cy="26" r="9" fill="#FFFFFF"/>
+    <path d="M 21 40 Q 30 30 39 40" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+    <text x="70" y="31" font-size="13" font-weight="600" fill="#FFFFFF">用户</text>
+  </g>
+
+  <!-- Arrow user → AIO -->
+  <line x1="190" y1="246" x2="290" y2="246" stroke="#3F3F46" stroke-width="2" marker-end="url(#arrow2)"/>
+  <g transform="translate(200, 220)">
+    <rect x="0" y="0" width="80" height="20" rx="10" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1"/>
+    <text x="40" y="14" text-anchor="middle" font-size="10.5" fill="#3F3F46" font-weight="600">HTTP :18090</text>
+  </g>
+
+  <!-- AIO Node -->
+  <g transform="translate(290, 100)">
+    <rect x="0" y="0" width="500" height="300" rx="12" fill="url(#aioGrad)" stroke="#5F4ECF" stroke-width="2" filter="url(#cardShadow2)"/>
+    <rect x="0" y="0" width="6" height="300" rx="3" fill="#5F4ECF"/>
+
+    <text x="20" y="28" font-size="13" font-weight="700" fill="#4A3EB0" letter-spacing="1.2">ALL IN ONE NODE</text>
+    <text x="20" y="46" font-size="11" fill="#4A3EB0">8 vCPU · 24 GB RAM · 200 GB Disk</text>
+
+    <!-- Business service top -->
+    <g transform="translate(40, 70)">
+      <rect x="0" y="0" width="420" height="60" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5"/>
+      <g transform="translate(16, 18)">
+        <rect x="0" y="0" width="26" height="26" rx="4" fill="#5F4ECF"/>
+        <path d="M 7 13 L 11 17 L 19 9" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <text x="56" y="28" font-size="13" font-weight="600" fill="#1A1025">AGIOne 业务服务</text>
+      <text x="56" y="46" font-size="11" fill="#3F3F46">Core API · Web · 调度逻辑</text>
+    </g>
+
+    <!-- DB and MW -->
+    <g transform="translate(40, 150)">
+      <rect x="0" y="0" width="200" height="120" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5"/>
+      <text x="100" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#4A3EB0">内置数据库</text>
+      <g transform="translate(80, 36)">
+        <ellipse cx="20" cy="6" rx="20" ry="5" fill="#5F4ECF"/>
+        <path d="M 0 6 L 0 32 Q 0 38 20 38 Q 40 38 40 32 L 40 6" fill="#5F4ECF" opacity="0.85"/>
+        <ellipse cx="20" cy="6" rx="20" ry="5" fill="none" stroke="#FFFFFF" stroke-width="1"/>
+        <ellipse cx="20" cy="18" rx="20" ry="5" fill="none" stroke="#FFFFFF" stroke-width="1"/>
+      </g>
+      <text x="100" y="100" text-anchor="middle" font-size="10.5" fill="#3F3F46">RDS (单实例)</text>
+    </g>
+
+    <g transform="translate(260, 150)">
+      <rect x="0" y="0" width="200" height="120" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5"/>
+      <text x="100" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#4A3EB0">内置中间件</text>
+
+      <g transform="translate(14, 36)">
+        <circle cx="14" cy="14" r="11" fill="none" stroke="#5F4ECF" stroke-width="1.8"/>
+        <circle cx="14" cy="14" r="3" fill="#5F4ECF"/>
+        <text x="14" y="46" text-anchor="middle" font-size="9" fill="#3F3F46">Nacos</text>
+      </g>
+      <g transform="translate(60, 36)">
+        <rect x="2" y="6" width="24" height="16" rx="3" fill="#5F4ECF"/>
+        <text x="14" y="46" text-anchor="middle" font-size="9" fill="#3F3F46">Redis</text>
+      </g>
+      <g transform="translate(106, 36)">
+        <circle cx="7" cy="8" r="3" fill="#5F4ECF"/>
+        <circle cx="21" cy="8" r="3" fill="#5F4ECF"/>
+        <circle cx="14" cy="20" r="3" fill="#5F4ECF"/>
+        <line x1="7" y1="8" x2="21" y2="8" stroke="#5F4ECF" stroke-width="1.5"/>
+        <line x1="7" y1="8" x2="14" y2="20" stroke="#5F4ECF" stroke-width="1.5"/>
+        <line x1="21" y1="8" x2="14" y2="20" stroke="#5F4ECF" stroke-width="1.5"/>
+        <text x="14" y="46" text-anchor="middle" font-size="9" fill="#3F3F46">Kafka</text>
+      </g>
+      <g transform="translate(152, 36)">
+        <path d="M 4 22 L 4 10 L 8 6 L 20 6 L 24 10 L 24 22 Z" fill="#5F4ECF"/>
+        <text x="14" y="46" text-anchor="middle" font-size="9" fill="#3F3F46">MinIO</text>
+      </g>
+
+      <text x="100" y="108" text-anchor="middle" font-size="10" fill="#71717A">同节点部署</text>
+    </g>
+
+    <!-- Internal connector -->
+    <line x1="140" y1="130" x2="140" y2="150" stroke="#5F4ECF" stroke-width="1.2" stroke-dasharray="3 2"/>
+    <line x1="360" y1="130" x2="360" y2="150" stroke="#5F4ECF" stroke-width="1.2" stroke-dasharray="3 2"/>
+  </g>
+
+  <!-- Internet -->
+  <g transform="translate(870, 220)">
+    <rect x="0" y="0" width="100" height="52" rx="26" fill="#FFFFFF" stroke="#3A7252" stroke-width="2" filter="url(#cardShadow2)"/>
+    <g transform="translate(14, 14)">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="#3A7252" stroke-width="2"/>
+      <ellipse cx="12" cy="12" rx="5" ry="11" fill="none" stroke="#3A7252" stroke-width="1.2"/>
+      <line x1="1" y1="12" x2="23" y2="12" stroke="#3A7252" stroke-width="1.2"/>
+    </g>
+    <text x="68" y="31" text-anchor="middle" font-size="13" font-weight="600" fill="#3A7252">Internet</text>
+  </g>
+
+  <!-- Arrow AIO → internet -->
+  <line x1="790" y1="246" x2="870" y2="246" stroke="#3F3F46" stroke-width="2" marker-end="url(#arrow2)" stroke-dasharray="5 3"/>
+  <text x="830" y="240" text-anchor="middle" font-size="10.5" fill="#3F3F46" font-weight="600">拉取镜像</text>
+
+  <!-- Note -->
+  <g transform="translate(80, 430)">
+    <rect x="0" y="0" width="840" height="50" rx="8" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1.2"/>
+    <g transform="translate(16, 16)">
+      <circle cx="10" cy="10" r="10" fill="#8A5E38"/>
+      <text x="10" y="14" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">!</text>
+    </g>
+    <text x="46" y="22" font-size="12" font-weight="600" fill="#8A5E38">注意</text>
+    <text x="46" y="40" font-size="11.5" fill="#8A5E38">All in One 模式无高可用、无数据冗余，仅适用于 PoC 与演示场景，不建议用于生产环境。</text>
+  </g>
+</svg>

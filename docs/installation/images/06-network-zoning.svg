@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="agione-06-network-zoning-title agione-06-network-zoning-desc">
+<title id="agione-06-network-zoning-title">Network Planning and Zoning</title>
+<desc id="agione-06-network-zoning-desc">Network zoning from public network to DMZ, management network, compute network, key traffic directions, and security principles.</desc>
+<metadata>AGIOne diagrams semantic palette applied: primary #5F4ECF, primary-hover #4A3EB0, primary-subtle #ECE9F9, subtle-border #D8D2F0, terminal #1A1025, text #09090B/#3F3F46/#71717A, surfaces #FFFFFF/#F4F4F5/#FAFAFA, border #E4E4E7/#A1A1AA, blue #EEF1F8/#4A6298, success #EEF5F0/#3A7252, warning #F8F1EC/#8A5E38.</metadata>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3F3F46"/></marker>
+  <marker id="arrowPrimary" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5F4ECF"/></marker>
+  <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8A5E38"/></marker>
+  <style>
+    :root{
+      --agione-primary:#5F4ECF;
+      --agione-primary-hover:#4A3EB0;
+      --agione-primary-subtle:#ECE9F9;
+      --agione-primary-subtle-border:#D8D2F0;
+      --agione-topnav-bg:#1A1025;
+      --agione-topnav-accent:#2D2240;
+      --agione-page:#FFFFFF;
+      --agione-muted:#F4F4F5;
+      --agione-cluster:#FAFAFA;
+      --agione-text:#09090B;
+      --agione-text-secondary:#3F3F46;
+      --agione-text-muted:#71717A;
+      --agione-border:#E4E4E7;
+      --agione-border-strong:#A1A1AA;
+      --agione-blue-surface:#EEF1F8;
+      --agione-blue-text:#4A6298;
+      --agione-success-surface:#EEF5F0;
+      --agione-success-text:#3A7252;
+      --agione-warning-surface:#F8F1EC;
+      --agione-warning-text:#8A5E38;
+    }
+    svg{background:#FFFFFF;shape-rendering:geometricPrecision;text-rendering:optimizeLegibility}
+    text{font-family:"Inter Variable",Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;letter-spacing:0}
+    line,path,rect,circle,polyline,polygon{vector-effect:non-scaling-stroke}
+    .mono{font-family:"SFMono-Regular",Consolas,Menlo,monospace}
+  </style>
+</defs>
+<rect width="1200" height="640" fill="#FFFFFF"/>
+<text x="600" y="36" font-size="22" font-weight="700" fill="#09090B" text-anchor="middle"><tspan x="600" dy="0">Network Planning and Zoning</tspan></text>
+<text x="600" y="58" font-size="12" font-weight="400" fill="#71717A" text-anchor="middle"><tspan x="600" dy="0">Network Zoning - Public -&gt; DMZ -&gt; Management Network -&gt; Compute Network</tspan></text>
+<rect x="60" y="110" width="240" height="380" rx="8" fill="#F4F4F5" stroke="#1A1025" stroke-width="1.8" />
+<rect x="60" y="110" width="240" height="36" rx="8" fill="#1A1025" stroke="#1A1025" stroke-width="0" />
+<text x="180" y="134" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="180" dy="0">PUBLIC Zone</tspan></text>
+<rect x="350" y="110" width="220" height="380" rx="8" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1.8" />
+<rect x="350" y="110" width="220" height="36" rx="8" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="460" y="134" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="460" dy="0">DMZ - Access Zone</tspan></text>
+<rect x="620" y="110" width="260" height="380" rx="8" fill="#ECE9F9" stroke="#5F4ECF" stroke-width="1.8" />
+<rect x="620" y="110" width="260" height="36" rx="8" fill="#5F4ECF" stroke="#5F4ECF" stroke-width="0" />
+<text x="750" y="134" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="750" dy="0">MGMT - Management Network</tspan></text>
+<rect x="920" y="110" width="220" height="380" rx="8" fill="#EEF1F8" stroke="#4A6298" stroke-width="1.8" />
+<rect x="920" y="110" width="220" height="36" rx="8" fill="#4A6298" stroke="#4A6298" stroke-width="0" />
+<text x="1030" y="134" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="1030" dy="0">COMPUTE - Compute Net</tspan></text>
+<circle cx="180" cy="245" r="56" fill="#FFFFFF" stroke="#1A1025" stroke-width="1.6"/><path d="M124 245 H236 M180 189 V301 M145 198 C164 225,164 271,145 292 M215 198 C196 225,196 271,215 292" stroke="#1A1025" stroke-width="1.4" fill="none"/>
+<text x="180" y="326" font-size="13" font-weight="700" fill="#1A1025" text-anchor="middle"><tspan x="180" dy="0">Internet</tspan></text>
+<rect x="120" y="360" width="130" height="56" rx="28" fill="#1A1025" stroke="none" stroke-width="0"/>
+<circle cx="151" cy="382" r="9" fill="#FFFFFF"/>
+<path d="M 137 402 C 144 389, 159 389, 166 402" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+<text x="210" y="395" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="210" dy="0">End Users</tspan></text>
+<text x="180" y="460" font-size="10" font-weight="700" fill="#1A1025" text-anchor="middle"><tspan x="180" dy="0">Untrusted Network</tspan></text>
+<rect x="309" y="130" width="18" height="340" fill="#1A1025"/>
+<line x1="309" y1="138" x2="327" y2="138" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="151" x2="327" y2="151" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="164" x2="327" y2="164" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="177" x2="327" y2="177" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="190" x2="327" y2="190" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="203" x2="327" y2="203" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="216" x2="327" y2="216" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="229" x2="327" y2="229" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="242" x2="327" y2="242" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="255" x2="327" y2="255" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="268" x2="327" y2="268" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="281" x2="327" y2="281" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="294" x2="327" y2="294" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="307" x2="327" y2="307" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="320" x2="327" y2="320" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="333" x2="327" y2="333" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="346" x2="327" y2="346" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="359" x2="327" y2="359" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="372" x2="327" y2="372" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="385" x2="327" y2="385" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="398" x2="327" y2="398" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="411" x2="327" y2="411" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="424" x2="327" y2="424" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="437" x2="327" y2="437" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="450" x2="327" y2="450" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="309" y1="463" x2="327" y2="463" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="295" y="295" width="46" height="54" rx="8" fill="#F4F4F5" stroke="#1A1025" stroke-width="1.4" />
+<rect x="307" y="308" width="24" height="24" rx="6" fill="#1A1025" stroke="#1A1025" stroke-width="0" />
+<text x="319" y="325" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="319" dy="0">FW</tspan></text>
+<text x="318" y="346" font-size="8" font-weight="400" fill="#1A1025" text-anchor="middle"><tspan x="318" dy="0">Firewall</tspan></text>
+<rect x="580" y="130" width="18" height="340" fill="#1A1025"/>
+<line x1="580" y1="138" x2="598" y2="138" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="151" x2="598" y2="151" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="164" x2="598" y2="164" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="177" x2="598" y2="177" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="190" x2="598" y2="190" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="203" x2="598" y2="203" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="216" x2="598" y2="216" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="229" x2="598" y2="229" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="242" x2="598" y2="242" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="255" x2="598" y2="255" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="268" x2="598" y2="268" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="281" x2="598" y2="281" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="294" x2="598" y2="294" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="307" x2="598" y2="307" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="320" x2="598" y2="320" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="333" x2="598" y2="333" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="346" x2="598" y2="346" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="359" x2="598" y2="359" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="372" x2="598" y2="372" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="385" x2="598" y2="385" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="398" x2="598" y2="398" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="411" x2="598" y2="411" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="424" x2="598" y2="424" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="437" x2="598" y2="437" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="450" x2="598" y2="450" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="580" y1="463" x2="598" y2="463" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="566" y="295" width="46" height="54" rx="8" fill="#F4F4F5" stroke="#1A1025" stroke-width="1.4" />
+<rect x="578" y="308" width="24" height="24" rx="6" fill="#1A1025" stroke="#1A1025" stroke-width="0" />
+<text x="590" y="325" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="590" dy="0">FW</tspan></text>
+<text x="589" y="346" font-size="8" font-weight="400" fill="#1A1025" text-anchor="middle"><tspan x="589" dy="0">Firewall</tspan></text>
+<rect x="890" y="130" width="18" height="340" fill="#1A1025"/>
+<line x1="890" y1="138" x2="908" y2="138" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="151" x2="908" y2="151" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="164" x2="908" y2="164" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="177" x2="908" y2="177" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="190" x2="908" y2="190" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="203" x2="908" y2="203" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="216" x2="908" y2="216" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="229" x2="908" y2="229" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="242" x2="908" y2="242" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="255" x2="908" y2="255" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="268" x2="908" y2="268" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="281" x2="908" y2="281" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="294" x2="908" y2="294" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="307" x2="908" y2="307" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="320" x2="908" y2="320" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="333" x2="908" y2="333" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="346" x2="908" y2="346" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="359" x2="908" y2="359" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="372" x2="908" y2="372" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="385" x2="908" y2="385" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="398" x2="908" y2="398" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="411" x2="908" y2="411" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="424" x2="908" y2="424" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="437" x2="908" y2="437" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="450" x2="908" y2="450" stroke="#FFFFFF" stroke-width="2"/>
+<line x1="890" y1="463" x2="908" y2="463" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="876" y="295" width="46" height="54" rx="8" fill="#F4F4F5" stroke="#1A1025" stroke-width="1.4" />
+<rect x="888" y="308" width="24" height="24" rx="6" fill="#1A1025" stroke="#1A1025" stroke-width="0" />
+<text x="900" y="325" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="900" dy="0">FW</tspan></text>
+<text x="899" y="346" font-size="8" font-weight="400" fill="#1A1025" text-anchor="middle"><tspan x="899" dy="0">Firewall</tspan></text>
+<rect x="380" y="240" width="160" height="120" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5" />
+<rect x="394" y="256" width="24" height="24" rx="6" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="406" y="273" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="406" dy="0">LB</tspan></text>
+<text x="428" y="267" font-size="13" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="428" dy="0">ELB</tspan></text>
+<text x="428" y="288" font-size="10" font-weight="400" fill="#8A5E38" text-anchor="start"><tspan x="428" dy="0">Load Balancing</tspan><tspan x="428" dy="18">443 / 80 / 18090</tspan></text>
+<text x="460" y="405" font-size="10" font-weight="400" fill="#8A5E38" text-anchor="middle"><tspan x="460" dy="0">Inbound Rules</tspan><tspan x="460" dy="18">Allow only 443/80/18090</tspan><tspan x="460" dy="18">Outbound to management network</tspan></text>
+<text x="460" y="465" font-size="9" font-weight="400" fill="#71717A" text-anchor="middle"><tspan x="460" dy="0">Restricted Trusted Zone</tspan></text>
+<rect x="640" y="170" width="220" height="80" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5" />
+<rect x="654" y="186" width="24" height="24" rx="6" fill="#5F4ECF" stroke="#5F4ECF" stroke-width="0" />
+<text x="666" y="203" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="666" dy="0">OK</tspan></text>
+<text x="688" y="197" font-size="13" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="688" dy="0">Business Nodes</tspan></text>
+<text x="688" y="218" font-size="10" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="688" dy="0">AGIOne Core Services</tspan><tspan x="688" dy="16">&gt;=2 nodes - horizontally scalable</tspan></text>
+<rect x="640" y="266" width="220" height="90" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5" />
+<rect x="654" y="282" width="24" height="24" rx="6" fill="#5F4ECF" stroke="#5F4ECF" stroke-width="0" />
+<text x="666" y="299" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="666" dy="0">DB</tspan></text>
+<text x="688" y="293" font-size="13" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="688" dy="0">Database / Middleware</tspan></text>
+<text x="688" y="314" font-size="10" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="688" dy="0">RDS - Nacos - Redis</tspan><tspan x="688" dy="16">Kafka - MinIO</tspan><tspan x="688" dy="16">Internal access only</tspan></text>
+<text x="750" y="390" font-size="10" font-weight="400" fill="#4A3EB0" text-anchor="middle"><tspan x="750" dy="0">Same VPC / Internal Network</tspan><tspan x="750" dy="18">Business Nodes &lt;-&gt; DB/MW</tspan><tspan x="750" dy="18">Low-latency communication</tspan><tspan x="750" dy="18">Do not expose ports across VPCs</tspan></text>
+<rect x="940" y="168" width="180" height="62" rx="8" fill="#FFFFFF" stroke="#4A6298" stroke-width="1.5" />
+<rect x="954" y="184" width="24" height="24" rx="6" fill="#4A6298" stroke="#4A6298" stroke-width="0" />
+<text x="966" y="201" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="966" dy="0">K8s</tspan></text>
+<text x="988" y="195" font-size="13" font-weight="700" fill="#4A6298" text-anchor="start"><tspan x="988" dy="0">K8s API</tspan></text>
+<text x="988" y="216" font-size="10" font-weight="400" fill="#4A6298" text-anchor="start"><tspan x="988" dy="0">Port 6443</tspan></text>
+<rect x="940" y="242" width="180" height="86" rx="8" fill="#FFFFFF" stroke="#4A6298" stroke-width="1.5" />
+<rect x="954" y="258" width="24" height="24" rx="6" fill="#4A6298" stroke="#4A6298" stroke-width="0" />
+<text x="966" y="275" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="966" dy="0">NP</tspan></text>
+<text x="988" y="269" font-size="13" font-weight="700" fill="#4A6298" text-anchor="start"><tspan x="988" dy="0">NodePort Services</tspan></text>
+<text x="988" y="290" font-size="8" font-weight="400" fill="#4A6298" text-anchor="start"><tspan x="988" dy="0">32761 Monitoring</tspan><tspan x="988" dy="13">32762 Model/IDE</tspan><tspan x="988" dy="13">32763-65 Reserved</tspan></text>
+<rect x="940" y="342" width="180" height="76" rx="8" fill="#FFFFFF" stroke="#4A6298" stroke-width="1.5" />
+<rect x="954" y="358" width="24" height="24" rx="6" fill="#4A6298" stroke="#4A6298" stroke-width="0" />
+<text x="966" y="375" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="966" dy="0">GPU</tspan></text>
+<text x="988" y="369" font-size="13" font-weight="700" fill="#4A6298" text-anchor="start"><tspan x="988" dy="0">GPU/NPU Nodes</tspan></text>
+<text x="988" y="390" font-size="10" font-weight="400" fill="#4A6298" text-anchor="start"><tspan x="988" dy="0">Compute workloads</tspan><tspan x="988" dy="15">Near-node gigabit+ LAN</tspan></text>
+<text x="1030" y="435" font-size="10" font-weight="400" fill="#4A6298" text-anchor="middle"><tspan x="1030" dy="0">Dedicated VPC / Subnet</tspan><tspan x="1030" dy="17">Independent per region</tspan><tspan x="1030" dy="17">VPC peering / dedicated line</tspan></text>
+<rect x="60" y="510" width="1080" height="114" rx="8" fill="#FAFAFA" stroke="#A1A1AA" stroke-width="1.4" />
+<text x="80" y="538" font-size="13" font-weight="700" fill="#3F3F46" text-anchor="start"><tspan x="80" dy="0">Key Traffic Directions</tspan></text>
+<circle cx="84" cy="557" r="3" fill="#1A1025"/>
+<text x="98" y="560" font-size="9.5" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="98" dy="0">Users -&gt; ELB</tspan></text>
+<text x="244" y="560" font-size="9.5" font-weight="400" fill="#71717A" text-anchor="start"><tspan x="244" dy="0">HTTPS 443</tspan></text>
+<circle cx="84" cy="577" r="3" fill="#8A5E38"/>
+<text x="98" y="580" font-size="9.5" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="98" dy="0">ELB -&gt; Business</tspan></text>
+<text x="244" y="580" font-size="9.5" font-weight="400" fill="#71717A" text-anchor="start"><tspan x="244" dy="0">Internal VPC</tspan></text>
+<circle cx="84" cy="597" r="3" fill="#5F4ECF"/>
+<text x="98" y="600" font-size="9.5" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="98" dy="0">Business &lt;-&gt; DB/MW</tspan></text>
+<text x="244" y="600" font-size="9.5" font-weight="400" fill="#71717A" text-anchor="start"><tspan x="244" dy="0">Low latency</tspan></text>
+<circle cx="420" cy="557" r="3" fill="#4A6298"/>
+<text x="434" y="560" font-size="9.5" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="434" dy="0">Business -&gt; K8s API</tspan></text>
+<text x="580" y="560" font-size="9.5" font-weight="400" fill="#71717A" text-anchor="start"><tspan x="580" dy="0">6443 mTLS</tspan></text>
+<circle cx="420" cy="577" r="3" fill="#4A6298"/>
+<text x="434" y="580" font-size="9.5" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="434" dy="0">Business -&gt; NodePort</tspan></text>
+<text x="580" y="580" font-size="9.5" font-weight="400" fill="#71717A" text-anchor="start"><tspan x="580" dy="0">32761-32765</tspan></text>
+<circle cx="420" cy="597" r="3" fill="#3A7252"/>
+<text x="434" y="600" font-size="9.5" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="434" dy="0">Business -&gt; Internet</tspan></text>
+<text x="580" y="600" font-size="9.5" font-weight="400" fill="#71717A" text-anchor="start"><tspan x="580" dy="0">&gt;=100 Mbps egress</tspan></text>
+<text x="790" y="560" font-size="11" font-weight="700" fill="#3F3F46" text-anchor="start"><tspan x="790" dy="0">Security Principles</tspan></text>
+<text x="790" y="580" font-size="9.5" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="790" dy="0">- Deny by default; allow by whitelist</tspan><tspan x="790" dy="17">- Internal services expose no public ports</tspan><tspan x="790" dy="17">- Cross-zone traffic uses NAT/VPC peering</tspan></text>
+</svg>

@@ -1,0 +1,261 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" font-family="Inter Variable, Inter, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F4F4F5"/>
+    </linearGradient>
+    <linearGradient id="zonePub" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8F1EC"/>
+      <stop offset="100%" stop-color="#F8F1EC"/>
+    </linearGradient>
+    <linearGradient id="zoneDmz" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8F1EC"/>
+      <stop offset="100%" stop-color="#F8F1EC"/>
+    </linearGradient>
+    <linearGradient id="zoneMgmt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ECE9F9"/>
+      <stop offset="100%" stop-color="#F2EEF8"/>
+    </linearGradient>
+    <linearGradient id="zoneCompute" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EEF1F8"/>
+      <stop offset="100%" stop-color="#EEF1F8"/>
+    </linearGradient>
+    <filter id="cardShadow6" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1A1025" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1A1025"/>
+    </marker>
+    <pattern id="firewall" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="4" fill="#8A5E38"/>
+      <rect y="4" width="4" height="4" fill="#FFFFFF"/>
+      <rect x="4" y="4" width="4" height="4" fill="#8A5E38"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="660" fill="url(#bg6)"/>
+
+  <text x="600" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#1A1025">网络规划与分区</text>
+  <text x="600" y="58" text-anchor="middle" font-size="12" fill="#71717A">Network Zoning · 公网 → DMZ → 管理内网 → 算力网络</text>
+
+  <!-- Public zone -->
+  <g transform="translate(60, 110)">
+    <rect x="0" y="0" width="240" height="380" rx="12" fill="url(#zonePub)" stroke="#8A5E38" stroke-width="2" filter="url(#cardShadow6)"/>
+    <rect x="0" y="0" width="240" height="36" rx="12" fill="#8A5E38"/>
+    <rect x="0" y="26" width="240" height="10" fill="#8A5E38"/>
+    <text x="120" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">PUBLIC · 公网区</text>
+
+    <g transform="translate(60, 80)">
+      <circle cx="60" cy="60" r="56" fill="#FFFFFF" stroke="#8A5E38" stroke-width="2"/>
+      <circle cx="60" cy="60" r="56" fill="none" stroke="#8A5E38" stroke-width="1.5"/>
+      <ellipse cx="60" cy="60" rx="26" ry="56" fill="none" stroke="#8A5E38" stroke-width="1.5"/>
+      <line x1="4" y1="60" x2="116" y2="60" stroke="#8A5E38" stroke-width="1.5"/>
+      <line x1="60" y1="4" x2="60" y2="116" stroke="#8A5E38" stroke-width="1.5"/>
+      <text x="60" y="135" text-anchor="middle" font-size="13" font-weight="700" fill="#8A5E38">Internet</text>
+    </g>
+
+    <g transform="translate(60, 250)">
+      <rect x="0" y="0" width="120" height="50" rx="25" fill="#1A1025"/>
+      <circle cx="30" cy="25" r="9" fill="#FFFFFF"/>
+      <path d="M 21 38 Q 30 28 39 38" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+      <text x="70" y="30" font-size="12" font-weight="600" fill="#FFFFFF">最终用户</text>
+    </g>
+
+    <text x="120" y="350" text-anchor="middle" font-size="10.5" fill="#8A5E38" font-weight="600">不可信网络</text>
+  </g>
+
+  <!-- Firewall between Public and DMZ -->
+  <g transform="translate(310, 130)">
+    <rect x="0" y="0" width="16" height="340" fill="url(#firewall)"/>
+    <text x="8" y="-8" text-anchor="middle" font-size="10" font-weight="700" fill="#8A5E38" transform="rotate(-90 8 -8)"></text>
+  </g>
+  <g transform="translate(296, 280)">
+    <rect x="0" y="0" width="44" height="80" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+    <g transform="translate(13, 14)">
+      <path d="M 9 0 L 18 4 L 18 12 Q 18 18 9 22 Q 0 18 0 12 L 0 4 Z" fill="#8A5E38"/>
+      <path d="M 5 11 L 8 14 L 13 8" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="22" y="56" text-anchor="middle" font-size="9" font-weight="700" fill="#8A5E38">FW</text>
+    <text x="22" y="70" text-anchor="middle" font-size="8.5" fill="#8A5E38">防火墙</text>
+  </g>
+
+  <!-- DMZ -->
+  <g transform="translate(350, 110)">
+    <rect x="0" y="0" width="220" height="380" rx="12" fill="url(#zoneDmz)" stroke="#8A5E38" stroke-width="2" filter="url(#cardShadow6)"/>
+    <rect x="0" y="0" width="220" height="36" rx="12" fill="#8A5E38"/>
+    <rect x="0" y="26" width="220" height="10" fill="#8A5E38"/>
+    <text x="110" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">DMZ · 接入区</text>
+
+    <g transform="translate(30, 130)">
+      <rect x="0" y="0" width="160" height="120" rx="8" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+      <g transform="translate(60, 18)">
+        <rect x="0" y="0" width="40" height="40" rx="6" fill="#8A5E38"/>
+        <path d="M 8 14 L 32 14 M 8 22 L 32 22 M 8 30 L 32 30" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
+      <text x="80" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#8A5E38">ELB</text>
+      <text x="80" y="94" text-anchor="middle" font-size="10.5" fill="#8A5E38">负载均衡</text>
+      <text x="80" y="110" text-anchor="middle" font-size="10" fill="#3F3F46">443 / 80 / 18090</text>
+    </g>
+
+    <g transform="translate(20, 290)">
+      <text x="90" y="0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8A5E38">入站规则</text>
+      <text x="90" y="18" text-anchor="middle" font-size="10" fill="#8A5E38">仅放行 443/80/18090</text>
+      <text x="90" y="34" text-anchor="middle" font-size="10" fill="#8A5E38">出站到管理内网</text>
+      <text x="90" y="64" text-anchor="middle" font-size="9.5" fill="#71717A" font-style="italic">受限可信区域</text>
+    </g>
+  </g>
+
+  <!-- Firewall between DMZ and Mgmt -->
+  <g transform="translate(580, 130)">
+    <rect x="0" y="0" width="16" height="340" fill="url(#firewall)"/>
+  </g>
+  <g transform="translate(566, 280)">
+    <rect x="0" y="0" width="44" height="80" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+    <g transform="translate(13, 14)">
+      <path d="M 9 0 L 18 4 L 18 12 Q 18 18 9 22 Q 0 18 0 12 L 0 4 Z" fill="#8A5E38"/>
+      <path d="M 5 11 L 8 14 L 13 8" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="22" y="56" text-anchor="middle" font-size="9" font-weight="700" fill="#8A5E38">FW</text>
+    <text x="22" y="70" text-anchor="middle" font-size="8.5" fill="#8A5E38">安全组</text>
+  </g>
+
+  <!-- Management Network -->
+  <g transform="translate(620, 110)">
+    <rect x="0" y="0" width="260" height="380" rx="12" fill="url(#zoneMgmt)" stroke="#5F4ECF" stroke-width="2" filter="url(#cardShadow6)"/>
+    <rect x="0" y="0" width="260" height="36" rx="12" fill="#5F4ECF"/>
+    <rect x="0" y="26" width="260" height="10" fill="#5F4ECF"/>
+    <text x="130" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.2">MGMT · 平台管理内网</text>
+
+    <g transform="translate(20, 60)">
+      <rect x="0" y="0" width="220" height="80" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5"/>
+      <g transform="translate(16, 20)">
+        <rect x="0" y="0" width="28" height="28" rx="5" fill="#5F4ECF"/>
+        <path d="M 8 14 L 12 18 L 20 10" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <text x="54" y="28" font-size="12" font-weight="700" fill="#4A3EB0">业务节点 (Business)</text>
+      <text x="54" y="46" font-size="10.5" fill="#4A3EB0">AGIOne Core Services</text>
+      <text x="54" y="64" font-size="10" fill="#71717A">≥2 节点 · 可水平扩展</text>
+    </g>
+
+    <g transform="translate(20, 156)">
+      <rect x="0" y="0" width="220" height="90" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5"/>
+      <g transform="translate(16, 20)">
+        <ellipse cx="14" cy="6" rx="14" ry="4" fill="#5F4ECF"/>
+        <path d="M 0 6 L 0 24 Q 0 30 14 30 Q 28 30 28 24 L 28 6" fill="#5F4ECF" opacity="0.85"/>
+      </g>
+      <text x="54" y="28" font-size="12" font-weight="700" fill="#4A3EB0">数据库 / 中间件</text>
+      <text x="54" y="46" font-size="10.5" fill="#4A3EB0">RDS · Nacos · Redis</text>
+      <text x="54" y="60" font-size="10.5" fill="#4A3EB0">Kafka · MinIO</text>
+      <text x="54" y="78" font-size="10" fill="#71717A">仅内网访问</text>
+    </g>
+
+    <g transform="translate(20, 270)">
+      <text x="110" y="0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4A3EB0">同一 VPC / 内网</text>
+      <text x="110" y="18" text-anchor="middle" font-size="10" fill="#4A3EB0">业务节点 ↔ DB/MW</text>
+      <text x="110" y="34" text-anchor="middle" font-size="10" fill="#4A3EB0">低延迟通信</text>
+      <text x="110" y="64" text-anchor="middle" font-size="9.5" fill="#71717A" font-style="italic">禁止跨 VPC 暴露端口</text>
+    </g>
+  </g>
+
+  <!-- Firewall between Mgmt and Compute -->
+  <g transform="translate(890, 130)">
+    <rect x="0" y="0" width="16" height="340" fill="url(#firewall)"/>
+  </g>
+  <g transform="translate(876, 280)">
+    <rect x="0" y="0" width="44" height="80" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.5"/>
+    <g transform="translate(13, 14)">
+      <path d="M 9 0 L 18 4 L 18 12 Q 18 18 9 22 Q 0 18 0 12 L 0 4 Z" fill="#8A5E38"/>
+      <path d="M 5 11 L 8 14 L 13 8" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="22" y="56" text-anchor="middle" font-size="9" font-weight="700" fill="#8A5E38">FW</text>
+    <text x="22" y="70" text-anchor="middle" font-size="8.5" fill="#8A5E38">安全组</text>
+  </g>
+
+  <!-- Compute Network -->
+  <g transform="translate(930, 110)">
+    <rect x="0" y="0" width="210" height="380" rx="12" fill="url(#zoneCompute)" stroke="#4A6298" stroke-width="2" filter="url(#cardShadow6)"/>
+    <rect x="0" y="0" width="210" height="36" rx="12" fill="#4A6298"/>
+    <rect x="0" y="26" width="210" height="10" fill="#4A6298"/>
+    <text x="105" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.2">COMPUTE · 算力网络</text>
+
+    <g transform="translate(20, 60)">
+      <rect x="0" y="0" width="170" height="60" rx="8" fill="#FFFFFF" stroke="#4A6298" stroke-width="1.5"/>
+      <g transform="translate(14, 16)">
+        <polygon points="14,2 24,8 24,18 14,24 4,18 4,8" fill="#4A6298"/>
+        <polygon points="14,2 24,8 14,14 4,8" fill="#EEF1F8"/>
+      </g>
+      <text x="52" y="24" font-size="11.5" font-weight="700" fill="#4A6298">K8s API</text>
+      <text x="52" y="40" font-size="10.5" fill="#4A6298">端口 6443</text>
+    </g>
+
+    <g transform="translate(20, 130)">
+      <rect x="0" y="0" width="170" height="76" rx="8" fill="#FFFFFF" stroke="#4A6298" stroke-width="1.5"/>
+      <g transform="translate(14, 16)">
+        <rect x="0" y="0" width="28" height="28" rx="4" fill="#4A6298"/>
+        <path d="M 6 12 L 11 16 L 22 6" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <text x="52" y="22" font-size="11.5" font-weight="700" fill="#4A6298">NodePort 服务</text>
+      <text x="52" y="38" font-size="10" fill="#4A6298">32761 · 监控</text>
+      <text x="52" y="52" font-size="10" fill="#4A6298">32762 · 模型/IDE</text>
+      <text x="52" y="66" font-size="10" fill="#4A6298">32763–32765 · 备用</text>
+    </g>
+
+    <g transform="translate(20, 216)">
+      <rect x="0" y="0" width="170" height="80" rx="8" fill="#FFFFFF" stroke="#4A6298" stroke-width="1.5"/>
+      <g transform="translate(14, 16)">
+        <rect x="0" y="0" width="28" height="28" rx="4" fill="#4A6298"/>
+        <text x="14" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">GPU</text>
+      </g>
+      <text x="52" y="22" font-size="11.5" font-weight="700" fill="#4A6298">GPU/NPU 节点</text>
+      <text x="52" y="40" font-size="10.5" fill="#4A6298">算力工作负载</text>
+      <text x="14" y="70" font-size="9.5" fill="#71717A">近端千兆+ 局域网</text>
+    </g>
+
+    <g transform="translate(20, 308)">
+      <text x="85" y="0" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4A6298">独立 VPC / 子网</text>
+      <text x="85" y="18" text-anchor="middle" font-size="9.5" fill="#4A6298">每地域独立</text>
+      <text x="85" y="34" text-anchor="middle" font-size="9.5" fill="#4A6298">VPC 对等 / 专线打通</text>
+    </g>
+  </g>
+
+  <!-- Bottom traffic flow note -->
+  <g transform="translate(60, 520)">
+    <rect x="0" y="0" width="1080" height="112" rx="10" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2" filter="url(#cardShadow6)"/>
+    <text x="20" y="24" font-size="12" font-weight="700" fill="#1A1025">关键流量方向</text>
+
+    <g transform="translate(20, 38)">
+      <circle cx="6" cy="6" r="3" fill="#8A5E38"/>
+      <text x="18" y="10" font-size="10.5" fill="#3F3F46">用户 → ELB</text>
+      <text x="105" y="10" font-size="10" fill="#71717A">公网 HTTPS (443)</text>
+
+      <circle cx="6" cy="26" r="3" fill="#8A5E38"/>
+      <text x="18" y="30" font-size="10.5" fill="#3F3F46">ELB → 业务节点</text>
+      <text x="125" y="30" font-size="10" fill="#71717A">内网, 同 VPC</text>
+
+      <circle cx="6" cy="46" r="3" fill="#5F4ECF"/>
+      <text x="18" y="50" font-size="10.5" fill="#3F3F46">业务节点 ↔ DB/中间件</text>
+      <text x="165" y="50" font-size="10" fill="#71717A">内网低延迟</text>
+    </g>
+
+    <g transform="translate(380, 38)">
+      <circle cx="6" cy="6" r="3" fill="#4A6298"/>
+      <text x="18" y="10" font-size="10.5" fill="#3F3F46">业务节点 → K8s API</text>
+      <text x="155" y="10" font-size="10" fill="#71717A">6443 (mTLS)</text>
+
+      <circle cx="6" cy="26" r="3" fill="#4A6298"/>
+      <text x="18" y="30" font-size="10.5" fill="#3F3F46">业务节点 → 算力服务</text>
+      <text x="165" y="30" font-size="10" fill="#71717A">32761–32765 NodePort</text>
+
+      <circle cx="6" cy="46" r="3" fill="#3A7252"/>
+      <text x="18" y="50" font-size="10.5" fill="#3F3F46">业务节点 → Internet</text>
+      <text x="155" y="50" font-size="10" fill="#71717A">出站, ≥100 Mbps</text>
+    </g>
+
+    <g transform="translate(740, 38)">
+      <text x="0" y="10" font-size="11" font-weight="700" fill="#1A1025">安全原则</text>
+      <text x="0" y="30" font-size="10" fill="#3F3F46">• 防火墙默认拒绝，按白名单放行</text>
+      <text x="0" y="46" font-size="10" fill="#3F3F46">• 内部组件不对外暴露端口</text>
+      <text x="0" y="62" font-size="10" fill="#3F3F46">• 跨网络区域通过 NAT/VPC 对等连接</text>
+    </g>
+  </g>
+</svg>

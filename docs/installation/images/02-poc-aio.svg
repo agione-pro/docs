@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-labelledby="agione-02-poc-aio-title agione-02-poc-aio-desc">
+<title id="agione-02-poc-aio-title">PoC Deployment Architecture - All in One</title>
+<desc id="agione-02-poc-aio-desc">Single-node PoC deployment with embedded business services, database, middleware, and internet image pull.</desc>
+<metadata>AGIOne diagrams semantic palette applied: primary #5F4ECF, primary-hover #4A3EB0, primary-subtle #ECE9F9, subtle-border #D8D2F0, terminal #1A1025, text #09090B/#3F3F46/#71717A, surfaces #FFFFFF/#F4F4F5/#FAFAFA, border #E4E4E7/#A1A1AA, blue #EEF1F8/#4A6298, success #EEF5F0/#3A7252, warning #F8F1EC/#8A5E38.</metadata>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3F3F46"/></marker>
+  <marker id="arrowPrimary" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5F4ECF"/></marker>
+  <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8A5E38"/></marker>
+  <style>
+    :root{
+      --agione-primary:#5F4ECF;
+      --agione-primary-hover:#4A3EB0;
+      --agione-primary-subtle:#ECE9F9;
+      --agione-primary-subtle-border:#D8D2F0;
+      --agione-topnav-bg:#1A1025;
+      --agione-topnav-accent:#2D2240;
+      --agione-page:#FFFFFF;
+      --agione-muted:#F4F4F5;
+      --agione-cluster:#FAFAFA;
+      --agione-text:#09090B;
+      --agione-text-secondary:#3F3F46;
+      --agione-text-muted:#71717A;
+      --agione-border:#E4E4E7;
+      --agione-border-strong:#A1A1AA;
+      --agione-blue-surface:#EEF1F8;
+      --agione-blue-text:#4A6298;
+      --agione-success-surface:#EEF5F0;
+      --agione-success-text:#3A7252;
+      --agione-warning-surface:#F8F1EC;
+      --agione-warning-text:#8A5E38;
+    }
+    svg{background:#FFFFFF;shape-rendering:geometricPrecision;text-rendering:optimizeLegibility}
+    text{font-family:"Inter Variable",Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;letter-spacing:0}
+    line,path,rect,circle,polyline,polygon{vector-effect:non-scaling-stroke}
+    .mono{font-family:"SFMono-Regular",Consolas,Menlo,monospace}
+  </style>
+</defs>
+<rect width="1000" height="500" fill="#FFFFFF"/>
+<text x="500" y="36" font-size="22" font-weight="700" fill="#09090B" text-anchor="middle"><tspan x="500" dy="0">PoC Deployment Architecture - All in One</tspan></text>
+<text x="500" y="58" font-size="12" font-weight="400" fill="#71717A" text-anchor="middle"><tspan x="500" dy="0">Single Node - 8C / 24G / 200G - For PoC and Demo Only</tspan></text>
+<rect x="80" y="220" width="130" height="56" rx="28" fill="#1A1025" stroke="none" stroke-width="0"/>
+<circle cx="111" cy="242" r="9" fill="#FFFFFF"/>
+<path d="M 97 262 C 104 249, 119 249, 126 262" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+<text x="170" y="255" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="170" dy="0">Users</tspan></text>
+<rect x="200" y="220" width="92" height="24" rx="12" fill="#FFFFFF" stroke="#A1A1AA" stroke-width="1.2"/>
+<text x="246" y="236" font-size="10" font-weight="400" fill="#3F3F46" text-anchor="middle"><tspan x="246" dy="0">HTTP :18090</tspan></text>
+<line x1="190" y1="248" x2="290" y2="248" stroke="#3F3F46" stroke-width="2" fill="none"  marker-end="url(#arrow)"/>
+<rect x="290" y="100" width="500" height="300" rx="12" fill="#EEF1F8" stroke="#5F4ECF" stroke-width="1.8" />
+<text x="310" y="130" font-size="11" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="310" dy="0">ALL IN ONE NODE</tspan></text>
+<text x="310" y="146" font-size="11" font-weight="400" fill="#4A3EB0" text-anchor="start"><tspan x="310" dy="0">8 vCPU - 24 GB RAM - 200 GB Disk</tspan></text>
+<rect x="330" y="170" width="420" height="60" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5" />
+<rect x="344" y="186" width="24" height="24" rx="6" fill="#5F4ECF" stroke="#5F4ECF" stroke-width="0" />
+<text x="356" y="203" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="356" dy="0">OK</tspan></text>
+<text x="378" y="197" font-size="13" font-weight="700" fill="#09090B" text-anchor="start"><tspan x="378" dy="0">AGIOne Business Services</tspan></text>
+<text x="378" y="218" font-size="10" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="378" dy="0">Core API - Web - Scheduling Logic</tspan></text>
+<line x1="430" y1="230" x2="430" y2="250" stroke="#5F4ECF" stroke-width="1.5" fill="none" stroke-dasharray="3 3" />
+<line x1="650" y1="230" x2="650" y2="250" stroke="#5F4ECF" stroke-width="1.5" fill="none" stroke-dasharray="3 3" />
+<rect x="330" y="250" width="200" height="90" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5" />
+<rect x="344" y="266" width="24" height="24" rx="6" fill="#5F4ECF" stroke="#5F4ECF" stroke-width="0" />
+<text x="356" y="283" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="356" dy="0">DB</tspan></text>
+<text x="378" y="277" font-size="13" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="378" dy="0">Embedded Database</tspan></text>
+<text x="378" y="298" font-size="10" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="378" dy="0">RDS (Single Instance)</tspan></text>
+<rect x="550" y="250" width="200" height="90" rx="8" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1.5" />
+<rect x="564" y="266" width="24" height="24" rx="6" fill="#5F4ECF" stroke="#5F4ECF" stroke-width="0" />
+<text x="576" y="283" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="576" dy="0">MW</tspan></text>
+<text x="598" y="277" font-size="13" font-weight="700" fill="#4A3EB0" text-anchor="start"><tspan x="598" dy="0">Embedded Middleware</tspan></text>
+<text x="598" y="298" font-size="10" font-weight="400" fill="#3F3F46" text-anchor="start"><tspan x="598" dy="0">Nacos - Redis - Kafka - MinIO</tspan><tspan x="598" dy="14">Co-located on Same Node</tspan></text>
+<path d="M 790 248 C 830 248, 835 245, 870 245" stroke="#3F3F46" stroke-width="1.8" fill="none" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+<text x="802" y="238" font-size="11" font-weight="700" fill="#3F3F46" text-anchor="start"><tspan x="802" dy="0">Pull Images</tspan></text>
+<rect x="870" y="218" width="100" height="54" rx="27" fill="#EEF5F0" stroke="#3A7252" stroke-width="1.8"/>
+<text x="920" y="250" font-size="13" font-weight="700" fill="#3A7252" text-anchor="middle"><tspan x="920" dy="0">Internet</tspan></text>
+<rect x="80" y="430" width="840" height="50" rx="8" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1.5" />
+<rect x="96" y="444" width="24" height="24" rx="6" fill="#8A5E38" stroke="#8A5E38" stroke-width="0" />
+<text x="108" y="461" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle"><tspan x="108" dy="0">!</tspan></text>
+<text x="126" y="452" font-size="12" font-weight="700" fill="#8A5E38" text-anchor="start"><tspan x="126" dy="0">Note</tspan></text>
+<text x="126" y="470" font-size="11" font-weight="400" fill="#8A5E38" text-anchor="start"><tspan x="126" dy="0">All-in-One mode has no HA or data redundancy. Use only for PoC and demos; not recommended for production.</tspan></text>
+</svg>

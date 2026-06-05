@@ -1,0 +1,284 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="Inter Variable, Inter, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F4F4F5"/>
+    </linearGradient>
+    <linearGradient id="accessGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EEF1F8"/>
+      <stop offset="100%" stop-color="#EEF1F8"/>
+    </linearGradient>
+    <linearGradient id="mgmtGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ECE9F9"/>
+      <stop offset="100%" stop-color="#F2EEF8"/>
+    </linearGradient>
+    <linearGradient id="computeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8F1EC"/>
+      <stop offset="100%" stop-color="#F8F1EC"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1A1025" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3F3F46"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4A6298"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5F4ECF"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="760" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#1A1025">AGIOne 平台整体架构</text>
+  <text x="600" y="60" text-anchor="middle" font-size="13" fill="#71717A">Overall Architecture — Access · Management · Compute</text>
+
+  <!-- User -->
+  <g transform="translate(510, 90)">
+    <rect x="0" y="0" width="180" height="56" rx="28" fill="#1A1025" filter="url(#cardShadow)"/>
+    <circle cx="32" cy="28" r="10" fill="#FFFFFF"/>
+    <path d="M 22 44 Q 32 32 42 44" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+    <text x="90" y="34" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">用户 / Admin</text>
+  </g>
+
+  <!-- Arrow user → access -->
+  <line x1="600" y1="146" x2="600" y2="180" stroke="#3F3F46" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Access Layer -->
+  <g transform="translate(80, 190)">
+    <rect x="0" y="0" width="1040" height="86" rx="10" fill="url(#accessGrad)" stroke="#4A6298" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="6" height="86" rx="3" fill="#4A6298"/>
+    <text x="20" y="24" font-size="12" font-weight="700" fill="#4A6298" letter-spacing="1.5">ACCESS LAYER · 接入层</text>
+
+    <g transform="translate(420, 36)">
+      <rect x="0" y="0" width="200" height="42" rx="6" fill="#FFFFFF" stroke="#4A6298" stroke-width="1.5"/>
+      <rect x="0" y="0" width="200" height="42" rx="6" fill="none" stroke="#4A6298" stroke-width="1.5"/>
+      <g transform="translate(12, 11)">
+        <rect x="0" y="0" width="20" height="20" rx="3" fill="#4A6298"/>
+        <path d="M 4 6 L 8 6 M 4 10 L 16 10 M 4 14 L 12 14" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+      <text x="42" y="20" font-size="13" font-weight="600" fill="#4A6298">负载均衡 ELB</text>
+      <text x="42" y="35" font-size="11" fill="#4A6298">443 · 80 · 18090</text>
+    </g>
+  </g>
+
+  <!-- Arrow access → mgmt -->
+  <line x1="600" y1="276" x2="600" y2="310" stroke="#3F3F46" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Management Layer -->
+  <g transform="translate(80, 320)">
+    <rect x="0" y="0" width="1040" height="180" rx="10" fill="url(#mgmtGrad)" stroke="#5F4ECF" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="6" height="180" rx="3" fill="#5F4ECF"/>
+    <text x="20" y="24" font-size="12" font-weight="700" fill="#4A3EB0" letter-spacing="1.5">MANAGEMENT LAYER · 平台管理层（控制面）</text>
+
+    <!-- Business Nodes -->
+    <g transform="translate(40, 46)">
+      <rect x="0" y="0" width="430" height="120" rx="8" fill="#FFFFFF" stroke="#6A4E9A" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#5F4ECF">业务节点 (≥2)</text>
+
+      <g transform="translate(20, 36)">
+        <rect x="0" y="0" width="180" height="68" rx="6" fill="#ECE9F9" stroke="#5F4ECF" stroke-width="1.2"/>
+        <g transform="translate(12, 12)">
+          <rect x="0" y="0" width="22" height="22" rx="4" fill="#5F4ECF"/>
+          <path d="M 6 11 L 10 15 L 16 7" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <text x="44" y="22" font-size="12" font-weight="600" fill="#4A3EB0">AGIOne Core #1</text>
+        <text x="44" y="38" font-size="10.5" fill="#4A3EB0">8C / 16G</text>
+        <text x="12" y="58" font-size="10" fill="#71717A">业务服务实例</text>
+      </g>
+
+      <g transform="translate(220, 36)">
+        <rect x="0" y="0" width="180" height="68" rx="6" fill="#ECE9F9" stroke="#5F4ECF" stroke-width="1.2"/>
+        <g transform="translate(12, 12)">
+          <rect x="0" y="0" width="22" height="22" rx="4" fill="#5F4ECF"/>
+          <path d="M 6 11 L 10 15 L 16 7" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <text x="44" y="22" font-size="12" font-weight="600" fill="#4A3EB0">AGIOne Core #2</text>
+        <text x="44" y="38" font-size="10.5" fill="#4A3EB0">8C / 16G</text>
+        <text x="12" y="58" font-size="10" fill="#71717A">业务服务实例 · 可水平扩展</text>
+      </g>
+    </g>
+
+    <!-- DB/MW -->
+    <g transform="translate(530, 46)">
+      <rect x="0" y="0" width="470" height="120" rx="8" fill="#FFFFFF" stroke="#6A4E9A" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#5F4ECF">数据库与中间件节点 (≥2)</text>
+
+      <!-- 5 components in a row -->
+      <g transform="translate(14, 36)">
+        <rect x="0" y="0" width="82" height="68" rx="6" fill="#F2EEF8" stroke="#5F4ECF" stroke-width="1.2"/>
+        <g transform="translate(31, 10)">
+          <ellipse cx="10" cy="5" rx="10" ry="3.5" fill="#5F4ECF"/>
+          <path d="M 0 5 L 0 18 Q 0 21.5 10 21.5 Q 20 21.5 20 18 L 20 5" fill="#5F4ECF" opacity="0.85"/>
+          <ellipse cx="10" cy="5" rx="10" ry="3.5" fill="none" stroke="#FFFFFF" stroke-width="0.8"/>
+        </g>
+        <text x="41" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#4A3EB0">RDS</text>
+        <text x="41" y="62" text-anchor="middle" font-size="9" fill="#5F4ECF">主从</text>
+      </g>
+
+      <g transform="translate(104, 36)">
+        <rect x="0" y="0" width="82" height="68" rx="6" fill="#F2EEF8" stroke="#5F4ECF" stroke-width="1.2"/>
+        <g transform="translate(31, 10)">
+          <circle cx="10" cy="10" r="9" fill="none" stroke="#5F4ECF" stroke-width="2"/>
+          <circle cx="10" cy="10" r="3" fill="#5F4ECF"/>
+          <circle cx="3" cy="10" r="2" fill="#5F4ECF"/>
+          <circle cx="17" cy="10" r="2" fill="#5F4ECF"/>
+          <circle cx="10" cy="3" r="2" fill="#5F4ECF"/>
+        </g>
+        <text x="41" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#4A3EB0">Nacos</text>
+        <text x="41" y="62" text-anchor="middle" font-size="9" fill="#5F4ECF">服务发现</text>
+      </g>
+
+      <g transform="translate(194, 36)">
+        <rect x="0" y="0" width="82" height="68" rx="6" fill="#F2EEF8" stroke="#5F4ECF" stroke-width="1.2"/>
+        <g transform="translate(31, 10)">
+          <rect x="0" y="2" width="20" height="16" rx="3" fill="#5F4ECF"/>
+          <path d="M 3 9 L 7 9 M 3 13 L 11 13" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="16" cy="11" r="1.5" fill="#FFFFFF"/>
+        </g>
+        <text x="41" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#4A3EB0">Redis</text>
+        <text x="41" y="62" text-anchor="middle" font-size="9" fill="#5F4ECF">缓存</text>
+      </g>
+
+      <g transform="translate(284, 36)">
+        <rect x="0" y="0" width="82" height="68" rx="6" fill="#F2EEF8" stroke="#5F4ECF" stroke-width="1.2"/>
+        <g transform="translate(31, 10)">
+          <circle cx="5" cy="5" r="3" fill="#5F4ECF"/>
+          <circle cx="15" cy="5" r="3" fill="#5F4ECF"/>
+          <circle cx="10" cy="15" r="3" fill="#5F4ECF"/>
+          <line x1="5" y1="5" x2="10" y2="15" stroke="#5F4ECF" stroke-width="1.5"/>
+          <line x1="15" y1="5" x2="10" y2="15" stroke="#5F4ECF" stroke-width="1.5"/>
+          <line x1="5" y1="5" x2="15" y2="5" stroke="#5F4ECF" stroke-width="1.5"/>
+        </g>
+        <text x="41" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#4A3EB0">Kafka</text>
+        <text x="41" y="62" text-anchor="middle" font-size="9" fill="#5F4ECF">消息</text>
+      </g>
+
+      <g transform="translate(374, 36)">
+        <rect x="0" y="0" width="82" height="68" rx="6" fill="#F2EEF8" stroke="#5F4ECF" stroke-width="1.2"/>
+        <g transform="translate(31, 10)">
+          <path d="M 2 16 L 2 8 L 6 4 L 14 4 L 18 8 L 18 16 Z" fill="#5F4ECF"/>
+          <path d="M 6 4 L 6 12 L 14 12 L 14 4" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>
+        </g>
+        <text x="41" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#4A3EB0">MinIO</text>
+        <text x="41" y="62" text-anchor="middle" font-size="9" fill="#5F4ECF">对象存储</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Connection between business and DB groups (inside mgmt layer) -->
+  <line x1="550" y1="425" x2="610" y2="425" stroke="#5F4ECF" stroke-width="1.5" stroke-dasharray="3 2"/>
+
+  <!-- Arrow mgmt → compute (with port labels) -->
+  <line x1="300" y1="500" x2="300" y2="540" stroke="#5F4ECF" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <line x1="900" y1="500" x2="900" y2="540" stroke="#5F4ECF" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+  <g transform="translate(330, 508)">
+    <rect x="0" y="0" width="170" height="22" rx="11" fill="#FFFFFF" stroke="#5F4ECF" stroke-width="1"/>
+    <text x="85" y="15" text-anchor="middle" font-size="10.5" fill="#4A3EB0" font-weight="600">6443 · 32761–32765</text>
+  </g>
+
+  <!-- Compute Layer -->
+  <g transform="translate(80, 550)">
+    <rect x="0" y="0" width="1040" height="180" rx="10" fill="url(#computeGrad)" stroke="#8A5E38" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="6" height="180" rx="3" fill="#8A5E38"/>
+    <text x="20" y="24" font-size="12" font-weight="700" fill="#8A5E38" letter-spacing="1.5">COMPUTE LAYER · 算力节点纳管层（数据面）</text>
+
+    <!-- Region A -->
+    <g transform="translate(40, 46)">
+      <rect x="0" y="0" width="460" height="120" rx="8" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#8A5E38">算力池 A · 地域 1</text>
+
+      <g transform="translate(14, 36)">
+        <rect x="0" y="0" width="130" height="68" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.2"/>
+        <g transform="translate(10, 10)">
+          <polygon points="11,2 18,6 18,14 11,18 4,14 4,6" fill="#8A5E38"/>
+          <polygon points="11,2 18,6 11,10 4,6" fill="#8A5E38"/>
+        </g>
+        <text x="40" y="22" font-size="11" font-weight="600" fill="#8A5E38">K8s 控制面</text>
+        <text x="40" y="36" font-size="10" fill="#8A5E38">1 或 3 节点</text>
+        <text x="10" y="58" font-size="9.5" fill="#71717A">API · 调度 · etcd</text>
+      </g>
+
+      <g transform="translate(154, 36)">
+        <rect x="0" y="0" width="130" height="68" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.2"/>
+        <g transform="translate(10, 10)">
+          <rect x="0" y="2" width="22" height="16" rx="2" fill="#8A5E38"/>
+          <rect x="2" y="4" width="6" height="3" fill="#8A5E38"/>
+          <rect x="10" y="4" width="6" height="3" fill="#8A5E38"/>
+          <rect x="2" y="9" width="6" height="3" fill="#8A5E38"/>
+          <rect x="10" y="9" width="6" height="3" fill="#8A5E38"/>
+        </g>
+        <text x="40" y="22" font-size="11" font-weight="600" fill="#8A5E38">近端镜像</text>
+        <text x="40" y="36" font-size="10" fill="#8A5E38">Registry</text>
+        <text x="10" y="58" font-size="9.5" fill="#71717A">复用纳管节点资源</text>
+      </g>
+
+      <g transform="translate(294, 36)">
+        <rect x="0" y="0" width="152" height="68" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.2"/>
+        <g transform="translate(10, 10)">
+          <rect x="0" y="0" width="22" height="22" rx="3" fill="#8A5E38"/>
+          <text x="11" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">GPU</text>
+        </g>
+        <text x="40" y="16" font-size="11" font-weight="600" fill="#8A5E38">GPU / NPU 节点</text>
+        <text x="40" y="30" font-size="10" fill="#8A5E38">算力工作节点</text>
+        <text x="10" y="58" font-size="9.5" fill="#71717A">承载训练 / 推理 / IDE</text>
+      </g>
+    </g>
+
+    <!-- Region B -->
+    <g transform="translate(540, 46)">
+      <rect x="0" y="0" width="460" height="120" rx="8" fill="#F8F1EC" stroke="#8A5E38" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <text x="14" y="20" font-size="11" font-weight="700" fill="#8A5E38">算力池 B · 地域 2</text>
+
+      <g transform="translate(14, 36)">
+        <rect x="0" y="0" width="130" height="68" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.2"/>
+        <g transform="translate(10, 10)">
+          <polygon points="11,2 18,6 18,14 11,18 4,14 4,6" fill="#8A5E38"/>
+          <polygon points="11,2 18,6 11,10 4,6" fill="#8A5E38"/>
+        </g>
+        <text x="40" y="22" font-size="11" font-weight="600" fill="#8A5E38">K8s 控制面</text>
+        <text x="40" y="36" font-size="10" fill="#8A5E38">1 或 3 节点</text>
+        <text x="10" y="58" font-size="9.5" fill="#71717A">API · 调度 · etcd</text>
+      </g>
+
+      <g transform="translate(154, 36)">
+        <rect x="0" y="0" width="130" height="68" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.2"/>
+        <g transform="translate(10, 10)">
+          <rect x="0" y="2" width="22" height="16" rx="2" fill="#8A5E38"/>
+          <rect x="2" y="4" width="6" height="3" fill="#8A5E38"/>
+          <rect x="10" y="4" width="6" height="3" fill="#8A5E38"/>
+          <rect x="2" y="9" width="6" height="3" fill="#8A5E38"/>
+          <rect x="10" y="9" width="6" height="3" fill="#8A5E38"/>
+        </g>
+        <text x="40" y="22" font-size="11" font-weight="600" fill="#8A5E38">近端镜像</text>
+        <text x="40" y="36" font-size="10" fill="#8A5E38">Registry</text>
+        <text x="10" y="58" font-size="9.5" fill="#71717A">复用纳管节点资源</text>
+      </g>
+
+      <g transform="translate(294, 36)">
+        <rect x="0" y="0" width="152" height="68" rx="6" fill="#FFFFFF" stroke="#8A5E38" stroke-width="1.2"/>
+        <g transform="translate(10, 10)">
+          <rect x="0" y="0" width="22" height="22" rx="3" fill="#8A5E38"/>
+          <text x="11" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">NPU</text>
+        </g>
+        <text x="40" y="16" font-size="11" font-weight="600" fill="#8A5E38">GPU / NPU 节点</text>
+        <text x="40" y="30" font-size="10" fill="#8A5E38">算力工作节点</text>
+        <text x="10" y="58" font-size="9.5" fill="#71717A">承载训练 / 推理 / IDE</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Legend bottom -->
+  <g transform="translate(80, 740)">
+    <rect x="0" y="-8" width="14" height="14" rx="3" fill="url(#accessGrad)" stroke="#4A6298"/>
+    <text x="20" y="3" font-size="11" fill="#3F3F46">接入层</text>
+    <rect x="90" y="-8" width="14" height="14" rx="3" fill="url(#mgmtGrad)" stroke="#5F4ECF"/>
+    <text x="110" y="3" font-size="11" fill="#3F3F46">管理层</text>
+    <rect x="180" y="-8" width="14" height="14" rx="3" fill="url(#computeGrad)" stroke="#8A5E38"/>
+    <text x="200" y="3" font-size="11" fill="#3F3F46">算力层</text>
+  </g>
+</svg>

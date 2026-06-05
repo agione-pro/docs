@@ -17,16 +17,16 @@ AGIOne 安装器用于在离线或弱网环境中完成 AGIOne 单机交付安�
 | 操作系统 | Linux | ubuntu 22.04 |
 | CPU | 8 核 | CPU 核数必须满足 8 核 |
 | 内存 | 16 GiB | 检测允许少量系统/虚拟化保留损耗，约 `15.2GiB` 以上可通过 |
-| 可用磁盘 | 200 GiB | `/opt/hyperone` 所在分区检测允许约 20% 文件系统保留损耗，约 `160GiB` 以上可通过 |
+| 可用磁盘 | 200 GiB | `runtime_root` 保持默认值时，安装器优先选择可用空间约 `160GiB` 以上的数据盘；无合适数据盘时才回落检查系统盘 |
 | 执行用户 | `root` | 推荐 root 安装，避免 Docker、目录权限和系统服务权限问题 |
 
 ## Quick Install
 
 ### 1. 下载 bundle
 
-在目标主机上下载 `agione-release-v1.0-20260514.tar.gz`：
+在目标主机上下载 `agione-release-v1.0-20260527.tar.gz`：
 
-**下载地址：** [https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz](https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz)
+**下载地址：** [https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260527.tar.gz](https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260527.tar.gz)
 
 执行示例：
 
@@ -34,9 +34,9 @@ AGIOne 安装器用于在离线或弱网环境中完成 AGIOne 单机交付安�
 ssh root@<target-host>
 mkdir -p /opt/hyperone && \
 cd /opt/hyperone && \
-curl -fL -O https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz && \
-tar -zxvf agione-release-v1.0-20260514.tar.gz && \
-cd /opt/hyperone/agione-release-v1.0-20260514
+curl -fL -O https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260527.tar.gz && \
+tar -zxvf agione-release-v1.0-20260527.tar.gz && \
+cd /opt/hyperone/agione-release-v1.0-20260527
 ```
 
 ### 2. 一键安装
@@ -63,17 +63,21 @@ chmod +x ./agione
 
 ### 3. 查看安装结果
 
-安装成功后，`quick` 会在终端末尾输出实际访问入口和默认账号信息。`quick` 默认使用英文输出，格式如下：
+安装成功后，`quick` 会在终端末尾输出实际访问入口和默认账号信息。默认控制台账号密码会在每次安装时生成，除非在 `agione_app.default_access.credentials` 中显式配置固定密码。
+
+`quick` 默认使用英文输出，格式如下：
 
 ```text
 Installation Result:
 Console URL: http://<target-host-ip>:18090/
 
 Access Information (Account/Password):
-admin .system.admin.123./
-operator .system.admin.123./
-manager .system.admin.123./
+admin <generated-random-password>
+operator <generated-random-password>
+provider <generated-random-password>
 ```
+
+同一份访问信息会写入安装器运行目录下的 `outputs/final-install-result.md` 和 `outputs/acceptance-report.md`。安装报告中也会列出默认控制台账号文件路径。请按客户认可的凭据交接流程归档这些文件。
 
 也可以执行：
 
@@ -156,12 +160,12 @@ TUI 流程包含：
 1. Welcome
 2. System Check
 3. Offline Package Check
-4. Module Selection
-5. Basic Info
-6. Node Input
+4. Install Overview
+5. Module Selection
+6. Basic Info
 7. Middleware Config
 8. Resource Policy
-9. Config Review
+9. Node Input
 10. Start Install
 11. Execute
 12. Result
@@ -299,9 +303,9 @@ docker-compose -f compose.rendered.yaml ps
 
 云主机、虚拟化平台和操作系统会保留一部分内存，所以检测值常见为 `15.xGiB`。安装器已允许少量保留损耗，约 `15.2GiB` 以上可通过。
 
-### Q4：为什么申请了 200G 磁盘，检测略小？
+### Q4：安装器如何选择运行数据磁盘？
 
-磁盘厂商单位、文件系统元数据和系统保留空间会导致实际可用空间小于标称值。安装器已允许约 20% 容差，约 `160GiB` 以上可通过。
+当 `agione_app.runtime_root` 保持 `/opt/hyperone` 默认值时，安装器会先扫描物理数据盘挂载点，找到可用空间约 `160GiB` 以上的数据盘后选择 `<挂载点>/hyperone`。如果没有合适数据盘，则检查系统盘上的 `/opt/hyperone`。如果显式配置了 `runtime_root`，安装器会尊重该路径，并校验该路径所在文件系统。
 
 ### Q5：系统检查失败能跳过吗？
 
@@ -371,7 +375,7 @@ docker logs <container-name> --tail 300
 
 ```bash
 # 1. 进入 bundle 目录
-cd /opt/hyperone/agione-release-v1.0-20260514
+cd /opt/hyperone/agione-release-v1.0-20260527
 
 # 2. 授权入口脚本
 chmod +x ./agione

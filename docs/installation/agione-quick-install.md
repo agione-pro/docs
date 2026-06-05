@@ -17,16 +17,16 @@ Recommended request profile:
 | Operating system | Linux | Ubuntu 22.04 |
 | CPU | 8 cores | CPU must be at least 8 cores |
 | Memory | 16 GiB | A small OS or virtualization reservation is tolerated; about `15.2GiB` or above can pass |
-| Free disk | 200 GiB | The partition hosting `/opt/hyperone` tolerates about 20% filesystem reservation; about `160GiB` or above can pass |
+| Free disk | 200 GiB | When `runtime_root` keeps the default value, the installer prefers a data disk that has at least about `160GiB` free, and falls back to the system disk only when no suitable data disk is available |
 | Execution user | `root` | Root installation is recommended to avoid Docker, directory permission, and system service permission issues |
 
 ## Quick Install
 
 ### 1. Download bundle
 
-Download `agione-release-v1.0-20260514.tar.gz` on the target host:
+Download `agione-release-v1.0-20260527.tar.gz` on the target host:
 
-**Download URL:** [https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz](https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz)
+**Download URL:** [https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260527.tar.gz](https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260527.tar.gz)
 
 Example:
 
@@ -34,9 +34,9 @@ Example:
 ssh root@<target-host>
 mkdir -p /opt/hyperone && \
 cd /opt/hyperone && \
-curl -fL -O https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz && \
-tar -zxvf agione-release-v1.0-20260514.tar.gz && \
-cd /opt/hyperone/agione-release-v1.0-20260514
+curl -fL -O https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260527.tar.gz && \
+tar -zxvf agione-release-v1.0-20260527.tar.gz && \
+cd /opt/hyperone/agione-release-v1.0-20260527
 ```
 
 ### 2. One-click installation
@@ -63,17 +63,21 @@ The installer automatically performs:
 
 ### 3. View installation result
 
-After installation succeeds, `quick` prints the actual access entry and default account information at the end of the terminal output. `quick` uses English output by default, in the following format:
+After installation succeeds, `quick` prints the actual access entry and default account information at the end of the terminal output. The default console account passwords are generated during each installation unless fixed credentials are explicitly configured in `agione_app.default_access.credentials`.
+
+`quick` uses English output by default, in the following format:
 
 ```text
 Installation Result:
 Console URL: http://<target-host-ip>:18090/
 
 Access Information (Account/Password):
-admin .system.admin.123./
-operator .system.admin.123./
-manager .system.admin.123./
+admin <generated-random-password>
+operator <generated-random-password>
+provider <generated-random-password>
 ```
+
+The same access information is written to `outputs/final-install-result.md` and `outputs/acceptance-report.md` under the installer runtime directory. The installation report also lists the path to the default console account file. Archive these files according to the customer-approved credential handover process.
 
 You can also run:
 
@@ -156,12 +160,12 @@ The TUI flow includes:
 1. Welcome
 2. System Check
 3. Offline Package Check
-4. Module Selection
-5. Basic Info
-6. Node Input
+4. Install Overview
+5. Module Selection
+6. Basic Info
 7. Middleware Config
 8. Resource Policy
-9. Config Review
+9. Node Input
 10. Start Install
 11. Execute
 12. Result
@@ -299,9 +303,9 @@ No manual installation is required. The bundle includes an offline Python runtim
 
 Cloud hosts, virtualization platforms, and operating systems reserve part of the memory, so the detected value is commonly `15.xGiB`. The installer allows a small reservation loss, and about `15.2GiB` or above can pass.
 
-### Q4: Why is detected disk capacity slightly smaller after requesting 200G?
+### Q4: How does the installer choose the disk for runtime data?
 
-Disk vendor units, filesystem metadata, and system reserved space can make actual available space smaller than the nominal value. The installer allows about 20% tolerance, and about `160GiB` or above can pass.
+When `agione_app.runtime_root` is left as `/opt/hyperone`, the installer scans physical data-disk mounts first and selects `<mount>/hyperone` when the free space is about `160GiB` or above. If no suitable data disk exists, it checks `/opt/hyperone` on the system disk. If `runtime_root` is explicitly configured, the installer respects that path and validates the filesystem behind it.
 
 ### Q5: Can system check failures be skipped?
 
@@ -371,7 +375,7 @@ At minimum, hand over:
 
 ```bash
 # 1. Enter the bundle directory
-cd /opt/hyperone/agione-release-v1.0-20260514
+cd /opt/hyperone/agione-release-v1.0-20260527
 
 # 2. Grant execute permission to the entry script
 chmod +x ./agione

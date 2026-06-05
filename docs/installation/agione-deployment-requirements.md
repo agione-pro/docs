@@ -1,10 +1,30 @@
-# AGIOne Deployment Configuration Requirements
+# Deployment Guide
 
-> This document specifies the deployment prerequisites for AGIOne in both Production and PoC environments, covering hardware specifications, software dependencies, network configuration, and account/permission requirements. Final confirmation shall be made against the delivery bundle compatibility matrix, driver versions, and on-site assessment results before actual delivery.
+## 1. Overview
+
+An AGIOne platform deployment is logically divided into two relatively independent parts:
+
+- **Management plane**: Hosts the AGIOne control plane, business services, databases, and middleware, and serves as the entry point for users and the platform.
+- **Compute node onboarding**: Integrates accelerator nodes such as GPU / NPU nodes into unified scheduling and hosts compute workloads such as training, inference, and IDE sessions.
+
+The two parts communicate over the internal network. The management plane manages compute clusters and collects observability data through the Kubernetes API and monitoring interfaces.
+
+## 2. Overall Architecture
+
+The following diagram shows the overall logical architecture of the AGIOne platform, including the relationship between the user access entry point, the management plane, and the compute node onboarding layer.
+
+![AGIOne Overall Platform Architecture](images/01-overall-architecture.svg)
+
+**Architecture highlights:**
+
+- The access layer exposes management-plane services externally through ELB. In production, a domain name + HTTPS (443) is recommended.
+- The management plane consists of at least 2 business nodes + 2 database/middleware nodes, and business nodes can scale horizontally.
+- Compute clusters are deployed independently by regional compute pool. Each region deploys a near-node image service to improve image pull performance.
+- The management plane schedules and accesses compute clusters through the Kubernetes API (6443) and extended ports (32761-32765).
 
 ---
 
-## 1. Document Overview
+## 3. Deployment Mode Selection
 
 | Item | Description |
 | ---- | ----------- |
@@ -13,198 +33,219 @@
 
 ---
 
-## 2. Deployment Topology Overview
+## 4. Management Plane - PoC Deployment (All in One)
 
-| Deployment Topology | Status | Typical Use Case |
-| ------------------- | ------ | ---------------- |
-| All-in-One (Single Node) | Supported | Demos, testing, PoC, small-scale deployment |
-| Host-Mode Multi-Node (On-Premise) | Supported | Minimum 4 machines: 2 application nodes + 1 middleware node + 1 database standby node |
-| Kubernetes / Cloud-Native | Supported | Existing K8s cluster or AGIOne-delivered kube-cluster |
-| On-Premise (Private) | Supported | Enterprise intranet, IDC, private cloud, dedicated cloud |
-| Offline or Low-Bandwidth | Supported | No public internet or restricted public internet environments |
+### 4.1 Resource Requirements
 
-> **Note:** Single-node deployment is not suitable for carrying high-availability production workloads. A multi-management-node high-availability architecture is recommended for production environments.
+| Item | Minimum Requirement |
+|---|---|
+| Number of nodes | 1 |
+| CPU | >= 8 cores |
+| Memory | >= 24 GB |
+| Disk | >= 200 GB |
+| Network | Internet access required |
+| Operating system | Linux (Ubuntu 22.04 / CentOS 7+ recommended) |
 
----
+### 4.2 Architecture Diagram
 
-## 3. Hardware Configuration Requirements
+![PoC All-in-One Architecture](images/02-poc-aio.svg)
 
-### 3.1 Management Nodes
+### 4.3 Deployment Notes
 
-Hosts AGIOne core services, databases, middleware, and K8s management plugins.
-
-| Worker Node Scale | K8s Resource Requirement | AGIOne Service Resource Requirement | Minimum Node Count |
-| ----------------- | ----------------------- | ----------------------------------- | ------------------ |
-| 1–5 nodes | 1C 4GiB | 7C 12GiB | 3 |
-| 6–10 nodes | 2C 8GiB | 7C 12GiB | 3 |
-| 11–100 nodes | 4C 16GiB | 12C 24GiB | 3 |
-| 101–250 nodes | 8C 32GiB | 12C 24GiB | 3 |
-| 251–500 nodes | 16C 64GiB | 24C 48GiB | 3 |
-| 500+ nodes | 32C 128GiB | 32C 64GiB | 3 |
-
-> - Management nodes **do not require** XPU (GPU/NPU/TPU) configuration.
-> - For production environments, a **≥3 node high-availability deployment** is recommended. A single-node alternative (≥16C / ≥32GiB) is only suitable for testing/PoC.
-> - Shared storage (Block Storage) is **recommended**; system disk should be ≥1024 GiB.
-> - The total number of worker nodes is recommended to be kept **under 1000**.
-
-### 3.2 XPU / NPU Compute Nodes (Worker Nodes)
-
-Hosts inference instances, IDE, and K8s worker node services (kubelet, proxy, etc.).
-
-| Node Type | CPU (Reserved) | Memory (Reserved) | System Disk | Data Disk | Node Count |
-| --------- | -------------- | ----------------- | ----------- | --------- | ---------- |
-| XPU Resource Node | ≥16 cores | ≥32 GiB | ≥100 GiB | ≥2048 GiB | ≥1 |
-| Ascend NPU Node | ≥8 cores (reserved) | ≥16 GiB (reserved) | ≥200 GiB | — | ≥1 |
-
-> - Each compute node **requires at least 1 XPU** (GPU, NPU, TPU, etc.).
-> - Within the same Kubernetes cluster, it is recommended to manage nodes with **identical CPU architectures** to avoid scheduling instability caused by mixed heterogeneous architectures.
-> - Ascend NPU node exposed ports: `6443`, `8090`, `32761`–`32765/TCP`.
-
-### 3.3 Shared Storage
-
-| Type | System Disk | Node Count Requirement |
-| ---- | ----------- | ---------------------- |
-| Shared Storage (NAS/IPFS, etc.) | ≥2048 GiB | ≥2 (recommended) |
-
-> Shared storage is used for model weights, images, logs, MinIO, database, and middleware persistent storage. Management nodes and worker nodes may share the same deployment or be deployed separately.
+- Business services, databases, and middleware are all deployed on the same node.
+- Services are exposed externally through HTTP port `18090` by default.
+- Because images and dependencies need to be pulled, the deployment node must be able to access the Internet.
+- **Not recommended** for production because it has no high availability or data redundancy.
 
 ---
 
-## 4. Software Configuration Requirements
+## 5. Management Plane - Production Deployment (Public Cloud SaaS)
 
-### 4.1 Operating System Support
+Public cloud SaaS is the recommended production deployment mode. It fully leverages cloud-provider managed capabilities such as RDS, ELB, and object storage.
 
-| Operating System | Support Status | Notes |
-| ---------------- | -------------- | ----- |
-| Ubuntu 22.04 | **Recommended** | Preferred for production |
-| Ubuntu 20.04 | Optional | Within the recommended scope |
-| CentOS / Rocky 7.x / 8.x | Conditionally Supported | Requires on-site verification |
-| Kylin / UOS | Requires Assessment | Must be confirmed against the delivery bundle |
-| Single-Node Minimum Spec | 8 cores / 16 GiB / 200 GiB available disk | For All-in-One / PoC only |
+### 5.1 Resource Requirements
 
-### 4.2 Base Software Dependencies
+#### 5.1.1 Management Nodes (Business Nodes)
 
-| Component | Recommended Version | Notes |
-| --------- | ------------------- | ----- |
-| Docker | Docker 24.x+ | Must match the operating system, kernel, image package, and offline installation method |
-| Docker Compose | — | Automatically installed or repaired by the AGIOne installer |
-| Kubernetes | 1.24–1.29 | Must be verified against the delivery bundle, GPU/NPU plugins, CNI, CSI, and Ingress Controller |
-| Helm | Helm 3.10+ | Applicable only to Helm/Chart delivery topology |
-| Python | Provided by the bundle's built-in offline runtime | No need to pre-install python3 on target machines |
+| Item            | Requirement                                      |
+|-----------------|--------------------------------------------------|
+| Number of nodes | **>= 2**                                         |
+| CPU             | >= 8 vCPU                                        |
+| Memory          | >= 16 GiB                                        |
+| Disk            | >= 200 GiB                                       |
+| Private network | All management nodes are in the same VPC         |
+| Public network  | Internet access available, bandwidth >= 100 Mbps |
 
-### 4.3 Middleware Components
+> **Optional**: Shared storage, such as block storage, of >= 1024 GB can be mounted for shared use by management nodes.
 
-| Component | Default Port | Notes |
-| --------- | ------------ | ----- |
-| MariaDB | 3306 | Database persistent storage; backup and recovery must be confirmed prior to deployment |
-| Redis | 6379 | Cache and session management; password consistency must be confirmed prior to deployment |
-| Nacos | 8848 / 8849 | Configuration center, service registration and discovery |
-| Kafka | 9092 | Message queue |
-| MinIO | 9000 / 9001 | Object storage (logs, model artifacts, etc.) |
-| OpenResty / Nginx | 80 / 443 | Ingress proxy, job access proxy |
+#### 5.1.2 Databases and Middleware
 
----
+| Component | Purpose | CPU | Memory | Disk | Nodes | Network Requirement |
+|---|---|---|---|---|---|---|
+| **RDS (relational database)** | Stores primary AGIOne platform data | >= 4 vCPU | >= 16 GiB | >= 100 GiB | >= 3 | Same VPC as management nodes |
+| **Nacos** | Service registration and discovery | Basic specification | - | - | 1 | Same VPC as management nodes |
+| **Redis (cache)** | Caches data | Basic specification | - | - | 1 | Same VPC as management nodes |
+| **Kafka (messaging)** | Core service message bus | Cluster node specification | - | >= 100 GiB | >= 3 | Same VPC as management nodes |
+| **Object storage** | Stores images and other static resources | - | - | - | - | Network access via AK/SK |
+| **ELB (load balancing)** | AGIOne API load balancing | - | - | >= 100 GiB | 1 | Internal same VPC; public access, >= 100 Mbps |
 
-## 5. Network Configuration Requirements
+#### 5.1.3 Capacity and Scalability
 
-### 5.1 Network Segmentation
+- AGIOne management nodes can scale horizontally.
+- Baseline capacity per node (8 vCPU / 16 GB RAM) is approximately **2,000 requests/minute**.
+- In scenarios with many long-lived connections or time-consuming requests, each additional node can add approximately **500 requests/minute**. Actual values vary by business scenario.
 
-| Network Type | Requirement | Description |
-| ------------ | ----------- | ----------- |
-| Internal Network | **Mandatory** | Management nodes and XPU compute nodes connected via internal LAN |
-| External Internet | **Recommended** | Access to external internet (for model downloads, license verification, etc.) |
-| RDMA Network | **Optional** | Not strictly required for single-card inference; for multi-node multi-card inference or training, 100Gbps+ RDMA is recommended |
+### 5.2 Architecture Diagram
 
-### 5.2 Critical Ports
+![Public Cloud SaaS Production Architecture](images/03-saas-production.svg)
 
-| Port / Protocol | Purpose | Associated Node |
-| --------------- | ------- | --------------- |
-| `18090/TCP` | Console Web entry (default) | Management Node |
-| `443/HTTPS` | External HTTPS entry (optional) | Management Node |
-| `80/TCP` | Nginx ingress | Management Node |
-| `8089/TCP` | Job access proxy entry | Management Node |
-| `3306/TCP` | MariaDB | Management Node |
-| `6379/TCP` | Redis | Management Node |
-| `8848/8849/TCP` | Nacos | Management Node |
-| `9000/9001/TCP` | MinIO API / Console | Management Node |
-| `9092/TCP` | Kafka | Management Node |
-| `6443/TCP` | Kubernetes API Server | Ascend NPU Node |
-| `8090/TCP` | Service Port | Ascend NPU Node |
-| `32761`–`32765/TCP` | Compute Node Communication Ports | Ascend NPU Node |
+### 5.3 Deployment Notes
 
-> **Note:** The document contains multiple port expressions (`443`, `18090`, `80`, `8089`) that distinguish external HTTPS entry, portal/API entry, Nginx entry, and job access proxy entry. A unified port planning table should be finalized before formal deployment.
-
-### 5.3 Network Requirements Checklist
-
-| Requirement Item | Description |
-| ---------------- | ----------- |
-| Inter-Node Intranet Connectivity | Management nodes and compute nodes must be connected via a local LAN |
-| SSH Reachability | Deployment operations require SSH access to target hosts |
-| Time Synchronization | Multi-node deployments require NTP or equivalent time synchronization; clock skew should be controlled within 1 second |
-| DNS Resolution | Ingress / DNS / TLS relies on DNS resolution; external access and certificate verification must be confirmed before going live |
-| Container Registry Reachability | Cloud-native deployments require all nodes to access the container registry; verify registry, authentication secrets, and image pull in advance |
-| Firewall Rules | Confirm that the above ports are open in the firewall or security group |
+- Strongly recommend using cloud-provider **managed RDS, Redis, Kafka, and object storage** to reduce operational complexity.
+- Business nodes expose services through ELB. After a domain name is configured, use 443 (HTTPS) and 80 (HTTP redirect).
+- All internal components are located in the same VPC. Do not expose internal ports across VPCs.
+- Recommended public bandwidth is >= 100 Mbps, adjustable according to business volume.
 
 ---
 
-## 6. Account and Permission Requirements
+## 6. Management Plane - Production Deployment (Private Cloud / IDC)
 
-### 6.1 Operating System Accounts
+Applicable to scenarios where public cloud cannot be used and data must be fully self-managed.
 
-| Requirement | Description |
-| ----------- | ----------- |
-| Execution User | `root` or equivalent privileges recommended to avoid Docker, directory, and system service permission issues |
-| SSH Permissions | Deployment operations require root or sudo privileges on target hosts |
-| Directory Write Permissions | Write access to the `/opt/hyperone` partition is required (recommended available space of 200 GiB or more) |
+### 6.1 Resource Requirements
 
-### 6.2 AGIOne System Account Hierarchy
+| Role | Nodes | CPU | Memory | Disk       | Network                                      | Description |
+|---|---|---|---|------------|----------------------------------------------|---|
+| Business nodes | >= 2 | >= 8 cores | >= 16 GB | >= 200 GB | LAN; Need access Internet, bandwidth >= 100M | Deploy AGIOne business services                              |
+| Database / middleware nodes | >= 2 | >= 8 cores | >= 16 GB | >= 200 GB | LAN                                          | Deploy RDS (primary/replica), Nacos, Redis, Kafka, and MinIO |
+| **Total** | **>= 4** | - | - | -       | -                                            | -                                            |
 
-| Role | Identity | Description |
-| ---- | -------- | ----------- |
-| `operator` | Operations Administrator | Unique operations role across the platform |
-| `normal` | Standard User | Regular business operations |
+### 6.2 Architecture Diagram
 
-### 6.3 Kubernetes Permissions (Cloud-Native Deployment)
+![Private Cloud / IDC Production Architecture](images/04-idc-production.svg)
 
-| Requirement | Description |
-| ----------- | ----------- |
-| Valid kubeconfig | Operational credentials for the target cluster |
-| Namespace Access | Sufficient read/write permissions to namespaces |
-| Nodes Ready | All target nodes must be in Ready state |
-| StorageClass | RWO persistent volumes (database, middleware) and RWX shared storage (models, logs) must be ready |
-| Ingress Controller | Ingress controller available; domain names and certificates ready |
+### 6.3 Deployment Notes
+
+- Start with at least 4 nodes: 2 business nodes + 2 database/middleware nodes.
+- The database uses primary/replica mode. It is recommended to deploy databases and middleware separately, and split them into more nodes as business scale grows.
+- MinIO provides object storage capabilities as an alternative to public cloud OSS.
+- Load balancing can use hardware LB, such as F5, or software LB, such as Nginx / HAProxy + Keepalived.
 
 ---
 
-## 7. Storage Configuration Requirements
+## 7. Compute Node Onboarding
 
-| Storage Type | Purpose | Recommended Spec |
-| ------------ | ------- | ---------------- |
-| Block Storage (Management Node) | Database, MinIO persistence | ≥400 GiB |
-| Shared Storage (NAS/IPFS) | Model weights, images, logs | ≥2048 GiB |
-| Local Disk (All-in-One) | `/opt/hyperone` runtime directory | ≥200 GiB (detection tolerance approximately 160 GiB or more) |
+### 7.1 Design Principles
 
-> - For production environments, a **20%–30% resource buffer** is recommended.
-> - Cloud-native deployments require prior verification of PVC creation, mounting, and backup/recovery procedures.
-> - Database primary/standby configuration, backup strategy, and rollback plan must be confirmed before deployment.
+- Each independent **regional compute pool** is deployed as a logical unit to avoid network jitter caused by cross-region scheduling.
+- Each regional compute pool deploys an **image service** close to compute nodes and can reuse already-onboarded node resources.
+- Deploy a Kubernetes cluster and supporting plugins for scheduling, monitoring, and related capabilities.
+
+### 7.2 Kubernetes Control Plane Scale
+
+| Total Compute Pool Nodes | Kubernetes Control Plane Nodes | Description |
+|---|---|---|
+| < 3 nodes | **1 node** | Single control plane, suitable for small compute pools |
+| >= 3 nodes | **3 nodes** | Highly available control plane with multiple etcd replicas |
+
+### 7.3 Architecture Diagram
+
+![Compute Node Onboarding Architecture](images/05-compute-nodes.svg)
+
+### 7.4 Externally Exposed Ports
+
+Each compute cluster exposes the following ports to the management plane through NodePort:
+
+| Port | Purpose |
+|---|---|
+| 6443 | Kubernetes API Server |
+| 32761 | Monitoring interface |
+| 32762 | Model and IDE invocation port |
+| 32763 | Reserved extension port |
+| 32764 | Reserved extension port |
+| 32765 | Reserved extension port |
+
+### 7.5 Deployment Notes
+
+- Compute nodes should have GPU / NPU drivers, container runtime such as containerd, and the corresponding device plugin installed and validated in advance.
+- The image service should be located in the same Layer 2 or low-latency network as the compute nodes to accelerate pulling large model images.
+- For multi-region deployment, each region should maintain an independent near-node image service to avoid cross-region image pulls.
 
 ---
 
-## 8. Quick Reference: PoC Environment Configuration
+## 8. Network Planning
 
-Applicable to small-scale scenarios such as demos, testing, and PoC (All-in-One single-node deployment).
+### 8.1 Network Zoning
 
-| Item | Recommended Value | Notes |
-| ---- | ----------------- | ----- |
-| Operating System | Ubuntu 22.04 LTS | Linux |
-| CPU | 8 cores | Detection allows for minor reservation-related deduction; approximately 7.6 cores or more will pass |
-| Memory | 16 GiB | Detection allows for minor system reservation-related deduction; approximately 15.2 GiB or more will pass |
-| Available Disk | 200 GiB | For the `/opt/hyperone` partition; detection allows approximately 20% filesystem reservation deduction; approximately 160 GiB or more will pass |
-| Execution User | `root` | Root installation recommended |
-| Installation Method | `./agione quick` | One-command execution for unpacking, checking, configuration, image loading, and service startup |
-| Access Endpoint | `http://<host>:18090/modelone/` | As output by the installation result |
+![Network Planning and Zoning](images/06-network-zoning.svg)
 
-### PoC Quick Verification Checklist
+### 8.2 Network Requirements Overview
+
+| Traffic Direction | Requirement |
+|---|---|
+| Users -> ELB | Public network; 443/HTTPS is recommended in production, with DNS resolving the domain name |
+| ELB -> business nodes | Internal network, same VPC |
+| Business nodes <-> DB / middleware | Internal network, same VPC, low latency |
+| Business nodes -> object storage | AK/SK authentication; VPC internal endpoint can be used |
+| Business nodes -> compute cluster | Through ports 6443 and 32761-32765 |
+| Compute nodes -> near-node image service | Compute-pool local LAN, gigabit or higher recommended |
+| Management nodes -> Internet | Required for PoC; outbound access is recommended in production for pulling images and upgrades, bandwidth >= 100 Mbps |
+
+### 8.3 VPC / Subnet Recommendations
+
+- **Management VPC**: All management nodes, RDS, Nacos, Redis, Kafka, and MinIO are located in the same VPC. Subnets can be divided into business-node subnets and data-node subnets.
+- **Compute VPC**: Each regional compute pool uses an independent VPC or subnet and connects to the management VPC through VPC peering or a dedicated line.
+- **Security groups**: Deny by default and allow only the ports listed in the following "Port List" section.
+
+---
+
+## 9. Port List
+
+### 9.1 Management Plane Ports
+
+| Port | Protocol | Source | Purpose |
+|---|---|---|---|
+| 18090 | TCP / HTTP | Users / internal | Default HTTP service port (used by default in PoC) |
+| 80 | TCP / HTTP | Public users | Production environment HTTP after domain configuration, usually redirects to 443 with 301 |
+| 443 | TCP / HTTPS | Public users | Production environment HTTPS after domain configuration |
+
+### 9.2 Compute Cluster Ports
+
+| Port | Protocol | Source | Purpose |
+|---|---|---|---|
+| 6443 | TCP | Management plane | Kubernetes API Server |
+| 32761 | TCP | Management plane | Monitoring interface |
+| 32762 | TCP | Management plane | Model and IDE invocation |
+| 32763 | TCP | Management plane | Reserved extension port |
+| 32764 | TCP | Management plane | Reserved extension port |
+| 32765 | TCP | Management plane | Reserved extension port |
+
+### 9.3 Internal Middleware Ports (Reference)
+
+Databases and middleware should be exposed only within the VPC and not externally:
+
+| Component | Default Port (Reference) |
+|---|---|
+| RDS (MySQL family) | 3306 |
+| Nacos | 8848 / 9848 / 9849 |
+| Redis | 6379 |
+| Kafka | 9092 |
+| MinIO | 9000 / 9001 |
+
+> Actual ports depend on the version and configuration used during deployment.
+
+---
+
+## 10. Pre-Deployment Checklist
+
+Before deployment, confirm each item to ensure a smooth rollout:
+
+**Base Environment**
+
+- [ ] Deployment mode has been selected according to the scenario (PoC / public cloud SaaS / private cloud IDC)
+- [ ] Node quantity and specifications meet resource requirements
+- [ ] Operating system and kernel version meet requirements
+- [ ] Time is synchronized (NTP), and all nodes use a consistent time zone
 
 **Download URL:** [https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz](https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz)
 
@@ -216,47 +257,56 @@ cd /opt/hyperone && \
 curl -fL -O https://onepro-agione.oss-ap-southeast-1.aliyuncs.com/modelone/release/agione-release-v1.0-20260514.tar.gz && \
 tar -zxvf agione-release-v1.0-20260514.tar.gz && \
 cd /opt/hyperone/agione-release-v1.0-20260514
-
-# 2. One-step installation
-chmod +x ./agione
-./agione quick
-
-# 3. Post-installation health check
-./agione health
-./agione ps
-
-# 4. Browser access
-# http://<target-ip>:18090/modelone/
-
-# 5. Export the handover package (recommended)
-./agione handover
 ```
 
 ---
+**Network**
 
-## 9. Reference: Production High-Availability Configuration
+- [ ] Management nodes are located in the same VPC
+- [ ] Management nodes can access the Internet, or offline images have been prepared
+- [ ] Security group / firewall rules have opened the ports in the port list
+- [ ] The compute cluster and management plane have network connectivity
 
-Applicable to production-grade high-availability deployments.
+**Domain Name and Certificate (Production)**
 
-| Item | Recommended Configuration |
-| ---- | ------------------------- |
-| Management Nodes | ≥3 nodes for high availability |
-| Database | MariaDB primary/standby + periodic backup |
-| Redis | Primary/standby or cluster mode |
-| Shared Storage | High-availability storage such as NAS / NFS / Ceph |
-| Load Balancing | Ingress Controller + domain name + TLS certificate |
-| Monitoring & Alerting | Log retention, monitoring, alerting, escalation windows, and rollback plans ready |
-| Resource Buffer | 20%–30% resource buffer recommended for production |
+- [ ] Domain name has been applied for and resolved
+- [ ] HTTPS certificate has been prepared
+- [ ] ELB listeners for 443 / 80 have been planned
+
+**Compute Cluster**
+
+- [ ] The number of nodes in each regional compute pool has been confirmed, and the K8s control plane scale has been determined (1 or 3)
+- [ ] GPU / NPU drivers have been installed and validated
+- [ ] Near-node image service nodes have been planned
+- [ ] NodePort ports 6443 and 32761-32765 have been allowed for the management plane
 
 ---
 
-## 10. Known Limitations and Items Pending Confirmation
+## 11. Appendix
 
-| Category | Item Pending Confirmation | Current Status |
-| -------- | ------------------------- | -------------- |
-| CUDA Version Matrix | Compatibility between GPU drivers, CUDA versions, and inference engines | No fixed version declared; must be confirmed against the delivery bundle |
-| GPU Driver Version | Correspondence between GPU models and driver versions | Only chip models confirmed; driver versions not yet specified |
-| Ascend Software Stack | CANN, MindIE, driver, and model adaptation versions | Only Ascend910B/910C support confirmed |
-| Model VRAM and Card Count | Minimum specs per model (FP16/BF16/INT8/INT4), tensor parallelism strategy | Current list only identifies model names |
-| API Protocol Scope | Field compatibility for OpenAI / Anthropic and other protocols | Pending confirmation based on official product version |
-| Unified Port Planning | Formal network port planning table | Multiple port expressions exist in the document and need to be unified |
+### 11.1 Resource Specification Quick Reference
+
+| Deployment Mode | Minimum Nodes | Minimum Per-Node Specification | Total Resource Reference |
+|---|---|--------------------------------|---|
+| PoC All in One | 1 | 8C / 24G / 200G                | 8C / 24G / 200G |
+| Public Cloud SaaS (business nodes) | 2 | 8C / 16G / 200G                | 16C / 32G / 1 TB+ |
+| Private Cloud IDC | 4 | 8C / 16G / 200G                | 32C / 64G / 800G+ |
+
+### 11.2 Capacity Estimation Reference
+
+- Baseline: each business node (8C / 16G) supports approximately **2,000 requests/minute**
+- Scaling: each additional business node adds approximately **+500 requests/minute** in long-lived connection / complex request scenarios
+- Actual capacity should be evaluated based on request complexity, model inference duration, number of concurrent sessions, and other factors.
+
+### 11.3 Glossary
+
+| Term | Description |
+|---|---|
+| AGIOne | Name of this platform |
+| All in One | Simplified mode that deploys all components on a single node |
+| VPC | Virtual Private Cloud |
+| ELB | Elastic Load Balancer |
+| RDS | Relational Database Service |
+| AK/SK | Access Key / Secret Key |
+| NodePort | One of the Kubernetes service port exposure methods |
+| Regional compute pool | A group of compute nodes physically located in the same geographic region and connected over the network |
