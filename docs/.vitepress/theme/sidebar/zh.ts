@@ -107,7 +107,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             {
-              text: '模型提供方',
+              text: '模型提供方&用户',
               collapsed: false,
               items: [
                 {
@@ -201,7 +201,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             {
-              text: '模型提供方',
+              text: '用户',
               collapsed: false,
               items: [
                 {

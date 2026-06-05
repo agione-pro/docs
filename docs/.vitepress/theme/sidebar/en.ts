@@ -161,7 +161,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             {
-              text: "Provider",
+              text: "Provider & User",
               collapsed: false,
               items: [
                 {
@@ -255,7 +255,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             {
-              text: "Provider",
+              text: "User",
               collapsed: false,
               items: [
                 {
