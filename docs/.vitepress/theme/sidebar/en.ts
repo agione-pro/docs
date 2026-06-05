@@ -156,79 +156,147 @@ export const enSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             {
-              text: "Overview",
-              link: "/usermanual/model-services/"
-            },
-            {
-              text: "Customer Calls",
+              text: "Provider",
               collapsed: false,
               items: [
-                { text: "Overview", link: "/usermanual/model-services/customer-calls/overview/" },
-                { text: "Call Analytics", link: "/usermanual/model-services/customer-calls/call-analytics/" },
-                { text: "Call Logs", link: "/usermanual/model-services/customer-calls/call-logs/" },
+                {
+                  text: "Discover",
+                  collapsed: false,
+                  items: [
+                    { text: "Model Marketplace", link: "/usermanual/model-services/user/discover/models/" },
+                  ]
+                },
+                {
+                  text: "Playground",
+                  collapsed: false,
+                  items: [
+                    { text: "Text", link: "/usermanual/model-services/user/playground/text/" },
+                    { text: "Images", link: "/usermanual/model-services/user/playground/images/" },
+                    { text: "Video", link: "/usermanual/model-services/user/playground/video/" },
+                    { text: "Audio", link: "/usermanual/model-services/user/playground/audio/" },
+                  ]
+                },
+                {
+                  text: "Studio",
+                  collapsed: false,
+                  items: [
+                    { text: "My Models", link: "/usermanual/model-services/user/studio/my-models/" },
+                  ]
+                },
+                {
+                  text: "Usage & Revenue",
+                  collapsed: false,
+                  items: [
+                    { text: "Revenue", link: "/usermanual/model-services/user/usage-revenue/revenue/" },
+                    { text: "Usage", link: "/usermanual/model-services/user/usage-revenue/usage/" },
+                  ]
+                },
+                {
+                  text: "My Calls",
+                  collapsed: false,
+                  items: [
+                    { text: "Overview", link: "/usermanual/model-services/user/my-calls/overview/" },
+                    { text: "Call Analytics", link: "/usermanual/model-services/user/my-calls/call-analytics/" },
+                    { text: "Call Logs", link: "/usermanual/model-services/user/my-calls/call-logs/" },
+                  ]
+                },
+                {
+                  text: "Customer Calls",
+                  collapsed: false,
+                  items: [
+                    { text: "Overview", link: "/usermanual/model-services/user/customer-calls/overview/" },
+                    { text: "Call Analytics", link: "/usermanual/model-services/user/customer-calls/call-analytics/" },
+                    { text: "Call Logs", link: "/usermanual/model-services/user/customer-calls/call-logs/" },
+                  ]
+                },
               ]
             },
             {
-              text: "Discover",
+              text: "Operator",
               collapsed: false,
               items: [
-                { text: "Models", link: "/usermanual/model-services/discover/models/" },
-              ]
-            },
-            {
-              text: "My Calls",
-              collapsed: false,
-              items: [
-                { text: "Overview", link: "/usermanual/model-services/my-calls/overview/" },
-                { text: "Call Analytics", link: "/usermanual/model-services/my-calls/call-analytics/" },
-                { text: "Call Logs", link: "/usermanual/model-services/my-calls/call-logs/" },
-              ]
-            },
-            {
-              text: "Playground",
-              collapsed: false,
-              items: [
-                { text: "Text", link: "/usermanual/model-services/playground/text/" },
-                { text: "Audio", link: "/usermanual/model-services/playground/audio/" },
-                { text: "Images", link: "/usermanual/model-services/playground/images/" },
-                { text: "Video", link: "/usermanual/model-services/playground/video/" },
-              ]
-            },
-            {
-              text: "Studio",
-              collapsed: false,
-              items: [
-                { text: "My Models", link: "/usermanual/model-services/studio/my-models/" },
-              ]
-            },
-            {
-              text: "Usage & Revenue",
-              collapsed: false,
-              items: [
-                { text: "Usage", link: "/usermanual/model-services/usage-revenue/usage/" },
-                { text: "Revenue", link: "/usermanual/model-services/usage-revenue/revenue/" },
+                {
+                  text: "Settings",
+                  collapsed: false,
+                  items: [
+                    { text: "Meta-models", link: "/usermanual/model-services/operator/settings/meta-models/" },
+                    { text: "Model Source", link: "/usermanual/model-services/operator/settings/model-source/" },
+                    { text: "Model Templates", link: "/usermanual/model-services/operator/settings/model-templates/" },
+                    { text: "Tags", link: "/usermanual/model-services/operator/settings/tags/" },
+                    { text: "Currency Settings", link: "/usermanual/model-services/operator/settings/currency-settings/" },
+                  ]
+                },
+                {
+                  text: "Publishing",
+                  collapsed: false,
+                  items: [
+                    { text: "Apps", link: "/usermanual/model-services/operator/publishing/apps/" },
+                  ]
+                },
+                {
+                  text: "Approvals",
+                  collapsed: false,
+                  items: [
+                    { text: "Model Reviews", link: "/usermanual/model-services/operator/approvals/model-reviews/" },
+                    { text: "App Reviews", link: "/usermanual/model-services/operator/approvals/app-reviews/" },
+                  ]
+                },
               ]
             },
           ]
         },
         {
-          text: "Multi-Cloud Scheduling Platform",
+          text: "AI Infra on Cloud",
           collapsed: false,
           items: [
             {
-              text: "Model Services",
+              text: "Provider",
               collapsed: false,
               items: [
-                { text: "Quick Start", link: "/usermanual/ai-infra-on-cloud/Model-Services/Quick-Start/" },
-                { text: "My Deployments", link: "/usermanual/ai-infra-on-cloud/Model-Services/My-Deployments/" },
-                { text: "Model Gallery", link: "/usermanual/ai-infra-on-cloud/Model-Services/Model-Gallery/" },
+                {
+                  text: "Model Services",
+                  collapsed: false,
+                  items: [
+                    { text: "Quick Deploy", link: "/usermanual/ai-infra-on-cloud/user/model-services/quick-start/" },
+                    { text: "My Deployments", link: "/usermanual/ai-infra-on-cloud/user/model-services/my-deployments/" },
+                  ]
+                },
+                {
+                  text: "Access Management",
+                  collapsed: false,
+                  items: [
+                    { text: "Access Management", link: "/usermanual/ai-infra-on-cloud/user/access-management/access-accounts/" },
+                  ]
+                },
               ]
             },
             {
-              text: "Access Management",
+              text: "Operator",
               collapsed: false,
               items: [
-                { text: "Access Accounts", link: "/usermanual/ai-infra-on-cloud/Access-Management/Access-Accounts/" },
+                {
+                  text: "Cloud Access",
+                  collapsed: false,
+                  items: [
+                    { text: "Quick Start", link: "/usermanual/ai-infra-on-cloud/operator/cloud-access/quick-start/" },
+                    { text: "Access CloudType", link: "/usermanual/ai-infra-on-cloud/operator/cloud-access/access-cloudtype/" },
+                    { text: "CloudType Auth", link: "/usermanual/ai-infra-on-cloud/operator/cloud-access/cloudtype-auth/" },
+                    { text: "Resource Pools", link: "/usermanual/ai-infra-on-cloud/operator/cloud-access/resource-pools/" },
+                    { text: "Cloud Region Auth", link: "/usermanual/ai-infra-on-cloud/operator/cloud-access/cloud-region-auth/" },
+                    { text: "Cloud Accounts", link: "/usermanual/ai-infra-on-cloud/operator/cloud-access/cloud-accounts/" },
+                  ]
+                },
+                {
+                  text: "Models",
+                  collapsed: false,
+                  items: [
+                    { text: "Publish Guide", link: "/usermanual/ai-infra-on-cloud/operator/models/publish-guide/" },
+                    { text: "Models", link: "/usermanual/ai-infra-on-cloud/operator/models/models/" },
+                    { text: "Categories", link: "/usermanual/ai-infra-on-cloud/operator/models/categories/" },
+                    { text: "Frameworks", link: "/usermanual/ai-infra-on-cloud/operator/models/frameworks/" },
+                    { text: "Runtime Images", link: "/usermanual/ai-infra-on-cloud/operator/models/runtime-images/" },
+                  ]
+                },
               ]
             },
           ]

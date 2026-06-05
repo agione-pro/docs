@@ -16,6 +16,6 @@ next: true
 
 | Project | Description |
 |------|------|
-| [Model Services](./model-services) | Pending update |
-| [AI Infra on Cloud](./ai-infra-on-cloud) | Pending update |
+| [Model Services](./model-services) | User and operator manuals for model service workflows |
+| [AI Infra on Cloud](./ai-infra-on-cloud) | User and operator manuals for cloud-based AI infrastructure workflows |
 | [AI Infra on Prem](./ai-infra-on-prem) | Pending update |

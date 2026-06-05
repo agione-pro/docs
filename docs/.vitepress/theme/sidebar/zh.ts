@@ -105,57 +105,91 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             {
-              text: '概览',
-              link: '/zh/usermanual/model-services/'
-            },
-            {
-              text: '客户调用',
+              text: '模型提供方',
               collapsed: false,
               items: [
-                { text: '概览', link: '/zh/usermanual/model-services/customer-calls/overview/' },
-                { text: '调用分析', link: '/zh/usermanual/model-services/customer-calls/call-analytics/' },
-                { text: '调用日志', link: '/zh/usermanual/model-services/customer-calls/call-logs/' },
+                {
+                  text: '发现',
+                  collapsed: false,
+                  items: [
+                    { text: '模型市场', link: '/zh/usermanual/model-services/user/discover/models/' },
+                  ]
+                },
+                {
+                  text: '体验中心',
+                  collapsed: false,
+                  items: [
+                    { text: '文本对话', link: '/zh/usermanual/model-services/user/playground/text/' },
+                    { text: '图像生成', link: '/zh/usermanual/model-services/user/playground/images/' },
+                    { text: '视频', link: '/zh/usermanual/model-services/user/playground/video/' },
+                    { text: '语音生成', link: '/zh/usermanual/model-services/user/playground/audio/' },
+                  ]
+                },
+                {
+                  text: '创作空间',
+                  collapsed: false,
+                  items: [
+                    { text: '我的模型', link: '/zh/usermanual/model-services/user/studio/my-models/' },
+                  ]
+                },
+                {
+                  text: '用量与收益',
+                  collapsed: false,
+                  items: [
+                    { text: '我的收益', link: '/zh/usermanual/model-services/user/usage-revenue/revenue/' },
+                    { text: '消耗明细', link: '/zh/usermanual/model-services/user/usage-revenue/usage/' },
+                  ]
+                },
+                {
+                  text: '我的调用',
+                  collapsed: false,
+                  items: [
+                    { text: '概览', link: '/zh/usermanual/model-services/user/my-calls/overview/' },
+                    { text: '调用统计', link: '/zh/usermanual/model-services/user/my-calls/call-analytics/' },
+                    { text: '调用日志', link: '/zh/usermanual/model-services/user/my-calls/call-logs/' },
+                  ]
+                },
+                {
+                  text: '客户调用',
+                  collapsed: false,
+                  items: [
+                    { text: '概览', link: '/zh/usermanual/model-services/user/customer-calls/overview/' },
+                    { text: '调用统计', link: '/zh/usermanual/model-services/user/customer-calls/call-analytics/' },
+                    { text: '调用日志', link: '/zh/usermanual/model-services/user/customer-calls/call-logs/' },
+                  ]
+                },
               ]
             },
             {
-              text: '发现',
+              text: '运营管理员',
               collapsed: false,
               items: [
-                { text: '模型', link: '/zh/usermanual/model-services/discover/models/' },
-              ]
-            },
-            {
-              text: '我的调用',
-              collapsed: false,
-              items: [
-                { text: '概览', link: '/zh/usermanual/model-services/my-calls/overview/' },
-                { text: '调用分析', link: '/zh/usermanual/model-services/my-calls/call-analytics/' },
-                { text: '调用日志', link: '/zh/usermanual/model-services/my-calls/call-logs/' },
-              ]
-            },
-            {
-              text: '体验中心',
-              collapsed: false,
-              items: [
-                { text: '文本对话', link: '/zh/usermanual/model-services/playground/text/' },
-                { text: '语音', link: '/zh/usermanual/model-services/playground/audio/' },
-                { text: '图片', link: '/zh/usermanual/model-services/playground/images/' },
-                { text: '视频', link: '/zh/usermanual/model-services/playground/video/' },
-              ]
-            },
-            {
-              text: '创作空间',
-              collapsed: false,
-              items: [
-                { text: '我的模型', link: '/zh/usermanual/model-services/studio/my-models/' },
-              ]
-            },
-            {
-              text: '用量与收益',
-              collapsed: false,
-              items: [
-                { text: '用量', link: '/zh/usermanual/model-services/usage-revenue/usage/' },
-                { text: '收益', link: '/zh/usermanual/model-services/usage-revenue/revenue/' },
+                {
+                  text: '设置',
+                  collapsed: false,
+                  items: [
+                    { text: '元模型', link: '/zh/usermanual/model-services/operator/settings/meta-models/' },
+                    { text: '模型来源', link: '/zh/usermanual/model-services/operator/settings/model-source/' },
+                    { text: '模板', link: '/zh/usermanual/model-services/operator/settings/model-templates/' },
+                    { text: '标签', link: '/zh/usermanual/model-services/operator/settings/tags/' },
+                    { text: '币种设置', link: '/zh/usermanual/model-services/operator/settings/currency-settings/' },
+                  ]
+                },
+                {
+                  text: '发布',
+                  collapsed: false,
+                  items: [
+                    { text: '应用列表', link: '/zh/usermanual/model-services/operator/publishing/apps/' },
+                  ]
+                },
+                {
+                  text: '审批',
+                  collapsed: false,
+                  items: [
+                    { text: '模型审核', link: '/zh/usermanual/model-services/operator/approvals/model-reviews/' },
+                    { text: '应用审核', link: '/zh/usermanual/model-services/operator/approvals/app-reviews/' },
+                  ]
+                },
               ]
             },
           ]
@@ -165,19 +199,53 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             {
-              text: '模型服务',
+              text: '模型提供方',
               collapsed: false,
               items: [
-                { text: '快速开始', link: '/zh/usermanual/ai-infra-on-cloud/Model-Services/Quick-Start/' },
-                { text: '我的部署', link: '/zh/usermanual/ai-infra-on-cloud/Model-Services/My-Deployments/' },
-                { text: '模型画廊', link: '/zh/usermanual/ai-infra-on-cloud/Model-Services/Model-Gallery/' },
+                {
+                  text: '模型服务',
+                  collapsed: false,
+                  items: [
+                    { text: '快速部署', link: '/zh/usermanual/ai-infra-on-cloud/user/model-services/quick-start/' },
+                    { text: '我的部署', link: '/zh/usermanual/ai-infra-on-cloud/user/model-services/my-deployments/' },
+                  ]
+                },
+                {
+                  text: '访问管理',
+                  collapsed: false,
+                  items: [
+                    { text: '接入管理', link: '/zh/usermanual/ai-infra-on-cloud/user/access-management/access-accounts/' },
+                  ]
+                },
               ]
             },
             {
-              text: '访问管理',
+              text: '运营管理员',
               collapsed: false,
               items: [
-                { text: '访问账号', link: '/zh/usermanual/ai-infra-on-cloud/Access-Management/Access-Accounts/' },
+                {
+                  text: '接入管理',
+                  collapsed: false,
+                  items: [
+                    { text: '快速开始', link: '/zh/usermanual/ai-infra-on-cloud/operator/cloud-access/quick-start/' },
+                    { text: '接入云平台', link: '/zh/usermanual/ai-infra-on-cloud/operator/cloud-access/access-cloudtype/' },
+                    { text: '云平台授权', link: '/zh/usermanual/ai-infra-on-cloud/operator/cloud-access/cloudtype-auth/' },
+                    { text: '接入资源池', link: '/zh/usermanual/ai-infra-on-cloud/operator/cloud-access/resource-pools/' },
+                    { text: '资源池授权', link: '/zh/usermanual/ai-infra-on-cloud/operator/cloud-access/cloud-region-auth/' },
+                    { text: '接入账号', link: '/zh/usermanual/ai-infra-on-cloud/operator/cloud-access/cloud-accounts/' },
+                  ]
+                },
+                {
+                  text: '模型管理',
+                  collapsed: false,
+                  items: [
+                    { text: '发布向导', link: '/zh/usermanual/ai-infra-on-cloud/operator/models/publish-guide/' },
+                    { text: '模型库', link: '/zh/usermanual/ai-infra-on-cloud/operator/models/models/' },
+                    { text: '模型分类', link: '/zh/usermanual/ai-infra-on-cloud/operator/models/categories/' },
+                    { text: '推理框架', link: '/zh/usermanual/ai-infra-on-cloud/operator/models/frameworks/' },
+                    { text: '推理镜像', link: '/zh/usermanual/ai-infra-on-cloud/operator/models/runtime-images/' },
+                  ]
+                },
               ]
             },
           ]
