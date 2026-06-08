@@ -102,6 +102,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       items: [
         { text: '用户快速指引', link: '/zh/usermanual/user-quick-guide' },
         { text: '供应商快速指引', link: '/zh/usermanual/provider-quick-guide' },
+        { text: '模型发布：预配置说明', link: '/zh/usermanual/model-publishing-preconfiguration' },
         {
           text: '模型及AI服务',
           collapsed: false,
