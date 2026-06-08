@@ -11,6 +11,7 @@ next: true
 |------|------|
 | [用户快速指引](./user-quick-guide) | 面向最终用户的快速指引 |
 | [供应商快速指引](./provider-quick-guide) | 面向模型发布商的快速指引 |
+| [模型发布：预配置说明](./model-publishing-preconfiguration) | 面向运营管理员的公有模型发布前预配置说明 |
 
 ## 项目
 

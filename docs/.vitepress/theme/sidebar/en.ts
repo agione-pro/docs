@@ -157,6 +157,10 @@ export const enSidebar: DefaultTheme.Sidebar = {
           link: "/usermanual/provider-quick-guide"
         },
         {
+          text: "Model Publishing Preconfiguration",
+          link: "/usermanual/model-publishing-preconfiguration"
+        },
+        {
           text: "Model Services",
           collapsed: false,
           items: [
