@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Node Statistics` is used to view node resource trends and status within the user-visible scope from a regular user perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
+`Node Statistics` is used to view node resource trends and status within the user-visible scope from a End User perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Node Statistics |
 | Page route | `/powerone/user-monitor/node` |
 | Managed objects | Node resource trends and status within the user-visible scope |

@@ -133,7 +133,7 @@ Instance events or logs show image pull failure, authentication failure, image n
 
 **Symptom:**
 
-After a regular user enters Image Services, custom projects or public images are not visible.
+After a End User enters Image Services, custom projects or public images are not visible.
 
 **Possible Causes:**
 

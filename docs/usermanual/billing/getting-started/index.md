@@ -9,7 +9,7 @@ Updated: 2026-07-23
 
 | Who you are | Read first | Next step |
 | --- | --- | --- |
-| Regular user | Confirm your own balance, transactions, top-up orders, and monthly bills. | Open [Billing](../user/billing/overview/). |
+| End User | Confirm your own balance, transactions, top-up orders, and monthly bills. | Open [Billing](../user/billing/overview/). |
 | Provider | Confirm revenue account balance, revenue account activity, settlements, and customer revenue. | Open [Earnings](../user/earnings/revenue/). |
 | Platform operator | Confirm customer records, customer top-ups, and business-unit ownership. | Open [Customer Billing](../operator/customer-billing/customer-overview/). |
 | Billing operator | Confirm billing cycle, monthly progress, settlement statements, and reconciliation status. | Open [Finance Operations](../operator/finance-operations/today-tasks/). |
@@ -22,7 +22,7 @@ Billing Getting Started helps different roles choose the correct Billing reading
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user, Provider, platform operator, billing operator, finance reviewer, License admin |
+| Applicable role | End User, Provider, platform operator, billing operator, finance reviewer, License admin |
 | Navigation path | Billing > Getting Started |
 | Page route | `/usermanual/billing/getting-started/` |
 | Managed objects | Billing roles, object hierarchy, reading path, and operation boundaries |
@@ -30,13 +30,13 @@ Billing Getting Started helps different roles choose the correct Billing reading
 
 #### Beginner Explanation
 
-Billing is like the financial service desk of the platform. Regular users start with their own balance, top-ups, and bills. Providers check revenue and settlements. Operators check customer records, settlement statements, financial accounts, and reconciliation results. License admins confirm whether resource authorization is valid. Do not start from a random record; first decide whether the issue is about user balance, Provider revenue, customer top-up, billing-cycle settlement, or resource authorization.
+Billing is like the financial service desk of the platform. End Users start with their own balance, top-ups, and bills. Providers check revenue and settlements. Operators check customer records, settlement statements, financial accounts, and reconciliation results. License admins confirm whether resource authorization is valid. Do not start from a random record; first decide whether the issue is about user balance, Provider revenue, customer top-up, billing-cycle settlement, or resource authorization.
 
 ## Applicable Roles
 
 | Role | Focus first | Recommended entry |
 | --- | --- | --- |
-| Regular user | Own balance, transactions, top-up orders, and monthly bills. | [Billing](../user/billing/overview/) |
+| End User | Own balance, transactions, top-up orders, and monthly bills. | [Billing](../user/billing/overview/) |
 | Provider | Revenue overview, revenue account activity, settlements, and customer revenue. | [Earnings](../user/earnings/revenue/) |
 | Platform operator | Customer records, customer top-up orders, business units, and payment channels. | [Customer Billing](../operator/customer-billing/customer-overview/) |
 | Billing operator | Today tasks, monthly overview, settlement statements, financial accounts, and reconciliation. | [Finance Operations](../operator/finance-operations/today-tasks/) |
@@ -51,7 +51,7 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 
 | Role | Main responsibility | Common entry |
 | --- | --- | --- |
-| Regular user | View own balance, transactions, top-up orders, and monthly bills. | [Billing](../user/billing/overview/) |
+| End User | View own balance, transactions, top-up orders, and monthly bills. | [Billing](../user/billing/overview/) |
 | Provider | View revenue, settlements, and customer revenue. | [Earnings](../user/earnings/revenue/) |
 | Platform operator | Maintain customer billing objects, top-up orders, and business units. | [Customer Billing](../operator/customer-billing/customer-overview/) |
 | Billing operator | Drive monthly settlement, reconciliation, and account adjustment. | [Finance Operations](../operator/finance-operations/today-tasks/) |
@@ -105,7 +105,7 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Role | Yes | Enum | `Regular user` | Determines whether to read user-side pages, Provider earnings, operator-side pages, or License. |
+| Role | Yes | Enum | `End User` | Determines whether to read user-side pages, Provider earnings, operator-side pages, or License. |
 | Issue Keyword | Yes | Text | `Balance mismatch` | Helps locate the recommended entry quickly. |
 | Billing Cycle | Conditionally required | Month | `2026-07` | Must be confirmed before amount comparison. |
 | Business Scope | Conditionally required | Text | `Desensitized business unit` | Prevents comparison across tenants, customers, or business units. |
@@ -140,7 +140,7 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 | Handle resource authorization | [License](../operator/license/license/) | Check authorized quota, validity period, and activation status. |
 
 1. Start from [Billing Overview](../) to understand user billing, Provider earnings, customer billing, finance operations, and License boundaries.
-2. Regular users open [Billing](../user/billing/overview/) and read Overview, Transactions, Top-up Orders, and Monthly Bill.
+2. End Users open [Billing](../user/billing/overview/) and read Overview, Transactions, Top-up Orders, and Monthly Bill.
 3. Providers open [Earnings](../user/earnings/revenue/) and read Revenue, Settlements, and Customers.
 4. Operators read [Customer Billing](../operator/customer-billing/customer-overview/) and [Finance Operations](../operator/finance-operations/today-tasks/) before opening specific feature pages.
 5. For a complete billing cycle, read [Reconcile and Settle a Billing Cycle](../end-to-end/reconcile-billing-cycle/).

@@ -33,7 +33,7 @@ In short: **tenant defines the boundary, member defines collaboration relationsh
 | Tenant | A business entity or customer space in the platform | Data boundary, members, roles, tags, business ownership, and tenant-visible scope | [Tenants](../usermanual/settings/operator/tenants/tenants/) |
 | Member | The collaboration identity created when an account joins a tenant, team, or project | Member status, collaboration, role assignment, project visibility, and operation permissions | [Team Members](../usermanual/settings/operator/members-roles/members/) |
 | Project | A business workspace for model invocation and collaboration | Project budget, member scope, API Keys, usage, activity, model allowlist, and settings | [Projects](../usermanual/settings/user/personal/projects/) |
-| Role | A responsibility and permission set, such as operator, provider, or regular user | Menus, buttons, task ownership, and allowed operations | [Role Comparison](./role-comparison) |
+| Role | A responsibility and permission set, such as operator, provider, or End User | Menus, buttons, task ownership, and allowed operations | [Role Comparison](./role-comparison) |
 | Authorization scope | Resources, records, and actions opened to a tenant, member, project, or account | Visible regions, resource pools, cloud accounts, models, templates, billing records, License, audit logs, and API rate-control rules | [User Manual](../usermanual/) |
 
 ## How Access Is Decided

@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Storage Services > Object Storage |
 | Page route | `/powerone/storage-service/object` |
 | Managed objects | Object storage buckets, object files, object paths, and object storage capability within a region |

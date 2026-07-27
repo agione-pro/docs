@@ -63,7 +63,7 @@ This scenario guides Platform Operators through preparing runtime assets after c
 | 1 | The runtime image can be pulled in the target cloud environment, with the correct framework type and version. |
 | 2 | Framework startup command, port, and output protocol match the model. |
 | 3 | The model asset links its meta-model, cloud deployment point, compute plan, and output configuration. |
-| 4 | A regular user can see the model and available plan in quick deployment. |
+| 4 | A End User can see the model and available plan in quick deployment. |
 
 ## Troubleshooting
 

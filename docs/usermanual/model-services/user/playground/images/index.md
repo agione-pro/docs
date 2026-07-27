@@ -11,7 +11,7 @@ Image Playground is used to select an image model, enter a prompt, adjust image 
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable role | End User |
 | Navigation path | Model Services > Playground > Images |
 | Page route | `/modelone/exploration/image` |
 | Managed objects | Image models, prompts, image size, number of images, generation parameters, and generated results |

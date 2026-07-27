@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-This document connects operator and regular-user On-Prem operations into an end-to-end path: operators first prepare regions, availability zones, clusters, specifications, images, storage, templates, and quotas; regular users then select templates or images to create model services and confirm service status through logs, usage, and monitoring.
+This document connects operator and End User On-Prem operations into an end-to-end path: operators first prepare regions, availability zones, clusters, specifications, images, storage, templates, and quotas; End Users then select templates or images to create model services and confirm service status through logs, usage, and monitoring.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator, regular user |
+| Applicable Role | Operator, End User |
 | Recommended Prereading | [Platform Getting Started](../../getting-started/), [Regions / Availability Zones](../../operator/resource-pools/regions-zones/), [Cluster Management](../../operator/resource-pools/clusters/) |
 | Output | A model service or runtime instance whose status, logs, usage, and monitoring can be checked |
 | Typical Use | First integration in a new environment, training demos, pre-launch acceptance, and issue location |
@@ -27,9 +27,9 @@ An On-Prem end-to-end deployment is like delivering self-built data center resou
 | Resource boundary | Operator | Create regions and availability zones. |
 | Compute access | Operator | Register Kubernetes clusters and confirm that nodes are visible. |
 | Capability opening | Operator | Associate specifications, images, storage, templates, and quotas. |
-| Asset preparation | Regular user | Select public images or push custom images, and prepare model files and input data. |
-| Service creation | Regular user | Create online inference, an online IDE, or a runtime instance. |
-| Status verification | Regular user | View status, logs, ports, events, usage, and monitoring. |
+| Asset preparation | End User | Select public images or push custom images, and prepare model files and input data. |
+| Service creation | End User | Create online inference, an online IDE, or a runtime instance. |
+| Status verification | End User | View status, logs, ports, events, usage, and monitoring. |
 | Troubleshooting loop | Both | Check resources, permissions, quotas, images, storage, and clusters based on the failure path. |
 
 #### Terms Quick Reference
@@ -44,7 +44,7 @@ An On-Prem end-to-end deployment is like delivering self-built data center resou
 ## Prerequisites
 
 1. The operator has permissions to manage resource pools, templates, quotas, and monitoring.
-2. The regular user has permissions to create model instances, runtime instances, object storage, and image projects.
+2. The End User has permissions to create model instances, runtime instances, object storage, and image projects.
 3. Kubernetes API Server, image registry, object storage, or shared storage is accessible from the platform side.
 4. Tenant quotas and credits are sufficient for this validation.
 5. Images, startup commands, model files, and input/output paths have been planned.

@@ -9,7 +9,7 @@ Updated: 2026-07-13
 
 | Who you are | Check first | Next step |
 | --- | --- | --- |
-| Regular user | Confirm your account, projects, Keys, quotas, and tenant scope. | Open [user-side Settings](../user/personal/dashboard/). |
+| End User | Confirm your account, projects, Keys, quotas, and tenant scope. | Open [user-side Settings](../user/personal/dashboard/). |
 | Operator admin | Confirm members, roles, tenants, and operation logs. | Open [operator-side Settings](../operator/personal/profile/). |
 | Security admin | Confirm login properties, account recovery, and third-party login. | Open [Login Properties](../operator/system-settings/login-properties/). |
 | Rate-control admin | Confirm request trends, matched rules, and publish status. | Open [API Rate Control Overview](../operator/api-rate-control/overview/). |
@@ -20,7 +20,7 @@ Settings Getting Started is an onboarding guide for the Settings subsystem. It h
 
 | Item | Content |
 | --- | --- |
-| Audience | Regular users, operator admins, security admins, and rate-control admins |
+| Audience | End Users, operator admins, security admins, and rate-control admins |
 | Goal | Understand Settings entries for accounts, members, roles, tenants, login security, operation logs, and API rate control |
 | Applicable entry | Settings overview, user-side Settings, operator-side Settings, Login Properties, and API Rate Control Overview |
 | Prerequisite | The current account can access Settings and the target configuration object and risk scope are clear |
@@ -34,7 +34,7 @@ Settings is the platform control panel. Confirm who you are first, then confirm 
 
 | Role | Start here | Next step |
 | --- | --- | --- |
-| Regular user | [User-side Settings](../user/personal/dashboard/) | Review profile, projects, Keys, quotas, and tenant rules. |
+| End User | [User-side Settings](../user/personal/dashboard/) | Review profile, projects, Keys, quotas, and tenant rules. |
 | Operator admin | [Operator-side Settings](../operator/personal/profile/) | Check members, roles, tenants, and logs. |
 | Security admin | [Login Properties](../operator/system-settings/login-properties/) | Configure verification codes, account recovery, and third-party login. |
 | Rate-control admin | [API Rate Control Overview](../operator/api-rate-control/overview/) | Review trends before configuring rules. |
@@ -47,7 +47,7 @@ Settings is the unified entry for platform accounts, permissions, tenants, secur
 
 | Role | Main responsibility | Common entry |
 | --- | --- | --- |
-| Regular user | Manage personal details, projects, Keys, quota requests, and objects visible within the tenant. | [User-side Settings](../user/personal/dashboard/) |
+| End User | Manage personal details, projects, Keys, quota requests, and objects visible within the tenant. | [User-side Settings](../user/personal/dashboard/) |
 | Operator admin | Manage members, roles, tenants, and operation logs. | [Members](../operator/members-roles/members/), [Roles](../operator/members-roles/roles/) |
 | Security admin | Maintain login properties, account recovery, and third-party login policies. | [Login Properties](../operator/system-settings/login-properties/) |
 | Rate-control admin | Review API rate-control trends, rules, audits, and publish status. | [API Rate Control Overview](../operator/api-rate-control/overview/) |
