@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title desc">
+  <title id="title">AI Infra On-Cloud 推荐式部署流程</title>
+  <desc id="desc">用户表达模型、部署模式、业务偏好和云厂商范围，平台完成授权过滤、资产匹配和方案排序，用户确认后创建云服务并在我的部署查看结果。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#667085"/>
+    </marker>
+    <style>
+      .title { font: 700 38px Arial, "Microsoft YaHei", sans-serif; fill: #182230; letter-spacing: 0; }
+      .subtitle { font: 400 21px Arial, "Microsoft YaHei", sans-serif; fill: #475467; letter-spacing: 0; }
+      .lane { font: 700 22px Arial, "Microsoft YaHei", sans-serif; fill: #20304a; letter-spacing: 0; }
+      .card-title { font: 700 20px Arial, "Microsoft YaHei", sans-serif; fill: #182230; text-anchor: middle; letter-spacing: 0; }
+      .card-desc { font: 400 15.5px Arial, "Microsoft YaHei", sans-serif; fill: #475467; text-anchor: middle; letter-spacing: 0; }
+      .flow-label { font: 700 17px Arial, "Microsoft YaHei", sans-serif; fill: #344054; text-anchor: middle; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="760" fill="#ffffff"/>
+  <text x="72" y="62" class="title">AI Infra On-Cloud 推荐式部署</text>
+  <text x="72" y="100" class="subtitle">用户表达业务意图，平台自动匹配底层资产，确认后创建云上推理服务</text>
+
+  <g transform="translate(72 132)">
+    <rect width="1456" height="158" rx="8" fill="#f7f9fc" stroke="#4b6fae" stroke-width="2"/>
+    <text x="24" y="38" class="lane">用户选择</text>
+
+    <g stroke="#667085" stroke-width="2.5" marker-end="url(#arrow)">
+      <line x1="354" y1="101" x2="390" y2="101"/>
+      <line x1="700" y1="101" x2="736" y2="101"/>
+      <line x1="1046" y1="101" x2="1082" y2="101"/>
+    </g>
+
+    <g transform="translate(48 56)">
+      <rect width="306" height="88" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+      <text x="153" y="36" class="card-title">选择模型</text>
+      <text x="153" y="66" class="card-desc">从可部署模型范围中选择</text>
+    </g>
+    <g transform="translate(390 56)">
+      <rect width="310" height="88" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+      <text x="155" y="36" class="card-title">框架类型与部署模式</text>
+      <text x="155" y="66" class="card-desc">vLLM / SGLang · 单节点 / 高可用</text>
+    </g>
+    <g transform="translate(736 56)">
+      <rect width="310" height="88" rx="8" fill="#fff2e8" stroke="#c56a2d" stroke-width="2"/>
+      <text x="155" y="36" class="card-title">选择业务偏好</text>
+      <text x="155" y="66" class="card-desc">成本优先 · 均衡 · 性能优先</text>
+    </g>
+    <g transform="translate(1082 56)">
+      <rect width="326" height="88" rx="8" fill="#f1eeff" stroke="#7256c8" stroke-width="2"/>
+      <text x="163" y="36" class="card-title">选择云厂商范围</text>
+      <text x="163" y="66" class="card-desc">指定云厂商或使用全部可用范围</text>
+    </g>
+  </g>
+
+  <line x1="800" y1="290" x2="800" y2="326" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="832" y="315" class="flow-label">提交业务意图</text>
+
+  <g transform="translate(72 334)">
+    <rect width="1456" height="190" rx="8" fill="#f7f9fc" stroke="#238c83" stroke-width="2"/>
+    <text x="24" y="38" class="lane">平台自动匹配</text>
+
+    <g stroke="#667085" stroke-width="2.5" marker-end="url(#arrow)">
+      <line x1="354" y1="116" x2="390" y2="116"/>
+      <line x1="700" y1="116" x2="736" y2="116"/>
+      <line x1="1046" y1="116" x2="1082" y2="116"/>
+    </g>
+
+    <g transform="translate(48 58)">
+      <rect width="306" height="112" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+      <text x="153" y="42" class="card-title">过滤授权范围</text>
+      <text x="153" y="73" class="card-desc">租户云平台授权</text>
+      <text x="153" y="97" class="card-desc">业务区域授权</text>
+    </g>
+    <g transform="translate(390 58)">
+      <rect width="310" height="112" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+      <text x="155" y="42" class="card-title">匹配部署资产</text>
+      <text x="155" y="73" class="card-desc">框架版本 · 镜像 · 部署点</text>
+      <text x="155" y="97" class="card-desc">模型来源 · 输出配置</text>
+    </g>
+    <g transform="translate(736 58)">
+      <rect width="310" height="112" rx="8" fill="#fff2e8" stroke="#c56a2d" stroke-width="2"/>
+      <text x="155" y="42" class="card-title">核对资源与成本</text>
+      <text x="155" y="73" class="card-desc">地域 · 规格 · GPU · 实例数</text>
+      <text x="155" y="97" class="card-desc">价格 · 币种 · 计费周期</text>
+    </g>
+    <g transform="translate(1082 58)">
+      <rect width="326" height="112" rx="8" fill="#f1eeff" stroke="#7256c8" stroke-width="2"/>
+      <text x="163" y="42" class="card-title">排序推荐方案</text>
+      <text x="163" y="73" class="card-desc">按偏好比较候选方案</text>
+      <text x="163" y="97" class="card-desc">返回可解释的业务信息</text>
+    </g>
+  </g>
+
+  <line x1="800" y1="524" x2="800" y2="560" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="832" y="549" class="flow-label">选择推荐方案</text>
+
+  <g transform="translate(72 568)">
+    <rect width="1456" height="132" rx="8" fill="#f7f9fc" stroke="#b58a16" stroke-width="2"/>
+    <text x="24" y="36" class="lane">确认与结果</text>
+
+    <g stroke="#667085" stroke-width="2.5" marker-end="url(#arrow)">
+      <line x1="490" y1="88" x2="552" y2="88"/>
+      <line x1="966" y1="88" x2="1028" y2="88"/>
+    </g>
+
+    <g transform="translate(84 50)">
+      <rect width="406" height="72" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+      <text x="203" y="30" class="card-title">填写部署名称并选择云账号</text>
+      <text x="203" y="56" class="card-desc">账号必须与推荐云厂商匹配</text>
+    </g>
+    <g transform="translate(552 50)">
+      <rect width="414" height="72" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+      <text x="207" y="30" class="card-title">确认部署并创建云服务</text>
+      <text x="207" y="56" class="card-desc">查看创建、启动和健康状态</text>
+    </g>
+    <g transform="translate(1028 50)">
+      <rect width="344" height="72" rx="8" fill="#fff8e1" stroke="#b58a16" stroke-width="2"/>
+      <text x="172" y="30" class="card-title">进入“我的部署”</text>
+      <text x="172" y="56" class="card-desc">获取访问地址与运行管理入口</text>
+    </g>
+  </g>
+
+  <text x="1528" y="738" class="card-desc" text-anchor="end">底层版本、镜像和服务创建参数由平台自动补齐</text>
+</svg>

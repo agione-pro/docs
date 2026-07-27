@@ -1,621 +1,320 @@
 # Cluster Management
 
-:::: info Document Information
+::: info Document Information
 Version: v1.0
 Updated: 2026-07-08
-::::
+:::
 
-## Overview
+## Feature Overview
 
-`Cluster Management` is used to connect Kubernetes clusters, the container orchestration system for managing compute nodes, containers, and job scheduling, to AI Infra-On Prem resource pools. It also provides ongoing management for cluster specifications, shared storage, node status, job distribution, and resource monitoring. After the operator registers a cluster, the platform can schedule development, training, inference, and other jobs in the corresponding region and availability zone.
+`Cluster Management` is used to connect Kubernetes clusters to AI Infra On-Prem resource pools, so the platform can schedule, monitor, and manage nodes, specifications, storage, and jobs in a unified way. After the operator creates a cluster, the platform can run development, training, inference, and other workloads in the corresponding region and availability zone.
 
-| Item | Description |
+| Item | Content |
 | --- | --- |
 | Applicable role | Operator |
-| Navigation path | Resource Pools > Cluster Management |
-| Managed objects | Kubernetes clusters, cluster specifications, cluster storage, nodes, jobs, and resource monitoring |
-| Typical uses | Connect compute clusters, view resource capacity, maintain node status, configure available job specifications, and configure shared directories |
+| Navigation path | AI Infrastructure > On-Prem > Resource Pools > Cluster Management |
+| Page route | `/powerone/resourcepool/cluster` |
+| Managed objects | Kubernetes clusters, regions, availability zones, nodes, specifications, storage, jobs, and resource monitoring |
+| Typical use | Create cluster onboarding, view cluster status, check node resources, and maintain specifications and storage configuration |
 
-### Beginner's View
+#### Beginner Explanation
 
-You can understand an On-Prem resource pool as an office resource system:
+An On-Prem Resource Pool is like a local compute management system:
 
-- **Region/availability zone** is like a resource map. It tells the platform which city, machine room, or resource group the compute resources are in.
-- **Cluster** is like the group of servers that actually provides compute resources. The platform can schedule jobs to these machines only after the cluster is registered.
-- **Node** is like a workstation in the server group. Each node provides specific resources such as CPU, GPU, memory, and disks.
-- **Specification** is like a resource package. It defines how much CPU, memory, GPU, and other resources a job can request.
-- **Storage** is like a shared file cabinet. It allows jobs to read models, datasets, code repositories, or output results.
-- **Job** is like a concrete task. After submission, the platform schedules it to resources that match the region, availability zone, cluster, specification, and storage conditions.
+- **Region/availability zone** indicates the site, machine room, or resource group where compute resources are located.
+- **Cluster** is the Kubernetes environment that actually provides compute resources. The platform can schedule jobs only after the cluster is connected.
+- **Node** is a specific server in the cluster and provides CPU, GPU, memory, disk, and other resources.
+- **Specification** defines the resource package that a user job can request.
+- **Storage** provides model, dataset, code repository, or output directories for jobs.
 
-The core purpose of registering a cluster is to connect actual compute resources to the platform scheduling system. Without cluster registration, even if regions and availability zones have been created, the platform still has no schedulable node resources.
+The core purpose of cluster creation is to bring a real Kubernetes cluster into platform scheduling, monitoring, and resource management.
 
-### First-Time Onboarding Flow
+#### First-Time Onboarding Flow
 
 For first-time cluster onboarding, perform the following steps in order:
 
-1. Confirm that the target region and availability zone have been created and that their status meets onboarding expectations.
-2. Prepare the kubeconfig or authentication materials, including the API Server address, CA certificate, authentication method, and corresponding credentials.
-3. Register the cluster in `Resource Pools > Cluster Management` and verify the automatically populated connection information.
-4. Associate specifications with the cluster so that later jobs can select suitable resource packages.
-5. Add shared storage as required by the business, such as NFS or hostpath.
-6. View the node list and resource monitoring data, and confirm that nodes, resource usage, and monitoring data are visible.
-7. Create a test job to verify image pulling, resource scheduling, storage mounting, and job results.
+1. Create or confirm the target region and availability zone.
+2. Prepare kubeconfig, Authentication Certificate, Server Address, authentication method, and network configuration.
+3. In `Resource Pools > Cluster Management`, click `Register Cluster` to open the `New Cluster - Clusters` page.
+4. Paste or verify the kubeconfig parsing result, and complete region, availability zone, registration name, authentication, and network fields.
+5. After submission, return to the cluster list and verify status, nodes, resource usage, and monitoring data.
+6. Associate specifications, configure storage as needed, and use a test job to verify scheduling and mounting.
 
-### Terminology Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
 | Kubernetes | A container orchestration system used to manage compute nodes, containers, service discovery, and job scheduling. |
-| kubeconfig | A Kubernetes connection configuration file, usually provided by the cluster administrator. It contains cluster addresses, certificates, users, and authentication information. |
-| API Server | The Kubernetes control entry point. The platform uses it to read node, resource, job, and other information. |
-| CA certificate | A certificate used to verify the identity of the API Server and prevent connections to an incorrect or untrusted cluster entry point. |
-| context | A connection configuration combination in kubeconfig that associates the cluster, user, and naming information. The page usually generates or imports it automatically. |
-| Pod | The smallest scheduling unit for running containers in Kubernetes. Training, inference, or IDE jobs eventually run as Pod or similar resources. |
-| CIDR | IP network segment notation, such as `172.20.0.0/16`, used to describe a continuous IP address range. |
-| NodePort | A Kubernetes service exposure port range. The platform may access cluster-side services through this range. |
-| RDMA network | An advanced option related to high-speed networking capabilities. Enable it only when hardware, drivers, and network planning explicitly support it. |
-| kubelet | A Kubernetes component that runs on nodes. It manages containers on the node and reports node status. |
-| kube-proxy | A Kubernetes network component that runs on nodes. It manages service access and forwarding rules. |
-| Label | A key-value marker on a node or resource, used for filtering, grouping, and scheduling matches. |
-| Taint | A scheduling restriction on a node, used to prevent jobs that do not meet conditions from being scheduled to the node. |
-| EL expression | An advanced option for storage tenant scope, used to dynamically generate tenant directories according to rules. It is generally not required. |
+| kubeconfig | A Kubernetes connection configuration file that usually contains the cluster address, certificates, users, and authentication information. |
+| Server Address | The Kubernetes control entry point. The platform uses it to read nodes, resources, jobs, and status. |
+| Authentication Certificate | A certificate used to verify server identity. It is sensitive material. |
+| Authentication Type | The page field used to select certificate, username/password, identity token, authentication program, or another authentication method. |
+| Context Name | A connection context in kubeconfig that associates the cluster, user, namespace, and related information. |
+| Cluster CIDR | Pod network segment planning. Incorrect values may cause network conflicts. |
+| Service CIDR | Service network segment planning. Incorrect values may affect service access. |
+| NodePort | The port range used by Kubernetes to expose services. |
+| RDMA Network | An advanced high-speed networking option. Enable it only when hardware, drivers, and network planning explicitly support it. |
 
 ## Prerequisites
 
-Before registering or maintaining a cluster, confirm that the following conditions are met:
+Before creating a cluster, confirm that the following conditions are met:
 
-1. The current account has operator permissions and can access `Resource Pools > Cluster Management`.
-2. The target region and availability zone have been created in `Resource Pools > Regions/Availability Zones` and are in a state that can be used for cluster onboarding.
-3. The Kubernetes API Server can be accessed from the platform management side.
-4. Cluster connection information has been prepared, including the CA certificate, API Server address, cluster name, and administrator authentication materials.
-5. The network administrator has confirmed that network configurations such as Pod CIDR, Service CIDR, and NodePort port range do not conflict with the existing environment.
-6. If NFS storage needs to be added, the NFS service address, shared path, and access permissions have been prepared in advance.
-7. If monitoring data needs to be viewed, node-side monitoring collection has been deployed and can report data.
+1. The current account has operator permissions and can access `AI Infra > On-Prem > Resource Pools > Cluster Management`.
+2. The target region and availability zone have been created in `Resource Pools > Regions/Availability Zones`.
+3. The Kubernetes server address can be reached from the platform management side.
+4. kubeconfig, Authentication Certificate, Server Address, cluster name, and authentication materials have been prepared.
+5. Cluster CIDR, Service CIDR, and NodePort have been checked against existing network plans.
+6. If monitoring, JupyterLab, or RDMA capabilities are required, related services, ports, hardware, and network plans have been confirmed.
+7. For learning or screenshots, do not submit real kubeconfig, certificates, private keys, tokens, passwords, or internal addresses.
 
 ## Page Description
 
-The Cluster Management page mainly includes the cluster list, cluster details drawer, cluster nodes page, and node details drawer.
+The Cluster Management page mainly includes the cluster list, cluster details, and cluster nodes information.
 
-The following figure shows the cluster list entry, cluster cards, resource usage, and cluster operation entry points.
-
+The following figure shows the cluster list entry, cluster cards, resource usage, and cluster operation entries.
 
 ![Cluster Management](./images/clusters-list.png)
 
-### Cluster List
-
-The cluster list is used to view connected clusters, filter clusters, and access cluster operations.
+#### Cluster List
 
 | Area | Description |
 | --- | --- |
-| Status filter | Filters clusters by statuses such as `All`, `Available`, `Unavailable`, `Onboarding`, `Failed`, and `Pending Approval`. |
+| Status filter | Filters clusters by `All`, `Available`, `Unavailable`, `Onboarding`, `Failed`, `Pending Approval`, and other statuses. |
 | Region/availability zone filter | Filters clusters by their region and availability zone. |
-| Search area | Supports searching by name, node count, and other conditions. |
-| View switch | Supports grid and list views so that clusters can be viewed at different densities. |
-| Cluster card | Displays the cluster name, status, region/availability zone, specifications, node count, and GPU, CPU, MEM, and DISK usage. |
-| More actions | Opens cluster details or cluster nodes, or performs cluster-level operations such as disable and enable. If the page provides a delete entry, confirm running jobs, storage data, and dependencies before deletion. |
+| Search area | Supports searching by cluster name, node count, and other conditions. |
+| View switch | Supports grid view and list view. |
+| Cluster card | Displays cluster name, status, region/availability zone, specifications, node count, and resource usage. |
+| Operation entry | Opens cluster details, cluster nodes, or cluster-level operations such as disable and enable. |
 
-### Cluster Details
+#### Cluster Details
 
-The cluster details drawer is used to view the resource overview and configuration relationships of a single cluster, including device information, basic information, associated specifications, and storage.
+Cluster details are used to view device information, basic information, associated specifications, and storage configuration of a single cluster. Use this area first when troubleshooting cluster status, resource capacity, specification availability, or storage mounting.
 
-### Cluster Nodes
+#### Cluster Nodes
 
-The cluster nodes page is used to view the node list, node resource usage, and job information. The node details drawer further displays hardware, network, runtime, labels, taints, and monitoring charts.
+The cluster nodes page is used to view node status, resource usage, job information, and node details. Node details usually include hardware, network, runtime, labels, taints, and monitoring charts.
 
-## Register a Cluster
+## Main Operations
 
-### Applicable Scenarios
+### Create Cluster
 
-Register a cluster when a new Kubernetes cluster needs to be included in unified platform scheduling, monitoring, and resource management. The following scenarios usually require cluster registration:
+#### Applicable Scenarios
 
-- The On-Prem resource pool is deployed for the first time, and region and availability zone configuration has been completed.
-- A new machine room, newly purchased compute resources, or a newly created Kubernetes cluster needs to be scheduled by the platform.
-- Compute resources from different environments, departments, or tenants need to be grouped and connected to a unified operations view.
-- Available nodes, specifications, and shared storage need to be provided for later jobs.
+Create a cluster when a new Kubernetes cluster needs to be included in unified platform scheduling, monitoring, and resource management. Common scenarios include first-time compute onboarding, adding a machine room or resource group, expanding GPU/CPU nodes, and providing schedulable nodes for later jobs.
 
-### Read Before Registration
+#### Pre-Operation Checks
 
-Before filling in the registration form, understand the following key fields:
+1. The target region and availability zone have been created and can be used for cluster onboarding.
+2. kubeconfig or equivalent authentication materials come from a trusted cluster administrator.
+3. server address, certificates, authentication method, and context have been verified.
+4. Cluster CIDR, Service CIDR, and NodePort have been confirmed by network planning.
+5. Monitoring service, JupyterLab address, RDMA, and other advanced options have been confirmed as required.
+6. For learning or screenshots, only view page fields and do not submit real configuration.
 
-- **kubeconfig**: Usually provided by the cluster administrator. It contains the cluster address, CA certificate, user, and authentication information. After you paste the kubeconfig, the page attempts to automatically populate some fields, but you still need to manually verify the region/availability zone, server address, authentication method, and context.
-- **API Server**: The Kubernetes control entry point. The platform needs to read node, resource, job, and status information through the API Server.
-- **CA certificate**: Used to verify the API Server identity. The certificate content is not an account password, but it is still sensitive material and should not be leaked.
-- **Authentication materials**: These may be a client certificate/private key, username and password, token, or auth-provider information. Different authentication methods require different fields.
-- **CIDR**: IP network segment notation. `cluster CIDR` usually corresponds to the Pod address range, and `service CIDR` corresponds to the Service address range. Confirm in advance that they do not conflict with the platform, nodes, office network, or other cluster network segments.
-- **NodePort**: A Kubernetes service exposure port range. The current page port input supports `1-65535`. Fill it in according to cluster and network planning.
-- **Support RDMA network**: An advanced switch. If you are not sure whether the underlying hardware, drivers, and network planning support it, keep it disabled and contact platform operations for confirmation.
+#### Steps
 
-### Pre-Operation Checks
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Cluster Management`.
+2. Click `Register Cluster` in the upper-right corner of the page to open the `New Cluster - Clusters` page.
+3. Paste kubeconfig in the `config file` area, or verify the connection information parsed by the page.
 
-Before registration, complete the following checks:
+The following figure shows the `New Cluster - Clusters` page. Use it to locate kubeconfig, region/availability zone, connection information, authentication type, context, and advanced configuration areas.
 
-1. The target Kubernetes cluster API Server address can be accessed from the platform side.
-2. Authentication materials are valid and have the permissions required to read nodes, resources, and jobs.
-3. The target region and availability zone exist and can be used to register the cluster.
-4. Cluster network planning has been confirmed, and the Pod CIDR, Service CIDR, and NodePort range do not conflict with the existing network.
-5. If `Support RDMA network` is enabled, the underlying hardware, drivers, network, and scheduling plan have been confirmed to support it.
-6. The registration name has been determined according to long-term operations planning. Use lowercase letters, numbers, and hyphens, and reflect the environment, region, and purpose, such as `prod-wuhan-gpu-1`.
+![New Cluster - Clusters](./images/new-cluster.png)
 
-### Procedure
-
-1. Go to `Resource Pools > Cluster Management`.
-2. Click `Cluster Registration` in the upper-right corner of the page to open the `Cluster Creation` page.
-3. If the kubeconfig has been prepared, paste the configuration content in the `config file` panel on the right. The system attempts to automatically extract and populate part of the cluster connection information.
-
-The following figure shows the kubeconfig paste area on the right, which is suitable for quickly importing cluster connection information.
-
-![config file](./images/config-file.png)
-
-4. In the `Region/Availability Zone` section, select the cluster ownership and enter the registration name.
-
-The following figure shows the region, availability zone, and registration name fields. The registration name is an important identifier for the platform to recognize the cluster.
-
-![Region/Availability Zone](./images/region-availability-zone.png)
-
-5. In the `Cluster Connection Information` section, enter the CA certificate, API Server address, and cluster name.
-
-The following figure shows the cluster connection information section. Focus on verifying the CA certificate, server address, and cluster name.
-
-![Cluster Connection Information](./images/cluster-connection-information.png)
-
-6. In the `User Authentication Type` section, select the authentication method and enter the corresponding authentication materials.
-
-The following figure shows the user authentication type section. You can select certificate, username/password, identity token, or authentication program authentication.
-
-![User Authentication Type](./images/user-authentication-type.png)
-
-7. In the `context` section, check the context information automatically generated by the system. This section is usually populated automatically and does not need manual editing.
-
-The following figure shows automatically generated context information, which associates the cluster, user, and connection configuration.
-
-![context](./images/context.png)
-
-8. In the `Other` section, enter advanced configurations such as network, ports, monitoring service, JupyterLab address, and description.
-
-The following figure shows the advanced configuration section for network, ports, monitoring, and description.
-
-![Other Configuration](./images/other.png)
-
-9. After confirming that all configurations are correct, click `Submit`.
-
-### Parameter Description
-
-| Field Name | Required | Field Type | Example | Description |
-| --- | --- | --- | --- | --- |
-| Object name | Yes | Text | `resource-a` | Name of the current page object. |
-| Region | Conditionally required | Dropdown | `Wuhan` | Region to which the object belongs. |
-| Associated resource | Conditionally required | Text | `cluster-a` | Resource that the object depends on or is associated with. |
-| Status | System generated | Enum | `Available` | Current status of the object. |
-| Maintenance notes | No | Multi-line text | `Used for production environment` | Records purpose, boundaries, and maintenance information. |
-
-### Pitfalls
-
-- kubeconfig auto-fill can reduce manual input, but it cannot replace manual verification. Pay special attention to the region/availability zone, server address, authentication type, and context.
-- Certificates, private keys, tokens, passwords, and complete kubeconfig files are sensitive materials. Do not write them into documents, screenshots, tickets, or commit records.
-- Incorrect CIDR values or conflicts with the existing network may cause Pod, Service, or platform access exceptions. Confirm them with the network administrator before submission.
-- Selecting the wrong authentication method may cause registration failure or node read failure. Keep it consistent with the kubeconfig provided by the cluster administrator.
-- If the API Server is unreachable, the platform cannot connect to the cluster even if the form fields are correctly formatted.
-- The registration name should remain stable for long-term use. Avoid temporary or meaningless names such as `test1` and `aaa`.
-
-### Result Verification
-
-After submission succeeds, confirm that the cluster has been connected as follows:
-
-1. Return to the `Cluster Management` list and confirm that the new cluster appears.
-2. Confirm that the cluster status changes to `Onboarding`, `Available`, or another expected status.
-3. Open cluster details and confirm that device information, basic information, and resource usage are displayed normally.
-4. Go to `Cluster Nodes` and confirm that the node list is visible and node status is `Ready` or as expected.
-5. If monitoring has been configured, open node resource monitoring and confirm that the charts can be loaded.
-6. If jobs will be created later, confirm that the cluster has associated available specifications.
-
-## View Cluster Details
-
-View cluster details when you need to confirm cluster capacity, basic information, specifications, and storage configuration.
-
-### Applicable Scenarios
-
-View cluster details when you need to verify cluster status, resource capacity, region/availability zone ownership, associated specifications, or storage configuration.
-
-1. Find the target cluster in the cluster list.
-2. Click the target cluster card, or click `...` on the target cluster and select `Cluster Details`.
-3. In the details drawer, view device information, basic information, associated specifications, and storage configuration.
-
-### View Device Information
-
-Device information is used to quickly view the overall resource capacity and usage of the cluster, including CPU, GPU, running jobs, memory, and disks.
-
-The following figure shows the overview of overall cluster CPU, GPU, jobs, memory, and disk capacity.
-
-If CPU, memory, GPU, or disk usage is close to full, continue checking node resources, job distribution, and monitoring data to determine whether expansion, job migration, or abnormal node removal is required.
-
-### View Basic Information
-
-Basic information is used to confirm the cluster ID, name, status, region/availability zone, and creation time.
-
-The following figure shows the cluster basic information section, which is suitable for verifying cluster ownership, name, and current status.
-
-When the cluster status is abnormal, first confirm API Server connectivity, authentication material validity, node status, and whether platform-side monitoring collection is normal.
-
-### View Associated Specifications
-
-Associated specifications determine which job specifications the cluster can carry.
-
-The following figure shows the associated specifications list. When users create jobs, they can select only specifications that meet the association relationship.
-
-If users cannot select a specification when creating a job, check whether the specification has been associated with the target cluster and whether the specification itself is available.
-
-### View Storage
-
-The storage section displays the container shared directories configured for the cluster, including type, access policy, shared path, container path, tenant scope, and operation entries.
-
-The following figure shows the cluster storage list. The edit and delete storage entries are available on the right.
-
-Storage configuration affects job data read/write, model weight loading, and local repository paths. Before modifying or deleting storage, confirm that no running jobs depend on the directory.
-
-## Manage Cluster Specifications
+4. Select `Region` and `Availability Zone`, and fill in `Registration Name`.
+5. Verify or fill in `Authentication Certificate`, `Server Address`, and `Cluster Name`.
+6. Select `Authentication Type`, fill in the corresponding authentication materials according to the page fields, and verify `Context Name`.
+7. Configure `Cluster CIDR`, `Service CIDR`, `NodePort`, monitoring service, JupyterLab address, `Support RDMA Network`, description, and other advanced options.
+8. Before clicking the final `Submit`, verify sensitive information, region/availability zone, network configuration, and scheduling impact again.
+9. For learning or page validation only, view fields and screenshots. Do not perform the final `Submit`, `OK`, or `Save`.
 
 ### Associate Specifications
 
-When a cluster needs to carry jobs with specific CPU, memory, GPU, or specification combinations, associate specifications with the cluster.
-
 #### Applicable Scenarios
 
-When jobs need to use specific CPU, memory, GPU, or specification combinations but the target cluster has not enabled the specification, associate the specification with the cluster first.
+Associate specifications when the target cluster needs to run jobs with specific CPU, memory, GPU, or other accelerator configurations. After association, users may select these specifications when creating jobs in the corresponding region, availability zone, or cluster scope.
 
-1. Open `Cluster Details` for the target cluster.
-2. In the `Associated Specifications` section, click `+ Associate Specification`.
-3. Select one or more specifications in the dialog.
-4. Click `OK` to save.
+#### Steps
 
-The following figure shows the associate specification dialog. Select specifications and save to establish the availability relationship between the cluster and specifications.
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Cluster Management`.
+2. In the cluster list, find the target cluster and verify cluster status, region, availability zone, and resource capacity.
+3. Click `...` in the target cluster operation area and select `Cluster Details`.
+4. In the left-side menu of the `Cluster Details` page, select the specification-related entry.
+5. Click `Associate Specifications` or the actual association entry on the page.
+6. Select the specifications to associate with the cluster, and verify specification name, specification type, CPU, memory, GPU, or other accelerator configuration.
+7. Before clicking the final `Save`, `Submit`, or `OK`, verify that the specifications match the cluster resource capability.
+8. For learning or page validation only, view the fields and dialog without submitting real association configuration.
 
-### Result Verification
-
-After saving, confirm that the selected specifications appear in the `Associated Specifications` list. When creating jobs later, if the selected region, availability zone, and cluster resource scope match, the associated specifications should be available.
-
-## Manage Cluster Storage
+![Associate Specifications](./images/associate-specification.png)
 
 ### Add Storage
 
-When jobs need shared directories, model repositories, local Git repositories, or NFS directories, add storage for the cluster. The current Add Storage dialog supports two storage types: `nfs` and `hostpath`.
+#### Applicable Scenarios
 
-### Confirm Before Adding
+Add storage when jobs need shared directories, model repositories, local Git repositories, NFS directories, or host paths. Storage configuration affects job startup, file read/write, model loading, and tenant access scope.
 
-Before adding storage, confirm the following:
+#### Steps
 
-1. The shared path exists or has been created according to operations standards.
-2. The NFS service address can be accessed from cluster nodes, and the exported directory, read/write permissions, and network policy are correct.
-3. The `hostpath` path exists on the target node and does not cause job failures because of dependency on a single abnormal node.
-4. The container path does not conflict with system directories, application directories, or other mount paths.
-5. The tenant scope has been clearly planned to prevent multiple tenants from accidentally reading or writing the same directory.
-6. Whether the path needs to be used as a local Git repository or local model repository directory has been confirmed.
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Cluster Management`.
+2. In the cluster list, find the target cluster and verify cluster status, region, availability zone, and resource capacity.
+3. Click `...` in the target cluster operation area and select `Cluster Details`.
+4. In the left-side menu of the `Cluster Details` page, select the storage-related entry.
+5. Click `Add Storage` or the actual add entry on the page.
+6. Configure storage name, storage type, shared path, container mount path, access mode, tenant scope, and description according to the page fields.
+7. Before clicking the final `Save`, `Submit`, or `OK`, verify the storage path, mount policy, permission scope, and impact on running jobs.
+8. For learning or page validation only, view the fields and dialog without submitting real storage configuration.
 
-### Procedure
+![Add Storage](./images/add-storage.png)
 
-1. Open `Cluster Details` for the target cluster.
-2. In the `Storage` section, click `+ Add`.
-3. Enter the storage name, type, access policy, shared path, container path, and tenant scope.
-4. Enable `Local Git Repository` and `Local Model Repository` as needed.
-5. Click `OK` to save.
-
-The following figure shows the Add Storage dialog. You can select `nfs` or `hostpath`, and set the policy, paths, and tenant scope.
-
-### Parameter Description
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Name | Yes | Text | `prod-model-nfs` | Storage volume identifier. It should reflect the purpose, environment, and scope. |
-| Type | Yes | Radio | `nfs` / `hostpath` | `nfs` is suitable for network shared directories. `hostpath` is suitable for mounting local directories on the host. |
-| Policy | Yes | Radio | `Read/Write` / `Read Only` | Storage access permission. Production environments should follow the principle of least privilege. |
-| File storage service | Conditionally required | Text | `nfs.example.local` | Enter the NFS service address when `nfs` is selected. It is usually not required when `hostpath` is selected. |
-| Shared path | Yes | Text | `/data/models` | Shared directory on the host or NFS server. Confirm that the path exists and permissions are correct. |
-| Container path | Yes | Text | `/mnt/models` | Mount path inside the job container. Avoid conflicts with system directories or application directories. |
-| Tenant scope | Yes | Radio | `Shared by all tenants` / `Independent subdirectory per tenant` / `EL expression` | Controls isolation when different tenants access the same storage. `EL expression` is an advanced option used to dynamically generate tenant directories according to rules. It is generally not required. |
-| Local Git repository | Yes | Switch | On / Off | Whether to use the path as a local Git repository directory. |
-| Local model repository | Yes | Switch | On / Off | Whether to use the path as a local model repository directory. |
+| Registration Name | Yes | Text | `cluster-wuhan-gpu` | Name used by the platform to identify the cluster. Use a name that reflects environment, region, purpose, and resource type. It is usually not recommended to change after creation. |
+| Region | Yes | Text | `wuhan` | Region to which the cluster belongs. Select an existing and available region. It affects resource pool ownership and scheduling scope. |
+| Availability Zone | Yes | Text | `wuhan-1` | Availability zone to which the cluster belongs. Must match the selected region. Incorrect selection affects node ownership and job scheduling. |
+| config file | Conditionally required | File / configuration text | `<kubeconfig>` | kubeconfig content or connection configuration source. Can be used to auto-fill some fields, but parsed results must be manually verified. |
+| Authentication Certificate | Yes | Credential / sensitive text | `<ca-cert>` | Certificate used to verify server identity. Sensitive material. Do not record it in documents or screenshots. |
+| Server Address | Yes | Address / URL | `https://<api-server>:6443` | Kubernetes API access entry. Must be reachable from the platform side. Do not record real addresses in this document. |
+| Cluster Name | Yes | Identifier / text | `cluster-a` | Kubernetes cluster name or page identification name. Keep it consistent with kubeconfig or real cluster information. |
+| Authentication Type | Yes | Dropdown / enum | `Bearer Token` | Authentication method used to access the cluster. Select according to kubeconfig or materials provided by the administrator. |
+| Context Name | Conditionally required | File / configuration text | `cluster-a-context` | Connection context in kubeconfig. Usually generated or imported automatically. Verify it before submission. |
+| Cluster CIDR | Conditionally required | Number / capacity | `10.244.0.0/16` | Pod network segment configuration. Must match network planning and avoid conflicts with the platform, nodes, or other clusters. |
+| Service CIDR | Conditionally required | Number / capacity | `10.96.0.0/12` | Service network segment configuration. Must match network planning and avoid service access issues. |
+| NodePort | Conditionally required | Port / number | `30000-32767` | Kubernetes NodePort port range. Fill in according to page-supported range and network policy. |
+| Monitor Service Port | Optional | Port / number | `8000` | Cluster resource monitoring service configuration. Confirm monitoring collection capability, port, and network reachability. |
+| JupyterLab Address | Optional | Address / URL | `https://jupyter.example.com` | Service address related to online development. Configure only when online IDE capability is required. |
+| Support RDMA Network | Optional | Switch | `Disabled` | Whether to enable RDMA-related capabilities. Enable only when hardware, drivers, network, and scheduling policies explicitly support it. |
+| Specification Name | Yes | Text | `Example Name` | Name of the specification to associate with the cluster. Should match the actual CPU, memory, GPU, or other accelerator capability of the cluster. |
+| Specification Type | Conditionally required | Dropdown / enum | `Inference` | Resource type or job type of the specification. Confirm that the specification applies to the target cluster and business scenario. |
+| CPU | Conditionally required | Number / capacity | `16 vCPU` | CPU configuration in the specification. Must not exceed cluster capability or scheduling policy limits. |
+| Memory | Conditionally required | Number / capacity | `128 GiB` | Memory configuration in the specification. Verify it together with CPU, GPU, or accelerator configuration. |
+| GPU/Accelerator | Conditionally required | Number / capacity | `1 x A100` | GPU, NPU, or other accelerator configuration in the specification. Must match target cluster node hardware and driver capability. |
+| Enabled Status | System generated or optional | Status | `Enabled` | Whether the specification or storage configuration is available. If disabled, it is usually unavailable to users. |
+| Association Status | System generated | Status | `Associated` | Whether the specification has been associated with the target cluster. After saving, confirm the status in the list or details page. |
+| Storage Name | Yes | Text | `shared-data` | Name of the cluster storage configuration. Use a name that reflects purpose, environment, and access scope. |
+| Storage Type | Yes | Dropdown / enum | `nfs` | Storage source or mount type. Common types include `nfs`, `hostpath`, or actual page-supported types. |
+| Shared Path | Yes | Address / path | `/data/share` | Host-side or shared storage path. Do not record real paths in this document. Confirm that the path exists and permissions are correct before submission. |
+| Container Mount Path | Yes | Address / path | `/mnt/data` | Path used by job containers to access the storage. Avoid conflicts with system directories, application directories, or other mount paths. |
+| Access Mode | Yes | Dropdown / enum | `ReadWriteMany` | Storage read/write permission or access policy. Follow the least privilege principle and avoid granting write permission by mistake. |
+| Tenant Scope | Conditionally required | Dropdown / enum | `Tenant A` | Tenant visibility or isolation scope of the storage. Avoid unexpected cross-tenant access to the same directory. |
+| Description | Optional | Multi-line text | `Example description` | Cluster purpose, boundary, or maintenance notes. Record non-sensitive operations notes only. Do not write internal test parameters. |
+| Actions | System generated | Action entry | `Edit` | Page entries for view, edit, disable, enable, and similar operations. Confirm impact scope and rollback plan before high-risk operations. |
 
-### Edit Storage
+## Pitfalls
 
-Edit storage when the storage path, access policy, or tenant scope needs to be adjusted.
+- Cluster creation/registration connects a real Kubernetes cluster to platform scheduling, monitoring, and resource management. Treat it as a high-impact operation.
+- kubeconfig, certificates, private keys, tokens, and passwords are sensitive materials. Do not write them into documents, screenshots, tickets, commit records, or chat messages.
+- If the Server Address is unreachable, the platform cannot complete onboarding even when form fields are correctly formatted.
+- Incorrect region or availability zone may cause resource ownership, specification association, storage configuration, and job scheduling exceptions.
+- Incorrect authentication type, CIDR, or NodePort may cause onboarding failure, network conflicts, or service access exceptions.
+- Associating specifications affects which resource specifications users can select when creating jobs. Incorrect association may cause scheduling failure, resource request mismatch, or capacity misjudgment.
+- Adding storage affects job mount paths, read/write permissions, data access scope, and runtime stability. Incorrect shared paths, mount paths, or permission scope may cause job startup failure, inaccessible data, or unauthorized access.
+- `Save`, `Submit`, and `OK` are high-risk final actions. Do not click them during learning or screenshots.
 
-1. Open `Cluster Details` for the target cluster.
-2. Find the target storage in the `Storage` list.
-3. Click `Edit`.
-4. Adjust the fields and click `OK`.
+## Result Validation
 
-Before editing, confirm whether any running jobs are using the storage. Path or permission changes may cause job read/write failures.
-
-### Delete Storage
-
-Delete a storage configuration when the storage is no longer used.
-
-> Risk Notice
->
-> Deleting storage configuration may affect jobs, models, or repositories that depend on the directory. Before the operation, confirm that no running jobs depend on it, data has been backed up, and model/repository paths are no longer used.
-
-### Confirm Before Deleting
-
-Before deleting storage, confirm the following:
-
-1. No running jobs depend on the storage.
-2. Data that needs to be retained has been backed up or migrated.
-3. Model repositories, local Git repositories, or business scripts no longer reference the path.
-4. Deleting the platform storage configuration does not necessarily mean that the underlying shared directory is deleted. Handle underlying data according to the operations process.
-
-### Procedure
-
-1. Open `Cluster Details` for the target cluster.
-2. Find the target storage in the `Storage` list.
-3. Click `Delete`.
-4. Read the confirmation prompt and submit.
-
-## View Cluster Nodes and Jobs
-
-### View Node List
-
-The node list is used to view cluster node status, roles, and node-level resource usage.
-
-#### Applicable Scenarios
-
-View the node list when you need to confirm whether nodes are online, whether resources are tight, whether node roles are correct, or whether jobs can continue to be scheduled.
-
-1. Find the target cluster in the cluster list.
-2. Click `...` on the target cluster.
-3. Select `Cluster Nodes`.
-4. View the node list on the `Node Information` tab.
-
-The following figure shows the Node Information tab, where you can view node status, resource usage, and Kubernetes node status.
-
-Focus on the following information:
-
-- Whether the node status is available.
-- Whether the Kubernetes node status is `Ready`.
-- Whether the node role is as expected, such as `master` or `worker`.
-- Whether CPU, GPU, memory, and disk utilization increases abnormally.
-
-### View Job Information
-
-The `Job Information` tab is used to view running instances and online IDE jobs carried by the cluster.
-
-1. Go to the `Cluster Nodes` page of the target cluster.
-2. Switch to the `Job Information` tab.
-3. View jobs by `Running Instances`, `Online IDE`, `Running Jobs`, or `Historical Jobs`.
-4. Search for the target job by job name.
-
-The following figure shows the Job Information tab, where you can view tasks carried by the cluster by job type.
-
-When troubleshooting job issues, focus on job status, image, specification, node, region/availability zone, and running duration.
-
-### View Node Details
-
-Node details are used to confirm the hardware, network, runtime, labels, and taints of a single node.
-
-1. In `Cluster Nodes > Node Information`, find the target node.
-2. Click `Details` on the right side of the node row.
-3. View each information section in the node details drawer.
-
-The following figure shows the node details drawer, where you can view basic information, hardware, network, runtime, labels, and taints.
-
-Common troubleshooting information in node details includes:
-
-- Basic information: node name, role, status, operating system, kernel version, and architecture.
-- Hardware information: CPU, memory, disk, and GPU configuration, used to determine node capacity and hardware capability.
-- Network information: internal IP, external IP, and Pod CIDR, used to determine node network ownership and Pod address range.
-- Runtime: `kubelet` manages node containers and status reporting; `kube-proxy` manages service forwarding rules; the container runtime actually starts containers; heartbeat time is used to determine whether the node remains online.
-- Labels: used for scheduling filters and resource grouping, such as distinguishing GPU nodes, CPU nodes, or nodes in a specific machine room.
-- Taints: used to restrict normal jobs from being scheduled to specific nodes. They are common on dedicated nodes, maintenance nodes, or special hardware nodes.
-
-### View Node Resource Monitoring
-
-Resource monitoring is used to observe resource change trends for a node within a specified time range.
-
-1. In `Cluster Nodes > Node Information`, find the target node.
-2. Click `Resource Monitoring` on the right side of the node row.
-3. In the node details drawer, switch to the `Resource Monitoring` tab.
-4. Select the start time, end time, sampling interval, and data type.
-5. Switch between `Basic Monitoring`, `AI Accelerator Card Monitoring`, and `Network Monitoring` as needed.
-
-The following figure shows the Node Resource Monitoring tab, where you can view basic monitoring, AI accelerator card monitoring, and network monitoring by time range.
-
-If the monitoring chart is empty, first check the monitoring service port, collection components, node connectivity, and query time range.
-
-## Manage Cluster Status
-
-### Search and Filter
-
-| Operation | Result |
-| --- | --- |
-| Search by name | Enter cluster name keywords and click `Search` to locate the target cluster. |
-| Search by node count | Enter the node count and click `Search` to filter clusters that meet the condition. |
-| Status filter | Narrow the scope by statuses such as available, unavailable, onboarding, failed, and pending approval. |
-| Region/availability zone filter | View only clusters in the specified region or availability zone. |
-| Reset filters | Clear current filter conditions and restore the default list. |
-
-### Switch Views
-
-Click the view switch button on the page to switch between grid view and list view. Grid view is suitable for viewing resource overviews, while list view is suitable for scanning fields in batches.
-
-### Disable or Enable a Cluster
-
-When a cluster needs maintenance, needs to be taken offline, or needs to stop carrying new jobs temporarily, disable the cluster. After the cluster becomes available again, enable it through the page entry.
-
-> Risk Notice
->
-> Disabling a cluster may affect new job scheduling. The impact on running jobs is subject to the page confirmation prompt and platform scheduling policy. Confirm the maintenance window and alternative resources before the operation.
-
-### Confirm Before Disabling
-
-Before disabling a cluster, confirm the following:
-
-1. No critical new jobs depend on the cluster.
-2. The impact scope of existing running jobs, online IDE, or service instances has been confirmed.
-3. Other available clusters can take over later scheduling.
-4. The maintenance window, notification scope, and rollback plan have been confirmed.
-
-### Procedure
-
-1. Find the target cluster in the cluster list.
-2. Click `...` on the target cluster.
-3. Select `Disable Cluster` or the corresponding enable operation.
-4. Read the confirmation prompt and submit.
-
-### Delete a Cluster
-
-If the page provides a delete entry, confirm running jobs, storage data, and dependencies before deletion. If there is no delete entry, do not directly clean up cluster records by bypassing the page.
-
-> Risk Notice
->
-> Deleting a cluster is a high-risk operation and may cause the platform to stop managing the cluster and its node resources. Before deletion, make sure that jobs, specifications, storage, and operations dependencies have all been handled.
-
-### Confirm Before Deleting
-
-Before deleting a cluster, confirm the following:
-
-1. The cluster has no running jobs, online IDE, or service instances that need to be retained.
-2. Nodes no longer carry platform scheduling tasks.
-3. Shared storage, model repositories, Git repositories, and business data have been migrated or backed up.
-4. Specifications and job dependencies associated with the cluster have been migrated to other clusters.
-5. Operations, business teams, and platform administrators have confirmed the deletion window and rollback plan.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page can be opened | `AI Infra > On-Prem > Resource Pools > Cluster Management` is accessible. | Check menu configuration and account permissions. |
+| Cluster list loads normally | Cluster cards, status, region/availability zone, and resource usage are visible. | Refresh the page and check backend services or browser console errors. |
+| Create cluster entry is visible | The page shows the `Register Cluster` entry. | Check operator permissions and page status. |
+| Cluster creation page can be opened | Clicking `Register Cluster` opens the `New Cluster - Clusters` page. | Check routes, permissions, and frontend errors. |
+| Required field validation works | Validation prompts appear when required fields are missing. | Fill in fields according to page prompts and do not use real sensitive values for learning tests. |
+| No real configuration is submitted during learning | Only fields, dialogs, and screenshots are viewed. The final `Submit`, `OK`, or `Save` is not clicked. | If submitted by mistake, notify the platform administrator and follow the security process immediately. |
+| Record is traceable after real submission | The new cluster appears in the list and the status changes to `Onboarding`, `Available`, or another expected status. | Verify Server Address, authentication materials, region/availability zone, and network configuration. |
+| Nodes and monitoring can be verified | Node list, resource usage, and monitoring charts are displayed as expected. | Check RBAC, collection components, monitoring service, and time range. |
+| Specification association can be verified | The target specification appears in the cluster details specification list, and users can select it according to permissions. | Check specification status, cluster capability, and association scope. |
+| Storage configuration can be verified | The new storage appears in the cluster details storage list, and mount path and access mode match the configuration. | Check shared path, container mount path, permissions, and tenant scope. |
 
 ## Configuration Rules and Impact
 
-- **Configuration order**: Create the region and availability zone first, and then register the cluster under the corresponding availability zone.
-- **Cluster onboarding dependencies**: API Server reachability, valid authentication materials, and correct CIDR and port planning are prerequisites for cluster onboarding.
-- **kubeconfig auto-fill**: Pasting kubeconfig can improve form completion efficiency, but automatic parsing results still need manual verification.
-- **Network configuration**: `cluster CIDR`, `service CIDR`, and NodePort range should be filled in according to network planning to avoid conflicts with platform, node, and service network segments.
-- **Specification association**: Clusters without associated specifications may be unable to carry certain job specifications.
-- **Storage binding**: `hostpath` depends on node-local paths, and `nfs` depends on network shared paths. Nonexistent paths, insufficient permissions, or unreachable services can all cause job mount failures.
-- **Node status**: A node being `Ready` does not mean resources are sufficient. CPU, GPU, memory, disk, and job distribution must also be considered.
-- **Monitoring data**: Monitoring charts are used for trend analysis. If data is missing, troubleshoot collection components, ports, and time ranges together.
-- **Disable impact**: Disabling a cluster affects new job scheduling. Confirm running jobs, alternative resources, and the maintenance window before the operation.
+- **Configuration order**: Create the region and availability zone first, and then create the cluster under the corresponding availability zone.
+- **Onboarding dependencies**: Server Address reachability, valid authentication materials, and correct CIDR and port planning are prerequisites for cluster onboarding.
+- **Auto parsing**: Pasting kubeconfig can improve form completion efficiency, but the parsing result still requires manual verification.
+- **Network impact**: Cluster CIDR, Service CIDR, and NodePort affect Pod, Service, and platform access paths.
+- **Scheduling impact**: After creation, the cluster enters the platform scheduling scope, and later specifications, storage, and authorization configuration may reference it.
+- **Specification impact**: Associating specifications changes which resource specifications users can select when creating jobs. Incorrect configuration may cause scheduling failure or resource request mismatch.
+- **Storage impact**: Adding storage changes job mount paths, read/write permissions, and tenant access scope. Incorrect configuration may cause inaccessible data or unauthorized access.
+- **Monitoring impact**: Monitoring data is used for capacity analysis and troubleshooting. If data is missing, check collection components, ports, and time ranges together.
+- **Operations impact**: Disabling, enabling, or deleting a cluster may affect job scheduling and business availability. Confirm the maintenance window and rollback plan in advance.
 
 ## FAQ
 
-### The Cluster Does Not Appear in the List After Registration
+#### The cluster does not appear in the list after registration
 
-**Symptom:** After submitting registration and returning to the cluster list, the new cluster is not visible.
-
-**Possible causes:**
-
-- Current filters have filtered out the new cluster.
-- The cluster is still onboarding, or the registration result has not been refreshed.
-- The registration name does not match the search condition.
-- The registration request failed, but the error prompt was not handled in time.
+**Symptom:** After registration is submitted, the new cluster is not visible in the cluster list.
 
 **Resolution:**
 
-1. Click `Reset` to clear filter conditions.
-2. Check whether the list is filtered by status, region, or availability zone.
+1. Click `Reset` to clear filters.
+2. Check status, region, or availability zone filters.
 3. Search by registration name keyword.
 4. Refresh the page and check again.
-5. If it is still not visible, return to the registration page or operation records to confirm whether the submission succeeded.
+5. If it is still not visible, confirm whether submission succeeded and check page errors or operation records.
 
-### Cluster Registration Fails
+#### Cluster registration fails
 
-**Symptom:** Registration fails after submission, or the page reports exceptions in connection, authentication, or network fields.
-
-**Possible causes:**
-
-- The API Server address cannot be accessed from the platform side.
-- The CA certificate, client certificate, private key, token, or password is invalid.
-- The authentication method is inconsistent with the authentication materials in kubeconfig.
-- The Pod CIDR, Service CIDR, or port range conflicts with network planning.
-- The target region or availability zone cannot be used for cluster onboarding.
+**Symptom:** Registration fails after submission, or the page reports connection, authentication, or network field errors.
 
 **Resolution:**
 
-1. Check whether the API Server address can be accessed from the platform side.
-2. Verify the CA certificate, authentication method, and authentication materials with the cluster administrator.
-3. Check whether the Pod CIDR, Service CIDR, and port range comply with network planning.
+1. Check whether the Server Address can be reached from the platform side.
+2. Verify Authentication Certificate, authentication type, and authentication materials with the cluster administrator.
+3. Check whether Cluster CIDR, Service CIDR, and NodePort comply with network planning.
 4. Check the status of the target region and availability zone.
-5. Locate the specific field according to the page error prompt and resubmit.
+5. Locate the specific field according to page prompts and reconfigure it.
 
-### Cluster Status Is Unavailable
+#### Cluster status is unavailable
 
-**Symptom:** The cluster appears in the list, but its status is not available, or resource information cannot be loaded normally.
-
-**Possible causes:**
-
-- The Kubernetes API Server is inaccessible.
-- Authentication materials have expired or permissions are insufficient.
-- Nodes are not in the `Ready` state.
-- Network connectivity between the platform side and the cluster side is abnormal.
-- Monitoring or resource collection components are not working normally.
+**Symptom:** The cluster appears in the list, but its status is not available, or resource information cannot load normally.
 
 **Resolution:**
 
-1. Check whether the Kubernetes API Server is accessible.
+1. Check Kubernetes server address connectivity.
 2. Check whether authentication materials have expired or permissions are insufficient.
 3. Go to the cluster nodes page and check whether nodes are `Ready`.
 4. Check network connectivity between the platform side and the cluster side.
-5. View node resource monitoring or collection component status, and confirm whether data is reported normally.
+5. Check monitoring or resource collection component status.
 
-### The Node List Is Empty
+#### The node list is empty
 
 **Symptom:** After entering `Cluster Nodes`, the node information list has no data.
 
-**Possible causes:**
-
-- Cluster registration has not been completed and is still onboarding.
-- The authentication account does not have permission to read nodes.
-- The Kubernetes cluster itself has no visible nodes.
-- API Server connection or permission verification is abnormal.
-
 **Resolution:**
 
-1. Confirm that cluster registration has been completed and is not onboarding.
-2. Check whether the authentication account has permission to read nodes.
-3. Check whether the Kubernetes cluster itself has nodes.
+1. Confirm that cluster registration has completed and is not still onboarding.
+2. Check whether the authentication account can read nodes.
+3. Check whether the Kubernetes cluster itself has visible nodes.
 4. Refresh the page or reopen the cluster nodes page.
-5. If the list is still empty, contact the cluster administrator to verify API Server and RBAC permissions.
+5. If it is still empty, contact the cluster administrator to verify Server Address and RBAC permissions.
 
-### A Specification Cannot Be Selected
+#### A specification cannot be selected
 
-**Symptom:** Users cannot select a specification when creating a job, or the target specification does not appear in the specification list.
-
-**Possible causes:**
-
-- The target specification has not been associated with the cluster.
-- The specification itself is not enabled or does not match the current job type.
-- The region, availability zone, or cluster scope selected for the job is inconsistent with the specification association.
+**Symptom:** Users cannot select a specification when creating a job.
 
 **Resolution:**
 
 1. Open cluster details and confirm that the target specification has been associated.
 2. Check whether the specification itself is enabled.
-3. Check whether the region, availability zone, and cluster scope selected for the job are consistent with the specification association.
+3. Check whether the selected region, availability zone, and cluster scope are consistent with the specification association.
 4. After saving the specification association, re-enter the job creation flow and confirm whether the specification appears.
 
-### Storage Mount Is Abnormal
+#### Storage mount is abnormal
 
-**Symptom:** After a job starts, it cannot access the shared directory, or read/write to the mount path fails.
-
-**Possible causes:**
-
-- The shared path or container path is incorrect.
-- The `nfs` service address is unreachable, the directory is not exported, or permissions are insufficient.
-- The `hostpath` target node local path does not exist or permissions are insufficient.
-- The tenant scope or read/write policy is inconsistent with business expectations.
-- The container path conflicts with the application directory or system directory.
+**Symptom:** After a job starts, it cannot access the shared directory, or mount path read/write fails.
 
 **Resolution:**
 
 1. Check whether the shared path and container path are correct.
 2. For `nfs`, check the NFS service address, directory export, and network connectivity.
 3. For `hostpath`, check whether the target node local path exists and has correct permissions.
-4. Check whether the tenant scope and read/write policy meet business expectations.
+4. Check whether tenant scope and read/write policy meet business expectations.
 5. Use a test job to verify whether the directory is readable and writable.
 
-### Resource Monitoring Has No Data
+#### Resource monitoring has no data
 
-**Symptom:** The node resource monitoring chart is empty, or only some monitoring types have data.
-
-**Possible causes:**
-
-- The monitoring service port is incorrect or inaccessible.
-- The node monitoring collection component is not running.
-- The query time range has no data points.
-- The target node is offline or in an abnormal state.
+**Symptom:** Node resource monitoring charts are empty, or only some monitoring types have data.
 
 **Resolution:**
 
@@ -623,76 +322,43 @@ Before deleting a cluster, confirm the following:
 2. Check whether the node monitoring collection component is running.
 3. Adjust the query time range and sampling interval.
 4. Check whether the target node is online.
-5. If only AI accelerator card monitoring is empty, confirm whether the node has the corresponding accelerator card and collection capability.
+5. If only AI accelerator monitoring is empty, confirm whether the node has the corresponding accelerator card and collection capability.
 
-### The Registration Name Is Not Standardized and Is Difficult to Maintain Later
+#### The registration name is hard to maintain after using a poor name
 
-**Symptom:** The cluster has been registered, but the registration name is unclear, making it difficult to identify region, environment, purpose, or capacity ownership during later troubleshooting.
-
-**Possible causes:**
-
-- A temporary name was used, such as `test1`.
-- A name with no business meaning was used, such as `aaa`.
-- A name without environment or region information was used, such as `cluster01`.
-- No unified naming plan was defined before registration.
+**Symptom:** The cluster has been registered, but the registration name is unclear, making it difficult to identify region, environment, purpose, or capacity ownership.
 
 **Resolution:**
 
-1. When creating a new cluster, prioritize names that reflect the environment, region, and purpose.
-2. Recommended names: `wuhan-gpu-1`, `prod-wuhan-gpu-1`, `dev-shanghai-cpu-1`.
-3. Not recommended: `test1`, because its test meaning becomes invalid over time; `aaa`, because it cannot identify resource ownership; `cluster01`, because it lacks region and purpose information.
-4. If the page does not provide an entry to edit the registration name, the name will affect operations identification for a long time. If the name already affects maintenance, plan new cluster onboarding and job migration.
+1. When creating a new cluster, prioritize names that reflect environment, region, and purpose.
+2. Recommended names should reflect environment, region, and resource type.
+3. Avoid temporary or unclear names such as `test1`, `aaa`, or `cluster01`.
+4. If the page does not provide an entry to edit the registration name, plan new cluster onboarding and job migration.
 
-### Should the Storage Type Be nfs or hostpath?
+#### Disabling a cluster fails or the impact scope is unclear
 
-**Symptom:** When adding storage, you are not sure whether to select `nfs` or `hostpath`.
-
-**Possible causes:**
-
-- Network shared directories and node-local directories are not distinguished.
-- It is unclear whether jobs will be scheduled across nodes.
-- It is unclear whether data needs to be shared across multiple nodes.
-
-**Resolution:**
-
-1. For multi-node sharing, model repositories, or dataset sharing, prefer `nfs`.
-2. Consider `hostpath` only when the job depends on a single node-local directory and the job scheduling scope is controllable.
-3. If a job may be scheduled to different nodes, do not use a `hostpath` that exists only on a single node casually.
-4. In production environments, use a test job to verify read/write and mount paths before adding storage.
-
-### Disabling a Cluster Fails or the Impact Scope Is Unclear
-
-**Symptom:** Disabling or enabling fails after clicking the operation, or you are not sure which jobs disabling will affect.
-
-**Possible causes:**
-
-- The cluster still has running jobs or online IDE.
-- The current account has insufficient permissions.
-- The platform detects resource dependencies or a status that does not allow switching.
-- The business side has not prepared an alternative cluster.
+**Symptom:** Disabling or enabling fails after clicking the operation, or the impact scope is unclear.
 
 **Resolution:**
 
 1. Go to `Cluster Nodes > Job Information` and confirm running instances, online IDE, and running jobs.
 2. Confirm whether an alternative cluster can take over new job scheduling.
-3. Disable the cluster within the maintenance window and notify relevant business teams in advance.
+3. Disable the cluster within the maintenance window and notify related business teams in advance.
 4. If disabling fails, handle dependent resources according to the confirmation prompt or contact platform operations.
 
-## Follow-Up Operations
+## Next Steps
 
-After completing cluster registration and basic configuration, continue checking the following items:
-
-1. The cluster status is as expected, and the cluster can be seen on both the list and details pages.
-2. The node list is visible, and key node status is `Ready` or meets operations expectations.
-3. Required specifications have been associated, and users can select the target specifications when creating jobs.
-4. Required storage has been added, and a test job has confirmed that it can be mounted and read/write normally.
-5. Node resource monitoring has data, and the time range, sampling interval, and monitoring type can be switched normally.
-6. Test jobs can run, images can be pulled, resources can be scheduled, and logs and results meet expectations.
+1. Return to the `Cluster Management` list and verify cluster status, region/availability zone, and resource usage.
+2. Open cluster details and verify device information, basic information, associated specifications, and storage configuration.
+3. Associate specifications with the cluster as needed so users can select target specifications when creating jobs.
+4. Configure shared storage as needed, and use a test job to verify mounting, read/write, and path isolation.
+5. View node resource monitoring and confirm that monitoring data, time range, and monitoring type can be switched normally.
 
 ## Notes
 
-- Registration names, cluster names, storage names, and specification associations should be named according to long-term operations planning. Avoid temporary names.
-- Before taking screenshots, check whether the page exposes certificates, private keys, tokens, passwords, AK/SK, complete kubeconfig, or internal sensitive data.
-- kubeconfig, certificates, and authentication materials are used only for cluster onboarding and should not be pasted directly as documentation examples.
-- Before disabling, enabling, deleting storage, or deleting clusters, confirm the impact scope, business window, alternative resources, and rollback plan.
-- The current account needs permissions to view, register, associate specifications, manage storage, and view nodes. If buttons are invisible or dropdowns are empty, check permissions and resource status first.
+- Cluster creation/registration connects a real Kubernetes cluster to platform scheduling, monitoring, and resource management.
+- kubeconfig, certificates, private keys, tokens, and passwords are sensitive materials and must not be written into documents, screenshots, tickets, or commit records.
+- Incorrect region/availability zone, Server Address, authentication type, CIDR, or NodePort may cause onboarding failure, network conflicts, or scheduling exceptions.
+- Associating specifications and adding storage affect real job specifications, mount paths, read/write permissions, and data access scope.
+- `Save`, `Submit`, and `OK` are high-risk final actions.
+- Do not write real kubeconfig, certificates, private keys, tokens, passwords, shared paths, internal addresses, server addresses, accounts, keys, AK/SK, cluster IDs, resource pool IDs, or internal test parameters.

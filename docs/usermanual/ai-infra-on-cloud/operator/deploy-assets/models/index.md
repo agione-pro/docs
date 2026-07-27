@@ -1,147 +1,186 @@
-# Model Assets
+# Models
 
-:::: info Document Information
+::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
-::::
+Updated: 2026-07-20
+:::
 
 ## Feature Overview
 
-`Model Assets` is used to maintain deployable models, meta-models, output configurations, request parameters, and code examples, supporting multi-cloud scheduling, resource authorization, and model deployment workflows.
+`Models` is used to maintain model assets that can be deployed on cloud. Operators can view the model list and use the `Add Model` flow to select a meta model, configure cloud deployment points, assign a cloud model, select a compute plan, and complete output configuration.
 
 | Item | Content |
 | --- | --- |
 | Applicable role | Operator |
-| Navigation path | Deployment Assets > Models |
-| Page route | /operator/deploy-assets/models |
-| Managed objects | Deployable models, meta-models, output configurations, request parameters, and code examples |
-| Typical use | Maintain deployable cloud model assets |
+| Navigation path | AI Infrastructure > On-Cloud > Deploy Assets > Models |
+| Page route | `/infrahub/op/model/model` |
+| Managed objects | Models, meta models, cloud deployment points, cloud models, compute configuration, and output configuration |
+| Typical use | Add deployable model assets for later quick access or deployment flows |
 
-### Beginner View
+#### Beginner Explanation
 
-Model assets are like dish descriptions on a deployment menu. They tell users which models can be deployed, which meta-model each model belongs to, what invocation parameters are used, and how invocation examples are generated after deployment.
+The Models page works like the model shelf in the deployment flow. `Add Model` first selects the model capability definition, then binds it to a specific cloud platform, region, cloud model, and compute configuration, and finally completes the request URL, method, parameters, and code samples generated after deployment.
 
-### Terms
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Meta-model | Abstract model that describes model base capabilities and protocol. |
-| Output configuration | Configuration that generates invocation address, request method, request headers, and parameters after deployment. |
-| Model parameters | Default request parameters passed to the model service. |
-| Code example | SDK, curl, or HTTP example generated for callers. |
+| Meta Model | Base model definition that describes capabilities, modalities, protocol compatibility, and context window. |
+| Cloud Deployment Point | Deployment target composed of a cloud platform and region. |
+| Cloud Model | Real cloud-side model under a cloud account that can be referenced by the model asset. |
+| Compute Plan | Runtime configuration such as model framework, image, CPU, memory, GPU, and specification. |
+| Output Configuration | Configuration used to generate request URL, request method, request headers, request parameters, and code samples after deployment. |
 
 ## Prerequisites
 
-1. Meta-model, provider, and deployment framework are ready.
-2. Request URL, default parameters, and output configuration have been confirmed.
-3. Model asset authorization scope and business region have been confirmed.
+1. The target meta model has been configured and can be selected in the `Meta Model` step.
+2. The cloud platform, region, cloud account, and cloud model to be used have been connected.
+3. The model framework, inference image, and available specifications are ready.
+4. The model source, runtime configuration, output configuration, and authorization scope have been confirmed.
 
 ## Page Description
 
-The page is used to maintain deployable model assets, including model name, meta-model, provider, request parameters, output configuration, and code examples. Operators should ensure that model assets are consistent with deployment frameworks, runtime images, and authorized resources.
+This page is used to view and add model assets. The list supports filtering by `Model Name` and `Model Type`, and provides `Search`, `Reset`, `Export`, `Import`, and `Add Model`. Model cards display model name, model identifier, model type, version, capability tags, update time, and action entries such as `Details`, `Edit`, and more actions.
 
 Page screenshot:
 
-![Model Asset List](./images/models.png)
-
-Used to view deployable models, meta-models, and deployment configurations.
+![Models List](./images/models-list.png)
 
 ## Main Operations
 
-### Procedure
+### Add Model
 
-1. Go to `Deployment Assets > Models`.
-2. Filter by model name, meta-model, provider, or enablement status.
-3. When adding a model asset, fill in model name, meta-model, and provider information.
-4. Configure request URL placeholder examples, request parameters, output fields, and code examples.
-5. After saving, confirm that users can select this model on the Quick Deployment page.
+1. Go to `AI Infrastructure > On-Cloud > Deploy Assets > Models`.
+2. Click `Add Model` to open the add model page.
+3. In the `Meta Model` step, filter by author, type, or keyword, select the target meta model, and verify the selected meta model, capability and access constraints, modalities, capabilities, protocol compatibility, and meta model profile.
+4. Click `Next` to enter `Deployment Configuration`.
+5. Click `Add Deployment Point`, select a cloud platform and region according to the page filters, and save the deployment point.
+6. In the deployment point, click `Assign Cloud Model`, select `Cloud Account` and `Cloud Model`, and click `Save`.
+7. Click `Select Compute Plan` or `Adjust Compute Plan`, select the model framework, image, and deployment specification, verify GPU, CPU, memory, and price/billing cycle, and click `Save`.
+8. Click `Add Output Configuration`, configure request URL, request method, request headers, request parameters, parameter type, and required flag, and click `Save`.
+9. Before clicking `Next` to enter `Confirm Configuration / Listed Version`, verify the model source, cloud deployment point, cloud model, compute plan, and output configuration again.
+10. For learning or page validation only, stay at field review and configuration verification. Do not submit real model configuration or list a version.
 
-Key step screenshots:
+In Step 3, use the following page to check model capabilities, modalities, protocol compatibility, and access constraints.
 
-![Select Meta-Model](./images/step-1-meta-model.png)
+![Select Meta Model](./images/meta-model.png)
 
-First confirm that model capabilities match the meta-model.
+In Step 5, use the following page to add a deployment point composed of a cloud platform and region.
 
-![Add Cloud Deployment Point](./images/step-2-add-cloud-deployment-point.png)
+![Add Deployment Point](./images/add-deployment-point.png)
 
-Deployment points determine which cloud resources the model can be deployed to.
+In Step 6, select a cloud account in the deployment point and assign a cloud model under that account.
 
-![Select Compute Plan](./images/step-2-select-compute-plan.png)
+![Assign Cloud Model](./images/assign-cloud-model.png)
 
-The compute plan must be consistent with resource pool capacity and scheduling policies.
+In Step 7, select the model framework, image, and deployment specification, then check resources and billing information.
 
-![Confirm Model Configuration](./images/step-3-confirm-configuration.png)
+![Select Compute Plan](./images/select-compute-plan.png)
 
-Before submission, confirm that no real keys or internal Endpoint values exist in the configuration.
+In Step 8, configure the request URL, method, headers, and parameters required for model calls.
 
-### Parameters
+![Add Output Configuration](./images/add-output-configuration.png)
 
-| Field | Required | Type | Example | Description |
+In Step 9, use the confirmation page to review the model source, deployment point, compute plan, and output configuration before submission.
+
+![Confirm Model Configuration](./images/confirm-configuration.png)
+
+## Parameter Reference
+
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model name | Yes | Text | `qwen-cloud-7b` | Display name of the cloud deployment asset. |
-| Meta-model | Yes | Dropdown | `Qwen Text` | Associated model capability, protocol, and modality. |
-| Provider | Conditionally required | Dropdown | `provider-a` | Model source or cloud provider supplier. |
-| Request URL | Conditionally required | URL | `https://api.example.com/v1/chat/completions` | Use placeholders only. Real internal addresses are prohibited. |
-| Default parameters | No | JSON | `{"max_tokens":1024}` | Default request parameters used during deployment invocation. |
+| Model Name | Yes | Text | `Sample Model` | Model name displayed in the Models list and details. |
+| Model Type | No | Dropdown/Tag | `Conversation` | Used to filter or identify the model capability type. |
+| Meta Model | Yes | Single select | `Sample Meta Model` | Base model definition selected in the first add model step. |
+| Cloud Deployment Point | Yes | List/Selection | `Sample Cloud - Sample Region` | Each deployment point binds one cloud platform and region. |
+| Cloud Account | Conditionally required | Dropdown | `Sample Cloud Account` | Cloud account selected when assigning a cloud model. |
+| Cloud Model | Conditionally required | Dropdown | `Sample Cloud Model` | Cloud-side model that can be bound to the current model. |
+| Model Framework | Yes | Single select/Table | `Sample Framework` | Framework that can run the model. |
+| Type | No | Text | `vllm` | Model framework type. |
+| Version | No | Text | `v1.0` | Framework or model version. |
+| Image | Yes | Text | `registry.example.com/runtime:tag` | Runtime image address. Use placeholders only in documentation. |
+| GPU Model | No | Text | `Sample GPU` | Used to filter deployment specifications. |
+| GPU Count | No | Number | `1` | Used to filter deployment specifications. |
+| CPU Cores | No | Number | `4` | CPU configuration in a deployment specification. |
+| Memory (GB) | No | Number | `16` | Memory configuration in a deployment specification. |
+| Card Type | No | Dropdown | `GPU` | Card type used when filtering specifications. |
+| Specification | Yes | Single select | `example.spec` | Actual deployment specification name. |
+| Price / Billing Cycle | No | Text | `--` | Price or billing cycle shown on the page. Confirm cost impact before configuration. |
+| Request URL | Yes | Text | `{request_url}` | Generated after deployment. Do not write real internal addresses. |
+| Request Method | Yes | Dropdown | `POST` | Request method in output configuration. |
+| Request Headers | No | Table | `Authorization` | Request header configuration. Do not write real credentials. |
+| Request Parameters | No | Table | `temperature` | Request parameter configuration. |
+| Parameter type | No | Dropdown | `string` | Type of a request header or request parameter. |
+| Required | No | Checkbox | `Yes` | Marks whether a parameter is required. |
+| Save | Yes | Button | `Save` | Saves the current dialog or configuration block. |
+| Next | Yes | Button | `Next` | Moves to the next configuration step. |
 
-### Pitfalls
+## Pitfalls
 
-- Before enabling a model asset, confirm that framework, image, and resource specification are all available.
-- Request URL, request headers, and code examples can only use placeholders.
-- Before taking a model asset offline, check whether existing user deployments depend on it.
+- Adding a model is a multi-step configuration. Mismatches between meta model, cloud model, framework, image, and specification may cause later deployment failures.
+- Image addresses, request URLs, request headers, default parameter values, and code samples must use placeholders or sanitized content.
+- `Import` may update model assets in bulk, and `Export` may contain sensitive operational configuration. Do not perform real import or export during learning or validation.
+- The screenshots do not show a standalone storage path field, so this page does not document storage path as a confirmed UI field.
 
-### Result Validation
+## Result Validation
 
-1. The model asset is visible in the list and its status is enabled.
-2. The Quick Deployment page can select this model.
-3. Generated invocation examples do not contain real credentials or internal addresses.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page is accessible | The `Models` page and model card list are displayed. | Check menu permissions, route, and login status. |
+| Model list loads | The list displays model name, model type, version, tags, and action entries. | Check filters, data permissions, and API status. |
+| Add entry is visible | `Add Model` is displayed in the upper-right corner. | Check operator permissions and page configuration. |
+| Add flow opens | The `Meta Model`, `Deployment Configuration`, and `Confirm Configuration / Listed Version` flow opens. | Refresh the page and retry. If the issue persists, contact the administrator. |
+| Required fields and validation prompts work | Meta model, deployment point, cloud account, cloud model, compute plan, and output configuration can be completed according to page prompts. | Complete the prompted fields and verify cloud platform, account, and resource status. |
+| No real submission during learning | No real save, submit, or listing action is performed. | If submitted by mistake, immediately check affected model assets, deployment points, and output configuration. |
+| Real submission can be tracked | The new model appears in the list, and status, deployment point, framework, and output configuration can be viewed. | Return to model details and verify downstream deployment flow. |
 
 ## FAQ
 
-### Users Cannot See the Model on the Deployment Page
+#### Users Cannot See the Model on the Deployment Page
 
 **Issue Symptom:**
 
-A model asset has been created, but users cannot select it during Quick Deployment.
+A model asset has been created, but users cannot select it in the quick access or deployment flow.
 
 **Possible Causes:**
 
-- The model asset is not enabled.
-- No available framework or runtime image is bound.
-- The model is not authorized to the user's business region.
+- Model configuration is incomplete or no version has been listed.
+- Cloud deployment point, cloud model, compute plan, or output configuration is missing.
+- Tenant-cloud authorization or business-region authorization is incomplete.
 
 **Handling:**
 
-1. Confirm model asset enablement status.
-2. Verify framework, image, and resource specification associations.
-3. Check tenant and business region authorization.
+1. Check deployment points, cloud model, compute plan, and output configuration in model details.
+2. Confirm whether model confirmation or listing has been completed.
+3. Verify tenant and business-region authorization.
 
-### Invocation Example Is Incorrect After Deployment
+#### Invocation Example Is Incorrect After Deployment
 
 **Issue Symptom:**
 
-The service is created successfully, but the path or parameters in the invocation example are unavailable.
+The service is created successfully, but the URL, request method, headers, or parameters in the invocation example are unavailable.
 
 **Possible Causes:**
 
 - Output configuration field mapping is incorrect.
-- Meta-model protocol does not match request parameters.
-- Code examples still use old-version parameters.
+- Required request headers or request parameters are missing.
+- Code samples still use old-version parameters or unsanitized content.
 
 **Handling:**
 
-1. Check output configuration and protocol path.
-2. Verify meta-model default parameters.
-3. Regenerate or update code examples.
+1. Check request URL, request method, request headers, and request parameters in output configuration.
+2. Verify parameter type, default value, and required flag.
+3. Save output configuration again and regenerate the invocation example.
 
 ## Next Steps
 
-1. Maintain deployment frameworks and runtime images.
-2. Configure business region authorization.
-3. Create one quick deployment from the user perspective.
+1. Review deployment points, compute plan, and output configuration on the model details page.
+2. Configure or check Tenant-Cloud Auth and Business-Region Auth.
+3. Validate from the user perspective that the model can be selected in quick access or deployment flows.
 
 ## Notes
 
-- Request URL and request headers can only use placeholders.
-- Check existing deployment dependencies before taking a model offline.
-- Invocation examples must not contain real credentials.
+- Adding a model may register real model files, image addresses, cloud models, and runtime configuration.
+- Incorrect model source, image, file path, or runtime framework may cause deployment failure, resource waste, or exposure of sensitive model assets.
+- `Save`, `Submit`, `OK`, and `List` are high-risk final actions. This document only describes field review and pre-submission checks, and does not guide users to submit during testing or learning.
+- Do not write real model repository URLs, keys, tokens, AK/SK, internal storage paths, cloud resource IDs, internal endpoints, or internal test parameters.

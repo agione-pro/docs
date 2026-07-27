@@ -1,9 +1,9 @@
 # Device Monitoring
 
-:::: info Document Information
+::: info Document Information
 Version: v1.0
 Updated: 2026-07-08
-::::
+:::
 
 ## Feature Overview
 
@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation Path | Monitoring > Device Monitoring |
-| Page Route | `/powerone/monitor/devices` |
-| Managed Objects | Accelerator devices such as GPU/NPU, VRAM, utilization, temperature, and health status |
-| Typical Use | Discover high accelerator load, insufficient VRAM, missing cards, and hardware health issues |
+| Applicable role | Operator |
+| Navigation path | AI Infrastructure > On-Prem > Monitoring > Device Monitoring |
+| Page route | `/powerone/monitor/device` |
+| Managed objects | Accelerator devices such as GPU/NPU, VRAM, utilization, temperature, and health status |
+| Typical use | Discover high accelerator load, insufficient VRAM, missing cards, and hardware health issues |
 
-### Beginner View
+#### Beginner Explanation
 
 Device monitoring is like an accelerator dashboard. It observes GPU/NPU utilization, VRAM, temperature, and health status to determine whether compute cards can continue hosting tasks.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -43,43 +43,65 @@ Device monitoring is used to view GPU/NPU utilization, VRAM, temperature, and he
 
 The following figure shows the device monitoring page.
 
-![Device Monitoring](./images/monitoring-devices.png)
+![Device Monitoring](./images/devices-list.png)
 
-## View Device Monitoring
+## Main Operations
 
-### Procedure
+### View Device Monitoring
 
-1. Go to `Monitoring > Device Monitoring`.
+#### Procedure
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Device Monitoring`.
 2. Confirm the region in the upper-right corner and page filters.
 3. View lists, charts, or statistic cards.
 4. Focus on abnormal status, high watermarks, long periods without updates, or data inconsistent with expectations.
 5. When a device is abnormal, combine node statistics, job monitoring, and underlying driver status to judge whether it is job occupation or a hardware issue.
 
-### Key Focus
+#### View Device Monitoring
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Device Monitoring`.
+2. View the device list and overall running status, and confirm device ID, device type, node, cluster, region/AZ, and device status.
+3. Select cluster, node, device type, device status, or time range filters as provided by the page.
+4. Review accelerator usage, VRAM usage, temperature, health status, bound jobs, and exception information to identify unavailable devices, insufficient VRAM, or hardware exceptions.
+5. If a device is abnormal, continue troubleshooting in Nodes or Jobs monitoring pages, together with cluster statistics, node logs, and scheduling events.
+6. For learning or screenshots only, view statistic cards, charts, filters, and lists without modifying any configuration.
+
+![View device monitoring](./images/device-monitoring.png)
+
+#### Key Focus
 
 - Whether devices are identified and continuously reported.
 - Whether VRAM and utilization are close to limits.
 - Whether temperature, error counts, or health status are abnormal.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Device Model | Yes | Text | `NVIDIA A800` | Shows GPU/NPU or other accelerator model. |
-| Owning Node | Conditionally required | Text | `node-gpu-01` | Locates the node where the device resides. |
 | Device ID | System-generated | Text | `GPU-0` | Distinguishes multiple devices on the same node. |
-| GPU/NPU Utilization | System-generated | Percentage | `92%` | Determines whether compute units are under high load. |
-| VRAM Usage | System-generated | Capacity | `62 GB / 80 GB` | Determines whether a model or job occupies all VRAM. |
+| Device Type | Yes | Text | `NVIDIA A800` | Shows GPU/NPU or other accelerator type and model. |
+| Node | Conditionally required | Text | `node-gpu-01` | Locates the node where the device resides. |
+| Cluster | Conditionally required | Text | `cluster-prod-a` | Locates the cluster to which the device belongs. |
+| Region / AZ | Conditionally required | Drop-down | `Wuhan / AZ A` | Limits the resource location to which the device belongs. |
+| Device Status | System-generated | Status | `Normal` | Shows whether the device is available, alerted, or offline. |
+| Accelerator Usage | System-generated | Percentage | `92%` | Determines whether compute units are under high load. |
+| VRAM Usage | System-generated | Percentage / Capacity | `62 GB / 80 GB` | Determines whether a model or job occupies all VRAM. |
 | Temperature | System-generated | Number | `71°C` | Helps judge cooling and hardware health. |
 | Health Status | System-generated | Status | `Normal` | Shows whether the device is available, alerted, or offline. |
+| Bound Job | System-generated | Text / Number | `Running job` | Shows jobs currently associated with or occupying the device. |
+| Time Range | Conditionally required | Date range | `Last 1 hour` | Controls the query window for statistic cards, trend charts, and list data. |
 
-### Pitfalls
+## Pitfalls
 
 - Full VRAM does not necessarily mean compute is fully loaded. Judge together with utilization.
 - Temperature exceptions should be escalated to operations promptly for hardware and cooling checks.
 - When devices are invisible, check drivers, plugins, and node status first.
+- Device monitoring may have collection latency. Do not judge hardware faults based only on a single instant metric.
+- Device exceptions should be investigated together with node status, job status, scheduling events, device plugins, and node logs.
+- High VRAM watermark does not necessarily mean a device fault. Judge together with bound jobs and model specifications.
+- Do not write real device IDs, node names, node IPs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-### Result Validation
+## Result Validation
 
 1. The device list displays model, node, utilization, VRAM, temperature, and health status.
 2. Abnormal devices can be mapped to nodes and affected jobs.
@@ -94,7 +116,7 @@ The following figure shows the device monitoring page.
 
 ## FAQ
 
-### Device Data Is Empty
+#### Device Data Is Empty
 
 **Symptom:**
 
@@ -112,7 +134,7 @@ The node has accelerators, but device monitoring shows no data.
 2. Check device plugin, driver, and monitoring collection status.
 3. Reset filters and view again by cluster and node.
 
-### Page List Is Empty
+#### Page List Is Empty
 
 **Symptom:**
 
@@ -132,7 +154,7 @@ No monitoring records or charts are visible after entering the page.
 3. Go to resource pool or job pages to confirm whether objects exist.
 4. Contact the platform administrator to check permissions and collection links.
 
-## Follow-Up Operations
+## Next Steps
 
 1. When VRAM is high, enter job monitoring to locate occupying tasks.
 2. When temperature or health is abnormal, contact operations to handle hardware or drivers.
@@ -143,3 +165,5 @@ No monitoring records or charts are visible after entering the page.
 - Device serial numbers, node locations, and internal hardware IDs should be sanitized.
 - Empty utilization does not necessarily indicate an exception. Combine it with the task time range.
 - Device health exceptions should be handled according to hardware procedures first.
+- Before device fault judgment, cross-check with node status, job status, scheduling events, device plugins, and node logs.
+- Documentation examples must not include real device IDs, node names, node IPs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data.

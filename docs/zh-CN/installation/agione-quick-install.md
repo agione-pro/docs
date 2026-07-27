@@ -1,10 +1,42 @@
 # AGIOne 环境安装部署指南
 
-AGIOne 安装器用于在离线或弱网环境中完成 AGIOne 单机交付安装。本文档按“先快速安装，再深入配置，最后运维排障”的方式组织，安装人员优先阅读 **快速安装** 即可开始。
+## 前言
 
-安装前建议先完成环境快速调研，判断是否满足安装部署前置条件，并识别整改与上线风险：
+| 项目 | 内容 |
+| --- | --- |
+| 适用角色 | 首次安装人员、交付工程师、客户运维工程师 |
+| 导航路径 | 部署 > AGIOne 环境安装部署指南 |
+| 功能定位 | 指导用户在单台目标主机上完成 AGIOne 下载、安装、访问验证和交付归档 |
 
-- [环境快速调研](/zh-CN/product/investigation/quick-env-investigation)
+本文档适用于单节点 / All in One 部署。如果你是第一次安装，先按下面的安装时间线走一遍，再回到具体命令细看。
+
+### 新手理解
+
+单节点安装就是让 AGIOne 先在一台 Linux 主机上跑起来：准备主机，打开固定下载页获取安装包，执行 `./agione quick`，最后用浏览器打开安装器输出的访问地址。
+
+## 安装时间线
+
+| 阶段 | 你要做什么 | 完成标志 |
+| --- | --- | --- |
+| 第 1 步：确认主机 | 确认 CPU、内存、磁盘、操作系统和 root 权限 | 主机满足 [主机规格](#主机规格) |
+| 第 2 步：下载安装包 | 打开固定下载页，复制 `Download URL` 和 `MD5 URL` | 安装包下载完成并通过 MD5 校验 |
+| 第 3 步：执行 quick | 执行 `./agione quick`，或带配置文件执行 | 终端输出 `Installation Result` |
+| 第 4 步：浏览器访问 | 打开 `http://<目标主机IP>:18090/modelone/` | 页面可正常打开 |
+| 第 5 步：交付归档 | 保存访问地址、默认账号、健康报告和 handover 包 | 客户或运维团队可接手 |
+
+安装前建议先完成 [环境快速调研](/zh-CN/product/investigation/quick-env-investigation)，判断资源、网络和上线风险。
+
+## 术语速查
+
+| 术语 | 说明 |
+| --- | --- |
+| 交付包 | AGIOne 安装包，包含安装器、镜像、数据库基线和离线运行资源 |
+| `quick` | 一键安装命令，会执行预检、解包、加载镜像、启动服务并输出结果 |
+| `/opt/hyperone` | 默认运行数据目录，AGIOne 服务数据写入这里或安装器选择的数据盘路径 |
+| `/opt/agione-installer-bundle` | 安装器运行目录，包含安装后的报告、渲染配置和输出文件 |
+| `/root/agione-install.yml` | 可选配置文件，用于固定密码、域名、证书、运行路径和其他交付参数 |
+| Nacos | AGIOne 使用的配置中心和服务注册中心 |
+| 默认控制台账号 | 安装完成后面向客户交付的 `operator` 和 `provider` 账号 |
 
 ---
 
@@ -16,7 +48,7 @@ AGIOne 安装器用于在离线或弱网环境中完成 AGIOne 单机交付安�
 | --- | --- | --- |
 | 操作系统 | Linux | ubuntu 22.04 |
 | CPU | 8 核 | CPU 核数必须满足 8 核 |
-| 内存 | 16 GiB | 检测允许少量系统/虚拟化保留损耗，约 `15.2GiB` 以上可通过 |
+| 内存 | 推荐 16 GiB | 安装器要求检测内存至少 `12GiB`；16 GiB 仍是推荐申请规格 |
 | 可用磁盘 | 200 GiB | `runtime_root` 保持默认值时，安装器优先选择可用空间约 `160GiB` 以上的数据盘；无合适数据盘时才回落检查系统盘 |
 | 执行用户 | `root` | 推荐 root 安装，避免 Docker、目录权限和系统服务权限问题 |
 
@@ -26,9 +58,7 @@ AGIOne 安装器用于在离线或弱网环境中完成 AGIOne 单机交付安�
 
 先打开固定下载页，再复制页面中的 `Download URL` 包下载直链。`agione-release-latest` 本身是下载页，不是 `.tar.gz` 安装包直链。
 
-**固定下载页：**
-
-<https://agione.pro/release/download/agione-release-latest>
+固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
 
 页面中同时提供 `MD5 URL`，建议下载后一起校验。
 
@@ -60,6 +90,39 @@ chmod +x ./agione
 ./agione quick
 ```
 
+单节点 quick 默认使用交付包内置的 `compose/agione-app.yaml` 基础模板，不启用 host-mode 可选应用服务组。如果需要把交付参数固化到配置文件，先准备 `/root/agione-install.yml`，再执行：
+
+```bash
+./agione quick --file /root/agione-install.yml
+```
+
+最小可运行示例：
+
+```yaml
+global_config:
+  deploy_mode: single
+  language: en_US
+  offline_mode: true
+
+selected_modules:
+  - agione-app
+
+agione_app:
+  node_mode: all-in-one
+  db:
+    root_password: "DbRoot_2026"
+  redis:
+    password: "Redis_2026"
+  nacos:
+    password: "Nacos_2026"
+    auth_token: "QWdJT25lX05hY29zX0F1dGhUb2tlbl8yMDI2X1BsZWFzZVJlcGxhY2VfNDhCeXRlcw=="
+  default_access:
+    generate_random_passwords: true
+    password_length: 20
+```
+
+如果需要固定域名、HTTPS 证书、默认账号密码、运行目录或其他字段，请阅读 [安装配置文件字段说明](./agione-install-config-reference)。该文档按必填字段到高级字段排序。
+
 安装器会自动执行：
 
 1. 在 `/tmp/agione-quick-check.*` 临时工作区执行安装前检查
@@ -75,7 +138,7 @@ chmod +x ./agione
 
 ### 3. 查看安装结果
 
-安装成功后，`quick` 会在终端末尾输出实际访问入口和默认账号信息。默认控制台账号密码会在每次安装时生成，除非在 `agione_app.default_access.credentials` 中显式配置固定密码。
+安装成功后，`quick` 会在终端末尾输出实际访问入口和面向客户交付的默认账号信息。默认控制台账号密码会在每次安装时生成，除非在 `agione_app.default_access.credentials` 中显式配置固定密码。
 
 `quick` 默认使用英文输出，格式如下：
 
@@ -84,7 +147,6 @@ Installation Result:
 Console URL: http://<target-host-ip>:18090/
 
 Access Information (Account/Password):
-admin <generated-random-password>
 operator <generated-random-password>
 provider <generated-random-password>
 ```
@@ -106,7 +168,7 @@ provider <generated-random-password>
 http://<target-host-ip>:18090/modelone/
 ```
 
-如果使用域名或自定义端口，请以安装配置中的 `domain` / `public_port` 为准。
+如果使用域名或完整访问地址，请以安装配置中的 `agione_app.frontend.domain` / `agione_app.frontend.public_access_url` 为准。
 
 ---
 
@@ -313,7 +375,7 @@ docker-compose -f compose.rendered.yaml ps
 
 ### Q3：为什么申请了 16G 内存，检测不是 16GiB？
 
-云主机、虚拟化平台和操作系统会保留一部分内存，所以检测值常见为 `15.xGiB`。安装器已允许少量保留损耗，约 `15.2GiB` 以上可通过。
+云主机、虚拟化平台和操作系统会保留一部分内存，所以检测值可能低于购买规格。安装器要求检测内存至少 `12GiB`；16 GiB 仍是更平稳启动和运行的推荐申请规格。
 
 ### Q4：安装器如何选择运行数据磁盘？
 
@@ -380,7 +442,7 @@ docker logs <container-name> --tail 300
 建议至少交付：
 
 - 访问地址
-- 管理账号或初始化账号信息
+- 面向客户交付的初始化账号信息
 - `/opt/agione-installer-bundle` 路径
 - `/opt/hyperone` 路径
 - `health` 报告

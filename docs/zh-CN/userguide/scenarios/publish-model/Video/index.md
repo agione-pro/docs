@@ -1,4 +1,22 @@
+---
+prev: false
+next: true
+---
+
 # 发布模型（视频模型）
+
+## 场景目标
+
+视频模型能创建异步任务、正确返回进度，并在发布后得到可播放结果。
+
+## 适用角色
+
+- 模型提供方
+
+## 开始前准备
+
+- 准备模型来源、标识、API 凭证、任务接口、状态接口或回调地址和测试提示词。
+- 确认时长、分辨率、轮询方式、结果有效期、计费、超时和限流。
 
 ## 操作步骤
 
@@ -10,7 +28,7 @@
    - **"发布到公有区"**：上架公有目录，对所有租户的 EU 开放调用，可独立设置定价与限流。
 5. 点击  **"发布到公有区"** 进入发布配置流程（Step 1：基本信息）。
 
-![选择发布区域](./images/Choose-where-to-publish.png)
+![选择发布区域](./images/choose-where-to-publish.png)
 
 ### **Step 1：基本信息**：
 - **模型源/元模型信息**：
@@ -20,23 +38,23 @@
     - 填写 **"API密钥"**（如 `sk-***`）；
     - 填写 **"模型源ID"**（如 `wan2.7-t2v`，即发往上游厂商的精确模型名称）。
 
-![模型源/元模型信息](./images/Step-1-Model-Source_Meta-Model-Information.png)
+![模型源/元模型信息](./images/step-1-model-source-meta-model-information.png)
 
 - **模型类型**：在"模型类型"区块默认 **"视频模型"**，默认并选择 **"模型子类型"**（如 文生视频）。
 
-![模型类型](./images/Step-1-Model-type.png)
+![模型类型](./images/step-1-model-type.png)
 
 - **请求头配置**：认证字段默认为 `Authorization: Bearer <key>`，可点击 **"添加请求头"** 增加自定义字段。
 
-![请求头配置](./images/Step-1-Request-Header-Configuration.png)
+![请求头配置](./images/step-1-request-header-configuration.png)
 
 - **模型参数配置**：
     - 默认 **"输入模态"**（文本 / 语音）；
     - 默认 **"输出模态"**（视频）；
 
-![模型参数配置](./images/Step-1-Model-Parameter-Configuration.png)
+![模型参数配置](./images/step-1-model-parameter-configuration.png)
 
-- **支持协议与默认参数**：至少选择一个协议（视频模型仅 OpenAI-Video 可选），只有先进行协议连通性测试，连通性测试成功后可执行后续操作；测试通过后填写 **"Endpoint"**（如 `https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis`）并配置 **"输入参数"**（Prompt、Negative Prompt、Audio URL、Resolution、Ratio、Prompt Extend、Watermark、Duration、Seed 等，可设置"是否必填"）。
+- **支持协议与默认参数**：至少选择一个协议（视频模型仅 OpenAI-Video 可选），只有先进行协议连通性测试，连通性测试成功后可执行后续操作；测试通过后填写 **"接口地址"**（如 `https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis`）并配置 **"输入参数"**（Prompt、Negative Prompt、Audio URL、Resolution、Ratio、Prompt Extend、Watermark、Duration、Seed 等，可设置"是否必填"）。
 - **调用配置**：
     - 选择 **"调用方式"**：**"异步"**（视频模型通常为异步）；
     - 填写 **"回调地址"**（如 `https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}`，选择厂商模板一键填充参数映射，请选择「自定义」手动填写）；
@@ -49,16 +67,16 @@
       - **失败值**：failValue，默认 `failed`；
       - **URL 提取字段**：urlExtractField，默认 `video_url`。
 
-![官方原生协议与默认高级参数](./images/Step-1-Official-Native-Protocol.png)
+![官方原生协议与默认高级参数](./images/step-1-official-native-protocol.png)
 
 - **基本信息**：
    - 填写 **"个性化标识"**（如 wan2.7-t2v）、**"描述"**。
 
-![基本信息](./images/Step-1-Basic-Information.png)
+![基本信息](./images/step-1-basic-information.png)
 
 - **发布方式**：选择 **"立即发布"** 或 **"定时发布"**。
 
-![基本信息](./images/Step-1-Publication-method.png)
+![基本信息](./images/step-1-publication-method.png)
 
 - 点击 **"下一步"** 进入 Step 2：计费配置。
 
@@ -72,10 +90,10 @@
         - 可启用 **"输入是否包含视频"**（识别字段）；
         - 可启用 **"输出是否包含音频"**（识别字段）；
         - 可启用 **"输出分辨率"**（识别字段 `resolution`）；
-        - **价格矩阵**：必须为每个计价组合填写价格，可点击 **"添加组合"** 新增，按分辨率（480P / 720P 等）分别设置 **"售价"**（Credits/1M tokens），右侧有 **"上调 +20%"** 按钮用于快速调整价格；
+        - **价格矩阵**：必须为每个计价组合填写价格，可点击 **"添加组合"** 新增，按分辨率（480P / 720P 等）分别设置 **"售价"**（Credits/second），右侧有 **"上调 +20%"** 按钮用于快速调整价格；
     - **免费额度**：开启后可设置可领取额度、人数、总量；
 
-![计费配置](./images/Step-2-Billing-Configuration.png)
+![计费配置](./images/step-2-billing-configuration.png)
 
 - 点击 **"下一步"** 进入 Step 3：限流配置。
 
@@ -85,7 +103,7 @@
     - **"RPM（每分钟请求数）"**：输入数值（如 2 次/分钟），可勾选 **"不限制"**；
     - **"TPM（每分钟Token数）"**：输入数值（如 100 Token/分钟），可勾选 **"不限制"**。
 
-![限流配置](./images/Step-3-Rate-Limit-Configuration.png)
+![限流配置](./images/step-3-rate-limit-configuration.png)
 
 - 点击 **"仅保存"** 或 **"提交审核"** 完成发布。
 
@@ -104,7 +122,7 @@
 | 输入模态           | 多选       | `文本 / 语音`                                                                                                 | 必填，模型支持的输入数据类型                      |
 | 输出模态           | 多选       | `视频`                                                                                                      | 必填，模型支持的输出数据类型                      |
 | 支持协议           | 多选       | `OpenAI-Video`                                                                                            | 必填，视频模型兼容的 API 协议，需先进行连通性测试         |
-| Endpoint       | URL      | `https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis`                    | 必填，协议对应的端点地址                        |
+| 接口地址       | URL      | `https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis`                    | 必填，协议对应的端点地址                        |
 | 输入参数           | 参数列表     | `Prompt / Negative Prompt / Audio URL / Resolution / Ratio / Prompt Extend / Watermark / Duration / Seed` | 选填，按协议预设的输入参数（可设置是否必填）              |
 | 调用方式           | 单选       | `异步`                                                                                                      | 必填，视频模型通常为异步调用                      |
 | 回调地址           | URL      | `https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}`                                                   | 必填，异步任务完成后的回调地址                     |
@@ -122,8 +140,29 @@
 | 输入是否包含视频       | 开关       | `开启 / 关闭`                                                                                                 | 选填，识别字段，按输入是否含视频差异化定价               |
 | 输出是否包含音频       | 开关       | `开启 / 关闭`                                                                                                 | 选填，识别字段，按输出是否含音频差异化定价               |
 | 输出分辨率          | 开关       | `开启 / 关闭`                                                                                                 | 选填，识别字段 `resolution`，按分辨率差异化定价      |
-| 价格矩阵           | 分组       | `480P：6 Credits/1M tokens  720P：10 Credits/1M tokens`                                                     | 必填，为每个计价组合分别设置售价（Credits/1M tokens） |
+| 价格矩阵           | 分组       | `480P：6 Credits/second  720P：10 Credits/second`                                                           | 必填，为每个计价组合分别设置按时长计费的售价（Credits/second） |
 | 免费额度           | 开关       | `开启 / 未启用`                                                                                                | 选填，配置模型的免费调用额度                      |
 | 是否启用限流         | 单选       | `启用限流 / 不启用`                                                                                              | 选填，配置模型的调用频率限制                      |
 | RPM（每分钟请求数）    | 数值 / 不限制 | `2 次/分钟`                                                                                                  | 选填，每分钟请求数上限，可勾选"不限制"                |
 | TPM（每分钟Token数） | 数值 / 不限制 | `100 Token/分钟`                                                                                            | 选填，每分钟 Token 数上限，可勾选"不限制"           |
+
+## 完成检查
+
+> **用途：** 以下检查是当前功能任务的退出条件，用于判断操作结果是否可观察、可复核，以及是否可以继续当前场景的下一步。它不是操作步骤的重复；任一项不满足时，请按下方“常见失败分支”继续排查。
+
+| 检查项 | 通过标准 |
+| --- | --- |
+| 1 | 任务创建、状态查询或回调以及结果解析均通过测试。 |
+| 2 | 发布或审核状态符合预期。 |
+| 3 | 受控调用返回可播放视频，调用日志可定位。 |
+
+## 常见失败分支
+
+| 现象 | 优先检查 |
+| --- | --- |
+| 任务创建后不结束 | 状态接口、任务 ID 映射、轮询间隔、回调和超时 |
+| 结果地址不可用 | 返回映射、地址有效期、存储权限和内容策略 |
+
+## 操作手册
+
+[查看“我的模型”完整字段和发布结果校验](/zh-CN/usermanual/model-services/user/studio/my-models/)

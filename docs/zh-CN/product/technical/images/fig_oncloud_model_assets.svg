@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="840" viewBox="0 0 1600 840" role="img" aria-labelledby="title desc">
+  <title id="title">AI Infra On-Cloud 云侧模型资产发布流程</title>
+  <desc id="desc">从维护推理框架、关联运行时镜像、选择元模型、配置云侧部署点、配置算力与输出到发布模型市场。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#667085"/>
+    </marker>
+    <style>
+      .title { font: 700 38px Arial, "Microsoft YaHei", sans-serif; fill: #182230; letter-spacing: 0; }
+      .subtitle { font: 400 21px Arial, "Microsoft YaHei", sans-serif; fill: #475467; letter-spacing: 0; }
+      .step { font: 700 19px Arial, "Microsoft YaHei", sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; letter-spacing: 0; }
+      .card-title { font: 700 25px Arial, "Microsoft YaHei", sans-serif; fill: #182230; text-anchor: middle; letter-spacing: 0; }
+      .card-desc { font: 400 18px Arial, "Microsoft YaHei", sans-serif; fill: #475467; text-anchor: middle; letter-spacing: 0; }
+      .phase { font: 700 17px Arial, "Microsoft YaHei", sans-serif; fill: #344054; text-anchor: middle; letter-spacing: 0; }
+      .note { font: 700 19px Arial, "Microsoft YaHei", sans-serif; fill: #20304a; text-anchor: middle; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="840" fill="#ffffff"/>
+  <text x="72" y="62" class="title">AI Infra On-Cloud 云侧模型资产发布</text>
+  <text x="72" y="100" class="subtitle">把模型展示信息与多云部署能力组合为可发布、可推荐的模型记录</text>
+
+  <text x="120" y="142" class="phase" text-anchor="start">阶段一 · 准备模型与运行环境</text>
+  <g stroke="#667085" stroke-width="3" marker-end="url(#arrow)">
+    <line x1="520" y1="270" x2="594" y2="270"/>
+    <line x1="1000" y1="270" x2="1074" y2="270"/>
+  </g>
+
+  <g transform="translate(120 160)">
+    <rect width="400" height="220" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#4b6fae"/><text x="38" y="38" class="step">1</text>
+    <text x="200" y="76" class="card-title">维护推理框架</text>
+    <text x="200" y="122" class="card-desc">vLLM · SGLang 等框架类型</text>
+    <text x="200" y="158" class="card-desc">管理兼容版本、端口和启动参数</text>
+    <text x="200" y="194" class="card-desc">定义模型运行时</text>
+  </g>
+
+  <g transform="translate(600 160)">
+    <rect width="400" height="220" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#2f8f64"/><text x="38" y="38" class="step">2</text>
+    <text x="200" y="76" class="card-title">关联运行时镜像</text>
+    <text x="200" y="122" class="card-desc">按云平台与地域维护镜像</text>
+    <text x="200" y="158" class="card-desc">确认镜像仓库和关联状态</text>
+    <text x="200" y="194" class="card-desc">承载框架与模型启动环境</text>
+  </g>
+
+  <g transform="translate(1080 160)">
+    <rect width="400" height="220" rx="8" fill="#fff2e8" stroke="#c56a2d" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#c56a2d"/><text x="38" y="38" class="step">3</text>
+    <text x="200" y="76" class="card-title">选择元模型</text>
+    <text x="200" y="122" class="card-desc">名称 · 标签 · 模型能力</text>
+    <text x="200" y="158" class="card-desc">输入输出模态与上下文信息</text>
+    <text x="200" y="194" class="card-desc">统一用户侧展示口径</text>
+  </g>
+
+  <path d="M 1280 380 V 430 H 320 V 474" fill="none" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="800" y="422" class="phase">展示信息准备完成后，配置可运行的云侧部署能力</text>
+
+  <text x="120" y="466" class="phase" text-anchor="start">阶段二 · 形成部署能力并发布</text>
+  <g stroke="#667085" stroke-width="3" marker-end="url(#arrow)">
+    <line x1="520" y1="590" x2="594" y2="590"/>
+    <line x1="1000" y1="590" x2="1074" y2="590"/>
+  </g>
+
+  <g transform="translate(120 480)">
+    <rect width="400" height="220" rx="8" fill="#f1eeff" stroke="#7256c8" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#7256c8"/><text x="38" y="38" class="step">4</text>
+    <text x="200" y="76" class="card-title">配置云侧部署点</text>
+    <text x="200" y="122" class="card-desc">云平台 · 地域 · 模型来源</text>
+    <text x="200" y="158" class="card-desc">关联框架、镜像和输出配置</text>
+    <text x="200" y="194" class="card-desc">描述完整的云上部署能力</text>
+  </g>
+
+  <g transform="translate(600 480)">
+    <rect width="400" height="220" rx="8" fill="#e9f7f6" stroke="#238c83" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#238c83"/><text x="38" y="38" class="step">5</text>
+    <text x="200" y="76" class="card-title">配置算力与输出</text>
+    <text x="200" y="122" class="card-desc">规格 · GPU · CPU · 内存 · 成本</text>
+    <text x="200" y="158" class="card-desc">访问协议、地址和输出配置</text>
+    <text x="200" y="194" class="card-desc">形成推荐部署候选</text>
+  </g>
+
+  <g transform="translate(1080 480)">
+    <rect width="400" height="220" rx="8" fill="#fff8e1" stroke="#b58a16" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#b58a16"/><text x="38" y="38" class="step">6</text>
+    <text x="200" y="76" class="card-title">发布到模型市场</text>
+    <text x="200" y="122" class="card-desc">确认上架状态与可见范围</text>
+    <text x="200" y="158" class="card-desc">允许用户发现、筛选和部署</text>
+    <text x="200" y="194" class="card-desc">进入后续模型服务流程</text>
+  </g>
+
+  <rect x="72" y="744" width="1456" height="56" rx="8" fill="#f2f4f7" stroke="#667085" stroke-width="2"/>
+  <text x="800" y="780" class="note">元模型负责“展示什么”，云侧部署资产负责“在哪里、用什么资源部署”</text>
+</svg>

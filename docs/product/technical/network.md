@@ -1,4 +1,10 @@
-# Deployment Network Planning Guide
+﻿# Deployment Network Planning Guide
+
+:::: info Document Information
+Version: v1.0
+Updated: 2026-07-13
+Port baseline: Current installation guide
+::::
 
 ## 1. Document Purpose
 
@@ -15,7 +21,7 @@ The two network domains must be connected through an internal network, VPC peeri
 
 | Deployment Mode | Applicable Scenarios | External Ingress | Internal Network Requirements | Internet Requirements |
 | --- | --- | --- | --- | --- |
-| PoC All in One | Proof of concept, feature demo, internal testing | HTTP `18090` | Primarily local access on a single node | Must be able to access the internet to pull images and dependencies |
+| PoC All in One | Proof of concept, feature demo, internal testing | HTTP `18090` | Primarily local access on a single node | Internet access, or a complete offline bundle with required images and runtime assets |
 | Public Cloud SaaS Production | Formal production and external service delivery | ELB + domain name + HTTPS `443` | Management nodes and middleware are in the same VPC; compute pools are connected through VPC peering / dedicated lines | Outbound access is recommended, with bandwidth >= 100 Mbps |
 | Private Cloud / IDC Production | Data compliance, internal network isolation, customer-owned environments | LB / DNS round-robin + HTTPS `443` | Application nodes and data / middleware nodes communicate over the internal network; compute pools are connected through the internal network / dedicated lines | Controlled outbound access is recommended; offline environments must prepare offline images |
 
@@ -62,7 +68,7 @@ AGIOne consists of a user access ingress, platform management layer, and compute
 
 ![PoC All in One Architecture](images/02-poc-aio.svg)
 
-The PoC node must be able to access the internet to pull images and dependencies. PoC mode does not provide high availability or data redundancy, and is not recommended for production use.
+The PoC node must either reach the required registries and dependency sources or use a complete offline bundle. PoC mode does not provide high availability or data redundancy, and is not recommended for production use.
 
 ### 4.5 Compute Node Onboarding Architecture
 
@@ -80,7 +86,7 @@ Each independent regional compute pool is deployed as an independent logical uni
 | CPU | >= 8 cores | Used for proof of concept, feature demo, and internal testing |
 | Memory | >= 24 GB | Services are co-located on a single node, so memory must cover both application and middleware workloads |
 | Disk | >= 200 GB | Used for applications, images, logs, and base data |
-| Network | Internet connectivity | Must be able to pull images and dependencies |
+| Network | Internet or offline delivery path | Must be able to obtain all required images, dependencies, and runtime assets |
 | Operating system | Linux | Ubuntu 22.04 / CentOS 7+ recommended |
 | External port | `18090` | Default HTTP service port |
 
@@ -230,7 +236,7 @@ Each independent regional compute pool is deployed as an independent logical uni
 | Platform access to model / IDE | Application nodes / platform management layer | Compute cluster NodePort | TCP `32762` | Management domain can reach compute domain | Model and IDE calls |
 | Extension reserve | Application nodes / platform management layer | Compute cluster NodePort | TCP `32763-32765` | Management domain can reach compute domain | Reserved extension ports |
 | Compute image pulls | Compute nodes | Near-edge image service | Depends on image service configuration | Near-edge network for the compute pool, recommended >= 1 Gbps | Avoid cross-region pulls of large images |
-| Management node outbound | Management nodes | Internet / image registry | HTTPS / as needed | Required for PoC; recommended for production | Used for image pulls, upgrades, and dependency downloads |
+| Management node outbound | Management nodes | Internet / image registry | HTTPS / as needed | Required when online assets are used; optional with a complete offline bundle | Used for image pulls, upgrades, and dependency downloads |
 
 ## 9. Port Allowlist
 
@@ -328,7 +334,7 @@ In production, HTTPS certificates must be configured on ELB / LB or the ingress 
 | Application nodes to database / middleware | Same VPC / same internal network, with low-latency and stable connections |
 | Platform management layer to compute cluster | Use VPC peering, cloud enterprise network, dedicated line, or equivalent internal links to avoid public-network detours |
 | Compute nodes to near-edge image service | >= 1 Gbps network recommended; in multi-region deployments, maintain an independent near-edge image service in each region |
-| Management node outbound internet | Required for PoC; production is recommended to provide >= 100 Mbps for image pulls and upgrades |
+| Management node outbound internet | Provide controlled outbound access for online delivery; otherwise prepare and verify the complete offline bundle |
 
 ## 13. Pre-deployment Network Checklist
 

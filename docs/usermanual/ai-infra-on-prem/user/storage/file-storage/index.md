@@ -1,9 +1,9 @@
 # File Storage
 
-:::: info Document Information
+::: info Document Information
 Version: v1.0
 Updated: 2026-07-08
-::::
+:::
 
 ## Feature Overview
 
@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Storage Services > File Storage |
-| Page Route | `/powerone/storage-service/file` |
-| Managed Objects | Shared file systems, directories, capacity, mount relationships, and access policies |
-| Typical Use | Provide shared directories for multiple instances or jobs, suitable for datasets, model repositories, and output directories |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Storage Services > File Storage |
+| Page route | `/powerone/storage-service/file` |
+| Managed objects | Shared file systems, directories, capacity, mount relationships, and access policies |
+| Typical use | Provide shared directories for multiple instances or jobs, suitable for datasets, model repositories, and output directories |
 
-### Beginner View
+#### Beginner Explanation
 
 File storage is like a team shared folder, suitable for multiple instances or jobs to read the same data, model files, or output directories. It emphasizes directory and file semantics, which are different from the independent disk semantics of block storage.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -41,11 +41,13 @@ File storage is like a team shared folder, suitable for multiple instances or jo
 
 The page is used to display file storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
 
-![File Storage](./images/file-storage.png)
+![File Storage](./images/file-storage-list.png)
 
-## Create Shared Directory
+## Main Operations
 
-### Areas Displayed When the Feature Is Available
+### Create Shared Directory
+
+#### Areas Displayed When the Feature Is Available
 
 | Area | Description |
 | --- | --- |
@@ -54,15 +56,15 @@ The page is used to display file storage capability in the selected region. When
 | Mount Entrypoint | Associates a shared directory with an instance or container path. |
 | Operation Entrypoint | Edit, expand, unmount, delete, or view details depending on page capabilities. |
 
-### Procedure
+#### Procedure
 
-1. Go to `Storage Services > File Storage`.
+1. Go to `AI Infrastructure > On-Prem > Storage Services > File Storage`.
 2. Confirm the region in the upper-right corner.
 3. If the page provides a create entrypoint, fill in name, capacity, access policy, and description.
 4. After submission, return to the list and view status.
 5. Select this shared directory in instance creation or instance details and set the in-container path.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -72,22 +74,22 @@ The page is used to display file storage capability in the selected region. When
 | Mount Path | Conditionally required | Text | `/mnt/shared` | Access path inside the instance or container. |
 | Share Status | System-generated | Enum | `Available` | Used to determine whether it can be mounted, expanded, or deleted. |
 
-## Mount, Unmount, and Confirm Capacity
+#### Mount, Unmount, and Confirm Capacity
 
-### Mount
+#### Mount
 
 1. Open the instance creation page or storage mount entrypoint.
 2. Select the target file storage resource.
 3. Fill in the in-container path, such as `/mnt/data` or `/mnt/output`.
 4. After submission, view instance events and logs to confirm successful mounting.
 
-### Unmount
+#### Unmount
 
 1. Confirm that no running process is reading or writing this path.
 2. Perform unmount through the instance or storage operation entrypoint.
 3. Refresh the page to confirm that the mount relationship has been removed.
 
-### Confirm Capacity
+#### Confirm Capacity
 
 1. View capacity and status in the file storage list.
 2. Run `df -h` inside the instance or perform application-side capacity checks.
@@ -118,15 +120,26 @@ Alternative troubleshooting paths:
 3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
 4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
 
-### Pitfalls
+## Pitfalls
 
 - Files in shared directories are visible to multiple tasks. Confirm naming and overwrite risks before writing.
 - NFS or shared storage paths must be sanitized before screenshots.
 - High-concurrency small-file read/write may affect performance. Split directories or use object storage if necessary.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page is accessible | The file storage page opens and shows shared directory records or an empty-state message. | Check account permission, region scope, and file storage component availability. |
+| Create-directory entry is visible | Users with permission can see the create shared directory entry and open the form. | Confirm whether file storage is opened to the current tenant. |
+| Mount information is clear | File system ID, mount path, permission, client node, and status are visible. | Verify NFS address, exported directory, read/write permission, and client network. |
+| Multi-node access can be verified | The shared directory can be read or written as expected from target instances or nodes. | Check export policy, permission scope, mount parameters, and node connectivity. |
+
+
+
 ## FAQ
 
-### Page Has No File Storage Data
+#### Page Has No File Storage Data
 
 **Symptom:**
 
@@ -146,7 +159,7 @@ No available file storage resources are visible after entering the page, or the 
 3. Check resource quotas and capacity.
 4. In the short term, object storage or temporary directories inside instances can be used, but temporary directories are not suitable for saving important results.
 
-### Path Is Unavailable After Mounting
+#### Path Is Unavailable After Mounting
 
 **Symptom:**
 
@@ -164,7 +177,7 @@ After the instance starts, the file storage mount path cannot be accessed inside
 2. Confirm in-container path, access policy, and instance region.
 3. Contact the operator to check underlying storage components and cluster mount capability.
 
-### Delete or Unmount Fails
+#### Delete or Unmount Fails
 
 **Symptom:**
 
@@ -182,7 +195,7 @@ Attempts to delete or unmount a file storage resource fail.
 2. Refresh the page and confirm resource status.
 3. Contact the operator to check permissions and underlying storage reclaim status.
 
-## Follow-Up Operations
+## Next Steps
 
 1. Verify the mount path in runtime instances or Online IDE.
 2. Write input data and output results to persistent paths.

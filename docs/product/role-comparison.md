@@ -1,193 +1,145 @@
-# AGIOne Platform — Role Comparison Overview
+# Role Comparison
 
-admin · operator · provider · enduser (End User) — Role boundaries and core capabilities at a glance
+:::: info Document Information
+Version: v1.0
+Updated: 2026-07-15
+::::
 
 ## Role Summary
 
-| Role | Positioning | Mall Metaphor |
-|------|-------------|---------------|
-| **admin** — System Administrator | Platform-wide System Metadata Governor | Platform Governance (credentials & qualifications) |
-| **operator** — Platform Operator | Platform Standards & Review Governor | Mall Operations Team (rules & review) |
-| **provider** — Supplier / Vendor | AI Capability Producer & Deployer | Brand / Vendor (stock shelves) |
-| **enduser** — End User | AI Capability User | Customer (buy & use) |
+| Role | Positioning | Responsible For | Not Responsible For |
+| --- | --- | --- | --- |
+| `operator` | Platform operator | Resource preparation, governance configuration, quotas, monitoring, reviews, customer finance, License, settings, audit, and API rate control | Publishing a provider-owned model or consuming models as an end user |
+| `provider` | Model provider | Publishing and maintaining models, aggregate models, reviews, customer calls, provider revenue, and permitted team settings | Platform-wide identity governance, finance operations, or reviewing its own publication |
+| `enduser` | General user and model consumer | Deploying available services, discovering and experiencing models, API calls, personal usage, personal billing, personal settings, and authorized team members, projects, quotas, and Key usage | Publishing or reviewing models and managing platform-wide resources |
 
----
+## Capability Comparison
 
-## admin — System Administrator
+| Capability | `operator` | `provider` | `enduser` |
+| --- | --- | --- | --- |
+| Manage tenants, members, and role assignments | Primary or handled through an authorized governance process | No | No |
+| Prepare On-Prem resource pools and templates | Primary | Use authorized resources | Use authorized resources |
+| Connect and authorize supported cloud resources | Primary | Use assigned access accounts or resources | Use assigned access accounts or resources |
+| Maintain Model Services base settings | Primary | Use prepared settings | No |
+| Maintain Billing and License operations | Primary for platform/customer finance | View owned revenue and settlements | View own billing |
+| Maintain Settings, audit, and API rate control | Primary for platform settings | Own team or personal scope when authorized | Own personal or team scope when authorized |
+| Publish a single or BYOK model | Govern and review | Primary | No |
+| Create an aggregate model | Govern and review | Primary | No |
+| Review models and apps | Primary | Submit for review | No |
+| Discover models and use Playground | Validation when needed | Validation when needed | Primary |
+| Call model APIs | Validation when needed | Validate owned services | Primary |
+| View customer calls and model revenue | Platform scope when authorized | Primary for owned models | No |
+| View personal calls, usage, and billing | Operational scope when authorized | Own scope | Own scope |
+| Manage user-side team members | Platform policy or audit scope | Authorized tenant or project scope | Authorized tenant or project scope |
+| View or adjust member quotas | Platform policy or audit scope | Authorized tenant or project scope | Authorized tenant or project scope |
+| Submit or handle quota requests | Platform policy or approval scope | Authorized tenant or project scope | Own or authorized team scope |
+| Manage projects and Project Key usage scope | Platform policy or audit scope | Authorized project scope | Authorized project scope |
 
-**Positioning**: Platform-wide System Metadata Governor
+"Primary" indicates normal task ownership. Actual visibility depends on tenant, role configuration, resource authorization, and the installed version.
 
-**Typical Identities**: Platform Owner, IT Lead, System Administrator
+## User-Side Collaboration and Resource Scope
 
-**Business Domain**: User Space · License
+Team members and projects are not added as separate platform roles. They are collaboration objects and resource boundaries inside a tenant or project, usually maintained by an authorized `enduser` or `provider` account within its own tenant, team, or project scope.
 
-### Core Capabilities
+| Object | Positioning | Main Impact | Typical Handling Role |
+| --- | --- | --- | --- |
+| Team member | The collaboration identity created when an account joins a tenant, team, or project | Login status, collaboration relationship, role assignment, member quota, quota requests, and audit records | Authorized `enduser` or `provider` |
+| Project | Business workspace for model calls, budget, and collaboration | Project members, Project Keys, project budget, model allowlist, usage, and activity records | Authorized `enduser` or `provider` |
+| Member quota | Management object that controls member quota and limits | Personal Key quota, call-failure diagnosis, quota adjustment, and quota requests | Authorized `enduser` or `provider` |
+| Project Key | Access credential for calling models within a project scope | Calling identity, project budget, model availability, and Key limits | Authorized `enduser` or `provider` |
 
-- ✓ Create / freeze tenants
-- ✓ Create user accounts
-- ✓ Assign / unbind roles
-- ✓ Configure menus & permissions
-- ✓ Define role permission templates
-- ✓ Manage system built-in roles
+When users see "Team Members," "Projects," "Member Quotas," or "Project Keys," first confirm whether the account is authorized in the corresponding tenant or project instead of directly expanding `operator` permissions. For the full object relationship, see [Tenant, Member, Project, and Role Design Logic](./identity-access-model).
 
-### Out of Scope
+## `operator`: Platform Operator
 
-- ✗ Use or try models
-- ✗ Publish or review models
-- ✗ Deploy compute tasks
-- ✗ Handle billing & top-ups
+**Typical users:** platform operations, infrastructure, model governance, or delivery team.
 
-### Key Entry Points
+Main responsibilities by subsystem:
 
-- **User Space → System Administration**: Tenant Management · User Management · Role Management · Menu Management · Built-in Role Management
-- **License → License Management**: License issuance · activation · renewal at expiration
+| Subsystem | Responsibilities | Manual Entry |
+| --- | --- | --- |
+| AI Infra On-Prem | Prepare resource topology, specifications, storage, images, templates, quotas, metering, and monitoring | [On-Prem Getting Started](../usermanual/ai-infra-on-prem/getting-started/) |
+| AI Infra On-Cloud | Maintain supported cloud access, accounts, resource pools, authorization, deployment assets, and scheduling policies | [On-Cloud Getting Started](../usermanual/ai-infra-on-cloud/getting-started/) |
+| Model Services | Maintain meta-models, model sources, templates, tags, and currency settings; process model and app reviews | [Model Services Getting Started](../usermanual/model-services/getting-started/) |
+| Billing | Maintain customer finance, operation finance, reconciliation, settlement, adjustment, and License status | [Billing Getting Started](../usermanual/billing/getting-started/) |
+| Settings | Maintain members, roles, tenants, operation logs, platform settings, login properties, and API rate-control rules | [Settings Getting Started](../usermanual/settings/getting-started/) |
 
-### Typical Scenarios
+Boundary:
 
-- New customer onboarding → activate tenant + create & assign user accounts
-- New feature launch → add menu entry, bind to corresponding roles
-- Platform license expires → License Management → renew and reactivate to ensure platform functionality
+- The operator prepares supply and governance conditions but does not replace the provider that owns a model publication.
+- Huawei Cloud access is temporarily unsupported and must not be used as an operator onboarding scenario.
 
----
+## `provider`: Model Provider
 
-## operator — Platform Operator
+**Typical users:** model team, AI developer, model service provider, or technical team responsible for publishing.
 
-**Positioning**: Platform Standards & Review Governor
+Main responsibilities:
 
-**Typical Identities**: Operations Manager, Product Operations, BD Operations
+- Publish and maintain single models or BYOK endpoints.
+- Create aggregate models from eligible member models and select an available routing strategy.
+- Configure provider-owned publication information, submit reviews, and respond to review results.
+- View model usage, model revenue, and customer-call data for the permitted scope.
+- View provider-side earnings, customer lists, and settlement records within the permitted scope.
+- Manage personal Keys, profile, team members, roles, quotas, or tenant settings only when those entries are authorized to the provider account.
+- Use authorized On-Prem or On-Cloud resources when a deployment workflow requires them.
 
-**Business Domains**: Model Services · AI Infra · Hetero-XPUs · Trading & Finance
+Boundary:
 
-> **Domain Legend**
-> - **Model Services**: Model creation · publishing · review · application development
-> - **AI Infra**: Cloud platform integration · model deployment · inference
-> - **Hetero-XPUs**: Heterogeneous compute · training · datasets · images
-> - **Trading & Finance**: Billing operations · accounts · top-ups · agreements
+- A provider cannot approve its own model or app publication.
+- A provider does not manage platform-wide tenants, menus, resource policies, or another provider's data.
 
-### Core Capabilities
+See [Publish and Call a Model](../usermanual/model-services/end-to-end/publish-and-call-model/).
 
-- ✓ Review model / application publishing
-- ✓ Manage model taxonomy
-- ✓ Integrate cloud providers (Alibaba / Huawei / Tencent / China Telecom)
-- ✓ Define compute specs & images
-- ✓ Configure inference routing policies
-- ✓ Manage vendor admission rules
-- ✓ View customer top-up records
-- ✓ Publish platform announcements
+## `enduser`: General User and Model Consumer
 
-### Out of Scope
+**Typical users:** business user, application developer, API consumer, or a user deploying from prepared resources.
 
-- ✗ Manage tenant & user metadata
-- ✗ Directly call or use models
-- ✗ Deploy personal compute tasks
-- ✗ View other vendors' data
+Main responsibilities:
 
-### Key Entry Points
+- Browse visible models and inspect model details.
+- Experience supported model interactions in Playground.
+- Obtain required access and call model APIs.
+- View personal-call overview, analytics, logs, usage, and deployment status.
+- View personal billing, transactions, top-up orders, monthly bills, and personal settings when available.
+- Manage user-side team members, projects, member quotas, quota requests, and Project Key usage scope within the authorized scope.
+- Create On-Prem or On-Cloud workloads from resources and templates already authorized to the account.
 
-- **Model Services → Operations Management**: Model / Application Review
-- **AI Infra → Integration Management**: Cloud Platform Integration / Resource Pool Authorization
-- **Hetero-XPUs → Resource Configuration**: Spec Management / Image Management
-- **Finance → Operations Management**: Announcement Management / Agreement Management
+Boundary:
 
-### Typical Scenarios
+- An end user does not publish single or aggregate models. Aggregate-model creation belongs to the model provider.
+- An end user does not process reviews or maintain platform-wide resource and identity configuration.
+- User-side team member and project permissions apply only within the corresponding tenant or project scope. They do not replace platform-level member, menu, system setting, or operations approval permissions.
 
-- Vendor submits a large model → review against platform standards, approve or reject
-- Integrate Huawei Cloud → 5-step onboarding guide, configure AK/SK, connect resource pool
-- Slow response at peak hours → adjust inference routing policy (multi-replica load balancing), verify the effect
+See the [User Manual](../usermanual/) and [Scenario Guide](../userguide/scenarios).
 
----
+## Which Role Should Perform the Task?
 
-## provider — Supplier / Vendor
+| Task | Recommended Role |
+| --- | --- |
+| Create a tenant or assign a role | `operator` or authorized governance process |
+| Onboard a local cluster or configure quotas | `operator` |
+| Connect and authorize a supported cloud resource pool | `operator` |
+| Maintain meta-models or review a model | `operator` |
+| Reconcile a billing cycle or maintain customer finance | `operator` |
+| Maintain members, roles, login settings, or API rate-control rules | `operator` |
+| Publish a model or create an aggregate model | `provider` |
+| View customer calls and provider revenue | `provider` |
+| Try a model or call its API | `enduser` |
+| View personal usage, billing, or a personal deployment | `enduser` |
+| Manage user-side team members | Authorized `enduser` or `provider` |
+| View or adjust member quotas | Authorized `enduser` or `provider` |
+| Submit or handle quota requests | Authorized `enduser` or `provider`; platform policy is maintained by `operator` |
+| Manage project members and Project Keys | Authorized `enduser` or `provider` |
 
-**Positioning**: AI Capability Producer & Deployer
+If one person performs multiple responsibilities in a small deployment, assign multiple roles only after confirming the required boundary. Keep platform governance and review permissions limited and auditable.
 
-**Typical Identities**: AI Developer, Vendor BD, Enterprise IT Lead
+## Related Documentation
 
-**Business Domains**: Model Services · AI Infra · Hetero-XPUs
-
-### Core Capabilities
-
-- ✓ Create / publish models
-- ✓ Develop AI applications
-- ✓ One-click model deployment
-- ✓ Create training / inference tasks
-- ✓ Upload datasets
-- ✓ Build private images
-- ✓ View usage statistics & revenue
-- ✓ Manage release state (draft / private / public)
-
-### Out of Scope
-
-- ✗ Review others' models / applications
-- ✗ Manage platform-wide configuration (tags / policies / specs)
-- ✗ View other providers' data
-- ✗ Publish publicly directly (requires review)
-
-### Key Entry Points
-
-- **Model Services → Workspace**: My Models / My Applications
-- **AI Infra → Model Services**: Quick Start / My Deployments
-- **Hetero-XPUs → Task Center**: Model Training / Model Inference
-- **Hetero-XPUs → Studio**: Workspace / My Creations
-
-### Typical Scenarios
-
-- Provide AI API → create model → apply for public release → await operator review → go live
-- Deploy image generation model → AI Infra marketplace → one-click deploy → obtain API endpoint for internal system integration
-- Train industry model → select dataset + GPU spec + parameters → system auto-schedules
-
----
-
-## enduser — End User
-
-**Positioning**: AI Capability User
-
-**Typical Identities**: Business Staff, Business User, API Developer
-
-**Business Domains**: Model Services · Finance · AI Infra (personal)
-
-### Core Capabilities
-
-- ✓ Browse model / application marketplace
-- ✓ Online trials (Playground)
-- ✓ Call APIs (API Key required)
-- ✓ Create aggregated model workflows
-- ✓ View call logs & analytics
-- ✓ Personal account top-up
-- ✓ Personal model deployment (authorization required)
-- ✓ Bookmark models & applications
-
-### Out of Scope
-
-- ✗ Create and publish models
-- ✗ Review others' models / applications
-- ✗ Manage platform-wide configuration
-- ✗ View others' usage data
-
-### Key Entry Points
-
-- **Model Services → Discover**: Model Marketplace / Application Marketplace
-- **Model Services → Trial**: Text / Image / Video / Audio
-- **Model Services → My Calls**: Call Analytics / Call Logs
-- **Finance → My Finance**: Top-up / Consumption Records
-
-### Typical Scenarios
-
-- Business user writes copy → marketplace → online trial → obtain API Key for workflow integration
-- Integrate image recognition → read API documentation → call image model → plug into CRM system
-- Chain multiple models → drag-connect in My Aggregated Models → generate combined API
-- Balance runs low → My Finance → top up → continue using
-
----
-
-<style>
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-table th:first-child,
-table td:first-child {
-  width: 28%;
-  font-weight: 600;
-}
-</style>
+- [Tenant, Member, Project, and Role Design Logic](./identity-access-model)
+- [Team Members](../usermanual/settings/user/members-roles/team-members/)
+- [Member Quotas](../usermanual/settings/user/members-roles/member-quotas/)
+- [Quota Requests](../usermanual/settings/user/members-roles/quota-requests/)
+- [Projects](../usermanual/settings/user/personal/projects/)
+- [Features and Capabilities](./technical/features)
+- [Scenario Guide](../userguide/scenarios)
+- [User Manual](../usermanual/)

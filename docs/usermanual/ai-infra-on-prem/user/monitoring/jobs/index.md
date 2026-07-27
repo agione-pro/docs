@@ -1,9 +1,9 @@
 # Job Monitoring
 
-:::: info Document Information
+::: info Document Information
 Version: v1.0
 Updated: 2026-07-08
-::::
+:::
 
 ## Feature Overview
 
@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Monitoring > Job Monitoring |
-| Page Route | `/powerone/user-monitor/jobs` |
-| Managed Objects | Model instances, online IDEs, runtime instances, and historical jobs within the user-visible scope |
-| Typical Use | Locate queued, failed, long-running, and abnormal resource consumption jobs |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Monitoring > Job Monitoring |
+| Page route | `/powerone/user-monitor/work` |
+| Managed objects | Model instances, online IDEs, runtime instances, and historical jobs within the user-visible scope |
+| Typical use | Locate queued, failed, long-running, and abnormal resource consumption jobs |
 
-### Beginner View
+#### Beginner Explanation
 
 Job monitoring is like a personal task queue list. It shows job ID, status, queue duration, runtime duration, GPU occupation, and failure causes.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -41,9 +41,9 @@ Job monitoring is like a personal task queue list. It shows job ID, status, queu
 
 The page displays job monitoring capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
-![Job Monitoring](./images/monitoring-jobs.png)
+![Job Monitoring](./images/jobs-list.png)
 
-### Expected Page Elements When Capability Is Open
+#### Expected Page Elements When Capability Is Open
 
 | Page Element | Example | Description |
 | --- | --- | --- |
@@ -53,23 +53,25 @@ The page displays job monitoring capability for the selected region. When the ca
 | Runtime Duration | `2h 13m` | Determines whether the task exceeds expected runtime. |
 | Failure Information | `ImagePullBackOff` | Determines whether logs, events, or operator support is needed. |
 
-## View Job Monitoring
+## Main Operations
 
-### Procedure
+### View Job Monitoring
 
-1. Go to `Monitoring > Job Monitoring`.
+#### Procedure
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Job Monitoring`.
 2. Confirm the region in the upper-right corner.
 3. Filter by time, status, or keyword provided by the page.
 4. View charts, lists, or prompt information.
 5. If monitoring capability is not opened, return to instance details to view logs, events, and status.
 
-### Key Focus When Capability Is Open
+#### Key Focus When Capability Is Open
 
 - Whether jobs remain queued for a long time.
 - Whether failure causes point to quota, image, startup command, or insufficient resources.
 - Whether GPU occupation and runtime duration match expectations.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -81,13 +83,13 @@ The page displays job monitoring capability for the selected region. When the ca
 | Failure Cause | System-generated | Text | `ImagePullBackOff` | Helps locate failure direction. |
 | Submission Time | System-generated | Date time | `2026-07-06 09:30` | Used to align logs, events, and usage. |
 
-### Pitfalls
+## Pitfalls
 
 - Job queueing is usually related to quotas, specifications, capacity, or scheduling conditions. Do not only refresh the page.
 - When failure cause is empty, view instance events and logs first.
 - When GPU occupation is normal but results are abnormal, return to training scripts or model parameters for troubleshooting.
 
-### Result Validation
+## Result Validation
 
 1. The job list displays ID, status, queue duration, runtime duration, and resource occupation.
 2. After filters change, list and statistics change accordingly.
@@ -114,7 +116,7 @@ Alternative troubleshooting paths:
 
 ## FAQ
 
-### Job Remains Queued for a Long Time
+#### Job Remains Queued for a Long Time
 
 **Symptom:**
 
@@ -132,7 +134,7 @@ The job remains Pending, Queued, or waiting for resources.
 2. View cluster, node, and device monitoring to confirm capacity.
 3. Switch specification or region if necessary, or contact the operator to adjust resources.
 
-### Job Fails but Logs Are Empty
+#### Job Fails but Logs Are Empty
 
 **Symptom:**
 
@@ -150,7 +152,7 @@ The job status is Failed, but the log page has no application output.
 2. Check image address, startup command, environment variables, and mount paths.
 3. Provide job ID, submission time, and error summary to the operator for troubleshooting.
 
-## Follow-Up Operations
+## Next Steps
 
 1. For queueing issues, verify quotas, specifications, and device capacity first.
 2. For failure issues, view events, image, startup command, and mount path first.

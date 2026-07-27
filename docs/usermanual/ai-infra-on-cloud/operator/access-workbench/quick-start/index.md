@@ -1,129 +1,142 @@
 # Quick Access
 
-:::: info Document Information
+::: info Document Information
 Version: v1.0
 Updated: 2026-07-08
-::::
+:::
 
 ## Feature Overview
 
-`Quick Access` is used to maintain cloud platforms, cloud accounts, resource pools, tenant authorization, and deployment assets, supporting multi-cloud scheduling, resource authorization, and model deployment workflows.
+`Quick Access` is used in Access Workbench to view the access progress of cloud platforms, authorization, accounts, resource pools, and pool authorization. It helps operators confirm whether the cloud infrastructure access flow is complete and then open Access Overview for further checks.
 
 | Item | Content |
 | --- | --- |
 | Applicable role | Operator |
-| Navigation path | Access Workbench > Quick Access |
-| Page route | /operator/access-workbench/quick-start |
-| Managed objects | Cloud platforms, cloud accounts, resource pools, tenant authorization, and deployment assets |
-| Typical use | Complete multi-cloud resource access through a guided workflow |
+| Navigation path | AI Infrastructure > On-Cloud > Access Workbench > Quick Access |
+| Page route | `/infrahub/op/workbanch/quick` |
+| Managed objects | Cloud platforms, authorization, accounts, resource pools, and pool authorization |
+| Typical use | Confirm whether the access flow has been completed |
 
-### Beginner View
+#### Beginner Explanation
 
-Quick Access is like an access workflow checklist that connects "connect the cloud first, then synchronize resources, then authorize, and finally validate deployment". It is suitable for step-by-step validation before a new environment goes live, but it does not replace detailed configuration on each feature page.
+Quick Access is like an access workflow checklist that connects Cloud, Authorization, Account, Pool, and Pool Authorization. It is suitable for step-by-step validation before a new environment goes live, but it does not replace detailed configuration on each access management page.
 
-### Terms
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Access step | Cloud platform, account, resource pool, and authorization steps in the Quick Access wizard. |
-| Completion status | Whether each step is complete or requires handling. |
-| Validation action | A test deployment or synchronization check used to confirm workflow closure. |
-| Exception prompt | A failure reason and jump entry shown in the wizard. |
+| Access status | Whether the current access flow has been completed, such as `Access Ready`. |
+| Completion progress | Number of completed steps and total steps, such as `5/5`. |
+| Access step | Flow nodes such as Cloud, Authorization, Account, Pool, and Pool Authorization. |
+| Next | The next prompt or entry provided by the page based on the current status. |
+| Access Overview | The page that summarizes the access foundation, operator resource checklist, and grant status. |
 
 ## Prerequisites
 
-1. The current account has permission to access the Quick Access wizard.
-2. Information required for cloud platforms, cloud accounts, resource pools, and authorization is ready.
-3. The test tenant and business region used for validation have been confirmed.
+1. The current account has access to `Access Workbench > Quick Access`.
+2. The cloud platform, authorization, account, resource pool, and pool authorization configurations to be checked are ready or accessible.
+3. If you need to complete additional configuration, confirm the test tenant, business region, and resource boundaries first.
 
 ## Page Description
 
-The page guides operators through cloud platform access, cloud account validation, resource pool synchronization, authorization configuration, and deployment validation in sequence. Each step should return to the corresponding feature page to complete real configuration and result confirmation.
+The page title is `Quick Start`, and the sidebar entry is `Quick Access`. The page shows `Access Ready`, completion progress, the next prompt, and access flow status, including `Cloud`, `Authorization`, `Account`, `Pool`, and `Pool Authorization`. The page provides `View Access Overview`; after completion, you can also open `Access Overview`.
 
 Page screenshot:
 
-![Quick Access](./images/quick-start.png)
-
-Complete access in the order of cloud platform, cloud account, resource pool, and authorization.
+![Quick Access](./images/quick-start-list.png)
 
 ## Main Operations
 
-### Procedure
+### Use Quick Access
 
-1. Go to `Access Workbench > Quick Start`.
-2. Follow the wizard to confirm cloud platform type and access account readiness.
-3. Complete cloud account access and pass credential validation.
-4. Synchronize resource pools and confirm regions, specifications, and capacity.
-5. Configure tenant or business region authorization, then create a test deployment for validation.
+1. Go to `AI Infrastructure > On-Cloud > Access Workbench > Quick Access`.
+2. On the `Quick Start` page, check the `Access Ready` status and `5/5` completion progress.
+3. Verify that `Cloud`, `Authorization`, `Account`, `Pool`, and `Pool Authorization` show `Done` in the flow.
+4. If a step is incomplete, go to the corresponding page in the sidebar, such as `Cloud Platforms`, `Resource Pools`, `Cloud Accounts`, `Tenant-Cloud Auth`, or `Business-Region Auth`, and complete the configuration.
+5. After completion, click `View Access Overview` or the lower `Access Overview` entry to view access details and follow-up checks.
+6. For learning or page validation only, view the status, steps, and navigation entries. Do not perform final actions such as `Create`, `Access`, `Submit`, or `Save` on linked configuration pages.
 
-### Parameters
+![Use Quick Access](./images/quick-start-list.png)
 
-| Field | Required | Type | Example | Description |
+## Parameter Reference
+
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Step name | System-generated | Text | `Access Cloud Account` | Access stage in the wizard. |
-| Completion status | System-generated | Enum | `Completed` | Used to determine whether the next step can be entered. |
-| Target cloud platform | Conditionally required | Dropdown | `Alibaba Cloud` | Cloud platform currently handled by the wizard. |
-| Validation action | System-generated | Text | `Create test deployment` | Used to confirm workflow closure. |
-| Exception prompt | System-generated | Text | `Account validation failed` | Guides the user to the specific handling page. |
+| Page title | System-generated | Text | `Quick Start` | Page title displayed for Quick Access. |
+| Access status | System-generated | Status | `Access Ready` | Overall status of the current access flow. |
+| Completion progress | System-generated | Number | `5/5` | Number of completed access steps and total steps. |
+| Next | System-generated | Text / entry | `Access Ready` | Next prompt provided by the page based on current access status. |
+| Cloud | System-generated | Step status | `Done` | Completion status of the cloud platform access step. |
+| Authorization | System-generated | Step status | `Done` | Completion status of the authorization step. |
+| Account | System-generated | Step status | `Done` | Completion status of the access account step. |
+| Pool | System-generated | Step status | `Done` | Completion status of the resource pool access step. |
+| Pool Authorization | System-generated | Step status | `Done` | Completion status of the pool authorization step. |
+| View Access Overview | No | Action button | `View Access Overview` | Opens Access Overview to continue checking the access foundation, operator resources, and grant status. |
 
-### Pitfalls
+## Pitfalls
 
-- Quick Access only provides workflow guidance. Key configurations still need to be verified on the cloud account, resource pool, and authorization pages.
-- Do not skip test deployment, because authorization and scheduling issues are usually exposed during deployment.
-- Mask cloud accounts, tenants, and internal resource identifiers in screenshots.
+- The Quick Access page currently shows flow status and navigation entries. Specific cloud account, authorization, network, specification, or parameter configuration still needs to be verified on the corresponding management pages.
+- `View Access Overview` only opens the overview page. If you continue configuring access objects from the overview page or sidebar, verify the impact scope again before any final confirmation.
+- Before screenshots or external communication, redact cloud accounts, tenants, internal resource identifiers, access endpoints, Keys, Tokens, AK/SK, and internal test parameters.
 
-### Result Validation
+## Result Validation
 
-1. All key wizard steps show completed.
-2. Corresponding configurations are visible on the resource pool and authorization pages.
-3. The test deployment can be created and enter a running or diagnosable state.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page is accessible | The `Quick Start` page opens normally, and `Access Workbench > Quick Access` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
+| Access status displays normally | The page shows `Access Ready`, and completion progress shows `5/5` or matches the actual step status. | Refresh the page or go to the management page for the incomplete step and check configuration. |
+| Flow steps display normally | `Cloud`, `Authorization`, `Account`, `Pool`, and `Pool Authorization` all show status. | Check access objects, authorization relationships, and resource synchronization status. |
+| Overview entry can be opened | Clicking `View Access Overview` or `Access Overview` opens the Access Overview page. | Check target page permissions and route configuration. |
+| Data is consistent with configuration | Quick Access step status is consistent with the configuration status on cloud platform, account, resource pool, and authorization pages. | Wait for synchronization to complete, or go to the corresponding page to troubleshoot incomplete items. |
+| Learning validation does not submit | Only page fields and flow are viewed; no real create, access, submit, or save action is performed. | If a final action is triggered by mistake, follow the change audit process to check the impact scope. |
 
 ## FAQ
 
-### The Wizard Stops at the Account Access Step
+#### What if the access status is not Access Ready?
 
 **Issue Symptom:**
 
-The cloud account has been created, but Quick Access still indicates that the step is incomplete.
+The page does not show `Access Ready`, or completion progress is not `5/5`.
 
 **Possible Causes:**
 
-- Account validation has not passed.
-- Wizard statistics have synchronization latency.
-- The cloud platform that owns the account is inconsistent with the current wizard filter.
+- The cloud platform, account, or resource pool has not been fully accessed.
+- Authorization or pool authorization has not been completed.
+- Access status has synchronization latency.
 
 **Handling:**
 
-1. Go to the cloud account page and check validation status.
-2. Confirm the current cloud platform filter.
-3. Refresh or wait for synchronization, then check again.
+1. Open the corresponding management page based on the incomplete step.
+2. Check the status of cloud platform, account, resource pool, and authorization configurations.
+3. After synchronization completes, return to Quick Access and review again.
 
-### Test Deployment Cannot Be Created
+#### What if no data is shown after opening Access Overview?
 
 **Issue Symptom:**
 
-Prerequisite steps show completed, but creating a test deployment fails.
+Access Overview can be opened, but the access foundation, resource checklist, or grant status is empty.
 
 **Possible Causes:**
 
-- The resource pool is not authorized to the current tenant.
-- The business region and resource pool region do not match.
-- Deployment assets or runtime images are not ready.
+- The current account does not have permission to the corresponding data.
+- The access object was just configured, and statistics have not been synchronized.
+- The access object is configured under another tenant, region, or resource scope.
 
 **Handling:**
 
-1. Check tenant-cloud authorization and business region authorization.
-2. Verify resource pool region and capacity.
-3. Confirm that model assets, runtime frameworks, and images are enabled.
+1. Confirm the current account permissions and data scope.
+2. Go to the cloud platform, account, resource pool, or authorization page and check configuration.
+3. Refresh Access Overview or wait for synchronization, then check again.
 
 ## Next Steps
 
-1. Standardize the access checklist.
-2. Configure authorization for production tenants.
-3. Go to My Deployments or the deployment page to verify service availability.
+1. Go to Access Overview to view the access foundation, operator resource checklist, and grant status.
+2. For incomplete steps, go to the cloud platform, resource pool, account, or authorization page to complete configuration.
+3. After confirming the access flow, go to Models, Frameworks, Runtime Images, or Policies to check deployment assets.
 
 ## Notes
 
-- Quick Access is workflow guidance and does not replace detailed configuration on each feature page.
-- Do not skip test deployment validation.
-- Failed steps should be handled on the corresponding feature page.
+- Quick Access may guide you to pages that configure real cloud resources, authorization relationships, or access tasks.
+- `Create`, `Access`, `Submit`, and `Save` are high-risk final actions. Do not perform them during learning or screenshots.
+- This document only describes viewing status, checking the flow, and opening details. It does not guide real configuration changes.
+- Do not write real accounts, secrets, Tokens, AK/SK, internal access endpoints, cloud resource IDs, or internal test parameters in the document.

@@ -1,51 +1,78 @@
----
-prev: false
-next: true
----
+﻿# 产品概述
 
-# 产品技术文档
+:::: info 文档信息
+版本：v1.0
+更新日期：2026-07-13
+功能事实基线：2026-07-10 更新的用户手册
+::::
 
-本章节包含 AGIOne 产品相关文档，按主题结构组织，便于快速查阅与交付复用。
+## 30 秒理解 AGIOne
 
-## 文档结构
+AGIOne 将模型服务交付所需的工作连接成一条路径：
 
-产品售前文档分为四个主题：
+**算力资源 -> 模型部署与发布 -> 模型体验与 API 调用 -> 用量、财务、设置与治理运营**
 
-### 产品技术概览
+| 阶段 | AGIOne 管理的内容 | 主要子系统 |
+| --- | --- | --- |
+| 算力 | 本地集群、云账号、资源池、存储、规格、配额和监控 | AI Infra On-Prem / AI Infra On-Cloud |
+| 模型 | 部署资产、模型来源、模板、模型发布和审核 | AI Infra On-Prem / AI Infra On-Cloud / Model Services |
+| 服务 | 模型市场、Playground、API 接入、调用记录和部署状态 | Model Services |
+| 运营 | 授权、计量、用量、监控、客户调用、模型收益、财务、License、设置、审计和 API 流控 | 全部产品模块共同完成 |
 
-技术概述与产品能力说明。
+## 五个产品模块
 
-| 文档 | 用途 |
-|------|------|
-| [概述](./technical/overview) | 产品定位、架构与核心能力 |
-| [功能与能力](./technical/features) | 支持场景、关键功能与性能口径 |
-| [网络规划](./technical/network) | 典型网络架构与端口规划建议 |
-| [技术亮点](./technical/tech-highlights) | 产品差异化能力与技术优势 |
+| 产品模块 | 适用任务 | 主要对象 |
+| --- | --- | --- |
+| **AI Infra On-Prem** | 管理私有化或本地算力，并在本地集群部署服务 | 地域、可用区、集群、节点、加速卡、存储、模板、配额、监控 |
+| **AI Infra On-Cloud** | 接入云账号、授权云资源并部署云上模型服务 | 云平台、云账号、资源池、授权、部署资产、调度策略 |
+| **Model Services** | 发布、审核、发现、体验、调用和运营模型 | 模型市场、我的模型、Playground、调用日志、用量、客户调用、收益 |
+| **财务** | 管理用户账务、客户财务、结算、对账、收益和 License 状态 | 交易流水、月度账单、充值订单、结算单、财务账户、巡检对账、License |
+| **设置** | 管理身份、租户、审计、登录策略、平台配置和 API 流控 | Key、账号信息、成员、角色、租户、操作日志、登录配置、API 流控规则 |
 
-### 账号与权限模型
+五个产品模块既可以分别完成单一任务，也可以组合成模型服务交付、财务运营和平台治理的端到端流程。
 
-账号、租户、角色和权限之间的设计逻辑说明。
+## 角色与职责
 
-| 文档 | 用途 |
-|------|------|
-| [用户、租户与角色设计逻辑](./identity-access-model) | 说明租户边界、默认角色和授权控制逻辑 |
-| [角色对比总览](./role-comparison) | 对比 admin、operator、provider、enduser 的能力边界 |
+| 角色 | 主要职责 | 推荐入口 |
+| --- | --- | --- |
+| **运营方（`operator`）** | 准备资源和模板，配置治理规则，维护配额与监控，审核发布内容 | [角色对比总览](./role-comparison) |
+| **模型提供方（`provider`）** | 发布单模型或聚合模型，维护版本和定价，提交审核，查看客户调用与收益 | [Model Services 平台入门](../usermanual/model-services/getting-started/) |
+| **普通用户（`enduser`）** | 发现和体验模型，获取调用权限，调用 API，部署可用服务并查看个人用量 | [用户手册](../usermanual/) |
 
-### 兼容性与限制
+账号可见的菜单取决于角色、所属租户、授权范围和当前可用资源。
 
-兼容性边界与已知约束。
+## 按目标选择文档
 
-| 文档 | 用途 |
-|------|------|
-| [纳管芯片](./limitations/chips) | 支持芯片范围与纳管注意事项 |
-| [支持矩阵](./limitations/support-matrix) | OS/容器/模型/接口支持情况 |
-| [其他限制](./limitations/limitations) | 非芯片类限制与风险提示 |
+| 你要解决的问题 | 推荐入口 |
+| --- | --- |
+| AGIOne 提供什么，能力边界在哪里？ | [技术总览](./technical/overview) -> [功能与能力](./technical/features) -> [支持矩阵](./limitations/support-matrix) |
+| 如何完成一个真实任务？ | [场景操作指南](../userguide/scenarios) |
+| 页面或字段是什么意思，具体如何操作？ | [用户手册](../usermanual/) |
+| 如何准备环境或安装平台？ | [安装指南](../installation/)和[网络规划](./technical/network) |
+| 某个芯片、云平台或模型能力是否支持？ | [纳管芯片](./limitations/chips)和[支持矩阵](./limitations/support-matrix) |
+| PoC 或交付前如何收集需求？ | [需求快速调研](./investigation/quick-requirement-investigation)和[环境快速调研](./investigation/quick-env-investigation) |
 
-### 售前调研
+## 支持状态说明
 
-售前调研模板与信息收集指引。
+| 状态 | 含义 |
+| --- | --- |
+| **支持** | 用户手册已有对应能力；实际使用仍取决于账号权限和前置资源。 |
+| **条件支持** | 仅在指定版本、配置、部署形态或项目验证结论下可用。 |
+| **规划中** | 已进入产品规划，但当前不能按正式可用能力交付。 |
+| **暂不支持** | 当前版本不能围绕该能力设计交付方案。 |
 
-| 文档 | 用途 |
-|------|------|
-| [需求快速调研](./investigation/quick-requirement-investigation) | 收集业务场景与目标需求 |
-| [环境快速调研](./investigation/quick-env-investigation) | 收集部署环境与前置条件 |
+当前需要特别注意的状态：
+
+- **华为云接入：暂不支持。** 华为昇腾加速卡纳管属于 On-Prem 芯片兼容性问题，不代表支持接入华为云。
+- **RAG：规划中。**
+- **Function Calling：规划中。**
+
+其他能力以[支持矩阵](./limitations/support-matrix)为产品级状态入口，并在交付前确认项目所需的前置条件。
+
+## 新手推荐阅读顺序
+
+1. 阅读[技术总览](./technical/overview)，理解产品流程和子系统边界。
+2. 阅读[租户、成员、项目与角色设计逻辑](./identity-access-model)，确认当前账号能完成哪些任务。
+3. 从[场景操作指南](../userguide/scenarios)选择目标任务。
+4. 打开场景链接的[用户手册](../usermanual/)页面，查看字段、前提条件、结果校验和排障方式。
+5. PoC 或部署前，确认[支持矩阵](./limitations/support-matrix)、[其他限制](./limitations/limitations)和[安装指南](../installation/)。

@@ -1,80 +1,57 @@
-# 发布模型（对话模型）
+---
+prev: false
+next: true
+---
 
-## 操作步骤
+# Publish a Text or Chat Model
 
-### 发布模型（对话模型）
+This page highlights configuration and validation for text or chat models. See [Publish Public Models](../provider-quick-guide) for the common end-to-end flow.
 
-1. 进入平台首页，点击左侧导航栏的 **"我的模型"** 菜单，进入模型管理页面。
-2. 默认进入 **"我的发布"** Tab，可通过页面顶部 **"公共模型 / 私有模型"** 切换查看不同区域的模型；也可切换至 **"概览"** 或 **"我的聚合"** Tab。
-3. 点击页面右上角的 **"发布模型"** 按钮，弹出"选择发布区域"对话框。
-4. 选择发布区域：
-   - **"发布到私有区"**：仅本团队或租户内可见可调用，加入私有库，不进入公开目录，适合内部业务与安全敏感场景；
-   - **"发布到公有区"**：上架公有目录，对所有租户的 EU 开放调用，可独立设置定价与限流。
-![选择发布区域](./images/Choose-where-to-publish.png)
-1. 点击 **"发布到私有区"** 或 **"发布到公有区"** 进入发布配置流程（Step 1：基本信息）。
-2. **Step 1：基本信息**——配置"模型源/元模型信息"：
-   - 选择 **"元模型"**（如 Qwen3.6-plus，可选 text 1024K 等规格标签）；
-   - 选择 **"模型源"**（如 阿里巴巴-中国）；
-   - 填写 **"请求URL"**（如 `https://dashscope.aliyuncs.com`，区域默认"中国"）；
-   - 填写 **"API密钥"**（如 `sk-***`）；
-   - 填写 **"模型源ID"**（如 `qwen3.6-plus`，即发往上游厂商的精确模型名称）。
-7. **模型类型**：在"模型类型"区块选择 **"对话模型"**（可选项：多模态 / 对话模型 / 图片模型 / 语音模型 / 视频模型 / 嵌入模型 / 重排模型）。
-8. **请求头配置**：认证字段默认为 `Authorization: Bearer <key>`，可点击 **"添加请求头"** 增加自定义字段。
-9. **模型参数配置**：
-   - 选择 **"输入模态"**（文本 / 图片 / 视频，多选）；
-   - 选择 **"输出模态"**（文本 / 图片 / 视频，多选）；
-   - 开启 **"高级能力"**：函数/工具支持、思考模式。
-10. **Token 限制**：设置 **"最大上下文"**（如 1024K）、**"最大输入"**（如 991K）、**"最大输出"**（如 64K）。
-11. **支持协议与默认参数**：至少选择一个协议（OpenAI-ChatCompletions / OpenAI-Responses / Anthropic-Messages），只有先进行协议连通性测试，连通性测试成功后可执行后续操作；测试通过后填写 **"Endpoint"**（如 `https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions`）并配置 **"输入参数"**（Temperature、Top-P、N、Stream、Max Tokens、Presence Penalty、Frequency Penalty、User、Seed、Parallel Tool Calls 等）。
-12. **基本信息**：填写 **"个性化标识"**（如 Qwen3.6-plus）、**"描述"**。
-13. **发布方式**：选择 **"立即发布"** 或 **"定时发布"**。
-14. 点击 **"下一步"** 进入 Step 2：计费配置。
-15. **Step 2：计费配置**：
-    - 选择 **"计费方式"**：**"按Token计费"**（按消耗的 Token 计费，Credit / M tokens）或 **"免费"**（向所有用户免费开放，不计费，常用于公测/开源/推广/尝鲜）；
-    - 开启 **"显示价格对比"** 开关后可展示划线原价；
-    - 在 **"计费规则 — 价格录入"** 区块：
-      - 开启 **"按上下文长度分阶梯"**（长上下文区间使用更高单价）；
-      - 开启 **"缓存命中独立计价"**（命中缓存的输入按独立的 per-M 单价结算）；
-    - **设置阶梯价格**：为每个阶梯（如阶梯1: 0K – 256K Tokens、阶梯2: 256K – ∞）分别设置 **"输入售价 / 输出售价 / 缓存命中售价"** 与 **"输入划线原价 / 输出划线原价 / 缓存命中划线原价"**（单位均为 Credits/1M tokens），可点击 **"添加阶梯"** 增加更多区间；
-    - **联网搜索**：可开启 WebSearch 工具费用；
-    - **免费额度**：开启后可设置可领取额度、人数、总量；
-    - 点击 **"下一步"** 进入 Step 3：限流配置。
-16. **Step 3：限流配置**：
-    - 选择 **"是否启用限流"**：**"启用限流"** 或 **"不启用"**；
-    - 设置 **"默认限流"**：
-      - **"RPM（每分钟请求数）"**：输入数值（如 2 次/分钟），可勾选 **"不限制"**；
-      - **"TPM（每分钟Token数）"**：输入数值（如 100 Token/分钟），可勾选 **"不限制"**。
-    - 点击 **"仅保存"** 或 **"提交审核"** 完成发布。
+## Target Outcome
 
-#### 参数说明 - 发布流程配置项
+The text or chat model passes protocol testing, publishes in the intended scope, and returns a valid response to a controlled prompt.
 
-| 字段名称 | 字段类型 | 示例 | 说明 |
-|----------|----------|------|------|
-| 元模型 | 下拉选择 | `Qwen3.6-plus`（含 text 1024K 标签） | 必填，选择基础元模型 |
-| 模型源 | 下拉选择 | `阿里巴巴-中国` | 必填，模型的来源渠道 |
-| 请求URL | URL | `https://dashscope.aliyuncs.com` | 必填，模型服务的 API 地址（可切换区域） |
-| API密钥 | 文本 | `sk-***` | 必填，调用模型的密钥 |
-| 模型源ID | 文本 | `qwen3.6-plus` | 必填，发往上游厂商的精确模型名称 |
-| 模型类型 | 单选 | `对话模型 / 多模态` | 必填，模型的功能类型 |
-| 请求头 | 键值对 | `Authorization: Bearer <key>` | 选填，认证与自定义请求头 |
-| 输入模态 | 多选 | `文本 / 图片 / 视频` | 必填，模型支持的输入数据类型 |
-| 输出模态 | 多选 | `文本` | 必填，模型支持的输出数据类型 |
-| 高级能力 | 开关 | `函数/工具支持 / 思考模式` | 选填，模型的扩展能力 |
-| 最大上下文 | 数值 | `1024K` | 必填，Token 上下文上限 |
-| 最大输入 | 数值 | `991K` | 必填，单次输入 Token 上限 |
-| 最大输出 | 数值 | `64K` | 必填，单次输出 Token 上限 |
-| 支持协议 | 多选 | `OpenAI-ChatCompletions / OpenAI-Responses / Anthropic-Messages` | 必填，模型兼容的 API 协议，需先进行连通性测试 |
-| Endpoint | URL | `https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions` | 必填，协议对应的端点地址 |
-| 输入参数 | 参数列表 | `Temperature / Top-P / N / Stream / Max Tokens / Presence Penalty / Frequency Penalty / User / Seed / Parallel Tool Calls` | 选填，按协议预设的输入参数 |
-| 个性化标识 | 文本 | `Qwen3.6-plus` | 必填，模型对外展示的自定义标识 |
-| 描述 | 文本 | `Qwen3.6原生视觉...` | 选填，模型的说明描述 |
-| 发布方式 | 单选 | `立即发布 / 定时发布` | 必填，模型的上线时机 |
-| 计费方式 | 单选 | `按Token计费 / 免费` | 必填，模型的收费方式 |
-| 按上下文长度分阶梯 | 开关 | `开启 / 关闭` | 选填，长上下文区间使用更高单价 |
-| 缓存命中独立计价 | 开关 | `开启 / 关闭` | 选填，命中缓存的输入按独立的 per-M 单价结算 |
-| 阶梯价格 | 分组 | `阶梯1 0K–256K：输入20/输出120/缓存2  阶梯2 256K–∞：输入80/输出480/缓存8` | 必填，按上下文长度分档的输入/输出/缓存售价与划线原价（Credits/1M tokens） |
-| 联网搜索 | 开关 | `开启 / 未启用` | 选填，启用 WebSearch 工具费用 |
-| 免费额度 | 开关 | `开启 / 未启用` | 选填，配置模型的免费调用额度 |
-| 是否启用限流 | 单选 | `启用限流 / 不启用` | 选填，配置模型的调用频率限制 |
-| RPM（每分钟请求数） | 数值 / 不限制 | `2 次/分钟` | 选填，每分钟请求数上限，可勾选"不限制" |
-| TPM（每分钟Token数） | 数值 / 不限制 | `100 Token/分钟` | 选填，每分钟 Token 数上限，可勾选"不限制" |
+## Applicable Roles
+
+- Model Provider
+
+## Before You Start
+
+- The operator has prepared the meta-model, model source, template, tags, and currency.
+- Upstream model ID, protocol endpoint, authentication, and defaults are known.
+- Context, input/output token limits, billing, and rate limits are defined.
+
+## Key Steps
+
+1. Open **My Models > My Publications**, choose the public or private area, and enter the text or chat model's basic identity.
+
+![Complete text-model basic information](../images/publish-basic-info-en.png)
+
+2. Select the text or chat meta-model and model source, then configure the upstream model ID, request URL, and authentication headers.
+
+![Configure the model source and protocol](../images/publish-source-protocol-en.png)
+
+3. Select Chat Completions, Responses, or another compatible protocol and pass connectivity testing.
+4. Configure context, input and output token limits, advanced capabilities, and defaults.
+5. Configure token billing, tiers, cache pricing, and any free quota.
+6. Configure RPM and TPM limits, then save or submit for review.
+
+See [My Models](../../../../usermanual/model-services/user/studio/my-models/) and [Publish and Call a Model](../../../../usermanual/model-services/end-to-end/publish-and-call-model/) for detailed operations.
+
+## Completion Checklist
+
+> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+
+| Check | Pass Criteria |
+| --- | --- |
+| 1 | Protocol tests pass for expected streaming and non-streaming behavior. |
+| 2 | Context and token limits match upstream capabilities. |
+| 3 | Billing and rate limits match the publication plan. |
+| 4 | Review state is visible and the published model is callable in its intended scope. |
+
+## Troubleshooting
+
+| Symptom | Check First |
+| --- | --- |
+| Protocol test fails | Endpoint, credential, model identifier, headers, and request body |
+| Calls fail after publication | Publication status, API key, protocol, rate limit, quota, and call logs |

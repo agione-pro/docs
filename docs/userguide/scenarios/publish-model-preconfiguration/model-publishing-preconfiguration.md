@@ -1,12 +1,25 @@
-﻿# Model Publishing: Preconfiguration Guide
+# Model Publishing: Preconfiguration Guide
 
 This guide explains the preconfiguration that an Operator needs to complete in **Model Services** before a Provider publishes a public model.
 
 Before you begin, sign in to AGIOne with an Operator account, open **"Model Services"**, and confirm that **"Settings"** and **"Approvals"** are available in the left-side menu.
 
-## 1. Add Meta-models
+## Target Outcome
 
-1. In the left-side menu, go to **"Settings > Meta-models"**.
+Model Providers can publish without missing sources, templates, tags, currency, or review entry points.
+
+## Applicable Roles
+
+- Platform Operator
+
+## Before You Start
+
+- Collect authoritative provider and model documentation.
+- Define naming, region, protocol, pricing-currency, and approval ownership conventions.
+
+## 1. Add Meta Models
+
+1. In the left-side menu, go to **"Settings > Meta Models"**.
 2. Click **"Add"** above the model author list on the left.
 3. Fill in the model author's **Unique Identifier**, for example `qwen`.
 4. Configure the model author's English and Chinese display names.
@@ -24,8 +37,8 @@ Before you begin, sign in to AGIOne with an Operator account, open **"Model Serv
     - Multiple selections are supported.
     - Select according to the interaction media supported by the model, such as Text, Image, Audio, or Video.
 15. Enable advanced capabilities according to the model capability.
-    - Enable only capabilities actually supported by the model, such as Function Calling, Tool Support, or Thinking Mode.
-    - Do not enable capabilities that the model does not support.
+    - Enable Thinking Mode only when the model has been verified to support it.
+    - Function Calling and Tool Support are planned capabilities and must not be configured as currently available features.
 16. Set Token Limits.
     - Fill in Max Context, Max Input, and Max Output according to the model's official capability.
     - Avoid values that exceed the model capability, otherwise the Provider may fail model testing during publishing.
@@ -35,9 +48,9 @@ Before you begin, sign in to AGIOne with an Operator account, open **"Model Serv
 18. Fill in the meta-model details.
 19. Click **"Submit"** to save the meta-model.
 
-![Meta-models](./images/model-publishing-preconfiguration/en/01-meta-models.png)
+![Meta Models](./images/model-publishing-preconfiguration/en/01-meta-models.png)
 
-Meta-models provide the base data for templates and model publishing. After a meta-model is disabled, models published based on it cannot provide services externally.
+Meta Models provide the base data for templates and model publishing. After a Meta Model is disabled, models published based on it cannot provide services externally.
 
 ## 2. Add Model Source
 
@@ -73,7 +86,7 @@ Do not enter or expose a real API Key here. Public documentation should only kee
 1. In the left-side menu, go to **"Settings > Model Templates"**.
 2. Click **"Add"** at the top right of the page.
 3. Select the model author.
-    - Select an author already created in **"Settings > Meta-models"**.
+    - Select an author already created in **"Settings > Meta Models"**.
 4. Select the model source.
     - Select a source already created in **"Settings > Model Source"**.
 5. Select the region under the model source.
@@ -123,21 +136,16 @@ Templates connect the model author, model source, region, meta-model, Model Sour
 
 Tags are used for model marketplace classification and display. Prepare commonly used tags before public model publishing to avoid unclear classification or missing tag-based filtering after the model is listed.
 
-## 5. Confirm Currency Settings
+## 5. Confirm Pricing Currency
 
-1. In the left-side menu, go to **"Settings > Currency Settings"**.
-2. Check the current platform-wide currency.
-    - The current currency is used for platform-wide transaction and fee display.
-3. If the public model is paid, confirm that the currency matches the operating pricing policy.
-4. If the currency needs to be changed, click the current currency card.
-5. Select the target currency in the dialog.
-    - Changing currency affects the platform fee display.
-    - Confirm the impact on pricing, user-facing display, and historical record display before switching.
-6. Confirm and save.
+1. Before publishing a paid public model, confirm the current platform-wide pricing currency with the platform settings owner.
+2. Check whether the paid model currency matches the operating pricing policy.
+    - The platform currency affects transaction and fee display.
+3. If the currency needs to be changed, use the current platform-level settings entry provided by the deployment environment.
+4. Before any final `Save`, `Submit`, or `Confirm` action, verify the impact on pricing, user-facing display, and historical record display.
+5. For documentation or learning, record only the confirmation result. Do not record real customer prices, settlement policies, or internal finance configuration.
 
-![Currency Settings](./images/model-publishing-preconfiguration/en/05-currency-settings.png)
-
-Currency settings affect platform-wide transaction and fee display. It is not recommended to change them casually after online transactions already exist.
+Pricing currency affects platform-wide transaction and fee display. It is not recommended to change it casually after online transactions already exist.
 
 ## 6. Review Model Publishing Requests
 
@@ -178,3 +186,24 @@ Before the Provider submits a public model, the Operator should confirm at least
 2. Model source, meta-model, and template must match each other; otherwise, the Provider may lack options during publishing or fail protocol testing.
 3. Public models become externally visible after publishing, so verify name, tags, billing, rate limits, and protocol test results before approval.
 4. This guide applies only to Model Services model publishing preconfiguration.
+
+## Completion Checklist
+
+> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+
+| Check | Pass Criteria |
+| --- | --- |
+| 1 | Meta-model, source, template, tags, and currency are enabled and mutually consistent. |
+| 2 | A Model Provider test account can see the expected publication options. |
+| 3 | The Platform Operator can locate and process a test review request. |
+
+## Troubleshooting
+
+| Symptom | Check First |
+| --- | --- |
+| Provider lacks a source or template | Status, region, model type, source-template association, and account scope |
+| Protocol defaults are wrong | Provider documentation, endpoint, model ID, modalities, limits, and parameters |
+
+## User Manual
+
+[Model Services end-to-end publishing flow](../../../usermanual/model-services/end-to-end/publish-and-call-model/)

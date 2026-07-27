@@ -1,9 +1,9 @@
 # Device Monitoring
 
-:::: info Document Information
+::: info Document Information
 Version: v1.0
 Updated: 2026-07-08
-::::
+:::
 
 ## Feature Overview
 
@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Monitoring > Device Monitoring |
-| Page Route | `/powerone/user-monitor/devices` |
-| Managed Objects | Utilization, VRAM, and health status of GPU/NPU and other devices within the user-visible scope |
-| Typical Use | Determine whether model instances or training tasks are affected by accelerator resources |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Monitoring > Device Monitoring |
+| Page route | `/powerone/user-monitor/device` |
+| Managed objects | Utilization, VRAM, and health status of GPU/NPU and other devices within the user-visible scope |
+| Typical use | Determine whether model instances or training tasks are affected by accelerator resources |
 
-### Beginner View
+#### Beginner Explanation
 
 Device monitoring is like a health check table for each GPU/NPU. It shows device type, health status, temperature, and VRAM usage to determine whether accelerators affect task execution.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -41,9 +41,9 @@ Device monitoring is like a health check table for each GPU/NPU. It shows device
 
 The page displays device monitoring capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
-![Device Monitoring](./images/monitoring-devices.png)
+![Device Monitoring](./images/devices-list.png)
 
-### Expected Page Elements When Capability Is Open
+#### Expected Page Elements When Capability Is Open
 
 | Page Element | Example | Description |
 | --- | --- | --- |
@@ -53,23 +53,25 @@ The page displays device monitoring capability for the selected region. When the
 | Temperature and Health Status | `72C / Healthy` | Determines hardware health, cooling, or driver risk. |
 | Update Time | `2026-07-03 10:00` | Determines whether collection is delayed. |
 
-## View Device Monitoring
+## Main Operations
 
-### Procedure
+### View Device Monitoring
 
-1. Go to `Monitoring > Device Monitoring`.
+#### Procedure
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Device Monitoring`.
 2. Confirm the region in the upper-right corner.
 3. Filter by time, status, or keyword provided by the page.
 4. View charts, lists, or prompt information.
 5. If monitoring capability is not opened, return to instance details to view logs, events, and status.
 
-### Key Focus When Capability Is Open
+#### Key Focus When Capability Is Open
 
 - Whether GPU/NPU utilization is empty or continuously abnormal.
 - Whether VRAM usage is close to the limit.
 - Whether temperature and health status have alerts.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -81,13 +83,13 @@ The page displays device monitoring capability for the selected region. When the
 | VRAM Usage | System-generated | Percentage | `78%` | Determines model or job VRAM pressure. |
 | GPU/NPU Utilization | System-generated | Percentage | `63%` | Determines compute unit load. |
 
-### Pitfalls
+## Pitfalls
 
 - Empty utilization may mean not collected, no task, or device plugin exception. Do not directly judge it as idle.
 - High VRAM directly affects model startup even when total cluster capacity looks sufficient.
 - Temperature exceptions should be handled as hardware health issues. Avoid relying only on task retry.
 
-### Result Validation
+## Result Validation
 
 1. The device list displays device name, type, health status, temperature, and VRAM usage.
 2. Device metrics can correspond to nodes and time ranges.
@@ -114,7 +116,7 @@ Alternative troubleshooting paths:
 
 ## FAQ
 
-### GPU/NPU Utilization Is Empty
+#### GPU/NPU Utilization Is Empty
 
 **Symptom:**
 
@@ -132,7 +134,7 @@ Devices exist in the list, but utilization or VRAM curves are empty.
 2. Compare node statistics and job monitoring to confirm whether tasks occupy devices.
 3. Contact the operator to check device plugins, drivers, and monitoring collection.
 
-### Temperature or VRAM Is Abnormal
+#### Temperature or VRAM Is Abnormal
 
 **Symptom:**
 
@@ -150,7 +152,7 @@ Device temperature stays high, or VRAM usage approaches the limit and causes ins
 2. Reduce concurrency, switch specifications, or retry after resources are released.
 3. Provide the operator with device name, node, and abnormal time range.
 
-## Follow-Up Operations
+## Next Steps
 
 1. When VRAM is insufficient, return to instance or job configuration to reduce model size, concurrency, or context length.
 2. When device health is abnormal, avoid continuing to submit high-priority tasks with the same device type.

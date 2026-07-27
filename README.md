@@ -1,150 +1,133 @@
-# AGIOne Docs
+# AGIOne Documentation
 
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20.19.0-brightgreen)](https://nodejs.org/)
 [![VitePress](https://img.shields.io/badge/VitePress-2.0.0--alpha.17-5c73e7)](https://vitepress.dev/)
 
-AGIOne AI Gateway Platform Documentation
+This repository contains the AGIOne product documentation site, built with VitePress.
 
-Bilingual: [English](/) / [中文](/zh-CN/)
+- English home: `/`
+- Chinese home: `/zh-CN/`
+- Source root: `docs/`
+- Build output: `docs/.vitepress/dist/`
 
-## 环境要求
+## Requirements
 
-- **Node.js**: `>= 20.19.0`
+- Node.js `>= 20.19.0`
+- npm, using the committed `package-lock.json`
 
-## 快速开始
-
-### 安装依赖
+## Common Commands
 
 ```bash
 npm install
-```
-
-### 开发模式
-
-```bash
-# 本地访问
 npm run docs:dev
-
-# 局域网访问
-npm run docs:dev -- --host
+npm run docs:build
+npm run docs:preview
 ```
 
-开发服务器启动后，浏览器打开 `http://localhost:5173/` 即可预览，修改文档会热重载。
+Local development uses `http://localhost:5173/` by default.
 
-### 生产构建
+## Documentation Structure
+
+| Section | English Path | Chinese Path |
+| --- | --- | --- |
+| Product Overview | `/product/` | `/zh-CN/product/` |
+| Installation | `/installation/` | `/zh-CN/installation/` |
+| Purchase & Activation | `/license/` | `/zh-CN/license/` |
+| User Guide | `/userguide/` | `/zh-CN/userguide/` |
+| User Manual | `/usermanual/` | `/zh-CN/usermanual/` |
+| Best Practices | `/practices/` | `/zh-CN/practices/` |
+| Operations | `/operations/` | `/zh-CN/operations/` |
+| Others | `/others/` | `/zh-CN/others/` |
+
+## Key Files
+
+```text
+.
+├── docs/
+│   ├── .vitepress/
+│   │   ├── config/
+│   │   │   ├── index.ts
+│   │   │   └── shared.ts
+│   │   └── theme/
+│   │       ├── components/
+│   │       │   └── ScenarioGuide.vue
+│   │       ├── navbar/
+│   │       │   ├── en.ts
+│   │       │   ├── zh.ts
+│   │       │   ├── en.main.ts
+│   │       │   ├── zh.main.ts
+│   │       │   ├── en.global.main.ts
+│   │       │   └── zh.global.main.ts
+│   │       └── sidebar/
+│   │           ├── en.ts
+│   │           └── zh.ts
+│   ├── assets/
+│   ├── public/
+│   ├── index.md
+│   └── zh-CN/
+│       └── index.md
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
+## Navigation Maintenance
+
+Sidebars are maintained directly:
+
+- English sidebar: `docs/.vitepress/theme/sidebar/en.ts`
+- Chinese sidebar: `docs/.vitepress/theme/sidebar/zh.ts`
+
+Navbar files have two modes:
+
+- Preview deployment uses `docs/.vitepress/theme/navbar/en.ts` and `zh.ts` directly.
+- Production workflows may generate `en.ts` and `zh.ts` from the matching template files:
+  - CN site: `en.main.ts`, `zh.main.ts`
+  - Global site: `en.global.main.ts`, `zh.global.main.ts`
+
+When adding or moving documentation, update both language versions and the related sidebar entries.
+
+## Scenario Guide
+
+The user guide scenario landing pages use `docs/.vitepress/theme/components/ScenarioGuide.vue` as the shared scenario data and UI source.
+
+When adding a new scenario:
+
+1. Create both English and Chinese scenario folders.
+2. Add or update each scenario `index.md`.
+3. Update `ScenarioGuide.vue`.
+4. Update English and Chinese sidebars.
+5. Run `npm run docs:build`.
+
+## Content Rules
+
+- Keep English and Chinese paths aligned.
+- Do not commit real secrets, API keys, AK/SK, tokens, cookies, internal customer data, or real credentials.
+- Use sanitized placeholders in examples and screenshots.
+- Prefer relative Markdown links for nearby pages and images.
+- For directory pages, use trailing-slash links such as `../target/` to avoid broken generated links.
+- Keep image filename casing exactly aligned with Markdown references.
+
+## Validation
+
+Run the documentation build before submitting changes:
 
 ```bash
 npm run docs:build
 ```
 
-构建产物输出到 `docs/.vitepress/dist/`，可直接部署到任意静态服务器。
+For navigation, link, or asset changes, also check:
 
-### 预览生产构建
+- The affected page opens locally.
+- The sidebar entry points to an existing page.
+- Markdown image references match actual filename casing.
+- Unused images are removed only after confirming they are not referenced by Markdown, config, or theme code.
 
-```bash
-npm run docs:preview
-```
+## Deployment Notes
 
-## 文档结构
+The repository includes GitHub Actions workflows under `.github/workflows/`.
 
-| 章节 | 英文路径 | 中文路径 |
-|------|---------|---------|
-| 售前资料 | `/presales/` | `/zh-CN/presales/` |
-| 方案设计 | `/solution/` | `/zh-CN/solution/` |
-| 交付部署 | `/deployment/` | `/zh-CN/deployment/` |
-| 运维运营 | `/operations/` | `/zh-CN/operations/` |
-| 排错支持 | `/troubleshooting/` | `/zh-CN/troubleshooting/` |
-| OEM 配置 | `/oem/` | `/zh-CN/oem/` |
+- `main.yml` is used for the main documentation deployment.
+- `preview.yml` is used for the preview documentation deployment.
 
-## 项目结构
-
-```
-.
-├── docs/
-│   ├── .vitepress/
-│   │   ├── config/
-│   │   │   ├── index.ts        # 主配置入口
-│   │   │   └── shared.ts       # 共享基础配置
-│   │   ├── theme/
-│   │   │   ├── index.ts        # 主题入口（扩展默认主题）
-│   │   │   ├── en.ts           # 英文主题配置
-│   │   │   ├── zh.ts           # 中文主题配置
-│   │   │   ├── navbar/
-│   │   │   │   ├── en.ts                # 英文导航栏（构建时由模板生成，勿手动修改）
-│   │   │   │   ├── zh.ts                # 中文导航栏（构建时由模板生成，勿手动修改）
-│   │   │   │   ├── en.main.ts           # CN 版英文导航模板（docs.agione.cc）
-│   │   │   │   ├── zh.main.ts           # CN 版中文导航模板（docs.agione.cc）
-│   │   │   │   ├── en.global.main.ts    # Global 版英文导航模板（docs.agione.pro）
-│   │   │   │   └── zh.global.main.ts    # Global 版中文导航模板（docs.agione.pro）
-│   │   │   └── sidebar/
-│   │   │       ├── en.ts       # 英文侧边栏配置
-│   │   │       └── zh.ts       # 中文侧边栏配置
-│   │   └── social.ts           # 社交链接配置
-│   ├── assets/
-│   │   └── images/             # 文档图片资源
-│   ├── public/                 # 静态资源（favicon, logo 等）
-│   ├── index.md                # English homepage
-│   ├── presales/               # English pre-sales docs
-│   │   ├── best-practices/     # 最佳实践子目录
-│   │   └── survey/             # 调研子目录
-│   ├── solution/               # English solution docs
-│   ├── deployment/             # English deployment docs
-│   ├── operations/             # English operations docs
-│   ├── troubleshooting/        # English troubleshooting docs
-│   ├── oem/                    # English OEM docs
-│   └── zh-CN/                     # Chinese locale
-│       ├── index.md            # 中文首页
-│       ├── presales/           # 中文售前资料
-│       │   ├── best-practices/ # 最佳实践子目录
-│       │   └── survey/         # 调研子目录
-│       ├── solution/           # 中文方案设计
-│       ├── deployment/         # 中文交付部署
-│       ├── operations/         # 中文运维运营
-│       ├── troubleshooting/    # 中文排错支持
-│       └── oem/                # 中文 OEM 配置
-├── .github/workflows/
-│   ├── main.yml                # 主分支 CI/CD（CN + Global 双构建）
-│   └── preview.yml             # 预览分支 CI/CD
-├── .gitignore
-├── GUIDE.md                    # 项目完整指南（目录结构、配置说明、CI/CD）
-├── package.json
-└── package-lock.json
-```
-
-## 配置说明
-
-本项目采用模块化配置结构，导航栏使用模板 + 生成方式管理：
-
-| 配置文件 | 说明 |
-|----------|------|
-| `config/index.ts` | 主配置入口，合并所有配置 |
-| `config/shared.ts` | 共享基础配置（title, description） |
-| `theme/navbar/en.main.ts` | CN 版英文导航模板（手动编辑） |
-| `theme/navbar/zh.main.ts` | CN 版中文导航模板（手动编辑） |
-| `theme/navbar/en.global.main.ts` | Global 版英文导航模板（手动编辑） |
-| `theme/navbar/zh.global.main.ts` | Global 版中文导航模板（手动编辑） |
-| `theme/navbar/en.ts` | 英文导航栏（构建时自动生成，勿手动修改） |
-| `theme/navbar/zh.ts` | 中文导航栏（构建时自动生成，勿手动修改） |
-| `theme/sidebar/en.ts` | 英文侧边栏配置 |
-| `theme/sidebar/zh.ts` | 中文侧边栏配置 |
-| `social.ts` | 社交链接配置 |
-
-## 添加文档
-
-在 `docs/` 目录下新增 `.md` 文件，VitePress 会自动生成路由。路由路径即文件路径：
-
-| 文件路径 | 访问路径 |
-|---|---|
-| `docs/presales/new-doc.md` | `/presales/new-doc` |
-| `docs/zh-CN/presales/new-doc.md` | `/zh-CN/presales/new-doc` |
-
-添加文档后，需要同步更新配置：
-
-- **侧边栏配置**：`docs/.vitepress/theme/sidebar/en.ts`（英文）和 `zh.ts`（中文）
-- **导航栏配置**：编辑对应的导航栏模板文件（`*.main.ts` / `*.global.main.ts`），CI/CD 构建时会自动生成 `en.ts` / `zh.ts`
-
-详细说明请参考 [GUIDE.md](./GUIDE.md)。
-
-## License
-
-MIT
+Deployment-specific paths, hosts, and credentials are managed by GitHub Actions variables and secrets.

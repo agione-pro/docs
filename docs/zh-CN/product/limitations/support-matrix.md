@@ -1,185 +1,90 @@
-# AGIOne 产品支持矩阵及限制条件
+﻿# 支持矩阵
 
-## 1. 文档说明
+:::: info 文档信息
+版本：v1.0
+更新日期：2026-07-13
+功能事实基线：2026-07-10 更新的用户手册
+::::
 
-本文档用于说明 AGIOne 当前产品支持范围、部署环境、纳管算力节点、纳管算力平台、模型能力、on-prem 快速部署模型清单，以及已知限制条件。
+## 状态定义
 
-本文档属于支持矩阵草案，适用于产品介绍、售前方案、交付评估和部署前技术确认。实际项目交付前，应结合正式 release note、交付包兼容矩阵、驱动版本、推理引擎版本和现场环境评估结果确认最终支持范围。
+| 状态 | 含义 |
+| --- | --- |
+| **支持** | 当前用户手册或安装指南已有对应能力说明，实际使用仍受账号权限和前提条件限制。 |
+| **条件支持** | 是否可用取决于版本、平台配置、交付包、基础设施组合或项目验证。 |
+| **规划中** | 已进入产品规划，但当前不能作为生产交付能力。 |
+| **暂不支持** | 当前版本不能围绕该能力设计交付方案。 |
 
-## 2. 总体支持范围
+本矩阵是产品级状态入口。具体项目以发布说明、实际交付包、运行环境和项目验证结论为准。
 
-| 范围             | 支持说明                                                                 | 限制条件                            |
-| -------------- | -------------------------------------------------------------------- | ------------------------------- |
-| 管理节点部署         | 支持 All-in-One、本地多节点、私有化、离线或弱网交付                     | 具体规格需按部署形态、纳管规模和交付包版本确认         |
-| 算力节点纳管         | 支持 NVIDIA Hopper / Ampere / Ada，Ascend910B/910C，Enflame106，Biren S60，海光 BW200 | 芯片可纳管不等于所有模型、驱动、CUDA、推理引擎组合均已验证 |
-| 算力平台纳管         | 支持阿里云、AWS、Google Cloud、AGIOne 异构卡纳管（算模方）等云平台，暂不支持华为云             | 不同云平台的账号权限、网络互通、API 密钥和安全策略需单独评估    |
-| 模型服务能力         | 支持文本生成、推理、多模态、OCR、Embedding、Reranker、RAG（规划中）、工具调用（规划中）、聚合模型、流式输出和 usage计量等    | 具体能力依赖模型本身、推理引擎、协议适配和产品版本       |
-| 快速部署模型         | 支持 DeepSeek、Qwen、Kimi、MiniMax、GLM、Llama 等系列                          | 超大模型需评估显存、并行策略、量化方式、存储和网络条件     |
+## 子系统能力矩阵
 
-## 3. AGIOne 管理节点部署支持矩阵
-
-| 部署形态 | 支持状态 |典型环境 |关键要求 | 限制条件 |
+| 子系统 | 能力 | 状态 | 主要条件 | 手册入口 |
 | --- | --- | --- | --- | --- |
-| All-in-One 单机部署 | 支持 | 单台 Linux物理机或虚拟机 | 推荐8C /16GiB /200GiB 可用磁盘，root 或等效权限，Docker / Compose |适合演示、测试、PoC 或小规模部署，不建议承载高可用生产负载 |
-| 本地 Host-mode 多节点部署 | 支持 | 多台 Linux物理机或虚拟机 | 至少4 台机器：2 台应用节点、1 台中间件节点、1 台数据库备库节点；节点 IP 固定；SSH 可达；时间同步 | 历史数据、端口占用、目录权限和数据库主备风险需部署前确认 |
-| 私有化部署 | 支持 | 企业内网、IDC、私有云、专有云 | 可部署管理平面、模型服务、资源纳管和统一入口；支持数据不出域场景 | 网络隔离、离线包、证书、DNS、代理、安全基线和审计策略需现场评估 |
-| 离线或弱网部署 | 支持 | 无公网或受限公网环境 | 离线 bundle、离线 Python、镜像包、checksum 校验、Docker/Compose 安装或修复能力 | 缺失离线资源、镜像导入失败、仓库不可达会阻塞部署 |
+| AI Infra On-Prem | 地域、可用区、集群、节点和加速卡管理 | 支持 | 兼容基础设施已准备并完成授权 | [On-Prem 平台入门](../../usermanual/ai-infra-on-prem/getting-started/) |
+| AI Infra On-Prem | 规格、镜像、存储和模板 | 支持 | 所需后端资源和模板已配置 | [On-Prem 用户手册](../../usermanual/ai-infra-on-prem/) |
+| AI Infra On-Prem | 开发环境、训练任务和在线推理 | 支持 | 配额、镜像、存储、加速卡和模板满足要求 | [从零部署模型服务](../../usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/) |
+| AI Infra On-Prem | 配额、额度、计量、用量和监控 | 支持 | 数据可见范围取决于角色、租户和采集状态 | [On-Prem 用户手册](../../usermanual/ai-infra-on-prem/) |
+| AI Infra On-Cloud | 云平台、账号、资源池和授权管理 | 支持 | 仅能使用已配置并完成验证的平台类型 | [On-Cloud 平台入门](../../usermanual/ai-infra-on-cloud/getting-started/) |
+| AI Infra On-Cloud | 框架、模型、运行镜像和调度策略 | 支持 | 资产和策略需匹配目标云平台与地域 | [从零部署云上模型服务](../../usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) |
+| AI Infra On-Cloud | 快速部署和部署跟踪 | 支持 | 账号、平台、地域、资产、算力方案和授权均可用 | [快速部署](../../usermanual/ai-infra-on-cloud/user/model-services/quick-deployment/) |
+| Model Services | 元模型、来源、模板、标签和币种设置 | 支持 | 需要运营方权限和有效基础配置 | [Model Services 平台入门](../../usermanual/model-services/getting-started/) |
+| Model Services | 单模型和 BYOK 发布 | 支持 | Endpoint 或部署信息、定价、可见范围和审核要求有效 | [我的模型](../../usermanual/model-services/user/studio/my-models/) |
+| Model Services | 聚合模型发布和路由 | 支持 | 由模型提供方使用符合条件的成员模型和可用策略创建 | [从发布到调用模型](../../usermanual/model-services/end-to-end/publish-and-call-model/) |
+| Model Services | 模型与应用审核 | 支持 | 由运营方处理，发布状态会影响用户可见性 | [从发布到调用模型](../../usermanual/model-services/end-to-end/publish-and-call-model/) |
+| Model Services | 模型发现和 Playground | 支持 | 需要可见、已审核且可用的模型，模态取决于具体模型 | [Model Services 用户手册](../../usermanual/model-services/) |
+| Model Services | 模型对应的 API 访问与调用记录 | 支持 | 访问权限、Endpoint、凭据、配额和模型可用 | [从发布到调用模型](../../usermanual/model-services/end-to-end/publish-and-call-model/) |
+| Model Services | 用量、客户调用和模型收益 | 支持 | 范围和数据新鲜度取决于角色、计量与同步状态 | [Model Services 用户手册](../../usermanual/model-services/) |
+| 财务 | 用户账务、交易流水、充值订单、月度账单和额度治理 | 支持 | 范围取决于账号、租户、账期和同步状态 | [财务用户手册](../../usermanual/billing/) |
+| 财务 | 客户财务、运营财务、结算、巡检对账和调账 | 支持 | 需要运营方权限、统一账期和源记录同步 | [财务快速入门](../../usermanual/billing/getting-started/) |
+| 财务 | License 额度、有效期、激活状态和模块授权 | 支持 | License 状态取决于交付包、激活状态和已配置额度 | [License](../../usermanual/billing/operator/license/license/) |
+| 设置 | 个人 Key、账号信息、项目、成员、角色和租户 | 支持 | 可见范围取决于角色、租户范围和菜单授权 | [设置用户手册](../../usermanual/settings/) |
+| 设置 | 平台设置、登录配置、操作日志和审计记录 | 支持 | 高风险变更需要平台或安全管理权限 | [设置快速入门](../../usermanual/settings/getting-started/) |
+| 设置 | API 流控规则、观测审计、节点缓存和发布中心 | 支持 | 规则效果取决于发布状态、节点同步和当前流量范围 | [API 流控概览](../../usermanual/settings/operator/api-rate-control/overview/) |
 
-## 4. 管理节点操作系统与组件支持
+## 云平台与加速卡状态
 
-| 类别 | 支持建议 | 限制条件 |
+| 项目 | 状态 | 产品口径 |
 | --- | --- | --- |
-| 操作系统 | Ubuntu22.04 推荐；Ubuntu20.04 可作为推荐范围；CentOS/Rocky7.x/8.x 条件支持；Kylin/UOS需评估 |生产应以正式 release note、交付包兼容矩阵和现场验证结果为准 |
-| Docker | Docker24.x+ 建议 |需匹配操作系统、内核、镜像包和离线安装方式 |
-| Helm | Helm3.10+ 建议 |仅适用于 Helm 或 chart交付形态 |
-| 中间件 | MariaDB、Redis、Nacos、Kafka、MinIO、OpenResty/Nginx |端口冲突、存储持久化、备份恢复和安全基线需部署前确认 |
+| 云平台类型和账号管理 | 支持 | AI Infra On-Cloud 可以管理已配置的平台类型、账号、资源池和授权；具体云厂商与接入方式需按环境验证。 |
+| 华为云接入 | 暂不支持 | 当前不能将华为云作为 On-Cloud 交付目标。 |
+| 清单内 NVIDIA、Huawei Ascend、Enflame、Biren、Hygon 加速卡 | 条件支持 | 清单型号可进入 On-Prem 纳管，完整软件与模型组合仍需验证，详见[纳管芯片](./chips)。 |
+| 清单外加速卡 | 条件支持 | 交付承诺前需完成适配评估和 PoC。 |
 
-## 5. AGIOne 纳管算力节点支持矩阵
+## 模型能力状态
 
-| 厂商 | 架构 / 系列 | 支持型号 |典型用途 | 限制条件 |
-| --- | --- | --- | --- | --- |
-| NVIDIA | Hopper | H800、H200、H100、H20 |旗舰大模型推理、长上下文、多卡并行、高吞吐服务 |需结合驱动、CUDA、推理引擎、显存和网络验证 |
-| NVIDIA | Ampere | A100、A800、A40、A30、A10、RTX A6000、RTX A5000、RTX A4000、RTX A2000、RTX3090、RTX3060 | 通用推理、存量算力复用、中小模型部署 | 不同型号显存差异大，不能直接等同支持所有模型规格 |
-| NVIDIA | Ada | L40、L40S、L20、L20S、L4、L2、RTX6000、RTX5000、RTX4500、RTX4000、RTX2000、RTX4090、RTX4090D | 中等规模高并发推理、知识问答、代码辅助、多模态推理 | 消费级或工作站型号需额外确认驱动、散热、稳定性和数据中心交付要求 |
-| Huawei Ascend | Ascend910 | Ascend910B、Ascend910C | 国产化、信创、本地化推理、批量推理 |需结合 CANN、MindIE、模型适配和镜像版本确认 |
-| Enflame | Enflame |106 | 国产加速卡纳管与适配 |需结合驱动、推理框架和模型适配验证 |
-| Biren | Biren | S60 | 国产加速卡纳管与适配 |需结合驱动、推理框架和模型适配验证 |
-| 海光 | BW 系列 | BW200 | 国产加速卡纳管与适配 |需结合驱动、推理框架和模型适配验证 |
-
-## 6. AGIOne 纳管算力节点操作系统要求
-
-| 节点类型 | 支持建议 | 限制条件 |
+| 能力 | 状态 | 产品口径 |
 | --- | --- | --- |
-| NVIDIA GPU 算力节点 | Linux服务器，建议使用与 NVIDIA 驱动、CUDA、容器运行时和 GPU Operator兼容的发行版 |具体 OS版本需结合驱动和交付包确认 |
-| Ascend NPU 算力节点 | Linux服务器，需满足 Ascend 驱动、CANN、MindIE 或相关推理栈要求 |需按 Ascend 软件栈版本和模型适配情况确认 |
-| 国产加速卡算力节点 | Linux服务器，需满足对应厂商驱动、运行时和推理框架要求 | 不同国产芯片生态差异较大，需项目级验证 |
-| Kubernetes Worker 节点 | 节点 Ready、可调度、容器运行时正常、驱动插件正常、网络和存储可用 | 同一 Kubernetes 集群建议管理相同 CPU 架构，避免异构架构混入导致调度不稳定 |
+| 文本模型发现、体验、发布和调用 | 支持 | 实际效果取决于所选模型、Endpoint、配额和推理资源。 |
+| 图片、音频和视频 Playground 入口 | 支持 | 对应模态需要配置兼容且对用户可见的模型。 |
+| 单模型、BYOK 和聚合模型发布 | 支持 | 应区分模型提供方发布和运营方审核职责。 |
+| 调用日志、分析、用量、计量、账务、结算和收益视图 | 支持 | 数据范围和同步状态因角色、模块、账期和源记录而异。 |
+| RAG | 规划中 | 当前不能作为生产交付能力。 |
+| Function Calling | 规划中 | 当前不能作为生产交付能力。 |
 
-## 7. CUDA 支持说明
+除非在交付版本中另行确认，本矩阵不对具体 API 协议、模型系列、上下文长度、量化方式或性能目标作支持承诺。
 
-| 项目 | 当前口径 | 限制条件 |
+## 部署状态
+
+| 部署范围 | 状态 | 来源与边界 |
 | --- | --- | --- |
-| CUDA 固定版本声明 | 当前文档不声明固定 CUDA版本 | CUDA需结合 NVIDIA GPU 型号、驱动版本、容器镜像、推理引擎和 AGIOne交付包兼容矩阵确认 |
-| NVIDIA GPU 推理 | 支持基于 NVIDIA GPU 的模型推理和纳管 | 不同模型对 CUDA、显存、TensorRT-LLM、vLLM、SGLang 等依赖不同 |
-| CUDA 与模型部署 | CUDA 是 NVIDIA 模型部署链路中的关键依赖 | 支持某 GPU 型号不等于支持任意 CUDA版本或任意模型镜像 |
-| CUDA 与生产交付 |生产交付前需冻结 GPU 驱动、CUDA、容器镜像和推理引擎版本 | 不建议在生产中混用未验证 CUDA / Driver / Runtime组合 |
+| AGIOne 应用单节点快速安装 | 支持 | 适用于[快速安装指南](../../installation/agione-quick-install)描述的范围，是否适合生产需另行评估。 |
+| AGIOne 应用 host-mode 多节点安装 | 支持 | 需满足节点角色、SSH、私网 IP、离线资产、端口和数据安全要求，详见[多节点安装](../../installation/agione-multi-node-install)。 |
+| 算力节点 Kubernetes 纳管 | 支持 | 需满足 OS、CPU 架构、Kubernetes、驱动、设备插件、网络和存储要求，详见[算力节点部署需求](../../installation/deployment-requirements-for-managing-compute-nodes)。 |
+| 离线交付 | 条件支持 | 必须验证交付包完整性，以及镜像、运行时和校验文件是否齐全。 |
 
-## 8. AGIOne 纳管算力平台支持矩阵
+## 承诺前必确认
 
-| 平台类型 | 支持状态 |说明 | 限制条件 |
-| --- | --- | --- | --- |
-| 阿里云 | 支持 | 纳管阿里云 GPU/NPU 算力节点 | 需确认账号权限、网络互通、密钥管理 |
-| AWS | 支持 | 纳管 AWS GPU 算力节点 | 需确认 Region、IAM 权限、API 密钥 |
-| Google Cloud | 支持 | 纳管 Google Cloud GPU 算力节点 | 需确认项目权限、API 启用 |
-| AGIOne 异构卡纳管（算模方） | 支持 | 纳管算模方平台算力节点 | 需确认平台接口和接入方式 |
-| 华为云 | 暂不支持 | 华为云算力平台接入 | 未来版本规划中 |
+1. 确认部署的 AGIOne 版本和交付包。
+2. 确认目标角色、租户和授权范围。
+3. 确认云平台或加速卡兼容性。
+4. 确认模型、Endpoint、镜像、驱动、运行环境、配额、存储和网络组合。
+5. 确认容量、性能、可用性、恢复目标、计量和验收证据。
 
-## 9. 模型能力支持矩阵
+## 相关文档
 
-| 能力类型 | 支持状态 |说明 | 限制条件 |
-| --- | --- | --- | --- |
-| 文本生成 / Chat | 支持 | 支持通用对话、问答、总结、代码辅助等文本生成能力 |受模型上下文长度、显存、吞吐和推理引擎影响 |
-| Reasoning / 思考模型 | 支持 | 支持 DeepSeek-R1、Qwen thinking、Kimi thinking 等推理模型 | 推理模型通常有更高时延和 token 消耗，需要容量评估 |
-| 多模态 / Vision-Language | 支持 | 支持 DeepSeek-VL2、Qwen VL 等视觉语言模型 |依赖模型镜像、视觉预处理、显存和推理框架支持 |
-| OCR | 支持 | 支持 DeepSeek-OCR、DeepSeek-OCR-2 等 OCR 模型 | OCR 效果和吞吐依赖图片质量、模型版本和推理资源 |
-| Embedding | 支持 | 支持 qwen3-embedding-8b 等向量模型 | RAG 场景需结合向量库、chunking、权限过滤和召回策略 |
-| Reranker | 支持 | 支持 qwen3-reranker-8b 等重排序模型 | 增加召回质量的同时会增加请求链路时延 |
-| RAG（规划中） | 支持 | 支持知识库增强问答、文档检索、上下文注入 |需治理知识权限、数据切分、向量化、召回和审计 |
-| Function Calling / Tool Use（规划中） | 支持 | 支持工具调用和智能体编排场景 |需确认模型协议、工具 schema、权限和执行审计 |
-| Agent / Workflow | 支持 | 支持将模型、知识、工具和人工节点组合为智能工作流 |依赖 Agent Builder、工具集成和企业权限体系 |
-| OpenAI-compatible API | 支持 | 支持 OpenAI 风格 Chat Completions、Responses、Embeddings 等接口形态 |具体接口范围需按产品版本确认 |
-| Anthropic-compatible API | 条件支持 | 可用于 Anthropic Messages 等协议适配场景 |需按产品版本、上游模型和协议策略确认 |
-| SSE 流式输出 | 支持 | 支持流式返回、usage 保留和事件流处理 | 不同上游 provider 的 usage 字段和事件格式可能存在差异 |
-| 聚合模型路由 | 支持 | 支持多后端实例统一模型名、动态路由、熔断、探活恢复 | 不同模型能力、上下文长度、工具调用能力不一致时需要策略约束 |
-|计量计费 | 支持 | 支持 token、调用次数、推理时长、多模态维度等计量 |计费规则、License 和 Credential 抽象需按商业规则确认 |
-
-## 10. On-prem 快速部署模型清单
-
-### 10.1 DeepSeek
-
-| 系列 | 支持模型 |
-| --- | --- |
-| DeepSeek-R1 系列 | DeepSeek-R1、DeepSeek-R1-0528、DeepSeek-R1-Distill-Llama-70B、DeepSeek-R1-Distill-Qwen-32B、DeepSeek-R1-Distill-Qwen-14B、DeepSeek-R1-Distill-Qwen-7B |
-| DeepSeek-V3 系列 | DeepSeek-V3、DeepSeek-V3-0324、DeepSeek-V3.1、DeepSeek-V3.1-Terminus、DeepSeek-V3.2 |
-| DeepSeek-VL2 系列 | DeepSeek-VL2 |
-| DeepSeek-OCR | DeepSeek-OCR、DeepSeek-OCR-2 |
-
-### 10.2 Qwen
-
-| 系列 | 支持模型 |
-| --- | --- |
-| Qwen2.5 系列 | Qwen2.5-7B-Instruct、Qwen2.5-14B-Instruct、Qwen2.5-32B-Instruct、Qwen2.5-72B-Instruct |
-| Qwen3 系列 | qwen3-next-80b-a3b-thinking、qwen3-next-80b-a3b-instruct、qwen3-235b-a22b-thinking-2507、qwen3-235b-a22b-instruct-2507、qwen3-30b-a3b-thinking-2507、qwen3-30b-a3b-instruct-2507、qwen3-235b-a22b、qwen3-32b、qwen3-30b-a3b、qwen3-14b、qwen3-8b、qwq-32b |
-| Qwen3.5 系列 | qwen3.5-397b-a17b、qwen3.5-122b-a10b、qwen3.5-27b、qwen3.5-35b-a3b、qwen3.5-9b |
-| Qwen3 VL 系列 | qwen3-vl-235b-a22b-thinking、qwen3-vl-235b-a22b-instruct、qwen3-vl-32b-thinking、qwen3-vl-32b-instruct、qwen3-vl-30b-a3b-thinking、qwen3-vl-30b-a3b-instruct、qwen3-vl-8b-thinking、qwen3-vl-8b-instruct、qwen2.5-vl-72b-instruct、qwen2.5-vl-32b-instruct、qwen2.5-vl-7b-instruct |
-| 嵌入重排 | qwen3-embedding-8b、qwen3-reranker-8b |
-
-### 10.3 Kimi
-
-| 系列 | 支持模型 |
-| --- | --- |
-| Kimi2 系列 | kimi-k2-thinking、Moonshot-Kimi-K2-Instruct、kimi-k2.5 |
-
-### 10.4 MiniMax
-
-| 系列 | 支持模型 |
-| --- | --- |
-| MiniMax M2 系列 | MiniMax-M2.7、MiniMax-M2.5、MiniMax-M2.1 |
-
-### 10.5 GLM
-
-| 系列 | 支持模型 |
-| --- | --- |
-| GLM4 系列 | glm-4.7、glm-4.6、glm-4.5、glm-4.5-air |
-| GLM5 系列 | glm-5、glm-5.1 |
-
-### 10.6 Llama
-
-| 系列 | 支持模型 |
-| --- | --- |
-| Llama3 系列 | Llama3-8B-Instruct、Llama3.1-8B-Instruct、Llama3.2-8B-Instruct |
-
-## 11. 部署与运行限制条件
-
-| 限制项 |说明 | 建议 |
-| --- | --- | --- |
-| 管理节点与算力节点角色不同 | 管理节点不要求 GPU/XPU；算力节点至少需要1 个 XPU/GPU/NPU | 部署设计中明确管理面和算力面边界 |
-|资源规格存在多口径 | All-in-One 推荐8C/16GiB/200GiB；生产管理节点要求可达 >=16C/>=16GiB，至少3 节点 | 按部署形态区分 all-in-one、host-mode 多节点、生产管理面 |
-|端口入口存在多口径 | 文档中存在 `443`、`18090`、`80`、`8089` 等入口 | 区分外部 HTTPS入口、门户/API入口、Nginx入口和作业访问代理入口 |
-| 离线交付依赖完整包 | 缺少 bundle、镜像、离线 Python、checksum 或 Docker/Compose资源会阻塞部署 | 部署前执行完整性交付物校验 |
-| 同构架构优先 | 同一 Kubernetes 集群建议管理相同 CPU 架构 | 异构 CPU 架构建议拆分集群或资源池 |
-| 时间同步要求 | 多节点部署要求 NTP 或等效时间同步 | 时钟偏差建议控制在1 秒以内 |
-|生产资源冗余 | 高并发和核心业务需要预留资源头寸 |生产建议预留20%-30%资源冗余 |
-
-## 12. 模型部署限制条件
-
-| 限制项 |说明 | 建议 |
-| --- | --- | --- |
-| 芯片兼容不等于模型验证 | 支持某芯片纳管，不代表该芯片已验证所有模型、推理引擎和量化方案 | 建立模型-芯片-驱动-推理引擎验证矩阵 |
-| 超大模型资源门槛高 | 如 qwen3.5-397b、qwen3-235b、DeepSeek-V3 等需要高显存、多卡或并行策略 | 部署前评估显存、卡数、并行、KV Cache、上下文长度和吞吐 |
-| 多模态和 OCR依赖额外链路 |视觉模型和 OCR 模型依赖图像预处理、模型镜像和推理框架支持 | 按模型类型单独验证端到端链路 |
-| Embedding / Reranker影响 RAG 延迟 | 增加向量化和重排序后会增加链路耗时 | 对 RAG 场景单独压测召回质量、时延和并发 |
-| Reasoning 模型消耗更高 | 思考模型通常输出更长、耗时更高、token 消耗更大 | 单独设置限流、额度和成本策略 |
-| 聚合模型能力需对齐 | 聚合模型下不同子模型的上下文、工具调用、多模态、价格和协议能力可能不同 | 路由策略中增加能力约束和降级策略 |
-
-## 13. 网络、存储与高可用限制条件
-
-| 限制项 |说明 | 建议 |
-| --- | --- | --- |
-| RDMA 要求按场景区分 | 单卡推理可不强依赖 RDMA；多机多卡推理或训练建议100Gbps以上 RDMA | 按模型规模、并行策略和吞吐目标设计网络 |
-|共享存储依赖模型规模 | 模型权重、镜像、日志、MinIO、数据库和中间件需要持久化存储 | 提前规划块存储、NAS、NFS、Ceph 或 RWX 存储 |
-| 云原生部署依赖 StorageClass | 数据库和中间件持久卷需要 RWO，部分共享数据需要 RWX | 部署前验证 PVC 创建、挂载和备份恢复 |
-| 镜像仓库必须可达 | 云原生部署要求所有节点可访问镜像仓库 | 提前验证 registry、认证 Secret 和 image pull |
-| Ingress / DNS / TLS影响访问 | 云原生入口依赖域名解析、证书和入口控制器 | 上线前完成外部访问、内部解析和证书验证 |
-| 高可用需要多节点设计 | 单机部署无法提供完整高可用 |生产建议采用多管理节点、数据库主备、备份和回滚机制 |
-
-## 14. 待确认事项
-
-| 待确认项 | 当前状态 | 建议动作 |
-| --- | --- | --- |
-| CUDA版本矩阵 | 当前知识库未声明固定 CUDA版本 | 根据交付包、GPU驱动、镜像和推理引擎补充 CUDA 矩阵 |
-| GPU 驱动版本矩阵 | 当前只明确芯片型号，未给出驱动版本 | 建立 GPU型号-Driver-CUDA-推理引擎-镜像版本矩阵 |
-| Ascend 软件栈版本 | 当前只明确 Ascend910B/910C 支持 | 补充 CANN、MindIE、驱动和模型适配版本 |
-| 模型显存与卡数要求 | 当前清单只列模型名称 | 按模型规模补充 FP16/BF16/INT8/INT4、张量并行、最小卡数 |
-| API 协议支持范围 | 白皮书提到 OpenAI / Anthropic 等协议 | 按正式产品版本确认接口范围和字段兼容性 |
-|端口口径 | 存在 `443`、`18090`、`80`、`8089` 等多种表达 |形成正式网络端口规划表
+- [功能与能力](../technical/features)
+- [纳管芯片](./chips)
+- [其他限制](./limitations)
+- [安装指南](../../installation/)
+- [用户手册](../../usermanual/)

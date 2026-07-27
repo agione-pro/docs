@@ -1,5 +1,43 @@
 # AGIOne Multi-Node Environment Installation and Deployment Guide
 
+## Introduction
+
+| Item | Content |
+|------|---------|
+| Applicable Role | Production delivery engineer, field implementation engineer, customer platform operations engineer |
+| Navigation Path | Deployment > AGIOne Multi-Node Installation |
+| Function Description | Guides users through AGIOne host-mode multi-node deployment, including node planning, configuration preparation, precheck, installation, and acceptance |
+
+Compared with single-node deployment, multi-node deployment adds three key tasks: **plan node roles, prepare `/root/agione-install.yml`, and verify SSH and middleware connectivity**. If this is your first deployment, use the timeline below to understand the full flow before running commands.
+
+### Beginner Explanation
+
+Multi-node installation is not a different product package. It is the same AGIOne installer running with a host-mode topology: you tell the installer which private IPs are App / Edge nodes, which node runs middleware, and which node is the database standby; the installer renders and synchronizes the required files for each host.
+
+## Deployment Timeline
+
+| Stage | What You Do | Completion Signal |
+| --- | --- | --- |
+| Step 1: Select mode | Choose self-managed middleware, managed middleware, or hybrid middleware | `self-managed`, `managed-middleware`, or `hybrid` is confirmed |
+| Step 2: Plan nodes | Confirm App nodes, middleware node, standby database node, and expansion nodes | Node IPs, roles, SSH users, and ports are ready |
+| Step 3: Fill YAML | Copy the minimal template from the configuration reference and add passwords, endpoints, domains, and optional services | `/root/agione-install.yml` is ready for installation |
+| Step 4: Run precheck | Run `./agione doctor --file /root/agione-install.yml` with the same YAML | SSH, ports, disk, and middleware connectivity checks pass |
+| Step 5: Install | Run `./agione quick --file /root/agione-install.yml` | Installation result shows success |
+| Step 6: Accept and hand over | Run `health`, `ps`, and `handover`, then archive results | Browser access works, reports and account information are handed over |
+
+## Terminology Quick Reference
+
+| Term | Plain Explanation |
+| --- | --- |
+| Host-mode | Multi-node deployment mode where the installer renders per-host Compose files and port bindings based on host IPs |
+| App / Edge node | Node that runs Nginx, Gateway, and core business services; user traffic usually enters here |
+| Middleware node | Node that runs self-managed MariaDB, Redis, Nacos, Kafka, and MinIO / MinStore |
+| Standby database node | Node that runs MariaDB standby for replication and data redundancy |
+| Managed middleware | Middleware provided by a cloud provider or existing customer service; AGIOne connects to endpoints instead of deploying the component locally |
+| Hybrid middleware | Some components are self-managed and others are managed, such as RDS for database while Redis and Nacos remain self-managed |
+| `agione_app.topology` | YAML section that describes node IPs, SSH users, ports, and passwords |
+| `host_mode_service_placements` | Advanced service placement field used to manually assign services to specific machines |
+
 ## 1. Document Description
 
 This document guides operators through AGIOne host-mode multi-node installation in offline or restricted-network environments.
@@ -30,17 +68,17 @@ Middleware deployment supports three modes:
 
 Both `managed-middleware` and `hybrid` need middleware endpoint hosts, ports, accounts, and passwords. The recommended approach is to keep these endpoint values directly in the main installation YAML under `agione_app.db`, `agione_app.redis`, `agione_app.nacos`, `agione_app.kafka`, and `agione_app.minio`, together with `agione_app.middleware`. `--middleware-endpoints-file` is retained only as a compatibility option for older delivery runbooks. In TUI mode, enter endpoint values directly in the interface. `hybrid` additionally uses component deployment mode to declare how each middleware component is deployed.
 
-Installation-time business presets should be confirmed before starting a production run. In the TUI, configure them on the "Middleware Config" page under "Business Presets", "Registration Email", and "Domain and Frontend". In quick / YAML mode, configure them under `agione_app.business` and `agione_app.default_access`.
+Confirm installation-time configuration before starting a production run. The recommended approach is to keep it in `/root/agione-install.yml`; TUI mode can collect middleware endpoints and node information, while advanced frontend access, optional service groups, and default account policy should be fixed in YAML. Minimal templates for multi-node self-managed middleware, managed middleware, and hybrid middleware are in the [Installation Configuration Reference](./agione-install-config-reference), which is ordered as required fields, common fields, scenario fields, and advanced fields.
 
 | Item | Configuration path | Installation effect |
 | --- | --- | --- |
-| Payment currency | `agione_app.business.payment_currency`, `agione_app.business.payment_units` | `payment_currency` is written to `metis.sys.currency`; `payment_units` is written to CBDP `account.units` and `stripe.supportCurrency` |
-| Approval policy | `agione_app.business.approval` | Written to the CBDP tenant application approval settings |
-| Registration and mail | `agione_app.business.registration`, `agione_app.business.mail` | Written to `metis-upms-biz.yml`; demo mail settings must be replaced before production use |
-| Domain, certificate, frontend root | `agione_app.business.frontend` | Rendered into Nginx configuration; configured certificate and frontend paths are mounted into Nginx containers |
-| Default console accounts | `agione_app.default_access` | Generates installation-time passwords for `admin`, `operator`, and `provider`; `provider` receives `Creator` and `cbdp_buyer` roles |
+| Node topology and SSH credentials | `agione_app.topology` | Defines App / Edge nodes, middleware node, standby database node, and per-node SSH authentication |
+| Middleware endpoints | `agione_app.middleware`, `agione_app.db`, `redis`, `nacos`, `kafka`, `minio` | Controls self-managed / managed / hybrid middleware mode and writes AGIOne runtime connection settings |
+| Domain, certificate, frontend root | `agione_app.frontend` | Rendered into Nginx configuration; configured certificate and frontend paths are mounted into Nginx containers |
+| Optional application service groups | `agione_app.start_optional_app_services` | Enables extra application services by group, such as `kubem`, `cloud`, and `core_isync` |
+| Default console accounts | `agione_app.default_access` | Generates customer-facing installation-time passwords for `operator` and `provider`; `provider` receives `Creator` and `cbdp_buyer` roles |
 
-If `business.frontend.public_access_url` and `business.frontend.domain` are both empty, the installer prints the default access URL based on the App / Edge entry IP and port `18090`.
+If `agione_app.frontend.public_access_url` and `agione_app.frontend.domain` are both empty, the installer prints the default access URL based on the App / Edge entry IP and port `18090`.
 
 The recommended browser entry is machine 1 or the entry address behind an external load balancer:
 
@@ -76,7 +114,7 @@ Use Linux servers and run the installer as `root`. The default SSH user is `root
 
 The initiating machine must be able to SSH to every target node, including its own target IP when it is part of the topology. Passwordless SSH is recommended. Password authentication is also supported when the initiating machine has `sshpass` installed.
 
-To customize SSH access, prefer the main installation YAML: set `agione_app.topology.ssh_user`, `agione_app.topology.ssh_port`, and optional `agione_app.topology.ssh_password` for global defaults. When different machines require different SSH users, ports, or passwords, configure `agione_app.topology.ssh_credentials` in `/root/agione-install.yml`. This keeps all pre-install configuration in one file and avoids delimiter parsing problems when passwords contain commas, colons, spaces, or `@` characters.
+To customize SSH access, prefer the main installation YAML: set `agione_app.topology.ssh_user`, `agione_app.topology.ssh_port`, and optional `agione_app.topology.ssh_password` for global defaults. When different machines require different SSH users, ports, or passwords, configure `agione_app.topology.ssh_credentials` in `/root/agione-install.yml`. This keeps all pre-install configuration in one file and reduces command-line delimiter and shell escaping issues. For SSH, middleware, and default account passwords, use only letters, digits, and underscores when possible.
 
 The installation writes to these directories:
 
@@ -194,11 +232,17 @@ Host-mode multi-node no longer uses Docker `network_mode: host`. The installer g
 
 | Role | Critical ports |
 | --- | --- |
-| App / Edge node | `80`, `18090`, `8089`, `8080`, `3000`, `4000`, `5007`, `7002`, `7003`, `8031`, `8032`, `8033`, `18088` |
+| App / Edge node | `80`, `18090`, `8089`, `8080`, `3000`, `4000`, `5007`, `7002`, `7003`, `8031`, `8032`, `8033`; `7091`, `18181`, and `18082` when `core_isync` / `influxdb3` are explicitly placed on the first app node |
 | Middleware node | `3306`, `6379`, `8848`, `8849`, `9848`, `9849`, `9092`, `9093`, `18091`, `8080`, `9000`, `9001` |
-| Standby database node | `3306` |
+| Standby database node | `3306`; `7091`, `18181`, and `18082` when the `core_isync` service group is enabled |
 
-Optional application services are not enabled by the IP-based quick path by default. If optional services are explicitly enabled through a config file, their port conflicts are treated as optional-service warnings.
+Optional application services are not enabled by the IP-based quick path by default. When `start_optional_app_services` is explicitly configured, the installer enables services by group:
+
+| Group | Services | Ports and constraints |
+| --- | --- | --- |
+| `kubem` | `core_kubem`, `core_codelab`, `core_iam` | `core_kubem` uses `8021`, `core_codelab` uses `8022`, and `core_iam` uses `18088`. Port conflicts are treated as optional-service warnings. |
+| `cloud` | `core_sgeneral`, `core_saws`, `core_saliyun`, `core_general`, `core_aliyun` | Cloud provider integration services. No extra fixed externally published port. |
+| `core_isync` | `core_isync`, `influxdb3` | Supported only with self-managed MariaDB and a standby database node. Placed on the same node as `db_mariadb_standby` by default. Uses `7091`, `18181`, and `18082`. |
 
 ### 3.4 Offline environment
 
@@ -218,7 +262,7 @@ The following requirements apply to each machine:
 | --- | --- | --- |
 | Operating system | Linux | Ubuntu 22.04 is recommended |
 | CPU | 8 cores | CPU count must be at least 8 cores |
-| Memory | 16 GiB | A small system / virtualization reservation is tolerated; about `15.2GiB` or more can pass |
+| Memory | 16 GiB recommended | The installer requires at least `12GiB` detected memory; 16 GiB remains the recommended request profile |
 | Free disk | 200 GiB | With the default `runtime_root`, each node prefers a data disk with about `160GiB` or more free space; if no suitable data disk exists, the system disk path `/opt/hyperone` is checked |
 
 To override the minimum disk threshold for a special delivery environment, set:
@@ -289,12 +333,14 @@ Continue only after verification passes. If verification fails, reacquire the pa
 
 ### 4.4 Execute installation
 
-For the standard multi-node scenario, write the node topology, SSH credentials, middleware endpoints, business presets, and default account policy in one main installation YAML, then run `quick` with that YAML:
+For the standard multi-node scenario, write the node topology, SSH credentials, middleware endpoints, frontend access, optional service groups, and default account policy in one main installation YAML, then run `quick` with that YAML:
 
 ```bash
 chmod +x ./agione
 ./agione quick --file /root/agione-install.yml
 ```
+
+Start by copying the minimal YAML for the matching scenario from the [Installation Configuration Reference](./agione-install-config-reference), then add SSH settings, domains, certificates, managed middleware endpoints, or optional service groups as needed.
 
 For repeated reinstall testing where old AGIOne runtime data can be overwritten, use:
 
@@ -328,7 +374,7 @@ For cloud-native delivery, use managed middleware to replace part or all of the 
 
 1. Prepare 2 to 8 App / Edge nodes in the same private network, or confirm private connectivity between App / Edge nodes and the managed middleware VPC.
 2. Prepare managed database, Redis, Nacos, Kafka, and object storage resources through the customer cloud console, the optional provider helper, or existing customer resources.
-3. Generate or merge `/root/agione-install.yml`, including node topology, SSH credentials, middleware endpoints, business presets, domain / certificate settings, and default account policy.
+3. Generate or merge `/root/agione-install.yml`, including node topology, SSH credentials, middleware endpoints, domain / certificate settings, optional service groups, and default account policy.
 4. Confirm Nacos behavior. If the installer should publish configs, the configured Nacos account must have config publish permission in namespace `agione-prod`. If the customer has already imported all AGIOne configs, set `agione_app.nacos.assume_preimported_configs: true`.
 5. Run `./agione quick --file /root/agione-install.yml` or use TUI installation with the same field values.
 
@@ -376,18 +422,18 @@ agione_app:
       192.168.31.204:
         user: root
         port: 22
-        password: "a,b:c@204"
+        password: "Password_204"
       192.168.31.207:
         user: admin
         port: 2222
-        password: "pass,207"
+        password: "Password_207"
       192.168.31.208:
         user: root
         port: 22
       192.168.31.209:
         user: ops
         port: 2209
-        password: "pass@209"
+        password: "Password_209"
   middleware:
     mode: hybrid
     provider: generic
@@ -406,18 +452,19 @@ agione_app:
     host: rds-mariadb.internal.example.com
     port: 3306
     root_username: root
-    root_password: "change-me"
+    root_password: "DbRoot_2026"
     ssl: false
   redis:
     host: 192.168.31.208
     port: 6379
-    password: "change-me"
+    password: "Redis_2026"
   nacos:
     host: 192.168.31.208
     port: 8848
     namespace: agione-prod
     username: nacos
-    password: "change-me"
+    password: "Nacos_2026"
+    auth_token: "QWdJT25lX05hY29zX0F1dGhUb2tlbl8yMDI2X1BsZWFzZVJlcGxhY2VfNDhCeXRlcw=="
   kafka:
     bootstrap_servers: kafka-1.internal.example.com:9092
     security_protocol: PLAINTEXT
@@ -425,64 +472,33 @@ agione_app:
     endpoint: http://192.168.31.208:9000
     api_direct_host: 192.168.31.208:9000
     web_direct_host: 192.168.31.208:9001
+    access_key: "MinioAccess_2026"
+    secret_key: "MinioSecret_2026"
 ```
 
 In this example, application nodes, the middleware node, the standby node, and per-node SSH credentials all live in `/root/agione-install.yml`. Database and Kafka use external endpoints; Redis, Nacos, and object storage are still deployed on `192.168.31.208` by the installer. Redis can still keep `agione_app.redis.mode: standalone`; component deployment mode should be written under `agione_app.middleware.redis.mode` so it is not confused with the Redis runtime mode.
 
-Installation-time business presets and default account policy are written in the same YAML:
+Frontend access, optional service groups, and default account policy are written in the same YAML:
 
 ```yaml
 agione_app:
-  business:
-    payment_currency:
-      name: US Dollar
-      code: USD
-      sign: "$"
-    payment_units:
-      CASH:
-        - code: USD
-          name: US Dollar
-          symbol: "$"
-        - code: CNY
-          name: Chinese Yuan
-          symbol: CNY
-      POINTS:
-        - code: Credit
-          name: Credit
-          symbol: pts
-    approval:
-      tenant_apply_auto_auth: true
-      tenant_apply_auth: true
-    registration:
-      email_enabled: true
-      phone_enabled: false
-      email_code_expire_minutes: 5
-      phone_code_expire_minutes: 5
-    mail:
-      provider: smtp
-      smtp:
-        host: smtp.example.com
-        port: 465
-        username: ""
-        password: ""
-        from_address: no-reply@example.com
-        from_name: AGIOne
-        auth: true
-        ssl_enabled: true
-    frontend:
-      domain: ""
-      public_access_url: ""
-      ssl_certificate_path: ""
-      ssl_certificate_key_path: ""
-      frontend_root: ""
+  frontend:
+    domain: ""
+    public_access_url: ""
+    ssl_certificate_path: ""
+    ssl_certificate_key_path: ""
+    frontend_root: ""
+  start_optional_app_services:
+    - kubem
+    - cloud
   default_access:
     generate_random_passwords: true
     password_length: 20
 ```
 
-Default account passwords are generated for each installation unless explicit passwords are configured. The generated passwords are 6 to 32 characters and include at least three of uppercase letters, lowercase letters, numbers, and supported symbols. The final installation result prints the actual `admin`, `operator`, and `provider` passwords; save them through the customer-approved credential handover process.
+Customer-facing default account passwords are generated for each installation unless explicit passwords are configured. The generated passwords are 6 to 32 characters and use only uppercase letters, lowercase letters, digits, and underscores. The final installation result prints the actual `operator` and `provider` passwords; save them through the customer-approved credential handover process.
 
-Compatibility options remain available for older runbooks. `--host-mode-ips` or repeated `--host-mode-ip` can still provide machine IPs directly, and `--host-mode-nodes-file` can still load a legacy node credential file. New deliveries should keep node IPs, SSH credentials, middleware endpoints, and business presets in `/root/agione-install.yml`. If `--host-mode-ips` is used together with `--host-mode-nodes-file`, the IP order from `--host-mode-ips` controls role mapping, and the node file only supplies SSH credentials for those IPs.
+Compatibility options remain available for older runbooks. `--host-mode-ips` or repeated `--host-mode-ip` can still provide machine IPs directly, and `--host-mode-nodes-file` can still load a legacy node credential file. New deliveries should keep node IPs, SSH credentials, middleware endpoints, frontend access, and default account policy in `/root/agione-install.yml`. If `--host-mode-ips` is used together with `--host-mode-nodes-file`, the IP order from `--host-mode-ips` controls role mapping, and the node file only supplies SSH credentials for those IPs.
 
 For 5 to 8 machines, append additional App / Edge nodes:
 

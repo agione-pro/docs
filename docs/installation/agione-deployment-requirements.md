@@ -1,5 +1,42 @@
 # Deployment Guide
 
+## Introduction
+
+| Item | Content |
+|------|---------|
+| Applicable Role | Pre-sales solution engineer, delivery owner, implementation engineer, customer architect |
+| Navigation Path | Deployment > Deployment Guide |
+| Function Description | Helps users select deployment mode, request resources, and plan networking, middleware, and compute node onboarding before installation |
+
+This document answers "how should we deploy" rather than "which command should I run now". For a first read, follow the path below before entering the detailed installation documents.
+
+### Beginner Explanation
+
+Use this document before touching the installer. It helps you decide the deployment shape first: PoC or production, single-node or multi-node, cloud-managed middleware or self-managed middleware, and which ports must be opened.
+
+## Reading Path
+
+| Stage | What You Decide | Output |
+| --- | --- | --- |
+| Step 1: Confirm deployment goal | PoC, public-cloud production, or private-cloud / IDC | Deployment mode is selected |
+| Step 2: Confirm middleware approach | Use cloud-provider managed middleware or self-managed middleware deployed by the installer | `managed-middleware`, `hybrid`, or `self-managed` is selected |
+| Step 3: Confirm resource sizing | Required machine count, CPU, memory, and disk | Resource request list is ready |
+| Step 4: Confirm network and ports | How users, business nodes, middleware, and compute clusters communicate | Security group / firewall allowlist is ready |
+| Step 5: Enter execution docs | Choose single-node, multi-node, or compute node installation docs based on the decision | Ready for precheck and installation |
+
+## Terminology Quick Reference
+
+| Term | Plain Explanation |
+| --- | --- |
+| PoC | Proof-of-concept or demo environment focused on quickly validating functionality, not high availability |
+| Production deployment | Deployment for formal business use, with high availability, backup, monitoring, permissions, and operations requirements |
+| Management plane | Area where AGIOne control plane and business services run; users mainly access this part |
+| Compute node onboarding | Connecting GPU / NPU nodes to the platform for training, inference, IDE, and similar workloads |
+| Public-cloud managed middleware | Cloud-provider services such as RDS, Redis, Nacos, Kafka, OSS / OBS |
+| Private cloud / IDC | Customer-owned data center or private cloud environment, usually requiring more self-managed middleware |
+| VPC | Cloud private network. Business nodes and middleware should usually be in the same VPC. |
+| ELB / ALB | Load balancer entry that distributes user requests to multiple App / Edge nodes |
+
 ## 1. Overview
 
 An AGIOne platform deployment is logically divided into two relatively independent parts:
@@ -191,6 +228,17 @@ Applicable to scenarios where public cloud cannot be used and data must be fully
 | < 3 nodes | **1 node** | Single control plane, suitable for small compute pools |
 | >= 3 nodes | **3 nodes** | Highly available control plane with multiple etcd replicas |
 
+Storage requirements:
+
+- At least 2 TB NAS storage is required.
+- Optional: S3-compatible object storage larger than 2 TB is supported.
+
+Network requirements:
+
+- The management network must be in the same LAN.
+- Inter-node network bandwidth must be >= 1000 Mbps.
+- Optional internet access: all nodes can access the internet.
+
 ### 7.3 Architecture Diagram
 
 ![Compute Node Onboarding Architecture](images/05-compute-nodes.svg)
@@ -353,7 +401,7 @@ cd "/opt/hyperone/$AGIONE_RELEASE_DIR"
 - Scaling: each additional business node adds approximately **+500 requests/minute** in long-lived connection / complex request scenarios
 - Actual capacity should be evaluated based on request complexity, model inference duration, number of concurrent sessions, and other factors.
 
-### 11.3 Glossary
+### 11.3 Terminology Quick Reference
 
 | Term | Description |
 |---|---|

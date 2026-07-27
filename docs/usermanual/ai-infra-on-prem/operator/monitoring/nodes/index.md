@@ -1,9 +1,9 @@
 # Node Statistics
 
-:::: info Document Information
+::: info Document Information
 Version: v1.0
 Updated: 2026-07-08
-::::
+:::
 
 ## Feature Overview
 
@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation Path | Monitoring > Node Statistics |
-| Page Route | `/powerone/monitor/nodes` |
-| Managed Objects | Node status, node role, resource utilization, heartbeat, and owning cluster |
-| Typical Use | Locate resource bottlenecks, offline nodes, and abnormal job distribution by node |
+| Applicable role | Operator |
+| Navigation path | AI Infrastructure > On-Prem > Monitoring > Node Statistics |
+| Page route | `/powerone/monitor/node` |
+| Managed objects | Node status, node role, resource utilization, heartbeat, and owning cluster |
+| Typical use | Locate resource bottlenecks, offline nodes, and abnormal job distribution by node |
 
-### Beginner View
+#### Beginner Explanation
 
 Node statistics are like a server inspection checklist. They show CPU, memory, disk, and status for each node, helping determine which machine an issue lands on.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -43,43 +43,64 @@ Node statistics are used to view CPU, memory, disk, and runtime status for each 
 
 The following figure shows the node statistics page.
 
-![Node Statistics](./images/monitoring-nodes.png)
+![Node Statistics](./images/nodes-list.png)
 
-## View Node Statistics
+## Main Operations
 
-### Procedure
+### View Node Statistics
 
-1. Go to `Monitoring > Node Statistics`.
+#### Procedure
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Node Statistics`.
 2. Confirm the region in the upper-right corner and page filters.
 3. View lists, charts, or statistic cards.
 4. Focus on abnormal status, high watermarks, long periods without updates, or data inconsistent with expectations.
 5. When a node is abnormal, go to the cluster node page to view labels, taints, hardware, runtime, and job information.
 
-### Key Focus
+#### View Node Statistics
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Node Statistics`.
+2. View the node list and overall running status, and confirm node name, cluster, region/AZ, node status, and resource usage level.
+3. Select cluster, node, resource type, status, or time range filters as provided by the page.
+4. Review CPU, memory, accelerator, storage, network, and job-related statistics to identify high load, insufficient resources, or abnormal node status.
+5. If a node is abnormal, continue troubleshooting in Devices or Jobs monitoring pages, together with cluster statistics and scheduling events.
+6. For learning or screenshots only, view statistic cards, charts, filters, and lists without modifying any configuration.
+
+![View node statistics](./images/node-statistics.png)
+
+#### Key Focus
 
 - Whether the node is online or Ready.
 - Whether single-node resources are close to full load.
 - Whether abnormal nodes are concentrated in the same cluster or availability zone.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Node Name | Yes | Text | `node-gpu-01` | Locates a specific compute node. |
-| Owning Cluster | Conditionally required | Drop-down | `cluster-prod-a` | Limits the cluster to which the node belongs. |
+| Cluster | Conditionally required | Drop-down | `cluster-prod-a` | Limits the cluster to which the node belongs. |
+| Region / AZ | Conditionally required | Drop-down | `Wuhan / AZ A` | Limits the resource location to which the node belongs. |
+| Node Status | System-generated | Status | `Ready` | Shows whether the node is schedulable, unavailable, or has alerts. |
 | CPU Usage | System-generated | Percentage | `72%` | Determines whether node CPU is close to bottleneck. |
 | Memory Usage | System-generated | Percentage | `81%` | Determines node memory pressure. |
-| Disk Usage | System-generated | Percentage | `68%` | Determines whether system disk or data disk is close to limit. |
-| Node Status | System-generated | Status | `Ready` | Shows whether the node is schedulable, unavailable, or has alerts. |
+| Accelerator Usage | System-generated | Percentage | `65%` | Determines whether GPU, NPU, or other accelerator resources are close to bottleneck. |
+| Storage Usage | System-generated | Percentage | `68%` | Determines whether system disk, data disk, or mounted storage is close to limit. |
+| Network Traffic | System-generated | Value / Trend | `Inbound / Outbound` | Helps determine whether node network traffic has abnormal fluctuation or bottlenecks. |
+| Job Count | System-generated | Number | `12` | Shows the number of running, queued, or abnormal jobs on the node. |
+| Time Range | Conditionally required | Date range | `Last 1 hour` | Controls the query window for statistic cards, trend charts, and list data. |
 | Update Time | System-generated | Date time | `2026-07-06 10:00` | Determines whether node metrics are latest data. |
 
-### Pitfalls
+## Pitfalls
 
 - Node Ready does not mean the device plugin is definitely normal.
 - High disk watermark may cause image pull or log write failures.
 - During troubleshooting, judge together with node events and job logs.
+- Node statistics may have collection latency. Do not judge faults based only on a single instant metric.
+- Node exceptions should be investigated together with clusters, devices, jobs, scheduling events, and node logs.
+- Do not write real node names, node IPs, device IDs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-### Result Validation
+## Result Validation
 
 1. The node list displays node name, status, and key resource metrics.
 2. Node status corresponds to cluster health and job scheduling results.
@@ -94,7 +115,7 @@ The following figure shows the node statistics page.
 
 ## FAQ
 
-### Node Status Is Abnormal
+#### Node Status Is Abnormal
 
 **Symptom:**
 
@@ -112,7 +133,7 @@ The node is displayed as unavailable, offline, or resource data is not updated f
 2. Check kubelet, container runtime, and monitoring collection components.
 3. Confirm whether the node is under maintenance or isolated.
 
-### Page List Is Empty
+#### Page List Is Empty
 
 **Symptom:**
 
@@ -132,7 +153,7 @@ No monitoring records or charts are visible after entering the page.
 3. Go to resource pool or job pages to confirm whether objects exist.
 4. Contact the platform administrator to check permissions and collection links.
 
-## Follow-Up Operations
+## Next Steps
 
 1. When a node is NotReady, check cluster events and node status.
 2. When resources have high watermarks, locate the instances or jobs occupying resources.
@@ -143,3 +164,5 @@ No monitoring records or charts are visible after entering the page.
 - Node names, IPs, labels, and equipment room information should be sanitized.
 - A single-node exception does not necessarily mean the whole cluster is unavailable.
 - Before node maintenance, confirm impact on running tasks and mounted storage.
+- Before fault judgment, cross-check with cluster statistics, device monitoring, job monitoring, scheduling events, and node logs.
+- Documentation examples must not include real node names, node IPs, device IDs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data.
