@@ -14,7 +14,7 @@ AGIOne is a **one-stop intelligent compute and model management platform** purpo
 
 <p align="center"><i>Figure 1   Overview of AGIOne's Eight Core Capabilities (six business stages and two cross-cutting capabilities)</i></p>
 
-> The first six capabilities form the business path from compute preparation to financial operations. The seventh, **Invocation Observability**, provides end-to-end visibility, analytics, and anomaly diagnosis. The eighth, **Settings and Access Control**, provides governance for identities, organizations, permissions, audit, and API rate control.
+> The first six capabilities form the business path from compute preparation to financial operations. The seventh, **Invocation Observability**, provides end-to-end visibility, analytics, and anomaly diagnosis. The eighth, **Settings and Access Control**, provides governance for identities, tenants, permissions, audit, and API rate control.
 
 > The first three capabilities are presented through separate **AI Infra On-Prem** and **AI Infra On-Cloud** paths. On-Prem covers local compute and model deployment, while On-Cloud covers multi-cloud resource access, cloud deployment assets, and recommendation-driven deployment.
 
@@ -462,7 +462,7 @@ The Billing module extends metering into finance-oriented workflows. It separate
 | Finance operations | Today's tasks, monthly overview, settlement list, financial accounts, reconciliation, and adjustments | [Finance Operations](../../usermanual/billing/operator/finance-operations/monthly-overview/) |
 | License | License quota, validity, activation state, and module authorization | [License](../../usermanual/billing/operator/license/license/) |
 
-Financial conclusions should be made from the concrete Billing pages with the same billing cycle, organization, customer, account, and synchronization status. Do not infer settlement results from model-call metering alone.
+Financial conclusions should be made from the concrete Billing pages with the same billing cycle, tenant, customer, account, and synchronization status. Do not infer settlement results from model-call metering alone.
 
 
 ## 7. Invocation Observability — End-to-End Monitoring and Analysis
@@ -511,18 +511,18 @@ When users report invocation issues, troubleshoot in the order **application cal
 
 ### 8.1 Capability Overview
 
-Settings centralizes identity, organization, audit, login security, platform configuration, and API rate-control operations. It is used to maintain the control plane around the model and compute workflows rather than to publish or call models directly.
+Settings centralizes identity, tenant, audit, login security, platform configuration, and API rate-control operations. It is used to maintain the control plane around the model and compute workflows rather than to publish or call models directly.
 
 | Area | Typical Scope | Manual Entry |
 | --- | --- | --- |
 | Personal settings | Keys, profile, projects, and personal dashboard | [My Keys](../../usermanual/settings/user/personal/my-keys/) |
 | Members and roles | Team members, roles, member quotas, and quota requests | [Team Members](../../usermanual/settings/operator/members-roles/members/) |
-| Organizations | Organization records and user-side organization settings | [Organizations](../../usermanual/settings/operator/tenants/tenants/) |
+| Tenants | Tenant records and user-side tenant settings | [Tenants](../../usermanual/settings/operator/tenants/tenants/) |
 | Activity and audit | Operation logs and change traceability | [Operation Logs](../../usermanual/settings/operator/activity-notifications/operation-logs/) |
 | System settings | Platform settings and login properties | [Platform Settings](../../usermanual/settings/operator/system-settings/platform-settings/) |
 | API rate control | Rule management, observability audit, node cache, and publish center | [API Rate Control Overview](../../usermanual/settings/operator/api-rate-control/overview/) |
 
-Settings changes can affect real users, access credentials, login behavior, audit visibility, and API traffic. Confirm role scope, organization scope, and rollback method before changing members, roles, login policies, Keys, or rate-control rules.
+Settings changes can affect real users, access credentials, login behavior, audit visibility, and API traffic. Confirm role scope, tenant scope, and rollback method before changing members, roles, login policies, Keys, or rate-control rules.
 
 ## 9. Closed-loop Synergy Across Capabilities
 

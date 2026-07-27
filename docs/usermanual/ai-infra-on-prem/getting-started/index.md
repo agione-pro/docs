@@ -63,7 +63,7 @@ Operators decide "which resources are available." Regular users decide "how to u
 
 | Issue Type | Target Subsystem | Description |
 | --- | --- | --- |
-| Accounts, roles, permissions, keys, organization members | [Settings](../../settings/end-to-end/configure-account-and-permissions/) | Account and permission configuration does not belong to On-Prem. Do not create a same-name route under On-Prem. |
+| Accounts, roles, permissions, keys, tenant members | [Settings](../../settings/end-to-end/configure-account-and-permissions/) | Account and permission configuration does not belong to On-Prem. Do not create a same-name route under On-Prem. |
 | Invisible resources, unavailable specifications, queued instances | AI Infra On-Prem | Troubleshoot with regions, availability zones, clusters, templates, quotas, images, storage, and monitoring pages. |
 | Model publishing, review, listing, or calling | [Model Services](../../model-services/) | Model business lifecycle content is not handled in On-Prem resource getting-started content. |
 
@@ -222,4 +222,4 @@ A model instance, online IDE, or runtime instance does not enter the running sta
 - For operations involving deletion, disablement, offline changes, credit adjustment, or resource unbinding, confirm the impact scope, maintenance window, and rollback plan first.
 - Before taking screenshots, check whether the page exposes internal addresses, credentials, keys, certificates, or a complete kubeconfig.
 - For learning or screenshots only, view entrypoints, fields, status, and navigation without submitting real create, delete, start, stop, disable, unbind, credit adjustment, or resource change actions.
-- If the issue is about accounts, roles, permissions, keys, or organization members, go to Settings. If the issue is about invisible resources, unavailable specifications, or queued instances, go to On-Prem resource, quota, and monitoring pages.
+- If the issue is about accounts, roles, permissions, keys, or tenant members, go to Settings. If the issue is about invisible resources, unavailable specifications, or queued instances, go to On-Prem resource, quota, and monitoring pages.

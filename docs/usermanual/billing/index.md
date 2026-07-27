@@ -21,7 +21,7 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | Credits | The unit used for balance, top-up, or billing display in the platform. | Overview, Customer Overview, Top-up Orders, user bills |
 | Top-up Order | A processing record created after a user or customer starts a top-up. | Top-up Orders, Customer Top-up Orders |
 | Transaction | A record for balance, income, expense, or adjustment changes. | Transactions, Financial Accounts |
-| Settlement Statement | A settlement record for an organization and billing cycle. | Settlement List, Settlements |
+| Settlement Statement | A settlement record for an tenant and billing cycle. | Settlement List, Settlements |
 | Clearing Account | An account used to aggregate or reconcile transaction funds. | Financial Accounts |
 | Revenue Account | An account related to platform or Provider revenue. | Financial Accounts, Revenue |
 | Compensation Queue | Billing tasks that require retry, compensation, or manual handling. | Reconciliation Center |
@@ -76,9 +76,9 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 
 1. The current account has permission to access billing-related menus.
 2. The issue has been classified as user billing, Provider earnings, customer billing, finance operations, or License.
-3. For amount reconciliation, billing cycle, organization, customer, business unit, account, and transaction type have been aligned.
-4. Before settlement generation, account adjustment, compensation, rebuild, or License activation, approval basis, billing cycle, organization, and impact scope have been confirmed.
-5. Amounts, organizations, accounts, emails, transaction numbers, order numbers, and License information have been desensitized before external communication.
+3. For amount reconciliation, billing cycle, tenant, customer, business unit, account, and transaction type have been aligned.
+4. Before settlement generation, account adjustment, compensation, rebuild, or License activation, approval basis, billing cycle, tenant, and impact scope have been confirmed.
+5. Amounts, tenants, accounts, emails, transaction numbers, order numbers, and License information have been desensitized before external communication.
 
 ## Parameter Reference
 
@@ -99,7 +99,7 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | Issue Type | Yes | Enum | `Settlement reconciliation` | Determines whether to start from user billing, Provider earnings, customer billing, finance operations, or License. |
 | Role | Yes | Enum | `Billing operator` | Matches the accessible entry and recommended reading path. |
 | Billing Cycle | Conditionally required | Month | `2026-07` | Must be aligned before comparing amounts, settlements, or transactions. |
-| Organization / Customer | Conditionally required | Text | `Desensitized organization` | Limits customer, settlement statement, and account-transaction scope. |
+| Tenant / Customer | Conditionally required | Text | `Desensitized tenant` | Limits customer, settlement statement, and account-transaction scope. |
 | Next Entry | System generated | Link | `Finance Operations` | Points to the next page according to issue type. |
 
 ## Result Validation
@@ -108,15 +108,15 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | --- | --- | --- |
 | Entry identified | The issue can be mapped to user billing, Provider earnings, customer billing, finance operations, or License. | Return to the role entry table and classify the issue again. |
 | Paths available | Getting Started, the end-to-end workflow, and core module entries can be opened. | Check sidebar configuration and account menu permissions. |
-| Scope separated | Balance, revenue, settlement, account transactions, and authorized quota are not mixed. | Open the specific feature page and align billing cycle, organization, customer, and business unit. |
+| Scope separated | Balance, revenue, settlement, account transactions, and authorized quota are not mixed. | Open the specific feature page and align billing cycle, tenant, customer, and business unit. |
 | Follow-up path clear | The reader can continue to Getting Started or the billing-cycle workflow. | Follow the recommended reading path. |
 
 ## Pitfalls
 
 - Do not make amount conclusions on the entry page. Amount issues should be checked in Monthly Bill, Settlement List, Financial Accounts, or Transactions.
 - User billing, Provider earnings, customer billing, finance operations, and License use different perspectives. Do not mix their statistics.
-- Amounts and statuses may differ when billing cycle, organization, customer, or business unit scope is inconsistent.
-- Do not record real organizations, customer names, accounts, emails, amounts, order numbers, transaction numbers, License registration codes, activation codes, Token, or Key.
+- Amounts and statuses may differ when billing cycle, tenant, customer, or business unit scope is inconsistent.
+- Do not record real tenants, customer names, accounts, emails, amounts, order numbers, transaction numbers, License registration codes, activation codes, Token, or Key.
 
 ## FAQ
 
@@ -142,11 +142,11 @@ Customer balance, settlement amount, monthly overview, or financial account bala
 
 **Possible cause:**
 
-Different pages use different scopes, or billing cycle, organization, or transaction type is inconsistent. Pending settlement, refund, adjustment, or reconciliation exception may also exist.
+Different pages use different scopes, or billing cycle, tenant, or transaction type is inconsistent. Pending settlement, refund, adjustment, or reconciliation exception may also exist.
 
 **How to handle:**
 
-Align billing cycle and organization first. Check Settlement List for statement status, Financial Accounts for account transactions, and Reconciliation Center for unmatched transfers, missing revenue details, or compensation queue items.
+Align billing cycle and tenant first. Check Settlement List for statement status, Financial Accounts for account transactions, and Reconciliation Center for unmatched transfers, missing revenue details, or compensation queue items.
 
 #### What is the relationship between License and billing?
 

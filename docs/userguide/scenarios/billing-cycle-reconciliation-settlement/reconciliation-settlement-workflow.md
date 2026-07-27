@@ -13,7 +13,7 @@ Use this task to complete an operator-side billing-cycle review, exception resol
 
 ## Before You Start
 
-1. Confirm the target billing cycle, organization, customer, and business line.
+1. Confirm the target billing cycle, tenant, customer, and business line.
 2. Confirm that your account can view financial accounts, reconciliation, and settlement statements.
 3. Assess the impact before generating statements, running compensation, rebuilding data, or adjusting accounts.
 
@@ -27,7 +27,7 @@ Open [Monthly Overview](../../../usermanual/billing/operator/finance-operations/
 
 ### 2. Reconcile Financial Accounts
 
-Open [Financial Accounts](../../../usermanual/billing/operator/finance-operations/financial-accounts/) and compare the platform clearing account, revenue account, and transactions under the same billing cycle and organization. If amounts differ, align the filters before considering an adjustment.
+Open [Financial Accounts](../../../usermanual/billing/operator/finance-operations/financial-accounts/) and compare the platform clearing account, revenue account, and transactions under the same billing cycle and tenant. If amounts differ, align the filters before considering an adjustment.
 
 ### 3. Resolve Reconciliation Exceptions
 
@@ -37,9 +37,9 @@ Open the [Reconciliation Center](../../../usermanual/billing/operator/finance-op
 
 ### 4. Review or Generate the Settlement Statement
 
-Open [Settlement Statements](../../../usermanual/billing/operator/finance-operations/settlement-list/) and search by billing cycle, status, and organization. Confirm that no blocking exception remains before generation. After generation, open the details and verify the settlement composition, status, and posting confirmation.
+Open [Settlement Statements](../../../usermanual/billing/operator/finance-operations/settlement-list/) and search by billing cycle, status, and tenant. Confirm that no blocking exception remains before generation. After generation, open the details and verify the settlement composition, status, and posting confirmation.
 
-![Review settlement statements by billing cycle and organization](../../../usermanual/billing/operator/finance-operations/settlement-list/images/settlement-list.png)
+![Review settlement statements by billing cycle and tenant](../../../usermanual/billing/operator/finance-operations/settlement-list/images/settlement-list.png)
 
 ### 5. Adjust Accounts and Verify When Required
 
@@ -51,7 +51,7 @@ Use [Account Adjustment](../../../usermanual/billing/operator/finance-operations
 
 | Check | Pass Criteria |
 | --- | --- |
-| Scope | Every page uses the same billing cycle and organization. |
+| Scope | Every page uses the same billing cycle and tenant. |
 | Account transactions | Summary amounts can be traced to financial accounts and transactions. |
 | Reconciliation exceptions | Blocking exceptions are resolved and all remaining items have a conclusion. |
 | Settlement result | Statement amount, status, and posting information are correct. |
@@ -61,7 +61,7 @@ Use [Account Adjustment](../../../usermanual/billing/operator/finance-operations
 
 | Symptom | Check First |
 | --- | --- |
-| Monthly totals do not match account amounts | Billing cycle, organization, transaction type, and data update time |
+| Monthly totals do not match account amounts | Billing cycle, tenant, transaction type, and data update time |
 | Reconciliation exceptions remain unresolved | Compensation queue, missing revenue details, and assigned owner |
 | Settlement statement cannot be generated | Monthly status, blocking exceptions, permission, and generation criteria |
 | Data still differs after adjustment | Adjustment direction, affected cycle, related document, and synchronization state |

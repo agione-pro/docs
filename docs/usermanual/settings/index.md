@@ -67,7 +67,7 @@ When entering Settings, select the target group from the left menu first, then r
 | Goal | Recommended Entry | Next Step |
 | --- | --- | --- |
 | Manage personal information or credentials | [Personal Settings](./user/personal/profile/) | Continue with Profile, My Keys, Dashboard, or Projects. |
-| Manage team members and roles | [Members and Roles](./operator/members-roles/members/) | Confirm the organization scope before maintaining members, roles, and quotas. |
+| Manage team members and roles | [Members and Roles](./operator/members-roles/members/) | Confirm the tenant scope before maintaining members, roles, and quotas. |
 | Configure login, security, or platform parameters | [System Settings](./operator/system-settings/platform-settings/) | Distinguish regular-user settings from operator-side global settings. |
 | Configure API rate control | [API Rate Control](./operator/api-rate-control/overview/) | Start with Overview, then review rules, cache, publishing, and observability audit. |
 

@@ -80,7 +80,7 @@ The top of the page provides billing-cycle, date-range, and model-type filters. 
 
 ## Pitfalls
 
-- My Calls Overview shows only the current account's visible scope, not organization-wide or customer-wide totals.
+- My Calls Overview shows only the current account's visible scope, not tenant-wide or customer-wide totals.
 - When balance, Credits, or call count looks abnormal, check call logs, model usage, and billing pages together.
 - Align model and time range before comparing data, otherwise different model versions may be mixed.
 

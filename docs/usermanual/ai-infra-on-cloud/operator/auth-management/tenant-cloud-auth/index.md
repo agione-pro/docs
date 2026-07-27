@@ -25,7 +25,7 @@ Tenant-cloud authorization works like issuing a cloud platform access pass to a 
 
 | Term | Description |
 | --- | --- |
-| Tenant | Organization or account scope authorized to use cloud platform resources and services. |
+| Tenant | Tenant or account scope authorized to use cloud platform resources and services. |
 | Tenant ID | Unique identifier used on the page to distinguish tenants. |
 | Authorized Cloud Platforms | Cloud platform scope assigned to the tenant. |
 | Authorize a Single Tenant | Add authorization only for the selected tenant. |

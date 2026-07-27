@@ -125,7 +125,7 @@ The expected account, customer, order, bill, settlement, adjustment, or License 
 
 **How to check:**
 
-1. Confirm the current tenant, organization, customer, account, and role scope.
+1. Confirm the current tenant, tenant, customer, account, and role scope.
 2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
 3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
 4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.

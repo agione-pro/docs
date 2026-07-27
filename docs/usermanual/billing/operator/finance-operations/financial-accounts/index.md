@@ -21,7 +21,7 @@ Updated: 2026-07-10
 
 Financial Accounts is the platform's fund ledger. It shows account balance, income, expense, available amount, and transactions for accounts such as `Platform Clearing Account` and `Platform Revenue Account`.
 
-Settlement List is the statement pool and focuses on whether an organization has a settlement record for a billing cycle. Financial Accounts focuses on where the money comes from, where it goes, and how much remains.
+Settlement List is the statement pool and focuses on whether an tenant has a settlement record for a billing cycle. Financial Accounts focuses on where the money comes from, where it goes, and how much remains.
 
 #### Terms Quick Reference
 
@@ -53,7 +53,7 @@ Settlement List is the statement pool and focuses on whether an organization has
 
 1. The current account can access `Finance Operations > Financial Accounts`.
 2. The target platform account type has been confirmed, such as `Platform Clearing Account` or `Platform Revenue Account`.
-3. Before reviewing transactions, the target billing cycle, organization, transaction type, or transaction number has been confirmed.
+3. Before reviewing transactions, the target billing cycle, tenant, transaction type, or transaction number has been confirmed.
 4. Before investigating settlement differences, the settlement statement, monthly overview, or reconciliation scope has been confirmed.
 
 ## Page Description
@@ -120,7 +120,7 @@ Use the following operations to review account information and transactions. Thi
 3. Filter by transaction time, transaction type, or transaction number.
 4. Open transaction details.
 5. Verify amount, fund direction, related settlement statement, related order, or business source.
-6. Before sharing transaction details in tickets or comments, desensitize amount, organization name, transaction number, and account information.
+6. Before sharing transaction details in tickets or comments, desensitize amount, tenant name, transaction number, and account information.
 
 ### Open Troubleshooting Pages
 
@@ -146,7 +146,7 @@ Use the following operations to review account information and transactions. Thi
 | Transaction Time | No | Time range | `2026-07-01 to 2026-07-31` | Filters transactions within a specific time range. |
 | Transaction Type | No | Enum | `Income` | Distinguishes income, expense, refund, settlement, and other transaction types. |
 | Transaction Number | No | Text | `TXN-202607080001` | Locates a specific transaction record. |
-| Organization | No | Text | `Example Organization A` | Locates account transactions or settlement differences by organization. |
+| Tenant | No | Text | `Example Tenant A` | Locates account transactions or settlement differences by tenant. |
 
 ## Result Validation
 
@@ -164,7 +164,7 @@ Use the following operations to review account information and transactions. Thi
 - Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
 - Financial account amounts are sensitive billing information. Screenshots and documents must be desensitized.
 - Adjustment, posting confirmation, clearing, and export are high-risk actions. This page records view-only steps and does not guide real submission.
-- Do not record real account IDs, customer names, organization names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys.
+- Do not record real account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys.
 
 ## FAQ
 
@@ -174,7 +174,7 @@ The expected account, customer, order, bill, settlement, adjustment, or License 
 
 **How to check:**
 
-1. Confirm the current tenant, organization, customer, account, and role scope.
+1. Confirm the current tenant, tenant, customer, account, and role scope.
 2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
 3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
 4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
@@ -185,7 +185,7 @@ The displayed balance, consumption, settlement status, monthly bill, or License 
 
 **How to check:**
 
-1. Confirm account type, transaction direction, organization, and account transaction time range before comparing amounts.
+1. Confirm account type, transaction direction, tenant, and account transaction time range before comparing amounts.
 2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
 3. Compare the summary number with the detail list and operation records on the related billing pages.
 4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
@@ -208,4 +208,4 @@ Check the selected billing cycle, customer or project scope, status filters, and
 
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Do not record real account IDs, customer names, organization names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.
+- Do not record real account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.

@@ -94,7 +94,7 @@ The page shows platform state, license categories, managed object authorization 
 
 1. Send the registration code to License support through an offline channel or email according to the internal process.
 2. Example email: `Ecosys@oneprocloud.com`.
-3. The email should include registration code, company or organization name, contact person, contact method, and activation scenario.
+3. The email should include registration code, company or tenant name, contact person, contact method, and activation scenario.
 4. Before sending, confirm recipient, environment, instance, and activation scenario.
 5. After receiving `Activation Code`, do not write it into public documents or screenshots.
 6. For learning or screenshots only, view fields and process descriptions without sending real registration codes.

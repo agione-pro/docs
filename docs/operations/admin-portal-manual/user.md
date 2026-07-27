@@ -7,8 +7,8 @@ This document explains how administrators manage users in the admin portal, incl
 ## Before You Start
 
 - Confirm the current administrator has permission to manage users.
-- Confirm the target tenant, organization, project, or resource scope.
-- Prepare the user's name, email or login identifier, organization, and contact information.
+- Confirm the target tenant, tenant, project, or resource scope.
+- Prepare the user's name, email or login identifier, tenant, and contact information.
 - Confirm the role that should be assigned and the reason for the assignment.
 - Confirm whether the account should be enabled immediately after creation.
 
@@ -28,8 +28,8 @@ This document explains how administrators manage users in the admin portal, incl
 
 1. Navigate to `Admin Portal > Users`.
 2. Click the create or add-user entry.
-3. Fill in required profile fields, such as name, email, organization, and contact information.
-4. Select the user's tenant or organization scope.
+3. Fill in required profile fields, such as name, email, tenant, and contact information.
+4. Select the user's tenant scope.
 5. Confirm whether the account should be enabled immediately.
 6. Save the user.
 
@@ -40,7 +40,7 @@ After saving, search for the user in the list and confirm that the profile and s
 1. Open the target user record.
 2. Enter the role or permission configuration area.
 3. Select the role template that matches the user's responsibility.
-4. Assign tenant, organization, project, resource, or menu scope according to the platform configuration.
+4. Assign tenant, tenant, project, resource, or menu scope according to the platform configuration.
 5. Save the change.
 6. Ask the user to log in again, or refresh permissions if the platform provides a refresh entry.
 
@@ -52,7 +52,7 @@ Use status and reset operations carefully:
 
 | Operation | Use When | Check Before Saving |
 |-----------|----------|---------------------|
-| Enable | A newly created or previously disabled user should regain access. | Confirm the user still belongs to the authorized organization. |
+| Enable | A newly created or previously disabled user should regain access. | Confirm the user still belongs to the authorized tenant. |
 | Disable | A user leaves the project, changes responsibility, or should temporarily lose access. | Confirm that no active delivery or approval task depends on the account. |
 | Reset access | Login recovery or account troubleshooting is required. | Confirm the requester identity and record the reason. |
 
@@ -71,6 +71,6 @@ Use status and reset operations carefully:
 |-------|----------------|----------|
 | User cannot sign in | Account disabled, wrong login identifier, or password/reset flow incomplete | Confirm account status and retry the approved reset flow |
 | User cannot see an expected menu | Role or menu permission is missing | Confirm role assignment and menu authorization |
-| User sees a menu but no data | Resource scope is not authorized | Confirm tenant, organization, project, or resource authorization |
+| User sees a menu but no data | Resource scope is not authorized | Confirm tenant, tenant, project, or resource authorization |
 | Role change does not take effect | Permission cache or active session has not refreshed | Ask the user to log out and log in again, or use the platform refresh entry |
 | Audit log is missing | Action was not saved, log sync is delayed, or the current account lacks audit visibility | Recheck operation result and confirm audit permission |

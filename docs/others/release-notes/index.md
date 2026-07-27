@@ -41,7 +41,7 @@ next: true
 - 【Feature】Separated Model API Keys from legacy System AK/SK, clarifying capability boundaries and separating model-call authentication from regular API authentication.
 - 【Feature】Member Quotas support quota viewing, administrator management, quota policies, model allowlists, alert thresholds, and reset cycles.
 - 【Feature】Quota Requests support request submission, cancellation, approval, rejection, and automatic expiration. A member can keep only one pending request at the same time.
-- 【Feature】Enhanced customer directory capabilities, including operator organization directory, tenant customer summary, customer type filters, business identity, administrator email, and custom customer tags.
+- 【Feature】Enhanced customer directory capabilities, including operator tenant directory, tenant customer summary, customer type filters, business identity, administrator email, and custom customer tags.
 - 【Performance】Quota deduction rules are more stable. Failed requests, allowlist failures, insufficient balance, abnormal Key status, archived projects, and precheck failures no longer cause unreasonable deductions.
 - 【UI】Unified Key display, list headers, action buttons, empty states, and quota-related copy. Quota terminology is used consistently.
 
@@ -103,7 +103,7 @@ next: true
 
 - 【Feature】Rebuilt the Billing flow, covering account overview, monthly bills, transactions, top-ups, provider revenue, and operator settlement.
 - 【Feature】Enhanced the provider settlement loop, including candidate lists, generation wizard, settlement details, progress display, paired records, transfers, resubmission, and settlement inspection.
-- 【Feature】Provider customer lists now include keyword search plus organization, company, administrator, email, phone, and other identifying fields.
+- 【Feature】Provider customer lists now include keyword search plus tenant, company, administrator, email, phone, and other identifying fields.
 - 【Feature】Transactions now include source system, entity name, display name, and transaction context to help users identify billing sources.
 - 【Feature】Monthly bill snapshots support historical billing-cycle queries, hot rebuild, manual refresh, reconciliation tasks, and customer current-month consumption snapshot refresh.
 - 【Feature】When customers top up directly through Stripe in AGIOne, top-up confirmation emails are sent, and Stripe-side transaction details are more readable and complete.

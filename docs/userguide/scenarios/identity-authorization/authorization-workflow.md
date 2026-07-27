@@ -22,7 +22,7 @@ This scenario guides platform administrators through setting organizational boun
 
 ## Before You Start
 
-1. Confirm the organization, tenant, and responsibilities of the user.
+1. Confirm the tenant, tenant, and responsibilities of the user.
 2. Prefer built-in roles and create a custom role only when responsibilities are not covered.
 3. List required and explicitly prohibited menus, actions, and resource scopes.
 4. Prepare a validation account that does not carry production workloads.
@@ -33,7 +33,7 @@ This scenario guides platform administrators through setting organizational boun
 | --- | --- | --- | --- |
 | 1 | Understand tenant, user, role, and menu relationships | [Identity and Access Model](../../../product/identity-access-model) | Boundaries and role choice are clear |
 | 2 | Select a role from the default capability matrix | [Role Comparison](../../../product/role-comparison) | Role matches responsibilities |
-| 3 | Confirm member ownership in Organization Settings and Team Members | [Organization Settings](../../../usermanual/settings/user/organizations/org-settings/), [Team Members](../../../usermanual/settings/user/members-roles/team-members/) | The member is active in the correct organization |
+| 3 | Confirm member ownership in Tenant Settings and Team Members | [Tenant Settings](../../../usermanual/settings/user/organizations/org-settings/), [Team Members](../../../usermanual/settings/user/members-roles/team-members/) | The member is active in the correct tenant |
 | 4 | Select a built-in role or create a least-privilege role | [Roles](../../../usermanual/settings/user/members-roles/roles/) | The role contains only necessary permissions |
 | 5 | Sign in with the validation account and inspect menus, actions, and resource scope | [Configure Accounts and Permissions](../../../usermanual/settings/end-to-end/configure-account-and-permissions/) | Allowed items work and prohibited items do not |
 | 6 | Review the permission change and validation in Operation Logs | [Operation Logs](../../../usermanual/settings/user/activity-notifications/operation-logs/) | Time, operator, and target are traceable |

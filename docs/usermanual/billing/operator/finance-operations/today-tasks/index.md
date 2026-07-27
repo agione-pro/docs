@@ -119,7 +119,7 @@ The expected account, customer, order, bill, settlement, adjustment, or License 
 
 **How to check:**
 
-1. Confirm the current tenant, organization, customer, account, and role scope.
+1. Confirm the current tenant, tenant, customer, account, and role scope.
 2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
 3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
 4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
@@ -130,7 +130,7 @@ The displayed balance, consumption, settlement status, monthly bill, or License 
 
 **How to check:**
 
-1. Confirm task type, timeout status, organization, and amount-related clues before comparing totals.
+1. Confirm task type, timeout status, tenant, and amount-related clues before comparing totals.
 2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
 3. Compare the summary number with the detail list and operation records on the related billing pages.
 4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.

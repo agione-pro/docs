@@ -111,7 +111,7 @@ The following screenshot shows Quota Governance. Sanitize project, member, quota
 - Quota Governance displays limits and levels; it does not mean a top-up, deduction, or settlement occurred.
 - Risk items may remain briefly after handling. Return to the current cycle and refresh.
 - Confirm affected objects before changing quota rules so running workloads or team members are not disrupted.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, organization names, Tokens, or Keys.
+- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
 - Sanitize screenshots, exports, tickets, and comments.
 
 ## Result Validation

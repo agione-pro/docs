@@ -118,7 +118,7 @@ The following screenshot shows Account Overview. Sanitize amounts, account infor
 - Account Overview shows summaries and only some recent transactions; it does not replace Transactions.
 - Monthly Estimate is not a final bill. Top-ups, refunds, and consumption can change it before the cycle ends.
 - Confirm the team's consumption pattern before changing the alert threshold; an unsuitable threshold can delay action.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, organization names, Tokens, or Keys.
+- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
 - Sanitize screenshots, exports, tickets, and comments.
 
 ## Result Validation
