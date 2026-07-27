@@ -7,7 +7,7 @@ Updated: 2026-07-21
 
 ## Manual Overview
 
-The user manual is for platform operators, model providers, general users, billing operators, and system administrators. It covers model publishing and calling, cloud resource scheduling, local heterogeneous compute management, billing operations, and platform settings.
+The user manual is for platform operators, model providers, general users, billing operators, and system maintainers. It covers model publishing and calling, cloud resource scheduling, local heterogeneous compute management, billing operations, and platform settings.
 
 The manual is organized into five modules in the left sidebar:
 
@@ -15,7 +15,7 @@ The manual is organized into five modules in the left sidebar:
 2. AI Infra On-Cloud: connect cloud accounts, authorize resource pools, and deploy cloud model services.
 3. AI Infra On-Prem: manage local resource pools, templates, quotas, monitoring, and user-side resources.
 4. Billing: view user billing, customer billing, finance operations, and License information.
-5. Settings: manage accounts, members, roles, organizations, system configuration, and operation logs.
+5. Settings: manage accounts, members, roles, tenants, system configuration, and operation logs.
 
 ## Where To Start
 
@@ -24,18 +24,18 @@ The manual is organized into five modules in the left sidebar:
 | First-time platform user | Start from this page, then open the target module getting-started page. | Confirm your role, permissions, and target resource before entering a feature page. |
 | General user | Model Services, AI Infra On-Prem, Billing, or Settings. | Decide whether you need to call models, use resources, check billing, or manage personal settings. |
 | Platform operator | Settings, AI Infra On-Cloud, AI Infra On-Prem, and Model Services. | Confirm account permissions, resource onboarding, and approval boundaries first. |
-| Billing or finance user | Billing. | Confirm billing cycle, customer, organization, and business-line scope. |
+| Billing or finance user | Billing. | Confirm billing cycle, customer, tenant, and business-line scope. |
 | Model provider | Model Services. | Start with model publishing, review, calling, and revenue paths. |
 
 ## Find The Right Entry By Goal
 
 | Module | Applicable Roles | Core Features | Recommended Entry |
 | --- | --- | --- | --- |
-| Model Services | Model providers, model callers, operator admins | Meta-models, model sources, model publishing, reviews, Playground, call logs, revenue statistics | [Overview](./model-services/), [Getting Started](./model-services/getting-started/), [Publish and Call a Model](./model-services/end-to-end/publish-and-call-model/) |
+| Model Services | Model providers, model callers, platform operators | Meta-models, model sources, model publishing, reviews, Playground, call logs, revenue statistics | [Overview](./model-services/), [Getting Started](./model-services/getting-started/), [Publish and Call a Model](./model-services/end-to-end/publish-and-call-model/) |
 | AI Infra On-Cloud | Cloud resource operators, general users | Cloud platforms, cloud accounts, resource pools, tenant authorization, business-region authorization, deployment assets, scheduling policies, quick deployment | [Overview](./ai-infra-on-cloud/), [Getting Started](./ai-infra-on-cloud/getting-started/), [Deploy a Cloud Model Service](./ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) |
 | AI Infra On-Prem | Resource pool operators, general users | Regions, availability zones, clusters, accelerators, specifications, images, storage, templates, quotas, metering, monitoring | [Overview](./ai-infra-on-prem/), [Getting Started](./ai-infra-on-prem/getting-started/), [Deploy a Model Service](./ai-infra-on-prem/end-to-end/deploy-model-service/) |
-| Billing | General users, platform operators, billing operators, License admins | User billing, customer billing, finance operations, top-up orders, monthly bills, settlements, adjustments, License | [Overview](./billing/), [Getting Started](./billing/getting-started/), [Reconcile and Settle a Billing Cycle](./billing/end-to-end/reconcile-billing-cycle/) |
-| Settings | General users, platform operators, system admins, security admins | Personal Keys, account information, projects, team members, roles, organization settings, operation logs, system configuration, API rate control | [Overview](./settings/), [Getting Started](./settings/getting-started/), [Configure Account and Permissions](./settings/end-to-end/configure-account-and-permissions/) |
+| Billing | General users, platform operators, billing operators, License managers | User billing, customer billing, finance operations, top-up orders, monthly bills, settlements, adjustments, License | [Overview](./billing/), [Getting Started](./billing/getting-started/), [Reconcile and Settle a Billing Cycle](./billing/end-to-end/reconcile-billing-cycle/) |
+| Settings | General users, platform operators, system maintainers, security roles | Personal Keys, account information, projects, team members, roles, tenant settings, operation logs, system configuration, API rate control | [Overview](./settings/), [Getting Started](./settings/getting-started/), [Configure Account and Permissions](./settings/end-to-end/configure-account-and-permissions/) |
 
 ## Core Terms
 
@@ -68,7 +68,7 @@ The manual is organized into five modules in the left sidebar:
 
 ## Prerequisites
 
-1. Confirm the current account role, tenant, and visible organization scope.
+1. Confirm the current account role, tenant, and visible tenant scope.
 2. Confirm that the target module, resource pool, cloud account, model, billing cycle, or settings object is visible to the current account.
 3. Before deployment, authorization, top-up, settlement, adjustment, deletion, publishing, or License activation, confirm the impact scope and rollback path.
 4. Screenshots, tickets, and communication materials must not contain passwords, tokens, AK/SK values, private keys, full credentials, customer-sensitive data, or real internal addresses.
@@ -109,7 +109,7 @@ You want to complete model deployment, model calling, resource access, or billin
 2. For cloud resource access or cloud model service deployment, start with AI Infra On-Cloud.
 3. For local clusters, instances, templates, storage, or quotas, start with AI Infra On-Prem.
 4. For balances, transactions, bills, settlements, adjustments, or License, start with Billing.
-5. For accounts, projects, keys, members, roles, organizations, or security policies, start with Settings.
+5. For accounts, projects, keys, members, roles, tenants, or security policies, start with Settings.
 
 #### Page entry is not visible
 
@@ -120,12 +120,12 @@ The menu, button, or page mentioned in the documentation is not visible under th
 **Possible Causes:**
 
 - The current account role or tenant permissions do not include the feature.
-- The target resource, cloud account, model, billing cycle, or organization scope is not open to the current account.
+- The target resource, cloud account, model, billing cycle, or tenant scope is not open to the current account.
 - The prerequisite resources required by the feature have not been configured.
 
 **How to Handle:**
 
-1. Confirm the current account role, tenant, organization, and module entry point.
+1. Confirm the current account role, tenant, and module entry point.
 2. Check resources, authorization, and visibility against the prerequisites on the feature page.
 3. When requesting help, provide only desensitized page paths, time ranges, resource IDs, and missing entry descriptions.
 

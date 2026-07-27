@@ -27,7 +27,7 @@ AGIOne connects the work required to deliver model services into one path:
 | **AI Infra On-Cloud** | Connect cloud accounts, authorize cloud resources, and deploy cloud model services | Cloud platforms, cloud accounts, resource pools, authorization, deployment assets, scheduling policies |
 | **Model Services** | Publish, review, discover, experience, call, and operate models | Model Marketplace, My Models, Playground, call logs, usage, customer calls, revenue |
 | **Billing** | Manage user billing, customer finance, settlement, reconciliation, revenue, and License status | Transactions, monthly bills, top-up orders, settlement statements, financial accounts, reconciliation, License |
-| **Settings** | Manage identity, organization, audit, login policy, platform configuration, and API rate control | Keys, profiles, members, roles, organizations, operation logs, login properties, API rate-control rules |
+| **Settings** | Manage identity, tenants, audit, login policy, platform configuration, and API rate control | Keys, profiles, members, roles, tenants, operation logs, login properties, API rate-control rules |
 
 These modules can be used independently for a focused task or together as an end-to-end model service delivery and operations workflow.
 
@@ -35,7 +35,6 @@ These modules can be used independently for a focused task or together as an end
 
 | Role | Main Responsibility | Typical Starting Point |
 | --- | --- | --- |
-| **Administrator (`admin`)** | Manage tenants, users, role assignments, and platform-level access boundaries | [Identity and Access Model](./identity-access-model) |
 | **Operator (`operator`)** | Prepare resources and templates, configure governance rules, maintain quotas and monitoring, and review published content | [Role Comparison](./role-comparison) |
 | **Model Provider (`provider`)** | Publish single or aggregate models, maintain versions and pricing, submit reviews, and view customer calls and revenue | [Model Services Getting Started](../usermanual/model-services/getting-started/) |
 | **End User (`enduser`)** | Discover and experience models, obtain access, call APIs, deploy available services, and view personal usage | [User Manual](../usermanual/) |
@@ -73,7 +72,7 @@ For all other capabilities, use the [Support Matrix](./limitations/support-matri
 ## Recommended Reading Order for Beginners
 
 1. Read the [Technical Overview](./technical/overview) to understand the product workflow and subsystem boundaries.
-2. Read [Roles and Access](./identity-access-model) to identify which tasks your account can perform.
+2. Read [Tenant, Member, Project, and Role Design Logic](./identity-access-model) to identify which tasks your account can perform.
 3. Select a task from the [Scenario Guide](../userguide/scenarios).
 4. Open the linked [User Manual](../usermanual/) page for detailed fields, prerequisites, result checks, and troubleshooting.
 5. Before a PoC or deployment, confirm the [Support Matrix](./limitations/support-matrix), [Other Limitations](./limitations/limitations), and [Installation Guide](../installation/).
