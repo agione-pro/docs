@@ -1,5 +1,43 @@
 # AGIOne 多节点环境安装部署文档
 
+## 前言
+
+| 项目 | 内容 |
+| --- | --- |
+| 适用角色 | 生产交付工程师、现场实施工程师、客户平台运维工程师 |
+| 导航路径 | 部署 > AGIOne 多节点环境安装部署 |
+| 功能定位 | 指导用户完成 AGIOne host-mode 多节点部署，包括节点规划、配置准备、预检、安装和验收 |
+
+相比单节点部署，多节点部署多了三个关键动作：**规划节点角色、准备 `/root/agione-install.yml`、验证 SSH 和中间件连通性**。如果你是第一次做多节点交付，先用下面的时间线理解全流程，再执行命令。
+
+### 新手理解
+
+多节点安装不是另一套产品包，而是同一个 AGIOne 安装器按 host-mode 拓扑运行：你告诉安装器哪些私网 IP 是应用 / 入口节点，哪台机器跑中间件，哪台机器做数据库备库，安装器会为每台主机渲染并同步对应文件。
+
+## 部署时间线
+
+| 阶段 | 你要做什么 | 完成标志 |
+| --- | --- | --- |
+| 第 1 步：选择模式 | 选择自建中间件、托管中间件或混合中间件 | 已确认 `self-managed`、`managed-middleware` 或 `hybrid` |
+| 第 2 步：规划节点 | 确认应用节点、中间件节点、数据库备库节点和扩展节点 | 节点 IP、角色、SSH 用户和端口已准备 |
+| 第 3 步：填写 YAML | 从配置字段说明复制最小模板，补充密码、端点、域名和可选服务 | `/root/agione-install.yml` 可用于安装 |
+| 第 4 步：执行预检 | 使用同一份 YAML 执行 `./agione doctor --file /root/agione-install.yml` | SSH、端口、磁盘和中间件连通性检查通过 |
+| 第 5 步：执行安装 | 执行 `./agione quick --file /root/agione-install.yml` | 安装结果显示成功 |
+| 第 6 步：验收交付 | 执行 `health`、`ps`、`handover` 并归档结果 | 浏览器访问正常，报告和账号信息已交付 |
+
+## 术语速查
+
+| 术语 | 说明 |
+| --- | --- |
+| Host-mode | 多节点部署模式，安装器会根据主机 IP 渲染每台机器的 Compose 文件和端口绑定 |
+| 应用 / 入口节点 | 运行 Nginx、Gateway 和核心业务服务的节点，用户流量通常从这里进入 |
+| 中间件节点 | 运行自建 MariaDB、Redis、Nacos、Kafka、MinIO / MinStore 的节点 |
+| 数据库备库节点 | 运行 MariaDB 备库，用于复制和数据冗余 |
+| 托管中间件 | 由云厂商或客户已有服务提供的中间件，AGIOne 只连接端点，不在本地部署该组件 |
+| 混合中间件 | 部分组件自建、部分组件托管，例如数据库使用 RDS，Redis 和 Nacos 继续自建 |
+| `agione_app.topology` | YAML 中描述节点 IP、SSH 用户、端口和密码的配置段 |
+| `host_mode_service_placements` | 高级服务编排字段，用于手动把服务分配到指定机器 |
+
 ## 1. 文档说明
 
 本文档用于指导安装人员在离线或弱网环境中完成 AGIOne host-mode 多节点安装部署。
@@ -30,17 +68,17 @@
 
 `managed-middleware` 和 `hybrid` 都需要记录中间件端点、端口、账号和密码。推荐把这些端点值直接写在主安装 YAML 的 `agione_app.db`、`agione_app.redis`、`agione_app.nacos`、`agione_app.kafka`、`agione_app.minio` 和 `agione_app.middleware` 下。`--middleware-endpoints-file` 仅作为旧交付流程的兼容选项保留。TUI 模式可在界面直接填写端点值。`hybrid` 额外通过组件模式指明每个中间件组件的部署方式。
 
-生产安装前还需要确认安装期业务预配置。TUI 模式在“中间件配置”页的“业务预配置”、“注册邮箱配置”、“域名与前端路径”中填写；quick / YAML 模式在 `agione_app.business` 和 `agione_app.default_access` 下填写。
+生产安装前还需要确认安装期配置。推荐统一维护在 `/root/agione-install.yml` 中；TUI 模式可采集中间件端点和节点信息，高级前端入口、可选服务组和默认账号策略建议固定写入 YAML。[安装配置文件字段说明](./agione-install-config-reference) 已按必填字段、常用字段、场景字段和高级字段排序，并提供多节点自建中间件、托管中间件和混合中间件最小模板。
 
 | 配置项 | 配置路径 | 安装效果 |
 | --- | --- | --- |
-| 支付币种 | `agione_app.business.payment_currency`、`agione_app.business.payment_units` | `payment_currency` 写入 `metis.sys.currency`；`payment_units` 写入 CBDP 的 `account.units` 和 `stripe.supportCurrency` |
-| 审批方式 | `agione_app.business.approval` | 写入 CBDP 租户申请审批配置 |
-| 注册与邮箱 | `agione_app.business.registration`、`agione_app.business.mail` | 写入 `metis-upms-biz.yml`；示例邮箱配置生产前必须替换为真实可用配置 |
-| 域名、证书、前端路径 | `agione_app.business.frontend` | 渲染到 Nginx 配置；已配置的证书和前端路径会挂载到 Nginx 容器 |
-| 默认控制台账号 | `agione_app.default_access` | 安装时为 `admin`、`operator`、`provider` 生成密码；`provider` 账号授予 `Creator` 和 `cbdp_buyer` 角色 |
+| 节点拓扑和 SSH 凭据 | `agione_app.topology` | 定义应用 / 入口节点、中间件节点、数据库备库节点和逐节点 SSH 认证 |
+| 中间件端点 | `agione_app.middleware`、`agione_app.db`、`redis`、`nacos`、`kafka`、`minio` | 控制自建 / 托管 / 混合中间件模式，并写入 AGIOne 运行时连接配置 |
+| 域名、证书、前端路径 | `agione_app.frontend` | 渲染到 Nginx 配置；已配置的证书和前端路径会挂载到 Nginx 容器 |
+| 可选应用服务组 | `agione_app.start_optional_app_services` | 按组启用额外应用服务，例如 `kubem`、`cloud`、`core_isync` |
+| 默认控制台账号 | `agione_app.default_access` | 安装时为面向客户交付的 `operator` 和 `provider` 生成密码；`provider` 账号授予 `Creator` 和 `cbdp_buyer` 角色 |
 
-如果 `business.frontend.public_access_url` 和 `business.frontend.domain` 都为空，安装器会按应用入口节点 IP 和 `18090` 端口输出默认访问地址。
+如果 `agione_app.frontend.public_access_url` 和 `agione_app.frontend.domain` 都为空，安装器会按应用入口节点 IP 和 `18090` 端口输出默认访问地址。
 
 默认浏览器入口建议使用第 1 台或外部负载均衡后的入口地址：
 
@@ -76,7 +114,7 @@ http://<app-entry-ip>:18090/modelone/
 
 安装发起机需要能够 SSH 到所有目标节点，包括它自身作为目标节点时对应的 IP。推荐使用 SSH 免密；如果使用密码认证，安装发起机需要先安装 `sshpass`。
 
-如果需要修改 SSH 访问方式，优先使用主安装 YAML：在 `agione_app.topology.ssh_user`、`agione_app.topology.ssh_port` 和可选的 `agione_app.topology.ssh_password` 中配置全局默认值。如果不同机器需要不同 SSH 用户、端口或密码，请在 `/root/agione-install.yml` 的 `agione_app.topology.ssh_credentials` 中逐台配置。这样可以把安装前配置统一放在一个文件里，也能避免密码包含逗号、冒号、空格或 `@` 时被命令行分隔符错误拆分。
+如果需要修改 SSH 访问方式，优先使用主安装 YAML：在 `agione_app.topology.ssh_user`、`agione_app.topology.ssh_port` 和可选的 `agione_app.topology.ssh_password` 中配置全局默认值。如果不同机器需要不同 SSH 用户、端口或密码，请在 `/root/agione-install.yml` 的 `agione_app.topology.ssh_credentials` 中逐台配置。这样可以把安装前配置统一放在一个文件里，减少命令行分隔符和 shell 转义问题。SSH、中间件和默认账号密码尽量只使用字母、数字和下划线。
 
 安装过程需要写入以下目录：
 
@@ -218,7 +256,7 @@ TUI 中的“启用离线交付资源完整性校验”只检查本地交付包�
 | --- | --- | --- |
 | 操作系统 | Linux | 推荐 Ubuntu 22.04 |
 | CPU | 8 核 | CPU 核数需满足 8 核 |
-| 内存 | 16 GiB | 允许少量系统 / 虚拟化保留损耗，约 `15.2GiB` 以上可通过 |
+| 内存 | 推荐 16 GiB | 安装器要求检测内存至少 `12GiB`；16 GiB 仍是推荐申请规格 |
 | 可用磁盘 | 200 GiB | 默认 `runtime_root` 时，每台节点优先选择可用空间约 `160GiB` 以上的数据盘；无合适数据盘时才检查系统盘路径 `/opt/hyperone` |
 
 如特殊交付环境需要覆盖磁盘最低阻断阈值，可在执行安装前设置：
@@ -287,12 +325,14 @@ chmod +x ./agione
 
 ### 4.4 执行安装
 
-标准多节点场景推荐把节点拓扑、SSH 凭据、中间件端点、业务预配置和默认账号策略统一写入主安装 YAML，再使用 `quick` 执行：
+标准多节点场景推荐把节点拓扑、SSH 凭据、中间件端点、前端入口、可选服务组和默认账号策略统一写入主安装 YAML，再使用 `quick` 执行：
 
 ```bash
 chmod +x ./agione
 ./agione quick --file /root/agione-install.yml
 ```
+
+建议先从 [安装配置文件字段说明](./agione-install-config-reference) 复制匹配场景的最小 YAML，再按需增加 SSH 设置、域名、证书、托管中间件端点或可选服务组。
 
 反复重装测试且确认可以覆盖旧 AGIOne 运行数据时：
 
@@ -326,7 +366,7 @@ NFS 节点需要具备 NFS 服务端 / 客户端能力。离线环境请在打�
 
 1. 准备 2 到 8 台应用 / 入口节点，并确保它们位于同一私网，或已与托管中间件所在 VPC 建立私网连通。
 2. 通过客户云控制台、可选云厂商辅助脚本，或客户已有资源，准备托管数据库、Redis、Nacos、Kafka 和对象存储。
-3. 生成或合并 `/root/agione-install.yml`，写入节点拓扑、SSH 凭据、中间件端点、业务预配置、域名 / 证书配置和默认账号策略。
+3. 生成或合并 `/root/agione-install.yml`，写入节点拓扑、SSH 凭据、中间件端点、域名 / 证书配置、可选服务组和默认账号策略。
 4. 确认 Nacos 行为。如果由安装器发布配置，配置的 Nacos 账号必须在 `agione-prod` 命名空间具备配置发布权限；如果客户已经提前导入全部 AGIOne 配置，请设置 `agione_app.nacos.assume_preimported_configs: true`。
 5. 执行 `./agione quick --file /root/agione-install.yml`，或在 TUI 安装中填写同一组字段。
 
@@ -374,18 +414,18 @@ agione_app:
       192.168.31.204:
         user: root
         port: 22
-        password: "a,b:c@204"
+        password: "Password_204"
       192.168.31.207:
         user: admin
         port: 2222
-        password: "pass,207"
+        password: "Password_207"
       192.168.31.208:
         user: root
         port: 22
       192.168.31.209:
         user: ops
         port: 2209
-        password: "pass@209"
+        password: "Password_209"
   middleware:
     mode: hybrid
     provider: generic
@@ -404,18 +444,19 @@ agione_app:
     host: rds-mariadb.internal.example.com
     port: 3306
     root_username: root
-    root_password: "change-me"
+    root_password: "DbRoot_2026"
     ssl: false
   redis:
     host: 192.168.31.208
     port: 6379
-    password: "change-me"
+    password: "Redis_2026"
   nacos:
     host: 192.168.31.208
     port: 8848
     namespace: agione-prod
     username: nacos
-    password: "change-me"
+    password: "Nacos_2026"
+    auth_token: "QWdJT25lX05hY29zX0F1dGhUb2tlbl8yMDI2X1BsZWFzZVJlcGxhY2VfNDhCeXRlcw=="
   kafka:
     bootstrap_servers: kafka-1.internal.example.com:9092
     security_protocol: PLAINTEXT
@@ -423,64 +464,33 @@ agione_app:
     endpoint: http://192.168.31.208:9000
     api_direct_host: 192.168.31.208:9000
     web_direct_host: 192.168.31.208:9001
+    access_key: "MinioAccess_2026"
+    secret_key: "MinioSecret_2026"
 ```
 
 在这个示例中，应用节点、中间件节点、备库节点和每节点 SSH 凭据都写在 `/root/agione-install.yml` 中。数据库和 Kafka 使用外部端点；Redis、Nacos、对象存储仍由安装器部署在 `192.168.31.208` 上。注意 Redis 自身仍可保留 `agione_app.redis.mode: standalone`，组件部署方式请写在 `agione_app.middleware.redis.mode`，避免与 Redis 运行模式混淆。
 
-安装期业务预配置和默认账号策略写在同一个 YAML 中：
+前端入口、可选服务组和默认账号策略写在同一个 YAML 中：
 
 ```yaml
 agione_app:
-  business:
-    payment_currency:
-      name: US Dollar
-      code: USD
-      sign: "$"
-    payment_units:
-      CASH:
-        - code: USD
-          name: US Dollar
-          symbol: "$"
-        - code: CNY
-          name: Chinese Yuan
-          symbol: CNY
-      POINTS:
-        - code: Credit
-          name: Credit
-          symbol: pts
-    approval:
-      tenant_apply_auto_auth: true
-      tenant_apply_auth: true
-    registration:
-      email_enabled: true
-      phone_enabled: false
-      email_code_expire_minutes: 5
-      phone_code_expire_minutes: 5
-    mail:
-      provider: smtp
-      smtp:
-        host: smtp.example.com
-        port: 465
-        username: ""
-        password: ""
-        from_address: no-reply@example.com
-        from_name: AGIOne
-        auth: true
-        ssl_enabled: true
-    frontend:
-      domain: ""
-      public_access_url: ""
-      ssl_certificate_path: ""
-      ssl_certificate_key_path: ""
-      frontend_root: ""
+  frontend:
+    domain: ""
+    public_access_url: ""
+    ssl_certificate_path: ""
+    ssl_certificate_key_path: ""
+    frontend_root: ""
+  start_optional_app_services:
+    - kubem
+    - cloud
   default_access:
     generate_random_passwords: true
     password_length: 20
 ```
 
-默认账号密码每次安装都会生成，除非在配置中显式指定密码。生成密码长度为 6 到 32 位，并至少包含大写字母、小写字母、数字和支持的特殊符号中的三类。最终安装结果会输出 `admin`、`operator`、`provider` 的实际密码，请按客户认可的凭据交接流程保存。
+面向客户的默认账号密码每次安装都会生成，除非在配置中显式指定密码。生成密码长度为 6 到 32 位，只使用大写字母、小写字母、数字和下划线。最终安装结果会输出 `operator`、`provider` 的实际密码，请按客户认可的凭据交接流程保存。
 
-旧交付流程的兼容参数仍保留。可以继续用 `--host-mode-ips` 或重复 `--host-mode-ip` 直接传机器 IP，也可以继续用 `--host-mode-nodes-file` 读取旧版节点凭据文件。新交付推荐统一把机器 IP、SSH 凭据、中间件端点和业务预配置写入 `/root/agione-install.yml`。如果同时传入 `--host-mode-ips` 和 `--host-mode-nodes-file`，角色顺序以 `--host-mode-ips` 为准，节点文件只为这些 IP 提供 SSH 凭据。
+旧交付流程的兼容参数仍保留。可以继续用 `--host-mode-ips` 或重复 `--host-mode-ip` 直接传机器 IP，也可以继续用 `--host-mode-nodes-file` 读取旧版节点凭据文件。新交付推荐统一把机器 IP、SSH 凭据、中间件端点、前端入口和默认账号策略写入 `/root/agione-install.yml`。如果同时传入 `--host-mode-ips` 和 `--host-mode-nodes-file`，角色顺序以 `--host-mode-ips` 为准，节点文件只为这些 IP 提供 SSH 凭据。
 
 5 到 8 台机器时，继续在后面追加应用 / 入口扩展节点：
 

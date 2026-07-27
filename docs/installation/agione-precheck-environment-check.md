@@ -1,8 +1,44 @@
 # AGIOne Pre-install Environment Check Guide
 
-This document describes the environment checks that should be completed before running `./agione quick` or `./agione install`. The current checks focus on the `agione-app` installation scope: host resources, runtime directories, Docker and Compose, SSH access, ports, offline assets, and middleware connectivity.
+## Introduction
 
-The goal is to find blocking issues before the installation workflow starts.
+| Item | Content |
+|------|---------|
+| Applicable Role | Pre-install checker, delivery engineer, customer operations engineer |
+| Navigation Path | Deployment > AGIOne Pre-install Environment Check |
+| Function Description | Identifies resource, port, permission, Docker, SSH, offline bundle, and middleware connectivity risks before `./agione quick` or `./agione install` |
+
+The precheck does not install the product. Its purpose is to expose blockers before formal installation. For a first run, remember the basic order: **run `doctor`, fix `FAIL`, then decide how to handle `WARN`**.
+
+### Beginner Explanation
+
+Precheck is a rehearsal, not an installation. It tells you whether the host, ports, SSH, disk, Docker, offline bundle, and managed middleware are ready before runtime data is unpacked.
+
+## Precheck Timeline
+
+| Stage | What You Do | Completion Signal |
+| --- | --- | --- |
+| Step 1: Prepare bundle | Enter the bundle directory and make `./agione` executable | `./agione help` can run |
+| Step 2: Run doctor | Run `./agione doctor` for single-node, or `./agione doctor --file /root/agione-install.yml` for multi-node | Terminal prints a precheck conclusion |
+| Step 3: Verify bundle | Run `./agione verify-bundle` | Bundle integrity verification passes |
+| Step 4: Fix FAIL | Fix blockers such as disk, port, permission, SSH, or middleware issues | No `FAIL` items remain |
+| Step 5: Confirm WARN | Confirm risk acceptance with the customer and delivery owner | Each `WARN` item has a clear decision |
+| Step 6: Install | Run `quick` or TUI installation with the same configuration | Precheck report is archived |
+
+## Terminology Quick Reference
+
+| Term | Plain Explanation |
+| --- | --- |
+| `doctor` | Pre-install diagnostic command for host and configuration risks |
+| `verify-bundle` | Command that verifies bundle integrity before installation |
+| `PASS` | The check passed and you can continue |
+| `WARN` | A risk exists but may not block installation; owner confirmation is required |
+| `FAIL` | A blocker that must be fixed before installation |
+| Port occupation | A target port is already listened on by another process, so the installer cannot bind it |
+| Host-mode remote check | Multi-node check for SSH, resources, ports, and existing data on each target machine |
+| External managed middleware check | Connectivity and credential check for cloud-provider or customer-provided database, Redis, Nacos, Kafka, and object storage |
+
+This document describes the environment checks that should be completed before running `./agione quick` or `./agione install`. The current checks focus on the `agione-app` installation scope: host resources, runtime directories, Docker and Compose, SSH access, ports, offline assets, and middleware connectivity.
 
 ## 1. Applicable Scenarios
 
