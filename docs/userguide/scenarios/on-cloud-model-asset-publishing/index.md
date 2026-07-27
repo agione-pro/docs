@@ -52,7 +52,7 @@ This scenario guides Platform Operators through preparing runtime assets after c
 - **[On Cloud Resource Access](../on-cloud-resource-access/)** (upstream): provides the cloud platform, account, resource pool, and authorization required here; meta-model data comes from [Publish Models Preconfiguration](../publish-model-preconfiguration/)
 - **[On Cloud Model Deployment and Calling](../on-cloud-model-deployment-calling/)** (downstream): creates deployment instances from the model-library assets prepared here
 - **[My Deployments User Manual](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)** (downstream): reviews state, events, and monitoring for deployed models
-- **[Platform Governance and Access Control](../platform-governance-access-control/)** (cross-cutting): constrains model-asset visibility and calling scope by tenant and organization
+- **[Platform Governance and Access Control](../platform-governance-access-control/)** (cross-cutting): constrains model-asset visibility and calling scope by tenant and tenant
 
 ## Completion Checklist
 

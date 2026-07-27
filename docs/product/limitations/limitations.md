@@ -19,8 +19,8 @@ The [Support Matrix](./support-matrix) answers whether a product area is support
 | Models | A model entry or endpoint does not guarantee the required modality, context, usage fields, availability, or performance | Test the exact model, endpoint, request, response, quota, and target load |
 | Deployment | Installation method support does not guarantee that the current hosts, ports, storage, and offline assets are ready | Run the documented precheck and resolve every blocking item |
 | Operations data | Monitoring, calls, usage, metering, and revenue may have different scopes or synchronization delays | Confirm role scope, time range, collection status, and source records |
-| Billing and License | Balance, settlement, reconciliation, revenue, and License status may use different cycles, organizations, accounts, or synchronization states | Confirm billing cycle, organization, customer, account, License scope, and source records before making financial conclusions |
-| Settings and rate control | Member, role, login, Key, audit, platform setting, or API rate-control changes can affect real users and traffic | Confirm role scope, organization scope, approval basis, publish state, and rollback method before changing settings |
+| Billing and License | Balance, settlement, reconciliation, revenue, and License status may use different cycles, tenants, accounts, or synchronization states | Confirm billing cycle, tenant, customer, account, License scope, and source records before making financial conclusions |
+| Settings and rate control | Member, role, login, Key, audit, platform setting, or API rate-control changes can affect real users and traffic | Confirm role scope, tenant scope, approval basis, publish state, and rollback method before changing settings |
 
 ## Access and Workflow Limitations
 
@@ -29,7 +29,7 @@ The [Support Matrix](./support-matrix) answers whether a product area is support
 - A model provider publishes single or aggregate models; an end user consumes authorized models and does not create aggregate models.
 - Review state, visibility, quota, credits, and resource state can block publication, deployment, or calling even when the page itself is accessible.
 - Credential, deployment, publishing, review, top-up, and paid-call operations require an approved scope and appropriate security handling.
-- Billing and License pages require consistent billing cycles, organizations, customers, and accounts. Do not compare balances, settlements, revenue, or License quotas across different scopes without reconciliation.
+- Billing and License pages require consistent billing cycles, tenants, customers, and accounts. Do not compare balances, settlements, revenue, or License quotas across different scopes without reconciliation.
 - Settings, login policies, Keys, roles, audit records, and API rate-control rules can affect active users or traffic. Treat edits, deletes, publishes, resets, and exports as high-risk operations.
 
 ## Cloud Limitations
@@ -64,7 +64,7 @@ The [Support Matrix](./support-matrix) answers whether a product area is support
 - [ ] The target cloud platform or accelerator combination has been validated.
 - [ ] The exact model, endpoint, image, driver, runtime, storage, and network combination has been tested.
 - [ ] Quota, credits, pricing, metering, and data visibility have been confirmed.
-- [ ] Billing cycle, customer/organization scope, settlement source records, License status, and settings/rate-control impact have been confirmed when the workflow involves Billing or Settings.
+- [ ] Billing cycle, customer/tenant scope, settlement source records, License status, and settings/rate-control impact have been confirmed when the workflow involves Billing or Settings.
 - [ ] Installation prechecks and required network tests pass.
 - [ ] Capacity, stability, failure handling, backup, and recovery acceptance criteria are recorded.
 - [ ] Unsupported and planned capabilities are excluded from the delivery commitment.

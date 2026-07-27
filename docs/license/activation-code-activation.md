@@ -69,7 +69,7 @@ The email should include the following information:
 | Information | Description |
 | --- | --- |
 | Registration Code | The complete Registration Code copied from the `License Management` page. |
-| Company or organization name | The organization that requests the Activation Code. |
+| Company or tenant name | The tenant that requests the Activation Code. |
 | Contact person | The person who will receive the Activation Code from support staff. |
 | Contact method | Email, phone, or another reachable channel. |
 | Activation scenario | State that the target is `AI Infra License` activation. |
@@ -157,7 +157,7 @@ The Registration Code has been sent, but no Activation Code reply has been recei
 **Possible causes:**
 
 - The Registration Code was not sent completely.
-- The email is missing organization, contact person, or activation scenario information.
+- The email is missing tenant, contact person, or activation scenario information.
 - The email was blocked or moved to spam.
 
 **Handling:**

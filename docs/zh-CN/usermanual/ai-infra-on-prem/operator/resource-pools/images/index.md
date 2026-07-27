@@ -36,7 +36,7 @@
 | --- | --- |
 | 客户端工具 | 本地用于构建、登录和推送镜像的工具，如 Docker、Podman 或页面支持的实际客户端。 |
 | 镜像仓库 | 存放镜像的 registry 服务。 |
-| 项目/命名空间 | 镜像仓库中的项目、组织或 namespace，用于隔离镜像。 |
+| 项目/命名空间 | 镜像仓库中的项目、租户或 namespace，用于隔离镜像。 |
 | 镜像标签 | 用于描述镜像用途或版本的 tag。 |
 | 同步状态 | 平台从镜像服务同步镜像后的可见和可用状态。 |
 
@@ -92,7 +92,7 @@ docker push <registry>/<project>/<image>:<tag>
 | --- | --- | --- | --- | --- |
 | 客户端工具 | 条件必填 | 文本 | `Docker` | 用于构建、登录和推送镜像的本地工具。 使用 Docker、Podman 或页面支持的实际客户端工具。 |
 | 镜像仓库 | 必填 | 地址 / 路径 | `registry.example.com` | 镜像所在 registry。 文档示例只使用 `<registry>` 占位符，不写真实仓库地址。 |
-| 项目/命名空间 | 必填 | 地址 / 路径 | `example-project` | 镜像仓库中的项目、组织或 namespace。 使用 `<project>` 占位符示例，实际配置按仓库权限填写。 |
+| 项目/命名空间 | 必填 | 地址 / 路径 | `example-project` | 镜像仓库中的项目、租户或 namespace。 使用 `<project>` 占位符示例，实际配置按仓库权限填写。 |
 | 镜像名称 | 必填 | 地址 / 路径 | `示例名称` | 镜像展示名称或仓库中的 image 名称。 名称应体现框架、用途或运行环境。 |
 | 镜像标签 | 必填 | 文本 | `v1.0.0` | 镜像版本标签。 避免在生产场景只使用 `latest`。 |
 | 镜像地址 | 必填 | 地址 / 路径 | `registry.example.com/example/vllm:v1.0.0` | 完整镜像地址，例如 `<registry>/<project>/<image>:<tag>`。 提交前核对 registry、project、image 和 tag。 |

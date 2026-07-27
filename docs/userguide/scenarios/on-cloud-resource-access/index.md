@@ -57,7 +57,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 - **[On Cloud Model Asset Publishing](../on-cloud-model-asset-publishing/)**: configures runtime images, inference frameworks, and model assets on top of the cloud platform, account, resource pool, and authorization prepared here
 - **[On Cloud Model Deployment and Calling](../on-cloud-model-deployment-calling/)**: deploys and calls models after assets are published
 - **[My Deployments User Manual](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)**: reviews state, events, and monitoring for deployed cloud instances
-- **[Platform Governance and Access Control](../platform-governance-access-control/)**: complements cloud-resource authorization with tenant- and organization-level access control
+- **[Platform Governance and Access Control](../platform-governance-access-control/)**: complements cloud-resource authorization with tenant- and tenant-level access control
 
 ## Completion Checklist
 

@@ -19,13 +19,13 @@ Updated: 2026-07-10
 
 #### Beginner Explanation
 
-Customer Overview works like an operator-side CRM list for billing. It brings customer organizations, administrators, tags, balances, consumption, and Provider-related revenue information into one place.
+Customer Overview works like an operator-side CRM list for billing. It brings customer tenants, administrators, tags, balances, consumption, and Provider-related revenue information into one place.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Customer Account | An account object that records customer organization, administrator, and balance information. | Confirm customer identity before troubleshooting. |
+| Customer Account | An account object that records customer tenant, administrator, and balance information. | Confirm customer identity before troubleshooting. |
 | Business Identity | The customer business category used for billing and customer overview filtering. | Keep the selected identity consistent when comparing records. |
 | EU | End User customer identity. | Use it to review consumption and balance information. |
 | Provider | Provider customer identity. | Use it to review Provider-related revenue or consumption information. |
@@ -34,7 +34,7 @@ Customer Overview works like an operator-side CRM list for billing. It brings cu
 ## Prerequisites
 
 1. The current account can access `Customer Billing > Customer Overview`.
-2. At least one customer organization has been created before the list can show data.
+2. At least one customer tenant has been created before the list can show data.
 3. The browser is logged in with an operator account and the session has not expired.
 4. For screenshots, export, tickets, or comments, prepare a desensitization method first.
 
@@ -131,7 +131,7 @@ The expected account, customer, order, bill, settlement, adjustment, or License 
 
 **How to check:**
 
-1. Confirm the current tenant, organization, customer, account, and role scope.
+1. Confirm the current tenant, tenant, customer, account, and role scope.
 2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
 3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
 4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
@@ -162,5 +162,5 @@ Check the selected billing cycle, customer or project scope, status filters, and
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Keep credentials, private operational details, and sensitive customer data out of the manual.
-- Do not record real customer names, organization names, customer IDs, emails, phone numbers, account balances, consumption amounts, revenue amounts, order numbers, Token, or Key.
+- Do not record real customer names, tenant names, customer IDs, emails, phone numbers, account balances, consumption amounts, revenue amounts, order numbers, Token, or Key.
 - For learning or screenshots only, view filters and list fields without exporting real customer data.

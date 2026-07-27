@@ -62,8 +62,8 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 
 | Layer | Description | Impact |
 | --- | --- | --- |
-| Organization / Customer | Main subject for billing statistics and settlement. | Affects balances, bills, revenue, settlement, and reconciliation scope. |
-| Business Unit | Business ownership under a customer or organization. | Affects top-up, consumption, and statistical split. |
+| Tenant / Customer | Main subject for billing statistics and settlement. | Affects balances, bills, revenue, settlement, and reconciliation scope. |
+| Business Unit | Business ownership under a customer or tenant. | Affects top-up, consumption, and statistical split. |
 | Billing Cycle | Time period used to aggregate billing data. | Affects monthly bills, monthly overview, settlement statements, and revenue statistics. |
 | Transaction / Order | Single top-up, consumption, adjustment, or transaction record. | Affects balance changes and exception tracing. |
 | Account / Settlement Statement | Finance-side account, reconciliation, and settlement object. | Affects fund verification and settlement closure. |
@@ -73,7 +73,7 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 
 | Capability | User side | Operator side |
 | --- | --- | --- |
-| Balance and transactions | View data visible to the current account or organization. | Reconcile by customer, organization, business unit, and billing cycle. |
+| Balance and transactions | View data visible to the current account or tenant. | Reconcile by customer, tenant, business unit, and billing cycle. |
 | Top-up orders | View own top-up records and statuses. | View customer top-up orders, payment channels, and processing status. |
 | Monthly bills | View user-side billing-cycle summary. | Drive monthly overview, settlement statements, and financial account reconciliation. |
 | Provider earnings | View revenue overview, settlements, and customer revenue. | Reconcile platform financial accounts, settlement statements, and reconciliation results. |
@@ -88,7 +88,7 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 | Billing Cycle | Time period used for consumption, top-up, revenue, settlement, and reconciliation. | Monthly Bill, Monthly Overview, Settlement List |
 | Top-up Order | Processing record after a user or customer starts a top-up. | Top-up Orders, Customer Top-up Orders |
 | Transaction | Record of every balance, income, expense, or adjustment change. | Transactions, Financial Accounts |
-| Settlement Statement | Settlement record for an organization and billing cycle. | Settlement List, Settlements |
+| Settlement Statement | Settlement record for an tenant and billing cycle. | Settlement List, Settlements |
 | Reconciliation | Entry for checking billing data exceptions. | Reconciliation Center |
 | Account Adjustment | Approved correction for abnormal billing data. | Account Adjustment |
 | License | Authorization that controls platform modules, resource quota, and validity period. | License |
@@ -97,9 +97,9 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 
 1. The current account has permission for the corresponding Billing menus.
 2. The issue has been classified as user billing, Provider earnings, customer billing, finance operations, or License.
-3. For amount reconciliation, align billing cycle, organization, customer, business unit, and transaction type first.
+3. For amount reconciliation, align billing cycle, tenant, customer, business unit, and transaction type first.
 4. Before settlement, adjustment, compensation, rebuild, or License activation, confirm approval basis and impact scope.
-5. Before external communication or screenshots, desensitize accounts, organizations, transaction numbers, order numbers, amounts, and authorization information.
+5. Before external communication or screenshots, desensitize accounts, tenants, transaction numbers, order numbers, amounts, and authorization information.
 
 ## Parameter Reference
 
@@ -108,7 +108,7 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 | Role | Yes | Enum | `Regular user` | Determines whether to read user-side pages, Provider earnings, operator-side pages, or License. |
 | Issue Keyword | Yes | Text | `Balance mismatch` | Helps locate the recommended entry quickly. |
 | Billing Cycle | Conditionally required | Month | `2026-07` | Must be confirmed before amount comparison. |
-| Business Scope | Conditionally required | Text | `Desensitized business unit` | Prevents comparison across organizations, customers, or business units. |
+| Business Scope | Conditionally required | Text | `Desensitized business unit` | Prevents comparison across tenants, customers, or business units. |
 | Recommended Entry | System generated | Link | `Billing` | Points to the next page according to role and issue type. |
 
 ## Result Validation
@@ -123,9 +123,9 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 ## Pitfalls
 
 - Getting Started helps choose a path; it does not replace field explanations or amount reconciliation in specific feature pages.
-- When amounts do not match, align billing cycle, organization, customer, business unit, and transaction type before comparing pages.
+- When amounts do not match, align billing cycle, tenant, customer, business unit, and transaction type before comparing pages.
 - A normal License only means the authorization path is available. It does not prove top-up, consumption, revenue, settlement, or account transactions are correct.
-- Do not record real organizations, customer names, accounts, emails, amounts, order numbers, transaction numbers, License registration codes, activation codes, Token, or Key.
+- Do not record real tenants, customer names, accounts, emails, amounts, order numbers, transaction numbers, License registration codes, activation codes, Token, or Key.
 
 ## Recommended Reading Path
 
@@ -156,11 +156,11 @@ You know that billing data is questionable but do not know whether to open user-
 
 **Possible cause:**
 
-User-side pages focus on the current account's visible balance, top-ups, and bills. Operator-side pages focus on customers, organizations, settlement statements, financial accounts, and exception handling.
+User-side pages focus on the current account's visible balance, top-ups, and bills. Operator-side pages focus on customers, tenants, settlement statements, financial accounts, and exception handling.
 
 **How to handle:**
 
-If the issue comes from a user checking their own balance or top-up, start with [Billing](../user/billing/overview/). If you need to reconcile customers, organizations, settlement statements, financial accounts, or reconciliation exceptions, open [Finance Operations](../operator/finance-operations/today-tasks/) or [Customer Billing](../operator/customer-billing/customer-overview/).
+If the issue comes from a user checking their own balance or top-up, start with [Billing](../user/billing/overview/). If you need to reconcile customers, tenants, settlement statements, financial accounts, or reconciliation exceptions, open [Finance Operations](../operator/finance-operations/today-tasks/) or [Customer Billing](../operator/customer-billing/customer-overview/).
 
 #### Why do balance, transactions, and monthly bills not match?
 

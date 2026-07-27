@@ -57,7 +57,7 @@ next: true
 - **[多平台调度：模型资产上架](../on-cloud-model-asset-publishing/)**：在本场景的云平台 / 云账号 / 资源池基础上，配置推理框架、模型库与推理镜像（部署资产）
 - **[多平台调度：模型部署与调用](../on-cloud-model-deployment-calling/)**：完成资产上架后的部署与调用流程
 - **[我的部署与监控（操作手册）](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)**：对已部署的云上实例查看状态、事件和监控
-- **[平台治理与访问控制](../platform-governance-access-control/)**：在租户 / 组织维度的访问控制，与本场景的"授权"形成互补
+- **[平台治理与访问控制](../platform-governance-access-control/)**：在租户维度的访问控制，与本场景的"授权"形成互补
 
 ## 完成检查
 

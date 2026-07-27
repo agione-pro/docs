@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Observability and Troubleshooting
 
-This scenario investigates throughput, latency, failure, queuing, and resource issues from model, organization, and infrastructure views.
+This scenario investigates throughput, latency, failure, queuing, and resource issues from model, tenant, and infrastructure views.
 
 ## Applicable Roles
 

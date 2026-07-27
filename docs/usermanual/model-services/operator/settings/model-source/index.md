@@ -25,7 +25,7 @@ Model sources are like an address book for upstream model services. If a source 
 
 | Term | Description |
 | --- | --- |
-| Source channel | Vendor, organization, or access channel that owns the model service. |
+| Source channel | Vendor, tenant, or access channel that owns the model service. |
 | Base URL | Base address of the upstream model service. |
 | Request header | Authentication or custom Header attached when calling the upstream service. |
 | Connectivity | Result of the platform test for upstream service reachability. |

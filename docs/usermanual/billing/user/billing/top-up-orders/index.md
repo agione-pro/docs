@@ -103,7 +103,7 @@ The following screenshot shows Top-up Orders. Sanitize order numbers and amounts
 - Order number, payment transaction number, and billing transaction number are different objects. Do not mix them during troubleshooting.
 - Do not retry immediately after an order fails or is canceled; first confirm whether funds were deducted.
 - Different credit sources can have different posting times and reconciliation rules.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, organization names, Tokens, or Keys.
+- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
 - Sanitize screenshots, exports, tickets, and comments.
 
 ## Result Validation

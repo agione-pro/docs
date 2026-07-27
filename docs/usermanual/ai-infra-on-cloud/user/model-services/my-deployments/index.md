@@ -28,7 +28,7 @@ My Deployments is the list of running model services. Users can verify whether a
 | Deployment Record | One cloud model service deployment task displayed in the list. |
 | Publish | Moves the deployment output into the model publishing flow so it can enter a private or public model catalog. |
 | Publish Region | Target scope for publishing the model. The screenshots show `Private` and `Public`. |
-| Private | Publishes to the private model catalog. Only the current organization can view and call it. |
+| Private | Publishes to the private model catalog. Only the current tenant can view and call it. |
 | Public | Publishes to the public model catalog, makes it available to platform users, and supports independent pricing and billing. |
 | Publish Model Page | Page under `Studio > My Models` that opens after the publish region is selected. |
 
@@ -88,7 +88,7 @@ More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Cal
 | Cost | No | Display field | `Sample cost/hour` | Deployment cost reference. Real amount details are not recorded in documentation. |
 | Publish Entry | Yes | Action entry | `Publish` | Opens the publish region selection dialog. |
 | Publish Region | Yes | Selection card | `Private` | Selects whether the model is published to Private or Public. |
-| Private | No | Publish region | `Publish to Private` | Publishes to the private model catalog for organization-only visibility and calls. |
+| Private | No | Publish region | `Publish to Private` | Publishes to the private model catalog for tenant-only visibility and calls. |
 | Public | No | Publish region | `Publish to Public` | Publishes to the public model catalog for platform users. |
 | Redirect Target | Yes | Page redirect | `Studio > My Models > Publish Model` | Target page after selecting the publish region. |
 | Meta Model | Yes | Select | `Sample Model` | Meta model information on the publish model page. |

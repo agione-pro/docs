@@ -16,14 +16,14 @@ A new Platform User completes registration and email verification; all roles can
 
 ## Before You Start
 
-- Prepare an email address that can receive verification codes and a password that meets the organization policy.
-- Confirm the platform URL, tenant, expected role, and whether self-registration is allowed with the organization administrator.
+- Prepare an email address that can receive verification codes and a password that meets the tenant policy.
+- Confirm the platform URL, tenant, expected role, and whether self-registration is allowed with the tenant administrator.
 
 ## Procedure
 
 ### Create an Account
 
-1. Open the AGIOne sign-in URL provided by the organization, such as `https://agione.pro/user/login`.
+1. Open the AGIOne sign-in URL provided by the tenant, such as `https://agione.pro/user/login`.
 2. Select **Create Account** at the bottom of the sign-in card.
 3. Complete the registration form:
    - **Username**: account username.
@@ -54,7 +54,7 @@ A new Platform User completes registration and email verification; all roles can
 
 ### Sign In to AGIOne with a Password
 
-1. Open the AGIOne sign-in URL provided by the organization.
+1. Open the AGIOne sign-in URL provided by the tenant.
 2. Select **Password Sign-In**, which is selected by default.
 3. Enter the username or registered email and the password.
 4. Read and accept the Privacy Policy and Terms of Service.
@@ -78,14 +78,14 @@ A new Platform User completes registration and email verification; all roles can
 
 ### Sign In to AGIOne with an Email Code
 
-1. Open the AGIOne sign-in URL provided by the organization.
+1. Open the AGIOne sign-in URL provided by the tenant.
 2. Select **Email Verification Code**.
 3. Enter the registered corporate email.
 4. Select **Send Verification Code**.
 5. Enter the six-digit code before it expires.
 6. Read and accept the Privacy Policy and Terms of Service.
 7. Select **Sign In** and verify that the correct workspace opens.
-8. Select **Continue with Google** only when the organization allows Google sign-in.
+8. Select **Continue with Google** only when the tenant allows Google sign-in.
 
 ![Use email verification-code sign-in](./images/verification-code.png)
 
@@ -98,7 +98,7 @@ A new Platform User completes registration and email verification; all roles can
 | Verification Code | Text | `4 4 2 5 6 8` | Required; code received by email before expiry |
 | Privacy Policy and Terms | Checkbox | Selected | Required; accepts the user agreements |
 | Sign In | Button | Not applicable | Required; submits email-code sign-in |
-| Continue with Google | Button | Not applicable | Optional; uses organization-approved Google sign-in |
+| Continue with Google | Button | Not applicable | Optional; uses tenant-approved Google sign-in |
 
 ### Reset a Forgotten Password
 
@@ -106,7 +106,7 @@ Password recovery has three steps: verify the email, reset the password, and com
 
 #### Step 1: Verify the Email
 
-1. Open the AGIOne sign-in URL provided by the organization.
+1. Open the AGIOne sign-in URL provided by the tenant.
 2. Select **Forgot Password**.
 3. Enter the registered corporate email.
 4. Select **Send Verification Code** and wait for the resend timer before requesting another code.

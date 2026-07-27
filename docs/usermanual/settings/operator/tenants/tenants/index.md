@@ -25,7 +25,7 @@ Tenants is part of the settings and access-control workspace. Treat it as a plac
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an organization or team. | Check role and status before troubleshooting access. |
+| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
 | Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
 | Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
 | API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
@@ -110,12 +110,12 @@ Use the following operations to work with tenants records and related status. Co
 
 #### Target settings entry is not visible in Tenants
 
-The expected account, project, member, role, organization, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
 
 **How to check:**
 
-1. Confirm the current tenant, organization, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, organization, time range, and configuration type.
+1. Confirm the current tenant, tenant, project, role, and account permission scope.
+2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
 3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
 4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
 
@@ -126,13 +126,13 @@ A permission, project, role, key, notification, system setting, or rate-control 
 **How to check:**
 
 1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct organization, project, member, role, API key, or policy scope.
+2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
 3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
 4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
 
 #### Why is the target tenant missing from the tenant list?
 
-Check the current tenant, organization, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
 
 ## Next Steps
 

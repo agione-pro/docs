@@ -103,7 +103,7 @@ The following screenshot shows Transactions. Sanitize transaction numbers, times
 - One transaction explains one credit change; use Monthly Bill for monthly totals.
 - Income, expense, refund, and reversal directions are easy to confuse. Check transaction type before interpreting the amount.
 - If a transaction is missing, widen the time range before concluding that data was lost.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, organization names, Tokens, or Keys.
+- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
 - Sanitize screenshots, exports, tickets, and comments.
 
 ## Result Validation

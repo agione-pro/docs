@@ -100,7 +100,7 @@ The following screenshot shows Monthly Bill. Amounts and trend values in shared 
 - Grouping views are different breakdowns of the same data; do not add their totals together.
 - Net change includes top-ups, consumption, and adjustments and cannot be explained by consumption alone.
 - When Monthly Bill shows an anomaly, open Transactions and use the same billing cycle.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, organization names, Tokens, or Keys.
+- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
 - Sanitize screenshots, exports, tickets, and comments.
 
 ## Result Validation
