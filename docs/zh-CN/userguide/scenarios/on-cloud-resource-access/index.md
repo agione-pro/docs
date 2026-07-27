@@ -50,11 +50,12 @@ next: true
 | [接入资源池](./Resource-Pools/) | 启用地域节点并维护显示信息 |
 | [业务-资源池授权](./Business-Region-Auth/) | 按业务类型、云平台和地域授权 |
 | [租户-云平台授权](./Tenant-Cloud-Auth/) | 按租户和云平台授权 |
+| [部署云上模型服务](../../../usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) | 串联运营方资源接入、资产准备、用户部署与结果验证的完整 On-Cloud 流程 |
 
 ## 相关场景
 
-- **[多云模型资产上架](../on-cloud-model-asset-publishing/)**：在本场景的云平台 / 云账号 / 资源池基础上，配置推理框架、模型库与推理镜像（部署资产）
-- **[多云模型部署与调用](../on-cloud-model-deployment-calling/)**：完成资产上架后的部署与调用流程
+- **[多平台调度：模型资产上架](../on-cloud-model-asset-publishing/)**：在本场景的云平台 / 云账号 / 资源池基础上，配置推理框架、模型库与推理镜像（部署资产）
+- **[多平台调度：模型部署与调用](../on-cloud-model-deployment-calling/)**：完成资产上架后的部署与调用流程
 - **[我的部署与监控（操作手册）](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)**：对已部署的云上实例查看状态、事件和监控
 - **[平台治理与访问控制](../platform-governance-access-control/)**：在租户 / 组织维度的访问控制，与本场景的"授权"形成互补
 

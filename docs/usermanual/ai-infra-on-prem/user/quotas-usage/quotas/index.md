@@ -84,6 +84,8 @@ When creation fails with insufficient quota, or when you need to confirm which i
 
 The following figure shows the resource occupation details dialog, used to view instance-level resource usage.
 
+![Resource usage details](./images/resource-usage-dialog.png)
+
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |

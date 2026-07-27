@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# 场景概览 - 本地算力平台 算力纳管
+# 场景概览 - 异构卡纳管：算力接入
 
 本场景介绍如何把本地 Kubernetes 集群及其中的 GPU、NPU、XPU 接入 AGIOne，并把硬件能力转换为可调度的资源规格。对于“我有 4 张 NPU 卡，如何管理？”这一任务，本场景负责完成卡型识别、集群接入和规格规划。
 
@@ -20,14 +20,15 @@ next: true
 
 ## 场景流程
 
-**主线：** 识别 NPU 卡型 → 接入集群并发现设备 → 建立 1/2/4 卡规格 → 验证下游可选择
+**主线：** 创建地域与可用区 → 识别 NPU 卡型 → 接入集群并发现设备 → 建立 1/2/4 卡规格 → 验证下游可选择
 
 | 阶段 | 核心结果 |
 | --- | --- |
-| 1. 识别卡型 | NPU 型号、单卡显存和调度资源 key 口径统一 |
-| 2. 接入集群 | 集群和节点可用，4 张物理 NPU 卡全部被发现 |
-| 3. 建立规格 | 1 卡、2 卡和 4 卡方案与实际调度拓扑匹配 |
-| 4. 验证下游 | 推理模板或测试作业能够选择并申请目标规格 |
+| 1. 建立资源边界 | 地域和可用区可供目标集群选择 |
+| 2. 识别卡型 | NPU 型号、单卡显存和调度资源 key 口径统一 |
+| 3. 接入集群 | 集群和节点可用，4 张物理 NPU 卡全部被发现 |
+| 4. 建立规格 | 1 卡、2 卡和 4 卡方案与实际调度拓扑匹配 |
+| 5. 验证下游 | 推理模板或测试作业能够选择并申请目标规格 |
 
 ## 开始前准备
 
@@ -37,19 +38,22 @@ next: true
 
 ## 推荐阅读顺序
 
-1. [维护加速卡型号](./accelerator-management/)
-2. [接入集群并核对设备](./cluster-onboarding/)
-3. [配置规格指标与资源规格](./resource-specifications/)
-4. [构建推理模板](../on-prem-inference-template/)
-5. [配置配额并监控资源](../on-prem-resource-metering-monitoring/)
+1. [创建地域与可用区](./regions-zones/)
+2. [维护加速卡型号](./accelerator-management/)
+3. [接入集群并核对设备](./cluster-onboarding/)
+4. [配置规格指标与资源规格](./resource-specifications/)
+5. [构建推理模板](../on-prem-inference-template/)
+6. [配置配额并监控资源](../on-prem-resource-metering-monitoring/)
 
 ## 文档索引
 
 | 文档 | 说明 |
 | --- | --- |
+| [创建地域与可用区](./regions-zones/) | 建立集群、规格、镜像和存储共同使用的资源边界 |
 | [维护加速卡型号](./accelerator-management/) | 确认 NPU 型号、显存、适配状态和 Kubernetes 资源 key |
 | [接入集群并核对设备](./cluster-onboarding/) | 注册集群，确认节点和 4 张 NPU 卡全部上报 |
 | [配置规格指标与资源规格](./resource-specifications/) | 建立调度指标，并规划 1 卡、2 卡、4 卡规格 |
+| [从零开始部署模型服务](../../../usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/) | 串联运营方准备资源、用户部署和状态验证的完整 On-Prem 流程 |
 
 ## 完成检查
 
@@ -57,12 +61,13 @@ next: true
 
 | 检查项 | 通过标准 |
 | --- | --- |
-| 1 | 集群状态可用，节点状态正常。 |
-| 2 | 平台识别到 4 张目标 NPU 卡。 |
-| 3 | 资源规格能够被推理模板或测试作业选择。 |
+| 1 | 地域和可用区已建立，并可供集群注册选择。 |
+| 2 | 集群状态可用，节点状态正常。 |
+| 3 | 平台识别到 4 张目标 NPU 卡。 |
+| 4 | 资源规格能够被推理模板或测试作业选择。 |
 
 ## 相关场景
 
-- [本地算力平台 推理模板构建](../on-prem-inference-template/)
-- [本地算力平台 模型部署与状态检查](../on-prem-model-deployment-status/)
-- [本地算力平台资源计量与监控](../on-prem-resource-metering-monitoring/)
+- [异构卡纳管：推理模板构建](../on-prem-inference-template/)
+- [异构卡纳管：模型部署与状态检查](../on-prem-model-deployment-status/)
+- [异构卡纳管：资源计量与监控](../on-prem-resource-metering-monitoring/)

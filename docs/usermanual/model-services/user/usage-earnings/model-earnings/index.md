@@ -48,10 +48,6 @@ Settlement, account adjustment, exporting sensitive data, or sending earning det
 
 The page includes two tabs: `Overview` and `Earning Details`. `Overview` shows Billing cycle, Date, Number of Organizations, Number of Models, Income Tokens, Credits Earned, Model Revenue Trend, Proportion of Model Revenue, Organization Activity, Organization Credit Consumption Ranking (Top 10), Trend of Model Call Frequency, and Distribution of Model Call Times. `Earning Details` shows cycle summaries, filters, and earning detail records.
 
-![Model earnings overview](./images/model-earnings-overview-list.png)
-
-![Earning details](./images/model-earnings-earning-details-list.png)
-
 ## Main Operations
 
 ### View My Revenue Overview
@@ -95,7 +91,7 @@ The page includes two tabs: `Overview` and `Earning Details`. `Overview` shows B
 
 ## Pitfalls
 
-- Model Revenue is not real-time credited income. It may be affected by billing cycle, settlement status, and revenue rules.
+- Model earnings are not credited in real time. They may be affected by the billing cycle, settlement status, and earnings rules.
 - Customer, model, and time views use different scopes. Do not add them together without checking the metric definition.
 - If revenue looks abnormal, verify model usage and call logs first, then ask operations to confirm settlement rules.
 

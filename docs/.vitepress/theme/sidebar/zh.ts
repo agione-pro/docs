@@ -150,17 +150,18 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '本地算力纳管',
+              text: '异构卡纳管：算力接入',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-compute-onboarding/' },
+                { text: '创建地域与可用区', link: '/zh-CN/userguide/scenarios/on-prem-compute-onboarding/regions-zones/' },
                 { text: '维护加速卡型号', link: '/zh-CN/userguide/scenarios/on-prem-compute-onboarding/accelerator-management/' },
                 { text: '接入集群并核对设备', link: '/zh-CN/userguide/scenarios/on-prem-compute-onboarding/cluster-onboarding/' },
                 { text: '规格指标与资源规格', link: '/zh-CN/userguide/scenarios/on-prem-compute-onboarding/resource-specifications/' },
               ],
             },
             {
-              text: '本地推理模板构建',
+              text: '异构卡纳管：推理模板构建',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-inference-template/' },
@@ -168,7 +169,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '本地模型部署与状态检查',
+              text: '异构卡纳管：模型部署与状态检查',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-model-deployment-status/' },
@@ -176,7 +177,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '本地开发训练与资产沉淀',
+              text: '异构卡纳管：开发训练与资产沉淀',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-dev-training-assets/' },
@@ -184,7 +185,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '本地资源计量与监控',
+              text: '异构卡纳管：资源计量与监控',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-resource-metering-monitoring/' },
@@ -207,7 +208,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '多云模型资产上架',
+              text: '多平台调度：模型资产上架',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-cloud-model-asset-publishing/' },
@@ -217,7 +218,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '多云模型部署与调用',
+              text: '多平台调度：模型部署与调用',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-cloud-model-deployment-calling/' },
@@ -291,7 +292,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '本地运行镜像与存储底座',
+              text: '异构卡纳管：运行镜像与存储',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-runtime-storage-foundation/' },
@@ -307,7 +308,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '多云调度策略',
+              text: '多平台调度：调度策略',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-cloud-scheduling-policy/' },
@@ -432,7 +433,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           ]
         },
         {
-          text: '多云调度平台',
+          text: '多平台调度',
           collapsed: false,
           items: [
             { text: '概览', link: '/zh-CN/usermanual/ai-infra-on-cloud/' },

@@ -51,6 +51,7 @@ next: true
 | 文档 | 说明 |
 | --- | --- |
 | [身份授权操作流程](./authorization-workflow) | 从角色设计、成员绑定到权限验证的完整流程和角色页面截图 |
+| [配置账号与权限](../../../usermanual/settings/end-to-end/configure-account-and-permissions/) | 查看账号准备、角色配置、成员绑定和最小权限验证的完整操作手册路径 |
 
 ## 完成检查
 

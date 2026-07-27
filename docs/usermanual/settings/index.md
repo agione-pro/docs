@@ -62,6 +62,15 @@ The visible Settings menus are organized as follows:
 
 When entering Settings, select the target group from the left menu first, then review filters, table columns, and top-level operation buttons. For delete, publish, rollback, reset, export, or similar high-risk entries, continue only after confirming the impact scope and rollback path.
 
+## Find an Entry by Goal
+
+| Goal | Recommended Entry | Next Step |
+| --- | --- | --- |
+| Manage personal information or credentials | [Personal Settings](./user/personal/profile/) | Continue with Profile, My Keys, Dashboard, or Projects. |
+| Manage team members and roles | [Members and Roles](./operator/members-roles/members/) | Confirm the organization scope before maintaining members, roles, and quotas. |
+| Configure login, security, or platform parameters | [System Settings](./operator/system-settings/platform-settings/) | Distinguish regular-user settings from operator-side global settings. |
+| Configure API rate control | [API Rate Control](./operator/api-rate-control/overview/) | Start with Overview, then review rules, cache, publishing, and observability audit. |
+
 ## Recommended Reading Path
 
 1. First-time Settings users should read this page to understand roles, objects, and high-risk operation boundaries.

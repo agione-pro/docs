@@ -51,6 +51,15 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | Finance Operations | [Finance Operations](./operator/finance-operations/today-tasks/) | Today tasks, monthly overview, settlement statements, financial accounts, reconciliation center, and account adjustment. |
 | License | [License](./operator/license/license/) | Platform authorization, resource license, quota composition, validity period, and activation status. |
 
+## Find an Entry by Goal
+
+| Goal | Recommended Entry | Next Step |
+| --- | --- | --- |
+| View your balance, transactions, or top-ups | [User Billing](./user/billing/overview/) | Start with Account Overview, then open Transactions, Top-up Orders, or Monthly Bill. |
+| Review customer accounts and business lines | [Customer Billing](./operator/customer-billing/customer-overview/) | Review Customer Overview, Top-up Orders, and Business Units. |
+| Troubleshoot settlement or amount differences | [Finance Operations](./operator/finance-operations/today-tasks/) | Review Today's Tasks, Monthly Overview, Settlement Statements, Financial Accounts, and Reconciliation Center. |
+| Manage authorization credits | [License](./operator/license/license/) | Distinguish authorization credits and validity from the billing account balance. |
+
 ## Recommended Reading Path
 
 1. For first-time reading, start from this page to understand user billing, Provider earnings, customer billing, finance operations, and License boundaries.

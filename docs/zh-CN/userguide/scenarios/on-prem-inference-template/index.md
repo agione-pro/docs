@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# 场景概览 - 本地算力平台 推理模板构建
+# 场景概览 - 异构卡纳管：推理模板构建
 
 本场景介绍如何把模型、推理框架、启动参数和资源规格组合成可复用的部署模板。对于 4 张 NPU 卡，模板负责限定可选卡型、卡数和启动方式。
 
@@ -37,7 +37,7 @@ next: true
 
 ## 推荐阅读顺序
 
-1. [本地算力平台 算力纳管](../on-prem-compute-onboarding/)
+1. [异构卡纳管：算力接入](../on-prem-compute-onboarding/)
 2. [构建 NPU 推理模板](./build-inference-template/)
 3. [部署模型并检查状态](../on-prem-model-deployment-status/)
 

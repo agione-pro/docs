@@ -16,7 +16,7 @@ Users can request clear one-card, two-card, and four-card NPU plans, each mapped
 ## Entry
 
 - **Role:** Operator
-- **Menu:** AI Infra (On-Prem) > Resource Pools > Specification Metrics / Resource Specifications
+- **Menu:** AI Infrastructure > On-Prem > Resource Pools > Specification Metrics / Resource Specifications
 - **Routes:** `/powerone/resourcepool/flavor/type`, `/powerone/resourcepool/flavor/list`
 
 ## Steps

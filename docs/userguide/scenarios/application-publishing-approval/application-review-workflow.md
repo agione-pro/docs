@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# Publish and Approve Applications
+# Publish and Approve Apps
 
 Use this task to review application publishing information, process approval, and validate customer visibility.
 
@@ -21,9 +21,9 @@ Use this task to review application publishing information, process approval, an
 
 ### 1. Review Application Publishing Information
 
-Open [Applications](../../../usermanual/model-services/operator/publishing/apps/), filter by application name or publication state, and open the details. Review the bound model, calling entry point, parameter mapping, customer scope, and publication description.
+Open [Apps](../../../usermanual/model-services/operator/publishing/apps/), filter by app name or publication state, and open the details. Review the bound model, calling entry point, parameter mapping, customer scope, and publication description.
 
-![Locate a publication record in Applications](../../../usermanual/model-services/operator/publishing/apps/images/apps-list.png)
+![Locate a publication record in Apps](../../../usermanual/model-services/operator/publishing/apps/images/apps-list.png)
 
 ### 2. Process Application Approval
 
@@ -33,7 +33,7 @@ Open [Application Reviews](../../../usermanual/model-services/operator/approvals
 
 ### 3. Validate Publication State and Customer Visibility
 
-After approval, return to Applications and confirm the publication state. Then use the target customer's perspective to verify that the application is visible and that its calling entry point is correct. Customers outside the configured scope must not see it.
+After approval, return to Apps and confirm the publication state. Then use the target customer's perspective to verify that the app is visible and that its calling entry point is correct. Customers outside the configured scope must not see it.
 
 ### 4. Validate a Call and Track Problems
 

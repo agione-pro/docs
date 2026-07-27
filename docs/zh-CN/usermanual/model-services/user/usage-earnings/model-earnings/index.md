@@ -48,10 +48,6 @@
 
 页面包含 `我的收益概览` 和 `收益详情` 两个页签。`我的收益概览` 展示账期、日期、组织数量、模型数量、收入 tokens、收入 Credit、模型收益趋势、模型收益占比、组织活跃度、组织 Credit 消耗排行、模型调用次数趋势和模型调用次数分布。`收益详情` 展示账期汇总、筛选条件和收益明细列表。
 
-![模型收益概览](./images/model-earnings-overview-list.png)
-
-![收益详情](./images/model-earnings-earning-details-list.png)
-
 ## 主要操作
 
 ### 查看我的收益概览

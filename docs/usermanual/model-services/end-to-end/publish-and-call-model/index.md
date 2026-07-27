@@ -221,8 +221,8 @@ Result checks:
 
 1. The caller goes to `My Calls > Overview` to view overall call trends.
 2. The caller goes to `My Calls > Call Analytics` and `Call Logs` to view model-level and single-request details.
-3. The model provider goes to `Usage & Revenue > Model Revenue` to view revenue overview and revenue details.
-4. The model provider goes to `Usage & Revenue > Model Usage` to view consumption details.
+3. The model provider goes to `Usage & Earnings > Model Earnings` to view earnings overview and earning details.
+4. The model provider goes to `Usage & Earnings > Model Usage` to view consumption details.
 5. The model provider goes to `Customer Calls` to view customer-level overview, analytics, and logs.
 
 Result checks:
@@ -231,7 +231,7 @@ Result checks:
 | --- | --- | --- |
 | Call data is visible in My Call Overview | Call data is visible in [My Call Overview](../../user/my-calls/overview/). | Return to this step and check prerequisites, permissions, and configuration status. |
 | Single request can be located in Call Logs | A single request can be located in [Call Logs](../../user/my-calls/call-logs/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Revenue and consumption can be viewed | Revenue and consumption can be viewed in [Model Revenue](../../user/usage-earnings/model-earnings/) and [Model Usage](../../user/usage-earnings/model-usage/). | Return to this step and check prerequisites, permissions, and configuration status. |
+| Earnings and consumption can be viewed | Earnings and consumption can be viewed in [Model Earnings](../../user/usage-earnings/model-earnings/) and [Model Usage](../../user/usage-earnings/model-usage/). | Return to this step and check prerequisites, permissions, and configuration status. |
 
 ## Failure Branches and Troubleshooting Paths
 

@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# 场景概览 - 本地算力平台 模型部署与状态检查
+# 场景概览 - 异构卡纳管：模型部署与状态检查
 
 本场景介绍用户如何基于推理模板创建模型实例，并从实例、作业、节点和设备四个层面判断部署是否成功。对于 4 张 NPU 卡，本场景负责验证模板是否真的申请到预期卡数。
 
@@ -38,9 +38,9 @@ next: true
 
 ## 推荐阅读顺序
 
-1. [本地算力平台 推理模板构建](../on-prem-inference-template/)
+1. [异构卡纳管：推理模板构建](../on-prem-inference-template/)
 2. [部署模型并检查状态](./deploy-and-check/)
-3. [本地算力平台资源计量与监控](../on-prem-resource-metering-monitoring/)
+3. [异构卡纳管：资源计量与监控](../on-prem-resource-metering-monitoring/)
 
 ## 文档索引
 

@@ -17,9 +17,9 @@ Model Providers can publish without missing sources, templates, tags, currency, 
 - Collect authoritative provider and model documentation.
 - Define naming, region, protocol, pricing-currency, and approval ownership conventions.
 
-## 1. Add Meta-models
+## 1. Add Meta Models
 
-1. In the left-side menu, go to **"Settings > Meta-models"**.
+1. In the left-side menu, go to **"Settings > Meta Models"**.
 2. Click **"Add"** above the model author list on the left.
 3. Fill in the model author's **Unique Identifier**, for example `qwen`.
 4. Configure the model author's English and Chinese display names.
@@ -48,9 +48,9 @@ Model Providers can publish without missing sources, templates, tags, currency, 
 18. Fill in the meta-model details.
 19. Click **"Submit"** to save the meta-model.
 
-![Meta-models](./images/model-publishing-preconfiguration/en/01-meta-models.png)
+![Meta Models](./images/model-publishing-preconfiguration/en/01-meta-models.png)
 
-Meta-models provide the base data for templates and model publishing. After a meta-model is disabled, models published based on it cannot provide services externally.
+Meta Models provide the base data for templates and model publishing. After a Meta Model is disabled, models published based on it cannot provide services externally.
 
 ## 2. Add Model Source
 
@@ -86,7 +86,7 @@ Do not enter or expose a real API Key here. Public documentation should only kee
 1. In the left-side menu, go to **"Settings > Model Templates"**.
 2. Click **"Add"** at the top right of the page.
 3. Select the model author.
-    - Select an author already created in **"Settings > Meta-models"**.
+    - Select an author already created in **"Settings > Meta Models"**.
 4. Select the model source.
     - Select a source already created in **"Settings > Model Source"**.
 5. Select the region under the model source.

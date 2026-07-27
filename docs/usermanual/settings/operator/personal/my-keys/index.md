@@ -52,6 +52,8 @@ The following screenshot shows my keys.
 
 ![My Keys](./images/model-api-keys-list.png)
 
+After switching to `System API AK/SK Pairs`, use the following list to review system API credential pairs and their status.
+
 ![System API AK/SK pairs](./images/system-api-pairs-list.png)
 
 ## Main Operations

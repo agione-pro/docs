@@ -57,7 +57,7 @@ More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Cal
 2. In the deployment list, find the target deployment and verify deployment name, running status, model name, cloud platform, region, GPU, CPU, memory, and cost information.
 3. Click the more actions entry in the lower-right corner of the target deployment, and then select `Publish`.
 
-![Publish Entry](./images/Publish.png)
+![Publish Entry](./images/publish.png)
 
 4. In the `Publish Model` dialog, review `Choose where to publish`.
 5. Select `Private` or `Public` according to the publish target.
@@ -69,7 +69,7 @@ More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Cal
 8. In `Model Source/Meta Model Information`, verify `Meta Model`, `Model Source`, `Request URL`, `API Key`, `Model source ID`, and `Region`.
 9. For learning or page validation only, stay in the review flow and do not perform the final `Publish`, `Submit`, `Save`, or next-step high-risk configuration.
 
-![Publish Model Page](./images/Publish-Model.png)
+![Publish Model Page](./images/publish-model.png)
 
 ## Parameter Reference
 

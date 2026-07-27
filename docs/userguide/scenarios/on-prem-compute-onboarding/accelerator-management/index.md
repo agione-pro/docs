@@ -16,7 +16,7 @@ Define the NPU model once with the correct vendor, model identifier, memory, and
 ## Entry
 
 - **Role:** Operator
-- **Menu:** AI Infra (On-Prem) > Resource Pools > Accelerator Management
+- **Menu:** AI Infrastructure > On-Prem > Resource Pools > Accelerator Management
 - **Route:** `/powerone/resourcepool/accelerators`
 
 ## Steps

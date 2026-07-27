@@ -57,7 +57,7 @@ If a privacy policy or service terms dialog appears, click `Agree`.
 
 ### 2.3 Confirm That Sign-In Succeeded
 
-After signing in successfully, you should see a user avatar or initial in the upper-right corner. The left-side menu should show entries such as `Discover`, `Playground`, `Usage & Revenue`, and `My Calls`.
+After signing in successfully, you should see a user avatar or initial in the upper-right corner. The left-side menu should show entries such as `Discover`, `Playground`, `Usage & Earnings`, and `My Calls`.
 
 ## 3. Open the Model List
 

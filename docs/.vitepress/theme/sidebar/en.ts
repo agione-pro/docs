@@ -162,7 +162,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               items: [
                 { text: "Scenario Overview", link: "/userguide/scenarios/publish-model-preconfiguration/" },
                 { text: "Model Publishing Preconfiguration", link: "/userguide/scenarios/publish-model-preconfiguration/model-publishing-preconfiguration" },
-                { text: "Meta-Models", link: "/userguide/scenarios/publish-model-preconfiguration/Meta-models/" },
+                { text: "Meta Models", link: "/userguide/scenarios/publish-model-preconfiguration/Meta-models/" },
                 { text: "Model Sources", link: "/userguide/scenarios/publish-model-preconfiguration/Model-Source/" },
                 { text: "Model Templates", link: "/userguide/scenarios/publish-model-preconfiguration/Model-Templates/" },
               ],
@@ -184,7 +184,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Model Usage & Revenue",
+              text: "Model Usage & Earnings",
               collapsed: true,
               items: [
                 { text: "Scenario Overview", link: "/userguide/scenarios/model-usage-revenue/" },
@@ -204,6 +204,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               collapsed: true,
               items: [
                 { text: "Scenario Overview", link: "/userguide/scenarios/on-prem-compute-onboarding/" },
+                { text: "Create Regions and Availability Zones", link: "/userguide/scenarios/on-prem-compute-onboarding/regions-zones/" },
                 { text: "Accelerator Models", link: "/userguide/scenarios/on-prem-compute-onboarding/accelerator-management/" },
                 { text: "Cluster Onboarding", link: "/userguide/scenarios/on-prem-compute-onboarding/cluster-onboarding/" },
                 { text: "Metrics and Flavors", link: "/userguide/scenarios/on-prem-compute-onboarding/resource-specifications/" },

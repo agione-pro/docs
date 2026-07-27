@@ -56,6 +56,10 @@ The left side provides bucket search and bucket list, and the upper-right corner
 4. Fill in Bucket Name.
 5. Click `Confirm` to submit.
 
+The following screenshot shows the Add Bucket dialog. Confirm the bucket name before submitting.
+
+![Add Bucket](./images/add-bucket.png)
+
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
