@@ -1,10 +1,42 @@
 # AGIOne Environment Installation and Deployment Guide
 
-The AGIOne installer is used to complete AGIOne single-node delivery installation in offline or restricted-network environments. This document is organized as "quick installation first, detailed configuration next, and operations troubleshooting last". Installation engineers can start with **Quick Install**.
+## Introduction
 
-Before installation, complete the quick environment investigation to confirm whether the environment meets deployment prerequisites and to identify remediation items and go-live risks:
+| Item | Content |
+|------|---------|
+| Applicable Role | First-time installer, delivery engineer, customer operations engineer |
+| Navigation Path | Deployment > AGIOne Environment Installation and Deployment Guide |
+| Function Description | Guides users through AGIOne download, installation, access verification, and handover archiving on a single target host |
 
-- [Quick Environmental Investigation](/product/investigation/quick-env-investigation)
+This document applies to single-node / All in One deployment. If you are reading it for the first time, follow the timeline below first, then return to the detailed commands.
+
+### Beginner Explanation
+
+Single-node installation is the shortest path to get AGIOne running: prepare one Linux host, download the bundle from the fixed release page, run `./agione quick`, then open the printed URL in a browser.
+
+## Installation Timeline
+
+| Stage | What You Do | Completion Signal |
+| --- | --- | --- |
+| Step 1: Confirm host | Confirm CPU, memory, disk, operating system, and root permission | Host meets [Host Specification](#host-specification) |
+| Step 2: Download bundle | Open the fixed download page and copy `Download URL` and `MD5 URL` | Bundle is downloaded and passes MD5 verification |
+| Step 3: Run quick | Run `./agione quick` or run it with a configuration file | Terminal prints `Installation Result` |
+| Step 4: Browser access | Open `http://<target-host-ip>:18090/modelone/` | The page opens successfully |
+| Step 5: Handover archive | Save the access URL, default accounts, health report, and handover package | Customer or operations team can take over |
+
+Before installation, complete the [Quick Environmental Investigation](/product/investigation/quick-env-investigation) to identify resource, network, and go-live risks.
+
+## Terminology Quick Reference
+
+| Term | Plain Explanation |
+| --- | --- |
+| Bundle | AGIOne installation package containing the installer, images, database baseline, and offline runtime assets |
+| `quick` | One-click installation command that runs prechecks, unpacks assets, loads images, starts services, and prints the result |
+| `/opt/hyperone` | Default runtime data directory; AGIOne service data is written here or to the data-disk path selected by the installer |
+| `/opt/agione-installer-bundle` | Installer runtime directory that contains post-install reports, rendered configuration, and output files |
+| `/root/agione-install.yml` | Optional configuration file for fixed passwords, domain names, certificates, runtime path, and other delivery parameters |
+| Nacos | Configuration center and service registry used by AGIOne |
+| Default console accounts | Customer-facing `operator` and `provider` accounts printed after installation |
 
 ---
 
@@ -16,7 +48,7 @@ Recommended request profile:
 | --- | --- | --- |
 | Operating system | Linux | Ubuntu 22.04 |
 | CPU | 8 cores | CPU must be at least 8 cores |
-| Memory | 16 GiB | A small OS or virtualization reservation is tolerated; about `15.2GiB` or above can pass |
+| Memory | 16 GiB recommended | The installer requires at least `12GiB` detected memory; 16 GiB remains the recommended request profile |
 | Free disk | 200 GiB | When `runtime_root` keeps the default value, the installer prefers a data disk that has at least about `160GiB` free, and falls back to the system disk only when no suitable data disk is available |
 | Execution user | `root` | Root installation is recommended to avoid Docker, directory permission, and system service permission issues |
 
@@ -60,6 +92,39 @@ chmod +x ./agione
 ./agione quick
 ```
 
+Single-node quick installation uses the packaged `compose/agione-app.yaml` base template by default and does not enable host-mode optional application service groups. To keep delivery parameters in a configuration file, prepare `/root/agione-install.yml` and run:
+
+```bash
+./agione quick --file /root/agione-install.yml
+```
+
+Minimal runnable example:
+
+```yaml
+global_config:
+  deploy_mode: single
+  language: en_US
+  offline_mode: true
+
+selected_modules:
+  - agione-app
+
+agione_app:
+  node_mode: all-in-one
+  db:
+    root_password: "DbRoot_2026"
+  redis:
+    password: "Redis_2026"
+  nacos:
+    password: "Nacos_2026"
+    auth_token: "QWdJT25lX05hY29zX0F1dGhUb2tlbl8yMDI2X1BsZWFzZVJlcGxhY2VfNDhCeXRlcw=="
+  default_access:
+    generate_random_passwords: true
+    password_length: 20
+```
+
+For fixed domains, HTTPS certificates, fixed default account passwords, runtime paths, or other fields, see the [Installation Configuration Reference](./agione-install-config-reference), which is ordered from required fields to advanced fields.
+
 The installer automatically performs:
 
 1. runs pre-install checks in the temporary `/tmp/agione-quick-check.*` workspace
@@ -75,7 +140,7 @@ The installer automatically performs:
 
 ### 3. View installation result
 
-After installation succeeds, `quick` prints the actual access entry and default account information at the end of the terminal output. The default console account passwords are generated during each installation unless fixed credentials are explicitly configured in `agione_app.default_access.credentials`.
+After installation succeeds, `quick` prints the actual access entry and customer-facing default account information at the end of the terminal output. The customer-facing default console account passwords are generated during each installation unless fixed credentials are explicitly configured in `agione_app.default_access.credentials`.
 
 `quick` uses English output by default, in the following format:
 
@@ -84,7 +149,6 @@ Installation Result:
 Console URL: http://<target-host-ip>:18090/
 
 Access Information (Account/Password):
-admin <generated-random-password>
 operator <generated-random-password>
 provider <generated-random-password>
 ```
@@ -106,7 +170,7 @@ Default access URL:
 http://<target-host-ip>:18090/modelone/
 ```
 
-If a domain name or custom port is used, follow the `domain` / `public_port` values in the installation configuration.
+If a domain name or full access URL is used, follow `agione_app.frontend.domain` / `agione_app.frontend.public_access_url` in the installation configuration.
 
 ---
 
@@ -313,7 +377,7 @@ No manual installation is required. The bundle includes an offline Python runtim
 
 ### Q3: Why is detected memory not exactly 16 GiB after requesting 16G?
 
-Cloud hosts, virtualization platforms, and operating systems reserve part of the memory, so the detected value is commonly `15.xGiB`. The installer allows a small reservation loss, and about `15.2GiB` or above can pass.
+Cloud hosts, virtualization platforms, and operating systems reserve part of the memory, so the detected value can be lower than the purchased specification. The installer requires at least `12GiB` detected memory, while 16 GiB remains the recommended request profile for smoother startup and operation.
 
 ### Q4: How does the installer choose the disk for runtime data?
 
@@ -374,7 +438,7 @@ Common causes include missing Nacos configuration import, inconsistent Redis pas
 At minimum, hand over:
 
 - access address
-- admin account or initial account information
+- customer-facing initial account information
 - `/opt/agione-installer-bundle` path
 - `/opt/hyperone` path
 - `health` report

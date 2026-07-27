@@ -1,8 +1,31 @@
 # Managed Node Quick Deployment Guide
 
+## Introduction
+
+| Item | Content |
+|------|---------|
+| Applicable Role | Compute cluster implementation engineer, GPU / NPU node operations engineer, customer platform administrator |
+| Navigation Path | Deployment > Managed Node Quick Deployment |
+| Function Description | Guides users through managed compute node environment preparation, package initialization, Kubernetes cluster installation, and basic validation |
+
+This document is for compute node deployment scenarios where resource planning and environment survey have already been completed. If accelerator, operating system, port, or network requirements are not confirmed yet, read [Managed Compute Node Deployment Configuration Requirements](./deployment-requirements-for-managing-compute-nodes) first.
+
+### Beginner Explanation
+
+Use this document after the compute nodes have passed planning and survey. It turns the prepared machines into a Kubernetes compute cluster, then verifies accelerators, monitoring, registry, and storage.
+
+## Deployment Timeline
+
+| Stage | What You Do | Completion Signal |
+| --- | --- | --- |
+| Step 1: Prepare node environment | Initialize OS, install drivers, configure passwordless SSH, and verify network connectivity | Every node can be accessed from the deployment node |
+| Step 2: Prepare package | Download and initialize the resource bundle matching the CPU architecture | `installer/kubemore` toolkit is generated |
+| Step 3: Install cluster | Run `morecli install` with Master, etcd, Worker, and accelerator parameters | Kubernetes cluster installation completes |
+| Step 4: Validate services | Check nodes, Pods, device-plugin, image registry, and object storage | Compute resources can be recognized by the platform |
+
 ## 1 Document Overview
 
-### 1.1 Key Terminology
+### 1.1 Terminology Quick Reference
 
 | Term | Definition |
 | --- | --- |

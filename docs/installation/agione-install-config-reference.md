@@ -5,405 +5,83 @@ next: true
 
 # AGIOne Installation Configuration Reference
 
-This document explains the main fields used in `/root/agione-install.yml`. The file is used by both single-node and host-mode multi-node installation:
+## Introduction
+
+| Item | Content |
+|------|---------|
+| Applicable Role | Delivery engineer, implementation engineer, or customer operations engineer who needs to write installation configuration |
+| Navigation Path | Deployment > AGIOne Installation Configuration Reference |
+| Function Description | Helps users start from a minimal YAML template and write an executable `/root/agione-install.yml` in the order of required, common, scenario, and advanced fields |
+
+This document explains how to write `/root/agione-install.yml`. It is structured so installation engineers can copy a working template first, then add fields only for the required delivery scenario.
+
+### Beginner Explanation
+
+Think of `/root/agione-install.yml` as the installer's task sheet: it tells the installer whether to deploy single-node or multi-node, which machines participate, which passwords to use, whether middleware is self-managed or managed, and which URL users should open after installation.
+
+## Configuration Timeline
+
+| Stage | What You Do | Completion Signal |
+| --- | --- | --- |
+| Step 1: Choose template | Select a minimal example for single-node, multi-node self-managed, or managed middleware | A runnable YAML template is copied |
+| Step 2: Fill required fields | Fill deployment mode, node mode, base passwords, and host-mode topology | The installer can identify the deployment target |
+| Step 3: Fill middleware | Confirm self-managed, managed, or hybrid mode and fill connection endpoints | Database, Redis, Nacos, Kafka, and object storage connection information is complete |
+| Step 4: Fill access entry | Add domain, HTTPS certificates, and default account policy when needed | Installation result can print the correct access URL and accounts |
+| Step 5: Fill scenario fields | Enable KUBEM, cloud services, ISync, NFS, and similar capabilities only when required | Configuration contains only fields needed for this delivery |
+| Step 6: Review passwords and risks | Check password character set, standby rebuild risk, and managed middleware permissions | Ready for `doctor` and formal installation |
+
+## Terminology Quick Reference
+
+| Term | Plain Explanation |
+| --- | --- |
+| YAML | Configuration file format that uses indentation to express hierarchy; incorrect indentation can make fields unreadable |
+| Top-level field | Outermost configuration such as `global_config`, `selected_modules`, and `agione_app` |
+| Required field | Field that must be filled for installation or core component connectivity |
+| Common field | Field that does not change the basic installation but is often used for domain, certificate, default account, or runtime path requirements |
+| Scenario field | Field needed only for specific scenarios, such as managed middleware, optional service groups, or NFS |
+| Advanced field | Field usually skipped in standard delivery and used mainly for special placement, troubleshooting, or non-default resource policy |
+| Safe character set | Recommended password characters: letters, digits, and underscores, avoiding URL, shell, and YAML escaping issues |
+
+Standard command:
 
 ```bash
 ./agione quick --file /root/agione-install.yml
 ```
 
-For repeated reinstall tests where existing AGIOne runtime data can be overwritten, use:
+For repeated reinstall tests where existing runtime data can be overwritten:
 
 ```bash
 ./agione quick -f --file /root/agione-install.yml
 ```
 
-Keep customer-specific node topology, SSH credentials, middleware endpoints, business presets, and default account policy in this one file. Legacy options such as `--host-mode-ips`, `--host-mode-nodes-file`, and `--middleware-endpoints-file` remain available for compatibility, but new deliveries should prefer `/root/agione-install.yml`.
+## 1. Choose a Template First
 
-## 1. Top-Level Structure
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `global_config` | object | Yes | Global installer behavior, language, architecture, and offline mode. |
-| `selected_modules` | list | Yes | Modules to execute. For AGIOne application installation, use `agione-app`. |
-| `agione_app` | object | Yes | AGIOne application deployment, middleware, topology, business presets, and startup behavior. |
-
-## 2. `global_config`
-
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `env_name` | string | `demo` | Environment name used in reports and generated output. |
-| `deploy_mode` | string | `single` | Deployment mode. Use `single` for all-in-one and `host-mode` for multi-node host-mode. |
-| `language` | string | `en_US` | Installer output language. Supported values are `en_US` and `zh_CN`. |
-| `fallback_language` | string | `zh_CN` | Fallback language for missing translations. |
-| `arch` | string | `x86_64` | Target CPU architecture. Common value: `x86_64`. |
-| `timezone` | string | `Asia/Shanghai` | Runtime timezone written into generated configuration where applicable. |
-| `offline_mode` | boolean | `true` | Whether to use offline delivery assets. Current production delivery should keep this enabled. |
-| `log_dir` | string | `./reports/logs` | Installer log directory. |
-| `report_dir` | string | `./reports` | Installer report directory. |
-| `package_repository_url` | string | empty | Reserved package repository URL. Empty means no online package source is configured. |
-
-## 3. `selected_modules`
-
-For standard AGIOne application installation:
-
-```yaml
-selected_modules:
-  - agione-app
-```
-
-The current installation guide only covers the `agione-app` module. Do not add other modules to `selected_modules` for standard delivery.
-
-## 4. `agione_app` Core Fields
-
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `enabled` | boolean | `true` | Whether to enable the AGIOne application module. |
-| `node_mode` | string | `all-in-one` | Application node mode. Use `all-in-one` for single-node and `host-mode` for multi-node. |
-| `runtime_root` | string | `/opt/hyperone` | Runtime data directory. Keep the default to let the installer prefer a suitable data disk automatically; set an explicit path only when the delivery environment requires a fixed runtime directory. |
-| `compose_template_path` | string | installer default | Compose template path. Usually keep the packaged default. |
-| `auto_start` | boolean | `false` | Whether to start services during installation. Quick installation sets this automatically. |
-| `auto_import_nacos` | boolean | `true` | Import Nacos configuration automatically after Nacos is ready. |
-| `auto_initialize_apps` | boolean | `true` | Run application initialization APIs after services start. |
-| `initialization_targets` | list | `metis`, `gnosis`, `wm`, `financial`, `cbdp` | Application initialization targets. |
-| `auto_check_registration` | boolean | `true` | Wait for critical service registration in Nacos. |
-| `start_optional_app_services` | boolean | `false` | Whether to start optional application services in host-mode. |
-| `auto_initialize_db_replication` | boolean | `false` | Whether to initialize MariaDB primary/standby replication in host-mode. Requires self-managed database and a standby node. |
-| `accept_standby_rebuild_risk` | boolean | `false` | Confirms that the standby database can be rebuilt. Must be true before automatic standby rebuild. |
-| `auto_run_host_mode_health_check` | boolean | `true` | Run host-mode health checks at the end of multi-node installation. |
-| `db_replication_user` | string | `repl` | MariaDB replication user for self-managed primary/standby replication. |
-| `db_replication_password` | string | empty | MariaDB replication password. Required when automatic replication initialization is enabled. |
-
-## 5. `agione_app.topology`
-
-### Single-Node
-
-Single-node installation usually does not need manual topology settings. The installer can use local defaults.
-
-### Host-Mode Multi-Node
-
-Machine addresses must be private IPv4 addresses. Do not use public IPs or public DNS names. The same private IP is used for SSH, Nacos registration / discovery, Nginx upstreams, database / Redis / Kafka / MinIO connections, and Docker port binding.
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `app_nodes` | list | Yes for host-mode | Application nodes. The first node is the primary App / Edge node; the second is the secondary App / Edge node. Nodes 5 to 8 are additional App / Edge nodes in the default layout. |
-| `middleware_node` | string | Required for self-managed middleware | Middleware node. In the default layout, the third machine runs self-managed MariaDB, Redis, Nacos, Kafka, and MinIO / MinStore. |
-| `edge_nodes` | list | Optional, legacy-compatible | Override Nginx / entry nodes. Standard quick installation does not need this field; the installer uses `app_nodes` as entry nodes by default. |
-| `backup_nodes` | list | Required when self-managed DB replication is enabled | Standby database node list. Current host-mode supports one standby DB node. |
-| `ssh_user` | string | No | Global SSH user. Default is `root`. |
-| `ssh_port` | integer | No | Global SSH port. Default is `22`. |
-| `ssh_password` | string | No | Global SSH password. Prefer passwordless SSH in production. Password authentication requires `sshpass` on the initiating machine. |
-| `ssh_credentials` | map | No | Per-node SSH credentials. Use this when nodes have different users, ports, or passwords. |
-
-Per-node SSH example:
-
-```yaml
-agione_app:
-  topology:
-    ssh_user: root
-    ssh_port: 22
-    app_nodes:
-      - 192.168.31.204
-      - 192.168.31.207
-    middleware_node: 192.168.31.208
-    backup_nodes:
-      - 192.168.31.209
-    ssh_credentials:
-      192.168.31.204:
-        user: root
-        port: 22
-        password: "password-for-204"
-      192.168.31.207:
-        user: ops
-        port: 2222
-        password: "password,with,safe,yaml"
-      192.168.31.208:
-        user: root
-        port: 22
-      192.168.31.209:
-        user: root
-        port: 22
-```
-
-## 6. `agione_app.middleware`
-
-This section controls whether middleware is deployed by the installer or provided by external managed services.
-
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `mode` | string | `self-managed` | Overall middleware deployment mode. Supported values: `self-managed`, `managed-middleware`, `hybrid`. |
-| `provider` | string | `generic` | Provider label for external middleware. Informational unless provider-specific logic is added. |
-| `endpoints_file` | string | empty | Compatibility field for legacy endpoint YAML. New deliveries should configure endpoints directly in `/root/agione-install.yml`. |
-| `verify_connectivity` | boolean | `true` | Whether to verify external middleware endpoint reachability during preflight. |
-| `database.mode` | string | `self-managed` | Database component mode in `hybrid` mode. |
-| `redis.mode` | string | `self-managed` | Redis component mode in `hybrid` mode. |
-| `nacos.mode` | string | `self-managed` | Nacos component mode in `hybrid` mode. |
-| `kafka.mode` | string | `self-managed` | Kafka component mode in `hybrid` mode. |
-| `object_storage.mode` | string | `self-managed` | Object storage component mode in `hybrid` mode. |
-
-Mode behavior:
-
-| Mode | Meaning | Minimum host-mode machines |
+| Scenario | Start here | Main fields to fill |
 | --- | --- | --- |
-| `self-managed` | Installer deploys MariaDB, Redis, Nacos, Kafka, and MinIO / MinStore. | 4 |
-| `managed-middleware` | All middleware uses external endpoints; target nodes run App / Edge services only. | 2 |
-| `hybrid` | Each middleware component can be self-managed or managed. | 3 when database is managed; 4 when database is self-managed |
+| Single-node self-managed middleware | [2.1 Single-node minimal config](#_2-1-single-node-minimal-config) | Deployment mode, base passwords, default account policy |
+| Host-mode self-managed middleware | [2.2 Multi-node self-managed minimal config](#_2-2-multi-node-self-managed-minimal-config) | Node topology, SSH, base passwords, standby rebuild confirmation |
+| Host-mode managed middleware | [2.3 Multi-node managed middleware minimal config](#_2-3-multi-node-managed-middleware-minimal-config) | App nodes, managed middleware endpoints and accounts |
+| Hybrid middleware | Copy a self-managed or managed template first, then read [5.1 Middleware deployment mode](#_5-1-middleware-deployment-mode) | Choose `self-managed` or `managed` per component |
+| Additional middleware connection fields | [5.2 Middleware endpoint field details](#_5-2-middleware-endpoint-field-details) | Optional DB, Redis, Nacos, Kafka, and object storage fields |
+| Domain / HTTPS required | [4.1 Frontend access](#_4-1-frontend-access) | `agione_app.frontend` |
+| KUBEM / cloud provider services / ISync required | [5.3 Optional application service groups](#_5-3-optional-application-service-groups) | `agione_app.start_optional_app_services` |
+| Advanced placement required | [6.1 Host-mode service-level placement](#_6-1-host-mode-service-level-placement) | `agione_app.host_mode_service_placements` |
 
-Hybrid example:
+Recommended writing order:
 
-```yaml
-agione_app:
-  middleware:
-    mode: hybrid
-    database:
-      mode: managed
-    redis:
-      mode: self-managed
-    nacos:
-      mode: self-managed
-    kafka:
-      mode: managed
-    object_storage:
-      mode: self-managed
-```
+1. Choose deployment mode: `single` or `host-mode`.
+2. Fill required fields: modules, node mode, base passwords, and host-mode topology.
+3. Select middleware mode: self-managed, managed, or hybrid.
+4. Add common options: domain, certificate, default account policy.
+5. Add optional service groups, NFS, service placement, or other advanced fields only when needed.
 
-Managed middleware quick installation reads endpoint values from the same main YAML. A separate endpoint YAML is not required:
+## 2. Minimal Config Examples
 
-```yaml
-agione_app:
-  middleware:
-    mode: managed-middleware
-    provider: generic
-    verify_connectivity: true
-  db:
-    host: rds-mariadb.internal.example.com
-    port: 3306
-    root_username: root
-    root_password: "<database-root-password>"
-    ssl: false
-  redis:
-    host: redis.internal.example.com
-    port: 6379
-    password: "<redis-password>"
-    ssl: false
-  nacos:
-    host: nacos.internal.example.com
-    port: 8848
-    namespace: agione-prod
-    username: nacos
-    password: "<nacos-password>"
-    assume_preimported_configs: false
-  kafka:
-    bootstrap_servers: kafka-1.internal.example.com:9092
-    security_protocol: PLAINTEXT
-  minio:
-    endpoint: https://oss.internal.example.com
-    access_key: "<object-storage-access-key>"
-    secret_key: "<object-storage-secret-key>"
-    bucket_name: agione
-    path_style_access: true
-```
+The password values below only demonstrate the safe character format. For production delivery, generate different passwords for each component and use only `A-Z`, `a-z`, `0-9`, and `_`.
 
-Run `./agione quick --file /root/agione-install.yml`. Use `--middleware-mode` only when you need a temporary command-line override for testing.
+### 2.1 Single-Node Minimal Config
 
-### Cloud Helper Generated Fields
-
-Provider-specific helper scripts, such as the Huawei Cloud managed middleware helper, can generate the same main installer YAML after cloud resources are created or reused. Treat those generated values as standard installer input:
-
-| Field area | Installer usage |
-| --- | --- |
-| `agione_app.db`, `agione_app.redis`, `agione_app.nacos`, `agione_app.kafka`, `agione_app.minio` | Runtime connection endpoints and credentials consumed by AGIOne services. |
-| `agione_app.middleware.provider` | Informational provider label used in reports and delivery review. |
-| `agione_app.nacos.region`, `project_id`, `engine_id`, `enterprise_project_id` | Optional managed Nacos metadata for traceability. These fields do not grant Nacos publish permission by themselves. |
-| `agione_app.nacos.username`, `password` | Nacos native account used by the installer to create namespaces and publish configs when `assume_preimported_configs` is `false`. |
-| `agione_app.nacos.assume_preimported_configs` | Set to `true` only when all required AGIOne configs already exist in the target namespace. The installer then skips namespace creation and config publishing. |
-| `agione_app.minio.access_key`, `secret_key` | Object storage credentials used by AGIOne file services. These are storage credentials, not cloud resource provisioning credentials. |
-
-Cloud account AK/SK should not be required in `/root/agione-install.yml` for AGIOne installation. Use AK/SK only in provider helper scripts when they need to create, query, or delete cloud resources. Nacos config publishing must rely on the configured Nacos username / password and the provider's Nacos RBAC policy.
-
-## 7. Middleware Endpoint Fields
-
-These fields are used both by self-managed middleware and managed middleware. For self-managed host-mode, use the middleware node private IP. For managed middleware, use the external service endpoint.
-
-### `agione_app.db`
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `host` | string | Database host. Use middleware node IP for self-managed host-mode, or managed DB endpoint for external database. |
-| `port` | integer | Database port, usually `3306`. |
-| `root_username` | string | Database administrative user used for schema initialization. |
-| `root_password` | string | Database administrative password. |
-| `charset` | string | Database charset. Default `utf8mb4`. |
-| `collation` | string | Database collation. Default `utf8mb4_unicode_ci`. |
-| `ssl` | boolean | Whether database connection uses SSL. |
-| `names` | object | Business database names. Usually keep defaults unless the product database naming plan changes. |
-
-### `agione_app.redis`
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `host` | string | Redis host. |
-| `port` | integer | Redis port, usually `6379`. |
-| `password` | string | Redis password. |
-| `database` | integer | Redis logical database index used by AGIOne. |
-| `mode` | string | Redis runtime mode, for example `standalone`. This is not the same as `agione_app.middleware.redis.mode`. |
-| `ssl` | boolean | Whether Redis connection uses SSL. |
-
-### `agione_app.nacos`
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `host` | string | Nacos host. |
-| `port` | integer | Nacos API port, usually `8848`. |
-| `namespace` | string | Nacos namespace. AGIOne production default is `agione-prod`. |
-| `username` | string | Nacos username. |
-| `password` | string | Nacos password. |
-| `auth_token` | string | Nacos server authentication token for self-managed Nacos. |
-| `auth_identity_key` | string | Nacos server identity key. |
-| `auth_identity_value` | string | Nacos server identity value. |
-| `console_url` | string | Optional Nacos console URL override. |
-| `assume_preimported_configs` | boolean | Set to `true` only when all AGIOne configuration items already exist in the target namespace and installation should skip namespace creation and config publishing. |
-| `provider` | string | Optional provider label, for example `huaweicloud`. Config publishing still uses the native Nacos OpenAPI with `username` and `password`. |
-| `region` / `project_id` / `engine_id` / `enterprise_project_id` | string | Optional managed Nacos metadata generated by cloud-native middleware helper scripts. The AGIOne installer does not require cloud account AK/SK to publish Nacos configs. |
-
-### `agione_app.kafka`
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `host` | string | Kafka host. |
-| `port` | integer | Kafka broker port, usually `9092`. |
-| `bootstrap_servers` | string | Kafka bootstrap server list. |
-| `username` | string | Kafka username when authentication is enabled. |
-| `password` | string | Kafka password when authentication is enabled. |
-| `vhost` | string | Logical environment label. AGIOne default is `agione-prod`. |
-| `security_protocol` | string | Kafka security protocol, for example `PLAINTEXT` or `SASL_PLAINTEXT`. |
-| `sasl_mechanism` | string | Kafka SASL mechanism, for example `PLAIN`. |
-
-### `agione_app.minio`
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `storage_type` | string | Object storage type. Default `minio`. |
-| `api_direct_host` | string | Host and port for API direct access, for example `192.168.31.208:9000`. |
-| `web_direct_host` | string | Host and port for console direct access, for example `192.168.31.208:9001`. |
-| `endpoint` | string | S3-compatible API endpoint, for example `http://192.168.31.208:9000`. |
-| `access_key` | string | Object storage access key. |
-| `secret_key` | string | Object storage secret key. |
-| `bucket_name` | string | Default bucket name. |
-| `region` | string | Region for S3-compatible storage. Can be empty for MinIO. |
-| `path_style_access` | boolean | Whether to use path-style S3 access. Keep `true` for MinIO unless the provider requires virtual-host style. |
-
-## 8. `agione_app.host_mode_shared_storage`
-
-This section controls optional NFS backend/frontend code sharing for host-mode.
-
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `enabled` | boolean | `false` | Whether to enable NFS code sharing. |
-| `mode` | string | `copy` | Use `copy` for per-node local copies, or `nfs` to share backend/frontend code through NFS. |
-| `server_node` | string | empty | NFS server node. If empty, the installer uses the primary app node when NFS is enabled. |
-| `export_path` | string | empty | Legacy compatibility field. The installer ignores it for code sharing. |
-| `mount_path` | string | empty | Legacy compatibility field. The installer ignores it for code sharing. |
-| `mount_options` | string | `rw,sync,hard,intr` | NFS mount options. Do not include spaces. |
-
-Only `<runtime_root>/core/metis` and `<runtime_root>/core/mamba` are shared. `runtime_root` is the selected AGIOne runtime root, for example `/opt/hyperone` on the system disk or `/data/hyperone` on a data disk. Host-mode rendered configuration, Nginx configuration, database data, MinStore data, logs, and Docker data are not shared through this setting.
-
-When NFS is enabled in an offline environment, prepare OS-matching `.rpm` / `.deb` packages under `assets/offline/nfs` before building the release bundle. The installer preflight allows missing NFS tools when offline NFS packages are bundled, and `setup-nfs` installs them from the bundle before trying the OS package manager.
-
-## 9. `agione_app.host_mode_service_placements`
-
-This is an advanced service-level placement matrix for host-mode.
-
-For standard 4 to 8 machine delivery, you do not need to configure it. The installer can derive default placement from machine order:
-
-| Machine order | Default role |
-| --- | --- |
-| 1 | Primary App / Edge |
-| 2 | Secondary App / Edge |
-| 3 | Middleware |
-| 4 | Standby database |
-| 5-8 | Additional App / Edge |
-
-Use `host_mode_service_placements` only when advanced placement is required.
-
-```yaml
-agione_app:
-  host_mode_service_placements:
-    192.168.31.208:
-      - db_mariadb
-      - md_redis
-      - md_nacos
-      - kafka
-      - kafka-ui
-      - minio
-    192.168.31.204:
-      - nginx
-      - md_gateway
-      - core_common
-      - core_auth
-      - core_upms
-    192.168.31.209:
-      - db_mariadb_standby
-```
-
-Do not assign `db_mariadb` and `db_mariadb_standby` to the same node. Some services are single-instance in the current host-mode engine.
-
-## 10. `agione_app.business`
-
-Business presets are imported into Nacos during installation. Replace demo values before production delivery.
-For overseas deliveries, the examples default to English UI output and USD. Change `payment_currency` and `payment_units` only when the customer requires another billing currency.
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `payment_currency.name` | string | Default system currency display name. Written to `metis.sys.currency` in Nacos. |
-| `payment_currency.code` | string | Default system currency code. Use `USD` for standard overseas delivery, or another currency such as `CNY` when required by the business. |
-| `payment_currency.sign` | string | Default system currency symbol. |
-| `payment_units` | map | CBDP account units. Written to `account.units` in `metis-cbdp.yml`. Supports multiple categories such as `CASH` and `POINTS`. Configured categories replace the same category in the Nacos baseline; unconfigured categories keep the baseline value. |
-| `payment_units.<category>[].code` | string | Account unit code. `CASH` codes are also written to `stripe.supportCurrency` in lowercase. |
-| `payment_units.<category>[].name` | string | Account unit display name. |
-| `payment_units.<category>[].symbol` | string | Account unit symbol. |
-| `approval.tenant_apply_auto_auth` | boolean | Whether tenant application approval is automatic. |
-| `approval.tenant_apply_auth` | boolean | Whether tenant application approval is required. |
-| `registration.email_enabled` | boolean | Whether email registration / verification is enabled. |
-| `registration.phone_enabled` | boolean | Whether phone verification is enabled. |
-| `registration.email_code_expire_minutes` | integer | Email verification code expiration time in minutes. |
-| `registration.phone_code_expire_minutes` | integer | Phone verification code expiration time in minutes. |
-| `mail.provider` | string | Mail provider. Supported configuration sections include `smtp`, `sendgrid`, and `aliyun`. |
-| `mail.smtp.*` | object | SMTP host, port, username, password, sender, encoding, authentication, SSL, and timeout settings. |
-| `mail.sendgrid.*` | object | SendGrid API key and sender settings. |
-| `mail.aliyun.*` | object | Aliyun DirectMail access key, sender, and region settings. |
-| `frontend.domain` | string | Public domain name. Leave empty to use the default `http://<entry-ip>:18090` style access URL. |
-| `frontend.public_access_url` | string | Full public access URL override. |
-| `frontend.ssl_certificate_path` | string | Nginx-compatible X.509 PEM certificate file path on the installation host. Required when HTTPS domain access is configured. The installer validates it and copies it to `/opt/hyperone/core/nginx/certs/agione.frontend.pem` before rendering Nginx. Do not provide Tomcat / Java keystore files such as `.jks`, `.p12`, `.pfx`, or `.keystore`. |
-| `frontend.ssl_certificate_key_path` | string | Unencrypted Nginx-compatible PEM private key file path on the installation host. Required together with `frontend.ssl_certificate_path`. The installer validates it and copies it to `/opt/hyperone/core/nginx/certs/agione.frontend.key` before rendering Nginx. |
-| `frontend.frontend_root` | string | Custom frontend static file path. Leave empty to use packaged frontend resources. |
-
-When certificate paths are configured, Nginx never reads the original host paths directly. Both single-node and host-mode installation use the runtime paths under `/opt/hyperone/core/nginx/certs/`; host-mode installation also synchronizes the staged certificate files to every Nginx node.
-
-## 11. `agione_app.default_access`
-
-This section controls the default console accounts generated during installation.
-
-| Field | Type | Default | Description |
-| --- | --- | --- | --- |
-| `generate_random_passwords` | boolean | `true` | Generate new passwords for default accounts during each installation. |
-| `password_length` | integer | `20` | Generated password length. Valid range is 6 to 32. |
-| `credentials` | map | empty | Optional fixed passwords by account name. Use only when customer policy requires fixed passwords. |
-
-Default accounts:
-
-| Account | Notes |
-| --- | --- |
-| `admin` | Platform administrator. |
-| `operator` | Operations account. |
-| `provider` | Provider account. Receives `Creator` and `cbdp_buyer` roles. |
-
-Generated passwords follow these rules:
-
-- 6 to 32 characters.
-- May include letters, numbers, and special symbols: `!@#$%^&*()-_=+{}[]|:;"'<>,.?/~`.
-- Must include at least three of uppercase letters, lowercase letters, numbers, and special symbols.
-
-## 12. Single-Node Example
+Use this when one machine runs AGIOne application services and self-managed middleware.
 
 ```yaml
 global_config:
@@ -416,52 +94,23 @@ selected_modules:
 
 agione_app:
   node_mode: all-in-one
-  business:
-    payment_currency:
-      name: US Dollar
-      code: USD
-      sign: "$"
-    payment_units:
-      CASH:
-        - code: USD
-          name: US Dollar
-          symbol: "$"
-        - code: CNY
-          name: Chinese Yuan
-          symbol: CNY
-      POINTS:
-        - code: Credit
-          name: Credit
-          symbol: pts
-    approval:
-      tenant_apply_auto_auth: true
-      tenant_apply_auth: true
-    registration:
-      email_enabled: true
-      phone_enabled: false
-    mail:
-      provider: smtp
-      smtp:
-        host: smtp.example.com
-        port: 465
-        username: ""
-        password: ""
-        from_address: no-reply@example.com
-        from_name: AGIOne
-        auth: true
-        ssl_enabled: true
-    frontend:
-      domain: ""
-      public_access_url: ""
-      ssl_certificate_path: ""
-      ssl_certificate_key_path: ""
-      frontend_root: ""
+  db:
+    root_password: "DbRoot_2026"
+  redis:
+    password: "Redis_2026"
+  nacos:
+    password: "Nacos_2026"
+    auth_token: "QWdJT25lX05hY29zX0F1dGhUb2tlbl8yMDI2X1BsZWFzZVJlcGxhY2VfNDhCeXRlcw=="
   default_access:
     generate_random_passwords: true
     password_length: 20
 ```
 
-## 13. Host-Mode Multi-Node Example
+If no fixed domain, certificate, or fixed default account password is required, a single-node installation usually needs no more fields.
+
+### 2.2 Multi-Node Self-Managed Minimal Config
+
+Use this for the default 4 to 8 machine host-mode deployment where the installer deploys MariaDB, Redis, Nacos, Kafka, and MinIO / MinStore.
 
 ```yaml
 global_config:
@@ -483,49 +132,479 @@ agione_app:
     middleware_node: 192.168.31.208
     backup_nodes:
       - 192.168.31.209
-    ssh_credentials:
-      192.168.31.204:
-        user: root
-        port: 22
-      192.168.31.207:
-        user: root
-        port: 22
-      192.168.31.208:
-        user: root
-        port: 22
-      192.168.31.209:
-        user: root
-        port: 22
   db:
     host: 192.168.31.208
     port: 3306
     root_username: root
-    root_password: "<database-root-password>"
+    root_password: "DbRoot_2026"
   redis:
     host: 192.168.31.208
     port: 6379
-    password: "<redis-password>"
+    password: "Redis_2026"
   nacos:
     host: 192.168.31.208
     port: 8848
     namespace: agione-prod
     username: nacos
-    password: "<nacos-password>"
-    auth_token: "<nacos-auth-token>"
+    password: "Nacos_2026"
+    auth_token: "QWdJT25lX05hY29zX0F1dGhUb2tlbl8yMDI2X1BsZWFzZVJlcGxhY2VfNDhCeXRlcw=="
   kafka:
     host: 192.168.31.208
     port: 9092
     bootstrap_servers: 192.168.31.208:9092
-    password: "<kafka-password>"
+    security_protocol: PLAINTEXT
   minio:
     endpoint: http://192.168.31.208:9000
     api_direct_host: 192.168.31.208:9000
     web_direct_host: 192.168.31.208:9001
-    access_key: "<minio-access-key>"
-    secret_key: "<minio-secret-key>"
+    access_key: "MinioAccess_2026"
+    secret_key: "MinioSecret_2026"
   auto_initialize_db_replication: true
   accept_standby_rebuild_risk: true
   default_access:
     generate_random_passwords: true
     password_length: 20
 ```
+
+If nodes use different SSH users, ports, or passwords, add `topology.ssh_credentials`; see [3.2 Host-mode node topology](#_3-2-host-mode-node-topology).
+
+### 2.3 Multi-Node Managed Middleware Minimal Config
+
+Use this when database, Redis, Nacos, Kafka, and object storage are provided by cloud services or existing customer services, and target machines run only AGIOne App / Edge services.
+
+```yaml
+global_config:
+  deploy_mode: host-mode
+  language: en_US
+  offline_mode: true
+
+selected_modules:
+  - agione-app
+
+agione_app:
+  node_mode: host-mode
+  topology:
+    ssh_user: root
+    ssh_port: 22
+    app_nodes:
+      - 192.168.31.204
+      - 192.168.31.207
+  middleware:
+    mode: managed-middleware
+    provider: generic
+    verify_connectivity: true
+  db:
+    host: rds-mariadb.internal.example.com
+    port: 3306
+    root_username: root
+    root_password: "DbRoot_2026"
+    ssl: false
+  redis:
+    host: redis.internal.example.com
+    port: 6379
+    password: "Redis_2026"
+    ssl: false
+  nacos:
+    host: nacos.internal.example.com
+    port: 8848
+    namespace: agione-prod
+    username: nacos
+    password: "Nacos_2026"
+    assume_preimported_configs: false
+  kafka:
+    bootstrap_servers: kafka-1.internal.example.com:9092
+    security_protocol: PLAINTEXT
+  minio:
+    storage_type: s3
+    endpoint: https://oss.internal.example.com
+    access_key: "ObjectAccess_2026"
+    secret_key: "ObjectSecret_2026"
+    bucket_name: agione
+    path_style_access: true
+  default_access:
+    generate_random_passwords: true
+    password_length: 20
+```
+
+Set `agione_app.nacos.assume_preimported_configs: true` only when all required AGIOne configuration items already exist in the target Nacos namespace.
+
+## 3. Level 1: Required Fields
+
+Level 1 fields determine whether the installer can start the deployment. Confirm them first for formal delivery.
+
+### 3.1 Required in All Scenarios
+
+| Field | Type | Why required | Recommended value |
+| --- | --- | --- | --- |
+| `global_config.deploy_mode` | string | Selects single-node or host-mode flow | `single` or `host-mode` |
+| `selected_modules` | list | Selects modules to run | Standard AGIOne install uses `["agione-app"]` |
+| `agione_app.node_mode` | string | Selects application node mode | `all-in-one` for single-node; `host-mode` for multi-node |
+| `agione_app.db.root_password` | string | Required for database initialization | Use the safe character policy; generate per environment |
+| `agione_app.nacos.password` | string | Required for config publishing, registration checks, and runtime access | Use the safe character policy |
+| `agione_app.nacos.auth_token` | string | Required for self-managed Nacos server auth | Required for self-managed Nacos; use a Base64 value from at least 32 random bytes |
+| `agione_app.redis.password` | string | Required for self-managed Redis AUTH | Required for self-managed Redis |
+
+Standard module selection:
+
+```yaml
+selected_modules:
+  - agione-app
+```
+
+### 3.2 Host-Mode Node Topology
+
+Host-mode requires private IPv4 addresses. Do not use public IPs or public DNS names. The installer uses these addresses for SSH, Nacos registration / discovery, Nginx upstreams, middleware connections, and Docker port binding.
+
+| Field | Type | Required when | Description |
+| --- | --- | --- | --- |
+| `agione_app.topology.app_nodes` | list | Required for host-mode | App / Edge nodes. Self-managed and managed middleware both require at least 2 nodes. |
+| `agione_app.topology.middleware_node` | string | Required when any middleware component is self-managed | Default node for MariaDB primary, Redis, Nacos, Kafka, and MinIO / MinStore. |
+| `agione_app.topology.backup_nodes` | list | Required when self-managed database uses a standby node | Current host-mode supports 1 standby database node. |
+| `agione_app.topology.ssh_user` | string | Optional | Global SSH user. Default `root`. |
+| `agione_app.topology.ssh_port` | integer | Optional | Global SSH port. Default `22`. |
+| `agione_app.topology.ssh_password` | string | Fill when all nodes use one SSH password | Passwordless SSH is preferred; password auth requires `sshpass` on the initiating machine. |
+| `agione_app.topology.ssh_credentials` | map | Fill when node SSH settings differ | Per-node user, port, and password override. |
+
+Per-node SSH example:
+
+```yaml
+agione_app:
+  topology:
+    ssh_user: root
+    ssh_port: 22
+    app_nodes:
+      - 192.168.31.204
+      - 192.168.31.207
+    middleware_node: 192.168.31.208
+    backup_nodes:
+      - 192.168.31.209
+    ssh_credentials:
+      192.168.31.204:
+        user: root
+        port: 22
+        password: "Password_204"
+      192.168.31.207:
+        user: ops
+        port: 2222
+        password: "Password_207"
+```
+
+### 3.3 Required Middleware Connection Fields
+
+These fields are used by both self-managed and managed middleware. For self-managed host-mode, use the middleware node private IP. For managed middleware, use the cloud service or existing service endpoint.
+
+| Field | Type | Required when | Description |
+| --- | --- | --- | --- |
+| `agione_app.db.host` / `port` | string / integer | Host-mode or managed database | Database host and port. Default port `3306`. |
+| `agione_app.db.root_username` | string | Common for managed database | Database admin user used to initialize schemas. Default `root`. |
+| `agione_app.db.root_password` | string | Required in all scenarios | Database admin password. |
+| `agione_app.redis.host` / `port` | string / integer | Host-mode or managed Redis | Redis host and port. Default port `6379`. |
+| `agione_app.redis.password` | string | Required for self-managed Redis; fill according to managed Redis policy | Redis AUTH password. |
+| `agione_app.nacos.host` / `port` | string / integer | Host-mode or managed Nacos | Nacos API host and port. Default `8848`. |
+| `agione_app.nacos.namespace` | string | Required in all scenarios | Production default `agione-prod`. |
+| `agione_app.nacos.username` / `password` | string | Required in all scenarios | Used for config publishing and runtime Nacos access. |
+| `agione_app.kafka.bootstrap_servers` | string | Required in all scenarios | Kafka broker list. Self-managed default `<middleware-ip>:9092`. |
+| `agione_app.minio.endpoint` | string | Required in all scenarios | S3-compatible API endpoint. |
+| `agione_app.minio.access_key` / `secret_key` | string | Required in all scenarios | Object storage credentials. |
+
+For additional connection fields, see [5.2 Middleware endpoint field details](#_5-2-middleware-endpoint-field-details). If the site has no special requirement, keep the example values or installer defaults.
+
+## 4. Level 2: Common Optional Fields
+
+Level 2 fields do not change the basic topology, but they affect customer access, default accounts, delivery experience, and runtime paths.
+
+### 4.1 Frontend Access
+
+| Field | Type | Default behavior | Description |
+| --- | --- | --- | --- |
+| `agione_app.frontend.domain` | string | Empty uses `http://<entry-ip>:18090` | Public domain name. |
+| `agione_app.frontend.public_access_url` | string | Empty lets the installer generate it | Full public access URL override. Printed first in the install result when configured. |
+| `agione_app.frontend.ssl_certificate_path` | string | HTTPS disabled | Nginx PEM certificate path on the initiating host. |
+| `agione_app.frontend.ssl_certificate_key_path` | string | HTTPS disabled | Unencrypted PEM private key path. Must be configured together with the certificate. |
+| `agione_app.frontend.frontend_root` | string | Uses packaged frontend | Absolute path for custom frontend static files. |
+
+When certificate paths are configured, the installer validates and copies them to `/opt/hyperone/core/nginx/certs/`; host-mode syncs them to every Nginx node.
+
+### 4.2 Default Console Accounts
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| `agione_app.default_access.generate_random_passwords` | boolean | `true` | Generate new customer-facing default account passwords for each installation. |
+| `agione_app.default_access.password_length` | integer | `20` | Generated password length. Valid range: 6 to 32. |
+| `agione_app.default_access.credentials.operator` | string | Generated automatically | Fixed operator password. Fill only when customer policy requires a fixed password. |
+| `agione_app.default_access.credentials.provider` | string | Generated automatically | Fixed provider password. |
+
+Customer-facing accounts:
+
+| Account | Description |
+| --- | --- |
+| `operator` | Operations account. |
+| `provider` | Provider account. Receives `Creator` and `cbdp_buyer` roles. |
+
+### 4.3 Global Basics
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| `global_config.env_name` | string | `demo` | Environment name used in reports and generated artifact names. |
+| `global_config.language` | string | `en_US` | Installer output language. Supports `en_US` and `zh_CN`. |
+| `global_config.fallback_language` | string | `zh_CN` | Fallback language when a translation is missing. |
+| `global_config.arch` | string | `x86_64` | Target CPU architecture. Supports `x86_64` and `arm64` / `aarch64`; must match the downloaded bundle. |
+| `global_config.timezone` | string | `Asia/Shanghai` | Runtime timezone. |
+| `global_config.offline_mode` | boolean | `true` | Whether to use offline delivery assets. Keep `true` for formal delivery. |
+| `global_config.report_dir` | string | `./reports` | Installation report directory. |
+| `global_config.log_dir` | string | `./reports/logs` | Installer log directory. |
+| `global_config.package_repository_url` | string | empty | Reserved online package repository URL. Usually empty for offline delivery. |
+| `global_config.allow_internet_package_hint` | boolean | `true` | Whether reports may suggest online package installation when offline OS packages are missing. |
+| `global_config.auto_detect_language_from_timezone` | boolean | `true` | Whether timezone can help determine the interactive language. `quick` still prints English by default. |
+| `agione_app.runtime_root` | string | `/opt/hyperone` | Runtime data root. Keep the default to let the installer prefer a suitable data disk. |
+
+## 5. Level 3: Scenario Fields
+
+Fill these fields only when the delivery scenario requires them.
+
+### 5.1 Middleware Deployment Mode
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| `agione_app.middleware.mode` | string | `self-managed` | Supports `self-managed`, `managed-middleware`, and `hybrid`. |
+| `agione_app.middleware.provider` | string | `generic` | Provider label for reports and delivery review. |
+| `agione_app.middleware.endpoints_file` | string | empty | Compatibility field for old standalone endpoint files. New deliveries should write endpoints directly in `/root/agione-install.yml`. |
+| `agione_app.middleware.verify_connectivity` | boolean | `true` | Whether to check managed middleware reachability during preflight. |
+| `agione_app.middleware.database.mode` | string | `self-managed` | Database component mode in `hybrid`. |
+| `agione_app.middleware.redis.mode` | string | `self-managed` | Redis component mode in `hybrid`. |
+| `agione_app.middleware.nacos.mode` | string | `self-managed` | Nacos component mode in `hybrid`. |
+| `agione_app.middleware.kafka.mode` | string | `self-managed` | Kafka component mode in `hybrid`. |
+| `agione_app.middleware.object_storage.mode` | string | `self-managed` | Object storage component mode in `hybrid`. |
+
+Hybrid example:
+
+```yaml
+agione_app:
+  middleware:
+    mode: hybrid
+    database:
+      mode: managed
+    redis:
+      mode: self-managed
+    nacos:
+      mode: self-managed
+    kafka:
+      mode: managed
+    object_storage:
+      mode: self-managed
+```
+
+### 5.2 Middleware Endpoint Field Details
+
+The minimal templates already include the fields required to start installation. Use the fields below when managed middleware, hybrid middleware, security protocols, or customer naming policies require additional configuration.
+
+#### 5.2.1 Database
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `agione_app.db.host` / `port` | `db-mariadb` / `3306` | Keep defaults for single-node; use the middleware private IP for host-mode self-managed; use an internal endpoint for managed database. |
+| `agione_app.db.root_username` | `root` | Managed database admin user. Self-managed MariaDB uses the built-in `root` account. |
+| `agione_app.db.charset` / `collation` | `utf8mb4` / `utf8mb4_unicode_ci` | Business database charset and collation. |
+| `agione_app.db.ssl` | `false` | Set `true` when managed database requires SSL. |
+| `agione_app.db.names.*` | See [6.2 Database names](#_6-2-database-names) | Business database names. Usually keep defaults. |
+
+#### 5.2.2 Redis
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `agione_app.redis.host` / `port` | `md-redis` / `6379` | Use the middleware private IP for host-mode self-managed; use an internal endpoint for managed Redis. |
+| `agione_app.redis.database` | `2` | Redis logical database used by AGIOne. |
+| `agione_app.redis.mode` | `standalone` | Redis runtime mode; this is not the same as `agione_app.middleware.redis.mode`. |
+| `agione_app.redis.ssl` | `false` | Set `true` when managed Redis requires SSL. |
+
+#### 5.2.3 Nacos
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `agione_app.nacos.host` / `port` | `md-nacos` / `8848` | Use the middleware private IP for host-mode self-managed; use an internal endpoint for managed Nacos. |
+| `agione_app.nacos.namespace` | `agione-prod` | AGIOne runtime namespace. Must not be empty. |
+| `agione_app.nacos.username` / `password` | `nacos` / empty | Native Nacos account used by the installer to publish configuration and by runtime services. |
+| `agione_app.nacos.auth_token` | empty | Self-managed Nacos server auth token. Use a Base64 value from at least 32 random bytes. |
+| `agione_app.nacos.auth_identity_key` / `auth_identity_value` | `serverIdentity` / `security` | Self-managed Nacos auth identity fields. Keep defaults unless required. |
+| `agione_app.nacos.console_url` | empty | Nacos console URL, used only for reports and manual checks. |
+| `agione_app.nacos.assume_preimported_configs` | `false` | Set `true` only when all AGIOne config items already exist in the target namespace. |
+| `agione_app.nacos.provider` / `region` / `project_id` / `engine_id` / `enterprise_project_id` | empty | Managed Nacos metadata for resource tracing and delivery review. |
+| `agione_app.nacos.access_key` / `secret_key` | empty | For provider helper scripts when needed; AGIOne installer config publishing still uses the Nacos username and password. |
+
+#### 5.2.4 Kafka
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `agione_app.kafka.host` / `port` | `kafka` / `9092` | Self-managed Kafka host and port. |
+| `agione_app.kafka.bootstrap_servers` | `kafka:9092` | Broker list used by AGIOne. For host-mode self-managed, use `<middleware-ip>:9092`. |
+| `agione_app.kafka.security_protocol` | `PLAINTEXT` | Follow the cloud provider requirement when managed Kafka uses SASL / TLS. |
+| `agione_app.kafka.sasl_mechanism` | `PLAIN` | SASL mechanism. Only relevant when protocol is not `PLAINTEXT`. |
+| `agione_app.kafka.username` / `password` | `admin` / empty | Kafka auth account. Usually required when protocol is not `PLAINTEXT`. |
+| `agione_app.kafka.vhost` | `agione-prod` | Compatibility field. Usually keep default. |
+
+#### 5.2.5 Object Storage
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `agione_app.minio.storage_type` | `minio` | Use `minio` for self-managed; use `s3` for S3 / OSS-compatible managed services. |
+| `agione_app.minio.endpoint` | `http://minio:9000` | S3-compatible API endpoint. For host-mode self-managed, use `http://<middleware-ip>:9000`. |
+| `agione_app.minio.api_direct_host` / `web_direct_host` | `oss.dev:9000` / `oss.dev:9001` | Self-managed object storage API / console direct hosts for runtime config and reports. |
+| `agione_app.minio.access_key` / `secret_key` | empty | Object storage credentials. |
+| `agione_app.minio.bucket_name` | `zguan` | Bucket used by AGIOne. |
+| `agione_app.minio.region` | empty | Fill when the managed object storage service requires a region. |
+| `agione_app.minio.path_style_access` | `true` | Whether to use path-style access. Adjust according to the managed service compatibility. |
+
+### 5.3 Optional Application Service Groups
+
+`agione_app.start_optional_app_services` is a list, not a simple boolean switch. Legacy `true` is still compatible and maps to `kubem`, but new configs should use explicit group names.
+
+| Group | Enabled services | Constraints |
+| --- | --- | --- |
+| `kubem` | `core_kubem`, `core_codelab`, `core_iam` | Enables training / job, CodeLab, and IAM services. The installer automatically appends `wm` initialization. |
+| `cloud` | `core_sgeneral`, `core_saws`, `core_saliyun`, `core_general`, `core_aliyun` | Enables cloud provider integration services. |
+| `core_isync` | `core_isync`, `influxdb3` | Supported only with self-managed MariaDB and a standby database node. Placed on the same node as `db_mariadb_standby` by default. |
+
+Example:
+
+```yaml
+agione_app:
+  start_optional_app_services:
+    - kubem
+    - cloud
+```
+
+### 5.4 Database Replication Initialization
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| `agione_app.auto_initialize_db_replication` | boolean | `false` | Whether to initialize MariaDB primary/standby replication in host-mode self-managed database mode. |
+| `agione_app.accept_standby_rebuild_risk` | boolean | `false` | Confirms standby data can be rebuilt. Must be `true` when replication initialization is enabled. |
+| `agione_app.db_replication_user` | string | `repl` | Replication user. |
+| `agione_app.db_replication_password` | string | empty | Replication password. If empty, the installer uses `db.root_password`. |
+
+### 5.5 NFS Backend / Frontend Code Sharing
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| `agione_app.host_mode_shared_storage.enabled` | boolean | `false` | Whether to enable NFS code sharing. |
+| `agione_app.host_mode_shared_storage.mode` | string | `copy` | `copy` uses local files per node; `nfs` shares code through NFS. |
+| `agione_app.host_mode_shared_storage.server_node` | string | empty | NFS server node. Empty means the first app node. |
+| `agione_app.host_mode_shared_storage.mount_options` | string | `rw,sync,hard,intr` | NFS mount options. Do not include spaces. |
+
+This setting shares only `<runtime_root>/core/metis` and `<runtime_root>/core/mamba`. It does not share database data, MinStore data, logs, Docker data, or host-mode rendered configuration.
+
+## 6. Level 4: Advanced Fields
+
+Advanced fields are for special delivery, troubleshooting, or non-default placement. Standard delivery should not set them proactively.
+
+### 6.1 Host-Mode Service-Level Placement
+
+Standard 4 to 8 machine delivery does not need `host_mode_service_placements`; the installer derives default placement from machine order.
+
+Supported placement services:
+
+| Type | Services |
+| --- | --- |
+| Self-managed middleware | `db_mariadb`, `db_mariadb_standby`, `md_redis`, `md_nacos`, `kafka`, `kafka-ui`, `minio` |
+| Default App / Edge | `nginx`, `md_gateway`, `core_common`, `core_auth`, `core_upms`, `core_gnosis`, `core_xapi`, `core_coperation`, `core_financial`, `core_shop` |
+| Optional application services | `core_kubem`, `core_codelab`, `core_iam`, `core_sgeneral`, `core_saws`, `core_saliyun`, `core_general`, `core_aliyun`, `core_isync`, `influxdb3` |
+
+Constraints:
+
+- Required services must be assigned to at least one machine.
+- `db_mariadb`, `db_mariadb_standby`, `md_redis`, `md_nacos`, `kafka`, `kafka-ui`, `minio`, `core_common`, `core_iam`, `core_isync`, and `influxdb3` are single-instance services.
+- When managed middleware is used, do not assign the corresponding self-managed middleware service to nodes.
+- `core_isync` must be placed on the same node as `db_mariadb_standby`.
+- `influxdb3` must be placed on the same node as `core_isync`, and `agione_app.influxdb.enabled` cannot be `false`.
+
+Example:
+
+```yaml
+agione_app:
+  start_optional_app_services:
+    - core_isync
+  host_mode_service_placements:
+    192.168.31.209:
+      - db_mariadb_standby
+      - core_isync
+      - influxdb3
+```
+
+### 6.2 Database Names
+
+Keep defaults unless the product database naming plan changes.
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `agione_app.db.names.nacos` | `nacosv3` | Nacos configuration database. |
+| `agione_app.db.names.common` | `hw-metis` | Metis common business database. |
+| `agione_app.db.names.upms` | `hw-upms` | UPMS business database. |
+| `agione_app.db.names.gnosis` / `knowledge` | `hw-gnosis` | Gnosis / knowledge business database. |
+| `agione_app.db.names.xapi` | `hw-xapi` | XAPI business database. |
+| `agione_app.db.names.cbdp` | `hw-cbdp` | CBDP business database. |
+| `agione_app.db.names.wanmore` | `hw-wanmore` | Wanmore business database. |
+| `agione_app.db.names.xcloud` | `hw-xcloud` | XCloud business database. |
+| `agione_app.db.names.hashrate` | `hw-hashrate` | Hashrate business database. |
+| `agione_app.db.names.influx_sync` | `hw-influx-sync` | `core_isync` metadata database. Must not be empty when `core_isync` is enabled. |
+
+### 6.3 InfluxDB / ISync
+
+`agione_app.influxdb` matters only when the `core_isync` service group is enabled.
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `agione_app.influxdb.enabled` | `true` | Whether `influxdb3` may be enabled. If `influxdb3` is assigned in placement, this cannot be `false`. |
+| `agione_app.influxdb.host` / `port` | `influxdb3` / `8181` | In-container address and API port. |
+| `agione_app.influxdb.url` | `http://influxdb3:8181` | Internal URL used by AGIOne services. |
+| `agione_app.influxdb.external_port` | `18181` | Host-mode published InfluxDB API port. |
+| `agione_app.influxdb.admin_external_port` | `18082` | Host-mode published admin port. |
+| `agione_app.influxdb.bucket` | `AGIOne` | Default bucket. |
+| `agione_app.influxdb.username` / `password` | `admin` / packaged default | Admin user and password. Custom passwords must follow the [Password Field Policy](#_7-password-field-policy). |
+| `agione_app.influxdb.auth_token` | packaged default | API token. |
+
+### 6.4 Other Advanced Fields
+
+| Field area | Description |
+| --- | --- |
+| `agione_app.compose_template_path` | Base Compose template path. Default `compose/agione-app.yaml`; keep it unchanged for new delivery. |
+| `agione_app.auto_start` | Whether to start services. `quick` sets it to `true` automatically; keep `false` only for artifact-render-only runs. |
+| `agione_app.auto_run_host_mode_health_check` | Whether to run host-mode health check after installation. Default `true`. |
+| `agione_app.use_default_resource_policy` | Whether to use Docker default resource policy. Default `true`; when set to `false`, `service_resource_limits` must be complete. |
+| `agione_app.service_resource_limits` | Manual CPU / memory limits. General delivery should use the default resource policy. |
+| `agione_app.initialization_targets` | Default `metis`, `gnosis`, `financial`, `cbdp`; `wm` is appended automatically when `kubem` is enabled. |
+| `agione_app.auto_import_nacos` | Whether to import Nacos configuration automatically. Default `true`. |
+| `agione_app.auto_initialize_apps` | Whether to call application initialization APIs. Default `true`. |
+| `agione_app.auto_check_registration` | Whether to wait for critical service registration in Nacos. Default `true`. |
+| `agione_app.use_saas_middleware` | Historical compatibility field. New deliveries should express middleware deployment through `agione_app.middleware.mode`. |
+| `agione_app.harbor.*` | Image registry address, port, and admin account configuration. |
+| `agione_app.gitea.*` | Gitea address, admin account, and webhook callback URL. |
+| `agione_app.kubem.*` | `core_kubem` service port, job access entry, scheduling, and callback configuration. |
+| `agione_app.iam.*` | `core_iam` URL, port, context path, and signature check. |
+| `agione_app.jupyter.*` | Job proxy Nginx port and Jupyter access path configuration. |
+
+## 7. Password Field Policy
+
+Passwords in the installation configuration may be written to YAML, Docker Compose, environment variables, Nacos configuration, URL parameters, or shell commands. To avoid escaping issues, truncation, URL encoding problems, and container startup failures, use the following safe character policy for manually created or customer-provided passwords:
+
+- Use only uppercase letters, lowercase letters, digits, and underscores: `A-Z`, `a-z`, `0-9`, `_`.
+- Recommended length: 12 to 32 characters, with at least letters and digits.
+- Quote passwords in YAML even when they use only safe characters.
+- Avoid spaces, `@`, `:`, `/`, `?`, `#`, `&`, `=`, `%`, `+`, `$`, backticks, quotes, and backslashes.
+- For existing external middleware passwords that contain reserved characters, rotate them in the cloud console or middleware service before writing them to `/root/agione-install.yml`.
+
+This policy applies to password-like fields including but not limited to:
+
+- `agione_app.topology.ssh_password`
+- `agione_app.topology.ssh_credentials.*.password`
+- `agione_app.db.root_password`
+- `agione_app.db_replication_password`
+- `agione_app.redis.password`
+- `agione_app.nacos.password`
+- `agione_app.kafka.password`
+- `agione_app.minio.secret_key`
+- `agione_app.harbor.admin_password`
+- `agione_app.gitea.admin_password`
+- `agione_app.influxdb.password`
+- `agione_app.default_access.credentials.*`
+
+The installer validates `agione_app.nacos.password` before containers are started. If the Nacos password contains unsafe characters, installation fails early and the password must be changed before retrying.
