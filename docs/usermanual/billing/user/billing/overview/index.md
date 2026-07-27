@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User-side account, business admin, billing viewer |
+| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
 | Navigation path | Billing > User Billing > Account Overview |
 | Page route | `/billing/my/account` |
 | Managed objects | Account balance, consumption trends, top-up entry, alert threshold, and recent transactions |

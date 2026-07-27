@@ -98,7 +98,7 @@ The embedding model passes protocol testing, is published to the intended scope,
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
 | Meta-Model | Select | `text-embedding-v1` | Required; base meta-model |
-| Model Source | Select | `Alibaba - China` | Required; upstream model provider |
+| Model Source | Select | `Alibaba - China` | Required; upstream Model Provider |
 | Request URL | URL | `https://dashscope.aliyuncs.com` | Required; model-service base URL |
 | API Key | Password | `sk-***` | Required; protected upstream credential |
 | Model Source ID | Text | `text-embedding-v1` | Required; exact upstream model name |

@@ -11,7 +11,7 @@ Updated: 2026-07-15
 | --- | --- | --- | --- |
 | `operator` | Platform operator | Resource preparation, governance configuration, quotas, monitoring, reviews, customer finance, License, settings, audit, and API rate control | Publishing a provider-owned model or consuming models as an end user |
 | `provider` | Model provider | Publishing and maintaining models, aggregate models, reviews, customer calls, provider revenue, and permitted team settings | Platform-wide identity governance, finance operations, or reviewing its own publication |
-| `enduser` | General user and model consumer | Deploying available services, discovering and experiencing models, API calls, personal usage, personal billing, personal settings, and authorized team members, projects, quotas, and Key usage | Publishing or reviewing models and managing platform-wide resources |
+| `enduser` | End User and model consumer | Deploying available services, discovering and experiencing models, API calls, personal usage, personal billing, personal settings, and authorized team members, projects, quotas, and Key usage | Publishing or reviewing models and managing platform-wide resources |
 
 ## Capability Comparison
 
@@ -90,7 +90,7 @@ Boundary:
 
 See [Publish and Call a Model](../usermanual/model-services/end-to-end/publish-and-call-model/).
 
-## `enduser`: General User and Model Consumer
+## `enduser`: End User and Model Consumer
 
 **Typical users:** business user, application developer, API consumer, or a user deploying from prepared resources.
 

@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Device Monitoring |
 | Page route | `/powerone/monitor/device` |
 | Managed objects | Accelerator devices such as GPU/NPU, VRAM, utilization, temperature, and health status |

@@ -9,7 +9,7 @@ This scenario guides users through creating an On-Prem development or training e
 
 ## Applicable Roles
 
-- Platform User creating development or training workloads
+- End User creating development or training workloads
 - Platform Operator preparing images, storage, compute, quota, and monitoring
 
 ## Target Outcome

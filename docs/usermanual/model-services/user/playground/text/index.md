@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | Model Services > Playground > Text |
 | Page route | `/modelone/exploration/chat` |
 | Managed objects | Text models, Prompts, generation parameters, output results, and debugging records |

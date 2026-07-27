@@ -4,7 +4,7 @@ This task combines a meta-model, cloud deployment point, cloud model, compute pl
 
 ## Target Outcome
 
-Platform Users can select the model in quick deployment and obtain the correct API definition after deployment.
+End Users can select the model in quick deployment and obtain the correct API definition after deployment.
 
 ## Applicable Roles
 
@@ -86,14 +86,14 @@ Platform Users can select the model in quick deployment and obtain the correct A
 | --- | --- |
 | 1 | Meta-model, deployment point, cloud model, and compute plan are compatible. |
 | 2 | Output protocol and examples contain placeholders rather than real credentials. |
-| 3 | Platform Users can see and select the asset in quick deployment. |
+| 3 | End Users can see and select the asset in quick deployment. |
 
 ## Troubleshooting
 
 | Symptom | Check First |
 | --- | --- |
 | Deployment point has no model or plan | Cloud-account synchronization, region, model availability, and plan compatibility |
-| Platform User cannot see the model asset | Asset state, tenant authorization, business-region authorization, and publication scope |
+| End User cannot see the model asset | Asset state, tenant authorization, business-region authorization, and publication scope |
 
 ## User Manual
 

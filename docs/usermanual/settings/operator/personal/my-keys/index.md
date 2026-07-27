@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > Personal > My Keys |
 | Page route | `/user/user-space/my-keys` |
 | Managed objects | My Keys records and related status |

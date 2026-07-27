@@ -9,7 +9,7 @@ This scenario shows callers how to review usage and providers how to reconcile c
 
 ## Applicable Roles
 
-- Platform User and Model Provider
+- End User and Model Provider
 
 ## Goals
 

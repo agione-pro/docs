@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Model Instances` is used to view model services created through deployment templates. Regular users can filter instances by instance type, status, and name here, and enter subsequent details, logs, or access troubleshooting flows.
+`Model Instances` is used to view model services created through deployment templates. End Users can filter instances by instance type, status, and name here, and enter subsequent details, logs, or access troubleshooting flows.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Model Deployment > Instances |
 | Page route | `/powerone/quickstart/model-service` |
 | Managed objects | Model service instances created through deployment templates |

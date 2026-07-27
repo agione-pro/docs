@@ -7,7 +7,7 @@ Map tenant credits, monthly usage, and metering details to actual instances or w
 ## Applicable Roles
 
 - Platform Operator
-- Model Provider and Platform User reviewing their own resource consumption
+- Model Provider and End User reviewing their own resource consumption
 
 ## Before You Start
 

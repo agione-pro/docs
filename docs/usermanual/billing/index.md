@@ -7,11 +7,11 @@ Updated: 2026-07-23
 
 ## Subsystem Positioning
 
-Billing is the entry page for AGIOne billing, charging, settlement, reconciliation, and License management. It covers user billing, Provider earnings, customer billing, finance operations, and License. Operators, billing operators, finance reviewers, Providers, and regular users can use this page to choose the correct entry before reviewing balances, top-up orders, monthly bills, customer records, monthly settlement progress, settlement statements, financial accounts, reconciliation checks, and License authorization.
+Billing is the entry page for AGIOne billing, charging, settlement, reconciliation, and License management. It covers user billing, Provider earnings, customer billing, finance operations, and License. Operators, billing operators, finance reviewers, Providers, and End Users can use this page to choose the correct entry before reviewing balances, top-up orders, monthly bills, customer records, monthly settlement progress, settlement statements, financial accounts, reconciliation checks, and License authorization.
 
 #### Beginner Explanation
 
-Billing works like the financial control room for AGIOne. User billing helps regular users check balances, transactions, top-ups, and monthly bills. Customer billing handles customer identity, tags, top-up sources, and business units. Finance operations handles settlement, financial accounts, and reconciliation status. License handles resource authorization, validity period, and quota. Start by classifying the issue before opening a specific statement or record.
+Billing works like the financial control room for AGIOne. User billing helps End Users check balances, transactions, top-ups, and monthly bills. Customer billing handles customer identity, tags, top-up sources, and business units. Finance operations handles settlement, financial accounts, and reconciliation status. License handles resource authorization, validity period, and quota. Start by classifying the issue before opening a specific statement or record.
 
 ## Core Terms Quick Reference
 
@@ -32,12 +32,12 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 
 | Role | What to read first | Next step |
 | --- | --- | --- |
-| Regular user | [Billing](./user/billing/overview/) | Check balance, transactions, top-up orders, quota governance, and monthly bills. |
+| End User | [Billing](./user/billing/overview/) | Check balance, transactions, top-up orders, quota governance, and monthly bills. |
 | Provider | [Earnings](./user/earnings/revenue/) | Check revenue overview, settlements, and customer revenue. |
-| Platform operator | [Customer Billing](./operator/customer-billing/customer-overview/) | Verify customers, business units, and customer top-up orders before checking finance status. |
-| Billing operator | [Finance Operations](./operator/finance-operations/today-tasks/) | Start from Today Tasks and Monthly Overview, then proceed by billing cycle. |
-| Finance reviewer | [Financial Accounts](./operator/finance-operations/financial-accounts/) | Compare account transactions, settlement statements, and reconciliation results. |
-| License admin | [License](./operator/license/license/) | Check authorized quota, validity period, and activation status. |
+| Platform Operator | [Customer Billing](./operator/customer-billing/customer-overview/) | Verify customers, business units, and customer top-up orders before checking finance status. |
+| Billing Operator | [Finance Operations](./operator/finance-operations/today-tasks/) | Start from Today Tasks and Monthly Overview, then proceed by billing cycle. |
+| Finance Reviewer | [Financial Accounts](./operator/finance-operations/financial-accounts/) | Compare account transactions, settlement statements, and reconciliation results. |
+| License Admin | [License](./operator/license/license/) | Check authorized quota, validity period, and activation status. |
 
 ## Where to Start
 
@@ -45,7 +45,7 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | --- | --- | --- |
 | Getting Started | [Billing Getting Started](./getting-started/) | First-time reading and path selection. |
 | End-to-end workflow | [Reconcile and Settle a Billing Cycle](./end-to-end/reconcile-billing-cycle/) | Connecting monthly overview, tasks, accounts, reconciliation, settlement statements, and adjustments. |
-| User Billing | [Billing](./user/billing/overview/) | Regular users checking balances, quotas, transactions, top-up orders, and monthly bills. |
+| User Billing | [Billing](./user/billing/overview/) | End Users checking balances, quotas, transactions, top-up orders, and monthly bills. |
 | Provider Earnings | [Earnings](./user/earnings/revenue/) | Providers checking revenue overview, settlements, and customer revenue. |
 | Customer Billing | [Customer Billing](./operator/customer-billing/customer-overview/) | Customer records, customer tags, customer top-up orders, business units, and payment-channel configuration. |
 | Finance Operations | [Finance Operations](./operator/finance-operations/today-tasks/) | Today tasks, monthly overview, settlement statements, financial accounts, reconciliation center, and account adjustment. |
@@ -97,7 +97,7 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Issue Type | Yes | Enum | `Settlement reconciliation` | Determines whether to start from user billing, Provider earnings, customer billing, finance operations, or License. |
-| Role | Yes | Enum | `Billing operator` | Matches the accessible entry and recommended reading path. |
+| Role | Yes | Enum | `Billing Operator` | Matches the accessible entry and recommended reading path. |
 | Billing Cycle | Conditionally required | Month | `2026-07` | Must be aligned before comparing amounts, settlements, or transactions. |
 | Tenant / Customer | Conditionally required | Text | `Desensitized tenant` | Limits customer, settlement statement, and account-transaction scope. |
 | Next Entry | System generated | Link | `Finance Operations` | Points to the next page according to issue type. |

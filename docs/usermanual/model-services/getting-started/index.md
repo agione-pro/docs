@@ -10,9 +10,9 @@ Updated: 2026-07-08
 | Who Am I | Read First | Next Step |
 | --- | --- | --- |
 | New to Model Services | First understand the relationship between meta-models, model sources, templates, model publishing, review, the model marketplace, and calls. | Read [Publish and Call a Model](../end-to-end/publish-and-call-model/). |
-| Model provider | First confirm that the operator has maintained meta-models, model sources, templates, and tags. | Publish a model or create an aggregation model in [My Models](../user/studio/my-models/). If submitted through On-Cloud Quick Deployment, view it in [My Deployments](../user/studio/my-deployments/) and continue publishing. |
-| Model caller | First view available models, providers, pricing, performance, and quick-start information in the model marketplace. | Try models in Playground, then view call statistics and logs. |
-| Operator admin | First maintain meta-models, sources, templates, and tags, then process model and app reviews. | Use settings, publishing, and approval modules to govern model services. |
+| Model Provider | First confirm that the operator has maintained meta-models, model sources, templates, and tags. | Publish a model or create an aggregation model in [My Models](../user/studio/my-models/). If submitted through On-Cloud Quick Deployment, view it in [My Deployments](../user/studio/my-deployments/) and continue publishing. |
+| Model Caller | First view available models, providers, pricing, performance, and quick-start information in the model marketplace. | Try models in Playground, then view call statistics and logs. |
+| Operator Admin | First maintain meta-models, sources, templates, and tags, then process model and app reviews. | Use settings, publishing, and approval modules to govern model services. |
 
 ## Feature Overview
 
@@ -20,7 +20,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable roles | Model providers, regular users, operator admins |
+| Applicable Roles | Model Providers, End Users, Operator Admins |
 | Recommended entry | This document, [Model Services Overview](../), [Publish and Call a Model](../end-to-end/publish-and-call-model/) |
 | Key objects | Meta-models, model sources, templates, tags, BYOK, aggregation models, model marketplace, Playground, call logs, revenue, reviews |
 | Typical use | Build a mental model for model services and clarify operational boundaries for publishing, review, calling, billing, and revenue |
@@ -33,9 +33,9 @@ Model Services is like an operating map from model listing to model calling: the
 
 | Role | Reading Focus | Recommended Entry |
 | --- | --- | --- |
-| Model provider | Publish models, view deployments, view reviews, and track revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Earnings](../user/usage-earnings/model-earnings/) |
-| Model caller | Browse Model Marketplace, try models, integrate APIs, and troubleshoot calls. | [Model Marketplace](../user/discover/models/), [Playground](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
-| Operator admin | Maintain meta-models, model sources, templates, tags, and review workflows. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
+| Model Provider | Publish models, view deployments, view reviews, and track revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Earnings](../user/usage-earnings/model-earnings/) |
+| Model Caller | Browse Model Marketplace, try models, integrate APIs, and troubleshoot calls. | [Model Marketplace](../user/discover/models/), [Playground](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
+| Operator Admin | Maintain meta-models, model sources, templates, tags, and review workflows. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
 
 ## What Is Model Services
 
@@ -53,9 +53,9 @@ In Model Services scenarios, the platform is responsible for:
 
 | Role | Main Responsibilities | Common Sections |
 | --- | --- | --- |
-| Model provider | Publish models, view on-cloud deployment records, create aggregation models, configure billing and rate limits, submit reviews, and view revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Earnings](../user/usage-earnings/model-earnings/), [Customer Calls](../user/customer-calls/overview/) |
-| Model caller | Browse the model marketplace, view details, try models in Playground, integrate APIs, and view own call statistics and logs. | [Model Marketplace](../user/discover/models/), [Text Chat](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
-| Operator admin | Maintain meta-models, model sources, templates, and tags; view app lists; process model and app reviews. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
+| Model Provider | Publish models, view on-cloud deployment records, create aggregation models, configure billing and rate limits, submit reviews, and view revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Earnings](../user/usage-earnings/model-earnings/), [Customer Calls](../user/customer-calls/overview/) |
+| Model Caller | Browse the model marketplace, view details, try models in Playground, integrate APIs, and view own call statistics and logs. | [Model Marketplace](../user/discover/models/), [Text Chat](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
+| Operator Admin | Maintain meta-models, model sources, templates, and tags; view app lists; process model and app reviews. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
 
 Operator admins define the basic standards and review criteria for model services. Model providers decide which models to publish and how to publish them. Model callers decide which models to try and call. If options are missing during publishing, usually check meta-models, model sources, templates, tags, and permissions.
 
@@ -64,10 +64,10 @@ Operator admins define the basic standards and review criteria for model service
 | Layer | Description | Impact |
 | --- | --- | --- |
 | Meta-model | Describes base model capabilities, modalities, protocols, context, and advanced capabilities. | Affects selectable base model information during publishing. |
-| Model source | Describes the model provider, region, request URL, authentication request headers, and source channel. | Affects BYOK or third-party Endpoint access. |
+| Model Source | Describes the Model Provider, region, request URL, authentication request headers, and source channel. | Affects BYOK or third-party Endpoint access. |
 | Template | Combines provider, meta-model, protocol, capabilities, and default parameters into reusable configuration. | Affects presets and consistency in the publishing flow. |
 | Tag | Used for model categorization, scenario filtering, and model marketplace display. | Affects user discovery and filtering. |
-| Published model | Single-model service configuration created by a model provider. | Affects the model marketplace, Playground, and API calls. |
+| Published Model | Single-model service configuration created by a Model Provider. | Affects the model marketplace, Playground, and API calls. |
 | Aggregation model | Combines multiple published models into one entry and routes by policy. | Affects cost, success rate, experience, and availability. |
 | Review | Operator confirmation for model or app publishing. | Affects whether a model can be listed and called. |
 | Calls and revenue | Logs, statistics, usage, and revenue generated after callers use models. | Affects billing, settlement, operations analysis, and troubleshooting. |
@@ -76,7 +76,7 @@ The recommended configuration order is: operator admins maintain meta-models, mo
 
 ## Boundaries Between User-Side and Operator-Side Features
 
-| Capability | Operator Admin | Model Provider / Regular User |
+| Capability | Operator Admin | Model Provider / End User |
 | --- | --- | --- |
 | Meta-models | Create model authors and meta-models, and maintain protocols, modalities, context, and capabilities. | Select available meta-models when publishing models. |
 | Model sources | Maintain source channels, regions, request URLs, and authentication request headers. | Select or fill in model source information when publishing models. |
@@ -91,7 +91,7 @@ The recommended configuration order is: operator admins maintain meta-models, mo
 | Term | Description |
 | --- | --- |
 | Meta-model | Base model capability definition, including model type, modalities, protocol, context, and advanced capabilities. |
-| Model source | Model provider or upstream service source, including region, request URL, authentication, and source ID. |
+| Model Source | Model Provider or upstream service source, including region, request URL, authentication, and source ID. |
 | Template | Reusable publishing configuration combination maintained by operators. |
 | My Deployments | Entry for viewing deployment records after On-Cloud Quick Deployment. Users can select a publish region and redirect to the publish model page in My Models. |
 | BYOK | Bring Your Own Key. Use your own API Key or Endpoint to connect an upstream model service. |
@@ -113,18 +113,18 @@ The recommended configuration order is: operator admins maintain meta-models, mo
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Role | Yes | Enum | Operator admin | Determines the feature entry to read and operate first. |
+| Role | Yes | Enum | Operator Admin | Determines the feature entry to read and operate first. |
 | Meta-model | No | Text | Example Meta-model A | Capability definition that must be maintained by operators before model publishing. |
 | Model Source | No | Text | Example Source A | Used to connect third-party Endpoint, protocol, and authentication information. |
-| Publishing Object | No | Text | Example Model A | Model that the model provider prepares to submit for review or listing. |
+| Publishing Object | No | Text | Example Model A | Model that the Model Provider prepares to submit for review or listing. |
 | Call Entry | No | Text | Playground | Entry where callers try, test, or integrate models. |
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Role is clear | You can tell whether you are a model provider, caller, or operator admin. | Return to the 30-second quick reference and choose the path again. |
-| Prerequisite objects are complete | Before publishing, you can confirm whether meta-models, sources, templates, and tags are available. | Contact the operator admin to complete base configuration first. |
+| Role is clear | You can tell whether you are a Model Provider, Caller, or Operator Admin. | Return to the 30-second quick reference and choose the path again. |
+| Prerequisite objects are complete | Before publishing, you can confirm whether meta-models, sources, templates, and tags are available. | Contact the Operator Admin to complete base configuration first. |
 | Review path is clear | You understand the order of saving, submitting for review, listing, and calling a model. | Read the end-to-end workflow and check review status. |
 | Troubleshooting entry is clear | When a call fails, you know to check call logs, Key, Endpoint, and rate limits first. | Go to the corresponding feature page based on the error type. |
 

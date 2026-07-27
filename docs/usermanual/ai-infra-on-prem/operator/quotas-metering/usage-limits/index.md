@@ -11,7 +11,7 @@ Updated: 2026-07-22
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Quotas & Metering > Usage Limits |
 | Page route | `/powerone/quota-metric/credit` |
 | Managed objects | Tenant, resource limits, spec credits, resource items, resource IDs, and quota configuration |

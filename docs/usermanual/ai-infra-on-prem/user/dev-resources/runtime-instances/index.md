@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Runtime Instances` is used to create and manage non-template runtime tasks. Regular users can select single-node or cluster form, specify image, specification, startup command, parameters, environment variables, and storage mounts, and start training, batch processing, or custom service instances.
+`Runtime Instances` is used to create and manage non-template runtime tasks. End Users can select single-node or cluster form, specify image, specification, startup command, parameters, environment variables, and storage mounts, and start training, batch processing, or custom service instances.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Development Resources > Runtime Instances |
 | Page route | `/powerone/inference/online-inference` |
 | Managed objects | Runtime instances, single-node tasks, cluster tasks, images, specifications, startup commands, and runtime status |

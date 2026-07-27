@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator; administrators activate licenses |
+| Applicable Role | Platform Operator; Administrators activate licenses |
 | Navigation path | Billing > License > License |
 | Page route | `/user/usercenter/license/managed-objects` |
 | Managed objects | Registration code, activation code, AI infrastructure authorization, authorized quota, and validity period |

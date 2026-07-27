@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Job Monitoring |
 | Page route | `/powerone/monitor/work` |
 | Managed objects | Model instances, online IDEs, runtime instances, training tasks, and historical jobs |

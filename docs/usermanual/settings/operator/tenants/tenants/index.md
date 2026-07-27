@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > Tenants > Tenants |
 | Page route | `/user/tenant` |
 | Managed objects | Tenant records and related status |

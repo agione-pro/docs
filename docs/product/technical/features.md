@@ -74,7 +74,7 @@ The platform can display collected accelerator metrics on device and monitoring 
 
 #### 1.2.1 Capability Overview
 
-Through AI Infra On-Cloud, AGIOne provides unified access to cloud platforms, cloud accounts, regions, resource pools, and compute specifications. It organizes inference resources from different cloud providers into authorized, filterable compute candidates that can be used for model deployment. Operators prepare cloud resources and access scopes, while general users deploy models from recommended solutions within their authorized scope.
+Through AI Infra On-Cloud, AGIOne provides unified access to cloud platforms, cloud accounts, regions, resource pools, and compute specifications. It organizes inference resources from different cloud providers into authorized, filterable compute candidates that can be used for model deployment. Operators prepare cloud resources and access scopes, while End Users deploy models from recommended solutions within their authorized scope.
 
 Cloud resource preparation follows this relationship:
 
@@ -188,7 +188,7 @@ The cloud model asset preparation workflow is:
 
 #### 3.1.1 Capability Overview
 
-With prepared models, frameworks, images, specifications, and authorized resources, AGIOne provides a productized workflow of **"Select a model → Select a specification → Submit the deployment."** Operators prepare the underlying resources and deployment assets, while general users start rapid deployment from their currently visible scope and review the result.
+With prepared models, frameworks, images, specifications, and authorized resources, AGIOne provides a productized workflow of **"Select a model → Select a specification → Submit the deployment."** Operators prepare the underlying resources and deployment assets, while End Users start rapid deployment from their currently visible scope and review the result.
 
 #### 3.1.2 Three-Step Rapid Deployment Workflow
 
@@ -230,7 +230,7 @@ Deployment time depends on compute availability, images, model weights, storage,
 
 #### 3.2.1 Capability Overview
 
-AI Infra On-Cloud uses recommendation-driven deployment. General users express business intent through the model, deployment mode, business preference, and provider scope. The platform then generates candidate solutions from cloud accounts, regions, frameworks, images, deployment points, and compute solutions prepared by operators, and automatically fills in the underlying runtime configuration.
+AI Infra On-Cloud uses recommendation-driven deployment. End Users express business intent through the model, deployment mode, business preference, and provider scope. The platform then generates candidate solutions from cloud accounts, regions, frameworks, images, deployment points, and compute solutions prepared by operators, and automatically fills in the underlying runtime configuration.
 
 The recommendation-driven deployment workflow is:
 
@@ -281,7 +281,7 @@ When selecting a candidate solution, users compare the following business inform
 
 ### 4.1 Capability Overview
 
-Model Services allows model providers to publish single models, BYOK Endpoints, or aggregate models; configure the visibility, pricing, and rate-limit fields available on the current page; and submit them for review. After operator approval, general users can discover, experience, and call authorized models.
+Model Services allows model providers to publish single models, BYOK Endpoints, or aggregate models; configure the visibility, pricing, and rate-limit fields available on the current page; and submit them for review. After operator approval, End Users can discover, experience, and call authorized models.
 
 ### 4.2 Standardized Endpoint Encapsulation
 
@@ -294,7 +294,7 @@ Model Services allows model providers to publish single models, BYOK Endpoints, 
 ### 4.3 Authentication and Authorization
 
 - **Invocation credentials**: Use the access credentials provided on the model page or assigned in the current environment, and store and rotate them according to security policy.
-- **Role responsibilities**: Model providers publish models, operators review them, and general users experience and call authorized models.
+- **Role responsibilities**: Model providers publish models, operators review them, and End Users experience and call authorized models.
 - **Authorization scope**: The tenant, role, model visibility, and resource authorization jointly determine which operations an account can perform.
 
 ### 4.4 Pricing Configuration
@@ -321,7 +321,7 @@ Verify the response status, queuing behavior, or rejection behavior after a limi
 
 ### 5.1 Capability Overview
 
-An **Aggregated Model** is created by a model provider from eligible published member models and presents a unified model entry point. Member-model selection, available routing strategies, prices, and limit fields depend on the current creation page. General users do not create aggregate models.
+An **Aggregated Model** is created by a model provider from eligible published member models and presents a unified model entry point. Member-model selection, available routing strategies, prices, and limit fields depend on the current creation page. End Users do not create aggregate models.
 
 ### 5.2 Aggregated Model Matching Strategies
 
@@ -399,7 +399,7 @@ The platform can use quotas or credits to record resource and invocation consump
 
 - **Unified records**: Review consumption within the current account scope on usage and metering pages.
 - **Configuration relationship**: Currency, prices, and credit relationships follow the current configuration maintained by operators.
-- **Role scope**: Operators, model providers, and general users see different data scopes.
+- **Role scope**: Operators, model providers, and End Users see different data scopes.
 - **Result reconciliation**: Cross-check invocation, usage, metering, and revenue data using the same time range.
 
 #### Billing Rule Examples

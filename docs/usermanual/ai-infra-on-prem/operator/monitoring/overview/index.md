@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Overview |
 | Page route | `/powerone/monitor/overview` |
 | Managed objects | Resource pool overview, cluster count, node status, job distribution, and resource capacity |

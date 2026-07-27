@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Model provider |
+| Applicable Role | Model Provider |
 | Navigation path | Model Services > Studio > My Models |
 | Page route | `/modelone/model` |
 | Managed objects | Published models, aggregate models, model sources, meta models, protocols, billing, rate limits, and visibility |

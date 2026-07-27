@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Statistics Overview` is used to view resource pool monitoring overview, instance runtime status, and key resource trends from a regular user perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
+`Statistics Overview` is used to view resource pool monitoring overview, instance runtime status, and key resource trends from a End User perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Overview |
 | Page route | `/powerone/user-monitor/overview` |
 | Managed objects | Resource pool monitoring overview, instance runtime status, and key resource trends |
@@ -19,7 +19,7 @@ Updated: 2026-07-08
 
 #### Beginner Explanation
 
-Statistics overview is like a resource weather map for regular users. It shows cluster count, node status, exception count, and update time in one screen, helping decide whether to drill down further.
+Statistics overview is like a resource weather map for End Users. It shows cluster count, node status, exception count, and update time in one screen, helping decide whether to drill down further.
 
 #### Terms Quick Reference
 

@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator, billing operator |
+| Applicable Role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Finance Operations > Monthly Overview |
 | Page route | `/billing/admin/provider-settlements/monthly-overview` |
 | Managed objects | Billing cycle, tenant settlement status, monthly revenue mix, and pending tasks |

@@ -11,7 +11,7 @@ Updated: 2026-07-13
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider admin or provider account |
+| Applicable Role | Provider Admin or Provider Account |
 | Navigation path | Settings > Personal > Projects |
 | Page route | `/user/user-space/projects` |
 | Managed objects | Projects records and related status |

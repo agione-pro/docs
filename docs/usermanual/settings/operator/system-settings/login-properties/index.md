@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > System Settings > Login Properties |
 | Page route | `/user/system/login-properties` |
 | Managed objects | Login Properties records and related status |

@@ -11,7 +11,7 @@ This end-to-end workflow connects the account and permission pages in Settings. 
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin, system admin, and security admin |
+| Applicable Role | Operator Admin, System Admin, and Security Admin |
 | Navigation path | Settings > End-to-End > Configure Accounts and Permissions |
 | Page route | /settings/end-to-end/configure-account-and-permissions |
 | Managed objects | Tenants, members, roles, Keys, login policies, and operation logs |

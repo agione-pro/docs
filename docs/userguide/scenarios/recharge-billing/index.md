@@ -9,7 +9,7 @@ This scenario distinguishes account top-ups, billing balance, resource quotas, r
 
 ## Applicable Roles
 
-- Platform User, Model Provider, and Platform Operator
+- End User, Model Provider, and Platform Operator
 
 ## Goals
 
@@ -53,7 +53,7 @@ Top-up record screenshot:
 
 ## Related Scenarios
 
-- [Model Usage and Revenue](../model-usage-revenue/): reconcile Platform User spending and Model Provider revenue from call records.
+- [Model Usage and Revenue](../model-usage-revenue/): reconcile End User spending and Model Provider revenue from call records.
 - [On-Prem Resource Metering and Monitoring](../on-prem-resource-metering-monitoring/): reconcile local compute quota, monthly metering, and resource use.
 - [Billing-Cycle Reconciliation and Settlement](../billing-cycle-reconciliation-settlement/): resolve operator-side billing-cycle exceptions and settlement.
 

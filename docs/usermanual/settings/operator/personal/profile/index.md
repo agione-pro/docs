@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > Personal > Profile |
 | Page route | `/user/user-space/profile` |
 | Managed objects | Profile records and related status |

@@ -15,7 +15,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 
 - The cloud platform, cloud account, and target regions are available.
 - Business types and tenants receive the correct cloud-resource authorization.
-- Platform Users can see the authorized cloud platforms and regions.
+- End Users can see the authorized cloud platforms and regions.
 
 ## Scenario Flow
 
@@ -26,7 +26,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 | 1. Connect the platform | A public- or private-cloud type becomes a managed resource source |
 | 2. Connect resources | Account validation passes and target regions and pools are available |
 | 3. Grant access | Business types and target tenants receive the correct cloud scope |
-| 4. Verify as a user | Platform Users see and use only authorized platforms and regions |
+| 4. Verify as a user | End Users see and use only authorized platforms and regions |
 
 ## Before You Start
 
@@ -38,7 +38,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 1. Start with Quick Access and Access Overview to understand global progress.
 2. Connect the cloud platform, account, and resource pools.
 3. Grant business-region access.
-4. Grant tenant-cloud access and validate with a regular user.
+4. Grant tenant-cloud access and validate with a End User.
 
 ## Document Index
 
@@ -68,7 +68,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 | 1 | The cloud platform, account, and target regions are available. |
 | 2 | The business type has the intended regional access. |
 | 3 | The target tenant has cloud-platform access. |
-| 4 | A regular user sees only the authorized platforms, regions, and access-account entries. |
+| 4 | A End User sees only the authorized platforms, regions, and access-account entries. |
 
 ## Troubleshooting
 

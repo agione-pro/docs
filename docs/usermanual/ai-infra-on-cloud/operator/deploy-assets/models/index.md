@@ -11,7 +11,7 @@ Updated: 2026-07-20
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Deploy Assets > Models |
 | Page route | `/infrahub/op/model/model` |
 | Managed objects | Models, meta models, cloud deployment points, cloud models, compute configuration, and output configuration |

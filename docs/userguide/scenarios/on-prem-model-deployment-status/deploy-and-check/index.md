@@ -6,7 +6,7 @@ The instance reaches Running, events and logs remain clean, and a controlled req
 
 ## Applicable Roles
 
-- Platform User
+- End User
 - Model Provider
 - Platform Operator when infrastructure troubleshooting is required
 

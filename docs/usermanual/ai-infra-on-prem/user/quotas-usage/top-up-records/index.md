@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Top-Up Records |
 | Page route | `/powerone/quota-usage/top-up-history` |
 | Managed objects | Credit top-up records, source, acquisition method, third-party serial number, and top-up time |

@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > Members & Roles > Roles |
 | Page route | `/user/user-space/roles` |
 | Managed objects | Roles records and related status |

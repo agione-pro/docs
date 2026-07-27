@@ -11,7 +11,7 @@ Apps helps operators view apps, model permissions, call scopes, status, and publ
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | Model Services > Publishing > Apps |
 | Page route | `/modelone/publish/application` |
 | Managed objects | Apps, model permissions, call scopes, status, and publishing records |

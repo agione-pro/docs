@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Access Workbench > Access Overview |
 | Page route | `/infrahub/op/workbanch/overview` |
 | Managed objects | Connected clouds, connected resource pools, connected accounts, operator resource checklist, tenant grants, and business resource pool grants |

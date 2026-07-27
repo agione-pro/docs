@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Templates > VRAM Estimation Configuration |
 | Page route | `/powerone/fast-build-v2/vram-factor-forms` |
 | Managed objects | VRAM formula, precision, KV Token, factor form, dynamic expressions, and recommended specifications |

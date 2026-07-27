@@ -9,7 +9,7 @@ This scenario helps callers reconcile model consumption and providers reconcile 
 
 ## Applicable Roles
 
-- Platform User reviewing personal calls and consumption
+- End User reviewing personal calls and consumption
 - Model Provider reviewing customer usage and revenue
 - Platform Operator reconciling platform billing rules
 

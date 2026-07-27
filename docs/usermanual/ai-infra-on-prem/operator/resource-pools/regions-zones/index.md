@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Regions & Zones |
 | Page route | `/powerone/resourcepool/region` |
 | Managed objects | Region, Availability Zone, region-associated components, and cluster resources under availability zones |

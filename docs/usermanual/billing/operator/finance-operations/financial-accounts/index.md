@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator, billing operator |
+| Applicable Role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Finance Operations > Financial Accounts |
 | Page route | `/billing/admin/financial-accounts` |
 | Managed objects | Platform clearing account, platform revenue account, account balance, transactions, and transaction details |

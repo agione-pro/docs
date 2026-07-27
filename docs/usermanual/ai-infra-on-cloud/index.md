@@ -35,7 +35,7 @@ On-Cloud is like a multi-cloud resource scheduling hub: operators connect accoun
 
 | Your Goal | Start Here | Next Step |
 | --- | --- | --- |
-| New user | [Getting Started](./getting-started/) | First understand the relationship between cloud platforms, cloud accounts, resource pools, authorization, deployment assets, and deployment tasks. |
+| New User | [Getting Started](./getting-started/) | First understand the relationship between cloud platforms, cloud accounts, resource pools, authorization, deployment assets, and deployment tasks. |
 | Operator | [Quick Access](./operator/access-workbench/quick-start/), [Cloud Accounts](./operator/access-management/cloud-accounts/), [Resource Pools](./operator/access-management/resource-pools/), [Authorization Management](./operator/auth-management/tenant-cloud-auth/) | Continue maintaining deployment assets and scheduling policies, and open the deployable resource scope. |
 | User | [My Access Accounts](./user/access-management/access-accounts/), [Quick Deployment](./user/model-services/quick-deployment/), [My Deployments](./user/model-services/my-deployments/) | Confirm available resources and view deployment tasks, events, APIs, and monitoring. |
 | Troubleshooter | [My Deployments](./user/model-services/my-deployments/), [Resource Pools](./operator/access-management/resource-pools/), [Authorization Management](./operator/auth-management/tenant-cloud-auth/), [Model Assets](./operator/deploy-assets/models/) | Locate failures from deployment events, resource pools, authorization, and deployment assets. |
