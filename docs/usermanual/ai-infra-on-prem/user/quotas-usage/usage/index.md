@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Resource Usage |
 | Page route | `/powerone/quota-usage/usage` |
 | Managed objects | Resource specification usage, quota occupation, and consumption details |

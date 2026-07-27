@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Access Management > Resource Pools |
 | Page route | `/infrahub/op/access/region` |
 | Managed objects | Cloud platform, regional resource pools, enabled status, import and export entries |

@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Cluster Statistics |
 | Page route | `/powerone/user-monitor/cluster` |
 | Managed objects | Cluster resource trends, capacity, and health status within the user-visible scope |

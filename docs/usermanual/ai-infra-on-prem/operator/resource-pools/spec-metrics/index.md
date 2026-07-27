@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Specification Metrics |
 | Page route | `/powerone/resourcepool/flavor/type` |
 | Managed objects | Metric name, metric type, resource key, unit, k8s-key, selector-key, monitoring metric, and enabled status |

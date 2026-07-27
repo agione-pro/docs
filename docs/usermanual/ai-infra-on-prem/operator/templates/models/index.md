@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Templates > Model Configuration |
 | Page route | `/powerone/fast-build-v2/models` |
 | Managed objects | Base models, model versions, model sources, quantization methods, tags, and associated clusters |

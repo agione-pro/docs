@@ -11,7 +11,7 @@ Updated: 2026-07-20
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Deploy Assets > Frameworks |
 | Page route | `/infrahub/op/model/framework` |
 | Managed objects | Cloud platform, cloud account, region, framework type, framework name, version, image, and startup commands |

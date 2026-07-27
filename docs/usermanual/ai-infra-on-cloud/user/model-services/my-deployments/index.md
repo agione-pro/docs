@@ -11,7 +11,7 @@ Updated: 2026-07-21
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User |
+| Applicable Role | User |
 | Navigation path | AI Infrastructure > On-Cloud > Model Services > My Deployments |
 | Page route | `/infrahub/user/model/deployment` |
 | Managed objects | Deployment name, model name, deployment status, cloud platform, region, resource specification, publish region, and action entries |

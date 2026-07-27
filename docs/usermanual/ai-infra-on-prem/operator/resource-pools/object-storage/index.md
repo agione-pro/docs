@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Object Storage |
 | Page route | `/powerone/resourcepool/storage` |
 | Managed objects | Service Type, Object Storage, Name, Endpoint (Public URL), IP Address, Access Key, Secret Key, Limit Storage Quota, Description, and Actions |

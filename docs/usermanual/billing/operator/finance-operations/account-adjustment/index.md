@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform Operator, Billing Operator |
+| Applicable Role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Finance Operations > Account Adjustment |
 | Page route | `/billing/admin/account-adjustments` |
 | Managed objects | Billing records, adjustment impact assessment, and adjustment records |

@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Development Resources > Runtime Instances |
 | Page route | `/powerone/inference/online-inference` |
 | Managed objects | Runtime instances, single-node tasks, cluster tasks, images, specifications, startup commands, and runtime status |

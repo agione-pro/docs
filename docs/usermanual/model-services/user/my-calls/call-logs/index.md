@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | Model Services > My Calls > Call Logs |
 | Page route | `/modelone/monitoring/calls/log` |
 | Managed objects | Model call logs, call status, latency, token usage, and error messages for the current account |

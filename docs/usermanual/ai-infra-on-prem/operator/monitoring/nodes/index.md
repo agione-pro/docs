@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Node Statistics |
 | Page route | `/powerone/monitor/node` |
 | Managed objects | Node status, node role, resource utilization, heartbeat, and owning cluster |

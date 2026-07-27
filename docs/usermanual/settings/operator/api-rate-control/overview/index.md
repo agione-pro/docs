@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > API Rate Control > API Rate Control Overview |
 | Page route | `/user/system/rate-control/overview` |
 | Managed objects | Overview records and related status |

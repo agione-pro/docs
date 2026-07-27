@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform Operator, Billing Operator |
+| Applicable Role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Finance Operations > Reconciliation Center |
 | Page route | `/billing/admin/reconciliation` |
 | Managed objects | Bilateral ledger check, compensation queue, revenue detail rebuild, unmatched transfer, and missing revenue detail |

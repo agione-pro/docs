@@ -11,7 +11,7 @@ Updated: 2026-07-20
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Authorization Management > Business-Region Auth |
 | Page route | `/infrahub/op/auth/region-auth` |
 | Managed objects | Business type, cloud platform, authorized regions, and action entries |

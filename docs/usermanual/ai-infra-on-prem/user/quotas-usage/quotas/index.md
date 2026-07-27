@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Resource Quotas |
 | Page route | `/powerone/quota-usage/quota` |
 | Managed objects | AI card, CPU, memory, online IDE, and runtime instance quotas |

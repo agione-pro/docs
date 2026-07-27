@@ -11,7 +11,7 @@ App Reviews helps operators review app requests, model permissions, call scopes,
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | Model Services > Approvals > App Reviews |
 | Page route | `/modelone/audit/app` |
 | Managed objects | App requests, model permissions, call scopes, customer information, and review comments |

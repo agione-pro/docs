@@ -11,7 +11,7 @@ This page describes the main workflow for billing operators to complete one bill
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Billing Operator, Finance Reviewer, Platform Operator |
+| Applicable Role | Billing Operator, Finance Reviewer, Platform Operator |
 | Navigation path | Billing > Reconcile and Settle a Billing Cycle |
 | Page route | `/usermanual/billing/end-to-end/reconcile-billing-cycle/` |
 | Managed objects | Billing cycle, tenant, financial accounts, reconciliation exceptions, settlement statements, and account adjustments |

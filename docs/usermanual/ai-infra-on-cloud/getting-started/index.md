@@ -20,7 +20,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable roles | Operator, User |
+| Applicable Roles | Operator, User |
 | Recommended entry | This document, [Multi-Cloud Scheduling Platform Overview](../), [Deploy a Cloud Model Service from Scratch](../end-to-end/deploy-cloud-model-service/) |
 | Key objects | Cloud platform, cloud account, resource pool, tenant authorization, business authorization, model library, inference framework, inference image, scheduling policy, deployment task |
 | Typical use | Build an On-Cloud resource understanding framework, clarify operator and user boundaries, and choose the correct reading path |

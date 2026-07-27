@@ -11,7 +11,7 @@ This document connects operator and user On-Cloud operations into an end-to-end 
 
 | Item | Content |
 | --- | --- |
-| Applicable roles | Operator, User |
+| Applicable Roles | Operator, User |
 | Recommended prerequisites | [Getting Started](../../getting-started/), [Quick Access](../../operator/access-workbench/quick-start/), [Quick Deployment](../../user/model-services/quick-deployment/) |
 | Output | A cloud model service deployment task with visible status, API, monitoring, and events |
 | Typical use | First integration for a new cloud platform, model asset onboarding validation, deployment workflow demo, pre-launch acceptance, and issue localization |

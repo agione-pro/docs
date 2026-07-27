@@ -11,7 +11,7 @@ Tag Management helps operators maintain model tags, tag groups, display order, a
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | Model Services > Settings > Tags |
 | Page route | `/modelone/settings/tags` |
 | Managed objects | Model tags, tag groups, display order, and enabled status |

@@ -11,7 +11,7 @@ Updated: 2026-07-21
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User |
+| Applicable Role | User |
 | Navigation path | AI Infrastructure > On-Cloud > Access Management > Access Accounts |
 | Page route | `/infrahub/user/access/account` |
 | Managed objects | Cloud account, cloud platform, Access Key ID, Access Key Secret, creation time, and action entries |

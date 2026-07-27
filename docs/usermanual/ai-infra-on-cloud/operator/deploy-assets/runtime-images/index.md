@@ -11,7 +11,7 @@ Updated: 2026-07-20
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Deploy Assets > Runtime Images |
 | Page route | `/infrahub/op/model/image` |
 | Managed objects | Cloud platform, region, image name, image type, image size, registry path, and action entries |

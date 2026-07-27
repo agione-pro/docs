@@ -11,7 +11,7 @@ Updated: 2026-07-13
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider Admin or Provider Account |
+| Applicable Role | Provider Admin or Provider Account |
 | Navigation path | Settings > Activity & Notifications > Operation Logs |
 | Page route | `/user/user-space/operation-logs` |
 | Managed objects | Operation Logs records and related status |

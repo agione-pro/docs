@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Development Resources > Online IDE |
 | Page route | `/powerone/dev-training/dev-ide` |
 | Managed objects | Online development environments, single-node IDEs, cluster IDEs, images, specifications, and runtime status |

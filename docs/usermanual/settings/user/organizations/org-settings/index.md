@@ -11,7 +11,7 @@ Updated: 2026-07-13
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider Role or Provider Account |
+| Applicable Role | Provider Role or Provider Account |
 | Navigation path | Settings > Tenants & Settings > Tenant Settings |
 | Page route | `/user/user-space/settings` |
 | Managed objects | Tenant settings and related status |

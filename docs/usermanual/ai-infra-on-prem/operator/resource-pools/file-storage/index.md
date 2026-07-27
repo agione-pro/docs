@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > File Storage |
 | Page route | `/powerone/resourcepool/file` |
 | Managed objects | Name, Tenant Quota, Overcommit Ratio, Phy. Threshold, Log. Threshold, Cluster Connection Information, Paste Config, Upload File, Manual Input, and Description |

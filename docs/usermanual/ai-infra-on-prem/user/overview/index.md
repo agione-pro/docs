@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Overview |
 | Page route | `/powerone/overview` |
 | Managed objects | Deployment templates, accelerator resources, quick entrypoints, specification quotas, and resource usage trends |

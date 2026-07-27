@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Model Provider |
+| Applicable Role | Model Provider |
 | Navigation path | Model Services > Customer Calls > Overview |
 | Page route | `/modelone/monitoring/monitor/overview` |
 | Managed objects | Customer analytics, model analytics, call trends, token consumption, and rate limit triggers |

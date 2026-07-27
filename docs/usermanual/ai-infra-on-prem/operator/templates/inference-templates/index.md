@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Templates > Inference Templates |
 | Page route | `/powerone/fast-build-v2/inference-templates` |
 | Managed objects | Inference templates, model scope, framework scope, specification recommendations, form parameters, and publication status |

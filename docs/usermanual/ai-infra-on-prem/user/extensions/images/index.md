@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Extension Services > Image Services |
 | Page route | `/powerone/expand-service/image-service/custom` |
 | Managed objects | My image projects, public images, push history, and image upload entrypoint |

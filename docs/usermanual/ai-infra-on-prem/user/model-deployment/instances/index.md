@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Model Deployment > Instances |
 | Page route | `/powerone/quickstart/model-service` |
 | Managed objects | Model service instances created through deployment templates |
