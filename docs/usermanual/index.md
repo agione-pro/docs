@@ -7,7 +7,7 @@ Updated: 2026-07-21
 
 ## Manual Overview
 
-The user manual is for platform operators, model providers, general users, billing operators, and system maintainers. It covers model publishing and calling, cloud resource scheduling, local heterogeneous compute management, billing operations, and platform settings.
+The user manual is for platform operators, model providers, End Users, billing operators, and system maintainers. It covers model publishing and calling, cloud resource scheduling, local heterogeneous compute management, billing operations, and platform settings.
 
 The manual is organized into five modules in the left sidebar:
 
@@ -22,7 +22,7 @@ The manual is organized into five modules in the left sidebar:
 | Your role or goal | Recommended entry | Next step |
 | --- | --- | --- |
 | First-time end user | Start from this page, then open the target module getting-started page. | Confirm your role, permissions, and target resource before entering a feature page. |
-| End User | Model Services, AI Infra On-Prem, Billing, or Settings. | Decide whether you need to call models, use resources, check billing, or manage personal settings. |
+| End user | Model Services, AI Infra On-Prem, Billing, or Settings. | Decide whether you need to call models, use resources, check billing, or manage personal settings. |
 | Platform operator | Settings, AI Infra On-Cloud, AI Infra On-Prem, and Model Services. | Confirm account permissions, resource onboarding, and approval boundaries first. |
 | Billing or finance user | Billing. | Confirm billing cycle, customer, tenant, and business-line scope. |
 | Model provider | Model Services. | Start with model publishing, review, calling, and revenue paths. |
@@ -32,10 +32,10 @@ The manual is organized into five modules in the left sidebar:
 | Module | Applicable Roles | Core Features | Recommended Entry |
 | --- | --- | --- | --- |
 | Model Services | Model providers, model callers, platform operators | Meta-models, model sources, model publishing, reviews, Playground, call logs, revenue statistics | [Overview](./model-services/), [Getting Started](./model-services/getting-started/), [Publish and Call a Model](./model-services/end-to-end/publish-and-call-model/) |
-| AI Infra On-Cloud | Cloud resource operators, general users | Cloud platforms, cloud accounts, resource pools, tenant authorization, business-region authorization, deployment assets, scheduling policies, quick deployment | [Overview](./ai-infra-on-cloud/), [Getting Started](./ai-infra-on-cloud/getting-started/), [Deploy a Cloud Model Service](./ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) |
-| AI Infra On-Prem | Resource pool operators, general users | Regions, availability zones, clusters, accelerators, specifications, images, storage, templates, quotas, metering, monitoring | [Overview](./ai-infra-on-prem/), [Getting Started](./ai-infra-on-prem/getting-started/), [Deploy a Model Service](./ai-infra-on-prem/end-to-end/deploy-model-service/) |
-| Billing | General users, platform operators, billing operators, License managers | User billing, customer billing, finance operations, top-up orders, monthly bills, settlements, adjustments, License | [Overview](./billing/), [Getting Started](./billing/getting-started/), [Reconcile and Settle a Billing Cycle](./billing/end-to-end/reconcile-billing-cycle/) |
-| Settings | General users, platform operators, system maintainers, security roles | Personal Keys, account information, projects, team members, roles, tenant settings, operation logs, system configuration, API rate control | [Overview](./settings/), [Getting Started](./settings/getting-started/), [Configure Account and Permissions](./settings/end-to-end/configure-account-and-permissions/) |
+| AI Infra On-Cloud | Cloud resource operators, End Users | Cloud platforms, cloud accounts, resource pools, tenant authorization, business-region authorization, deployment assets, scheduling policies, quick deployment | [Overview](./ai-infra-on-cloud/), [Getting Started](./ai-infra-on-cloud/getting-started/), [Deploy a Cloud Model Service](./ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) |
+| AI Infra On-Prem | Resource pool operators, End Users | Regions, availability zones, clusters, accelerators, specifications, images, storage, templates, quotas, metering, monitoring | [Overview](./ai-infra-on-prem/), [Getting Started](./ai-infra-on-prem/getting-started/), [Deploy a Model Service](./ai-infra-on-prem/end-to-end/deploy-model-service/) |
+| Billing | End Users, platform operators, billing operators, License managers | User billing, customer billing, finance operations, top-up orders, monthly bills, settlements, adjustments, License | [Overview](./billing/), [Getting Started](./billing/getting-started/), [Reconcile and Settle a Billing Cycle](./billing/end-to-end/reconcile-billing-cycle/) |
+| Settings | End Users, platform operators, system maintainers, security roles | Personal Keys, account information, projects, team members, roles, tenant settings, operation logs, system configuration, API rate control | [Overview](./settings/), [Getting Started](./settings/getting-started/), [Configure Account and Permissions](./settings/end-to-end/configure-account-and-permissions/) |
 
 ## Core Terms
 

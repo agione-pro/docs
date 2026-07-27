@@ -11,7 +11,7 @@ Video Playground is used to select a video model, enter a prompt, upload or sele
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable role | End User |
 | Navigation path | Model Services > Playground > Video |
 | Page route | `/modelone/exploration/video` |
 | Managed objects | Video models, prompts, reference images, resolution, aspect ratio, duration, generation parameters, and generated results |

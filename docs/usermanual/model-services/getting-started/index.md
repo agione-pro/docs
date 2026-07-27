@@ -20,7 +20,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable roles | Model providers, regular users, operator admins |
+| Applicable roles | Model providers, End Users, operator admins |
 | Recommended entry | This document, [Model Services Overview](../), [Publish and Call a Model](../end-to-end/publish-and-call-model/) |
 | Key objects | Meta-models, model sources, templates, tags, BYOK, aggregation models, model marketplace, Playground, call logs, revenue, reviews |
 | Typical use | Build a mental model for model services and clarify operational boundaries for publishing, review, calling, billing, and revenue |
@@ -76,7 +76,7 @@ The recommended configuration order is: operator admins maintain meta-models, mo
 
 ## Boundaries Between User-Side and Operator-Side Features
 
-| Capability | Operator Admin | Model Provider / Regular User |
+| Capability | Operator Admin | Model Provider / End User |
 | --- | --- | --- |
 | Meta-models | Create model authors and meta-models, and maintain protocols, modalities, context, and capabilities. | Select available meta-models when publishing models. |
 | Model sources | Maintain source channels, regions, request URLs, and authentication request headers. | Select or fill in model source information when publishing models. |

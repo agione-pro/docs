@@ -1,4 +1,4 @@
-# AGIOne User Guide for Regular Users
+# AGIOne User Guide for End Users
 
 This guide is written for first-time AGIOne users. It walks you through the full basic workflow: signing in, claiming free quota, trying a model in the web playground, and calling the model with curl. Usernames, passwords, and API keys are shown as placeholders only.
 

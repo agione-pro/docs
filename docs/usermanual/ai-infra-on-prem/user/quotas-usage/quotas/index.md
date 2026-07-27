@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Resource Quotas` displays the total amount, used amount, and availability of the current tenant across AI cards, CPU, memory, and different instance types. Regular users should confirm whether quotas meet requirements before creating instances.
+`Resource Quotas` displays the total amount, used amount, and availability of the current tenant across AI cards, CPU, memory, and different instance types. End Users should confirm whether quotas meet requirements before creating instances.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Resource Quotas |
 | Page route | `/powerone/quota-usage/quota` |
 | Managed objects | AI card, CPU, memory, online IDE, and runtime instance quotas |

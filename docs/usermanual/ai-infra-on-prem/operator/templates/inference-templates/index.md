@@ -7,7 +7,7 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Inference Templates` is used to combine models, frameworks, images, specifications, VRAM estimation, ports, variables, and default parameters into templates that regular users can deploy directly.
+`Inference Templates` is used to combine models, frameworks, images, specifications, VRAM estimation, ports, variables, and default parameters into templates that End Users can deploy directly.
 
 | Item | Content |
 | --- | --- |
@@ -15,7 +15,7 @@ Updated: 2026-07-08
 | Navigation path | AI Infrastructure > On-Prem > Templates > Inference Templates |
 | Page route | `/powerone/fast-build-v2/inference-templates` |
 | Managed objects | Inference templates, model scope, framework scope, specification recommendations, form parameters, and publication status |
-| Typical use | Publish deployable model service plans to regular users |
+| Typical use | Publish deployable model service plans to End Users |
 
 #### Beginner Explanation
 
@@ -131,7 +131,7 @@ The following figure shows the Create Inference Template page, used to configure
 
 **Symptom:**
 
-The template has been saved, but it is not visible in the regular user's deployment template list.
+The template has been saved, but it is not visible in the End User's deployment template list.
 
 **Possible Causes:**
 

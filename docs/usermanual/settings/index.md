@@ -7,11 +7,11 @@ Updated: 2026-07-10
 
 ## Subsystem Positioning
 
-`Settings` is used to manage platform accounts, members, roles, tenants, operation logs, login policies, platform settings, and API rate-control capabilities. Platform operators use it to maintain access subjects, permission boundaries, login security policies, and global system parameters. Regular users use it, within their permission scope, to maintain personal details, Keys, projects, member collaboration, and tenant settings.
+`Settings` is used to manage platform accounts, members, roles, tenants, operation logs, login policies, platform settings, and API rate-control capabilities. Platform operators use it to maintain access subjects, permission boundaries, login security policies, and global system parameters. End Users use it, within their permission scope, to maintain personal details, Keys, projects, member collaboration, and tenant settings.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operators, system maintainers, security roles, and regular users |
+| Applicable role | Platform operators, system maintainers, security roles, and End Users |
 | Navigation path | Settings |
 | Page route | /settings |
 | Managed objects | Personal Keys, profile information, members, roles, tenants, operation logs, system settings, and API rate control |
@@ -27,7 +27,7 @@ Settings is the platform control area for accounts, members, roles, tenants, log
 | --- | --- | --- |
 | Settings subsystem | Unified entry for platform configuration, permissions, and security policies. | Locate the entry by role and target object first. |
 | Platform operator | Role that maintains platform-level members, tenants, system settings, and rate-control policies. | Confirm impact scope before high-risk changes. |
-| User-side settings | Entry for regular users to maintain personal accounts, projects, Keys, quota requests, and tenant settings. | Operate only within the current account or visible tenant scope. |
+| User-side settings | Entry for End Users to maintain personal accounts, projects, Keys, quota requests, and tenant settings. | Operate only within the current account or visible tenant scope. |
 | API rate control | Capability for API request statistics, blocking, rules, node cache, and publishing. | Review observability, node cache, and publish status before changing rules. |
 
 ## Role Entry Points
@@ -37,7 +37,7 @@ Settings is the platform control area for accounts, members, roles, tenants, log
 | Platform operator | [Members](./operator/members-roles/members/), [Roles](./operator/members-roles/roles/) | Manage members, roles, tenants, and system settings. |
 | System maintainer | [Platform Settings](./operator/system-settings/platform-settings/), [Login Properties](./operator/system-settings/login-properties/) | Maintain platform parameters, login security, and global policies. |
 | Security role | [Operation Logs](./operator/activity-notifications/operation-logs/), [API Rate Control Overview](./operator/api-rate-control/overview/) | Review audit logs, rate-control rules, and publish status. |
-| Regular user | [My Keys](./user/personal/my-keys/), [Members](./user/members-roles/team-members/) | Manage personal credentials, projects, members, roles, and quota requests. |
+| End User | [My Keys](./user/personal/my-keys/), [Members](./user/members-roles/team-members/) | Manage personal credentials, projects, members, roles, and quota requests. |
 
 The visible Settings menus are organized as follows:
 
@@ -68,7 +68,7 @@ When entering Settings, select the target group from the left menu first, then r
 | --- | --- | --- |
 | Manage personal information or credentials | [Personal Settings](./user/personal/profile/) | Continue with Profile, My Keys, Dashboard, or Projects. |
 | Manage team members and roles | [Members and Roles](./operator/members-roles/members/) | Confirm the tenant scope before maintaining members, roles, and quotas. |
-| Configure login, security, or platform parameters | [System Settings](./operator/system-settings/platform-settings/) | Distinguish regular-user settings from operator-side global settings. |
+| Configure login, security, or platform parameters | [System Settings](./operator/system-settings/platform-settings/) | Distinguish End User settings from operator-side global settings. |
 | Configure API rate control | [API Rate Control](./operator/api-rate-control/overview/) | Start with Overview, then review rules, cache, publishing, and observability audit. |
 
 ## Recommended Reading Path

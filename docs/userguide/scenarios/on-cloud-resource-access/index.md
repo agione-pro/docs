@@ -38,7 +38,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 1. Start with Quick Access and Access Overview to understand global progress.
 2. Connect the cloud platform, account, and resource pools.
 3. Grant business-region access.
-4. Grant tenant-cloud access and validate with a regular user.
+4. Grant tenant-cloud access and validate with a End User.
 
 ## Document Index
 
@@ -68,7 +68,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 | 1 | The cloud platform, account, and target regions are available. |
 | 2 | The business type has the intended regional access. |
 | 3 | The target tenant has cloud-platform access. |
-| 4 | A regular user sees only the authorized platforms, regions, and access-account entries. |
+| 4 | A End User sees only the authorized platforms, regions, and access-account entries. |
 
 ## Troubleshooting
 

@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable role | End User |
 | Navigation path | Model Services > My Calls > Overview |
 | Page route | `/modelone/monitoring/calls/overview` |
 | Managed objects | My calls, successful calls, failed calls, rate limit triggers, token consumption, model types, and call distribution |

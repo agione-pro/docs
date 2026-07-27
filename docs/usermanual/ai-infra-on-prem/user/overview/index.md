@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Overview` is the summary page regular users enter after opening AI Infra-On Prem. It is used to centrally view deployment templates, accelerator capabilities, quick creation entrypoints, specification quotas, and resource consumption trends.
+`Overview` is the summary page End Users enter after opening AI Infra-On Prem. It is used to centrally view deployment templates, accelerator capabilities, quick creation entrypoints, specification quotas, and resource consumption trends.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Overview |
 | Page route | `/powerone/overview` |
 | Managed objects | Deployment templates, accelerator resources, quick entrypoints, specification quotas, and resource usage trends |
@@ -149,5 +149,5 @@ Before creating a model service, online IDE, or runtime instance, confirm on the
 - Do not judge failure causes only by the homepage summary. Key instance status should be based on the corresponding detail page.
 - Before creation, confirm region, specification, and image source to avoid creation failure caused by unschedulable resources after submission.
 - The overview page only provides summary display and does not replace creation, detail, or troubleshooting pages of specific modules.
-- Templates, specifications, and accelerators are configured by operators. Regular users cannot modify them directly on the overview page.
+- Templates, specifications, and accelerators are configured by operators. End Users cannot modify them directly on the overview page.
 - For learning or screenshots only, do not submit real jobs or write real resource scopes or consumption data in documentation.

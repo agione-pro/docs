@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Image Services` is used to manage image projects, custom images, public images, and push history on the regular user side. Users can create image projects, push locally built images to the platform image repository, and then select the image in Online IDE, Runtime Instances, or model services.
+`Image Services` is used to manage image projects, custom images, public images, and push history on the End User side. Users can create image projects, push locally built images to the platform image repository, and then select the image in Online IDE, Runtime Instances, or model services.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Extension Services > Image Services |
 | Page route | `/powerone/expand-service/image-service/custom` |
 | Managed objects | My image projects, public images, push history, and image upload entrypoint |
