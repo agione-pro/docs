@@ -4,7 +4,7 @@ This guide is written for first-time AGIOne users. It walks you through the full
 
 ## Applicable Roles
 
-- Platform User trying and calling a model
+- End User trying and calling a model
 - Model Provider reviewing the resulting customer call records
 
 

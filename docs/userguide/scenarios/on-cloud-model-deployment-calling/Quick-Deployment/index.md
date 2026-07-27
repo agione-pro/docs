@@ -13,7 +13,7 @@ A deployment request is created with an understood resource plan and cost estima
 
 ## Applicable Roles
 
-- Platform User
+- End User
 
 ## Before You Start
 

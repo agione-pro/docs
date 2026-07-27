@@ -9,7 +9,7 @@ This scenario covers account registration, password login, email-code login, and
 
 ## Applicable Roles
 
-- Platform User, Model Provider, and Platform Operator
+- End User, Model Provider, and Platform Operator
 
 ## Goals
 

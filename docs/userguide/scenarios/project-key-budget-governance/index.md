@@ -9,7 +9,7 @@ This scenario helps provider accounts create projects, set budgets and model all
 
 ## Applicable Roles
 
-- Model Providers, platform users, and provider administrators
+- Model Providers, end users, and provider administrators
 
 ## Scenario Goals
 

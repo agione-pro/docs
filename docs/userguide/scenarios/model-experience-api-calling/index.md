@@ -9,7 +9,7 @@ This scenario helps users discover models, try them in the playground, call them
 
 ## Applicable Roles
 
-- Platform User
+- End User
 - Provider reviewing customer calls
 
 ## Goals

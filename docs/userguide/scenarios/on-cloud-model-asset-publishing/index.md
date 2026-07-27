@@ -15,7 +15,7 @@ This scenario guides Platform Operators through preparing runtime assets after c
 
 - Runtime images can be pulled in the target cloud environment.
 - Inference frameworks contain the correct service ports and startup commands.
-- Model assets can be selected by Platform Users during quick deployment.
+- Model assets can be selected by End Users during quick deployment.
 
 ## Scenario Flow
 
@@ -26,7 +26,7 @@ This scenario guides Platform Operators through preparing runtime assets after c
 | 1. Register the image | The target cloud environment can pull a controlled runtime-image version |
 | 2. Build the framework | Image, startup command, port, and framework type are compatible |
 | 3. Create the model asset | Meta-model, deployment point, cloud model, compute plan, and output protocol are linked |
-| 4. Verify availability | Platform Users see the model and available plan in quick deployment |
+| 4. Verify availability | End Users see the model and available plan in quick deployment |
 
 ## Before You Start
 

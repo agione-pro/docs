@@ -21,8 +21,8 @@ The manual is organized into five modules in the left sidebar:
 
 | Your role or goal | Recommended entry | Next step |
 | --- | --- | --- |
-| First-time platform user | Start from this page, then open the target module getting-started page. | Confirm your role, permissions, and target resource before entering a feature page. |
-| General user | Model Services, AI Infra On-Prem, Billing, or Settings. | Decide whether you need to call models, use resources, check billing, or manage personal settings. |
+| First-time end user | Start from this page, then open the target module getting-started page. | Confirm your role, permissions, and target resource before entering a feature page. |
+| End User | Model Services, AI Infra On-Prem, Billing, or Settings. | Decide whether you need to call models, use resources, check billing, or manage personal settings. |
 | Platform operator | Settings, AI Infra On-Cloud, AI Infra On-Prem, and Model Services. | Confirm account permissions, resource onboarding, and approval boundaries first. |
 | Billing or finance user | Billing. | Confirm billing cycle, customer, tenant, and business-line scope. |
 | Model provider | Model Services. | Start with model publishing, review, calling, and revenue paths. |

@@ -10,7 +10,7 @@ This scenario combines identity permissions, resource authorization, model visib
 ## Applicable Roles
 
 - Platform Operator designing and auditing access
-- Model Provider and Platform User validating their effective permissions
+- Model Provider and End User validating their effective permissions
 
 ## Target Outcome
 
