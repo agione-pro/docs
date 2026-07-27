@@ -11,7 +11,7 @@ Model Reviews helps operators review model publishing requests, source configura
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | Model Services > Approvals > Model Reviews |
 | Page route | `/modelone/audit/model` |
 | Managed objects | Model publishing requests, source configuration, protocols, billing, rate limits, and review comments |

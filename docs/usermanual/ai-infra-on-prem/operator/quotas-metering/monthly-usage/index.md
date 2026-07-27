@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Quotas & Metering > Monthly Metering |
 | Page route | `/powerone/quota-metric/month` |
 | Managed objects | Billing period, status, creation time, and monthly summary records |

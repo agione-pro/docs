@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform Operator, Billing Operator |
+| Applicable Role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Finance Operations > Settlement List |
 | Page route | `/billing/admin/provider-settlements` |
 | Managed objects | Settlement statements, tenants, billing cycles, settlement status, payable amount, and posting confirmation |

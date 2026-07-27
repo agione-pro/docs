@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Resource Specifications |
 | Page route | `/powerone/resourcepool/flavor/list` |
 | Managed objects | Specification name, CPU, memory, accelerator, accelerator quantity, specification metrics, associated clusters, and enabled status |

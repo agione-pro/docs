@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider Account, Provider Finance Viewer, Revenue Operator |
+| Applicable Role | Provider Account, Provider Finance Viewer, Revenue Operator |
 | Navigation path | Billing > Earnings > Revenue |
 | Page route | `/billing/provider/revenue` |
 | Managed objects | Revenue overview, revenue account balance, account activity, billing cycle analysis, settlements, and customer revenue |

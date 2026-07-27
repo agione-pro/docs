@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Model Deployment > Templates |
 | Page route | `/powerone/quickstart/inference-template` |
 | Managed objects | Model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information |

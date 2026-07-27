@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Node Statistics |
 | Page route | `/powerone/user-monitor/node` |
 | Managed objects | Node resource trends and status within the user-visible scope |

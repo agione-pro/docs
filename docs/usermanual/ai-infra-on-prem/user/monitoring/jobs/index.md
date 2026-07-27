@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Job Monitoring |
 | Page route | `/powerone/user-monitor/work` |
 | Managed objects | Model instances, online IDEs, runtime instances, and historical jobs within the user-visible scope |

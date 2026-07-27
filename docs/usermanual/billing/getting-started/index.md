@@ -22,7 +22,7 @@ Billing Getting Started helps different roles choose the correct Billing reading
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User, Provider, Platform Operator, Billing Operator, Finance Reviewer, License Admin |
+| Applicable Role | End User, Provider, Platform Operator, Billing Operator, Finance Reviewer, License Admin |
 | Navigation path | Billing > Getting Started |
 | Page route | `/usermanual/billing/getting-started/` |
 | Managed objects | Billing roles, object hierarchy, reading path, and operation boundaries |

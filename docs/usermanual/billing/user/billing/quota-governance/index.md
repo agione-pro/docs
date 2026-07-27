@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User-Side Account, Business Admin, Billing Viewer |
+| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
 | Navigation path | Billing > User Billing > Quota Governance |
 | Page route | `/billing/my/quota-governance` |
 | Managed objects | Project quotas, member quotas, billing-cycle usage, and risk action queue |

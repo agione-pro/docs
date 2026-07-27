@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform Operators, System Maintainers, Security Roles, and End Users |
+| Applicable Role | Platform Operators, System Maintainers, Security Roles, and End Users |
 | Navigation path | Settings |
 | Page route | /settings |
 | Managed objects | Personal Keys, profile information, members, roles, tenants, operation logs, system settings, and API rate control |
@@ -35,8 +35,8 @@ Settings is the platform control area for accounts, members, roles, tenants, log
 | Role | Recommended entry | Typical task |
 | --- | --- | --- |
 | Platform Operator | [Members](./operator/members-roles/members/), [Roles](./operator/members-roles/roles/) | Manage members, roles, tenants, and system settings. |
-| System maintainer | [Platform Settings](./operator/system-settings/platform-settings/), [Login Properties](./operator/system-settings/login-properties/) | Maintain platform parameters, login security, and global policies. |
-| Security role | [Operation Logs](./operator/activity-notifications/operation-logs/), [API Rate Control Overview](./operator/api-rate-control/overview/) | Review audit logs, rate-control rules, and publish status. |
+| System Maintainer | [Platform Settings](./operator/system-settings/platform-settings/), [Login Properties](./operator/system-settings/login-properties/) | Maintain platform parameters, login security, and global policies. |
+| Security Role | [Operation Logs](./operator/activity-notifications/operation-logs/), [API Rate Control Overview](./operator/api-rate-control/overview/) | Review audit logs, rate-control rules, and publish status. |
 | End User | [My Keys](./user/personal/my-keys/), [Members](./user/members-roles/team-members/) | Manage personal credentials, projects, members, roles, and quota requests. |
 
 The visible Settings menus are organized as follows:

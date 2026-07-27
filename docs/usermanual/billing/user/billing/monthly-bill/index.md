@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User-Side Account, Business Admin, Billing Viewer |
+| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
 | Navigation path | Billing > User Billing > Monthly Bill |
 | Page route | `/billing/my/account/transactions/monthly-summary` |
 | Managed objects | Billing-cycle trends, cycle summaries, billing events, and grouped bills |

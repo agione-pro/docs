@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User-Side Account, Business Admin, Billing Viewer |
+| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
 | Navigation path | Billing > User Billing > Top-up Orders |
 | Page route | `/billing/my/top-ups/orders` |
 | Managed objects | Top-up orders, credit sources, top-up amounts, credited amounts, and order states |

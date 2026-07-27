@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Storage Services > File Storage |
 | Page route | `/powerone/storage-service/file` |
 | Managed objects | Shared file systems, directories, capacity, mount relationships, and access policies |

@@ -11,7 +11,7 @@ Updated: 2026-07-13
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider Admin or Provider Account |
+| Applicable Role | Provider Admin or Provider Account |
 | Navigation path | Settings > Members & Roles > Members |
 | Page route | `/user/user-space/team-members` |
 | Managed objects | Members and related status |

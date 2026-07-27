@@ -11,8 +11,8 @@ Updated: 2026-07-08
 | --- | --- | --- |
 | New to Model Services | First understand the relationship between meta-models, model sources, templates, model publishing, review, the model marketplace, and calls. | Read [Publish and Call a Model](../end-to-end/publish-and-call-model/). |
 | Model Provider | First confirm that the operator has maintained meta-models, model sources, templates, and tags. | Publish a model or create an aggregation model in [My Models](../user/studio/my-models/). If submitted through On-Cloud Quick Deployment, view it in [My Deployments](../user/studio/my-deployments/) and continue publishing. |
-| Model caller | First view available models, providers, pricing, performance, and quick-start information in the model marketplace. | Try models in Playground, then view call statistics and logs. |
-| Operator admin | First maintain meta-models, sources, templates, and tags, then process model and app reviews. | Use settings, publishing, and approval modules to govern model services. |
+| Model Caller | First view available models, providers, pricing, performance, and quick-start information in the model marketplace. | Try models in Playground, then view call statistics and logs. |
+| Operator Admin | First maintain meta-models, sources, templates, and tags, then process model and app reviews. | Use settings, publishing, and approval modules to govern model services. |
 
 ## Feature Overview
 
@@ -20,7 +20,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable roles | Model Providers, End Users, Operator Admins |
+| Applicable Roles | Model Providers, End Users, Operator Admins |
 | Recommended entry | This document, [Model Services Overview](../), [Publish and Call a Model](../end-to-end/publish-and-call-model/) |
 | Key objects | Meta-models, model sources, templates, tags, BYOK, aggregation models, model marketplace, Playground, call logs, revenue, reviews |
 | Typical use | Build a mental model for model services and clarify operational boundaries for publishing, review, calling, billing, and revenue |
@@ -34,8 +34,8 @@ Model Services is like an operating map from model listing to model calling: the
 | Role | Reading Focus | Recommended Entry |
 | --- | --- | --- |
 | Model Provider | Publish models, view deployments, view reviews, and track revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Earnings](../user/usage-earnings/model-earnings/) |
-| Model caller | Browse Model Marketplace, try models, integrate APIs, and troubleshoot calls. | [Model Marketplace](../user/discover/models/), [Playground](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
-| Operator admin | Maintain meta-models, model sources, templates, tags, and review workflows. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
+| Model Caller | Browse Model Marketplace, try models, integrate APIs, and troubleshoot calls. | [Model Marketplace](../user/discover/models/), [Playground](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
+| Operator Admin | Maintain meta-models, model sources, templates, tags, and review workflows. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
 
 ## What Is Model Services
 
@@ -54,8 +54,8 @@ In Model Services scenarios, the platform is responsible for:
 | Role | Main Responsibilities | Common Sections |
 | --- | --- | --- |
 | Model Provider | Publish models, view on-cloud deployment records, create aggregation models, configure billing and rate limits, submit reviews, and view revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Earnings](../user/usage-earnings/model-earnings/), [Customer Calls](../user/customer-calls/overview/) |
-| Model caller | Browse the model marketplace, view details, try models in Playground, integrate APIs, and view own call statistics and logs. | [Model Marketplace](../user/discover/models/), [Text Chat](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
-| Operator admin | Maintain meta-models, model sources, templates, and tags; view app lists; process model and app reviews. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
+| Model Caller | Browse the model marketplace, view details, try models in Playground, integrate APIs, and view own call statistics and logs. | [Model Marketplace](../user/discover/models/), [Text Chat](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
+| Operator Admin | Maintain meta-models, model sources, templates, and tags; view app lists; process model and app reviews. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
 
 Operator admins define the basic standards and review criteria for model services. Model providers decide which models to publish and how to publish them. Model callers decide which models to try and call. If options are missing during publishing, usually check meta-models, model sources, templates, tags, and permissions.
 
@@ -113,7 +113,7 @@ The recommended configuration order is: operator admins maintain meta-models, mo
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Role | Yes | Enum | Operator admin | Determines the feature entry to read and operate first. |
+| Role | Yes | Enum | Operator Admin | Determines the feature entry to read and operate first. |
 | Meta-model | No | Text | Example Meta-model A | Capability definition that must be maintained by operators before model publishing. |
 | Model Source | No | Text | Example Source A | Used to connect third-party Endpoint, protocol, and authentication information. |
 | Publishing Object | No | Text | Example Model A | Model that the Model Provider prepares to submit for review or listing. |

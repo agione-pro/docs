@@ -32,18 +32,18 @@ Model Services works like a model capability marketplace plus an operations cons
 | Role | Recommended Entry | Typical Tasks |
 | --- | --- | --- |
 | Model Provider | [My Models](./user/studio/my-models/), [My Deployments](./user/studio/my-deployments/), [Model Earnings](./user/usage-earnings/model-earnings/) | Publish models, maintain versions, and view calls and earnings. Models submitted through on-cloud quick deployment can be viewed in `Studio > My Deployments` and then published. |
-| Model caller | [Model Marketplace](./user/discover/models/), [Playground](./user/playground/text/), [My Calls](./user/my-calls/overview/) | Discover models, try outputs, integrate APIs, and troubleshoot calls. |
-| Operator admin | [Meta-models](./operator/settings/meta-models/), [Model Sources](./operator/settings/model-source/), [Model Reviews](./operator/approvals/model-reviews/) | Maintain base configuration, review models, and govern visibility. |
+| Model Caller | [Model Marketplace](./user/discover/models/), [Playground](./user/playground/text/), [My Calls](./user/my-calls/overview/) | Discover models, try outputs, integrate APIs, and troubleshoot calls. |
+| Operator Admin | [Meta-models](./operator/settings/meta-models/), [Model Sources](./operator/settings/model-source/), [Model Reviews](./operator/approvals/model-reviews/) | Maintain base configuration, review models, and govern visibility. |
 
 ## Where Should I Start
 
 | User or Goal | Start Here | Next Step |
 | --- | --- | --- |
-| New user | [Getting Started](./getting-started/) | Understand the relationship among meta-models, model sources, templates, publishing, review, marketplace, and calls. |
+| New User | [Getting Started](./getting-started/) | Understand the relationship among meta-models, model sources, templates, publishing, review, marketplace, and calls. |
 | Full workflow | [Publish and Call a Model](./end-to-end/publish-and-call-model/) | Follow the end-to-end path for publishing, review, Playground trials, calls, revenue, and troubleshooting. |
-| Operator admin | [Meta-models](./operator/settings/meta-models/), [Model Sources](./operator/settings/model-source/), [Model Reviews](./operator/approvals/model-reviews/) | Maintain base configuration, review models, and govern visibility. |
+| Operator Admin | [Meta-models](./operator/settings/meta-models/), [Model Sources](./operator/settings/model-source/), [Model Reviews](./operator/approvals/model-reviews/) | Maintain base configuration, review models, and govern visibility. |
 | Model Provider | [My Models](./user/studio/my-models/), [My Deployments](./user/studio/my-deployments/), [Model Earnings](./user/usage-earnings/model-earnings/) | Publish models, track deployment records, and view earnings and customer calls. |
-| Model caller | [Model Marketplace](./user/discover/models/), [Playground](./user/playground/text/), [My Calls](./user/my-calls/overview/) | Browse models, try outputs, integrate APIs, and view call logs. |
+| Model Caller | [Model Marketplace](./user/discover/models/), [Playground](./user/playground/text/), [My Calls](./user/my-calls/overview/) | Browse models, try outputs, integrate APIs, and view call logs. |
 
 ## Find an Entry by Goal
 

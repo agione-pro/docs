@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > API Rate Control > Publish Center |
 | Page route | `/user/system/rate-control/publish` |
 | Managed objects | API rate-control rule versions, publish records, node counts, publishers, and publish times |

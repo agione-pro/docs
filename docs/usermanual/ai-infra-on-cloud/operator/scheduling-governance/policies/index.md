@@ -11,7 +11,7 @@ Updated: 2026-07-21
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Scheduling Governance > Policies |
 | Page route | `/infrahub/op/schedule/policy` |
 | Managed objects | Policy name, Label ID, scenario, associated model, route topology, health probe rules, and action entries |

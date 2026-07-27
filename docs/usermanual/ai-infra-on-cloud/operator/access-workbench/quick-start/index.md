@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Access Workbench > Quick Access |
 | Page route | `/infrahub/op/workbanch/quick` |
 | Managed objects | Cloud platforms, authorization, accounts, resource pools, and pool authorization |

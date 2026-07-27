@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Block Storage |
 | Page route | `/powerone/resourcepool/block` |
 | Managed objects | Block Storage Type, Cluster Name, Mon Node, FSID, Storage Pool, Admin Key, Over-provision Ratio, Tenant Quota Limit, thresholds, and Description |

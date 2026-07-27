@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > System > System Setting |
 | Page route | `/powerone/system/config-properties` |
 | Managed objects | System configuration items, configuration values, descriptions, status, and action entries |

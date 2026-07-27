@@ -10,8 +10,8 @@ Updated: 2026-07-13
 | Who you are | Check first | Next step |
 | --- | --- | --- |
 | End User | Confirm your account, projects, Keys, quotas, and tenant scope. | Open [user-side Settings](../user/personal/dashboard/). |
-| Operator admin | Confirm members, roles, tenants, and operation logs. | Open [operator-side Settings](../operator/personal/profile/). |
-| Security admin | Confirm login properties, account recovery, and third-party login. | Open [Login Properties](../operator/system-settings/login-properties/). |
+| Operator Admin | Confirm members, roles, tenants, and operation logs. | Open [operator-side Settings](../operator/personal/profile/). |
+| Security Admin | Confirm login properties, account recovery, and third-party login. | Open [Login Properties](../operator/system-settings/login-properties/). |
 | Rate-control admin | Confirm request trends, matched rules, and publish status. | Open [API Rate Control Overview](../operator/api-rate-control/overview/). |
 
 ## Feature Overview
@@ -35,8 +35,8 @@ Settings is the platform control panel. Confirm who you are first, then confirm 
 | Role | Start here | Next step |
 | --- | --- | --- |
 | End User | [User-side Settings](../user/personal/dashboard/) | Review profile, projects, Keys, quotas, and tenant rules. |
-| Operator admin | [Operator-side Settings](../operator/personal/profile/) | Check members, roles, tenants, and logs. |
-| Security admin | [Login Properties](../operator/system-settings/login-properties/) | Configure verification codes, account recovery, and third-party login. |
+| Operator Admin | [Operator-side Settings](../operator/personal/profile/) | Check members, roles, tenants, and logs. |
+| Security Admin | [Login Properties](../operator/system-settings/login-properties/) | Configure verification codes, account recovery, and third-party login. |
 | Rate-control admin | [API Rate Control Overview](../operator/api-rate-control/overview/) | Review trends before configuring rules. |
 
 ## What Settings Is
@@ -48,8 +48,8 @@ Settings is the unified entry for platform accounts, permissions, tenants, secur
 | Role | Main responsibility | Common entry |
 | --- | --- | --- |
 | End User | Manage personal details, projects, Keys, quota requests, and objects visible within the tenant. | [User-side Settings](../user/personal/dashboard/) |
-| Operator admin | Manage members, roles, tenants, and operation logs. | [Members](../operator/members-roles/members/), [Roles](../operator/members-roles/roles/) |
-| Security admin | Maintain login properties, account recovery, and third-party login policies. | [Login Properties](../operator/system-settings/login-properties/) |
+| Operator Admin | Manage members, roles, tenants, and operation logs. | [Members](../operator/members-roles/members/), [Roles](../operator/members-roles/roles/) |
+| Security Admin | Maintain login properties, account recovery, and third-party login policies. | [Login Properties](../operator/system-settings/login-properties/) |
 | Rate-control admin | Review API rate-control trends, rules, audits, and publish status. | [API Rate Control Overview](../operator/api-rate-control/overview/) |
 
 ## Settings Object Hierarchy
@@ -96,7 +96,7 @@ Settings is the unified entry for platform accounts, permissions, tenants, secur
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Entry | Yes | Navigation item | `Members & Roles > Members` | Locates the next Settings page to open. |
-| Role | Yes | Enum | `Operator admin` | Determines whether to use the user side or operator side. |
+| Role | Yes | Enum | `Operator Admin` | Determines whether to use the user side or operator side. |
 | Permission scope | Yes | Role permission | `Admin` | Determines visible menus and allowed actions. |
 | Target object | Conditionally required | Enum | `Role` | Locates members, roles, Keys, login properties, or rate-control configuration. |
 | High-risk action | No | Button / action | `Publish` | Indicates whether approval, a change window, and rollback plan are required. |

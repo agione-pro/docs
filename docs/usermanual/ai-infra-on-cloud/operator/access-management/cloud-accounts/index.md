@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Access Management > Cloud Accounts |
 | Page route | `/infrahub/op/access/account` |
 | Managed objects | Cloud accounts, cloud platforms, cloud platform types, access credentials, and action entries |

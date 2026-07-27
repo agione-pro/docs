@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Image Management |
 | Page route | `/powerone/resourcepool/image` |
 | Managed objects | Client tool, image registry, project/namespace, image name, image tag, image address, image type, architecture, and sync status |

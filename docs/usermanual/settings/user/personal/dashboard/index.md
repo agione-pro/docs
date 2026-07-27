@@ -11,7 +11,7 @@ Updated: 2026-07-13
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider Admin or Provider Account |
+| Applicable Role | Provider Admin or Provider Account |
 | Navigation path | Settings > Personal > Dashboard |
 | Page route | `/user/user-space/workspace/overview` |
 | Managed objects | Dashboard records and related status |

@@ -11,7 +11,7 @@ This document connects the Model Services operations of operator admins, model p
 
 | Item | Content |
 | --- | --- |
-| Applicable roles | Operator Admins, Model Providers, Model Callers |
+| Applicable Roles | Operator Admins, Model Providers, Model Callers |
 | Recommended prerequisites | [Getting Started](../../getting-started/), [Meta-models](../../operator/settings/meta-models/), [My Models](../../user/studio/my-models/), [My Deployments](../../user/studio/my-deployments/) |
 | Output | A configured, reviewed model that is visible in the model marketplace and can be tried and called |
 | Typical use | New model listing, third-party Endpoint access, aggregation model publishing, review acceptance, and call troubleshooting |
@@ -24,15 +24,15 @@ Publishing and calling a model is like placing a model on a shelf and then compl
 
 | Stage | Operator | Goal |
 | --- | --- | --- |
-| Base data preparation | Operator admin | Maintain meta-models, model sources, templates, and tags. |
+| Base data preparation | Operator Admin | Maintain meta-models, model sources, templates, and tags. |
 | Single-Model Publishing | Model Provider | Configure meta-model, source, Endpoint, protocol, billing, and rate limits. |
 | On-Cloud Quick Deployment Branch | Model Provider | Create a deployment record through On-Cloud Quick Deployment first, then select a publish region from My Deployments and enter the publish model page. |
 | Aggregation Model Publishing | Model Provider | Select member models and configure routing policy, billing, and publishing method. |
-| Review processing | Operator admin | Review model or app publishing requests. |
-| Marketplace display | Model caller | View details, providers, quick start, and performance in the model marketplace. |
-| Playground call | Model caller | Select a model in Playground and complete text, image, video, or audio trials. |
-| Data viewing | All roles | View My Calls, call logs, usage details, model revenue, and customer calls. |
-| Troubleshooting loop | All roles | Check base configuration, review status, Endpoint, billing, rate limits, and call logs based on the failure path. |
+| Review processing | Operator Admin | Review model or app publishing requests. |
+| Marketplace display | Model Caller | View details, providers, quick start, and performance in the model marketplace. |
+| Playground call | Model Caller | Select a model in Playground and complete text, image, video, or audio trials. |
+| Data viewing | All Roles | View My Calls, call logs, usage details, model revenue, and customer calls. |
+| Troubleshooting loop | All Roles | Check base configuration, review status, Endpoint, billing, rate limits, and call logs based on the failure path. |
 
 #### Terms Quick Reference
 

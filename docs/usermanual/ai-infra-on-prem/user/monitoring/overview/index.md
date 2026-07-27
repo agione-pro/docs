@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Overview |
 | Page route | `/powerone/user-monitor/overview` |
 | Managed objects | Resource pool monitoring overview, instance runtime status, and key resource trends |
