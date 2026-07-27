@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# 场景概览 - On Cloud 云资源接入
+# 场景概览 - 多云资源接入
 
 指导运营管理员将外部云平台资源（云厂商、云账号、地域）接入 AGIOne 平台，并完成面向业务与租户的授权分配，为后续的部署、调用与计量提供底层资源。
 
@@ -35,15 +35,16 @@ next: true
 
 ## 推荐阅读顺序
 
-1. 接入云平台
-2. 接入云账号和资源池
-3. 配置业务地域授权
-4. 配置租户云平台授权
+1. 先从快速接入和接入总览确认全局进度。
+2. 接入云平台、云账号和资源池。
+3. 配置业务地域授权。
+4. 配置租户云平台授权并用普通用户验证。
 
 ## 文档索引
 
 | 文档 | 说明 |
 | --- | --- |
+| [快速接入与接入总览](./quick-access-overview/) | 查看接入顺序、全局状态和下一步入口 |
 | [接入云平台](./Access-CloudType/) | 添加公有云或私有云厂商 |
 | [接入账号](./Cloud-Accounts/) | 在云平台下添加云账号 |
 | [接入资源池](./Resource-Pools/) | 启用地域节点并维护显示信息 |
@@ -52,10 +53,10 @@ next: true
 
 ## 相关场景
 
-- **[On Cloud 模型资产上架](../on-cloud-model-asset-publishing)**：在本场景的云平台 / 云账号 / 资源池基础上，配置推理框架、模型库与推理镜像（部署资产）
-- **[On Cloud 模型部署与调用](../on-cloud-model-deployment-calling)**：完成资产上架后的部署与调用流程
+- **[多云模型资产上架](../on-cloud-model-asset-publishing/)**：在本场景的云平台 / 云账号 / 资源池基础上，配置推理框架、模型库与推理镜像（部署资产）
+- **[多云模型部署与调用](../on-cloud-model-deployment-calling/)**：完成资产上架后的部署与调用流程
 - **[我的部署与监控（操作手册）](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)**：对已部署的云上实例查看状态、事件和监控
-- **[平台治理与访问控制](../platform-governance-access-control)**：在租户 / 组织维度的访问控制，与本场景的"授权"形成互补
+- **[平台治理与访问控制](../platform-governance-access-control/)**：在租户 / 组织维度的访问控制，与本场景的"授权"形成互补
 
 ## 完成检查
 

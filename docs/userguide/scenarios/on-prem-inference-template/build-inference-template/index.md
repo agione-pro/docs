@@ -21,12 +21,20 @@ The template exposes a compatible framework, model, runtime configuration, and o
 
 ## Steps
 
-1. Create a template and enter its purpose.
-2. Select the model configuration and inference framework.
-3. Select a resource specification containing the target NPU model.
-4. Configure the command, environment variables, ports, health check, and model path.
-5. Align multi-card parallel parameters with the two-card or four-card flavor.
-6. Save and validate the template with a test deployment.
+1. Open [Model Configuration](../../../../usermanual/ai-infra-on-prem/operator/templates/models/) and confirm that model name, type, storage location, and state are available.
+
+![Confirm that model configuration is selectable](./images/model-config-list-browser.png)
+
+2. Open [Inference Frameworks](../../../../usermanual/ai-infra-on-prem/operator/templates/frames/) and confirm that framework version and runtime image support the target NPU.
+3. Open [VRAM Estimation](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/) and confirm one-card and multi-card memory requirements for the parameter scale, precision, and parallel method.
+
+![Review VRAM estimation by model precision and scale](./images/vram-config-list-browser.png)
+
+4. Create a template, enter its purpose, and select the prepared model configuration and inference framework.
+5. Select a resource specification with the target NPU model, card count, and memory.
+6. Configure the command, environment variables, ports, health check, and model path.
+7. Align multi-card parallel parameters with the two-card or four-card specification.
+8. Save and validate image, driver, VRAM, and startup parameters through a test deployment.
 
 ![Inference templates](./images/inference-templates-list.png)
 
@@ -42,7 +50,7 @@ The template exposes a compatible framework, model, runtime configuration, and o
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | The template is visible and available. |
+| 1 | Model, framework, VRAM estimation, and template records are visible and available. |
 | 2 | Its flavor contains the expected NPU model and count. |
 | 3 | A test deployment reaches a creating or running state. |
 

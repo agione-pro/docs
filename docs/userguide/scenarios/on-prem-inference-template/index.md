@@ -14,17 +14,17 @@ This scenario combines a model, inference framework, startup parameters, and res
 
 ## Goals
 
-- Create an inference template that uses an NPU resource specification.
+- Prepare model configuration, inference framework, and VRAM estimation, then create an inference template that uses an NPU resource specification.
 - Make the template explicitly use one, two, or four cards.
 - Allow users to deploy a model from the template.
 
 ## Scenario Flow
 
-**Main path:** Prepare model and runtime dependencies → Build the inference template → Validate one-, two-, or four-card settings → Publish to users
+**Main path:** Maintain model configuration → Confirm inference framework → Validate VRAM estimation → Build the template → Validate one-, two-, or four-card settings → Publish to users
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Prepare dependencies | Model, framework, image, ports, storage, and resource plan are available |
+| 1. Prepare dependencies | Model configuration, framework, VRAM factors, image, storage, and resource plan are available |
 | 2. Build the template | Commands, environment variables, and health checks form reusable configuration |
 | 3. Validate card count | The selected plan matches one-, two-, or four-card parallel settings |
 | 4. Publish for use | A test deployment passes and intended users can select the template |
@@ -32,7 +32,7 @@ This scenario combines a model, inference framework, startup parameters, and res
 ## Before You Start
 
 - Complete accelerator, cluster, metric, and resource-specification setup.
-- Prepare the model configuration, framework, and runtime image.
+- Prepare the model configuration, framework, VRAM estimation, and runtime image.
 - Confirm multi-card parallel parameters and driver compatibility.
 
 ## Recommended Reading Order
@@ -45,7 +45,7 @@ This scenario combines a model, inference framework, startup parameters, and res
 
 | Document | Description |
 | --- | --- |
-| [Build an NPU Inference Template](./build-inference-template/) | Select the model, framework, resource specification, and startup parameters |
+| [Build an NPU Inference Template](./build-inference-template/) | Prepare model, framework, and VRAM estimation, then select resource specification and startup parameters |
 
 ## Completion Checklist
 
@@ -53,6 +53,6 @@ This scenario combines a model, inference framework, startup parameters, and res
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | The template is available. |
+| 1 | Model configuration, framework, VRAM estimation, and template are available. |
 | 2 | It selects the expected NPU flavor. |
 | 3 | A deployment uses the intended card count and parallel parameters. |

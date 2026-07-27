@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="840" viewBox="0 0 1600 840" role="img" aria-labelledby="title desc">
+  <title id="title">AI Infra On-Cloud 多云资源接入流程</title>
+  <desc id="desc">从云平台接入、云账号配置、地域与资源池准备、业务区域授权、算力规格同步到形成部署候选。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#667085"/>
+    </marker>
+    <style>
+      .title { font: 700 38px Arial, "Microsoft YaHei", sans-serif; fill: #182230; letter-spacing: 0; }
+      .subtitle { font: 400 21px Arial, "Microsoft YaHei", sans-serif; fill: #475467; letter-spacing: 0; }
+      .step { font: 700 19px Arial, "Microsoft YaHei", sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; letter-spacing: 0; }
+      .card-title { font: 700 25px Arial, "Microsoft YaHei", sans-serif; fill: #182230; text-anchor: middle; letter-spacing: 0; }
+      .card-desc { font: 400 18px Arial, "Microsoft YaHei", sans-serif; fill: #475467; text-anchor: middle; letter-spacing: 0; }
+      .phase { font: 700 17px Arial, "Microsoft YaHei", sans-serif; fill: #344054; text-anchor: middle; letter-spacing: 0; }
+      .note { font: 700 19px Arial, "Microsoft YaHei", sans-serif; fill: #20304a; text-anchor: middle; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="840" fill="#ffffff"/>
+  <text x="72" y="62" class="title">AI Infra On-Cloud 多云资源接入</text>
+  <text x="72" y="100" class="subtitle">运营准备资源与授权范围，形成可供推荐式部署使用的候选算力</text>
+
+  <text x="120" y="142" class="phase" text-anchor="start">阶段一 · 接入资源</text>
+  <g stroke="#667085" stroke-width="3" marker-end="url(#arrow)">
+    <line x1="520" y1="270" x2="594" y2="270"/>
+    <line x1="1000" y1="270" x2="1074" y2="270"/>
+  </g>
+
+  <g transform="translate(120 160)">
+    <rect width="400" height="220" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#4b6fae"/><text x="38" y="38" class="step">1</text>
+    <text x="200" y="76" class="card-title">接入云平台</text>
+    <text x="200" y="122" class="card-desc">阿里云 · AWS · AGIOne-PowerOne</text>
+    <text x="200" y="158" class="card-desc">确认平台状态、地域和服务能力</text>
+    <text x="200" y="194" class="card-desc">建立多云资源入口</text>
+  </g>
+
+  <g transform="translate(600 160)">
+    <rect width="400" height="220" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#2f8f64"/><text x="38" y="38" class="step">2</text>
+    <text x="200" y="76" class="card-title">配置云账号</text>
+    <text x="200" y="122" class="card-desc">维护平台访问凭据</text>
+    <text x="200" y="158" class="card-desc">校验账号连接和租户可用状态</text>
+    <text x="200" y="194" class="card-desc">支持同一平台的多个账号</text>
+  </g>
+
+  <g transform="translate(1080 160)">
+    <rect width="400" height="220" rx="8" fill="#fff2e8" stroke="#c56a2d" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#c56a2d"/><text x="38" y="38" class="step">3</text>
+    <text x="200" y="76" class="card-title">准备地域与资源池</text>
+    <text x="200" y="122" class="card-desc">同步云厂商地域和可用资源</text>
+    <text x="200" y="158" class="card-desc">组织公共或专属资源范围</text>
+    <text x="200" y="194" class="card-desc">形成云侧算力边界</text>
+  </g>
+
+  <path d="M 1280 380 V 430 H 320 V 474" fill="none" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="800" y="422" class="phase">完成接入后进入授权与规格准备</text>
+
+  <text x="120" y="466" class="phase" text-anchor="start">阶段二 · 授权并形成候选</text>
+  <g stroke="#667085" stroke-width="3" marker-end="url(#arrow)">
+    <line x1="520" y1="590" x2="594" y2="590"/>
+    <line x1="1000" y1="590" x2="1074" y2="590"/>
+  </g>
+
+  <g transform="translate(120 480)">
+    <rect width="400" height="220" rx="8" fill="#f1eeff" stroke="#7256c8" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#7256c8"/><text x="38" y="38" class="step">4</text>
+    <text x="200" y="76" class="card-title">配置业务授权</text>
+    <text x="200" y="122" class="card-desc">租户云平台授权 · 业务区域授权</text>
+    <text x="200" y="158" class="card-desc">控制不同业务可见的云商与地域</text>
+    <text x="200" y="194" class="card-desc">支撑隔离、合规和成本治理</text>
+  </g>
+
+  <g transform="translate(600 480)">
+    <rect width="400" height="220" rx="8" fill="#e9f7f6" stroke="#238c83" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#238c83"/><text x="38" y="38" class="step">5</text>
+    <text x="200" y="76" class="card-title">同步算力规格</text>
+    <text x="200" y="122" class="card-desc">GPU · CPU · 内存 · 实例数量</text>
+    <text x="200" y="158" class="card-desc">价格 · 币种 · 计费周期</text>
+    <text x="200" y="194" class="card-desc">按云平台与地域分别确认</text>
+  </g>
+
+  <g transform="translate(1080 480)">
+    <rect width="400" height="220" rx="8" fill="#fff8e1" stroke="#b58a16" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#b58a16"/><text x="38" y="38" class="step">6</text>
+    <text x="200" y="76" class="card-title">进入部署候选</text>
+    <text x="200" y="122" class="card-desc">账号有效 · 授权完整</text>
+    <text x="200" y="158" class="card-desc">地域、资源池和规格可用</text>
+    <text x="200" y="194" class="card-desc">供推荐式部署筛选与排序</text>
+  </g>
+
+  <rect x="72" y="744" width="1456" height="56" rx="8" fill="#f2f4f7" stroke="#667085" stroke-width="2"/>
+  <text x="800" y="780" class="note">接入能力决定“有哪些资源”，授权关系决定“哪些业务可以使用”</text>
+</svg>

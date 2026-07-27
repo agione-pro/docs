@@ -1,3 +1,8 @@
+---
+prev: false
+next: true
+---
+
 # 发布模型（嵌入模型）
 
 ## 场景目标
@@ -6,7 +11,7 @@
 
 ## 适用角色
 
-- 模型提供方（Provider）
+- 模型提供方
 
 ## 开始前准备
 
@@ -33,7 +38,7 @@
     - 填写 **"API密钥"**（如 `sk-***`）；
     - 填写 **"模型源ID"**（如 `text-embedding-v1`，即发往上游厂商的精确模型名称）。
 
-![模型源/元模型信息](./images/step-1-model-source_meta-model-information.png)
+![模型源/元模型信息](./images/step-1-model-source-meta-model-information.png)
 
 - **模型类型**：在"模型类型"区块默认 **"嵌入模型"**。
 
@@ -50,7 +55,7 @@
 
 ![模型参数配置](./images/step-1-model-parameter-configuration.png)
 
-- **支持协议与默认参数**：至少选择一个协议（嵌入模型仅 OpenAI-Embeddings 可选），只有先进行协议连通性测试，连通性测试成功后可执行后续操作；测试通过后填写 **"Endpoint"**（如 `https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings`）并配置 **"输入参数"**（Encoding Format、Input 等，可设置"是否必填"）。嵌入模型**无调用配置 / 回调地址 / 返回结果解析**区块（默认同步调用、返回结构固定）。
+- **支持协议与默认参数**：至少选择一个协议（嵌入模型仅 OpenAI-Embeddings 可选），只有先进行协议连通性测试，连通性测试成功后可执行后续操作；测试通过后填写 **"接口地址"**（如 `https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings`）并配置 **"输入参数"**（Encoding Format、Input 等，可设置"是否必填"）。嵌入模型**无调用配置 / 回调地址 / 返回结果解析**区块（默认同步调用、返回结构固定）。
 
 ![官方原生协议与默认高级参数](./images/step-1-official-native-protocol.png)
 
@@ -107,7 +112,7 @@
 | 最大输入 | 数值 | `8192K` | 必填，单次输入 Token 上限 |
 | 最大输出 | 数值 | （留空） | 嵌入模型不限制输出 Token |
 | 支持协议 | 多选 | `OpenAI-Embeddings` | 必填，嵌入模型兼容的 API 协议，需先进行连通性测试 |
-| Endpoint | URL | `https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings` | 必填，协议对应的端点地址 |
+| 接口地址 | URL | `https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings` | 必填，协议对应的端点地址 |
 | 输入参数 | 参数列表 | `Encoding Format / Input` | 选填，按协议预设的输入参数（可设置是否必填） |
 | 个性化标识 | 文本 | `text-embedding-v1` | 必填，模型对外展示的自定义标识 |
 | 描述 | 文本 | `文本向量化...` | 选填，模型的说明描述 |

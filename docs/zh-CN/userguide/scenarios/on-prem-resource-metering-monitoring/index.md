@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# 场景概览 - On-Prem 资源计量与监控
+# 场景概览 - 本地算力平台资源计量与监控
 
 本场景介绍如何为租户分配 NPU 配额，并从设备、节点和作业维度检查资源使用。对于 4 张 NPU 卡，本场景负责回答“谁能用几张卡、当前哪张卡被谁占用、是否存在异常”。
 
@@ -39,7 +39,8 @@ next: true
 
 1. [配置租户 NPU 配额](./tenant-quotas/)
 2. [监控设备、节点与作业](./resource-monitoring/)
-3. [部署模型并检查状态](../on-prem-model-deployment-status/)
+3. [核对月度计量与明细](./metering-reconciliation/)
+4. [部署模型并检查状态](../on-prem-model-deployment-status/)
 
 ## 文档索引
 
@@ -47,6 +48,7 @@ next: true
 | --- | --- |
 | [配置租户 NPU 配额](./tenant-quotas/) | 为目标租户分配可使用的 NPU 数量 |
 | [监控设备、节点与作业](./resource-monitoring/) | 从卡、节点、作业三个维度核对状态和占用 |
+| [核对月度计量与明细](./metering-reconciliation/) | 将租户额度、月度用量和计量明细对应到实际作业 |
 
 ## 完成检查
 
@@ -57,3 +59,4 @@ next: true
 | 1 | 租户可用配额满足测试或生产要求。 |
 | 2 | 设备监控可见全部 4 张 NPU 卡。 |
 | 3 | 作业占用、节点水位和设备利用率能够相互对应。 |
+| 4 | 租户额度、月度用量和计量明细在同一账期可复核。 |

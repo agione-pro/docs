@@ -1,3 +1,8 @@
+---
+prev: false
+next: true
+---
+
 # 发布模型（视频模型）
 
 ## 场景目标
@@ -6,7 +11,7 @@
 
 ## 适用角色
 
-- 模型提供方（Provider）
+- 模型提供方
 
 ## 开始前准备
 
@@ -33,7 +38,7 @@
     - 填写 **"API密钥"**（如 `sk-***`）；
     - 填写 **"模型源ID"**（如 `wan2.7-t2v`，即发往上游厂商的精确模型名称）。
 
-![模型源/元模型信息](./images/step-1-model-source_meta-model-information.png)
+![模型源/元模型信息](./images/step-1-model-source-meta-model-information.png)
 
 - **模型类型**：在"模型类型"区块默认 **"视频模型"**，默认并选择 **"模型子类型"**（如 文生视频）。
 
@@ -49,7 +54,7 @@
 
 ![模型参数配置](./images/step-1-model-parameter-configuration.png)
 
-- **支持协议与默认参数**：至少选择一个协议（视频模型仅 OpenAI-Video 可选），只有先进行协议连通性测试，连通性测试成功后可执行后续操作；测试通过后填写 **"Endpoint"**（如 `https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis`）并配置 **"输入参数"**（Prompt、Negative Prompt、Audio URL、Resolution、Ratio、Prompt Extend、Watermark、Duration、Seed 等，可设置"是否必填"）。
+- **支持协议与默认参数**：至少选择一个协议（视频模型仅 OpenAI-Video 可选），只有先进行协议连通性测试，连通性测试成功后可执行后续操作；测试通过后填写 **"接口地址"**（如 `https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis`）并配置 **"输入参数"**（Prompt、Negative Prompt、Audio URL、Resolution、Ratio、Prompt Extend、Watermark、Duration、Seed 等，可设置"是否必填"）。
 - **调用配置**：
     - 选择 **"调用方式"**：**"异步"**（视频模型通常为异步）；
     - 填写 **"回调地址"**（如 `https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}`，选择厂商模板一键填充参数映射，请选择「自定义」手动填写）；
@@ -85,7 +90,7 @@
         - 可启用 **"输入是否包含视频"**（识别字段）；
         - 可启用 **"输出是否包含音频"**（识别字段）；
         - 可启用 **"输出分辨率"**（识别字段 `resolution`）；
-        - **价格矩阵**：必须为每个计价组合填写价格，可点击 **"添加组合"** 新增，按分辨率（480P / 720P 等）分别设置 **"售价"**（Credits/1M tokens），右侧有 **"上调 +20%"** 按钮用于快速调整价格；
+        - **价格矩阵**：必须为每个计价组合填写价格，可点击 **"添加组合"** 新增，按分辨率（480P / 720P 等）分别设置 **"售价"**（Credits/second），右侧有 **"上调 +20%"** 按钮用于快速调整价格；
     - **免费额度**：开启后可设置可领取额度、人数、总量；
 
 ![计费配置](./images/step-2-billing-configuration.png)
@@ -117,7 +122,7 @@
 | 输入模态           | 多选       | `文本 / 语音`                                                                                                 | 必填，模型支持的输入数据类型                      |
 | 输出模态           | 多选       | `视频`                                                                                                      | 必填，模型支持的输出数据类型                      |
 | 支持协议           | 多选       | `OpenAI-Video`                                                                                            | 必填，视频模型兼容的 API 协议，需先进行连通性测试         |
-| Endpoint       | URL      | `https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis`                    | 必填，协议对应的端点地址                        |
+| 接口地址       | URL      | `https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis`                    | 必填，协议对应的端点地址                        |
 | 输入参数           | 参数列表     | `Prompt / Negative Prompt / Audio URL / Resolution / Ratio / Prompt Extend / Watermark / Duration / Seed` | 选填，按协议预设的输入参数（可设置是否必填）              |
 | 调用方式           | 单选       | `异步`                                                                                                      | 必填，视频模型通常为异步调用                      |
 | 回调地址           | URL      | `https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}`                                                   | 必填，异步任务完成后的回调地址                     |
@@ -135,7 +140,7 @@
 | 输入是否包含视频       | 开关       | `开启 / 关闭`                                                                                                 | 选填，识别字段，按输入是否含视频差异化定价               |
 | 输出是否包含音频       | 开关       | `开启 / 关闭`                                                                                                 | 选填，识别字段，按输出是否含音频差异化定价               |
 | 输出分辨率          | 开关       | `开启 / 关闭`                                                                                                 | 选填，识别字段 `resolution`，按分辨率差异化定价      |
-| 价格矩阵           | 分组       | `480P：6 Credits/1M tokens  720P：10 Credits/1M tokens`                                                     | 必填，为每个计价组合分别设置售价（Credits/1M tokens） |
+| 价格矩阵           | 分组       | `480P：6 Credits/second  720P：10 Credits/second`                                                           | 必填，为每个计价组合分别设置按时长计费的售价（Credits/second） |
 | 免费额度           | 开关       | `开启 / 未启用`                                                                                                | 选填，配置模型的免费调用额度                      |
 | 是否启用限流         | 单选       | `启用限流 / 不启用`                                                                                              | 选填，配置模型的调用频率限制                      |
 | RPM（每分钟请求数）    | 数值 / 不限制 | `2 次/分钟`                                                                                                  | 选填，每分钟请求数上限，可勾选"不限制"                |

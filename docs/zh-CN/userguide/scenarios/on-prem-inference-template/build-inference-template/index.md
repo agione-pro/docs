@@ -6,7 +6,7 @@
 
 ## 适用角色
 
-- 平台运营方（Operator）
+- 平台运营方
 
 ## 开始前准备
 
@@ -16,17 +16,25 @@
 ## 功能入口
 
 - **角色**：运营管理员
-- **菜单**：AI 基础设施（On-Prem） > 模板 > 推理模板
+- **菜单**：AI 基础设施（本地算力平台） > 模板 > 推理模板
 - **路由**：`/powerone/fast-build-v2/inference-templates`
 
 ## 操作步骤
 
-1. 点击 **新增**，填写模板名称和用途。
-2. 选择已维护的模型配置和推理框架。
-3. 选择包含目标 NPU 型号的资源规格。
-4. 配置启动命令、环境变量、端口、健康检查和模型路径。
-5. 多卡模板中设置与 2 卡或 4 卡一致的并行参数。
-6. 保存模板，并使用测试部署验证镜像、驱动和启动参数。
+1. 进入[模型配置](../../../../usermanual/ai-infra-on-prem/operator/templates/models/)，确认模型名称、类型、存储位置和状态可用。
+
+![确认模型配置可供模板选择](../../../../usermanual/ai-infra-on-prem/operator/templates/models/images/models-list.png)
+
+2. 进入[推理框架](../../../../usermanual/ai-infra-on-prem/operator/templates/frames/)，确认框架版本、运行镜像和目标 NPU 兼容。
+3. 进入[显存测算](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/)，根据参数规模、精度和并行方式确认单卡及多卡显存需求。
+
+![按模型精度和规模核对显存测算](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/images/vram-config-list.png)
+
+4. 点击 **新增**，填写模板名称和用途，选择已维护的模型配置和推理框架。
+5. 选择包含目标 NPU 型号、卡数和显存容量的资源规格。
+6. 配置启动命令、环境变量、端口、健康检查和模型路径。
+7. 多卡模板中设置与 2 卡或 4 卡一致的并行参数。
+8. 保存模板，并使用测试部署验证镜像、驱动、显存和启动参数。
 
 ![推理模板列表](./images/inference-templates-list.png)
 
@@ -42,7 +50,7 @@
 
 | 检查项 | 通过标准 |
 | --- | --- |
-| 1 | 模板列表可见且状态正常。 |
+| 1 | 模型、框架、显存测算和模板记录可见且状态正常。 |
 | 2 | 模板引用的资源规格包含正确的 NPU 型号和数量。 |
 | 3 | 测试部署能够进入创建或运行状态。 |
 

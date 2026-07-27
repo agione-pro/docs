@@ -16,13 +16,6 @@ export const zhNavbar = [
         ]
       },
       {
-        text: '运维',
-        items: [
-          { text: '管理门户手册', link: '/zh-CN/operations/admin-portal-manual/' },
-          { text: '运维指南', link: '/zh-CN/operations/om-guide/' },
-        ],
-      },
-      {
         text: '其他',
         items: [
           { text: 'FAQ', link: '/zh-CN/others/faq/' },

@@ -29,6 +29,16 @@ The cluster is available, all four NPU cards are discovered on the expected node
 
 ![Cluster management](./images/clusters-list.png)
 
+## How to Verify All Four NPU Cards
+
+| Check | Expected Result |
+| --- | --- |
+| Cluster state | Available |
+| Node state | Every node hosting an NPU is Ready |
+| Device total | Four NPU cards |
+| Allocatable count | Matches actual usage after subtracting running workloads |
+| Resource key | Matches Accelerator Management and specification metrics |
+
 ## Completion Checklist
 
 > **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.

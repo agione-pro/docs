@@ -3,14 +3,14 @@ prev: false
 next: true
 ---
 
-# On-Prem 开发训练与资产沉淀
+# 本地算力平台 开发训练与资产沉淀
 
-本场景指导普通用户使用 On-Prem 算力创建在线开发环境或运行实例，并把代码、数据、镜像和模型产物沉淀为可复用资产。
+本场景指导普通用户使用 本地算力平台 算力创建在线开发环境或运行实例，并把代码、数据、镜像和模型产物沉淀为可复用资产。
 
 ## 适用角色
 
-- 创建开发或训练任务的平台用户（End User）
-- 准备镜像、存储、算力、配额和监控的平台运营方（Operator）
+- 创建开发或训练任务的平台用户
+- 准备镜像、存储、算力、配额和监控的平台运营方
 
 ## 场景目标
 
@@ -30,13 +30,13 @@ next: true
 
 1. 准备对象存储或文件存储，确认数据路径和结果路径可访问。参考[对象存储](../../../usermanual/ai-infra-on-prem/user/storage/object-storage/)和[文件存储](../../../usermanual/ai-infra-on-prem/user/storage/file-storage/)。
 2. 准备或选择带版本的运行镜像，并确认目标地域能够拉取。参考[镜像服务](../../../usermanual/ai-infra-on-prem/user/extensions/images/)。
-3. 创建在线 IDE，挂载持久化工作区，并确认开发环境能够正常打开。
+3. 进入[开发环境](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/)，创建在线 IDE，选择镜像和资源规格，挂载持久化工作区，并确认开发环境能够正常打开。
 
-![核对开发环境](./images/dev-environments.png)
+![创建在线 IDE 并配置持久化工作区](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/images/create-ide.png)
 
-4. 创建训练或批处理运行实例，并确认作业进入运行状态且持续输出日志。
+4. 进入[模型训练](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/)，创建训练或批处理运行实例，核对代码、数据、输出目录和启动命令，并确认作业进入运行状态且持续输出日志。
 
-![核对模型训练作业](./images/model-training.png)
+![创建训练运行实例](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/images/create-runtime-instance.png)
 
 5. 将镜像、模型和结果保存到受控存储，确保后续任务可以复用。
 6. 查看[作业监控](../../../usermanual/ai-infra-on-prem/user/monitoring/jobs/)和[资源用量](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/)，停止不再使用的实例。

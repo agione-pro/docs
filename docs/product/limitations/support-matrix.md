@@ -1,7 +1,7 @@
-# Support Matrix
+﻿# Support Matrix
 
 :::: info Document Information
-Version: v1.1
+Version: v1.0
 Updated: 2026-07-13
 Functional baseline: User Manual updated on 2026-07-10
 ::::

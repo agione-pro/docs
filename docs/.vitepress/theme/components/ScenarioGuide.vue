@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useRoute } from 'vitepress'
+import { useRoute, withBase } from 'vitepress'
 
 type Role = 'operator' | 'provider' | 'enduser'
 type Subsystem = 'platform' | 'settings' | 'model-services' | 'billing' | 'on-prem' | 'on-cloud'
@@ -33,7 +33,9 @@ interface CommonTask {
 
 const route = useRoute()
 
-const locale = computed<Locale>(() => (route.path.startsWith('/zh-CN/') ? 'zh' : 'en'))
+const locale = computed<Locale>(() =>
+  route.data.relativePath.startsWith('zh-CN/') || route.path.includes('/zh-CN/') ? 'zh' : 'en'
+)
 
 const uiText: Record<Locale, Record<string, string>> = {
   zh: {
@@ -82,36 +84,81 @@ const uiText: Record<Locale, Record<string, string>> = {
   },
 }
 
-const roleOptions = computed(() => [
-  { value: 'all', label: uiText[locale.value].all },
-  { value: 'operator', label: 'Operator' },
-  { value: 'provider', label: 'Provider' },
-  { value: 'enduser', label: 'End User' },
-])
+const roleOptions = computed(() => {
+  const labels: Record<Locale, Record<Role, string>> = {
+    zh: { operator: '平台运营方', provider: '模型提供方', enduser: '平台用户' },
+    en: { operator: 'Operator', provider: 'Provider', enduser: 'End User' },
+  }
 
-const subsystemOptions = computed(() => [
-  { value: 'all', label: uiText[locale.value].all },
-  { value: 'on-prem', label: 'AI Infra-On Prem' },
-  { value: 'on-cloud', label: 'AI Infra-On Cloud' },
-  { value: 'model-services', label: 'Model Services' },
-  { value: 'billing', label: 'Billing' },
-  { value: 'platform', label: 'Platform' },
-  { value: 'settings', label: 'Settings' },
-])
+  return [
+    { value: 'all', label: uiText[locale.value].all },
+    { value: 'operator', label: labels[locale.value].operator },
+    { value: 'provider', label: labels[locale.value].provider },
+    { value: 'enduser', label: labels[locale.value].enduser },
+  ]
+})
 
-const roleLabels: Record<Role, string> = {
-  operator: 'Operator',
-  provider: 'Provider',
-  enduser: 'End User',
+const subsystemOptions = computed(() => {
+  const labels: Record<Locale, Record<Subsystem, string>> = {
+    zh: {
+      platform: '平台',
+      settings: '设置',
+      'model-services': '模型及 AI 服务',
+      billing: '账务',
+      'on-prem': '本地算力平台',
+      'on-cloud': '多云调度平台',
+    },
+    en: {
+      platform: 'Platform',
+      settings: 'Settings',
+      'model-services': 'Model Services',
+      billing: 'Billing',
+      'on-prem': 'AI Infra-On Prem',
+      'on-cloud': 'AI Infra-On Cloud',
+    },
+  }
+
+  return [
+    { value: 'all', label: uiText[locale.value].all },
+    { value: 'on-prem', label: labels[locale.value]['on-prem'] },
+    { value: 'on-cloud', label: labels[locale.value]['on-cloud'] },
+    { value: 'model-services', label: labels[locale.value]['model-services'] },
+    { value: 'billing', label: labels[locale.value].billing },
+    { value: 'platform', label: labels[locale.value].platform },
+    { value: 'settings', label: labels[locale.value].settings },
+  ]
+})
+
+const roleLabels: Record<Locale, Record<Role, string>> = {
+  zh: {
+    operator: '平台运营方',
+    provider: '模型提供方',
+    enduser: '平台用户',
+  },
+  en: {
+    operator: 'Operator',
+    provider: 'Provider',
+    enduser: 'End User',
+  },
 }
 
-const subsystemLabels: Record<Subsystem, string> = {
-  platform: 'Platform',
-  settings: 'Settings',
-  'model-services': 'Model Services',
-  billing: 'Billing',
-  'on-prem': 'On-Prem',
-  'on-cloud': 'On Cloud',
+const subsystemLabels: Record<Locale, Record<Subsystem, string>> = {
+  zh: {
+    platform: '平台',
+    settings: '设置',
+    'model-services': '模型及 AI 服务',
+    billing: '账务',
+    'on-prem': '本地算力平台',
+    'on-cloud': '多云调度平台',
+  },
+  en: {
+    platform: 'Platform',
+    settings: 'Settings',
+    'model-services': 'Model Services',
+    billing: 'Billing',
+    'on-prem': 'On-Prem',
+    'on-cloud': 'On Cloud',
+  },
 }
 
 const commonTasks: CommonTask[] = [
@@ -238,11 +285,11 @@ const commonTasks: CommonTask[] = [
         },
       },
       {
-        scenarioId: 19,
+        scenarioId: 22,
         stage: { zh: '调用治理', en: 'Govern' },
         description: {
-          zh: '配置 Key、模型授权、调用限流和额度边界。',
-          en: 'Configure keys, model authorization, rate limits, and quota boundaries.',
+          zh: '配置项目预算、Key、模型白名单和调用限额。',
+          en: 'Configure project budgets, keys, model allowlists, and calling limits.',
         },
       },
       {
@@ -318,11 +365,11 @@ const commonTasks: CommonTask[] = [
         },
       },
       {
-        scenarioId: 19,
+        scenarioId: 22,
         stage: { zh: '配置调用', en: 'Configure' },
         description: {
-          zh: '准备个人 Key、模型授权、限流和额度。',
-          en: 'Prepare personal keys, model authorization, rate limits, and quotas.',
+          zh: '准备项目、个人 Key、模型白名单和调用限额。',
+          en: 'Prepare the project, personal key, model allowlist, and calling limits.',
         },
       },
       {
@@ -378,11 +425,139 @@ const commonTasks: CommonTask[] = [
         },
       },
       {
-        scenarioId: 18,
-        stage: { zh: '检查异常', en: 'Investigate' },
+        scenarioId: 21,
+        stage: { zh: '核对结算', en: 'Reconcile' },
         description: {
-          zh: '定位统计延迟、失败调用或异常资源占用。',
-          en: 'Investigate delayed statistics, failed calls, or abnormal resource usage.',
+          zh: '按客户、模型和账期核对服务商收益与结算结果。',
+          en: 'Reconcile provider revenue and settlement by customer, model, and billing cycle.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'account-project-quota',
+    question: { zh: '如何管理账号、项目、Key 与成员额度？', en: 'How do I manage accounts, projects, keys, and member quotas?' },
+    keywords: { zh: '账号 组织 成员 角色 项目 Key 预算 额度 白名单', en: 'account organization member role project key budget quota allowlist' },
+    goal: {
+      zh: '建立组织与角色边界，用项目预算、调用 Key 和成员额度控制团队使用。',
+      en: 'Establish organization and role boundaries and govern team use with project budgets, keys, and member quotas.',
+    },
+    roles: ['operator', 'provider', 'enduser'],
+    steps: [
+      {
+        scenarioId: 2,
+        stage: { zh: '先授权', en: 'Authorize' },
+        description: {
+          zh: '确认组织、成员、角色、菜单和资源范围。',
+          en: 'Confirm organization, members, roles, menus, and resource scope.',
+        },
+      },
+      {
+        scenarioId: 22,
+        stage: { zh: '配置项目', en: 'Configure project' },
+        description: {
+          zh: '设置项目预算、模型白名单和独立用途的 Key。',
+          en: 'Set project budgets, model allowlists, and purpose-specific keys.',
+        },
+      },
+      {
+        scenarioId: 23,
+        stage: { zh: '分配额度', en: 'Allocate quota' },
+        description: {
+          zh: '申请、调整并验证成员额度和调用限制。',
+          en: 'Request, adjust, and validate member quota and calling limits.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'billing-close',
+    question: { zh: '运营方如何完成账期对账与结算？', en: 'How does an operator reconcile and settle a billing cycle?' },
+    keywords: { zh: '账期 月结 对账 巡检 结算单 调账 收益', en: 'billing cycle monthly close reconciliation inspection settlement adjustment revenue' },
+    goal: {
+      zh: '从账户与账单核对到异常处理、结算确认和服务商到账形成闭环。',
+      en: 'Close the loop from account and bill review through exceptions, settlement confirmation, and provider receipt.',
+    },
+    roles: ['operator', 'provider'],
+    steps: [
+      {
+        scenarioId: 8,
+        stage: { zh: '核对账务', en: 'Review billing' },
+        description: {
+          zh: '统一账期，核对账户、交易、用量和月度账单。',
+          en: 'Align the billing cycle and reconcile accounts, transactions, usage, and monthly bills.',
+        },
+      },
+      {
+        scenarioId: 20,
+        stage: { zh: '完成月结', en: 'Close the cycle' },
+        description: {
+          zh: '处理巡检异常，生成并复核运营结算单。',
+          en: 'Resolve reconciliation exceptions and generate and review operator settlement statements.',
+        },
+      },
+      {
+        scenarioId: 21,
+        stage: { zh: '确认到账', en: 'Confirm receipt' },
+        description: {
+          zh: '从服务商视角核对收益来源、应结算和实际到账。',
+          en: 'Reconcile revenue sources, expected settlement, and actual receipt from the provider perspective.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'application-review',
+    question: { zh: '如何发布应用并完成审核？', en: 'How do I publish and approve an application?' },
+    keywords: { zh: '应用 发布 审核 客户 可见 调用 参数映射', en: 'application publish review customer visibility calling parameter mapping' },
+    goal: {
+      zh: '核对应用绑定模型、调用入口和客户范围，完成审核及客户侧调用验证。',
+      en: 'Review the bound model, calling entry, and customer scope, then validate approval and customer calls.',
+    },
+    roles: ['operator'],
+    steps: [
+      {
+        scenarioId: 24,
+        stage: { zh: '发布与审核', en: 'Publish and review' },
+        description: {
+          zh: '检查发布材料，记录审核意见，并验证目标客户可见和可调用。',
+          en: 'Review publishing materials, record the decision, and validate intended-customer visibility and calls.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'cloud-scheduling',
+    question: { zh: '如何接入多云资源并配置调度策略？', en: 'How do I onboard multi-cloud resources and configure scheduling?' },
+    keywords: { zh: '多云 云账号 资源池 授权 调度 策略 回退', en: 'multi-cloud cloud account resource pool authorization scheduling policy fallback' },
+    goal: {
+      zh: '完成云平台、账号、资源池和授权接入，并通过测试部署验证首选与回退策略。',
+      en: 'Onboard platforms, accounts, pools, and authorization, then validate preferred and fallback scheduling with a test deployment.',
+    },
+    roles: ['operator'],
+    steps: [
+      {
+        scenarioId: 14,
+        stage: { zh: '完成接入', en: 'Onboard' },
+        description: {
+          zh: '接入云平台、账号和资源池，完成业务与租户授权。',
+          en: 'Onboard cloud platforms, accounts, and pools and complete business and tenant authorization.',
+        },
+      },
+      {
+        scenarioId: 27,
+        stage: { zh: '配置调度', en: 'Configure scheduling' },
+        description: {
+          zh: '设置首选资源池、容量阈值、优先级和回退约束。',
+          en: 'Set preferred pools, capacity thresholds, priority, and fallback constraints.',
+        },
+      },
+      {
+        scenarioId: 16,
+        stage: { zh: '验证部署', en: 'Validate deployment' },
+        description: {
+          zh: '执行测试部署并核对实际资源池、状态和事件。',
+          en: 'Run a test deployment and review the selected pool, state, and events.',
         },
       },
     ],
@@ -395,7 +570,7 @@ const scenarios: Scenario[] = [
     guideSlug: 'register-login',
     title: { zh: '注册 & 登录', en: 'Register & Login' },
     description: {
-      zh: 'Enduser 完成邮箱注册；Operator/Enduser/Provider 登录平台并进入对应工作台。',
+      zh: '平台用户完成邮箱注册；平台运营方、平台用户和模型提供方登录平台并进入对应工作台。',
       en: 'End users complete email registration; Operator, End User, and Provider log in and enter their workspaces.',
     },
     roles: ['enduser', 'operator', 'provider'],
@@ -407,7 +582,7 @@ const scenarios: Scenario[] = [
     guideSlug: 'identity-authorization',
     title: { zh: '身份授权', en: 'Identity Authorization' },
     description: {
-      zh: 'Operator 通过角色、菜单与按钮权限控制谁能看见、能操作什么。',
+      zh: '平台运营方通过角色、菜单与按钮权限控制谁能看见、能操作什么。',
       en: 'Operators control who can see and operate features through roles, menus, and button permissions.',
     },
     roles: ['operator'],
@@ -419,7 +594,7 @@ const scenarios: Scenario[] = [
     guideSlug: 'publish-model',
     title: { zh: '发布模型', en: 'Publish Models' },
     description: {
-      zh: 'Provider 把外部 Endpoint、自有或平台托管模型发布为公有/私有服务，配置计费与限流。',
+      zh: '模型提供方把外部接口地址、自有或平台托管模型发布为公有或私有服务，并配置计费与限流。',
       en: 'Providers publish external endpoints, self-owned models, or platform-hosted models as public or private services with billing and throttling.',
     },
     roles: ['provider'],
@@ -431,7 +606,7 @@ const scenarios: Scenario[] = [
     guideSlug: 'publish-model-preconfiguration',
     title: { zh: '发布模型（预设置）', en: 'Publish Models Preconfiguration' },
     description: {
-      zh: '为发布准备标准化的元模型、模型来源、模板和标签，降低 Provider 的重复配置。',
+      zh: '为发布准备标准化的元模型、模型来源、模板和标签，降低模型提供方的重复配置。',
       en: 'Prepare standardized meta-models, model sources, templates, and tags to reduce repeated provider configuration.',
     },
     roles: ['operator'],
@@ -455,7 +630,7 @@ const scenarios: Scenario[] = [
     guideSlug: 'model-experience-api-calling',
     title: { zh: '模型的体验与调用', en: 'Model Experience & API Calling' },
     description: {
-      zh: 'Enduser 发现、体验、API 接入并回看调用；Provider 观察客户维度的调用情况。',
+      zh: '平台用户发现、体验、接入 API 并回看调用；模型提供方查看客户维度的调用情况。',
       en: 'End users discover, try, integrate, and review calls; providers monitor customer-level calling activity.',
     },
     roles: ['enduser', 'provider'],
@@ -467,7 +642,7 @@ const scenarios: Scenario[] = [
     guideSlug: 'model-usage-revenue',
     title: { zh: '模型的消费与收益', en: 'Model Usage & Revenue' },
     description: {
-      zh: '将调用产生的 Token/时长/次数转成 Enduser 消耗与 Provider 收益，并跟踪账期。',
+      zh: '将调用产生的 Token、时长或次数转成平台用户消耗与模型提供方收益，并跟踪账期。',
       en: 'Convert tokens, duration, and request counts into end-user usage and provider revenue across billing periods.',
     },
     roles: ['enduser', 'provider'],
@@ -489,7 +664,7 @@ const scenarios: Scenario[] = [
   {
     id: 9,
     guideSlug: 'on-prem-compute-onboarding',
-    title: { zh: 'On-Prem 算力纳管', en: 'On-Prem Compute Onboarding' },
+    title: { zh: '本地算力纳管', en: 'On-Prem Compute Onboarding' },
     description: {
       zh: '把私有 IDC / 本地 GPU / NPU / XPU 接入 AGIOne，成为可调度、可计量、可监控的资源池。',
       en: 'Connect private IDC, local GPU, NPU, or XPU resources to AGIOne as schedulable, metered, and observable resource pools.',
@@ -501,7 +676,7 @@ const scenarios: Scenario[] = [
   {
     id: 10,
     guideSlug: 'on-prem-inference-template',
-    title: { zh: 'On-Prem 推理模板构建', en: 'On-Prem Inference Template Building' },
+    title: { zh: '本地推理模板构建', en: 'On-Prem Inference Template Building' },
     description: {
       zh: '把推理参数沉淀为模板，让用户基于模板快速完成在线推理部署。',
       en: 'Turn inference parameters into templates so users can quickly deploy online inference services.',
@@ -513,7 +688,7 @@ const scenarios: Scenario[] = [
   {
     id: 11,
     guideSlug: 'on-prem-model-deployment-status',
-    title: { zh: 'On-Prem 模型部署与状态检查', en: 'On-Prem Model Deployment & Status Check' },
+    title: { zh: '本地模型部署与状态检查', en: 'On-Prem Model Deployment & Status Check' },
     description: {
       zh: '在本地资源池上部署在线推理服务，确认可运行、可访问、可排障。',
       en: 'Deploy online inference services on local resource pools and confirm they are runnable, accessible, and diagnosable.',
@@ -525,7 +700,7 @@ const scenarios: Scenario[] = [
   {
     id: 12,
     guideSlug: 'on-prem-dev-training-assets',
-    title: { zh: 'On-Prem 开发训练与资产沉淀', en: 'On-Prem Development, Training & Assets' },
+    title: { zh: '本地开发训练与资产沉淀', en: 'On-Prem Development, Training & Assets' },
     description: {
       zh: '支持开发、训练与数据管理，沉淀模型、镜像、数据集等资产。',
       en: 'Support development, training, and data management while accumulating models, images, datasets, and other assets.',
@@ -537,7 +712,7 @@ const scenarios: Scenario[] = [
   {
     id: 13,
     guideSlug: 'on-prem-resource-metering-monitoring',
-    title: { zh: 'On-Prem 资源计量与监控', en: 'On-Prem Resource Metering & Monitoring' },
+    title: { zh: '本地资源计量与监控', en: 'On-Prem Resource Metering & Monitoring' },
     description: {
       zh: '控制额度，对资源池运行、水位、用量、账期计量做运营监控。',
       en: 'Control quotas and monitor resource pool runtime status, capacity, usage, and billing-period metering.',
@@ -549,7 +724,7 @@ const scenarios: Scenario[] = [
   {
     id: 14,
     guideSlug: 'on-cloud-resource-access',
-    title: { zh: 'On Cloud 云资源接入', en: 'On Cloud Resource Access' },
+    title: { zh: '多云资源接入', en: 'On Cloud Resource Access' },
     description: {
       zh: '把云厂商、云账号、地域、资源池接入平台，并授权给租户或业务类型使用。',
       en: 'Connect cloud providers, cloud accounts, regions, and resource pools, then authorize tenants or business types to use them.',
@@ -561,7 +736,7 @@ const scenarios: Scenario[] = [
   {
     id: 15,
     guideSlug: 'on-cloud-model-asset-publishing',
-    title: { zh: 'On Cloud 模型资产上架', en: 'On Cloud Model Asset Publishing' },
+    title: { zh: '多云模型资产上架', en: 'On Cloud Model Asset Publishing' },
     description: {
       zh: '把云上模型需要的运行环境、框架、分类、模型信息与输出 API 配成可部署资产。',
       en: 'Configure runtime environments, frameworks, categories, model information, and output APIs as deployable cloud model assets.',
@@ -573,7 +748,7 @@ const scenarios: Scenario[] = [
   {
     id: 16,
     guideSlug: 'on-cloud-model-deployment-calling',
-    title: { zh: 'On Cloud 模型部署与调用', en: 'On Cloud Model Deployment & Calling' },
+    title: { zh: '多云模型部署与调用', en: 'On Cloud Model Deployment & Calling' },
     description: {
       zh: '从云上模型广场选模型，完成部署并获得 API 调用能力。',
       en: 'Select models from the cloud model marketplace, deploy them, and obtain API calling capability.',
@@ -587,7 +762,7 @@ const scenarios: Scenario[] = [
     guideSlug: 'model-publishing-approval',
     title: { zh: '模型发布审批', en: 'Model Publishing Approval' },
     description: {
-      zh: '对 Provider 的发布申请做模型信息、协议、计费、限流的治理审批。',
+      zh: '对模型提供方的发布申请做模型信息、协议、计费、限流的治理审批。',
       en: 'Review provider publishing requests for model information, agreements, billing, and throttling governance.',
     },
     roles: ['operator'],
@@ -617,6 +792,114 @@ const scenarios: Scenario[] = [
     roles: ['operator', 'provider', 'enduser'],
     subsystems: ['platform', 'settings', 'model-services'],
     tasks: ['account'],
+  },
+  {
+    id: 20,
+    guideSlug: 'billing-cycle-reconciliation-settlement',
+    title: { zh: '运营账期对账与结算', en: 'Billing-Cycle Reconciliation & Settlement' },
+    description: {
+      zh: '按账期核对月结、财务账户和巡检异常，在阻塞事项处理后生成并复核结算单。',
+      en: 'Reconcile monthly close, financial accounts, and exceptions before generating and reviewing settlement statements.',
+    },
+    roles: ['operator'],
+    subsystems: ['billing'],
+    tasks: ['bill'],
+  },
+  {
+    id: 21,
+    guideSlug: 'provider-revenue-settlement',
+    title: { zh: '服务商收益与结算', en: 'Provider Revenue & Settlement' },
+    description: {
+      zh: '按客户、模型和账期解释服务商收益，并核对应结算、实际到账和转入条件。',
+      en: 'Explain provider revenue by customer, model, and cycle and reconcile expected settlement, receipt, and transfer.',
+    },
+    roles: ['provider'],
+    subsystems: ['billing'],
+    tasks: ['bill'],
+  },
+  {
+    id: 22,
+    guideSlug: 'project-key-budget-governance',
+    title: { zh: '项目、Key 与预算治理', en: 'Project, Key & Budget Governance' },
+    description: {
+      zh: '用项目预算、模型白名单和独立用途的 Key 控制调用范围、成本和凭据生命周期。',
+      en: 'Control calling scope, cost, and credential lifecycle with project budgets, model allowlists, and purpose-specific keys.',
+    },
+    roles: ['provider', 'enduser'],
+    subsystems: ['settings', 'model-services'],
+    tasks: ['account', 'call', 'bill'],
+  },
+  {
+    id: 23,
+    guideSlug: 'member-quota-application-allocation',
+    title: { zh: '成员额度申请与分配', en: 'Member Quota Request & Allocation' },
+    description: {
+      zh: '为成员申请、调整和限制额度，并协调成员、项目、Key 和模型白名单的多层边界。',
+      en: 'Request, adjust, and limit member quota while coordinating member, project, key, and model-allowlist boundaries.',
+    },
+    roles: ['provider', 'enduser'],
+    subsystems: ['settings'],
+    tasks: ['account', 'call', 'bill'],
+  },
+  {
+    id: 24,
+    guideSlug: 'application-publishing-approval',
+    title: { zh: '应用发布与审核', en: 'Application Publishing & Approval' },
+    description: {
+      zh: '核对应用绑定模型、调用入口和客户范围，完成审核并验证客户可见性与调用。',
+      en: 'Review bound models, calling entries, and customer scope, then validate approval, visibility, and calls.',
+    },
+    roles: ['operator'],
+    subsystems: ['model-services'],
+    tasks: ['publish'],
+  },
+  {
+    id: 25,
+    guideSlug: 'on-prem-runtime-storage-foundation',
+    title: { zh: '本地运行镜像与存储底座', en: 'On-Prem Runtime Images & Storage' },
+    description: {
+      zh: '接入镜像仓库、运行镜像和块/文件/对象存储，并用测试工作负载验证完整运行底座。',
+      en: 'Connect image services, runtime images, and block, file, or object storage and validate them with a test workload.',
+    },
+    roles: ['operator'],
+    subsystems: ['on-prem'],
+    tasks: ['gpu'],
+  },
+  {
+    id: 26,
+    guideSlug: 'api-rate-control-release-audit',
+    title: { zh: 'API 流控发布与审计', en: 'API Rate-Control Release & Audit' },
+    description: {
+      zh: '从流量基线设计和发布流控规则，并核对节点版本、规则命中和审计明细。',
+      en: 'Design and release rate-control rules from a traffic baseline and verify node versions, hits, and audit details.',
+    },
+    roles: ['operator'],
+    subsystems: ['settings'],
+    tasks: ['account', 'call'],
+  },
+  {
+    id: 27,
+    guideSlug: 'on-cloud-scheduling-policy',
+    title: { zh: '多云调度策略', en: 'On-Cloud Scheduling Policies' },
+    description: {
+      zh: '配置首选资源池、容量阈值和故障回退，并用测试部署验证实际调度结果。',
+      en: 'Configure preferred pools, capacity thresholds, and failure fallback and validate actual scheduling with a test deployment.',
+    },
+    roles: ['operator'],
+    subsystems: ['on-cloud'],
+    tasks: ['gpu'],
+  },
+  {
+    id: 28,
+    guideSlug: 'license-lifecycle-management',
+    title: { zh: 'License 生命周期管理', en: 'License Lifecycle Management' },
+    description: {
+      zh: '检查激活状态、有效期、授权构成和纳管对象，提前安排续期或扩容。',
+      en: 'Review activation state, validity, authorization composition, and managed objects and prepare renewal or expansion.',
+    },
+    roles: ['operator'],
+    subsystems: ['billing', 'platform'],
+    tasks: ['account', 'bill'],
   },
 ]
 
@@ -701,7 +984,7 @@ function scenarioNumber(id: number) {
 
 function guidePath(slug: string) {
   const prefix = locale.value === 'zh' ? '/zh-CN/userguide/scenarios' : '/userguide/scenarios'
-  return `${prefix}/${slug}/`
+  return withBase(`${prefix}/${slug}/`)
 }
 </script>
 
@@ -753,7 +1036,7 @@ function guidePath(slug: string) {
               class="agp-pill"
               :class="`agp-pill-${role === 'enduser' ? 'eu' : role}`"
             >
-              {{ roleLabels[role] }}
+              {{ roleLabels[locale][role] }}
             </span>
           </div>
         </div>
@@ -840,7 +1123,7 @@ function guidePath(slug: string) {
               class="agp-pill"
               :class="`agp-pill-${subsystem}`"
             >
-              {{ subsystemLabels[subsystem] }}
+              {{ subsystemLabels[locale][subsystem] }}
             </span>
           </div>
           <div class="agp-pill-row">
@@ -850,7 +1133,7 @@ function guidePath(slug: string) {
               class="agp-pill"
               :class="`agp-pill-${role === 'enduser' ? 'eu' : role}`"
             >
-              {{ roleLabels[role] }}
+              {{ roleLabels[locale][role] }}
             </span>
           </div>
         </div>

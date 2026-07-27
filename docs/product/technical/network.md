@@ -1,7 +1,7 @@
-# Deployment Network Planning Guide
+﻿# Deployment Network Planning Guide
 
 :::: info Document Information
-Version: v1.1
+Version: v1.0
 Updated: 2026-07-13
 Port baseline: Current installation guide
 ::::

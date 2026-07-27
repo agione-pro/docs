@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Quota & Usage > Resource Usage |
-| Page Route | `/powerone/quota-usage/usage` |
-| Managed Objects | Resource specification usage, quota occupation, and consumption details |
-| Typical Use | View credits, occupation, and consumption details of each specification to help determine resource consumption sources |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Resource Usage |
+| Page route | `/powerone/quota-usage/usage` |
+| Managed objects | Resource specification usage, quota occupation, and consumption details |
+| Typical use | View credits, occupation, and consumption details of each specification to help determine resource consumption sources |
 
-### Beginner View
+#### Beginner Explanation
 
 My usage is like a personal resource consumption record, used to view how much compute, storage, and service resources were used over a period of time.
 
-### First-Time Flow
+#### First-Time Flow
 
 1. Go to `Quota & Usage > Resource Usage`.
 2. Search for target specifications by conditions.
@@ -29,7 +29,7 @@ My usage is like a personal resource consumption record, used to view how much c
 4. Click `Consumption Details` to view consumption details for that specification.
 5. Locate consumption sources together with instance lists.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -48,9 +48,9 @@ My usage is like a personal resource consumption record, used to view how much c
 
 The page displays resource specifications, quotas, and operation entrypoints in a table. The screenshot shows multiple specifications with Unlimited credits and provides `Consumption Details`.
 
-![Resource Usage](./images/resource-usage.png)
+![Resource Usage](./images/usage-list.png)
 
-### Page Areas
+#### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
@@ -60,20 +60,22 @@ The page displays resource specifications, quotas, and operation entrypoints in 
 | Consumption Details | Opens consumption details for this specification. |
 | Pagination Area | View by page when there are many usage records. |
 
-## View Consumption Details
+## Main Operations
 
-### Applicable Scenario
+### View Consumption Details
+
+#### Applicable Scenario
 
 When you need to confirm which instances or tasks caused resource consumption for a specification, view consumption details.
 
-### Pre-Operation Check
+#### Pre-Operation Check
 
 1. The target resource specification has been located.
 2. Filters are confirmed not to exclude target records.
 
-### Procedure
+#### Procedure
 
-1. Go to `Quota & Usage > Resource Usage`.
+1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Resource Usage`.
 2. Find the target specification.
 3. Click `Consumption Details` in that row.
 4. View consumption records in the details dialog or drawer.
@@ -81,7 +83,7 @@ When you need to confirm which instances or tasks caused resource consumption fo
 
 The following figure shows the page state after opening the consumption details entrypoint, which can be used to view specification usage sources.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -92,12 +94,12 @@ The following figure shows the page state after opening the consumption details 
 | Consumed Credits | System-generated | Number | `1440 Credits` | Consumed credits converted according to platform rules. |
 | Statistics Update Time | System-generated | Date time | `2026-07-06 10:00` | Determines whether usage data has completed synchronization. |
 
-### Pitfalls
+## Pitfalls
 
 - If details are empty, this specification may currently have no consumption records.
 - Statistical data may be delayed and is not suitable as a replacement for real-time instance status.
 
-### Result Validation
+## Result Validation
 
 1. The details page or drawer can open.
 2. The specification in records is consistent with the clicked row.
@@ -111,7 +113,7 @@ The following figure shows the page state after opening the consumption details 
 
 ## FAQ
 
-### Usage List Is Empty
+#### Usage List Is Empty
 
 **Symptom:** The resource usage page has no specifications or records.
 
@@ -127,7 +129,7 @@ The following figure shows the page state after opening the consumption details 
 2. Confirm whether the Resource Quotas page has specifications.
 3. Contact the operator to check quota allocation.
 
-### Details Do Not Match Instance Status
+#### Details Do Not Match Instance Status
 
 **Symptom:** Consumption details show usage, but the corresponding runtime object is not visible in the instance list.
 
@@ -143,7 +145,7 @@ The following figure shows the page state after opening the consumption details 
 2. View historical instance or job records.
 3. Contact the operator to verify metering data.
 
-## Follow-Up Operations
+## Next Steps
 
 1. When usage grows abnormally, locate high-consumption instances and jobs by resource name or time range.
 2. When usage is inconsistent with credit changes, wait for metering synchronization and check again. Contact the operator if necessary.

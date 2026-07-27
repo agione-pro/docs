@@ -36,6 +36,16 @@ All four NPU cards have traceable health and utilization, and each abnormal sign
 
 4. Correlate an abnormal device with its node and workload before choosing a hardware, driver, quota, or application fix.
 
+## Four-NPU Inspection Table
+
+| Check | Expected Result |
+| --- | --- |
+| Device count | All four cards are visible |
+| Health state | No offline card, missing card, or persistent alert |
+| Device usage | Matches the card count requested by running workloads |
+| Node state | Ready, with metrics updating continuously |
+| Workload state | No abnormal queueing or repeated failure |
+
 ## Completion Checklist
 
 > **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.

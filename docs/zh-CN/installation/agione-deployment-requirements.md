@@ -404,9 +404,7 @@ AGIOne 平台部署在逻辑上分为两个相对独立的部分：
 
 ---
 
-**固定下载页：**
-
-<https://agione.pro/release/download/agione-release-latest>
+固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
 
 打开页面后，复制页面中的 `Download URL` 与 `MD5 URL` 用于下载和校验安装包。
 

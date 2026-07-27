@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Monitoring > Statistics Overview |
-| Page Route | `/powerone/user-monitor/overview` |
-| Managed Objects | Resource pool monitoring overview, instance runtime status, and key resource trends |
-| Typical Use | Quickly determine whether the selected region has visible monitoring data and enter drill-down pages |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Monitoring > Overview |
+| Page route | `/powerone/user-monitor/overview` |
+| Managed objects | Resource pool monitoring overview, instance runtime status, and key resource trends |
+| Typical use | Quickly determine whether the selected region has visible monitoring data and enter drill-down pages |
 
-### Beginner View
+#### Beginner Explanation
 
 Statistics overview is like a resource weather map for regular users. It shows cluster count, node status, exception count, and update time in one screen, helping decide whether to drill down further.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -43,7 +43,7 @@ The page displays statistics overview capability for the selected region. When t
 
 ![Statistics Overview](./images/monitoring-overview.png)
 
-### Expected Page Elements When Capability Is Open
+#### Expected Page Elements When Capability Is Open
 
 | Page Element | Example | Description |
 | --- | --- | --- |
@@ -52,23 +52,25 @@ The page displays statistics overview capability for the selected region. When t
 | Exception Aggregation | `Failed jobs / High-watermark resources / Offline nodes` | Helps users prioritize issues that affect current instances. |
 | Update Time | `2026-07-03 10:00` | Determines whether data has collection delay. |
 
-## View Statistics Overview
+## Main Operations
 
-### Procedure
+### View Statistics Overview
 
-1. Go to `Monitoring > Statistics Overview`.
+#### Procedure
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Overview`.
 2. Confirm the region in the upper-right corner.
 3. Filter by time, status, or keyword provided by the page.
 4. View charts, lists, or prompt information.
 5. If monitoring capability is not opened, return to instance details to view logs, events, and status.
 
-### Key Focus When Capability Is Open
+#### Key Focus When Capability Is Open
 
 - Cluster count, node status, and exception count in overview cards.
 - Whether resource trends are consistent with recent instance creation, training tasks, or deployment changes.
 - Whether update time is later than the latest operation.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -79,13 +81,13 @@ The page displays statistics overview capability for the selected region. When t
 | Exception Count | System-generated | Number | `2` | Aggregates failed jobs, offline nodes, or high-watermark resources. |
 | Update Time | System-generated | Date time | `2026-07-06 10:00` | Determines whether monitoring data refreshes in time. |
 
-### Pitfalls
+## Pitfalls
 
 - Overview is suitable for determining direction and should not be the sole basis for a single instance failure.
 - When exception counts differ from detail pages, fix region and time range first.
 - If the page only shows a capability prompt, prioritize instance logs, events, and usage, then contact the operator to confirm opening conditions.
 
-### Result Validation
+## Result Validation
 
 1. Overview cards display time range, region, cluster count, and exception count.
 2. After switching time range, trend charts or exception counts change accordingly.
@@ -112,7 +114,7 @@ Alternative troubleshooting paths:
 
 ## FAQ
 
-### Overview Data Is Delayed
+#### Overview Data Is Delayed
 
 **Symptom:**
 
@@ -130,7 +132,7 @@ The instance has been created or the job has ended, but overview cards have not 
 2. Switch to a time range that covers the operation time.
 3. Cross-check status with instance details, events, and logs before contacting the operator.
 
-### Exception Count Is Inconsistent with Detail Page
+#### Exception Count Is Inconsistent with Detail Page
 
 **Symptom:**
 
@@ -148,7 +150,7 @@ The overview shows exceptions, but the count or objects do not match after enter
 2. Refresh the page and check whether update times are consistent.
 3. Provide the operator with sanitized time range, region, and exception type.
 
-## Follow-Up Operations
+## Next Steps
 
 1. Enter cluster, node, device, or job pages based on exception type.
 2. If only your own instance is affected, prioritize instance details, logs, and events.

@@ -7,129 +7,148 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Resource Pools` is used to maintain cloud account resource pools, regions, instance specifications, inventory, and synchronization status, supporting multi-cloud scheduling, resource authorization, and model deployment workflows.
+`Resource Pools` is used to view and maintain accessible regional resource pools by cloud platform. It uses status switches to control whether a resource pool is enabled, helping operators manage cloud resource visibility and downstream scheduling scope.
 
 | Item | Content |
 | --- | --- |
 | Applicable role | Operator |
-| Navigation path | Access Management > Resource Pools |
-| Page route | /operator/access-management/resource-pools |
-| Managed objects | Cloud account resource pools, regions, instance specifications, inventory, and synchronization status |
-| Typical use | Organize deployable resources by cloud account and region |
+| Navigation path | AI Infrastructure > On-Cloud > Access Management > Resource Pools |
+| Page route | `/infrahub/op/access/region` |
+| Managed objects | Cloud platform, regional resource pools, enabled status, import and export entries |
+| Typical use | Enable or disable a regional resource pool under a cloud platform |
 
-### Beginner View
+#### Beginner Explanation
 
-A resource pool is like putting machines, accelerator cards, and storage from a cloud account onto shelves by region. During deployment, users see available resources on the shelves, not the cloud provider account itself.
+Resource Pools is like setting an availability switch for regions under different cloud platforms. After a resource pool is enabled, it may enter the authorization and scheduling scope. After it is disabled, related deployments, authorization, or capacity display may be affected.
 
-### Terms
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Resource pool | A resource collection organized by cloud account, region, and resource type. |
-| Inventory | Current instance or accelerator card capacity available for deployment. |
-| Synchronization task | A task where the platform pulls resource status from the cloud provider. |
-| Resource boundary | Which tenants or business regions a resource pool is opened to. |
+| Cloud Platform | Platform in the left list that owns resource pools, such as `Alibaba Cloud`, `Google Cloud`, or `Huawei Cloud`. |
+| Resource Pool | Resource pool entry displayed by region on the current page, such as `China (Hangzhou)`. |
+| Resource Pool Count | Count shown after the cloud platform name, such as `26 items`. |
+| Enabled Status | Status switch on the right side of each resource pool. |
+| Show only enabled | Filter that shows only currently enabled resource pools. |
+| Confirmation Prompt | Secondary confirmation dialog shown before enabling or disabling. |
 
 ## Prerequisites
 
-1. The cloud account has been accessed and passed validation.
-2. Target region resources have been synchronized.
-3. Resource pool capacity, resource type, and enablement status have been confirmed.
+1. The current account has access to `Access Management > Resource Pools`.
+2. The target cloud platform has been accessed, and the resource pool list can load normally.
+3. Before enabling or disabling, confirm the resource pool's authorization scope, scheduling dependencies, and business impact.
 
 ## Page Description
 
-The page is used to view and maintain resource pools synchronized from cloud accounts, including cloud platform, region, resource type, capacity level, enablement status, and authorization status. Operators should split resource pools by region and business purpose to keep subsequent authorization and scheduling policies controllable.
+The page title is `Resource Pools`. The left side supports searching cloud platforms by name and shows platforms with resource pool counts. The right side displays regional resource pool cards under the selected cloud platform, and each card provides a status switch. The upper-right corner provides `Export` and `Import` entries, and `Show only enabled` can be selected to filter resource pools.
 
 Page screenshot:
 
 ![Resource Pool List](./images/resource-pools-list.png)
 
-Used to view resource pool regions, capacity, levels, and enablement status.
-
 ## Main Operations
 
-### Procedure
+### Enable/Disable Resource Pool
 
-1. Go to `Access Management > Resource Pools`.
-2. Filter resource pools by cloud platform, region, resource type, or status.
-3. After synchronizing or adding a resource pool, verify capacity, specifications, and resource type.
-4. Set enablement status, purpose notes, and authorizable scope for the resource pool.
-5. Go to the authorization page and open the resource pool to tenants or business regions.
+1. Go to `AI Infrastructure > On-Cloud > Access Management > Resource Pools`.
+2. Select the target cloud platform in the left cloud platform list, such as `Alibaba Cloud`.
+3. Find the target resource pool in the list on the right, and check the resource pool region name and the enabled status switch.
+4. To filter currently enabled resource pools, select `Show only enabled`.
+5. Click the status switch on the right side of the target resource pool to start enabling or disabling.
+6. If a `Prompt` confirmation dialog appears, verify the resource pool name, current action, and impact scope. The screenshot example is `Are you sure you want to Disable region China (Hangzhou)?`.
+7. Before clicking the final `OK`, confirm again. For learning or page validation only, click `Cancel` or close the dialog without applying a real change.
 
-Key step screenshot:
+![Enable or Disable Resource Pool](./images/disable.png)
 
-![Edit Resource Pool Name](./images/edit-name.png)
+## Parameter Reference
 
-Before editing the name, confirm that it will not affect authorization or user-side recognition.
-
-### Parameters
-
-| Field | Required | Type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Resource pool name | Yes | Text | `gpu-cn-shanghai-prod` | Should indicate cloud platform, region, and purpose. |
-| Cloud account | Yes | Dropdown | `prod-cloud-account` | Cloud account that owns the resource pool. |
-| Region | Yes | Dropdown | `cn-shanghai` | Region where the cloud resource is located. |
-| Resource type | Yes | Multi-select | `GPU / CPU` | Resource types that the resource pool can host. |
-| Enablement status | Yes | Enum | `Enabled` | Controls whether it can be authorized and scheduled. |
+| Cloud Platform | Yes | List item | `Alibaba Cloud` | Cloud platform that owns the resource pools. |
+| Resource Pool Count | System-generated | Number | `26 items` | Number of resource pools under the current cloud platform. |
+| Resource Pool Name | System-generated | Text | `China (Hangzhou)` | Resource pool name displayed by region on the current page. |
+| Enabled Status | Yes | Switch | On / Off | Controls whether the resource pool can continue to be authorized, displayed, or scheduled. |
+| Show only enabled | No | Checkbox | Selected / unselected | Filters the list to show only enabled resource pools. |
+| Name Search | No | Input | Displayed on page | Searches cloud platform or resource pool related entries by name. |
+| Import | No | Action button | `Import` | Imports resource pool related configuration and may affect real configuration. Use with caution. |
+| Export | No | Action button | `Export` | Exports resource pool list or configuration data. Pay attention to sensitive information. |
+| Confirmation Prompt | System-generated | Dialog | `Are you sure you want to Disable region China (Hangzhou)?` | Secondary confirmation shown before enabling or disabling. |
+| Cancel | No | Action button | `Cancel` | Closes the confirmation dialog without applying the change. |
+| OK | No | High-risk action | `OK` | Confirms enabling or disabling the resource pool and applies a real status change. |
 
-### Pitfalls
+## Pitfalls
 
-- Normal resource pool capacity does not mean the tenant already has permissions. Authorization must also be completed.
-- Do not mix cross-region resource pools to avoid selecting unreachable resources during deployment.
-- Before disabling a resource pool, confirm whether running deployment instances exist.
+- The screenshot does not show capacity, synchronization status, or availability zone fields. If these fields appear on an actual detail page, verify them according to the real page.
+- The enabled status switch affects resource pool visibility and downstream scheduling boundaries. Do not judge availability only by list count.
+- `Import`, `Export`, and status switching may involve real configuration or sensitive data. Do not perform these actions during learning or screenshots.
 
-### Result Validation
+## Result Validation
 
-1. The resource pool list shows capacity, region, and enablement status.
-2. The authorization page can select the target resource pool.
-3. The user deployment page can show the corresponding resource within the authorized scope.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page is accessible | The `Resource Pools` page opens normally, and `Access Management > Resource Pools` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
+| Resource pool list loads normally | The left cloud platform list and right regional resource pool cards display normally. | Refresh the page or check cloud platform and resource pool synchronization status. |
+| Target resource pool status is visible | Each resource pool shows an enabled status switch on the right. | Check list filters and page permissions. |
+| Enable/disable entry is visible | The status switch on the target resource pool is visible. | Confirm whether the account has permission to change resource pool status. |
+| Confirmation dialog displays normally | Switching status displays a `Prompt` dialog with the resource pool name and enable or disable action. | Check browser state, API response, and permission configuration. |
+| Learning validation does not submit | Only the list, switch, and confirmation dialog are viewed; the final `OK` is not clicked. | If a final action is triggered by mistake, follow the change audit process to check the impact scope. |
+| Status updates after real execution | If a real enable or disable action is performed, the list switch status should update and remain consistent with scheduling and authorization scope. | Refresh the page, and check authorization pages, scheduling policies, and related deployment status. |
+
+## Troubleshooting Path
+
+| Issue Type | Check First | Next Step |
+| --- | --- | --- |
+| Resource pool unavailable | Resource pool switch status, selected cloud platform, and `Show only enabled` filter | Check authorization pages and scheduling policies |
+| User cannot see the resource pool | Tenant authorization and business-region authorization | Go to authorization pages and verify visibility scope |
+| Business abnormal after disabling | Whether running deployments, scheduling policies, or authorization dependencies exist | Restore status or roll back through the change process |
 
 ## FAQ
 
-### Resource Pool Cannot Be Authorized
+#### Users can still select a resource pool after it is disabled
 
 **Issue Symptom:**
 
-The target resource pool cannot be found on tenant authorization or business region authorization pages.
+The resource pool has been turned off on the page, but users can still see or select it.
 
 **Possible Causes:**
 
-- The resource pool is not enabled.
-- The cloud account that owns the resource pool failed validation.
-- The resource pool region does not match the authorization object.
+- Authorization or scheduling data has synchronization latency.
+- The user-side page cache has not been refreshed.
+- Other available resource pools or same-name region mappings still exist.
 
 **Handling:**
 
-1. Confirm resource pool enablement status.
-2. Check cloud account validation and synchronization tasks.
-3. Verify the cloud platform and region of the authorization object.
+1. Refresh Resource Pools and confirm the switch status.
+2. Check Tenant-Cloud Auth and Business-Region Auth.
+3. After synchronization completes, review the user-side deployment page.
 
-### Resource Pool Capacity Shows Abnormal
+#### No confirmation prompt appears after switching status
 
 **Issue Symptom:**
 
-Resource pool capacity is 0 or inconsistent with the cloud provider console.
+After clicking the resource pool status switch, no `Prompt` confirmation dialog appears.
 
 **Possible Causes:**
 
-- Synchronization task latency.
-- Cloud provider resource tags or specifications do not match recognition rules.
-- Resources are occupied by other businesses.
+- The current account does not have permission to change status.
+- The page request failed or the dialog was closed abnormally.
+- The current resource pool status does not allow switching.
 
 **Handling:**
 
-1. Refresh or retrigger synchronization.
-2. Verify resource tags, specifications, and status.
-3. Check actual available capacity together with the cloud provider console.
+1. Check the current account permissions and page API response.
+2. Refresh the page, then select the target cloud platform and resource pool again.
+3. If the issue persists, contact the platform administrator to confirm resource pool status and change restrictions.
 
 ## Next Steps
 
-1. Configure tenant-cloud authorization.
-2. Configure business region authorization.
-3. Maintain scheduling policies and deployment assets.
+1. Go to Tenant-Cloud Auth or Business-Region Auth to verify resource pool visibility scope.
+2. Go to Policies to confirm scheduling rules after enabling or disabling.
+3. Go to Access Overview to review resource pool status and resource checklist display.
 
 ## Notes
 
-- Normal resource pool capacity does not mean the tenant has been authorized.
-- Do not mix cross-region resource pools.
-- Confirm there are no running deployments before disabling a resource pool.
+- Enabling a resource pool may let real business traffic start scheduling to that resource pool.
+- Disabling a resource pool may affect existing deployments, scheduling, capacity display, and business availability.
+- `OK`, `Save`, and `Submit` are high-risk final actions. Do not click them during learning or screenshots.
+- Do not write real accounts, secrets, Tokens, AK/SK, intranet addresses, cloud resource IDs, resource pool internal codes, or test parameters in the document.

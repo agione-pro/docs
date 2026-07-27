@@ -15,13 +15,6 @@ export const enNavbar = [
           { text: "Project Practices", link: "/practices/project/" },
         ]
       },
-      {
-        text: "Operations",
-        items: [
-          { text: "Admin Portal Manual", link: "/operations/admin-portal-manual/" },
-          { text: "OM Guide", link: "/operations/om-guide/" },
-        ],
-      },
       // { text: "Tools", link: "/tools/" },
       {
         text: "Others",

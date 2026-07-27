@@ -30,11 +30,25 @@ The model passes protocol testing, is submitted to the correct publication scope
 
 1. After signing in, open **"Model Services"**.
 2. In the left menu, go to **"Studio" > "My Models"**.
-3. Find the **"BYOK (BRING YOUR OWN KEY)"** section.
-4. If the model is only for internal use, click **"Private Start"**.
-5. If the model should be listed in the public marketplace, click **"Public Start"**.
+3. Click **"Publish Model"**.
+4. In the dialog, choose a deployment method:
+   - **On-Prem / On-Cloud** for a model deployed on compute managed through AGIOne.
+   - **BYOK (Bring Your Own Key)** for an existing third-party or self-hosted model API.
+5. Choose **Private** for internal use or **Public** for the public marketplace.
+6. Click **Start**.
 
-![My Models entry](./images/my_models-overview-en.png)
+![My Models entry](./images/my-models-overview-en.png)
+
+### 2.1 Choose Platform-Hosted Deployment or BYOK
+
+| Deployment Method | Use When | Confirm Before Publishing |
+| --- | --- | --- |
+| On-Prem / On-Cloud | AGIOne-managed compute will host the model | Model asset, resource pool, inference template, or cloud deployment prerequisites are ready |
+| BYOK (Bring Your Own Key) | An external or self-hosted model API should use AGIOne experience, billing, and governance | Endpoint, provider model ID, headers, key, protocol, and response format are ready |
+
+Select the publication area and deployment method before clicking Start. Enter a BYOK credential only on the platform configuration page; never expose it in documentation, screenshots, or tickets.
+
+![Choose the publication area and deployment method](../../../usermanual/model-services/user/studio/my-models/images/my-published-choose-where-to-publish-add.png)
 
 ## 3. Fill In Basic Information
 
@@ -44,7 +58,7 @@ The model passes protocol testing, is submitted to the correct publication scope
 ![Review basic model information](./images/publish-basic-info-en.png)
 
 3. In **Model Source/Meta Model Information**, select the real provider, region, and target meta-model.
-4. Enter the model service URL, provider key, and exact provider-side model ID.
+4. For BYOK, enter the model service URL, provider key, and exact provider-side model ID. For platform-hosted deployment, select the prepared model asset and deployment source.
 
 ![Fill in model source information](./images/publish-source-protocol-en.png)
 

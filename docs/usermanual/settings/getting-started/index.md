@@ -7,157 +7,156 @@ Updated: 2026-07-13
 
 ## 30-second Quick Check
 
-| Check | What to confirm |
-| --- | --- |
-| Role | The account has permission for Settings Getting Started. |
-| Entry | Open `Settings Getting Started` from the left menu. |
-| Scope | Confirm the organization, member, billing cycle, customer, or rule scope before acting. |
-| Risk | Do not submit create, delete, settlement, activation, approval, or publish actions unless the business impact is confirmed. |
+| Who you are | Check first | Next step |
+| --- | --- | --- |
+| Regular user | Confirm your account, projects, Keys, quotas, and tenant scope. | Open [user-side Settings](../user/personal/dashboard/). |
+| Operator admin | Confirm members, roles, tenants, and operation logs. | Open [operator-side Settings](../operator/personal/profile/). |
+| Security admin | Confirm login properties, account recovery, and third-party login. | Open [Login Properties](../operator/system-settings/login-properties/). |
+| Rate-control admin | Confirm request trends, matched rules, and publish status. | Open [API Rate Control Overview](../operator/api-rate-control/overview/). |
 
 ## Feature Overview
 
-Settings Getting Started introduces the core concepts, roles, object relationships, prerequisites, and recommended reading path for the Settings subsystem. Read this page before entering individual feature pages.
+Settings Getting Started is an onboarding guide for the Settings subsystem. It helps users choose the correct entry, role, permission scope, target object, and high-risk action boundary. It is not a specific business form and does not replace the field reference for Members, Roles, Tenants, Keys, Login Properties, or API Rate Control pages.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin, provider admin, or security admin |
-| Navigation path | Settings Getting Started |
-| Page route | /settings/getting-started |
-| Managed objects | Settings Getting Started records, status, filters, details, and related operation entries |
-| Typical use | View, filter, verify, and maintain settings getting started information |
+| Audience | Regular users, operator admins, security admins, and rate-control admins |
+| Goal | Understand Settings entries for accounts, members, roles, tenants, login security, operation logs, and API rate control |
+| Applicable entry | Settings overview, user-side Settings, operator-side Settings, Login Properties, and API Rate Control Overview |
+| Prerequisite | The current account can access Settings and the target configuration object and risk scope are clear |
+| Recommended path | Start from Settings overview, then open the specific page for personal accounts, member permissions, tenant rules, login security, or API rate control |
 
-### Beginner Explanation
+#### Beginner Explanation
 
-Settings Getting Started is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, organization rules, audit records, or rate-control status before changing configuration.
+Settings is the platform control panel. Confirm who you are first, then confirm which members exist, which roles they have, and whether the task is about tenant rules, login security, or API rate control. Do not change configuration before identifying the object and risk scope.
 
 ## Applicable Roles
 
-| Role | What to read first | Main responsibility |
+| Role | Start here | Next step |
 | --- | --- | --- |
-| Operator admin | Operator-side pages | Prepare, govern, audit, and troubleshoot platform-level configuration. |
-| Provider admin | User-side management pages | Manage members, quotas, organization settings, billing, and revenue data. |
-| Regular user | Personal and usage pages | Check personal credentials, projects, bills, calls, or resource usage. |
+| Regular user | [User-side Settings](../user/personal/dashboard/) | Review profile, projects, Keys, quotas, and tenant rules. |
+| Operator admin | [Operator-side Settings](../operator/personal/profile/) | Check members, roles, tenants, and logs. |
+| Security admin | [Login Properties](../operator/system-settings/login-properties/) | Configure verification codes, account recovery, and third-party login. |
+| Rate-control admin | [API Rate Control Overview](../operator/api-rate-control/overview/) | Review trends before configuring rules. |
 
 ## What Settings Is
 
-Settings manages personal credentials, profile information, team members, roles, organizations, operation logs, system settings, login policies, and API rate-control rules.
+Settings is the unified entry for platform accounts, permissions, tenants, security policies, and API rate control. It does not replace business feature pages. It determines whether users can sign in, which menus they can see, which objects they can operate, and how system policies take effect.
 
 ## Role Relationships
 
-| Role | What to read first | Main responsibility |
+| Role | Main responsibility | Common entry |
 | --- | --- | --- |
-| Operator admin | Operator-side pages | Prepare, govern, audit, and troubleshoot platform-level configuration. |
-| Provider admin | User-side management pages | Manage members, quotas, organization settings, billing, and revenue data. |
-| Regular user | Personal and usage pages | Check personal credentials, projects, bills, calls, or resource usage. |
+| Regular user | Manage personal details, projects, Keys, quota requests, and objects visible within the tenant. | [User-side Settings](../user/personal/dashboard/) |
+| Operator admin | Manage members, roles, tenants, and operation logs. | [Members](../operator/members-roles/members/), [Roles](../operator/members-roles/roles/) |
+| Security admin | Maintain login properties, account recovery, and third-party login policies. | [Login Properties](../operator/system-settings/login-properties/) |
+| Rate-control admin | Review API rate-control trends, rules, audits, and publish status. | [API Rate Control Overview](../operator/api-rate-control/overview/) |
 
 ## Settings Object Hierarchy
 
-| Layer | Object | Purpose |
+| Layer | Description | Impact scope |
 | --- | --- | --- |
-| Organization | Tenant, provider, or customer scope | Defines visibility and ownership. |
-| Record | Bill, settlement, member, role, Key, log, rule, or order | Carries the main business state. |
-| Operation | View, search, create, edit, approve, transfer, publish, or configure | Changes or verifies the record state. |
+| Account | Current login subject and security contact information. | Affects login, personal Keys, and personal visibility. |
+| Project / Tenant | Collaboration and resource ownership scope. | Affects members, quotas, tenant settings, and data visibility. |
+| Member | Account that can sign in or collaborate. | Affects team management and operation-log ownership. |
+| Role | Collection of menu and operation permissions. | Affects visible menus and buttons. |
+| System settings | Platform-level login, security, and base parameters. | Affects global access policies. |
+| API rate control | Request statistics, blocking, rules, and publish status. | Affects API access stability and rate-limit results. |
 
 ## User-side and Operator-side Boundaries
 
-| Side | Visible scope | Typical actions |
+| Capability | User side | Operator side |
 | --- | --- | --- |
-| Operator side | Platform-level configuration and cross-organization operations | Govern settings, billing, reconciliation, License, logs, and rate-control rules. |
-| User side | Organization or personal scope | View personal data, members, quotas, billing records, revenue, and organization defaults. |
+| Account and Keys | Manage current profile, projects, and personal Keys. | View or maintain platform-level members and roles. |
+| Members and Roles | View tenant-visible members, roles, and quota requests. | Manage members, role permissions, and tenant scope. |
+| Tenant Settings | View or maintain tenant-visible settings. | Manage platform tenant information and system policies. |
+| Operation Logs | View operation records within the authorized scope. | Audit operations by user, method, result, and time. |
+| API Rate Control | Observe API access results. | Configure rules, observability audit, node cache, and publish center. |
 
-## Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an organization or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Profile | Identity and security contact information for the current account. | Confirm account context before sensitive actions. |
+| Key | Credential for model or system API calls. | Separate by purpose and rotate regularly. |
+| Member | Account that can sign in or collaborate. | Check member status first when login fails. |
+| Role | A set of menu and operation permissions. | Check role binding when menus are missing. |
+| Tenant | Business subject in the platform. | Confirm tenant and administrator before actions. |
+| API rate control | Capability for request statistics, blocking, and publishing. | Review observability data before changing rules. |
 
 ## Usage Prerequisites
 
-1. The current account can access `Settings Getting Started`.
-2. The target organization, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account can access Settings.
+2. The target object is clear: personal account, members and roles, tenants, logs, system settings, or API rate control.
+3. Before delete, reset, authorize, publish, rollback, export, or login-policy changes, the impact scope and rollback path have been confirmed.
+4. Before external communication, confirm that accounts, emails, phone numbers, Keys, AK/SK, tokens, and internal addresses are desensitized.
 
-## Parameters
+## Parameter Reference
 
-| Field | Required | Type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Organization / customer / member | No | Text | `Example organization` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Entry | Yes | Navigation item | `Members & Roles > Members` | Locates the next Settings page to open. |
+| Role | Yes | Enum | `Operator admin` | Determines whether to use the user side or operator side. |
+| Permission scope | Yes | Role permission | `Admin` | Determines visible menus and allowed actions. |
+| Target object | Conditionally required | Enum | `Role` | Locates members, roles, Keys, login properties, or rate-control configuration. |
+| High-risk action | No | Button / action | `Publish` | Indicates whether approval, a change window, and rollback plan are required. |
 
-## Result Checks
+## Result Validation
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Settings Getting Started` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Correct entry | You can tell whether the task belongs to Personal, Members and Roles, Tenants, System Settings, or API Rate Control. | Return to the applicable role table and locate the entry again. |
+| Clear permission | You know which pages and actions the current account can access. | Check role authorization and tenant context. |
+| Clear next step | You can open the specific feature page for the issue. | Follow the recommended reading path. |
+| Risk identified | Delete, reset, publish, or export actions have an impact statement. | Prepare approval, change window, and rollback plan first. |
 
 ## Pitfalls
 
-- Do not change roles, members, login policies, Keys, or API rate-control rules without confirming the affected users and systems.
-- UI entries can differ by role and organization scope; verify the current account context before troubleshooting.
-- Never copy complete Keys, AK/SK, tokens, or secrets into documentation, tickets, or screenshots.
+- This getting-started page only helps choose the path. It does not replace field references or operation steps on feature pages.
+- When a member cannot see a menu, do not check account status alone. Also verify tenant context, role binding, and menu permissions.
+- Keys, login properties, role permissions, and API rate control can all affect access. Troubleshoot by object layer.
 
 ## Recommended Reading Path
 
-1. Start from the subsystem overview to confirm role boundaries.
-2. Open `Settings Getting Started` when the target object is already known.
-3. For amount, permission, or status mismatches, compare the related list, detail page, and downstream audit or reconciliation page.
+| Goal | Start with | Next step |
+| --- | --- | --- |
+| Understand Settings boundaries | [Settings overview](../) | Continue with this getting-started page. |
+| Manage your own account and Keys | [User-side Settings](../user/personal/dashboard/) | Open Profile, My Keys, or Projects. |
+| Configure members and permissions | [Configure Accounts and Permissions](../end-to-end/configure-account-and-permissions/) | Check tenants, roles, members, Keys, and logs in order. |
+| Troubleshoot login issues | [Login Properties](../operator/system-settings/login-properties/) | Check verification codes, recovery, and third-party login. |
+| Troubleshoot API rate control | [API Rate Control Overview](../operator/api-rate-control/overview/) | Review rules, audit, node cache, and publish center. |
 
 ## FAQ
 
-### Where Should I Start?
+#### Should I start from the user side or operator side?
 
-**Issue Symptom:**
+You are not sure which Settings area to open.
 
-The expected result is not visible on the `Settings Getting Started` page, or the available action does not match the current business expectation.
+**How to check:**
 
-**Possible Causes:**
+1. For your own account, Keys, projects, and quotas, start from the user side.
+2. For members, roles, tenants, login properties, or rate-control rules, start from the operator side.
+3. If the menu is still unclear, confirm the current role and tenant scope.
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settings getting started records, status, filters, details, and related operation entries.
+#### What if a Settings menu is missing?
 
-**Handling:**
+The left navigation does not show the target menu, or the page has no operation button.
 
-1. Reset filters and search again from `Settings Getting Started`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+**How to check:**
 
-### Cannot Find the Target Data
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Settings Getting Started` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settings getting started records, status, filters, details, and related operation entries.
-
-**Handling:**
-
-1. Reset filters and search again from `Settings Getting Started`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+1. Confirm the current account and tenant.
+2. Ask an administrator to check role authorization.
+3. Re-login and refresh the menu if permissions were changed recently.
 
 ## Next Steps
 
-1. Open the related member, role, organization, operation log, or API rate-control page based on the issue.
-2. Recheck permissions and audit records after configuration changes.
-3. Escalate with desensitized account, organization, page route, time range, and issue symptom when needed.
+- To configure the full account and permission workflow, read [Configure Accounts and Permissions](../end-to-end/configure-account-and-permissions/).
+- To manage personal access credentials, open [My Keys](../user/personal/my-keys/).
+- To troubleshoot member permissions, open [Members](../operator/members-roles/members/) and [Roles](../operator/members-roles/roles/).
+- To troubleshoot rate control, open [API Rate Control Overview](../operator/api-rate-control/overview/).
 
 ## Notes
 
-- Permission, Key, login, organization, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- This getting-started page only helps choose a path. It does not replace field references on feature pages.
+- Accounts, roles, tenants, and system settings can affect one another. Keep the object scope consistent during troubleshooting.
+- Login property changes, rate-control publishing, member deletion, and Key rotation are high-risk actions and require impact confirmation.

@@ -31,10 +31,10 @@ This scenario helps callers reconcile model consumption and providers reconcile 
 | Role | Action | Manual | Completion Signal |
 | --- | --- | --- | --- |
 | Caller | Review personal call overview and logs | [My Calls Overview](../../../usermanual/model-services/user/my-calls/overview/), [Call Logs](../../../usermanual/model-services/user/my-calls/call-logs/) | State, model, and time can be located |
-| Caller | Review model usage | [Model Usage](../../../usermanual/model-services/user/usage-revenue/model-usage/) | Tokens, requests, or duration match logs |
+| Caller | Review model usage | [Model Usage](../../../usermanual/model-services/user/usage-earnings/model-usage/) | Tokens, requests, or duration match logs |
 | Provider | Review customer overview, logs, and analytics | [Customer Overview](../../../usermanual/model-services/user/customer-calls/overview/), [Customer Call Logs](../../../usermanual/model-services/user/customer-calls/call-logs/), [Customer Analytics](../../../usermanual/model-services/user/customer-calls/call-analytics/) | Customer-level data can be located |
-| Provider | Review model revenue | [Model Revenue](../../../usermanual/model-services/user/usage-revenue/model-revenue/) | Revenue maps to valid usage and pricing |
-| Both | Compare billing mode and currency | [My Models](../../../usermanual/model-services/user/studio/my-models/), [Currency Settings](../../../usermanual/model-services/operator/settings/currency-settings/) | Unit, price, and period are consistent |
+| Provider | Review model revenue | [Model Revenue](../../../usermanual/model-services/user/usage-earnings/model-earnings/) | Revenue maps to valid usage and pricing |
+| Both | Compare billing mode and currency | [My Models](../../../usermanual/model-services/user/studio/my-models/) and the platform currency settings page | Unit, price, and period are consistent |
 
 ## Reconciliation Order
 

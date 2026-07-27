@@ -1,89 +1,123 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2960" height="1080" viewBox="0 0 2960 1080" role="img" aria-labelledby="title desc">
-  <title id="title">AGIOne Core Capabilities</title>
-  <desc id="desc">AGIOne styled SVG recreation preserving the original technical diagram structure.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="680" viewBox="0 0 1600 680" role="img" aria-labelledby="title desc">
+  <title id="title">AGIOne Core Capabilities Overview</title>
+  <desc id="desc">Six business stages, Invocation Observability, and Settings and Access Control form eight capabilities.</desc>
   <defs>
-    <marker id="arrow-dark" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L14,7 L0,14 Z" fill="#3F3F46"/>
-    </marker>
-    <marker id="arrow-primary" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L14,7 L0,14 Z" fill="#5F4ECF"/>
-    </marker>
-    <marker id="arrow-green" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L14,7 L0,14 Z" fill="#3A7252"/>
-    </marker>
-    <marker id="arrow-orange" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L14,7 L0,14 Z" fill="#8A5E38"/>
-    </marker>
-    <marker id="arrow-purple" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L14,7 L0,14 Z" fill="#6A4E9A"/>
-    </marker>
-    <marker id="arrow-blue" viewBox="0 0 14 14" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L14,7 L0,14 Z" fill="#4A6298"/>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#667085"/>
     </marker>
     <style>
-      .agione-text { font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; letter-spacing: 0; }
-      .node { stroke-width: 2.4; }
-      .section { stroke-width: 2.4; }
-      .flow { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-      .small { font-size: 16px; }
-      .tiny { font-size: 13px; }
+      .title { font: 700 38px Arial, "Microsoft YaHei", sans-serif; fill: #182230; }
+      .subtitle { font: 400 21px Arial, "Microsoft YaHei", sans-serif; fill: #475467; }
+      .stage { font: 700 21.5px Arial, "Microsoft YaHei", sans-serif; fill: #182230; }
+      .stage-small { font: 700 18.5px Arial, "Microsoft YaHei", sans-serif; fill: #182230; }
+      .card-desc { font: 400 15.5px Arial, "Microsoft YaHei", sans-serif; fill: #475467; }
+      .num { font: 700 20px Arial, "Microsoft YaHei", sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
+      .band-title { font: 700 24px Arial, "Microsoft YaHei", sans-serif; fill: #20304a; }
+      .band-desc { font: 400 17px Arial, "Microsoft YaHei", sans-serif; fill: #475467; }
+      .label { font: 700 16px Arial, "Microsoft YaHei", sans-serif; fill: #344054; letter-spacing: 0; }
+      .footer { font: 400 16px Arial, "Microsoft YaHei", sans-serif; fill: #475467; }
     </style>
   </defs>
-  <rect width="100%" height="100%" fill="#FFFFFF"/>
-  <rect x="80" y="80" width="910" height="140" rx="26" ry="26" fill="#F4F4F5" stroke="#A1A1AA" stroke-width="2.4" class="node" />
-  <text x="535.0" y="167.68" class="agione-text" font-size="52" font-weight="700" fill="#3F3F46" text-anchor="middle">
-    <tspan x="535.0" dy="0">AGIOne Six Core Capabilities</tspan>
-  </text>
-  <rect x="120" y="360" width="360" height="190" rx="20" ry="20" fill="#EEF1F8" stroke="#4A6298" stroke-width="2.4" class="node" />
-  <text x="300.0" y="408.2" class="agione-text" font-size="30" font-weight="600" fill="#4A6298" text-anchor="middle">
-    <tspan x="300.0" dy="0">(1) Compute</tspan>
-    <tspan x="300.0" dy="38">Governance</tspan>
-    <tspan x="300.0" dy="38"></tspan>
-    <tspan x="300.0" dy="38">Heterogeneous chips</tspan>
-  </text>
-  <path d="M300 550 C470 620 1240 710 1400 765" class="flow" stroke="#4A6298" stroke-width="3" stroke-dasharray="8 12" marker-end="url(#arrow-dark)" opacity="0.85" />
-  <rect x="545" y="360" width="360" height="190" rx="20" ry="20" fill="#EEF5F0" stroke="#3A7252" stroke-width="2.4" class="node" />
-  <text x="725.0" y="408.2" class="agione-text" font-size="30" font-weight="600" fill="#3A7252" text-anchor="middle">
-    <tspan x="725.0" dy="0">(2) Model</tspan>
-    <tspan x="725.0" dy="38">Templates</tspan>
-    <tspan x="725.0" dy="38"></tspan>
-    <tspan x="725.0" dy="38">Best practices</tspan>
-  </text>
-  <path d="M725 550 C895 620 1240 710 1400 765" class="flow" stroke="#4A6298" stroke-width="3" stroke-dasharray="8 12" marker-end="url(#arrow-dark)" opacity="0.85" />
-  <rect x="970" y="360" width="360" height="190" rx="20" ry="20" fill="#F8F1EC" stroke="#8A5E38" stroke-width="2.4" class="node" />
-  <text x="1150.0" y="408.2" class="agione-text" font-size="30" font-weight="600" fill="#8A5E38" text-anchor="middle">
-    <tspan x="1150.0" dy="0">(3) Rapid</tspan>
-    <tspan x="1150.0" dy="38">Deployment</tspan>
-    <tspan x="1150.0" dy="38"></tspan>
-    <tspan x="1150.0" dy="38">Abstract complexity</tspan>
-  </text>
-  <path d="M1150 550 C1320 620 1240 710 1400 765" class="flow" stroke="#4A6298" stroke-width="3" stroke-dasharray="8 12" marker-end="url(#arrow-dark)" opacity="0.85" />
-  <rect x="1395" y="360" width="360" height="190" rx="20" ry="20" fill="#F2EEF8" stroke="#6A4E9A" stroke-width="2.4" class="node" />
-  <text x="1575.0" y="408.2" class="agione-text" font-size="30" font-weight="600" fill="#6A4E9A" text-anchor="middle">
-    <tspan x="1575.0" dy="0">(4) Model</tspan>
-    <tspan x="1575.0" dy="38">Publishing</tspan>
-    <tspan x="1575.0" dy="38"></tspan>
-    <tspan x="1575.0" dy="38">Service exposure</tspan>
-  </text>
-  <path d="M1575 550 C1745 620 1240 710 1400 765" class="flow" stroke="#4A6298" stroke-width="3" stroke-dasharray="8 12" marker-end="url(#arrow-dark)" opacity="0.85" />
-  <rect x="1820" y="360" width="360" height="190" rx="20" ry="20" fill="#ECE9F9" stroke="#4A3EB0" stroke-width="2.4" class="node" />
-  <text x="2000.0" y="408.2" class="agione-text" font-size="30" font-weight="600" fill="#4A3EB0" text-anchor="middle">
-    <tspan x="2000.0" dy="0">(5) Model</tspan>
-    <tspan x="2000.0" dy="38">Aggregation</tspan>
-    <tspan x="2000.0" dy="38"></tspan>
-    <tspan x="2000.0" dy="38">HA + UX</tspan>
-  </text>
-  <path d="M2000 550 C2170 620 1240 710 1400 765" class="flow" stroke="#4A6298" stroke-width="3" stroke-dasharray="8 12" marker-end="url(#arrow-dark)" opacity="0.85" />
-  <rect x="2245" y="360" width="360" height="190" rx="20" ry="20" fill="#F8F1EC" stroke="#8A5E38" stroke-width="2.4" class="node" />
-  <text x="2425.0" y="408.2" class="agione-text" font-size="30" font-weight="600" fill="#8A5E38" text-anchor="middle">
-    <tspan x="2425.0" dy="0">(6) Metering</tspan>
-    <tspan x="2425.0" dy="38">&amp; Billing</tspan>
-    <tspan x="2425.0" dy="38"></tspan>
-    <tspan x="2425.0" dy="38">Quota-based ops</tspan>
-  </text>
-  <path d="M2425 550 C2595 620 1240 710 1400 765" class="flow" stroke="#4A6298" stroke-width="3" stroke-dasharray="8 12" marker-end="url(#arrow-dark)" opacity="0.85" />
-  <rect x="880" y="765" width="1320" height="125" rx="24" ry="24" fill="#1A1025" stroke="#2D2240" stroke-width="2.4" class="node" />
-  <text x="1540.0" y="841.1" class="agione-text" font-size="40" font-weight="700" fill="#FFFFFF" text-anchor="middle">
-    <tspan x="1540.0" dy="0">(7) Invocation Observability (End-to-End)</tspan>
-  </text>
+
+  <rect width="1600" height="680" fill="#ffffff"/>
+
+  <text x="72" y="66" class="title">AGIOne Core Capabilities Overview</text>
+  <text x="72" y="104" class="subtitle">An end-to-end business loop across Compute, Model, Service, and Operations</text>
+  <text x="1528" y="84" class="label" text-anchor="end">6 business stages · 2 cross-cutting capabilities</text>
+
+  <line x1="286" y1="245" x2="321" y2="245" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="534" y1="245" x2="569" y2="245" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="782" y1="245" x2="817" y2="245" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="1030" y1="245" x2="1065" y2="245" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="1278" y1="245" x2="1313" y2="245" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(72 150)">
+    <rect width="214" height="190" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+    <circle cx="32" cy="32" r="20" fill="#4b6fae"/>
+    <text x="32" y="32" class="num">1</text>
+    <text x="24" y="78" class="stage">Compute</text>
+    <text x="24" y="104" class="stage">Management</text>
+    <text x="24" y="132" class="card-desc">Regions · clusters · nodes</text>
+    <text x="24" y="156" class="card-desc">Accelerators · specs</text>
+    <text x="24" y="180" class="card-desc">Unified resource pooling</text>
+  </g>
+
+  <g transform="translate(320 150)">
+    <rect width="214" height="190" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+    <circle cx="32" cy="32" r="20" fill="#2f8f64"/>
+    <text x="32" y="32" class="num">2</text>
+    <text x="24" y="82" class="stage">Model Templates</text>
+    <text x="24" y="116" class="card-desc">Model · VRAM settings</text>
+    <text x="24" y="145" class="card-desc">Frameworks · inference</text>
+    <text x="24" y="174" class="card-desc">Reusable templates</text>
+  </g>
+
+  <g transform="translate(568 150)">
+    <rect width="214" height="190" rx="8" fill="#fff2e8" stroke="#c56a2d" stroke-width="2"/>
+    <circle cx="32" cy="32" r="20" fill="#c56a2d"/>
+    <text x="32" y="32" class="num">3</text>
+    <text x="24" y="78" class="stage">Rapid</text>
+    <text x="24" y="104" class="stage">Deployment</text>
+    <text x="24" y="132" class="card-desc">Select model and spec</text>
+    <text x="24" y="156" class="card-desc">Submit and track status</text>
+    <text x="24" y="180" class="card-desc">Productized workflow</text>
+  </g>
+
+  <g transform="translate(816 150)">
+    <rect width="214" height="190" rx="8" fill="#f1eeff" stroke="#7256c8" stroke-width="2"/>
+    <circle cx="32" cy="32" r="20" fill="#7256c8"/>
+    <text x="32" y="32" class="num">4</text>
+    <text x="24" y="82" class="stage">Model Publishing</text>
+    <text x="24" y="116" class="card-desc">Publish · review · scope</text>
+    <text x="24" y="145" class="card-desc">Pricing · limits · calls</text>
+    <text x="24" y="174" class="card-desc">Service-ready models</text>
+  </g>
+
+  <g transform="translate(1064 150)">
+    <rect width="214" height="190" rx="8" fill="#e9f7f6" stroke="#238c83" stroke-width="2"/>
+    <circle cx="32" cy="32" r="20" fill="#238c83"/>
+    <text x="32" y="32" class="num">5</text>
+    <text x="24" y="78" class="stage">Model</text>
+    <text x="24" y="104" class="stage">Aggregation</text>
+    <text x="24" y="132" class="card-desc">Member orchestration</text>
+    <text x="24" y="156" class="card-desc">Unified entry · routing</text>
+    <text x="24" y="180" class="card-desc">Cost and availability</text>
+  </g>
+
+  <g transform="translate(1312 150)">
+    <rect width="216" height="190" rx="8" fill="#fff8e1" stroke="#b58a16" stroke-width="2"/>
+    <circle cx="32" cy="32" r="20" fill="#b58a16"/>
+    <text x="32" y="32" class="num">6</text>
+    <text x="24" y="78" class="stage-small">Metering &amp; Billing</text>
+    <text x="24" y="104" class="stage-small">Financial Operations</text>
+    <text x="24" y="142" class="card-desc">Usage · bills · settlement</text>
+    <text x="24" y="171" class="card-desc">Finance · License ops</text>
+  </g>
+
+  <g stroke="#b8c2d0" stroke-width="2" stroke-dasharray="5 8">
+    <line x1="179" y1="340" x2="179" y2="382"/>
+    <line x1="427" y1="340" x2="427" y2="382"/>
+    <line x1="675" y1="340" x2="675" y2="382"/>
+    <line x1="923" y1="340" x2="923" y2="382"/>
+    <line x1="1171" y1="340" x2="1171" y2="382"/>
+    <line x1="1420" y1="340" x2="1420" y2="382"/>
+  </g>
+
+  <g transform="translate(72 382)">
+    <rect width="1456" height="104" rx="8" fill="#eaf0fb" stroke="#4b6fae" stroke-width="2"/>
+    <circle cx="45" cy="52" r="24" fill="#4b6fae"/>
+    <text x="45" y="52" class="num">7</text>
+    <text x="88" y="43" class="band-title">Invocation Observability</text>
+    <text x="88" y="75" class="band-desc">Across the chain: hardware resources → deployment status → model services → business invocations, with monitoring, analytics, and anomaly diagnosis</text>
+  </g>
+
+  <g transform="translate(72 506)">
+    <rect width="1456" height="104" rx="8" fill="#f2f4f7" stroke="#667085" stroke-width="2"/>
+    <circle cx="45" cy="52" r="24" fill="#475467"/>
+    <text x="45" y="52" class="num">8</text>
+    <text x="88" y="43" class="band-title">Settings and Access Control</text>
+    <text x="88" y="75" class="band-desc">Governance foundation: identities, organizations, members, roles, permissions, audit, and API rate controls define visibility and access</text>
+  </g>
+
+  <text x="1528" y="650" class="footer" text-anchor="end">Mapped one-to-one to the eight sections in Core Capabilities and Features</text>
 </svg>

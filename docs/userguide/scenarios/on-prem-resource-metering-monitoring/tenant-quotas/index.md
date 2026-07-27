@@ -54,4 +54,4 @@ The tenant can request approved NPU plans without reserving more than its share 
 
 ## User Manual
 
-[Tenant Quotas](/usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-quotas/)
+For operator-side verification, use [Metering Details](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) and [Monthly Usage](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/).

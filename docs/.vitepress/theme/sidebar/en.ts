@@ -32,7 +32,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
       text: "Identity and Access Model",
       collapsed: false,
       items: [
-        { text: "User, Tenant, and Role Design Logic", link: "/product/identity-access-model" },
+        { text: "User, Organization, and Role Design Logic", link: "/product/identity-access-model" },
         { text: "Role Comparison", link: "/product/role-comparison" },
       ],
     },
@@ -110,10 +110,8 @@ export const enSidebar: DefaultTheme.Sidebar = {
       text: "Purchase & Activation",
       collapsed: false,
       items: [
-        { text: "Online Payment & Activation", link: "/license/online-payment-activation" },
-        {
-          text: "Activation Code & Activation",
-          link: "/license/activation-code-activation"
+        { text: "Online Payment Activation", link: "/license/online-payment-activation" },
+        { text: "License Activation",link: "/license/activation-code-activation"
         }
       ]
     }
@@ -242,6 +240,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                 { text: "Scenario Overview", link: "/userguide/scenarios/on-prem-resource-metering-monitoring/" },
                 { text: "Tenant NPU Quotas", link: "/userguide/scenarios/on-prem-resource-metering-monitoring/tenant-quotas/" },
                 { text: "Device, Node, and Workload Monitoring", link: "/userguide/scenarios/on-prem-resource-metering-monitoring/resource-monitoring/" },
+                { text: "Monthly Metering Reconciliation", link: "/userguide/scenarios/on-prem-resource-metering-monitoring/metering-reconciliation/" },
               ],
             },
             {
@@ -249,6 +248,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               collapsed: true,
               items: [
                 { text: "Scenario Overview", link: "/userguide/scenarios/on-cloud-resource-access/" },
+                { text: "Quick Access and Access Overview", link: "/userguide/scenarios/on-cloud-resource-access/quick-access-overview/" },
                 { text: "Cloud Platforms", link: "/userguide/scenarios/on-cloud-resource-access/Access-CloudType/" },
                 { text: "Cloud Accounts", link: "/userguide/scenarios/on-cloud-resource-access/Cloud-Accounts/" },
                 { text: "Resource Pools", link: "/userguide/scenarios/on-cloud-resource-access/Resource-Pools/" },
@@ -300,6 +300,78 @@ export const enSidebar: DefaultTheme.Sidebar = {
                 { text: "Governance Workflow", link: "/userguide/scenarios/platform-governance-access-control/governance-workflow" },
               ],
             },
+            {
+              text: "Billing-Cycle Reconciliation & Settlement",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/billing-cycle-reconciliation-settlement/" },
+                { text: "Reconciliation and Settlement Workflow", link: "/userguide/scenarios/billing-cycle-reconciliation-settlement/reconciliation-settlement-workflow" },
+              ],
+            },
+            {
+              text: "Provider Revenue & Settlement",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/provider-revenue-settlement/" },
+                { text: "Revenue and Settlement Workflow", link: "/userguide/scenarios/provider-revenue-settlement/revenue-settlement-workflow" },
+              ],
+            },
+            {
+              text: "Project, Key & Budget Governance",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/project-key-budget-governance/" },
+                { text: "Project and Key Workflow", link: "/userguide/scenarios/project-key-budget-governance/project-key-workflow" },
+              ],
+            },
+            {
+              text: "Member Quota Request & Allocation",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/member-quota-application-allocation/" },
+                { text: "Member Quota Workflow", link: "/userguide/scenarios/member-quota-application-allocation/quota-workflow" },
+              ],
+            },
+            {
+              text: "Application Publishing & Approval",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/application-publishing-approval/" },
+                { text: "Application Publishing and Approval Workflow", link: "/userguide/scenarios/application-publishing-approval/application-review-workflow" },
+              ],
+            },
+            {
+              text: "On-Prem Runtime Images & Storage",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/on-prem-runtime-storage-foundation/" },
+                { text: "Runtime Image and Storage Workflow", link: "/userguide/scenarios/on-prem-runtime-storage-foundation/runtime-storage-workflow" },
+              ],
+            },
+            {
+              text: "API Rate-Control Release & Audit",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/api-rate-control-release-audit/" },
+                { text: "Rate-Control Release and Audit Workflow", link: "/userguide/scenarios/api-rate-control-release-audit/rate-control-workflow" },
+              ],
+            },
+            {
+              text: "On-Cloud Scheduling Policies",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/on-cloud-scheduling-policy/" },
+                { text: "Scheduling Policy Workflow", link: "/userguide/scenarios/on-cloud-scheduling-policy/scheduling-policy-workflow" },
+              ],
+            },
+            {
+              text: "License Lifecycle Management",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/license-lifecycle-management/" },
+                { text: "License Lifecycle Workflow", link: "/userguide/scenarios/license-lifecycle-management/license-lifecycle-workflow" },
+              ],
+            },
           ],
         },
       ]
@@ -326,9 +398,9 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Settings",
                   collapsed: false,
                   items: [
-                    { text: "Meta-models", link: "/usermanual/model-services/operator/settings/meta-models/" },
+                    { text: "Meta Models", link: "/usermanual/model-services/operator/settings/meta-models/" },
                     { text: "Model Sources", link: "/usermanual/model-services/operator/settings/model-source/" },
-                    { text: "Templates", link: "/usermanual/model-services/operator/settings/model-templates/" },
+                    { text: "Model Templates", link: "/usermanual/model-services/operator/settings/model-templates/" },
                     { text: "Tags", link: "/usermanual/model-services/operator/settings/tags/" },
                   ]
                 },
@@ -336,7 +408,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Publishing",
                   collapsed: false,
                   items: [
-                    { text: "App List", link: "/usermanual/model-services/operator/publishing/apps/" },
+                    { text: "Apps", link: "/usermanual/model-services/operator/publishing/apps/" },
                   ]
                 },
                 {
@@ -375,14 +447,15 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "My Models", link: "/usermanual/model-services/user/studio/my-models/" },
+                    { text: "My Deployments", link: "/usermanual/model-services/user/studio/my-deployments/" },
                   ]
                 },
                 {
-                  text: "Usage & Revenue",
+                  text: "Usage & Earnings",
                   collapsed: false,
                   items: [
-                    { text: "Model Earnings", link: "/usermanual/model-services/user/usage-revenue/model-revenue/" },
-                    { text: "Model Usage", link: "/usermanual/model-services/user/usage-revenue/model-usage/" },
+                    { text: "Model Earnings", link: "/usermanual/model-services/user/usage-earnings/model-earnings/" },
+                    { text: "Model Usage", link: "/usermanual/model-services/user/usage-earnings/model-usage/" },
                   ]
                 },
                 {
@@ -430,7 +503,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Access Management",
                   collapsed: false,
                   items: [
-                    { text: "Cloud Platforms", link: "/usermanual/ai-infra-on-cloud/operator/access-management/access-cloudtype/" },
+                    { text: "Cloud Platforms", link: "/usermanual/ai-infra-on-cloud/operator/access-management/cloud-platforms/" },
                     { text: "Resource Pools", link: "/usermanual/ai-infra-on-cloud/operator/access-management/resource-pools/" },
                     { text: "Cloud Accounts", link: "/usermanual/ai-infra-on-cloud/operator/access-management/cloud-accounts/" },
                   ]
@@ -515,8 +588,8 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Templates",
                   collapsed: false,
                   items: [
-                    { text: "Models", link: "/usermanual/ai-infra-on-prem/operator/templates/model-config/" },
-                    { text: "Frames", link: "/usermanual/ai-infra-on-prem/operator/templates/frameworks/" },
+                    { text: "Models", link: "/usermanual/ai-infra-on-prem/operator/templates/models/" },
+                    { text: "Frames", link: "/usermanual/ai-infra-on-prem/operator/templates/frames/" },
                     { text: "Inference Templates", link: "/usermanual/ai-infra-on-prem/operator/templates/inference-templates/" },
                     { text: "VRAM Config", link: "/usermanual/ai-infra-on-prem/operator/templates/vram-config/" },
                   ],
@@ -525,8 +598,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Quotas & Metering",
                   collapsed: false,
                   items: [
-                    { text: "Tenant Quotas", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-quotas/" },
-                    { text: "Tenant Credits", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-credits/" },
+                    { text: "Usage Limits", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/usage-limits/" },
                     { text: "Monthly Usage", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/" },
                     { text: "Metering Details", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/" },
                   ],
@@ -542,6 +614,13 @@ export const enSidebar: DefaultTheme.Sidebar = {
                     { text: "Jobs", link: "/usermanual/ai-infra-on-prem/operator/monitoring/jobs/" },
                   ],
                 },
+                {
+                  text: "System",
+                  collapsed: false,
+                  items: [
+                    { text: "System Setting", link: "/usermanual/ai-infra-on-prem/operator/system/system-setting/" },
+                  ],
+                },
               ],
             },
             {
@@ -553,16 +632,16 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Model Deployment",
                   collapsed: false,
                   items: [
-                    { text: "Templates", link: "/usermanual/ai-infra-on-prem/user/quick-start/inference-templates/" },
-                    { text: "Instances", link: "/usermanual/ai-infra-on-prem/user/model-deployment/online-inference/" },
+                    { text: "Templates", link: "/usermanual/ai-infra-on-prem/user/model-deployment/templates/" },
+                    { text: "Instances", link: "/usermanual/ai-infra-on-prem/user/model-deployment/instances/" },
                   ],
                 },
                 {
                   text: "Dev Resources",
                   collapsed: false,
                   items: [
-                    { text: "Online IDE", link: "/usermanual/ai-infra-on-prem/user/development/dev-environments/" },
-                    { text: "Runtime Instances", link: "/usermanual/ai-infra-on-prem/user/development/model-training/" },
+                    { text: "Online IDE", link: "/usermanual/ai-infra-on-prem/user/dev-resources/online-ide/" },
+                    { text: "Runtime Instances", link: "/usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/" },
                   ],
                 },
                 {
@@ -632,9 +711,9 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Customer Billing",
                   collapsed: false,
                   items: [
+                    { text: "Business Units", link: "/usermanual/billing/operator/customer-billing/business-units/" },
                     { text: "Customer Overview", link: "/usermanual/billing/operator/customer-billing/customer-overview/" },
                     { text: "Top-up Orders", link: "/usermanual/billing/operator/customer-billing/top-up-orders/" },
-                    { text: "Business Units", link: "/usermanual/billing/operator/customer-billing/business-units/" },
                   ],
                 },
                 {
@@ -697,15 +776,15 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Members & Roles",
                   collapsed: false,
                   items: [
-                    { text: "Team Members", link: "/usermanual/settings/operator/members-roles/team-members/" },
+                    { text: "Members", link: "/usermanual/settings/operator/members-roles/members/" },
                     { text: "Roles", link: "/usermanual/settings/operator/members-roles/roles/" },
                   ],
                 },
                 {
-                  text: "Organizations",
+                  text: "Tenants",
                   collapsed: false,
                   items: [
-                    { text: "Organizations", link: "/usermanual/settings/operator/organizations/organizations/" },
+                    { text: "Tenants", link: "/usermanual/settings/operator/tenants/tenants/" },
                   ],
                 },
                 {
@@ -754,17 +833,17 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Members & Roles",
                   collapsed: false,
                   items: [
-                    { text: "Team Members", link: "/usermanual/settings/user/members-roles/team-members/" },
+                    { text: "Members", link: "/usermanual/settings/user/members-roles/team-members/" },
                     { text: "Roles", link: "/usermanual/settings/user/members-roles/roles/" },
                     { text: "Member Quotas", link: "/usermanual/settings/user/members-roles/member-quotas/" },
                     { text: "Quota Requests", link: "/usermanual/settings/user/members-roles/quota-requests/" },
                   ],
                 },
                 {
-                  text: "Organizations",
+                  text: "Tenants",
                   collapsed: false,
                   items: [
-                    { text: "Org Settings", link: "/usermanual/settings/user/organizations/org-settings/" },
+                    { text: "Tenant Settings", link: "/usermanual/settings/user/organizations/org-settings/" },
                   ],
                 },
                 {
@@ -793,20 +872,20 @@ export const enSidebar: DefaultTheme.Sidebar = {
               text: "AI Coding Integration",
               collapsed: false,
               items: [
-                { text: "CherryStudio", link: "/practices/technical/cherry-studio/" },
-                { text: "claudeCode", link: "/practices/technical/claude-code/" },
-                { text: "ClaudeCode-plugin", link: "/practices/technical/claude-code-plugin/" },
+                { text: "Cherry Studio", link: "/practices/technical/cherry-studio/" },
+                { text: "Claude Code", link: "/practices/technical/claude-code/" },
+                { text: "Claude Code Plugin", link: "/practices/technical/claude-code-plugin/" },
                 { text: "Cline", link: "/practices/technical/cline/" },
                 { text: "Codex", link: "/practices/technical/codex/" },
                 { text: "Crush", link: "/practices/technical/crush/" },
                 { text: "Cursor", link: "/practices/technical/cursor/" },
-                { text: "dify", link: "/practices/technical/dify/" },
-                { text: "KiloCode", link: "/practices/technical/kilo-code/" },
+                { text: "Dify", link: "/practices/technical/dify/" },
+                { text: "Kilo Code", link: "/practices/technical/kilo-code/" },
                 { text: "n8n", link: "/practices/technical/n8n/" },
-                { text: "open-webui", link: "/practices/technical/open-webui/" },
-                { text: "openclaw", link: "/practices/technical/openclaw/" },
-                { text: "OpenCode", link: "/practices/technical/open-code/" },
-                { text: "RooCode", link: "/practices/technical/roo-code/" },
+                { text: "Open WebUI", link: "/practices/technical/open-webui/" },
+                { text: "OpenClaw", link: "/practices/technical/openclaw/" },
+                { text: "Open Code", link: "/practices/technical/open-code/" },
+                { text: "Roo Code", link: "/practices/technical/roo-code/" },
               ]
             },
           ]
@@ -815,7 +894,8 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "Project Practices",
           collapsed: false,
           items: [
-            { text: "Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice", link: "/practices/project/multi-compute-pool-heterogeneous-inference-scheduling" }
+            { text: "Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice", link: "/practices/project/multi-compute-pool-heterogeneous-inference-scheduling" },
+            { text: "Single-Node Multi-Card Multi-Model Deployment Best Practice", link: "/practices/project/single-node-multi-card-multi-model-deployment" }
           ]
         }
       ]

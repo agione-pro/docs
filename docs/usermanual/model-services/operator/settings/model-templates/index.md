@@ -12,16 +12,16 @@ Model Templates helps operators maintain reusable publishing templates that conn
 | Item | Content |
 | --- | --- |
 | Applicable role | Operator |
-| Navigation path | System Settings > Model Templates |
-| Page route | /operator/settings/model-templates |
+| Navigation path | Model Services > Settings > Model Templates |
+| Page route | `/modelone/settings/provider-template` |
 | Managed objects | Vendor templates, source previews, protocols, default parameters, and publishing forms |
 | Typical use | Provide reusable templates for model publishing |
 
-### Beginner Explanation
+#### Beginner Explanation
 
 A model template is like a preset for the model publishing form. After a template is configured, model providers can fill fewer repeated fields, but the Endpoint, request headers, and default parameters in the template must be secure and controlled.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -36,67 +36,73 @@ A model template is like a preset for the model publishing form. After a templat
 2. Selectable providers, authors, meta-models, and model sources have been maintained.
 3. Default parameters, request header previews, and publishing form fields have been confirmed.
 4. Before enabling the template, the publishing flow has been validated with a sample model.
+
 ## Page Description
 
 This page maintains model publishing templates. A template combines provider, meta-model, default parameters, protocol, and source preview to help model providers reduce repeated input.
 
 Page screenshot:
 
-![Model template list](./images/model-source-list.png)
+![Model template list](./images/model-templates-list.png)
 
 Used to view template status, provider, and associated configuration.
 
 ## Main Operations
 
-### Steps
+### Add Template
 
-1. Go to `System Settings > Model Templates`.
-2. Select provider or vendor configuration.
-3. Associate applicable meta-models and model sources.
-4. Configure protocol, default advanced parameters, and request header preview.
-5. After saving, validate the template with a test model publishing flow.
+1. Go to `Model Services > Settings > Model Templates`.
+2. Click `Add` to open the `New Template` page.
+3. In the `Model Provider / Author` step, select a model author card.
+4. In `Provider Information`, select `Select Provider` and `Select Region`. To maintain a new source configuration, click `Add Model Source`.
+5. Before clicking `Next`, verify the provider and region information.
 
-Key screenshots:
+![Add Template - Provider Information](./images/model-provider-author-add.png)
 
-![Select meta-model](./images/step-2-select-meta-model.png)
+6. In the `Meta Model` step, filter and select the target meta model, then fill in `Model source ID`.
+7. Check `Input / Output modalities`, `Advanced capability configuration`, `Token Limit`, and `Official Native Protocol & Default Advanced Parameters`.
+8. Before clicking `Next`, verify the meta model and protocol parameters.
 
-The template must be associated with the correct meta-model capability.
+![Add Template - Meta Model](./images/meta-model-add.png)
 
-![Input/output modalities](./images/step-2-input-output-modalities.png)
+9. In the `Preview` step, check `Provider Information`, `Meta Model`, `Input / Output modalities`, `Advanced capability configuration`, `Token Limit`, and protocol parameters.
+10. Before clicking the final `Submit`, verify the configuration. For page validation only, click `Cancel` or go back to close the page.
 
-Template modalities should match the meta-model and model source.
+![Add Template - Preview](./images/preview-add.png)
 
-![Template preview](./images/step-3-preview.png)
-
-Preview the fields and default parameters shown to users before release.
-
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Template Name | Yes | Text | `OpenAI-compatible template` | Template name selectable during model publishing. |
-| Provider | Yes | Dropdown | `OpenAI Compatible` | Vendor or source type corresponding to the template. |
-| Meta-model | Yes | Dropdown | `Qwen Text` | Capability definition referenced by default in the template. |
-| Default Parameters | No | JSON | `{"top_p":0.8}` | Parameters carried into model publishing. |
-| Request Header Preview | No | JSON | `{"Authorization":"Bearer <key>"}` | Show placeholders only. Do not write real keys. |
+| Model Author | Yes | Card selection | `Qwen` | Model author associated with the template. |
+| Select Provider | Yes | Dropdown | `Alibaba` | Model source or provider corresponding to the template. |
+| Select Region | Yes | Dropdown | `China` | Region where the model source is located. |
+| Meta model name | Yes | Filter / radio selection | `Qwen3.7-Plus` | Meta model associated with the template by default. |
+| Model source ID | Yes | Text | `qwen/qwen3.7-plus` | Model identifier in the upstream model source. |
+| Input / Output modalities | System-filled | Tag | `Text` / `Image` / `Video` | Supported input and output modalities from the selected meta model. |
+| Function/Tool Support | System-filled | Toggle / read-only information | `Enabled` | Tool calling capability of the selected meta model. |
+| Thinking Mode | System-filled | Toggle / read-only information | `Enabled` | Advanced thinking or reasoning capability of the selected meta model. |
+| Token Limit | System-filled | Number | `1000 K` | Context, input, and output Token limits of the selected meta model. |
+| Official Native Protocol & Default Advanced Parameters | System-filled | Protocol configuration | `OpenAI-ChatCompletions` | Protocols and default advanced parameters supported by the selected meta model. |
 
-
-### Pitfalls
+## Pitfalls
 
 - Template default parameters affect all models that reference the template.
 - Provider and meta-model capability mismatches cause call failures after publishing.
 - Request header previews can contain placeholders only.
 
+## Result Validation
 
-### Result Checks
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| The template can be selected in the model publishing flow | The template can be selected in the model publishing flow. | Return to the page and check permissions, filters, and configuration status. |
+| Provider, meta-model, source preview, and default parameters are carried into the publishing form correctly | Provider, meta-model, source preview, and default parameters are carried into the publishing form correctly. | Return to the page and check permissions, filters, and configuration status. |
+| Protocols, modalities, and Token limits are consistent with the associated meta-model | Protocols, modalities, and Token limits are consistent with the associated meta-model. | Return to the page and check permissions, filters, and configuration status. |
+| Disabled templates no longer appear in new publishing flows | After the template is disabled, it no longer appears in new publishing flows. | Return to the page and check permissions, filters, and configuration status. |
 
-1. The template can be selected in the model publishing flow.
-2. Provider, meta-model, source preview, and default parameters are carried into the publishing form correctly.
-3. Protocols, modalities, and Token limits are consistent with the associated meta-model.
-4. After the template is disabled, it no longer appears in new publishing flows.
 ## FAQ
 
-### Target Template Is Missing from Publishing Flow
+#### Target Template Is Missing from Publishing Flow
 
 **Symptom:**
 
@@ -114,7 +120,7 @@ The model provider cannot see the expected template when creating a model.
 2. Check associated meta-model, source, and provider.
 3. Re-enter the publishing flow and verify the dropdown.
 
-### Parameters Carried by the Template Are Incorrect
+#### Parameters Carried by the Template Are Incorrect
 
 **Symptom:**
 
@@ -131,6 +137,20 @@ Parameters, request headers, or modalities auto-filled in the publishing form do
 1. Update template default parameters and request header preview.
 2. Check meta-model limits.
 3. After saving, run through the publishing flow with a test model.
+#### Template Is Selectable but Publishing Form Fields Are Missing
+
+**Symptom:**
+
+The template can be selected when publishing a model, but the form does not bring in the expected fields or default parameters.
+
+**Possible Causes:**
+
+The template is not associated with the correct source, meta-model, or protocol; default parameter configuration is incomplete; or the template version has not refreshed.
+
+**Handling:**
+
+Return to the template page and check source preview, protocol, and default parameters. After saving, re-enter the publishing flow and verify whether fields are brought in.
+
 ## Next Steps
 
 1. Use the template to create or update a test model and confirm that default parameters, pricing, and visibility scope take effect.

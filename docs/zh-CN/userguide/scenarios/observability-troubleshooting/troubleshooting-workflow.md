@@ -5,7 +5,7 @@ next: true
 
 # 可观测与问题排查
 
-本场景指导运营方、模型提供方和调用方先判断问题属于调用、模型服务、云上部署、On-Prem 资源还是计量，再进入对应日志和监控页面，避免在错误子系统中反复搜索。
+本场景指导运营方、模型提供方和调用方先判断问题属于调用、模型服务、云上部署、本地算力平台资源还是计量，再进入对应日志和监控页面，避免在错误子系统中反复搜索。
 
 ## 适用角色
 
@@ -23,7 +23,7 @@ next: true
 1. 记录发生时间、账号角色、租户、子系统和操作入口。
 2. 记录脱敏后的模型、部署、实例、作业或请求标识。
 3. 区分“不可见、创建失败、运行失败、调用失败、性能下降、用量异常”。
-4. 不在工单或群聊中发送完整 Prompt、响应、Token、密钥或内部 Endpoint。
+4. 不在工单或群聊中发送完整 Prompt、响应、Token、密钥或内部 接口地址。
 
 ## 问题分流
 
@@ -32,9 +32,9 @@ next: true
 | 模型 API 调用失败或响应异常 | 我的调用 / 客户调用日志 | [调用日志](../../../usermanual/model-services/user/my-calls/call-logs/)、[客户调用日志](../../../usermanual/model-services/user/customer-calls/call-logs/) |
 | 调用成功率、时延或 Token 异常 | 调用分析 | [我的调用分析](../../../usermanual/model-services/user/my-calls/call-analytics/)、[客户调用分析](../../../usermanual/model-services/user/customer-calls/call-analytics/) |
 | 云上部署失败或不可访问 | 我的部署详情、事件和监控 | [我的部署](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/) |
-| On-Prem 作业排队或失败 | 作业监控、实例事件和日志 | [作业监控](../../../usermanual/ai-infra-on-prem/operator/monitoring/jobs/)、[在线推理](../../../usermanual/ai-infra-on-prem/user/model-deployment/online-inference/) |
+| 本地算力平台作业排队或失败 | 作业监控、实例事件和日志 | [作业监控](../../../usermanual/ai-infra-on-prem/operator/monitoring/jobs/)、[模型实例](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | 节点或加速卡异常 | 节点统计、设备监控 | [节点统计](../../../usermanual/ai-infra-on-prem/operator/monitoring/nodes/)、[设备监控](../../../usermanual/ai-infra-on-prem/operator/monitoring/devices/) |
-| 配额、用量或金额异常 | 配额、计量明细和模型用量 | [On-Prem 资源计量与监控](../on-prem-resource-metering-monitoring/)、[模型的消费与收益](../model-usage-revenue/) |
+| 配额、用量或金额异常 | 配额、计量明细和模型用量 | [本地算力平台资源计量与监控](../on-prem-resource-metering-monitoring/)、[模型的消费与收益](../model-usage-revenue/) |
 
 ## 通用排查顺序
 
@@ -45,7 +45,7 @@ next: true
 5. 对资源问题同时核对作业状态、节点容量和设备健康。
 6. 对用量问题先核对真实运行记录，再核对计量明细和账期汇总。
 
-判断故障层级时，使用 **On-Prem 监控概览**在同一时间范围内对比集群、节点、设备和作业信号。
+判断故障层级时，使用 **本地算力平台监控概览**在同一时间范围内对比集群、节点、设备和作业信号。
 
 ![在同一时间范围内对比监控信号](./images/monitoring-overview.png)
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: true
+---
+
 # Scenario Overview - Model Experience and API Calling
 
 This scenario helps users discover models, try them in the playground, call them through APIs, and review call records.
@@ -10,7 +15,7 @@ This scenario helps users discover models, try them in the playground, call them
 ## Goals
 
 - Find the target model and claim or confirm quota.
-- Complete one playground request.
+- Complete one request in the text, image, video, or audio playground that matches the model modality.
 - Call the API with a personal key and review the call record.
 
 ## Scenario Flow
@@ -32,7 +37,7 @@ This scenario helps users discover models, try them in the playground, call them
 ## Recommended Reading Order
 
 1. Review this overview and prerequisites
-2. Follow the quick guide to discover and try the model
+2. Follow the quick guide to discover the model and select the matching playground
 3. Complete an API request
 4. Review the call record and troubleshoot failures
 
@@ -40,7 +45,7 @@ This scenario helps users discover models, try them in the playground, call them
 
 | Document | Description |
 | --- | --- |
-| [User Quick Guide](./user-quick-guide) | Sign-in, model discovery, quota, playground, API calling, call records, and screenshots |
+| [User Quick Guide](./user-quick-guide) | Sign-in, model discovery, quota, text/image/video/audio playgrounds, API calling, call records, and screenshots |
 
 ## Completion Checklist
 

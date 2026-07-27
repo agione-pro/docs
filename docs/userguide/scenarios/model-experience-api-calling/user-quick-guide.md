@@ -162,6 +162,29 @@ After entering the text playground page, follow these steps.
 
 If the generated response appears in the chat area, the playground call has succeeded.
 
+### 5.3 Select the Playground That Matches the Model Modality
+
+The model's capabilities and input/output modalities determine which playground to use. Do not validate image, video, or audio models with text-model parameters.
+
+| Modality | Menu Path | Validate |
+| --- | --- | --- |
+| Text / chat | `Playground > Text` | Prompt, Temperature, Top-P, Max Tokens, response, and latency |
+| Image / multimodal | `Playground > Images` | Authorized image, prompt, size, count, output image, and request ID |
+| Video | `Playground > Video` | Authorized short video, frame sampling, duration, result, and asynchronous latency |
+| Speech / audio | `Playground > Audio` | Audio format, sample rate, language, voice, and text or audio output |
+
+For an image model, choose an available image or multimodal model, upload sanitized and authorized material, set the prompt and size, and send the request.
+
+![Select an image playground model](../../../usermanual/model-services/user/playground/images/images/select-model.png)
+
+For a video model, first use a short sanitized sample to validate frame sampling, output format, and asynchronous results before increasing input size.
+
+![Configure video playground parameters](../../../usermanual/model-services/user/playground/video/images/video-list.png)
+
+For an audio model, confirm input format, language, and output type. Do not upload original recordings that contain customer privacy.
+
+![Select an audio playground model](../../../usermanual/model-services/user/playground/audio/images/select-model.png)
+
 ## 6. Call the Model with curl
 
 Use curl when you want to call the model from a command line, script, or backend service.

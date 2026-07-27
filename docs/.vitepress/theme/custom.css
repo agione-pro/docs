@@ -4,3 +4,7 @@
 .medium-zoom-image--opened {
   z-index: 101;
 }
+
+html[lang="zh-CN"] .VPHomeHero .text {
+  max-width: 720px;
+}

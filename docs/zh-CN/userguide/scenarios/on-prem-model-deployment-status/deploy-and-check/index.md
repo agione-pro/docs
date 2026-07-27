@@ -6,9 +6,9 @@
 
 ## 适用角色
 
-- 平台用户（End User）
-- 模型提供方（Provider）
-- 协助排查基础设施的平台运营方（Operator）
+- 平台用户
+- 模型提供方
+- 协助排查基础设施的平台运营方
 
 ## 开始前准备
 
@@ -18,7 +18,7 @@
 ## 功能入口
 
 - **角色**：模型提供方 / 最终用户
-- **菜单**：AI 基础设施（On-Prem） > 模型部署 > 部署模板 / 模型实例
+- **菜单**：AI 基础设施（本地算力平台） > 模型部署 > 部署模板 / 模型实例
 - **实例路由**：`/powerone/quickstart/model-service`
 
 ## 操作步骤
@@ -65,4 +65,4 @@
 
 ## 操作手册
 
-[查看模型实例完整说明](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/online-inference/)
+[查看模型实例完整说明](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/)

@@ -7,176 +7,149 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Revenue` is used to view, filter, and maintain revenue information. It helps provider account, provider finance viewer work with revenue records and related status from a consistent page entry.
+`Revenue` is used to view Provider revenue overview, revenue account balance, current month estimate, billing cycle analysis, revenue account activity, settlements, and customer revenue details. Provider accounts can use this page to understand revenue trends, verify revenue account activity, and reconcile revenue with monthly settlements and customer details.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider account, provider finance viewer |
-| Navigation path | Earnings > Revenue |
-| Page route | /user/earnings/revenue |
-| Managed objects | Revenue records and related status |
-| Typical use | View, filter, and maintain revenue information |
+| Applicable role | Provider account, provider finance viewer, revenue operator |
+| Navigation path | Billing > Earnings > Revenue |
+| Page route | `/billing/provider/revenue` |
+| Managed objects | Revenue overview, revenue account balance, account activity, billing cycle analysis, settlements, and customer revenue |
+| Typical use | View provider revenue, verify revenue account activity, and reconcile revenue with settlements and customer details |
 
-### Beginner Explanation
+#### Beginner Explanation
 
-Revenue is part of the billing control loop. Treat it as a view for confirming money, quota, billing-cycle, customer, or settlement status before making financial decisions.
+Revenue works like a Provider earnings dashboard. Start with revenue account balance and current month estimate, then use billing cycle analysis to review daily revenue, top customers, and top models. For reconciliation, switch to Revenue Account Activity or open settlements and customer details.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Billing cycle | The month or settlement period used for billing, revenue, and reconciliation. | Keep the cycle consistent across pages. |
-| Transaction | A balance change or revenue/expense record. | Use it to explain amount differences. |
-| Settlement statement | A statement generated for an organization and billing cycle. | Check status and amount before follow-up. |
-| Adjustment | A controlled correction for abnormal billing records. | Use only after impact assessment. |
+| Revenue Account Balance | Current balance of the Provider revenue account. | Verify it with revenue account activity and settlements. |
+| Current Month Estimate | Estimated revenue for the current calendar month. | Do not treat it as final settled revenue. |
+| Billing Cycle Analysis | Daily revenue, customer contribution, and model contribution by billing cycle. | Keep the billing cycle consistent when comparing data. |
+| Revenue Account Activity | Activity or payout records of the revenue account. | Check this first when amount changes are unclear. |
+| Settlements | Monthly settlement results by billing cycle. | Use it to reconcile estimated revenue and settled amount. |
 
 ## Prerequisites
 
 1. The current account can access `Earnings > Revenue`.
-2. The target organization, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+2. The target Provider revenue scope has been confirmed.
+3. The page has finished loading before you verify revenue, billing cycle, customer, or model data.
+
+::: warning High-Risk Operation Boundary
+Revenue account balance, activity amount, customer name, billing cycle, and settlement status are sensitive. For learning or screenshots only, view pages, tabs, list fields, and status without exporting real revenue data or recording real customer names, accounts, amounts, transaction numbers, settlement statement numbers, Token, or Key.
+:::
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for revenue records and related status.
+The following screenshot shows Revenue Overview. Amounts, customers, and revenue details in screenshots are desensitized.
+
+![Revenue overview](./images/overview-list.png)
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, organization, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows revenue.
-
-![Revenue](./images/revenue-overview.png)
+| Overview | Shows core Provider revenue metrics and billing cycle analysis. |
+| Revenue Account Activity | Shows revenue account activity or payout records. |
+| Revenue Account Balance | Current balance of the revenue account. |
+| Current Month Estimate | Estimated revenue for the current calendar month. |
+| Billing Cycle Analysis | Daily revenue, top customers, top models, and settlement overview for the selected billing cycle. |
+| Settlements | Entry for monthly settlement records. |
+| Customer Details | Entry for customer-level revenue details. |
 
 ## Main Operations
 
-Use the following operations to work with revenue records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
-
 ### View Revenue Overview
 
-1. Go to `Earnings > Revenue`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to revenue records and related status.
-4. Click the visible `View Revenue Overview` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+1. Go to `Billing > Earnings > Revenue`.
+2. Review `Revenue Account Balance`, `Current Month Estimate`, next settlement cue, and historical settlement performance.
+3. Confirm the current `Billing Cycle` used for analysis.
+4. Review `Daily Revenue`, `Top Customers`, and `Top Models` to understand revenue trends and major sources.
+5. To reconcile settlement results, review the settlement overview on the page or open monthly settlements.
+6. For learning or screenshots only, view summary metrics and desensitized charts without exporting real revenue data or recording customer, amount, or account-sensitive information.
 
-### Switch Billing-cycle Analysis
+### View Revenue Account Activity
 
-1. Go to `Earnings > Revenue`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to revenue records and related status.
-4. Click the visible `Switch Billing-cycle Analysis` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+1. Go to `Billing > Earnings > Revenue`.
+2. Switch to the `Revenue Account Activity` tab.
+3. Review the revenue account activity list.
+4. Verify activity time, activity type, amount, status, related billing cycle, and description as needed.
+5. To reconcile with settlement results, return to Revenue Overview or open monthly settlements for the corresponding billing cycle.
+6. For learning or screenshots only, view list fields and status without exporting real revenue data or recording customer, amount, or account-sensitive information.
 
-### Open Related Details
+![Revenue account activity](./images/account-activity-list.png)
 
-1. Go to `Earnings > Revenue`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to revenue records and related status.
-4. Click the visible `Open Related Details` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+## Parameter Reference
 
-### Transfer to Available Balance
-
-1. Go to `Earnings > Revenue`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to revenue records and related status.
-4. Click the visible `Transfer to Available Balance` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
-
-## Parameters
-
-| Field | Required | Type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Organization / customer / member | No | Text | `Example organization` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Overview | No | Tab | `Overview` | Shows revenue overview and billing cycle analysis. |
+| Revenue Account Activity | No | Tab | `Revenue Account Activity` | Shows revenue account activity or payout records. |
+| Revenue Account Balance | System generated | Credits | `100.00 credits` | Current revenue account balance. Desensitize it in screenshots. |
+| Current Month Estimate | System generated | Credits | `100.00 credits` | Estimated revenue for the current calendar month. It is not final settlement. |
+| Billing Cycle | No | Month / cycle | `2026-07` | Controls the data scope for billing cycle analysis. |
+| Daily Revenue | System generated | Chart | `Jul 6` | Daily revenue trend in the selected billing cycle. |
+| Top Customers | System generated | Ranking | `Example customer` | Customers with higher contribution in the selected billing cycle. Desensitize customer information. |
+| Top Models | System generated | Ranking | `Example model` | Models with higher contribution in the selected billing cycle. |
+| Activity Time | System generated | Time | `2026-07-10 12:00:00` | Time when the revenue account activity occurred. |
+| Activity Type | System generated | Enum | `Settlement posting` | Revenue account activity type. |
+| Activity Amount | System generated | Credits | `100.00 credits` | Revenue account activity amount. Desensitize it in screenshots and tickets. |
+| Activity Status | System generated | Enum | `Succeeded` | Processing status of the revenue account activity. |
+| Related Billing Cycle | System generated | Billing cycle | `2026-07` | Billing cycle related to the activity record. |
+| Description | No | Text | `Example description` | Activity description. Do not write real customer, account, or internal handling information. |
 
 ## Pitfalls
 
-- Do not rely on one amount field alone for financial confirmation; cross-check transactions, bills, settlement statements, and reconciliation results.
-- Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
-- Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
+- Do not rely on revenue account balance alone. Cross-check revenue account activity, monthly settlements, and customer details.
+- Current month estimate changes with consumption and settlement processing. Do not treat it as final credited amount.
+- Empty Top Customers or Top Models is not always abnormal. Confirm whether the selected billing cycle has real revenue first.
+- Revenue account balance, activity amount, customer name, billing cycle, and settlement status are sensitive. Desensitize screenshots, exports, tickets, and comments.
+- For learning or screenshots only, view pages, tabs, list fields, and status without exporting real revenue data.
 
-## Result Checks
+## Result Validation
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Earnings > Revenue` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Page load | Revenue metrics, billing cycle analysis, and entries are visible. | Refresh the page or check whether the account has Provider revenue permission. |
+| Overview readable | Revenue account balance, current month estimate, daily revenue, top customers, and top models are visible. | Wait for data refresh or switch to a billing cycle with revenue. |
+| Activity list readable | Fields and status are visible under `Revenue Account Activity`. | Refresh the page or confirm activity view permission. |
+| Reconciliation path | You can return to Revenue Overview or open monthly settlements for the corresponding billing cycle. | Re-enter the target page from the sidebar. |
 
 ## FAQ
 
-### Values Do Not Match Expectations
+#### Revenue balance does not match the expected value
 
-**Issue Symptom:**
+The balance or estimated revenue in Revenue Overview differs from internal records.
 
-The expected result is not visible on the `Revenue` page, or the available action does not match the current business expectation.
+**How to check:**
 
-**Possible Causes:**
+Confirm the billing cycle first, then check `Revenue Account Activity`, `Settlements`, and `Customers` to compare source, status, and customer-level data.
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects revenue records and related status.
+#### Top Customers or Top Models is empty
 
-**Handling:**
+The customer ranking or model ranking in billing cycle analysis has no data.
 
-1. Reset filters and search again from `Earnings > Revenue`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+**How to check:**
 
-### Cannot Find the Target Data
+Switch to a billing cycle with existing revenue. If other metrics are also empty, check account permission and page loading status.
 
-**Issue Symptom:**
+#### Revenue Account Activity list is empty
 
-The expected result is not visible on the `Revenue` page, or the available action does not match the current business expectation.
+No activity record appears after switching to `Revenue Account Activity`.
 
-**Possible Causes:**
+**How to check:**
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects revenue records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Earnings > Revenue`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### What to Check on Revenue
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Revenue` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects revenue records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Earnings > Revenue`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Return to Revenue Overview to check settlement history, then open monthly settlements to verify whether the corresponding billing cycle has been settled.
 
 ## Next Steps
 
-1. Open the related detail page if the list value requires verification.
-2. Cross-check transactions, monthly bills, settlement statements, and reconciliation results when amounts differ.
-3. Escalate with desensitized record IDs, billing cycle, organization, customer, time range, and issue symptom when needed.
+1. To verify settlement status, go to [Settlements](../settlements/).
+2. To verify revenue by customer, go to [Customers](../customers/).
+3. To troubleshoot revenue account activity, keep only desensitized page paths, billing cycles, and status information.
 
 ## Notes
 
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Revenue Overview is a summary view. Final reconciliation should use revenue account activity, settlements, and customer details together.
+- Revenue account balance, activity amount, customer name, account, billing cycle, transaction number, and settlement statement number are sensitive. Do not share them directly.
+- Desensitize screenshots, exports, tickets, and comments.
+- Do not record real customer names, accounts, amounts, transaction numbers, settlement statement numbers, Token, or Key.

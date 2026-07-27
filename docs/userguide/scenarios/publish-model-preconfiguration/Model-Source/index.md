@@ -5,11 +5,9 @@ next: true
 
 # Model Sources
 
-Model sources define the provider endpoint and regional connection information used when providers publish model services.
-
 ## Target Outcome
 
-Provider endpoints, regions, documentation links, and authentication-header templates are reusable without storing a real API key.
+Provider endpoints, regions, documentation URLs, and authentication-header templates are reusable without storing a real API key.
 
 ## Applicable Roles
 
@@ -17,28 +15,51 @@ Provider endpoints, regions, documentation links, and authentication-header temp
 
 ## Before You Start
 
-- Confirm the provider base URL, supported regions, key-acquisition page, and API documentation.
-- Define authentication headers with placeholders instead of real credentials.
+- Confirm the provider Base URL, supported regions, API-key page, and API documentation.
+- Use placeholders in authentication-header templates and never enter a real credential.
 
 ## Procedure
 
-1. Open **Settings > Model Sources**, review existing records, and create the provider source only if it does not already exist.
+1. From the platform home page, select **Model Sources** in the left navigation.
+2. Select **Add** in the upper-right corner.
 
 ![Review the model-source list](./images/model-source-list.png)
 
-2. Enter the source name, unique identifier, provider documentation links, and other basic information.
+3. Under **Basic Information**:
+   - Maintain the localized model-source name on the English and Chinese tabs, such as Alibaba and 阿里巴巴.
+   - Enter a stable **Model Source Identifier**, such as `alibaba-china`.
 
 ![Configure model-source basic information](./images/basic-information.png)
 
-3. Add each supported region and its reachable base URL.
+1. Under **Region Information**, add one row for each supported region:
+   - Enter the region identifier, such as `china`.
+   - Maintain localized English and Chinese region names.
+   - Enter the provider **Base URL**.
+   - Enter the official **API Key URL**.
+   - Enter the official **API Documentation URL**.
+   - Use **Delete** to remove a region or **+ Add Region** to add another.
 
 ![Configure regional endpoints](./images/region-information.png)
 
-4. Define required request-header names with placeholders rather than real credentials, save, and confirm that templates can select the source.
+1. Under **Request Headers**, keep the default `Authorization: Bearer <key>` template or add required custom headers. Use placeholders only.
 
 ![Configure request-header templates](./images/headers-configuration.png)
 
-See [Model Sources in the User Manual](../../../../usermanual/model-services/operator/settings/model-source/).
+2. Review the configuration and select **Confirm**, or **Cancel** to discard it.
+
+### Parameter Reference
+
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Name | Localized text | `Alibaba / 阿里巴巴` | Required; maintain English and Chinese values |
+| Model Source Identifier | Text | `alibaba-china` | Required; stable source identifier |
+| Region Identifier | Text | `china` | Required; stable regional-node identifier |
+| Region Name | Localized text | `China / 中国` | Required; maintain English and Chinese values |
+| Base URL | URL | `https://dashscope.aliyuncs.com` | Required; model-service base URL |
+| API Key URL | URL | `https://bailian.console.aliyun.com` | Optional; official page for obtaining API keys |
+| API Documentation URL | URL | `https://bailian.console.aliyun.com/cn-bei` | Optional; official model-service documentation |
+| Authentication Header Name | Text | `Authorization` | Optional; authentication-header key |
+| Authentication Value | Text | `Bearer <key>` | Optional; placeholder template, never a real key |
 
 ## Completion Checklist
 
@@ -46,9 +67,9 @@ See [Model Sources in the User Manual](../../../../usermanual/model-services/ope
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Source name and regional endpoints are correct. |
-| 2 | Required headers and authentication type are documented without real secrets. |
-| 3 | The source is selectable and connectivity testing can run. |
+| 1 | Name, unique identifier, region, and Base URL are accurate. |
+| 2 | Request headers use placeholders and do not store a real API key. |
+| 3 | Model templates can select the source and region. |
 
 ## Troubleshooting
 
@@ -56,3 +77,7 @@ See [Model Sources in the User Manual](../../../../usermanual/model-services/ope
 | --- | --- |
 | Connectivity testing fails | Base URL, region, network route, header template, and provider state |
 | Templates cannot use the source | Source status, unique identifier, region, and provider mapping |
+
+## User Manual
+
+[Review complete fields and common issues for Model Sources](/usermanual/model-services/operator/settings/model-source/)

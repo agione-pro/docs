@@ -1,11 +1,12 @@
 import type { UserConfig } from 'vitepress'
 
 const googleAnalyticsId = 'G-H60V3SBCER'
+const enableGoogleAnalytics = process.env.NODE_ENV === 'production'
 
 export const baseConfig: UserConfig = {
   title: 'AGIOne Docs',
   description: 'AI Gateway Platform Documentation',
-  head: [
+  head: enableGoogleAnalytics ? [
     [
       'script',
       {
@@ -23,5 +24,5 @@ export const baseConfig: UserConfig = {
         gtag('config', '${googleAnalyticsId}');
       `,
     ],
-  ],
+  ] : [],
 }

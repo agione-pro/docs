@@ -5,7 +5,7 @@ next: true
 
 # 场景概览 - 平台治理与访问控制
 
-本场景把身份权限、资源授权、模型可见范围、个人调用 Key、限流和额度控制组合为一条治理检查路径。
+本场景是跨场景治理总览，把身份权限、资源授权、模型可见范围、项目与 Key、成员额度、API 流控和 License 组合为一条检查路径；具体配置在对应场景中完成。
 
 ## 适用角色
 
@@ -46,6 +46,11 @@ next: true
 | 文档 | 说明 |
 | --- | --- |
 | [平台治理检查流程](./governance-workflow) | 身份、资源、模型、调用和额度的完整治理路径及 Key 页面截图 |
+| [身份授权](../identity-authorization/) | 组织、成员、角色、菜单和按钮权限 |
+| [项目、Key 与预算治理](../project-key-budget-governance/) | 项目预算、模型白名单和调用凭据 |
+| [成员额度申请与分配](../member-quota-application-allocation/) | 额度申请、分配、限额和验证 |
+| [API 流控发布与审计](../api-rate-control-release-audit/) | API 规则、节点版本、命中和审计 |
+| [License 生命周期管理](../license-lifecycle-management/) | 授权状态、有效期、额度和纳管对象 |
 
 ## 完成检查
 

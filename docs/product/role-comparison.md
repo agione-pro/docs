@@ -1,8 +1,8 @@
-# Role Comparison
+﻿# Role Comparison
 
 :::: info Document Information
-Version: v1.1
-Updated: 2026-07-13
+Version: v1.0
+Updated: 2026-07-15
 ::::
 
 ## Role Summary
@@ -12,7 +12,7 @@ Updated: 2026-07-13
 | `admin` | Platform administrator | Tenant, user, role, menu, and platform access foundations | Daily compute operations, model publishing, or model consumption |
 | `operator` | Platform operator | Resource preparation, governance configuration, quotas, monitoring, reviews, customer finance, License, settings, audit, and API rate control | Publishing a provider-owned model or consuming models as an end user |
 | `provider` | Model provider | Publishing and maintaining models, aggregate models, reviews, customer calls, provider revenue, and permitted team settings | Platform-wide identity governance, finance operations, or reviewing its own publication |
-| `enduser` | General user and model consumer | Deploying available services, discovering and experiencing models, API calls, personal usage, personal billing, and personal settings | Publishing or reviewing models and managing platform-wide resources |
+| `enduser` | General user and model consumer | Deploying available services, discovering and experiencing models, API calls, personal usage, personal billing, personal settings, and authorized team members, projects, quotas, and Key usage | Publishing or reviewing models and managing platform-wide resources |
 
 ## Capability Comparison
 
@@ -31,8 +31,25 @@ Updated: 2026-07-13
 | Call model APIs | No | Validation when needed | Validate owned services | Primary |
 | View customer calls and model revenue | No | Platform scope when authorized | Primary for owned models | No |
 | View personal calls, usage, and billing | No | Operational scope when authorized | Own scope | Own scope |
+| Manage user-side team members | No | Platform policy or audit scope | Authorized organization or project scope | Authorized organization or project scope |
+| View or adjust member quotas | No | Platform policy or audit scope | Authorized organization or project scope | Authorized organization or project scope |
+| Submit or handle quota requests | No | Platform policy or approval scope | Authorized organization or project scope | Own or authorized team scope |
+| Manage projects and Project Key usage scope | No | Platform policy or audit scope | Authorized project scope | Authorized project scope |
 
 “Primary” indicates normal task ownership. Actual visibility depends on tenant, role configuration, resource authorization, and the installed version.
+
+## User-Side Collaboration and Resource Scope
+
+Team members and projects are not added as separate platform roles. They are collaboration objects and resource boundaries inside a user-side organization or project, usually maintained by an authorized `enduser` or `provider` account within its own organization, team, or project scope.
+
+| Object | Positioning | Main Impact | Typical Handling Role |
+| --- | --- | --- | --- |
+| Team member | The collaboration identity created when a user joins an organization, team, or project | Login status, collaboration relationship, role assignment, member quota, quota requests, and audit records | Authorized `enduser` or `provider` |
+| Project | Business workspace for model calls, budget, and collaboration | Project members, Project Keys, project budget, model allowlist, usage, and activity records | Authorized `enduser` or `provider` |
+| Member quota | Management object that controls member quota and limits | Personal Key quota, call-failure diagnosis, quota adjustment, and quota requests | Authorized `enduser` or `provider` |
+| Project Key | Access credential for calling models within a project scope | Calling identity, project budget, model availability, and Key limits | Authorized `enduser` or `provider` |
+
+When users see “Team Members,” “Projects,” “Member Quotas,” or “Project Keys,” first confirm whether the account is authorized in the corresponding organization or project instead of directly adding `admin` or `operator` permissions. For the full object relationship, see [Identity and Access Model](./identity-access-model).
 
 ## `admin`: Platform Administrator
 
@@ -100,12 +117,14 @@ Main responsibilities:
 - Obtain required access and call model APIs.
 - View personal-call overview, analytics, logs, usage, and deployment status.
 - View personal billing, transactions, top-up orders, monthly bills, and personal settings when available.
+- Manage user-side team members, projects, member quotas, quota requests, and Project Key usage scope within the authorized scope.
 - Create On-Prem or On-Cloud workloads from resources and templates already authorized to the account.
 
 Boundary:
 
 - An end user does not publish single or aggregate models. Aggregate-model creation belongs to the model provider.
 - An end user does not process reviews or maintain platform-wide resource and identity configuration.
+- User-side team member and project permissions apply only within the corresponding organization or project scope. They do not replace platform-level member, menu, system setting, or operations approval permissions.
 
 See the [User Manual](../usermanual/) and [Scenario Guide](../userguide/scenarios).
 
@@ -123,12 +142,20 @@ See the [User Manual](../usermanual/) and [Scenario Guide](../userguide/scenario
 | View customer calls and provider revenue | `provider` |
 | Try a model or call its API | `enduser` |
 | View personal usage, billing, or a personal deployment | `enduser` |
+| Manage user-side team members | Authorized `enduser` or `provider` |
+| View or adjust member quotas | Authorized `enduser` or `provider` |
+| Submit or handle quota requests | Authorized `enduser` or `provider`; platform policy is maintained by `operator` |
+| Manage project members and Project Keys | Authorized `enduser` or `provider` |
 
 If one person performs multiple responsibilities in a small deployment, assign multiple roles only after confirming the required boundary. Keep platform administration and review permissions limited and auditable.
 
 ## Related Documentation
 
 - [Identity and Access Model](./identity-access-model)
+- [Team Members](../usermanual/settings/user/members-roles/team-members/)
+- [Member Quotas](../usermanual/settings/user/members-roles/member-quotas/)
+- [Quota Requests](../usermanual/settings/user/members-roles/quota-requests/)
+- [Projects](../usermanual/settings/user/personal/projects/)
 - [Features and Capabilities](./technical/features)
 - [Scenario Guide](../userguide/scenarios)
 - [User Manual](../usermanual/)

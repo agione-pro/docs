@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Platform Governance and Access Control
 
-This scenario combines identity, resource authorization, model visibility, personal keys, rate limits, and credit controls into one governance path.
+This cross-scenario overview combines identity permissions, resource authorization, model visibility, projects and keys, member quotas, API rate control, and License into one governance path. Complete configuration in the linked scenarios.
 
 ## Applicable Roles
 
@@ -46,6 +46,11 @@ This scenario combines identity, resource authorization, model visibility, perso
 | Document | Description |
 | --- | --- |
 | [Governance Workflow](./governance-workflow) | Identity, resource, model, calling, credit controls, and a key-page screenshot |
+| [Identity Authorization](../identity-authorization/) | Organizations, members, roles, menus, and button permissions |
+| [Project, Key, and Budget Governance](../project-key-budget-governance/) | Project budgets, model allowlists, and calling credentials |
+| [Member Quota Request and Allocation](../member-quota-application-allocation/) | Quota request, allocation, limits, and validation |
+| [API Rate-Control Release and Audit](../api-rate-control-release-audit/) | API rules, node versions, hits, and audit |
+| [License Lifecycle Management](../license-lifecycle-management/) | Authorization state, validity, quota, and managed objects |
 
 ## Completion Checklist
 

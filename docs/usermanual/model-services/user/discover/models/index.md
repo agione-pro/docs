@@ -1,4 +1,4 @@
-# Model Marketplace
+# Models
 
 ::: info Document Information
 Version: v1.0
@@ -7,21 +7,21 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-Model Marketplace helps users discover available models, compare providers, review quick-start information, and check performance details before trying or calling a model.
+The Models page helps users discover available models, compare providers, review quick-start information, and check performance details before trying or calling a model.
 
 | Item | Content |
 | --- | --- |
 | Applicable role | Regular user |
-| Navigation path | Discover > Model Marketplace |
-| Page route | /user/discover/models |
+| Navigation path | Model Services > Discover > Models |
+| Page route | `/modelone/store/model` |
 | Managed objects | Model lists, providers, quick start, performance metrics, and model overview |
 | Typical use | Discover models, view providers, and obtain redacted call methods |
 
-### Beginner Explanation
+#### Beginner Explanation
 
-The model marketplace is like a model catalog. Users first check model capabilities and providers, then enter quick start to obtain Base URL, Path, Full URL, and authentication method. Call examples must use placeholders and must not contain real API Keys.
+The Models page is like a model catalog. Users first check model capabilities and providers, then enter quick start to obtain Base URL, Path, Full URL, and authentication method. Call examples must use placeholders and must not contain real API Keys.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -35,62 +35,83 @@ The model marketplace is like a model catalog. Users first check model capabilit
 1. The current account has model marketplace access permission.
 2. The target model has been listed and is visible to the current account or customer.
 3. Before calling, quota, pricing, context limits, and terms of use have been confirmed.
+
+::: warning Call and Billing Risk
+Trying a model, submitting a prompt, or calling an API may create call records, consume credits, or generate billing records. For page validation only, view the model list and details. Do not submit a real call request.
+:::
+
 ## Page Description
 
-This page displays model list, model details, provider instances, recommendation tags, quick start, and performance information. Users should first confirm Model ID and provider, then copy call examples that use placeholders.
+This page displays model lists, model details, provider instances, recommendation tags, quick start, and performance information. Users should confirm the model name, Model ID, provider, capability tags, input/output modalities, pricing, and status before trying or calling a model.
 
 Page screenshot:
 
-![Model marketplace list](./images/models-list.png)
+![Models list](./images/models-list.png)
 
-Used to search models, view providers, and filter tags.
+Used to search models, view providers, filter model types, and confirm model card information.
 
 ## Main Operations
 
-### Steps
+### View Model
 
-1. Go to `Discover > Model Marketplace`.
-2. Filter by model name, author, tag, or model type.
-3. Open target model details.
-4. In the provider tab, view recommendation tags, billing, and performance metrics.
-5. Go to the quick-start tab and view examples for Model ID, Base URL, Path, and Full URL.
+1. Go to `Model Services > Discover > Models`.
+2. In the model list, view model name, author, model type, input/output capabilities, billing method, weekly calls, weekly token volume, release time, and other information.
+3. Filter target models by model name, author, model series, model source, model type, capability, context length, billing, or scenario.
+4. Click `View` on the target model card to open the model details page.
+5. On the details page, view model introduction, author, Model ID, context, input/output limits, reference pricing, input/output modalities, capabilities, and supported protocols.
+6. Switch between `Providers`, `Quick Start`, `Performance`, and `Overview` to view provider instances, call methods, performance metrics, and model descriptions.
+7. To try the model, use the `Playground` entry on the details page. For page validation only, view details and do not submit a call request.
 
-Key screenshots:
+![Providers](./images/providers.png)
+
+The Providers tab shows provider instances, recommendation status, billing, context, latency, throughput, success rate, and weekly usage data.
+
+![Quick start](./images/quick-start.png)
+
+Documentation examples and screenshots must remain redacted. Use real personal keys only in an approved integration environment.
+
+![Performance](./images/performance.png)
+
+The Performance tab shows time range, time granularity, average request latency, average first token latency, real-time request frequency, request success rate, and token request volume.
 
 ![Model overview](./images/overview.png)
 
 Confirm model capability, context, and pricing boundaries in the overview.
 
-![Quick start](./images/quick-start.png)
-
-Replace placeholders in call examples with real credentials.
-
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model Name | Yes | Text | `DeepSeek-V4-Pro` | Model display name. |
-| Model ID | Yes | Text | `provider/model/version` | Identifier used when calling the model. |
-| Provider | Yes | Dropdown | `AGIOneSystem` | Channel that provides the model instance. |
-| Recommendation Tag | No | Tag | `Recommended` | Platform recommendation or status tag. |
-| Full URL | Yes | URL | `https://api.example.com/v1/chat/completions` | Complete call address example. |
+| Model Name | Yes | Text | `Qwen3.7-Plus` | Display name used to identify the model in the list and details page. |
+| Provider | Yes | Text / Filter | `AGIOneSystem` | Organization or channel that provides the model instance. |
+| Model Type | No | Filter / Tag | `Text` | Distinguishes multimodal, text, image, speech, video, embedding, reranking, and other model types. |
+| Capability Tags | No | Tag | `Tool Calling` | Shows model capabilities such as tool calling or reasoning. |
+| Input/Output Modalities | No | Tag | `Text / Image` | Shows supported input and output types. |
+| Billing Method | No | Text | `Credits / 1M Tokens` | Shows the model billing unit for input, output, or per-request pricing. |
+| Status | No | Tag | `Published` | Shows the availability status of the model or provider instance. |
+| Actions | No | Button | `View`, `Playground` | Used to open model details or enter the playground. |
 
 
-### Pitfalls
+## Pitfalls
 
 - The same model may have multiple providers. Confirm the selected provider instance before calling.
 - Copy the exact Model ID from the provider instance.
 - The API Key in quick-start examples must be replaced with a personal authorized key.
+- Trying a model or submitting a prompt may create call records, consume credits, or generate billing records. Do not submit real calls when learning the page.
 
 
-### Result Checks
+## Result Validation
 
-1. The model details page displays capabilities, provider, pricing, context, and quick-start information.
-2. After filters change, model list results update together.
-3. Copied call examples use redacted placeholder credentials.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Model list is accessible | Model cards or list entries are displayed, and the filter area loads correctly. | Check account permissions, navigation path, and page loading status. |
+| Filters are available | After changing model type, capability, provider, or scenario filters, list results update accordingly. | Clear filters and search again, or refresh the page. |
+| Model details can be opened | Clicking `View` opens the details page with model introduction, providers, pricing, context, and modality information. | Return to the list and open the model again, or check whether the model is still visible to the current account. |
+| Details match the list | Model name, author, status, and billing information in details are consistent with the list. | Use the details page as the source of truth and report synchronization issues if needed. |
+| No real call is submitted | During learning or validation, no prompt is submitted, no API call is made, and no credits are consumed. | If the playground is opened accidentally, close it or go back without submitting a call request. |
 ## FAQ
 
-### Cannot Find the Target Model
+#### Cannot Find the Target Model
 
 **Symptom:**
 
@@ -108,7 +129,7 @@ After searching by model name, provider, or tag in the model marketplace, the ex
 2. Enter model details or provider information and confirm whether the model is open to the current account.
 3. If the model should be visible but is still invisible, contact the model provider or operator to verify publishing scope.
 
-### Model Details Are Incomplete
+#### Model Details Are Incomplete
 
 **Symptom:**
 
@@ -126,7 +147,7 @@ Model details are missing pricing, context length, input/output modalities, quic
 2. Do not formally integrate models that lack pricing, rate limits, or usage boundary descriptions.
 3. Report missing fields to the model provider and validate again after supplementation.
 
-### Model Source Shows Unavailable
+#### Model Source Shows Unavailable
 
 **Symptom:**
 

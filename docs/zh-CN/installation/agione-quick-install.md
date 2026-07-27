@@ -26,9 +26,7 @@ AGIOne 安装器用于在离线或弱网环境中完成 AGIOne 单机交付安�
 
 先打开固定下载页，再复制页面中的 `Download URL` 包下载直链。`agione-release-latest` 本身是下载页，不是 `.tar.gz` 安装包直链。
 
-**固定下载页：**
-
-<https://agione.pro/release/download/agione-release-latest>
+固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
 
 页面中同时提供 `MD5 URL`，建议下载后一起校验。
 

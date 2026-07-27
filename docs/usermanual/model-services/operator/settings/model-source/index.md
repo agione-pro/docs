@@ -12,16 +12,16 @@ Model Sources helps operators maintain upstream source channels, regions, Base U
 | Item | Content |
 | --- | --- |
 | Applicable role | Operator |
-| Navigation path | System Settings > Model Sources |
-| Page route | /operator/settings/model-source |
+| Navigation path | Model Services > Settings > Model Sources |
+| Page route | `/modelone/settings/vendor` |
 | Managed objects | Source channels, regions, Base URLs, request headers, authentication information, and connectivity status |
 | Typical use | Maintain upstream model service sources |
 
-### Beginner Explanation
+#### Beginner Explanation
 
 Model sources are like an address book for upstream model services. If a source is configured incorrectly, later model templates and published models will fail to call it.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -36,6 +36,7 @@ Model sources are like an address book for upstream model services. If a source 
 2. Endpoint, Base URL, region, authentication method, and request header fields are prepared.
 3. Network connectivity and certificate policy for the upstream model service have been confirmed.
 4. Credentials used for connectivity tests have been entered through a secure method.
+
 ## Page Description
 
 This page maintains upstream model sources, including Endpoint, region, request header authentication, source channel, and connectivity. If the model source is configured incorrectly, subsequent model publishing and calls will fail.
@@ -48,51 +49,51 @@ Used to view source status, region, and connectivity.
 
 ## Main Operations
 
-### Steps
+### Add Model Source
 
-1. Go to `System Settings > Model Sources`.
-2. Add or edit source name, provider, and region.
-3. Fill in a redacted Endpoint or Base URL placeholder example.
-4. Configure request header name and authentication value placeholder.
-5. Run the connectivity test and save.
+1. Go to `Model Services > Settings > Model Sources`.
+2. Click `Add` to open the `New Model Source` page.
+3. In `Basic Information`, maintain the `English` and `Chinese` display names for `Name`.
+4. Fill in `Model source identifier` to distinguish the model source.
+5. In `Region Information`, maintain `Region identifier`, `Region name`, `Base URL`, `API Key endpoint`, and `API documentation URL`. To add more regions, click `Add Region`.
+6. In `Headers Configuration`, maintain `Auth field name` and `Auth value`. To add more headers, click `Add request header`.
+7. Before clicking `Confirm`, verify the field values. For page validation only, click `Cancel` to close the page.
 
-Key screenshots:
+![Add Model Source](./images/model-source-add.png)
 
-![Model source basic information](./images/basic-information.png)
-
-Use placeholder examples when filling in source name, protocol, and Endpoint.
-
-![Request header configuration](./images/headers-configuration.png)
-
-Do not expose real API Keys or authentication values in request headers.
-
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Source Name | Yes | Text | `dashscope-cn` | Display name of the model source. |
-| Region | Yes | Text | `cn-shanghai` | Region where the source service is located. |
-| Endpoint | Yes | URL | `https://api.example.com/v1` | Upstream base address. Use a placeholder in examples. |
-| Request Headers | Conditionally required | Key-value | `Authorization: Bearer <key>` | Authentication request headers. Do not write real keys. |
+| Name | Yes | Multilingual text | `DashScope` | Model source name displayed in lists, details, and selectors. |
+| Model source identifier | Yes | Text | `dashscope-cn` | Unique identifier of the model source. |
+| Region identifier | Yes | Text | `cn-shanghai` | Identifier of the region where the source service is located. |
+| Region name | Yes | Multilingual text | `East China 1` | Display name of the region where the source service is located. |
+| Base URL | Yes | URL | `https://api.example.com/v1` | Upstream service base address. Use a placeholder in examples. |
+| API Key endpoint | No | URL | `https://example.com/keys` | URL for obtaining or managing upstream API Keys. |
+| API documentation URL | No | URL | `https://example.com/docs` | Upstream service API documentation URL. |
+| Auth field name | Conditionally required | Text | `Authorization` | Authentication field name in the request header. |
+| Auth value | Conditionally required | Text | `Bearer <key>` | Authentication value in the request header. Do not write real keys. |
 | Connectivity Status | System-generated | Enum | `Passed` | Tests whether the upstream service is reachable. |
 
-
-### Pitfalls
+## Pitfalls
 
 - Do not misspell the protocol prefix or path in Endpoint.
 - Request header authentication values should use secure inputs and should not be written in remarks.
 - After connectivity passes, still test the protocol with a concrete model.
 
+## Result Validation
 
-### Result Checks
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| The model source shows connected or available status in the list | The model source shows connected or available status in the list. | Return to the page and check permissions, filters, and configuration status. |
+| The source can be selected in template and model publishing flows | The source can be selected in template and model publishing flows. | Return to the page and check permissions, filters, and configuration status. |
+| Request headers, region, and Base URL match upstream service requirements | Request headers, region, and Base URL match upstream service requirements. | Return to the page and check permissions, filters, and configuration status. |
+| Connectivity testing failures show clear error messages | When connectivity testing fails, a clear error message is visible. | Return to the page and check permissions, filters, and configuration status. |
 
-1. The model source shows connected or available status in the list.
-2. The source can be selected in template and model publishing flows.
-3. Request headers, region, and Base URL match upstream service requirements.
-4. When connectivity testing fails, a clear error message is visible.
 ## FAQ
 
-### Model Source Connectivity Test Fails
+#### Model Source Connectivity Test Fails
 
 **Symptom:**
 
@@ -110,7 +111,7 @@ After saving the source, the connection test returns timeout, 401, 403, or 5xx.
 2. Update authentication request headers or credential references.
 3. Contact the network or upstream service administrator to check connectivity.
 
-### Template Cannot Reference the Model Source
+#### Template Cannot Reference the Model Source
 
 **Symptom:**
 
@@ -127,6 +128,20 @@ The source has been created, but it cannot be selected in the model template or 
 1. Confirm source status and provider.
 2. Check template applicability scope.
 3. Refresh synchronization and select again.
+#### Calls Still Fail Even Though the Source Connectivity Is Normal
+
+**Symptom:**
+
+The model source connectivity test passes, but calls fail in Model Marketplace or Playground.
+
+**Possible Causes:**
+
+The connectivity test only validates basic networking. Actual call parameters, model source ID, request headers, rate limits, or billing configuration may still be incomplete.
+
+**Handling:**
+
+Compare the actual call request and check Base URL, model source ID, request headers, and protocol. Then view call logs for error codes and upstream return summaries.
+
 ## Next Steps
 
 1. Run the connectivity test immediately and confirm that Endpoint, authentication request headers, and return format are usable.

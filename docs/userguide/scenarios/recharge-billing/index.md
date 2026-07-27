@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Recharge and Billing
 
-This scenario distinguishes top-up records, resource quotas, resource usage, and model billing so users can explain balance and deduction results.
+This scenario distinguishes account top-ups, billing balance, resource quotas, resource usage, and model billing, then uses account overview, transactions, and monthly bills to explain balance changes and consumption.
 
 ## Applicable Roles
 
@@ -16,17 +16,22 @@ This scenario distinguishes top-up records, resource quotas, resource usage, and
 - Verify top-up and account-credit changes.
 - Distinguish insufficient quota from insufficient credit.
 - Map deductions to an instance, workload, or model call.
+- Reconcile transactions and monthly-bill totals for the same billing cycle.
 
 ## Scenario Flow
 
-**Main path:** Obtain spendable credits → Confirm resource quota → Generate and record usage → Reconcile deductions
+**Main path:** Review account overview → Reconcile top-ups and transactions → Confirm resource quota → Trace resource or model usage → Review the monthly bill
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Obtain credits | A top-up or allocation creates spendable balance |
-| 2. Confirm quota | Tenant compute and storage request limits are explicit |
-| 3. Record usage | Instances, jobs, or model calls produce traceable details |
-| 4. Reconcile deductions | Balance, credits, usage, pricing, and billing-period totals agree |
+| 1. Confirm account | Available balance, alerts, and billing-cycle scope are clear |
+| 2. Reconcile changes | Top-up orders and transactions explain balance changes |
+| 3. Confirm quota and usage | Resource or model usage has explicit limits and traceable details |
+| 4. Reconcile bills | Balance, usage, price, transactions, and monthly bill agree |
+
+Top-up record screenshot:
+
+![Top-up records](./images/top-up-records.png)
 
 ## Before You Start
 
@@ -35,16 +40,22 @@ This scenario distinguishes top-up records, resource quotas, resource usage, and
 
 ## Recommended Reading Order
 
-1. Review top-up records
-2. Review quota and credit
-3. Review resource or model usage
-4. Reconcile deduction details
+1. Review Billing Overview and top-up orders.
+2. Reconcile transactions for the same time range.
+3. Review resource quota, model credits, and actual usage.
+4. Review the monthly bill; use the operator reconciliation scenario for exceptions.
 
 ## Document Index
 
 | Document | Description |
 | --- | --- |
 | [Recharge and Billing Workflow](./billing-workflow) | Concepts, steps, failure branches, and feature screenshots |
+
+## Related Scenarios
+
+- [Model Usage and Revenue](../model-usage-revenue/): reconcile Platform User spending and Model Provider revenue from call records.
+- [On-Prem Resource Metering and Monitoring](../on-prem-resource-metering-monitoring/): reconcile local compute quota, monthly metering, and resource use.
+- [Billing-Cycle Reconciliation and Settlement](../billing-cycle-reconciliation-settlement/): resolve operator-side billing-cycle exceptions and settlement.
 
 ## Completion Checklist
 
@@ -54,4 +65,4 @@ This scenario distinguishes top-up records, resource quotas, resource usage, and
 | --- | --- |
 | 1 | The top-up or credit-allocation record takes effect and spendable balance changes as expected. |
 | 2 | Tenant quota supports the target workload and an instance, job, or model call produces traceable usage. |
-| 3 | Balance, credits, usage, pricing, and deductions agree over the same billing period. |
+| 3 | Balance, credits, usage, pricing, transactions, and monthly bills agree over the same billing cycle. |

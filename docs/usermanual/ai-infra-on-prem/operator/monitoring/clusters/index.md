@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation Path | Monitoring > Cluster Statistics |
-| Page Route | `/powerone/monitor/clusters` |
-| Managed Objects | Cluster status, resource capacity, job count, and region/availability zone ownership |
-| Typical Use | Judge resource watermarks, health status, and scheduling carrying capacity by cluster |
+| Applicable role | Operator |
+| Navigation path | AI Infrastructure > On-Prem > Monitoring > Cluster Statistics |
+| Page route | `/powerone/monitor/cluster` |
+| Managed objects | Cluster status, resource capacity, job count, and region/availability zone ownership |
+| Typical use | Judge resource watermarks, health status, and scheduling carrying capacity by cluster |
 
-### Beginner View
+#### Beginner Explanation
 
 Cluster statistics are like health check reports for each equipment room. They compare capacity, health status, and resource watermarks across clusters to determine whether an issue is a local cluster problem or global resource shortage.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -43,42 +43,67 @@ Cluster statistics are used to compare cluster capacity, health status, and reso
 
 The following figure shows the cluster statistics page.
 
-![Cluster Statistics](./images/monitoring-clusters.png)
+![Cluster Statistics](./images/clusters-list.png)
 
-## View Cluster Statistics
+## Main Operations
 
-### Procedure
+### View Cluster Statistics
 
-1. Go to `Monitoring > Cluster Statistics`.
+#### Procedure
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Cluster Statistics`.
 2. Confirm the region in the upper-right corner and page filters.
 3. View lists, charts, or statistic cards.
 4. Focus on abnormal status, high watermarks, long periods without updates, or data inconsistent with expectations.
 5. When cluster watermarks are abnormal, enter cluster details, node statistics, and job monitoring to confirm specific nodes and jobs.
 
-### Key Focus
+#### View Cluster Statistics
+
+1. Go to `AI Infrastructure > On-Prem > Monitoring > Cluster Statistics`.
+2. View the cluster list and overall running status, and confirm cluster name, region/AZ, node count, device count, and resource usage level.
+3. Select region, cluster, resource type, or time range filters as provided by the page.
+4. Review CPU, memory, accelerator, storage, node status, and job-related statistics to identify insufficient resources, abnormal nodes, or unavailable devices.
+5. If a cluster shows abnormal usage, continue troubleshooting in Nodes, Devices, or Jobs monitoring pages.
+6. For learning or screenshots only, view statistic cards, charts, filters, and lists without modifying any configuration.
+
+![View cluster statistics](./images/cluster-statistics.png)
+
+#### Key Focus
 
 - Whether cluster status is available.
 - Whether GPU, CPU, memory, and disk usage rates are abnormal.
 - Whether jobs are concentrated on a small number of clusters.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cluster Name | Yes | Text | `cluster-prod-a` | Locates the monitored cluster object. |
-| Region / Availability Zone | Conditionally required | Drop-down | `Wuhan / Availability Zone A` | Limits the resource location to which the cluster belongs. |
+| Region / AZ | Conditionally required | Drop-down | `Wuhan / AZ A` | Limits the resource location to which the cluster belongs. |
+| Node Count | System-generated | Number | `10` | Shows the number of nodes included in monitoring statistics for the cluster. |
+| Device Count | System-generated | Number | `80` | Shows the number of accelerators or other devices included in monitoring statistics for the cluster. |
+| CPU Usage | System-generated | Percentage | `70%` | Shows the CPU resource usage level of the cluster. |
+| Memory Usage | System-generated | Percentage | `68%` | Shows the memory resource usage level of the cluster. |
+| Accelerator Usage | System-generated | Percentage | `65%` | Shows the GPU, NPU, or other accelerator resource usage level. |
+| Storage Usage | System-generated | Percentage | `72%` | Shows the storage resource usage level of the cluster. |
+| Node Status | System-generated | Status | `Normal` | Shows whether nodes are online, abnormal, or unavailable. |
+| Job Count | System-generated | Number | `32` | Shows the number of running, queued, or abnormal jobs in the cluster. |
+| Time Range | Conditionally required | Date range | `Last 1 hour` | Controls the query window for statistic cards, trend charts, and list data. |
 | Resource Watermark | System-generated | Percentage | `GPU 78%` | Displays usage ratio of CPU, memory, GPU/NPU, and other resources. |
 | Health Status | System-generated | Status | `Healthy` | Shows whether the cluster has unavailable, alert, or collection abnormal states. |
 | GPU Usage | System-generated | Percentage | `65%` | Determines whether accelerator resources are close to bottleneck. |
 | Update Time | System-generated | Date time | `2026-07-06 10:00` | Determines whether cluster monitoring data is timely. |
 
-### Pitfalls
+## Pitfalls
 
 - Normal cluster watermarks do not mean every node or device is available.
 - Use the same time range and metric units for cross-cluster comparison.
 - Continue drilling down into node and device monitoring when a cluster is abnormal.
+- Cluster statistics may have collection latency. Do not judge faults based only on a single instant metric.
+- Abnormal cluster usage should be investigated together with nodes, devices, jobs, and scheduling events.
+- Do not write real cluster IDs, node names, device IDs, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-### Result Validation
+## Result Validation
 
 1. The cluster list displays health status, capacity, and update time.
 2. Resource watermarks correspond to node and device details.
@@ -93,7 +118,7 @@ The following figure shows the cluster statistics page.
 
 ## FAQ
 
-### A Cluster Has No Monitoring Data
+#### A Cluster Has No Monitoring Data
 
 **Symptom:**
 
@@ -111,7 +136,7 @@ The cluster is visible in the cluster list, but the monitoring page has no corre
 2. Go to resource pool cluster management and verify cluster status.
 3. Check monitoring collection components and cluster network connectivity.
 
-### Page List Is Empty
+#### Page List Is Empty
 
 **Symptom:**
 
@@ -131,7 +156,7 @@ No monitoring records or charts are visible after entering the page.
 3. Go to resource pool or job pages to confirm whether objects exist.
 4. Contact the platform administrator to check permissions and collection links.
 
-## Follow-Up Operations
+## Next Steps
 
 1. When watermarks are high, enter node statistics to locate hotspot nodes.
 2. When accelerators are tight, enter device monitoring to confirm model and VRAM.
@@ -142,3 +167,5 @@ No monitoring records or charts are visible after entering the page.
 - Cluster health does not mean all services are normal. Combine it with instance and job status.
 - Fix the time range when comparing across clusters.
 - Do not expose internal cluster names, API Server, or network information.
+- Before expansion, migration, or fault judgment, cross-check with node statistics, device monitoring, job monitoring, and scheduling events.
+- Documentation examples must not include real cluster IDs, node names, device IDs, resource pool IDs, tenant information, internal metric keys, or test data.

@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Quota & Usage > Top-Up Records |
-| Page Route | `/powerone/quota-usage/top-up-history` |
-| Managed Objects | Credit top-up records, source, acquisition method, third-party serial number, and top-up time |
-| Typical Use | View top-up history for tenant credits or balance, and reconcile credit source and arrival |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Top-Up Records |
+| Page route | `/powerone/quota-usage/top-up-history` |
+| Managed objects | Credit top-up records, source, acquisition method, third-party serial number, and top-up time |
+| Typical use | View top-up history for tenant credits or balance, and reconcile credit source and arrival |
 
-### Beginner View
+#### Beginner Explanation
 
 Top-up records are like the transaction history of a credit wallet, used to view the time, quantity, and status of each top-up, deduction, or adjustment.
 
-### First-Time Flow
+#### First-Time Flow
 
 1. Go to `Quota & Usage > Top-Up Records`.
 2. Search for target records by conditions.
@@ -29,7 +29,7 @@ Top-up records are like the transaction history of a credit wallet, used to view
 4. If there is no data, confirm whether the current tenant has had top-ups or grants.
 5. During reconciliation, use external payment or approval records together.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -48,9 +48,9 @@ Top-up records are like the transaction history of a credit wallet, used to view
 
 The page provides search, reset, and top-up record tables. In the screenshot, the list is empty, indicating no top-up records under the current conditions.
 
-![Top-Up Records](./images/top-up-records.png)
+![Top-Up Records](./images/top-up-records-list.png)
 
-### Page Areas
+#### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
@@ -62,26 +62,28 @@ The page provides search, reset, and top-up record tables. In the screenshot, th
 | Third Party Serial Number | External serial number. |
 | Top-up Time | Arrival time. |
 
-## Query Top-Up Records
+## Main Operations
 
-### Applicable Scenario
+### Query Top-Up Records
+
+#### Applicable Scenario
 
 When you need to confirm whether credits have arrived, reconcile accounts, or trace credit source, query top-up records.
 
-### Pre-Operation Check
+#### Pre-Operation Check
 
 1. The time range or serial information to query is clear.
 2. The current account is viewing the target tenant.
 
-### Procedure
+#### Procedure
 
-1. Go to `Quota & Usage > Top-Up Records`.
+1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Top-Up Records`.
 2. Enter query conditions.
 3. Click `Search`.
 4. View records in the table.
 5. To restore the default list, click `Reset`.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -92,12 +94,12 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 | Effective Status | System-generated | Status | `Effective` | Whether the record has affected available credits. |
 | Remarks | No | Text | `Project expansion` | Describes the business background or source of this change. |
 
-### Pitfalls
+## Pitfalls
 
 - When there is no data, click `Reset` first to exclude filter impact.
 - Top-up records are used for reconciliation and do not mean resource quotas have been adjusted.
 
-### Result Validation
+## Result Validation
 
 1. Amount, source, and time in the record match expectations.
 2. Third-party serial number can match the external system.
@@ -110,7 +112,7 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 
 ## FAQ
 
-### Top-Up Records Are Empty
+#### Top-Up Records Are Empty
 
 **Symptom:** The page shows No Data.
 
@@ -126,7 +128,7 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 2. Confirm the current tenant.
 3. Contact the operator to verify credit grant records.
 
-### Resources Still Cannot Be Created After Top-Up Arrives
+#### Resources Still Cannot Be Created After Top-Up Arrives
 
 **Symptom:** There are top-up records, but instance creation still fails.
 
@@ -142,7 +144,7 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 2. Confirm the instance creation error.
 3. Contact the operator to adjust resource quotas or specifications.
 
-## Follow-Up Operations
+## Next Steps
 
 1. If credits do not change after top-up, verify record status and effective time.
 2. When abnormal deductions are found, troubleshoot together with usage records and operator metering details.

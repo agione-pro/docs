@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title desc">
+  <title id="title">AI Infra On-Cloud Recommendation-Driven Deployment Workflow</title>
+  <desc id="desc">Users express the model, deployment mode, business preference, and provider scope. The platform filters authorization, matches assets, ranks solutions, creates the cloud service after confirmation, and reports the result in My Deployments.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#667085"/>
+    </marker>
+    <style>
+      .title { font: 700 38px Arial, sans-serif; fill: #182230; letter-spacing: 0; }
+      .subtitle { font: 400 21px Arial, sans-serif; fill: #475467; letter-spacing: 0; }
+      .lane { font: 700 22px Arial, sans-serif; fill: #20304a; letter-spacing: 0; }
+      .card-title { font: 700 20px Arial, sans-serif; fill: #182230; text-anchor: middle; letter-spacing: 0; }
+      .card-desc { font: 400 15.5px Arial, sans-serif; fill: #475467; text-anchor: middle; letter-spacing: 0; }
+      .compact-title { font-size: 18px; }
+      .compact-desc { font-size: 14.5px; }
+      .flow-label { font: 700 17px Arial, sans-serif; fill: #344054; text-anchor: middle; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="760" fill="#ffffff"/>
+  <text x="72" y="62" class="title">AI Infra On-Cloud Recommendation-Driven Deployment</text>
+  <text x="72" y="100" class="subtitle">Users express business intent; the platform matches underlying assets and creates a cloud inference service after confirmation</text>
+
+  <g transform="translate(72 132)">
+    <rect width="1456" height="158" rx="8" fill="#f7f9fc" stroke="#4b6fae" stroke-width="2"/>
+    <text x="24" y="38" class="lane">User Choices</text>
+
+    <g stroke="#667085" stroke-width="2.5" marker-end="url(#arrow)">
+      <line x1="354" y1="101" x2="390" y2="101"/>
+      <line x1="700" y1="101" x2="736" y2="101"/>
+      <line x1="1046" y1="101" x2="1082" y2="101"/>
+    </g>
+
+    <g transform="translate(48 56)">
+      <rect width="306" height="88" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+      <text x="153" y="36" class="card-title">Select a Model</text>
+      <text x="153" y="66" class="card-desc">Choose from deployable models</text>
+    </g>
+    <g transform="translate(390 56)">
+      <rect width="310" height="88" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+      <text x="155" y="36" class="card-title compact-title">Framework and Deployment Mode</text>
+      <text x="155" y="66" class="card-desc">vLLM / SGLang · Single node / HA</text>
+    </g>
+    <g transform="translate(736 56)">
+      <rect width="310" height="88" rx="8" fill="#fff2e8" stroke="#c56a2d" stroke-width="2"/>
+      <text x="155" y="36" class="card-title">Select Business Preference</text>
+      <text x="155" y="66" class="card-desc">Cost-first · Balanced · Performance-first</text>
+    </g>
+    <g transform="translate(1082 56)">
+      <rect width="326" height="88" rx="8" fill="#f1eeff" stroke="#7256c8" stroke-width="2"/>
+      <text x="163" y="36" class="card-title">Select Provider Scope</text>
+      <text x="163" y="66" class="card-desc">One provider or all available providers</text>
+    </g>
+  </g>
+
+  <line x1="800" y1="290" x2="800" y2="326" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="832" y="315" class="flow-label">Submit business intent</text>
+
+  <g transform="translate(72 334)">
+    <rect width="1456" height="190" rx="8" fill="#f7f9fc" stroke="#238c83" stroke-width="2"/>
+    <text x="24" y="38" class="lane">Automatic Platform Matching</text>
+
+    <g stroke="#667085" stroke-width="2.5" marker-end="url(#arrow)">
+      <line x1="354" y1="116" x2="390" y2="116"/>
+      <line x1="700" y1="116" x2="736" y2="116"/>
+      <line x1="1046" y1="116" x2="1082" y2="116"/>
+    </g>
+
+    <g transform="translate(48 58)">
+      <rect width="306" height="112" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+      <text x="153" y="42" class="card-title">Filter Authorization Scope</text>
+      <text x="153" y="73" class="card-desc">Tenant platform authorization</text>
+      <text x="153" y="97" class="card-desc">Business-region authorization</text>
+    </g>
+    <g transform="translate(390 58)">
+      <rect width="310" height="112" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+      <text x="155" y="42" class="card-title">Match Deployment Assets</text>
+      <text x="155" y="73" class="card-desc compact-desc">Framework version · Image · Deployment point</text>
+      <text x="155" y="97" class="card-desc">Model source · Output configuration</text>
+    </g>
+    <g transform="translate(736 58)">
+      <rect width="310" height="112" rx="8" fill="#fff2e8" stroke="#c56a2d" stroke-width="2"/>
+      <text x="155" y="42" class="card-title">Check Resources and Cost</text>
+      <text x="155" y="73" class="card-desc">Region · Spec · GPU · Instance count</text>
+      <text x="155" y="97" class="card-desc">Price · Currency · Billing cycle</text>
+    </g>
+    <g transform="translate(1082 58)">
+      <rect width="326" height="112" rx="8" fill="#f1eeff" stroke="#7256c8" stroke-width="2"/>
+      <text x="163" y="42" class="card-title">Rank Recommended Solutions</text>
+      <text x="163" y="73" class="card-desc">Compare candidates by preference</text>
+      <text x="163" y="97" class="card-desc">Return explainable business information</text>
+    </g>
+  </g>
+
+  <line x1="800" y1="524" x2="800" y2="560" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="832" y="549" class="flow-label">Select a recommended solution</text>
+
+  <g transform="translate(72 568)">
+    <rect width="1456" height="132" rx="8" fill="#f7f9fc" stroke="#b58a16" stroke-width="2"/>
+    <text x="24" y="36" class="lane">Confirmation and Result</text>
+
+    <g stroke="#667085" stroke-width="2.5" marker-end="url(#arrow)">
+      <line x1="490" y1="88" x2="552" y2="88"/>
+      <line x1="966" y1="88" x2="1028" y2="88"/>
+    </g>
+
+    <g transform="translate(84 50)">
+      <rect width="406" height="72" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+      <text x="203" y="30" class="card-title compact-title">Name the Deployment and Select an Account</text>
+      <text x="203" y="56" class="card-desc">The account must match the recommended provider</text>
+    </g>
+    <g transform="translate(552 50)">
+      <rect width="414" height="72" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+      <text x="207" y="30" class="card-title">Confirm and Create the Cloud Service</text>
+      <text x="207" y="56" class="card-desc">Review creation, startup, and health status</text>
+    </g>
+    <g transform="translate(1028 50)">
+      <rect width="344" height="72" rx="8" fill="#fff8e1" stroke="#b58a16" stroke-width="2"/>
+      <text x="172" y="30" class="card-title">Open My Deployments</text>
+      <text x="172" y="56" class="card-desc">Access endpoints and runtime management</text>
+    </g>
+  </g>
+
+  <text x="1528" y="738" class="card-desc" text-anchor="end">The platform fills in versions, images, and service-creation parameters</text>
+</svg>

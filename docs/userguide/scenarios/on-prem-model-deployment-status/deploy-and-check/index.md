@@ -40,6 +40,12 @@ The instance reaches Running, events and logs remain clean, and a controlled req
 | Queued | Check quota, flavor, and available NPU count |
 | Failed | Check image, command, driver, storage, and multi-card communication |
 
+## Four-NPU Validation Focus
+
+- A four-card instance must actually occupy four cards; do not rely on the template name alone.
+- If the four-card specification cannot be scheduled, validate one card first, then two cards, and finally four cards.
+- A sufficient cluster-wide card total does not guarantee that one scheduling topology can satisfy a four-card request.
+
 ## Completion Checklist
 
 > **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
@@ -59,4 +65,4 @@ The instance reaches Running, events and logs remain clean, and a controlled req
 
 ## User Manual
 
-[Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/online-inference/)
+[Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/)

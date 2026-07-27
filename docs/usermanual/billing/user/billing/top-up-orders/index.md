@@ -12,16 +12,16 @@ Updated: 2026-07-10
 | Item | Content |
 | --- | --- |
 | Applicable role | User-side account, business admin, billing viewer |
-| Navigation path | Billing > Top-up Orders |
-| Page route | /user/billing/top-up-orders |
+| Navigation path | Billing > User Billing > Top-up Orders |
+| Page route | `/billing/my/top-ups/orders` |
 | Managed objects | Top-up Orders records and related status |
 | Typical use | View, filter, and maintain top-up orders information |
 
-### Beginner Explanation
+#### Beginner Explanation
 
 Top-up Orders is part of the billing control loop. Treat it as a view for confirming money, quota, billing-cycle, customer, or settlement status before making financial decisions.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
@@ -58,7 +58,7 @@ Use the following operations to work with top-up orders records and related stat
 
 ### Query Top-up Orders
 
-1. Go to `Billing > Top-up Orders`.
+1. Go to `Billing > User Billing > Top-up Orders`.
 2. Use filters or tabs to locate the target record.
 3. Select the target row or entry related to top-up orders records and related status.
 4. Click the visible `Search Top-up Orders` entry when it is available.
@@ -66,15 +66,15 @@ Use the following operations to work with top-up orders records and related stat
 
 ### View Order Details
 
-1. Go to `Billing > Top-up Orders`.
+1. Go to `Billing > User Billing > Top-up Orders`.
 2. Use filters or tabs to locate the target record.
 3. Select the target row or entry related to top-up orders records and related status.
 4. Click the visible `View Order Details` entry when it is available.
 5. Check the displayed details, status, and related fields before moving to the next page.
 
-## Parameters
+## Parameter Reference
 
-| Field | Required | Type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
 | Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
@@ -88,9 +88,9 @@ Use the following operations to work with top-up orders records and related stat
 - Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
 - Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
 
-## Result Checks
+## Result Validation
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page access | The `Billing > Top-up Orders` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Filter result | The list changes according to the selected filters. | Reset filters and search again. |
@@ -99,65 +99,37 @@ Use the following operations to work with top-up orders records and related stat
 
 ## FAQ
 
-### Cannot Find the Target Data
+#### Target billing data is not visible in Top-up Orders
 
-**Issue Symptom:**
+The expected account, customer, order, bill, settlement, adjustment, or License record does not appear on this page.
 
-The expected result is not visible on the `Top-up Orders` page, or the available action does not match the current business expectation.
+**How to check:**
 
-**Possible Causes:**
+1. Confirm the current tenant, organization, customer, account, and role scope.
+2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
+3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
+4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects top-up orders records and related status.
+#### Amount, status, or billing cycle does not match in Top-up Orders
 
-**Handling:**
+The displayed balance, consumption, settlement status, monthly bill, or License status differs from the expected result.
 
-1. Reset filters and search again from `Billing > Top-up Orders`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+**How to check:**
 
-### The Operation Does Not Complete as Expected
+1. Compare top-up order status, payment channel, credited amount, and transaction time before judging balance changes.
+2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
+3. Compare the summary number with the detail list and operation records on the related billing pages.
+4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
 
-**Issue Symptom:**
+#### Top-up succeeds but balance does not change
 
-The expected result is not visible on the `Top-up Orders` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects top-up orders records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Billing > Top-up Orders`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### Top-up Orders Troubleshooting
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Top-up Orders` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects top-up orders records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Billing > Top-up Orders`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
 
 ## Next Steps
 
-1. Open the related detail page if the list value requires verification.
-2. Cross-check transactions, monthly bills, settlement statements, and reconciliation results when amounts differ.
-3. Escalate with desensitized record IDs, billing cycle, organization, customer, time range, and issue symptom when needed.
+1. Review related billing records, transactions, settlement statements, and account balance changes.
+2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
+3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
 
 ## Notes
 

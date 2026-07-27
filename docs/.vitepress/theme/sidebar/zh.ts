@@ -17,7 +17,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       text: '账号与权限模型',
       collapsed: false,
       items: [
-        { text: '用户、租户与角色设计逻辑', link: '/zh-CN/product/identity-access-model' },
+        { text: '用户、组织与角色设计逻辑', link: '/zh-CN/product/identity-access-model' },
         { text: '角色对比总览', link: '/zh-CN/product/role-comparison' },
       ],
     },
@@ -60,8 +60,8 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       text: '购买与激活',
       collapsed: false,
       items: [
-        { text: '在线支付与激活', link: '/zh-CN/license/online-payment-activation' },
-        { text: '激活码与激活', link: '/zh-CN/license/activation-code-activation' },
+        { text: '在线支付激活', link: '/zh-CN/license/online-payment-activation' },
+        { text: 'License激活', link: '/zh-CN/license/activation-code-activation' },
       ],
     },
   ],
@@ -150,7 +150,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: 'On-Prem 算力纳管',
+              text: '本地算力纳管',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-compute-onboarding/' },
@@ -160,7 +160,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: 'On-Prem 推理模板构建',
+              text: '本地推理模板构建',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-inference-template/' },
@@ -168,7 +168,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: 'On-Prem 模型部署与状态检查',
+              text: '本地模型部署与状态检查',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-model-deployment-status/' },
@@ -176,7 +176,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: 'On-Prem 开发训练与资产沉淀',
+              text: '本地开发训练与资产沉淀',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-dev-training-assets/' },
@@ -184,19 +184,21 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: 'On-Prem 资源计量与监控',
+              text: '本地资源计量与监控',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-resource-metering-monitoring/' },
                 { text: '配置租户 NPU 配额', link: '/zh-CN/userguide/scenarios/on-prem-resource-metering-monitoring/tenant-quotas/' },
                 { text: '监控设备、节点与作业', link: '/zh-CN/userguide/scenarios/on-prem-resource-metering-monitoring/resource-monitoring/' },
+                { text: '核对月度计量与明细', link: '/zh-CN/userguide/scenarios/on-prem-resource-metering-monitoring/metering-reconciliation/' },
               ],
             },
             {
-              text: 'On Cloud 云资源接入',
+              text: '多云资源接入',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-cloud-resource-access/' },
+                { text: '快速接入与接入总览', link: '/zh-CN/userguide/scenarios/on-cloud-resource-access/quick-access-overview/' },
                 { text: '接入云平台', link: '/zh-CN/userguide/scenarios/on-cloud-resource-access/Access-CloudType/' },
                 { text: '接入账号', link: '/zh-CN/userguide/scenarios/on-cloud-resource-access/Cloud-Accounts/' },
                 { text: '接入资源池', link: '/zh-CN/userguide/scenarios/on-cloud-resource-access/Resource-Pools/' },
@@ -205,7 +207,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: 'On Cloud 模型资产上架',
+              text: '多云模型资产上架',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-cloud-model-asset-publishing/' },
@@ -215,7 +217,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: 'On Cloud 模型部署与调用',
+              text: '多云模型部署与调用',
               collapsed: true,
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-cloud-model-deployment-calling/' },
@@ -248,6 +250,78 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                 { text: '平台治理检查流程', link: '/zh-CN/userguide/scenarios/platform-governance-access-control/governance-workflow' },
               ],
             },
+            {
+              text: '运营账期对账与结算',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/billing-cycle-reconciliation-settlement/' },
+                { text: '账期对账与结算流程', link: '/zh-CN/userguide/scenarios/billing-cycle-reconciliation-settlement/reconciliation-settlement-workflow' },
+              ],
+            },
+            {
+              text: '服务商收益与结算',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/provider-revenue-settlement/' },
+                { text: '收益与结算核对流程', link: '/zh-CN/userguide/scenarios/provider-revenue-settlement/revenue-settlement-workflow' },
+              ],
+            },
+            {
+              text: '项目、Key 与预算治理',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/project-key-budget-governance/' },
+                { text: '项目与 Key 配置流程', link: '/zh-CN/userguide/scenarios/project-key-budget-governance/project-key-workflow' },
+              ],
+            },
+            {
+              text: '成员额度申请与分配',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/member-quota-application-allocation/' },
+                { text: '成员额度申请与分配流程', link: '/zh-CN/userguide/scenarios/member-quota-application-allocation/quota-workflow' },
+              ],
+            },
+            {
+              text: '应用发布与审核',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/application-publishing-approval/' },
+                { text: '应用发布与审核流程', link: '/zh-CN/userguide/scenarios/application-publishing-approval/application-review-workflow' },
+              ],
+            },
+            {
+              text: '本地运行镜像与存储底座',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-runtime-storage-foundation/' },
+                { text: '运行镜像与存储配置流程', link: '/zh-CN/userguide/scenarios/on-prem-runtime-storage-foundation/runtime-storage-workflow' },
+              ],
+            },
+            {
+              text: 'API 流控发布与审计',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/api-rate-control-release-audit/' },
+                { text: '流控发布与审计流程', link: '/zh-CN/userguide/scenarios/api-rate-control-release-audit/rate-control-workflow' },
+              ],
+            },
+            {
+              text: '多云调度策略',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-cloud-scheduling-policy/' },
+                { text: '调度策略配置与验证', link: '/zh-CN/userguide/scenarios/on-cloud-scheduling-policy/scheduling-policy-workflow' },
+              ],
+            },
+            {
+              text: 'License 生命周期管理',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/license-lifecycle-management/' },
+                { text: 'License 生命周期检查流程', link: '/zh-CN/userguide/scenarios/license-lifecycle-management/license-lifecycle-workflow' },
+              ],
+            },
           ],
         },
       ],
@@ -265,7 +339,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             { text: '概览', link: '/zh-CN/usermanual/model-services/' },
-            { text: '平台入门', link: '/zh-CN/usermanual/model-services/getting-started/' },
+            { text: '快速入门', link: '/zh-CN/usermanual/model-services/getting-started/' },
             { text: '从发布到调用模型', link: '/zh-CN/usermanual/model-services/end-to-end/publish-and-call-model/' },
             {
               text: '运营管理员',
@@ -324,14 +398,15 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '我的模型', link: '/zh-CN/usermanual/model-services/user/studio/my-models/' },
+                    { text: '我的部署', link: '/zh-CN/usermanual/model-services/user/studio/my-deployments/' },
                   ]
                 },
                 {
                   text: '用量与收益',
                   collapsed: false,
                   items: [
-                    { text: '模型收益', link: '/zh-CN/usermanual/model-services/user/usage-revenue/model-revenue/' },
-                    { text: '用量明细', link: '/zh-CN/usermanual/model-services/user/usage-revenue/model-usage/' },
+                    { text: '模型收益', link: '/zh-CN/usermanual/model-services/user/usage-earnings/model-earnings/' },
+                    { text: '用量明细', link: '/zh-CN/usermanual/model-services/user/usage-earnings/model-usage/' },
                   ]
                 },
                 {
@@ -361,7 +436,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             { text: '概览', link: '/zh-CN/usermanual/ai-infra-on-cloud/' },
-            { text: '平台入门', link: '/zh-CN/usermanual/ai-infra-on-cloud/getting-started/' },
+            { text: '快速入门', link: '/zh-CN/usermanual/ai-infra-on-cloud/getting-started/' },
             { text: '从零开始部署云上模型服务', link: '/zh-CN/usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/' },
             {
               text: '运营管理员',
@@ -379,7 +454,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '接入管理',
                   collapsed: false,
                   items: [
-                    { text: '接入云平台', link: '/zh-CN/usermanual/ai-infra-on-cloud/operator/access-management/access-cloudtype/' },
+                    { text: '接入云平台', link: '/zh-CN/usermanual/ai-infra-on-cloud/operator/access-management/cloud-platforms/' },
                     { text: '接入资源池', link: '/zh-CN/usermanual/ai-infra-on-cloud/operator/access-management/resource-pools/' },
                     { text: '接入账号', link: '/zh-CN/usermanual/ai-infra-on-cloud/operator/access-management/cloud-accounts/' },
                   ]
@@ -423,7 +498,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   ]
                 },
                 {
-                  text: '访问管理',
+                  text: '接入管理',
                   collapsed: false,
                   items: [
                     { text: '接入管理', link: '/zh-CN/usermanual/ai-infra-on-cloud/user/access-management/access-accounts/' },
@@ -438,7 +513,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             { text: '概览', link: '/zh-CN/usermanual/ai-infra-on-prem/' },
-            { text: '平台入门', link: '/zh-CN/usermanual/ai-infra-on-prem/getting-started/' },
+            { text: '快速入门', link: '/zh-CN/usermanual/ai-infra-on-prem/getting-started/' },
             { text: '从零开始部署模型服务', link: '/zh-CN/usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/' },
             {
               text: '运营管理员',
@@ -464,8 +539,8 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '模板',
                   collapsed: false,
                   items: [
-                    { text: '模型配置', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/templates/model-config/' },
-                    { text: '框架配置', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/templates/frameworks/' },
+                    { text: '模型配置', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/' },
+                    { text: '框架配置', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/templates/frames/' },
                     { text: '推理模板', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/' },
                     { text: '显存计算', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/templates/vram-config/' },
                   ],
@@ -474,8 +549,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '配额&计量',
                   collapsed: false,
                   items: [
-                    { text: '租户配额', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-quotas/' },
-                    { text: '租户额度', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-credits/' },
+                    { text: '用量限制', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/usage-limits/' },
                     { text: '月度计量', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/' },
                     { text: '计量明细', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/' },
                   ],
@@ -491,6 +565,13 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                     { text: '作业监控', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/monitoring/jobs/' },
                   ],
                 },
+                {
+                  text: '系统',
+                  collapsed: false,
+                  items: [
+                    { text: '系统设置', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/system/system-setting/' },
+                  ],
+                },
               ],
             },
             {
@@ -502,16 +583,16 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '模型部署',
                   collapsed: false,
                   items: [
-                    { text: '部署模板', link: '/zh-CN/usermanual/ai-infra-on-prem/user/quick-start/inference-templates/' },
-                    { text: '模型实例', link: '/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/online-inference/' },
+                    { text: '部署模板', link: '/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/templates/' },
+                    { text: '模型实例', link: '/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/' },
                   ],
                 },
                 {
                   text: '开发资源',
                   collapsed: false,
                   items: [
-                    { text: '在线IDE', link: '/zh-CN/usermanual/ai-infra-on-prem/user/development/dev-environments/' },
-                    { text: '运行实例', link: '/zh-CN/usermanual/ai-infra-on-prem/user/development/model-training/' },
+                    { text: '在线IDE', link: '/zh-CN/usermanual/ai-infra-on-prem/user/dev-resources/online-ide/' },
+                    { text: '运行实例', link: '/zh-CN/usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/' },
                   ],
                 },
                 {
@@ -581,9 +662,9 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '客户账务',
                   collapsed: false,
                   items: [
+                    { text: '业务线', link: '/zh-CN/usermanual/billing/operator/customer-billing/business-units/' },
                     { text: '客户概览', link: '/zh-CN/usermanual/billing/operator/customer-billing/customer-overview/' },
                     { text: '客户充值单', link: '/zh-CN/usermanual/billing/operator/customer-billing/top-up-orders/' },
-                    { text: '业务线', link: '/zh-CN/usermanual/billing/operator/customer-billing/business-units/' },
                   ],
                 },
                 {
@@ -646,15 +727,15 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '成员与角色',
                   collapsed: false,
                   items: [
-                    { text: '团队成员', link: '/zh-CN/usermanual/settings/operator/members-roles/team-members/' },
+                    { text: '成员', link: '/zh-CN/usermanual/settings/operator/members-roles/members/' },
                     { text: '角色', link: '/zh-CN/usermanual/settings/operator/members-roles/roles/' },
                   ],
                 },
                 {
-                  text: '组织&设置',
+                  text: '租户&设置',
                   collapsed: false,
                   items: [
-                    { text: '组织', link: '/zh-CN/usermanual/settings/operator/organizations/organizations/' },
+                    { text: '租户', link: '/zh-CN/usermanual/settings/operator/tenants/tenants/' },
                   ],
                 },
                 {
@@ -703,14 +784,14 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '成员与角色',
                   collapsed: false,
                   items: [
-                    { text: '团队成员', link: '/zh-CN/usermanual/settings/user/members-roles/team-members/' },
+                    { text: '成员', link: '/zh-CN/usermanual/settings/user/members-roles/team-members/' },
                     { text: '角色', link: '/zh-CN/usermanual/settings/user/members-roles/roles/' },
                     { text: '成员额度', link: '/zh-CN/usermanual/settings/user/members-roles/member-quotas/' },
                     { text: '额度申请', link: '/zh-CN/usermanual/settings/user/members-roles/quota-requests/' },
                   ],
                 },
                 {
-                  text: '组织&设置',
+                  text: '租户&设置',
                   collapsed: false,
                   items: [
                     { text: '组织设置', link: '/zh-CN/usermanual/settings/user/organizations/org-settings/' },
@@ -743,20 +824,20 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               text: 'AI 编码集成',
               collapsed: false,
               items: [
-                { text: 'CherryStudio', link: '/zh-CN/practices/technical/cherry-studio/' },
-                { text: 'claudeCode', link: '/zh-CN/practices/technical/claude-code/' },
-                { text: 'ClaudeCode-plugin', link: '/zh-CN/practices/technical/claude-code-plugin/' },
+                { text: 'Cherry Studio', link: '/zh-CN/practices/technical/cherry-studio/' },
+                { text: 'Claude Code', link: '/zh-CN/practices/technical/claude-code/' },
+                { text: 'Claude Code Plugin', link: '/zh-CN/practices/technical/claude-code-plugin/' },
                 { text: 'Cline', link: '/zh-CN/practices/technical/cline/' },
                 { text: 'Codex', link: '/zh-CN/practices/technical/codex/' },
                 { text: 'Crush', link: '/zh-CN/practices/technical/crush/' },
                 { text: 'Cursor', link: '/zh-CN/practices/technical/cursor/' },
-                { text: 'dify', link: '/zh-CN/practices/technical/dify/' },
-                { text: 'KiloCode', link: '/zh-CN/practices/technical/kilo-code/' },
+                { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },
+                { text: 'Kilo Code', link: '/zh-CN/practices/technical/kilo-code/' },
                 { text: 'n8n', link: '/zh-CN/practices/technical/n8n/' },
-                { text: 'open-webui', link: '/zh-CN/practices/technical/open-webui/' },
-                { text: 'openclaw', link: '/zh-CN/practices/technical/openclaw/' },
-                { text: 'OpenCode', link: '/zh-CN/practices/technical/open-code/' },
-                { text: 'RooCode', link: '/zh-CN/practices/technical/roo-code/' },
+                { text: 'Open WebUI', link: '/zh-CN/practices/technical/open-webui/' },
+                { text: 'OpenClaw', link: '/zh-CN/practices/technical/openclaw/' },
+                { text: 'Open Code', link: '/zh-CN/practices/technical/open-code/' },
+                { text: 'Roo Code', link: '/zh-CN/practices/technical/roo-code/' },
               ],
             },
           ],
@@ -768,6 +849,10 @@ export const zhSidebar: DefaultTheme.Sidebar = {
             {
               text: '多算力池异构推理调度最佳实践',
               link: '/zh-CN/practices/project/multi-compute-pool-heterogeneous-inference-scheduling',
+            },
+            {
+              text: '单节点多卡多模型部署最佳实践',
+              link: '/zh-CN/practices/project/single-node-multi-card-multi-model-deployment',
             },
           ],
         },

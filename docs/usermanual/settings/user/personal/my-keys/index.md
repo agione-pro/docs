@@ -12,16 +12,16 @@ Updated: 2026-07-13
 | Item | Content |
 | --- | --- |
 | Applicable role | Provider admin or provider account |
-| Navigation path | Personal > My Keys |
-| Page route | /user/personal/my-keys |
+| Navigation path | Settings > Personal > My Keys |
+| Page route | `/user/user-space/my-keys` |
 | Managed objects | My Keys records and related status |
 | Typical use | View, filter, and maintain my keys information |
 
-### Beginner Explanation
+#### Beginner Explanation
 
 My Keys is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, organization rules, audit records, or rate-control status before changing configuration.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
@@ -66,15 +66,15 @@ Use the following operations to work with my keys records and related status. Co
 
 ### Manage My Keys
 
-1. Go to `Personal > My Keys`.
+1. Go to `Settings > Personal > My Keys`.
 2. Use filters or tabs to locate the target record.
 3. Select the target row or entry related to my keys records and related status.
 4. Click the visible `Manage My Keys` entry when it is available.
 5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
 
-## Parameters
+## Parameter Reference
 
-| Field | Required | Type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
 | Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
@@ -88,9 +88,9 @@ Use the following operations to work with my keys records and related status. Co
 - UI entries can differ by role and organization scope; verify the current account context before troubleshooting.
 - Never copy complete Keys, AK/SK, tokens, or secrets into documentation, tickets, or screenshots.
 
-## Result Checks
+## Result Validation
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page access | The `Personal > My Keys` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Filter result | The list changes according to the selected filters. | Reset filters and search again. |
@@ -99,65 +99,37 @@ Use the following operations to work with my keys records and related status. Co
 
 ## FAQ
 
-### The Operation Does Not Complete as Expected
+#### Target settings entry is not visible in My Keys
 
-**Issue Symptom:**
+The expected account, project, member, role, organization, key, operation log, system configuration, or API rate-control entry does not appear on this page.
 
-The expected result is not visible on the `My Keys` page, or the available action does not match the current business expectation.
+**How to check:**
 
-**Possible Causes:**
+1. Confirm the current tenant, organization, project, role, and account permission scope.
+2. Check page filters such as keyword, status, project, member, role, organization, time range, and configuration type.
+3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
+4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects my keys records and related status.
+#### Configuration change does not take effect in My Keys
 
-**Handling:**
+A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
 
-1. Reset filters and search again from `Personal > My Keys`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+**How to check:**
 
-### Cannot Find the Target Data
+1. Confirm that the save operation completed and the target object status is enabled or active.
+2. Check whether the change applies to the correct organization, project, member, role, API key, or policy scope.
+3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
+4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
 
-**Issue Symptom:**
+#### Why are Key creation or disable buttons unavailable?
 
-The expected result is not visible on the `My Keys` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects my keys records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Personal > My Keys`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### The Action Button Is Unavailable
-
-**Issue Symptom:**
-
-The expected result is not visible on the `My Keys` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects my keys records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Personal > My Keys`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Check the current tenant, organization, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
 
 ## Next Steps
 
-1. Open the related member, role, organization, operation log, or API rate-control page based on the issue.
-2. Recheck permissions and audit records after configuration changes.
-3. Escalate with desensitized account, organization, page route, time range, and issue symptom when needed.
+1. Recheck the affected users, organizations, projects, roles, keys, policies, or configuration objects.
+2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
+3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
 
 ## Notes
 

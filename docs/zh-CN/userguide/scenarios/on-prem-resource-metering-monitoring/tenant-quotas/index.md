@@ -6,7 +6,7 @@
 
 ## 适用角色
 
-- 平台运营方（Operator）
+- 平台运营方
 
 ## 开始前准备
 
@@ -16,7 +16,7 @@
 ## 功能入口
 
 - **角色**：运营管理员
-- **菜单**：AI 基础设施（On-Prem） > 配额&计量 > 租户配额
+- **菜单**：AI 基础设施（本地算力平台） > 配额&计量 > 租户配额
 - **路由**：`/powerone/quota-metric/tenant`
 
 ## 操作步骤
@@ -54,4 +54,4 @@
 
 ## 操作手册
 
-[查看租户配额完整说明](/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-quotas/)
+运营侧核对可继续查看[计量明细](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)和[月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)。

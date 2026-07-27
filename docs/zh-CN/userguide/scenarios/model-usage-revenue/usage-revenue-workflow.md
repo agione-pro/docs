@@ -9,9 +9,9 @@ next: true
 
 ## 适用角色
 
-- 查看个人调用和消费的平台用户（End User）
-- 查看客户用量和收益的模型提供方（Provider）
-- 核对平台计费规则的平台运营方（Operator）
+- 查看个人调用和消费的平台用户
+- 查看客户用量和收益的模型提供方
+- 核对平台计费规则的平台运营方
 
 ## 场景目标
 
@@ -31,10 +31,10 @@ next: true
 | 角色 | 操作 | 参考手册 | 完成标志 |
 | --- | --- | --- | --- |
 | 调用方 | 查看自己的调用概览和日志 | [我的调用概览](../../../usermanual/model-services/user/my-calls/overview/)、[调用日志](../../../usermanual/model-services/user/my-calls/call-logs/) | 调用状态、模型和时间可定位 |
-| 调用方 | 查看模型用量 | [模型用量](../../../usermanual/model-services/user/usage-revenue/model-usage/) | Token、次数或时长与调用记录一致 |
+| 调用方 | 查看模型用量 | [模型用量](../../../usermanual/model-services/user/usage-earnings/model-usage/) | Token、次数或时长与调用记录一致 |
 | 提供方 | 查看客户调用概览、日志和分析 | [客户调用概览](../../../usermanual/model-services/user/customer-calls/overview/)、[客户调用日志](../../../usermanual/model-services/user/customer-calls/call-logs/)、[客户调用分析](../../../usermanual/model-services/user/customer-calls/call-analytics/) | 客户维度数据可定位 |
-| 提供方 | 查看模型收益 | [模型收益](../../../usermanual/model-services/user/usage-revenue/model-revenue/) | 收益与有效调用和价格规则对应 |
-| 双方 | 对照发布时的计费方式和币种 | [我的模型](../../../usermanual/model-services/user/studio/my-models/)、[币种设置](../../../usermanual/model-services/operator/settings/currency-settings/) | 计费单位、价格和账期一致 |
+| 提供方 | 查看模型收益 | [模型收益](../../../usermanual/model-services/user/usage-earnings/model-earnings/) | 收益与有效调用和价格规则对应 |
+| 双方 | 对照发布时的计费方式和币种 | [我的模型](../../../usermanual/model-services/user/studio/my-models/) 和平台币种设置页面 | 计费单位、价格和账期一致 |
 
 ## 推荐对账顺序
 

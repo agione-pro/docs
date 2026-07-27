@@ -6,7 +6,7 @@
 
 ## 适用角色
 
-- 平台运营方（Operator）
+- 平台运营方
 
 ## 开始前准备
 
@@ -16,7 +16,7 @@
 ## 功能入口
 
 - **角色**：运营管理员
-- **菜单**：AI 基础设施（On-Prem） > 资源池 > 规格指标 / 资源规格
+- **菜单**：AI 基础设施（本地算力平台） > 资源池 > 规格指标 / 资源规格
 - **路由**：`/powerone/resourcepool/flavor/type`、`/powerone/resourcepool/flavor/list`
 
 ## 操作步骤

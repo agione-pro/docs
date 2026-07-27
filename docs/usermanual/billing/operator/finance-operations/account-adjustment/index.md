@@ -7,90 +7,118 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Account Adjustment` is used to view, filter, and maintain account adjustment information. It helps platform operator, billing operator work with account adjustment records and related status from a consistent page entry.
+`Account Adjustment` is used to find billing records that require manual correction, evaluate adjustment impact, and review submitted adjustment records. The page warns that submitted adjustments may generate real fund flows and are usually irreversible, so approval, reason, and impact scope must be confirmed before submission.
 
 | Item | Content |
 | --- | --- |
 | Applicable role | Platform operator, billing operator |
-| Navigation path | Finance Operations > Account Adjustment |
-| Page route | /operator/finance-operations/account-adjustment |
-| Managed objects | Account Adjustment records and related status |
-| Typical use | View, filter, and maintain account adjustment information |
+| Navigation path | Billing > Finance Operations > Account Adjustment |
+| Page route | `/billing/admin/account-adjustments` |
+| Managed objects | Billing records, adjustment impact assessment, and adjustment records |
+| Typical use | Locate records to correct, evaluate adjustment impact, and review adjustment history |
 
-### Beginner Explanation
+#### Beginner Explanation
 
-Account Adjustment is part of the billing control loop. Treat it as a view for confirming money, quota, billing-cycle, customer, or settlement status before making financial decisions.
+Account Adjustment is like a financial reversal or correction voucher. It is a fund correction action that should only be performed after approval. Normal queries can be repeated, but submitted adjustments may generate real fund flows and are usually irreversible.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Billing cycle | The month or settlement period used for billing, revenue, and reconciliation. | Keep the cycle consistent across pages. |
-| Transaction | A balance change or revenue/expense record. | Use it to explain amount differences. |
-| Settlement statement | A statement generated for an organization and billing cycle. | Check status and amount before follow-up. |
-| Adjustment | A controlled correction for abnormal billing records. | Use only after impact assessment. |
+| Adjustment | Approved fund correction for abnormal billing records. | Confirm impact scope before submission. |
+| Reversal | Reverse correction for an incorrect fund direction or amount. | Keep approval and reason for audit. |
+| Approval Status | Workflow status that determines whether adjustment can continue. | Do not submit without approval. |
+| Related Document | Settlement statement, transaction, or billing fact related to the adjustment. | Used for traceability. |
+| Impact Billing Cycle | Billing cycle affected by the adjustment. | Avoid adjusting the wrong billing cycle. |
 
 ## Prerequisites
 
 1. The current account can access `Finance Operations > Account Adjustment`.
-2. The target organization, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+2. Adjustment approval or business confirmation has been obtained.
+3. The billing record, settlement detail, transaction number, or billing fact ID to correct is ready.
+4. Adjustment reason, amount direction, and impact scope have been confirmed.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for account adjustment records and related status.
+The page includes a risk notice, `New Adjustment` area, and `Adjustment Records` list.
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, organization, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
+| Risk notice | Reminds operators that submitted adjustments are usually irreversible and require approval and reason confirmation. |
+| New Adjustment | Enter billing record clues and evaluate adjustment impact. |
+| Billing Record to Adjust | Supports billing record, settlement detail, transaction number, or billing fact ID. |
+| Evaluate Impact | Previews related accounting entries and impact scope before adjustment. |
+| Adjustment Records | Shows time, adjustment type, subject / account, direction, amount, reason, operator, and details entry. |
 
-The following screenshot shows account adjustment list.
+The following screenshot shows the risk notice, new adjustment area, and adjustment records list.
 
-![Account Adjustment list](./images/account-adjustment-list.png)
+![Account Adjustment](./images/account-adjustment-list.png)
 
 ## Main Operations
 
-Use the following operations to work with account adjustment records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+Use the following operations to view the account adjustment page, evaluate adjustment impact, and review adjustment records. For learning or screenshots, only view page structure, fields, and records. Do not click real submit, confirm, or adjustment actions.
+
+### View Account Adjustment
+
+1. Go to `Billing > Finance Operations > Account Adjustment`.
+2. Review the risk notice at the top of the page and confirm that submitted adjustments may generate real fund flows and are usually irreversible.
+3. Review the `New Adjustment` area and confirm that target records can be located by billing record, settlement detail, transaction number, or billing fact ID.
+4. Review the `Adjustment Records` list, including time, adjustment type, subject / account, direction, amount, reason, operator, and details entry.
+5. For learning or screenshots only, view page structure, fields, and records without clicking submit, confirm, or real adjustment actions.
+
+![Account Adjustment](./images/account-adjustment-list.png)
 
 ### Evaluate Adjustment Impact
 
-1. Go to `Finance Operations > Account Adjustment`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to account adjustment records and related status.
-4. Click the visible `Evaluate Adjustment Impact` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+1. Go to `Billing > Finance Operations > Account Adjustment`.
+2. In the `New Adjustment` area, enter the billing record clue that requires adjustment.
+3. Before clicking `Evaluate Impact`, confirm record source, billing cycle, organization, amount direction, and approval basis.
+4. Review affected account, direction, amount, related document, and reason in the evaluation result.
+5. If the result does not match expectations, stop submission and continue verification in Financial Accounts, Settlement List, or Reconciliation Center.
+6. For learning or screenshots only, view the evaluation entry and fields without submitting a real adjustment.
 
 ### View Adjustment Records
 
-1. Go to `Finance Operations > Account Adjustment`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to account adjustment records and related status.
-4. Click the visible `View Adjustment Records` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+1. Go to `Billing > Finance Operations > Account Adjustment`.
+2. Review existing records in the `Adjustment Records` list.
+3. Locate the target record by time, subject / account, direction, amount, reason, or operator.
+4. Click `Details` to view more information for a single adjustment record.
+5. Verify whether the record is consistent with approval basis, related document, and account transactions.
+6. Hide real account, organization name, transaction number, amount, and approval information when sharing screenshots or external communication.
 
-## Parameters
+## Parameter Reference
 
-| Field | Required | Type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Organization / customer / member | No | Text | `Example organization` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| New Adjustment | No | Page area | New Adjustment | Used to enter billing record clues and start impact evaluation. |
+| Billing Record to Adjust | Yes | Text | `FACT-202607080001` | Billing record, settlement detail, transaction number, or billing fact ID. |
+| Evaluate Impact | No | Button | Evaluate Impact | Previews affected account, direction, amount, and related document. |
+| Adjustment Records | System-generated | List | Adjustment Records | Shows adjustment history and details entry. |
+| Time | System-generated | Time | `2026-07-08 10:00` | Time when the adjustment record was generated. |
+| Adjustment Type | System-generated | Enum / Text | Reversal | Adjustment type or business transaction information. |
+| Subject / Account | System-generated | Text | Example Organization A / Platform Clearing Account | Subject and account affected by the adjustment. |
+| Direction | System-generated | Enum | Income | Income or expense direction. |
+| Amount | System-generated | Amount | `1,000.00 credits` | Adjustment amount. |
+| Reason | Yes | Text | Duplicate settlement transaction reversal | Adjustment reason or note. |
+| Operator | System-generated | Text | operator | Operator who initiated or processed the adjustment. |
+| Details | System-generated | Operation entry | Details | Shows more information for a single adjustment record. |
+| Approval Basis | Yes | Text / Attachment | Desensitized approval note | Explains the adjustment basis for audit traceability. |
+| Related Document | Yes | Text | Desensitized settlement statement number | Related settlement statement, transaction, or billing fact. |
 
 ## Pitfalls
 
 - Do not rely on one amount field alone for financial confirmation; cross-check transactions, bills, settlement statements, and reconciliation results.
 - Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
 - Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
+- Submitted adjustments may generate real fund flows and are usually irreversible.
+- Before adjustment, confirm approval, billing cycle, organization, related document, amount direction, and affected account.
+- Adjustment cannot replace normal settlement, compensation, or reconciliation flows.
+- For learning or screenshots, only view the page, fields, and records. Do not execute real submission.
+- Do not record real accounts, account IDs, customer names, organization names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, tokens, or keys.
 
-## Result Checks
+## Result Validation
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page access | The `Finance Operations > Account Adjustment` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Filter result | The list changes according to the selected filters. | Reset filters and search again. |
@@ -99,86 +127,45 @@ Use the following operations to work with account adjustment records and related
 
 ## FAQ
 
-### Cannot Find the Target Data
+#### Target billing data is not visible in Account Adjustment
 
-**Issue Symptom:**
+The expected account, customer, order, bill, settlement, adjustment, or License record does not appear on this page.
 
-The expected result is not visible on the `Account Adjustment` page, or the available action does not match the current business expectation.
+**How to check:**
 
-**Possible Causes:**
+1. Confirm the current tenant, organization, customer, account, and role scope.
+2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
+3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
+4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects account adjustment records and related status.
+#### Amount, status, or billing cycle does not match in Account Adjustment
 
-**Handling:**
+The displayed balance, consumption, settlement status, monthly bill, or License status differs from the expected result.
 
-1. Reset filters and search again from `Finance Operations > Account Adjustment`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+**How to check:**
 
-### What to Check on Account Adjustment
+1. Confirm adjustment order, approval status, affected billing cycle, and linked settlement or transaction records.
+2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
+3. Compare the summary number with the detail list and operation records on the related billing pages.
+4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
 
-**Issue Symptom:**
+#### The amount after impact assessment is not as expected
 
-The expected result is not visible on the `Account Adjustment` page, or the available action does not match the current business expectation.
+Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
 
-**Possible Causes:**
+#### The processed result is not visible in adjustment records
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects account adjustment records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Finance Operations > Account Adjustment`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### Values Do Not Match Expectations
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Account Adjustment` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects account adjustment records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Finance Operations > Account Adjustment`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### Cannot Find the Target Data
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Account Adjustment` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects account adjustment records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Finance Operations > Account Adjustment`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
 
 ## Next Steps
 
-1. Open the related detail page if the list value requires verification.
-2. Cross-check transactions, monthly bills, settlement statements, and reconciliation results when amounts differ.
-3. Escalate with desensitized record IDs, billing cycle, organization, customer, time range, and issue symptom when needed.
+1. Review related billing records, transactions, settlement statements, and account balance changes.
+2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
+3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
 
 ## Notes
 
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Submitted adjustments may generate real fund flows and are usually irreversible. Confirm approval, reason, direction, amount, subject, and impact scope before submission.
+- Do not record real accounts, account IDs, customer names, organization names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, tokens, or keys in the manual, screenshots, notes, or tickets.

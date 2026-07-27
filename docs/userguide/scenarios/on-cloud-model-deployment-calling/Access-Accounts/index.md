@@ -22,18 +22,30 @@ The platform user has a validated cloud account that quick deployment can use wi
 
 ## Procedure
 
-1. Open **Access Management > Access Accounts** and confirm whether the intended user account already exists.
+### Add a Cloud Account
+
+1. From the platform home page, select **Access Accounts** in the left navigation to open account management.
+2. Select **Add Cloud Account** in the upper-right corner to open the Add Account dialog.
 
 ![Review access accounts](./images/access-accounts-list.png)
 
-2. Select **Add Account**, choose the authorized cloud platform, and enter the dedicated credential through the protected form.
+3. Configure the account:
+   - Enter an **Account Name**, such as `aliyun-wh-dev`.
+   - Select a cloud platform that the current version supports and the tenant is authorized to use, such as Alibaba Cloud or AWS. Huawei Cloud access is not currently supported.
+   - Enter the cloud platform **Access Key ID**, such as `LTAI5tM8xHnXoLuBW...`.
+   - Enter the cloud platform **Access Key Secret**, such as `flsBCIDPLksdaNh05J...`.
+4. Review the information and select **Confirm** to add the account, or **Cancel** to discard the changes.
 
 ![Add an access account](./images/add-account.png)
 
-3. Validate the account and confirm its status.
-4. Open quick deployment and verify that the account and authorized regions are selectable.
+#### Parameter Reference
 
-See [User Access Accounts](../../../../usermanual/ai-infra-on-cloud/user/access-management/access-accounts/).
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Account Name | Text | `aliyun-wh-dev` | Required; a user-defined account identifier |
+| Cloud Platform | Select | `Alibaba Cloud` | Required; the supported platform to which the account belongs |
+| Access Key ID | Text | `LTAI5tM8xHnXoLuBW...` | Required; the cloud access-key ID |
+| Access Key Secret | Password | `flsBCIDPLksdaNh05J...` | Required; the cloud access-key secret |
 
 ## Completion Checklist
 
@@ -51,3 +63,7 @@ See [User Access Accounts](../../../../usermanual/ai-infra-on-cloud/user/access-
 | --- | --- |
 | Account validation fails | Credential validity, cloud permissions, network access, and platform selection |
 | Quick deployment cannot select the account | Tenant authorization, region scope, and account validation state |
+
+## User Manual
+
+[Review complete fields, validation rules, and common issues for Access Accounts](/usermanual/ai-infra-on-cloud/user/access-management/access-accounts/)

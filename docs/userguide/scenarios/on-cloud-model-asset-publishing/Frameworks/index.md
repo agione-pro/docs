@@ -1,15 +1,10 @@
----
-prev: false
-next: true
----
-
 # Inference Frameworks
 
-Combine a runtime image, startup command, service port, and framework type into a cloud deployment runtime.
+This task combines a runtime image, startup command, service port, and framework type into a reusable deployment runtime.
 
 ## Target Outcome
 
-A reusable inference framework can start the selected image and expose the expected service port.
+The inference framework starts a service with the target image and exposes the expected port for model assets to reference.
 
 ## Applicable Roles
 
@@ -17,36 +12,65 @@ A reusable inference framework can start the selected image and expose the expec
 
 ## Before You Start
 
-- Prepare a validated runtime image.
-- Confirm the framework type, startup command, model placeholder, service port, and health behavior.
+- The inference image is prepared and validated.
+- Framework type, startup command, model placeholder, service port, and health-check behavior are confirmed.
 
 ## Procedure
 
-1. Open **Deployment Assets > Inference Frameworks**, select **Add**, and choose the validated runtime image.
+### Add a Framework
+
+1. Go to **Deploy Assets > Inference Frameworks**.
+2. Select **Add Framework**.
+
+![Review inference frameworks](./images/frameworks-list.png)
+
+3. Complete Basic Information:
+   - **Framework Icon**: upload a JPG, PNG, or SVG file no larger than 1 MB; 64 x 64 is recommended.
+   - **Framework Name**: maintain Simplified Chinese and English values separately.
+   - **Framework Type**: select at least one type, such as `vllm`, `tgi`, `sglang`, `ollama`, `asr`, `tts`, `sdk-stable-diffusion`, or `comfyui`.
+   - **Framework Description**: maintain optional localized rich-text descriptions.
+4. Complete Runtime Environment:
+   - **Image**: select the validated runtime image and confirm its version.
+   - **Port**: enter the service port exposed by the framework, such as `8000`.
+   - **Startup Command**: maintain one or more protocol and command entries, such as `--port 8000 --model {model_name} --trust-remote-code`.
+5. Select **Save**. Select **Cancel** to discard the form.
 
 ![Add an inference framework](./images/add-framework.png)
 
-2. Configure the framework type, startup command, model placeholder, service port, and protocol behavior.
-3. Validate the command, health behavior, and exposed port in the target environment.
-4. Enable the framework, return to the framework list, and confirm that model assets can select it.
+#### Parameters - Basic Information
 
-![Verify the inference framework in the list](./images/frameworks-list.png)
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Framework Icon | Upload | - | Required; JPG, PNG, or SVG, no larger than 1 MB; 64 x 64 recommended |
+| Framework Name | Text | `vllm` in both language tabs | Required; maintain each language independently |
+| Framework Type | Multi-select | `vllm`, `tgi`, `sglang` | Required; select at least one type |
+| Framework Description | Rich text | - | Optional localized description |
 
-See [Inference Frameworks](../../../../usermanual/ai-infra-on-cloud/operator/deploy-assets/frameworks/).
+#### Parameters - Runtime Environment
+
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Image | Single select | `registry.example.com/ai/vllm:0.9.1` | Required; select from the validated image list |
+| Port | Number | `8000` | Required; service port exposed by the framework |
+| Startup Command | List | `--port 8000 --model {model_name} --trust-remote-code` | Required; supports multiple command entries |
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+> **Purpose:** These are the exit criteria for this task. If any check fails, follow the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Image, framework type, command, and port are compatible. |
-| 2 | Health and API behavior can be validated. |
-| 3 | Model asset configuration can select the framework. |
+| 1 | Image, framework type, startup command, and port are compatible. |
+| 2 | Service health and API behavior can be validated. |
+| 3 | Model-asset configuration can select the framework. |
 
 ## Troubleshooting
 
 | Symptom | Check First |
 | --- | --- |
-| Framework startup fails | Image compatibility, command arguments, model path, and port |
-| Framework is unavailable to a model asset | Framework status, framework type, and target-cloud compatibility |
+| Framework fails to start | Image compatibility, command parameters, model path, and port |
+| Model asset cannot select the framework | Framework state, framework type, and target-cloud compatibility |
+
+## User Manual
+
+[Review complete fields, validation rules, and troubleshooting for Inference Frameworks](../../../../usermanual/ai-infra-on-cloud/operator/deploy-assets/frameworks/)

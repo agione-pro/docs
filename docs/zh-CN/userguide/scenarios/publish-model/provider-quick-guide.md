@@ -8,8 +8,8 @@
 
 ## 适用角色
 
-- 模型提供方（Provider）
-- 需要处理审核的平台运营方（Operator）
+- 模型提供方
+- 需要处理审核的平台运营方
 
 ## 开始前准备
 
@@ -32,14 +32,25 @@
 2. 在左侧菜单中，进入 **"创作空间" > "我的模型"**。
 3. 点击右上角的 **"发布模型"** 按钮。
 4. 在弹窗中选择部署方式：
-   - **On-Prem / On-Cloud**：AGIOne 托管部署（适用于私有云或本地部署）
-   - **BYOK（Bring Your Own Key）**：接入已有的第三方 API Endpoint
+   - **本地算力平台 / 多云调度平台**：AGIOne 托管部署（适用于私有云或本地部署）
+   - **BYOK（Bring Your Own Key）**：接入已有的第三方 API 接口地址
 5. 选择输出区域：
    - **Private・私有区**：仅供内部团队使用
    - **Public・公有区**：在公共市场展示
 6. 点击 **"开始"** 进入配置流程。
 
-![我的模型入口](./images/my_models-overview-zh.png)
+![我的模型入口](./images/my-models-overview-zh.png)
+
+### 2.1 选择平台托管或 BYOK
+
+| 部署方式 | 适用情况 | 发布前需要确认 |
+| --- | --- | --- |
+| 本地算力平台 / 多云调度平台 | 模型由 AGIOne 管理的算力部署 | 模型资产、资源池、推理模板或云部署条件已准备 |
+| BYOK（Bring Your Own Key） | 已有第三方或自建模型 API，需要接入统一体验、计费和治理 | 接口地址、模型来源 ID、请求头、密钥、协议和返回格式已准备 |
+
+选择发布区域和部署方式后再点击“开始”。BYOK 的密钥只填写在平台配置页，文档、截图和工单中不得出现明文。
+
+![选择发布区域和部署方式](../../../usermanual/model-services/user/studio/my-models/images/my-published-choose-where-to-publish-add.png)
 
 ## 3. 填写基本信息
 
@@ -49,7 +60,7 @@
 ![核对模型基本信息](./images/publish-basic-info-zh.png)
 
 3. 在**模型来源/元模型信息**中选择真实的模型来源、地域和目标元模型。
-4. 填写模型服务 URL、厂商 Key 和准确的模型来源 ID。
+4. BYOK 填写模型服务 URL、厂商 Key 和准确的模型来源 ID；平台托管部署则选择已经准备好的模型资产和部署来源。
 
 ![填写模型来源信息](./images/publish-source-protocol-zh.png)
 
@@ -57,7 +68,7 @@
 
 1. 找到**官方原生协议与默认高级参数**。
 2. 选择需要支持的协议，例如 **OpenAI-ChatCompletions**，并展开协议卡片。
-3. 核对 Endpoint 路径和必需输入参数。
+3. 核对 接口地址 路径和必需输入参数。
 4. 点击**开始测试**，等待结果显示**测试通过**。
 
 ![确认协议测试通过](./images/publish-protocol-test-pass-zh.png)

@@ -1,3 +1,8 @@
+---
+prev: false
+next: true
+---
+
 # 元模型
 
 ## 场景目标
@@ -6,7 +11,7 @@
 
 ## 适用角色
 
-- 平台运营方（Operator）
+- 平台运营方
 
 ## 开始前准备
 
@@ -53,14 +58,14 @@
    - **"视频模型"**：用于视频生成、编辑和特效处理等任务；
    - **"嵌入模型"**：用于为检索、匹配、分类等任务将查询向量内嵌表示；
    - **"重排模型"**：用于对生成或检索结果重新排序，优先展示最相关内容。
-![模型类型与子类型](./images/step-1-model-type_variants.png)
+![模型类型与子类型](./images/step-1-model-type-variants.png)
 1. **输入/输出模态**：在"输入/输出模态"区块分别选择：
    - **"输入模态"**（多选）：文本 / 图片 / 语音 / 视频；
    - **"输出模态"**（多选）：文本 / 图片 / 语音 / 视频。
-![输入/输出模态](./images/step-1-input_output-modalities.png)
-1. **高级能力配置**：开启相关能力开关：
-   - **"函数 / 工具支持"**：开启后支持工具调用功能；
-   - **"思考模式"**：开启后支持深度思考和推理能力。
+![输入/输出模态](./images/step-1-input-output-modalities.png)
+1. **高级能力配置**：仅按模型官方能力开启当前版本已支持的能力：
+   - **"思考模式"**：模型已验证支持深度思考和推理时再开启；
+   - **"函数 / 工具支持"**：Function Calling 仍在规划中，当前版本不作为可用能力配置。
 ![高级能力配置](./images/step-1-advanced-capability-configuration.png)
 1. **Token 限制**：在"Token 限制"区块分别设置：
    - **"最大上下文"**（如 1024K）；
@@ -68,9 +73,9 @@
    - **"最大输出"**（如 64K）。
 ![Token 限制](./images/step-1-token-limit.png)
 1. **官方原生协议与默认参数**：在"官方原生协议与默认参数"区块为每个协议配置：
-   - **OpenAI-ChatCompletions**（协议代号 `openai/chat_completions`）：填写 **"Endpoint"**（如 `/compatible-mode/v1/chat/completions`），配置 **"输入参数"**（Temperature、Top-P、N、Stream、Max Tokens、Presence Penalty、Frequency Penalty、User、Seed、Parallel Tool Calls 等，可设置"是否必填"）；
-   - **OpenAI-Responses**（协议代号 `openai/responses`）：填写 **"Endpoint"**（如 `/compatible-mode/v1/responses`），配置 **"输入参数"**；
-   - **Anthropic-Messages**（协议代号 `anthropic/messages`）：填写 **"Endpoint"**（如 `/apps/anthropic/v1/messages`），配置 **"输入参数"**。
+   - **OpenAI-ChatCompletions**（协议代号 `openai/chat_completions`）：填写 **"接口地址"**（如 `/compatible-mode/v1/chat/completions`），配置 **"输入参数"**（Temperature、Top-P、N、Stream、Max Tokens、Presence Penalty、Frequency Penalty、User、Seed、Parallel Tool Calls 等，可设置"是否必填"）；
+   - **OpenAI-Responses**（协议代号 `openai/responses`）：填写 **"接口地址"**（如 `/compatible-mode/v1/responses`），配置 **"输入参数"**；
+   - **Anthropic-Messages**（协议代号 `anthropic/messages`）：填写 **"接口地址"**（如 `/apps/anthropic/v1/messages`），配置 **"输入参数"**。
 ![官方原生协议与默认参数](./images/step-1-official-native-protocol.png)
 1. 点击 **"下一步"** 进入元模型详情。
 2. **元模型详情**：在富文本编辑器中填写模型的完整详细介绍（支持富文本格式、插入链接等）。
@@ -92,16 +97,16 @@
 | 模型类型 | 多选 | `多模态 / 对话模型 / 图片模型 / 语音模型 / 视频模型 / 嵌入模型 / 重排模型` | 必填，划分模型功能类别（按需勾选） |
 | 输入模态 | 多选 | `文本 / 图片 / 语音 / 视频` | 必填，模型支持的输入数据类型 |
 | 输出模态 | 多选 | `文本 / 图片 / 语音 / 视频` | 必填，模型支持的输出数据类型 |
-| 高级能力 - 函数/工具支持 | 开关 | `开启 / 关闭` | 选填，开启后支持工具调用功能 |
+| 高级能力 - 函数/工具支持 | 规划状态 | `规划中` | 当前版本不作为可用能力配置 |
 | 高级能力 - 思考模式 | 开关 | `开启 / 关闭` | 选填，开启后支持深度思考和推理 |
 | 最大上下文 | 数值 | `1024K` | 必填，Token 上下文长度上限 |
 | 最大输入 | 数值 | `991K` | 必填，单次输入 Token 上限 |
 | 最大输出 | 数值 | `64K` | 必填，单次输出 Token 上限 |
-| 官方原生协议 - OpenAI-ChatCompletions | 开关 + 协议代号 | `openai/chat_completions` | 必填，启用后需配置 Endpoint 与输入参数 |
-| 官方原生协议 - OpenAI-Responses | 开关 + 协议代号 | `openai/responses` | 必填，启用后需配置 Endpoint 与输入参数 |
-| 官方原生协议 - Anthropic-Messages | 开关 + 协议代号 | `anthropic/messages` | 必填，启用后需配置 Endpoint 与输入参数 |
-| Endpoint | URL | `/compatible-mode/v1/chat/completions` | 必填，协议对应的端点路径 |
-| 输入参数 | 参数列表 | `Temperature / Top-P / N / Stream / Max Tokens / Presence Penalty / Frequency Penalty / User / Seed / Parallel Tool Calls` | 选填，按协议预设的输入参数（可设置是否必填） |
+| 官方原生协议 - OpenAI-ChatCompletions | 开关 + 协议代号 | `openai/chat_completions` | 必填，启用后需配置 接口地址 与输入参数 |
+| 官方原生协议 - OpenAI-Responses | 开关 + 协议代号 | `openai/responses` | 必填，启用后需配置 接口地址 与输入参数 |
+| 官方原生协议 - Anthropic-Messages | 开关 + 协议代号 | `anthropic/messages` | 必填，启用后需配置 接口地址 与输入参数 |
+| 接口地址 | URL | `/compatible-mode/v1/chat/completions` | 必填，协议对应的端点路径 |
+| 输入参数 | 参数列表 | `Temperature / Top-P / N / Stream / Max Tokens / Presence Penalty / Frequency Penalty / User / Seed` | 选填，按协议预设的输入参数（可设置是否必填） |
 | 元模型详情 | 富文本 | `模型特性、参数介绍` | 必填，模型完整详细说明 |
 
 ## 完成检查

@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Overview |
-| Page Route | `/powerone/overview` |
-| Managed Objects | Deployment templates, accelerator resources, quick entrypoints, specification quotas, and resource usage trends |
-| Typical Use | Quickly understand deployable models, available accelerators, quotas, and recent resource usage after entering On-Prem |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Overview |
+| Page route | `/powerone/overview` |
+| Managed objects | Deployment templates, accelerator resources, quick entrypoints, specification quotas, and resource usage trends |
+| Typical use | Quickly understand deployable models, available accelerators, quotas, and recent resource usage after entering On-Prem |
 
-### Beginner View
+#### Beginner Explanation
 
 The overview page can be understood as the homepage of the On-Prem user console: the upper area tells you which models can be deployed and which accelerators are available; the middle area provides quick entrypoints for Online IDE and Runtime Instance; the lower area helps you confirm whether quota is sufficient and whether resources have consumption records.
 
-### First-Time Flow
+#### First-Time Flow
 
 1. Go to `AI Infra(On-Prem) > Overview`.
 2. View `Deployment Templates` to confirm whether deployable models exist.
@@ -29,7 +29,7 @@ The overview page can be understood as the homepage of the On-Prem user console:
 4. Use the `Online IDE` or `Runtime Instance` quick entrypoint to enter the creation flow.
 5. View specification quota, consumption trends, and resource usage to confirm whether resources are available for job creation.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -48,9 +48,9 @@ The overview page can be understood as the homepage of the On-Prem user console:
 
 The upper area displays deployable templates and accelerator vendors; the middle area provides quick entrypoints for Online IDE and Runtime Instance; the lower area displays specification quota, consumption trends, and resource usage. The screenshot shows the left user menu, deployment template area, accelerator area, and quick entrypoints.
 
-![Overview](./images/overview.png)
+![Overview](./images/overview-list.png)
 
-### Page Areas
+#### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
@@ -60,54 +60,53 @@ The upper area displays deployable templates and accelerator vendors; the middle
 | Specification Quota | Displays specification-level quotas and used amount. |
 | Consumption Trend | Displays consumption trend for the current cycle. If there is no job consumption, it is empty. |
 
-## View Deployable Resources
+## Main Operations
 
-### Applicable Scenario
+### View Deployable Resources
+
+#### Applicable Scenario
 
 Before creating a model service, online IDE, or runtime instance, confirm on the overview page whether templates, accelerators, and quotas are available.
 
-### Pre-Operation Check
+#### Pre-Operation Check
 
 1. You have entered the On-Prem overview page.
 2. The region or resource scope in the upper-right corner matches the current use scenario.
 
-### Procedure
+#### Procedure
 
 1. View model vendors and model cards in deployment templates.
 2. View accelerator vendors, models, VRAM, and adaptation status in accelerator vendors.
 3. Confirm whether the target specification still has available quota in specification quota.
-4. If a job needs to be created, click `Create Job` to enter the corresponding creation page.
+4. If a job needs to be created, click `Create Job` to enter the corresponding creation page. For learning or screenshots only, view the entrypoint without submitting a real task.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Region | No | Drop-down | `Wuhan` | Overview statistics region. |
-| Resource Type | No | Enum | `GPU` | Overview resource category. |
-| Quota | System-generated | Number | `10` | Available quota for the current account. |
-| Used Amount | System-generated | Number | `4` | Current used resource amount. |
-| Update Time | System-generated | Date time | `2026-07-07 10:00` | Overview data update time. |
+| Region | No | Drop-down | `Sample region` | Overview statistics region. |
+| Resource Type | No | Enum | `Sample resource type` | Overview resource category. |
+| Quota | System-generated | Number | `Sample quota` | Available quota for the current account. |
+| Used Amount | System-generated | Number | `Sample used amount` | Current used resource amount. |
+| Update Time | System-generated | Date time | `Sample update time` | Overview data update time. |
 
-### Pitfalls
+## Pitfalls
 
 - When the deployment button is unavailable, usually no model or accelerator has been selected.
 - Sufficient quota does not mean the cluster definitely has idle resources. If creation fails, check region, availability zone, and specifications.
+- `Create Job` jumps to a creation flow. For learning or screenshots only, view the entrypoint without submitting a real task.
+- Do not record real tenants, regions, clusters, specifications, resource usage, consumption data, or test parameters.
+- Overview data may have statistical delays. For troubleshooting, verify again on instance details, monitoring, or quota pages.
 
-### Result Validation
+## Result Validation
 
 1. The target model or quick entrypoint is visible.
 2. The target specification is visible in the quota table.
 3. If consumption data exists, trend and usage areas refresh normally.
 
-## Configuration Rules and Impact
-
-- The overview page only provides summary display and does not replace creation, detail, or troubleshooting pages of specific modules.
-- Templates, specifications, and accelerators are configured by operators. Regular users cannot modify them directly on the overview page.
-- Resource usage and consumption trends may have statistical delays. For real-time troubleshooting, enter specific instance or monitoring pages.
-
 ## FAQ
 
-### No Deployable Templates on the Overview Page
+#### No Deployable Templates on the Overview Page
 
 **Symptom:** The deployment template area is empty or has no clickable model.
 
@@ -123,7 +122,7 @@ Before creating a model service, online IDE, or runtime instance, confirm on the
 2. Switch or confirm the current region.
 3. Contact the operator to confirm whether templates have been published to the current tenant.
 
-### Quota Looks Sufficient but Creation Fails
+#### Quota Looks Sufficient but Creation Fails
 
 **Symptom:** The overview page shows unlimited or remaining quota, but job creation fails.
 
@@ -139,7 +138,7 @@ Before creating a model service, online IDE, or runtime instance, confirm on the
 2. Check `Resource Quotas` and `Resource Usage`.
 3. Contact the operator to confirm the association between specifications and clusters.
 
-## Follow-Up Operations
+## Next Steps
 
 1. Go to `Model Deployment > Deployment Templates` to create a model instance.
 2. Go to `Development Resources > Online IDE` to create an interactive development environment.
@@ -149,3 +148,6 @@ Before creating a model service, online IDE, or runtime instance, confirm on the
 
 - Do not judge failure causes only by the homepage summary. Key instance status should be based on the corresponding detail page.
 - Before creation, confirm region, specification, and image source to avoid creation failure caused by unschedulable resources after submission.
+- The overview page only provides summary display and does not replace creation, detail, or troubleshooting pages of specific modules.
+- Templates, specifications, and accelerators are configured by operators. Regular users cannot modify them directly on the overview page.
+- For learning or screenshots only, do not submit real jobs or write real resource scopes or consumption data in documentation.

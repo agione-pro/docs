@@ -20,14 +20,18 @@ This scenario uses organizations, members, and roles to define which menus, acti
 
 ## Scenario Flow
 
-**Main path:** Define responsibilities → Select roles and permissions → Assign access → Verify allowed and denied paths
+**Main path:** Confirm organization boundary → Define responsibilities → Create or select a role → Assign members → Verify allowed and denied paths → Review operation logs
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Define responsibilities | Required objects and permitted actions are explicit |
+| 1. Confirm boundary | Organization, member ownership, and responsibilities are clear |
 | 2. Select permissions | Roles, menus, and button permissions match the job |
-| 3. Assign access | The target account receives the intended role and scope |
-| 4. Verify results | Authorized actions work and unauthorized actions are hidden or blocked |
+| 3. Assign access | The target member receives the intended role and scope |
+| 4. Verify and audit | Authorized actions work, unauthorized actions are blocked, and changes are traceable |
+
+Representative role screenshot:
+
+![Roles live](./images/roles-live.png)
 
 ## Before You Start
 
@@ -37,9 +41,10 @@ This scenario uses organizations, members, and roles to define which menus, acti
 
 ## Recommended Reading Order
 
-1. Define organization and role boundaries
-2. Configure members and roles
-3. Verify access with the target account
+1. Confirm organization settings and member ownership.
+2. Prefer a built-in role; create a least-privilege role only when required.
+3. Assign the target member and sign in again.
+4. Verify allowed and denied paths and review operation logs.
 
 ## Document Index
 

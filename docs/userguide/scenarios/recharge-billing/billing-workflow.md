@@ -17,10 +17,12 @@ This scenario helps users distinguish account top-ups, resource quota, resource 
 
 | Concept | Question | Entry |
 | --- | --- | --- |
-| Top-up records | Did the account receive new spendable credits? | [Top-Up Records](../../../usermanual/ai-infra-on-prem/user/quotas-usage/top-up-records/) |
+| Top-up orders | Did the account receive new spendable credits? | [Top-Up Orders](../../../usermanual/billing/user/billing/top-up-orders/) |
+| Transactions | Why did the balance increase or decrease? | [Transactions](../../../usermanual/billing/user/billing/transactions/) |
 | Resource quota | How much compute or storage can the tenant request? | [Resource Quotas](../../../usermanual/ai-infra-on-prem/user/quotas-usage/quotas/) |
 | Resource usage | How much did an instance or job actually consume? | [Resource Usage](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/) |
-| Model usage and revenue | How many tokens, calls, duration, charges, or revenue did model calls produce? | [Model Usage](../../../usermanual/model-services/user/usage-revenue/model-usage/), [Model Revenue](../../../usermanual/model-services/user/usage-revenue/model-revenue/) |
+| Model usage and revenue | How many tokens, calls, duration, charges, or revenue did model calls produce? | [Model Usage](../../../usermanual/model-services/user/usage-earnings/model-usage/), [Model Revenue](../../../usermanual/model-services/user/usage-earnings/model-earnings/) |
+| Monthly bill | Can summarized spending for the billing cycle be reconciled? | [Monthly Bill](../../../usermanual/billing/user/billing/monthly-bill/) |
 
 ## Target Outcome
 
@@ -37,23 +39,30 @@ This scenario helps users distinguish account top-ups, resource quota, resource 
 
 ## Procedure
 
-1. Review **Top-Up Records** and confirm the event time, type, and credit change.
+1. Open [Billing Overview](../../../usermanual/billing/user/billing/overview/) and confirm available balance, billing cycle, and alerts. Then review **Top-Up Orders** and check payment state and credited amount.
 
-![Confirm top-up records](./images/top-up-records.png)
+![Confirm account state in Billing Overview](../../../usermanual/billing/user/billing/overview/images/overview-list.png)
 
-2. Review **Resource Quotas** or account credits and confirm that limits and remaining values cover the target workload.
+2. Open [Transactions](../../../usermanual/billing/user/billing/transactions/) and explain increases, deductions, or adjustments for the same account and time range.
+
+![Reconcile transactions for the selected time range](../../../usermanual/billing/user/billing/transactions/images/transactions-list.png)
+
+3. Review **Resource Quotas** or [Quota Governance](../../../usermanual/billing/user/billing/quota-governance/) and confirm that limits and remaining values cover the target workload.
 
 ![Confirm available resource quotas](./images/resource-quotas.png)
 
-3. For On-Prem resources, compare instance state with **Resource Usage** and operator metering details.
+4. For On-Prem resources, compare instance state with **Resource Usage** and operator metering details.
 
 ![Trace resource usage](./images/resource-usage.png)
 
-4. For models, compare call logs, model usage, and model revenue.
-5. Reconcile currency, billing unit, price, and deductions for the same period.
-6. If operator assistance is required, provide tenant, time, object ID, and redacted evidence.
+5. For models, compare call logs, model usage, and model revenue.
+6. Open [Monthly Bill](../../../usermanual/billing/user/billing/monthly-bill/) and reconcile currency, billing unit, price, transactions, and summarized deductions in the same cycle.
 
-Operator references: [Tenant Quotas](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-quotas/), [Tenant Credits](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-credits/), [Metering Details](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/), and [Monthly Usage](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/).
+![Review the monthly-bill summary](../../../usermanual/billing/user/billing/monthly-bill/images/monthly-bill-list.png)
+
+7. If operator assistance is required, provide tenant, billing cycle, object ID, and redacted evidence. Operators continue with [Billing-Cycle Reconciliation and Settlement](../billing-cycle-reconciliation-settlement/).
+
+Operator references: [Metering Details](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) and [Monthly Usage](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/).
 
 ## Completion Checklist
 
@@ -61,10 +70,10 @@ Operator references: [Tenant Quotas](../../../usermanual/ai-infra-on-prem/operat
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Top-up record, account credit, and event time agree. |
+| 1 | Top-up order, transactions, account credit, and event time agree. |
 | 2 | Resource quota covers the target flavor and credits cover expected consumption. |
 | 3 | Deductions map to a specific instance, job, or model call. |
-| 4 | Billing unit, price, currency, and period are consistent. |
+| 4 | Billing unit, price, currency, transactions, and monthly bill are consistent. |
 | 5 | Anomaly notes include a reproducible time range and object ID. |
 
 ## Troubleshooting

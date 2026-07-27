@@ -1,4 +1,4 @@
-# Org Settings
+# Tenant Settings
 
 ::: info Document Information
 Version: v1.0
@@ -7,21 +7,21 @@ Updated: 2026-07-13
 
 ## Feature Overview
 
-`Org Settings` is used to view, filter, and maintain org settings information. It helps provider admin or provider account work with org settings records and related status from a consistent page entry.
+`Tenant Settings` is used to view, filter, and maintain tenant settings information. It helps provider admins or provider accounts work with tenant defaults and related status from a consistent page entry.
 
 | Item | Content |
 | --- | --- |
 | Applicable role | Provider admin or provider account |
-| Navigation path | Organizations > Org Settings |
-| Page route | /user/organizations/org-settings |
-| Managed objects | Org Settings records and related status |
+| Navigation path | Settings > Tenants & Settings > Organization Settings |
+| Page route | `/user/user-space/settings` |
+| Managed objects | Tenant settings and related status |
 | Typical use | View, filter, and maintain org settings information |
 
-### Beginner Explanation
+#### Beginner Explanation
 
-Org Settings is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, organization rules, audit records, or rate-control status before changing configuration.
+Tenant Settings is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
@@ -32,7 +32,7 @@ Org Settings is part of the settings and access-control workspace. Treat it as a
 
 ## Prerequisites
 
-1. The current account can access `Organizations > Org Settings`.
+1. The current account can access `Tenants > Tenant Settings`.
 2. The target organization, member, customer, billing cycle, rule, or record scope has been confirmed.
 3. Required upstream data is already available and the page has finished loading.
 4. For high-risk changes, confirm the impact scope and rollback path before continuing.
@@ -50,7 +50,7 @@ The page usually includes filters, summary cards, data tables, detail entries, s
 
 The following screenshot shows org settings.
 
-![Org Settings](./images/org-settings.png)
+![Tenant Settings](./images/org-settings.png)
 
 The following screenshot shows project defaults.
 
@@ -68,17 +68,17 @@ The following screenshot shows quota request settings.
 
 Use the following operations to work with org settings records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 
-### Manage Org Settings
+### Manage Tenant Settings
 
-1. Go to `Organizations > Org Settings`.
+1. Go to `Tenants > Tenant Settings`.
 2. Use filters or tabs to locate the target record.
 3. Select the target row or entry related to org settings records and related status.
-4. Click the visible `Manage Org Settings` entry when it is available.
+4. Click the visible `Manage Tenant Settings` entry when it is available.
 5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
 
-## Parameters
+## Parameter Reference
 
-| Field | Required | Type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
 | Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
@@ -92,76 +92,48 @@ Use the following operations to work with org settings records and related statu
 - UI entries can differ by role and organization scope; verify the current account context before troubleshooting.
 - Never copy complete Keys, AK/SK, tokens, or secrets into documentation, tickets, or screenshots.
 
-## Result Checks
+## Result Validation
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Organizations > Org Settings` page opens and data loads normally. | Check role permissions and refresh the page. |
+| Page access | The `Tenants > Tenant Settings` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Filter result | The list changes according to the selected filters. | Reset filters and search again. |
 | Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
 | Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
 
 ## FAQ
 
-### Org Settings Troubleshooting
+#### Target settings entry is not visible in Tenant Settings
 
-**Issue Symptom:**
+The expected account, project, member, role, organization, key, operation log, system configuration, or API rate-control entry does not appear on this page.
 
-The expected result is not visible on the `Org Settings` page, or the available action does not match the current business expectation.
+**How to check:**
 
-**Possible Causes:**
+1. Confirm the current tenant, organization, project, role, and account permission scope.
+2. Check page filters such as keyword, status, project, member, role, organization, time range, and configuration type.
+3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
+4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects org settings records and related status.
+#### Configuration change does not take effect in Tenant Settings
 
-**Handling:**
+A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
 
-1. Reset filters and search again from `Organizations > Org Settings`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+**How to check:**
 
-### Cannot Find the Target Data
+1. Confirm that the save operation completed and the target object status is enabled or active.
+2. Check whether the change applies to the correct organization, project, member, role, API key, or policy scope.
+3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
+4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
 
-**Issue Symptom:**
+#### Why is the organization settings save button unavailable?
 
-The expected result is not visible on the `Org Settings` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects org settings records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Organizations > Org Settings`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### The Action Button Is Unavailable
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Org Settings` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects org settings records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Organizations > Org Settings`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Check the current tenant, organization, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
 
 ## Next Steps
 
-1. Open the related member, role, organization, operation log, or API rate-control page based on the issue.
-2. Recheck permissions and audit records after configuration changes.
-3. Escalate with desensitized account, organization, page route, time range, and issue symptom when needed.
+1. Recheck the affected users, organizations, projects, roles, keys, policies, or configuration objects.
+2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
+3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
 
 ## Notes
 

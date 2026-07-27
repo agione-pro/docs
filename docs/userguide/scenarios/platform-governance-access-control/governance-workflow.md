@@ -27,7 +27,9 @@ This scenario combines identity permissions, resource authorization, model visib
 | Cloud resources | Cloud platforms, regions, and tenant authorization | [On Cloud Resource Access](../on-cloud-resource-access/) |
 | On-Prem resources | Regions, flavors, tenant quota, and credits | [On-Prem Compute Onboarding](../on-prem-compute-onboarding/), [Metering & Monitoring](../on-prem-resource-metering-monitoring/) |
 | Models | Public/private scope, publishing approval, and visibility | [Publish Models](../publish-model/), [Model Publishing Approval](../model-publishing-approval/) |
-| Calls | Personal keys, projects, model grants, rate limits, and balance | [Model Experience & API Calling](../model-experience-api-calling/) |
+| Projects and calls | Project budgets, keys, model allowlists, and member quota | [Project, Key, and Budget Governance](../project-key-budget-governance/), [Member Quota Request and Allocation](../member-quota-application-allocation/) |
+| API rate control | API Pattern, rule version, node cache, and hit audit | [API Rate-Control Release and Audit](../api-rate-control-release-audit/) |
+| Platform authorization capacity | License state, validity, authorization composition, and managed objects | [License Lifecycle Management](../license-lifecycle-management/) |
 
 ## Before You Start
 
@@ -42,9 +44,11 @@ This scenario combines identity permissions, resource authorization, model visib
 2. Configure role and menu access and validate visibility with the target account.
 3. Authorize cloud resources or allocate On-Prem flavors and quota.
 4. Set public or private model scope and complete publishing approval when required.
-5. Prepare caller credentials, project or model grants, rate limits, and credits.
-6. Use the target account for a read-only check or controlled call.
-7. Record the reason, scope, validation result, and rollback method.
+5. Establish the calling boundary through [Project, Key, and Budget Governance](../project-key-budget-governance/), then reconcile member constraints through [Member Quota Request and Allocation](../member-quota-application-allocation/).
+6. Validate platform API rule versions and hits through [API Rate-Control Release and Audit](../api-rate-control-release-audit/).
+7. Confirm through [License Lifecycle Management](../license-lifecycle-management/) that authorization capacity supports the target resource scale.
+8. Use the target account for a read-only check or controlled call.
+9. Record the reason, scope, validation result, and rollback method.
 
 When validating credential boundaries, open **Personal Key Management** and confirm that only the intended owner and active keys remain available.
 

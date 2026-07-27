@@ -22,18 +22,29 @@ Each business type, such as inference deployment, can schedule only to its appro
 
 ## Procedure
 
-1. Open **Authorization Management > Business-Region Authorization** and select the business type and cloud platform.
-2. Grant only the approved regions and save the authorization.
+### Authorize Regions
+
+1. From the platform home page, select **Authorization Management > Business-Region Authorization**.
+2. Expand a business type to review cards showing the number of authorized regions for each currently supported cloud platform, such as AWS, Alibaba Cloud, or AGIOne-powerone. Huawei Cloud access is not currently supported.
+3. Select **+ Authorize Regions** for the business type to open the authorization dialog.
+
+![Review business-region authorization](./images/business-region-auth-list.png)
+
+4. Confirm the current business type shown in the information bar.
+5. In the platform-region tree, select only the regions approved for the business. Unselected regions remain unauthorized.
+6. Select **Confirm** to save the authorization, or **Cancel** to discard it.
 
 ![Select authorized regions](./images/auth-regions.png)
 
-3. Return to the authorization list and confirm the business type, platform, and saved region set.
+> This authorization assigns regions to a specific business scenario. A tenant can use only regions covered by both tenant-cloud and business-region authorization.
 
-![Verify business-region authorization](./images/business-region_auth-list.png)
+#### Parameter Reference
 
-4. Reopen the record and confirm that the effective region set persists.
-
-See [Business-Region Authorization](../../../../usermanual/ai-infra-on-cloud/operator/auth-management/business-region-auth/).
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Business Type | Single select | `Inference Deployment` | Required; the business scenario receiving access |
+| Cloud Platform | Checkbox | `Alibaba Cloud / AWS` | Required; platform groups in the region tree |
+| Region | Checkbox | `China East 2 (Shanghai) / Hong Kong` | Required; approved regions under the selected platforms |
 
 ## Completion Checklist
 
@@ -51,3 +62,7 @@ See [Business-Region Authorization](../../../../usermanual/ai-infra-on-cloud/ope
 | --- | --- |
 | No region can be selected | Resource-pool enablement and cloud-platform status |
 | Deployment shows an unexpected region | Business type, saved region selection, and current tenant authorization |
+
+## User Manual
+
+[Review complete authorization rules and common issues for Business-Region Authorization](/usermanual/ai-infra-on-cloud/operator/auth-management/business-region-auth/)

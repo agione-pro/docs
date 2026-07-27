@@ -9,7 +9,7 @@ next: true
 
 ## 适用角色
 
-- 平台用户（End User）、模型提供方（Provider）、平台运营方（Operator）
+- 平台用户、模型提供方、平台运营方
 
 ## 场景目标
 

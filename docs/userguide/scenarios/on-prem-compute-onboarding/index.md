@@ -12,7 +12,7 @@ This scenario explains how to connect a local Kubernetes cluster and its GPU, NP
 - Platform Operator
 - Cluster administrator
 
-## Goals
+## Scenario Goals
 
 - AGIOne recognizes the target NPU model and resource key.
 - Cluster nodes report all four NPU cards.
@@ -60,3 +60,9 @@ This scenario explains how to connect a local Kubernetes cluster and its GPU, NP
 | 1 | The cluster and nodes are available. |
 | 2 | AGIOne reports four target NPU cards. |
 | 3 | Inference templates or test workloads can select the new resource specifications. |
+
+## Related Scenarios
+
+- [On-Prem Inference Template Building](../on-prem-inference-template/)
+- [On-Prem Model Deployment and Status Checks](../on-prem-model-deployment-status/)
+- [On-Prem Resource Metering and Monitoring](../on-prem-resource-metering-monitoring/)

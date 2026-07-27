@@ -22,18 +22,30 @@ The intended tenant can see the authorized cloud platform, while unrelated tenan
 
 ## Procedure
 
-1. Open **Authorization Management > Tenant-Cloud Authorization** and select **Add Authorization**.
-2. Select one tenant or the explicitly approved tenant set, choose the cloud platform, and save.
+### Add Authorization
+
+1. From the platform home page, select **Authorization Management > Tenant-Cloud Authorization**.
+2. Select **Add Authorization** in the upper-right corner.
+
+![Review tenant-cloud authorization](./images/tenant-cloud-auth.png)
+
+3. Select one or more currently supported cloud platforms, such as Alibaba Cloud, AWS, or AGIOne-powerone. Huawei Cloud access is not currently supported.
+4. Select the authorization scope:
+   - **Single Tenant** grants access to one named tenant.
+   - **All Tenants** grants access to every tenant and does not require a tenant name.
+5. Review the configuration and select **Confirm**, or **Cancel** to discard it.
 
 ![Add tenant-cloud authorization](./images/add-authorization.png)
 
-3. Return to the authorization list and confirm the tenant scope and platform.
+> This authorization controls platform visibility. After it is saved, a tenant can access only the cloud platforms granted to it.
 
-![Verify tenant-cloud authorization](./images/tenant-cloud_auth.png)
+#### Parameter Reference
 
-4. Sign in with a target tenant user and a non-target tenant user to verify the authorization boundary.
-
-See [Tenant-Cloud Authorization](../../../../usermanual/ai-infra-on-cloud/operator/auth-management/tenant-cloud-auth/).
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Cloud Platform | Multi-select | `Alibaba Cloud / AWS / AGIOne-powerone` | Required; one or more currently supported platforms |
+| Authorization Scope | Single select | `Single Tenant / All Tenants` | Required; determines the authorization target |
+| Tenant | Text | `tenant-a` | Required only for Single Tenant authorization |
 
 ## Completion Checklist
 
@@ -51,3 +63,7 @@ See [Tenant-Cloud Authorization](../../../../usermanual/ai-infra-on-cloud/operat
 | --- | --- |
 | The tenant cannot see the platform | Tenant selection, authorization scope, platform status, and a refreshed user session |
 | Too many tenants can see the platform | Whether the grant was accidentally set to all tenants |
+
+## User Manual
+
+[Review complete rules and common issues for Tenant-Cloud Authorization](/usermanual/ai-infra-on-cloud/operator/auth-management/tenant-cloud-auth/)

@@ -33,14 +33,14 @@ This scenario guides platform administrators through setting organizational boun
 | --- | --- | --- | --- |
 | 1 | Understand tenant, user, role, and menu relationships | [Identity and Access Model](../../../product/identity-access-model) | Boundaries and role choice are clear |
 | 2 | Select a role from the default capability matrix | [Role Comparison](../../../product/role-comparison) | Role matches responsibilities |
-| 3 | Create or maintain the user and assign tenant and role | [User Management](../../../operations/admin-portal-manual/user) | User is active with correct assignments |
-| 4 | If required, configure a custom role with menu, action, and API permissions | [Custom Roles and Menu Permissions](../../../product/identity-access-model#_8-custom-roles-and-menu-permissions) | The role contains only necessary permissions |
-| 5 | Sign in with the validation account and inspect menus and actions | [Operations User Management](../../../operations/om-guide/user) | Allowed items work and prohibited items do not |
-| 6 | Record the result and reason for the change | [Operations Guide](../../../operations/om-guide/) | The change is traceable |
+| 3 | Confirm member ownership in Organization Settings and Team Members | [Organization Settings](../../../usermanual/settings/user/organizations/org-settings/), [Team Members](../../../usermanual/settings/user/members-roles/team-members/) | The member is active in the correct organization |
+| 4 | Select a built-in role or create a least-privilege role | [Roles](../../../usermanual/settings/user/members-roles/roles/) | The role contains only necessary permissions |
+| 5 | Sign in with the validation account and inspect menus, actions, and resource scope | [Configure Accounts and Permissions](../../../usermanual/settings/end-to-end/configure-account-and-permissions/) | Allowed items work and prohibited items do not |
+| 6 | Review the permission change and validation in Operation Logs | [Operation Logs](../../../usermanual/settings/user/activity-notifications/operation-logs/) | Time, operator, and target are traceable |
 
 The **Role Management** view is used in steps 3-5 to confirm the role record and its scope before signing in with the validation account.
 
-![Confirm the role in Role Management](./images/roles-live.png)
+![Confirm the role and member count in Roles](../../../usermanual/settings/user/members-roles/roles/images/roles-list.png)
 
 ## Completion Checklist
 

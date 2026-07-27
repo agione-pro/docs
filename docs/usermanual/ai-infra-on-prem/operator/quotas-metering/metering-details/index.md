@@ -11,24 +11,24 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation Path | Quota & Metering > Metering Details |
-| Page Route | /powerone/quota-metric/resource |
-| Managed Objects | Resource ID, resource name, resource type, region, availability zone, batch number, enterprise, and start/end time |
-| Typical Use | Reconcile monthly metering, explain user consumption, and download details |
+| Applicable role | Operator |
+| Navigation path | AI Infrastructure > On-Prem > Quotas & Metering > Metering Details |
+| Page route | `/powerone/quota-metric/resource` |
+| Managed objects | Resource ID, resource name, resource type, region, availability zone, batch number, enterprise, and start/end time |
+| Typical use | Reconcile monthly metering, explain user consumption, and download details |
 
-### Beginner View
+#### Beginner Explanation
 
 Metering details are like resource consumption transaction records. They record what resources a tenant used, when they were used, how much was used, and how many Credits were converted.
 
-### View Flow
+#### View Flow
 
-1. Go to `Quota & Metering > Metering Details`.
+1. Go to `Quotas & Metering > Metering Details`.
 2. Filter by time, status, resource type, or keyword.
 3. View the list or chart results.
 4. If an exception is found, drill down into the associated page.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -51,17 +51,31 @@ The following figure shows the metering details page.
 
 ![Metering Details](./images/metering-details-list.png)
 
-## View Metering Details
+## Main Operations
 
-### Procedure
+### View Metering Details
 
-1. Go to `Quota & Metering > Metering Details`.
+#### Procedure
+
+1. Go to `AI Infrastructure > On-Prem > Quotas & Metering > Metering Details`.
 2. Select resource type, region, availability zone, or enterprise.
 3. Click `Search`.
-4. Expand details to view resource start and end time.
-5. To reconcile offline, click `Download Details`.
+4. Click `View Resource Item` or expand details to view resource start and end time.
+5. To reconcile offline, click `Detail Download`.
 
-### Parameters
+#### Detail Download
+
+1. Go to `AI Infrastructure > On-Prem > Quotas & Metering > Metering Details`.
+2. Select a resource type filter as needed, such as `All`, `Online IDE`, or `Runtime Instance`.
+3. Use query conditions such as `Resource Name` and `Resource ID` to narrow the detail range.
+4. Click `Search`, and confirm that resource ID, resource name, resource type, region/AZ, batch number, tenant name, start time, and end time match the export scope.
+5. Before clicking `Detail Download`, verify filter conditions, billing period scope, and whether sensitive tenant or resource information is included.
+6. After the download is complete, store the file in a controlled directory for reconciliation, metering review, or troubleshooting only.
+7. For learning or screenshots only, view the button and filter fields without clicking `Detail Download`.
+
+![Detail download](./images/detail-download.png)
+
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -72,16 +86,24 @@ The following figure shows the metering details page.
 | Credits | System-generated | Number | `360` | Consumed credits converted from usage according to billing rules. |
 | Detail Status | System-generated | Status | `Posted` | Shows whether the detail has completed statistics, posting, or correction. |
 
-### Pitfalls
+## Pitfalls
 
 - Sufficient quota does not mean the underlying cluster definitely has idle resources.
 - Metering data may be delayed. Use a unified time range and statistical definition during reconciliation.
 - Sanitize tenant, amount, and business identifiers before exporting data.
+- `Detail Download` exports metering details and may include tenant names, resource IDs, resource names, time ranges, and usage information.
+- Downloaded files are only for reconciliation, metering review, or troubleshooting. Do not distribute them through unauthorized channels.
+- Confirm filter conditions before downloading to avoid exporting an overly large scope or non-target tenant data.
+- Do not write real tenant names, resource IDs, batch numbers, downloaded file names, internal paths, or test data in the manual.
 
-### Result Validation
+## Result Validation
 
 1. Filter results match the conditions.
 2. Detail start/end time and resource type can explain monthly summaries.
+3. Before download, list filter conditions have taken effect.
+4. The export scope is consistent with the search conditions.
+5. The file is saved and shared only within authorized directories.
+6. For learning or screenshots, `Detail Download` is not clicked.
 
 ## Configuration Rules and Impact
 
@@ -90,7 +112,7 @@ The following figure shows the metering details page.
 
 ## FAQ
 
-### Instance Record Cannot Be Found in Metering Details
+#### Instance Record Cannot Be Found in Metering Details
 
 **Symptom:**
 
@@ -108,7 +130,7 @@ The user is known to have created an instance, but the corresponding record cann
 2. Cross-filter by instance name, tenant, and specification.
 3. Confirm whether instance status and metering tasks have completed.
 
-### Metering Detail Amount or Usage Is Abnormal
+#### Metering Detail Amount or Usage Is Abnormal
 
 **Symptom:**
 
@@ -126,7 +148,7 @@ The usage, duration, or amount of a single metering record is clearly inconsiste
 2. Check the instance lifecycle and release time.
 3. Initiate an operations review for abnormal records.
 
-## Follow-Up Operations
+## Next Steps
 
 1. When details are abnormal, narrow the query scope by tenant, resource, and time range.
 2. When details and monthly usage are inconsistent, confirm whether there are delayed postings, correction records, or cross-cycle resources.
@@ -138,3 +160,4 @@ The usage, duration, or amount of a single metering record is clearly inconsiste
 - Metering details may have statistical delays. Confirm final posting status before settlement.
 - Detail export files contain sensitive business data and should not be distributed through public channels.
 - Do not directly modify detail definitions. Handle them through billing rules or correction processes.
+- Before downloading details, confirm the filter scope and whether tenant or resource identifiers require desensitization.

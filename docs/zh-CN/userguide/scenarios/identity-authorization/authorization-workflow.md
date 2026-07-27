@@ -33,14 +33,14 @@ next: true
 | --- | --- | --- | --- |
 | 1 | 确认租户、用户、角色和菜单的关系 | [用户、租户与角色设计逻辑](../../../product/identity-access-model) | 权限边界和角色选择已明确 |
 | 2 | 对照默认角色能力选择角色 | [角色对比总览](../../../product/role-comparison) | 角色与岗位职责匹配 |
-| 3 | 创建或维护用户并绑定租户、角色 | [用户管理](../../../operations/admin-portal-manual/user) | 用户状态正常且绑定关系正确 |
-| 4 | 如需自定义角色，配置菜单、按钮和接口权限 | [用户、租户与角色设计逻辑](../../../product/identity-access-model#_8-自定义角色与菜单权限) | 角色只包含必要权限 |
-| 5 | 使用验证账号重新登录，检查菜单和按钮 | [用户管理](../../../operations/om-guide/user) | 允许项可用，禁止项不可见或不可操作 |
-| 6 | 记录验证结果和权限变更原因 | [运维指南](../../../operations/om-guide/) | 变更可追溯 |
+| 3 | 在组织设置和团队成员中确认成员归属 | [组织设置](../../../usermanual/settings/user/organizations/org-settings/)、[团队成员](../../../usermanual/settings/user/members-roles/team-members/) | 成员状态正常且组织关系正确 |
+| 4 | 在角色中选择内置角色，必要时创建最小权限角色 | [角色管理](../../../usermanual/settings/user/members-roles/roles/) | 角色只包含必要权限 |
+| 5 | 使用验证账号重新登录，检查菜单、按钮和资源范围 | [账号与权限配置](../../../usermanual/settings/end-to-end/configure-account-and-permissions/) | 允许项可用，禁止项不可见或不可操作 |
+| 6 | 在操作日志中核对权限变更和验证结果 | [操作日志](../../../usermanual/settings/user/activity-notifications/operation-logs/) | 变更时间、操作人和对象可追溯 |
 
 步骤 3-5 需要在**角色管理**中核对角色记录和权限范围，再使用验证账号重新登录。
 
-![在角色管理中核对角色](./images/roles-live.png)
+![在角色管理中核对角色和成员数量](../../../usermanual/settings/user/members-roles/roles/images/roles-list.png)
 
 ## 完成检查
 

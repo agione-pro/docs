@@ -5,11 +5,9 @@ next: true
 
 # Meta-Models
 
-Meta-models define reusable model identity and capability metadata before providers publish concrete services.
-
 ## Target Outcome
 
-The canonical model identity, modalities, capabilities, token limits, and supported protocols are reusable by templates and model publication.
+Model identity, modalities, capabilities, token limits, and protocols are maintained consistently for reuse by templates and model publication.
 
 ## Applicable Roles
 
@@ -18,47 +16,98 @@ The canonical model identity, modalities, capabilities, token limits, and suppor
 ## Before You Start
 
 - Confirm the model author, unique identifier, type, modalities, capabilities, and official limits.
-- Use authoritative model documentation as the source for protocol and token values.
+- Use authoritative provider documentation as the source for protocol and token values.
 
 ## Procedure
 
-1. Open **Settings > Meta-Models** and review the list to avoid creating a duplicate model identity.
+1. From the platform home page, select **Meta-Models** in the left navigation.
+2. Select **Add** above the model-author list.
 
 ![Review the meta-model list](./images/meta-models-list.png)
 
-2. Create or select the official model author before defining the model family.
+3. Configure the model author:
+   - Enter a stable **Unique Identifier**, such as `qwen`.
+   - Maintain English and Chinese **Display Names**, such as Qwen and 通义千问.
+   - Upload the application icon.
+4. Review the information and select **Confirm**, or **Cancel** to discard it.
 
 ![Select the model author](./images/model-author.png)
 
-3. Enter the canonical name, unique identifier, family, and other basic information.
+### Parameter Reference - Model Author
+
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Unique Identifier | Text | `qwen` | Required; stable author identifier |
+| Display Name | Localized text | `Qwen / 通义千问` | Required; maintain English and Chinese values |
+| Application Icon | Image | `Qwen brand icon` | Required; author icon |
+
+### Add a Meta-Model
+
+1. Select the target author and select **+ Add** in the meta-model list.
+2. Complete the basic information:
+   - Select the model author.
+   - Enter the model name and series.
+   - Enter the unique identifier, such as `qwen/qwen3.6-plus`.
+   - Select the application scenario.
+   - Select Enabled or Disabled.
+   - Enter the official release date.
+   - Maintain the English and Chinese model descriptions in the localized rich-text editor.
 
 ![Configure basic meta-model information](./images/step-1-basic-information.png)
 
-4. Select the model type and only the variants supported by authoritative model documentation.
+1. Under **Model Type and Subtype**, select every type supported by the model: Multimodal, Chat, Image, Speech, Video, Embedding, or Rerank.
 
-![Configure model type and variants](./images/step-1-model-type_variants.png)
+![Configure model type and variants](./images/step-1-model-type-variants.png)
 
-5. Define the supported input and output modalities.
+1. Under **Input / Output Modalities**, select the verified Text, Image, Audio, and Video inputs and outputs.
 
-![Configure input and output modalities](./images/step-1-input_output-modalities.png)
+![Configure input and output modalities](./images/step-1-input-output-modalities.png)
 
-6. Enable only advanced capabilities that have been confirmed for this model family.
+1. Under **Advanced Capabilities**, enable Thinking Mode only when the model has been verified to support it. Function Calling and Tool Support remain planned capabilities and must not be configured as currently available features.
 
 ![Configure advanced capabilities](./images/step-1-advanced-capability-configuration.png)
 
-7. Enter context, input, and output token limits from the authoritative specification.
+1. Enter maximum context, maximum input, and maximum output values under **Token Limits**.
 
 ![Configure token limits](./images/step-1-token-limit.png)
 
-8. Configure each supported official native protocol and its parameter definitions.
+1. Under **Official Native Protocols and Default Parameters**, enable supported protocols such as OpenAI Chat Completions, OpenAI Responses, or Anthropic Messages. Enter each endpoint and configure inputs such as Temperature, Top-P, N, Stream, Max Tokens, Presence Penalty, Frequency Penalty, User, and Seed.
 
 ![Configure the official native protocol](./images/step-1-official-native-protocol.png)
 
-9. Review the meta-model details, save, and confirm that model templates can select it.
+1. Select **Next**.
+2. Enter complete model details in the rich-text editor.
 
 ![Review meta-model details](./images/step-2-meta-model-details.png)
 
-See [Meta-Models in the User Manual](../../../../usermanual/model-services/operator/settings/meta-models/).
+3. Review the configuration and select **Submit**.
+
+### Parameter Reference - Meta-Model
+
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Model Author | Select | `Qwen` | Required; model author |
+| Name | Text | `Qwen3.6-Plus` | Required; meta-model name |
+| Series | Text | `Qwen3.6` | Required; model series |
+| Unique Identifier | Text | `qwen/qwen3.6-plus` | Required; stable system identifier |
+| Scenario | Select | `Language and Text / Text Generation` | Required; application scenario |
+| Status | Select | `Enabled / Disabled` | Required; model availability |
+| Official Release Date | Date | `2026-04-02` | Required; provider release date |
+| Localized Description | Localized rich text | `English and Chinese descriptions` | Required; localized introduction |
+| Model Type | Multi-select | `Multimodal / Chat / Image / Speech / Video / Embedding / Rerank` | Required; verified model types |
+| Input Modalities | Multi-select | `Text / Image / Audio / Video` | Required; accepted input types |
+| Output Modalities | Multi-select | `Text / Image / Audio / Video` | Required; result types |
+| Function / Tool Support | Planned state | `Planned` | Not available as a current configuration |
+| Thinking Mode | Switch | `On / Off` | Optional; enable only when verified |
+| Maximum Context | Number | `1024K` | Required; context-token limit |
+| Maximum Input | Number | `991K` | Required; input-token limit |
+| Maximum Output | Number | `64K` | Required; output-token limit |
+| OpenAI Chat Completions | Switch and protocol ID | `openai/chat_completions` | Required when supported; configure endpoint and inputs |
+| OpenAI Responses | Switch and protocol ID | `openai/responses` | Required when supported; configure endpoint and inputs |
+| Anthropic Messages | Switch and protocol ID | `anthropic/messages` | Required when supported; configure endpoint and inputs |
+| Endpoint | URL | `/compatible-mode/v1/chat/completions` | Required; protocol endpoint path |
+| Input Parameters | Parameter list | `Temperature / Top-P / N / Stream / Max Tokens / Presence Penalty / Frequency Penalty / User / Seed` | Optional; protocol inputs and required-state settings |
+| Meta-Model Details | Rich text | `Features and parameter description` | Required; complete model description |
 
 ## Completion Checklist
 
@@ -66,13 +115,17 @@ See [Meta-Models in the User Manual](../../../../usermanual/model-services/opera
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Author, model family, and variants use stable naming. |
-| 2 | Modalities, token limits, capabilities, and protocols match the real model. |
-| 3 | Providers and templates can select the meta-model. |
+| 1 | Unique identifier, modalities, capabilities, and token limits are accurate. |
+| 2 | At least one supported protocol and its parameters are complete. |
+| 3 | Model templates can select the meta-model. |
 
 ## Troubleshooting
 
 | Symptom | Check First |
 | --- | --- |
-| Providers cannot select the meta-model | Status, author association, unique identifier, and template linkage |
-| Calls exceed limits unexpectedly | Context, input, output, modality, and protocol limits |
+| The meta-model is unavailable during publication | Status, author association, unique identifier, and template linkage |
+| Calls exceed token limits | Context, input, output, modality, and protocol limits |
+
+## User Manual
+
+[Review complete fields and common issues for Meta-Models](/usermanual/model-services/operator/settings/meta-models/)

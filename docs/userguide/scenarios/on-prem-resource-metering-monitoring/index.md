@@ -39,7 +39,8 @@ This scenario explains how to grant NPU quota and inspect device, node, and work
 
 1. [Configure Tenant NPU Quota](./tenant-quotas/)
 2. [Monitor Devices, Nodes, and Workloads](./resource-monitoring/)
-3. [Deploy and Check a Model](../on-prem-model-deployment-status/)
+3. [Reconcile Monthly Metering and Details](./metering-reconciliation/)
+4. [Deploy and Check a Model](../on-prem-model-deployment-status/)
 
 ## Document Index
 
@@ -47,6 +48,7 @@ This scenario explains how to grant NPU quota and inspect device, node, and work
 | --- | --- |
 | [Configure Tenant NPU Quota](./tenant-quotas/) | Grant the tenant an allowed NPU count |
 | [Monitor Devices, Nodes, and Workloads](./resource-monitoring/) | Verify health and usage from device, node, and workload views |
+| [Reconcile Monthly Metering and Details](./metering-reconciliation/) | Map tenant credits, monthly usage, and metering details to actual workloads |
 
 ## Completion Checklist
 
@@ -57,3 +59,4 @@ This scenario explains how to grant NPU quota and inspect device, node, and work
 | 1 | Tenant quota supports the intended workload. |
 | 2 | Device monitoring shows all four cards. |
 | 3 | Workload usage, node capacity, and device utilization agree. |
+| 4 | Tenant credits, monthly usage, and metering details reconcile for the same billing cycle. |

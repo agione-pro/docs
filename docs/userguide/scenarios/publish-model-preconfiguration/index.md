@@ -1,3 +1,8 @@
+---
+prev: false
+next: true
+---
+
 # Scenario Overview - Publish Models Preconfiguration
 
 This scenario helps operators prepare the required settings before providers publish public models.
@@ -6,7 +11,7 @@ This scenario helps operators prepare the required settings before providers pub
 
 - Platform Operator
 
-## Goals
+## Scenario Goals
 
 - Prepare model authors, meta-models, model sources, and templates.
 - Prepare tags, currencies, and model-review capabilities.
@@ -44,6 +49,12 @@ This scenario helps operators prepare the required settings before providers pub
 | [Meta-Models](./Meta-models/) | Authors, model types, modalities, capabilities, token limits, and protocols |
 | [Model Sources](./Model-Source/) | Endpoints, regions, and request-header rules |
 | [Model Templates](./Model-Templates/) | Reusable combinations of meta-models, sources, modalities, and protocols |
+
+## Related Scenarios
+
+- **[Publish Models](../publish-model/)**: Model Providers use the prepared base data to publish models from My Models
+- **[Model Publishing Approval](../model-publishing-approval/)**: describes the approval workflow after a Model Provider submits a publication request
+- **[Publish an Aggregation Model](../publish-aggregation-model/)**: builds aggregation routing on top of published models and depends on the outputs of the model-publication scenario
 
 ## Completion Checklist
 

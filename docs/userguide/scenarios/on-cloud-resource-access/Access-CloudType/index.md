@@ -22,18 +22,32 @@ The required public- or private-cloud platform is available for later account ac
 
 ## Procedure
 
-1. Open **Access Management > Cloud Platforms** and review existing platform entries.
+### Add a Platform
+
+1. From the platform home page, select **Cloud Platforms** in the left navigation to open cloud-platform management.
+2. Select **Add Platform** in the upper-right corner to open the dialog.
 
 ![Review connected cloud platforms](./images/access-cloudtype-list.png)
 
-2. Select **Add Platform** and enter the provider identifier and localized display names.
+3. Select **Public Cloud** or **Private Cloud**.
+4. Configure the platform:
+   - Enter or select the **Provider Identifier**. Public clouds use a select; private clouds use text.
+   - Maintain the localized **Display Name** on the English and Simplified Chinese tabs.
+   - For a private cloud, enter the platform **URL**.
+   - Upload a **Logo**.
+5. Review the information and select **Confirm**, or **Cancel** to discard it.
 
 ![Add a cloud platform](./images/add-platform.png)
 
-3. For a private cloud, configure the platform access URL and verify network reachability.
-4. Enable the platform and confirm that it appears when adding cloud accounts.
+#### Parameter Reference
 
-See [Cloud Platform Access](../../../../usermanual/ai-infra-on-cloud/operator/access-management/access-cloudtype/).
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Cloud Platform Type | Two-option tab | `Public Cloud` / `Private Cloud` | Required; identifies the platform type |
+| Provider Identifier | Select / Text | `aliyun` / `agione-powerone` | Required; uniquely identifies the platform |
+| Display Name | Localized text | `Alibaba Cloud / 阿里云` | Required; maintain English and Simplified Chinese values |
+| URL | URL | `http://test.metis.opr/infrahub/op/access/platform` | Required only for private clouds |
+| Logo | Image | `Alibaba Cloud / AWS / AGIOne-powerone` | Optional; platform icon. Huawei Cloud access is not currently supported. |
 
 ## Completion Checklist
 
@@ -51,3 +65,7 @@ See [Cloud Platform Access](../../../../usermanual/ai-infra-on-cloud/operator/ac
 | --- | --- |
 | The platform is missing when adding an account | Platform status, vendor identifier, and saved display configuration |
 | A private-cloud page cannot be opened | Access URL, DNS, network route, and certificate |
+
+## User Manual
+
+[Review complete fields, validation rules, and common issues for Cloud Platforms](/usermanual/ai-infra-on-cloud/operator/access-management/cloud-platforms/)

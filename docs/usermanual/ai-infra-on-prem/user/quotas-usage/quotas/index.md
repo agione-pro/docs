@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Quota & Usage > Resource Quotas |
-| Page Route | `/powerone/quota-usage/quota` |
-| Managed Objects | AI card, CPU, memory, online IDE, and runtime instance quotas |
-| Typical Use | View current tenant resource limits and used amount to determine whether resources are available for instance creation |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Resource Quotas |
+| Page route | `/powerone/quota-usage/quota` |
+| Managed objects | AI card, CPU, memory, online IDE, and runtime instance quotas |
+| Typical use | View current tenant resource limits and used amount to determine whether resources are available for instance creation |
 
-### Beginner View
+#### Beginner Explanation
 
 My quota is like a personal resource balance sheet. It shows how many instances can still be created and how much compute and storage can still be used.
 
-### First-Time Flow
+#### First-Time Flow
 
 1. Go to `Quota & Usage > Resource Quotas`.
 2. View total and used amounts for AI card, CPU, and Memory.
@@ -29,7 +29,7 @@ My quota is like a personal resource balance sheet. It shows how many instances 
 4. Click `View Resource Usage` to view occupation details.
 5. If quota is insufficient, release idle instances or contact the operator for adjustment.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -48,9 +48,9 @@ My quota is like a personal resource balance sheet. It shows how many instances 
 
 The page displays Total, Unused, and Used by resource type, and separately displays resource occupation for runtime instances and online IDEs. In the screenshot, GPU, CPU, and Memory are Unlimited or 0 Used.
 
-![Resource Quotas](./images/resource-quotas.png)
+![Resource Quotas](./images/quotas-list.png)
 
-### Page Areas
+#### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
@@ -61,20 +61,22 @@ The page displays Total, Unused, and Used by resource type, and separately displ
 | Online IDE | Displays online IDE occupation. |
 | View Resource Usage | Views resource occupation details for the corresponding type. |
 
-## View Resource Occupation
+## Main Operations
 
-### Applicable Scenario
+### View Resource Occupation
+
+#### Applicable Scenario
 
 When creation fails with insufficient quota, or when you need to confirm which instances occupy resources, view resource occupation details.
 
-### Pre-Operation Check
+#### Pre-Operation Check
 
 1. The target resource type, such as GPU, CPU, or Memory, has been confirmed.
 2. Whether to view runtime instance or online IDE occupation has been confirmed.
 
-### Procedure
+#### Procedure
 
-1. Go to `Quota & Usage > Resource Quotas`.
+1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Resource Quotas`.
 2. Find the `Runtime Instance` or `Online IDE` area.
 3. Click `View Resource Usage`.
 4. View resource occupation items in the dialog.
@@ -82,7 +84,7 @@ When creation fails with insufficient quota, or when you need to confirm which i
 
 The following figure shows the resource occupation details dialog, used to view instance-level resource usage.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -93,12 +95,12 @@ The following figure shows the resource occupation details dialog, used to view 
 | Region | Conditionally required | Drop-down | `Central China Zone 1` | Limits the region or resource pool to which the quota belongs. |
 | Update Time | System-generated | Date time | `2026-07-06 10:00` | Determines whether quota data has refreshed in time. |
 
-### Pitfalls
+## Pitfalls
 
 - When quota is sufficient but creation fails, actual cluster resources may be insufficient.
 - If occupation details are empty but Used is not 0, statistical delay may exist.
 
-### Result Validation
+## Result Validation
 
 1. The resource occupation dialog can open.
 2. Occupation items match the instance type.
@@ -112,7 +114,7 @@ The following figure shows the resource occupation details dialog, used to view 
 
 ## FAQ
 
-### Can Creation Still Fail When Quota Shows Unlimited
+#### Can Creation Still Fail When Quota Shows Unlimited
 
 **Symptom:** Quota shows Unlimited, but instance creation fails.
 
@@ -128,7 +130,7 @@ The following figure shows the resource occupation details dialog, used to view 
 2. Switch specification or region.
 3. Contact the operator to confirm cluster capacity.
 
-### Quota Does Not Recover Immediately After Instance Release
+#### Quota Does Not Recover Immediately After Instance Release
 
 **Symptom:** After an instance is stopped or deleted, Used still shows occupied.
 
@@ -144,7 +146,7 @@ The following figure shows the resource occupation details dialog, used to view 
 2. View resource occupation details.
 3. Confirm that the instance lifecycle has ended.
 
-## Follow-Up Operations
+## Next Steps
 
 1. When remaining quota is insufficient, release unused instances, jobs, or storage resources.
 2. After confirming that business expansion is required, contact the operator to request credit adjustment.

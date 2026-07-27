@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Regular user |
-| Navigation Path | Storage Services > Object Storage |
-| Page Route | `/powerone/storage-service/object` |
-| Managed Objects | Object storage buckets, object files, object paths, and object storage capability within a region |
-| Typical Use | Create buckets, upload, download, and delete objects, and provide data paths for IDEs, runtime instances, and model services |
+| Applicable role | Regular user |
+| Navigation path | AI Infrastructure > On-Prem > Storage Services > Object Storage |
+| Page route | `/powerone/storage-service/object` |
+| Managed objects | Object storage buckets, object files, object paths, and object storage capability within a region |
+| Typical use | Create buckets, upload, download, and delete objects, and provide data paths for IDEs, runtime instances, and model services |
 
-### Beginner View
+#### Beginner Explanation
 
 Object storage is like cloud drive for models and data. It stores files, datasets, model packages, and output results with buckets and objects. It is suitable for uploading, downloading, and sharing files by path, but it is not the same as a directly mountable POSIX shared directory.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -42,19 +42,21 @@ Object storage is like cloud drive for models and data. It stores files, dataset
 
 The left side provides bucket search and bucket list, and the upper-right corner provides the add bucket entrypoint. After entering a bucket, you can upload, download, or delete objects through object list entrypoints provided by the page.
 
-![Object Storage](./images/object-storage.png)
+![Object Storage](./images/object-storage-list.png)
 
-## Add Bucket
+## Main Operations
 
-### Procedure
+### Add Bucket
 
-1. Go to `Storage Services > Object Storage`.
+#### Procedure
+
+1. Go to `AI Infrastructure > On-Prem > Storage Services > Object Storage`.
 2. Confirm the region in the upper-right corner.
 3. Click `Add Bucket`.
 4. Fill in Bucket Name.
 5. Click `Confirm` to submit.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -64,21 +66,21 @@ The left side provides bucket search and bucket list, and the upper-right corner
 | Access Path | Conditionally required | Text | `/mnt/data` | Mount path used by jobs or instances. |
 | Status | System-generated | Enum | `Available` | Current storage resource status. |
 
-### Pitfalls
+## Pitfalls
 
 - Storage paths, bucket names, AK/SK, and NFS paths must be sanitized before screenshots.
 - If mounting fails, confirm region, permissions, and storage component status first.
 - Before deleting storage resources, confirm that no instances, tasks, or output artifacts depend on them.
 
-### Result Validation
+## Result Validation
 
 1. The new bucket appears in the bucket list.
 2. Searching by bucket name can locate the bucket.
 3. After entering bucket details, the object list or upload entrypoint is visible.
 
-## Upload Object
+#### Upload Object
 
-### Procedure
+#### Procedure
 
 1. Open the target bucket in the bucket list.
 2. Click the upload entrypoint provided by the page.
@@ -86,7 +88,7 @@ The left side provides bucket search and bucket list, and the upper-right corner
 4. Submit the upload and wait for completion.
 5. Refresh the object list and confirm file size, update time, and path.
 
-### Naming Recommendations
+#### Naming Recommendations
 
 | Type | Example Path | Description |
 | --- | --- | --- |
@@ -94,18 +96,18 @@ The left side provides bucket search and bucket list, and the upper-right corner
 | Dataset | `datasets/train/train.jsonl` | Organize by use and batch. |
 | Output result | `outputs/job-20260703/result.json` | Organize by task or date. |
 
-## Download Object
+#### Download Object
 
-### Procedure
+#### Procedure
 
 1. Open the target bucket.
 2. Find the target file in the object list.
 3. Click the download entrypoint.
 4. After download, verify file size, format, and content.
 
-## Delete Object or Bucket
+#### Delete Object or Bucket
 
-### Delete Object
+#### Delete Object
 
 1. Open the target bucket.
 2. Select or locate the target object.
@@ -113,7 +115,7 @@ The left side provides bucket search and bucket list, and the upper-right corner
 4. Read the confirmation prompt and submit.
 5. Refresh the list to confirm that the object has been removed.
 
-### Delete Bucket
+#### Delete Bucket
 
 Before deleting a bucket, confirm that objects in the bucket have been backed up or are no longer used. If the platform requires an empty bucket before deletion, clean up objects first, then delete the bucket.
 
@@ -126,7 +128,7 @@ Before deleting a bucket, confirm that objects in the bucket have been backed up
 
 ## FAQ
 
-### Object Storage List Is Empty
+#### Object Storage List Is Empty
 
 **Symptom:**
 
@@ -146,7 +148,7 @@ The page shows no bucket or object data.
 3. Contact the operator to confirm object storage component and account permissions.
 4. Clear filters and refresh.
 
-### Object Upload Fails
+#### Object Upload Fails
 
 **Symptom:**
 
@@ -166,7 +168,7 @@ After selecting a file and submitting, upload fails or the object does not appea
 3. Confirm bucket permissions and region selection.
 4. Contact the operator to check object storage component status.
 
-### Job Cannot Read Object
+#### Job Cannot Read Object
 
 **Symptom:**
 
@@ -184,7 +186,7 @@ After a runtime instance or model service starts, logs indicate that the object 
 2. Confirm that the job and object storage are within an accessible region scope.
 3. View instance logs and contact the operator to verify permissions.
 
-## Follow-Up Operations
+## Next Steps
 
 1. Reference object paths in runtime instances, online IDEs, or model services.
 2. Periodically clean up unused objects to control storage usage.

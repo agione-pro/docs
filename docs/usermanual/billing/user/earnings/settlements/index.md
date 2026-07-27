@@ -2,173 +2,163 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-07-23
 :::
 
 ## Feature Overview
 
-`Settlements` is used to search, reset, transfer, details. It helps provider account, provider finance viewer work with settlements records and related status from a consistent page entry.
+`Settlements` is used to view Provider monthly settlement statements by billing cycle. The page focuses on settlement status, amount to settle, actual received amount, rounding adjustment, received time, and the details entry. Providers can use it to verify monthly settlement results and reconcile them with Revenue Overview and Revenue Account Activity.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider account, provider finance viewer |
-| Navigation path | Earnings > Settlements |
-| Page route | /user/earnings/settlements |
-| Managed objects | Settlements records and related status |
-| Typical use | Search, Reset, Transfer, Details |
+| Applicable role | Provider account, provider finance viewer, revenue settlement operator |
+| Navigation path | Billing > Earnings > Settlements |
+| Page route | `/billing/provider/settlements` |
+| Managed objects | Monthly settlement statements, billing cycles, settlement status, amount to settle, actual received amount, rounding adjustment, and received time |
+| Typical use | View settlement statement details, verify settlement amount and received status, and reconcile with revenue overview and account activity |
 
-### Beginner Explanation
+#### Beginner Explanation
 
-Settlements is part of the billing control loop. Treat it as a view for confirming money, quota, billing-cycle, customer, or settlement status before making financial decisions.
+Settlements works like a monthly revenue statement for Providers. Each row usually represents one billing cycle and shows how the expected settlement amount maps to the received result. When checking amounts, review status, rounding adjustment, received time, and details together instead of relying on one field.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Billing cycle | The month or settlement period used for billing, revenue, and reconciliation. | Keep the cycle consistent across pages. |
-| Transaction | A balance change or revenue/expense record. | Use it to explain amount differences. |
-| Settlement statement | A statement generated for an organization and billing cycle. | Check status and amount before follow-up. |
-| Adjustment | A controlled correction for abnormal billing records. | Use only after impact assessment. |
+| Billing Cycle | The month or settlement period covered by the statement. | Keep the cycle consistent across revenue and account-activity pages. |
+| Amount to Settle | The amount calculated by settlement rules. | Reconcile it with Revenue Overview and statement details. |
+| Actual Received Amount | The amount that has actually reached the target account. | Check it together with received time, rounding adjustment, and account activity. |
+| Rounding Adjustment | A rounding or adjustment amount generated during settlement. | Include it when comparing calculated and received amounts. |
+| Received Time | The time when the settlement amount was received. | Do not assume an exception while the status is still processing. |
+| Transfer | Entry for transferring eligible settlement amounts to available balance. | Treat it as high risk and confirm billing cycle, amount, and permissions first. |
 
 ## Prerequisites
 
-1. The current account can access `Earnings > Settlements`.
-2. The target organization, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to view `Earnings > Settlements`.
+2. The Provider revenue billing cycle to review has been confirmed.
+3. Revenue Overview and Revenue Account Activity are available for amount reconciliation when needed.
+
+::: warning High-Risk Operation Boundary
+`Transfer`, settlement confirmation, or exporting real settlement data may affect revenue accounts or expose sensitive financial information. For learning or screenshots, view only list fields and the details entry without performing transfer, settlement confirmation, or export.
+:::
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for settlements records and related status.
-
-| Area | Description |
-| --- | --- |
-| Filters | Narrow records by keyword, status, time range, organization, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows settlements.
+The following screenshot shows the Settlements page. Amounts, customers, accounts, transaction numbers, and settlement statement information in screenshots, tickets, and comments must be desensitized.
 
 ![Settlements](./images/settlements-list.png)
 
+| Area | Description |
+| --- | --- |
+| All Status | Filter monthly settlement statements by settlement status. |
+| Billing Cycle | Filter settlement statements by billing cycle. |
+| Search | Refresh the list with the current filters. |
+| Reset | Clear filters and restore the default list. |
+| Table | Displays billing cycle, status, amount to settle, actual received amount, rounding adjustment, received time, and actions. |
+| Details | Opens settlement statement details. |
+
 ## Main Operations
-
-Use the following operations to work with settlements records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
-
-### Query Settlements
-
-1. Go to `Earnings > Settlements`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to settlements records and related status.
-4. Click the visible `Search Settlements` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
 
 ### View Settlement Statement Details
 
-1. Go to `Earnings > Settlements`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to settlements records and related status.
-4. Click the visible `View Settlement Statement Details` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+1. Go to `Billing > Earnings > Settlements`.
+2. Review monthly settlement statement records in the list.
+3. Use `All Status` or `Billing Cycle` filters as needed to locate the target settlement statement.
+4. In the target row, verify billing cycle, status, amount to settle, actual received amount, rounding adjustment, and received time.
+5. Click `Details` in the row to view settlement statement details.
+6. In the details page or details area, verify settlement composition, received information, processing status, and exception prompts.
+7. For learning or screenshots only, view list fields and the details entry without performing transfer, settlement confirmation, or exporting real settlement data.
 
-### Handle Transfer Entry
+![Settlements](./images/settlements-list.png)
 
-1. Go to `Earnings > Settlements`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to settlements records and related status.
-4. Click the visible `Handle Transfer Entry` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+## Parameter Reference
 
-## Parameters
-
-| Field | Required | Type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Organization / customer / member | No | Text | `Example organization` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| All Status | No | Filter | Settled | Filters the list by settlement status. |
+| Billing Cycle | No | Filter | 2026-07 | Filters monthly settlement statements by billing cycle. |
+| Search | No | Button | Search | Refreshes the list with the current filters. |
+| Reset | No | Button | Reset | Clears filters and restores the default list. |
+| Billing Cycle | System generated | Table column | 2026-07 | Shows the month or billing cycle of the settlement statement. |
+| Status | System generated | Table column | Settled | Shows the current processing status of the settlement statement. |
+| Amount to Settle | System generated | Table column | Desensitized amount | Shows the settlement amount calculated by rules. |
+| Actual Received Amount | System generated | Table column | Desensitized amount | Shows the actual received amount for the billing cycle. |
+| Rounding Adjustment | System generated | Table column | Desensitized amount | Shows rounding or adjustment amount generated during settlement. |
+| Received Time | System generated | Table column | 2026-07-08 10:00 | Shows when the settlement amount was received. |
+| Details | No | Button | Details | Opens settlement statement details. |
+| Transfer | No | High-risk button | Transfer | May affect revenue account or available balance status; keep it as a risk boundary, not a learning operation step. |
 
 ## Pitfalls
 
-- Do not rely on one amount field alone for financial confirmation; cross-check transactions, bills, settlement statements, and reconciliation results.
-- Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
-- Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
+- Settlement statements contain sensitive revenue, received amount, billing cycle, and settlement status.
+- `Transfer`, settlement confirmation, and exporting real settlement data are high-risk actions.
+- Do not rely on a single amount field; check amount to settle, actual received amount, rounding adjustment, received time, and details together.
+- Amounts, received status, and received time may continue changing while the current billing cycle is still processing.
+- Do not record real customer names, accounts, amounts, transaction numbers, settlement statement numbers, receiving accounts, Token, or Key.
 
-## Result Checks
+## Result Validation
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Earnings > Settlements` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Page loading | The monthly settlement statement list and filters are displayed normally. | Refresh the page or check Provider revenue permissions. |
+| Filters available | `All Status` and `Billing Cycle` can locate the target settlement statement. | Click `Reset` and filter again. |
+| Details available | Clicking `Details` opens settlement statement details. | Check whether the billing cycle has a visible settlement record. |
+| Amounts verifiable | Amount to settle, actual received amount, rounding adjustment, and received time are visible. | Continue reconciliation with Revenue Overview and Revenue Account Activity. |
+| High-risk action avoided | No transfer, settlement confirmation, or export is performed during learning or screenshots. | If triggered by mistake, record the time and scope immediately and notify the owner for review. |
 
 ## FAQ
 
-### Cannot Find the Target Data
+#### Target billing data is not visible in Settlements
 
-**Issue Symptom:**
+**Symptom:**
 
-The expected result is not visible on the `Settlements` page, or the available action does not match the current business expectation.
+The list is empty after selecting a billing cycle, or the expected settlement statement is not visible.
 
-**Possible Causes:**
+**Possible cause:**
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlements records and related status.
+The selected status does not match the billing cycle, or the billing cycle has not generated a visible settlement record.
 
-**Handling:**
+**How to handle:**
 
-1. Reset filters and search again from `Earnings > Settlements`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Click `Reset` and select the billing cycle again. If the list is still empty, return to Revenue Overview to confirm whether the billing cycle has revenue and settlement prompts.
 
-### Values Do Not Match Expectations
+#### Amount to settle and actual received amount do not match
 
-**Issue Symptom:**
+**Symptom:**
 
-The expected result is not visible on the `Settlements` page, or the available action does not match the current business expectation.
+The amount to settle differs from the actual received amount for a billing cycle.
 
-**Possible Causes:**
+**Possible cause:**
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlements records and related status.
+The settlement may include rounding adjustment, may still be processing, or received information may not have finished updating.
 
-**Handling:**
+**How to handle:**
 
-1. Reset filters and search again from `Earnings > Settlements`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Check `Rounding Adjustment`, `Received Time`, and `Details` for the row. Continue reconciliation with Revenue Account Activity when needed.
 
-### The Action Button Is Unavailable
+#### Transfer button cannot continue
 
-**Issue Symptom:**
+**Symptom:**
 
-The expected result is not visible on the `Settlements` page, or the available action does not match the current business expectation.
+Clicking `Transfer` cannot continue, or the page says the current settlement statement cannot be transferred.
 
-**Possible Causes:**
+**Possible cause:**
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlements records and related status.
+The current billing-cycle status does not meet transfer conditions, or the account lacks processing permission.
 
-**Handling:**
+**How to handle:**
 
-1. Reset filters and search again from `Earnings > Settlements`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Check settlement statement status and account permissions. Do not bypass page prompts when conditions are not met.
 
 ## Next Steps
 
-1. Open the related detail page if the list value requires verification.
-2. Cross-check transactions, monthly bills, settlement statements, and reconciliation results when amounts differ.
-3. Escalate with desensitized record IDs, billing cycle, organization, customer, time range, and issue symptom when needed.
+1. To view revenue sources, go to [Revenue](../revenue/).
+2. To reconcile received records, review Revenue Account Activity.
+3. Before transfer or settlement confirmation, verify billing cycle, amount, receiving account, and permissions.
 
 ## Notes
 
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Settlement statements contain revenue and received information. Do not share screenshots without desensitization.
+- `Transfer`, settlement confirmation, and exporting real settlement data may change fund status or expand sensitive-data exposure.
+- For learning or screenshots, view only list fields and the details entry without performing transfer or settlement confirmation.
+- Settlement status and received time may have processing delays; reconcile with details and Revenue Account Activity.

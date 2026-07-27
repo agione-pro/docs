@@ -1,6 +1,6 @@
-# Building a Workflow for Scheduled Weather Emails Using N8N
+# Building a Workflow for Scheduled Weather Emails Using n8n
 
-## Introduction to N8N
+## Introduction to n8n
 
 n8n is an open-source workflow automation tool that allows users to create, edit, and run automated tasks through a visual interface. Unlike traditional programming methods, n8n uses a node-based connection approach to link various applications and data sources, achieving automated operations. Its design philosophy is "connecting everything."
 

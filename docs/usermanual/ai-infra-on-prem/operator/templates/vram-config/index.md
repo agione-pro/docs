@@ -11,17 +11,17 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation Path | Templates > VRAM Estimation |
-| Page Route | `/powerone/fast-build-v2/vram` |
-| Managed Objects | VRAM formula, precision, KV Token, factor form, dynamic expressions, and recommended specifications |
-| Typical Use | Reduce deployment failures caused by users selecting incorrect specifications |
+| Applicable role | Operator |
+| Navigation path | AI Infrastructure > On-Prem > Templates > VRAM Estimation Configuration |
+| Page route | `/powerone/fast-build-v2/vram-factor-forms` |
+| Managed objects | VRAM formula, precision, KV Token, factor form, dynamic expressions, and recommended specifications |
+| Typical use | Reduce deployment failures caused by users selecting incorrect specifications |
 
-### Beginner View
+#### Beginner Explanation
 
 VRAM configuration is like a capacity estimator before deployment. It estimates required VRAM from model size, precision, context length, and KV Token, avoiding the discovery that the service cannot fit only after startup.
 
-### Terms Quick Reference
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -46,25 +46,27 @@ The following figure shows the vram estimation configuration page.
 
 ![VRAM Estimation Configuration](./images/vram-config-list.png)
 
-## Configure VRAM Rules
+## Main Operations
 
-### Pre-Operation Check
+### Configure VRAM Rules
+
+#### Pre-Operation Check
 
 1. Model parameter size, precision, quantization method, and maximum context length have been confirmed.
 2. Target GPU/NPU model, single-card VRAM, and parallel strategy have been confirmed.
 3. Estimation definitions for KV Token, batch size, and concurrency have been confirmed.
 4. VRAM estimation results should be cross-verified with actual stress tests or trial runs.
 
-### Procedure
+#### Procedure
 
-1. Go to `Templates > VRAM Estimation`.
+1. Go to `AI Infrastructure > On-Prem > Templates > VRAM Estimation Configuration`.
 2. Click the add or edit entrypoint.
 3. On the Basic Information tab, fill in rule name, applicable model, framework, and precision.
 4. On the Factor Form tab, configure factors such as parameter count, KV Token, concurrency, and context length.
 5. On the Dynamic Expression tab, configure VRAM calculation formulas, recommended specifications, and trigger conditions.
 6. Save, then reference and verify it in inference templates.
 
-### Parameters
+## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -75,13 +77,13 @@ The following figure shows the vram estimation configuration page.
 | Concurrency / Batch Size | No | Number | `4` | Used to estimate VRAM pressure under peak requests. |
 | VRAM Estimation Result | System-generated | Capacity | `152 GB` | Recommended VRAM requirement calculated by the platform. |
 
-### Pitfalls
+## Pitfalls
 
 - KV Token, context length, and concurrency significantly affect VRAM estimation. Do not look only at model parameter scale.
 - Incorrect quantization precision causes recommended specifications to be too small or too large.
 - VRAM estimation results should be verified through test deployments and cannot replace real stress tests.
 
-### Result Validation
+## Result Validation
 
 1. The rule appears in the list.
 2. Inference templates can reference this VRAM rule.
@@ -90,7 +92,7 @@ The following figure shows the vram estimation configuration page.
 
 ## FAQ
 
-### VRAM Recommendation Is Clearly Too Small
+#### VRAM Recommendation Is Clearly Too Small
 
 **Symptom:**
 
@@ -108,7 +110,7 @@ After users create an instance with the recommended specification, the service r
 2. Increase safety margin based on framework test results.
 3. Run regression validation with typical model and concurrency scenarios.
 
-### Dynamic Expression Does Not Take Effect
+#### Dynamic Expression Does Not Take Effect
 
 **Symptom:**
 
@@ -126,7 +128,9 @@ After form parameters change, VRAM estimation or recommended specification does 
 2. Adjust trigger conditions and test them one by one.
 3. Set reasonable default values and validation rules for the factor form.
 
-## Follow-Up Operations
+![Create VRAM precision rule](./images/add-precision-spec.png)
+
+## Next Steps
 
 1. Reference VRAM estimation rules in inference templates.
 2. Verify recommended specifications with small, medium, and large models.

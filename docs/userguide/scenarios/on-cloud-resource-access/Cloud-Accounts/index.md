@@ -22,17 +22,30 @@ AGIOne can validate the cloud account and discover only the regions and resource
 
 ## Procedure
 
-1. Open **Access Management > Cloud Accounts** and select **Add Account**.
-2. Select the cloud platform and enter the account identity and dedicated secret through the protected form.
+### Add a Cloud Account
+
+1. From the platform home page, select **Access Management > Cloud Accounts**.
+2. Select **Add Cloud Account** in the upper-right corner.
+
+![Review cloud accounts](./images/cloud-accounts-list.png)
+
+3. Configure the account:
+   - Enter an **Account Name**.
+   - Select a currently supported cloud platform, such as Alibaba Cloud or AWS. Huawei Cloud access is not currently supported.
+   - Enter the **Access Key ID**.
+   - Enter the **Access Key Secret** through the protected field.
+4. Review the information and select **Confirm**, or **Cancel** to discard it.
 
 ![Add a cloud account](./images/add-account.png)
 
-3. Validate the account and review the minimum permissions required by AGIOne.
-4. Return to the account list and confirm the validation state and discovered regions.
+#### Parameter Reference
 
-![Verify the cloud account in the list](./images/cloud-accounts-list.png)
-
-See [Cloud Accounts](../../../../usermanual/ai-infra-on-cloud/operator/access-management/cloud-accounts/).
+| Field | Type | Example | Description |
+| --- | --- | --- | --- |
+| Account Name | Text | `aliyun-wh-dev` | Required; a user-defined account identifier |
+| Cloud Platform | Select | `Alibaba Cloud` | Required; the supported target cloud platform |
+| Access Key ID | Text | `LTAI5tM8xHnXoLuBW...` | Required; the cloud credential ID |
+| Access Key Secret | Password | `flsBCIDPLksdaNh05J...` | Required; the cloud credential secret |
 
 ## Completion Checklist
 
@@ -50,3 +63,7 @@ See [Cloud Accounts](../../../../usermanual/ai-infra-on-cloud/operator/access-ma
 | --- | --- |
 | Account validation fails | Credential status, required cloud permissions, time synchronization, and network access |
 | Regions are missing | Cloud permissions, account region scope, and resource synchronization status |
+
+## User Manual
+
+[Review complete fields, validation rules, and common issues for Cloud Accounts](/usermanual/ai-infra-on-cloud/operator/access-management/cloud-accounts/)

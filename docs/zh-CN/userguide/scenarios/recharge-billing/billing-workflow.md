@@ -9,18 +9,20 @@ next: true
 
 ## 适用角色
 
-- 查看充值、配额、用量和扣费的平台用户（End User）
-- 查看模型用量和收益的模型提供方（Provider）
-- 核对额度、计量和账期的平台运营方（Operator）
+- 查看充值、配额、用量和扣费的平台用户
+- 查看模型用量和收益的模型提供方
+- 核对额度、计量和账期的平台运营方
 
 ## 先区分四个概念
 
 | 概念 | 回答的问题 | 参考入口 |
 | --- | --- | --- |
-| 充值记录 | 账户是否获得了新的可消费额度 | [充值记录](../../../usermanual/ai-infra-on-prem/user/quotas-usage/top-up-records/) |
+| 充值订单 | 账户是否获得了新的可消费额度 | [充值订单](../../../usermanual/billing/user/billing/top-up-orders/) |
+| 交易流水 | 余额为什么增加或扣减 | [交易流水](../../../usermanual/billing/user/billing/transactions/) |
 | 资源配额 | 当前租户最多可申请多少算力或存储 | [资源配额](../../../usermanual/ai-infra-on-prem/user/quotas-usage/quotas/) |
 | 资源用量 | 实例或作业实际用了多少资源 | [资源用量](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/) |
-| 模型用量与收益 | 模型调用产生多少 Token、次数、时长、消费或收益 | [模型用量](../../../usermanual/model-services/user/usage-revenue/model-usage/)、[模型收益](../../../usermanual/model-services/user/usage-revenue/model-revenue/) |
+| 模型用量与收益 | 模型调用产生多少 Token、次数、时长、消费或收益 | [模型用量](../../../usermanual/model-services/user/usage-earnings/model-usage/)、[模型收益](../../../usermanual/model-services/user/usage-earnings/model-earnings/) |
+| 月度账单 | 同一账期的汇总消费是否可以复核 | [月度账单](../../../usermanual/billing/user/billing/monthly-bill/) |
 
 ## 场景目标
 
@@ -31,29 +33,36 @@ next: true
 
 ## 开始前准备
 
-1. 明确当前核对的是模型调用还是 On-Prem 资源使用。
+1. 明确当前核对的是模型调用还是 本地算力平台资源使用。
 2. 确认租户、账号、时间范围、账期和计费单位。
 3. 准备脱敏后的充值记录、实例、作业或调用标识。
 
 ## 操作流程
 
-1. 查看**充值记录**，核对发生时间、充值类型和额度变化。
+1. 进入[账务概览](../../../usermanual/billing/user/billing/overview/)，先确认可用额度、账期和预警信息，再查看**充值订单**，核对发生时间、支付状态和到账额度。
 
-![核对充值记录](./images/top-up-records.png)
+![从账务概览确认账户状态](../../../usermanual/billing/user/billing/overview/images/overview-list.png)
 
-2. 查看**资源配额**或账户额度，确认上限和剩余值能够覆盖目标任务。
+2. 进入[交易流水](../../../usermanual/billing/user/billing/transactions/)，按相同账号和时间范围解释余额增加、扣减或调整。
+
+![按时间范围核对交易流水](../../../usermanual/billing/user/billing/transactions/images/transactions-list.png)
+
+3. 查看**资源配额**或[额度治理](../../../usermanual/billing/user/billing/quota-governance/)，确认上限和剩余值能够覆盖目标任务。
 
 ![核对可用资源配额](./images/resource-quotas.png)
 
-3. 对 On-Prem 资源，对照实例状态、**资源用量**和运营侧计量明细。
+4. 对 本地算力平台资源，对照实例状态、**资源用量**和运营侧计量明细。
 
 ![追踪资源用量](./images/resource-usage.png)
 
-4. 对模型调用，对照调用日志、模型用量和模型收益。
-5. 在同一账期内核对币种、计费单位、价格和扣减。
-6. 需要运营方协助时，提供租户、时间、对象编号和脱敏证据。
+5. 对模型调用，对照调用日志、模型用量和模型收益。
+6. 进入[月度账单](../../../usermanual/billing/user/billing/monthly-bill/)，在同一账期核对币种、计费单位、价格、交易和汇总扣减。
 
-运营方可继续查看：[租户配额](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-quotas/)、[租户额度](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/tenant-credits/)、[计量明细](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)和[月度用量](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)。
+![核对月度账单汇总](../../../usermanual/billing/user/billing/monthly-bill/images/monthly-bill-list.png)
+
+7. 需要运营方协助时，提供租户、账期、对象编号和脱敏证据；运营侧按[账期对账与结算](../billing-cycle-reconciliation-settlement/)继续核对。
+
+运营方可继续查看：[计量明细](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)和[月度用量](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)。
 
 ## 完成检查
 
@@ -61,10 +70,10 @@ next: true
 
 | 检查项 | 通过标准 |
 | --- | --- |
-| 1 | 充值记录、账户额度和发生时间相互对应。 |
+| 1 | 充值订单、交易流水、账户额度和发生时间相互对应。 |
 | 2 | 资源配额足以覆盖目标规格，账户额度足以覆盖预计消耗。 |
 | 3 | 扣减记录能对应到具体实例、作业或模型调用。 |
-| 4 | 计费单位、价格、币种和账期一致。 |
+| 4 | 计费单位、价格、币种、交易流水和月度账单一致。 |
 | 5 | 异常说明包含可复核的时间范围和对象编号。 |
 
 ## 常见失败分支

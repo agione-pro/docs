@@ -237,9 +237,7 @@ export AGIONE_DISK_TOLERANCE_RATIO=0.80
 
 先在安装发起机打开固定下载页，再复制页面中的 `Download URL` 包下载直链；解压后目录名由交付包内部目录决定，例如 `agione-release-v1.0-XXX/`。只需要先下载到安装发起机，安装器会在多节点安装过程中同步到其他目标节点。
 
-**固定下载页：**
-
-<https://agione.pro/release/download/agione-release-latest>
+固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
 
 页面中同时提供 `MD5 URL`，建议下载后一起校验。
 

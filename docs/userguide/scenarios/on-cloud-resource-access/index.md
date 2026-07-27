@@ -5,39 +5,21 @@ next: true
 
 # Scenario Overview - On Cloud Resource Access
 
-This scenario guides operators through connecting cloud platforms, accounts, and regions and authorizing them for the intended business types and tenants.
+This scenario guides Platform Operators through connecting external cloud platforms, accounts, and regions to AGIOne and authorizing them for business and tenant use.
 
 ## Applicable Roles
 
 - Platform Operator
 
-## Recommended Reading Order
+## Scenario Goals
 
-1. Connect the cloud platform
-2. Connect cloud accounts and resource pools
-3. Grant business-region access
-4. Grant tenant-cloud access
-
-## Document Index
-
-| Document | Description |
-| --- | --- |
-| [Cloud Platforms](./Access-CloudType/) | Add public or private cloud platforms |
-| [Cloud Accounts](./Cloud-Accounts/) | Add an account under a platform |
-| [Resource Pools](./Resource-Pools/) | Enable regions and maintain display data |
-| [Business-Region Authorization](./Business-Region-Auth/) | Grant access by business type, platform, and region |
-| [Tenant-Cloud Authorization](./Tenant-Cloud-Auth/) | Grant access by tenant and platform |
-
-## Goals
-
-- The target cloud platform and account are connected and valid.
-- Required regions are enabled as resource pools.
-- Business-region and tenant-cloud authorization match the intended scope.
-- A regular user can see only the authorized cloud platform, region, and account entries.
+- The cloud platform, cloud account, and target regions are available.
+- Business types and tenants receive the correct cloud-resource authorization.
+- Platform Users can see the authorized cloud platforms and regions.
 
 ## Scenario Flow
 
-**Main path:** Connect the cloud platform → Validate the account and regions → Grant business and tenant access → Verify with a user account
+**Main path:** Connect the cloud platform -> Validate the account and regions -> Grant business and tenant access -> Verify with a user account
 
 | Stage | Key Result |
 | --- | --- |
@@ -48,32 +30,44 @@ This scenario guides operators through connecting cloud platforms, accounts, and
 
 ## Before You Start
 
-1. Confirm the cloud platform type and supported account verification method.
-2. Prepare a cloud account with only the permissions required by AGIOne.
-3. Identify the regions, business types, and tenants that should receive access.
-4. Confirm network reachability and cost ownership before enabling resources.
+- The cloud-platform type, cloud account, and a redacted access-credential example are prepared.
+- Target regions, business types, and tenant scope are defined.
 
-## Procedure
+## Recommended Reading Order
 
-| Step | Action | Guide | Completion Signal |
-| --- | --- | --- | --- |
-| 1 | Add or confirm the cloud platform | [Connect a Cloud Platform](./Access-CloudType/) | The platform is enabled |
-| 2 | Add and validate the cloud account | [Connect a Cloud Account](./Cloud-Accounts/) | Account validation succeeds |
-| 3 | Enable target regions as resource pools | [Resource Pools](./Resource-Pools/) | Required regions are enabled |
-| 4 | Grant regions to business types | [Business-Region Authorization](./Business-Region-Auth/) | Business scope matches the plan |
-| 5 | Grant the cloud platform to tenants | [Tenant-Cloud Authorization](./Tenant-Cloud-Auth/) | Tenant scope matches the plan |
-| 6 | Validate with a regular user account | [Deploy a Cloud Model Service](../../../usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) | Authorized resources are visible |
+1. Start with Quick Access and Access Overview to understand global progress.
+2. Connect the cloud platform, account, and resource pools.
+3. Grant business-region access.
+4. Grant tenant-cloud access and validate with a regular user.
+
+## Document Index
+
+| Document | Description |
+| --- | --- |
+| [Quick Access and Access Overview](./quick-access-overview/) | Review onboarding order, global state, and next-step entries |
+| [Cloud Platforms](./Access-CloudType/) | Add public- or private-cloud platforms |
+| [Cloud Accounts](./Cloud-Accounts/) | Add a cloud account under a platform |
+| [Resource Pools](./Resource-Pools/) | Enable regions and maintain display data |
+| [Business-Region Authorization](./Business-Region-Auth/) | Grant access by business type, platform, and region |
+| [Tenant-Cloud Authorization](./Tenant-Cloud-Auth/) | Grant access by tenant and platform |
+
+## Related Scenarios
+
+- **[On Cloud Model Asset Publishing](../on-cloud-model-asset-publishing/)**: configures runtime images, inference frameworks, and model assets on top of the cloud platform, account, resource pool, and authorization prepared here
+- **[On Cloud Model Deployment and Calling](../on-cloud-model-deployment-calling/)**: deploys and calls models after assets are published
+- **[My Deployments User Manual](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)**: reviews state, events, and monitoring for deployed cloud instances
+- **[Platform Governance and Access Control](../platform-governance-access-control/)**: complements cloud-resource authorization with tenant- and organization-level access control
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+> **Purpose:** These are the scenario exit criteria. Use them to confirm that the result is observable and reviewable before continuing. If any check fails, return to the relevant feature guide and follow its troubleshooting section.
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Cloud platform, account, and target regions are available. |
+| 1 | The cloud platform, account, and target regions are available. |
 | 2 | The business type has the intended regional access. |
 | 3 | The target tenant has cloud-platform access. |
-| 4 | A regular user sees only the authorized platforms, regions, and account entries. |
+| 4 | A regular user sees only the authorized platforms, regions, and access-account entries. |
 
 ## Troubleshooting
 
@@ -82,9 +76,3 @@ This scenario guides operators through connecting cloud platforms, accounts, and
 | Cloud account validation fails | Platform type, account permission, network, and credential validity |
 | User cannot see a region | Resource-pool state, business-region grant, and tenant-cloud grant |
 | Authorization appears ineffective | Tenant, business type, role, and a fresh session |
-
-## Related Scenarios
-
-- [On Cloud Model Asset Publishing](../on-cloud-model-asset-publishing/)
-- [On Cloud Model Deployment & Calling](../on-cloud-model-deployment-calling/)
-- [Deployment Monitoring Manual](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)

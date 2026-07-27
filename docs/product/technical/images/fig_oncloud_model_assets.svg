@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="840" viewBox="0 0 1600 840" role="img" aria-labelledby="title desc">
+  <title id="title">AI Infra On-Cloud Model Asset Publishing Workflow</title>
+  <desc id="desc">Maintain inference frameworks, associate runtime images, select a metadata model, configure cloud deployment points, configure compute and output, and publish to the model marketplace.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#667085"/>
+    </marker>
+    <style>
+      .title { font: 700 38px Arial, sans-serif; fill: #182230; letter-spacing: 0; }
+      .subtitle { font: 400 21px Arial, sans-serif; fill: #475467; letter-spacing: 0; }
+      .step { font: 700 19px Arial, sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: central; letter-spacing: 0; }
+      .card-title { font: 700 25px Arial, sans-serif; fill: #182230; text-anchor: middle; letter-spacing: 0; }
+      .card-desc { font: 400 18px Arial, sans-serif; fill: #475467; text-anchor: middle; letter-spacing: 0; }
+      .phase { font: 700 17px Arial, sans-serif; fill: #344054; text-anchor: middle; letter-spacing: 0; }
+      .note { font: 700 19px Arial, sans-serif; fill: #20304a; text-anchor: middle; letter-spacing: 0; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="840" fill="#ffffff"/>
+  <text x="72" y="62" class="title">AI Infra On-Cloud Model Asset Publishing</text>
+  <text x="72" y="100" class="subtitle">Combine model presentation data and multi-cloud deployment capabilities into publishable, recommendable records</text>
+
+  <text x="120" y="142" class="phase" text-anchor="start">Phase 1 · Prepare the Model and Runtime</text>
+  <g stroke="#667085" stroke-width="3" marker-end="url(#arrow)">
+    <line x1="520" y1="270" x2="594" y2="270"/>
+    <line x1="1000" y1="270" x2="1074" y2="270"/>
+  </g>
+
+  <g transform="translate(120 160)">
+    <rect width="400" height="220" rx="8" fill="#edf3ff" stroke="#4b6fae" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#4b6fae"/><text x="38" y="38" class="step">1</text>
+    <text x="200" y="76" class="card-title">Maintain Inference Frameworks</text>
+    <text x="200" y="122" class="card-desc">Framework types such as vLLM and SGLang</text>
+    <text x="200" y="158" class="card-desc">Manage versions, ports, and startup options</text>
+    <text x="200" y="194" class="card-desc">Define the model runtime</text>
+  </g>
+
+  <g transform="translate(600 160)">
+    <rect width="400" height="220" rx="8" fill="#eaf7f0" stroke="#2f8f64" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#2f8f64"/><text x="38" y="38" class="step">2</text>
+    <text x="200" y="76" class="card-title">Associate Runtime Images</text>
+    <text x="200" y="122" class="card-desc">Maintain images by platform and region</text>
+    <text x="200" y="158" class="card-desc">Confirm registries and association status</text>
+    <text x="200" y="194" class="card-desc">Host the framework and startup environment</text>
+  </g>
+
+  <g transform="translate(1080 160)">
+    <rect width="400" height="220" rx="8" fill="#fff2e8" stroke="#c56a2d" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#c56a2d"/><text x="38" y="38" class="step">3</text>
+    <text x="200" y="76" class="card-title">Select a Metadata Model</text>
+    <text x="200" y="122" class="card-desc">Name · Tags · Model capabilities</text>
+    <text x="200" y="158" class="card-desc">Modalities and context information</text>
+    <text x="200" y="194" class="card-desc">Unify user-facing presentation</text>
+  </g>
+
+  <path d="M 1280 380 V 430 H 320 V 474" fill="none" stroke="#667085" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="800" y="422" class="phase">After presentation data is ready, configure executable cloud deployment capabilities</text>
+
+  <text x="120" y="466" class="phase" text-anchor="start">Phase 2 · Build Deployment Capability and Publish</text>
+  <g stroke="#667085" stroke-width="3" marker-end="url(#arrow)">
+    <line x1="520" y1="590" x2="594" y2="590"/>
+    <line x1="1000" y1="590" x2="1074" y2="590"/>
+  </g>
+
+  <g transform="translate(120 480)">
+    <rect width="400" height="220" rx="8" fill="#f1eeff" stroke="#7256c8" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#7256c8"/><text x="38" y="38" class="step">4</text>
+    <text x="200" y="76" class="card-title">Configure Deployment Points</text>
+    <text x="200" y="122" class="card-desc">Cloud platform · Region · Model source</text>
+    <text x="200" y="158" class="card-desc">Associate framework, image, and output</text>
+    <text x="200" y="194" class="card-desc">Describe complete cloud deployment capability</text>
+  </g>
+
+  <g transform="translate(600 480)">
+    <rect width="400" height="220" rx="8" fill="#e9f7f6" stroke="#238c83" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#238c83"/><text x="38" y="38" class="step">5</text>
+    <text x="200" y="76" class="card-title">Configure Compute and Output</text>
+    <text x="200" y="122" class="card-desc">Spec · GPU · CPU · Memory · Cost</text>
+    <text x="200" y="158" class="card-desc">Access protocol, endpoint, and output config</text>
+    <text x="200" y="194" class="card-desc">Create recommended deployment candidates</text>
+  </g>
+
+  <g transform="translate(1080 480)">
+    <rect width="400" height="220" rx="8" fill="#fff8e1" stroke="#b58a16" stroke-width="2"/>
+    <circle cx="38" cy="38" r="22" fill="#b58a16"/><text x="38" y="38" class="step">6</text>
+    <text x="200" y="76" class="card-title">Publish to Model Marketplace</text>
+    <text x="200" y="122" class="card-desc">Confirm publishing status and visibility</text>
+    <text x="200" y="158" class="card-desc">Let users discover, filter, and deploy</text>
+    <text x="200" y="194" class="card-desc">Continue into the model-service workflow</text>
+  </g>
+
+  <rect x="72" y="744" width="1456" height="56" rx="8" fill="#f2f4f7" stroke="#667085" stroke-width="2"/>
+  <text x="800" y="780" class="note">The metadata model defines what users see; cloud assets define where and how it is deployed</text>
+</svg>

@@ -7,52 +7,61 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Settlement List` is used to view, filter, and maintain settlement list information. It helps platform operator, billing operator work with settlement list records and related status from a consistent page entry.
+`Settlement List` is used to search, generate, and track organization settlement statements. Billing operators can filter settlement statements by billing cycle, status, and organization, open details to verify amount, status, and posting confirmation, and start the settlement generation flow from this page.
 
 | Item | Content |
 | --- | --- |
 | Applicable role | Platform operator, billing operator |
-| Navigation path | Finance Operations > Settlement List |
-| Page route | /operator/finance-operations/settlement-list |
-| Managed objects | Settlement List records and related status |
-| Typical use | View, filter, and maintain settlement list information |
+| Navigation path | Billing > Finance Operations > Settlement List |
+| Page route | `/billing/admin/provider-settlements` |
+| Managed objects | Settlement statements, organizations, billing cycles, settlement status, payable amount, and posting confirmation |
+| Typical use | Search settlement statements, view details, track settlement status, and generate settlement statements |
 
-### Beginner Explanation
+#### Beginner Explanation
 
-Settlement List is part of the billing control loop. Treat it as a view for confirming money, quota, billing-cycle, customer, or settlement status before making financial decisions.
+Settlement List is like a settlement work order pool. Each settlement statement usually represents one organization in one billing cycle. Operators use the statement status to understand whether it has been generated, is waiting for posting confirmation, has been settled, or has failed.
 
-### Terms Quick Reference
+Settlement List is not a complete finance backend. It provides entries for viewing, generating, and tracking settlement statements. Amounts, status, and posting confirmation should be cross-checked with [Monthly Overview](../monthly-overview/), [Financial Accounts](../financial-accounts/), and [Reconciliation Center](../reconciliation-center/).
+
+#### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Billing cycle | The month or settlement period used for billing, revenue, and reconciliation. | Keep the cycle consistent across pages. |
-| Transaction | A balance change or revenue/expense record. | Use it to explain amount differences. |
-| Settlement statement | A statement generated for an organization and billing cycle. | Check status and amount before follow-up. |
-| Adjustment | A controlled correction for abnormal billing records. | Use only after impact assessment. |
+| Settlement statement | A settlement record for an organization in a billing cycle. | Open details to verify amount and status. |
+| Billing Cycle | The month or settlement period of the statement. | Keep it consistent with Monthly Overview. |
+| Posting confirmation | The finance-side status for confirming whether funds have been posted. | Check Financial Accounts if it remains unchanged for a long time. |
+| Payable amount | The amount payable to the organization in the current settlement statement. | Cross-check it with Monthly Overview and account flows. |
+| Settlement status | The processing stage of the settlement statement. | Decide the next action based on status. |
+| Generation Checks | Pre-generation checks before creating settlement statements. | Do not submit repeatedly when checks fail. |
+| Settlement Preview | Preview of settlement scope and amount before submission. | Verify organization and billing cycle again before submitting. |
 
 ## Where to Look First
 
-1. Start from the subsystem overview to confirm role boundaries.
-2. Open `Finance Operations > Settlement List` when the target object is already known.
-3. For amount, permission, or status mismatches, compare the related list, detail page, and downstream audit or reconciliation page.
+1. Open [Monthly Overview](../monthly-overview/) to confirm the overall billing-cycle settlement status.
+2. Open `Finance Operations > Settlement List` to search for a specific organization's settlement statement.
+3. Open [Financial Accounts](../financial-accounts/) to reconcile account flows.
+4. Open [Reconciliation Center](../reconciliation-center/) to investigate settlement exceptions.
 
 ## Prerequisites
 
 1. The current account can access `Finance Operations > Settlement List`.
-2. The target organization, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+2. The target billing cycle, organization, or settlement status has been confirmed.
+3. Before generating a settlement statement, statistics for the target billing cycle have been completed.
+4. The current account has permission to generate settlement statements when generation is required.
+5. For exception handling, the account can access Monthly Overview, Financial Accounts, and Reconciliation Center.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for settlement list records and related status.
+The page includes the `Generate Settlement` button, filters, settlement table, detail entry, and pagination.
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, organization, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
+| Generate Settlement | Generate settlement statements for eligible billing cycles and organizations. |
+| Billing Cycle filter | Filter settlement statements by monthly billing cycle. |
+| Status filter | Filter by all statuses or a specified settlement status. |
+| Organization filter | Search settlement statements by organization keyword. |
+| Settlement table | Shows settlement statement, organization, billing cycle, settlement status, payable amount, created time, and actions. |
+| Details | Opens settlement statement details to verify status, amount, and posting confirmation. |
 
 The following screenshot shows settlement list.
 
@@ -62,103 +71,118 @@ The following screenshot shows settlement details.
 
 ![Settlement Details](./images/detail.png)
 
-The following screenshot shows select billing cycle and organization.
-
-![Select billing cycle and organization](./images/select-billing-cycle-and-organization.png)
-
-The following screenshot shows generation checks.
-
-![Generation checks](./images/generation-checks.png)
-
-The following screenshot shows settlement preview.
-
-![Settlement preview](./images/settlement-preview.png)
-
-The following screenshot shows enter remarks.
-
-![Enter remarks](./images/remark.png)
-
 ## Status Quick Reference
 
 | Status | Meaning | Next action |
 | --- | --- | --- |
-| Pending / Processing | The record is still being generated, synchronized, reviewed, or confirmed. | Wait for completion or check task details. |
-| Enabled / Active | The configuration or record is available. | Continue verification or normal use. |
-| Disabled / Failed | The item is unavailable or the process failed. | Open details and check prerequisites, permissions, or upstream data. |
-| Completed | The current workflow has finished. | Archive, continue downstream checks, or use the result as evidence. |
+| Generated | The settlement statement has been generated. | Open details and verify the amount. |
+| Posting confirmation | The statement is waiting for posting or finance confirmation. | Check Financial Accounts and Reconciliation Center. |
+| Settled | The settlement flow has completed. | Archive or continue downstream reconciliation. |
+| Failed | Generation, posting, or settlement is abnormal. | Open details and investigate in Reconciliation Center. |
 
 ## Main Operations
 
-Use the following operations to work with settlement list records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
-
-### Search Settlement Statements
-
-1. Go to `Finance Operations > Settlement List`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to settlement list records and related status.
-4. Click the visible `Search Settlement Statements` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+Use the following operations to search, view, and generate settlement statements. Complete view-only checks before opening dialogs that may create, save, submit, confirm, or delete data.
 
 ### View Settlement Statement Details
 
-1. Go to `Finance Operations > Settlement List`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to settlement list records and related status.
-4. Click the visible `View Settlement Statement Details` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+1. Go to `Billing > Finance Operations > Settlement List`.
+2. Find the target settlement statement in the table.
+3. Click `Details` in the row.
+4. Verify settlement statement, organization, billing cycle, status, amount, and posting confirmation.
+5. If the status or amount is abnormal, return to the list, record the billing cycle, organization, and settlement statement number in a desensitized form, and investigate in Reconciliation Center.
 
-### Pre-operation Checks
+### Generate Settlement
 
-1. Go to `Finance Operations > Settlement List`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to settlement list records and related status.
-4. Click the visible `Pre-operation Checks` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+#### Pre-operation Checks
 
-### Generate Settlement Statements
+Before generating a settlement statement, confirm that:
 
-1. Go to `Finance Operations > Settlement List`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to settlement list records and related status.
-4. Click the visible `Generate Settlement Statements` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+1. Statistics for the target billing cycle have been completed.
+2. The target organization scope has been confirmed.
+3. No obvious exception exists in `Monthly Overview`.
+4. `Financial Accounts` and `Reconciliation Center` have no blocking exceptions.
+5. The current account has permission to generate settlement statements.
 
-### Generation Risk Notes
+#### Steps
 
-1. Go to `Finance Operations > Settlement List`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to settlement list records and related status.
-4. Click the visible `Generation Risk Notes` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+1. Go to `Billing > Finance Operations > Settlement List`.
+2. Click `Generate Settlement`.
+3. Select the target `Billing Cycle` and `Organization`.
 
-## Parameters
+   The following screenshot shows selecting billing cycle and organization. Use it to specify the settlement scope.
 
-| Field | Required | Type | Example | Description |
+   ![Select billing cycle and organization](./images/select-billing-cycle-and-organization.png)
+
+4. Review `Generation Checks` and confirm that no blocking exception exists.
+
+   The following screenshot shows generation checks before settlement submission.
+
+   ![Generation checks](./images/generation-checks.png)
+
+5. Review `Settlement Preview`, including organization, billing cycle, payable amount, and settlement status.
+
+   The following screenshot shows settlement preview before generation.
+
+   ![Settlement preview](./images/settlement-preview.png)
+
+6. Enter only desensitized processing notes in `Remark`. Do not write real bank accounts, contract numbers, customer-sensitive information, or internal handling comments.
+
+   The following screenshot shows the remark step.
+
+   ![Enter remarks](./images/remark.png)
+
+7. After submission, return to the settlement list and search by billing cycle and organization.
+8. Click `Details` to confirm settlement status, amount, and posting confirmation information.
+
+#### Risk Notes
+
+- Do not generate settlement statements before billing-cycle data is verified.
+- Do not repeatedly generate statements for the same organization and billing cycle.
+- If generation fails, check generation checks, settlement details, or Reconciliation Center before retrying.
+- `Submit` is a high-risk final action.
+- Do not record real bank accounts, contract numbers, customer names, settlement statement numbers, internal transaction numbers, approval comments, accounts, tokens, or keys.
+
+## Parameter Reference
+
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Organization / customer / member | No | Text | `Example organization` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Settlement Statement | System-generated | Text | `SETTLE-202606-ORG001` | Settlement statement name or identifier used to locate a specific record. |
+| Organization | System-generated | Text | `Example Organization A` | Organization that owns the settlement statement. |
+| Billing Cycle | System-generated / Required in generation | Month | `2026-06` | Billing cycle to which the settlement belongs. |
+| Settlement Status | System-generated | Enum | `Posting confirmation` | Current processing stage of the settlement statement. |
+| Payable Amount | System-generated | Amount | `12,345.67 credits` | Amount payable to the organization in the current settlement statement. |
+| Created At | System-generated | Date and time | `2026-07-08 10:00` | Time when the settlement statement was generated. |
+| Generate Settlement | No | Operation entry | `Generate Settlement` | Opens the settlement generation flow. |
+| Generation Checks | System-generated | Check result | `Passed` | Shows prerequisite checks for billing cycle, organization, and data completeness. |
+| Settlement Preview | System-generated | Preview information | `Payable amount 12,345.67 credits` | Shows organization, billing cycle, amount, and settlement status before submission. |
+| Remark | No | Text | `Example processing note` | Records desensitized processing notes. Do not include sensitive finance or customer information. |
+| Submit | No | High-risk button | `Submit` | Confirms generation for the selected billing cycle and organization scope. |
+| Details | System-generated | Operation entry | `Details` | Opens settlement statement details to verify status, amount, and posting confirmation. |
 
 ## Pitfalls
 
 - Do not rely on one amount field alone for financial confirmation; cross-check transactions, bills, settlement statements, and reconciliation results.
 - Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
 - Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
+- `Generate Settlement` affects the real billing-cycle settlement flow.
+- `Submit` is a high-risk final action.
+- If generation fails, investigate Generation Checks, settlement details, or Reconciliation Center first. Do not submit repeatedly.
+- Do not record real bank accounts, contract numbers, customer names, settlement statement numbers, internal transaction numbers, approval comments, accounts, tokens, or keys.
 
-## Result Checks
+## Result Validation
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page access | The `Finance Operations > Settlement List` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Filter result | The list changes according to the selected filters. | Reset filters and search again. |
 | Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
 | Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Generated record | After generation, the target statement can be searched by billing cycle and organization. | Check Generation Checks and failure reason. |
 
 ## Completion Checks
 
-| Check item | Success signal | If abnormal |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page access | The `Finance Operations > Settlement List` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Filter result | The list changes according to the selected filters. | Reset filters and search again. |
@@ -167,122 +191,52 @@ Use the following operations to work with settlement list records and related st
 
 ## FAQ
 
-### Cannot Find the Target Data
+#### Target billing data is not visible in Settlement List
 
-**Issue Symptom:**
+The expected account, customer, order, bill, settlement, adjustment, or License record does not appear on this page.
 
-The expected result is not visible on the `Settlement List` page, or the available action does not match the current business expectation.
+**How to check:**
 
-**Possible Causes:**
+1. Confirm the current tenant, organization, customer, account, and role scope.
+2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
+3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
+4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlement list records and related status.
+#### Amount, status, or billing cycle does not match in Settlement List
 
-**Handling:**
+The displayed balance, consumption, settlement status, monthly bill, or License status differs from the expected result.
 
-1. Reset filters and search again from `Finance Operations > Settlement List`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+**How to check:**
 
-### The Operation Does Not Complete as Expected
+1. Confirm settlement period, organization, settlement status, and generated amount before comparing account balance.
+2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
+3. Compare the summary number with the detail list and operation records on the related billing pages.
+4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
 
-**Issue Symptom:**
+#### The Generate Settlement button is unavailable
 
-The expected result is not visible on the `Settlement List` page, or the available action does not match the current business expectation.
+Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
 
-**Possible Causes:**
+#### Settlement amount is inconsistent with expectations
 
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlement list records and related status.
+Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
 
-**Handling:**
+#### Settlement statement generation fails
 
-1. Reset filters and search again from `Finance Operations > Settlement List`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
 
-### The Action Button Is Unavailable
+#### Can a settlement statement be generated repeatedly?
 
-**Issue Symptom:**
-
-The expected result is not visible on the `Settlement List` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlement list records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Finance Operations > Settlement List`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### Values Do Not Match Expectations
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Settlement List` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlement list records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Finance Operations > Settlement List`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### The Operation Does Not Complete as Expected
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Settlement List` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlement list records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Finance Operations > Settlement List`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
-
-### Settlement List Troubleshooting
-
-**Issue Symptom:**
-
-The expected result is not visible on the `Settlement List` page, or the available action does not match the current business expectation.
-
-**Possible Causes:**
-
-- The current role, organization scope, status filter, time range, or billing cycle does not match the target record.
-- Upstream data, permissions, synchronization, or review status has not finished updating.
-- The action may be restricted because it affects settlement list records and related status.
-
-**Handling:**
-
-1. Reset filters and search again from `Finance Operations > Settlement List`.
-2. Open the target detail page and verify status, owner, time range, and related fields.
-3. If the issue remains, provide desensitized page route, record ID, time range, and symptom summary for troubleshooting.
+Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
 
 ## Next Steps
 
-1. Open the related detail page if the list value requires verification.
-2. Cross-check transactions, monthly bills, settlement statements, and reconciliation results when amounts differ.
-3. Escalate with desensitized record IDs, billing cycle, organization, customer, time range, and issue symptom when needed.
+1. Review related billing records, transactions, settlement statements, and account balance changes.
+2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
+3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
 
 ## Notes
 
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Do not record real bank accounts, contract numbers, customer names, settlement statement numbers, internal transaction numbers, approval comments, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.
