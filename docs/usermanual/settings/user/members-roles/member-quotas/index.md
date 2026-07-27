@@ -11,7 +11,7 @@ Updated: 2026-07-13
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider admin or provider account |
+| Applicable role | Provider Admin or Provider Account |
 | Navigation path | Settings > Members & Roles > Member Quotas |
 | Page route | `/user/user-space/member-quotas` |
 | Managed objects | Member Quotas records and related status |

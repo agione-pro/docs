@@ -97,7 +97,7 @@ The speech model passes protocol testing, is published to the intended scope, an
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
 | Meta-Model | Select | `qwen3-tts-flash` | Required; base meta-model |
-| Model Source | Select | `Alibaba - China` | Required; upstream model provider |
+| Model Source | Select | `Alibaba - China` | Required; upstream Model Provider |
 | Request URL | URL | `https://dashscope.aliyuncs.com` | Required; model-service base URL |
 | API Key | Password | `sk-***` | Required; protected upstream credential |
 | Model Source ID | Text | `qwen3-tts-flash` | Required; exact upstream model name |

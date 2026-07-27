@@ -31,7 +31,7 @@ Model Services works like a model capability marketplace plus an operations cons
 
 | Role | Recommended Entry | Typical Tasks |
 | --- | --- | --- |
-| Model provider | [My Models](./user/studio/my-models/), [My Deployments](./user/studio/my-deployments/), [Model Earnings](./user/usage-earnings/model-earnings/) | Publish models, maintain versions, and view calls and earnings. Models submitted through on-cloud quick deployment can be viewed in `Studio > My Deployments` and then published. |
+| Model Provider | [My Models](./user/studio/my-models/), [My Deployments](./user/studio/my-deployments/), [Model Earnings](./user/usage-earnings/model-earnings/) | Publish models, maintain versions, and view calls and earnings. Models submitted through on-cloud quick deployment can be viewed in `Studio > My Deployments` and then published. |
 | Model caller | [Model Marketplace](./user/discover/models/), [Playground](./user/playground/text/), [My Calls](./user/my-calls/overview/) | Discover models, try outputs, integrate APIs, and troubleshoot calls. |
 | Operator admin | [Meta-models](./operator/settings/meta-models/), [Model Sources](./operator/settings/model-source/), [Model Reviews](./operator/approvals/model-reviews/) | Maintain base configuration, review models, and govern visibility. |
 
@@ -42,14 +42,14 @@ Model Services works like a model capability marketplace plus an operations cons
 | New user | [Getting Started](./getting-started/) | Understand the relationship among meta-models, model sources, templates, publishing, review, marketplace, and calls. |
 | Full workflow | [Publish and Call a Model](./end-to-end/publish-and-call-model/) | Follow the end-to-end path for publishing, review, Playground trials, calls, revenue, and troubleshooting. |
 | Operator admin | [Meta-models](./operator/settings/meta-models/), [Model Sources](./operator/settings/model-source/), [Model Reviews](./operator/approvals/model-reviews/) | Maintain base configuration, review models, and govern visibility. |
-| Model provider | [My Models](./user/studio/my-models/), [My Deployments](./user/studio/my-deployments/), [Model Earnings](./user/usage-earnings/model-earnings/) | Publish models, track deployment records, and view earnings and customer calls. |
+| Model Provider | [My Models](./user/studio/my-models/), [My Deployments](./user/studio/my-deployments/), [Model Earnings](./user/usage-earnings/model-earnings/) | Publish models, track deployment records, and view earnings and customer calls. |
 | Model caller | [Model Marketplace](./user/discover/models/), [Playground](./user/playground/text/), [My Calls](./user/my-calls/overview/) | Browse models, try outputs, integrate APIs, and view call logs. |
 
 ## Find an Entry by Goal
 
 | Goal | Recommended Entry | Next Step |
 | --- | --- | --- |
-| Learn Model Services for the first time | [Getting Started](./getting-started/) | Decide whether you are a model provider, caller, or operator admin. |
+| Learn Model Services for the first time | [Getting Started](./getting-started/) | Decide whether you are a Model Provider, Caller, or Operator Admin. |
 | Find and try a model | [Model Marketplace](./user/discover/models/) | Open Playground and verify inputs, outputs, and the calling method. |
 | Publish or maintain a model | [My Models](./user/studio/my-models/) | Prepare the model source, deployment configuration, review materials, and API information. |
 | Troubleshoot calls or earnings | [My Calls](./user/my-calls/overview/) | Cross-check call logs, analytics, and earnings data. |
@@ -73,7 +73,7 @@ Model Services works like a model capability marketplace plus an operations cons
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Role Type | Yes | Enum | Model provider | Used to decide whether to enter user-side or operator-side pages first. |
+| Role Type | Yes | Enum | Model Provider | Used to decide whether to enter user-side or operator-side pages first. |
 | Model Object | No | Text | Example Model A | Used to locate the target model in Model Marketplace, My Models, reviews, or call records. |
 | Call Credential | No | Text | PERSONAL-KEY-001 | Used to confirm whether the caller has a valid credential for accessing the model. Use placeholders only in documentation. |
 | Review Status | No | Enum | Pending review | Used to determine whether a model or app can continue to listing and calling. |
@@ -83,7 +83,7 @@ Model Services works like a model capability marketplace plus an operations cons
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Correct entry selected | You can distinguish entries for model providers, callers, and operator admins. | Return to the role entry table and locate the entry again. |
+| Correct entry selected | You can distinguish entries for Model Providers, Callers, and Operator Admins. | Return to the role entry table and locate the entry again. |
 | Workflow is clear | You understand the relationship among meta-models, model sources, templates, reviews, and the marketplace. | Read Getting Started and the end-to-end workflow first. |
 | Calls can be troubleshot | When a call fails, you can locate Key, Endpoint, rate limit, or log issues. | Go to call logs, My Keys, or model sources for troubleshooting. |
 | Earnings can be reconciled | You can find Model Earnings, Model Usage, and Customer Calls entries. | Align the statistical scope before comparing data. |

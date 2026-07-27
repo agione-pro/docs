@@ -11,10 +11,10 @@ Updated: 2026-07-23
 | --- | --- | --- |
 | End User | Confirm your own balance, transactions, top-up orders, and monthly bills. | Open [Billing](../user/billing/overview/). |
 | Provider | Confirm revenue account balance, revenue account activity, settlements, and customer revenue. | Open [Earnings](../user/earnings/revenue/). |
-| Platform operator | Confirm customer records, customer top-ups, and business-unit ownership. | Open [Customer Billing](../operator/customer-billing/customer-overview/). |
-| Billing operator | Confirm billing cycle, monthly progress, settlement statements, and reconciliation status. | Open [Finance Operations](../operator/finance-operations/today-tasks/). |
-| Finance reviewer | Confirm account transactions, settlement statements, and reconciliation exceptions. | Open [Financial Accounts](../operator/finance-operations/financial-accounts/). |
-| License admin | Confirm authorization type, quota, validity period, and activation status. | Open [License](../operator/license/license/). |
+| Platform Operator | Confirm customer records, customer top-ups, and business-unit ownership. | Open [Customer Billing](../operator/customer-billing/customer-overview/). |
+| Billing Operator | Confirm billing cycle, monthly progress, settlement statements, and reconciliation status. | Open [Finance Operations](../operator/finance-operations/today-tasks/). |
+| Finance Reviewer | Confirm account transactions, settlement statements, and reconciliation exceptions. | Open [Financial Accounts](../operator/finance-operations/financial-accounts/). |
+| License Admin | Confirm authorization type, quota, validity period, and activation status. | Open [License](../operator/license/license/). |
 
 ## Feature Overview
 
@@ -22,7 +22,7 @@ Billing Getting Started helps different roles choose the correct Billing reading
 
 | Item | Content |
 | --- | --- |
-| Applicable role | End User, Provider, platform operator, billing operator, finance reviewer, License admin |
+| Applicable role | End User, Provider, Platform Operator, Billing Operator, Finance Reviewer, License Admin |
 | Navigation path | Billing > Getting Started |
 | Page route | `/usermanual/billing/getting-started/` |
 | Managed objects | Billing roles, object hierarchy, reading path, and operation boundaries |
@@ -38,10 +38,10 @@ Billing is like the financial service desk of the platform. End Users start with
 | --- | --- | --- |
 | End User | Own balance, transactions, top-up orders, and monthly bills. | [Billing](../user/billing/overview/) |
 | Provider | Revenue overview, revenue account activity, settlements, and customer revenue. | [Earnings](../user/earnings/revenue/) |
-| Platform operator | Customer records, customer top-up orders, business units, and payment channels. | [Customer Billing](../operator/customer-billing/customer-overview/) |
-| Billing operator | Today tasks, monthly overview, settlement statements, financial accounts, and reconciliation. | [Finance Operations](../operator/finance-operations/today-tasks/) |
-| Finance reviewer | Account transactions, settlement statements, reconciliation exceptions, and adjustment records. | [Financial Accounts](../operator/finance-operations/financial-accounts/) |
-| License admin | Authorization type, quota, validity period, and activation status. | [License](../operator/license/license/) |
+| Platform Operator | Customer records, customer top-up orders, business units, and payment channels. | [Customer Billing](../operator/customer-billing/customer-overview/) |
+| Billing Operator | Today tasks, monthly overview, settlement statements, financial accounts, and reconciliation. | [Finance Operations](../operator/finance-operations/today-tasks/) |
+| Finance Reviewer | Account transactions, settlement statements, reconciliation exceptions, and adjustment records. | [Financial Accounts](../operator/finance-operations/financial-accounts/) |
+| License Admin | Authorization type, quota, validity period, and activation status. | [License](../operator/license/license/) |
 
 ## What Billing Is
 
@@ -53,10 +53,10 @@ Billing is the unified entry for balance, top-up, consumption, revenue, settleme
 | --- | --- | --- |
 | End User | View own balance, transactions, top-up orders, and monthly bills. | [Billing](../user/billing/overview/) |
 | Provider | View revenue, settlements, and customer revenue. | [Earnings](../user/earnings/revenue/) |
-| Platform operator | Maintain customer billing objects, top-up orders, and business units. | [Customer Billing](../operator/customer-billing/customer-overview/) |
-| Billing operator | Drive monthly settlement, reconciliation, and account adjustment. | [Finance Operations](../operator/finance-operations/today-tasks/) |
-| Finance reviewer | Reconcile account transactions, settlement statements, and exceptions. | [Financial Accounts](../operator/finance-operations/financial-accounts/) |
-| License admin | View authorized quota, validity period, and activation status. | [License](../operator/license/license/) |
+| Platform Operator | Maintain customer billing objects, top-up orders, and business units. | [Customer Billing](../operator/customer-billing/customer-overview/) |
+| Billing Operator | Drive monthly settlement, reconciliation, and account adjustment. | [Finance Operations](../operator/finance-operations/today-tasks/) |
+| Finance Reviewer | Reconcile account transactions, settlement statements, and exceptions. | [Financial Accounts](../operator/finance-operations/financial-accounts/) |
+| License Admin | View authorized quota, validity period, and activation status. | [License](../operator/license/license/) |
 
 ## Billing Object Hierarchy
 

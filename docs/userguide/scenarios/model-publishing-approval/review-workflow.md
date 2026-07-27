@@ -33,7 +33,7 @@ This scenario guides operators through reviewing a model publishing request and 
 | 2 | Check model, provider, source, and publication area | [Model Reviews](../../../usermanual/model-services/operator/approvals/model-reviews/) | Basic information matches the request |
 | 3 | Check protocol test, modalities, tokens, billing, and rate limits | [Publish and Call a Model](../../../usermanual/model-services/end-to-end/publish-and-call-model/) | Critical configuration is complete and compliant |
 | 4 | Approve or reject with a specific reason | [Model Reviews](../../../usermanual/model-services/operator/approvals/model-reviews/) | Status and review comment are saved |
-| 5 | Check status with the provider account | [My Models](../../../usermanual/model-services/user/studio/my-models/) | The provider sees the result and reason |
+| 5 | Check status with the Provider Account | [My Models](../../../usermanual/model-services/user/studio/my-models/) | The provider sees the result and reason |
 | 6 | Verify visibility for an approved public model | [Model Marketplace](../../../usermanual/model-services/user/discover/models/) | Intended users can find the model |
 
 At the start of review, use the **Model Reviews** list to locate the request by provider, version, scope, submission time, and status.

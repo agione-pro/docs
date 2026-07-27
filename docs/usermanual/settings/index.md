@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operators, system maintainers, security roles, and End Users |
+| Applicable role | Platform Operators, System Maintainers, Security Roles, and End Users |
 | Navigation path | Settings |
 | Page route | /settings |
 | Managed objects | Personal Keys, profile information, members, roles, tenants, operation logs, system settings, and API rate control |
@@ -26,7 +26,7 @@ Settings is the platform control area for accounts, members, roles, tenants, log
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
 | Settings subsystem | Unified entry for platform configuration, permissions, and security policies. | Locate the entry by role and target object first. |
-| Platform operator | Role that maintains platform-level members, tenants, system settings, and rate-control policies. | Confirm impact scope before high-risk changes. |
+| Platform Operator | Role that maintains platform-level members, tenants, system settings, and rate-control policies. | Confirm impact scope before high-risk changes. |
 | User-side settings | Entry for End Users to maintain personal accounts, projects, Keys, quota requests, and tenant settings. | Operate only within the current account or visible tenant scope. |
 | API rate control | Capability for API request statistics, blocking, rules, node cache, and publishing. | Review observability, node cache, and publish status before changing rules. |
 
@@ -34,7 +34,7 @@ Settings is the platform control area for accounts, members, roles, tenants, log
 
 | Role | Recommended entry | Typical task |
 | --- | --- | --- |
-| Platform operator | [Members](./operator/members-roles/members/), [Roles](./operator/members-roles/roles/) | Manage members, roles, tenants, and system settings. |
+| Platform Operator | [Members](./operator/members-roles/members/), [Roles](./operator/members-roles/roles/) | Manage members, roles, tenants, and system settings. |
 | System maintainer | [Platform Settings](./operator/system-settings/platform-settings/), [Login Properties](./operator/system-settings/login-properties/) | Maintain platform parameters, login security, and global policies. |
 | Security role | [Operation Logs](./operator/activity-notifications/operation-logs/), [API Rate Control Overview](./operator/api-rate-control/overview/) | Review audit logs, rate-control rules, and publish status. |
 | End User | [My Keys](./user/personal/my-keys/), [Members](./user/members-roles/team-members/) | Manage personal credentials, projects, members, roles, and quota requests. |

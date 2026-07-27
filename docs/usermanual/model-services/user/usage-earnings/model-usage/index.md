@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Model provider |
+| Applicable role | Model Provider |
 | Navigation path | Model Services > Usage & Earnings > Model Usage |
 | Page route | `/modelone/accounting/deduction` |
 | Managed objects | Usage overview, usage details, billing cycle, date, metered usage, free quota, billing mode, billing rules, and Credits |

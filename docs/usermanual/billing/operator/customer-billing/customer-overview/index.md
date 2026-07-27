@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator, billing operator |
+| Applicable role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Customer Billing > Customer Overview |
 | Page route | `/billing/customers/overview` |
 | Managed objects | Customer records, customer tags, account balances, consumption, and revenue information |

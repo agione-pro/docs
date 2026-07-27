@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator, billing operator |
+| Applicable role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Customer Billing > Customer Top-up Orders |
 | Page route | `/billing/customers/top-ups/orders` |
 | Managed objects | Customer top-up orders, payment channel, credited credits, order status, and customer balance changes |

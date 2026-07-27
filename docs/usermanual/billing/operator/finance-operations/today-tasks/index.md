@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator, billing operator |
+| Applicable role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Finance Operations > Today Tasks |
 | Page route | `/billing/admin/tasks` |
 | Managed objects | Billing cycle, settlement tasks, platform accounts, alert items, and downstream cards |
