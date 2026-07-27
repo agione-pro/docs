@@ -37,7 +37,7 @@ This scenario helps operators review an application's bound model, calling entry
 
 ## Recommended Reading Order
 
-1. Review publishing information in Applications.
+1. Review publishing information in Apps.
 2. Check application materials and scope in Application Reviews.
 3. Validate visibility and the calling entry point from the customer perspective.
 4. Use call logs to investigate any exception.

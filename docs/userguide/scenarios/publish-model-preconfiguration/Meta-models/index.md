@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# Meta-Models
+# Meta Models
 
 ## Target Outcome
 
@@ -20,7 +20,7 @@ Model identity, modalities, capabilities, token limits, and protocols are mainta
 
 ## Procedure
 
-1. From the platform home page, select **Meta-Models** in the left navigation.
+1. From the platform home page, select **Meta Models** in the left navigation.
 2. Select **Add** above the model-author list.
 
 ![Review the meta-model list](./images/meta-models-list.png)
@@ -128,4 +128,4 @@ Model identity, modalities, capabilities, token limits, and protocols are mainta
 
 ## User Manual
 
-[Review complete fields and common issues for Meta-Models](/usermanual/model-services/operator/settings/meta-models/)
+[Review complete fields and common issues for Meta Models](/usermanual/model-services/operator/settings/meta-models/)

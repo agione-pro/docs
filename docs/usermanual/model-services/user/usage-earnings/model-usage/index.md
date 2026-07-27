@@ -48,10 +48,6 @@ Exporting sensitive data, charging, account adjustment, settlement, or sending u
 
 The page includes two tabs: `Overview` and `Usage Details`. `Overview` shows Billing cycle, Date, Used Models, Total Consumption (Credit), Total Token Consumption, Trend of Model Consumption, Model Usage Distribution, Trend of Model Call Frequency, and Distribution of Model Call Times. `Usage Details` shows billing-cycle summaries, filters, and usage detail records.
 
-![Model usage overview](./images/model-usage-overview-list.png)
-
-![Usage details](./images/model-usage-usage-details-list.png)
-
 ## Main Operations
 
 ### View Usage Overview

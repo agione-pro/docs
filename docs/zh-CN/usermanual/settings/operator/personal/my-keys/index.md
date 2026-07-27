@@ -41,6 +41,8 @@
 
 ![我的 Keys](./images/model-api-keys-list.png)
 
+切换到 `System API AK/SK Pairs` 后，可在以下列表中查看系统 API 凭据对及其状态。
+
 ![System API AK/SK Pair 列表](./images/system-api-pairs-list.png)
 
 | 区域 | 说明 |

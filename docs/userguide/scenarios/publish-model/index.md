@@ -23,7 +23,7 @@ This scenario helps model providers publish models as services that can be tried
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Prepare publication | Meta-models, sources, templates, tags, and currency are available |
+| 1. Prepare publication | Meta Models, sources, templates, tags, and currency are available |
 | 2. Configure and test | Model information, protocol, billing, and rate limits pass validation |
 | 3. Submit for review | The request enters review and comments can be tracked |
 | 4. Verify publication | Intended users can discover, try, and call the model |
@@ -52,10 +52,11 @@ This scenario helps model providers publish models as services that can be tried
 | [Publish Image Models](./Image/) | Publish an image model with image-specific billing and response parsing |
 | [Publish Speech Models](./Speech/) | Publish a speech model with audio protocol and character-based billing |
 | [Publish Video Models](./Video/) | Publish an asynchronous video model with callback and result parsing |
+| [Publish and Call a Model](../../../usermanual/model-services/end-to-end/publish-and-call-model/) | Follow the complete workflow from operator preparation through publishing, review, trial calls, and usage verification |
 
 ## Related Scenarios
 
-- **[Publish Models Preconfiguration](../publish-model-preconfiguration/)**: Platform Operators prepare meta-models, model sources, templates, tags, currency, and review settings before publication
+- **[Publish Models Preconfiguration](../publish-model-preconfiguration/)**: Platform Operators prepare Meta Models, model sources, templates, tags, currency, and review settings before publication
 - **[Model Publishing Approval](../model-publishing-approval/)**: administrators process the publication request after submission
 - **[Publish an Aggregation Model](../publish-aggregation-model/)**: defines aggregation routing on top of published models
 - **[Model Experience and API Calling](../model-experience-api-calling/)**: explains how end users discover, try, and call the model after publication

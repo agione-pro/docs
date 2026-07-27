@@ -58,7 +58,7 @@ Used to view app publishing review status and processing entry points.
 6. Select `Approve` or `Reject` based on the review result. Before final confirmation, verify the review comment and impact scope again.
 7. For page validation only, view details or open the review entry and then close it. Do not click the final `Approve` or `Reject`.
 
-![App review list](./images/app-reviews-list.png)
+After Step 4, use the review details page to check review information, the application test, application details, and review actions.
 
 ![Review App](./images/application-review.png)
 

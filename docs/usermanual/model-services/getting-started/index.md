@@ -33,7 +33,7 @@ Model Services is like an operating map from model listing to model calling: the
 
 | Role | Reading Focus | Recommended Entry |
 | --- | --- | --- |
-| Model provider | Publish models, view deployments, view reviews, and track revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Revenue](../user/usage-earnings/model-earnings/) |
+| Model provider | Publish models, view deployments, view reviews, and track revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Earnings](../user/usage-earnings/model-earnings/) |
 | Model caller | Browse Model Marketplace, try models, integrate APIs, and troubleshoot calls. | [Model Marketplace](../user/discover/models/), [Playground](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
 | Operator admin | Maintain meta-models, model sources, templates, tags, and review workflows. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
 
@@ -53,7 +53,7 @@ In Model Services scenarios, the platform is responsible for:
 
 | Role | Main Responsibilities | Common Sections |
 | --- | --- | --- |
-| Model provider | Publish models, view on-cloud deployment records, create aggregation models, configure billing and rate limits, submit reviews, and view revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Revenue](../user/usage-earnings/model-earnings/), [Customer Calls](../user/customer-calls/overview/) |
+| Model provider | Publish models, view on-cloud deployment records, create aggregation models, configure billing and rate limits, submit reviews, and view revenue and customer calls. | [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), [Model Earnings](../user/usage-earnings/model-earnings/), [Customer Calls](../user/customer-calls/overview/) |
 | Model caller | Browse the model marketplace, view details, try models in Playground, integrate APIs, and view own call statistics and logs. | [Model Marketplace](../user/discover/models/), [Text Chat](../user/playground/text/), [My Calls](../user/my-calls/overview/) |
 | Operator admin | Maintain meta-models, model sources, templates, and tags; view app lists; process model and app reviews. | [Meta-models](../operator/settings/meta-models/), [Model Sources](../operator/settings/model-source/), [Model Reviews](../operator/approvals/model-reviews/) |
 
@@ -152,7 +152,7 @@ The recommended configuration order is: operator admins maintain meta-models, mo
 4. If the model is first submitted through `AI Infra > On-Cloud > Model Services > Quick Deployment`, view the deployment record in the `On-Cloud` list in [My Deployments](../user/studio/my-deployments/), select a publish region, and redirect to the publish model page in [My Models](../user/studio/my-models/).
 5. Track review status after submitting for review.
 6. After listing, use [Playground](../user/playground/text/) to validate model output.
-7. View [Model Revenue](../user/usage-earnings/model-earnings/) and [Customer Calls](../user/customer-calls/overview/).
+7. View [Model Earnings](../user/usage-earnings/model-earnings/) and [Customer Calls](../user/customer-calls/overview/).
 
 #### Model Caller
 
@@ -215,7 +215,7 @@ The model has been saved or submitted for review, but it is not displayed in the
 
 ## Next Steps
 
-1. Model providers should continue reading [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), and [Model Revenue](../user/usage-earnings/model-earnings/).
+1. Model providers should continue reading [My Models](../user/studio/my-models/), [My Deployments](../user/studio/my-deployments/), and [Model Earnings](../user/usage-earnings/model-earnings/).
 2. Model callers should continue reading [Model Marketplace](../user/discover/models/), [Playground](../user/playground/text/), and [My Calls](../user/my-calls/overview/).
 3. Operator admins should continue reading meta-model, model source, model template, tag, and review pages.
 

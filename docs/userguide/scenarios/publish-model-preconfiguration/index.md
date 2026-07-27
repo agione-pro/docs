@@ -36,7 +36,7 @@ This scenario helps operators prepare the required settings before providers pub
 
 ## Recommended Reading Order
 
-1. Meta-models
+1. Meta Models
 2. Model sources
 3. Model templates
 4. Tags, currencies, and reviews
@@ -46,7 +46,7 @@ This scenario helps operators prepare the required settings before providers pub
 | Document | Description |
 | --- | --- |
 | [Model Publishing Preconfiguration](./model-publishing-preconfiguration) | End-to-end preconfiguration workflow |
-| [Meta-Models](./Meta-models/) | Authors, model types, modalities, capabilities, token limits, and protocols |
+| [Meta Models](./Meta-models/) | Authors, model types, modalities, capabilities, token limits, and protocols |
 | [Model Sources](./Model-Source/) | Endpoints, regions, and request-header rules |
 | [Model Templates](./Model-Templates/) | Reusable combinations of meta-models, sources, modalities, and protocols |
 

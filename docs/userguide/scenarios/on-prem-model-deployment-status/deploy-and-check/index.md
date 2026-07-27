@@ -18,7 +18,7 @@ The instance reaches Running, events and logs remain clean, and a controlled req
 ## Entry
 
 - **Role:** Provider / End User
-- **Menu:** AI Infra (On-Prem) > Model Deployment > Deployment Templates / Model Instances
+- **Menu:** AI Infrastructure > On-Prem > Model Deployment > Deployment Templates / Model Instances
 - **Instance route:** `/powerone/quickstart/model-service`
 
 ## Steps

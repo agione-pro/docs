@@ -21,7 +21,7 @@ This scenario helps users distinguish account top-ups, resource quota, resource 
 | Transactions | Why did the balance increase or decrease? | [Transactions](../../../usermanual/billing/user/billing/transactions/) |
 | Resource quota | How much compute or storage can the tenant request? | [Resource Quotas](../../../usermanual/ai-infra-on-prem/user/quotas-usage/quotas/) |
 | Resource usage | How much did an instance or job actually consume? | [Resource Usage](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/) |
-| Model usage and revenue | How many tokens, calls, duration, charges, or revenue did model calls produce? | [Model Usage](../../../usermanual/model-services/user/usage-earnings/model-usage/), [Model Revenue](../../../usermanual/model-services/user/usage-earnings/model-earnings/) |
+| Model usage and earnings | How many tokens, calls, duration, charges, or earnings did model calls produce? | [Model Usage](../../../usermanual/model-services/user/usage-earnings/model-usage/), [Model Earnings](../../../usermanual/model-services/user/usage-earnings/model-earnings/) |
 | Monthly bill | Can summarized spending for the billing cycle be reconciled? | [Monthly Bill](../../../usermanual/billing/user/billing/monthly-bill/) |
 
 ## Target Outcome

@@ -81,9 +81,11 @@ The following figure shows model version information configuration, used to main
 5. Configure parameter source, environment variables, startup parameters, mount path, or model source credential as required by the page.
 6. In the association configuration area, select tags, visibility scope, associated clusters, or available template scope.
 
-The following figures show tag creation and associated cluster selection, used to maintain model classification and deployment availability scope.
+In Step 6, use the following page to create or select tags for model classification and filtering.
 
 ![Create tag](./images/create-tag.png)
+
+Then use the associated cluster page to confirm where model files are accessible and deployment is allowed.
 
 ![Select associated clusters](./images/select-linked-clusters.png)
 

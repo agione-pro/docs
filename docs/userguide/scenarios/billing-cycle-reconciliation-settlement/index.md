@@ -48,6 +48,7 @@ This scenario helps billing operators review billing-cycle status, financial acc
 | Document | Description |
 | --- | --- |
 | [Billing-Cycle Reconciliation and Settlement Workflow](./reconciliation-settlement-workflow) | End-to-end steps from monthly review through settlement and adjustment verification |
+| [Reconcile and Settle a Billing Cycle](../../../usermanual/billing/end-to-end/reconcile-billing-cycle/) | Review the complete manual path for monthly checks, reconciliation exceptions, settlement statements, and post-adjustment verification |
 
 ## Completion Checklist
 

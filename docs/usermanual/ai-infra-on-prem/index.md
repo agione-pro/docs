@@ -41,6 +41,15 @@ On-Prem is like an owned computing campus: operators plan the campus, connect ma
 | Troubleshoot resource or runtime issues | [Monitoring Overview](./operator/monitoring/overview/) | Check instance status, events, logs, quotas, images, storage, and cluster status together. |
 | Handle account and permission issues | [Configure Accounts and Permissions](../settings/end-to-end/configure-account-and-permissions/) | Account, role, key, and permission configuration belongs to Settings, not to On-Prem routes. |
 
+## Find an Entry by Goal
+
+| Goal | Recommended Entry | Next Step |
+| --- | --- | --- |
+| Onboard On-Prem compute for the first time | [Getting Started](./getting-started/) | Confirm the region, availability zone, image, storage, and cluster dependencies first. |
+| Manage resource pools | [Regions and Availability Zones](./operator/resource-pools/regions-zones/) | Continue with clusters, accelerators, specifications, images, and storage components. |
+| Create a user-side instance or job | [Deployment Templates](./user/model-deployment/templates/) | Check whether the template, quota, image, and storage allow the workload to start. |
+| Troubleshoot a resource or job issue | [Monitoring Overview](./user/monitoring/overview/) | Continue by cluster, node, device, and job dimensions. |
+
 ## Recommended Reading Path
 
 1. New users should first read [AI Infra On-Prem Getting Started](./getting-started/) to understand resource hierarchy, role boundaries, and reading paths.

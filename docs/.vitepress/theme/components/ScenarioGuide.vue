@@ -105,8 +105,8 @@ const subsystemOptions = computed(() => {
       settings: '设置',
       'model-services': '模型及 AI 服务',
       billing: '账务',
-      'on-prem': '本地算力平台',
-      'on-cloud': '多云调度平台',
+      'on-prem': '异构卡纳管',
+      'on-cloud': '多平台调度',
     },
     en: {
       platform: 'Platform',
@@ -148,8 +148,8 @@ const subsystemLabels: Record<Locale, Record<Subsystem, string>> = {
     settings: '设置',
     'model-services': '模型及 AI 服务',
     billing: '账务',
-    'on-prem': '本地算力平台',
-    'on-cloud': '多云调度平台',
+    'on-prem': '异构卡纳管',
+    'on-cloud': '多平台调度',
   },
   en: {
     platform: 'Platform',
@@ -562,6 +562,162 @@ const commonTasks: CommonTask[] = [
       },
     ],
   },
+  {
+    id: 'publish-call-model',
+    question: { zh: '如何完成一次模型发布与调用？', en: 'How do I publish and call a model end to end?' },
+    keywords: { zh: '模型 发布 预配置 审核 体验 调用 用量 收益', en: 'model publish preconfiguration review playground call usage earnings' },
+    goal: {
+      zh: '从运营预配置开始，完成模型发布、审核、体验调用及用量核对。',
+      en: 'Start with operator preconfiguration and complete publishing, review, trial calls, and usage checks.',
+    },
+    roles: ['operator', 'provider', 'enduser'],
+    steps: [
+      {
+        scenarioId: 4,
+        stage: { zh: '准备配置', en: 'Prepare' },
+        description: {
+          zh: '准备元模型、模型来源、模板、标签和审核条件。',
+          en: 'Prepare Meta Models, model sources, templates, tags, and review conditions.',
+        },
+      },
+      {
+        scenarioId: 3,
+        stage: { zh: '发布模型', en: 'Publish' },
+        description: {
+          zh: '配置模型来源、协议、计费和流控并提交发布。',
+          en: 'Configure the source, protocol, billing, and rate control, then submit the model.',
+        },
+      },
+      {
+        scenarioId: 17,
+        stage: { zh: '完成审核', en: 'Review' },
+        description: {
+          zh: '核对发布材料、协议测试和可见范围，记录审核结论。',
+          en: 'Check publishing materials, protocol tests, and visibility, then record the review decision.',
+        },
+      },
+      {
+        scenarioId: 6,
+        stage: { zh: '体验调用', en: 'Call' },
+        description: {
+          zh: '在模型市场和体验中心验证可见性、凭据和最小调用。',
+          en: 'Validate visibility, credentials, and a minimal call in the model catalog and Playground.',
+        },
+      },
+      {
+        scenarioId: 7,
+        stage: { zh: '核对结果', en: 'Reconcile' },
+        description: {
+          zh: '按同一模型和时间范围核对调用、用量和收益。',
+          en: 'Reconcile calls, usage, and earnings for the same model and time range.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'deploy-on-prem-model',
+    question: { zh: '如何从零部署本地模型服务？', en: 'How do I deploy an On-Prem model service from scratch?' },
+    keywords: { zh: '本地 异构卡 地域 集群 镜像 存储 模板 部署 监控', en: 'on-prem accelerator region cluster image storage template deployment monitoring' },
+    goal: {
+      zh: '把地域、集群、规格、镜像、存储和模板准备为可用资源，并验证模型实例。',
+      en: 'Prepare regions, clusters, specifications, images, storage, and templates, then validate a model instance.',
+    },
+    roles: ['operator', 'provider', 'enduser'],
+    steps: [
+      {
+        scenarioId: 9,
+        stage: { zh: '接入算力', en: 'Onboard compute' },
+        description: {
+          zh: '创建地域和可用区，接入集群、加速卡与资源规格。',
+          en: 'Create the region and availability zone, then onboard the cluster, accelerators, and resource specifications.',
+        },
+      },
+      {
+        scenarioId: 25,
+        stage: { zh: '准备运行底座', en: 'Prepare runtime' },
+        description: {
+          zh: '确认镜像服务、运行镜像及文件、对象或块存储可用。',
+          en: 'Confirm image services, runtime images, and file, object, or block storage.',
+        },
+      },
+      {
+        scenarioId: 10,
+        stage: { zh: '构建模板', en: 'Build template' },
+        description: {
+          zh: '把模型、框架、规格、端口和启动参数固化为推理模板。',
+          en: 'Combine the model, framework, specification, ports, and startup parameters into an inference template.',
+        },
+      },
+      {
+        scenarioId: 11,
+        stage: { zh: '部署验证', en: 'Deploy and validate' },
+        description: {
+          zh: '创建模型实例，检查事件、日志、健康状态和最小调用。',
+          en: 'Create a model instance and check events, logs, health, and a minimal call.',
+        },
+      },
+      {
+        scenarioId: 13,
+        stage: { zh: '持续运营', en: 'Operate' },
+        description: {
+          zh: '核对配额、月度计量以及集群、节点、设备和作业监控。',
+          en: 'Review quotas, monthly metering, and cluster, node, device, and job monitoring.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'deploy-on-cloud-model',
+    question: { zh: '如何从零部署云上模型服务？', en: 'How do I deploy an On-Cloud model service from scratch?' },
+    keywords: { zh: '云上 多平台 云账号 资源池 授权 资产 调度 部署', en: 'on-cloud platform account resource pool authorization asset scheduling deployment' },
+    goal: {
+      zh: '完成云资源接入、资产和策略配置，并从用户侧发起及验证部署。',
+      en: 'Complete cloud access, asset and policy configuration, then initiate and validate a user deployment.',
+    },
+    roles: ['operator', 'provider', 'enduser'],
+    steps: [
+      {
+        scenarioId: 14,
+        stage: { zh: '接入资源', en: 'Onboard resources' },
+        description: {
+          zh: '接入云平台、账号和资源池，并完成租户与业务地域授权。',
+          en: 'Onboard cloud platforms, accounts, and pools, then configure tenant and business-region authorization.',
+        },
+      },
+      {
+        scenarioId: 15,
+        stage: { zh: '准备资产', en: 'Prepare assets' },
+        description: {
+          zh: '维护运行镜像、推理框架和可部署模型资产。',
+          en: 'Maintain runtime images, inference frameworks, and deployable model assets.',
+        },
+      },
+      {
+        scenarioId: 27,
+        stage: { zh: '配置策略', en: 'Configure policy' },
+        description: {
+          zh: '设置资源选择、容量阈值、优先级和回退规则。',
+          en: 'Set resource selection, capacity thresholds, priorities, and fallback rules.',
+        },
+      },
+      {
+        scenarioId: 16,
+        stage: { zh: '发起部署', en: 'Deploy' },
+        description: {
+          zh: '确认接入账号，发起快速部署并查看部署详情。',
+          en: 'Confirm the access account, start Quick Deployment, and review deployment details.',
+        },
+      },
+      {
+        scenarioId: 18,
+        stage: { zh: '验证排障', en: 'Validate' },
+        description: {
+          zh: '核对部署状态、事件、监控和 API，按失败层级继续排查。',
+          en: 'Check deployment state, events, monitoring, and APIs, then troubleshoot by failure layer.',
+        },
+      },
+    ],
+  },
 ]
 
 const scenarios: Scenario[] = [
@@ -640,7 +796,7 @@ const scenarios: Scenario[] = [
   {
     id: 7,
     guideSlug: 'model-usage-revenue',
-    title: { zh: '模型的消费与收益', en: 'Model Usage & Revenue' },
+    title: { zh: '模型的消费与收益', en: 'Model Usage & Earnings' },
     description: {
       zh: '将调用产生的 Token、时长或次数转成平台用户消耗与模型提供方收益，并跟踪账期。',
       en: 'Convert tokens, duration, and request counts into end-user usage and provider revenue across billing periods.',
@@ -664,7 +820,7 @@ const scenarios: Scenario[] = [
   {
     id: 9,
     guideSlug: 'on-prem-compute-onboarding',
-    title: { zh: '本地算力纳管', en: 'On-Prem Compute Onboarding' },
+    title: { zh: '异构卡纳管：算力接入', en: 'On-Prem Compute Onboarding' },
     description: {
       zh: '把私有 IDC / 本地 GPU / NPU / XPU 接入 AGIOne，成为可调度、可计量、可监控的资源池。',
       en: 'Connect private IDC, local GPU, NPU, or XPU resources to AGIOne as schedulable, metered, and observable resource pools.',
@@ -676,7 +832,7 @@ const scenarios: Scenario[] = [
   {
     id: 10,
     guideSlug: 'on-prem-inference-template',
-    title: { zh: '本地推理模板构建', en: 'On-Prem Inference Template Building' },
+    title: { zh: '异构卡纳管：推理模板构建', en: 'On-Prem Inference Template Building' },
     description: {
       zh: '把推理参数沉淀为模板，让用户基于模板快速完成在线推理部署。',
       en: 'Turn inference parameters into templates so users can quickly deploy online inference services.',
@@ -688,7 +844,7 @@ const scenarios: Scenario[] = [
   {
     id: 11,
     guideSlug: 'on-prem-model-deployment-status',
-    title: { zh: '本地模型部署与状态检查', en: 'On-Prem Model Deployment & Status Check' },
+    title: { zh: '异构卡纳管：模型部署与状态检查', en: 'On-Prem Model Deployment & Status Check' },
     description: {
       zh: '在本地资源池上部署在线推理服务，确认可运行、可访问、可排障。',
       en: 'Deploy online inference services on local resource pools and confirm they are runnable, accessible, and diagnosable.',
@@ -700,7 +856,7 @@ const scenarios: Scenario[] = [
   {
     id: 12,
     guideSlug: 'on-prem-dev-training-assets',
-    title: { zh: '本地开发训练与资产沉淀', en: 'On-Prem Development, Training & Assets' },
+    title: { zh: '异构卡纳管：开发训练与资产沉淀', en: 'On-Prem Development, Training & Assets' },
     description: {
       zh: '支持开发、训练与数据管理，沉淀模型、镜像、数据集等资产。',
       en: 'Support development, training, and data management while accumulating models, images, datasets, and other assets.',
@@ -712,7 +868,7 @@ const scenarios: Scenario[] = [
   {
     id: 13,
     guideSlug: 'on-prem-resource-metering-monitoring',
-    title: { zh: '本地资源计量与监控', en: 'On-Prem Resource Metering & Monitoring' },
+    title: { zh: '异构卡纳管：资源计量与监控', en: 'On-Prem Resource Metering & Monitoring' },
     description: {
       zh: '控制额度，对资源池运行、水位、用量、账期计量做运营监控。',
       en: 'Control quotas and monitor resource pool runtime status, capacity, usage, and billing-period metering.',
@@ -736,7 +892,7 @@ const scenarios: Scenario[] = [
   {
     id: 15,
     guideSlug: 'on-cloud-model-asset-publishing',
-    title: { zh: '多云模型资产上架', en: 'On Cloud Model Asset Publishing' },
+    title: { zh: '多平台调度：模型资产上架', en: 'On Cloud Model Asset Publishing' },
     description: {
       zh: '把云上模型需要的运行环境、框架、分类、模型信息与输出 API 配成可部署资产。',
       en: 'Configure runtime environments, frameworks, categories, model information, and output APIs as deployable cloud model assets.',
@@ -748,7 +904,7 @@ const scenarios: Scenario[] = [
   {
     id: 16,
     guideSlug: 'on-cloud-model-deployment-calling',
-    title: { zh: '多云模型部署与调用', en: 'On Cloud Model Deployment & Calling' },
+    title: { zh: '多平台调度：模型部署与调用', en: 'On Cloud Model Deployment & Calling' },
     description: {
       zh: '从云上模型广场选模型，完成部署并获得 API 调用能力。',
       en: 'Select models from the cloud model marketplace, deploy them, and obtain API calling capability.',
@@ -856,7 +1012,7 @@ const scenarios: Scenario[] = [
   {
     id: 25,
     guideSlug: 'on-prem-runtime-storage-foundation',
-    title: { zh: '本地运行镜像与存储底座', en: 'On-Prem Runtime Images & Storage' },
+    title: { zh: '异构卡纳管：运行镜像与存储', en: 'On-Prem Runtime Images & Storage' },
     description: {
       zh: '接入镜像仓库、运行镜像和块/文件/对象存储，并用测试工作负载验证完整运行底座。',
       en: 'Connect image services, runtime images, and block, file, or object storage and validate them with a test workload.',
@@ -880,7 +1036,7 @@ const scenarios: Scenario[] = [
   {
     id: 27,
     guideSlug: 'on-cloud-scheduling-policy',
-    title: { zh: '多云调度策略', en: 'On-Cloud Scheduling Policies' },
+    title: { zh: '多平台调度：调度策略', en: 'On-Cloud Scheduling Policies' },
     description: {
       zh: '配置首选资源池、容量阈值和故障回退，并用测试部署验证实际调度结果。',
       en: 'Configure preferred pools, capacity thresholds, and failure fallback and validate actual scheduling with a test deployment.',

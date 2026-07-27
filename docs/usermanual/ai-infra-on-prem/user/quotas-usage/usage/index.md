@@ -83,6 +83,8 @@ When you need to confirm which instances or tasks caused resource consumption fo
 
 The following figure shows the page state after opening the consumption details entrypoint, which can be used to view specification usage sources.
 
+![Consumption details](./images/consumption-details.png)
+
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |

@@ -17,7 +17,7 @@
 ## 功能入口
 
 - **角色**：运营管理员
-- **菜单**：AI 基础设施（本地算力平台） > 监控 > 设备监控 / 节点统计 / 作业监控
+- **菜单**：AI基础设施 > On-Prem > 监控 > 设备监控 / 节点统计 / 作业监控
 - **路由**：`/powerone/monitor/device`、`/powerone/monitor/node`、`/powerone/monitor/work`
 
 ## 操作步骤

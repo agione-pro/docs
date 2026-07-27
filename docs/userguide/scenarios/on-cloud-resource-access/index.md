@@ -50,6 +50,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 | [Resource Pools](./Resource-Pools/) | Enable regions and maintain display data |
 | [Business-Region Authorization](./Business-Region-Auth/) | Grant access by business type, platform, and region |
 | [Tenant-Cloud Authorization](./Tenant-Cloud-Auth/) | Grant access by tenant and platform |
+| [Deploy a Cloud Model Service](../../../usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) | Follow the complete On-Cloud workflow from operator resource onboarding through user deployment and validation |
 
 ## Related Scenarios
 

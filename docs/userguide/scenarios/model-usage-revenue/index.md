@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# Scenario Overview - Model Usage and Revenue
+# Scenario Overview - Model Usage and Earnings
 
 This scenario shows callers how to review usage and providers how to reconcile customer calls and revenue over the same billing period.
 
@@ -44,7 +44,7 @@ This scenario shows callers how to review usage and providers how to reconcile c
 
 | Document | Description |
 | --- | --- |
-| [Usage and Revenue Workflow](./usage-revenue-workflow) | Caller/provider reconciliation steps and usage/revenue screenshots |
+| [Usage and Earnings Workflow](./usage-revenue-workflow) | Caller/provider reconciliation steps and usage/earnings screenshots |
 
 ## Completion Checklist
 

@@ -39,38 +39,41 @@ My Keys is part of the settings and access-control workspace. Treat it as a plac
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for my keys records and related status.
-
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, organization, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows my keys list.
-
-![My Keys list](./images/my-keys-list.png)
-
-The following screenshot shows create key.
-
-![Create Key](./images/create-key.png)
-
-The following screenshot shows key quota.
-
-![Key quota](./images/key-quota.png)
+| Top button | `Create Key` |
+| Tabs | Model API Keys and System API AK/SK Pairs |
+| Summary | Member quota, used amount, remaining amount, and allocated quota for the current cycle |
+| Table columns | Key name/description, prefix, state, used/limit, created time, and operation |
+| Row actions | View, Quota, Rotate, and Disable |
 
 ## Main Operations
-
-Use the following operations to work with my keys records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 
 ### Manage My Keys
 
 1. Go to `Settings > Personal > My Keys`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to my keys records and related status.
-4. Click the visible `Manage My Keys` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+2. Select `Model API Keys` or `System API AK/SK Pairs`.
+3. Review Key name, prefix, state, used/limit, and creation time.
+
+The following screenshot shows the My Keys list.
+
+![My Keys list](./images/my-keys-list.png)
+
+4. Click `Create Key` to open the creation form.
+5. Select an expiration time and enter the Key name and description.
+6. Enable a quota when needed, then set the reset cycle, cycle limit, alert threshold, and limit action.
+7. Confirm the purpose and permission scope before creating the Key.
+
+The following screenshot shows the Model API Key creation form.
+
+![Create Key](./images/create-key.png)
+
+8. Click `Quota` in the target Key row to view or adjust quota rules.
+9. Confirm that online calls will not be disrupted before saving the quota.
+
+The following screenshot shows the Key quota dialog.
+
+![Key quota](./images/key-quota.png)
 
 ## Parameter Reference
 

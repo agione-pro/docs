@@ -17,7 +17,7 @@ All four NPU cards have traceable health and utilization, and each abnormal sign
 ## Entry
 
 - **Role:** Operator
-- **Menu:** AI Infra (On-Prem) > Monitoring > Device / Node / Workload Monitoring
+- **Menu:** AI Infrastructure > On-Prem > Monitoring > Device / Node / Workload Monitoring
 - **Routes:** `/powerone/monitor/device`, `/powerone/monitor/node`, `/powerone/monitor/work`
 
 ## Steps
