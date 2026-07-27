@@ -38,8 +38,8 @@ AGIOne 通过 AI Infra On-Prem 管理地域、可用区、集群、节点和加�
 | **NVIDIA** | Ampere | A100 / A800 / A40 / A30 / A10 / RTX A 系列 / RTX 30 系列 | 显存和数据中心部署条件需按型号确认 |
 | **NVIDIA** | Ada | L40 / L40S / L20 / L20S / L4 / L2 / RTX 4090 等 | 工作站或消费级型号需额外确认稳定性与交付条件 |
 | **Huawei Ascend** | Ascend 910 | Ascend 910B / Ascend 910C | CANN、MindIE、驱动、镜像和模型需按项目验证 |
-| **Enflame** | Enflame | 106 | 厂商驱动、运行时、推理框架和模型需验证 |
-| **Biren** | Biren | S60 | 厂商驱动、运行时、推理框架和模型需验证 |
+| **Enflame** | Enflame | S60 | 厂商驱动、运行时、推理框架和模型需验证 |
+| **Biren** | Biren | 106 | 厂商驱动、运行时、推理框架和模型需验证 |
 | **Hygon** | BW | BW200 | 厂商驱动、运行时、推理框架和模型需验证 |
 
 #### 1.1.3 核心子能力
