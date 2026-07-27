@@ -9,7 +9,7 @@ This scenario helps operators, providers, and callers decide whether a problem b
 
 ## Applicable Roles
 
-- Platform User, Model Provider, and Platform Operator investigating issues within their permitted scope
+- End User, Model Provider, and Platform Operator investigating issues within their permitted scope
 
 ## Target Outcome
 

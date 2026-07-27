@@ -9,7 +9,7 @@ This scenario helps users distinguish account top-ups, resource quota, resource 
 
 ## Applicable Roles
 
-- Platform User reviewing top-ups, quota, usage, and charges
+- End User reviewing top-ups, quota, usage, and charges
 - Model Provider reviewing model usage and revenue
 - Platform Operator reconciling quota, credits, metering, and billing periods
 

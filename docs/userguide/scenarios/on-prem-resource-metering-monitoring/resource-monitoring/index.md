@@ -7,7 +7,7 @@ All four NPU cards have traceable health and utilization, and each abnormal sign
 ## Applicable Roles
 
 - Platform Operator
-- Platform User reviewing authorized workload monitoring
+- End User reviewing authorized workload monitoring
 
 ## Before You Start
 

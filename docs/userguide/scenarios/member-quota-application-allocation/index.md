@@ -9,7 +9,7 @@ This scenario helps provider administrators request, adjust, and limit quota acc
 
 ## Applicable Roles
 
-- Provider administrators, Model Providers, and platform users who request quota
+- Provider administrators, Model Providers, and end users who request quota
 
 ## Scenario Goals
 

@@ -9,7 +9,7 @@ This scenario covers development environments, training workloads, and the durab
 
 ## Applicable Roles
 
-- Platform User
+- End User
 - Operator maintaining images, storage, and compute resources
 
 ## Goals

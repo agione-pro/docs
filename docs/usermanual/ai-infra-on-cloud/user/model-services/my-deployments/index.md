@@ -29,7 +29,7 @@ My Deployments is the list of running model services. Users can verify whether a
 | Publish | Moves the deployment output into the model publishing flow so it can enter a private or public model catalog. |
 | Publish Region | Target scope for publishing the model. The screenshots show `Private` and `Public`. |
 | Private | Publishes to the private model catalog. Only the current tenant can view and call it. |
-| Public | Publishes to the public model catalog, makes it available to platform users, and supports independent pricing and billing. |
+| Public | Publishes to the public model catalog, makes it available to end users, and supports independent pricing and billing. |
 | Publish Model Page | Page under `Studio > My Models` that opens after the publish region is selected. |
 
 ## Prerequisites
@@ -89,7 +89,7 @@ More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Cal
 | Publish Entry | Yes | Action entry | `Publish` | Opens the publish region selection dialog. |
 | Publish Region | Yes | Selection card | `Private` | Selects whether the model is published to Private or Public. |
 | Private | No | Publish region | `Publish to Private` | Publishes to the private model catalog for tenant-only visibility and calls. |
-| Public | No | Publish region | `Publish to Public` | Publishes to the public model catalog for platform users. |
+| Public | No | Publish region | `Publish to Public` | Publishes to the public model catalog for end users. |
 | Redirect Target | Yes | Page redirect | `Studio > My Models > Publish Model` | Target page after selecting the publish region. |
 | Meta Model | Yes | Select | `Sample Model` | Meta model information on the publish model page. |
 | Model Source | Yes | Dropdown | `AGIOne` | Source of the model being published. |

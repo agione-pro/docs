@@ -423,7 +423,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ]
             },
             {
-              text: "Provider & User",
+              text: "Provider&End User",
               collapsed: false,
               items: [
                 {
@@ -727,7 +727,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "User",
+              text: "Provider&End User",
               collapsed: false,
               items: [
                 {
@@ -817,7 +817,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "User",
+              text: "Provider&End User",
               collapsed: false,
               items: [
                 {

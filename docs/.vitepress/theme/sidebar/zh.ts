@@ -678,7 +678,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '用户',
+              text: '模型提供方&用户',
               collapsed: false,
               items: [
                 {
@@ -768,7 +768,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: '用户',
+              text: '模型提供方&用户',
               collapsed: false,
               items: [
                 {

@@ -7,11 +7,11 @@ next: true
 
 ## Target Outcome
 
-A new Platform User completes registration and email verification; all roles can enter the correct workspace and recover access after forgetting a password.
+A new End User completes registration and email verification; all roles can enter the correct workspace and recover access after forgetting a password.
 
 ## Applicable Roles
 
-- Platform User registering an account
+- End User registering an account
 - Model Provider and Platform Operator signing in or recovering access
 
 ## Before You Start

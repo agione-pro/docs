@@ -13,7 +13,7 @@ The deployment reaches a healthy state, responds to a controlled request, and ca
 
 ## Applicable Roles
 
-- Platform User
+- End User
 - Model Provider when publishing a validated deployment as a model service
 
 ## Before You Start

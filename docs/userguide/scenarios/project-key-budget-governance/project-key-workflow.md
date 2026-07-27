@@ -9,7 +9,7 @@ Use this task to create a project with a budget, model scope, and independent ca
 
 ## Applicable Roles
 
-- Model Providers, platform users, and provider administrators
+- Model Providers, end users, and provider administrators
 
 ## Before You Start
 

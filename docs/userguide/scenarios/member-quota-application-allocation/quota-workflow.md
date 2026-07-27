@@ -9,7 +9,7 @@ Use this task to request quota for a member, adjust the allocation, and set call
 
 ## Applicable Roles
 
-- Provider administrators, Model Providers, and platform users who request quota
+- Provider administrators, Model Providers, and end users who request quota
 
 ## Before You Start
 

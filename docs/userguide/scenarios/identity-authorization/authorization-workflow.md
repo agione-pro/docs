@@ -16,7 +16,6 @@ This scenario guides platform administrators through setting organizational boun
 
 ## Applicable Roles
 
-- `admin`: maintains tenants, users, roles, menus, and platform permissions.
 - `operator`: confirms operational access requirements without taking ownership of permission metadata.
 - `provider` and `enduser`: validation accounts for the resulting access model.
 
