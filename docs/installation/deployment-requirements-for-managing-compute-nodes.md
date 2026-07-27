@@ -1,5 +1,42 @@
 # Managed Compute Node Deployment Configuration Requirements
 
+## Introduction
+
+| Item | Content |
+|------|---------|
+| Applicable Role | Compute resource planner, implementation engineer, customer infrastructure administrator |
+| Navigation Path | Deployment > Managed Compute Node Deployment Configuration Requirements |
+| Function Description | Helps users complete environment survey, accelerator compatibility validation, resource sizing, port, and network planning before compute node installation |
+
+This document answers "whether the compute nodes are ready for onboarding". If you only need installation commands, complete the checks in this document first and then read [Managed Node Quick Deployment](./quick-install-for-managing-compute-nodes).
+
+### Beginner Explanation
+
+This document is the preparation checklist for GPU / NPU nodes. It helps you confirm hardware, drivers, operating system, network, ports, and cleanup authorization before Kubernetes installation starts.
+
+## Preparation Timeline
+
+| Stage | What You Do | Completion Signal |
+| --- | --- | --- |
+| Step 1: Environment survey | Collect hardware, system, driver, network, and storage information for every node | Survey form is complete |
+| Step 2: Compatibility validation | Confirm GPU / NPU model, CPU architecture, and operating system support | Accelerator and OS combination is deployable |
+| Step 3: Resource planning | Confirm Master, etcd, and Worker node count and specifications | Node role and sizing list is confirmed |
+| Step 4: Network and port planning | Allow Kubernetes API, Harbor, AGIOne access, and monitoring ports | Firewall / security group rules are ready |
+| Step 5: Enter deployment | Prepare the package and install the cluster according to the quick deployment guide | Compute cluster deployment can start |
+
+## Terminology Quick Reference
+
+| Term | Plain Explanation |
+| --- | --- |
+| Master node | Kubernetes control-plane node that schedules and manages the cluster |
+| Worker node | GPU / NPU node that actually runs model inference or training workloads |
+| etcd | Metadata store used by Kubernetes to save cluster state |
+| device-plugin | Plugin that registers GPU / NPU resources with the Kubernetes scheduler |
+| RDMA | High-performance network capability often used for multi-host training or tensor parallelism |
+| OFED | Mellanox NIC driver suite commonly used in RDMA scenarios |
+| Harbor | Container image registry for service images |
+| NodePort | Kubernetes method for exposing service ports externally |
+
 ## 1 Environment Survey
 
 ### 1.1 Node Environment Survey Form
