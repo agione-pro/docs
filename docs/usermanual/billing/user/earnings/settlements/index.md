@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider account, provider finance viewer, revenue settlement operator |
+| Applicable role | Provider Account, Provider Finance Viewer, Revenue Settlement Operator |
 | Navigation path | Billing > Earnings > Settlements |
 | Page route | `/billing/provider/settlements` |
 | Managed objects | Monthly settlement statements, billing cycles, settlement status, amount to settle, actual received amount, rounding adjustment, and received time |

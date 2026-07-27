@@ -20,7 +20,7 @@ Settings Getting Started is an onboarding guide for the Settings subsystem. It h
 
 | Item | Content |
 | --- | --- |
-| Audience | End Users, operator admins, security admins, and rate-control admins |
+| Audience | End Users, Operator Admins, Security Admins, and Rate-Control Admins |
 | Goal | Understand Settings entries for accounts, members, roles, tenants, login security, operation logs, and API rate control |
 | Applicable entry | Settings overview, user-side Settings, operator-side Settings, Login Properties, and API Rate Control Overview |
 | Prerequisite | The current account can access Settings and the target configuration object and risk scope are clear |

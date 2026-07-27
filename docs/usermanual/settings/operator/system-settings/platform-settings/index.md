@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable role | Operator Admin |
 | Navigation path | Settings > System Settings > Platform Settings |
 | Page route | `/user/system/platform-settings/config` |
 | Managed objects | Platform Settings records and related status |

@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Model provider |
+| Applicable role | Model Provider |
 | Navigation path | Model Services > Customer Calls > Call Logs |
 | Page route | `/modelone/monitoring/monitor/log` |
 | Managed objects | Customer-side call logs, models, customer names, call status, usage, and error messages |

@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator, billing operator |
+| Applicable role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Customer Billing > Business Units |
 | Page route | `/billing/customers/business-units` |
 | Managed objects | Business units, payment channels, top-up amount limits, initial balance, overdraft limit, and status |

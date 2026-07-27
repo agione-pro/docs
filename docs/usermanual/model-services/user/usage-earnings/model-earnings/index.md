@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Model provider |
+| Applicable role | Model Provider |
 | Navigation path | Model Services > Usage & Earnings > Model Earnings |
 | Page route | `/modelone/accounting/useage/overview/model` |
 | Managed objects | Earnings overview, earning details, billing cycle, date, metered usage, billing rules, Credits, posted amount, and carryover |

@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider account, customer operations user, revenue analyst |
+| Applicable role | Provider Account, Customer Operations User, Revenue Analyst |
 | Navigation path | Billing > Earnings > Customers |
 | Page route | `/billing/provider/customers` |
 | Managed objects | Customer revenue, billing cycle, customer tags, current-cycle revenue, revenue proportion, join time, latest revenue, and details entry |

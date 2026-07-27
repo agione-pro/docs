@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable role | Operator Admin |
 | Navigation path | Settings > API Rate Control > Rule Management |
 | Page route | `/user/system/rate-control/rules` |
 | Managed objects | Rule Management records and related status |

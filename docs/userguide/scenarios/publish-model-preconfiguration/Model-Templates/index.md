@@ -70,7 +70,7 @@ A model source and meta-model are combined into a reusable publication template 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
 | Model Author | Card selection | `qwen / Qwen` | Required; template author |
-| Provider | Select | `Alibaba - China` | Required; upstream model provider |
+| Provider | Select | `Alibaba - China` | Required; upstream Model Provider |
 | Region | Select | `China` | Required; provider region |
 | Base URL Preview | URL | `https://dashscope.aliyuncs.com` | Read-only; model-service base URL |
 | API Key URL Preview | URL | `https://bailian.console.aliyun.com/...` | Read-only; official API-key page |

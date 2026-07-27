@@ -11,7 +11,7 @@ The `Transactions` page is titled `Income & Expense Details` in the UI and is us
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User-side account, business admin, billing viewer |
+| Applicable role | User-Side Account, Business Admin, Billing Viewer |
 | Navigation path | Billing > User Billing > Transactions |
 | Page route | `/billing/my/account/transactions/records` |
 | Managed objects | Income records, expense records, transaction context, and business transaction numbers |

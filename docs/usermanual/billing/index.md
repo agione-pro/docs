@@ -34,10 +34,10 @@ Billing works like the financial control room for AGIOne. User billing helps End
 | --- | --- | --- |
 | End User | [Billing](./user/billing/overview/) | Check balance, transactions, top-up orders, quota governance, and monthly bills. |
 | Provider | [Earnings](./user/earnings/revenue/) | Check revenue overview, settlements, and customer revenue. |
-| Platform operator | [Customer Billing](./operator/customer-billing/customer-overview/) | Verify customers, business units, and customer top-up orders before checking finance status. |
-| Billing operator | [Finance Operations](./operator/finance-operations/today-tasks/) | Start from Today Tasks and Monthly Overview, then proceed by billing cycle. |
-| Finance reviewer | [Financial Accounts](./operator/finance-operations/financial-accounts/) | Compare account transactions, settlement statements, and reconciliation results. |
-| License admin | [License](./operator/license/license/) | Check authorized quota, validity period, and activation status. |
+| Platform Operator | [Customer Billing](./operator/customer-billing/customer-overview/) | Verify customers, business units, and customer top-up orders before checking finance status. |
+| Billing Operator | [Finance Operations](./operator/finance-operations/today-tasks/) | Start from Today Tasks and Monthly Overview, then proceed by billing cycle. |
+| Finance Reviewer | [Financial Accounts](./operator/finance-operations/financial-accounts/) | Compare account transactions, settlement statements, and reconciliation results. |
+| License Admin | [License](./operator/license/license/) | Check authorized quota, validity period, and activation status. |
 
 ## Where to Start
 
@@ -97,7 +97,7 @@ Billing works like the financial control room for AGIOne. User billing helps End
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Issue Type | Yes | Enum | `Settlement reconciliation` | Determines whether to start from user billing, Provider earnings, customer billing, finance operations, or License. |
-| Role | Yes | Enum | `Billing operator` | Matches the accessible entry and recommended reading path. |
+| Role | Yes | Enum | `Billing Operator` | Matches the accessible entry and recommended reading path. |
 | Billing Cycle | Conditionally required | Month | `2026-07` | Must be aligned before comparing amounts, settlements, or transactions. |
 | Tenant / Customer | Conditionally required | Text | `Desensitized tenant` | Limits customer, settlement statement, and account-transaction scope. |
 | Next Entry | System generated | Link | `Finance Operations` | Points to the next page according to issue type. |
