@@ -111,7 +111,7 @@
     <circle cx="45" cy="52" r="24" fill="#475467"/>
     <text x="45" y="52" class="num">8</text>
     <text x="88" y="43" class="band-title">设置与访问控制</text>
-    <text x="88" y="75" class="band-desc">平台治理底座：身份、组织、成员、角色、权限、操作审计与 API 流控共同约束各能力的可见与可用范围</text>
+    <text x="88" y="75" class="band-desc">平台治理底座：身份、租户、成员、角色、权限、操作审计与 API 流控共同约束各能力的可见与可用范围</text>
   </g>
 
   <text x="1528" y="650" class="desc" text-anchor="end">与“功能与能力”正文八个章节逐一对应</text>

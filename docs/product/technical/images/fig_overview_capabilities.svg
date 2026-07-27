@@ -116,7 +116,7 @@
     <circle cx="45" cy="52" r="24" fill="#475467"/>
     <text x="45" y="52" class="num">8</text>
     <text x="88" y="43" class="band-title">Settings and Access Control</text>
-    <text x="88" y="75" class="band-desc">Governance foundation: identities, organizations, members, roles, permissions, audit, and API rate controls define visibility and access</text>
+    <text x="88" y="75" class="band-desc">Governance foundation: identities, tenants, members, roles, permissions, audit, and API rate controls define visibility and access</text>
   </g>
 
   <text x="1528" y="650" class="footer" text-anchor="end">Mapped one-to-one to the eight sections in Core Capabilities and Features</text>
