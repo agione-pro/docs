@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "AGIOne"
-  text: "AI 网关平台文档"
+  text: "AI 网关平台文档（预览版）"
   tagline: 统一的 AI 模型管理、GPU 纳管与 API 网关
   actions:
     - theme: brand

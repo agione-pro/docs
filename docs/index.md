@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "AGIOne"
-  text: "AI Gateway Platform Documentation"
+  text: "AI Gateway Platform Documentation (Preview)"
   tagline: Unified AI model management, GPU orchestration, and API gateway
   actions:
     - theme: brand
