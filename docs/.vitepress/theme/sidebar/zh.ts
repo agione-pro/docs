@@ -51,6 +51,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
         { text: '安装配置文件字段说明', link: '/zh-CN/installation/agione-install-config-reference' },
         { text: '节点纳管-部署配置要求', link: '/zh-CN/installation/deployment-requirements-for-managing-compute-nodes' },
         { text: '节点纳管-快速安装指南', link: '/zh-CN/installation/quick-install-for-managing-compute-nodes' },
+        { text: '节点纳管-ClusterD快速安装', link: '/zh-CN/installation/quick-install-with-agione-clusterd' },
       ],
     },
   ],
