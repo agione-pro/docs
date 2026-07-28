@@ -130,13 +130,17 @@ rm -f /opt/hyperone/.agione-precheck-write-test
 | `8848/8849/TCP` | Nacos | Not occupied by old Nacos or other services |
 | `9848/9849/TCP` | Nacos internal communication | Not occupied by old Nacos or other services |
 | `9000/9001/TCP` | MinIO API and console | Not occupied by old MinIO or other services |
-| `9092/TCP` | Kafka | Not occupied by old Kafka or other services |
+| `9092/9093/TCP` | Kafka broker / controller | Not occupied by old Kafka or other services |
+| `18091/TCP` | Kafka UI | Free when self-managed Kafka UI is enabled |
+| `8021/8022/18088/TCP` | KUBEM / CodeLab / IAM | Checked when the `kubem` service group is enabled |
+| `8011/8017/8012/8001/8002/TCP` | Cloud provider integration services | Checked when the `cloud` service group is enabled |
+| `7091/18181/18082/TCP` | ISync / InfluxDB | Checked when the `core_isync` service group is enabled |
 
 ### 6.2 Recommended Commands
 
 ```bash
-ss -lntup | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9848|9849|18090)\b'
-lsof -iTCP -sTCP:LISTEN -P -n | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9848|9849|18090)\b'
+ss -lntup | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9093|9848|9849|18090|18091|8021|8022|18088|8011|8017|8012|8001|8002|7091|18181|18082)\b'
+lsof -iTCP -sTCP:LISTEN -P -n | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9093|9848|9849|18090|18091|8021|8022|18088|8011|8017|8012|8001|8002|7091|18181|18082)\b'
 nc -vz <target-host-ip> 18090
 nc -vz <target-host-ip> 22
 ```
@@ -166,6 +170,8 @@ When external managed middleware is selected in `agione-install.yml`, verify con
 | Nacos | Host, API port, namespace, username, password, and health endpoint |
 | Kafka | Bootstrap servers, protocol, authentication settings, and topic creation permission |
 | Object storage | Endpoint, access key, secret key, bucket access, and upload/download permission |
+
+Managed Kafka requires both metadata reachability and a topic policy decision. App nodes must be able to reach the advertised broker addresses returned by Kafka; bootstrap TCP reachability alone is not enough. If `agione_app.kafka.auto_create_topics` is `true`, precheck treats broker-side topic auto-creation as enabled. If it is `false`, precheck verifies that required AGIOne topics already exist. If the installer should create missing topics, the account must have topic management permission and `AGIONE_MANAGED_KAFKA_CREATE_TOPICS=1` must be set before installation.
 
 ## 9. Recommended Report Content
 

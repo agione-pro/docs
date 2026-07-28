@@ -241,7 +241,7 @@ Optional application services are not enabled by the IP-based quick path by defa
 | Group | Services | Ports and constraints |
 | --- | --- | --- |
 | `kubem` | `core_kubem`, `core_codelab`, `core_iam` | `core_kubem` uses `8021`, `core_codelab` uses `8022`, and `core_iam` uses `18088`. Port conflicts are treated as optional-service warnings. |
-| `cloud` | `core_sgeneral`, `core_saws`, `core_saliyun`, `core_general`, `core_aliyun` | Cloud provider integration services. No extra fixed externally published port. |
+| `cloud` | `core_sgeneral`, `core_saws`, `core_saliyun`, `core_general`, `core_aliyun` | Cloud provider integration services use `8011`, `8017`, `8012`, `8001`, and `8002`. |
 | `core_isync` | `core_isync`, `influxdb3` | Supported only with self-managed MariaDB and a standby database node. Placed on the same node as `db_mariadb_standby` by default. Uses `7091`, `18181`, and `18082`. |
 
 ### 3.4 Offline environment
@@ -265,6 +265,8 @@ The following requirements apply to each machine:
 | Memory | 16 GiB recommended | The installer requires at least `12GiB` detected memory; 16 GiB remains the recommended request profile |
 | Free disk | 200 GiB | With the default `runtime_root`, each node prefers a data disk with about `160GiB` or more free space; if no suitable data disk exists, the system disk path `/opt/hyperone` is checked |
 
+Architecture support: AGIOne can be deployed on both x86_64 and ARM64 / AArch64 machines. For one multi-node deployment batch, use the installation bundle that matches the target CPU architecture and keep node architectures consistent unless the release note explicitly states mixed-architecture support.
+
 To override the minimum disk threshold for a special delivery environment, set:
 
 ```bash
@@ -281,9 +283,7 @@ export AGIONE_DISK_TOLERANCE_RATIO=0.80
 
 Open the fixed download page on the initiating machine first, then copy the package link from `Download URL`. After extraction, the directory name is determined by the top-level directory inside the archive, for example `agione-release-v1.0-XXX/`. Download it on the initiating machine first; the installer synchronizes it to the other target nodes during multi-node installation.
 
-**Fixed download page:**
-
-<https://agione.pro/release/download/agione-release-latest>
+Fixed download page: [Download link](https://agione.pro/release/download/agione-release-latest)
 
 The page also provides an `MD5 URL`. It is recommended to verify the package after download.
 
@@ -329,7 +329,7 @@ chmod +x ./agione
 ./agione verify-bundle
 ```
 
-Continue only after verification passes. If verification fails, reacquire the package instead of continuing.
+`verify-bundle` validates the Ed25519 bundle signature and the SHA-256 checksums recorded in `SHA256SUMS`. Continue only after verification passes. If verification fails, reacquire the package instead of continuing. Use `./agione verify-bundle --allow-unsigned-legacy` or the compatibility environment variable only when the delivery owner confirms the package is a trusted historical unsigned bundle.
 
 ### 4.4 Execute installation
 
@@ -381,6 +381,8 @@ For cloud-native delivery, use managed middleware to replace part or all of the 
 The cloud resource helper is optional and provider-specific. It can create or reuse resources and render the main installation YAML, but the AGIOne installer itself only reads the final endpoint fields from `/root/agione-install.yml`. Cloud account AK/SK is not required by the AGIOne installer for Nacos config publishing; Nacos publishing uses the native Nacos OpenAPI with `agione_app.nacos.username` and `agione_app.nacos.password`.
 
 Private network connectivity is preferred for managed middleware. Public ELB / EIP exposure should be used only for test or special delivery cases with strict source IP restrictions. Kafka should use the managed Kafka service's advertised listener mechanism; do not assume a shared TCP ELB can replace Kafka broker advertised addresses.
+
+Managed Kafka also requires a topic policy decision. If broker-side topic auto-creation is enabled, or the delivery team explicitly accepts runtime creation of required AGIOne topics, set `agione_app.kafka.auto_create_topics: true`. If it stays `false`, the installer checks that required topics already exist. Create missing topics in the cloud console first; if the installer should create them, the Kafka account must have topic management permission and `AGIONE_MANAGED_KAFKA_CREATE_TOPICS=1` must be set before installation.
 
 When all middleware components use external managed endpoints, configure `agione_app.middleware.mode: managed-middleware` and the endpoint fields in the main installation YAML, then run:
 
@@ -468,6 +470,7 @@ agione_app:
   kafka:
     bootstrap_servers: kafka-1.internal.example.com:9092
     security_protocol: PLAINTEXT
+    auto_create_topics: true
   minio:
     endpoint: http://192.168.31.208:9000
     api_direct_host: 192.168.31.208:9000
@@ -552,6 +555,26 @@ In the TUI, you can choose the middleware deployment mode directly. You do not n
 On the node page, fill machine IPs according to the middleware mode: 4 to 8 for the default self-managed mode, 2 to 8 for all managed middleware, and at least 3 or 4 for hybrid depending on whether the database is self-managed. Each machine row includes SSH user, SSH port, and optional SSH password. Leave a row password empty for passwordless SSH on that node. Press `F5` to run node preflight. The preflight covers SSH access, remote Docker status, `bash` / `tar` / `python`, install disk selection, existing runtime data, and role port occupancy. When `runtime_root` is default, all nodes must pass preflight before the automatically selected runtime root is accepted. If any node fails, the TUI blocks navigation to the execution page. The service-level placement matrix is an advanced capability and is hidden in the standard flow; use a configuration file when advanced placement is required.
 
 ### 4.5 Reinstall testing and configuration sync
+
+The installer records execution state and completion markers. After fixing temporary network, SSH, offline asset, or permission failures, rerun `quick` with the same `/root/agione-install.yml` first. Do not manually delete one remote runtime directory and continue. For data backup or restore involving MariaDB, Nacos, MinIO, InfluxDB, or generated configuration, review the recovery plan first:
+
+```bash
+scripts/agione_stateful_recovery.sh plan
+```
+
+Create a stateful backup:
+
+```bash
+AGIONE_ALLOW_BRIEF_SERVICE_STOP=1 scripts/agione_stateful_recovery.sh backup
+```
+
+Verify the archive before restore:
+
+```bash
+scripts/agione_stateful_recovery.sh verify --archive /path/to/agione-stateful-backup-v1-*.tar.gz
+```
+
+Restore changes runtime data and requires the confirmation environment variables printed by the script. In production, confirm the service-stop window and rollback plan with the customer before restoring.
 
 For repeated installation tests, use this sequence:
 

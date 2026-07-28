@@ -102,6 +102,10 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "Compute Nodes-Installation",
           link: "/installation/quick-install-for-managing-compute-nodes"
         },
+        {
+          text: 'Compute Nodes-Installation with ClusterD',
+          link: '/installation/quick-install-with-agione-clusterd'
+        },
       ],
     }
   ],

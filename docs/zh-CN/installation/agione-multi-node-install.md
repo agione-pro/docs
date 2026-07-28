@@ -232,11 +232,17 @@ host-mode 多节点不再使用 Docker `network_mode: host`。安装器会为每
 
 | 角色 | 关键端口 |
 | --- | --- |
-| 应用 / 入口节点 | `80`、`18090`、`8089`、`8080`、`3000`、`4000`、`5007`、`7002`、`7003`、`8031`、`8032`、`8033`、`18088` |
+| 应用 / 入口节点 | `80`、`18090`、`8089`、`8080`、`3000`、`4000`、`5007`、`7002`、`7003`、`8031`、`8032`、`8033`；显式启用 `kubem` 时还会检查 `8021`、`8022`、`18088` |
 | 中间件节点 | `3306`、`6379`、`8848`、`8849`、`9848`、`9849`、`9092`、`9093`、`18091`、`8080`、`9000`、`9001` |
-| 数据库备库节点 | `3306` |
+| 数据库备库节点 | `3306`；启用 `core_isync` 服务组时还会检查 `7091`、`18181`、`18082` |
 
-可选应用服务在 `quick` 的 IP 快速模式下默认不启用。若通过配置文件显式启用可选服务，相关端口冲突会按可选服务告警处理。
+可选应用服务在 `quick` 的 IP 快速模式下默认不启用。若通过配置文件显式启用，安装器按服务组增加检查：
+
+| 组名 | 启用服务 | 端口和约束 |
+| --- | --- | --- |
+| `kubem` | `core_kubem`、`core_codelab`、`core_iam` | `core_kubem` 使用 `8021`，`core_codelab` 使用 `8022`，`core_iam` 使用 `18088`。端口冲突按可选服务告警处理。 |
+| `cloud` | `core_sgeneral`、`core_saws`、`core_saliyun`、`core_general`、`core_aliyun` | 云厂商集成服务分别使用 `8011`、`8017`、`8012`、`8001`、`8002`。 |
+| `core_isync` | `core_isync`、`influxdb3` | 仅支持自建 MariaDB 且有数据库备库节点；默认与 `db_mariadb_standby` 同节点。使用 `7091`、`18181`、`18082`。 |
 
 ### 3.4 离线环境
 
@@ -258,6 +264,8 @@ TUI 中的“启用离线交付资源完整性校验”只检查本地交付包�
 | CPU | 8 核 | CPU 核数需满足 8 核 |
 | 内存 | 推荐 16 GiB | 安装器要求检测内存至少 `12GiB`；16 GiB 仍是推荐申请规格 |
 | 可用磁盘 | 200 GiB | 默认 `runtime_root` 时，每台节点优先选择可用空间约 `160GiB` 以上的数据盘；无合适数据盘时才检查系统盘路径 `/opt/hyperone` |
+
+架构支持：AGIOne 可部署在 x86_64 和 ARM64 / AArch64 架构机器上。同一批多节点部署请使用与目标机器 CPU 架构一致的安装包，并保持节点架构一致；除非 Release Note 明确说明支持混合架构部署。
 
 如特殊交付环境需要覆盖磁盘最低阻断阈值，可在执行安装前设置：
 
@@ -321,7 +329,7 @@ chmod +x ./agione
 ./agione verify-bundle
 ```
 
-校验通过后再继续安装。如果校验失败，请重新获取安装包，不建议继续执行。
+`verify-bundle` 会校验安装包 Ed25519 签名和 `SHA256SUMS` 中记录的 SHA-256 摘要。校验通过后再继续安装。如果校验失败，请重新获取安装包，不建议继续执行。只有交付负责人确认是可信历史未签名包时，才允许使用 `./agione verify-bundle --allow-unsigned-legacy` 或对应兼容环境变量。
 
 ### 4.4 执行安装
 
@@ -373,6 +381,8 @@ NFS 节点需要具备 NFS 服务端 / 客户端能力。离线环境请在打�
 云资源创建辅助脚本是可选的云厂商专用工具。它可以创建或复用资源，并渲染主安装 YAML；AGIOne 安装器本身只读取 `/root/agione-install.yml` 中最终生成的端点字段。AGIOne 安装器发布 Nacos 配置不需要云账号 AK/SK，而是使用 `agione_app.nacos.username` 和 `agione_app.nacos.password` 调用原生 Nacos OpenAPI。
 
 托管中间件优先使用私网连通。公网 ELB / EIP 暴露只建议用于测试或特殊交付场景，并且必须严格限制来源 IP。Kafka 需要使用托管 Kafka 服务自身的 advertised listener 机制，不要默认认为共享 TCP ELB 可以替代 Kafka broker 的 advertised 地址。
+
+托管 Kafka 还需要确认 Topic 策略。如果 Kafka broker 已开启自动建 Topic，或交付方明确接受运行时自动创建 AGIOne Topic，可以在配置中设置 `agione_app.kafka.auto_create_topics: true`。如果保持 `false`，安装器会检查必需 Topic 是否存在；缺少 Topic 时，优先在云控制台创建。确需由安装器创建时，Kafka 账号必须具备 Topic 管理权限，并在安装前设置 `AGIONE_MANAGED_KAFKA_CREATE_TOPICS=1`。
 
 全部中间件使用外部托管端点时，在主安装 YAML 中配置 `agione_app.middleware.mode: managed-middleware` 和各中间件端点字段，然后执行：
 
@@ -460,6 +470,7 @@ agione_app:
   kafka:
     bootstrap_servers: kafka-1.internal.example.com:9092
     security_protocol: PLAINTEXT
+    auto_create_topics: true
   minio:
     endpoint: http://192.168.31.208:9000
     api_direct_host: 192.168.31.208:9000
@@ -544,6 +555,26 @@ TUI 中可直接选择中间件部署模式，不需要提前手写端点 YAML�
 节点页需要按中间件模式填写机器 IP：默认自建模式为 4 到 8 台，全部外部中间件为 2 到 8 台，混合模式按是否自建数据库决定最少 3 或 4 台。每台机器行都包含 SSH 用户、SSH 端口和可选 SSH 密码。某一行密码留空表示该节点使用 SSH 免密。然后按 `F5` 执行节点预检。预检范围包括 SSH 访问、远端 Docker 状态、`bash` / `tar` / `python`、安装磁盘选择、已有运行数据和角色端口占用。默认 `runtime_root` 时，只有全部节点预检通过后才会采纳自动选择的运行根目录。若某个节点检查失败，TUI 会阻止继续进入安装执行页。服务级编排矩阵属于高级能力，标准流程默认隐藏；如需使用，可通过配置文件承载服务编排。
 
 ### 4.5 重装测试与配置同步
+
+安装器会记录执行状态和安装完成标记。网络、SSH、离线资源或临时权限问题修复后，优先使用同一份 `/root/agione-install.yml` 重新执行 `quick`，不要只手工删除某个远端目录后继续安装。涉及 MariaDB、Nacos、MinIO、InfluxDB 或配置文件的数据恢复时，先查看恢复计划：
+
+```bash
+scripts/agione_stateful_recovery.sh plan
+```
+
+创建有状态备份：
+
+```bash
+AGIONE_ALLOW_BRIEF_SERVICE_STOP=1 scripts/agione_stateful_recovery.sh backup
+```
+
+恢复前先校验归档：
+
+```bash
+scripts/agione_stateful_recovery.sh verify --archive /path/to/agione-stateful-backup-v1-*.tar.gz
+```
+
+恢复会修改运行数据，必须按脚本提示设置确认环境变量后再执行。生产环境恢复前需要客户确认停服窗口和回退方案。
 
 反复测试安装功能时，推荐使用以下顺序：
 

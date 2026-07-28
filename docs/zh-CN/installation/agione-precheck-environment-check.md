@@ -132,13 +132,17 @@ rm -f /opt/hyperone/.agione-precheck-write-test
 | `8848/8849/TCP` | Nacos | 未被旧 Nacos 或其他服务占用 |
 | `9848/9849/TCP` | Nacos 内部通信 | 未被旧 Nacos 或其他服务占用 |
 | `9000/9001/TCP` | MinIO API 与控制台 | 未被旧 MinIO 或其他服务占用 |
-| `9092/TCP` | Kafka | 未被旧 Kafka 或其他服务占用 |
+| `9092/9093/TCP` | Kafka broker / controller | 未被旧 Kafka 或其他服务占用 |
+| `18091/TCP` | Kafka UI | 自建 Kafka UI 启用时未被占用 |
+| `8021/8022/18088/TCP` | KUBEM / CodeLab / IAM | 启用 `kubem` 服务组时检查 |
+| `8011/8017/8012/8001/8002/TCP` | 云厂商集成服务 | 启用 `cloud` 服务组时检查 |
+| `7091/18181/18082/TCP` | ISync / InfluxDB | 启用 `core_isync` 服务组时检查 |
 
 ### 6.2 推荐检查命令
 
 ```bash
-ss -lntup | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9848|9849|18090)\b'
-lsof -iTCP -sTCP:LISTEN -P -n | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9848|9849|18090)\b'
+ss -lntup | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9093|9848|9849|18090|18091|8021|8022|18088|8011|8017|8012|8001|8002|7091|18181|18082)\b'
+lsof -iTCP -sTCP:LISTEN -P -n | grep -E ':(22|80|443|3306|6379|8089|8848|8849|9000|9001|9092|9093|9848|9849|18090|18091|8021|8022|18088|8011|8017|8012|8001|8002|7091|18181|18082)\b'
 nc -vz <target-host-ip> 18090
 nc -vz <target-host-ip> 22
 ```
@@ -168,6 +172,8 @@ host-mode 多节点安装时，需要检查 `agione-install.yml` 中定义的每
 | Nacos | 地址、API 端口、命名空间、用户名、密码、健康接口 |
 | Kafka | bootstrap servers、协议、认证配置、topic 创建权限 |
 | 对象存储 | endpoint、access key、secret key、bucket 访问、上传和下载权限 |
+
+托管 Kafka 需要同时确认 metadata 可用性和 Topic 策略。应用节点必须能访问 Kafka 返回的 advertised broker 地址；只让 bootstrap 端口连通不一定够。如果 `agione_app.kafka.auto_create_topics` 为 `true`，预检会按 broker 已开启自动建 Topic 处理；如果为 `false`，预检会检查 AGIOne 必需 Topic 是否存在。需要安装器创建缺失 Topic 时，账号必须有 Topic 管理权限，并在安装前设置 `AGIONE_MANAGED_KAFKA_CREATE_TOPICS=1`。
 
 ## 9. 报告输出建议
 
