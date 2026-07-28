@@ -52,15 +52,15 @@ Recommended request profile:
 | Free disk | 200 GiB | When `runtime_root` keeps the default value, the installer prefers a data disk that has at least about `160GiB` free, and falls back to the system disk only when no suitable data disk is available |
 | Execution user | `root` | Root installation is recommended to avoid Docker, directory permission, and system service permission issues |
 
+Architecture support: AGIOne can be deployed on both x86_64 and ARM64 / AArch64 machines. Download the installation bundle that matches the target CPU architecture before installation.
+
 ## Quick Install
 
 ### 1. Download bundle
 
 Open the fixed download page first, then copy the package link from `Download URL`. `agione-release-latest` is a download page, not a direct `.tar.gz` package URL.
 
-**Fixed download page:**
-
-<https://agione.pro/release/download/agione-release-latest>
+Fixed download page: [Download link](https://agione.pro/release/download/agione-release-latest)
 
 The page also provides an `MD5 URL`. It is recommended to verify the package after download.
 
@@ -216,7 +216,7 @@ To confirm delivery artifact integrity:
 ./agione verify-bundle
 ```
 
-Run installation only after verification passes.
+`verify-bundle` validates the Ed25519 bundle signature and the SHA-256 checksums recorded in `SHA256SUMS`. Run installation only after verification passes. If verification fails, reacquire the package. Use `./agione verify-bundle --allow-unsigned-legacy` or the compatibility environment variable only when the delivery owner confirms the package is a trusted historical unsigned bundle.
 
 ---
 
@@ -361,6 +361,28 @@ After successful installation, export a handover package:
 
 The handover package can be used for customer acceptance, internal archiving, and later operations handover.
 
+### Stateful backup and recovery
+
+If MariaDB, Nacos, MinIO, InfluxDB, or generated installer configuration needs backup or restore, review the recovery plan first:
+
+```bash
+scripts/agione_stateful_recovery.sh plan
+```
+
+For backup, MinIO and InfluxDB consistent filesystem backup requires allowing a brief service stop:
+
+```bash
+AGIONE_ALLOW_BRIEF_SERVICE_STOP=1 scripts/agione_stateful_recovery.sh backup
+```
+
+Verify the archive before restore:
+
+```bash
+scripts/agione_stateful_recovery.sh verify --archive /path/to/agione-stateful-backup-v1-*.tar.gz
+```
+
+Restore changes runtime data and requires the confirmation environment variables printed by the script. In production, confirm the service-stop window and rollback plan with the customer before restoring.
+
 ---
 
 ## FAQ
@@ -397,7 +419,13 @@ This parameter only skips pre-install checks. During execution, the installer st
 
 ### Q6: When should force clean installation be used?
 
-Use it only when you confirm that old data on the target host can be cleaned and you want to rebuild the environment from the baseline package.
+Use it only when you confirm that old data on the target host can be cleaned and you want to rebuild the environment from the baseline package. Prefer a full quick reinstall:
+
+```bash
+./agione quick -f
+```
+
+If only the unpacked baseline needs to be refreshed, use:
 
 ```bash
 ./agione unpackage --force-clean-install
