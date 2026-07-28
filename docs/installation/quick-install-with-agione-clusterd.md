@@ -7,6 +7,8 @@ AGIOne ClusterD supports the following operating system environments:
 1. **Linux:** x86_64 and arm64; common distributions such as Ubuntu 22.04, Ubuntu 20.04, and CentOS 7 are supported.
 2. **MacOS:** i386 (Intel-based Macs).
 
+**Note: Default port is 8080. If another port required, change ``addr`` item from config/config.yaml file.**
+
 ## Installation
 
 ### 1. Download the installation package

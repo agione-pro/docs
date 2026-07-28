@@ -10,6 +10,8 @@ AGIOne ClusterD是管理多个Kubernetes集群的工具服务，可支持快速�
   - [linux-arm64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-arm64.tar.gz)
 2. 解压，并进入解压目录，执行命令 ``bash start.sh`` 或 ``nohup bash start.sh > clusterd.log 2>&1 &`` 后台运行 
 
+**备注: 默认启用8080端口，如果需要使用其他端口，更改config/config.yaml 的``addr``项，更改监听端口**
+
 ## 算力集群纳管
 ### 算力节点纳管
 ### 集群添加
