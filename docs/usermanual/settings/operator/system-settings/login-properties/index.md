@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > System Settings > Login Properties |
 | Page route | `/user/system/login-properties` |
 | Managed objects | Login Properties records and related status |
@@ -19,13 +19,13 @@ Updated: 2026-07-10
 
 #### Beginner Explanation
 
-Login Properties is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, organization rules, audit records, or rate-control status before changing configuration.
+Login Properties is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an organization or team. | Check role and status before troubleshooting access. |
+| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
 | Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
 | Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
 | API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
@@ -33,7 +33,7 @@ Login Properties is part of the settings and access-control workspace. Treat it 
 ## Prerequisites
 
 1. The current account can access `System Settings > Login Properties`.
-2. The target organization, member, customer, billing cycle, rule, or record scope has been confirmed.
+2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
 3. Required upstream data is already available and the page has finished loading.
 4. For high-risk changes, confirm the impact scope and rollback path before continuing.
 
@@ -43,7 +43,7 @@ The page usually includes filters, summary cards, data tables, detail entries, s
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, organization, customer, member, or billing cycle. |
+| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
 | Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
 | List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
 | Details or dialog | Provides more context before follow-up operations. |
@@ -104,7 +104,7 @@ Use the following operations to work with login properties records and related s
 ## Pitfalls
 
 - Do not change roles, members, login policies, Keys, or API rate-control rules without confirming the affected users and systems.
-- UI entries can differ by role and organization scope; verify the current account context before troubleshooting.
+- UI entries can differ by role and tenant scope; verify the current account context before troubleshooting.
 - Never copy complete Keys, AK/SK, tokens, or secrets into documentation, tickets, or screenshots.
 - Login properties affect user sign-in, registration, account recovery, verification code delivery, and third-party login entries.
 - `Save`, `Reset`, `Enable`, and `Disable` are high-risk actions.
@@ -125,12 +125,12 @@ Use the following operations to work with login properties records and related s
 
 #### Target settings entry is not visible in Login Properties
 
-The expected account, project, member, role, organization, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
 
 **How to check:**
 
-1. Confirm the current tenant, organization, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, organization, time range, and configuration type.
+1. Confirm the current tenant, tenant, project, role, and account permission scope.
+2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
 3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
 4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
 
@@ -141,23 +141,23 @@ A permission, project, role, key, notification, system setting, or rate-control 
 **How to check:**
 
 1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct organization, project, member, role, API key, or policy scope.
+2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
 3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
 4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
 
 #### Why does the login configuration not load?
 
-Check the current tenant, organization, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
 
 ## Next Steps
 
-1. Recheck the affected users, organizations, projects, roles, keys, policies, or configuration objects.
+1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
 2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
 3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
 
 ## Notes
 
-- Permission, Key, login, organization, and rate-control changes can affect real users. Confirm scope before changes.
+- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Keep credentials, private operational details, and sensitive customer data out of the manual.
 - `Save`, `Reset`, `Enable`, and `Disable` are high-risk actions.

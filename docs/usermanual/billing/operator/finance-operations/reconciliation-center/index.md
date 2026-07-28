@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator, billing operator |
+| Applicable Role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Finance Operations > Reconciliation Center |
 | Page route | `/billing/admin/reconciliation` |
 | Managed objects | Bilateral ledger check, compensation queue, revenue detail rebuild, unmatched transfer, and missing revenue detail |
@@ -49,7 +49,7 @@ Reconciliation Center is the billing health-check page. It helps operators find 
 | Unmatched transfer exists | Bilateral Ledger Check results | Go to Financial Accounts to verify transactions. |
 | Missing revenue detail exists | Revenue Detail Rebuild results | Go to Settlement List to verify billing cycle. |
 | Compensation queue is backlogged | Queue status and failure reason | Decide whether retry or manual handling is needed. |
-| Amount differs from expectation | Billing cycle, organization, and fund direction | Go to Settlement List or Account Adjustment. |
+| Amount differs from expectation | Billing cycle, tenant, and fund direction | Go to Settlement List or Account Adjustment. |
 
 ## Prerequisites
 
@@ -113,7 +113,7 @@ Use the following operations to view reconciliation results and exception areas.
 1. Go to `Billing > Finance Operations > Reconciliation Center`.
 2. Select the target `Billing Cycle`.
 3. Review the `Revenue Detail Rebuild` area and confirm whether missing revenue details exist.
-4. Verify organization, billing cycle, business source, related transaction, and exception reason for missing records.
+4. Verify tenant, billing cycle, business source, related transaction, and exception reason for missing records.
 5. If rebuild is required, first confirm that Monthly Overview, Settlement List, and Financial Account transactions use a consistent scope.
 6. For learning or screenshots only, view rebuild entry, missing records, and check results without submitting a real rebuild task.
 
@@ -145,7 +145,7 @@ Use the following operations to view reconciliation results and exception areas.
 - Bilateral Ledger Check is used to find exceptions. It does not prove that funds have been confirmed.
 - Retry, compensation, adjustment, and confirmation actions in Compensation Queue are high-risk operations.
 - Revenue Detail Rebuild may affect billing-cycle statistics, settlement statement amount, and revenue detail scope.
-- Do not record real account IDs, organization names, customer names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys.
+- Do not record real account IDs, tenant names, customer names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys.
 
 ## Result Validation
 
@@ -166,7 +166,7 @@ The expected account, customer, order, bill, settlement, adjustment, or License 
 
 **How to check:**
 
-1. Confirm the current tenant, organization, customer, account, and role scope.
+1. Confirm the current tenant, tenant, customer, account, and role scope.
 2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
 3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
 4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
@@ -177,7 +177,7 @@ The displayed balance, consumption, settlement status, monthly bill, or License 
 
 **How to check:**
 
-1. Confirm inspection period, organization scope, unmatched transfers, and missing revenue details before drawing conclusions.
+1. Confirm inspection period, tenant scope, unmatched transfers, and missing revenue details before drawing conclusions.
 2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
 3. Compare the summary number with the detail list and operation records on the related billing pages.
 4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
@@ -206,4 +206,4 @@ Check the selected billing cycle, customer or project scope, status filters, and
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Reconciliation results are investigation entries, not final financial conclusions.
 - Rebuild or compensation must be preceded by billing-cycle and impact-scope confirmation.
-- Do not record real account IDs, organization names, customer names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.
+- Do not record real account IDs, tenant names, customer names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.

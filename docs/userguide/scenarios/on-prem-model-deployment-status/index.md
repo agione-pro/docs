@@ -10,7 +10,7 @@ This scenario shows how to create a model instance from an inference template an
 ## Applicable Roles
 
 - Model Provider
-- Platform User
+- End User
 - Operator assisting with troubleshooting
 
 ## Goals

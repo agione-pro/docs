@@ -11,7 +11,7 @@ This document connects the Model Services operations of operator admins, model p
 
 | Item | Content |
 | --- | --- |
-| Applicable roles | Operator admins, model providers, model callers |
+| Applicable Roles | Operator Admins, Model Providers, Model Callers |
 | Recommended prerequisites | [Getting Started](../../getting-started/), [Meta-models](../../operator/settings/meta-models/), [My Models](../../user/studio/my-models/), [My Deployments](../../user/studio/my-deployments/) |
 | Output | A configured, reviewed model that is visible in the model marketplace and can be tried and called |
 | Typical use | New model listing, third-party Endpoint access, aggregation model publishing, review acceptance, and call troubleshooting |
@@ -24,15 +24,15 @@ Publishing and calling a model is like placing a model on a shelf and then compl
 
 | Stage | Operator | Goal |
 | --- | --- | --- |
-| Base data preparation | Operator admin | Maintain meta-models, model sources, templates, and tags. |
-| Single-model publishing | Model provider | Configure meta-model, source, Endpoint, protocol, billing, and rate limits. |
-| On-Cloud Quick Deployment branch | Model provider | Create a deployment record through On-Cloud Quick Deployment first, then select a publish region from My Deployments and enter the publish model page. |
-| Aggregation model publishing | Model provider | Select member models and configure routing policy, billing, and publishing method. |
-| Review processing | Operator admin | Review model or app publishing requests. |
-| Marketplace display | Model caller | View details, providers, quick start, and performance in the model marketplace. |
-| Playground call | Model caller | Select a model in Playground and complete text, image, video, or audio trials. |
-| Data viewing | All roles | View My Calls, call logs, usage details, model revenue, and customer calls. |
-| Troubleshooting loop | All roles | Check base configuration, review status, Endpoint, billing, rate limits, and call logs based on the failure path. |
+| Base data preparation | Operator Admin | Maintain meta-models, model sources, templates, and tags. |
+| Single-Model Publishing | Model Provider | Configure meta-model, source, Endpoint, protocol, billing, and rate limits. |
+| On-Cloud Quick Deployment Branch | Model Provider | Create a deployment record through On-Cloud Quick Deployment first, then select a publish region from My Deployments and enter the publish model page. |
+| Aggregation Model Publishing | Model Provider | Select member models and configure routing policy, billing, and publishing method. |
+| Review processing | Operator Admin | Review model or app publishing requests. |
+| Marketplace display | Model Caller | View details, providers, quick start, and performance in the model marketplace. |
+| Playground call | Model Caller | Select a model in Playground and complete text, image, video, or audio trials. |
+| Data viewing | All Roles | View My Calls, call logs, usage details, model revenue, and customer calls. |
+| Troubleshooting loop | All Roles | Check base configuration, review status, Endpoint, billing, rate limits, and call logs based on the failure path. |
 
 #### Terms Quick Reference
 
@@ -60,7 +60,7 @@ Publishing and calling a model is like placing a model on a shelf and then compl
 | --- | --- | --- | --- | --- |
 | Meta-model | Yes | Text | Example Meta-model A | Defines model protocol, modalities, context, and capability boundaries. |
 | Model Source | Yes | Text | Example Source A | Records Endpoint, authentication, request headers, and connectivity configuration. |
-| Published Model | Yes | Text | Example Model A | Target model that the model provider submits for review and listing. |
+| Published Model | Yes | Text | Example Model A | Target model that the Model Provider submits for review and listing. |
 | Review Record | System-generated | Text | REVIEW-202607130001 | Records model or app review status, comments, and processing result. |
 | Call Credential | Yes | Text | PERSONAL-KEY-001 | Credential used by callers for Playground and API integration. Placeholder examples are not real secrets. |
 | Call Log | System-generated | Text | REQ-202607130001 | Key clue for troubleshooting 401, 429, 5xx, timeout, and output exceptions. |
@@ -89,7 +89,7 @@ Result checks:
 | --- | --- | --- |
 | Target meta-model is visible in Meta-models | The target meta-model is visible in [Meta-models](../../operator/settings/meta-models/). | Return to this step and check prerequisites, permissions, and configuration status. |
 | Model type, input/output modalities, protocol, and context limit | Model type, input/output modalities, protocol, and context limit meet publishing requirements. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Model provider can select this meta-model | The model provider can select this meta-model during publishing. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Model Provider can select this meta-model | The Model Provider can select this meta-model during publishing. | Return to this step and check prerequisites, permissions, and configuration status. |
 
 ## Step 2: Operator Admin Maintains Model Sources
 
@@ -184,7 +184,7 @@ Result checks:
 | --- | --- | --- |
 | Target review record status is updated | The target review record status is updated in [Model Reviews](../../operator/approvals/model-reviews/). | Return to this step and check prerequisites, permissions, and configuration status. |
 | Model can enter listing or display flow after approval | After approval, the model can enter the listing or display flow. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Rejection reason is clear | When rejected, the reason is clear and the model provider can revise accordingly. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Rejection reason is clear | When rejected, the reason is clear and the Model Provider can revise accordingly. | Return to this step and check prerequisites, permissions, and configuration status. |
 
 ## Step 7: Model Caller Views the Model in the Marketplace
 
@@ -221,8 +221,8 @@ Result checks:
 
 1. The caller goes to `My Calls > Overview` to view overall call trends.
 2. The caller goes to `My Calls > Call Analytics` and `Call Logs` to view model-level and single-request details.
-3. The model provider goes to `Usage & Revenue > Model Revenue` to view revenue overview and revenue details.
-4. The model provider goes to `Usage & Revenue > Model Usage` to view consumption details.
+3. The model provider goes to `Usage & Earnings > Model Earnings` to view earnings overview and earning details.
+4. The model provider goes to `Usage & Earnings > Model Usage` to view consumption details.
 5. The model provider goes to `Customer Calls` to view customer-level overview, analytics, and logs.
 
 Result checks:
@@ -231,7 +231,7 @@ Result checks:
 | --- | --- | --- |
 | Call data is visible in My Call Overview | Call data is visible in [My Call Overview](../../user/my-calls/overview/). | Return to this step and check prerequisites, permissions, and configuration status. |
 | Single request can be located in Call Logs | A single request can be located in [Call Logs](../../user/my-calls/call-logs/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Revenue and consumption can be viewed | Revenue and consumption can be viewed in [Model Revenue](../../user/usage-earnings/model-earnings/) and [Model Usage](../../user/usage-earnings/model-usage/). | Return to this step and check prerequisites, permissions, and configuration status. |
+| Earnings and consumption can be viewed | Earnings and consumption can be viewed in [Model Earnings](../../user/usage-earnings/model-earnings/) and [Model Usage](../../user/usage-earnings/model-usage/). | Return to this step and check prerequisites, permissions, and configuration status. |
 
 ## Failure Branches and Troubleshooting Paths
 

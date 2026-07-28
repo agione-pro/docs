@@ -9,7 +9,7 @@ This scenario covers development environments, training workloads, and the durab
 
 ## Applicable Roles
 
-- Platform User
+- End User
 - Operator maintaining images, storage, and compute resources
 
 ## Goals
@@ -29,9 +29,11 @@ This scenario covers development environments, training workloads, and the durab
 | 3. Run workloads | Runtime instances execute normally and emit logs and monitoring data |
 | 4. Preserve assets | Models, images, data, and results are stored in reusable locations |
 
-Representative development and runtime screenshots:
+The following screenshot corresponds to Stage 2 and confirms that the development environment is available for online IDE debugging.
 
 ![Development environments](./images/dev-environments.png)
+
+The following screenshot corresponds to Stage 3 and confirms the training workload instance, runtime status, and task entry.
 
 ![Model training](./images/model-training.png)
 

@@ -99,7 +99,7 @@ The model processes every declared input modality, passes protocol testing, and 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
 | Meta-Model | Select | `Qwen3.6-plus` | Required; base meta-model |
-| Model Source | Select | `Alibaba - China` | Required; upstream model provider |
+| Model Source | Select | `Alibaba - China` | Required; upstream Model Provider |
 | Request URL | URL | `https://dashscope.aliyuncs.com` | Required; model-service base URL |
 | API Key | Password | `sk-***` | Required; protected upstream credential |
 | Model Source ID | Text | `qwen3.6-plus` | Required; exact upstream model name |

@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Quotas & Metering > Metering Details |
 | Page route | `/powerone/quota-metric/resource` |
 | Managed objects | Resource ID, resource name, resource type, region, availability zone, batch number, enterprise, and start/end time |

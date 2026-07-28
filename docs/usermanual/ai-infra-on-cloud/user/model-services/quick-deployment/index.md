@@ -11,7 +11,7 @@ Updated: 2026-07-21
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User |
+| Applicable Role | User |
 | Navigation path | AI Infrastructure > On-Cloud > Model Services > Quick Deployment |
 | Page route | `/infrahub/user/model/store` |
 | Managed objects | Deployable scope, matched models, deployment mode, inference engine, business strategy, compute matching plan, cloud account, and deployment task |

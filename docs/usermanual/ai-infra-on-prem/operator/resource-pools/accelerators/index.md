@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Accelerator Management |
 | Page route | `/powerone/resourcepool/accelerators` |
 | Managed objects | AI accelerator vendors, architectures, series, models, VRAM, compute capability, specification metrics, and management status |

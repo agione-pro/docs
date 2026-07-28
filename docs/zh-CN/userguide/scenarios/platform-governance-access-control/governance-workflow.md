@@ -14,8 +14,8 @@ next: true
 
 ## 场景目标
 
-- 用户、租户和角色构成清晰的组织边界。
-- 云资源、本地算力平台资源和模型只对授权范围开放。
+- 用户、租户和角色构成清晰的租户边界。
+- 云资源、异构卡纳管资源和模型只对授权范围开放。
 - API Key、项目、模型、配额和限流共同限制调用能力。
 - 权限与额度调整后，可以通过实际账号验证并追溯变更。
 
@@ -25,7 +25,7 @@ next: true
 | --- | --- | --- |
 | 身份 | 租户、用户、角色、菜单和按钮 | [身份授权](../identity-authorization/) |
 | 云资源 | 云平台、地域和租户授权 | [多云资源接入](../on-cloud-resource-access/) |
-| 本地算力平台资源 | 地域、规格、租户配额和额度 | [本地算力平台 算力纳管](../on-prem-compute-onboarding/)、[资源计量与监控](../on-prem-resource-metering-monitoring/) |
+| 异构卡纳管资源 | 地域、规格、租户配额和额度 | [异构卡纳管：算力接入](../on-prem-compute-onboarding/)、[资源计量与监控](../on-prem-resource-metering-monitoring/) |
 | 模型 | 公有/私有范围、发布审批和模型可见性 | [发布模型](../publish-model/)、[模型发布审批](../model-publishing-approval/) |
 | 项目与调用 | 项目预算、Key、模型白名单和成员额度 | [项目、Key 与预算治理](../project-key-budget-governance/)、[成员额度申请与分配](../member-quota-application-allocation/) |
 | API 流控 | API Pattern、规则版本、节点缓存和命中审计 | [API 流控发布与审计](../api-rate-control-release-audit/) |
@@ -42,7 +42,7 @@ next: true
 
 1. 按 [用户、租户与角色设计逻辑](../../../product/identity-access-model) 确认身份边界。
 2. 完成角色和菜单授权，并用目标账号验证入口可见性。
-3. 按资源类型完成云资源授权或 本地算力平台 规格、配额分配。
+3. 按资源类型完成云资源授权或异构卡纳管规格、配额分配。
 4. 对模型设置公有或私有范围，按需完成发布审批。
 5. 按[项目、Key 与预算治理](../project-key-budget-governance/)创建调用边界，再按[成员额度申请与分配](../member-quota-application-allocation/)核对成员限制。
 6. 对平台 API 按[API 流控发布与审计](../api-rate-control-release-audit/)验证规则版本和命中结果。

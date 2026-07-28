@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Templates > Model Configuration |
 | Page route | `/powerone/fast-build-v2/models` |
 | Managed objects | Base models, model versions, model sources, quantization methods, tags, and associated clusters |
@@ -81,9 +81,11 @@ The following figure shows model version information configuration, used to main
 5. Configure parameter source, environment variables, startup parameters, mount path, or model source credential as required by the page.
 6. In the association configuration area, select tags, visibility scope, associated clusters, or available template scope.
 
-The following figures show tag creation and associated cluster selection, used to maintain model classification and deployment availability scope.
+In Step 6, use the following page to create or select tags for model classification and filtering.
 
 ![Create tag](./images/create-tag.png)
+
+Then use the associated cluster page to confirm where model files are accessible and deployment is allowed.
 
 ![Select associated clusters](./images/select-linked-clusters.png)
 
@@ -95,7 +97,7 @@ The following figures show tag creation and associated cluster selection, used t
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Name | Yes | Dropdown / enum | `Qwen3-8B` | Model name displayed by the platform and referenced by templates. Use a maintainable model name instead of temporary test naming. |
-| Model Author | Conditionally required | Dropdown / enum | `Example Org` | Author, organization, or source provider of the model. Keep it consistent with page filters, model series, and authorization source. |
+| Model Author | Conditionally required | Dropdown / enum | `Example Tenant` | Author, tenant, or source provider of the model. Keep it consistent with page filters, model series, and authorization source. |
 | Model Series | Conditionally required | Dropdown / enum | `Example value` | Model family or base model series. Helps inference templates filter models by series. |
 | Model Type | Conditionally required | Dropdown / enum | `Large language model` | Model capability type or business category. Keep it consistent with inference frameworks, template type, and user-side selection scope. |
 | Scenario | Conditionally required | Dropdown / enum | `Example value` | Business scenario where the model applies. Do not mix test, training, or inference scenarios. |

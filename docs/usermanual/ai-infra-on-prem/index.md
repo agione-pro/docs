@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Subsystem Positioning
 
-AI Infra On-Prem is designed for local or private computing resources. It helps operators manage regions, availability zones, clusters, nodes, storage, images, templates, quotas, and monitoring, and helps regular users create instances and jobs and view usage.
+AI Infra On-Prem is designed for local or private computing resources. It helps operators manage regions, availability zones, clusters, nodes, storage, images, templates, quotas, and monitoring, and helps End Users create instances and jobs and view usage.
 
 #### Beginner Explanation
 
-On-Prem is like an owned computing campus: operators plan the campus, connect machines, and define rules, while regular users request resources, run models, and view status in the opened areas.
+On-Prem is like an owned computing campus: operators plan the campus, connect machines, and define rules, while End Users request resources, run models, and view status in the opened areas.
 
 ## Core Terms Quick Reference
 
@@ -29,7 +29,7 @@ On-Prem is like an owned computing campus: operators plan the campus, connect ma
 | Role | Recommended Entrypoint | Typical Tasks |
 | --- | --- | --- |
 | Operator | [Resource Pools](./operator/resource-pools/regions-zones/), [Templates](./operator/templates/inference-templates/), [Quota Metering](./operator/quotas-metering/metering-details/) | Connect clusters, maintain specifications, open templates, monitor capacity, and adjust quotas. |
-| Regular User | [Templates](./user/model-deployment/templates/), [Extension Services](./user/extensions/images/), [Quotas and Usage](./user/quotas-usage/quotas/) | Select templates or images to create instances, view resource status, and troubleshoot runtime issues. |
+| End User | [Templates](./user/model-deployment/templates/), [Extension Services](./user/extensions/images/), [Quotas and Usage](./user/quotas-usage/quotas/) | Select templates or images to create instances, view resource status, and troubleshoot runtime issues. |
 
 ## Where Should I Start
 
@@ -37,20 +37,29 @@ On-Prem is like an owned computing campus: operators plan the campus, connect ma
 | --- | --- | --- |
 | Understand On-Prem as a new user | [Getting Started](./getting-started/) | Understand resource hierarchy, role boundaries, and reading paths first. |
 | Prepare resources as an operator | [Regions / Availability Zones](./operator/resource-pools/regions-zones/) | Continue with clusters, specifications, images, storage, templates, quota metering, and monitoring. |
-| Use resources as a regular user | [User Overview](./user/overview/) | Continue with deployment templates, model instances, Online IDE, runtime instances, storage, quotas, and usage. |
+| Use resources as a End User | [User Overview](./user/overview/) | Continue with deployment templates, model instances, Online IDE, runtime instances, storage, quotas, and usage. |
 | Troubleshoot resource or runtime issues | [Monitoring Overview](./operator/monitoring/overview/) | Check instance status, events, logs, quotas, images, storage, and cluster status together. |
 | Handle account and permission issues | [Configure Accounts and Permissions](../settings/end-to-end/configure-account-and-permissions/) | Account, role, key, and permission configuration belongs to Settings, not to On-Prem routes. |
+
+## Find an Entry by Goal
+
+| Goal | Recommended Entry | Next Step |
+| --- | --- | --- |
+| Onboard On-Prem compute for the first time | [Getting Started](./getting-started/) | Confirm the region, availability zone, image, storage, and cluster dependencies first. |
+| Manage resource pools | [Regions and Availability Zones](./operator/resource-pools/regions-zones/) | Continue with clusters, accelerators, specifications, images, and storage components. |
+| Create a user-side instance or job | [Deployment Templates](./user/model-deployment/templates/) | Check whether the template, quota, image, and storage allow the workload to start. |
+| Troubleshoot a resource or job issue | [Monitoring Overview](./user/monitoring/overview/) | Continue by cluster, node, device, and job dimensions. |
 
 ## Recommended Reading Path
 
 1. New users should first read [AI Infra On-Prem Getting Started](./getting-started/) to understand resource hierarchy, role boundaries, and reading paths.
 2. Operators should prepare resources in the order of region, cluster, specification, template, and quota.
-3. Regular users should create model services in the order of template, image, storage, instance, and monitoring.
+3. End Users should create model services in the order of template, image, storage, instance, and monitoring.
 4. For the complete workflow, read [Deploy a Model Service from Scratch](./end-to-end/deploy-model-service/).
 
 ## Prerequisites
 
-1. You have confirmed whether the current account is an operator or a regular user.
+1. You have confirmed whether the current account is an operator or a End User.
 2. You have selected the target region, availability zone, or resource pool.
 3. Before creating instances, you have confirmed specifications, images, storage, quotas, and cluster capability.
 4. For troubleshooting, prepare a sanitized time range, resource ID, error message, and log summary.
@@ -86,7 +95,7 @@ On-Prem is like an owned computing campus: operators plan the campus, connect ma
 
 **Symptom:**
 
-After a regular user enters the creation page or monitoring page, the target region, specification, image, or cluster data is not visible.
+After a End User enters the creation page or monitoring page, the target region, specification, image, or cluster data is not visible.
 
 **Possible Causes:**
 
@@ -121,7 +130,7 @@ After a user submits an instance, job, or model service, the task is queued, fai
 ## Next Steps
 
 1. Operators should continuously maintain resource pools, templates, quotas, and monitoring.
-2. Regular users should view usage, logs, and monitoring promptly after creating resources.
+2. End Users should view usage, logs, and monitoring promptly after creating resources.
 3. Before publishing, periodically check documentation screenshots, example commands, and sensitive information sanitization.
 
 ## Notes

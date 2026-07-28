@@ -11,7 +11,7 @@ Model Reviews helps operators review model publishing requests, source configura
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | Model Services > Approvals > Model Reviews |
 | Page route | `/modelone/audit/model` |
 | Managed objects | Model publishing requests, source configuration, protocols, billing, rate limits, and review comments |
@@ -59,7 +59,7 @@ Used to view review status, requester, model, and processing entry points.
 7. Select `Approve` or `Reject` based on the review result. Before final confirmation, verify the review comment and impact scope again.
 8. For page validation only, view details or open the review entry and then close it. Do not click the final `Approve` or `Reject`.
 
-![Model review list](./images/model-reviews-list.png)
+After Step 4, use the review details page to check the model profile, parameter configuration, and review actions.
 
 ![Review Model](./images/model-review.png)
 

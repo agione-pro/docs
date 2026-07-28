@@ -1,10 +1,10 @@
-# AGIOne User Guide for Regular Users
+# AGIOne User Guide for End Users
 
 This guide is written for first-time AGIOne users. It walks you through the full basic workflow: signing in, claiming free quota, trying a model in the web playground, and calling the model with curl. Usernames, passwords, and API keys are shown as placeholders only.
 
 ## Applicable Roles
 
-- Platform User trying and calling a model
+- End User trying and calling a model
 - Model Provider reviewing the resulting customer call records
 
 
@@ -57,7 +57,7 @@ If a privacy policy or service terms dialog appears, click `Agree`.
 
 ### 2.3 Confirm That Sign-In Succeeded
 
-After signing in successfully, you should see a user avatar or initial in the upper-right corner. The left-side menu should show entries such as `Discover`, `Playground`, `Usage & Revenue`, and `My Calls`.
+After signing in successfully, you should see a user avatar or initial in the upper-right corner. The left-side menu should show entries such as `Discover`, `Playground`, `Usage & Earnings`, and `My Calls`.
 
 ## 3. Open the Model List
 

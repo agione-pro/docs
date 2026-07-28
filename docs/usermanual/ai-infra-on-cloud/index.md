@@ -35,11 +35,20 @@ On-Cloud is like a multi-cloud resource scheduling hub: operators connect accoun
 
 | Your Goal | Start Here | Next Step |
 | --- | --- | --- |
-| New user | [Getting Started](./getting-started/) | First understand the relationship between cloud platforms, cloud accounts, resource pools, authorization, deployment assets, and deployment tasks. |
+| New User | [Getting Started](./getting-started/) | First understand the relationship between cloud platforms, cloud accounts, resource pools, authorization, deployment assets, and deployment tasks. |
 | Operator | [Quick Access](./operator/access-workbench/quick-start/), [Cloud Accounts](./operator/access-management/cloud-accounts/), [Resource Pools](./operator/access-management/resource-pools/), [Authorization Management](./operator/auth-management/tenant-cloud-auth/) | Continue maintaining deployment assets and scheduling policies, and open the deployable resource scope. |
 | User | [My Access Accounts](./user/access-management/access-accounts/), [Quick Deployment](./user/model-services/quick-deployment/), [My Deployments](./user/model-services/my-deployments/) | Confirm available resources and view deployment tasks, events, APIs, and monitoring. |
 | Troubleshooter | [My Deployments](./user/model-services/my-deployments/), [Resource Pools](./operator/access-management/resource-pools/), [Authorization Management](./operator/auth-management/tenant-cloud-auth/), [Model Assets](./operator/deploy-assets/models/) | Locate failures from deployment events, resource pools, authorization, and deployment assets. |
 | Full workflow | [Deploy a Cloud Model Service from Scratch](./end-to-end/deploy-cloud-model-service/) | Follow the end-to-end path to check access, authorization, deployment, publishing, and troubleshooting entries. |
+
+## Find an Entry by Goal
+
+| Goal | Recommended Entry | Next Step |
+| --- | --- | --- |
+| Deploy a cloud model service for the first time | [Getting Started](./getting-started/) | Confirm the cloud platform, cloud account, authorization, and resource pool first. |
+| Onboard cloud resources as an operator | [Cloud Accounts](./operator/access-management/cloud-accounts/) | Continue with resource pools, tenant authorization, and business-region authorization. |
+| Start a quick deployment as a user | [Quick Deployment](./user/model-services/quick-deployment/) | Select an available access account, model asset, and runtime specification. |
+| Troubleshoot an unavailable deployment | [My Deployments](./user/model-services/my-deployments/) | Check deployment state, scheduling policy, authorization scope, and runtime image together. |
 
 ## Recommended Reading Path
 

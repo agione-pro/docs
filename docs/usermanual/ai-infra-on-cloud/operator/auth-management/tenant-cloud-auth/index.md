@@ -11,7 +11,7 @@ Updated: 2026-07-20
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Authorization Management > Tenant-Cloud Auth |
 | Page route | `/infrahub/op/auth/platform-auth` |
 | Managed objects | Tenant, Tenant ID, authorized cloud platforms, and actions |
@@ -25,7 +25,7 @@ Tenant-cloud authorization works like issuing a cloud platform access pass to a 
 
 | Term | Description |
 | --- | --- |
-| Tenant | Organization or account scope authorized to use cloud platform resources and services. |
+| Tenant | Tenant or account scope authorized to use cloud platform resources and services. |
 | Tenant ID | Unique identifier used on the page to distinguish tenants. |
 | Authorized Cloud Platforms | Cloud platform scope assigned to the tenant. |
 | Authorize a Single Tenant | Add authorization only for the selected tenant. |

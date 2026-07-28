@@ -15,7 +15,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 
 - The cloud platform, cloud account, and target regions are available.
 - Business types and tenants receive the correct cloud-resource authorization.
-- Platform Users can see the authorized cloud platforms and regions.
+- End Users can see the authorized cloud platforms and regions.
 
 ## Scenario Flow
 
@@ -26,7 +26,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 | 1. Connect the platform | A public- or private-cloud type becomes a managed resource source |
 | 2. Connect resources | Account validation passes and target regions and pools are available |
 | 3. Grant access | Business types and target tenants receive the correct cloud scope |
-| 4. Verify as a user | Platform Users see and use only authorized platforms and regions |
+| 4. Verify as a user | End Users see and use only authorized platforms and regions |
 
 ## Before You Start
 
@@ -38,7 +38,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 1. Start with Quick Access and Access Overview to understand global progress.
 2. Connect the cloud platform, account, and resource pools.
 3. Grant business-region access.
-4. Grant tenant-cloud access and validate with a regular user.
+4. Grant tenant-cloud access and validate with a End User.
 
 ## Document Index
 
@@ -50,13 +50,14 @@ This scenario guides Platform Operators through connecting external cloud platfo
 | [Resource Pools](./Resource-Pools/) | Enable regions and maintain display data |
 | [Business-Region Authorization](./Business-Region-Auth/) | Grant access by business type, platform, and region |
 | [Tenant-Cloud Authorization](./Tenant-Cloud-Auth/) | Grant access by tenant and platform |
+| [Deploy a Cloud Model Service](../../../usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) | Follow the complete On-Cloud workflow from operator resource onboarding through user deployment and validation |
 
 ## Related Scenarios
 
 - **[On Cloud Model Asset Publishing](../on-cloud-model-asset-publishing/)**: configures runtime images, inference frameworks, and model assets on top of the cloud platform, account, resource pool, and authorization prepared here
 - **[On Cloud Model Deployment and Calling](../on-cloud-model-deployment-calling/)**: deploys and calls models after assets are published
 - **[My Deployments User Manual](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)**: reviews state, events, and monitoring for deployed cloud instances
-- **[Platform Governance and Access Control](../platform-governance-access-control/)**: complements cloud-resource authorization with tenant- and organization-level access control
+- **[Platform Governance and Access Control](../platform-governance-access-control/)**: complements cloud-resource authorization with tenant- and tenant-level access control
 
 ## Completion Checklist
 
@@ -67,7 +68,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 | 1 | The cloud platform, account, and target regions are available. |
 | 2 | The business type has the intended regional access. |
 | 3 | The target tenant has cloud-platform access. |
-| 4 | A regular user sees only the authorized platforms, regions, and access-account entries. |
+| 4 | A End User sees only the authorized platforms, regions, and access-account entries. |
 
 ## Troubleshooting
 

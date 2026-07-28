@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Cluster Statistics` is used to view cluster resource trends, capacity, and health status within the user-visible scope from a regular user perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
+`Cluster Statistics` is used to view cluster resource trends, capacity, and health status within the user-visible scope from a End User perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Cluster Statistics |
 | Page route | `/powerone/user-monitor/cluster` |
 | Managed objects | Cluster resource trends, capacity, and health status within the user-visible scope |

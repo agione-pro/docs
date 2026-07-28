@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# 场景概览 - 多云模型资产上架
+# 场景概览 - 多平台调度：模型资产上架
 
 指导运营管理员在完成云资源接入后，准备运行时资产（推理镜像、推理框架）并组装为可部署的模型资产，为后续的部署与调用提供业务侧资产。
 
@@ -50,9 +50,9 @@ next: true
 ## 相关场景
 
 - **[多云资源接入](../on-cloud-resource-access/)**（上游）：本场景依赖其云平台 / 云账号 / 资源池 / 授权配置；元模型来自 [发布模型（预设置）](../publish-model-preconfiguration/)
-- **[多云模型部署与调用](../on-cloud-model-deployment-calling/)**（下游）：在本场景的模型库基础上创建部署实例并对外提供调用
+- **[多平台调度：模型部署与调用](../on-cloud-model-deployment-calling/)**（下游）：在本场景的模型库基础上创建部署实例并对外提供调用
 - **[我的部署与监控（操作手册）](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)**（下游）：对已部署的模型查看状态、事件和监控
-- **[平台治理与访问控制](../platform-governance-access-control/)**（横向）：在租户 / 组织维度的访问控制，约束模型资产的可见与可调用范围
+- **[平台治理与访问控制](../platform-governance-access-control/)**（横向）：在租户维度的访问控制，约束模型资产的可见与可调用范围
 
 ## 完成检查
 

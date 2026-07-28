@@ -9,11 +9,11 @@ Use this task to create a project with a budget, model scope, and independent ca
 
 ## Applicable Roles
 
-- Model Providers, platform users, and provider administrators
+- Model Providers, end users, and provider administrators
 
 ## Before You Start
 
-- Confirm permission to create projects and keys in the target organization.
+- Confirm permission to create projects and keys in the target tenant.
 - Identify the project owner, members, budget cycle, model scope, and over-budget policy.
 - Decide whether the workload needs a Model API Key or System API AK/SK pair.
 
@@ -60,5 +60,5 @@ Set the reset cycle, cycle limit, alert threshold, and limit-reached policy in l
 | --- | --- |
 | Calls stop after the project reaches its budget | Used budget, over-budget policy, and reset cycle |
 | Key call fails | Key state, expiration, project budget, member quota, and model allowlist |
-| Project or key is not visible | Account role, organization membership, and menu permission |
+| Project or key is not visible | Account role, tenant membership, and menu permission |
 | Workload fails after key rotation | Caller configuration update and whether the old key was disabled too early |

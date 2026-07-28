@@ -9,9 +9,9 @@ Scenario guides are organized around outcomes: what you want to accomplish. Choo
 
 | Role | Typical responsibilities |
 | --- | --- |
-| Platform Operator | Configure platform capabilities, onboard resources, assign access, process approvals, and review platform monitoring |
-| Model Provider | Publish and maintain models, configure billing and rate limits, and review customer usage and model revenue |
-| Platform User | Discover and try models, request quota, call APIs, and create development, training, or deployment workloads |
+| Operator | Configure platform capabilities, onboard resources, assign access, process approvals, and review platform monitoring |
+| Provider | Publish and maintain models, configure billing and rate limits, and review customer usage and model revenue |
+| End User | Discover and try models, request quota, call APIs, and create development, training, or deployment workloads |
 
 > If you are unsure which role applies, start with the [Role Comparison](../product/role-comparison), then use the role and subsystem filters below. Use each scenario's completion checklist to confirm that the task is actually finished.
 

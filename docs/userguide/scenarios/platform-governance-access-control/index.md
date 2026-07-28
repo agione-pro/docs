@@ -24,7 +24,7 @@ This cross-scenario overview combines identity permissions, resource authorizati
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Identify objects | Accounts, organizations, projects, models, resources, and actions are explicit |
+| 1. Identify objects | Accounts, tenants, projects, models, resources, and actions are explicit |
 | 2. Configure controls | Roles, menus, keys, quota, and approval rules enforce least privilege |
 | 3. Verify both paths | Authorized accounts complete the task and unauthorized accounts are clearly blocked |
 | 4. Audit and adjust | Access, calls, and quota records are traceable and expired access can be revoked |
@@ -46,7 +46,7 @@ This cross-scenario overview combines identity permissions, resource authorizati
 | Document | Description |
 | --- | --- |
 | [Governance Workflow](./governance-workflow) | Identity, resource, model, calling, credit controls, and a key-page screenshot |
-| [Identity Authorization](../identity-authorization/) | Organizations, members, roles, menus, and button permissions |
+| [Identity Authorization](../identity-authorization/) | Tenants, members, roles, menus, and button permissions |
 | [Project, Key, and Budget Governance](../project-key-budget-governance/) | Project budgets, model allowlists, and calling credentials |
 | [Member Quota Request and Allocation](../member-quota-application-allocation/) | Quota request, allocation, limits, and validation |
 | [API Rate-Control Release and Audit](../api-rate-control-release-audit/) | API rules, node versions, hits, and audit |

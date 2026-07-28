@@ -11,7 +11,7 @@ Updated: 2026-07-21
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Model provider or user with deployment publishing permissions |
+| Applicable Role | Model Provider or User with deployment publishing permissions |
 | Navigation path | Model Services > Studio > My Deployments |
 | Page route | `/modelone/my-deployments/models` |
 | Managed objects | Self-hosted models, on-cloud deployment records, deployment status, resource specifications, and publish entry |

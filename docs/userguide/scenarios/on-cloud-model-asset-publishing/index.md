@@ -15,7 +15,7 @@ This scenario guides Platform Operators through preparing runtime assets after c
 
 - Runtime images can be pulled in the target cloud environment.
 - Inference frameworks contain the correct service ports and startup commands.
-- Model assets can be selected by Platform Users during quick deployment.
+- Model assets can be selected by End Users during quick deployment.
 
 ## Scenario Flow
 
@@ -26,7 +26,7 @@ This scenario guides Platform Operators through preparing runtime assets after c
 | 1. Register the image | The target cloud environment can pull a controlled runtime-image version |
 | 2. Build the framework | Image, startup command, port, and framework type are compatible |
 | 3. Create the model asset | Meta-model, deployment point, cloud model, compute plan, and output protocol are linked |
-| 4. Verify availability | Platform Users see the model and available plan in quick deployment |
+| 4. Verify availability | End Users see the model and available plan in quick deployment |
 
 ## Before You Start
 
@@ -52,7 +52,7 @@ This scenario guides Platform Operators through preparing runtime assets after c
 - **[On Cloud Resource Access](../on-cloud-resource-access/)** (upstream): provides the cloud platform, account, resource pool, and authorization required here; meta-model data comes from [Publish Models Preconfiguration](../publish-model-preconfiguration/)
 - **[On Cloud Model Deployment and Calling](../on-cloud-model-deployment-calling/)** (downstream): creates deployment instances from the model-library assets prepared here
 - **[My Deployments User Manual](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/)** (downstream): reviews state, events, and monitoring for deployed models
-- **[Platform Governance and Access Control](../platform-governance-access-control/)** (cross-cutting): constrains model-asset visibility and calling scope by tenant and organization
+- **[Platform Governance and Access Control](../platform-governance-access-control/)** (cross-cutting): constrains model-asset visibility and calling scope by tenant and tenant
 
 ## Completion Checklist
 
@@ -63,7 +63,7 @@ This scenario guides Platform Operators through preparing runtime assets after c
 | 1 | The runtime image can be pulled in the target cloud environment, with the correct framework type and version. |
 | 2 | Framework startup command, port, and output protocol match the model. |
 | 3 | The model asset links its meta-model, cloud deployment point, compute plan, and output configuration. |
-| 4 | A regular user can see the model and available plan in quick deployment. |
+| 4 | A End User can see the model and available plan in quick deployment. |
 
 ## Troubleshooting
 

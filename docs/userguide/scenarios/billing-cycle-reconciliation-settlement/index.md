@@ -13,7 +13,7 @@ This scenario helps billing operators review billing-cycle status, financial acc
 
 ## Scenario Goals
 
-- Keep the billing cycle, organization, and business-line scope consistent.
+- Keep the billing cycle, tenant, and business-line scope consistent.
 - Reconcile monthly summaries, account transactions, and inspection results.
 - Generate or confirm settlement statements only after blocking exceptions are resolved.
 - Keep account adjustments justified and verify the affected data after completion.
@@ -24,7 +24,7 @@ This scenario helps billing operators review billing-cycle status, financial acc
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Confirm scope | Billing cycle, organization, customer, and business line are consistent |
+| 1. Confirm scope | Billing cycle, tenant, customer, and business line are consistent |
 | 2. Reconcile data | Monthly summaries can be matched to financial-account transactions |
 | 3. Resolve exceptions | Unmatched transfers, missing revenue, and compensation tasks have conclusions |
 | 4. Complete settlement | Statement status, amount, and posting information can be verified |
@@ -32,7 +32,7 @@ This scenario helps billing operators review billing-cycle status, financial acc
 ## Before You Start
 
 - Obtain permission to view financial operations.
-- Identify the target billing cycle, organization, customer, or business line.
+- Identify the target billing cycle, tenant, customer, or business line.
 - Prepare sanitized settlement IDs, transaction IDs, and exception records.
 - Confirm approval requirements before generating statements, rebuilding data, running compensation, or adjusting accounts.
 
@@ -48,6 +48,7 @@ This scenario helps billing operators review billing-cycle status, financial acc
 | Document | Description |
 | --- | --- |
 | [Billing-Cycle Reconciliation and Settlement Workflow](./reconciliation-settlement-workflow) | End-to-end steps from monthly review through settlement and adjustment verification |
+| [Reconcile and Settle a Billing Cycle](../../../usermanual/billing/end-to-end/reconcile-billing-cycle/) | Review the complete manual path for monthly checks, reconciliation exceptions, settlement statements, and post-adjustment verification |
 
 ## Completion Checklist
 
@@ -55,7 +56,7 @@ This scenario helps billing operators review billing-cycle status, financial acc
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Monthly Overview, Financial Accounts, and Settlement Statements use the same billing cycle and organization scope. |
+| 1 | Monthly Overview, Financial Accounts, and Settlement Statements use the same billing cycle and tenant scope. |
 | 2 | Blocking items in Today's Tasks are resolved or have an identified owner. |
 | 3 | Reconciliation exceptions are resolved, waived, or assigned a follow-up plan. |
 | 4 | Statement amount, status, and posting information can be explained by transactions and summaries. |

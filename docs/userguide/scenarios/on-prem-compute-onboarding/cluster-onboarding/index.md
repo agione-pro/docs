@@ -16,7 +16,7 @@ The cluster is available, all four NPU cards are discovered on the expected node
 ## Entry
 
 - **Role:** Operator
-- **Menu:** AI Infra (On-Prem) > Resource Pools > Cluster Management
+- **Menu:** AI Infrastructure > On-Prem > Resource Pools > Cluster Management
 - **Route:** `/powerone/resourcepool/cluster`
 
 ## Steps

@@ -173,7 +173,7 @@ Screenshot:
 2. Do not record real account names, login credentials, phone numbers, email addresses, or one-time verification codes in documents, screenshots, or tickets.
 3. Confirm that the end user can sign in.
 4. Confirm that the end user has permission to access billing pages and start a credits recharge.
-5. If the recharge entry is not visible after registration, check the organization, role, billing permission, business unit, and payment-channel configuration.
+5. If the recharge entry is not visible after registration, check the tenant, role, billing permission, business unit, and payment-channel configuration.
 
 ## 4. End User Recharges Credits
 
@@ -284,14 +284,14 @@ After signing in, the end user cannot open the recharge page or cannot see the `
 
 **Possible causes:**
 
-- The account has not completed registration or has not joined the correct organization.
+- The account has not completed registration or has not joined the correct tenant.
 - The current role has no billing or recharge permission.
 - The business unit or payment channel is not enabled.
 
 **Handling:**
 
 1. Check the end-user account status.
-2. Check organization, role, and billing permissions.
+2. Check tenant, role, and billing permissions.
 3. Check whether the Stripe or Alipay payment channel is available.
 4. Check whether the business unit allows the selected payment method.
 
@@ -306,7 +306,7 @@ After the end user completes payment, the account credits do not change.
 - The payment result has not been returned to the platform.
 - Platform callback verification failed.
 - The recharge order is still processing.
-- The user is viewing the wrong account, organization, or business unit.
+- The user is viewing the wrong account, tenant, or business unit.
 
 **Handling:**
 
@@ -324,7 +324,7 @@ The platform administrator cannot find the end user's recharge record in `Top-up
 **Possible causes:**
 
 - The filter conditions are too narrow.
-- The wrong customer, organization, or business unit is selected.
+- The wrong customer, tenant, or business unit is selected.
 - The payment-method filter is incorrect.
 - The recharge order was not created successfully.
 - Payment was not completed or was canceled.
@@ -334,7 +334,7 @@ The platform administrator cannot find the end user's recharge record in `Top-up
 1. Search precisely by order number.
 2. Expand the time range and search again.
 3. Check records by Stripe or Alipay payment method.
-4. Confirm the customer, organization, and business unit of the end user.
+4. Confirm the customer, tenant, and business unit of the end user.
 5. Compare the user-side recharge order with the payment-channel result.
 
 ## Notes

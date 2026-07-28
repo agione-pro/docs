@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Identity Authorization
 
-This scenario uses organizations, members, and roles to define which menus, actions, and business resources a user may access.
+This scenario uses tenants, members, and roles to define which menus, actions, and business resources a user may access.
 
 ## Applicable Roles
 
@@ -14,17 +14,17 @@ This scenario uses organizations, members, and roles to define which menus, acti
 
 ## Goals
 
-- Assign users to the correct organization and role.
+- Assign users to the correct tenant and role.
 - Enforce least privilege for menus, actions, and resources.
 - Verify changes through a fresh session and operation logs.
 
 ## Scenario Flow
 
-**Main path:** Confirm organization boundary → Define responsibilities → Create or select a role → Assign members → Verify allowed and denied paths → Review operation logs
+**Main path:** Confirm tenant boundary → Define responsibilities → Create or select a role → Assign members → Verify allowed and denied paths → Review operation logs
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Confirm boundary | Organization, member ownership, and responsibilities are clear |
+| 1. Confirm boundary | Tenant, member ownership, and responsibilities are clear |
 | 2. Select permissions | Roles, menus, and button permissions match the job |
 | 3. Assign access | The target member receives the intended role and scope |
 | 4. Verify and audit | Authorized actions work, unauthorized actions are blocked, and changes are traceable |
@@ -35,13 +35,13 @@ Representative role screenshot:
 
 ## Before You Start
 
-- Define the target user, organization, and job responsibility.
+- Define the target user, tenant, and job responsibility.
 - List required and explicitly forbidden capabilities.
 - Prepare a verification account.
 
 ## Recommended Reading Order
 
-1. Confirm organization settings and member ownership.
+1. Confirm tenant settings and member ownership.
 2. Prefer a built-in role; create a least-privilege role only when required.
 3. Assign the target member and sign in again.
 4. Verify allowed and denied paths and review operation logs.
@@ -51,6 +51,7 @@ Representative role screenshot:
 | Document | Description |
 | --- | --- |
 | [Identity Authorization Workflow](./authorization-workflow) | Role design, member assignment, access verification, and a role-page screenshot |
+| [Configure Accounts and Permissions](../../../usermanual/settings/end-to-end/configure-account-and-permissions/) | Follow the complete manual workflow for account preparation, role configuration, member assignment, and least-privilege validation |
 
 ## Completion Checklist
 

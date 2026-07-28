@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Monitoring > Cluster Statistics |
 | Page route | `/powerone/monitor/cluster` |
 | Managed objects | Cluster status, resource capacity, job count, and region/availability zone ownership |

@@ -9,7 +9,7 @@ This scenario helps operators, providers, and callers decide whether a problem b
 
 ## Applicable Roles
 
-- Platform User, Model Provider, and Platform Operator investigating issues within their permitted scope
+- End User, Model Provider, and Platform Operator investigating issues within their permitted scope
 
 ## Target Outcome
 
@@ -34,7 +34,7 @@ This scenario helps operators, providers, and callers decide whether a problem b
 | Cloud deployment fails or is unreachable | Deployment details, events, and monitoring | [My Deployments](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/) |
 | On-Prem job is pending or failed | Job monitoring, instance events, and logs | [Job Monitoring](../../../usermanual/ai-infra-on-prem/operator/monitoring/jobs/), [Instances](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | Node or accelerator is abnormal | Node Statistics and Device Monitoring | [Node Statistics](../../../usermanual/ai-infra-on-prem/operator/monitoring/nodes/), [Device Monitoring](../../../usermanual/ai-infra-on-prem/operator/monitoring/devices/) |
-| Quota, usage, or amount is abnormal | Quota, metering details, and model usage | [On-Prem Metering & Monitoring](../on-prem-resource-metering-monitoring/), [Model Usage & Revenue](../model-usage-revenue/) |
+| Quota, usage, or amount is abnormal | Quota, metering details, and model usage | [On-Prem Metering & Monitoring](../on-prem-resource-metering-monitoring/), [Model Usage & Earnings](../model-usage-revenue/) |
 
 ## General Sequence
 

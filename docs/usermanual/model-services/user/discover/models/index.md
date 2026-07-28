@@ -11,7 +11,7 @@ The Models page helps users discover available models, compare providers, review
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | Model Services > Discover > Models |
 | Page route | `/modelone/store/model` |
 | Managed objects | Model lists, providers, quick start, performance metrics, and model overview |
@@ -27,7 +27,7 @@ The Models page is like a model catalog. Users first check model capabilities an
 | --- | --- |
 | Base URL | Base address of the model service. The example uses `https://api.example.com/v1`. |
 | Full URL | Complete call address. The example uses `https://api.example.com/v1/chat/completions`. |
-| Provider | Organization or channel that provides the model instance. |
+| Provider | Tenant or channel that provides the model instance. |
 | Personal Key | Personal call key. This is a sensitive credential. |
 
 ## Prerequisites
@@ -83,7 +83,7 @@ Confirm model capability, context, and pricing boundaries in the overview.
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Name | Yes | Text | `Qwen3.7-Plus` | Display name used to identify the model in the list and details page. |
-| Provider | Yes | Text / Filter | `AGIOneSystem` | Organization or channel that provides the model instance. |
+| Provider | Yes | Text / Filter | `AGIOneSystem` | Tenant or channel that provides the model instance. |
 | Model Type | No | Filter / Tag | `Text` | Distinguishes multimodal, text, image, speech, video, embedding, reranking, and other model types. |
 | Capability Tags | No | Tag | `Tool Calling` | Shows model capabilities such as tool calling or reasoning. |
 | Input/Output Modalities | No | Tag | `Text / Image` | Shows supported input and output types. |

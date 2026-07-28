@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Resource Usage` is used to view the current tenant's usage and consumption details across different resource specifications. Regular users can view quotas by specification and enter consumption details to confirm resource consumption sources.
+`Resource Usage` is used to view the current tenant's usage and consumption details across different resource specifications. End Users can view quotas by specification and enter consumption details to confirm resource consumption sources.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Resource Usage |
 | Page route | `/powerone/quota-usage/usage` |
 | Managed objects | Resource specification usage, quota occupation, and consumption details |
@@ -82,6 +82,8 @@ When you need to confirm which instances or tasks caused resource consumption fo
 5. Continue troubleshooting by instance name, time, and resource type.
 
 The following figure shows the page state after opening the consumption details entrypoint, which can be used to view specification usage sources.
+
+![Consumption details](./images/consumption-details.png)
 
 ## Parameter Reference
 

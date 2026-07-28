@@ -35,10 +35,10 @@
 | Model Services | 模型发现和 Playground | 支持 | 需要可见、已审核且可用的模型，模态取决于具体模型 | [Model Services 用户手册](../../usermanual/model-services/) |
 | Model Services | 模型对应的 API 访问与调用记录 | 支持 | 访问权限、Endpoint、凭据、配额和模型可用 | [从发布到调用模型](../../usermanual/model-services/end-to-end/publish-and-call-model/) |
 | Model Services | 用量、客户调用和模型收益 | 支持 | 范围和数据新鲜度取决于角色、计量与同步状态 | [Model Services 用户手册](../../usermanual/model-services/) |
-| 财务 | 用户账务、交易流水、充值订单、月度账单和额度治理 | 支持 | 范围取决于账号、组织、账期和同步状态 | [财务用户手册](../../usermanual/billing/) |
+| 财务 | 用户账务、交易流水、充值订单、月度账单和额度治理 | 支持 | 范围取决于账号、租户、账期和同步状态 | [财务用户手册](../../usermanual/billing/) |
 | 财务 | 客户财务、运营财务、结算、巡检对账和调账 | 支持 | 需要运营方权限、统一账期和源记录同步 | [财务快速入门](../../usermanual/billing/getting-started/) |
 | 财务 | License 额度、有效期、激活状态和模块授权 | 支持 | License 状态取决于交付包、激活状态和已配置额度 | [License](../../usermanual/billing/operator/license/license/) |
-| 设置 | 个人 Key、账号信息、项目、成员、角色和组织 | 支持 | 可见范围取决于角色、组织范围和菜单授权 | [设置用户手册](../../usermanual/settings/) |
+| 设置 | 个人 Key、账号信息、项目、成员、角色和租户 | 支持 | 可见范围取决于角色、租户范围和菜单授权 | [设置用户手册](../../usermanual/settings/) |
 | 设置 | 平台设置、登录配置、操作日志和审计记录 | 支持 | 高风险变更需要平台或安全管理权限 | [设置快速入门](../../usermanual/settings/getting-started/) |
 | 设置 | API 流控规则、观测审计、节点缓存和发布中心 | 支持 | 规则效果取决于发布状态、节点同步和当前流量范围 | [API 流控概览](../../usermanual/settings/operator/api-rate-control/overview/) |
 

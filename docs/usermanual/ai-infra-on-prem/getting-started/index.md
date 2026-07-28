@@ -11,18 +11,18 @@ Updated: 2026-07-08
 | --- | --- | --- |
 | First time using On-Prem | Understand the hierarchy of regions, availability zones, clusters, nodes, and resource pools first. | Read [Deploy a Model Service from Scratch](../end-to-end/deploy-model-service/). |
 | Operator | Complete region / availability zone setup and cluster access first. | Continue configuring specifications, images, storage, templates, quotas, and monitoring. |
-| Regular User | Confirm available regions, quotas, images, and storage first. | Create deployment templates, online IDEs, or runtime instances. |
+| End User | Confirm available regions, quotas, images, and storage first. | Create deployment templates, online IDEs, or runtime instances. |
 | Troubleshooter | First locate whether the issue is about permissions, quotas, images, storage, specifications, or clusters. | View instance logs, events, resource usage, and monitoring. |
 
 ## Feature Overview
 
-`AI Infra On-Prem` is AGIOne's access, scheduling, metering, and usage capability for localized heterogeneous computing resource pools. It connects regions, availability zones, clusters, nodes, specifications, images, storage, templates, quotas, and monitoring into a complete chain: operators first connect and govern resources, and regular users then create model services, online IDEs, runtime instances, and storage resources based on the opened capabilities.
+`AI Infra On-Prem` is AGIOne's access, scheduling, metering, and usage capability for localized heterogeneous computing resource pools. It connects regions, availability zones, clusters, nodes, specifications, images, storage, templates, quotas, and monitoring into a complete chain: operators first connect and govern resources, and End Users then create model services, online IDEs, runtime instances, and storage resources based on the opened capabilities.
 
 This document is an understanding-oriented getting-started page, not a concrete operation page. It explains On-Prem resource hierarchy, role boundaries, and reading paths. Real create, delete, start, stop, disable, unbind, credit adjustment, or resource change actions should be performed only in the corresponding feature pages and according to their risk notes.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator, regular user |
+| Applicable Role | Operator, End User |
 | Recommended Entrypoint | This document, [Heterogeneous Accelerator Management Overview](../), [Deploy a Model Service from Scratch](../end-to-end/deploy-model-service/) |
 | Key Objects | Regions, availability zones, clusters, nodes, resource specifications, image services, storage components, templates, quotas, monitoring |
 | Typical Use | Build an On-Prem resource understanding framework, clarify the operation boundary between operators and users, and choose the correct reading path |
@@ -36,7 +36,7 @@ AI Infra On-Prem is like the user guide for a self-built computing campus: first
 | Role | Reading Focus | Recommended Entrypoint |
 | --- | --- | --- |
 | Operator | Connect regions, availability zones, clusters, specifications, images, storage, templates, and quotas. | [Regions / Availability Zones](../operator/resource-pools/regions-zones/), [Cluster Management](../operator/resource-pools/clusters/), [Templates](../operator/templates/models/) |
-| Regular User | Create model services, online IDEs, runtime instances, storage, and image projects. | [User Overview](../user/overview/), [Templates](../user/model-deployment/templates/), [Runtime Instances](../user/dev-resources/runtime-instances/) |
+| End User | Create model services, online IDEs, runtime instances, storage, and image projects. | [User Overview](../user/overview/), [Templates](../user/model-deployment/templates/), [Runtime Instances](../user/dev-resources/runtime-instances/) |
 | Troubleshooter | Check permissions, quotas, images, storage, specifications, clusters, logs, and monitoring. | [Monitoring Overview](../user/monitoring/overview/), [Resource Usage](../user/quotas-usage/usage/) |
 
 ## What Are AGIOne and On-Prem
@@ -55,15 +55,15 @@ In an On-Prem scenario, the platform is responsible for:
 | Role | Main Responsibilities | Common Sections |
 | --- | --- | --- |
 | Operator | Connect regions, availability zones, clusters, specifications, images, and storage components; maintain templates, quotas, metering, and monitoring. | [Regions / Availability Zones](../operator/resource-pools/regions-zones/), [Cluster Management](../operator/resource-pools/clusters/), [Templates](../operator/templates/models/) |
-| Regular User | Use resources opened by operators to create model services, online IDEs, runtime instances, object storage, and image projects, and view quotas, usage, and monitoring. | [User Overview](../user/overview/), [Templates](../user/model-deployment/templates/), [Runtime Instances](../user/dev-resources/runtime-instances/) |
+| End User | Use resources opened by operators to create model services, online IDEs, runtime instances, object storage, and image projects, and view quotas, usage, and monitoring. | [User Overview](../user/overview/), [Templates](../user/model-deployment/templates/), [Runtime Instances](../user/dev-resources/runtime-instances/) |
 
-Operators decide "which resources are available." Regular users decide "how to use the opened resources for business." If the user side cannot see a resource, troubleshooting usually starts from region, permissions, quotas, templates, specifications, and cluster status.
+Operators decide "which resources are available." End Users decide "how to use the opened resources for business." If the user side cannot see a resource, troubleshooting usually starts from region, permissions, quotas, templates, specifications, and cluster status.
 
 ## Cross-System Boundary
 
 | Issue Type | Target Subsystem | Description |
 | --- | --- | --- |
-| Accounts, roles, permissions, keys, organization members | [Settings](../../settings/end-to-end/configure-account-and-permissions/) | Account and permission configuration does not belong to On-Prem. Do not create a same-name route under On-Prem. |
+| Accounts, roles, permissions, keys, tenant members | [Settings](../../settings/end-to-end/configure-account-and-permissions/) | Account and permission configuration does not belong to On-Prem. Do not create a same-name route under On-Prem. |
 | Invisible resources, unavailable specifications, queued instances | AI Infra On-Prem | Troubleshoot with regions, availability zones, clusters, templates, quotas, images, storage, and monitoring pages. |
 | Model publishing, review, listing, or calling | [Model Services](../../model-services/) | Model business lifecycle content is not handled in On-Prem resource getting-started content. |
 
@@ -82,7 +82,7 @@ The recommended configuration order is: create regions first, then create availa
 
 ## User-Side and Operator-Side Function Boundaries
 
-| Capability | Operator | Regular User |
+| Capability | Operator | End User |
 | --- | --- | --- |
 | Region / Availability Zone | Create, edit, enable, disable, and bind components. | Select opened regions and view results related to their own resources. |
 | Cluster / Node | Register clusters, view nodes, and associate specifications and storage. | Perceive resource runtime results through instance status, logs, and monitoring. |
@@ -111,7 +111,7 @@ The recommended configuration order is: create regions first, then create availa
 
 ## Prerequisites
 
-1. You have confirmed whether the current account role is operator or regular user.
+1. You have confirmed whether the current account role is operator or End User.
 2. You have confirmed that the target resource is in a local cluster or private resource pool.
 3. Before creating instances, you have confirmed the region, specification, image, storage, and quota.
 
@@ -144,7 +144,7 @@ The recommended configuration order is: create regions first, then create availa
 ## Understanding Checklist
 
 - You can clearly explain the hierarchy of regions, availability zones, clusters, nodes, and resource pools.
-- You can distinguish operator resource preparation from regular user resource usage.
+- You can distinguish operator resource preparation from End User resource usage.
 - You know to check quotas, specifications, images, storage, and monitoring first when instance creation fails.
 
 ## Recommended Reading Path
@@ -159,7 +159,7 @@ The recommended configuration order is: create regions first, then create availa
 6. Configure tenant quotas and credits.
 7. Use monitoring pages to verify resource pool, node, device, and job status.
 
-#### Regular Users
+#### End Users
 
 1. Read [User Overview](../user/overview/) to confirm the current entrypoint.
 2. Use [Templates](../user/model-deployment/templates/) or [Model Instances](../user/model-deployment/instances/) to create inference services.
@@ -213,7 +213,7 @@ A model instance, online IDE, or runtime instance does not enter the running sta
 ## Next Steps
 
 1. Operators should continue with regions, clusters, specifications, storage, images, templates, quotas, and monitoring pages.
-2. Regular users should continue with user overview, deployment templates, runtime instances, object storage, image services, quotas, and usage.
+2. End Users should continue with user overview, deployment templates, runtime instances, object storage, image services, quotas, and usage.
 3. Troubleshooters should keep events, logs, monitoring, quota, image, storage, and cluster status in the same investigation path.
 
 ## Notes
@@ -222,4 +222,4 @@ A model instance, online IDE, or runtime instance does not enter the running sta
 - For operations involving deletion, disablement, offline changes, credit adjustment, or resource unbinding, confirm the impact scope, maintenance window, and rollback plan first.
 - Before taking screenshots, check whether the page exposes internal addresses, credentials, keys, certificates, or a complete kubeconfig.
 - For learning or screenshots only, view entrypoints, fields, status, and navigation without submitting real create, delete, start, stop, disable, unbind, credit adjustment, or resource change actions.
-- If the issue is about accounts, roles, permissions, keys, or organization members, go to Settings. If the issue is about invisible resources, unavailable specifications, or queued instances, go to On-Prem resource, quota, and monitoring pages.
+- If the issue is about accounts, roles, permissions, keys, or tenant members, go to Settings. If the issue is about invisible resources, unavailable specifications, or queued instances, go to On-Prem resource, quota, and monitoring pages.

@@ -11,10 +11,10 @@ This page describes the main workflow for billing operators to complete one bill
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Billing operator, finance reviewer, platform operator |
+| Applicable Role | Billing Operator, Finance Reviewer, Platform Operator |
 | Navigation path | Billing > Reconcile and Settle a Billing Cycle |
 | Page route | `/usermanual/billing/end-to-end/reconcile-billing-cycle/` |
-| Managed objects | Billing cycle, organization, financial accounts, reconciliation exceptions, settlement statements, and account adjustments |
+| Managed objects | Billing cycle, tenant, financial accounts, reconciliation exceptions, settlement statements, and account adjustments |
 | Typical use | Complete a billing-cycle reconciliation path from monthly overview to settlement statements and exception closure |
 
 #### Beginner Explanation
@@ -29,14 +29,14 @@ Billing-cycle reconciliation is like month-end closing. First check whether the 
 | Today Tasks | Billing tasks or exception reminders that currently require handling. | [Today Tasks](../../operator/finance-operations/today-tasks/) |
 | Financial Accounts | Accounts used to check balance, income, expense, and transactions. | [Financial Accounts](../../operator/finance-operations/financial-accounts/) |
 | Reconciliation Exception | Exception clues such as unmatched transfers, missing revenue details, or compensation queue items. | [Reconciliation Center](../../operator/finance-operations/reconciliation-center/) |
-| Settlement Statement | Settlement record for an organization and billing cycle. | [Settlement List](../../operator/finance-operations/settlement-list/) |
+| Settlement Statement | Settlement record for an tenant and billing cycle. | [Settlement List](../../operator/finance-operations/settlement-list/) |
 | Account Adjustment | Approved correction for billing differences. | [Account Adjustment](../../operator/finance-operations/account-adjustment/) |
 
 ## Prerequisites
 
 1. The current account has permission to view finance operations.
 2. The target billing cycle has been confirmed.
-3. The target organization, customer, or business-unit scope has been confirmed.
+3. The target tenant, customer, or business-unit scope has been confirmed.
 4. Settlement statements, account transactions, top-up orders, or business records required for reconciliation are available.
 5. Before settlement generation, rebuild, compensation, or account adjustment, impact scope and approval requirements have been confirmed.
 
@@ -45,7 +45,7 @@ Billing-cycle reconciliation is like month-end closing. First check whether the 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing Cycle | Yes | Month / financial period | `2026-07` | The unified time scope for this reconciliation and settlement workflow. |
-| Organization | Conditionally required | Text | `Desensitized organization` | Limits the settlement statement generation or reconciliation scope. |
+| Tenant | Conditionally required | Text | `Desensitized tenant` | Limits the settlement statement generation or reconciliation scope. |
 | Account Type | Conditionally required | Enum | `Platform Clearing Account` | Distinguishes clearing, revenue, or other accounts during transaction checks. |
 | Exception Type | Conditionally required | Enum | `Unmatched Transfer` | Determines the next step in Reconciliation Center. |
 | Settlement Statement No. | Conditionally required | Text | `Desensitized statement number` | Tracks settlement details, status, and posting confirmation. |
@@ -70,8 +70,8 @@ Billing-cycle reconciliation is like month-end closing. First check whether the 
 
 1. Open [Financial Accounts](../../operator/finance-operations/financial-accounts/).
 2. Review Platform Clearing Account, Platform Revenue Account, and other accounts for balance, income, expense, and update time.
-3. Open transactions and reconcile by billing cycle, transaction type, organization, or transaction number.
-4. If account amounts and Monthly Overview do not match, first confirm that billing cycle, organization, and transaction type are consistent.
+3. Open transactions and reconcile by billing cycle, transaction type, tenant, or transaction number.
+4. If account amounts and Monthly Overview do not match, first confirm that billing cycle, tenant, and transaction type are consistent.
 
 #### Open Reconciliation Center for Exceptions
 
@@ -84,10 +84,10 @@ Billing-cycle reconciliation is like month-end closing. First check whether the 
 #### Generate or View Settlement Statements
 
 1. Open [Settlement List](../../operator/finance-operations/settlement-list/).
-2. Search for the target settlement statement by billing cycle, status, and organization.
+2. Search for the target settlement statement by billing cycle, status, and tenant.
 3. If the settlement statement already exists, open details and verify amount, status, and posting confirmation information.
 4. If settlement generation is required, confirm that Monthly Overview, Financial Accounts, and Reconciliation Center have no blocking exception.
-5. After generation, return to the list, search by billing cycle and organization, and open details to confirm status.
+5. After generation, return to the list, search by billing cycle and tenant, and open details to confirm status.
 
 #### Use Account Adjustment if Needed
 
@@ -99,11 +99,11 @@ Billing-cycle reconciliation is like month-end closing. First check whether the 
 ## Pitfalls
 
 - Do not skip Reconciliation Center before generating settlement statements. Unmatched transfers and missing revenue details can affect later verification.
-- Financial Accounts, Monthly Overview, and Settlement List must use the same billing cycle and organization scope.
+- Financial Accounts, Monthly Overview, and Settlement List must use the same billing cycle and tenant scope.
 - Account adjustment is only for located and approved differences. It is not a routine repair entry.
 - If settlement generation fails, do not click repeatedly. Review generation checks and failure reasons first.
-- `Generate Settlement`, compensation, rebuild, and account adjustment are high-risk actions. Confirm billing cycle, organization, amount, and approval basis before executing them.
-- Do not record real organizations, customers, amounts, transaction numbers, account numbers, settlement statement numbers, Token, or Key.
+- `Generate Settlement`, compensation, rebuild, and account adjustment are high-risk actions. Confirm billing cycle, tenant, amount, and approval basis before executing them.
+- Do not record real tenants, customers, amounts, transaction numbers, account numbers, settlement statement numbers, Token, or Key.
 
 ## Result Validation
 
@@ -113,7 +113,7 @@ Billing-cycle reconciliation is like month-end closing. First check whether the 
 | Blocking tasks handled | Today Tasks has no high-priority task blocking settlement. | Open Financial Accounts. |
 | Accounts reconcilable | Financial account transactions explain income, expense, and balance changes. | Open Reconciliation Center. |
 | Reconciliation has no blocker | Unmatched transfers, missing revenue details, and compensation queue are handled or have clear conclusions. | Open Settlement List. |
-| Settlement statement traceable | The statement can be found by billing cycle and organization, and details can be opened. | Archive or continue posting confirmation. |
+| Settlement statement traceable | The statement can be found by billing cycle and tenant, and details can be opened. | Archive or continue posting confirmation. |
 | Difference closed | Adjustment cases have approval, related documents, and verification records. | Return to related pages and retest. |
 
 ## Failure Branches and Troubleshooting Paths
@@ -152,11 +152,11 @@ The amount in settlement statement details does not match income, expense, or ba
 
 **Possible cause:**
 
-Billing cycle, organization, transaction type, or account type may be inconsistent. Posting confirmation, refunds, adjustments, or clearing delay may also exist.
+Billing cycle, tenant, transaction type, or account type may be inconsistent. Posting confirmation, refunds, adjustments, or clearing delay may also exist.
 
 **How to handle:**
 
-Align billing cycle and organization first. Then open Financial Account transactions for reconciliation. If the difference is still unexplained, open Reconciliation Center and keep only desensitized clues.
+Align billing cycle and tenant first. Then open Financial Account transactions for reconciliation. If the difference is still unexplained, open Reconciliation Center and keep only desensitized clues.
 
 #### When is account adjustment required?
 
@@ -174,7 +174,7 @@ Complete checks in Monthly Overview, Financial Accounts, Reconciliation Center, 
 
 ## Next Steps
 
-1. After the billing-cycle workflow is closed, archive desensitized billing cycle, organization, settlement status, exception conclusion, and reviewer information.
+1. After the billing-cycle workflow is closed, archive desensitized billing cycle, tenant, settlement status, exception conclusion, and reviewer information.
 2. If a settlement statement is in posting confirmation, continue tracking it in [Settlement List](../../operator/finance-operations/settlement-list/).
 3. If a new transaction difference appears, return to [Financial Accounts](../../operator/finance-operations/financial-accounts/) and [Reconciliation Center](../../operator/finance-operations/reconciliation-center/) for another check.
 4. If account adjustment is involved, verify the result again in Monthly Overview and Financial Accounts.
@@ -183,6 +183,6 @@ Complete checks in Monthly Overview, Financial Accounts, Reconciliation Center, 
 
 - Do not generate settlement statements before billing-cycle statistics are complete.
 - Do not judge amount correctness from one page alone. Compare Monthly Overview, Financial Accounts, Reconciliation Center, and Settlement List.
-- Before Generate Settlement, rebuild, compensation, or account adjustment, confirm billing cycle, organization, and impact scope.
-- Screenshots, tickets, comments, and delivery records must not expose real organizations, customers, amounts, transaction numbers, account numbers, settlement statement numbers, or internal handling comments.
+- Before Generate Settlement, rebuild, compensation, or account adjustment, confirm billing cycle, tenant, and impact scope.
+- Screenshots, tickets, comments, and delivery records must not expose real tenants, customers, amounts, transaction numbers, account numbers, settlement statement numbers, or internal handling comments.
 - Account adjustment is a fund-correction action and must follow approval and review procedures.

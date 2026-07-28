@@ -9,11 +9,11 @@ Add the user's own cloud access account before starting a cloud model deployment
 
 ## Target Outcome
 
-The platform user has a validated cloud account that quick deployment can use within the authorized scope.
+The end user has a validated cloud account that quick deployment can use within the authorized scope.
 
 ## Applicable Roles
 
-- Platform User
+- End User
 
 ## Before You Start
 

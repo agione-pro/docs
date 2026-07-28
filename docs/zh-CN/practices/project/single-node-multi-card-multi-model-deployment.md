@@ -29,7 +29,7 @@
 | --- | --- | --- |
 | 纳管 Kubernetes 集群和节点 | 集群管理、集群节点、设备监控 | [集群管理](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/) |
 | 定义可选算力套餐 | 规格指标、资源规格、集群关联规格 | [资源规格](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/) |
-| 控制组织或租户可用资源 | 租户额度、配额与计量 | [计量明细](/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) |
+| 控制租户可用资源 | 租户额度、配额与计量 | [计量明细](/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) |
 | 封装标准模型部署方式 | 推理模板、模型配置、框架、镜像、显存配置 | [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/) |
 | 部署并检查模型服务 | 模型实例、实例状态、日志、访问排障 | [模型实例](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | 查看资源健康和容量 | 统计概览、集群监控、节点监控、设备监控、作业监控 | [统计概览](/zh-CN/usermanual/ai-infra-on-prem/operator/monitoring/overview/) |
@@ -43,7 +43,7 @@
 | 运营方 | 纳管集群、维护加速卡、创建资源规格、关联集群、配置租户额度、维护推理模板、排查资源和调度问题。 | 代替业务用户长期管理模型调用逻辑。 |
 | 普通用户 | 在已授权范围内选择模板、规格和参数，创建模型实例，查看部署状态、日志和调用信息。 | 管理底层 Kubernetes、物理节点、资源规格和平台级额度。 |
 | 模型供应方 | 在模型发布场景中维护模型资产、提交审核、查看客户调用和收益。 | 管理平台级资源池、集群和租户额度。 |
-| 平台管理员 | 管理组织、用户、角色和平台访问基础配置。 | 日常算力运营和模型部署。 |
+| 平台管理员 | 管理租户、用户、角色和平台访问基础配置。 | 日常算力运营和模型部署。 |
 
 判断责任归属时可以按一句话区分：运营方准备“可用的资源和模板”，普通用户创建“可运行的模型实例”，模型供应方负责“可发布和可售卖的模型服务”。
 
@@ -72,7 +72,7 @@
 
 ### 租户额度设计
 
-租户额度用于控制组织或租户在资源池中的可消费资源范围。额度充足不代表实例一定可以创建成功，还需要同时满足规格可选、集群容量、模板约束和调度策略。
+租户额度用于控制租户在资源池中的可消费资源范围。额度充足不代表实例一定可以创建成功，还需要同时满足规格可选、集群容量、模板约束和调度策略。
 
 | 租户示例 | 额度 | 验证目的 |
 | --- | ---: | --- |
@@ -134,7 +134,7 @@ POC 中应保留额度不足和资源池耗尽两类失败场景。前者证明�
 
 ### 3. 运营方配置租户额度
 
-租户额度控制组织或租户可使用的 CPU、GPU/NPU、内存等资源范围。资源规格控制单个实例使用多少资源，租户额度控制租户总共可以使用多少资源，两者必须同时满足。
+租户额度控制租户可使用的 CPU、GPU/NPU、内存等资源范围。资源规格控制单个实例使用多少资源，租户额度控制租户总共可以使用多少资源，两者必须同时满足。
 
 ![租户额度列表](./images/single-node-multi-card/tenant-credits-list.png)
 

@@ -14,7 +14,7 @@ AGIOne is a **one-stop intelligent compute and model management platform** purpo
 
 <p align="center"><i>Figure 1   Overview of AGIOne's Eight Core Capabilities (six business stages and two cross-cutting capabilities)</i></p>
 
-> The first six capabilities form the business path from compute preparation to financial operations. The seventh, **Invocation Observability**, provides end-to-end visibility, analytics, and anomaly diagnosis. The eighth, **Settings and Access Control**, provides governance for identities, organizations, permissions, audit, and API rate control.
+> The first six capabilities form the business path from compute preparation to financial operations. The seventh, **Invocation Observability**, provides end-to-end visibility, analytics, and anomaly diagnosis. The eighth, **Settings and Access Control**, provides governance for identities, tenants, permissions, audit, and API rate control.
 
 > The first three capabilities are presented through separate **AI Infra On-Prem** and **AI Infra On-Cloud** paths. On-Prem covers local compute and model deployment, while On-Cloud covers multi-cloud resource access, cloud deployment assets, and recommendation-driven deployment.
 
@@ -74,7 +74,7 @@ The platform can display collected accelerator metrics on device and monitoring 
 
 #### 1.2.1 Capability Overview
 
-Through AI Infra On-Cloud, AGIOne provides unified access to cloud platforms, cloud accounts, regions, resource pools, and compute specifications. It organizes inference resources from different cloud providers into authorized, filterable compute candidates that can be used for model deployment. Operators prepare cloud resources and access scopes, while general users deploy models from recommended solutions within their authorized scope.
+Through AI Infra On-Cloud, AGIOne provides unified access to cloud platforms, cloud accounts, regions, resource pools, and compute specifications. It organizes inference resources from different cloud providers into authorized, filterable compute candidates that can be used for model deployment. Operators prepare cloud resources and access scopes, while End Users deploy models from recommended solutions within their authorized scope.
 
 Cloud resource preparation follows this relationship:
 
@@ -188,7 +188,7 @@ The cloud model asset preparation workflow is:
 
 #### 3.1.1 Capability Overview
 
-With prepared models, frameworks, images, specifications, and authorized resources, AGIOne provides a productized workflow of **"Select a model → Select a specification → Submit the deployment."** Operators prepare the underlying resources and deployment assets, while general users start rapid deployment from their currently visible scope and review the result.
+With prepared models, frameworks, images, specifications, and authorized resources, AGIOne provides a productized workflow of **"Select a model → Select a specification → Submit the deployment."** Operators prepare the underlying resources and deployment assets, while End Users start rapid deployment from their currently visible scope and review the result.
 
 #### 3.1.2 Three-Step Rapid Deployment Workflow
 
@@ -230,7 +230,7 @@ Deployment time depends on compute availability, images, model weights, storage,
 
 #### 3.2.1 Capability Overview
 
-AI Infra On-Cloud uses recommendation-driven deployment. General users express business intent through the model, deployment mode, business preference, and provider scope. The platform then generates candidate solutions from cloud accounts, regions, frameworks, images, deployment points, and compute solutions prepared by operators, and automatically fills in the underlying runtime configuration.
+AI Infra On-Cloud uses recommendation-driven deployment. End Users express business intent through the model, deployment mode, business preference, and provider scope. The platform then generates candidate solutions from cloud accounts, regions, frameworks, images, deployment points, and compute solutions prepared by operators, and automatically fills in the underlying runtime configuration.
 
 The recommendation-driven deployment workflow is:
 
@@ -281,7 +281,7 @@ When selecting a candidate solution, users compare the following business inform
 
 ### 4.1 Capability Overview
 
-Model Services allows model providers to publish single models, BYOK Endpoints, or aggregate models; configure the visibility, pricing, and rate-limit fields available on the current page; and submit them for review. After operator approval, general users can discover, experience, and call authorized models.
+Model Services allows model providers to publish single models, BYOK Endpoints, or aggregate models; configure the visibility, pricing, and rate-limit fields available on the current page; and submit them for review. After operator approval, End Users can discover, experience, and call authorized models.
 
 ### 4.2 Standardized Endpoint Encapsulation
 
@@ -294,7 +294,7 @@ Model Services allows model providers to publish single models, BYOK Endpoints, 
 ### 4.3 Authentication and Authorization
 
 - **Invocation credentials**: Use the access credentials provided on the model page or assigned in the current environment, and store and rotate them according to security policy.
-- **Role responsibilities**: Model providers publish models, operators review them, and general users experience and call authorized models.
+- **Role responsibilities**: Model providers publish models, operators review them, and End Users experience and call authorized models.
 - **Authorization scope**: The tenant, role, model visibility, and resource authorization jointly determine which operations an account can perform.
 
 ### 4.4 Pricing Configuration
@@ -321,7 +321,7 @@ Verify the response status, queuing behavior, or rejection behavior after a limi
 
 ### 5.1 Capability Overview
 
-An **Aggregated Model** is created by a model provider from eligible published member models and presents a unified model entry point. Member-model selection, available routing strategies, prices, and limit fields depend on the current creation page. General users do not create aggregate models.
+An **Aggregated Model** is created by a model provider from eligible published member models and presents a unified model entry point. Member-model selection, available routing strategies, prices, and limit fields depend on the current creation page. End Users do not create aggregate models.
 
 ### 5.2 Aggregated Model Matching Strategies
 
@@ -399,7 +399,7 @@ The platform can use quotas or credits to record resource and invocation consump
 
 - **Unified records**: Review consumption within the current account scope on usage and metering pages.
 - **Configuration relationship**: Currency, prices, and credit relationships follow the current configuration maintained by operators.
-- **Role scope**: Operators, model providers, and general users see different data scopes.
+- **Role scope**: Operators, model providers, and End Users see different data scopes.
 - **Result reconciliation**: Cross-check invocation, usage, metering, and revenue data using the same time range.
 
 #### Billing Rule Examples
@@ -462,7 +462,7 @@ The Billing module extends metering into finance-oriented workflows. It separate
 | Finance operations | Today's tasks, monthly overview, settlement list, financial accounts, reconciliation, and adjustments | [Finance Operations](../../usermanual/billing/operator/finance-operations/monthly-overview/) |
 | License | License quota, validity, activation state, and module authorization | [License](../../usermanual/billing/operator/license/license/) |
 
-Financial conclusions should be made from the concrete Billing pages with the same billing cycle, organization, customer, account, and synchronization status. Do not infer settlement results from model-call metering alone.
+Financial conclusions should be made from the concrete Billing pages with the same billing cycle, tenant, customer, account, and synchronization status. Do not infer settlement results from model-call metering alone.
 
 
 ## 7. Invocation Observability — End-to-End Monitoring and Analysis
@@ -511,18 +511,18 @@ When users report invocation issues, troubleshoot in the order **application cal
 
 ### 8.1 Capability Overview
 
-Settings centralizes identity, organization, audit, login security, platform configuration, and API rate-control operations. It is used to maintain the control plane around the model and compute workflows rather than to publish or call models directly.
+Settings centralizes identity, tenant, audit, login security, platform configuration, and API rate-control operations. It is used to maintain the control plane around the model and compute workflows rather than to publish or call models directly.
 
 | Area | Typical Scope | Manual Entry |
 | --- | --- | --- |
 | Personal settings | Keys, profile, projects, and personal dashboard | [My Keys](../../usermanual/settings/user/personal/my-keys/) |
 | Members and roles | Team members, roles, member quotas, and quota requests | [Team Members](../../usermanual/settings/operator/members-roles/members/) |
-| Organizations | Organization records and user-side organization settings | [Organizations](../../usermanual/settings/operator/tenants/tenants/) |
+| Tenants | Tenant records and user-side tenant settings | [Tenants](../../usermanual/settings/operator/tenants/tenants/) |
 | Activity and audit | Operation logs and change traceability | [Operation Logs](../../usermanual/settings/operator/activity-notifications/operation-logs/) |
 | System settings | Platform settings and login properties | [Platform Settings](../../usermanual/settings/operator/system-settings/platform-settings/) |
 | API rate control | Rule management, observability audit, node cache, and publish center | [API Rate Control Overview](../../usermanual/settings/operator/api-rate-control/overview/) |
 
-Settings changes can affect real users, access credentials, login behavior, audit visibility, and API traffic. Confirm role scope, organization scope, and rollback method before changing members, roles, login policies, Keys, or rate-control rules.
+Settings changes can affect real users, access credentials, login behavior, audit visibility, and API traffic. Confirm role scope, tenant scope, and rollback method before changing members, roles, login policies, Keys, or rate-control rules.
 
 ## 9. Closed-loop Synergy Across Capabilities
 

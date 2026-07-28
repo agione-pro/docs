@@ -11,7 +11,7 @@ Updated: 2026-07-20
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Cloud > Deploy Assets > Models |
 | Page route | `/infrahub/op/model/model` |
 | Managed objects | Models, meta models, cloud deployment points, cloud models, compute configuration, and output configuration |
@@ -61,17 +61,27 @@ Page screenshot:
 9. Before clicking `Next` to enter `Confirm Configuration / Listed Version`, verify the model source, cloud deployment point, cloud model, compute plan, and output configuration again.
 10. For learning or page validation only, stay at field review and configuration verification. Do not submit real model configuration or list a version.
 
-Key step screenshots:
+In Step 3, use the following page to check model capabilities, modalities, protocol compatibility, and access constraints.
 
 ![Select Meta Model](./images/meta-model.png)
 
+In Step 5, use the following page to add a deployment point composed of a cloud platform and region.
+
 ![Add Deployment Point](./images/add-deployment-point.png)
+
+In Step 6, select a cloud account in the deployment point and assign a cloud model under that account.
 
 ![Assign Cloud Model](./images/assign-cloud-model.png)
 
+In Step 7, select the model framework, image, and deployment specification, then check resources and billing information.
+
 ![Select Compute Plan](./images/select-compute-plan.png)
 
+In Step 8, configure the request URL, method, headers, and parameters required for model calls.
+
 ![Add Output Configuration](./images/add-output-configuration.png)
+
+In Step 9, use the confirmation page to review the model source, deployment point, compute plan, and output configuration before submission.
 
 ![Confirm Model Configuration](./images/confirm-configuration.png)
 

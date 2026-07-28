@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Provider account, customer operations user, revenue analyst |
+| Applicable Role | Provider Account, Customer Operations User, Revenue Analyst |
 | Navigation path | Billing > Earnings > Customers |
 | Page route | `/billing/provider/customers` |
 | Managed objects | Customer revenue, billing cycle, customer tags, current-cycle revenue, revenue proportion, join time, latest revenue, and details entry |
@@ -39,12 +39,12 @@ Customers works like a Provider customer revenue dashboard. Start with the billi
 3. Before opening customer details, confirm that the current account can view the target customer scope.
 
 ::: warning High-Risk Operation Boundary
-Customer overview contains organization, administrator, tags, revenue amount, and proportion. For learning or screenshots, view only list fields and the details entry without modifying tags or exporting real customer revenue data.
+Customer overview contains tenant, administrator, tags, revenue amount, and proportion. For learning or screenshots, view only list fields and the details entry without modifying tags or exporting real customer revenue data.
 :::
 
 ## Page Description
 
-The following screenshot shows the Customers page. Customer names, organizations, administrator information, revenue amounts, and customer details in screenshots, exports, tickets, and comments must be desensitized.
+The following screenshot shows the Customers page. Customer names, tenants, administrator information, revenue amounts, and customer details in screenshots, exports, tickets, and comments must be desensitized.
 
 ![Customers](./images/customers-list.png)
 
@@ -57,7 +57,7 @@ The following screenshot shows the Customers page. Customer names, organizations
 | Tag Filter | Filter the customer list by tags. |
 | Refresh Statistics | Refresh customer revenue statistics. |
 | Statistic Cards | Display customer total, new customers in the billing cycle, Top 1 customer, and Top 5 proportion. |
-| Customer List | Displays organization information, administrator information, tags, current-cycle revenue, proportion, customer join time, latest revenue in the billing cycle, and actions. |
+| Customer List | Displays tenant information, administrator information, tags, current-cycle revenue, proportion, customer join time, latest revenue in the billing cycle, and actions. |
 | Details | Opens customer-level revenue details. |
 | Manage Tags | Manages customer tag categories or tag configuration; this entry is not described as a main operation. |
 
@@ -68,7 +68,7 @@ The following screenshot shows the Customers page. Customer names, organizations
 1. Go to `Billing > Earnings > Customers`.
 2. Review customer statistic cards, including customer total, new customers in the billing cycle, Top 1 customer, and Top 5 proportion.
 3. Select `Billing Cycle`, or use keyword and tag filters as needed to locate the target customer.
-4. In the customer list, verify organization information, administrator information, tags, current-cycle revenue, proportion, customer join time, and latest revenue in the billing cycle.
+4. In the customer list, verify tenant information, administrator information, tags, current-cycle revenue, proportion, customer join time, and latest revenue in the billing cycle.
 5. Click `Details` in the target customer row.
 6. In the details page or details area, review customer-level revenue details and cross-check with Revenue Overview, Settlements, or Revenue Account Activity.
 7. For learning or screenshots only, view list fields and the details entry without modifying tags or exporting real customer revenue data.
@@ -80,7 +80,7 @@ The following screenshot shows the Customers page. Customer names, organizations
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing Cycle | No | Filter | 2026-07 | Selects the billing cycle for customer revenue statistics. |
-| Keyword | No | Filter | Desensitized keyword | Searches by customer name, organization, or other customer-related keyword. |
+| Keyword | No | Filter | Desensitized keyword | Searches by customer name, tenant, or other customer-related keyword. |
 | Search | No | Button | Search | Refreshes the customer list with the current filters. |
 | Reset | No | Button | Reset | Clears filters and restores the default list. |
 | Tag Filter | No | Filter | VIP | Filters the list by customer tags. |
@@ -89,7 +89,7 @@ The following screenshot shows the Customers page. Customer names, organizations
 | New Customers in Billing Cycle | System generated | Statistic card | Desensitized count | Shows the number of customers added in the current billing cycle. |
 | Top 1 Customer | System generated | Statistic card | Desensitized customer | Shows the customer with the highest revenue contribution in the current billing cycle. |
 | Top 5 Proportion | System generated | Statistic card | Desensitized proportion | Shows the revenue proportion contributed by the top five customers. |
-| Organization Information | System generated | Table column | Desensitized organization | Shows customer organization information. |
+| Tenant Information | System generated | Table column | Desensitized tenant | Shows customer tenant information. |
 | Administrator Information | System generated | Table column | Desensitized administrator | Shows customer administrator information. |
 | Tags | System generated | Table column | High potential | Shows the current customer tags. |
 | Current-cycle Revenue | System generated | Table column | Desensitized amount | Shows revenue contributed by the customer in the selected billing cycle. |
@@ -101,11 +101,11 @@ The following screenshot shows the Customers page. Customer names, organizations
 
 ## Pitfalls
 
-- Customer overview contains organization, administrator, tags, revenue amount, and proportion. Desensitize screenshots, exports, tickets, and comments.
+- Customer overview contains tenant, administrator, tags, revenue amount, and proportion. Desensitize screenshots, exports, tickets, and comments.
 - Tag filters change the list scope and revenue proportion; confirm whether tags are enabled before reconciliation.
 - Managing tags may affect customer classification and operations follow-up, so it is not described as a main operation.
 - Customer revenue proportion is calculated within the current billing cycle and filter scope, not the full-platform scope.
-- Do not record real customer names, organization names, administrator emails, accounts, amounts, settlement statement numbers, transaction numbers, Token, or Key.
+- Do not record real customer names, tenant names, administrator emails, accounts, amounts, settlement statement numbers, transaction numbers, Token, or Key.
 
 ## Result Validation
 
@@ -113,7 +113,7 @@ The following screenshot shows the Customers page. Customer names, organizations
 | --- | --- | --- |
 | Page loading | Customer statistic cards, filters, and customer list are displayed normally. | Refresh the page or check Provider revenue permissions. |
 | Filters available | Billing cycle, keyword, and tag filters can locate customers. | Click `Reset` and filter again. |
-| Customer fields visible | Organization information, administrator information, tags, current-cycle revenue, proportion, join time, and latest revenue are displayed normally. | Adjust billing cycle or filters and try again. |
+| Customer fields visible | Tenant information, administrator information, tags, current-cycle revenue, proportion, join time, and latest revenue are displayed normally. | Adjust billing cycle or filters and try again. |
 | Details available | Clicking `Details` opens customer revenue details. | Check whether the customer has visible details or whether the account has permission. |
 | High-risk action avoided | No tag modification or real customer-data export is performed during learning or screenshots. | If triggered by mistake, record the time and scope immediately and notify the owner for review. |
 
@@ -169,7 +169,7 @@ Confirm tag meaning and customer scope before editing. For learning or screensho
 
 ## Notes
 
-- Customer overview contains organization, administrator, and revenue data. Desensitize screenshots before sharing.
+- Customer overview contains tenant, administrator, and revenue data. Desensitize screenshots before sharing.
 - For learning or screenshots, view only list fields and the details entry without modifying tags or exporting real customer revenue data.
 - Managing tags may affect customer classification. Confirm tag meaning, customer scope, and operation permissions before editing.
 - When reconciling customer revenue, check billing cycle, filters, Revenue Overview, Settlements, and Revenue Account Activity together.

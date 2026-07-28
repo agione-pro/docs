@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator admin |
+| Applicable Role | Operator Admin |
 | Navigation path | Settings > API Rate Control > Observability Audit |
 | Page route | `/user/system/rate-control/observation` |
 | Managed objects | Minute statistics, blocked logs, and audit logs |

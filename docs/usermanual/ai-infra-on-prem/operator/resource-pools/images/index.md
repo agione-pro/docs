@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Image Management |
 | Page route | `/powerone/resourcepool/image` |
 | Managed objects | Client tool, image registry, project/namespace, image name, image tag, image address, image type, architecture, and sync status |
@@ -36,7 +36,7 @@ Image Management is like the runtime environment shelf of the platform. Operator
 | --- | --- |
 | Client Tool | Local tool used to build, log in, and push images, such as Docker, Podman, or the actual client supported by the page. |
 | Image Registry | Registry service that stores images. |
-| Project/Namespace | Project, organization, or namespace in the image registry, used to isolate images. |
+| Project/Namespace | Project, tenant, or namespace in the image registry, used to isolate images. |
 | Image Tag | Tag used to describe image purpose or version. |
 | Sync Status | Visibility and availability status after the platform synchronizes images from the image service. |
 
@@ -92,7 +92,7 @@ The following figure shows the Image Upload entrypoint. Confirm image source, pu
 | --- | --- | --- | --- | --- |
 | Client Tool | Conditionally required | Text | `Docker` | Local tool used to build, log in, and push images. Use Docker, Podman, or the actual client tool supported by the page. |
 | Image Registry | Yes | Address / path | `registry.example.com` | Registry where the image is stored. Use only the `<registry>` placeholder in documentation examples, not real registry addresses. |
-| Project/Namespace | Yes | Address / path | `example-project` | Project, organization, or namespace in the image registry. Use the `<project>` placeholder in examples, and fill in real values according to registry permissions only during actual operations. |
+| Project/Namespace | Yes | Address / path | `example-project` | Project, tenant, or namespace in the image registry. Use the `<project>` placeholder in examples, and fill in real values according to registry permissions only during actual operations. |
 | Image Name | Yes | Address / path | `vllm-runtime` | Image display name or image name in the registry. The name should reflect framework, purpose, or runtime environment. |
 | Image Tag | Yes | Text | `v1.0.0` | Image version tag. Avoid using only `latest` in production scenarios. |
 | Image Address | Yes | Image URI | `registry.example.com/example/vllm:v1.0.0` | Full image address, such as `<registry>/<project>/<image>:<tag>`. Verify registry, project, image, and tag before submission. |

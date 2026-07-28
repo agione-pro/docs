@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | Model Services > My Calls > Overview |
 | Page route | `/modelone/monitoring/calls/overview` |
 | Managed objects | My calls, successful calls, failed calls, rate limit triggers, token consumption, model types, and call distribution |
@@ -80,7 +80,7 @@ The top of the page provides billing-cycle, date-range, and model-type filters. 
 
 ## Pitfalls
 
-- My Calls Overview shows only the current account's visible scope, not organization-wide or customer-wide totals.
+- My Calls Overview shows only the current account's visible scope, not tenant-wide or customer-wide totals.
 - When balance, Credits, or call count looks abnormal, check call logs, model usage, and billing pages together.
 - Align model and time range before comparing data, otherwise different model versions may be mixed.
 

@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Model provider |
+| Applicable Role | Model Provider |
 | Navigation path | Model Services > Studio > My Models |
 | Page route | `/modelone/model` |
 | Managed objects | Published models, aggregate models, model sources, meta models, protocols, billing, rate limits, and visibility |
@@ -48,9 +48,15 @@ Updated: 2026-07-08
 
 The page includes three tabs: `Overview`, `My Published`, and `My Aggregate`. `Overview` shows entries for publishing models and creating aggregate models. `My Published` shows the published model list and operation entries. `My Aggregate` shows the aggregate model list and operation entries.
 
+The following screenshot shows the `Overview` entries for publishing and aggregation.
+
 ![My Models overview list](./images/my-models-overview-list.png)
 
+The following screenshot shows published models and their operation entries.
+
 ![My Published list](./images/my-models-my-published-list.png)
+
+The following screenshot shows aggregate models and their operation entries.
 
 ![My Aggregate list](./images/my-models-my-aggregate-list.png)
 
@@ -61,36 +67,43 @@ The page includes three tabs: `Overview`, `My Published`, and `My Aggregate`. `O
 1. Go to `Model Services > Studio > My Models`.
 2. On `Overview`, select a publishing entry, or go to `My Published` and click `Publish Model`.
 3. In the `Publish Model` dialog, choose a publishing destination, such as `Private` or `Public`.
-4. On the `Publish Model` page, in `Basic Information`, maintain meta model, model source, request URL, API Key, model source ID, model type, request header configuration, input/output modalities, advanced capabilities, Token limits, protocol, custom tag, description, Access Mode, and publication method as required by the page.
-5. Click `Next` to enter `Billing Configuration`, and configure Billing type, Price Entry, Input Price, Output Price, Cache Price, Web Search, Free Quota, or other pricing or free quota settings as required by the page.
-6. Verify that model information, billing type, pricing, Web Search, free quota, and visibility are correct.
-7. Continue to `Rate Limit Configuration`, and configure rate-limit policies as required by the page.
-8. Before clicking the final `Publish`, `Save`, or `Submit`, verify model source, protocol, pricing, visibility, and rate limits again. For page validation only, go back or close the page without final submission.
 
 ![Publish Model - choose where to publish](./images/my-published-choose-where-to-publish-add.png)
 
+4. On the `Publish Model` page, in `Basic Information`, maintain meta model, model source, request URL, API Key, model source ID, model type, request header configuration, input/output modalities, advanced capabilities, Token limits, protocol, custom tag, description, Access Mode, and publication method as required by the page.
+
 ![Publish Model - basic information](./images/my-published-basic-information-add.png)
+
+5. Click `Next` to enter `Billing Configuration`, and configure Billing type, Price Entry, Input Price, Output Price, Cache Price, Web Search, Free Quota, or other pricing or free quota settings as required by the page.
 
 ![Publish Model - billing configuration](./images/my-published-billing-configuration-add.png)
 
+6. Verify that model information, billing type, pricing, Web Search, free quota, and visibility are correct.
+7. Continue to `Rate Limit Configuration`, and configure rate-limit policies as required by the page.
+
 ![Publish Model - rate limit configuration](./images/my-published-rate-limit-configuration-add.png)
+
+8. Before clicking the final `Publish`, `Save`, or `Submit`, verify model source, protocol, pricing, visibility, and rate limits again. For page validation only, go back or close the page without final submission.
 
 ### Create Aggregated Model
 
 1. Go to `Model Services > Studio > My Models`.
 2. On `Overview`, select a create aggregate model entry, or go to `My Aggregate` and click `Create Aggregate Model`.
 3. In the `Publish Model` dialog, choose a publishing destination, such as `Private` or `Public`.
-4. On the `Create Aggregate Model` page, in `Basic Information`, select model type, model sub-type, and models to aggregate.
-5. In `Model Selection`, confirm whether each model is enabled, minimum success rate, maximum concurrency rate, context length, and cost.
-6. In `Basic Information`, configure custom tag, matching strategy, tag, and description. Matching strategy can use options shown on the page, such as Cost First, Success Rate First, Cost & Experience Balance, Random, or Round Robin.
-7. Configure Access Mode, publication method, and Billing Configuration.
-8. Before clicking the final `Create`, `Save`, or `Submit`, verify selected models, routing strategy, pricing, and visibility again. For page validation only, go back or close the page without final submission.
 
 ![Create Aggregate Model - choose where to publish](./images/my-aggregate-choose-where-to-publish-add.png)
 
+4. On the `Create Aggregate Model` page, in `Basic Information`, select model type, model sub-type, and models to aggregate.
+5. In `Model Selection`, confirm whether each model is enabled, minimum success rate, maximum concurrency rate, context length, and cost.
+6. In `Basic Information`, configure custom tag, matching strategy, tag, and description. Matching strategy can use options shown on the page, such as Cost First, Success Rate First, Cost & Experience Balance, Random, or Round Robin.
+
 ![Create Aggregate Model - basic information](./images/my-aggregate-basic-information-add.png)
 
+7. Configure Access Mode, publication method, and Billing Configuration.
+
 ![Create Aggregate Model - billing configuration](./images/my-aggregate-billing-configuration-add.png)
+
+8. Before clicking the final `Create`, `Save`, or `Submit`, verify selected models, routing strategy, pricing, and visibility again. For page validation only, go back or close the page without final submission.
 
 ## Parameter Reference
 

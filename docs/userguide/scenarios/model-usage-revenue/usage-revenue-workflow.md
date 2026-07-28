@@ -3,13 +3,13 @@ prev: false
 next: true
 ---
 
-# Model Usage & Revenue
+# Model Usage & Earnings
 
 This scenario helps callers reconcile model consumption and providers reconcile customer calls and model revenue using the same time range, model, and billing basis.
 
 ## Applicable Roles
 
-- Platform User reviewing personal calls and consumption
+- End User reviewing personal calls and consumption
 - Model Provider reviewing customer usage and revenue
 - Platform Operator reconciling platform billing rules
 
@@ -33,7 +33,7 @@ This scenario helps callers reconcile model consumption and providers reconcile 
 | Caller | Review personal call overview and logs | [My Calls Overview](../../../usermanual/model-services/user/my-calls/overview/), [Call Logs](../../../usermanual/model-services/user/my-calls/call-logs/) | State, model, and time can be located |
 | Caller | Review model usage | [Model Usage](../../../usermanual/model-services/user/usage-earnings/model-usage/) | Tokens, requests, or duration match logs |
 | Provider | Review customer overview, logs, and analytics | [Customer Overview](../../../usermanual/model-services/user/customer-calls/overview/), [Customer Call Logs](../../../usermanual/model-services/user/customer-calls/call-logs/), [Customer Analytics](../../../usermanual/model-services/user/customer-calls/call-analytics/) | Customer-level data can be located |
-| Provider | Review model revenue | [Model Revenue](../../../usermanual/model-services/user/usage-earnings/model-earnings/) | Revenue maps to valid usage and pricing |
+| Provider | Review model earnings | [Model Earnings](../../../usermanual/model-services/user/usage-earnings/model-earnings/) | Earnings map to valid usage and pricing |
 | Both | Compare billing mode and currency | [My Models](../../../usermanual/model-services/user/studio/my-models/) and the platform currency settings page | Unit, price, and period are consistent |
 
 ## Reconciliation Order
@@ -43,7 +43,7 @@ This scenario helps callers reconcile model consumption and providers reconcile 
 
 ![Compare model usage with call records](./images/model-usage-overview.png)
 
-3. Have the provider open **Model Revenue** for the same model and period and trace revenue back to valid usage and effective pricing.
+3. Have the provider open **Model Earnings** for the same model and period and trace earnings back to valid usage and effective pricing.
 
 ![Trace model revenue to valid usage](./images/model-revenue-overview.png)
 

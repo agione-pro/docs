@@ -11,7 +11,7 @@ Updated: 2026-07-10
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Platform operator, billing operator |
+| Applicable Role | Platform Operator, Billing Operator |
 | Navigation path | Billing > Finance Operations > Account Adjustment |
 | Page route | `/billing/admin/account-adjustments` |
 | Managed objects | Billing records, adjustment impact assessment, and adjustment records |
@@ -72,7 +72,7 @@ Use the following operations to view the account adjustment page, evaluate adjus
 
 1. Go to `Billing > Finance Operations > Account Adjustment`.
 2. In the `New Adjustment` area, enter the billing record clue that requires adjustment.
-3. Before clicking `Evaluate Impact`, confirm record source, billing cycle, organization, amount direction, and approval basis.
+3. Before clicking `Evaluate Impact`, confirm record source, billing cycle, tenant, amount direction, and approval basis.
 4. Review affected account, direction, amount, related document, and reason in the evaluation result.
 5. If the result does not match expectations, stop submission and continue verification in Financial Accounts, Settlement List, or Reconciliation Center.
 6. For learning or screenshots only, view the evaluation entry and fields without submitting a real adjustment.
@@ -84,7 +84,7 @@ Use the following operations to view the account adjustment page, evaluate adjus
 3. Locate the target record by time, subject / account, direction, amount, reason, or operator.
 4. Click `Details` to view more information for a single adjustment record.
 5. Verify whether the record is consistent with approval basis, related document, and account transactions.
-6. Hide real account, organization name, transaction number, amount, and approval information when sharing screenshots or external communication.
+6. Hide real account, tenant name, transaction number, amount, and approval information when sharing screenshots or external communication.
 
 ## Parameter Reference
 
@@ -96,7 +96,7 @@ Use the following operations to view the account adjustment page, evaluate adjus
 | Adjustment Records | System-generated | List | Adjustment Records | Shows adjustment history and details entry. |
 | Time | System-generated | Time | `2026-07-08 10:00` | Time when the adjustment record was generated. |
 | Adjustment Type | System-generated | Enum / Text | Reversal | Adjustment type or business transaction information. |
-| Subject / Account | System-generated | Text | Example Organization A / Platform Clearing Account | Subject and account affected by the adjustment. |
+| Subject / Account | System-generated | Text | Example Tenant A / Platform Clearing Account | Subject and account affected by the adjustment. |
 | Direction | System-generated | Enum | Income | Income or expense direction. |
 | Amount | System-generated | Amount | `1,000.00 credits` | Adjustment amount. |
 | Reason | Yes | Text | Duplicate settlement transaction reversal | Adjustment reason or note. |
@@ -111,10 +111,10 @@ Use the following operations to view the account adjustment page, evaluate adjus
 - Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
 - Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
 - Submitted adjustments may generate real fund flows and are usually irreversible.
-- Before adjustment, confirm approval, billing cycle, organization, related document, amount direction, and affected account.
+- Before adjustment, confirm approval, billing cycle, tenant, related document, amount direction, and affected account.
 - Adjustment cannot replace normal settlement, compensation, or reconciliation flows.
 - For learning or screenshots, only view the page, fields, and records. Do not execute real submission.
-- Do not record real accounts, account IDs, customer names, organization names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, tokens, or keys.
+- Do not record real accounts, account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, tokens, or keys.
 
 ## Result Validation
 
@@ -133,7 +133,7 @@ The expected account, customer, order, bill, settlement, adjustment, or License 
 
 **How to check:**
 
-1. Confirm the current tenant, organization, customer, account, and role scope.
+1. Confirm the current tenant, tenant, customer, account, and role scope.
 2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
 3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
 4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
@@ -168,4 +168,4 @@ Check the selected billing cycle, customer or project scope, status filters, and
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Submitted adjustments may generate real fund flows and are usually irreversible. Confirm approval, reason, direction, amount, subject, and impact scope before submission.
-- Do not record real accounts, account IDs, customer names, organization names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, tokens, or keys in the manual, screenshots, notes, or tickets.
+- Do not record real accounts, account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, tokens, or keys in the manual, screenshots, notes, or tickets.

@@ -11,7 +11,7 @@ Updated: 2026-07-21
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User |
+| Applicable Role | User |
 | Navigation path | AI Infrastructure > On-Cloud > Model Services > My Deployments |
 | Page route | `/infrahub/user/model/deployment` |
 | Managed objects | Deployment name, model name, deployment status, cloud platform, region, resource specification, publish region, and action entries |
@@ -28,8 +28,8 @@ My Deployments is the list of running model services. Users can verify whether a
 | Deployment Record | One cloud model service deployment task displayed in the list. |
 | Publish | Moves the deployment output into the model publishing flow so it can enter a private or public model catalog. |
 | Publish Region | Target scope for publishing the model. The screenshots show `Private` and `Public`. |
-| Private | Publishes to the private model catalog. Only the current organization can view and call it. |
-| Public | Publishes to the public model catalog, makes it available to platform users, and supports independent pricing and billing. |
+| Private | Publishes to the private model catalog. Only the current tenant can view and call it. |
+| Public | Publishes to the public model catalog, makes it available to end users, and supports independent pricing and billing. |
 | Publish Model Page | Page under `Studio > My Models` that opens after the publish region is selected. |
 
 ## Prerequisites
@@ -57,7 +57,7 @@ More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Cal
 2. In the deployment list, find the target deployment and verify deployment name, running status, model name, cloud platform, region, GPU, CPU, memory, and cost information.
 3. Click the more actions entry in the lower-right corner of the target deployment, and then select `Publish`.
 
-![Publish Entry](./images/Publish.png)
+![Publish Entry](./images/publish.png)
 
 4. In the `Publish Model` dialog, review `Choose where to publish`.
 5. Select `Private` or `Public` according to the publish target.
@@ -69,7 +69,7 @@ More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Cal
 8. In `Model Source/Meta Model Information`, verify `Meta Model`, `Model Source`, `Request URL`, `API Key`, `Model source ID`, and `Region`.
 9. For learning or page validation only, stay in the review flow and do not perform the final `Publish`, `Submit`, `Save`, or next-step high-risk configuration.
 
-![Publish Model Page](./images/Publish-Model.png)
+![Publish Model Page](./images/publish-model.png)
 
 ## Parameter Reference
 
@@ -88,8 +88,8 @@ More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Cal
 | Cost | No | Display field | `Sample cost/hour` | Deployment cost reference. Real amount details are not recorded in documentation. |
 | Publish Entry | Yes | Action entry | `Publish` | Opens the publish region selection dialog. |
 | Publish Region | Yes | Selection card | `Private` | Selects whether the model is published to Private or Public. |
-| Private | No | Publish region | `Publish to Private` | Publishes to the private model catalog for organization-only visibility and calls. |
-| Public | No | Publish region | `Publish to Public` | Publishes to the public model catalog for platform users. |
+| Private | No | Publish region | `Publish to Private` | Publishes to the private model catalog for tenant-only visibility and calls. |
+| Public | No | Publish region | `Publish to Public` | Publishes to the public model catalog for end users. |
 | Redirect Target | Yes | Page redirect | `Studio > My Models > Publish Model` | Target page after selecting the publish region. |
 | Meta Model | Yes | Select | `Sample Model` | Meta model information on the publish model page. |
 | Model Source | Yes | Dropdown | `AGIOne` | Source of the model being published. |

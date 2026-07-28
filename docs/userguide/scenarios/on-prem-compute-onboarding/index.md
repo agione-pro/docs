@@ -20,14 +20,15 @@ This scenario explains how to connect a local Kubernetes cluster and its GPU, NP
 
 ## Scenario Flow
 
-**Main path:** Identify the NPU model → Onboard the cluster and discover devices → Create one-, two-, and four-card plans → Verify downstream selection
+**Main path:** Create the region and availability zone → Identify the NPU model → Onboard the cluster and discover devices → Create one-, two-, and four-card plans → Verify downstream selection
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Identify the model | NPU model, per-card memory, and scheduler resource key use one definition |
-| 2. Onboard the cluster | Cluster and nodes are available and all four physical NPU cards are discovered |
-| 3. Create plans | One-, two-, and four-card specifications match the real scheduling topology |
-| 4. Verify downstream use | An inference template or test workload can select and request the plan |
+| 1. Establish the resource boundary | The region and availability zone are available to the target cluster |
+| 2. Identify the model | NPU model, per-card memory, and scheduler resource key use one definition |
+| 3. Onboard the cluster | Cluster and nodes are available and all four physical NPU cards are discovered |
+| 4. Create plans | One-, two-, and four-card specifications match the real scheduling topology |
+| 5. Verify downstream use | An inference template or test workload can select and request the plan |
 
 ## Before You Start
 
@@ -37,19 +38,22 @@ This scenario explains how to connect a local Kubernetes cluster and its GPU, NP
 
 ## Recommended Reading Order
 
-1. [Maintain Accelerator Models](./accelerator-management/)
-2. [Onboard the Cluster and Verify Devices](./cluster-onboarding/)
-3. [Configure Metrics and Resource Specifications](./resource-specifications/)
-4. [Build an Inference Template](../on-prem-inference-template/)
-5. [Configure Quotas and Monitoring](../on-prem-resource-metering-monitoring/)
+1. [Create Regions and Availability Zones](./regions-zones/)
+2. [Maintain Accelerator Models](./accelerator-management/)
+3. [Onboard the Cluster and Verify Devices](./cluster-onboarding/)
+4. [Configure Metrics and Resource Specifications](./resource-specifications/)
+5. [Build an Inference Template](../on-prem-inference-template/)
+6. [Configure Quotas and Monitoring](../on-prem-resource-metering-monitoring/)
 
 ## Document Index
 
 | Document | Description |
 | --- | --- |
+| [Create Regions and Availability Zones](./regions-zones/) | Establish the shared resource boundary for clusters, specifications, images, and storage |
 | [Maintain Accelerator Models](./accelerator-management/) | Verify the NPU model, memory, managed state, and Kubernetes resource key |
 | [Onboard the Cluster and Verify Devices](./cluster-onboarding/) | Register the cluster and verify that all four NPU cards are reported |
 | [Configure Metrics and Resource Specifications](./resource-specifications/) | Create scheduling metrics and one-card, two-card, and four-card flavors |
+| [Deploy a Model Service from Scratch](../../../usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/) | Follow the complete On-Prem path from operator preparation through user deployment and validation |
 
 ## Completion Checklist
 
@@ -57,9 +61,10 @@ This scenario explains how to connect a local Kubernetes cluster and its GPU, NP
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | The cluster and nodes are available. |
-| 2 | AGIOne reports four target NPU cards. |
-| 3 | Inference templates or test workloads can select the new resource specifications. |
+| 1 | The region and availability zone exist and are selectable during cluster registration. |
+| 2 | The cluster and nodes are available. |
+| 3 | AGIOne reports four target NPU cards. |
+| 4 | Inference templates or test workloads can select the new resource specifications. |
 
 ## Related Scenarios
 

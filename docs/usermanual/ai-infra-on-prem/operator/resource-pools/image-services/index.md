@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable Role | Operator |
 | Navigation path | AI Infrastructure > On-Prem > Resource Pools > Image Services |
 | Page route | `/powerone/resourcepool/images` |
 | Managed objects | Service type, image, name, Endpoint (Public URL), Internal IP Address, Username, Password, Description, and Actions |
@@ -133,7 +133,7 @@ Instance events or logs show image pull failure, authentication failure, image n
 
 **Symptom:**
 
-After a regular user enters Image Services, custom projects or public images are not visible.
+After a End User enters Image Services, custom projects or public images are not visible.
 
 **Possible Causes:**
 

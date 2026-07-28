@@ -11,11 +11,11 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Model provider |
+| Applicable Role | Model Provider |
 | Navigation path | Model Services > Usage & Earnings > Model Earnings |
-| Page route | `/modelone/accounting/useage` |
-| Managed objects | Earnings overview, earning details, billing cycle, date, metered usage, Credits, posted amount, and carryover |
-| Typical use | View model revenue trends, revenue proportion, organization consumption ranking, and earning details |
+| Page route | `/modelone/accounting/useage/overview/model` |
+| Managed objects | Earnings overview, earning details, billing cycle, date, metered usage, billing rules, Credits, posted amount, and carryover |
+| Typical use | View model revenue trends, revenue proportion, tenant consumption ranking, and earning details |
 
 #### Beginner Explanation
 
@@ -25,12 +25,14 @@ Updated: 2026-07-08
 
 | Term | Description |
 | --- | --- |
-| Overview | Shows number of organizations, number of models, income tokens, Credits Earned, revenue trends, and revenue proportion. |
+| Overview | Shows number of tenants, number of models, income tokens, Credits Earned, revenue trends, and revenue proportion. |
 | Earning Details | Shows cycle earnings, posted amount, carryover, and detailed earning records by call. |
 | Billing cycle | Month that the earnings statistics and settlement belong to. |
 | Metered usage | Usage measured for billing, such as input tokens, output tokens, and cached input tokens. |
 | Free quota | Free or deducted quota applied to the call. |
 | Billing mode | Billing method used by the earning record, such as Token. |
+| Billing rules | Pricing rule, matched conditions, and consumed usage matched by the earning record. |
+| Billing rule details | Row detail popover used to view total charged, pricing breakdown, matched conditions, usage consumed, and cost summary. |
 | Credits | Unit used by the page to display earnings or consumption. |
 
 ## Prerequisites
@@ -38,7 +40,7 @@ Updated: 2026-07-08
 1. The current account has access to the `Model Earnings` page.
 2. The target model has generated statistical calls or earning records.
 3. The billing cycle, date range, user, model, or model type to view has been confirmed.
-4. Earning amount, username, organization ranking, and settlement status are sensitive information and must be redacted before screenshots or export.
+4. Earning amount, username, tenant ranking, and settlement status are sensitive information and must be redacted before screenshots or export.
 
 ::: warning High-Risk Operation Boundary
 Settlement, account adjustment, exporting sensitive data, or sending earning details externally may affect financial reconciliation or expose commercially sensitive information. This document only describes viewing the earnings overview and earning details. It does not guide settlement, adjustment, or sensitive data export, and does not write real accounts, pricing policies, internal test parameters, or sensitive data.
@@ -46,33 +48,30 @@ Settlement, account adjustment, exporting sensitive data, or sending earning det
 
 ## Page Description
 
-The page includes two tabs: `Overview` and `Earning Details`. `Overview` shows Billing cycle, Date, Number of Organizations, Number of Models, Income Tokens, Credits Earned, Model Revenue Trend, Proportion of Model Revenue, Organization Activity, Organization Credit Consumption Ranking (Top 10), Trend of Model Call Frequency, and Distribution of Model Call Times. `Earning Details` shows cycle summaries, filters, and earning detail records.
-
-![Model earnings overview](./images/model-earnings-overview-list.png)
-
-![Earning details](./images/model-earnings-earning-details-list.png)
+The page includes two tabs: `Overview` and `Earning Details`. `Overview` shows Billing cycle, Date, Number of Tenants, Number of Models, Income Tokens, Credits Earned, Model Revenue Trend, Proportion of Model Revenue, Tenant Activity, Tenant Credit Consumption Ranking (Top 10), Trend of Model Call Frequency, and Distribution of Model Call Times. Its route is `/modelone/accounting/useage/overview/model`. `Earning Details` shows cycle summaries, filters, earning detail records, and the row-level billing rule details entry. Its route is `/modelone/accounting/useage/detail/model`.
 
 ## Main Operations
 
-### View My Revenue Overview
+### View Model Earnings Overview
 
 1. Go to `Model Services > Usage & Earnings > Model Earnings`.
 2. Open the `Overview` tab.
 3. Select `Billing cycle` and `Date` in the filter area.
-4. View overview metrics such as `Number of Organizations`, `Number of Models`, `Income Tokens`, and `Credits Earned`.
-5. View `Model Revenue Trend`, `Proportion of Model Revenue`, `Organization Activity`, `Organization Credit Consumption Ranking (Top 10)`, `Trend of Model Call Frequency`, and `Distribution of Model Call Times`.
-6. When checking charts and rankings, do not capture or send unredacted user, organization, amount, or Credit details externally.
+4. View overview metrics such as `Number of Tenants`, `Number of Models`, `Income Tokens`, and `Credits Earned`.
+5. View `Model Revenue Trend`, `Proportion of Model Revenue`, `Tenant Activity`, `Tenant Credit Consumption Ranking (Top 10)`, `Trend of Model Call Frequency`, and `Distribution of Model Call Times`.
+6. When checking charts and rankings, do not capture or send unredacted user, tenant, amount, or Credit details externally.
 
 ![Model earnings overview](./images/model-earnings-overview-list.png)
 
-### View Revenue Details
+### View Earning Details
 
 1. On the `Model Earnings` page, switch to the `Earning Details` tab.
 2. View the top billing-cycle summary, including `Billing cycle`, `Cycle earnings`, `Posted`, and `Carryover`.
 3. Enter or select `Username`, `Model name`, and `Model type` in the filter area.
 4. Click `Search` to view matching earning details. To clear filters, click `Reset`.
-5. In the earning details list, view `Usage time`, `Model`, `Username`, `Latency`, `Metered usage`, `Free quota`, `Billing mode`, and `Credits`.
-6. If the page provides view, export, settlement, or adjustment entries, view only fields and status. Do not perform settlement, account adjustment, or sensitive data export.
+5. In the earning details list, view `Usage time`, `Model`, `Username`, `Latency`, `Metered usage`, `Free quota`, `Billing mode`, `Billing rules`, and `credits`.
+6. Click `View details · 3 details` in a row to view `Billing rule details`, including total charged, pricing breakdown, matched conditions, usage consumed, cost summary, free quota, and total cost.
+7. If the page provides export, settlement, or adjustment entries, view only fields and status. Do not perform settlement, account adjustment, or sensitive data export.
 
 ![Earning details](./images/model-earnings-earning-details-list.png)
 
@@ -88,14 +87,16 @@ The page includes two tabs: `Overview` and `Earning Details`. `Overview` shows B
 | Revenue Amount | System-generated | Number | `Credits` | Earnings amount or Credit value displayed on the page. |
 | Call Volume | System-generated | Number | `Tokens` | Metered usage, such as input tokens, output tokens, or cached input tokens. |
 | Billing Type | System-generated | Tag | `Token` | Billing method used by the earning record. |
+| Billing rules | System-generated | Text / details entry | `Redacted billing rule` | Shows the pricing rule matched by the current earning record and opens the rule details entry. |
+| Billing rule details | System-generated | Popover / details | `Redacted rule details` | Shows total charged, pricing breakdown, matched conditions, usage consumed, cost summary, free quota, and total cost. |
 | Settlement Status | System-generated | Status | `Posted` / `Carryover` | Whether the amount has been posted or remains as carryover. |
 | Time Range | No | Date / month | Select on page | Controls the overview or detail statistical period. |
-| Caller | System-generated | Text | User or organization name | User or organization that generated the earning. |
-| Actions | No | Row entry | `View` | View earning records or related billing information. |
+| Caller | System-generated | Text | User or tenant name | User or tenant that generated the earning. |
+| Actions | No | Row entry | `View details · 3 details` | View billing rule details matched by the earning record. |
 
 ## Pitfalls
 
-- Model Revenue is not real-time credited income. It may be affected by billing cycle, settlement status, and revenue rules.
+- Model earnings are not credited in real time. They may be affected by the billing cycle, settlement status, and earnings rules.
 - Customer, model, and time views use different scopes. Do not add them together without checking the metric definition.
 - If revenue looks abnormal, verify model usage and call logs first, then ask operations to confirm settlement rules.
 
@@ -105,10 +106,10 @@ The page includes two tabs: `Overview` and `Earning Details`. `Overview` shows B
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page is accessible | The `Model Earnings` page opens normally, and `Overview` and `Earning Details` tabs are visible. | Check account permissions, navigation path, and page loading status. |
-| Earnings overview displays normally | Number of Organizations, Number of Models, Income Tokens, Credits Earned, and charts are displayed normally. | Switch Billing cycle or Date and retry. Confirm whether the current period has earning data. |
+| Earnings overview displays normally | Number of Tenants, Number of Models, Income Tokens, Credits Earned, and charts are displayed normally. | Switch Billing cycle or Date and retry. Confirm whether the current period has earning data. |
 | Filters are available | Billing cycle, Date, Username, Model name, and Model type can be entered or selected. | Check filter format, or click `Reset` and query again. |
-| Earning list loads normally | The details list shows Usage time, Model, Username, Metered usage, Billing mode, and Credits. | Confirm whether the billing cycle contains earning records, or broaden filters. |
-| Earning details can be viewed | Amount, status, time, and metered usage in details match the filter conditions. | Compare model usage and call logs to confirm statistical delay or billing-rule differences. |
+| Earning list loads normally | The details list shows Usage time, Model, Username, Metered usage, Free quota, Billing mode, Billing rules, and credits. | Confirm whether the billing cycle contains earning records, or broaden filters. |
+| Billing rule details can be viewed | After clicking `View details · 3 details`, total charged, pricing breakdown, matched conditions, usage consumed, and cost summary are visible. | Compare model usage and call logs to confirm statistical delay or billing-rule differences. |
 | High-risk actions are not triggered | During learning or screenshots, settlement, adjustment, or sensitive data export is not performed. | If a real financial operation is triggered by mistake, immediately record the time and record scope and notify the owner for review. |
 
 ## FAQ
@@ -129,10 +130,10 @@ Earning details contain users, amounts, and call information, so they are sensit
 
 1. Cross-check with model usage, call analytics, and call logs.
 2. Use redacted earning details for reconciliation.
-3. Optimize model operations based on revenue trends, model-type proportion, and organization consumption ranking.
+3. Optimize model operations based on revenue trends, model-type proportion, and tenant consumption ranking.
 
 ## Notes
 
 - Do not write real accounts, pricing policies, internal test parameters, or sensitive data in the document.
-- Before screenshots or export, confirm that usernames, organization names, earning amounts, and Credit details are redacted.
+- Before screenshots or export, confirm that usernames, tenant names, earning amounts, and Credit details are redacted.
 - Settlement, account adjustment, and sensitive data export are outside the scope of this document.

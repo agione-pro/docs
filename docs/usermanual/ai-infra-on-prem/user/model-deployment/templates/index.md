@@ -7,11 +7,11 @@ Updated: 2026-07-23
 
 ## Feature Overview
 
-`Templates` is used by regular users to view deployment templates published by operators, select models and accelerators through a wizard, review business parameters and recommended specifications, and prepare model service deployment configuration.
+`Templates` is used by End Users to view deployment templates published by operators, select models and accelerators through a wizard, review business parameters and recommended specifications, and prepare model service deployment configuration.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Model Deployment > Templates |
 | Page route | `/powerone/quickstart/inference-template` |
 | Managed objects | Model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information |

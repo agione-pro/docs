@@ -7,11 +7,11 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`Online IDE` is used to create and manage interactive development environments. Regular users can select single-node or cluster form and start a development environment based on platform images and specifications for code debugging, data processing, and experiment validation.
+`Online IDE` is used to create and manage interactive development environments. End Users can select single-node or cluster form and start a development environment based on platform images and specifications for code debugging, data processing, and experiment validation.
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Development Resources > Online IDE |
 | Page route | `/powerone/dev-training/dev-ide` |
 | Managed objects | Online development environments, single-node IDEs, cluster IDEs, images, specifications, and runtime status |
@@ -122,7 +122,7 @@ Create an online IDE when an interactive development, debugging, or Notebook env
 ## Configuration Rules and Impact
 
 - Online IDEs occupy quotas and cluster resources. The longer they run, the more they consume.
-- Images, specifications, and storage are configured by operators. Regular users can only select visible items.
+- Images, specifications, and storage are configured by operators. End Users can only select visible items.
 - Before stopping, deleting, or releasing an IDE, confirm that code and output have been saved to persistent directories.
 
 ## FAQ

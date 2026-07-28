@@ -11,7 +11,7 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Regular user |
+| Applicable Role | End User |
 | Navigation path | AI Infrastructure > On-Prem > Storage Services > Object Storage |
 | Page route | `/powerone/storage-service/object` |
 | Managed objects | Object storage buckets, object files, object paths, and object storage capability within a region |
@@ -55,6 +55,10 @@ The left side provides bucket search and bucket list, and the upper-right corner
 3. Click `Add Bucket`.
 4. Fill in Bucket Name.
 5. Click `Confirm` to submit.
+
+The following screenshot shows the Add Bucket dialog. Confirm the bucket name before submitting.
+
+![Add Bucket](./images/add-bucket.png)
 
 ## Parameter Reference
 

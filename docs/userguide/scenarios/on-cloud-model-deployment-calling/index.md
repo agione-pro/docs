@@ -10,7 +10,7 @@ This scenario guides tenant users through quickly deploying a model from the clo
 ## Applicable Roles
 
 - Model Provider
-- Platform User
+- End User
 
 ## Scenario Goals
 

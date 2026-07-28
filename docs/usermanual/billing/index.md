@@ -7,11 +7,11 @@ Updated: 2026-07-23
 
 ## Subsystem Positioning
 
-Billing is the entry page for AGIOne billing, charging, settlement, reconciliation, and License management. It covers user billing, Provider earnings, customer billing, finance operations, and License. Operators, billing operators, finance reviewers, Providers, and regular users can use this page to choose the correct entry before reviewing balances, top-up orders, monthly bills, customer records, monthly settlement progress, settlement statements, financial accounts, reconciliation checks, and License authorization.
+Billing is the entry page for AGIOne billing, charging, settlement, reconciliation, and License management. It covers user billing, Provider earnings, customer billing, finance operations, and License. Operators, billing operators, finance reviewers, Providers, and End Users can use this page to choose the correct entry before reviewing balances, top-up orders, monthly bills, customer records, monthly settlement progress, settlement statements, financial accounts, reconciliation checks, and License authorization.
 
 #### Beginner Explanation
 
-Billing works like the financial control room for AGIOne. User billing helps regular users check balances, transactions, top-ups, and monthly bills. Customer billing handles customer identity, tags, top-up sources, and business units. Finance operations handles settlement, financial accounts, and reconciliation status. License handles resource authorization, validity period, and quota. Start by classifying the issue before opening a specific statement or record.
+Billing works like the financial control room for AGIOne. User billing helps End Users check balances, transactions, top-ups, and monthly bills. Customer billing handles customer identity, tags, top-up sources, and business units. Finance operations handles settlement, financial accounts, and reconciliation status. License handles resource authorization, validity period, and quota. Start by classifying the issue before opening a specific statement or record.
 
 ## Core Terms Quick Reference
 
@@ -21,7 +21,7 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | Credits | The unit used for balance, top-up, or billing display in the platform. | Overview, Customer Overview, Top-up Orders, user bills |
 | Top-up Order | A processing record created after a user or customer starts a top-up. | Top-up Orders, Customer Top-up Orders |
 | Transaction | A record for balance, income, expense, or adjustment changes. | Transactions, Financial Accounts |
-| Settlement Statement | A settlement record for an organization and billing cycle. | Settlement List, Settlements |
+| Settlement Statement | A settlement record for an tenant and billing cycle. | Settlement List, Settlements |
 | Clearing Account | An account used to aggregate or reconcile transaction funds. | Financial Accounts |
 | Revenue Account | An account related to platform or Provider revenue. | Financial Accounts, Revenue |
 | Compensation Queue | Billing tasks that require retry, compensation, or manual handling. | Reconciliation Center |
@@ -32,12 +32,12 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 
 | Role | What to read first | Next step |
 | --- | --- | --- |
-| Regular user | [Billing](./user/billing/overview/) | Check balance, transactions, top-up orders, quota governance, and monthly bills. |
+| End User | [Billing](./user/billing/overview/) | Check balance, transactions, top-up orders, quota governance, and monthly bills. |
 | Provider | [Earnings](./user/earnings/revenue/) | Check revenue overview, settlements, and customer revenue. |
-| Platform operator | [Customer Billing](./operator/customer-billing/customer-overview/) | Verify customers, business units, and customer top-up orders before checking finance status. |
-| Billing operator | [Finance Operations](./operator/finance-operations/today-tasks/) | Start from Today Tasks and Monthly Overview, then proceed by billing cycle. |
-| Finance reviewer | [Financial Accounts](./operator/finance-operations/financial-accounts/) | Compare account transactions, settlement statements, and reconciliation results. |
-| License admin | [License](./operator/license/license/) | Check authorized quota, validity period, and activation status. |
+| Platform Operator | [Customer Billing](./operator/customer-billing/customer-overview/) | Verify customers, business units, and customer top-up orders before checking finance status. |
+| Billing Operator | [Finance Operations](./operator/finance-operations/today-tasks/) | Start from Today Tasks and Monthly Overview, then proceed by billing cycle. |
+| Finance Reviewer | [Financial Accounts](./operator/finance-operations/financial-accounts/) | Compare account transactions, settlement statements, and reconciliation results. |
+| License Admin | [License](./operator/license/license/) | Check authorized quota, validity period, and activation status. |
 
 ## Where to Start
 
@@ -45,11 +45,20 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | --- | --- | --- |
 | Getting Started | [Billing Getting Started](./getting-started/) | First-time reading and path selection. |
 | End-to-end workflow | [Reconcile and Settle a Billing Cycle](./end-to-end/reconcile-billing-cycle/) | Connecting monthly overview, tasks, accounts, reconciliation, settlement statements, and adjustments. |
-| User Billing | [Billing](./user/billing/overview/) | Regular users checking balances, quotas, transactions, top-up orders, and monthly bills. |
+| User Billing | [Billing](./user/billing/overview/) | End Users checking balances, quotas, transactions, top-up orders, and monthly bills. |
 | Provider Earnings | [Earnings](./user/earnings/revenue/) | Providers checking revenue overview, settlements, and customer revenue. |
 | Customer Billing | [Customer Billing](./operator/customer-billing/customer-overview/) | Customer records, customer tags, customer top-up orders, business units, and payment-channel configuration. |
 | Finance Operations | [Finance Operations](./operator/finance-operations/today-tasks/) | Today tasks, monthly overview, settlement statements, financial accounts, reconciliation center, and account adjustment. |
 | License | [License](./operator/license/license/) | Platform authorization, resource license, quota composition, validity period, and activation status. |
+
+## Find an Entry by Goal
+
+| Goal | Recommended Entry | Next Step |
+| --- | --- | --- |
+| View your balance, transactions, or top-ups | [User Billing](./user/billing/overview/) | Start with Account Overview, then open Transactions, Top-up Orders, or Monthly Bill. |
+| Review customer accounts and business lines | [Customer Billing](./operator/customer-billing/customer-overview/) | Review Customer Overview, Top-up Orders, and Business Units. |
+| Troubleshoot settlement or amount differences | [Finance Operations](./operator/finance-operations/today-tasks/) | Review Today's Tasks, Monthly Overview, Settlement Statements, Financial Accounts, and Reconciliation Center. |
+| Manage authorization credits | [License](./operator/license/license/) | Distinguish authorization credits and validity from the billing account balance. |
 
 ## Recommended Reading Path
 
@@ -67,9 +76,9 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 
 1. The current account has permission to access billing-related menus.
 2. The issue has been classified as user billing, Provider earnings, customer billing, finance operations, or License.
-3. For amount reconciliation, billing cycle, organization, customer, business unit, account, and transaction type have been aligned.
-4. Before settlement generation, account adjustment, compensation, rebuild, or License activation, approval basis, billing cycle, organization, and impact scope have been confirmed.
-5. Amounts, organizations, accounts, emails, transaction numbers, order numbers, and License information have been desensitized before external communication.
+3. For amount reconciliation, billing cycle, tenant, customer, business unit, account, and transaction type have been aligned.
+4. Before settlement generation, account adjustment, compensation, rebuild, or License activation, approval basis, billing cycle, tenant, and impact scope have been confirmed.
+5. Amounts, tenants, accounts, emails, transaction numbers, order numbers, and License information have been desensitized before external communication.
 
 ## Parameter Reference
 
@@ -88,9 +97,9 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Issue Type | Yes | Enum | `Settlement reconciliation` | Determines whether to start from user billing, Provider earnings, customer billing, finance operations, or License. |
-| Role | Yes | Enum | `Billing operator` | Matches the accessible entry and recommended reading path. |
+| Role | Yes | Enum | `Billing Operator` | Matches the accessible entry and recommended reading path. |
 | Billing Cycle | Conditionally required | Month | `2026-07` | Must be aligned before comparing amounts, settlements, or transactions. |
-| Organization / Customer | Conditionally required | Text | `Desensitized organization` | Limits customer, settlement statement, and account-transaction scope. |
+| Tenant / Customer | Conditionally required | Text | `Desensitized tenant` | Limits customer, settlement statement, and account-transaction scope. |
 | Next Entry | System generated | Link | `Finance Operations` | Points to the next page according to issue type. |
 
 ## Result Validation
@@ -99,15 +108,15 @@ Billing works like the financial control room for AGIOne. User billing helps reg
 | --- | --- | --- |
 | Entry identified | The issue can be mapped to user billing, Provider earnings, customer billing, finance operations, or License. | Return to the role entry table and classify the issue again. |
 | Paths available | Getting Started, the end-to-end workflow, and core module entries can be opened. | Check sidebar configuration and account menu permissions. |
-| Scope separated | Balance, revenue, settlement, account transactions, and authorized quota are not mixed. | Open the specific feature page and align billing cycle, organization, customer, and business unit. |
+| Scope separated | Balance, revenue, settlement, account transactions, and authorized quota are not mixed. | Open the specific feature page and align billing cycle, tenant, customer, and business unit. |
 | Follow-up path clear | The reader can continue to Getting Started or the billing-cycle workflow. | Follow the recommended reading path. |
 
 ## Pitfalls
 
 - Do not make amount conclusions on the entry page. Amount issues should be checked in Monthly Bill, Settlement List, Financial Accounts, or Transactions.
 - User billing, Provider earnings, customer billing, finance operations, and License use different perspectives. Do not mix their statistics.
-- Amounts and statuses may differ when billing cycle, organization, customer, or business unit scope is inconsistent.
-- Do not record real organizations, customer names, accounts, emails, amounts, order numbers, transaction numbers, License registration codes, activation codes, Token, or Key.
+- Amounts and statuses may differ when billing cycle, tenant, customer, or business unit scope is inconsistent.
+- Do not record real tenants, customer names, accounts, emails, amounts, order numbers, transaction numbers, License registration codes, activation codes, Token, or Key.
 
 ## FAQ
 
@@ -133,11 +142,11 @@ Customer balance, settlement amount, monthly overview, or financial account bala
 
 **Possible cause:**
 
-Different pages use different scopes, or billing cycle, organization, or transaction type is inconsistent. Pending settlement, refund, adjustment, or reconciliation exception may also exist.
+Different pages use different scopes, or billing cycle, tenant, or transaction type is inconsistent. Pending settlement, refund, adjustment, or reconciliation exception may also exist.
 
 **How to handle:**
 
-Align billing cycle and organization first. Check Settlement List for statement status, Financial Accounts for account transactions, and Reconciliation Center for unmatched transfers, missing revenue details, or compensation queue items.
+Align billing cycle and tenant first. Check Settlement List for statement status, Financial Accounts for account transactions, and Reconciliation Center for unmatched transfers, missing revenue details, or compensation queue items.
 
 #### What is the relationship between License and billing?
 
