@@ -52,6 +52,8 @@
 | 可用磁盘 | 200 GiB | `runtime_root` 保持默认值时，安装器优先选择可用空间约 `160GiB` 以上的数据盘；无合适数据盘时才回落检查系统盘 |
 | 执行用户 | `root` | 推荐 root 安装，避免 Docker、目录权限和系统服务权限问题 |
 
+架构支持：AGIOne 可部署在 x86_64 和 ARM64 / AArch64 架构机器上。安装前请下载与目标机器 CPU 架构一致的安装包。
+
 ## 快速安装
 
 ### 1. 下载交付包
@@ -214,7 +216,7 @@ AGIOne 安装器负责完成以下工作：
 ./agione verify-bundle
 ```
 
-校验通过后再执行安装。
+`verify-bundle` 会校验安装包 Ed25519 签名和 `SHA256SUMS` 中记录的 SHA-256 摘要。校验通过后再执行安装；如果校验失败，请重新获取安装包。只有交付负责人确认是可信历史未签名包时，才允许使用 `./agione verify-bundle --allow-unsigned-legacy` 或对应兼容环境变量。
 
 ---
 
@@ -358,6 +360,28 @@ docker-compose -f compose.rendered.yaml ps
 ```
 
 交付包可用于客户验收、内部归档和后续运维交接。
+
+### 有状态备份与恢复
+
+如果需要备份或恢复 MariaDB、Nacos、MinIO、InfluxDB 或安装器生成配置，先查看恢复计划：
+
+```bash
+scripts/agione_stateful_recovery.sh plan
+```
+
+创建备份时，MinIO 和 InfluxDB 的一致性文件备份需要允许短暂停服：
+
+```bash
+AGIONE_ALLOW_BRIEF_SERVICE_STOP=1 scripts/agione_stateful_recovery.sh backup
+```
+
+恢复前先校验备份归档：
+
+```bash
+scripts/agione_stateful_recovery.sh verify --archive /path/to/agione-stateful-backup-v1-*.tar.gz
+```
+
+恢复会修改运行数据，必须按脚本提示设置确认环境变量后再执行。生产环境恢复前需要客户确认停服窗口和回退方案。
 
 ---
 

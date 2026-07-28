@@ -223,6 +223,8 @@ Applicable to scenarios where public cloud cannot be used and data must be fully
 
 ### 7.2 Kubernetes Control Plane Scale
 
+Node requirements:
+
 | Total Compute Pool Nodes | Kubernetes Control Plane Nodes | Description |
 |---|---|---|
 | < 3 nodes | **1 node** | Single control plane, suitable for small compute pools |
@@ -311,17 +313,21 @@ Each compute cluster exposes the following ports to the management plane through
 | 32764 | TCP | Management plane | Reserved extension port |
 | 32765 | TCP | Management plane | Reserved extension port |
 
-### 9.3 Internal Middleware Ports (Reference)
+### 9.3 Internal Service Ports (Reference)
 
-Databases and middleware should be exposed only within the VPC and not externally:
+Databases, middleware, and internal application services should be exposed only within the VPC / LAN and not to the public internet. The actual check scope is adjusted automatically based on self-managed middleware, managed middleware, and optional service groups:
 
-| Component | Default Port (Reference) |
+| Component / Service Group | Default Port (Reference) |
 |---|---|
 | RDS (MySQL family) | 3306 |
 | Nacos | 8848 / 9848 / 9849 |
 | Redis | 6379 |
-| Kafka | 9092 |
-| MinIO | 9000 / 9001 |
+| Kafka / Kafka UI | 9092 / 9093 / 18091 |
+| MinIO / MinStore | 8080 / 9000 / 9001 |
+| AGIOne base application services | 3000 / 4000 / 5007 / 7002 / 7003 / 8031 / 8032 / 8033 / 8080 / 8089 |
+| `kubem` optional service group | 8021 / 8022 / 18088 |
+| `cloud` optional service group | 8011 / 8017 / 8012 / 8001 / 8002 |
+| `core_isync` optional service group | 7091 / 18181 / 18082 |
 
 > Actual ports depend on the version and configuration used during deployment.
 
@@ -338,9 +344,7 @@ Before deployment, confirm each item to ensure a smooth rollout:
 - [ ] Operating system and kernel version meet requirements
 - [ ] Time is synchronized (NTP), and all nodes use a consistent time zone
 
-**Fixed download page:**
-
-<https://agione.pro/release/download/agione-release-latest>
+Fixed download page: [Download link](https://agione.pro/release/download/agione-release-latest)
 
 After opening the page, copy `Download URL` and `MD5 URL` for package download and verification.
 
