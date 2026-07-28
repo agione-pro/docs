@@ -41,6 +41,10 @@ next: true
 | 场景字段 | 只在特定场景需要的字段，例如托管中间件、可选服务组、NFS |
 | 高级字段 | 标准交付通常不需要填写，主要用于特殊编排、排障或非默认资源策略 |
 | 安全字符集 | 推荐密码只使用字母、数字和下划线，避免 URL、Shell、YAML 转义问题 |
+| 精简配置 | 安装人员手工维护的 `/root/agione-install.yml`，只保留本次交付需要决策和差异值 |
+| 完整运行时快照 | 安装器解析默认值后生成的完整配置，例如 `outputs/final-result-config.yml`，用于审计和排障 |
+
+`/root/agione-install.yml` 建议保持精简。安装器会在执行时自动补齐默认值，并把完整解析结果写入 `outputs/final-result-config.yml`。交付现场通常维护精简配置即可；完整运行时快照更适合用于问题复盘、审计和支持定位，不建议直接复制成下一次交付模板。
 
 标准执行命令：
 
@@ -153,6 +157,7 @@ agione_app:
     port: 9092
     bootstrap_servers: 192.168.31.208:9092
     security_protocol: PLAINTEXT
+    auto_create_topics: true
   minio:
     endpoint: http://192.168.31.208:9000
     api_direct_host: 192.168.31.208:9000
@@ -214,6 +219,7 @@ agione_app:
   kafka:
     bootstrap_servers: kafka-1.internal.example.com:9092
     security_protocol: PLAINTEXT
+    auto_create_topics: true
   minio:
     storage_type: s3
     endpoint: https://oss.internal.example.com
@@ -440,7 +446,10 @@ agione_app:
 | `agione_app.kafka.security_protocol` | `PLAINTEXT` | 托管 Kafka 使用 SASL / TLS 时按云厂商要求调整。 |
 | `agione_app.kafka.sasl_mechanism` | `PLAIN` | SASL 机制，仅非 `PLAINTEXT` 协议时相关。 |
 | `agione_app.kafka.username` / `password` | `admin` / 空 | Kafka 认证账号，非 `PLAINTEXT` 场景通常必填。 |
+| `agione_app.kafka.auto_create_topics` | `false` | 当 Kafka broker 已开启自动建 Topic，或交付方明确接受运行时自动创建 AGIOne Topic 时设置为 `true`。 |
 | `agione_app.kafka.vhost` | `agione-prod` | 兼容字段，通常保持默认。 |
+
+如果 `auto_create_topics` 保持 `false`，安装器会检查 AGIOne 必需 Topic 是否已存在。托管 Kafka 缺少 Topic 时，推荐先在云控制台创建；如果希望安装器代建，需要确保账号有 Topic 管理权限，并在安装前显式设置 `AGIONE_MANAGED_KAFKA_CREATE_TOPICS=1`。
 
 #### 5.2.5 对象存储
 
