@@ -41,7 +41,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
   ],
   '/zh-CN/installation/': [
     {
-      text: '安装部署',
+      text: '部署与配置',
       collapsed: false,
       items: [
         { text: '部署综述', link: '/zh-CN/installation/agione-deployment-requirements' },
@@ -52,6 +52,14 @@ export const zhSidebar: DefaultTheme.Sidebar = {
         { text: '节点纳管-部署配置要求', link: '/zh-CN/installation/deployment-requirements-for-managing-compute-nodes' },
         { text: '节点纳管-快速安装指南', link: '/zh-CN/installation/quick-install-for-managing-compute-nodes' },
         { text: '节点纳管-ClusterD快速安装', link: '/zh-CN/installation/quick-install-with-agione-clusterd' },
+        {
+          text: '部署后配置',
+          collapsed: false,
+          items: [
+            { text: '运营版部署后配置', link: '/zh-CN/installation/post-deployment/operation-edition' },
+            { text: '企业自用版部署后配置', link: '/zh-CN/installation/post-deployment/enterprise-internal-edition' },
+          ],
+        },
       ],
     },
   ],

@@ -71,7 +71,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
   ],
   "/installation/": [
     {
-      text: "Installation",
+      text: "Deployment & Configuration",
       collapsed: false,
       items: [
         {
@@ -105,6 +105,20 @@ export const enSidebar: DefaultTheme.Sidebar = {
         {
           text: 'Compute Nodes-Installation with ClusterD',
           link: '/installation/quick-install-with-agione-clusterd'
+        },
+        {
+          text: "Post-Deployment",
+          collapsed: false,
+          items: [
+            {
+              text: "Operations Edition",
+              link: "/installation/post-deployment/operation-edition"
+            },
+            {
+              text: "Enterprise Internal Edition",
+              link: "/installation/post-deployment/enterprise-internal-edition"
+            },
+          ],
         },
       ],
     }

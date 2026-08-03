@@ -4,7 +4,7 @@ export const zhNavbar = [
   {
     text: '文档中心',
     items: [
-      { text: '安装部署', link: '/zh-CN/installation/' },
+      { text: '部署与配置', link: '/zh-CN/installation/' },
       { text: '购买与激活', link: '/zh-CN/license/' },
       { text: '用户指南', link: '/zh-CN/userguide/scenarios' },
       { text: '用户手册', link: '/zh-CN/usermanual/' },
