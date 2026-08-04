@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -40,14 +40,14 @@ Customer Top-up Orders works like a top-up ledger. After a customer completes a 
 
 ## Page Description
 
-The page includes filters and a customer top-up order table.
+The page includes filters and a customer top-up order table. Use order scope, top-up source, external reference information, and channel text together to identify an externally created order.
 
 | Area | Description |
 | --- | --- |
 | Top-up Order No. | Search by top-up order number. |
 | Customer | Search by customer name or customer identifier. |
 | Top-up Order Status | Filter by order status. |
-| Customer top-up order list | Shows top-up order number, customer information, top-up amount, credited credits, payment channel, order status, created time, completed time, and row-level actions. |
+| Customer top-up order list | Shows order number, customer, order scope, top-up source, payment amount, credited credits, status, completion time, and actions. |
 | Details | Opens a single top-up order for verification. |
 
 The list screenshot is placed under the main operation steps. Screenshot data is masked to avoid exposing customer or order information.
@@ -61,10 +61,11 @@ Use the following operation to review customer top-up orders and verify balance 
 1. Go to `Billing > Customer Billing > Customer Top-up Orders`.
 2. Enter filters such as `Top-up Order No.`, customer name, customer ID, order status, or time range as needed.
 3. Click `Search` and review the customer top-up order list.
-4. Verify top-up order number, customer information, top-up amount, credited credits, payment channel, order status, created time, and completed time.
-5. To verify a single top-up order, click `Details` for the target order.
-6. Compare with Customer Overview, Financial Accounts, or payment transactions to confirm that customer balance and top-up order status are consistent.
-7. For learning or screenshots only, view filters and list fields without exporting real orders or recording customer, order, or payment-sensitive information.
+4. Verify the order number, customer, order scope, top-up source, payment amount, credited credits, status, and completion time.
+5. For an externally created order, compare the source, external reference information, and channel text.
+6. To verify a single top-up order, click `Details` for the target order.
+7. Compare with Customer Overview, Financial Accounts, or payment transactions to confirm that customer balance and top-up order status are consistent.
+8. For learning or screenshots only, view filters and list fields without exporting real orders or recording sensitive information.
 
 ![Customer Top-up Orders](./images/top-up-orders-list.png)
 
@@ -79,6 +80,9 @@ Use the following operation to review customer top-up orders and verify balance 
 | Top-up Amount | System generated | Amount | `USD 100.00` | Top-up amount displayed in the original order currency. |
 | Credited Credits | System generated | Credits | `1,000 Credits` | Credits actually credited to the customer account. |
 | Payment Channel | System generated | Enum | `Stripe` | Payment channel or source of the top-up funds. |
+| Order Scope | System generated | Tag | Displayed on page | Identifies the business scope of the order. |
+| Top-up Source | System generated | Text | Displayed on page | Identifies the source or controlled channel of the order. |
+| External Reference Information | System generated | Text | Sanitized value | Helps match an order created by an external system. |
 | Created Time | System generated | Time | `2026-07-10 12:00:00` | Time when the top-up order was created. |
 | Completed Time | System generated | Time | `2026-07-10 12:10:00` | Time when the top-up order was completed. |
 | Details | No | Button / link | `Details` | Opens a single customer top-up order for verification. |
@@ -92,6 +96,7 @@ Use the following operation to review customer top-up orders and verify balance 
 - Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
 - Top-up orders include customer identity, order number, amount, payment channel, and credited information. Desensitize screenshots and tickets.
 - Do not mix top-up order numbers with payment transaction numbers. They are different objects.
+- Long channel values can occupy more than one line. Do not infer a different order from text wrapping alone.
 - For learning or screenshots only, view filters, list fields, and details entries without exporting real order data.
 
 ## Result Validation

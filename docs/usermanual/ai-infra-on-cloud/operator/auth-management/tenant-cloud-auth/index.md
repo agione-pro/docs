@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-20
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -39,7 +39,7 @@ Tenant-cloud authorization works like issuing a cloud platform access pass to a 
 
 ## Page Description
 
-This page is used to view and maintain authorization relationships between tenants and cloud platforms. The list supports filtering by `Tenant Name` and `Tenant ID`, displays `Tenant name`, `Tenant ID`, `Authorized Cloud Platforms`, and `Actions`, and provides entries such as `Edit` and `Delete`.
+This page is used to view and maintain authorization relationships between tenants and cloud platforms. Use the pagination control at the bottom of the list to review additional records. Changing the page does not modify an authorization.
 
 Page screenshot:
 
@@ -50,11 +50,13 @@ Page screenshot:
 ### Add Tenant-Cloud Authorization
 
 1. Go to `AI Infrastructure > On-Cloud > Authorization Management > Tenant-Cloud Auth`.
-2. Click `Add Tenant-Cloud Authorization`.
-3. In the dialog, select `Select Cloud Platform` as required by the page.
-4. Select `Authorize a Single Tenant` or `Authorize All Tenants`. If you select single-tenant authorization, also fill in `Select Tenant`.
-5. Before clicking the final `Confirm`, verify the cloud platform, authorization target, and impact scope again.
-6. For learning or page validation only, click `Cancel` or close the dialog without submitting real authorization configuration.
+2. Search the current page for the target authorization.
+3. If the target is not on the current page, page through the list before you create a duplicate.
+4. Click `Add Tenant-Cloud Authorization`.
+5. In the dialog, select `Select Cloud Platform` as required by the page.
+6. Select `Authorize a Single Tenant` or `Authorize All Tenants`. If you select single-tenant authorization, also fill in `Select Tenant`.
+7. Before clicking the final `Confirm`, verify the cloud platform, authorization target, and impact scope again.
+8. For page validation only, click `Cancel` or close the dialog without submitting real authorization configuration.
 
 Key step screenshot:
 
@@ -72,6 +74,7 @@ Key step screenshot:
 | Select Tenant | Conditionally required | Dropdown | `Sample Tenant` | Required when `Authorize a Single Tenant` is selected. |
 | Search | No | Button | `Search` | Queries authorization records with the current filters. |
 | Reset | No | Button | `Reset` | Clears filters and restores the list display. |
+| Pagination | No | Page control | `10/page` | Opens additional list pages without modifying authorization records. |
 | Edit | No | Action entry | `Edit` | Modifies an existing authorization. Confirm the impact scope before editing. |
 | Delete | No | Action entry | `Delete` | Deletes authorization and may affect tenant resource availability. Use with caution. |
 | Cancel | No | Button | `Cancel` | Closes the dialog without saving the current configuration. |
@@ -92,6 +95,7 @@ Key step screenshot:
 | Add entry is visible | `Add Tenant-Cloud Authorization` is displayed in the upper-right corner. | Check operator permissions and page configuration. |
 | Add dialog opens | The dialog displays `Select Cloud Platform`, authorization mode, `Select Tenant`, `Cancel`, and `Confirm`. | Refresh the page and retry. If the issue persists, contact the administrator. |
 | Filters work | Entering tenant name or tenant ID and clicking `Search` refreshes the list, and `Reset` clears filters. | Check filter values and returned data. |
+| Pagination works | The page control opens another result page without changing an authorization. | Check the total count and reload the list. |
 | Authorization can be tracked | If a real submission is made, the new authorization record appears in the list and the authorized cloud platform matches the selection. | Return to the list and verify tenant, cloud platform, and authorization scope. |
 
 ## Troubleshooting

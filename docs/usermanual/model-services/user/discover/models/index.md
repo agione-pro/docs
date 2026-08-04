@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -11,7 +11,7 @@ The Models page helps users discover available models, compare providers, review
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
+| Applicable Role | Model Provider, End User |
 | Navigation path | Model Services > Discover > Models |
 | Page route | `/modelone/store/model` |
 | Managed objects | Model lists, providers, quick start, performance metrics, and model overview |
@@ -42,7 +42,7 @@ Trying a model, submitting a prompt, or calling an API may create call records, 
 
 ## Page Description
 
-This page displays model lists, model details, provider instances, recommendation tags, quick start, and performance information. Users should confirm the model name, Model ID, provider, capability tags, input/output modalities, pricing, and status before trying or calling a model.
+This page displays model lists, model details, provider instances, recommendation tags, quick start, and performance information. Use the compact `Model Type` filter bar to narrow the results. Use the view switcher to change between `Table` and `Card` view. The selected filters continue to control the displayed result set.
 
 Page screenshot:
 
@@ -56,17 +56,17 @@ Used to search models, view providers, filter model types, and confirm model car
 
 1. Go to `Model Services > Discover > Models`.
 2. In the model list, view model name, author, model type, input/output capabilities, billing method, weekly calls, weekly token volume, release time, and other information.
-3. Filter target models by model name, author, model series, model source, model type, capability, context length, billing, or scenario.
-4. Click `View` on the target model card to open the model details page.
-5. On the details page, view model introduction, author, Model ID, context, input/output limits, reference pricing, input/output modalities, capabilities, and supported protocols.
-6. Switch between `Providers`, `Quick Start`, `Performance`, and `Overview` to view provider instances, call methods, performance metrics, and model descriptions.
-7. To try the model, use the `Playground` entry on the details page. For page validation only, view details and do not submit a call request.
+3. Use the compact `Model Type` filter bar, or use other visible filters, to narrow the results.
+4. Use the view switcher to change between `Table` and `Card` view without changing model visibility.
+5. Open the target model and review the model summary first.
+6. Select `Providers` to compare the available provider instances.
+7. After you select the required provider and protocol, open `Quick Start`.
+8. For an asynchronous example, use the task-query path in the current `Quick Start` panel. Do not reuse a path from another model or protocol.
+9. To try the model, use the `Playground` entry. For page validation only, do not submit a call request.
 
-![Providers](./images/providers.png)
+![Model details and Providers](./images/providers.png)
 
-The Providers tab shows provider instances, recommendation status, billing, context, latency, throughput, success rate, and weekly usage data.
-
-![Quick start](./images/quick-start.png)
+The `Providers` tab shows provider instances, billing, context, latency, throughput, success rate, weekly usage, and the `Quick Start` entry.
 
 Documentation examples and screenshots must remain redacted. Use real personal keys only in an approved integration environment.
 
@@ -85,6 +85,7 @@ Confirm model capability, context, and pricing boundaries in the overview.
 | Model Name | Yes | Text | `Qwen3.7-Plus` | Display name used to identify the model in the list and details page. |
 | Provider | Yes | Text / Filter | `AGIOneSystem` | Tenant or channel that provides the model instance. |
 | Model Type | No | Filter / Tag | `Text` | Distinguishes multimodal, text, image, speech, video, embedding, reranking, and other model types. |
+| View | No | Switch | `Table` / `Card` | Changes the presentation without changing model visibility. |
 | Capability Tags | No | Tag | `Tool Calling` | Shows model capabilities such as tool calling or reasoning. |
 | Input/Output Modalities | No | Tag | `Text / Image` | Shows supported input and output types. |
 | Billing Method | No | Text | `Credits / 1M Tokens` | Shows the model billing unit for input, output, or per-request pricing. |

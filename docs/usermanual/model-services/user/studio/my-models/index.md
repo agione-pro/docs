@@ -2,16 +2,16 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
 
-`My Models` is the workspace for model providers to maintain and publish models. It supports publishing models, managing published models, and creating aggregate models. Users can select a publishing destination, configure model basic information, billing rules, rate limits, and visibility.
+`My Models` is the publishing workspace for model providers. End users can also see the overview, but protected model-creation entries do not open a creation flow.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model Provider |
+| Applicable Role | Model Provider, End User with protected overview access |
 | Navigation path | Model Services > Studio > My Models |
 | Page route | `/modelone/model` |
 | Managed objects | Published models, aggregate models, model sources, meta models, protocols, billing, rate limits, and visibility |
@@ -29,13 +29,13 @@ Updated: 2026-07-08
 | Aggregate Model | Combines multiple models of the same type under one Model ID, with the platform routing requests by strategy. |
 | Publishing destination | Publishes the model to `Private` or `Public`. |
 | Access Mode | Controls whether the model is accessible to all tenants or requires authorization before calls. |
-| Matching strategy | Routing strategy for an aggregate model, such as Cost First, Success Rate First, Cost & Experience Balance, Random, or Round Robin. |
+| Route Strategy | Routing strategy for an aggregate model: `Price First`, `Success Rate First`, `Experience First`, `Random`, or `Round Robin`. |
 | Billing Configuration | Defines Token billing, free access, tiered pricing, cache price, free quota, and other billing rules. |
 | Rate Limit Configuration | Defines request frequency, concurrency, quota, or other call control policies. |
 
 ## Prerequisites
 
-1. The current account has access to the `My Models` page.
+1. The current account has access to the `My Models` page. A model provider sees `Start`. An end user sees `Contact Us` for protected entries.
 2. Before publishing a model, the meta model, model source, request URL, authentication information, protocol, and billing plan are prepared.
 3. Before creating an aggregate model, at least two compatible published models are available for aggregation.
 4. Publishing, saving, submitting, creating, delisting, or deleting can affect real model services. For page validation only, do not perform final confirmation.
@@ -46,13 +46,13 @@ Updated: 2026-07-08
 
 ## Page Description
 
-The page includes three tabs: `Overview`, `My Published`, and `My Aggregate`. `Overview` shows entries for publishing models and creating aggregate models. `My Published` shows the published model list and operation entries. `My Aggregate` shows the aggregate model list and operation entries.
+The page includes three tabs: `Overview`, `My Published`, and `My Aggregate`. A model provider can use `Start` to enter a publishing or aggregation flow. An end user can see the overview cards, but protected entries show `Contact Us`. License and public-area identity checks can also block the next step.
 
 The following screenshot shows the `Overview` entries for publishing and aggregation.
 
 ![My Models overview list](./images/my-models-overview-list.png)
 
-The following screenshot shows published models and their operation entries.
+`My Published` shows published-model records, billing summaries, statuses, and available actions. The action set depends on the record status and the current account permission.
 
 ![My Published list](./images/my-models-my-published-list.png)
 
@@ -93,17 +93,20 @@ The following screenshot shows aggregate models and their operation entries.
 
 ![Create Aggregate Model - choose where to publish](./images/my-aggregate-choose-where-to-publish-add.png)
 
-4. On the `Create Aggregate Model` page, in `Basic Information`, select model type, model sub-type, and models to aggregate.
-5. In `Model Selection`, confirm whether each model is enabled, minimum success rate, maximum concurrency rate, context length, and cost.
-6. In `Basic Information`, configure custom tag, matching strategy, tag, and description. Matching strategy can use options shown on the page, such as Cost First, Success Rate First, Cost & Experience Balance, Random, or Round Robin.
+4. In `Model Selection`, add compatible published models.
+5. For each model, review `Enable`, `Minimum Success Rate`, `Maximum Concurrency`, `Context Length`, and `Price Weight`.
+6. Treat `Price Weight` as a unitless routing weight from 1 to 100. It is not a billing amount.
+7. In `Basic Information`, review the custom or suggested tag and the model-name preview.
+8. Select one `Route Strategy`: `Price First`, `Success Rate First`, `Experience First`, `Random`, or `Round Robin`.
+9. Use the `Behavior` and `Best for` descriptions to select the strategy.
 
 ![Create Aggregate Model - basic information](./images/my-aggregate-basic-information-add.png)
 
-7. Configure Access Mode, publication method, and Billing Configuration.
+10. Configure Access Mode, publication method, and Billing Configuration.
 
 ![Create Aggregate Model - billing configuration](./images/my-aggregate-billing-configuration-add.png)
 
-8. Before clicking the final `Create`, `Save`, or `Submit`, verify selected models, routing strategy, pricing, and visibility again. For page validation only, go back or close the page without final submission.
+11. Before the final `Create`, `Save`, or `Submit`, verify the selected models, route strategy, pricing, and visibility. Do not infer a submission result before the model is saved.
 
 ## Parameter Reference
 
@@ -127,8 +130,14 @@ The following screenshot shows aggregate models and their operation entries.
 | Web Search | No | Toggle / selector | `On` / `Off` | Sets whether the model supports Web Search and related billing capabilities. |
 | Free Quota | No | Number | Displayed in page unit | Sets the quota that users can use for free. |
 | Aggregate Model | Required for aggregation | Model selection | `Model Mocker:Mock ...` | Published model included in the aggregate model. |
-| Matching strategy | Required for aggregation | Radio | `Cost First` | Strategy used by the platform to choose aggregate nodes. |
-| Weight / success rate / concurrency | Conditionally required | Number input | `50%` | Controls aggregate routing and node availability. |
+| Enable | No | Toggle | `On` | Includes or excludes the model from routing. |
+| Minimum Success Rate | Yes | Number input | `95` | Sets the minimum success-rate requirement for the model row. |
+| Maximum Concurrency | Yes | Number input | `10` | Sets the maximum concurrent calls for the model row. |
+| Context Length | No | Number input | Displayed on page | Shows or sets the context-length boundary for the model row. |
+| Price Weight | Yes | Number input | `1-100` | Sets a unitless routing weight. It is not a billing amount. |
+| Custom or Suggested Tag | No | Text / tag | `#Low Latency` | Describes an advantage and updates the model-name preview. |
+| Model Name Preview | System generated | Preview | Displayed on page | Previews the aggregate model name in list and provider-card layouts. |
+| Route Strategy | Required for aggregation | Radio | `Price First` | Selects one of the five routing strategies shown on the page. |
 | Status | No | Tag | `Published` / `Delisted` | Current publishing status of the model. |
 | Actions | No | Row buttons | `Authorize` / `Edit` / `Delist` / `Delete` | View or manage a model record. |
 
@@ -148,7 +157,7 @@ The following screenshot shows aggregate models and their operation entries.
 | Publish Model entry is visible | The `Publish Model` button or publishing entry is visible and can open the publishing destination dialog. | Check whether the account has model publishing permission. |
 | Create Aggregate Model entry is visible | The `Create Aggregate Model` button or entry is visible and can open the publishing destination dialog. | Confirm that compatible published models are available. |
 | Publish fields display normally | Basic Information, Billing Configuration, and Rate Limit Configuration steps are displayed normally. | Go back to select the publishing destination again, or refresh the page. |
-| Aggregate fields display normally | Model Selection, Matching strategy, Access Mode, publication method, and Billing Configuration are displayed normally. | Check whether selected models meet the same meta model requirement. |
+| Aggregate fields display normally | Model Selection, row controls, tags, name preview, Route Strategy, Access Mode, and Billing Configuration are displayed. | Check whether selected models meet the same meta model requirement. |
 | High-risk actions are not triggered | During learning or screenshots, final `Publish`, `Submit`, `Save`, `Create`, `Delist`, or `Delete` is not clicked. | If a real change is triggered by mistake, immediately record the time and model information and notify the owner for rollback or review. |
 
 ## FAQ

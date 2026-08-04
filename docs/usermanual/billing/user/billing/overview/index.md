@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-23
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -11,7 +11,7 @@ Updated: 2026-07-23
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
+| Applicable Role | Model Provider, End User |
 | Navigation path | Billing > User Billing > Account Overview |
 | Page route | `/billing/my/account` |
 | Managed objects | Account balance, consumption trends, top-up entry, alert threshold, and recent transactions |
@@ -44,7 +44,7 @@ Top-ups, alert-threshold changes, and billing-data exports may affect a real acc
 
 ## Page Description
 
-The following screenshot shows Account Overview. Sanitize amounts, account information, and contact details before sharing it.
+`Account Overview` opens the current overview directly. There is no legacy or modern view switch. Use `Transactions`, `Top-up Orders`, `Monthly Bill`, and `Quota Governance` for detailed follow-up. Sanitize amounts, account information, and contact details before sharing the screenshot.
 
 ![Account Overview](./images/overview-list.png)
 

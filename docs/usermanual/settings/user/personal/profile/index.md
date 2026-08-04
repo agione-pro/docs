@@ -2,20 +2,20 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-13
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
 
-`Profile` is used to view, filter, and maintain profile information. It helps provider admin or provider account work with profile records and related status from a consistent page entry.
+`Profile` shows the current tenant identity and user settings. It includes the display name, username, user ID, phone, email, and password entries.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin or Provider Account |
+| Applicable Role | Model Provider, End User |
 | Navigation path | Settings > Personal > Profile |
 | Page route | `/user/user-space/profile` |
-| Managed objects | Profile records and related status |
-| Typical use | View, filter, and maintain profile information |
+| Managed objects | Tenant identity, display name, username, user ID, phone, email, and password settings |
+| Typical use | Confirm the current account identity and copy an account value when required |
 
 #### Beginner Explanation
 
@@ -39,14 +39,14 @@ Profile is part of the settings and access-control workspace. Treat it as a plac
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for profile records and related status.
+The page separates tenant information from user settings. Copyable account fields show a copy icon next to the value.
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
+| Tenant | Shows the tenant name, tenant ID, and business identity. |
+| User Settings | Shows the display name, username, user ID, phone, email, and password entries. |
+| Copy icon | Copies a supported account value and shows success feedback. |
+| Edit entries | Open personal-details, email, or password maintenance when permitted. |
 
 The following screenshot shows profile.
 
@@ -59,20 +59,24 @@ Use the following operations to work with profile records and related status. Co
 ### View Profile
 
 1. Go to `Settings > Personal > Profile`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to profile records and related status.
-4. Click the visible `View Profile` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+2. Confirm the tenant name, tenant ID, and business identity.
+3. Review the display name, username, user ID, phone, email, and password status.
+4. To copy a supported value, select its copy icon once.
+5. Confirm the success feedback before you paste the value.
+6. Treat copied account IDs and email addresses as sensitive data. Do not paste them into public channels.
 
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Tenant / customer / member | No | Text | `Example tenant` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Tenant Name | System generated | Text | Sanitized value | Identifies the current tenant. |
+| Tenant ID | System generated / Copyable | Text | Sanitized value | Identifies the tenant. Treat the copied value as sensitive data. |
+| Business Identity | System generated | Tag | `Provider` | Shows the current tenant business identity. |
+| Display Name | System generated / Editable | Text | Sanitized value | Shows the user display name. |
+| Username | System generated / Copyable | Text | Sanitized value | Identifies the current user account. |
+| User ID | System generated / Copyable | Text | Sanitized value | Identifies the current user. Treat the copied value as sensitive data. |
+| Phone | System generated / Editable | Text | Sanitized value | Shows the configured phone number. |
+| Email | System generated / Editable / Copyable | Text | Sanitized value | Shows the configured email address. |
 
 ## Pitfalls
 
@@ -85,9 +89,8 @@ Use the following operations to work with profile records and related status. Co
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page access | The `Personal > Profile` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Account information | Tenant and user-setting areas show the current account information. | Check account permissions and page loading status. |
+| Copy feedback | Selecting a copy icon shows success feedback. | Select the icon once again and check browser clipboard permission. |
 
 ## FAQ
 

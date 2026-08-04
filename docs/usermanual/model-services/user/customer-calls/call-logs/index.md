@@ -2,12 +2,12 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
 
-`Customer Calls - Call Logs` is used to view customer-side single model call records, including call time, model, customer name, model type, call status, usage, time consumed, first token time, failure type, error message, and the details entry. It helps model providers troubleshoot customer-reported failures, timeouts, rate limits, or usage anomalies.
+`Customer Calls - Call Logs` is available to model providers. It shows customer-side model call records and helps providers troubleshoot customer-reported failures, timeouts, rate limits, or usage anomalies. End users can review only their own records under `My Calls`.
 
 | Item | Content |
 | --- | --- |
@@ -53,10 +53,11 @@ Page screenshot:
 
 1. Go to `Model Services > Customer Calls > Call Logs`.
 2. On the `Model Logs` tab, view call time, model, customer name, model type, call status, usage, time consumed, first token time, failure type, error message, and action entries.
-3. Select filters such as month, date range, model, model type, or call status.
-4. Click `Search` to view matching customer call logs.
-5. Click `Reset` to clear filters. To view more filters, click `Expand`.
-6. Click `Details` for the target log to view more information about a single customer call. When viewing or taking screenshots, hide sensitive content such as requests, responses, Keys, accounts, and costs.
+3. Select filters such as month, date range, model, model type, call status, or input-token range.
+4. Use `Minimum Input Tokens` and `Maximum Input Tokens` together to narrow records by input-token range.
+5. Click `Search` to view matching customer call logs.
+6. Click `Reset` to clear filters. To view more filters, click `Expand`.
+7. Click `Details` for the target log. Hide requests, responses, Keys, accounts, and costs.
 
 ![Customer Calls - Call Logs](./images/call-logs-list.png)
 
@@ -69,6 +70,8 @@ Page screenshot:
 | Model | No | Input | Enter on page | Filters call logs by model name. |
 | Model Type | No | Selector | `Text` | Filters call logs by model capability type. |
 | Call Status | No | Selector | `Success` | Filters logs by call processing result. |
+| Minimum Input Tokens | No | Number input | `0` | Sets the lower input-token boundary for the query. |
+| Maximum Input Tokens | No | Number input | `1000` | Sets the upper input-token boundary for the query. |
 | Call Time | System-generated | Time | Displayed on page | Shows when a single customer call occurred. |
 | Customer Name | System-generated | Text | Displayed on page | Shows the customer that initiated the call. |
 | Usage | System-generated | Text / tag | Displayed on page | Shows input tokens, output tokens, cached input tokens, context size, or free usage information. |

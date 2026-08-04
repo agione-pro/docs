@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -11,9 +11,9 @@ Updated: 2026-07-08
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
+| Applicable Role | Model Provider, End User |
 | Navigation path | Model Services > My Calls > Call Logs |
-| Page route | `/modelone/monitoring/calls/log` |
+| Page route | `/modelone/monitoring/calls/log` redirects to `/modelone/monitoring/calls/log/model` |
 | Managed objects | Model call logs, call status, latency, token usage, and error messages for the current account |
 | Typical use | View single-call logs and locate failed or slow calls |
 
@@ -51,11 +51,12 @@ Page screenshot:
 ### View My Call Logs
 
 1. Go to `Model Services > My Calls > Call Logs`.
-2. On the `Models` tab, view call time, model, model type, call status, usage, time consumed, first token time, failure type, error message, and action entries.
-3. Select filters such as month, date range, model, model type, or call status.
-4. Click `Search` to view matching call logs.
-5. Click `Reset` to clear filters. To view more filters, click `Expand`.
-6. Click `Details` for the target log to view more information about a single call. When viewing details, hide sensitive content such as requests, responses, Keys, and costs.
+2. The entry route redirects to the model call-log view at `/modelone/monitoring/calls/log/model`.
+3. On the `Models` tab, view call time, model, model type, call status, usage, time consumed, first token time, failure type, error message, and action entries.
+4. Use `Minimum Input Tokens` and `Maximum Input Tokens` together to narrow records by input-token range.
+5. Click `Search` to view matching call logs.
+6. Click `Reset` to clear filters. To view more filters, click `Expand`.
+7. Click `Details` for the target log to view more information about a single call. Hide requests, responses, Keys, and costs.
 
 ![My Call Logs](./images/call-logs-list.png)
 
@@ -68,6 +69,8 @@ Page screenshot:
 | Model | No | Input | Enter on page | Filters call logs by model name. |
 | Model Type | No | Selector | `Text` / `Video` | Filters call logs by model capability type. |
 | Call Status | No | Selector | `Success` / `Failed` | Filters logs by call processing result. |
+| Minimum Input Tokens | No | Number input | `0` | Sets the lower input-token boundary for the query. |
+| Maximum Input Tokens | No | Number input | `1000` | Sets the upper input-token boundary for the query. |
 | Call Time | System-generated | Time | Displayed on page | Shows when a single call occurred. |
 | Usage | System-generated | Text / tag | Displayed on page | Shows token, free quota, or multimodal input/output usage. |
 | Time Consumed | System-generated | Time | Displayed on page | Shows the total time consumed by a single call. |

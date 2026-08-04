@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -45,12 +45,14 @@ The page shows customer overview filters, tag management entry, and customer lis
 | Area | Description |
 | --- | --- |
 | Business Identity | Select `EU` or `Provider` to switch the customer list scope. |
-| Keyword | Search by customer name, customer ID, administrator email, or related customer identifier. |
+| Keyword | Search by tenant `Name`, customer ID, administrator email, or related customer identifier. |
 | Tags | Filter customers by platform built-in tags or custom tags. |
 | Customer list | Shows customer name, administrator, business identity, tags, account balance, consumption, revenue-related information, and last update time. |
 | Manage Tags | Opens the tag management dialog when the current account has permission. |
 
-EU and Provider screenshots are placed under the corresponding operation steps. Screenshot data is masked to avoid exposing customer information.
+The tenant `Name` is the customer display identity. Confirm it before you open a row action. The following screenshot shows the current list with masked customer data.
+
+![Customer Overview](./images/customer-overview-list.png)
 
 ## Main Operations
 
@@ -60,23 +62,19 @@ Use the following operations to view EU and Provider customer overview records a
 
 1. Go to `Billing > Customer Billing > Customer Overview`.
 2. Select `EU` in `Business Identity`.
-3. Enter customer name, customer ID, administrator email, tags, or other filters as needed.
+3. Enter tenant `Name`, customer ID, administrator email, tags, or other filters as needed.
 4. Click `Search` and review the EU customer list.
-5. Verify customer name, administrator, business identity, tags, account balance, consumption, and last update time.
+5. Verify tenant `Name`, administrator, business identity, tags, account balance, consumption, and last update time.
 6. For learning or screenshots only, view filters and list fields without exporting real customer data or recording sensitive customer information.
-
-![Customer Overview - EU](./images/customer-overview-eu-list.png)
 
 ### View Customer Overview - Provider
 
 1. Go to `Billing > Customer Billing > Customer Overview`.
 2. Select `Provider` in `Business Identity`.
-3. Enter customer name, customer ID, administrator email, tags, or other filters as needed.
+3. Enter tenant `Name`, customer ID, administrator email, tags, or other filters as needed.
 4. Click `Search` and review the Provider customer list.
-5. Verify customer name, administrator, business identity, tags, account balance, revenue or consumption-related information, and last update time.
+5. Verify tenant `Name`, administrator, business identity, tags, account balance, revenue or consumption-related information, and last update time.
 6. For learning or screenshots only, view filters and list fields without exporting real customer data or recording sensitive customer information.
-
-![Customer Overview - Provider](./images/customer-overview-provider-list.png)
 
 ### Manage Tags
 
@@ -87,6 +85,18 @@ Use the following operations to view EU and Provider customer overview records a
 5. Close the dialog after confirming the tag list.
 6. For learning or screenshots only, view tag names, counts, and permission prompts without recording real customer tagging policies or internal operation notes.
 
+### Review an Account Adjustment
+
+1. Locate the target customer by tenant `Name`.
+2. Open the row actions and select `Adjust Limit`.
+3. Confirm the target tenant `Name`, customer account, and account type.
+4. Select the limit mode and enter a non-empty `Adjust Limit` value.
+5. Review the prefilled `Remarks`. Replace it with the actual business reason when necessary.
+6. Keep `Remarks` non-empty. An empty reason prevents submission.
+7. For page validation only, click `Cancel`. Opening the dialog does not complete an adjustment.
+
+![Adjust Limit dialog](./images/customer-adjustment-dialog.png)
+
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
@@ -94,7 +104,7 @@ Use the following operations to view EU and Provider customer overview records a
 | Business Identity | No | Enum | `EU` | Filters customers by business identity. |
 | EU | System enum | Enum value | `EU` | End User customer view for consumption and balance information. |
 | Provider | System enum | Enum value | `Provider` | Provider customer view for revenue or consumption-related information. |
-| Customer Name | No | Text | `Example customer` | Locates a customer by customer name. |
+| Tenant Name | No | Text | `Example tenant` | Locates a customer by the tenant `Name` shown in the list. |
 | Customer ID | No | Text | `customer-xxxx` | Locates a customer by unique customer identifier. Use placeholders only in documentation. |
 | Administrator Email | No | Text | `user@example.com` | Locates a customer by administrator email. Desensitize it in screenshots or tickets. |
 | Tags | No | Multi-select | `VIP` | Filters customers by selected tags. |
@@ -105,6 +115,8 @@ Use the following operations to view EU and Provider customer overview records a
 | Search | No | Button | `Search` | Refreshes the customer list by current filters. |
 | Reset | No | Button | `Reset` | Clears filters and restores the default list. |
 | Actions | System generated | Button / link | `Details` | Provides row-level entries for viewing or follow-up checks. |
+| Adjust Limit | Yes for adjustment | Number | Sanitized amount | Sets the required adjustment amount in the dialog. |
+| Remarks | Yes for adjustment | Multiline text | `Adjust Limit` | Records the business reason. The field is prefilled but must remain non-empty. |
 
 ## Pitfalls
 
@@ -113,6 +125,8 @@ Use the following operations to view EU and Provider customer overview records a
 - Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
 - Customer name, administrator email, customer ID, account balance, consumption amount, and revenue amount are sensitive. Desensitize screenshots, exports, tickets, and comments.
 - For learning or screenshots only, view filters and list fields without exporting real customer data.
+- Opening `Adjust Limit` does not change the account. The change occurs only after the final confirmation.
+- An empty adjustment reason prevents submission. Review the prefilled remark before confirmation.
 
 ## Result Validation
 

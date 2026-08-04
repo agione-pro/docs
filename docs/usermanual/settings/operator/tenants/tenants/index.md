@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -39,7 +39,7 @@ Tenants is part of the settings and access-control workspace. Treat it as a plac
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for tenants records and related status.
+The tenant list uses the tenant `Name` as its display and search identity. Confirm the tenant `Name`, tenant ID, administrator, and business identity before you open an action.
 
 | Area | Description |
 | --- | --- |
@@ -75,6 +75,7 @@ Use the following operations to work with tenants records and related status. Co
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Tenant Name | Yes | Text | `Example Tenant A` | Identifies the tenant entity. |
+| Business Identity | No | Filter / tag | `Provider` | Filters or identifies the tenant business identity. |
 | Admin name | Yes | Text | `Example Admin` | The display name of the tenant administrator. |
 | Admin sign-in account | Yes | Text | `tenant-admin` | The sign-in account of the tenant administrator. |
 | Admin email | Yes | Text | `admin@example.com` | The email address of the tenant administrator. |
@@ -93,6 +94,8 @@ Use the following operations to work with tenants records and related status. Co
 - Creating a tenant creates a real tenant entity and a fixed administrator account.
 - Initial passwords, administrator emails, and phone numbers are sensitive information. Do not write them into documentation or screenshots.
 - Role selection affects the platform access scope of the tenant administrator.
+- The current UI does not provide an action to turn off the `Provider` business identity after enablement. Confirm the tenant, business owner, and downstream impact before enablement.
+- This restriction applies to the `Provider` business identity. The `Manage Roles` dialog can still remove ordinary role tags when permitted.
 - Final submission is a high-risk action. Do not submit real tenant configuration during learning or screenshots.
 
 ## Result Validation

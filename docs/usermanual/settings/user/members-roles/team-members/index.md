@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-13
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -39,7 +39,7 @@ Members is part of the settings and access-control workspace. Treat it as a plac
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for team members records and related status.
+The page shows member usernames, names, contact information, role labels, status, creation time, and actions. Use the identity badge and username together before you open an action. An identity badge is display information. It does not replace the assigned role or permission check.
 
 | Area | Description |
 | --- | --- |
@@ -63,20 +63,22 @@ Use the following operations to work with team members records and related statu
 ### Manage Members
 
 1. Go to `Settings > Members & Roles > Members`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to team members records and related status.
-4. Click the visible `Manage Members` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+2. Use `Username` or `Contact number` to locate the member.
+3. Use the identity badge and username together to confirm the member.
+4. Check the assigned role and status separately from the identity badge.
+5. Copyable member values use the same copy icon and success feedback as `Profile`.
+6. Before you open `Edit` or another action, confirm the target member and permission scope.
 
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Tenant / customer / member | No | Text | `Example tenant` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Username | No | Text / filter | Sanitized value | Locates and identifies a member. |
+| Identity Badge | System generated | Badge | Displayed on page | Shows identity information. It does not grant permissions. |
+| Role | System generated | Tag | `Member` | Shows the member's assigned permission role. |
+| Status | System generated | Tag | `Active` | Shows whether the member account is active. |
+| Copy icon | No | Icon | `Copy` | Copies a supported member value and shows success feedback. |
+| Actions | System generated | Button / link | `Profile` / `Edit` | Opens actions that are available to the current account. |
 
 ## Pitfalls
 

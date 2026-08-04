@@ -2,20 +2,20 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
 
-`Login Properties` is used to view, filter, and maintain login properties information. It helps operator admin work with login properties records and related status from a consistent page entry.
+`Login Properties` is used to review login security, registration entrances, default roles, registration codes, account recovery, Google Login, and external registration sources.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator Admin |
 | Navigation path | Settings > System Settings > Login Properties |
 | Page route | `/user/system/login-properties` |
-| Managed objects | Login Properties records and related status |
-| Typical use | View, filter, and maintain login properties information |
+| Managed objects | Login security, registration settings, registration codes, account recovery, Google Login, and external system integration |
+| Typical use | Review sign-in, registration, recovery, and external-source configuration |
 
 #### Beginner Explanation
 
@@ -39,14 +39,15 @@ Login Properties is part of the settings and access-control workspace. Treat it 
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for login properties records and related status.
+The page includes `Login security`, `Registration Settings`, `Registration Codes`, `Account Recovery`, and `Google Login`. `Registration Settings` contains registration entrances, default roles, the `Platform Source Catalog`, and `External System Integration`.
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
+| Login security | Shows email-code login, password lockout, and send-code limits. |
+| Registration Settings | Shows registration entrances, default roles, platform sources, and external integrations. |
+| Registration Codes | Shows verification-code configuration for registration. |
+| Account Recovery | Shows account-recovery configuration. |
+| Google Login | Shows third-party sign-in configuration. |
 
 The following screenshot shows login properties.
 
@@ -63,6 +64,20 @@ Use the following operations to work with login properties records and related s
 3. Review password policy, login restrictions, session validity, MFA, or security verification settings.
 
 ![Login Security Configuration](./images/login-security.png)
+
+### Registration Settings
+
+1. Go to `Settings > System Settings > Login Properties`.
+2. Select `Registration Settings`.
+3. Review each registration entrance and its default roles.
+4. Confirm that each default role belongs to the `DEFAULT` application before you edit the configuration.
+5. Review the `Platform Source Catalog` and the controlled recharge channel for each enabled source.
+6. Review the source and note in `External System Integration`.
+7. A disabled master switch also disables its dependent registration path.
+8. If the configuration does not load, refresh the page before you open an edit action.
+9. Do not save an endpoint or credential until you confirm its owner and rollback plan.
+
+![Registration Settings](./images/registration-properties.png)
 
 ### Registration Verification Code Configuration
 
@@ -97,6 +112,10 @@ Use the following operations to work with login properties records and related s
 | Default Value | System displayed | Text | `5 minutes` | The default or system-provided value of the configuration item. |
 | Current Value | System displayed / Editable | Text | `5 minutes` | The currently effective configuration value. |
 | Enabled Status | System displayed / Editable | Enum | `Enabled` | Indicates whether the configuration item or login capability is enabled. |
+| Registration Entrance | System displayed / Editable | Text | `Email Registration` | Identifies a registration path and its entrance code. |
+| Default Roles | System displayed / Editable | Role list | Displayed on page | Lists the roles assigned to new users for an entrance. Roles must belong to `DEFAULT`. |
+| Platform Source Catalog | System displayed / Editable | Source list | Displayed on page | Lists external business sources, source status, and controlled recharge channels. |
+| External System Integration | System displayed / Editable | Integration settings | Displayed on page | Shows an external registration source, master switch, and note. |
 | Save | Operation button | Button | `Save` | Saves the current login configuration change. |
 | Reset | Operation button | Button | `Reset` | Restores the configuration to the default value or last saved state. |
 | Actions | System generated | Button / link | `Edit / Enable / Disable` | Provides login configuration view or maintenance entries. |
@@ -119,7 +138,7 @@ Use the following operations to work with login properties records and related s
 | Filter result | The list changes according to the selected filters. | Reset filters and search again. |
 | Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
 | Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
-| Screenshots | Login security, registration verification code, account recovery, and Google Login screenshots render normally. | Check whether image paths exist. |
+| Screenshots | Login security, Registration Settings, registration verification code, account recovery, and Google Login screenshots render normally. | Check whether image paths exist. |
 
 ## FAQ
 

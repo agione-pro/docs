@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-20
+Updated: 2026-07-29
 :::
 
 ## Feature Overview
@@ -42,13 +42,21 @@ A framework works like the runtime instruction for model deployment. It tells th
 
 ## Page Description
 
-This page is used to view and add frameworks. The list supports filtering by cloud platform tab, `Framework Name`, and `Framework Type`, and provides `Search`, `Reset`, `Export`, `Import`, and `Add Framework`. Framework cards display framework name, description, version, framework type, cloud platform, region, update time, and action entries such as `Details`, `Edit`, and more actions.
+This page uses framework cards for the list. Select a card or its `Details` action to open the details view. The details view separates framework metadata from the version list. Version actions are displayed with their target versions.
 
 Page screenshot:
 
 ![Frameworks List](./images/frameworks-list.png)
 
 ## Main Operations
+
+### View Framework Details and Versions
+
+1. Go to `AI Infrastructure > On-Cloud > Deploy Assets > Frameworks`.
+2. Use the cloud platform tab, `Framework Name`, or `Framework Type` to locate a framework card.
+3. Open the framework details from the card.
+4. Review the framework metadata and version list separately.
+5. Before you open an edit action, verify the target version, runtime image, startup command, and availability.
 
 ### Add Framework
 
@@ -101,6 +109,7 @@ Key step screenshot:
 | --- | --- | --- |
 | Page is accessible | The `Frameworks` page and framework list are displayed. | Check menu permissions, route, and login status. |
 | Framework list loads | Framework cards display name, version, framework type, cloud platform, region, and action entries. | Check filters, data permissions, and API status. |
+| Details and versions load | Framework metadata and the version list are displayed as separate areas. | Reopen the card and check page data permissions. |
 | Add entry is visible | `Add Framework` is displayed in the upper-right corner. | Check operator permissions and page configuration. |
 | Add dialog opens | The dialog displays cloud platform, cloud account, region, framework type, framework name, version, image, port, and startup command fields. | Refresh the page and retry. If the issue persists, contact the administrator. |
 | Required fields and validation prompts work | Missing required fields trigger page validation prompts, and the flow can continue after they are completed. | Complete the prompted fields and verify cloud platform, cloud account, region, and image status. |
