@@ -23,12 +23,12 @@ The template exposes a compatible framework, model, runtime configuration, and o
 
 1. Open [Model Configuration](../../../../usermanual/ai-infra-on-prem/operator/templates/models/) and confirm that model name, type, storage location, and state are available.
 
-![Confirm that model configuration is selectable](./images/model-config-list-browser.png)
+![Confirm that model configuration is selectable](../../../../usermanual/ai-infra-on-prem/operator/templates/models/images/models-list.png)
 
 2. Open [Inference Frameworks](../../../../usermanual/ai-infra-on-prem/operator/templates/frames/) and confirm that framework version and runtime image support the target NPU.
 3. Open [VRAM Estimation](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/) and confirm one-card and multi-card memory requirements for the parameter scale, precision, and parallel method.
 
-![Review VRAM estimation by model precision and scale](./images/vram-config-list-browser.png)
+![Review VRAM estimation by model precision and scale](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/images/vram-config-list.png)
 
 4. Create a template, enter its purpose, and select the prepared model configuration and inference framework.
 5. Select a resource specification with the target NPU model, card count, and memory.

@@ -24,13 +24,13 @@ Use this task to prepare runtime images and storage for an onboarded local clust
 
 Open [Image Services](../../../usermanual/ai-infra-on-prem/operator/resource-pools/image-services/), enter the registry endpoint, authentication information, and associated region. After registration, review service and synchronization state. A registry that opens in a browser may still be unreachable from cluster nodes.
 
-![Review image services and synchronization state](./images/image-services-list-browser.png)
+![Review image services and synchronization state](../../../usermanual/ai-infra-on-prem/operator/resource-pools/image-services/images/image-services-list.png)
 
 ### 2. Synchronize or Upload Runtime Images
 
 Open [Image Management](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/) and synchronize the registry or upload an image record. Use stable labels that identify framework, version, hardware environment, and purpose. Do not rely only on `latest` in production.
 
-![Confirm that the runtime image is visible in Image Management](./images/images-list-browser.png)
+![Confirm that the runtime image is visible in Image Management](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/images/images-list.png)
 
 ### 3. Select Storage for the Workload
 
@@ -40,7 +40,7 @@ Open [Image Management](../../../usermanual/ai-infra-on-prem/operator/resource-p
 
 Enter connection information, capacity, access policy, and associated region, then return to the list and confirm the state.
 
-![Register file storage and confirm the shared path](./images/file-storage-register-browser.png)
+![Register file storage and confirm the shared path](../../../usermanual/ai-infra-on-prem/operator/resource-pools/file-storage/images/new-file-storage.png)
 
 ### 4. Bind the Region and Run a Combined Validation
 

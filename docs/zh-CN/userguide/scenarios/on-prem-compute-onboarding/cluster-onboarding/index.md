@@ -27,7 +27,7 @@
 4. 打开集群详情和节点列表，核对节点均为 Ready。
 5. 核对设备总量，确认目标 NPU 数量为 4，且没有掉卡或重复上报。
 
-![集群管理页面](./images/clusters.png)
+![集群管理页面](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/clusters/images/clusters-list.png)
 
 ## 4 张 NPU 卡的核对方法
 
