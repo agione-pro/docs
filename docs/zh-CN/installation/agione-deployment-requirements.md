@@ -32,7 +32,8 @@
 | 生产部署 | 面向正式业务使用的部署，需要考虑高可用、备份、监控、权限和运维 |
 | 管理面 | AGIOne 控制面和业务服务运行区域，用户主要访问这一部分 |
 | 算力节点纳管 | 将 GPU / NPU 节点接入平台，用于训练、推理、IDE 等负载 |
-| 公有云托管中间件 | 云厂商提供的 RDS、Redis、Nacos、Kafka、OSS / OBS 等服务 |
+| 公有云托管中间件 | 云厂商提供的数据库、Redis、Nacos、Kafka、对象存储等服务；正式交付只能使用本文兼容矩阵中已验证的产品与版本 |
+| 兼容性基线 | 已完成安装、初始化、运行和清理回归的“云厂商 + 产品 + 版本 + 接入方式”组合 |
 | 私有云 / IDC | 客户自有数据中心或私有云环境，通常需要更多自建中间件 |
 | VPC | 云上私有网络，业务节点和中间件通常应位于同一 VPC |
 | ELB / ALB | 负载均衡入口，用于把用户请求分发到多个应用 / 入口节点 |
@@ -54,7 +55,7 @@ AGIOne 平台部署在逻辑上分为两个相对独立的部分：
 
 **架构要点：**
 
-- 接入层通过 ELB 对外暴露平台管理服务，生产环境推荐配置域名 + HTTPS（443）。
+- 接入层可通过经项目验收的负载均衡服务对外暴露平台管理服务，生产环境推荐配置域名 + HTTPS（443）。
 - 平台管理层至少由 2 个业务节点 + 2 个数据库中间件节点组成，业务节点可水平扩展。
 - 算力集群以"地域算力池"为单位独立部署，每个地域近端部署镜像服务以提升镜像拉取速度。
 - 平台管理层通过 Kubernetes API（6443）与扩展端口（32761–32765）调度并访问算力集群。
@@ -75,12 +76,13 @@ AGIOne 平台部署在逻辑上分为两个相对独立的部分：
 
 > **选型建议**：若无强制的数据合规或内网隔离要求，**优先选择公有云部署**，可获得更稳定的中间件托管能力与运维便利性。
 
-当前已支持的公有云托管中间件厂商如下。未列入的云厂商需结合客户区域、产品规格、网络连通和安装器端点配置能力单独评估。
+当前安装器只支持阿里云和华为云中已经完成实测的托管中间件组合。这里的“已支持”必须同时满足 [5.1.2 数据库与中间件](#_5-1-2-数据库与中间件) 中列出的产品、版本和接入约束，不能扩大理解为该云厂商的所有同类产品均受支持。
 
 | 云厂商 | 支持状态 | 已覆盖托管中间件 | 适用安装模式 | 说明 |
 |---|---|---|---|---|
-| 阿里云 | 已支持 | ApsaraDB RDS for MariaDB、Tair / Redis、MSE Nacos、ApsaraMQ for Kafka、OSS、ALB | `managed-middleware` / `hybrid` | 适合客户已有阿里云资源池或希望使用 MSE Nacos 的交付场景。交付前必须确认 RAM 权限、服务关联角色、VPC 连通和白名单策略。 |
-| 华为云 | 已支持 | RDS for MariaDB、DCS for Redis、CSE Nacos、DMS for Kafka、OBS、ELB | `managed-middleware` / `hybrid` | 适合客户已有华为云资源池或国产云交付场景。应用 / 入口节点通过私网访问托管中间件端点。 |
+| 阿里云 | 有条件支持 | ApsaraDB RDS for MariaDB、Tair / ApsaraDB for Redis、MSE Nacos、ApsaraMQ for Kafka、OSS | `managed-middleware` / `hybrid` | 仅支持 5.1.2 中的实测版本和接入方式。交付前必须确认 RAM 权限、服务关联角色、VPC 连通和白名单策略。 |
+| 华为云 | 有条件支持 | RDS for MariaDB、DCS for Redis、CSE Nacos、DMS for Kafka、OBS | `managed-middleware` / `hybrid` | 仅支持 5.1.2 中的实测版本和接入方式。应用 / 入口节点必须通过私网访问托管中间件端点。 |
+| 其他公有云 | 不支持 | 未验证 | 不适用 | 腾讯云、AWS、Azure、Google Cloud 等尚未完成当前安装器的端到端兼容性测试，不得直接用于正式交付。 |
 
 ---
 
@@ -115,7 +117,7 @@ AGIOne 平台部署在逻辑上分为两个相对独立的部分：
 
 ## 5. 平台管理 — 生产部署（公有云）
 
-公有云部署为推荐的生产部署模式，充分利用云厂商提供的托管能力（RDS、ELB、对象存储等）。
+公有云部署为推荐的生产部署模式，充分利用云厂商提供的托管数据库、缓存、消息、注册中心和对象存储能力。入口负载均衡需按项目单独验收。
 
 ### 5.1 资源要求
 
@@ -140,48 +142,50 @@ AGIOne 平台部署在逻辑上分为两个相对独立的部分：
 
 | 组件 | 用途 | CPU | 内存 | 磁盘 | 节点数 | 网络要求 |
 |---|---|---|---|---|---|---|
-| **RDS（关系型数据库）** | 存储 AGIOne 平台主数据 | ≥ 4 vCPU | ≥ 16 GiB | ≥ 100 GiB | ≥ 3 | 与管理节点同 VPC |
+| **RDS（MySQL 系关系型数据库）** | 存储 AGIOne 平台主数据 | ≥ 4 vCPU | ≥ 16 GiB | ≥ 100 GiB | 按已验证产品形态 | 与管理节点同 VPC |
 | **Nacos** | 服务注册与发现 | Basic 规格 | — | — | 1 | 与管理节点同 VPC |
 | **Redis（缓存）** | 缓存数据 | Basic 规格 | — | — | 1 | 与管理节点同 VPC |
 | **Kafka（消息）** | 核心服务消息总线 | 集群节点规格 | — | ≥ 100 GiB | ≥ 3 | 与管理节点同 VPC |
 | **对象存储** | 存储图片等静态资源 | — | — | — | — | 通过 AK/SK 网络访问 |
-| **ELB（负载均衡）** | AGIOne API 负载均衡 | — | — | ≥ 100 GiB | 1 | 内网同 VPC；公网可访问，≥ 100 Mbps |
+| **入口负载均衡（项目级验收）** | AGIOne API 负载均衡 | — | — | — | 1 | 后端与管理节点私网互通；公网可访问，≥ 100 Mbps |
 
 </div>
 
-已支持云厂商的产品清单如下。正式采购前需在客户目标区域确认可用规格、可用区、计费方式和账号权限。
+下面的兼容矩阵是当前安装器允许正式交付的唯一云原生中间件范围。正式采购前还需在客户目标区域确认可用规格、可用区、计费方式和账号权限。
+
+> **兼容性硬边界**：数据库仅支持 MySQL 协议和 SQL 生态，但这不代表所有 MySQL 兼容数据库都已支持。当前只验证了下表中的阿里云 RDS MariaDB `10.3` 和华为云 RDS MariaDB `10.11`。标准 MySQL 的其他版本、其他 MariaDB 版本，以及达梦（DM）、人大金仓、GaussDB、openGauss、OceanBase（包括 MySQL 兼容模式）、TiDB、PostgreSQL、Oracle、SQL Server 等均不在支持范围。任何未列出的云厂商、产品、版本、实例形态或访问协议，在完成同版本端到端兼容性测试并更新本文前，一律按**不支持**处理。仅端口连通或登录成功不能作为兼容性证明。
 
 **阿里云托管中间件清单**
 
 <div class="table-scroll" style="overflow-x:auto;">
 
-| AGIOne 组件 | 阿里云产品 | 用途 | 创建 / 规格建议 | 网络与权限要求 |
+| AGIOne 组件 | 已验证阿里云产品 | 已验证版本 / 形态 | 必要交付约束 | 支持状态 |
 |---|---|---|---|---|
-| 数据库 | ApsaraDB RDS for MariaDB | 存储 AGIOne 平台主数据和业务库表 | 创建高可用版 MariaDB 实例，选择 VPC 内网地址、ESSD / SSD、自动备份和必要的参数组；业务库与 Nacos 库建议逻辑隔离 | 与管理节点同 VPC 或通过私网互通；安全组 / 白名单只放行业务节点；初始化账号需具备建库、建表、变更 schema 和读写权限 |
-| Redis | Tair / ApsaraDB for Redis | 缓存、会话、令牌和短期状态 | 小中型场景使用主备标准版；高并发或大容量场景选择集群版并规划分片；开启密码和基础监控 | 与管理节点同 VPC；配置实例白名单；如启用集群模式，需确认客户端支持 MOVED / ASK；RAM 账号需具备 Redis 实例创建、查询、白名单和账号管理权限 |
-| Nacos | Microservices Engine（MSE）Nacos Registry | 服务注册、服务发现和配置中心 | 开通 MSE 后创建 Nacos 引擎，选择规格、网络和命名空间；导入 AGIOne 所需 namespace、service 和 config | MSE 首次开通和资源创建通常需要服务关联角色授权；安装器发布配置时，Nacos 运行账号需具备命名空间、配置发布和服务管理权限 |
-| Kafka | ApsaraMQ for Kafka | 异步消息、计量、审计和事件流 | 创建 VPC 内网实例，生产建议 3 broker 起，Topic 复制因子 3；按吞吐、存储和保留周期规划规格 | 需提前创建 Topic、Group、ACL 和认证信息；开启 SASL / ACL 时需同步客户端协议、用户名、密码；RAM 账号需具备实例、Topic、Group、ACL 的创建和查询权限 |
-| 对象存储 | Object Storage Service（OSS） | 存储知识库文件、附件、图片、模型资产和日志归档 | 创建私有 Bucket，设置存储类型、服务端加密、生命周期；下载流量较大时可前置 CDN | 禁止公开写入；应用访问建议使用最小权限 RAM 用户 / STS 临时凭证；授权范围应限制到目标 Bucket 和前缀，并具备上传、下载、列举、删除等业务所需权限 |
-| 入口负载均衡 | Application Load Balancer（ALB）或 MSE 云原生网关 | 对外暴露 AGIOne API 和 Web 入口 | 公网入口使用 ALB，配置 HTTPS Listener、证书、后端服务器组或 ACK Ingress；如后续需要微服务治理与网关融合，可评估 MSE 云原生网关 | 需要提前授权 ALB / ACK Ingress 相关服务关联角色；公网侧只开放 80 / 443；后端仅指向应用 / 入口节点或 ACK Ingress，并配置健康检查 |
+| 数据库 | ApsaraDB RDS for MariaDB | MariaDB `10.3`；高可用版；`cloud_essd`；实测规格 `mariadb.n2.small.2c` | 使用 VPC 内网地址；安全组 / 白名单只放行应用节点；初始化账号需具备建库、建表、变更 schema 和读写权限 | 已支持，仅限此基线 |
+| Redis | Tair / ApsaraDB for Redis | Redis `5.0`；`Local` 标准主从；实测规格 `redis.master.small.default` | 使用 VPC 内网地址并配置应用节点白名单；Redis `4.0`、`6.0`、`7.0`、集群版及其他产品形态未纳入本次支持范围 | 已支持，仅限此基线 |
+| Nacos | Microservices Engine（MSE）Nacos | Nacos `2.0`（`NACOS_2_0_0`）；`mse_dev`；实测规格 `MSE_SC_1_2_60_c`、1 个实例 | 使用原生 Nacos API；运行账号必须具备 `agione-prod` 命名空间的配置发布和服务管理权限；其他版本、专业版或不同实例规模需重新测试 | 已支持，仅限此基线 |
+| Kafka | ApsaraMQ for Kafka | 服务版本 `2.2.0`；普通版；`alikafka.hw.2xlarge`；3 broker；VPC `PLAINTEXT` | 必须使用服务返回的 VPC advertised broker；开启服务端自动建 Topic，并创建所需 Consumer Group；SASL / SSL、其他版本和 Serverless 形态未纳入本次支持范围 | 已支持，仅限此基线 |
+| 对象存储 | Object Storage Service（OSS） | 云服务无独立引擎版本；Standard 私有 Bucket；内网 S3 兼容 endpoint | 必须使用 virtual-host-style 访问；禁止公开写入；运行凭据只授予目标 Bucket / 前缀所需的上传、下载、列举和删除权限 | 已支持，仅限此接入方式 |
 
 </div>
 
-> **阿里云权限重点**：云资源创建阶段使用的阿里云账号 / RAM 角色，与 AGIOne 安装器运行时使用的数据库、Redis、Nacos、Kafka、OSS 账号和密钥应分开管理。AGIOne 安装器不应要求云账号 AK/SK；安装器只消费最终生成的中间件端点、端口、运行时账号和访问密钥。
+> **阿里云权限重点**：使用可选云资源辅助脚本创建资源时，执行账号 / RAM 角色必须具备对应产品的创建、查询、白名单和服务关联角色授权能力。云资源创建身份必须与 AGIOne 运行时的数据库、Redis、Nacos、Kafka、OSS 账号和密钥分开管理。主安装器只消费最终生成的端点、端口和最小权限运行凭据，不应在主安装 YAML 中保存云账号 AK/SK。权限不足、RAM 策略未生效、服务关联角色缺失或白名单未放行时，不得开始正式安装。
 
 **华为云托管中间件清单**
 
 <div class="table-scroll" style="overflow-x:auto;">
 
-| AGIOne 组件 | 华为云产品 | 用途 | 创建 / 规格建议 | 网络与权限要求 |
+| AGIOne 组件 | 已验证华为云产品 | 已验证版本 / 形态 | 必要交付约束 | 支持状态 |
 |---|---|---|---|---|
-| 数据库 | RDS for MariaDB | 存储 AGIOne 平台主数据和业务库表 | 购买主备实例，选择合适规格、存储、VPC、安全组和备份策略；生产容量建议预留 40% 以上空间 | 与管理节点同 VPC 或私网互通；安全组只放行业务节点访问；准备初始化库表所需账号权限 |
-| Redis | Distributed Cache Service（DCS）for Redis | 缓存、会话、令牌和短期状态 | 生产避免单机；小中型场景优先主备，写多或容量大时选择 Cluster，建议跨可用区部署 | 与管理节点同 VPC；配置密码和访问白名单；上线前确认过期策略与内存淘汰策略 |
-| Nacos | Cloud Service Engine（CSE）Nacos | 服务注册、服务发现和配置中心 | 创建 Nacos 引擎，配置规格、VPC 和权限；迁移 namespace、service、config | CSE Nacos 兼容开源 Nacos / Eureka 客户端；安装器发布配置时，Nacos 账号需具备命名空间和配置发布权限 |
-| Kafka | Distributed Message Service（DMS）for Kafka | 异步消息、计量、审计和事件流 | 生产 3 broker 起，开启多副本；按吞吐、存储和保留周期规划实例规格 | 与管理节点私网互通；开启认证时需同步客户端协议、账号、密码和 ACL 配置 |
-| 对象存储 | Object Storage Service（OBS） | 存储知识库文件、附件、图片、模型资产和日志归档 | 创建私有 Bucket，按业务设置存储类别、服务端加密、生命周期和跨区域复制 | 通过 AK/SK 或临时授权访问；建议按业务 Bucket 或前缀隔离，避免公开读写 |
-| 入口负载均衡 | Elastic Load Balance（ELB） | 对外暴露 AGIOne API 和 Web 入口 | 公网入口优先使用独享型 ELB，配置 HTTPS Listener、证书和后端服务器组；内网服务入口可使用私网 ELB | 公网侧只开放 80 / 443；后端只指向应用 / 入口节点或 CCE Ingress，需配置健康检查 |
+| 数据库 | RDS for MariaDB | MariaDB `10.11`；实测为单实例、`CLOUDSSD`、规格 `mariadb.n1.large.2` | 使用 VPC 内网地址；安全组只放行应用节点；账号需具备初始化库表权限。主备高可用形态尚未完成同版本端到端回归 | 已支持，仅限实测单实例基线 |
+| Redis | Distributed Cache Service（DCS）for Redis | Redis `7.0`；单机形态；实测规格 `redis.single.au1.large.1`、1 GiB | 使用 VPC 内网地址并配置密码和访问策略。主备、Cluster 和其他 Redis 版本尚未完成端到端回归 | 已支持，仅限实测单机基线 |
+| Nacos | Cloud Service Engine（CSE）Nacos | Nacos2，服务版本 `2.1.0.24`；规格 `cse.nacos2.c1.large.10`；RBAC | 使用原生 Nacos API；运行账号必须具备 `agione-prod` 命名空间和配置发布权限；其他 CSE 版本 / 规格未纳入支持范围 | 已支持，仅限此基线 |
+| Kafka | Distributed Message Service（DMS）for Kafka | Kafka `2.7`；3 broker；产品规格 `s6.2u4g.cluster.small`；300 GiB 通用存储；`PLAINTEXT` | 使用私网 bootstrap 与 advertised broker；其他版本、SASL / SSL 或不同产品形态需重新完成兼容性测试 | 已支持，仅限此基线 |
+| 对象存储 | Object Storage Service（OBS） | 云服务无独立引擎版本；私有 Bucket | 必须使用 virtual-host-style 访问；通过最小权限 AK/SK 或临时授权访问，避免公开读写 | 已支持，仅限此接入方式 |
 
 </div>
+
+> **入口服务边界**：阿里云 ALB、MSE 云原生网关和华为云 ELB 不属于当前托管中间件端到端兼容矩阵。需要使用时必须按项目完成 HTTPS、健康检查、会话、上传大小和长连接验收；验收完成前按不支持处理。通用 TCP 负载均衡不能替代 Kafka advertised broker 地址。
 
 #### 5.1.3 容量与扩展性
 
@@ -195,8 +199,8 @@ AGIOne 平台部署在逻辑上分为两个相对独立的部分：
 
 ### 5.3 部署说明
 
-- 强烈建议使用云厂商**托管 RDS、Redis、Kafka、对象存储**，降低运维复杂度。
-- 业务节点通过 ELB 暴露服务，配置域名后使用 443（HTTPS）与 80（HTTP 跳转）。
+- 在兼容矩阵范围内使用云厂商托管数据库、Redis、Nacos、Kafka 和对象存储，降低运维复杂度。
+- 业务节点可通过经项目验收的负载均衡服务暴露入口，配置域名后使用 443（HTTPS）与 80（HTTP 跳转）。
 - 所有内部组件位于同一 VPC，禁止跨 VPC 暴露内部端口。
 - 公网带宽建议 ≥ 100 Mbps，按业务量调整。
 
@@ -215,7 +219,7 @@ AGIOne 平台部署在逻辑上分为两个相对独立的部分：
 | 角色 | 节点数 | CPU | 内存 | 磁盘        | 网络                    | 说明 |
 |---|---|---|---|-----------|-----------------------|---|
 | 业务节点 | ≥ 2 | ≥ 8 核 | ≥ 16 GB | ≥ 200 GB  | 内网; 可访问外部网络, 带宽>=100G | 部署 AGIOne 业务服务                     |
-| 数据库 / 中间件节点 | ≥ 2 | ≥ 8 核 | ≥ 16 GB | ≥ 200 GB | 内网                    | 部署 RDS（主从）、Nacos、Redis、Kafka、MinIO |
+| 数据库 / 中间件节点 | ≥ 2 | ≥ 8 核 | ≥ 16 GB | ≥ 200 GB | 内网                    | 部署 MariaDB（主从）、Nacos、Redis、Kafka、MinIO |
 | **合计** | **≥ 4** | — | — | —      | -                     | —                   |
 
 </div>
@@ -412,10 +416,10 @@ AGIOne 平台部署在逻辑上分为两个相对独立的部分：
 
 固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
 
-打开页面后，复制页面中的 `Download URL` 与 `MD5 URL` 用于下载和校验安装包。
+打开页面后，复制页面中的 `Download URL` 与 `MD5 URL`。MD5 只用于发现下载或传输损坏，不能证明安装包发布方身份；正式生产交付还必须通过受控渠道独立获取外层 `.tar.gz` 的 SHA-256 摘要，并在解压前核对。
 
 ```bash
-# 1. 下载并解压交付包
+# 1. 下载交付包并校验 MD5
 ssh root@<target>
 AGIONE_RELEASE_PAGE="https://agione.pro/release/download/agione-release-latest"
 AGIONE_RELEASE_URL="<复制下载页中的 Download URL>"
@@ -426,11 +430,23 @@ mkdir -p /opt/hyperone && \
 cd /opt/hyperone && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE" "$AGIONE_RELEASE_URL" && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE.md5" "$AGIONE_RELEASE_MD5_URL" && \
-echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c - && \
-AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)" && \
-tar -zxvf "$AGIONE_RELEASE_ARCHIVE" && \
-cd "/opt/hyperone/$AGIONE_RELEASE_DIR"
+echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c -
 ```
+
+```bash
+# 2. 正式交付：核对外层压缩包 SHA-256
+AGIONE_RELEASE_SHA256="<从可信交付渠道获取的外层压缩包 SHA-256>"
+echo "$AGIONE_RELEASE_SHA256  $AGIONE_RELEASE_ARCHIVE" | sha256sum -c -
+
+# 3. 校验通过后解压，并校验 split bundle
+AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)"
+tar -zxvf "$AGIONE_RELEASE_ARCHIVE"
+cd "/opt/hyperone/$AGIONE_RELEASE_DIR"
+chmod +x ./agione
+./agione verify-bundle
+```
+
+`verify-bundle` 按 `SHA256SUMS` 校验解压后的 split bundle 文件。正式交付不得使用 `AGIONE_SKIP_BUNDLE_VERIFY=1` 跳过该检查。
 
 ---
 ## 11. 附录

@@ -19,7 +19,7 @@
 | 阶段 | 你要做什么 | 完成标志 |
 | --- | --- | --- |
 | 第 1 步：确认主机 | 确认 CPU、内存、磁盘、操作系统和 root 权限 | 主机满足 [主机规格](#主机规格) |
-| 第 2 步：下载安装包 | 打开固定下载页，复制 `Download URL` 和 `MD5 URL` | 安装包下载完成并通过 MD5 校验 |
+| 第 2 步：下载安装包 | 打开固定下载页，复制 `Download URL` 和 `MD5 URL` | MD5 传输校验通过；正式交付另已核对外层包 SHA-256 |
 | 第 3 步：执行 quick | 执行 `./agione quick`，或带配置文件执行 | 终端输出 `Installation Result` |
 | 第 4 步：浏览器访问 | 打开 `http://<目标主机IP>:18090/modelone/` | 页面可正常打开 |
 | 第 5 步：交付归档 | 保存访问地址、默认账号、健康报告和 handover 包 | 客户或运维团队可接手 |
@@ -31,7 +31,9 @@
 | 术语 | 说明 |
 | --- | --- |
 | 交付包 | AGIOne 安装包，包含安装器、镜像、数据库基线和离线运行资源 |
+| MD5 / SHA-256 | MD5 用于发现下载损坏；SHA-256 用于核对交付包内容是否与可信交付记录一致 |
 | `quick` | 一键安装命令，会执行预检、解包、加载镜像、启动服务并输出结果 |
+| `services` | 安装完成后查看或增量启用可选应用服务组的命令，不需要重新执行完整安装 |
 | `/opt/hyperone` | 默认运行数据目录，AGIOne 服务数据写入这里或安装器选择的数据盘路径 |
 | `/opt/agione-installer-bundle` | 安装器运行目录，包含安装后的报告、渲染配置和输出文件 |
 | `/root/agione-install.yml` | 可选配置文件，用于固定密码、域名、证书、运行路径和其他交付参数 |
@@ -62,7 +64,7 @@
 
 固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
 
-页面中同时提供 `MD5 URL`，建议下载后一起校验。
+页面中同时提供 `MD5 URL`，建议下载后一起校验。MD5 只能发现下载或传输损坏，不能证明安装包发布方身份。正式生产交付还应通过受控交付渠道独立获取外层 `.tar.gz` 的 SHA-256 摘要并核对。
 
 执行示例：
 
@@ -77,9 +79,21 @@ mkdir -p /opt/hyperone && \
 cd /opt/hyperone && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE" "$AGIONE_RELEASE_URL" && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE.md5" "$AGIONE_RELEASE_MD5_URL" && \
-echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c - && \
-AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)" && \
-tar -zxvf "$AGIONE_RELEASE_ARCHIVE" && \
+echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c -
+```
+
+正式交付核对外层压缩包 SHA-256：
+
+```bash
+AGIONE_RELEASE_SHA256="<从可信交付渠道获取的外层压缩包 SHA-256>"
+echo "$AGIONE_RELEASE_SHA256  $AGIONE_RELEASE_ARCHIVE" | sha256sum -c -
+```
+
+校验通过后再解压：
+
+```bash
+AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)"
+tar -zxvf "$AGIONE_RELEASE_ARCHIVE"
 cd "/opt/hyperone/$AGIONE_RELEASE_DIR"
 ```
 
@@ -216,7 +230,9 @@ AGIOne 安装器负责完成以下工作：
 ./agione verify-bundle
 ```
 
-`verify-bundle` 会校验安装包 Ed25519 签名和 `SHA256SUMS` 中记录的 SHA-256 摘要。校验通过后再执行安装；如果校验失败，请重新获取安装包。只有交付负责人确认是可信历史未签名包时，才允许使用 `./agione verify-bundle --allow-unsigned-legacy` 或对应兼容环境变量。
+`verify-bundle` 按 `SHA256SUMS` 校验 split bundle 文件的 SHA-256 摘要。缺少 `SHA256SUMS`、记录不安全、文件缺失或摘要不一致时都会失败；请重新获取安装包，不要绕过错误继续安装。下载页提供的 MD5 不能替代该检查，也不能替代正式交付对外层压缩包 SHA-256 的独立核对。
+
+`AGIONE_SKIP_BUNDLE_VERIFY=1` 只会跳过 SHA-256 完整性校验，是仅供可信本地改包排障使用的高风险开关，正式交付禁止使用。
 
 ---
 
@@ -286,6 +302,8 @@ TUI 流程包含：
 ./agione help
 ./agione ps
 ./agione health
+./agione services status
+./agione services enable kubem --dry-run
 ./agione restart <service>
 ./agione stop <service>
 ./agione down
@@ -333,6 +351,45 @@ docker-compose -f compose.rendered.yaml ps
 ```
 
 健康检查报告用于交付验收和失败排查，建议安装完成后归档。
+
+### 安装后增量启用可选服务
+
+已完成单节点安装后，可以在不重新执行 `quick`、不重建已有容器的情况下增量启用可选服务。建议在与已安装环境 CPU 架构一致的完整交付包目录中先查看状态，再执行只读预检：
+
+```bash
+./agione services status
+./agione services enable kubem --dry-run
+./agione services enable kubem
+```
+
+同时预检或启用多个组时，可使用逗号或空格分隔：
+
+```bash
+./agione services enable kubem,cloud --dry-run
+./agione services enable kubem cloud
+```
+
+单节点增量启用支持以下服务组：
+
+| 组名 | 新增服务 | 说明 |
+| --- | --- | --- |
+| `kubem` | `core_kubem`、`core_codelab`、`core_iam` | 同时执行 KUBEM 所需的业务初始化 |
+| `cloud` | `core_sgeneral`、`core_saws`、`core_saliyun`、`core_general`、`core_aliyun` | 启用云厂商集成服务 |
+
+`core_isync` 不能在单节点环境中通过该命令增量启用，只支持满足主备数据库条件的 host-mode 多节点环境。`services enable` 会检查安装完成状态、最终配置、端口、容器名、Nacos 配置、运行资产和离线镜像；缺少的镜像只从已校验交付包加载，不会从公网仓库拉取。`--dry-run` 不修改 Compose、容器或已保存配置。
+
+`services status` 会把服务组显示为“已启用”“未启用”或“部分存在”。兼容的 host-mode 环境中，`core_isync` 还可能显示“已预置（已安装、未启动）”；这表示离线资产和镜像已放到备库节点，但容器尚未创建或启动，详见 [多节点安装](./agione-multi-node-install#_4-7-安装后增量启用可选服务)。
+
+正式启用只启动本次新增服务，并保护已有容器不被重建或重启。失败时安装器会回滚本次事务；操作中断后，下次正式执行会先尝试恢复未完成事务。已健康启用的组再次执行会直接成功，不做重复变更。当前命令只支持启用，不支持禁用。
+
+成功后再次执行：
+
+```bash
+./agione services status
+./agione health
+```
+
+命令会更新已安装目录中的 `outputs/final-result-config.yml`。请归档该文件；如果以后仍使用 `/root/agione-install.yml` 做完整重装，也要把新增组同步写入其中，避免重装配置回退。
 
 ### 诊断包
 
@@ -417,31 +474,21 @@ scripts/agione_stateful_recovery.sh verify --archive /path/to/agione-stateful-ba
 
 该参数只跳过安装前检查；执行阶段仍会检查并尽量使用离线资产安装或修复 Docker / Compose。跳过检查可能导致运行数据已解包后才暴露资源、端口或运行时问题，正式交付不建议使用。
 
-### Q6：什么情况下使用强制干净安装？
+### Q6：什么情况下使用受控强制重装？
 
-只有在确认目标机旧数据可以被清理、且希望从基线包重新构建环境时才使用。完整重装优先使用：
-
-```bash
-./agione quick -f
-```
-
-如果只需要单独刷新解包基线，也可以使用：
+只有在确认已有 AGIOne 运行数据可以删除、所需数据已经单独备份，并且要从当前交付包重新构建环境时才使用：
 
 ```bash
-./agione unpackage --force-clean-install
+./agione quick --file /root/agione-install.yml --force-overwrite
 ```
 
-强制流程会先备份已有 AGIOne 服务数据，再删除旧运行数据并解压新基线。
+`-f PATH` 是 `--file PATH` 的缩写，只用于选择配置文件，不表示允许覆盖。`--force-overwrite` 必须通过当前交付包的 `./agione quick` 或 TUI 安装流程执行；直接运行 `unpackage` 或 `installer/cli.py` 不能替换已完成部署。
 
-### Q7：强制安装的备份在哪里？
+安装器会先完成不可跳过的配置、拓扑、资源、运行目录归属和交付包绑定检查，全部通过后才停止旧服务并删除受管的 `core`、`database`、`minstore` 运行数据。如果预检授权不能安全绑定，运行数据保持不变。
 
-默认路径：
+### Q7：强制重装会自动备份旧数据吗？
 
-```text
-/opt/hyperone/backups/force-restore/<timestamp>/all-service-data/
-```
-
-强制安装不会自动恢复旧数据。如需恢复，必须先停止服务，再按目录恢复。
+不会。`--force-overwrite` 会删除旧的受管运行数据，必须先按 [有状态备份与恢复](#有状态备份与恢复) 创建并校验备份，同时记录客户确认的停服窗口和回退方案。生产环境不应把强制重装当作日常升级方式。
 
 ### Q8：Nacos 配置缺失或服务启动失败怎么办？
 
@@ -484,7 +531,7 @@ cd /opt/hyperone/agione-release-v1.0-XXX
 # 2. 授权入口脚本
 chmod +x ./agione
 
-# 3. 可选：校验交付包
+# 3. 校验交付包（正式交付必做）
 ./agione verify-bundle
 
 # 4. 一键安装
