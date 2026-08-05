@@ -7,66 +7,65 @@ Updated: 2026-07-13
 
 ## Feature Overview
 
-`Quota Requests` is used to view, filter, and maintain quota requests information. It helps provider admin or provider account work with quota requests records and related status from a consistent page entry.
+`Quota Requests` is used to submit quota requests and review request and adjustment records. You can filter by status, member, reason, or request ID.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin or Provider Account |
+| Applicable Role | Provider Admin |
 | Navigation path | Settings > Members & Roles > Quota Requests |
 | Page route | `/user/user-space/quota-requests` |
-| Managed objects | Quota Requests records and related status |
-| Typical use | View, filter, and maintain quota requests information |
+| Managed objects | Quota requests, request records, adjustment records, status, and request reasons |
+| Typical use | Submit quota requests and review request progress and adjustment records |
 
 #### Beginner Explanation
 
-Quota Requests is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Quota Requests is the ticket entry for member quota. It is used to submit and track requests for additional quota. Before submission, state the purpose, target member, and required amount clearly.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Quota request | A record that requests additional member or project quota. | Explain the intended use before submission. |
+| Request status | The current processing stage of a request. | Contact the approver when it does not change for a long time. |
+| Requested quota | The amount requested in this submission. | Do not request more than the business needs. |
+| Approval comment | The approver's processing note. | If rejected, revise the request according to the comment. |
 
 ## Prerequisites
 
-1. The current account can access `Members & Roles > Quota Requests`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account can access Quota Requests.
+2. Before submitting, you have confirmed the required credits and business reason.
+3. Usually, only one pending request should exist for the same member at a time.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for quota requests records and related status.
-
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows quota requests list.
-
-![Quota Requests list](./images/quota-requests-list.png)
-
-The following screenshot shows request quota.
-
-![Request quota](./images/request-quota.png)
+| Top action | `Request Quota` |
+| Tabs | Request Records and Adjustment Records |
+| Filters | Status, member / reason / request ID search, and event type |
+| Request record columns | Request ID, member, requested quota, reason, submission time, status, approver, and actions |
+| Adjustment record columns | Time, member, event type, change, operator, and note |
+| High-risk action | Submitting a quota request |
 
 ## Main Operations
-
-Use the following operations to work with quota requests records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 
 ### Manage Quota Requests
 
 1. Go to `Settings > Members & Roles > Quota Requests`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to quota requests records and related status.
-4. Click the visible `Manage Quota Requests` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+2. On `Request Records`, review pending, approved, rejected, canceled, and expired requests.
+3. Filter requests by status and search text.
+
+The following screenshot shows the Quota Requests list.
+
+![Quota Requests list](./images/quota-requests-list.png)
+
+4. Select `Request Quota` to open the request dialog.
+5. Enter the requested quota and reason.
+6. Confirm that no duplicate request is pending, then submit the request.
+
+The following screenshot shows the Request Quota dialog.
+
+![Request Quota](./images/request-quota.png)
 
 ## Parameter Reference
 
@@ -88,47 +87,64 @@ Use the following operations to work with quota requests records and related sta
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Members & Roles > Quota Requests` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Request recorded | A new record appears on Request Records after submission. | Check the request type, time range, and submission result. |
+| Statistics | Pending, approved, and rejected counts match the list. | Clear the filters and calculate again. |
+| Adjustment trace | Adjustment Records shows the quota change. | Verify the member, quota type, and adjustment time. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Quota Requests
+#### A new quota request cannot be submitted
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+Submit is unavailable or the page reports an existing pending request.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Quota Requests
+- The member already has a pending request.
+- The requested quota or reason is missing.
+- The tenant disables or limits quota requests.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+1. Review pending records on Request Records.
+2. Complete the requested quota and reason.
+3. For an urgent request, ask the approver to process the existing record.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why are quota request records empty?
 
-#### Why are quota request or approval buttons unavailable?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+No request, approval, or adjustment records are displayed.
+
+**Possible cause:**
+
+The member has not submitted a request, filters exclude the records, or the request belongs to another tenant, project, or member.
+
+**Resolution:**
+
+Clear status and time filters. Confirm the tenant, project, and member that own the request. If it is still absent, submit the request again from Overview and record the result.
+
+#### Why are quota request or approval actions unavailable?
+
+**Symptom:**
+
+Records are visible, but New Request, Withdraw, Approve, or Adjust cannot be selected.
+
+**Possible cause:**
+
+The current account lacks request or approval permission, an existing request is still pending, or the request status does not allow another action.
+
+**Resolution:**
+
+Check for pending records, then verify the current role and request status. An authorized approver must perform approval actions.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. After approval, return to Overview or Member Quotas to verify the quota.
+2. Review request actions in Operation Logs.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Do not include customer-sensitive data, Keys, tokens, or passwords in the request reason.
+- Do not submit duplicate requests for the same purpose.

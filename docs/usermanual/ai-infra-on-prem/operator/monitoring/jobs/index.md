@@ -105,9 +105,11 @@ The following figure shows the job monitoring page.
 
 ## Result Validation
 
-1. The job list displays ID, status, queue duration, runtime duration, and resource occupation.
-2. Failed jobs show an error summary or event entrypoint.
-3. Statistics change accordingly after filtering by tenant, cluster, or time range.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Job status and resource usage | The job list shows ID, status, queue duration, runtime duration, and resource usage. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Failure details | A failed job provides an error summary or event entry point. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Filtered statistics | Statistics change accordingly after filtering by tenant, cluster, or time range. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Configuration Rules and Impact
 

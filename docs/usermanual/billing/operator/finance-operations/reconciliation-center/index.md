@@ -25,7 +25,6 @@ Reconciliation Center is the billing health-check page. It helps operators find 
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Billing Cycle | The billing period to inspect. | Keep it consistent with Monthly Overview and Settlement List. |
 | Bilateral Ledger Check | Checks whether fund-related ledgers can be matched on both sides. | If abnormal, verify related transactions in Financial Accounts. |
 | Compensation Queue | Queue of billing tasks waiting for retry, compensation, or manual handling. | Review failure reason before any retry. |
 | Revenue Detail Rebuild | Rebuilds missing revenue details. | Confirm billing cycle and impact scope before real submission. |
@@ -135,6 +134,7 @@ Use the following operations to view reconciliation results and exception areas.
 | Retry Count | System-generated | Number | `3` | Shows retry count of compensation or rebuild tasks. |
 | Related Transaction | System-generated | Text | Desensitized transaction number | Locates the related transaction. |
 | Related Settlement Statement | System-generated | Text | Desensitized settlement statement number | Locates the related settlement statement. |
+| Inspection Result | System-generated | Result status | Completed / Exceptions Found | Shows the result generated from the billing period and inspection action. |
 | Actions | System-generated | Operation entry | View / Open | Provides view, jump, or follow-up entries. |
 
 ## Pitfalls
@@ -151,54 +151,62 @@ Use the following operations to view reconciliation results and exception areas.
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Finance Operations > Reconciliation Center` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
-| Compensation queue | No pending or failed queue item remains. | Check failure reason and related upstream data. |
-| Missing revenue details | Missing revenue detail list is empty. | Refresh after rebuild and verify related settlement records. |
+| Billing period | The page shows data for the target billing period. | Select the billing period again and refresh. |
+| Inspection refresh | The exception-list update time or count changes. | Check permissions, the network, and background task status. |
+| Unmatched transfers | No one-sided transaction exception remains in the current billing period. | Open Financial Accounts and check related transactions. |
+| Missing revenue details | The missing-revenue-details list is empty. | Rebuild revenue details and refresh again. |
+| Compensation queue | No pending or failed item remains in the queue. | Review the failure reason and follow the handling process. |
 
 ## FAQ
 
-#### Target billing data is not visible in Reconciliation Center
+#### Unmatched Transfers Are Listed
 
-The expected account, customer, order, bill, settlement, adjustment, or License record does not appear on this page.
+**Symptom:** The Unmatched Transfers area contains exception records.
 
-**How to check:**
+**Possible cause:** Only one side of a fund transaction exists, the related business record has not synchronized, or clearing is delayed.
 
-1. Confirm the current tenant, tenant, customer, account, and role scope.
-2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
-3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
-4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
+**Resolution:** Record the billing period, tenant, and sanitized transaction clue. Check the transaction in [Financial Accounts](../financial-accounts/), then confirm settlement status in [Settlement List](../settlement-list/). Use Account Adjustment only after approval if manual correction is necessary.
 
-#### Amount, status, or billing cycle does not match in Reconciliation Center
+#### Missing Revenue Details Are Listed
 
-The displayed balance, consumption, settlement status, monthly bill, or License status differs from the expected result.
+**Symptom:** The Missing Revenue Details area contains records.
 
-**How to check:**
+**Possible cause:** Consumption exists but revenue details have not been generated, upstream synchronization is delayed, or a rebuild task is pending or failed.
 
-1. Confirm inspection period, tenant scope, unmatched transfers, and missing revenue details before drawing conclusions.
-2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
-3. Compare the summary number with the detail list and operation records on the related billing pages.
-4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
+**Resolution:** Confirm the billing period and tenant, run Revenue Detail Rebuild, and refresh. If records remain, compare Financial Accounts and Settlement List.
 
-#### What should I do if the result does not change after refresh?
+#### The Result Does Not Change After Refresh
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+**Symptom:** Counts, update time, or status do not change after `Refresh`.
 
-#### What should I do if pending items remain in the compensation queue?
+**Possible cause:** No new data exists, the inspection task is still running, or the current account cannot view the target scope.
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+**Resolution:** Confirm the billing period, wait for the background task, and refresh again. If the result remains unchanged, check permissions, tenant scope, and task status.
 
-#### What should I do if revenue details are still missing after rebuilding?
+#### Pending Items Remain in the Compensation Queue
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+**Symptom:** Pending, Retrying, or Failed items remain for a long time.
+
+**Possible cause:** Required upstream transactions, settlement statements, or revenue details are not ready, retries failed, or manual confirmation is required.
+
+**Resolution:** Review queue details and failure reasons. Check for unmatched transfers or missing revenue details in the same billing period. Submit a handling or adjustment request through the approved process when manual intervention is required.
+
+#### Revenue Details Are Still Missing After Rebuild
+
+**Symptom:** Missing revenue details remain after rebuild and refresh.
+
+**Possible cause:** The rebuild is still processing, target billing data is incomplete, or consumption and revenue definitions do not match.
+
+**Resolution:** Wait for completion and refresh again. Check the billing period, tenant, and business records. Continue in Settlement List, Financial Accounts, and Account Adjustment if the list cannot be cleared.
 
 ## Next Steps
 
-1. Review related billing records, transactions, settlement statements, and account balance changes.
-2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
-3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
+| Exception Type | Next Page | Goal |
+| --- | --- | --- |
+| Unmatched transfer | [Financial Accounts](../financial-accounts/) | Check account transactions and fund direction. |
+| Settlement amount difference | [Settlement List](../settlement-list/) | Check settlement status and amount. |
+| Manual correction required | [Account Adjustment](../account-adjustment/) | Submit or process an approved adjustment. |
+| Billing-period summary exception | [Monthly Overview](../monthly-overview/) | Check the billing-period summary and statistical definition. |
 
 ## Notes
 

@@ -91,28 +91,23 @@ The page displays device monitoring capability for the selected region. When the
 
 ## Result Validation
 
-1. The device list displays device name, type, health status, temperature, and VRAM usage.
-2. Device metrics can correspond to nodes and time ranges.
-3. Troubleshooting relationships can be established between abnormal devices and affected instances, jobs, or specifications.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Device list | The list shows device name, type, health status, temperature, and VRAM usage. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Metric scope | Device metrics correspond to the correct node and time range. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Exception relationship | An abnormal device can be correlated with affected instances, jobs, or specifications. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Prepare Before Contacting the Operator
 
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+If the device page is abnormal, prepare the following information so that the operator can distinguish collection problems, VRAM pressure, and hardware health problems:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| Device Name / ID | `GPU-0` | Identifies one GPU or NPU. |
+| Node IP / Node Name | `node-gpu-01` | Identifies the node that hosts the device. |
+| Utilization | `GPU 95%` | Indicates whether the compute units are under high load. |
+| VRAM | `76 GB / 80 GB` | Indicates whether VRAM is insufficient. |
+| Temperature / Health | `78 C / Alert` | Indicates whether hardware operations must intervene. |
 
 ## FAQ
 

@@ -9,14 +9,6 @@ Updated: 2026-07-13
 
 This end-to-end workflow connects the account and permission pages in Settings. Confirm the tenant and account first, prepare roles, add or check members, create access credentials when needed, and then use operation logs to verify that the change was recorded. For API callers, also confirm Key type, validity period, quota, and API rate-control impact.
 
-| Item | Content |
-| --- | --- |
-| Applicable Role | Operator Admin, System Admin, and Security Admin |
-| Navigation path | Settings > End-to-End > Configure Accounts and Permissions |
-| Page route | /settings/end-to-end/configure-account-and-permissions |
-| Managed objects | Tenants, members, roles, Keys, login policies, and operation logs |
-| Typical use | Configure a complete account and permission path, then verify login, access, credentials, and audit records |
-
 #### Beginner Explanation
 
 Configuring accounts and permissions is like issuing access badges. Confirm which tenant the member belongs to, decide which role permissions the member needs, check whether the target page is visible, and finally verify the record in operation logs.
@@ -126,21 +118,25 @@ Configuring accounts and permissions is like issuing access badges. Confirm whic
 
 The member can sign in, but the target menu is not visible.
 
-**How to check:**
+**Possible cause:**
 
-1. Confirm the member's tenant and role binding.
-2. Open Roles and verify menu permissions.
-3. Ask the member to sign in again or refresh permissions after role changes.
+The member has the wrong role, the role does not include the target menu, or the member is using the wrong tenant context.
+
+**Resolution:**
+
+Confirm the member's tenant and role binding. Open Roles and verify menu permissions. Ask the member to sign in again after a role change.
 
 #### What if API calls still fail after Key creation?
 
 The caller has received a Key, but the API still returns authentication or quota errors.
 
-**How to check:**
+**Possible cause:**
 
-1. Confirm Key type, status, expiration time, permission scope, and quota limits.
-2. Confirm that the caller replaced old credentials through a controlled channel.
-3. Continue troubleshooting with operation logs and desensitized business API errors.
+The Key type is incorrect, its permission scope or quota is insufficient, it has expired, or the caller still uses an old credential.
+
+**Resolution:**
+
+Check the Key type, status, expiration time, permission scope, and quota. Confirm that the caller replaced the old credential. If the call still fails, use operation logs and sanitized API errors to continue troubleshooting.
 
 ## Next Steps
 

@@ -73,12 +73,10 @@ Use the following operations to work with monthly overview records and related s
 
 ### Generate Settlement
 
-1. Go to `Billing > Finance Operations > Monthly Overview`.
-2. Confirm that `Billing Cycle` is correct.
-3. Review the To generate count in the task list.
-4. Click `Generate Settlement`.
-5. Go to [Settlement List](../settlement-list/) to track generated settlement statement records and status.
-6. If generation fails or returns an unclear result, do not click repeatedly; check Settlement List or Reconciliation Center first.
+1. Confirm that `Billing Cycle` is correct.
+2. Review the To Generate count in the task list.
+3. Click `Generate Settlement`.
+4. Open [Settlement List](../settlement-list/) to view the generated settlement page.
 
 ## Parameter Reference
 
@@ -112,42 +110,59 @@ Use the following operations to work with monthly overview records and related s
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Finance Operations > Monthly Overview` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Billing-period switch | The statistic cards and task list update after the billing period changes. | Select the billing period again and refresh. |
+| Page refresh | The loading state clears after you click Refresh. | Check the network, permissions, and background task status. |
+| Settlement generation | Settlement List shows a record or status change for the selected billing period. | Open Settlement List and check the generation result. |
 
 ## FAQ
 
-#### Target billing data is not visible in Monthly Overview
+#### The To Generate Count Is Not Zero
 
-The expected account, customer, order, bill, settlement, adjustment, or License record does not appear on this page.
+**Symptom:** The task list still shows items to generate.
 
-**How to check:**
+**Possible causes:** Some tenants do not yet have settlement statements, billing data aggregation is incomplete, or a preceding reconciliation exception exists.
 
-1. Confirm the current tenant, tenant, customer, account, and role scope.
-2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
-3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
-4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
+**Resolution:**
 
-#### Amount, status, or billing cycle does not match in Monthly Overview
+1. Confirm that the selected billing period is correct.
+2. Check the billing-period statistics before selecting `Generate Settlement`.
+3. After generation, open Settlement List and track settlement status.
 
-The displayed balance, consumption, settlement status, monthly bill, or License status differs from the expected result.
+#### The Revenue Mix Is Unexpected
 
-**How to check:**
+**Symptom:** Platform retained fees, self-operated revenue, or total statistical revenue differs from expectations.
 
-1. Confirm month-end close cycle, tenant, settlement status, and latest aggregation time before comparing totals.
-2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
-3. Compare the summary number with the detail list and operation records on the related billing pages.
-4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
+**Possible causes:** The billing period is incorrect, aggregation is incomplete, or adjustments and reconciliation exceptions affect the statistics.
 
-#### The Generate Settlement button is unavailable
+**Resolution:**
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+1. Check the billing period.
+2. Open Financial Accounts and review account transactions and trends.
+3. Open Reconciliation Center and check for exceptions.
 
-#### The task count is inconsistent with the settlement statement list
+#### Generate Settlement Is Unavailable
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+**Symptom:** `Generate Settlement` cannot be selected or does not proceed.
+
+**Possible causes:** Statistics are incomplete, the current account lacks permission, or exceptions and pending tasks block the billing period.
+
+**Resolution:**
+
+1. Confirm whether billing-period statistics are complete.
+2. Check pending and failed counts in the task list.
+3. If permission is missing, ask the platform administrator for finance-operations permission.
+
+#### Task Counts Do Not Match Settlement List
+
+**Symptom:** To Generate, To Advance, or Long Unresolved counts differ from filtered results in Settlement List.
+
+**Possible causes:** The pages use different billing periods or statuses, Monthly Overview is delayed, or Settlement List updated before the overview refreshed.
+
+**Resolution:**
+
+1. Use the same billing period and status filters on both pages.
+2. Click `Refresh` in Monthly Overview.
+3. If the difference remains, open Reconciliation Center and check background tasks or exceptions.
 
 ## Next Steps
 

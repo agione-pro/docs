@@ -7,35 +7,34 @@ Updated: 2026-07-13
 
 ## Feature Overview
 
-`My Keys` is used to view, filter, and maintain my keys information. It helps provider admin or provider account work with my keys records and related status from a consistent page entry.
+`My Keys` manages personal Model API Keys and System API AK/SK Pairs. You can create credentials, review their information, set Key quotas, rotate credentials, and disable them.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin or Provider Account |
+| Applicable Role | Provider Account |
 | Navigation path | Settings > Personal > My Keys |
 | Page route | `/user/user-space/my-keys` |
-| Managed objects | My Keys records and related status |
-| Typical use | View, filter, and maintain my keys information |
+| Managed objects | Model API Keys, System API AK/SK Pairs, quota, and status |
+| Typical use | Create, review, and disable credentials, and verify quota and credential status |
 
 #### Beginner Explanation
 
-My Keys is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+My Keys is your personal credential cabinet for model API Keys and system API AK/SK Pairs. Give each credential a clear purpose, expiration, and quota limit instead of sharing one credential across all use cases.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Model API Key | A credential used to call model APIs. | Use separate Keys for applications or projects. |
+| System API AK/SK | A credential pair used to call system APIs. | Never expose it in frontend code or documentation. |
+| Expiration | The time after which a credential can no longer be used. | Notify callers before rotation. |
+| Quota limit | The maximum quota that a Key can consume. | Check it when a call fails. |
 
 ## Prerequisites
 
-1. The current account can access `Personal > My Keys`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has Key-management permission.
+2. Before creating a credential, you have defined its purpose, expiration, and quota policy.
+3. Before viewing, copying, rotating, or disabling a credential, you have confirmed its business dependencies.
 
 ## Page Description
 
@@ -95,47 +94,65 @@ The following screenshot shows the Key quota dialog.
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Personal > My Keys` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Credential created | The new credential appears on the current tab. | Refresh the list and confirm the selected tab. |
+| Status | Only an enabled, unexpired credential can be used. | Check status, expiration, and project authorization. |
+| Quota updated | Used / limit changes after the limit is saved. | Open the quota dialog again and verify the saved values. |
 
 ## FAQ
 
-#### Target settings entry is not visible in My Keys
+#### A Key call fails
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The API returns an authentication or insufficient-quota error.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in My Keys
+- The Key is disabled, expired, or rotated.
+- The Key reached its cycle limit.
+- Member or project quota is insufficient.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+1. Check Key status and expiration.
+2. Review the Key limit and member quota.
+3. Before rotating a Key, notify all callers that depend on it.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why is a target Key missing from My Keys?
 
-#### Why are Key creation or disable buttons unavailable?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+A newly created or active Key is absent.
+
+**Possible cause:**
+
+The current tab shows another credential type, the Key is disabled or deleted, or it belongs to another project.
+
+**Resolution:**
+
+Switch between personal and project Key tabs and clear filters. Verify the Key's project and status. If it is still missing, check Operation Logs for deletion.
+
+#### Why are Create Key or Disable unavailable?
+
+**Symptom:**
+
+The list is visible, but Create, Disable, or Quota cannot be selected.
+
+**Possible cause:**
+
+The tenant disables self-service personal Key creation, the Key is already disabled or expired, or a project administrator must maintain the project Key.
+
+**Resolution:**
+
+Confirm the credential type and tenant security policy. Ask an administrator to enable personal Key management, or ask the project administrator to manage a project Key.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. Disable credentials that are no longer used.
+2. Use separate credentials for production, test, and temporary work.
+3. Review rotation, disable, and other high-risk actions in Operation Logs.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Never expose a complete Key, AK/SK pair, token, or private key in documentation, screenshots, or chat.
+- `Rotate` and `Disable` affect existing calls. Confirm the business impact first.

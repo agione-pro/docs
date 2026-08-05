@@ -78,9 +78,10 @@ On-Prem is like an owned computing campus: operators plan the campus, connect ma
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Operator resources are visible | Regions, clusters, specifications, images, storage, templates, quotas, and monitoring pages show the target objects. | Check region binding, cluster access, component status, and operator permissions. |
-| User creation entry is available | The user can select an opened template, image, specification, storage path, and quota. | Check tenant authorization, template scope, quota, and resource visibility. |
-| Runtime status can be located | Instance status, events, logs, usage, and monitoring are available after submission. | Check image pull, startup command, mount path, cluster scheduling, and monitoring delay. |
+| Correct entry point | You can distinguish operator-side resource preparation from end-user resource usage entry points. | Return to the role entry table and select the correct path. |
+| Clear resource hierarchy | You can explain the relationship among regions, availability zones, clusters, nodes, and resource pools. | Read Getting Started and the resource-pool feature pages first. |
+| Pre-creation checks | You can confirm the specification, image, storage, quota, and cluster capability before creation. | Open the corresponding configuration pages and check each item. |
+| Closed-loop troubleshooting | You can use events, logs, monitoring data, and usage data to identify the troubleshooting direction. | Prepare sanitized evidence and contact the operator for further handling. |
 
 ## Pitfalls
 

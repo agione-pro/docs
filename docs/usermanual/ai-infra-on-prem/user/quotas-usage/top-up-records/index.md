@@ -101,8 +101,10 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 
 ## Result Validation
 
-1. Amount, source, and time in the record match expectations.
-2. Third-party serial number can match the external system.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Top-up record | The amount, source, and time in the record match expectations. | Check the resource type, time range, credit balance, and consumption details. |
+| Third-party serial number | The serial number matches the external system. | Check the resource type, time range, credit balance, and consumption details. |
 
 ## Configuration Rules and Impact
 

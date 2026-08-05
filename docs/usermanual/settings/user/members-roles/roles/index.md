@@ -7,66 +7,64 @@ Updated: 2026-07-13
 
 ## Feature Overview
 
-`Roles` is used to query roles, view role permissions, and maintain tenant roles. It helps provider admin or provider account work with roles records and related status from a consistent page entry.
+`Roles` is used to manage tenant roles. You can search by role name, review the role name, identifier, description, and creation time, and create a role through the Add Role form.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin or Provider Account |
+| Applicable Role | Provider Admin |
 | Navigation path | Settings > Members & Roles > Roles |
 | Page route | `/user/user-space/roles` |
-| Managed objects | Roles records and related status |
+| Managed objects | Tenant roles, role identifiers, role descriptions, and permission scopes |
 | Typical use | Query roles, view role permissions, and maintain tenant roles |
 
 #### Beginner Explanation
 
-Roles is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Roles is the permission-template library. Combine menu and action permissions into a role first, then assign that role to members instead of authorizing each member separately.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Role | A set of menu and action permissions. | Define the role before assigning members. |
+| Authorization scope | The menus and actions that a role can access. | Check it when a member cannot see a menu. |
+| System role | A platform-provided or protected role. | Do not delete it casually. |
+| Member assignment | The members currently using the role. | Check assignments before deletion. |
 
 ## Prerequisites
 
-1. The current account can access `Members & Roles > Roles`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to view roles.
+2. Before adding a role, you have defined its name, identifier, and description.
+3. Keep the role identifier stable; do not change it without a clear need.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for roles records and related status.
-
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows roles list.
-
-![Roles list](./images/roles-list.png)
-
-The following screenshot shows create role.
-
-![Create role](./images/create-role.png)
+| Top action | `Add Role` |
+| Filter | Role Name |
+| Table columns | Role Name, Role Identifier, Role Description, Created At, and Actions |
+| Form fields | Role Name, Role Identifier, and Role Description |
+| High-risk action | Creating or changing a high-permission role |
 
 ## Main Operations
-
-Use the following operations to work with roles records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 
 ### Manage Roles
 
 1. Go to `Settings > Members & Roles > Roles`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to roles records and related status.
-4. Click the visible `Manage Roles` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+2. Filter by role name.
+3. Review the role identifier, description, and creation time.
+
+The following screenshot shows the Roles list.
+
+![Roles list](./images/roles-list.png)
+
+4. Select `Add Role` to open the form.
+5. Enter the role name, identifier, and description.
+6. Confirm the role's purpose before selecting `Confirm`.
+
+The following screenshot shows the Add Role form.
+
+![Add Role](./images/create-role.png)
 
 ## Parameter Reference
 
@@ -88,47 +86,64 @@ Use the following operations to work with roles records and related status. Comp
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Members & Roles > Roles` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Role created | The new role appears in the role list. | Refresh the list and check for a duplicate role identifier. |
+| Information | Role name, identifier, and description match the intended values. | Open role details and review the fields. |
+| Assignable | The role is available for selection on Members. | Check role status and member-management permission. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Roles
+#### A member still lacks permission after a role is assigned
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The member cannot access the target function after receiving the role.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Roles
+- The role does not contain the required permission.
+- The member is not assigned to the role.
+- The page cache has not refreshed.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+1. Check the role configuration and member assignment.
+2. Sign in again or refresh the page.
+3. Ask the tenant administrator to verify the permission scope.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why is a target role missing from the role list?
 
-#### Why are role creation or edit buttons unavailable?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+The expected role is absent, or it cannot be selected during member assignment.
+
+**Possible cause:**
+
+The role belongs to another tenant, is disabled, or the current account can view members but cannot manage roles.
+
+**Resolution:**
+
+Confirm the tenant scope and role status. Verify that the current account can view roles. Ask a role administrator to perform the assignment when required.
+
+#### Why are Add Role or Edit unavailable?
+
+**Symptom:**
+
+The role list is visible, but Add Role, Edit Permissions, or Delete cannot be selected.
+
+**Possible cause:**
+
+The current account is not a role administrator, the target is a built-in role, or the role is still assigned to members and cannot be deleted.
+
+**Resolution:**
+
+Verify role-management permission. View built-in roles without changing them. Before deletion, remove member assignments and complete required approval.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. Assign the role to members on Members.
+2. Use Member Quotas to control members' resource usage.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Restrict assignment of high-permission roles.
+- Do not include accounts, passwords, or customer-sensitive information in role names or descriptions.

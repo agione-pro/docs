@@ -85,10 +85,12 @@ The following figure shows the vram estimation configuration page.
 
 ## Result Validation
 
-1. The rule appears in the list.
-2. Inference templates can reference this VRAM rule.
-3. Recommended specifications match expectations under different model, precision, KV Token, and concurrency combinations.
-4. When users select an undersized specification, the page can provide restrictions or prompts.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Rule created | The rule appears in the list. | Check the associated template object, enabled status, version, and form configuration. |
+| Template reference | Inference templates can reference the VRAM rule. | Check the associated template object, enabled status, version, and form configuration. |
+| Recommendation accuracy | Recommended specifications match expectations for different model, precision, KV Token, and concurrency combinations. | Check the associated template object, enabled status, version, and form configuration. |
+| Undersized specification prompt | The page shows a restriction or prompt when a user selects an undersized specification. | Check the associated template object, enabled status, version, and form configuration. |
 
 ## FAQ
 

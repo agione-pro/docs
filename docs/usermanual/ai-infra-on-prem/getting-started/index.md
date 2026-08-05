@@ -117,21 +117,18 @@ The recommended configuration order is: create regions first, then create availa
 
 ## Parameter Reference
 
-| Parameter | Meaning | Check Before Use |
-| --- | --- | --- |
-| Region / Availability Zone | Logical or physical resource boundary. | Confirm the target region is enabled and bound to required clusters and components. |
-| Cluster / Node | Kubernetes compute and scheduling carrier. | Confirm cluster status, node status, accelerator resources, and monitoring data. |
-| Specification | User-selectable CPU, memory, accelerator, and VRAM package. | Confirm the specification is associated with the target cluster and opened to users. |
-| Image / Storage | Runtime image and data persistence resources. | Confirm repository access, bucket or mount path, and credential handling. |
-| Quota / Credit | Tenant-side creation and consumption limits. | Confirm remaining quota and credit before creating instances or jobs. |
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Role Type | Yes | Selection | End User | Determines whether to read operator-side resource governance or user-side resource usage flows. |
+| Resource Scope | No | Text | Example Region / Example Cluster | Locates regions, availability zones, clusters, nodes, and resource pools. |
+| Job Type | No | Selection | Model Instance | Distinguishes model services, Online IDEs, runtime instances, and training jobs. |
+| Quota Object | No | Text | Example Tenant | Identifies the quota, credit, usage, and metering scope. |
 
 ## Result Validation
 
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Resource hierarchy is clear | You can map region, availability zone, cluster, node, resource pool, and instance relationships. | Re-read Resource Hierarchy and Role Relationship before entering feature pages. |
-| Operator preparation is complete | Regions, clusters, specifications, images, storage, templates, quotas, and monitoring have target records. | Continue with the operator reading path and check missing bindings. |
-| User creation path is available | User-side template, image, storage, quota, usage, and monitoring entries are visible. | Check permissions, tenant scope, resource opening, and filters. |
+- You can explain the hierarchy of regions, availability zones, clusters, nodes, and resource pools.
+- You can distinguish operator-side resource preparation from end-user resource usage.
+- You know to check quotas, specifications, images, storage, and monitoring first when instance creation fails.
 
 ## Pitfalls
 

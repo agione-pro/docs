@@ -102,9 +102,11 @@ The following figure shows the node statistics page.
 
 ## Result Validation
 
-1. The node list displays node name, status, and key resource metrics.
-2. Node status corresponds to cluster health and job scheduling results.
-3. Metric update time can explain whether collection is delayed.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Node status and metrics | The node list shows node name, status, and key resource metrics. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Status consistency | Node status corresponds to cluster health and job scheduling results. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Collection time | The metric update time indicates whether collection is delayed. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Configuration Rules and Impact
 

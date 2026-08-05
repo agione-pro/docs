@@ -92,7 +92,6 @@ Use this operation to query publish records. Do not add publish, rollback, or ca
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `API Rate Control > Publish Center` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Publish records | Publish records in the target time range are visible. | Expand the time range and query again. |
 | Normal status | Publish status shows success or the expected state. | Check the message field and verify in Node Cache. |
 | Correct node count | Node count matches the expected node scope. | Check target nodes in the publish task. |
@@ -104,27 +103,37 @@ Use this operation to query publish records. Do not add publish, rollback, or ca
 
 The target version status in Publish Center is not as expected.
 
-**How to check:**
+**Possible cause:**
 
-1. Check the message field.
-2. Open Node Cache and compare node status and rule version.
-3. Return to Rule Management and verify the rule version.
-4. Do not publish repeatedly before identifying failed nodes and failure reasons.
+The rule did not synchronize to every node, or a node response is abnormal.
+
+**Resolution:**
+
+Check the message field, then open Node Cache and compare node status and rule version.
 
 #### Why is the target policy missing from Publish Center?
 
 Publish Center does not show the rate-control policy that is pending, published, or rolling back.
 
-**How to check:**
+**Possible cause:**
 
-1. Clear status and environment filters.
-2. Return to Rule Management and confirm whether the rule has been submitted for publishing.
-3. Check the publish task and approval status.
-4. Confirm that the current account has permission to view the publish record scope.
+The rule was not submitted for publishing, the policy belongs to another environment, or filters show only one publish status.
+
+**Resolution:**
+
+Clear status and environment filters. Return to Rule Management and confirm that the rule was submitted. If it is still absent, check the publish task and approval status.
 
 #### Why are publish, rollback, or cancel buttons unavailable?
 
-The publish task is visible, but publish, rollback, cancel, or diff buttons cannot be clicked. Confirm task status and approval status. Before publishing or rolling back, verify the impact scope and let an administrator with publish permission handle the action.
+The publish task is visible, but publish, rollback, cancel, or diff buttons cannot be clicked.
+
+**Possible cause:**
+
+The current account lacks publish permission, the task status does not allow the action, or approval is incomplete.
+
+**Resolution:**
+
+Confirm the task and approval status. Verify the impact scope before publishing or rollback, and let an administrator with publish permission perform the action.
 
 ## Next Steps
 

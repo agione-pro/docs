@@ -98,12 +98,14 @@ The following figure shows the metering details page.
 
 ## Result Validation
 
-1. Filter results match the conditions.
-2. Detail start/end time and resource type can explain monthly summaries.
-3. Before download, list filter conditions have taken effect.
-4. The export scope is consistent with the search conditions.
-5. The file is saved and shared only within authorized directories.
-6. For learning or screenshots, `Detail Download` is not clicked.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Filter results | The displayed records match the filter conditions. | Check the tenant, billing period, quota, usage records, and metering synchronization status. |
+| Detail and summary consistency | The detail start time, end time, and resource type explain the monthly summary. | Check the tenant, billing period, quota, usage records, and metering synchronization status. |
+| Filters applied before download | The list scope matches the selected filters. | Recheck the resource type, resource name, resource ID, batch number, tenant, and region. |
+| Export scope | The downloaded data matches the search conditions. | Narrow the filter scope and search again. |
+| Controlled file storage | The file is saved and shared only in authorized directories. | Delete unauthorized copies and redistribute the file through the approved internal process. |
+| No download during learning | `Detail Download` is not selected during learning or screenshot capture. | If a file was downloaded accidentally, remove it through the sensitive-file handling process. |
 
 ## Configuration Rules and Impact
 

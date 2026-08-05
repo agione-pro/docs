@@ -13,7 +13,6 @@ Updated: 2026-07-10
 | --- | --- |
 | Applicable Role | Platform Operators, System Maintainers, Security Roles, and End Users |
 | Navigation path | Settings |
-| Page route | /settings |
 | Managed objects | Personal Keys, profile information, members, roles, tenants, operation logs, system settings, and API rate control |
 | Typical use | Manage members and roles, review operation logs, configure login security, maintain platform settings, and manage API rate-control rules |
 
@@ -114,31 +113,37 @@ When entering Settings, select the target group from the left menu first, then r
 
 The target menu is not shown after opening Settings.
 
-**How to check:**
+**Possible cause:**
 
-1. Confirm the current account role and tenant scope.
-2. Ask an authorized operator to verify menu permissions and role scope.
-3. Re-login or refresh the page after permission changes.
+The current account lacks the required management permission, or the menu is restricted by role authorization and tenant scope.
+
+**Resolution:**
+
+Ask a platform operator to verify role authorization and tenant scope, then sign in again or refresh the page.
 
 #### What should be prepared before configuration changes?
 
 The page provides edit, delete, publish, rollback, authorize, or reset buttons.
 
-**How to check:**
+**Possible cause:**
 
-1. Confirm affected users, tenants, APIs, or system policies.
-2. Confirm the change window, approval basis, and rollback path.
-3. Keep only desensitized object names, timestamps, and page paths in tickets.
+These actions can change member permissions, login policies, rate-control rules, or system configuration.
+
+**Resolution:**
+
+Confirm the affected objects, change window, approval basis, and rollback method before continuing.
 
 #### Why are the Settings entry or module cards not visible?
 
 The Settings entry, operator-side pages, user-side pages, or API Rate Control pages are not visible.
 
-**How to check:**
+**Possible cause:**
 
-1. Confirm the current login identity and tenant scope.
-2. Ask an authorized operator to check menu permissions, role scope, and module switches.
-3. Compare with operation logs if permissions were changed recently.
+The current account does not have the required role, the sidebar is restricted by tenant permissions, or the Settings module is not enabled in the current environment.
+
+**Resolution:**
+
+Confirm the current identity and tenant scope. Ask an authorized operator to check Settings menu permissions, role scope, and module switches.
 
 ## Next Steps
 

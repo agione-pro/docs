@@ -100,9 +100,11 @@ Before creating a model service, online IDE, or runtime instance, confirm on the
 
 ## Result Validation
 
-1. The target model or quick entrypoint is visible.
-2. The target specification is visible in the quota table.
-3. If consumption data exists, trend and usage areas refresh normally.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Model and quick entry point | The target model or quick entry point is visible. | Check the target object, filters, permission scope, and recent operation records on this page. |
+| Quota specification | The target specification is visible in the quota table. | Check the target object, filters, permission scope, and recent operation records on this page. |
+| Consumption data | If consumption data exists, the trend and usage areas refresh normally. | Check the target object, filters, permission scope, and recent operation records on this page. |
 
 ## FAQ
 

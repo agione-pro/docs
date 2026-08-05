@@ -104,9 +104,11 @@ The following figure shows the resource occupation details dialog, used to view 
 
 ## Result Validation
 
-1. The resource occupation dialog can open.
-2. Occupation items match the instance type.
-3. Instances that need to be released or retained can be located.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Resource usage dialog | The resource usage dialog opens. | Check the resource type, time range, credit balance, and consumption details. |
+| Usage items | The usage items match the instance type. | Check the resource type, time range, credit balance, and consumption details. |
+| Related instances | Instances that must be released or retained can be identified. | Check the resource type, time range, credit balance, and consumption details. |
 
 ## Configuration Rules and Impact
 

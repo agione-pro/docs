@@ -97,7 +97,6 @@ Use this operation to query observability and audit data. Do not add create, pub
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `API Rate Control > Observability Audit` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Tab switching | The three data tabs can be switched normally. | Refresh the page and re-enter it. |
 | Filter result | The list refreshes according to API, node, rule, or time range. | Check filters, click `Reset`, and search again. |
 | Export entry | Export buttons are displayed according to permissions. | Confirm time range, desensitization requirements, and recipient before exporting. |
@@ -109,27 +108,37 @@ Use this operation to query observability and audit data. Do not add create, pub
 
 The overview shows an increase in blocked requests, but no corresponding record appears in Observability Audit.
 
-**How to check:**
+**Possible cause:**
 
-1. Confirm that the time range is consistent.
-2. Switch to the `Blocked Logs` tab.
-3. Expand the time range and search again.
-4. Compare the result with Rule Management and node cache status.
+The time ranges differ, or the current tab is not Blocked Logs.
+
+**Resolution:**
+
+Switch to `Blocked Logs`, expand the time range, and search again.
 
 #### What should be checked before cleaning data?
 
 The page provides a `Clean` entry.
 
-**How to check:**
+**Possible cause:**
 
-1. Confirm data retention requirements.
-2. Confirm whether the data is still needed for troubleshooting.
-3. Confirm the cleanup scope and operator permission.
-4. For learning or screenshots only, do not perform cleanup.
+Cleanup affects later audit tracing.
+
+**Resolution:**
+
+Confirm retention requirements and troubleshooting needs first. Only an authorized operator should perform cleanup.
 
 #### Why are observability audit records empty?
 
-The selected time range may not contain requests that triggered rate-control rules, requests may not have passed through the rate-control gateway, or the audit collection chain may be delayed. Expand the time range, confirm the request path, check rule publishing and gateway access, and then compare node cache reporting status.
+No API hit, rate-control, blocked-request, or exception record appears on the Observability Audit page.
+
+**Possible cause:**
+
+No request triggered a rate-control rule in the selected time range, requests bypassed the rate-control gateway, or audit collection is delayed.
+
+**Resolution:**
+
+Expand the time range and confirm the request path. Check rule publishing and gateway access. If records remain empty, compare reporting status in Node Cache.
 
 ## Next Steps
 

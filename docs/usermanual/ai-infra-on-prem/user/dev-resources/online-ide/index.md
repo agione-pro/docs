@@ -115,9 +115,11 @@ Create an online IDE when an interactive development, debugging, or Notebook env
 
 ## Result Validation
 
-1. A new IDE appears in the list after creation.
-2. Status enters Running or Accessible.
-3. Web IDE, JupyterLab, or the corresponding development entrypoint can be opened.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| IDE created | A new IDE appears in the list after creation. | Check the image, specification, startup command, mount path, and instance events. |
+| IDE status | The status changes to Running or Accessible. | Check the image, specification, startup command, mount path, and instance events. |
+| Development entry point | Web IDE, JupyterLab, or the corresponding development entry point opens. | Check the image, specification, startup command, mount path, and instance events. |
 
 ## Configuration Rules and Impact
 

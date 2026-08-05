@@ -103,9 +103,11 @@ The following figure shows the page state after opening the consumption details 
 
 ## Result Validation
 
-1. The details page or drawer can open.
-2. The specification in records is consistent with the clicked row.
-3. Consumption sources can correspond to instances or jobs.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Usage details | The details page or drawer opens. | Check the resource type, time range, credit balance, and consumption details. |
+| Specification | The specification in the records matches the selected row. | Check the resource type, time range, credit balance, and consumption details. |
+| Consumption source | A consumption source can be correlated with an instance or job. | Check the resource type, time range, credit balance, and consumption details. |
 
 ## Configuration Rules and Impact
 

@@ -7,54 +7,53 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`My Keys` is used to view, filter, and maintain my keys information. It helps operator admin work with my keys records and related status from a consistent page entry.
+`My Keys` is used to view and manage Model API Keys and System API AK/SK Pairs for the current account, including quota summaries, credential status, creation time, and row-level actions.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator Account |
 | Navigation path | Settings > Personal > My Keys |
 | Page route | `/user/user-space/my-keys` |
-| Managed objects | My Keys records and related status |
-| Typical use | View, filter, and maintain my keys information |
+| Managed objects | Model API Keys, System API AK/SK Pairs, quotas, and credential status |
+| Typical use | Review Key quotas, create or disable credentials, and open row-level actions |
 
 #### Beginner Explanation
 
-My Keys is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Operator credentials are access passes for administrators and backend jobs. They are more sensitive than ordinary user credentials. Manage their scope, expiration, audit trail, rotation, and deactivation carefully.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Operator credential | A Key or AK/SK pair used by operator APIs or backend jobs. | Create it with the minimum required permission. |
+| Permission scope | The management objects and APIs that a credential can access. | Confirm the intended use before creation. |
+| Expiration | The time after which a credential becomes invalid automatically. | Rotate it before a long-running job reaches this time. |
+| Call audit | Request and operation records produced when a credential is used. | Review audit logs when use is abnormal. |
 
 ## Prerequisites
 
-1. The current account can access `Personal > My Keys`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to view personal credentials.
+2. You have opened `Personal > My Keys`.
+3. Before changing a credential, you have confirmed its caller, purpose, and replacement plan.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for my keys records and related status.
-
-| Area | Description |
-| --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows my keys.
+The following screenshot shows the My Keys page. Key prefixes and quota values are desensitized.
 
 ![My Keys](./images/model-api-keys-list.png)
 
 After switching to `System API AK/SK Pairs`, use the following list to review system API credential pairs and their status.
 
 ![System API AK/SK pairs](./images/system-api-pairs-list.png)
+
+| Area | Description |
+| --- | --- |
+| Available / View All | Switches between available credentials and the full list. |
+| Model API Keys | Shows model-call Keys. |
+| System API AK/SK Pairs | Shows system API credential pairs. |
+| My Member Quota | Shows used, remaining, and authorized quota for the current cycle. |
+| Status | Filters the list by credential status. |
+| Credential list | Shows name, prefix, status, usage, creation time, and actions. |
 
 ## Main Operations
 
@@ -119,52 +118,66 @@ Use the following operations to work with my keys records and related status. Co
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Personal > My Keys` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Credential list | Credential names, status, and actions are visible. | Check the filters and account permission. |
+| Tab switch | Model API Keys and System API AK/SK Pairs can be selected. | Refresh the page and open it again. |
+| Quota summary | Used, remaining, and authorized quota are displayed. | Ask an administrator to verify quota authorization. |
 | Create dialog | Clicking `Create Key` opens the `Create Model API Key` dialog. | Check whether the current account has key creation permission. |
 | AK/SK creation dialog | After switching to `System API AK/SK Pairs`, the creation dialog can be opened. | Check whether the current account has System API credential creation permission. |
 
 ## FAQ
 
-#### Target settings entry is not visible in My Keys
+#### A credential no longer works
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The caller receives an authentication error.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in My Keys
+The credential is disabled, the caller still uses an old value after rotation, or its quota is limited.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+Review the credential status and quota. If it was rotated, ensure that the caller switches to the new value.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### What should be checked before creation or rotation?
 
-#### Why is the target Key missing from operator Keys?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+The page provides `Create Key` or rotation actions.
+
+**Possible cause:**
+
+Credentials are sensitive, and changing them affects callers.
+
+**Resolution:**
+
+Confirm the purpose, caller, and replacement window. Never record a complete credential in documentation or screenshots.
+
+#### Why is the target credential missing from operator My Keys?
+
+**Symptom:**
+
+The credential used by a management API or backend job is not shown.
+
+**Possible cause:**
+
+It was created from a user-side entry, is disabled or expired, or the current account lacks operator credential-management permission.
+
+**Resolution:**
+
+Confirm the current entry and credential type, then check its status, expiration, and creation record. If it is still missing, ask a platform administrator to generate a replacement and record its purpose.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. To review account details, go to [Profile](../profile/).
+2. To adjust member permissions, go to [Members](../../members-roles/members/).
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Never copy, paste, or capture a complete Key, AK/SK pair, token, or secret.
 - Do not include real Keys, AK/SK, tokens, accounts, endpoints, customer names, or internal test parameters in documentation, screenshots, tickets, or examples.
 - A System API AK/SK Pair generates credentials for system API calls. AK/SK values may only be saved once through controlled channels.
 - `Create` and `Confirm` are final high-risk actions.
+- Before rotating or disabling a credential, confirm that its callers have completed the switch.
+- A credential prefix is only an identifier; it is not the complete credential.

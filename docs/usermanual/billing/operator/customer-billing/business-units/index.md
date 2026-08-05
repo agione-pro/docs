@@ -33,30 +33,35 @@ Business Units works like the checkout configuration for customer top-up. Each b
 
 ## Prerequisites
 
-1. The current account can access `Customer Billing > Business Units`.
-2. Payment channels required by the business unit have been configured or confirmed.
-3. The target customer scope, top-up amount policy, initial balance, and overdraft policy have been confirmed.
-4. For screenshots, tickets, or comments, prepare a desensitization method first.
+1. The current account has permission to manage business units.
+2. At least one business unit exists before related modules, such as top-up and customer overview, can provide business-unit selections.
+3. The browser is signed in with a platform operator account and the session has not expired.
 
 ## Page Description
 
-The page includes filters, the business unit table, and an entry for adding a business unit.
+The `Add Business Unit` button at the top of the page opens the creation dialog. The filter area contains:
 
-| Area | Description |
+| Field | Description |
 | --- | --- |
-| Business Unit Name | Filter or display name of the business unit. |
-| Status | Filter or display enabled and disabled status. |
-| Business unit table | Shows business unit name, code, description, payment channels, status, and row-level actions. |
-| Add Business Unit | Opens the dialog for creating a business unit. |
-| Edit Business Unit | Opens the existing business unit configuration for review or update. |
+| Business Unit Name | Filters by business unit name. |
+| Status | Selects a business unit status, such as `Enabled` or `Disabled`. |
 
-The following screenshot shows business units list.
+The business unit table contains:
+
+| Field | Description |
+| --- | --- |
+| Business Unit Name | Display name of the business unit. |
+| Business Unit Code | Code used by the system to identify the business unit. |
+| Business Unit Description | Description of the business unit. |
+| Supported Payment Channels | Bound payment channels, such as `Stripe` or `Alipay`. |
+| Status | Current status. |
+| Actions | Row actions, usually including `Edit Business Unit`. |
+
+The following screenshot shows the filters and table fields. List data is masked to avoid exposing business configuration details.
 
 ![Business Units list](./images/business-units-list.png)
 
 ## Main Operations
-
-Use the following operations to add or edit business units. Complete view-only checks before the final `Confirm` action.
 
 ### Add a Business Unit
 
@@ -72,12 +77,10 @@ Use the following operations to add or edit business units. Complete view-only c
 
 ### Edit a Business Unit
 
-1. Go to `Billing > Customer Billing > Business Units`.
-2. Locate the target business unit in the list.
-3. Click `Edit Business Unit` for the target row.
-4. Review or adjust business unit name, description, payment channels, amount limits, initial balance, overdraft limit, and status according to the page fields.
-5. Before clicking the final `Confirm`, verify the affected customer scope and top-up policy impact again.
-6. For learning or screenshots only, view fields and the dialog without submitting real configuration changes.
+1. Click `Edit Business Unit` in the target row.
+2. Update the fields and click `Confirm` to save.
+
+> **Risk:** Editing a business unit immediately affects top-up options for existing customers. Evaluate the impact on online top-up flows before saving.
 
 ## Parameter Reference
 
@@ -112,10 +115,9 @@ Use the following operations to add or edit business units. Complete view-only c
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Customer Billing > Business Units` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Business unit record | The added or edited business unit appears in the list. | Clear the filters and search again. |
+| Status | The status column shows the expected value, Enabled or Disabled. | Refresh the page and check status-change permissions. |
+| Payment channels | The payment channels for the business unit match the expected configuration. | Open the edit page and check the channel configuration. |
 
 ## FAQ
 
@@ -125,7 +127,7 @@ The expected account, customer, order, bill, settlement, adjustment, or License 
 
 **How to check:**
 
-1. Confirm the current tenant, tenant, customer, account, and role scope.
+1. Confirm the current tenant, customer, account, and role scope.
 2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
 3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
 4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
@@ -147,9 +149,8 @@ Check the selected billing cycle, customer or project scope, status filters, and
 
 ## Next Steps
 
-1. Review related billing records, transactions, settlement statements, and account balance changes.
-2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
-3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
+- Open [Customer Top-up Orders](../top-up-orders/) to verify whether the business unit affects order filters and posting checks.
+- Confirm whether the customer top-up flow references this business unit.
 
 ## Notes
 

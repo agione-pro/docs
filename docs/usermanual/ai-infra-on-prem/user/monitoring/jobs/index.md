@@ -91,28 +91,23 @@ The page displays job monitoring capability for the selected region. When the ca
 
 ## Result Validation
 
-1. The job list displays ID, status, queue duration, runtime duration, and resource occupation.
-2. After filters change, list and statistics change accordingly.
-3. Failed jobs can drill down to error summary, events, or log entrypoints.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Job list | The list shows job ID, status, queue duration, runtime duration, and resource usage. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Filtered results | The list and statistics change when the filters change. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Failure details | A failed job can be opened to view an error summary, events, or logs. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Prepare Before Contacting the Operator
 
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+If the job page is abnormal, prepare the following information so that the operator can distinguish queueing, failure, resource shortages, and history-retention problems:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| Job ID | `job-20260713001` | Identifies the task record. |
+| Job Status | `Queued / Failed / Running` | Determines the troubleshooting direction. |
+| Queue Duration | `25 minutes` | Indicates scheduling or resource-waiting problems. |
+| Failure Time | `2026-07-13 10:15` | Aligns events, logs, and monitoring curves. |
+| Specification / Queue | `2 * A800 / gpu-prod` | Confirms whether the resource pool and quota match. |
 
 ## FAQ
 

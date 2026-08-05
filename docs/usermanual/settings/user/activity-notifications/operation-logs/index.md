@@ -7,62 +7,57 @@ Updated: 2026-07-13
 
 ## Feature Overview
 
-`Operation Logs` is used to view, filter, and maintain operation logs information. It helps provider admin or provider account work with operation logs records and related status from a consistent page entry.
+`Operation Logs` is used to query user-operation records in the current tenant. You can filter by HTTP method, result, and time range, and review the time, user, action, method, IP address, processing time, and result.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin or Provider Account |
+| Applicable Role | Provider Admin |
 | Navigation path | Settings > Activity & Notifications > Operation Logs |
 | Page route | `/user/user-space/operation-logs` |
-| Managed objects | Operation Logs records and related status |
-| Typical use | View, filter, and maintain operation logs information |
+| Managed objects | Tenant user-operation records, HTTP methods, results, time ranges, and operation details |
+| Typical use | Query tenant operation records, investigate abnormal operations, and audit critical actions |
 
 #### Beginner Explanation
 
-Operation Logs is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Operation Logs is the audit trail for Settings. It shows who performed an action, when the action occurred, and whether it succeeded. When investigating a configuration or permission problem, filter by time, operator, and target object first.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Operation log | Audit information that records a user action and its processing result. | Keep only desensitized clues during troubleshooting. |
+| Operator | The account that performed the action. | Confirm that the person was expected to perform it. |
+| Target object | The configuration, member, or rule that was viewed or changed. | Use it to identify the impact scope. |
+| Operation result | Success, failure, processing, or another action result. | Investigate the cause when it is not successful. |
 
 ## Prerequisites
 
-1. The current account can access `Activity & Notifications > Operation Logs`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to view operation logs.
+2. Before the query, you have identified the time range, HTTP method, or result filter.
+3. Before exporting logs, you have confirmed the tenant's data-management requirements.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for operation logs records and related status.
-
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows operation logs list.
-
-![Operation Logs list](./images/operation-logs-list.png)
+| Top action | Export CSV |
+| Filters | HTTP method, result, start time, and end time |
+| Table columns | Time, user, action, method, IP address, processing time, and result |
+| Actions | Search and Reset |
+| High-risk action | Export CSV |
 
 ## Main Operations
-
-Use the following operations to work with operation logs records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 
 ### View Operation Logs
 
 1. Go to `Settings > Activity & Notifications > Operation Logs`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to operation logs records and related status.
-4. Click the visible `View Operation Logs` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+2. Select an HTTP method, result, or time range.
+3. Select `Search` to display matching logs.
+4. To clear the conditions, select `Reset`.
+
+The following screenshot shows the Operation Logs list. User identities and IP addresses are hidden.
+
+![Operation Logs list](./images/operation-logs-list.png)
 
 ## Parameter Reference
 
@@ -84,47 +79,64 @@ Use the following operations to work with operation logs records and related sta
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Activity & Notifications > Operation Logs` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Search | The list shows only logs that match the conditions. | Check the operator, time range, and operation type. |
+| Reset | The filters return to their defaults. | Clear the filters manually and query again. |
+| Status | The success or failure state matches the Result column. | Open log details and verify the error or operation result. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Operation Logs
+#### A target operation record cannot be found
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The list is empty after filtering by time or user.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Operation Logs
+- The time range does not include the target action.
+- The HTTP method or result filter is too restrictive.
+- The record has not refreshed into the list.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+1. Expand the time range and search again.
+2. Clear the HTTP method and result filters.
+3. Wait for the log to refresh, then query again.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why is a target operation log missing?
 
-#### Why are the log export or detail buttons unavailable?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+The target record is absent after searching by operator, time, or object.
+
+**Possible cause:**
+
+The time range does not include the action, the retention period has passed, or the current account cannot view logs for that tenant, project, or member.
+
+**Resolution:**
+
+Expand the time range and clear the operation-type filter. Confirm the tenant and object where the action occurred. If the record is still missing, ask an administrator to check log collection and retention.
+
+#### Why are log export or detail actions unavailable?
+
+**Symptom:**
+
+Logs can be queried, but Export or View Details cannot be selected.
+
+**Possible cause:**
+
+The current account lacks audit-export permission, the record is outside the viewable retention range, or the tenant security policy disables export.
+
+**Resolution:**
+
+Verify audit permission and the log retention range. Before sending logs outside the tenant, request export permission and follow desensitization requirements.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. Retain audit records for critical operations.
+2. Compare member, role, and quota pages to identify the source of a change.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Exported CSV files may contain users, IP addresses, and audit information. Handle them according to tenant data-security requirements.
+- Do not distribute exported log files without authorization.

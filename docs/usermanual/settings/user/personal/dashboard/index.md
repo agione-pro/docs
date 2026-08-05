@@ -7,54 +7,43 @@ Updated: 2026-07-13
 
 ## Feature Overview
 
-`Dashboard` is used to view, filter, and maintain dashboard information. It helps provider admin or provider account work with dashboard records and related status from a consistent page entry.
+`Dashboard` summarizes the personal workspace, including Personal Keys quota, active projects, members, API Keys, remaining quota, and common shortcuts.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin or Provider Account |
+| Applicable Role | Provider Account |
 | Navigation path | Settings > Personal > Dashboard |
 | Page route | `/user/user-space/workspace/overview` |
-| Managed objects | Dashboard records and related status |
-| Typical use | View, filter, and maintain dashboard information |
+| Managed objects | Personal Keys quota, active projects, members, API calls, and shortcuts |
+| Typical use | Review the personal workspace summary and common entry points |
 
 #### Beginner Explanation
 
-Dashboard is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Dashboard is the Settings control panel. Use it to determine whether the current provider account has available quota, projects, and Keys, then open Projects, My Keys, or Quota Requests from the shortcuts.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Provider account | The account currently signed in to Settings. | Confirm that it is in the correct tenant. |
+| Available quota | Quota that the current account or tenant can still consume. | Open Quota Requests when it is insufficient. |
+| Shortcut | An entry to Projects, My Keys, or Quota Requests. | Select one according to the issue. |
+| Project count | The number of projects visible to the current account. | Open Projects when the count is unexpected. |
 
 ## Prerequisites
 
-1. The current account can access `Personal > Dashboard`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account is in provider-side Settings.
+2. The page language is English.
+3. Before requesting quota, you have prepared the amount and reason.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for dashboard records and related status.
-
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows dashboard.
-
-![Dashboard](./images/dashboard-list.png)
-
-The following screenshot shows request quota dialog.
-
-![Request quota dialog](./images/request-quota.png)
+| Top action | `Request Quota` |
+| Summary cards | Active projects, members, API Keys, and remaining quota |
+| Shortcuts | Projects, My Keys, and Quota Requests |
+| Dialog entry | Request Quota dialog |
 
 ## Main Operations
 
@@ -88,47 +77,65 @@ Use the following operations to work with dashboard records and related status. 
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Personal > Dashboard` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Request visible | The submitted request appears on Quota Requests. | Check the submission message and request filters. |
+| Quota updated | Remaining or authorized quota changes according to policy after approval. | Compare the request record with Member Quotas. |
+| Shortcuts | Each shortcut opens the corresponding page. | Check menu permission and target-page access. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Dashboard
+#### Request Quota is unavailable
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+A quota request cannot be started.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Dashboard
+- The current account lacks quota-request permission.
+- A request is already pending.
+- The tenant disabled self-service quota requests.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+1. Check Quota Requests for a pending record.
+2. Ask the tenant administrator to confirm the quota-request policy.
+3. Complete the request reason and submit again.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why are quota and shortcut data missing?
 
-#### Why are dashboard quick actions unavailable?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+Dashboard does not show quota, project, Key, or request data.
+
+**Possible cause:**
+
+The account has not joined a project, member quota is not allocated, or the tenant disabled user-side shortcuts.
+
+**Resolution:**
+
+Check Members and Member Quotas, then confirm that the account has joined a project. Ask the tenant administrator to allocate quota or project permission when required.
+
+#### Why are dashboard shortcuts unavailable?
+
+**Symptom:**
+
+Shortcuts are visible, but Request Quota, Create Key, or Projects cannot be selected.
+
+**Possible cause:**
+
+The member lacks the required permission, self-service requests are disabled, or the required project or Key object is not initialized.
+
+**Resolution:**
+
+Check member quota, project permission, and Key-management permission for the corresponding shortcut. Ask the tenant administrator to grant missing permission.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. Open My Keys to review Key usage.
+2. Open Projects to manage project budgets.
+3. Open Quota Requests to review request status.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- A quota request enters an approval flow. Do not submit duplicate requests for the same reason.
+- Do not include passwords, Keys, tokens, or customer-sensitive information in the request reason.

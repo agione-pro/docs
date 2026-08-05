@@ -1,14 +1,20 @@
-## 初始化AGIOne-ClusterD
+# 初始化 AGIOne ClusterD
+
 AGIOne ClusterD是管理多个Kubernetes集群的工具服务，可支持快速安装kubernetes集群及完成相关组件的激活，AGIOne ClusterD支持的操作系统环境包括：
 1. linux: x86_64和arm64，常见的ubuntu22.04/ubuntu20.04/CentOS7皆可支持
 2. macos: i386，Intel芯片
 
-安装方式如下：
-1. 安装包下载清单
-  - [macos-i386](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-macos.tar.gz)
-  - [linux-x86_64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-x86_64.tar.gz)
-  - [linux-arm64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-arm64.tar.gz)
-2. 解压，并进入解压目录，执行命令 ``bash start.sh`` 或 ``nohup bash start.sh > clusterd.log 2>&1 &`` 后台运行 
+## 安装
+
+### 1. 下载安装包
+
+- [macos-i386](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-macos.tar.gz)
+- [linux-x86_64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-x86_64.tar.gz)
+- [linux-arm64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-arm64.tar.gz)
+
+### 2. 解压并启动 AGIOne ClusterD
+
+解压安装包，进入解压目录后执行 ``bash start.sh``。如需后台运行，执行 ``nohup bash start.sh > clusterd.log 2>&1 &``。
 
 **备注: 默认启用8080端口，如果需要使用其他端口，更改config/config.yaml 的``addr``项，更改监听端口**
 
@@ -77,7 +83,8 @@ AGIOne ClusterD是管理多个Kubernetes集群的工具服务，可支持快速�
 ![config-registry.png](./clusterd-images/config-registry.png)
 提交等待完成复制即可
 
-备注：
+### 注意事项
+
 1. OneProHuaweiMP华为云账号下，agione-powerone组织下为可生产用镜像，其中vllm-ascend镜像用于华为NPU卡，vllm-openai、sglang用户NVIDIA GPU卡
 ![swr-registry.png](./clusterd-images/swr-registry.png)
 2. 下图表示，如何获取OneProHuaweiMP华为云账号的相关认证信息

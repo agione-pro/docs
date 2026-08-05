@@ -7,70 +7,71 @@ Updated: 2026-07-13
 
 ## Feature Overview
 
-`Projects` is used to view, filter, and maintain projects information. It helps provider admin or provider account work with projects records and related status from a consistent page entry.
+`Projects` is used to create and manage provider-side projects. You can review project status, budget usage, and creation time, and open project details for members, usage, API Keys, activity, and settings.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin or Provider Account |
+| Applicable Role | Provider Account |
 | Navigation path | Settings > Personal > Projects |
 | Page route | `/user/user-space/projects` |
-| Managed objects | Projects records and related status |
-| Typical use | View, filter, and maintain projects information |
+| Managed objects | Projects, project status, budget usage, creation time, and project details |
+| Typical use | Create projects, review project status, and open project details |
 
 #### Beginner Explanation
 
-Projects is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Projects is the project ledger for a provider account. It shows project names, budgets, model counts, and member ownership, and helps determine whether a call failed because of project status or budget.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Project | A business workspace for model calls, budgets, and member collaboration. | Confirm project ownership before creation or troubleshooting. |
+| Project budget | The quota or amount limit available to a project. | Reaching it can block calls. |
+| Model count | The models associated with or available to a project. | Check model authorization when it is unexpected. |
+| Member | An account that collaborates in a project. | Verify the member role for permission problems. |
 
 ## Prerequisites
 
-1. The current account can access `Personal > Projects`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to view projects.
+2. Before creating a project, you have defined the project name, budget cycle, and over-budget policy.
+3. If a model allowlist is enabled, you have defined which models can be called.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for projects records and related status.
-
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows projects list.
-
-![Projects list](./images/projects-list.png)
-
-The following screenshot shows create project.
-
-![Create project](./images/create-project.png)
-
-The following screenshot shows project details.
-
-![Project details](./images/project-detail.png)
+| Top action | `Create Project` |
+| Filters | Search projects and availability status |
+| Table columns | Project name, status, budget used, creation time, and actions |
+| Row actions | View and Archive |
+| Detail tabs | Overview, Members, Usage, API Keys, Activity, and Settings |
 
 ## Main Operations
-
-Use the following operations to work with projects records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 
 ### Manage Projects
 
 1. Go to `Settings > Personal > Projects`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to projects records and related status.
-4. Click the visible `Manage Projects` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
+2. Use search or status filters to locate the project.
+3. Review project name, status, budget usage, and creation time.
+
+The following screenshot shows the project list. Filters are above the list and row actions are on the right.
+
+![Projects list](./images/projects-list.png)
+
+4. Select `Create Project` to open the form.
+5. Enter project name, description, reset cycle, cycle budget, budget alert threshold, over-budget policy, and model allowlist.
+6. Confirm the impact before selecting `Create`.
+
+The following screenshot shows the Create Project form.
+
+![Create Project](./images/create-project.png)
+
+7. Select `View` in the project row to open project details.
+8. Use Overview, Members, Usage, API Keys, Activity, and Settings to review project configuration.
+
+The following screenshot shows project details.
+
+![Project Details](./images/project-detail.png)
 
 ## Parameter Reference
 
@@ -92,47 +93,65 @@ Use the following operations to work with projects records and related status. C
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Personal > Projects` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Project created | The new project appears in the list. | Refresh the list and check the creation result message. |
+| Complete details | Project details show budget, remaining credits, policies, and trends. | Reopen project details and confirm view permission. |
+| Tabs | Members, Usage, API Keys, Activity, and Settings can be selected. | Check the project role and page loading status. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Projects
+#### Calls fail after a project reaches its budget
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+Project calls are blocked or report insufficient quota.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Projects
+- The over-budget policy is `STOP`.
+- The cycle budget is exhausted.
+- The next reset time has not arrived.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+1. Open project details and review budget usage.
+2. Adjust the budget or policy when authorized.
+3. Confirm that the project Key is still enabled.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why is a target project missing from the list?
 
-#### Why are project creation or settings buttons unavailable?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+The expected project is absent, or only some projects are shown.
+
+**Possible cause:**
+
+The current account is not a project member, the project is disabled or belongs to another tenant, or name and status filters limit the list.
+
+**Resolution:**
+
+Clear filters and query again. Confirm the current tenant and project membership. If it is still missing, ask the project administrator to check project status and authorization.
+
+#### Why are Create Project or Settings unavailable?
+
+**Symptom:**
+
+The project list is visible, but Create Project, Edit Budget, Configure Members, or Manage API Keys cannot be selected.
+
+**Possible cause:**
+
+The current account is not a project administrator, the tenant disables self-service project creation, or the project is disabled or frozen.
+
+**Resolution:**
+
+Verify the project role and tenant project policy. Ask a project or tenant administrator to make the change, then verify it in project details.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. Maintain members and API Keys in project details.
+2. Review project usage and activity.
+3. Adjust budget, allowlist, and over-budget policy when required.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- `Archive` affects later project use. Confirm that the project no longer serves calls before archiving it.
+- Do not include customer-sensitive information in a project name or description.

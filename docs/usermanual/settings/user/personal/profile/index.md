@@ -7,50 +7,43 @@ Updated: 2026-07-29
 
 ## Feature Overview
 
-`Profile` shows the current tenant identity and user settings. It includes the display name, username, user ID, phone, email, and password entries.
+`Profile` shows the current account's basic information, password status, and security information.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider, End User |
 | Navigation path | Settings > Personal > Profile |
 | Page route | `/user/user-space/profile` |
-| Managed objects | Tenant identity, display name, username, user ID, phone, email, and password settings |
-| Typical use | Confirm the current account identity and copy an account value when required |
+| Managed objects | Basic account information, password status, security information, phone number, and email address |
+| Typical use | Review account details and security status |
 
 #### Beginner Explanation
 
-Profile is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Profile is the identity card for the signed-in account. Use it to confirm who you are, which account context you are using, and whether security contact information is correct before opening a critical operation page.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| User information | Basic display information for the current account. | Desensitize it before taking a screenshot. |
+| Username | The name used to sign in to or identify an account. | Verify it during identity troubleshooting. |
+| Security information | Phone number, email address, and other security contact information. | Ask an administrator to complete it when empty. |
+| Account context | The current tenant or identity scope of the account. | Confirm it before a cross-tenant action. |
 
 ## Prerequisites
 
-1. The current account can access `Personal > Profile`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account is signed in to Settings.
+2. When reviewing Profile, do not capture or share complete accounts, email addresses, passwords, IDs, or other sensitive values.
 
 ## Page Description
 
-The page separates tenant information from user settings. Copyable account fields show a copy icon next to the value.
-
 | Area | Description |
 | --- | --- |
-| Tenant | Shows the tenant name, tenant ID, and business identity. |
-| User Settings | Shows the display name, username, user ID, phone, email, and password entries. |
-| Copy icon | Copies a supported account value and shows success feedback. |
-| Edit entries | Open personal-details, email, or password maintenance when permitted. |
-
-The following screenshot shows profile.
-
-![Profile](./images/profile-detail.png)
+| User Information | Shows the avatar, nickname, or system identifier. |
+| Account Password | Shows username and password status. |
+| Security Information | Shows phone number, email address, and other security contacts. |
+| Top action | No create or save action is displayed on this page. |
+| Copy icon | Copies a supported account field and shows success feedback. |
 
 ## Main Operations
 
@@ -89,45 +82,61 @@ Use the following operations to work with profile records and related status. Co
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page access | The `Personal > Profile` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Account information | Tenant and user-setting areas show the current account information. | Check account permissions and page loading status. |
+| Account information | User Information, Account Password, and Security Information are displayed. | Check account permissions and page loading status. |
 | Copy feedback | Selecting a copy icon shows success feedback. | Select the icon once again and check browser clipboard permission. |
+| Password security | The page does not display a plaintext password. | If a sensitive value is exposed, stop taking screenshots and ask an administrator to investigate. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Profile
+#### Security information is empty
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The phone number or email address is not displayed.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Profile
+- Security information has not been bound to the account.
+- The tenant manages account information centrally.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+1. Complete security information through the tenant account process.
+2. Ask an administrator whether self-service changes are allowed.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why is some account information missing?
 
-#### Why cannot account information be edited?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+Phone number, email, security information, or sign-in method is absent.
+
+**Possible cause:**
+
+The profile is incomplete, some fields are managed by an identity provider, or the current account cannot view sensitive security information.
+
+**Resolution:**
+
+Confirm whether an enterprise identity provider owns the field. Complete editable fields through the organization process. Ask an administrator to check account synchronization when sensitive fields are missing.
+
+#### Why cannot Profile be edited?
+
+**Symptom:**
+
+Profile is visible, but avatar, email, phone number, or security information cannot be changed.
+
+**Possible cause:**
+
+An enterprise identity provider synchronizes the profile, sensitive fields do not support self-service changes, or secondary verification is required.
+
+**Resolution:**
+
+Change basic information in the enterprise identity provider. Request security-field changes through the account-management process, then sign in again to verify synchronization.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. Return to Dashboard to review quota and shortcuts.
+2. Open My Keys to manage calling credentials.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Do not retain complete accounts, email addresses, phone numbers, IDs, or passwords in documentation or screenshots.

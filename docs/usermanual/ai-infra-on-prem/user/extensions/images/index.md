@@ -70,14 +70,16 @@ The page contains three views: `My Images`, `Public Images`, and `Push History`.
 
 ## Pitfalls
 
-- Image service status changes may affect downstream flows. Confirm impact before submission.
-- Sanitize credentials, addresses, customer information, or business identifiers first.
-- If the list is empty, check filters, region, and permissions first.
+- If an image push fails, check the repository address, project namespace, sign-in credentials, and tag before rebuilding the image.
+- Use explicit version tags instead of relying on `latest`, so that runtime environments remain traceable.
+- Do not include keys, internal addresses, or customer data in an image. Complete a security check before publishing it.
 
 #### Add Image Project Validation
 
-1. The project appears in the `My Images` list.
-2. Image count, quota usage, and push entrypoint can be viewed under the project.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Project listed | The project appears in the `My Images` list. | Check the image project, repository address, push permissions, and image tag. |
+| Project information | Image count, quota usage, and the push entry point are visible under the project. | Check the image project, repository address, push permissions, and image tag. |
 
 #### Push Custom Image
 
@@ -106,10 +108,12 @@ docker build -t <local-image>:<local-tag> .
 
 #### Push Custom Image Validation
 
-1. The `docker push` command succeeds.
-2. Return to the Image Services page and click `Sync`.
-3. The new image and tag are visible under the project.
-4. The image can be selected when creating an online IDE, runtime instance, or model service.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Push command | The `docker push` command succeeds. | Check the image project, repository address, push permissions, and image tag. |
+| Page synchronization | Return to Image Services and select `Sync`. | Check the image project, repository address, push permissions, and image tag. |
+| Image and tag | The new image and tag are visible under the project. | Check the image project, repository address, push permissions, and image tag. |
+| Image selection | The image can be selected when creating an Online IDE, runtime instance, or model service. | Check the image project, repository address, push permissions, and image tag. |
 
 #### View Public Images and Push History
 

@@ -89,7 +89,6 @@ Use this operation to query node cache status. Do not add create or publish oper
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `API Rate Control > Node Cache` page opens and data loads normally. | Check role permissions and refresh the page. |
 | Node visibility | The node list is displayed normally. | Check the Node ID filter. |
 | Version consistency | The node rule version matches the published version on the rule management page. | Open Publish Center and check release records. |
 | Normal status | Node status, counter cache, identity cache, and messages are normal. | Use Observability Audit to troubleshoot node issues. |
@@ -101,27 +100,37 @@ Use this operation to query node cache status. Do not add create or publish oper
 
 Rule Management shows that the rule is published, but the rule version in Node Cache is still old.
 
-**How to check:**
+**Possible cause:**
 
-1. Click `Refresh Nodes`.
-2. Open Publish Center and check the corresponding publish status.
-3. Confirm whether the target node is online.
-4. Compare the rule version with the rule management page.
+The node has not refreshed, or the publish record did not synchronize successfully.
+
+**Resolution:**
+
+Click `Refresh Nodes`, then open Publish Center and check the corresponding publish status.
 
 #### Why is the target node missing from the node cache list?
 
 The Node Cache page does not display the target node or cache status.
 
-**How to check:**
+**Possible cause:**
 
-1. Clear filters and confirm the node access status.
-2. Check cache reporting time and node health status.
-3. Confirm whether the node is connected to the API rate-control component.
-4. If it is still empty, check rate-control service logs with desensitized context.
+The node is not connected to the API rate-control component, cache data has not been reported, or region and status filters exclude the node.
+
+**Resolution:**
+
+Clear the filters and confirm node access. Check cache reporting time and node health. If the node is still absent, review rate-control service logs with sanitized context.
 
 #### Why are the node cache refresh or clear buttons unavailable?
 
-The node cache record is visible, but refresh, clear, or rebuild cache buttons cannot be clicked. Confirm rate-control operation permissions and node online status. Before clearing cache, record the impact scope and let an authorized administrator perform the operation.
+The node cache record is visible, but refresh, clear, or rebuild cache buttons cannot be clicked.
+
+**Possible cause:**
+
+The current account has view-only permission, the node is offline, or cache cleanup requires approval because it is high risk.
+
+**Resolution:**
+
+Confirm rate-control operation permissions and node online status. Record the impact scope before cleanup and let an authorized administrator perform the action.
 
 ## Next Steps
 

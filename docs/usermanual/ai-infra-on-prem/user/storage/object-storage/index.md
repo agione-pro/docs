@@ -78,9 +78,11 @@ The following screenshot shows the Add Bucket dialog. Confirm the bucket name be
 
 ## Result Validation
 
-1. The new bucket appears in the bucket list.
-2. Searching by bucket name can locate the bucket.
-3. After entering bucket details, the object list or upload entrypoint is visible.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Bucket created | The new bucket appears in the bucket list. | Check the bucket, path, permissions, mount status, and access credentials. |
+| Bucket search | Searching by bucket name locates the bucket. | Check the bucket, path, permissions, mount status, and access credentials. |
+| Bucket details | The object list or upload entry point is visible after you open bucket details. | Check the bucket, path, permissions, mount status, and access credentials. |
 
 #### Upload Object
 

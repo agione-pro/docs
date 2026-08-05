@@ -90,28 +90,23 @@ The page displays cluster statistics capability for the selected region. When th
 
 ## Result Validation
 
-1. The list displays cluster name, region, node count, and health status.
-2. Resource capacity is consistent with the current region and visible scope.
-3. After clicking or drilling down, corresponding node, device, or job information is visible.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Cluster list | The list shows cluster name, region, node count, and health status. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Resource capacity | Resource capacity is consistent with the current region and visible scope. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Drill-down details | Selecting or drilling down from a cluster shows the corresponding node, device, or job information. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Prepare Before Contacting the Operator
 
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+If the cluster page is abnormal, prepare the following information so that the operator can distinguish cluster access, resource watermarks, and collection problems:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| Cluster Name | `cluster-prod-a` | Identifies the target cluster. |
+| Region / Availability Zone | `Wuhan / wuhan-1` | Identifies the resource scope. |
+| Node Count | `32` | Confirms whether cluster capacity is as expected. |
+| Health Status | `Abnormal / High Watermark / No Data` | Distinguishes capacity problems from collection problems. |
+| Related Job Time | `2026-07-13 10:00` | Aligns job submission time with monitoring curves. |
 
 ## FAQ
 

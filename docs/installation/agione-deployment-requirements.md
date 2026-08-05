@@ -69,11 +69,6 @@ The following diagram shows the overall logical architecture of the AGIOne platf
 | Production Deployment - Public Cloud | Formal production and external service delivery | Multi-node | Yes | Public cloud (**Recommended**) |
 | Production Deployment - Private Cloud / IDC | Data compliance and internal network isolation | >= 4 | Yes | Customer-owned private cloud or IDC |
 
-| Item | Description |
-| ---- | ----------- |
-| Scope | AGIOne full-stack deployment solution design, pre-sales support, PoC assessment, and production delivery |
-| Constraint Level | This document serves as a planning reference. Official delivery shall be governed by the Release Note and compatibility matrix distributed with `agione-release-v1.0-XXX.tar.gz` |
-
 > **Selection recommendation**: If there are no mandatory data compliance or network isolation requirements, prioritize public cloud deployment to benefit from cloud-provider managed middleware and operational convenience.
 
 The currently supported public cloud managed middleware providers are listed below. Providers not listed here require separate assessment based on customer region, available product specifications, network connectivity, and installer endpoint configuration support.
@@ -102,7 +97,10 @@ The currently supported public cloud managed middleware providers are listed bel
 
 ![PoC All-in-One Architecture](images/02-poc-aio.svg)
 
-### 4.3 Deployment Notes
+| Item | Description |
+| ---- | ----------- |
+| Scope | AGIOne full-stack deployment solution design, pre-sales support, PoC assessment, and production delivery |
+| Constraint Level | This document is a planning reference. Official delivery is governed by the Release Note and compatibility matrix distributed with `agione-release-v1.0-XXX.tar.gz`. |
 
 - Business services, databases, and middleware are all deployed on the same node.
 - Services are exposed externally through HTTP port `18090` by default.
@@ -194,11 +192,20 @@ Applicable to scenarios where public cloud cannot be used and data must be fully
 
 ### 6.1 Resource Requirements
 
+#### 6.1.1 Required Resources (Nodes)
+
 | Role | Nodes | CPU | Memory | Disk       | Network                                      | Description |
 |---|---|---|---|------------|----------------------------------------------|---|
 | Business nodes | >= 2 | >= 8 cores | >= 16 GB | >= 200 GB | LAN; Need access Internet, bandwidth >= 100M | Deploy AGIOne business services                              |
 | Database / middleware nodes | >= 2 | >= 8 cores | >= 16 GB | >= 200 GB | LAN                                          | Deploy RDS (primary/replica), Nacos, Redis, Kafka, and MinIO |
 | **Total** | **>= 4** | - | - | -       | -                                            | -                                            |
+
+#### 6.1.2 Optional Resources
+
+| Resource | Required / Optional | Recommended Configuration | Purpose |
+|---|---|---|---|
+| **Load Balancer (LB)** | Optional | Hardware LB such as F5, or software LB such as Nginx / HAProxy + Keepalived | Provides a unified entry point, traffic distribution, and health checks. **Without an LB**, DNS round-robin can connect directly to business nodes, but it does not provide health checks or automatic removal of failed nodes. |
+| **NAS Shared Storage** | Optional | Capacity >= 1024 GB; mounted to all nodes through NFS / CIFS | Stores shared logs, service configuration, shared files, and temporary data that multiple nodes must access. **Without NAS**, use local disks with a log collector such as Filebeat or Fluent Bit. |
 
 ### 6.2 Architecture Diagram
 
@@ -209,7 +216,8 @@ Applicable to scenarios where public cloud cannot be used and data must be fully
 - Start with at least 4 nodes: 2 business nodes + 2 database/middleware nodes.
 - The database uses primary/replica mode. It is recommended to deploy databases and middleware separately, and split them into more nodes as business scale grows.
 - MinIO provides object storage capabilities as an alternative to public cloud OSS.
-- Load balancing can use hardware LB, such as F5, or software LB, such as Nginx / HAProxy + Keepalived.
+- **Load balancing is optional**: Deploy an LB to provide a unified entry point and high availability. Without an LB, use DNS round-robin to connect directly to business nodes.
+- **NAS shared storage is optional**: Use it for shared logs, service configuration, and other cross-node files. Without NAS, use local disks with a log collection solution.
 
 ---
 

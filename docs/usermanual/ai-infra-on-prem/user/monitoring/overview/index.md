@@ -89,28 +89,23 @@ The page displays statistics overview capability for the selected region. When t
 
 ## Result Validation
 
-1. Overview cards display time range, region, cluster count, and exception count.
-2. After switching time range, trend charts or exception counts change accordingly.
-3. After drilling down to cluster, node, device, or job pages, the object scope is consistent with the overview.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Overview scope | Overview cards show the time range, region, cluster count, and exception count. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Time-range update | Trend charts or exception counts change when the time range changes. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Drill-down scope | The object scope on cluster, node, device, or job pages is consistent with the overview. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Prepare Before Contacting the Operator
 
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+If the overview page is abnormal, prepare the following information so that the operator can distinguish the time window, region scope, and collection delay:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| Time Range | `Last 1 hour` | Confirms whether the chart covers the time of the exception. |
+| Region | `Wuhan` | Confirms whether the overview includes only the target region. |
+| Exception Type | `Cluster abnormal / Node abnormal / Device high watermark / Job failed` | Determines which monitoring page to open next. |
+| Update Time | `2026-07-13 10:20` | Indicates whether collection is delayed. |
+| Related Instance or Job | `job-20260713001` | Supports cross-checking events, logs, and usage records. |
 
 ## FAQ
 

@@ -103,22 +103,15 @@ The page is used to display block storage capability in the selected region. Whe
 
 ## Prepare Before Contacting the Operator
 
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+If block storage is abnormal, prepare the following information so that the operator can distinguish volume creation, mounting, expansion, and unmount risks:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| Volume ID | `pvc-20260713001` | Identifies the target block volume. |
+| Mounted Instance | `infer-001` | Identifies the instance that uses the volume. |
+| Capacity | `100 GiB` | Indicates whether capacity is insufficient or an expansion took effect. |
+| Storage Class | `ceph-rbd-prod` | Identifies the underlying block storage component and policy. |
+| Mount Status | `Pending / Mounted / Failed` | Determines whether to inspect scheduling, CSI, or instance events next. |
 
 ## Pitfalls
 

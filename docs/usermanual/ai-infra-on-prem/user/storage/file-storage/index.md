@@ -103,22 +103,15 @@ The page is used to display file storage capability in the selected region. When
 
 ## Prepare Before Contacting the Operator
 
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+If file storage is abnormal, prepare the following information so that the operator can distinguish shared-path, permission, client-node, and multi-node access problems:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| File System ID | `fs-20260713001` | Identifies the target file storage. |
+| Mount Path | `/mnt/share` | Indicates whether the in-container path conflicts with another path. |
+| Permission | `Read-write / Read-only` | Indicates whether a write failure is caused by permissions. |
+| Client Node | `node-gpu-01` | Identifies the node where mounting failed. |
+| Shared Directory | `/exports/models` | Confirms the NFS export path and tenant directory. |
 
 ## Pitfalls
 

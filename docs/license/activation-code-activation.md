@@ -79,15 +79,13 @@ After receiving the reply, obtain the `Activation Code`. Do not write the Activa
 ## 3. Activate the AI Infra License
 
 1. Return to `Billing > License`.
-2. On the `License Management` page, open the `Managed Objects` tab.
-3. Select `AI Infra License`.
-4. Click `Activate License`.
-5. In the `Get & Activate License` window, select `I have an activation code`.
-6. Find the `Activation Code` input area.
-7. Paste the received Activation Code.
-8. Check that the Activation Code is complete.
-9. Click `Activate`.
-10. Wait for the page to return the activation result.
+2. Locate the `AI Infra License` area on the `License Management` page.
+3. Click `Activate License`.
+4. Locate the `Activation Code` input in the activation window.
+5. Paste the received activation code.
+6. Check that the activation code is complete.
+7. Click `Activate`.
+8. Wait for the page to return the activation result.
 
 Screenshot:
 

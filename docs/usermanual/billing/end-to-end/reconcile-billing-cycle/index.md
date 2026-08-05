@@ -9,14 +9,6 @@ Updated: 2026-07-23
 
 This page describes the main workflow for billing operators to complete one billing-cycle reconciliation and settlement: review the billing-cycle summary and today's tasks, check financial accounts and reconciliation exceptions, generate or view settlement statements after blocking issues are cleared, and use account adjustment only when a verified difference still exists.
 
-| Item | Content |
-| --- | --- |
-| Applicable Role | Billing Operator, Finance Reviewer, Platform Operator |
-| Navigation path | Billing > Reconcile and Settle a Billing Cycle |
-| Page route | `/usermanual/billing/end-to-end/reconcile-billing-cycle/` |
-| Managed objects | Billing cycle, tenant, financial accounts, reconciliation exceptions, settlement statements, and account adjustments |
-| Typical use | Complete a billing-cycle reconciliation path from monthly overview to settlement statements and exception closure |
-
 #### Beginner Explanation
 
 Billing-cycle reconciliation is like month-end closing. First check whether the monthly totals look reasonable, then check pending tasks and exceptions, then reconcile account transactions, and finally generate or confirm settlement statements. Account adjustment is not a routine step; use it only after the difference is located and approval basis is sufficient.
@@ -29,7 +21,7 @@ Billing-cycle reconciliation is like month-end closing. First check whether the 
 | Today Tasks | Billing tasks or exception reminders that currently require handling. | [Today Tasks](../../operator/finance-operations/today-tasks/) |
 | Financial Accounts | Accounts used to check balance, income, expense, and transactions. | [Financial Accounts](../../operator/finance-operations/financial-accounts/) |
 | Reconciliation Exception | Exception clues such as unmatched transfers, missing revenue details, or compensation queue items. | [Reconciliation Center](../../operator/finance-operations/reconciliation-center/) |
-| Settlement Statement | Settlement record for an tenant and billing cycle. | [Settlement List](../../operator/finance-operations/settlement-list/) |
+| Settlement Statement | Settlement record for a tenant and billing cycle. | [Settlement List](../../operator/finance-operations/settlement-list/) |
 | Account Adjustment | Approved correction for billing differences. | [Account Adjustment](../../operator/finance-operations/account-adjustment/) |
 
 ## Prerequisites

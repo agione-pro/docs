@@ -43,11 +43,13 @@ Settlement List is the statement pool and focuses on whether an tenant has a set
 
 ## Where to Look
 
-1. Start from the account list when confirming whether the balance is correct.
-2. Open transaction details when investigating a specific fund change.
-3. Open [Settlement List](../settlement-list/) when comparing settlement amounts.
-4. Open [Monthly Overview](../monthly-overview/) when comparing billing-cycle revenue totals.
-5. Open [Reconciliation Center](../reconciliation-center/) when account differences cannot be explained from account data alone.
+| Your Goal | Start Here | Next Step |
+| --- | --- | --- |
+| Confirm whether an account balance is correct | Account list | Review account income, expense, and balance. |
+| Investigate a specific fund change | Transaction details | Filter by transaction time, type, or number. |
+| Check a settlement amount | [Settlement List](../settlement-list/) | Compare settlement amounts with account transactions. |
+| Check monthly revenue | [Monthly Overview](../monthly-overview/) | Compare billing-period totals with account changes. |
+| Locate a billing difference | [Reconciliation Center](../reconciliation-center/) | Investigate by billing period, tenant, or transaction type. |
 
 ## Prerequisites
 
@@ -105,30 +107,32 @@ Use the following operations to review account information and transactions. Thi
 5. Compare with Monthly Overview, Settlement Statement Details, and Financial Account transactions to confirm that revenue amount scopes are consistent.
 6. For learning or screenshots only, view account information and transactions without performing adjustment, posting confirmation, or sensitive export actions.
 
+The following screenshot shows the Platform Revenue Account area. Use it to compare the revenue amount with the billing-period summary.
+
+![Platform Revenue Account](./images/platform-revenue-account-list.png)
+
 ### View Account Details
 
-1. Go to `Billing > Finance Operations > Financial Accounts`.
-2. Select the target account in the account list.
-3. Open account details.
-4. Review basic account information, balance changes, income and expense summary, and transactions.
-5. Record the last update time to avoid using stale data for reconciliation.
+1. Select the target account in the account list.
+2. Open account details.
+3. Review basic account information, balance changes, income and expense summary, and transactions.
+4. Record the last update time to avoid using stale data for reconciliation.
 
 ### View Transactions
 
-1. Go to `Billing > Finance Operations > Financial Accounts`.
-2. Open the target account details.
-3. Filter by transaction time, transaction type, or transaction number.
-4. Open transaction details.
-5. Verify amount, fund direction, related settlement statement, related order, or business source.
-6. Before sharing transaction details in tickets or comments, desensitize amount, tenant name, transaction number, and account information.
+1. Open the target account details.
+2. Filter by transaction time, transaction type, or transaction number.
+3. Open transaction details.
+4. Verify the amount, fund direction, related settlement statement, related order, or business source.
+5. Before sharing transaction details in tickets or comments, desensitize the amount, tenant name, transaction number, and account information.
 
-### Open Troubleshooting Pages
+### Troubleshoot Account Differences
 
-1. Go to `Billing > Finance Operations > Financial Accounts`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to financial accounts records and related status.
-4. Click the visible `Open Troubleshooting Pages` entry when it is available.
-5. Check the displayed details, status, and related fields before moving to the next page.
+| Symptom | Recommended Page | What to Check |
+| --- | --- | --- |
+| The account amount does not match the settlement statement | [Settlement List](../settlement-list/) | Compare the amount, tenant, billing cycle, and posting status. |
+| The monthly summary is incorrect | [Monthly Overview](../monthly-overview/) | Compare billing-cycle totals with account income and expenses. |
+| A billing difference cannot be explained | [Reconciliation Center](../reconciliation-center/) | Investigate by billing cycle, tenant, or transaction type. |
 
 ## Parameter Reference
 
@@ -147,6 +151,7 @@ Use the following operations to review account information and transactions. Thi
 | Transaction Type | No | Enum | `Income` | Distinguishes income, expense, refund, settlement, and other transaction types. |
 | Transaction Number | No | Text | `TXN-202607080001` | Locates a specific transaction record. |
 | Tenant | No | Text | `Example Tenant A` | Locates account transactions or settlement differences by tenant. |
+| Account Status | No | Enum | `Normal` | Indicates whether the account can be viewed, receive entries, or continue reconciliation. |
 
 ## Result Validation
 
@@ -168,41 +173,44 @@ Use the following operations to review account information and transactions. Thi
 
 ## FAQ
 
-#### Target billing data is not visible in Financial Accounts
+#### The Account List Is Empty
 
-The expected account, customer, order, bill, settlement, adjustment, or License record does not appear on this page.
+**Symptom:** The Platform Clearing Account or Platform Revenue Account does not appear.
 
-**How to check:**
+**Possible cause:** The current account lacks financial-account view permission, filters restrict the account scope, or the target tenant does not yet have a financial account.
 
-1. Confirm the current tenant, tenant, customer, account, and role scope.
-2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
-3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
-4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
+**Resolution:** Clear the filters and search again. Confirm that the current account has billing-operations permission. If the list remains empty, ask the platform administrator to check tenant, account, and permission configuration.
 
-#### Amount, status, or billing cycle does not match in Financial Accounts
+#### The Account Balance Does Not Match the Settlement Amount
 
-The displayed balance, consumption, settlement status, monthly bill, or License status differs from the expected result.
+**Symptom:** The balance, income, or expense in Financial Accounts differs from the amount in Settlement List.
 
-**How to check:**
+**Possible cause:** The pages use different billing periods, tenants, or transaction types. Settlement List uses a document view while Financial Accounts uses account transactions. Refunds, adjustments, clearing delays, or pending posting can also cause a difference.
 
-1. Confirm account type, transaction direction, tenant, and account transaction time range before comparing amounts.
-2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
-3. Compare the summary number with the detail list and operation records on the related billing pages.
-4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
+**Resolution:** Confirm that billing period, tenant, and amount definition are consistent. Open Transactions and compare income, expense, refund, and settlement records. If the difference remains, continue in Settlement List and Reconciliation Center.
 
-#### What should I do if the target transaction record cannot be found?
+#### The Target Transaction Cannot Be Found
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+**Symptom:** The target transaction is absent from account details or Transactions.
 
-#### What should I do if the account amount is not updated for a long time?
+**Possible cause:** The transaction time, type, number, or tenant filter does not match. The target transaction may not yet have generated an account entry, or synchronization may be delayed.
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+**Resolution:** Broaden the filters and search again. Use a transaction number or related order number for exact matching. If the record is still absent, check Monthly Overview, Settlement List, or Reconciliation Center to confirm whether it has entered the billing workflow.
+
+#### The Account Amount Has Not Updated for a Long Time
+
+**Symptom:** The account balance, income, expense, or last update time has not changed for a long period.
+
+**Possible cause:** No new transaction exists in the current billing period, account synchronization is delayed, or an upstream clearing, settlement, or reconciliation task failed.
+
+**Resolution:** Check the last update time and recent transactions. Confirm that the upstream transaction completed. If it completed but the account did not change, open Reconciliation Center and check for unmatched transactions or failed tasks.
 
 ## Next Steps
 
-1. Review related billing records, transactions, settlement statements, and account balance changes.
-2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
-3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
+1. Open [Settlement List](../settlement-list/) to check settlement documents.
+2. Open [Monthly Overview](../monthly-overview/) to review billing-period income, expense, and totals.
+3. Open [Reconciliation Center](../reconciliation-center/) to investigate billing differences, unmatched transactions, or failed tasks.
+4. After amounts are confirmed, deliver sanitized account information, transaction scope, and conclusions to Finance for confirmation or archiving.
 
 ## Notes
 

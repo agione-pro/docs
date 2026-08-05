@@ -132,21 +132,25 @@ Settings is the unified entry for platform accounts, permissions, tenants, secur
 
 You are not sure which Settings area to open.
 
-**How to check:**
+**Possible cause:**
 
-1. For your own account, Keys, projects, and quotas, start from the user side.
-2. For members, roles, tenants, login properties, or rate-control rules, start from the operator side.
-3. If the menu is still unclear, confirm the current role and tenant scope.
+User-side Settings focuses on the current account and objects visible in its tenant. Operator-side Settings focuses on platform-level members, tenants, system policies, and API rate control.
+
+**Resolution:**
+
+For your own account, Keys, projects, and quotas, start from the user side. For members, roles, tenants, login properties, or rate-control rules, start from the operator side.
 
 #### What if a Settings menu is missing?
 
 The left navigation does not show the target menu, or the page has no operation button.
 
-**How to check:**
+**Possible cause:**
 
-1. Confirm the current account and tenant.
-2. Ask an administrator to check role authorization.
-3. Re-login and refresh the menu if permissions were changed recently.
+The current account lacks the required role permission, or the current tenant context does not include the target object.
+
+**Resolution:**
+
+Confirm the current account and tenant. Ask an administrator to check role authorization. If permissions changed recently, sign in again and refresh the menu.
 
 ## Next Steps
 

@@ -91,28 +91,23 @@ The page displays node statistics capability for the selected region. When the c
 
 ## Result Validation
 
-1. The node list displays node name, owning cluster, status, and key metrics.
-2. Metric curves match the selected time range.
-3. Abnormal nodes can be mapped to affected instance or job time ranges.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Node list | The list shows node name, owning cluster, status, and key metrics. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Metric time range | Metric curves match the selected time range. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Exception relationship | An abnormal node can be correlated with the affected instance or job time range. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Prepare Before Contacting the Operator
 
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+If the node page is abnormal, prepare the following information so that the operator can distinguish a single-node failure, resource exhaustion, and collection delay:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| Node Name | `node-gpu-01` | Identifies the specific machine. |
+| Owning Cluster | `cluster-prod-a` | Identifies node ownership and impact scope. |
+| CPU / Memory Curves | `CPU 92% / Memory 85%` | Indicates whether resources are at a high watermark. |
+| Disk Curve | `Disk 90%` | Indicates image pull, log write, and temporary-file risks. |
+| Node Status Duration | `NotReady for 10 minutes` | Indicates how long the exception has persisted. |
 
 ## FAQ
 

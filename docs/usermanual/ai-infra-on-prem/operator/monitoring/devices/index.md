@@ -103,9 +103,11 @@ The following figure shows the device monitoring page.
 
 ## Result Validation
 
-1. The device list displays model, node, utilization, VRAM, temperature, and health status.
-2. Abnormal devices can be mapped to nodes and affected jobs.
-3. VRAM and utilization trends match the job runtime window.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Device status and metrics | The device list shows model, node, utilization, VRAM, temperature, and health status. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Exception mapping | An abnormal device can be mapped to its node and affected jobs. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Trend consistency | VRAM and utilization trends match the job runtime window. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Configuration Rules and Impact
 

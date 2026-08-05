@@ -7,50 +7,46 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Profile` is used to view, filter, and maintain profile information. It helps operator admin work with profile records and related status from a consistent page entry.
+`Profile` shows the current account's user information, password status, security information, phone number, email address, and other basic details.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator Account |
 | Navigation path | Settings > Personal > Profile |
 | Page route | `/user/user-space/profile` |
-| Managed objects | Profile records and related status |
-| Typical use | View, filter, and maintain profile information |
+| Managed objects | User information, password status, security information, phone number, and email address |
+| Typical use | Review account details, security status, and contact information |
 
 #### Beginner Explanation
 
-Profile is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Profile is the identity card for a platform administrator. Use it to confirm the administrator's identity source, sign-in method, security status, and auditable information. It is not a user-side tenant profile.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Operator account | An administrator identity that can access the operator console. | Confirm its management scope before a change. |
+| Identity source | Indicates whether an account was created locally or synchronized from an identity provider. | Check the source first when a field cannot be edited. |
+| Sign-in method | Password, single sign-on, or another authentication method. | Compare it with Login Properties during troubleshooting. |
+| Security information | MFA, password status, recent sign-in, and other security indicators. | Do not expose complete account information during troubleshooting. |
 
 ## Prerequisites
 
-1. The current account can access `Personal > Profile`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account is signed in.
+2. You have opened `Personal > Profile`.
+3. Before sharing page information, you have checked whether it contains contact details or account identifiers.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for profile records and related status.
+The following screenshot shows the Profile page. Account identifiers, phone numbers, email addresses, and other sensitive information are desensitized.
+
+![Profile](./images/profile-list.png)
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows profile.
-
-![Profile](./images/profile-list.png)
+| User Information | Shows the account name, account identifier, and other basic information. |
+| Account Password | Shows password status and related information. |
+| Security | Shows the phone number, email address, and other security contact information. |
 
 ## Main Operations
 
@@ -95,42 +91,56 @@ The following screenshot shows profile.
 
 ## FAQ
 
-#### Target settings entry is not visible in Profile
+#### Security contact information is incorrect
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The phone number or email address differs from the expected value.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Profile
+The account profile was not updated, or the signed-in account is not the intended account.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+Confirm the signed-in account, then update security contact information through the approved account-management process.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why is some operator account information missing?
 
-#### Why cannot the operator account profile be edited?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+Security information, the sign-in method, or contact details are absent.
+
+**Possible cause:**
+
+The account is synchronized from an identity provider, sensitive fields are hidden by permission, or account initialization is incomplete.
+
+**Resolution:**
+
+Confirm the account source and synchronization status. Complete editable fields through the platform account process. Ask a platform administrator to investigate missing sensitive fields.
+
+#### Why cannot the operator profile be edited?
+
+**Symptom:**
+
+The profile is visible, but contact information, security information, or the sign-in method cannot be changed.
+
+**Possible cause:**
+
+The account is managed by an identity provider, sensitive changes require administrator approval, or the sign-in method does not support self-service changes.
+
+**Resolution:**
+
+Request the change through the platform account process. Maintain identity-provider fields in the identity platform, then sign in again to confirm synchronization.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. To manage personal credentials, go to [My Keys](../my-keys/).
+2. To manage operator members, go to [Members](../../members-roles/members/).
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Profile may contain phone numbers, email addresses, and account identifiers.
+- Do not send screenshots containing complete account information through external communication channels.
 - `Confirm` is the final submit action. For learning or screenshots, only open the dialog to view fields and use `Cancel` to exit.
 - Do not write real phone numbers, emails, user IDs, account names, customer names, or internal test data in documentation, screenshots, tickets, or examples.

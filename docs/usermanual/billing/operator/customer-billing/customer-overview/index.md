@@ -36,19 +36,29 @@ Customer Overview works like an operator-side CRM list for billing. It brings cu
 1. The current account can access `Customer Billing > Customer Overview`.
 2. At least one customer tenant has been created before the list can show data.
 3. The browser is logged in with an operator account and the session has not expired.
-4. For screenshots, export, tickets, or comments, prepare a desensitization method first.
 
 ## Page Description
 
-The page shows customer overview filters, tag management entry, and customer lists for different business identities.
+The top of the page shows the update time for monthly consumption and provides a refresh button. `Manage Tags` at the top right opens the tag management dialog.
 
-| Area | Description |
+The filter area contains:
+
+- `Business Identity`: Select a customer type, usually `EU` or `Provider`.
+- `Keyword`: Search by tenant `Name`, tenant ID, or administrator account.
+- `Tags`: Select one or more built-in or custom tags. A customer that matches any selected tag is included.
+
+The customer table contains:
+
+| Field | Description |
 | --- | --- |
-| Business Identity | Select `EU` or `Provider` to switch the customer list scope. |
-| Keyword | Search by tenant `Name`, customer ID, administrator email, or related customer identifier. |
-| Tags | Filter customers by platform built-in tags or custom tags. |
-| Customer list | Shows customer name, administrator, business identity, tags, account balance, consumption, revenue-related information, and last update time. |
-| Manage Tags | Opens the tag management dialog when the current account has permission. |
+| Tenant Information | Customer tenant name and Tenant ID. |
+| Administrator Information | Customer administrator account and email address. |
+| Tags | Tags applied to the customer. |
+| Available Balance | Credits remaining in the customer account. |
+| Previous-Month Spending | Credits consumed in the previous calendar month. |
+| Current-Month Spending | Credits consumed in the current calendar month. |
+| Account Opening Time | Time when the customer tenant was created. |
+| Actions | Row actions, usually including `Details`. |
 
 The tenant `Name` is the customer display identity. Confirm it before you open a row action. The following screenshot shows the current list with masked customer data.
 
@@ -78,12 +88,12 @@ Use the following operations to view EU and Provider customer overview records a
 
 ### Manage Tags
 
-1. Go to `Billing > Customer Billing > Customer Overview`.
-2. Click `Manage Tags` to open the tag management dialog.
-3. Review platform built-in tags. These tags are locked by the platform and cannot be edited.
-4. In the custom tag area, enter a new tag name and click the visible create entry when it is available.
-5. Close the dialog after confirming the tag list.
-6. For learning or screenshots only, view tag names, counts, and permission prompts without recording real customer tagging policies or internal operation notes.
+1. Click `Manage Tags` at the top of the page.
+2. Review the built-in tags. These tags are locked by the platform and cannot be edited.
+3. In the custom tag area, enter a new tag name and click `Create Tag`.
+4. Click `Close` to exit the dialog.
+
+For learning or screenshots only, view tag names, counts, and permission prompts without recording real customer tagging policies or internal operation notes.
 
 ### Review an Account Adjustment
 
@@ -132,44 +142,69 @@ Use the following operations to view EU and Provider customer overview records a
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Customer Billing > Customer Overview` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Filters | The list refreshes according to the selected filters. | Clear the filters and search again. |
+| Customer details | Selecting `Details` opens customer drill-down information. | Check customer permissions and the details entry point. |
+| Tag visibility | The Manage Tags dialog shows built-in tags and existing custom tags. | Check tag-management permissions. |
 
 ## FAQ
 
-#### Target billing data is not visible in Customer Overview
+#### The Customer List Is Empty
 
-The expected account, customer, order, bill, settlement, adjustment, or License record does not appear on this page.
+**Symptom:**
 
-**How to check:**
+No customers appear after you open the page.
 
-1. Confirm the current tenant, tenant, customer, account, and role scope.
-2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
-3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
-4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
+**Possible causes:**
 
-#### Amount, status, or billing cycle does not match in Customer Overview
+- No customer account has been opened.
+- The current account cannot view the selected business identity.
+- The filters are too narrow.
 
-The displayed balance, consumption, settlement status, monthly bill, or License status differs from the expected result.
+**Resolution:**
 
-**How to check:**
+1. Clear the filters and refresh the page.
+2. Switch the business identity or account to confirm permissions.
+3. If no customer exists, check the account-opening flow in the related module.
 
-1. Confirm customer, business unit, account status, credit limit, and billing period before comparing balances.
-2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
-3. Compare the summary number with the detail list and operation records on the related billing pages.
-4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
+#### Tag Management Does Not Open
 
-#### Custom tag save fails
+**Symptom:**
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+Selecting `Manage Tags` does not open the dialog.
+
+**Possible causes:**
+
+- The current account lacks tag-management permission.
+- The browser blocked the dialog.
+
+**Resolution:**
+
+1. Refresh the page and select `Manage Tags` again.
+2. Check whether the browser blocks dialogs or scripts.
+3. Contact the platform administrator to confirm account permissions.
+
+#### A Custom Tag Cannot Be Saved
+
+**Symptom:**
+
+The new tag does not take effect after you enter a name and save it.
+
+**Possible causes:**
+
+- The tag name exceeds 16 characters.
+- The customer already has five tags, which is the limit.
+- The name duplicates a built-in tag.
+
+**Resolution:**
+
+1. Shorten the tag name and use a stable, recognizable name.
+2. Check the current number of tags and remove an unnecessary tag before retrying.
+3. Rename the tag and create it again.
 
 ## Next Steps
 
-1. Review related billing records, transactions, settlement statements, and account balance changes.
-2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
-3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
+- Open [Customer Top-up Orders](../top-up-orders/) to handle top-up tasks.
+- Open [Business Units](../business-units/) to maintain customer business-unit configuration.
 
 ## Notes
 

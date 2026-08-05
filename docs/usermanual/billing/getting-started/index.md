@@ -20,14 +20,6 @@ Updated: 2026-07-23
 
 Billing Getting Started helps different roles choose the correct Billing reading path. It connects user balances, top-ups, transactions, monthly bills, Provider earnings, customer billing, finance operations, reconciliation, account adjustment, and License management. Use it to choose the entry first, then open the specific page for fields and operation boundaries.
 
-| Item | Content |
-| --- | --- |
-| Applicable Role | End User, Provider, Platform Operator, Billing Operator, Finance Reviewer, License Admin |
-| Navigation path | Billing > Getting Started |
-| Page route | `/usermanual/billing/getting-started/` |
-| Managed objects | Billing roles, object hierarchy, reading path, and operation boundaries |
-| Typical use | Choose the correct Billing entry before checking balances, top-ups, revenue, settlement, reconciliation, or License |
-
 #### Beginner Explanation
 
 Billing is like the financial service desk of the platform. End Users start with their own balance, top-ups, and bills. Providers check revenue and settlements. Operators check customer records, settlement statements, financial accounts, and reconciliation results. License admins confirm whether resource authorization is valid. Do not start from a random record; first decide whether the issue is about user balance, Provider revenue, customer top-up, billing-cycle settlement, or resource authorization.

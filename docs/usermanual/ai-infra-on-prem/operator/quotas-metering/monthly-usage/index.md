@@ -80,8 +80,10 @@ The following figure shows the monthly metering page.
 
 ## Result Validation
 
-1. Billing period list matches expectations.
-2. Summaries can correspond to detail totals.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Billing periods | The billing period list matches expectations. | Check the tenant, billing period, quota, usage records, and metering synchronization status. |
+| Summary and detail totals | The summary corresponds to the total of the detail records. | Check the tenant, billing period, quota, usage records, and metering synchronization status. |
 
 ## Configuration Rules and Impact
 

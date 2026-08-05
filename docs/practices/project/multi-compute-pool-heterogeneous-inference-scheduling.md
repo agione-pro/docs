@@ -1,3 +1,7 @@
+---
+outline: [2, 4]
+---
+
 # Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice
 
 > **IMSS · AGIOne Platform** Multi-Compute Pool Heterogeneous Inference Scheduling **Best Practice**
@@ -16,17 +20,17 @@
 
 ---
 
-# Table of Contents
+## Table of Contents
 
 ---
 
-# Chapter 1: Background and Architecture Overview
+## Chapter 1: Background and Architecture Overview
 
-## 1.1 Business Background
+### 1.1 Business Background
 
 This document is intended for enterprises that have deployed self-fine-tuned Qwen-32B models in production. It describes how the IMSS AGIOne platform enables unified multi-compute-pool management, elastic scheduling, and high-availability operations under heterogeneous hardware (Huawei Ascend 910B NPU + NVIDIA A10 GPU) and cross-network-domain conditions (Huawei HCS public cloud, on-premise IDC private cloud, IDC physical servers).
 
-## 1.2 Core Challenges
+### 1.2 Core Challenges
 
 * **Hardware heterogeneity:** Ascend 910B and NVIDIA A10 GPU/NPU coexist, with different inference engines (MindIE / vLLM);
 * **Distributed nodes:** Compute resources spread across HCS public cloud, on-premise IDC private cloud, and IDC bare-metal servers, with network isolation;
@@ -36,7 +40,7 @@ This document is intended for enterprises that have deployed self-fine-tuned Qwe
 * **Variable inference task durations** cause instance load imbalance with simple round-robin load balancing;
 * **Call anomalies** require correlated views of throughput and NPU/GPU instance load for rapid root cause identification.
 
-## 1.3 Overall Architecture
+### 1.3 Overall Architecture
 
 The IMSS AGIOne platform adopts a "Central Control + Edge Execution" architecture, divided into three layers: control plane, scheduling plane, and execution plane.
 
@@ -49,7 +53,7 @@ The IMSS AGIOne platform adopts a "Central Control + Edge Execution" architectur
 
 > The control plane is deployed on HCS private cloud, connected to ModelArts Lite nodes via dedicated lines and to IDC physical machines via internal routing. NVIDIA A10 clusters are accessed through HCS VPC. All nodes are unified under the AGIONE multi-cluster view.
 
-## 1.4 Network Connectivity Matrix
+### 1.4 Network Connectivity Matrix
 
 | **Node Type** | **Connection to AGIONE Control** | **Notes** |
 |---|---|---|
@@ -59,34 +63,34 @@ The IMSS AGIOne platform adopts a "Central Control + Edge Execution" architectur
 
 ---
 
-# Chapter 2: Multi-Compute Pool Access and Management
+## Chapter 2: Multi-Compute Pool Access and Management
 
-## 2.1 Cluster Management Strategy
+### 2.1 Cluster Management Strategy
 
 The AGIONE management service adopts a "multi-pool multi-cluster" model, unifying management of three compute environments while each cluster maintains an independent K8s control plane, interacting with AGIONE solely through standardized task-build APIs.
 
-### 2.1.1 NVIDIA A10 Cluster Access (HCS VPC Mode)
+#### 2.1.1 NVIDIA A10 Cluster Access (HCS VPC Mode)
 
 1. Create a K8s cluster within HCS VPC and deploy the GPU scheduling plugin (nvidia-device-plugin).
 2. Install AGIONE scheduling and monitoring components within the cluster.
 3. AGIONE scheduling component registers cluster information (cluster ID, GPU model, available GPU count, network endpoint) with the control plane.
 4. The control plane issues heartbeat detection tasks (every 60 seconds) to continuously monitor cluster health.
 
-### 2.1.2 ModelArts Lite Ascend 910B Access (Dedicated Line Mode)
+#### 2.1.2 ModelArts Lite Ascend 910B Access (Dedicated Line Mode)
 
 1. Deploy K8s base services on ModelArts Lite Server cloud hosts and install the Ascend Device Plugin.
 2. Deploy AGIONE scheduling component, configuring the dedicated network endpoint for communication with AGIONE control.
 3. Configure NPU monitoring component (npu-exporter) to collect NPU utilization, VRAM, and temperature metrics.
 4. Register the cluster to AGIONE, annotating node attributes (hardware type: ascend-910b64g).
 
-### 2.1.3 IDC Ascend 910B Physical Server Access (Internal Routing Mode)
+#### 2.1.3 IDC Ascend 910B Physical Server Access (Internal Routing Mode)
 
 1. After installing the OS on the physical server, execute the node initialization script provided by AGIONE (install Docker, K8s kubelet, Ascend driver).
 2. Configure routing reachability to AGIONE control via internal switches and routers.
 3. Deploy AGIONE scheduling and monitoring components and complete cluster registration.
 4. Mount critical configuration data and persistent model cache to the data disk (separate from the system disk).
 
-## 2.2 Cluster Resource Labels and Scheduling
+### 2.2 Cluster Resource Labels and Scheduling
 
 AGIONE uses node Labels for scheduling control, ensuring that requests for different aggregated models are routed to the appropriate compute pool.
 
@@ -96,17 +100,17 @@ AGIONE uses node Labels for scheduling control, ensuring that requests for diffe
 
 ---
 
-# Chapter 3: Ascend Node Fault Self-Healing Mechanism
+## Chapter 3: Ascend Node Fault Self-Healing Mechanism
 
-## 3.1 Fault Trigger and Recovery Process
+### 3.1 Fault Trigger and Recovery Process
 
 When an Ascend 910B node experiences hardware failure, the Huawei Cloud node failure trigger mechanism automatically performs OS reinstallation (Re-image). The AGIONE platform constructs an end-to-end rapid self-recovery process around this mechanism.
 
 > **Self-Recovery Process (End-to-End Target):** Node failure alert → Automatic traffic removal → OS reinstallation (~10 min) → Base services rapid recovery (<5 min) → Inference service startup (~<15 min) → Health check passed → Automatic traffic reinstatement
 
-## 3.2 Base Image Creation Specification
+### 3.2 Base Image Creation Specification
 
-After node initialization, a base image (Base Image) should be created immediately to固化 OS configuration, drivers, K8s components, and AGIONE Agent into the image, reducing recovery time.
+After node initialization, create a base image immediately. Include the operating system configuration, drivers, Kubernetes components, and the AGIONE Agent in the image to reduce recovery time.
 
 | **Image Layer** | **Contents** |
 |---|---|
@@ -116,12 +120,12 @@ After node initialization, a base image (Base Image) should be created immediate
 | AGIONE Component Layer | Monitoring component, log collector, node registration script (auto-register to control plane) |
 | Inference Engine Layer (Optional) | MindIE base image / vLLM base image (including Python environment, dependency packages; model weights mounted via data disk) |
 
-## 3.3 Critical Data Storage Specification
+### 3.3 Critical Data Storage Specification
 
 * **Model weight files:** Stored on the data disk (independent from the system disk), e.g., mount path `/data/models/<model-name>/`. OS reinstallation does not affect the data disk.
 * **K8s cluster configuration** (kubeconfig, etcd snapshots): Stored in the data disk-mapped folder.
 
-## 3.4 Traffic Removal and Auto-Recovery Linkage
+### 3.4 Traffic Removal and Auto-Recovery Linkage
 
 1. After AGIONE heartbeat detection fails 2 times (60 seconds), the node is marked as NotReady, and the aggregated scheduling layer automatically sets that node's weight to 0, stopping new request routing to that node.
 2. After node reinstallation completes, it automatically connects to the cluster.
@@ -130,18 +134,18 @@ After node initialization, a base image (Base Image) should be created immediate
 
 ---
 
-# Chapter 4: Inference Engine Deployment and Performance Baseline
+## Chapter 4: Inference Engine Deployment and Performance Baseline
 
-## 4.1 MindIE Inference Engine (Ascend 910B)
+### 4.1 MindIE Inference Engine (Ascend 910B)
 
-### 4.1.1 Base Image Construction
+#### 4.1.1 Base Image Construction
 
 * Base image: Customized based on the CANN official image (mindspore/mindie:latest-ascend910b).
 * Install MindFormers inference framework required by Qwen-32B, with locked versions to prevent dependency drift.
 * Pre-load the Tokenizer into the image to avoid first-start network download latency.
 * Embed startup scripts in the image, supporting model path, port, and concurrency parameter injection via environment variables.
 
-### 4.1.2 Key Parameter Optimization
+#### 4.1.2 Key Parameter Optimization
 
 | **Parameter** | **Recommended Value / Description** |
 |---|---|
@@ -152,15 +156,15 @@ After node initialization, a base image (Base Image) should be created immediate
 | block-size | 16 (PagedAttention KV Cache block size; recommended 16 or 32) |
 | max-batch-size | 0.90 (reserve 10% VRAM margin to prevent OOM) |
 
-## 4.2 vLLM Inference Engine (NVIDIA A10)
+### 4.2 vLLM Inference Engine (NVIDIA A10)
 
-### 4.2.1 Base Image Construction
+#### 4.2.1 Base Image Construction
 
 * Base image: Based on vllm-project/vllm-openai official image, with Qwen-32B adaptation patches.
 * Enable FlashAttention-2 acceleration kernels (A10 supports BF16/FP16 mixed precision).
 * Configure CUDA environment variables to enable NCCL multi-machine communication (used when instances are distributed across machines).
 
-### 4.2.2 Key Parameter Optimization
+#### 4.2.2 Key Parameter Optimization
 
 | **Parameter** | **Recommended Value / Description** |
 |---|---|
@@ -171,11 +175,11 @@ After node initialization, a base image (Base Image) should be created immediate
 | max-num-seqs | 256 (maximum concurrent sequences; adjust according to GPU VRAM) |
 | quantization | awq or gptq (AWQ INT4 recommended; VRAM halved, controllable precision loss) |
 
-## 4.3 Performance Stress Testing Method (evalscope)
+### 4.3 Performance Stress Testing Method (evalscope)
 
 Use the evalscope tool to simulate upstream business requests and evaluate single-instance performance baselines. Stress testing should simulate real business context length distribution as much as possible, rather than fixed short texts.
 
-### 4.3.1 Stress Testing Scenario Configuration
+#### 4.3.1 Stress Testing Scenario Configuration
 
 | **Stress Test Scenario** | **Prompt Token Length** | **Max Output Token** |
 |---|---|---|
@@ -183,7 +187,7 @@ Use the evalscope tool to simulate upstream business requests and evaluate singl
 | Medium text | < 10k | 5k |
 | Long text | < 32k | 10k |
 
-### 4.3.2 Key Performance Indicator Target Reference
+#### 4.3.2 Key Performance Indicator Target Reference
 
 | **Indicator** | **Meaning** | **Ascend 910B Reference** | **NVIDIA A10 Reference** |
 |---|---|---|---|
@@ -195,15 +199,15 @@ Use the evalscope tool to simulate upstream business requests and evaluate singl
 
 ---
 
-# Chapter 5: Aggregated Model and Dynamic Scheduling Strategy
+## Chapter 5: Aggregated Model and Dynamic Scheduling Strategy
 
-## 5.1 Aggregated Model Design
+### 5.1 Aggregated Model Design
 
 The Aggregated Model is the core abstraction of the AGIONE platform: it logically represents a unified model while physically consisting of multiple backend inference instances. Upstream callers do not need to perceive the distribution of backend instances; they interact with the aggregated model just like an ordinary model.
 
-## 5.2 Three-Tier Business Scenario Aggregated Model Configuration
+### 5.2 Three-Tier Business Scenario Aggregated Model Configuration
 
-### 5.2.1 Small-Part-Load Aggregated Model (Daytime API Support)
+#### 5.2.1 Small-Part-Load Aggregated Model (Daytime API Support)
 
 | **Configuration Item** | **Recommended Value / Description** |
 |---|---|
@@ -214,7 +218,7 @@ The Aggregated Model is the core abstraction of the AGIONE platform: it logicall
 | QPS Limit | Rate limiting recommended (e.g., 20 QPS) to prevent burst traffic from overwhelming a few instances |
 | Applicable Period | Working days, e.g., 08:00 ~ 20:00 daytime business calls |
 
-### 5.2.2 Majority-Load Aggregated Model (Daytime Batch Reports)
+#### 5.2.2 Majority-Load Aggregated Model (Daytime Batch Reports)
 
 | **Configuration Item** | **Recommended Value / Description** |
 |---|---|
@@ -225,7 +229,7 @@ The Aggregated Model is the core abstraction of the AGIONE platform: it logicall
 | Concurrency Control | Maximum Running Tasks per instance should not exceed 99% of the stress test baseline; otherwise, requests are queued for balanced distribution |
 | Applicable Period | Working days 09:00 ~ 20:00 batch report generation |
 
-### 5.2.3 Full-Load Aggregated Model (Nighttime Full-Batch Processing)
+#### 5.2.3 Full-Load Aggregated Model (Nighttime Full-Batch Processing)
 
 | **Configuration Item** | **Recommended Value / Description** |
 |---|---|
@@ -236,7 +240,7 @@ The Aggregated Model is the core abstraction of the AGIONE platform: it logicall
 | Batch Processing Optimization | Enable request batching mode to improve TPS |
 | Applicable Period | Daily 20:00 ~ next day 08:00 nighttime batch tasks |
 
-## 5.3 Dynamic Distribution Scheduling Mechanism
+### 5.3 Dynamic Distribution Scheduling Mechanism
 
 The AGIONE dynamic scheduler updates routing weights every 1 minute based on real-time metrics from each backend instance, solving the instance load imbalance problem caused by variable inference task durations.
 
@@ -250,9 +254,9 @@ The AGIONE dynamic scheduler updates routing weights every 1 minute based on rea
 
 ---
 
-# Chapter 6: Horizontal Scaling and Shrinking Best Practices
+## Chapter 6: Horizontal Scaling and Shrinking Best Practices
 
-## 6.1 Scale-Out Operation Process (Without Affecting Online Business)
+### 6.1 Scale-Out Operation Process (Without Affecting Online Business)
 
 1. Prepare a new node in the target compute cluster (any type) and execute base image initialization.
 2. After the new node starts, it automatically registers with the control plane at weight 0 (not receiving traffic).
@@ -262,7 +266,7 @@ The AGIONE dynamic scheduler updates routing weights every 1 minute based on rea
 
 > During scale-out, the aggregated model endpoint URL remains unchanged; upstream callers are unaware. It is recommended to perform scale-out during business trough periods (e.g., nighttime) for sufficient verification.
 
-## 6.2 Scale-In Operation Process (Graceful Shutdown)
+### 6.2 Scale-In Operation Process (Graceful Shutdown)
 
 1. Mark the target instance as "disabled" in the AGIONE console; the scheduler stops routing new requests to that instance.
 2. Wait for the instance's Running Tasks to drop to 0 (maximum wait time = request timeout × 2).
@@ -271,13 +275,13 @@ The AGIONE dynamic scheduler updates routing weights every 1 minute based on rea
 
 ---
 
-# Chapter 7: Operations Monitoring and Observability
+## Chapter 7: Operations Monitoring and Observability
 
-## 7.1 Monitoring Metrics System
+### 7.1 Monitoring Metrics System
 
 The AGIONE operations monitoring system is divided into three layers: application layer (call metrics), scheduling layer (aggregated model metrics), and infrastructure layer (GPU/NPU resource metrics). The three layers are linked to support rapid root cause identification.
 
-### 7.1.1 Application Layer Metrics (User Perspective)
+#### 7.1.1 Application Layer Metrics (User Perspective)
 
 | **Metric Name** | **Description and Alert Threshold Recommendations** |
 |---|---|
@@ -292,7 +296,7 @@ The AGIONE operations monitoring system is divided into three layers: applicatio
 | Success Rate | Request success rate |
 | Error Rate by Type | Classified statistics by error code; distinguishing client errors, platform server-side errors, and model instance errors |
 
-### 7.1.2 Scheduling Layer Metrics (Aggregated Model Perspective)
+#### 7.1.2 Scheduling Layer Metrics (Aggregated Model Perspective)
 
 | **Metric Name** | **Description** |
 |---|---|
@@ -301,7 +305,7 @@ The AGIONE operations monitoring system is divided into three layers: applicatio
 | Routing Distribution Ratio | Actual request proportion received by each instance; compared with weight to verify scheduling policy effectiveness |
 | Circuit Breaker / Degradation Count | Number and frequency of instances triggering circuit breakers at the scheduling layer |
 
-### 7.1.3 Infrastructure Layer Metrics (Instance Resource Perspective)
+#### 7.1.3 Infrastructure Layer Metrics (Instance Resource Perspective)
 
 | **Metric Name** | **Description and Alert Threshold Recommendations** |
 |---|---|
@@ -312,7 +316,7 @@ The AGIONE operations monitoring system is divided into three layers: applicatio
 | Memory Usage | > 85% triggers alert |
 | Node Health Status | K8s Node Condition (Ready/NotReady); NotReady > 60s triggers self-healing process |
 
-## 7.2 Anomaly Correlation Troubleshooting Process
+### 7.2 Anomaly Correlation Troubleshooting Process
 
 When users report call anomalies (errors or slow responses), it is recommended to troubleshoot layer by layer following this process.
 
@@ -328,7 +332,7 @@ When users report call anomalies (errors or slow responses), it is recommended t
 >
 > **Step 5** After confirming the root cause: ① Restart the faulty instance (after Running Tasks returns to 0); ② Adjust scheduling strategy to temporarily bypass the instance; ③ Submit a node alert to trigger the self-healing process.
 
-## 7.3 Operations Analysis and Scaling Decision Support
+### 7.3 Operations Analysis and Scaling Decision Support
 
 The AGIONE operations analysis panel provides the following capabilities to support scaling decisions.
 
@@ -340,25 +344,25 @@ The AGIONE operations analysis panel provides the following capabilities to supp
 
 ---
 
-# Chapter 8: Security and Compliance
+## Chapter 8: Security and Compliance
 
-## 8.1 Network Security
+### 8.1 Network Security
 
 * All cross-network-domain communication (HCS ↔ dedicated line ↔ IDC) must enable TLS 1.2+ encryption;
 * AGIONE API Gateway enables identity authentication (API Key / OAuth 2.0), with independent keys allocated per caller.
 * Inference instance ports are not exposed externally; access is only through the AGIONE aggregated model endpoint proxy.
 * VPC security group rules are regularly audited, and expired open ports are cleaned up.
 
-## 8.2 Data Security
+### 8.2 Data Security
 
 * If sensitive user data is included in inference requests, data masking or audit logging is enabled at the API Gateway layer.
 * Inference request prompts and output content are prohibited from being recorded in logs (only token count, request ID, and duration are logged).
 
 ---
 
-# Appendix
+## Appendix
 
-## Appendix A: Core Glossary
+### Appendix A: Core Glossary
 
 | **Term** | **Description** |
 |---|---|

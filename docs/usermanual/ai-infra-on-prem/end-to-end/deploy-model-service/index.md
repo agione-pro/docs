@@ -51,13 +51,14 @@ An On-Prem end-to-end deployment is like delivering self-built data center resou
 
 ## Parameter Reference
 
-| Parameter | Checkpoint | Impact |
-| --- | --- | --- |
-| Region / Availability Zone | Confirm ID, display name, visibility, and component binding. | Determines resource isolation and whether users can select target resources. |
-| Cluster | Confirm kubeconfig, API Server, authentication, network, and monitoring ports. | Determines whether nodes and jobs can be managed by the platform. |
-| Specification | Confirm CPU, memory, accelerator, VRAM, and cluster association. | Determines whether users can select and schedule the target resource package. |
-| Template / Image | Confirm model, framework, image, ports, variables, startup command, and VRAM rules. | Determines whether the model service or runtime instance can start successfully. |
-| Quota / Credit | Confirm tenant quota, credit, and metering rule. | Determines whether users can create and continue running workloads. |
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Region / Availability Zone | Yes | Selection | Example East China Zone | Determines the resource pool, specification, and user-visible scope. |
+| Cluster | Yes | Text | Example Cluster A | Provides the underlying resources for instances, jobs, or model services. |
+| Resource Specification | Yes | Selection | `4C16G-1GPU` | Defines the CPU, memory, and accelerator combination selected when a user creates a service. |
+| Image | Yes | Text | `registry.example.com/model:1.0` | Provides the runtime image for the model service. The placeholder is not a real repository. |
+| Storage Component | No | Text | Example File Storage A | Mounts models, data, or output files. |
+| Deployment Instance | System generated | Text | `INSTANCE-202607130001` | Tracks service status, events, logs, and monitoring data. |
 
 ## Pitfalls
 
@@ -67,33 +68,41 @@ An On-Prem end-to-end deployment is like delivering self-built data center resou
 
 ## Step 1: Operator Creates Region / Availability Zone
 
-![Regions and availability zones](../../operator/resource-pools/regions-zones/images/regions-zones-list.png)
-
 1. Go to `Resource Pools > Regions / Availability Zones`.
 2. Click `Add Region`, fill in the region ID, display name, visibility policy, and bind the image service and required storage components.
 3. Under the target region, click `Add Availability Zone`, and fill in the availability zone ID, display name, and description.
 4. After submission, confirm that the region and availability zone status is normal.
 
-Result validation:
+The following screenshot shows the region and availability zone list. Use it to confirm that the resource-pool geographic hierarchy has been created.
 
-1. The target region is visible in the region list.
-2. Image components and required storage components are visible in the region details.
-3. The target availability zone is visible in the availability zone list.
+![Regions and availability zones](../../operator/resource-pools/regions-zones/images/regions-zones-list.png)
+
+**Result validation:**
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Target region | The target region is visible in the region list. | Return to this step and check the prerequisites, permissions, and configuration status. |
+| Bound components | The image component and required storage components are visible in region details. | Return to this step and check the prerequisites, permissions, and configuration status. |
+| Target availability zone | The target availability zone is visible in the availability zone list. | Return to this step and check the prerequisites, permissions, and configuration status. |
 
 ## Step 2: Operator Registers a Cluster
-
-![Cluster list](../../operator/resource-pools/clusters/images/clusters-list.png)
 
 1. Go to `Resource Pools > Cluster Management`.
 2. Click `Register Cluster`.
 3. Paste or fill in kubeconfig-related connection information, and verify the region, availability zone, API Server, authentication method, CIDR, NodePort, and monitoring port.
 4. After submission, return to the cluster list and view cluster status, node count, and resource usage.
 
-Result validation:
+The following screenshot shows the cluster list. Use it to check cluster status, node count, and resource usage.
 
-1. The cluster status enters Accessing, Available, or another expected state.
-2. Node information is visible on the cluster node page.
-3. Node status, CPU, memory, disk, and accelerator resources are visible.
+![Cluster list](../../operator/resource-pools/clusters/images/clusters-list.png)
+
+**Result validation:**
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Cluster status | The cluster status changes to Accessing, Available, or another expected state. | Return to this step and check the prerequisites, permissions, and configuration status. |
+| Node information | Node information is visible on the cluster node page. | Return to this step and check the prerequisites, permissions, and configuration status. |
+| Node resources | Node status, CPU, memory, disk, and accelerator resources are visible. | Return to this step and check the prerequisites, permissions, and configuration status. |
 
 ## Step 3: Operator Configures Resource Specifications
 
@@ -101,15 +110,15 @@ Result validation:
 2. Go to `Resource Pools > Resource Specifications` and create user-facing resource packages.
 3. Return to `Cluster Management` and associate available specifications in the cluster details.
 
-Result validation:
+**Result validation:**
 
-1. The target specification is in an available state.
-2. The associated specifications in cluster details include the target specification.
-3. Users can select the corresponding specification when creating instances.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Specification status | The target specification is available. | Return to this step and check the prerequisites, permissions, and configuration status. |
+| Cluster association | The specifications associated with the cluster include the target specification. | Return to this step and check the prerequisites, permissions, and configuration status. |
+| User selection | Users can select the specification when creating an instance. | Return to this step and check the prerequisites, permissions, and configuration status. |
 
 ## Step 4: Operator Configures Templates or Opens Resources
-
-![Inference template list](../../operator/templates/inference-templates/images/inference-templates-list.png)
 
 1. Go to `Templates > Model Configuration` to maintain deployable models and model versions.
 2. Go to `Templates > Framework Configuration` to maintain inference frameworks and runtime image relationships.
@@ -117,11 +126,17 @@ Result validation:
 4. Go to `Templates > VRAM Estimation` to maintain KV Token, dynamic expressions, factor forms, and VRAM recommendation rules.
 5. Go to `Quota & Metering` to set resource quotas and credits for tenants.
 
-Result validation:
+The following screenshot shows the inference template list. Use it to confirm that a selectable template has been published and can be referenced by users.
 
-1. The inference template has been published or is selectable by users.
-2. The model, framework, image, specification, and VRAM rules associated with the template are consistent.
-3. The target tenant has sufficient quota and credits.
+![Inference template list](../../operator/templates/inference-templates/images/inference-templates-list.png)
+
+**Result validation:**
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Template availability | The inference template is published or selectable by users. | Return to this step and check the prerequisites, permissions, and configuration status. |
+| Template associations | The model, framework, image, specification, and VRAM rules associated with the template are consistent. | Return to this step and check the prerequisites, permissions, and configuration status. |
+| Tenant quota and credit | The target tenant has sufficient quota and credit. | Return to this step and check the prerequisites, permissions, and configuration status. |
 
 ## Step 5: User Prepares Images and Data
 

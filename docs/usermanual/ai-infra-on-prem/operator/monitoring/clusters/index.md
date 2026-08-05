@@ -105,9 +105,11 @@ The following figure shows the cluster statistics page.
 
 ## Result Validation
 
-1. The cluster list displays health status, capacity, and update time.
-2. Resource watermarks correspond to node and device details.
-3. Abnormal clusters can be located to nodes, devices, or collection links.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Cluster status and capacity | The cluster list shows health status, capacity, and update time. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Resource watermarks | Resource watermarks correspond to node and device details. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Exception location | An abnormal cluster can be traced to a node, device, or collection link. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Configuration Rules and Impact
 

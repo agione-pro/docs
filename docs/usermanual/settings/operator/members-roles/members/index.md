@@ -7,50 +7,47 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Members` is used to view, filter, and maintain members information. It helps operator admin work with members records and related status from a consistent page entry.
+`Members` is used to view and manage operator members. You can filter by username or phone number, review each member's role and status, and add, edit, reset the password for, or delete a member.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator Admin |
 | Navigation path | Settings > Members & Roles > Members |
 | Page route | `/user/user-space/team-members` |
-| Managed objects | Members records and related status |
-| Typical use | View, filter, and maintain members information |
+| Managed objects | Members, roles, status, and contact information |
+| Typical use | Query members, add members, and review member roles and status |
 
 #### Beginner Explanation
 
-Members is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Operator members are the platform-console duty roster. They determine who can enter the operator console and manage configuration, approvals, audits, and platform-level tasks. They are different from members of a user-side tenant.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Operator member | A member with access to platform administration functions. | Assign a role based on job responsibilities. |
+| Platform role | A role that controls which operator modules a member can manage. | Do not grant more permission than required. |
+| Member status | Indicates whether a member is enabled, disabled, or pending activation. | Check status first when login fails. |
+| Management scope | The tenants or system settings visible to a member. | Confirm the scope during troubleshooting. |
 
 ## Prerequisites
 
-1. The current account can access `Members & Roles > Members`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to manage members.
+2. You have opened `Members & Roles > Members`.
+3. Before changing a member, you have confirmed the person's identity, role scope, and reason for the change.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for members records and related status.
+The following screenshot shows the Members page. Phone numbers and email addresses are desensitized.
+
+![Members](./images/members-list.png)
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows members.
-
-![Members](./images/members-list.png)
+| Username | Filters members by username. |
+| Phone Number | Filters members by phone number. |
+| Add Member | Opens the member creation flow. |
+| Member table | Shows username, name, phone number, email, role, status, creation time, and actions. |
 
 ## Main Operations
 
@@ -107,52 +104,65 @@ Use the following operations to work with members records and related status. Co
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Members & Roles > Members` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Member filter | The list refreshes by username or phone number. | Clear the filters and search again. |
+| Status | The member status control is displayed. | Check the current account's permissions. |
+| Actions | Edit, Reset Password, and Delete are displayed according to permission. | Ask an administrator to verify the role assignment. |
 | Add dialog | Clicking `Add Member` opens the same-name dialog. | Check whether the current account has member creation permission. |
 | Cancel exit | Clicking `Cancel` closes the dialog without submitting member configuration. | Refresh the page and confirm no test member was added. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Members
+#### A member cannot sign in
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The member cannot access the platform.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Members
+The member is disabled, a reset password was not communicated, or the assigned role lacks permission.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+Verify the member status, role, and password-reset record, and then restore access according to your account-management process.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### What should be checked before deleting a member?
+
+**Symptom:**
+
+The member row provides a `Delete` action.
+
+**Possible cause:**
+
+The member may still own business actions, keys, or approval records.
+
+**Resolution:**
+
+Confirm that the member no longer has active responsibilities before continuing with the deletion.
 
 #### Why is the operator member list empty?
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+**Symptom:**
+
+No platform administrator or operator member is shown.
+
+**Possible cause:**
+
+The current account is not in the platform administration tenant, the members belong to a user-side tenant, or the current role limits the list scope.
+
+**Resolution:**
+
+Confirm that you are using the operator entry and verify the platform tenant and administrator role. Ask a super administrator to grant operator-member access when required.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. To adjust role permissions, go to [Roles](../roles/).
+2. To review member actions, go to [Operation Logs](../../activity-notifications/operation-logs/).
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Do not expose member phone numbers, email addresses, or account identifiers in documentation or screenshots.
+- Reset Password, Delete, and status changes affect member access and require review.
 - `Confirm` is the final submit action. Before adding a member, verify the member identity, role permissions, and enabled status.
 - For learning or screenshots only, open the dialog to view fields and use `Cancel` to exit.
 - Do not write real phone numbers, emails, usernames, user IDs, passwords, customer names, or internal test data in documentation.

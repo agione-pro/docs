@@ -104,9 +104,11 @@ The following figure shows the statistics overview page.
 
 ## Result Validation
 
-1. Overview cards display summaries for clusters, nodes, devices, jobs, and exceptions.
-2. After switching region or time range, trends and exception counts change accordingly.
-3. After drilling down to detail pages, object scope is consistent with overview statistics.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Overview summaries | Overview cards show summaries for clusters, nodes, devices, jobs, and exceptions. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Region and time filters | Trends and exception counts change after you switch the region or time range. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
+| Drill-down scope | The object scope on detail pages is consistent with the overview statistics. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
 
 ## Configuration Rules and Impact
 

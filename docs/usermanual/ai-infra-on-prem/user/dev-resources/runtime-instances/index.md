@@ -116,10 +116,12 @@ Used to start a long-running service process. Before creation, confirm the servi
 
 ## Result Validation
 
-1. The instance appears in the list.
-2. Status enters Running, Succeeded, or a status matching the task type.
-3. Logs contain no image pull, command execution, or mount errors.
-4. Expected files are generated in the output directory.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Instance created | The instance appears in the list. | Check the image, specification, startup command, mount path, and instance events. |
+| Instance status | The status changes to Running, Succeeded, or another status appropriate for the task type. | Check the image, specification, startup command, mount path, and instance events. |
+| Runtime logs | The logs contain no image pull, command execution, or mount errors. | Check the image, specification, startup command, mount path, and instance events. |
+| Output files | The expected files are generated in the output directory. | Check the image, specification, startup command, mount path, and instance events. |
 
 ## FAQ
 

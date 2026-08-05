@@ -7,50 +7,52 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Platform Settings` is used to view, filter, and maintain platform settings information. It helps operator admin work with platform settings records and related status from a consistent page entry.
+`Platform Settings` is used to maintain platform-level configuration, including General Settings, Provider Relationship, Currency Settings, Payment Channels, Account & Settlement, Email Settings, and UI Configuration.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator Admin |
 | Navigation path | Settings > System Settings > Platform Settings |
 | Page route | `/user/system/platform-settings/config` |
-| Managed objects | Platform Settings records and related status |
-| Typical use | View, filter, and maintain platform settings information |
+| Managed objects | General configuration, provider relationships, currency settings, payment channels, accounts and settlement, email, and UI configuration |
+| Typical use | Review and maintain platform-level configuration |
 
 #### Beginner Explanation
 
-Platform Settings is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Platform Settings is the global parameter panel. It controls basic platform behavior, provider relationships, currencies, payments, settlement, email, and UI presentation. A change can affect multiple modules.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Platform configuration | A system parameter that affects global behavior. | Confirm the scope before changing it. |
+| Provider relationship | Configuration that defines a relationship between the platform and a provider. | Confirm business ownership before changing it. |
+| Currency settings | Currency rules used for amount display and settlement. | Verify them before a billing change. |
+| Email settings | Configuration for notifications and verification-code delivery. | Compare it with Login Properties during troubleshooting. |
 
 ## Prerequisites
 
-1. The current account can access `System Settings > Platform Settings`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to manage system configuration.
+2. You have opened `System Settings > Platform Settings`.
+3. Before editing configuration, you have confirmed the impact scope, change window, and approval requirements.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for platform settings records and related status.
+The following screenshot shows the Platform Settings page. Configuration values are desensitized.
+
+![Platform Settings](./images/platform-settings-list.png)
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows platform settings.
-
-![Platform Settings](./images/platform-settings-list.png)
+| Refresh | Reloads platform configuration. |
+| General Settings | Maintains shared platform and display configuration. |
+| Provider Relationship | Maintains provider relationship configuration. |
+| Currency Settings | Maintains currency display and usage configuration. |
+| Payment Channels | Maintains payment-channel configuration. |
+| Account & Settlement | Maintains account and settlement configuration. |
+| Email Settings | Maintains email-delivery configuration. |
+| UI Configuration | Maintains UI presentation configuration. |
+| Edit | Changes the selected configuration item. |
 
 ## Main Operations
 
@@ -175,51 +177,64 @@ Use the following operations to work with platform settings records and related 
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `System Settings > Platform Settings` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Categories | Configuration categories are displayed. | Refresh the page and open it again. |
+| Configuration values | Configuration items and values are readable. | Check system-configuration permission. |
+| Edit entry | Edit is displayed according to permission. | Ask an administrator to make the change when you lack permission. |
 | Screenshots | General configuration, provider relationship, currency settings, payment channel, account and settlement, email settings, and UI configuration screenshots render normally. | Check whether image paths exist. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Platform Settings
+#### Which modules does a configuration change affect?
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+Platform Settings contains multiple configuration categories.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Platform Settings
+Different settings can affect sign-in, billing, email, page presentation, or provider relationships.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+Identify the configuration category and business impact before choosing a change window.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### Why is a platform setting missing?
 
-#### Why is the platform configuration save button unavailable?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+The target setting is absent or its area is empty.
+
+**Possible cause:**
+
+The current account lacks system-settings permission, the setting is limited by deployment version or tenant scope, or configuration synchronization is abnormal.
+
+**Resolution:**
+
+Verify operator-admin permission and the current tenant scope. Confirm that the setting applies to the current version. If it is still missing, ask a platform administrator to check the configuration center.
+
+#### Why is Save unavailable for platform configuration?
+
+**Symptom:**
+
+The setting is visible, but Save, Enable, or Reset cannot be selected.
+
+**Possible cause:**
+
+The current account lacks write permission, the setting is version-locked, or approval is required before the change.
+
+**Resolution:**
+
+Verify system-administrator permission and the setting description. Complete the required approval, then ask an authorized administrator to save the change.
 
 ## Next Steps
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+1. To maintain sign-in security, go to [Login Properties](../login-properties/).
+2. To maintain API rate control, go to [Overview](../../api-rate-control/overview/).
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Platform configuration can affect global behavior. Do not change it casually during peak business hours.
+- Review payment, settlement, and email configuration before saving.
 - `Save`, `Reset`, `Enable`, `Disable`, and `Test Connection` are high-risk actions.
 - For learning or screenshots, only view configuration items and do not submit real configuration changes.
 - Stripe / Alipay keys, private keys, Webhook secrets, SMTP passwords, internal addresses, accounts, tokens, customer names, and settlement parameters must not be written into documentation, screenshots, tickets, or chats.
