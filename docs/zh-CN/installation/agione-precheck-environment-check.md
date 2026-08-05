@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | 第 1 步：准备交付包 | 进入交付包目录并给 `./agione` 授权 | `./agione help` 可以执行 |
 | 第 2 步：执行 doctor | 单节点执行 `./agione doctor`，多节点执行 `./agione doctor --file /root/agione-install.yml` | 终端输出预检结论 |
-| 第 3 步：校验交付包 | 执行 `./agione verify-bundle` | 交付包完整性校验通过 |
+| 第 3 步：校验交付包 | 执行 `./agione verify-bundle` | split bundle 的 SHA-256 完整性校验通过 |
 | 第 4 步：修复 FAIL | 修复磁盘、端口、权限、SSH、中间件等阻塞项 | 不再存在 `FAIL` 项 |
 | 第 5 步：确认 WARN | 和客户、交付负责人确认风险是否接受 | 每个 `WARN` 都有处理决策 |
 | 第 6 步：执行安装 | 使用同一份配置执行 quick 或 TUI 安装 | 预检报告已归档 |
@@ -30,7 +30,8 @@
 | 术语 | 说明 |
 | --- | --- |
 | `doctor` | 安装前诊断命令，用于检查主机和配置风险 |
-| `verify-bundle` | 安装前校验交付包完整性的命令 |
+| `verify-bundle` | 按 `SHA256SUMS` 校验 split bundle 文件完整性的命令 |
+| MD5 / SHA-256 | MD5 用于发现下载损坏；SHA-256 用于核对外层压缩包和解压后的 split bundle 内容 |
 | `PASS` | 检查通过，可继续 |
 | `WARN` | 存在风险但不一定阻塞，需要负责人确认 |
 | `FAIL` | 阻塞项，必须修复后才能安装 |
@@ -67,6 +68,8 @@ chmod +x ./agione
 ```bash
 ./agione verify-bundle
 ```
+
+该命令按 `SHA256SUMS` 校验 split bundle 文件的 SHA-256 摘要。下载页 MD5 只能检查传输损坏，不能替代 `verify-bundle`；正式生产交付还应通过受控渠道独立获取并核对外层 `.tar.gz` 的 SHA-256。不要在正式交付中设置 `AGIONE_SKIP_BUNDLE_VERIFY=1`。
 
 host-mode 多节点安装时，预检应使用与正式安装一致的配置文件：
 
@@ -156,14 +159,17 @@ host-mode 多节点安装时，需要检查 `agione-install.yml` 中定义的每
 | SSH 连通性 | 可通过配置的用户和端口连接目标节点 | 认证失败或连接超时 |
 | 私网 IPv4 地址 | 节点地址为 RFC1918 私网 IPv4 地址 | 使用公网 IP、公网域名或占位主机名 |
 | 远端命令 | `bash`、`tar`、Python 可用，或可通过内置资源修复 | 必要命令缺失且无法修复 |
+| SHA-256 工具 | 每个目标节点至少有 `sha256sum` 或 `shasum` | 任一节点缺少两个命令，bundle 同步前即停止 |
 | 远端资源 | CPU、内存和最终选择的安装磁盘满足所选角色 | 节点资源低于阈值 |
-| 已有数据 | 旧运行数据不存在，或已通过 `-f` 明确覆盖 | 存在旧运行数据且未确认覆盖 |
+| 已有数据 | 旧运行数据不存在；或已备份并通过 `quick --force-overwrite` 发起受控重装 | 存在旧运行数据但没有备份、清理决定或安全预检授权 |
 | Docker 状态 | Docker 与 Compose 正常，或可通过离线资源安装 | Docker 修复失败 |
 | 端口 | 节点需要绑定的端口均未被占用 | 已有进程占用必要端口 |
 
 ## 8. 外部托管中间件检查
 
 当 `agione-install.yml` 选择外部托管中间件时，安装前需确认连通性。
+
+> **注意**：本节预检只验证网络、凭据和必要操作权限，不验证产品实现是否兼容。只有 [部署综述中的云中间件兼容矩阵](./agione-deployment-requirements#_5-1-2-数据库与中间件) 列出的云厂商、产品、版本和接入方式受支持；未列出的组合即使全部检查为 `PASS`，仍按不支持处理。
 
 | 组件 | 必要检查 |
 | --- | --- |
@@ -186,7 +192,7 @@ host-mode 多节点安装时，需要检查 `agione-install.yml` 中定义的每
 | 端口 | 端口占用进程、监听地址、冲突端口列表 |
 | Docker / Compose | 版本、服务状态、是否可用离线安装 |
 | host-mode 节点 | SSH 结果、私网地址校验、远端资源、远端命令、旧数据、Docker 和端口 |
-| 离线包 | bundle manifest、checksum、镜像包、离线 Python |
+| 离线包 | `SHA256SUMS` 校验结果、bundle manifest、镜像包、离线 Python |
 | 外部中间件 | 连接地址可达性与凭据校验结果 |
 | 结论 | PASS / WARN / FAIL、阻塞项、整改建议 |
 
@@ -200,7 +206,7 @@ host-mode 多节点安装时，需要检查 `agione-install.yml` 中定义的每
 4. 选择外部托管中间件时，中间件连通性检查为 `PASS`。
 5. 所有 `FAIL` 项已整改并复检通过。
 6. 所有 `WARN` 项已由交付负责人和客户负责人确认接受。
-7. 离线交付场景已执行 `./agione verify-bundle` 并通过。
+7. 离线交付场景已执行 `./agione verify-bundle`，split bundle 的 SHA-256 校验通过；正式生产交付另已核对外层压缩包 SHA-256。
 
 ## 11. 与安装流程的关系
 
