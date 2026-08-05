@@ -21,8 +21,8 @@ Before delivery, freeze and validate the complete combination:
 | NVIDIA | Ampere | A100, A800, A40, A30, A10, RTX A6000, RTX A5000, RTX A4000, RTX A2000, RTX 3090, RTX 3060 |
 | NVIDIA | Ada | L40, L40S, L20, L20S, L4, L2, RTX 6000, RTX 5000, RTX 4500, RTX 4000, RTX 2000, RTX 4090, RTX 4090D |
 | Huawei Ascend | Ascend 910 | Ascend 910B, Ascend 910C |
-| Enflame | Enflame | 106 |
-| Biren | Biren | S60 |
+| Enflame | Enflame | S60 |
+| Biren | Biren | 106 |
 | Hygon | BW | BW200 |
 
 ## Required Project Validation

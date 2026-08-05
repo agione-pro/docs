@@ -38,8 +38,8 @@ Through AI Infra On-Prem, AGIOne manages regions, availability zones, clusters, 
 | **NVIDIA** | Ampere | A100 / A800 / A40 / A30 / A10 / RTX A Series / RTX 30 Series | Confirm device memory and data-center deployment conditions by model |
 | **NVIDIA** | Ada | L40 / L40S / L20 / L20S / L4 / L2 / RTX 4090, etc. | Workstation or consumer models require additional stability and delivery validation |
 | **Huawei Ascend** | Ascend 910 | Ascend 910B / Ascend 910C | Validate CANN, MindIE, driver, image, and model by project |
-| **Enflame** | Enflame | 106 | Validate vendor driver, runtime, inference framework, and model |
-| **Biren** | Biren | S60 | Validate vendor driver, runtime, inference framework, and model |
+| **Enflame** | Enflame | S60 | Validate vendor driver, runtime, inference framework, and model |
+| **Biren** | Biren | 106 | Validate vendor driver, runtime, inference framework, and model |
 | **Hygon** | BW | BW200 | Validate vendor driver, runtime, inference framework, and model |
 
 #### 1.1.3 Core Sub-capabilities
