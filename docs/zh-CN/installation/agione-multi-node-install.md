@@ -35,6 +35,7 @@
 | 数据库备库节点 | 运行 MariaDB 备库，用于复制和数据冗余 |
 | 托管中间件 | 由云厂商或客户已有服务提供的中间件，AGIOne 只连接端点，不在本地部署该组件 |
 | 混合中间件 | 部分组件自建、部分组件托管，例如数据库使用 RDS，Redis 和 Nacos 继续自建 |
+| `services` | 安装完成后查看或增量启用可选应用服务组的命令 |
 | `agione_app.topology` | YAML 中描述节点 IP、SSH 用户、端口和密码的配置段 |
 | `host_mode_service_placements` | 高级服务编排字段，用于手动把服务分配到指定机器 |
 
@@ -158,6 +159,7 @@ http://<app-entry-ip>:18090/modelone/
 | `bash` | 执行远端安装脚本 |
 | `tar` | 解压安装资源 |
 | `python3` 或 `python` | 执行远端预检辅助逻辑 |
+| `sha256sum` 或 `shasum` | 在同步和解包交付包前执行 SHA-256 能力预检与文件校验 |
 | `ssh` 服务 | 接收安装发起机的 SSH 登录；推荐免密登录，密码认证需要安装发起机具备 `sshpass` |
 
 ### 2.4 已有数据保护
@@ -198,9 +200,7 @@ http://<app-entry-ip>:18090/modelone/
 ./agione reset-host-mode --yes --nodes <ip1>,<ip2>,<ip3>,<ip4>
 ```
 
-如仍需覆盖旧数据，可在安装命令中追加 `-f`。
-
-`-f` 表示接受覆盖已有 AGIOne 运行数据的风险，适合测试环境反复重装；生产环境使用前必须确认备份与回退方案。
+如果不先执行清理，而是明确要在受控安装流程中替换旧运行数据，只能在 `quick` 或 TUI 安装命令中使用 `--force-overwrite`。`-f PATH` 是 `--file PATH` 的缩写，只用于选择主安装 YAML，不表示接受覆盖风险。强制重装不会自动备份，生产环境执行前必须完成有状态备份并确认停服与回退方案。
 
 ---
 
@@ -285,7 +285,7 @@ export AGIONE_DISK_TOLERANCE_RATIO=0.80
 
 固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
 
-页面中同时提供 `MD5 URL`，建议下载后一起校验。
+页面中同时提供 `MD5 URL`，建议下载后一起校验。MD5 只能发现下载或传输损坏，不能证明安装包发布方身份。正式生产交付还应通过受控交付渠道独立获取外层 `.tar.gz` 的 SHA-256 摘要并核对。
 
 推荐在第 1 台应用 / 入口节点执行安装：
 
@@ -300,9 +300,21 @@ mkdir -p /opt/hyperone && \
 cd /opt/hyperone && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE" "$AGIONE_RELEASE_URL" && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE.md5" "$AGIONE_RELEASE_MD5_URL" && \
-echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c - && \
-AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)" && \
-tar -zxvf "$AGIONE_RELEASE_ARCHIVE" && \
+echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c -
+```
+
+正式交付核对外层压缩包 SHA-256：
+
+```bash
+AGIONE_RELEASE_SHA256="<从可信交付渠道获取的外层压缩包 SHA-256>"
+echo "$AGIONE_RELEASE_SHA256  $AGIONE_RELEASE_ARCHIVE" | sha256sum -c -
+```
+
+校验通过后再解压：
+
+```bash
+AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)"
+tar -zxvf "$AGIONE_RELEASE_ARCHIVE"
 cd "/opt/hyperone/$AGIONE_RELEASE_DIR"
 ```
 
@@ -329,7 +341,9 @@ chmod +x ./agione
 ./agione verify-bundle
 ```
 
-`verify-bundle` 会校验安装包 Ed25519 签名和 `SHA256SUMS` 中记录的 SHA-256 摘要。校验通过后再继续安装。如果校验失败，请重新获取安装包，不建议继续执行。只有交付负责人确认是可信历史未签名包时，才允许使用 `./agione verify-bundle --allow-unsigned-legacy` 或对应兼容环境变量。
+`verify-bundle` 按 `SHA256SUMS` 校验 split bundle 文件的 SHA-256 摘要。缺少 `SHA256SUMS`、记录不安全、文件缺失或摘要不一致时都会失败；请重新获取安装包，不要绕过错误继续安装。下载页 MD5 不能替代该检查，也不能替代正式交付对外层压缩包 SHA-256 的独立核对。
+
+host-mode 会在同步 bundle 前确认所有目标节点至少具备 `sha256sum` 或 `shasum`，任一节点不满足即停止。`AGIONE_SKIP_BUNDLE_VERIFY=1` 只会跳过 SHA-256 校验，是仅供可信本地改包排障使用的高风险开关，正式交付禁止使用。
 
 ### 4.4 执行安装
 
@@ -342,11 +356,13 @@ chmod +x ./agione
 
 建议先从 [安装配置文件字段说明](./agione-install-config-reference) 复制匹配场景的最小 YAML，再按需增加 SSH 设置、域名、证书、托管中间件端点或可选服务组。
 
-反复重装测试且确认可以覆盖旧 AGIOne 运行数据时：
+确认所需数据已备份，并且需要在预检通过后替换旧 AGIOne 运行数据时：
 
 ```bash
-./agione quick -f --file /root/agione-install.yml
+./agione quick --file /root/agione-install.yml --force-overwrite
 ```
+
+该命令必须通过当前完整交付包的 `./agione` 启动器执行，不能直接调用 `installer/cli.py`。安装器会把目标目录、运行根目录、配置指纹和 `SHA256SUMS` 指纹绑定到本次预检；全部检查通过后才停止旧服务并删除受管运行数据。发布目录可以位于 `runtime_root` 内部，但不能与 `<runtime_root>/core`、`<runtime_root>/database` 或 `<runtime_root>/minstore` 完全相同。
 
 启用 NFS 后端/前端代码共享示例：
 
@@ -372,8 +388,10 @@ NFS 节点需要具备 NFS 服务端 / 客户端能力。离线环境请在打�
 
 云上交付时，可以用托管中间件替代部分或全部自建中间件节点。典型流程如下：
 
+> **兼容性门禁**：正式交付只能使用 [部署综述中的云中间件兼容矩阵](./agione-deployment-requirements#_5-1-2-数据库与中间件) 所列的阿里云或华为云产品、版本和接入方式。数据库仅限矩阵中的 MySQL 系 RDS MariaDB；达梦、人大金仓、GaussDB、openGauss、OceanBase、TiDB、PostgreSQL 等不受支持。其他云厂商、同一产品的其他版本或未实测协议即使能够连通，也必须按不支持处理。
+
 1. 准备 2 到 8 台应用 / 入口节点，并确保它们位于同一私网，或已与托管中间件所在 VPC 建立私网连通。
-2. 通过客户云控制台、可选云厂商辅助脚本，或客户已有资源，准备托管数据库、Redis、Nacos、Kafka 和对象存储。
+2. 按兼容矩阵，通过客户云控制台、可选云厂商辅助脚本，或客户已有资源，准备指定产品和版本的托管数据库、Redis、Nacos、Kafka 和对象存储。
 3. 生成或合并 `/root/agione-install.yml`，写入节点拓扑、SSH 凭据、中间件端点、域名 / 证书配置、可选服务组和默认账号策略。
 4. 确认 Nacos 行为。如果由安装器发布配置，配置的 Nacos 账号必须在 `agione-prod` 命名空间具备配置发布权限；如果客户已经提前导入全部 AGIOne 配置，请设置 `agione_app.nacos.assume_preimported_configs: true`。
 5. 执行 `./agione quick --file /root/agione-install.yml`，或在 TUI 安装中填写同一组字段。
@@ -582,7 +600,7 @@ scripts/agione_stateful_recovery.sh verify --archive /path/to/agione-stateful-ba
 ./agione reset-host-mode --dry-run --file /root/agione-install.yml
 ./agione reset-host-mode --remote-dry-run --file /root/agione-install.yml
 ./agione reset-host-mode --yes --file /root/agione-install.yml
-./agione quick -f --file /root/agione-install.yml
+./agione quick --file /root/agione-install.yml
 ```
 
 如果只是修改已渲染的 host-mode Compose 文件、manifest、MariaDB 配置或 Nginx 配置，不需要完整重装，可执行：
@@ -645,6 +663,44 @@ http://<app-entry-ip>:18090/modelone/
 
 生成诊断报告和脱敏支持包，便于继续排查。
 
-### 4.7 语言与输出约定
+### 4.7 安装后增量启用可选服务
+
+已完成 host-mode 安装后，可以通过 `services` 命令增加可选应用服务，不需要重新运行整套 `quick`。建议在与已安装环境 CPU 架构一致的完整交付包目录中执行：
+
+```bash
+./agione services status
+./agione services enable kubem,cloud --dry-run
+./agione services enable kubem,cloud
+```
+
+`--dry-run` 会执行只读预检，不修改远端 Compose、容器或最终配置。预检通过后再去掉该参数。支持组和默认放置如下：
+
+| 组名 | host-mode 默认放置 | 前置条件 |
+| --- | --- | --- |
+| `kubem` | `core_kubem`、`core_codelab` 部署到每个应用节点；`core_iam` 只部署到主应用节点 | Nacos 中已有对应配置，目标端口、资产和离线镜像可用 |
+| `cloud` | 5 个云厂商集成服务部署到每个应用节点 | Nacos 中已有对应配置，目标端口、资产和离线镜像可用 |
+| `core_isync` | `core_isync` 和 `influxdb3` 只部署到数据库备库节点 | 仅支持 host-mode、自建 MariaDB、恰好一个备库节点；要求复制健康，或备库满足安全自动初始化条件 |
+
+当初始安装没有启用 `core_isync`，但环境是 host-mode、自建 MariaDB、恰好一个备库节点且 `agione_app.influxdb.enabled` 未关闭时，安装器会把 `core_isync` / `influxdb3` 资产和镜像预置到备库节点，但不会创建或启动容器，也不会占用对应服务端口。此时 `services status` 显示“已预置（已安装、未启动）”；后续 `services enable core_isync` 会复用这些离线资产。
+
+正式执行前，安装器会检查已安装最终配置和完成标记、所有节点运行基线、SSH、现有容器、端口、Nacos 配置、服务资产、镜像和候选 Compose。启用 `core_isync` 时还会检查 MariaDB 主备复制，并为备库节点准备 InfluxDB 私有凭据和数据目录。复制尚未建立时，只有备库为空、只读、没有复制元数据，并且唯一健康问题是缺少复制元数据，安装器才会自动初始化；备库非空、复制异常、角色不匹配或状态不明确都会阻止启用。缺少的镜像只从已校验交付包补发到需要它的节点，不会访问公网镜像仓库。
+
+基础安装未启用 `core_isync` 时不会导入 `metis-influx-sync.yml`。增量启用时，安装器会在生成私有 InfluxDB 凭据后单独渲染、发布并回读校验该 Nacos 配置；后续启动或初始化失败时会恢复原配置。
+
+正式启用只启动本次新增服务，不重建已有服务。整个过程使用本地和远端事务锁；失败时只回滚本次新增内容，操作中断后下一次正式执行会先恢复未完成事务。已健康启用的组再次执行会直接成功，不重复变更。当前命令只支持启用，不支持禁用，也不能用来启用独立顶层模块 `kube-cluster`。
+
+成功后执行：
+
+```bash
+./agione services status
+./agione health
+./agione ps
+```
+
+命令会更新已安装目录中的 `outputs/final-result-config.yml` 和 host-mode 运行产物。请归档最终配置；如果以后仍使用 `/root/agione-install.yml` 做完整重装，也要把新增服务组同步写入 `agione_app.start_optional_app_services`。
+
+安装和 `services enable` 共用 `<runtime_root>/.agione/operation.lock`，不要并行执行。进程退出后操作系统会自动释放锁，残留的锁文件本身不代表仍被占用。
+
+### 4.8 语言与输出约定
 
 `quick` 模式下日志默认采用英文，便于标准化归档和自动化识别。终端图形界面会跟随欢迎页选择的语言显示，并过滤另一种语言的辅助日志。若发现英文模式下仍出现中文业务日志，优先保留完整安装报告和支持包，便于定位是安装器日志过滤问题还是容器自身日志输出。

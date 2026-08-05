@@ -35,6 +35,7 @@ Multi-node installation is not a different product package. It is the same AGIOn
 | Standby database node | Node that runs MariaDB standby for replication and data redundancy |
 | Managed middleware | Middleware provided by a cloud provider or existing customer service; AGIOne connects to endpoints instead of deploying the component locally |
 | Hybrid middleware | Some components are self-managed and others are managed, such as RDS for database while Redis and Nacos remain self-managed |
+| `services` | Post-install command for inspecting or incrementally enabling optional application service groups |
 | `agione_app.topology` | YAML section that describes node IPs, SSH users, ports, and passwords |
 | `host_mode_service_placements` | Advanced service placement field used to manually assign services to specific machines |
 
@@ -158,6 +159,7 @@ Remote nodes should provide at least:
 | `bash` | Executes remote installation scripts |
 | `tar` | Extracts installation assets |
 | `python3` or `python` | Runs remote preflight helper logic |
+| `sha256sum` or `shasum` | Runs the SHA-256 capability preflight and file verification before bundle synchronization and unpacking |
 | `ssh` service | Accepts SSH login from the initiating machine; passwordless login is recommended, password authentication requires local `sshpass` |
 
 ### 2.4 Existing data protection
@@ -198,9 +200,7 @@ For simple CLI-only cleanup, node IPs can still be passed directly:
 ./agione reset-host-mode --yes --nodes <ip1>,<ip2>,<ip3>,<ip4>
 ```
 
-If old runtime data must still be overwritten, append `-f` to the installation command.
-
-`-f` means you accept the risk of overwriting existing AGIOne runtime data. Use it for repeated test installs; in production, confirm backup and rollback plans first.
+If cleanup is not run first and old runtime data must deliberately be replaced through a controlled installation workflow, use `--force-overwrite` only with `quick` or the TUI installation command. `-f PATH` is an alias for `--file PATH`; it selects the main installation YAML and never grants overwrite permission. Force reinstall does not create a backup automatically. Complete the stateful backup and confirm the production service-stop and rollback plans first.
 
 ---
 
@@ -232,7 +232,7 @@ Host-mode multi-node no longer uses Docker `network_mode: host`. The installer g
 
 | Role | Critical ports |
 | --- | --- |
-| App / Edge node | `80`, `18090`, `8089`, `8080`, `3000`, `4000`, `5007`, `7002`, `7003`, `8031`, `8032`, `8033`; `7091`, `18181`, and `18082` when `core_isync` / `influxdb3` are explicitly placed on the first app node |
+| App / Edge node | `80`, `18090`, `8089`, `8080`, `3000`, `4000`, `5007`, `7002`, `7003`, `8031`, `8032`, `8033`; `8021`, `8022`, and `18088` when `kubem` is explicitly enabled |
 | Middleware node | `3306`, `6379`, `8848`, `8849`, `9848`, `9849`, `9092`, `9093`, `18091`, `8080`, `9000`, `9001` |
 | Standby database node | `3306`; `7091`, `18181`, and `18082` when the `core_isync` service group is enabled |
 
@@ -285,7 +285,7 @@ Open the fixed download page on the initiating machine first, then copy the pack
 
 Fixed download page: [Download link](https://agione.pro/release/download/agione-release-latest)
 
-The page also provides an `MD5 URL`. It is recommended to verify the package after download.
+The page also provides an `MD5 URL`. Verify it after download. MD5 detects download or transfer corruption, but does not authenticate the package publisher. For a production delivery, independently obtain the outer `.tar.gz` SHA-256 digest through an access-controlled delivery channel and compare it as well.
 
 It is recommended to run the installation from machine 1, the primary App / Edge node:
 
@@ -300,9 +300,21 @@ mkdir -p /opt/hyperone && \
 cd /opt/hyperone && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE" "$AGIONE_RELEASE_URL" && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE.md5" "$AGIONE_RELEASE_MD5_URL" && \
-echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c - && \
-AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)" && \
-tar -zxvf "$AGIONE_RELEASE_ARCHIVE" && \
+echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c -
+```
+
+Verify the outer archive SHA-256 for a production delivery:
+
+```bash
+AGIONE_RELEASE_SHA256="<outer-archive-SHA-256-from-a-trusted-delivery-channel>"
+echo "$AGIONE_RELEASE_SHA256  $AGIONE_RELEASE_ARCHIVE" | sha256sum -c -
+```
+
+Extract the archive only after verification passes:
+
+```bash
+AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)"
+tar -zxvf "$AGIONE_RELEASE_ARCHIVE"
 cd "/opt/hyperone/$AGIONE_RELEASE_DIR"
 ```
 
@@ -329,7 +341,9 @@ chmod +x ./agione
 ./agione verify-bundle
 ```
 
-`verify-bundle` validates the Ed25519 bundle signature and the SHA-256 checksums recorded in `SHA256SUMS`. Continue only after verification passes. If verification fails, reacquire the package instead of continuing. Use `./agione verify-bundle --allow-unsigned-legacy` or the compatibility environment variable only when the delivery owner confirms the package is a trusted historical unsigned bundle.
+`verify-bundle` validates split-bundle file SHA-256 checksums against `SHA256SUMS`. A missing `SHA256SUMS`, unsafe entry, missing file, or checksum mismatch causes failure. Reacquire the package instead of bypassing the error. The download-page MD5 does not replace this check or the independent production check of the outer archive SHA-256.
+
+Before synchronizing a host-mode bundle, the installer verifies that every target node has either `sha256sum` or `shasum`; one failed node stops the operation. `AGIONE_SKIP_BUNDLE_VERIFY=1` skips SHA-256 verification only. It is a high-risk switch for troubleshooting a trusted local package and must not be used for formal delivery.
 
 ### 4.4 Execute installation
 
@@ -342,11 +356,13 @@ chmod +x ./agione
 
 Start by copying the minimal YAML for the matching scenario from the [Installation Configuration Reference](./agione-install-config-reference), then add SSH settings, domains, certificates, managed middleware endpoints, or optional service groups as needed.
 
-For repeated reinstall testing where old AGIOne runtime data can be overwritten, use:
+After backing up required data, use the following command only when old AGIOne runtime data must be replaced after prechecks pass:
 
 ```bash
-./agione quick -f --file /root/agione-install.yml
+./agione quick --file /root/agione-install.yml --force-overwrite
 ```
+
+Run this command through the `./agione` launcher in the current complete bundle; do not call `installer/cli.py` directly. The installer binds the target directory, runtime root, configuration fingerprint, and `SHA256SUMS` fingerprint to the precheck and stops old services or removes managed runtime data only after all checks pass. The release directory may be inside `runtime_root`, but it cannot exactly equal `<runtime_root>/core`, `<runtime_root>/database`, or `<runtime_root>/minstore`.
 
 Example with NFS backend/frontend code sharing enabled:
 
@@ -372,8 +388,10 @@ NFS nodes need NFS server / client capability. In offline environments, place OS
 
 For cloud-native delivery, use managed middleware to replace part or all of the self-managed middleware node. A typical flow is:
 
+> **Compatibility gate**: Formal delivery may use only the Alibaba Cloud or Huawei Cloud products, versions, and access modes listed in the [cloud middleware compatibility matrix](./agione-deployment-requirements#_5-1-2-databases-and-middleware). Databases are limited to the MySQL-family RDS MariaDB baselines in that matrix; Dameng, Kingbase, GaussDB, openGauss, OceanBase, TiDB, PostgreSQL, and similar alternatives are unsupported. Treat any other provider, product version, or untested protocol as unsupported even when its endpoint is reachable.
+
 1. Prepare 2 to 8 App / Edge nodes in the same private network, or confirm private connectivity between App / Edge nodes and the managed middleware VPC.
-2. Prepare managed database, Redis, Nacos, Kafka, and object storage resources through the customer cloud console, the optional provider helper, or existing customer resources.
+2. Following the compatibility matrix, prepare the specified managed database, Redis, Nacos, Kafka, and object-storage products and versions through the customer cloud console, the optional provider helper, or existing customer resources.
 3. Generate or merge `/root/agione-install.yml`, including node topology, SSH credentials, middleware endpoints, domain / certificate settings, optional service groups, and default account policy.
 4. Confirm Nacos behavior. If the installer should publish configs, the configured Nacos account must have config publish permission in namespace `agione-prod`. If the customer has already imported all AGIOne configs, set `agione_app.nacos.assume_preimported_configs: true`.
 5. Run `./agione quick --file /root/agione-install.yml` or use TUI installation with the same field values.
@@ -582,7 +600,7 @@ For repeated installation tests, use this sequence:
 ./agione reset-host-mode --dry-run --file /root/agione-install.yml
 ./agione reset-host-mode --remote-dry-run --file /root/agione-install.yml
 ./agione reset-host-mode --yes --file /root/agione-install.yml
-./agione quick -f --file /root/agione-install.yml
+./agione quick --file /root/agione-install.yml
 ```
 
 If only rendered host-mode compose, manifest, MariaDB configuration, or Nginx configuration has changed, a full reinstall is not required. Run:
@@ -645,6 +663,44 @@ You can also run:
 
 This generates a diagnostic report and redacted support bundle for further troubleshooting.
 
-### 4.7 Language and output policy
+### 4.7 Incrementally enable optional services after installation
+
+After a host-mode installation is complete, use `services` to add optional application services without rerunning the full `quick` workflow. From a complete bundle directory that matches the installed CPU architecture, run:
+
+```bash
+./agione services status
+./agione services enable kubem,cloud --dry-run
+./agione services enable kubem,cloud
+```
+
+`--dry-run` performs read-only prechecks without changing remote Compose files, containers, or final configuration. Remove it only after prechecks pass. Supported groups and default placement are:
+
+| Group | Default host-mode placement | Prerequisites |
+| --- | --- | --- |
+| `kubem` | `core_kubem` and `core_codelab` on every App node; `core_iam` on the primary App node only | Corresponding Nacos configuration, ports, assets, and offline images are available |
+| `cloud` | All five cloud provider integration services on every App node | Corresponding Nacos configuration, ports, assets, and offline images are available |
+| `core_isync` | `core_isync` and `influxdb3` on the standby database node only | Host-mode, self-managed MariaDB, and exactly one standby node; replication must be healthy or the standby must meet the safe automatic bootstrap conditions |
+
+When the initial installation does not enable `core_isync`, but the deployment uses host-mode, self-managed MariaDB, exactly one standby node, and does not disable `agione_app.influxdb.enabled`, the installer prepares the `core_isync` / `influxdb3` assets and images on the standby node. It does not create or start their containers or occupy their service ports. `services status` then reports `prepared (installed, not started)`, and a later `services enable core_isync` reuses these offline assets.
+
+Before a real operation, the installer checks the installed final configuration and completion marker, every node's runtime baseline, SSH, existing containers, ports, Nacos configuration, service assets, images, and candidate Compose files. For `core_isync`, it also checks MariaDB replication and prepares private InfluxDB credentials and data directories on the standby node. If replication is absent, automatic bootstrap is allowed only when the standby is empty, read-only, has no replication metadata, and the only health failure is missing replication metadata. Non-empty data, unhealthy replication, role mismatch, or ambiguous state blocks enablement. Missing images are sent only from the verified bundle to nodes that need them; no public image registry is contacted.
+
+When `core_isync` is disabled, the base installation does not import `metis-influx-sync.yml`. During incremental enablement, the installer renders, publishes, and reads back this Nacos configuration only after preparing private InfluxDB credentials. A later startup or initialization failure restores the previous configuration.
+
+A real enable operation starts only the newly requested services and does not recreate existing services. Local and remote transaction locks protect the operation. On failure, only additions from the current transaction are rolled back; after interruption, the next real operation first recovers the unfinished transaction. Re-enabling an already healthy group succeeds as a no-op. The command currently supports enablement only, not disablement, and cannot enable the separate top-level `kube-cluster` module.
+
+After success, run:
+
+```bash
+./agione services status
+./agione health
+./agione ps
+```
+
+The command updates `outputs/final-result-config.yml` and host-mode runtime artifacts in the installed target. Archive the final configuration. If `/root/agione-install.yml` will be used for a later full reinstall, add the new groups to `agione_app.start_optional_app_services` there as well.
+
+Installation and `services enable` share `<runtime_root>/.agione/operation.lock`; do not run them in parallel. The operating system releases the lock when the process exits, and a remaining lock file does not by itself mean the deployment is still locked.
+
+### 4.8 Language and output policy
 
 `quick` uses English output by default for consistent log archiving and automation parsing. The TUI follows the language selected on the welcome page and filters helper logs from the other language. If Chinese text still appears in English mode, preserve the full installation report and support bundle so the issue can be identified as either installer log filtering or container application log output.
