@@ -19,7 +19,7 @@ Single-node installation is the shortest path to get AGIOne running: prepare one
 | Stage | What You Do | Completion Signal |
 | --- | --- | --- |
 | Step 1: Confirm host | Confirm CPU, memory, disk, operating system, and root permission | Host meets [Host Specification](#host-specification) |
-| Step 2: Download bundle | Open the fixed download page and copy `Download URL` and `MD5 URL` | Bundle is downloaded and passes MD5 verification |
+| Step 2: Download bundle | Open the fixed download page and copy `Download URL` and `MD5 URL` | MD5 transfer check passes; production delivery also verifies the outer archive SHA-256 |
 | Step 3: Run quick | Run `./agione quick` or run it with a configuration file | Terminal prints `Installation Result` |
 | Step 4: Browser access | Open `http://<target-host-ip>:18090/modelone/` | The page opens successfully |
 | Step 5: Handover archive | Save the access URL, default accounts, health report, and handover package | Customer or operations team can take over |
@@ -31,7 +31,9 @@ Before installation, complete the [Quick Environmental Investigation](/product/i
 | Term | Plain Explanation |
 | --- | --- |
 | Bundle | AGIOne installation package containing the installer, images, database baseline, and offline runtime assets |
+| MD5 / SHA-256 | MD5 detects download corruption; SHA-256 checks that bundle content matches a trusted delivery record |
 | `quick` | One-click installation command that runs prechecks, unpacks assets, loads images, starts services, and prints the result |
+| `services` | Post-install command for inspecting or incrementally enabling optional application service groups without a full reinstall |
 | `/opt/hyperone` | Default runtime data directory; AGIOne service data is written here or to the data-disk path selected by the installer |
 | `/opt/agione-installer-bundle` | Installer runtime directory that contains post-install reports, rendered configuration, and output files |
 | `/root/agione-install.yml` | Optional configuration file for fixed passwords, domain names, certificates, runtime path, and other delivery parameters |
@@ -62,7 +64,7 @@ Open the fixed download page first, then copy the package link from `Download UR
 
 Fixed download page: [Download link](https://agione.pro/release/download/agione-release-latest)
 
-The page also provides an `MD5 URL`. It is recommended to verify the package after download.
+The page also provides an `MD5 URL`. Verify it after download. MD5 detects download or transfer corruption, but does not authenticate the package publisher. For a production delivery, independently obtain the outer `.tar.gz` SHA-256 digest through an access-controlled delivery channel and compare it as well.
 
 Example:
 
@@ -77,9 +79,21 @@ mkdir -p /opt/hyperone && \
 cd /opt/hyperone && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE" "$AGIONE_RELEASE_URL" && \
 curl -fL -o "$AGIONE_RELEASE_ARCHIVE.md5" "$AGIONE_RELEASE_MD5_URL" && \
-echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c - && \
-AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)" && \
-tar -zxvf "$AGIONE_RELEASE_ARCHIVE" && \
+echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c -
+```
+
+Verify the outer archive SHA-256 for a production delivery:
+
+```bash
+AGIONE_RELEASE_SHA256="<outer-archive-SHA-256-from-a-trusted-delivery-channel>"
+echo "$AGIONE_RELEASE_SHA256  $AGIONE_RELEASE_ARCHIVE" | sha256sum -c -
+```
+
+Extract the archive only after verification passes:
+
+```bash
+AGIONE_RELEASE_DIR="$(tar -tzf "$AGIONE_RELEASE_ARCHIVE" | head -1 | cut -d/ -f1)"
+tar -zxvf "$AGIONE_RELEASE_ARCHIVE"
 cd "/opt/hyperone/$AGIONE_RELEASE_DIR"
 ```
 
@@ -216,7 +230,9 @@ To confirm delivery artifact integrity:
 ./agione verify-bundle
 ```
 
-`verify-bundle` validates the Ed25519 bundle signature and the SHA-256 checksums recorded in `SHA256SUMS`. Run installation only after verification passes. If verification fails, reacquire the package. Use `./agione verify-bundle --allow-unsigned-legacy` or the compatibility environment variable only when the delivery owner confirms the package is a trusted historical unsigned bundle.
+`verify-bundle` validates split-bundle file SHA-256 checksums against `SHA256SUMS`. A missing `SHA256SUMS`, unsafe entry, missing file, or checksum mismatch causes failure. Reacquire the package instead of bypassing the error. The download-page MD5 does not replace this check or the independent production check of the outer archive SHA-256.
+
+`AGIONE_SKIP_BUNDLE_VERIFY=1` skips SHA-256 integrity verification only. It is a high-risk switch for troubleshooting a trusted local package and must not be used for formal delivery.
 
 ---
 
@@ -286,6 +302,8 @@ For general delivery, use the default policy to avoid over-restricting service r
 ./agione help
 ./agione ps
 ./agione health
+./agione services status
+./agione services enable kubem --dry-run
 ./agione restart <service>
 ./agione stop <service>
 ./agione down
@@ -333,6 +351,45 @@ Restart specified services:
 ```
 
 The health check report is used for delivery acceptance and failure troubleshooting. Archive it after installation is complete.
+
+### Incrementally enable optional services after installation
+
+After a single-node installation is complete, optional services can be enabled without rerunning `quick` or recreating existing containers. From a complete bundle directory that matches the installed CPU architecture, inspect status and run the read-only preflight first:
+
+```bash
+./agione services status
+./agione services enable kubem --dry-run
+./agione services enable kubem
+```
+
+Use commas or spaces to preflight or enable multiple groups:
+
+```bash
+./agione services enable kubem,cloud --dry-run
+./agione services enable kubem cloud
+```
+
+Single-node incremental enablement supports these groups:
+
+| Group | Added services | Description |
+| --- | --- | --- |
+| `kubem` | `core_kubem`, `core_codelab`, `core_iam` | Also runs the business initialization required by KUBEM |
+| `cloud` | `core_sgeneral`, `core_saws`, `core_saliyun`, `core_general`, `core_aliyun` | Enables cloud provider integration services |
+
+`core_isync` cannot be enabled incrementally on a single-node deployment. It is available only in host-mode when the primary/standby database prerequisites are met. `services enable` checks installation completion state, final configuration, ports, container names, Nacos configuration, runtime assets, and offline images. Missing images are loaded only from the verified bundle and are never pulled from a public registry. `--dry-run` does not change Compose, containers, or saved configuration.
+
+`services status` reports a group as `enabled`, `disabled`, or `partial`. In a compatible host-mode deployment, `core_isync` may also be reported as `prepared (installed, not started)`. This means its offline assets and images are already on the standby node, but its containers have not been created or started. See [Multi-node Installation](./agione-multi-node-install#_4-7-incrementally-enable-optional-services-after-installation).
+
+A real enable operation starts only the newly requested services and verifies that existing containers are not recreated or restarted. The installer rolls back the current transaction on failure and tries to recover an interrupted transaction before the next real operation. Re-enabling an already healthy group succeeds as a no-op. The command currently supports enablement only, not disablement.
+
+After success, run:
+
+```bash
+./agione services status
+./agione health
+```
+
+The command updates `outputs/final-result-config.yml` in the installed target. Archive this file. If `/root/agione-install.yml` will be used for a later full reinstall, add the newly enabled groups there as well so the reinstall configuration does not fall back.
 
 ### Diagnostic package
 
@@ -417,31 +474,21 @@ If it is confirmed to be a temporary integration or demo environment, follow the
 
 This parameter only skips pre-install checks. During execution, the installer still checks and attempts to use offline assets to install or repair Docker / Compose. Skipping checks may expose resource, port, or runtime issues only after runtime data has been unpacked. It is not recommended for formal delivery.
 
-### Q6: When should force clean installation be used?
+### Q6: When should controlled force reinstall be used?
 
-Use it only when you confirm that old data on the target host can be cleaned and you want to rebuild the environment from the baseline package. Prefer a full quick reinstall:
-
-```bash
-./agione quick -f
-```
-
-If only the unpacked baseline needs to be refreshed, use:
+Use it only after confirming that the existing AGIOne runtime data can be deleted, required data has been backed up separately, and the environment must be rebuilt from the current bundle:
 
 ```bash
-./agione unpackage --force-clean-install
+./agione quick --file /root/agione-install.yml --force-overwrite
 ```
 
-Force installation first backs up existing AGIOne service data, then deletes old runtime data and extracts the new baseline.
+`-f PATH` is an alias for `--file PATH`; it selects the configuration file and never grants overwrite permission. `--force-overwrite` must run through `./agione quick` or the TUI workflow from the current bundle. Direct `unpackage` or `installer/cli.py` execution cannot replace a completed deployment.
 
-### Q7: Where is the force installation backup stored?
+The installer first runs mandatory configuration, topology, resource, runtime-ownership, and bundle-binding checks. It stops old services and removes managed `core`, `database`, and `minstore` runtime data only after every check passes. If authorization cannot be bound securely, runtime data remains unchanged.
 
-Default path:
+### Q7: Does force reinstall back up old data automatically?
 
-```text
-/opt/hyperone/backups/force-restore/<timestamp>/all-service-data/
-```
-
-Force installation does not automatically restore old data. To restore, stop services first and then restore according to the directory.
+No. `--force-overwrite` removes old managed runtime data. Create and verify a backup first as described in [Stateful backup and recovery](#stateful-backup-and-recovery), and record the customer-approved service-stop window and rollback plan. Do not use force reinstall as a routine production upgrade path.
 
 ### Q8: What should I do if Nacos configuration is missing or services fail to start?
 
@@ -484,7 +531,7 @@ cd /opt/hyperone/agione-release-v1.0-XXX
 # 2. Grant execute permission to the entry script
 chmod +x ./agione
 
-# 3. Optional: verify the bundle
+# 3. Verify the bundle (required for formal delivery)
 ./agione verify-bundle
 
 # 4. One-click installation
