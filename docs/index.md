@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "AGIOne"
-  text: "AI Gateway Platform Documentation (Preview)"
-  tagline: Unified AI model management, GPU orchestration, and API gateway
+  name: "AI Computing Platform Documentation Center"
+  text: "Efficient Collaboration Across Compute, Models, and Services"
+  tagline: From Heterogeneous Resource Management to Model Deployment, Publishing, Invocation, and Operational Governance
   actions:
     - theme: brand
       text: Get Started

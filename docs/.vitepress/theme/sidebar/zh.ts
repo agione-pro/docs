@@ -864,6 +864,10 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               text: '单节点多卡多模型部署最佳实践',
               link: '/zh-CN/practices/project/single-node-multi-card-multi-model-deployment',
             },
+            {
+              text: '模型自动下载与推理模板验证最佳实践',
+              link: '/zh-CN/practices/project/model-auto-download-and-inference-template-validation',
+            },
           ],
         },
       ],

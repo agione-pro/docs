@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "AGIOne"
-  text: "AI 网关平台文档（预览版）"
-  tagline: 统一的 AI 模型管理、GPU 纳管与 API 网关
+  name: "智算平台文档中心"
+  text: "算力、模型与服务高效协同"
+  tagline: 从异构资源纳管到模型部署、发布调用与运营治理
   actions:
     - theme: brand
       text: 快速开始

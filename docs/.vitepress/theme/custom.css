@@ -8,3 +8,25 @@
 html[lang="zh-CN"] .VPHomeHero .text {
   max-width: 720px;
 }
+
+html[lang="en"] .VPHomeHero .main {
+  max-width: 1152px;
+}
+
+html[lang="en"] .VPHomeHero .name,
+html[lang="en"] .VPHomeHero .text,
+html[lang="en"] .VPHomeHero .tagline {
+  max-width: 1152px;
+  text-wrap: balance;
+}
+
+html[lang="en"] .VPHomeHero .name,
+html[lang="en"] .VPHomeHero .text {
+  font-size: clamp(32px, 2.8vw, 40px);
+  line-height: 1.12;
+}
+
+html[lang="en"] .VPHomeHero .tagline {
+  font-size: clamp(16px, 1.25vw, 20px);
+  line-height: 1.45;
+}

@@ -2,379 +2,453 @@
 outline: [2, 4]
 ---
 
-# Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice
+# AGIOne Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice
 
-> **IMSS · AGIOne Platform** Multi-Compute Pool Heterogeneous Inference Scheduling **Best Practice**
+> **Applicable scenario:** AGIOne coordinates multiple heterogeneous compute pools for online inference, batch processing, and elastic overflow workloads.
 >
-> *Best Practice Guide for Heterogeneous Inference Scheduling*
+> **Coverage:** Compute pool onboarding · Fault isolation and recovery · Inference engine adaptation · Aggregated scheduling · Operations monitoring
 >
-> **Applicable Scenario:** Hybrid deployment, elastic scheduling, and production operations of self-fine-tuned large models (Qwen-32B) on Huawei Ascend 910B NPU and NVIDIA A10 GPU
+> AGIOne is the platform described in this guide. Compute pool names, topology, model names, and organization information use a synthetic reference environment and do not represent a specific customer or production deployment.
 >
-> **Coverage:** Multi-compute pool access · Fault self-healing · Inference engine optimization · Aggregated model scheduling · Operations monitoring and analysis
->
-> **Version:** V1.0 | **Status:** Official Release
->
-> **IMSS · Huawei Cloud · AGIOne Platform Team**
->
-> 2026
-
----
-
-## Table of Contents
-
----
+> This document provides parameter values and thresholds as initial tuning examples. They are not AGIOne default settings, measured results, service levels, or commitments. Validate and approve them in the target environment before use.
 
 ## Chapter 1: Background and Architecture Overview
 
 ### 1.1 Business Background
 
-This document is intended for enterprises that have deployed self-fine-tuned Qwen-32B models in production. It describes how the IMSS AGIOne platform enables unified multi-compute-pool management, elastic scheduling, and high-availability operations under heterogeneous hardware (Huawei Ascend 910B NPU + NVIDIA A10 GPU) and cross-network-domain conditions (Huawei HCS public cloud, on-premise IDC private cloud, IDC physical servers).
+When compute pools are in separate network zones and use different types of accelerators, AGIOne needs a consistent method for resource onboarding, model deployment, request scheduling, fault isolation, and capacity adjustment.
+
+This document uses three synthetic compute pools:
+
+- **Compute Pool A:** A private-network pool for low-latency online requests and smaller models.
+- **Compute Pool B:** A controlled-link pool for throughput-oriented batch workloads.
+- **Compute Pool C:** A bare-metal or independently managed pool for off-peak batch workloads, elastic expansion, and failover.
+
+A deployment can start with a small validation set, such as `4` instances, and expand toward a larger range, such as `20-36` instances. The service entry point should remain stable while backend capacity changes, but scale operations can still affect queues, caches, and latency. Each deployment must validate the example against its hardware, network, security boundaries, and workload characteristics.
 
 ### 1.2 Core Challenges
 
-* **Hardware heterogeneity:** Ascend 910B and NVIDIA A10 GPU/NPU coexist, with different inference engines (MindIE / vLLM);
-* **Distributed nodes:** Compute resources spread across HCS public cloud, on-premise IDC private cloud, and IDC bare-metal servers, with network isolation;
-* **Ascend node failures trigger automatic OS reinstallation**, requiring automated recovery to ensure inference service continuity;
-* **Instance scale** grows from 4 to 20-36, with horizontal scaling not affecting upstream callers;
-* **Multi-period differentiated loads** (nightly batch reports, daytime low-traffic, daytime batch reports) require scenario-based resource allocation;
-* **Variable inference task durations** cause instance load imbalance with simple round-robin load balancing;
-* **Call anomalies** require correlated views of throughput and NPU/GPU instance load for rapid root cause identification.
+- **Heterogeneous resources:** Different accelerators require different drivers, runtimes, device plugins, communication libraries, and inference engines.
+- **Distributed nodes:** Compute resources can span private cloud, hosted compute, and bare-metal environments with different network paths and fault domains.
+- **Node rebuild:** Some environments automatically rebuild the operating system after a node failure. Registration, storage mounting, service startup, and traffic restoration must therefore be repeatable.
+- **Capacity growth:** Instance counts can grow from a small validation set to dozens of instances. Backend changes must not require callers to replace the service endpoint.
+- **Workload periods:** Online requests, daytime batch workloads, and off-peak full-batch workloads require different resource allocations.
+- **Uneven task duration:** Simple round-robin distribution can create load imbalance when inference tasks have different input and output lengths.
+- **Correlated troubleshooting:** Request throughput, queue state, routing weights, instance load, and device metrics must be reviewed together.
+- **Evidence constraints:** Performance, recovery, and scaling thresholds must come from tests in the target environment. Example values must not become service commitments.
 
 ### 1.3 Overall Architecture
 
-The IMSS AGIOne platform adopts a "Central Control + Edge Execution" architecture, divided into three layers: control plane, scheduling plane, and execution plane.
+The AGIOne reference design uses a central-management and distributed-execution pattern.
 
-| **Architecture Layer** | **Core Responsibilities and Components** |
-|---|---|
-| Control Plane (HCS Private Cloud) | AGIONE Management Service: API Gateway, core scheduler, model publishing, billing and monitoring. Exposes model API externally, manages registration and heartbeats for all compute clusters. |
-| Scheduling Plane (Per Compute Cluster) | Each compute cluster (HCS NVIDIA A10, ModelArts Lite Ascend, IDC Ascend physical machines) independently deploys K8s base services, scheduling components, and monitoring components, exposing task-build APIs to the control plane. |
-| Execution Plane (Inference Instances) | MindIE containers (Ascend 910B) or vLLM containers (NVIDIA A10), loading Qwen-32B model weights and providing OpenAI-compatible inference interfaces. |
-| Aggregated Scheduling Layer | Aggregated Models encapsulate multiple inference instances by scenario (full / partial / majority), providing dynamic weighted load balancing; RPM, TPM, TTFT, Running Tasks metrics are collected in real time to drive adaptive routing policy adjustments. |
+| Architecture layer | Primary responsibilities and reference components |
+| --- | --- |
+| AGIOne management plane | Maintains compute pools, clusters, models, templates, permissions, and audit records. It can also provide an API gateway, model publication, metering, and a unified management entry point when those modules are enabled. |
+| Scheduling plane | Runs in or near each compute pool, registers resource information, receives build or deployment tasks, and selects backend instances by labels, health, queue state, and policy constraints. |
+| Execution plane | Runs inference instances, loads approved model weights and runtimes, and exposes a controlled inference interface. An OpenAI-compatible interface can be used when supported by the selected engine. |
+| Aggregated scheduling layer | Combines compatible backend instances behind one logical model ID and adjusts distribution by capacity, health, running tasks, and policy constraints. |
+| Observability plane | Collects request, scheduling, instance, node, and device metrics to support troubleshooting and capacity decisions. |
+| Security and governance plane | Manages identities, certificates, keys, network policies, log retention, and change approvals. |
 
-> The control plane is deployed on HCS private cloud, connected to ModelArts Lite nodes via dedicated lines and to IDC physical machines via internal routing. NVIDIA A10 clusters are accessed through HCS VPC. All nodes are unified under the AGIONE multi-cluster view.
+> The AGIOne management plane can connect to compute pools through private networks, controlled dedicated links, or approved site-to-site routes. The reference architecture describes functional boundaries and does not prescribe actual sites, cloud services, device models, or internal endpoints.
 
 ### 1.4 Network Connectivity Matrix
 
-| **Node Type** | **Connection to AGIONE Control** | **Notes** |
-|---|---|---|
-| HCS NVIDIA A10 Servers | HCS VPC internal direct connection | Lowest latency; recommended for low VRAM, deploying small models like Qwen3.5-9B for internal Q&A. |
-| ModelArts Lite Ascend 910B | Dedicated network connection | Stable exclusive bandwidth; suitable for batch inference |
-| IDC Ascend 910B Physical Servers | Internal switch / router connection | Bare-metal performance; recommended for nightly full-batch processing |
+| Synthetic compute pool | Reference connection | Applicable workload | Design requirements |
+| --- | --- | --- | --- |
+| Compute Pool A | Private connection in one security zone | Low-latency online inference and smaller models | Verify end-to-end latency, fault domains, and capacity limits. |
+| Compute Pool B | Controlled dedicated or equivalent connection | Throughput-oriented batch processing | Verify exclusive bandwidth, data transfer policies, and task retry behavior. |
+| Compute Pool C | Approved internal or site-to-site route | Off-peak full-batch processing, elastic overflow, and failover | Verify route convergence, certificates, fallback, failback, and bare-metal recovery behavior. |
 
----
+No compute pool should expose management ports or inference-instance ports directly. A security owner must approve the network, identity, and data-flow design for the target environment.
 
 ## Chapter 2: Multi-Compute Pool Access and Management
 
-### 2.1 Cluster Management Strategy
+### 2.1 Cluster Onboarding Strategy
 
-The AGIONE management service adopts a "multi-pool multi-cluster" model, unifying management of three compute environments while each cluster maintains an independent K8s control plane, interacting with AGIONE solely through standardized task-build APIs.
+Each compute pool can maintain an independent Kubernetes control plane and communicate with the AGIOne management plane through a standardized agent or task-building API. Complete these checks before onboarding:
 
-#### 2.1.1 NVIDIA A10 Cluster Access (HCS VPC Mode)
+1. Confirm compatibility between the accelerator, driver, runtime, device plugin, and operating system versions.
+2. Confirm network paths, name resolution, time synchronization, and certificate trust between the management plane and the compute pool.
+3. Confirm the node initialization method, image source, artifact verification, and rollback plan.
+4. Confirm storage locations and access permissions for model weights, caches, logs, and backups.
+5. Use a test workload without production data to validate registration, scheduling, startup, invocation, and deletion.
 
-1. Create a K8s cluster within HCS VPC and deploy the GPU scheduling plugin (nvidia-device-plugin).
-2. Install AGIONE scheduling and monitoring components within the cluster.
-3. AGIONE scheduling component registers cluster information (cluster ID, GPU model, available GPU count, network endpoint) with the control plane.
-4. The control plane issues heartbeat detection tasks (every 60 seconds) to continuously monitor cluster health.
+#### 2.1.1 Compute Pool A: Private-Network Online Service Pool
 
-#### 2.1.2 ModelArts Lite Ascend 910B Access (Dedicated Line Mode)
+1. Create a Kubernetes cluster in the approved private network and install the device plugin for Accelerator Type A.
+2. Deploy the scheduling, monitoring, and log collection components.
+3. Register the cluster ID, accelerator family, available device count, and controlled service endpoint with the AGIOne management plane.
+4. Configure a heartbeat. An initial interval of `60` seconds can be used for validation and then adjusted from measured detection and recovery time.
+5. Use a small test model to verify resource discovery, instance startup, health checks, and online request routing.
+6. Onboard online workloads gradually after the validation gates pass.
 
-1. Deploy K8s base services on ModelArts Lite Server cloud hosts and install the Ascend Device Plugin.
-2. Deploy AGIONE scheduling component, configuring the dedicated network endpoint for communication with AGIONE control.
-3. Configure NPU monitoring component (npu-exporter) to collect NPU utilization, VRAM, and temperature metrics.
-4. Register the cluster to AGIONE, annotating node attributes (hardware type: ascend-910b64g).
+#### 2.1.2 Compute Pool B: Controlled-Link Batch Service Pool
 
-#### 2.1.3 IDC Ascend 910B Physical Server Access (Internal Routing Mode)
+1. Deploy Kubernetes base services on the hosted or independently managed nodes and install the driver and device plugin for Accelerator Type B.
+2. Configure the controlled management endpoint and verify bandwidth, retry, timeout, and large-file transfer policies.
+3. Deploy an approved device-metrics exporter to collect utilization, device memory, temperature, and device error information.
+4. Register the cluster and add generic resource labels such as `accelerator-family=type-b` and `workload-class=batch`.
+5. Configure batch queues, task priorities, and resource limits.
+6. Use synthetic data to validate long-running tasks, failure retries, result retention, and isolation from online workloads.
 
-1. After installing the OS on the physical server, execute the node initialization script provided by AGIONE (install Docker, K8s kubelet, Ascend driver).
-2. Configure routing reachability to AGIONE control via internal switches and routers.
-3. Deploy AGIONE scheduling and monitoring components and complete cluster registration.
-4. Mount critical configuration data and persistent model cache to the data disk (separate from the system disk).
+#### 2.1.3 Compute Pool C: Bare-Metal Elastic and Failover Pool
+
+1. Install the approved operating system and run a reviewed node-initialization script to install the container runtime, Kubernetes node components, and accelerator driver.
+2. Confirm that Compute Pool C uses an independent fault domain and does not share a single point of failure with the primary pool.
+3. Configure an approved internal or site-to-site route to the management plane and verify certificate status with read-only probes.
+4. Deploy the scheduling, monitoring, and log collection components, and complete cluster registration.
+5. Mount persistent model caches and critical recoverable data on storage that is independent of the system disk.
+6. Run a failover exercise and record trigger conditions, failback conditions, the manual termination method, and rollback results.
+7. Do not mark Compute Pool C as an available production backend until the exercise is complete.
 
 ### 2.2 Cluster Resource Labels and Scheduling
 
-AGIONE uses node Labels for scheduling control, ensuring that requests for different aggregated models are routed to the appropriate compute pool.
+Use stable and auditable labels to describe resource capabilities. Example values must remain generic and must not contain customer, project, location, or internal asset names.
 
-| **Label Key** | **Example Value** | **Meaning** | **Recommended Scheduling Scenario** |
-|---|---|---|---|
-| hardware-type | ascend-910b64g / nvidia-a1024g | Hardware type | Route by inference engine |
+| Label key | Synthetic example values | Purpose |
+| --- | --- | --- |
+| `accelerator-family` | `type-a` / `type-b` | Distinguishes accelerator families. |
+| `memory-class` | `class-1` / `class-2` | Describes available device-memory classes. |
+| `workload-class` | `online` / `batch` / `overflow` | Distinguishes workload types. |
+| `failure-domain` | `zone-a` / `zone-b` | Prevents replicas from being concentrated in one fault domain. |
+| `environment` | `validation` / `production` | Separates validation and production workloads. |
 
----
+Example scheduling selector:
 
-## Chapter 3: Ascend Node Fault Self-Healing Mechanism
+```yaml
+accelerator-family: type-a
+memory-class: class-2
+workload-class: online
+failure-domain: zone-a
+environment: production
+```
+
+A scheduling policy must check labels, remaining capacity, health, quotas, and template constraints. Labels describe capabilities, but they do not replace runtime validation.
+
+## Chapter 3: Node Fault Isolation and Recovery
 
 ### 3.1 Fault Trigger and Recovery Process
 
-When an Ascend 910B node experiences hardware failure, the Huawei Cloud node failure trigger mechanism automatically performs OS reinstallation (Re-image). The AGIONE platform constructs an end-to-end rapid self-recovery process around this mechanism.
+Some infrastructure environments can automatically rebuild a failed node. AGIOne should treat that mechanism as one step in a controlled recovery workflow rather than as proof that the service has recovered.
 
-> **Self-Recovery Process (End-to-End Target):** Node failure alert → Automatic traffic removal → OS reinstallation (~10 min) → Base services rapid recovery (<5 min) → Inference service startup (~<15 min) → Health check passed → Automatic traffic reinstatement
+Use the following state flow:
+
+1. The monitoring system detects consecutive anomalies and creates a traceable event.
+2. The scheduling plane stops assigning new requests to the affected instance.
+3. The system waits for in-flight requests, retries them, or returns a controlled failure according to policy.
+4. The operations system repairs or rebuilds the node through an approved method.
+5. After the node registers again, verify the driver, device, storage, network, and inference service.
+6. After the health criteria are satisfied, restore traffic gradually through a controlled process.
+7. If a metric becomes abnormal, return the instance to isolation and keep a manual takeover path available.
+
+An initial exercise can use the following non-binding recovery budget: operating-system rebuild in approximately `10` minutes, base-service recovery in less than `5` minutes, and inference-service startup in less than `15` minutes. These values are test objectives only. Heartbeat intervals, failure counts, actual recovery time, and traffic ramp rates must come from exercises in the target environment.
 
 ### 3.2 Base Image Creation Specification
 
-After node initialization, create a base image immediately. Include the operating system configuration, drivers, Kubernetes components, and the AGIONE Agent in the image to reduce recovery time.
+| Image layer | Requirements and technical content |
+| --- | --- |
+| Operating system layer | Pin a supported long-term-support version and record security patches, time zone, DNS, and hardening information. |
+| Driver and firmware layer | Pin the accelerator driver, firmware, and communication-library versions and record compatibility results. |
+| Container runtime layer | Pin Docker or containerd, the Kubernetes node component, and the device plugin. Do not use unreviewed floating tags. |
+| AGIOne component layer | Include only the approved monitoring agent, log collector, and node-registration component. Read credentials from the approved secret mechanism. |
+| Inference engine layer | Pin Engine A or Engine B, the Python environment, and dependencies. Keep model weights outside the image and mount them at runtime. |
 
-| **Image Layer** | **Contents** |
-|---|---|
-| OS Base Layer | EulerOS / Ubuntu 22.04 LTS + security patches + timezone / DNS configuration |
-| Ascend Driver Layer | CANN toolkit, Ascend driver, firmware version locked |
-| Container Runtime Layer | Docker CE, containerd, K8s kubelet (version locked), nvidia/ascend device plugin |
-| AGIONE Component Layer | Monitoring component, log collector, node registration script (auto-register to control plane) |
-| Inference Engine Layer (Optional) | MindIE base image / vLLM base image (including Python environment, dependency packages; model weights mounted via data disk) |
+Before publishing an image, generate an artifact inventory, checksums, vulnerability scan results, and rollback instructions.
 
 ### 3.3 Critical Data Storage Specification
 
-* **Model weight files:** Stored on the data disk (independent from the system disk), e.g., mount path `/data/models/<model-name>/`. OS reinstallation does not affect the data disk.
-* **K8s cluster configuration** (kubeconfig, etcd snapshots): Stored in the data disk-mapped folder.
+- **Model weights:** Store weights in a controlled model repository or independent data volume. A generic mount path such as `/data/models/<model-name>/` can be used after access control and integrity verification.
+- **Cluster configuration:** Store protected configuration backups and, where applicable, encrypted `etcd` snapshots outside the system disk. Do not publish a real `kubeconfig` or internal object name.
+- **AGIOne configuration:** Use access-restricted and encrypted backups. Do not disclose real internal paths or object names in customer-facing documentation.
+- **Secrets and certificates:** Use an approved key-management mechanism. Do not include secrets in images, scripts, or examples.
+- **Logs and metrics:** Set retention periods, access permissions, and redaction rules according to data classification.
+- **Recovery evidence:** Retain the exercise time, environment, version, results, and unresolved issues.
 
-### 3.4 Traffic Removal and Auto-Recovery Linkage
+### 3.4 Traffic Removal and Recovery Coordination
 
-1. After AGIONE heartbeat detection fails 2 times (60 seconds), the node is marked as NotReady, and the aggregated scheduling layer automatically sets that node's weight to 0, stopping new request routing to that node.
-2. After node reinstallation completes, it automatically connects to the cluster.
-3. After the control plane verifies registration information, it triggers a health check probe (HTTP /health interface); after 3 consecutive successes, the node weight is restored to the default value.
-4. The aggregated scheduling layer resumes routing requests to that node, and the operations monitoring panel automatically updates the node status.
+Design traffic control as an explicit state machine instead of relying on one probe result. The following values are reference parameters, not defaults:
 
----
+1. `Healthy`: The instance receives normal traffic and reports a heartbeat every `60` seconds.
+2. `Suspect`: After `2` consecutive heartbeat failures, limit new traffic and continue evidence collection.
+3. `Draining`: Set the scheduling weight to `0`, stop new requests, and wait for in-flight tasks or apply controlled retries.
+4. `Isolated`: Fully isolate the instance while the node is repaired or rebuilt.
+5. `Registering`: After rebuild, verify cluster registration, driver, storage, network, and service-process state.
+6. `Warming`: Call the controlled `HTTP /health` endpoint. After `3` consecutive successes, send test traffic at a low weight.
+7. `Healthy`: Increase the weight gradually and return to normal operation after the recovery gates are satisfied.
 
-## Chapter 4: Inference Engine Deployment and Performance Baseline
+Record the trigger, operator, policy version, and rollback result for each state change.
 
-### 4.1 MindIE Inference Engine (Ascend 910B)
+## Chapter 4: Inference Engine Adaptation and Performance Baseline
+
+### 4.1 Inference Engine for Accelerator Type A
 
 #### 4.1.1 Base Image Construction
 
-* Base image: Customized based on the CANN official image (mindspore/mindie:latest-ascend910b).
-* Install MindFormers inference framework required by Qwen-32B, with locked versions to prevent dependency drift.
-* Pre-load the Tokenizer into the image to avoid first-start network download latency.
-* Embed startup scripts in the image, supporting model path, port, and concurrency parameter injection via environment variables.
+- Start from an approved Engine A image or internal artifact repository. Pin the image digest or an explicit version.
+- Install the driver interface, communication library, and inference-framework dependencies for Accelerator Type A.
+- Preload the tokenizer only when the model license and artifact policy permit it. Avoid an unreviewed network download during first startup.
+- Inject the model path, service port, parallelism, concurrency, and context parameters through controlled configuration.
+- Do not store customer models, production data, credentials, or internal endpoints in the image.
+- Use a representative test model to verify startup, shutdown, health checks, log output, and multi-device communication.
 
-#### 4.1.2 Key Parameter Optimization
+#### 4.1.2 Key Parameters
 
-| **Parameter** | **Recommended Value / Description** |
-|---|---|
-| max-seq-len | Set according to the maximum business context length; do not exceed VRAM limit |
-| max-iter-times | Output token count |
-| max-input-token-len | Output token count |
-| world-size | Ascend 910B single-machine 8-card can be set to 8; cross-machine tensor parallelism requires HCCL configuration |
-| block-size | 16 (PagedAttention KV Cache block size; recommended 16 or 32) |
-| max-batch-size | 0.90 (reserve 10% VRAM margin to prevent OOM) |
+| Reference parameter | Example starting value | Adjustment basis |
+| --- | --- | --- |
+| `max-seq-len` | Target maximum context length | Do not exceed the model, engine, or device-memory limit. |
+| `max-input-token-len` | Target maximum input length | Validate with the actual prompt-length distribution. |
+| `max-iter-times` | Target maximum output length | Align with the API limit and termination policy. |
+| `world-size` | Number of participating devices, such as `8` | Match process count, device count, and communication topology. |
+| `block-size` | `16` or `32` when supported | Compare device-memory fragmentation and throughput. |
+| `max-batch-size` | Derived from the stress test | Increase in steps and stop before latency or memory gates fail. |
+| Memory-utilization limit | `0.90` as a test starting point | Retain headroom for cache growth, monitoring, and recovery. |
 
-### 4.2 vLLM Inference Engine (NVIDIA A10)
+### 4.2 Inference Engine for Accelerator Type B
 
 #### 4.2.1 Base Image Construction
 
-* Base image: Based on vllm-project/vllm-openai official image, with Qwen-32B adaptation patches.
-* Enable FlashAttention-2 acceleration kernels (A10 supports BF16/FP16 mixed precision).
-* Configure CUDA environment variables to enable NCCL multi-machine communication (used when instances are distributed across machines).
+- Start from an approved Engine B image that supports Accelerator Type B.
+- Pin dependency versions and retain license, source, patch, and vulnerability scan records.
+- Enable optimized attention kernels only when the accelerator, precision mode, and engine version support them.
+- Configure the approved multi-device communication library when an instance spans multiple devices or nodes.
+- Add the device plugin, runtime, communication library, and engine versions to the compatibility matrix.
+- Validate online and batch workloads with the same test protocol.
 
-#### 4.2.2 Key Parameter Optimization
+#### 4.2.2 Key Parameters
 
-| **Parameter** | **Recommended Value / Description** |
-|---|---|
-| dtype | bfloat16 (A10 supports BF16; precision-speed balance is better than fp16) |
-| max-model-len | Set according to the maximum business context length; do not exceed VRAM limit |
-| tensor-parallel-size | Parallel execution; qwen3.5-9b set to 2 |
-| gpu-memory-utilization | 0.90 |
-| max-num-seqs | 256 (maximum concurrent sequences; adjust according to GPU VRAM) |
-| quantization | awq or gptq (AWQ INT4 recommended; VRAM halved, controllable precision loss) |
+| Reference parameter | Example starting value | Adjustment basis |
+| --- | --- | --- |
+| `dtype` | `bfloat16` or `float16` | Select from device support and the approved accuracy evaluation. |
+| `max-model-len` | Target maximum context length | Do not exceed model, engine, or device-memory limits. |
+| `tensor-parallel-size` | `2` for a two-device validation profile | Match model size, device count, and interconnect bandwidth. |
+| `gpu-memory-utilization` | `0.90` | Retain enough headroom to avoid out-of-memory failures. |
+| `max-num-seqs` | `256` as a stress-test candidate | Reduce it when long contexts or queue latency exceed the gate. |
+| `quantization` | `awq` or `gptq` when supported | Confirm model quality, engine compatibility, and license conditions. |
 
-### 4.3 Performance Stress Testing Method (evalscope)
+Type B must use the same metric definitions and evidence template as Type A. Do not set concurrency, throughput, or scheduling weights from theoretical compute capacity alone.
 
-Use the evalscope tool to simulate upstream business requests and evaluate single-instance performance baselines. Stress testing should simulate real business context length distribution as much as possible, rather than fixed short texts.
+### 4.3 Performance Test Method
 
-#### 4.3.1 Stress Testing Scenario Configuration
+Use an approved load-testing tool to simulate the target request distribution. The test report must record the environment, tool version, model, precision, input length, output length, concurrency, duration, and failure-retry policy. Retain the raw result files and the exact command or scenario configuration.
 
-| **Stress Test Scenario** | **Prompt Token Length** | **Max Output Token** |
-|---|---|---|
-| Short text | < 1k | < 1k |
-| Medium text | < 10k | 5k |
-| Long text | < 32k | 10k |
+#### 4.3.1 Test Scenario Configuration
 
-#### 4.3.2 Key Performance Indicator Target Reference
+| Test scenario | Prompt-token reference | Maximum output-token reference | Primary purpose |
+| --- | --- | --- | --- |
+| Short text | Less than `1k` | Less than `1k` | Establish a single-request baseline and verify streaming and errors. |
+| Medium text | Less than `10k` | `5k` | Test step concurrency and common business-length requests. |
+| Long text | Less than `32k` | `10k` | Verify device memory, queue growth, and long-context latency. |
+| Mixed workload | Use the target distribution | Use the target distribution | Run online and batch requests together to verify resource isolation. |
+| Fault scenario | Use a representative request | Use a representative request | Isolate an instance or node and verify retry, traffic removal, and recovery. |
+| Stability scenario | Use the target distribution | Use the target distribution | Observe resource leaks, queue growth, and performance drift over time. |
 
-| **Indicator** | **Meaning** | **Ascend 910B Reference** | **NVIDIA A10 Reference** |
-|---|---|---|---|
-| TTFT (Time To First Token) | Time from request submission to first Token received | < 2.5s (FP16) | < 1.8s (AWQ INT4) |
-| TPS (Tokens/s) | Tokens generated per second (single instance) | ~180 t/s (FP16 TP8) | ~120 t/s (INT4 TP4) |
-| RPM (Requests/Minute) | Requests processed per minute per instance | ~20~40 RPM | ~30~60 RPM |
-| TPM (Tokens/Minute) | Tokens processed per minute per instance | ~8,000~15,000 | ~6,000~12,000 |
-| GPU Utilization | NPU/GPU compute utilization under inference load | > 70% (healthy) | > 65% (healthy) |
+#### 4.3.2 Key Performance Metrics and Evidence
 
----
+The following table provides an illustrative tuning baseline. It does not report measured results for a product or customer environment.
+
+| Metric | Meaning | Type A example | Type B example | Evidence required before publication |
+| --- | --- | --- | --- | --- |
+| TTFT | Time from request submission to the first token. | `< 2.5 s` under an FP16 profile | `< 1.8 s` under an AWQ INT4 profile | Record percentiles, load, model, hardware, precision, and version. |
+| TPS | Tokens generated per second by one instance. | Approximately `180 tokens/s` under an FP16/TP8 profile | Approximately `120 tokens/s` under an INT4/TP4 profile | Record input/output lengths, parallelism, batching, and concurrency. |
+| RPM | Requests completed per minute by one instance. | `20-40 RPM` | `30-60 RPM` | Define request length, timeout, retry, and success criteria. |
+| TPM | Tokens processed per minute by one instance. | `8,000-15,000 TPM` | `6,000-12,000 TPM` | Preserve raw token counts and the calculation method. |
+| Device utilization | Accelerator compute utilization under load. | `> 70%` as a test candidate | `> 65%` as a test candidate | Record the sampling interval and monitoring source. |
+| TPOT | Average time per generated token after the first token. | Derive from the target test | Derive from the target test | Record the statistical method and outlier handling. |
+| Success and error rate | Percentage of completed and failed requests. | Derive from the target test | Derive from the target test | Define how timeouts, retries, cancellations, and error types are counted. |
+
+Scheduling weights for different compute pools must use results from the same protocol. Replace every example value with target-environment evidence before it is presented as a performance target, service level, or default capability.
 
 ## Chapter 5: Aggregated Model and Dynamic Scheduling Strategy
 
 ### 5.1 Aggregated Model Design
 
-The Aggregated Model is the core abstraction of the AGIONE platform: it logically represents a unified model while physically consisting of multiple backend inference instances. Upstream callers do not need to perceive the distribution of backend instances; they interact with the aggregated model just like an ordinary model.
+In AGIOne, an aggregated model provides one logical model ID and service entry point for multiple compatible inference instances. Callers do not need to know the backend distribution. Ensure that:
 
-### 5.2 Three-Tier Business Scenario Aggregated Model Configuration
+- Backend instances use compatible models, versions, tokenizers, and interface protocols.
+- The scheduling policy recognizes compute pools, fault domains, health, and workload classes.
+- Backend changes, weight adjustments, and failover operations have audit records and rollback methods.
+- The aggregated entry point does not expose internal instance addresses or customer network information.
 
-#### 5.2.1 Small-Part-Load Aggregated Model (Daytime API Support)
+### 5.2 Three Synthetic Workload Configurations
 
-| **Configuration Item** | **Recommended Value / Description** |
-|---|---|
-| Aggregated Model ID | Externally exposed independent model ID |
-| Backend Instance Count | 3 ~ 5 |
-| Load Balancing Strategy | Experience + round-robin balancing (adjusted in real time based on Running Tasks count) |
-| Timeout Configuration | Single request timeout 3000s (for long input/output requests) |
-| QPS Limit | Rate limiting recommended (e.g., 20 QPS) to prevent burst traffic from overwhelming a few instances |
-| Applicable Period | Working days, e.g., 08:00 ~ 20:00 daytime business calls |
+#### 5.2.1 Low-Latency Online Service
 
-#### 5.2.2 Majority-Load Aggregated Model (Daytime Batch Reports)
+| Configuration item | Reference example and usage condition |
+| --- | --- |
+| Backend instances | Start with `3-5` verified instances. Adjust from actual peak load and redundancy requirements. |
+| Preferred compute pool | Select a pool with verified network latency and stability. |
+| Scheduling policy | Use weighted round-robin combined with running-task count, health, and latency percentiles. |
+| Request timeout | `3000 s` is a long-request reference example, not a recommended default. Set the smallest value that supports the validated request profile. |
+| Rate limit | Start from a tested value such as `20 QPS` and verify queue and error behavior. |
+| Active period | Use the observed online-service period rather than publishing a customer's work schedule. |
+| Degradation | If no healthy backend is available, return an explicit error or use an approved fallback pool. |
 
-| **Configuration Item** | **Recommended Value / Description** |
-|---|---|
-| Aggregated Model ID | Externally exposed independent model ID |
-| Backend Instance Count | 10 ~ 30 |
-| Load Balancing Strategy | Experience + round-robin balancing (adjusted in real time based on Running Tasks count) |
-| Timeout Configuration | Single request timeout 3000s (long text generation) |
-| Concurrency Control | Maximum Running Tasks per instance should not exceed 99% of the stress test baseline; otherwise, requests are queued for balanced distribution |
-| Applicable Period | Working days 09:00 ~ 20:00 batch report generation |
+#### 5.2.2 Throughput-Oriented Batch Processing
 
-#### 5.2.3 Full-Load Aggregated Model (Nighttime Full-Batch Processing)
+| Configuration item | Reference example and usage condition |
+| --- | --- |
+| Backend instances | Use a tested range such as `10-30` instances when the workload and available capacity justify it. |
+| Preferred compute pool | Select a pool with verified throughput, storage, and long-task stability. |
+| Scheduling policy | Combine weighted distribution, running tasks, available capacity, task priority, and estimated completion time. |
+| Request timeout | `3000 s` can be evaluated for long generation tasks; validate cancellation and retry behavior. |
+| Concurrency limit | Keep the operating point below the failure boundary from the stress test. Do not use `99%` without evidence. |
+| Data requirements | Process only approved data and record input and output retention policies. |
 
-| **Configuration Item** | **Recommended Value / Description** |
-|---|---|
-| Aggregated Model ID | Externally exposed independent model ID |
-| Backend Instance Count | All instances |
-| Load Balancing Strategy | Experience + round-robin balancing (adjusted in real time based on Running Tasks count) |
-| Timeout Configuration | Single request timeout 3000s (long text generation) |
-| Batch Processing Optimization | Enable request batching mode to improve TPS |
-| Applicable Period | Daily 20:00 ~ next day 08:00 nighttime batch tasks |
+#### 5.2.3 Off-Peak Full-Batch, Elastic Overflow, and Failover
 
-### 5.3 Dynamic Distribution Scheduling Mechanism
+| Configuration item | Reference example and usage condition |
+| --- | --- |
+| Backend instances | Use all verified available instances only when online-service redundancy remains protected. |
+| Activation condition | Enter the off-peak window, reach a verified capacity threshold, or confirm a primary-pool failure. |
+| Backend requirements | The standby pool has passed model, network, permission, storage, and performance validation. |
+| Scheduling policy | Enable batching when supported, start failover with a small percentage of traffic, and increase after gates pass. |
+| Request timeout | Evaluate the `3000 s` reference example only for validated long-running tasks. |
+| Failback condition | The primary pool has recovered, passed stability observation, and has no unresolved alerts. |
 
-The AGIONE dynamic scheduler updates routing weights every 1 minute based on real-time metrics from each backend instance, solving the instance load imbalance problem caused by variable inference task durations.
+### 5.3 Dynamic Distribution Scheduling
 
-> **Weight Calculation Formula (Simplified):**
->
-> *Weight(i) = BaseCapacity(i) × HealthScore(i) / (RunningTasks(i) + 1)*
->
-> * **BaseCapacity:** Instance stress-test TPM baseline normalized value (reflecting hardware performance differences)
-> * **HealthScore:** 0.0 ~ 1.0 (Success Rate); drops to 0 when anomalous
-> * **RunningTasks:** Current number of requests being processed (collected in real time)
+The following simplified formula can be used as a reference algorithm for dynamic weights:
 
----
+> `Weight(i) = BaseCapacity(i) × HealthScore(i) / (RunningTasks(i) + 1)`
 
-## Chapter 6: Horizontal Scaling and Shrinking Best Practices
+- `BaseCapacity`: A normalized TPM or throughput baseline from the same test protocol.
+- `HealthScore`: A value from `0.0` to `1.0`; set it to `0` when the instance is isolated.
+- `RunningTasks`: The current number of requests handled by the instance.
 
-### 6.1 Scale-Out Operation Process (Without Affecting Online Business)
+Dynamic scheduling can also use these signals:
 
-1. Prepare a new node in the target compute cluster (any type) and execute base image initialization.
-2. After the new node starts, it automatically registers with the control plane at weight 0 (not receiving traffic).
-3. Create a new inference instance in the AGIONE management console and associate it with the target aggregated model (e.g., only add to the "Full-Load" aggregated model, not affecting the "Small-Part-Load" endpoint).
-4. After the inference service passes the health check, add the instance to the aggregated model's backend list; weight linearly increases from 0 to baseline (warm-up time approximately 5 minutes to prevent cold-start impact).
-5. After confirming the new instance's RPM and TTFT indicators are normal in the operations monitoring panel, scale-out is complete.
+- Capacity baselines from the same test protocol.
+- Current health and consecutive error conditions.
+- Running tasks and queue length.
+- Latency, success-rate, and error-rate trends.
+- Quotas, fault domains, and data-residency constraints.
 
-> During scale-out, the aggregated model endpoint URL remains unchanged; upstream callers are unaware. It is recommended to perform scale-out during business trough periods (e.g., nighttime) for sufficient verification.
+The formula is a reference, not a complete production policy. Add queue latency, quotas, fault domains, and data-residency constraints. Set limits, cooldown periods, and change rates for scheduling weights. Record the input signals, policy version, and result of each adjustment. Automated policies must provide manual pause and rollback capabilities.
 
-### 6.2 Scale-In Operation Process (Graceful Shutdown)
+An evaluation interval of `1` minute can be used as an initial parameter. Shorten or lengthen it only after checking metric freshness, routing oscillation, and recovery speed.
 
-1. Mark the target instance as "disabled" in the AGIONE console; the scheduler stops routing new requests to that instance.
-2. Wait for the instance's Running Tasks to drop to 0 (maximum wait time = request timeout × 2).
-3. After Running Tasks reaches 0, remove the instance from the aggregated model's backend list and destroy the inference container.
-4. If the node where the instance resides also needs to be decommissioned, after all model instances on that node have no tasks running, execute an automation script to trigger K8s node drainage (kubectl drain).
+## Chapter 6: Horizontal Scaling Best Practices
 
----
+### 6.1 Scale-Out Process
+
+1. Confirm insufficient capacity through consistent monitoring data, not one instantaneous metric.
+2. Check quotas, devices, images, models, networks, storage, and license conditions in the target compute pool.
+3. Prepare the node from the approved base image and register it with an initial scheduling weight of `0`.
+4. Create the inference instance and associate it with the intended aggregated model without sending normal business traffic.
+5. Run startup, model loading, `HTTP /health`, and representative test-request checks.
+6. Start warm-up with a small percentage of traffic. A `5` minute warm-up is a reference value that must be adjusted from model-loading and cache behavior.
+7. Increase traffic gradually after approved gates pass, and record RPM, TTFT, error rate, queue, and resource metrics before and after scaling.
+8. If a gate fails, set the weight back to `0`, isolate the instance, and roll back the change.
+
+Scale-out can affect queues, caches, and backend distribution. Do not promise that it has no effect on callers. Define acceptable impact and rollback conditions before the change.
+
+### 6.2 Scale-In Process
+
+1. Confirm that remaining capacity covers the target load and approved redundancy requirements.
+2. Put the target instance in the draining state, set its weight to `0`, and stop sending new requests to it.
+3. Wait for running tasks to reach `0`. A maximum wait of `request-timeout × 2` is a reference guard and must be bounded by the failure policy.
+4. Remove the instance from the aggregated backend list and stop the inference container after verifying queues and error rate.
+5. Before removing a node, confirm that no other workloads on the node are affected. Use `kubectl drain` only after reviewing disruption budgets, local storage, and daemon workloads.
+6. Retain metrics and change records from before and after scale-in, and verify the scale-out path again.
 
 ## Chapter 7: Operations Monitoring and Observability
 
-### 7.1 Monitoring Metrics System
+### 7.1 Monitoring Metrics
 
-The AGIONE operations monitoring system is divided into three layers: application layer (call metrics), scheduling layer (aggregated model metrics), and infrastructure layer (GPU/NPU resource metrics). The three layers are linked to support rapid root cause identification.
+#### 7.1.1 Application-Layer Metrics
 
-#### 7.1.1 Application Layer Metrics (User Perspective)
+| Metric | Purpose |
+| --- | --- |
+| RPM / RPH / RPD | Shows request volume per minute, hour, and day. |
+| TPM / TPH / TPD | Shows token volume per minute, hour, and day. |
+| TTFT and TPOT | Shows first-token response and generation speed. |
+| P50 / P95 / P99 end-to-end latency | Shows the latency distribution instead of only an average. |
+| Success rate and error rate by type | Separates caller, platform, network, and inference-instance failures. |
+| Input and output length distribution | Explains performance changes and calibrates test scenarios. |
 
-| **Metric Name** | **Description and Alert Threshold Recommendations** |
-|---|---|
-| RPM (Requests Per Minute) | Requests processed per minute |
-| RPH (Requests Per Hour) | Requests processed per hour |
-| RPD (Requests Per Date) | Requests processed per day |
-| TPM (Tokens Per Minute) | Tokens processed per minute; reflects overall throughput |
-| TPH (Tokens Per Hour) | Tokens processed per hour; reflects overall throughput |
-| TPD (Tokens Per Day) | Tokens processed per day; reflects overall throughput |
-| TTFT (Time To First Token) | First token latency |
-| P50/P95/P99 End-to-End Latency | Full-chain latency distribution |
-| Success Rate | Request success rate |
-| Error Rate by Type | Classified statistics by error code; distinguishing client errors, platform server-side errors, and model instance errors |
+#### 7.1.2 Scheduling-Layer Metrics
 
-#### 7.1.2 Scheduling Layer Metrics (Aggregated Model Perspective)
+| Metric | Purpose |
+| --- | --- |
+| Backend health | Confirms whether an instance satisfies the traffic gate. |
+| Running tasks and queue length | Identifies queue growth and load imbalance. |
+| Instance-weight distribution | Shows whether weights match capacity and health. |
+| Actual route distribution | Confirms that request distribution matches the policy. |
+| Circuit-breaker and degradation events | Records the backend, trigger, duration, and recovery result. |
+| Failover and failback events | Traces triggers, duration, and results. |
 
-| **Metric Name** | **Description** |
-|---|---|
-| Running Tasks (per instance) | Number of requests currently being processed by each backend instance; core input for dynamic scheduling weight |
-| Instance Weight Distribution | Visualization of each instance's current weight; used to evaluate load balancing effectiveness |
-| Routing Distribution Ratio | Actual request proportion received by each instance; compared with weight to verify scheduling policy effectiveness |
-| Circuit Breaker / Degradation Count | Number and frequency of instances triggering circuit breakers at the scheduling layer |
+#### 7.1.3 Infrastructure-Layer Metrics
 
-#### 7.1.3 Infrastructure Layer Metrics (Instance Resource Perspective)
+The thresholds below are initial alert candidates. They must be replaced by hardware specifications, measured baselines, and operations policy.
 
-| **Metric Name** | **Description and Alert Threshold Recommendations** |
-|---|---|
-| NPU/GPU Compute Utilization | < 20% indicates excessive idleness (waste); > 90% sustained for 5 minutes triggers scale-out alert |
-| NPU/GPU VRAM Usage | > 90% triggers alert (OOM risk) |
-| NPU/GPU Temperature | > 85°C triggers alert; > 90°C triggers emergency notification |
-| CPU Utilization | Inference services typically have low CPU usage; > 80% may indicate data preprocessing bottleneck |
-| Memory Usage | > 85% triggers alert |
-| Node Health Status | K8s Node Condition (Ready/NotReady); NotReady > 60s triggers self-healing process |
+| Metric | Example alert candidate | Purpose |
+| --- | --- | --- |
+| Accelerator utilization | `< 20%` for sustained idleness; `> 90%` for `5` minutes for saturation review | Identifies underuse and sustained pressure. |
+| Accelerator memory | `> 90%` | Identifies fragmentation and out-of-memory risk. |
+| Device temperature | `> 85°C` warning; `> 90°C` urgent review | Identifies thermal anomalies. Use the hardware vendor's limits if they are stricter. |
+| CPU utilization | `> 80%` | Identifies preprocessing or runtime bottlenecks. |
+| Host memory | `> 85%` | Identifies host-memory pressure. |
+| Network and storage | Derive from tested bandwidth, latency, and queue depth | Identifies data-path bottlenecks. |
+| Node state and restarts | `NotReady > 60 s` as an initial trigger | Correlates infrastructure events with service anomalies. |
 
-### 7.2 Anomaly Correlation Troubleshooting Process
+### 7.2 Correlated Troubleshooting Process
 
-When users report call anomalies (errors or slow responses), it is recommended to troubleshoot layer by layer following this process.
+1. At the application layer, identify the time window from RPM, success rate, latency, and error-type trends.
+2. At the scheduling layer, review backend health, running tasks, queue length, weights, and actual route distribution.
+3. Correlate high running-task counts with accelerator utilization, device memory, and temperature. High utilization can indicate a capacity limit; low utilization with a growing queue can indicate a blocked runtime, memory failure, or downstream dependency.
+4. Review inference-service logs for out-of-memory, timeout, connection refusal, device, and communication errors. Use the exact error taxonomy of the selected engine.
+5. Compare with a normal baseline for the same version to distinguish capacity, configuration, model, network, and hardware issues.
+6. Isolate an abnormal backend when necessary, adjust routing temporarily, and use non-mutating requests to validate recovery.
+7. Record the root cause, fix, validation evidence, and preventive action.
 
-> **Anomaly Troubleshooting Process (Recommended Order):**
->
-> **Step 1** View the aggregated model RPM and Success Rate trend charts to locate the anomalous time window.
->
-> **Step 2** View the Running Tasks distribution across backend instances to identify load-imbalanced instances (Running Tasks abnormally high or continuously non-decreasing).
->
-> **Step 3** For anomalous load instances, simultaneously view their NPU/GPU utilization, VRAM, and temperature; high utilization + high Running Tasks = performance bottleneck; low utilization + high Running Tasks = request queuing (possible OOM or deadlock).
->
-> **Step 4** View inference service logs, searching for keywords such as CUDA/NPU OOM, timeout, and connection refused.
->
-> **Step 5** After confirming the root cause: ① Restart the faulty instance (after Running Tasks returns to 0); ② Adjust scheduling strategy to temporarily bypass the instance; ③ Submit a node alert to trigger the self-healing process.
+### 7.3 Operations Analysis and Capacity Decisions
 
-### 7.3 Operations Analysis and Scaling Decision Support
+- **Throughput trends:** Review RPM/RPH/RPD and TPM/TPH/TPD by hour, day, and week to identify recurring peaks.
+- **Resource heatmaps:** Compare accelerator utilization by instance and time period to identify persistent imbalance or scale-in candidates.
+- **Latency distribution:** Review P50/P95/P99 TTFT and end-to-end latency before changing capacity.
+- **Capacity analysis:** Combine test baselines, observed peaks, queue growth, and redundancy requirements to assess scaling needs.
+- **Cost analysis:** Compare cost per request or token under the same service-quality target and test protocol.
+- **Predictive analysis:** A planning model can use a window such as the next `30` days and an early-warning period such as `7` days. These are configurable examples, not guaranteed platform features or forecast accuracy.
 
-The AGIONE operations analysis panel provides the following capabilities to support scaling decisions.
-
-* **Throughput trend analysis:** Display RPM/RPH/RPD, TPM/TPH/TPD trends by time period (hour/day/week), identify business peak patterns, and plan resources in advance.
-* **Resource utilization heatmap:** Display NPU/GPU utilization by instance × time period to identify long-term low-utilization instances (scale-in candidates).
-* **TTFT distribution analysis:** P50/P95/P99 latency distribution to evaluate user experience; P95 persistently exceeding standard should prioritize scale-out.
-* **Cost-benefit analysis:** Calculate cost per token based on TPM and resource consumption, comparing cost-effectiveness of different hardware types to guide procurement decisions.
-* **Capacity forecasting:** Extrapolate future 30-day RPM/TPM based on historical trends, alerting resource insufficiency risks 7 days in advance.
-
----
+Product, operations, and test owners must approve alert thresholds, scaling thresholds, and prediction periods from evidence in the target environment.
 
 ## Chapter 8: Security and Compliance
 
 ### 8.1 Network Security
 
-* All cross-network-domain communication (HCS ↔ dedicated line ↔ IDC) must enable TLS 1.2+ encryption;
-* AGIONE API Gateway enables identity authentication (API Key / OAuth 2.0), with independent keys allocated per caller.
-* Inference instance ports are not exposed externally; access is only through the AGIONE aggregated model endpoint proxy.
-* VPC security group rules are regularly audited, and expired open ports are cleaned up.
+- Protect cross-zone communication with approved TLS versions, cipher suites, and certificate-management processes. `TLS 1.2` can be a minimum compatibility baseline; use `TLS 1.3` where the target security policy and components support it.
+- Use mutual TLS or an equivalent authenticated channel between the management plane and compute-pool components.
+- Use a supported caller-authentication method, such as an API key or OAuth 2.0, and assign separate credentials and scopes to each caller.
+- Open only required ports and directions, and audit private-network, firewall, and security-group rules regularly.
+- Do not expose inference-instance ports directly to untrusted networks. Use the controlled aggregated-model or service entry point.
+- Retain network, certificate, credential-scope, and permission change records, and verify rollback methods.
 
 ### 8.2 Data Security
 
-* If sensitive user data is included in inference requests, data masking or audit logging is enabled at the API Gateway layer.
-* Inference request prompts and output content are prohibited from being recorded in logs (only token count, request ID, and duration are logged).
-
----
+- Classify models, inputs, outputs, logs, and metrics, and enforce least-privilege access.
+- Use approved encryption for data at rest and in transit.
+- Do not include credentials, keys, certificates, customer identifiers, or private endpoints in documentation, images, logs, or test data.
+- By default, avoid storing prompt and output bodies in ordinary operational logs. If content logging is required, document the lawful purpose, access control, redaction, retention, deletion, and audit rules.
+- Prefer request IDs, token counts, latency, status, and error categories for routine observability.
+- Verify that outbound connections for telemetry, updates, licenses, model downloads, and remote support match delivery documentation and deployment policy.
+- External examples must use synthetic organizations, topologies, accounts, model identifiers, and approved test data.
 
 ## Appendix
 
 ### Appendix A: Core Glossary
 
-| **Term** | **Description** |
-|---|---|
-| AGIONE | IMSS platform unified model management and scheduling service, providing API gateway, scheduling, monitoring, and billing capabilities |
-| MindIE | Huawei Ascend inference engine, a large model inference framework optimized specifically for Ascend NPU |
-| vLLM | High-performance large model inference engine for NVIDIA GPU, using PagedAttention technology |
-| evalscope | Large model evaluation and performance stress testing tool provided by Huawei Cloud |
-| TTFT | Time To First Token, end-to-end latency from request submission to first Token received |
-| RPM | Requests Per Minute |
-| TPM | Tokens Per Minute |
-| Running Tasks | Number of concurrent requests currently being processed by an inference instance |
-| Aggregated Model | AGIONE's logical endpoint abstraction, encapsulating multiple backend inference instances and providing unified API access |
-| ModelArts Lite Server | Huawei Cloud's lightweight AI inference cloud host service, supporting Ascend 910B NPU |
-| HCS | Huawei Cloud Stack, Huawei's private cloud solution |
-| CANN | Compute Architecture for Neural Networks, Huawei's Ascend AI computing framework |
+| Term | Definition |
+| --- | --- |
+| AGIOne | The platform described in this guide. It manages compute pools, models, inference services, scheduling, monitoring, and permissions. |
+| Compute pool | A set of compute resources with defined capabilities, network boundaries, and fault domains. |
+| Accelerator Type A / B | Synthetic accelerator families that represent technical differences without identifying a customer hardware combination. |
+| Engine A / B | Synthetic inference-engine profiles associated with the two accelerator families. |
+| Aggregated model | A logical object that combines compatible inference instances behind one service entry point. |
+| Inference instance | A service process or container that runs a model and handles inference requests. |
+| TTFT | Time from request submission to the first token. |
+| TPOT | Average time per generated token after the first token. |
+| RPM / TPM | Requests per minute and tokens per minute. |
+| Running tasks | Requests currently being processed by one inference instance. |
+| In-flight task | A request or batch task that is currently running and not complete. |
+| Traffic removal | The process of stopping new requests to an instance and handling its in-flight tasks. |
