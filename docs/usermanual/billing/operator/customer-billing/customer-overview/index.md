@@ -41,24 +41,28 @@ Customer Overview works like an operator-side CRM list for billing. It brings cu
 
 The top of the page shows the update time for monthly consumption and provides a refresh button. `Manage Tags` at the top right opens the tag management dialog.
 
+The summary area contains four KPI cards: `Customer base`, `Credits pool`, `This month spend`, and `Balance risk`. These cards provide a quick cross-customer signal and do not replace row-level verification.
+
 The filter area contains:
 
 - `Business Identity`: Select a customer type, usually `EU` or `Provider`.
-- `Keyword`: Search by tenant `Name`, tenant ID, or administrator account.
+- `Keyword`: Search by tenant `Name`, tenant ID, administrator account, or other visible customer identity fields.
 - `Tags`: Select one or more built-in or custom tags. A customer that matches any selected tag is included.
+
+Multiple selected tags use OR matching: a customer matching any selected tag is included. Tenant, administrator, and Tenant ID values shown in the list can be copied for follow-up checks; copy only sanitized values into tickets or documentation.
 
 The customer table contains:
 
 | Field | Description |
 | --- | --- |
-| Tenant Information | Customer tenant name and Tenant ID. |
-| Administrator Information | Customer administrator account and email address. |
+| Tenant Information | Customer tenant name and Tenant ID; visible identity values support copy interaction. |
+| Administrator Information | Customer administrator account and email address; visible identity values support copy interaction. |
 | Tags | Tags applied to the customer. |
 | Available Balance | Credits remaining in the customer account. |
 | Previous-Month Spending | Credits consumed in the previous calendar month. |
 | Current-Month Spending | Credits consumed in the current calendar month. |
 | Account Opening Time | Time when the customer tenant was created. |
-| Actions | Row actions, usually including `Details`. |
+| Actions | Row actions, including `Details`, `Adjust`, and an overflow menu when permitted. |
 
 The tenant `Name` is the customer display identity. Confirm it before you open a row action. The following screenshot shows the current list with masked customer data.
 

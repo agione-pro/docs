@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-26
 :::
 
 ## Feature Overview
@@ -39,13 +39,13 @@ Model sources are like an address book for upstream model services. If a source 
 
 ## Page Description
 
-This page maintains upstream model sources, including Endpoint, region, request header authentication, source channel, and connectivity. If the model source is configured incorrectly, subsequent model publishing and calls will fail.
+This page maintains upstream model sources, including source name and identifier, region, Base URL, request header authentication, and connectivity. Names, identifiers, and Base URLs can be copied from the list when needed. If the model source is configured incorrectly, subsequent model publishing and calls will fail.
 
 Page screenshot:
 
 ![Model source list](./images/model-source-list.png)
 
-Used to view source status, region, and connectivity.
+The list shows source name, source identifier, region, Base URL, creation time, and actions. The previous `Back to old version` entry is no longer exposed. Row management is centered on `Edit` and the overflow menu rather than direct `Details` or `Delete` buttons.
 
 ## Main Operations
 
@@ -57,7 +57,7 @@ Used to view source status, region, and connectivity.
 4. Fill in `Model source identifier` to distinguish the model source.
 5. In `Region Information`, maintain `Region identifier`, `Region name`, `Base URL`, `API Key endpoint`, and `API documentation URL`. To add more regions, click `Add Region`.
 6. In `Headers Configuration`, maintain `Auth field name` and `Auth value`. To add more headers, click `Add request header`.
-7. Before clicking `Confirm`, verify the field values. For page validation only, click `Cancel` to close the page.
+7. Before clicking `Confirm`, verify the field values. For page validation only, click `Cancel` to close the page. Do not infer that a source was saved from opening the form.
 
 ![Add Model Source](./images/model-source-add.png)
 

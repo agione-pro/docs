@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-29
+Updated: 2026-08-26
 :::
 
 ## Feature Overview
@@ -46,7 +46,7 @@ Updated: 2026-07-29
 
 ## Page Description
 
-The page includes three tabs: `Overview`, `My Published`, and `My Aggregate`. A model provider can use `Start` to enter a publishing or aggregation flow. An end user can see the overview cards, but protected entries show `Contact Us`. License and public-area identity checks can also block the next step.
+The page includes three tabs: `Overview`, `My Published`, and `My Aggregate`. The `Overview` carousel now presents three entry cards: `AGIOne Deployed`, `BYOK`, and `Aggregate Model`. A model provider can use `Start` to enter a publishing or aggregation flow. An end user can see the overview cards, but protected entries show `Contact Us`; the visible action depends on the selected card and access scope. License and public-area identity checks can also block the next step.
 
 The following screenshot shows the `Overview` entries for publishing and aggregation.
 

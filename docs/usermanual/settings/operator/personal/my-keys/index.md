@@ -1,183 +1,127 @@
 # My Keys
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-10
+Version: v1.1
+Updated: 2026-08-26
 :::
 
 ## Feature Overview
 
-`My Keys` is used to view and manage Model API Keys and System API AK/SK Pairs for the current account, including quota summaries, credential status, creation time, and row-level actions.
+`My Keys` lets an Operator review and create System API AK/SK Pairs for the current account. The current Operator page exposes the system-credential list, status and expiration information, creation records, and row actions.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator Account |
 | Navigation path | Settings > Personal > My Keys |
-| Page route | `/user/user-space/my-keys` |
-| Managed objects | Model API Keys, System API AK/SK Pairs, quotas, and credential status |
-| Typical use | Review Key quotas, create or disable credentials, and open row-level actions |
+| Page route | `/user/user-space/my-keys/system` |
+| Managed objects | System API AK/SK Pairs, status, expiration, and creation records |
+| Typical use | Review system credential state, open the creation dialog, and hand off the generated credential through the approved security process |
 
 #### Beginner Explanation
 
-Operator credentials are access passes for administrators and backend jobs. They are more sensitive than ordinary user credentials. Manage their scope, expiration, audit trail, rotation, and deactivation carefully.
+An AK/SK pair is a system API credential for controlled administrative or automation calls. Treat it as a high-sensitivity credential: define its purpose, set an appropriate expiration time, store the generated values only through the approved security process, and never place the complete pair in documentation.
 
 #### Terms Quick Reference
 
 | Term | Meaning | Handling tip |
 | --- | --- | --- |
-| Operator credential | A Key or AK/SK pair used by operator APIs or backend jobs. | Create it with the minimum required permission. |
-| Permission scope | The management objects and APIs that a credential can access. | Confirm the intended use before creation. |
-| Expiration | The time after which a credential becomes invalid automatically. | Rotate it before a long-running job reaches this time. |
-| Call audit | Request and operation records produced when a credential is used. | Review audit logs when use is abnormal. |
+| System API AK/SK Pair | A system API access identifier and secret pair. | Use it only for the intended system integration. |
+| Prefix | The non-secret identifier shown in the list. | Use it to recognize a credential; it is not the complete secret. |
+| Expiration | The time after which the pair is no longer valid. | Replace the pair before an automation reaches this time. |
+| Status | The current availability state of the pair. | Check it before troubleshooting a failed call. |
 
 ## Prerequisites
 
-1. The current account has permission to view personal credentials.
-2. You have opened `Personal > My Keys`.
-3. Before changing a credential, you have confirmed its caller, purpose, and replacement plan.
+1. The current account has permission to view and create System API credentials.
+2. You have opened `Settings > Personal > My Keys` from the Operator menu.
+3. Before creating a pair, you have confirmed its caller, purpose, expiration plan, and secure handoff method.
 
 ## Page Description
 
-The following screenshot shows the My Keys page. Key prefixes and quota values are desensitized.
-
-![My Keys](./images/model-api-keys-list.png)
-
-After switching to `System API AK/SK Pairs`, use the following list to review system API credential pairs and their status.
+The current Operator page exposes the `System API AK/SK Pairs` tab only. It does not expose a `Model API Keys` tab in this role.
 
 ![System API AK/SK pairs](./images/system-api-pairs-list.png)
 
 | Area | Description |
 | --- | --- |
-| Available / View All | Switches between available credentials and the full list. |
-| Model API Keys | Shows model-call Keys. |
-| System API AK/SK Pairs | Shows system API credential pairs. |
-| My Member Quota | Shows used, remaining, and authorized quota for the current cycle. |
+| Top button | `Create Key` opens the System API AK/SK Pair creation dialog. |
+| Type tab | `System API AK/SK Pairs` is the visible Operator tab. |
+| Availability | `Available` and `All` switch the list scope. |
 | Status | Filters the list by credential status. |
-| Credential list | Shows name, prefix, status, usage, creation time, and actions. |
+| Credential list | Shows Key name / description, prefix, status, expiration time, creation time, and actions. |
+| Empty state | When no pair exists, the page shows `No keys yet` and instructs the operator to click `+ Create Key`. |
 
 ## Main Operations
 
-Use the following operations to work with my keys records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
-
-### Create Model API Key
+### Review System API AK/SK Pairs
 
 1. Go to `Settings > Personal > My Keys`.
-2. Click `Create Key` in the upper-right corner of the page.
-3. In the `Create Model API Key` dialog, fill in `Expire Time`, `Key Name`, and `Description`.
-4. In `Reset Cycle`, select `Monthly` or `Weekly`. When `Monthly` is selected, verify `Day of Month`.
-5. To limit this key separately, enable `Enable Limit`, then fill in `Period Limit (credits)` and `Warning Threshold (%)`.
-6. In `When Limit Reached`, select the handling policy: `Stop Immediately` rejects calls after the quota is reached; `Warn & Continue` keeps calls running and records warnings.
-7. Before clicking the final `Create`, verify the purpose, quota, reset cycle, and limit-reached policy again.
-8. For learning or screenshots only, view the fields and click `Cancel`. Do not create a real key.
+2. Confirm that the `System API AK/SK Pairs` tab is selected.
+3. Use `Available` or `All` and the `Status` selector to review the list.
+4. Check the Key name / description, prefix, status, expiration time, creation time, and available actions.
 
-![Create Model API Key](./images/create-model-api-key.png)
+### Open the System API AK/SK Pair Dialog
 
-### Create System API AK/SK Pair
-
-1. Go to `Settings > Personal > My Keys`.
-2. Switch to the `System API AK/SK Pairs` tab.
-3. Click `Create System API AK/SK Pair` or the actual create entry on the page.
-4. In the creation dialog, review the fields.
+1. Click `Create Key` in the upper-right corner.
+2. In the `Create System API AK/SK Pair` dialog, review the required `Expire Time`, required `Key Name`, and optional `Description` fields.
+3. Before clicking the final `Create`, confirm the purpose, expiration, caller, and secure handoff method.
+4. During documentation review or screenshot capture, click `Cancel`. Do not create a real credential.
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
-
-5. Fill in name, description, expiration time, permissions, or quota-related settings according to the page fields.
-6. Before clicking the final `Create` or `Confirm`, verify the AK/SK purpose, permission scope, validity period, and credential handoff method.
-7. For learning or screenshots only, view the fields and click `Cancel` to close the dialog without submitting real configuration.
 
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Expire Time | No | Date time | `2026-12-31 23:59` | Defines when the Model API Key or System API AK/SK Pair expires. |
-| Key Name | Yes | Text | `Production Key` | Identifies the purpose of the key. |
-| Name | Yes | Text | `Backend job credential` | Identifies the purpose of the System API AK/SK Pair. |
-| Description | No | Text | `Model service calls` | Describes the key usage for later identification. |
-| Reset Cycle | Yes | Enum | `Monthly` | Defines when key usage is reset. |
-| Day of Month | Conditionally required | Number | `1` | Required when `Reset Cycle` is `Monthly`. |
-| Enable Limit | No | Switch | `Enabled` | Enables a period quota for this key. |
-| Period Limit (credits) | Conditionally required | Number | `1000` | The quota value used after `Enable Limit` is enabled. |
-| Warning Threshold (%) | No | Number | `80` | Triggers warning when usage reaches the threshold. |
-| When Limit Reached | Yes | Enum | `Stop Immediately` | Defines how calls are handled after the quota is reached. |
-| AK | System generated | Text | `AK example prefix` | The System API access identifier. Save it only through the platform security process. |
-| SK | System generated | Secret | `Only displayed after creation` | The System API secret key. Do not write it into documentation, screenshots, or tickets. |
-| Permission Scope | Yes | Enum / Multi-select | `Read-only APIs` | Controls which system APIs the AK/SK can call. |
-| Status | System generated | Enum | `Enabled` | Indicates whether the key can continue to call services. |
-| Actions | System generated | Button | `View` | Opens details or follow-up operations. |
+| Expire Time | Yes | Date time | `2026-12-31 23:59` | Defines when the System API AK/SK Pair expires. |
+| Key Name | Yes | Text | `Backend job credential` | Identifies the purpose of the pair. |
+| Description | No | Text | `Model service administration` | Optional usage notes, up to 200 characters. |
+| Prefix | System generated | Text | `ak-********` | A masked identifier shown in the list; it is not the complete credential. |
+| Status | System generated | Enum | `Enabled` | Indicates whether the pair is currently available. |
+| Created at | System generated | Date time | `2026-08-26` | Records when the pair was created. |
+| Actions | System generated | Button / menu | `View` | Opens the available read-only or follow-up actions for the row. |
 
 ## Pitfalls
 
-- Creating a Model API Key generates a real credential that can call model services.
-- A System API AK/SK Pair generates credentials for system API calls, and its permission scope is usually more sensitive than a normal calling key.
-- `Create` and `Confirm` are final high-risk actions. Do not click them during learning, screenshots, or page validation.
-- `Stop Immediately` rejects calls after the quota is reached; `Warn & Continue` keeps calls running and records warnings.
-- Complete Keys and AK/SK pairs may only be saved once through controlled channels. Do not write them into documentation, screenshots, tickets, or examples.
-- Do not write real Keys, AK/SK, tokens, accounts, endpoints, customer names, or internal test parameters.
+- The current Operator page does not expose a `Model API Keys` tab. Do not use this Operator page as evidence for Provider or End User Model API Key behavior.
+- The current System API creation dialog exposes only expiration time, Key Name, and optional Description. Do not document permission-scope, quota, reset-cycle, or warning-threshold fields for this dialog unless a later Demo check shows them.
+- `Create` is the final high-risk action. Do not click it during learning, screenshots, or page validation.
+- Never copy a complete AK/SK pair, token, account, endpoint, or secret into documentation, screenshots, tickets, or examples.
+- A prefix is only an identifier; it is not the complete credential.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Credential list | Credential names, status, and actions are visible. | Check the filters and account permission. |
-| Tab switch | Model API Keys and System API AK/SK Pairs can be selected. | Refresh the page and open it again. |
-| Quota summary | Used, remaining, and authorized quota are displayed. | Ask an administrator to verify quota authorization. |
-| Create dialog | Clicking `Create Key` opens the `Create Model API Key` dialog. | Check whether the current account has key creation permission. |
-| AK/SK creation dialog | After switching to `System API AK/SK Pairs`, the creation dialog can be opened. | Check whether the current account has System API credential creation permission. |
+| Operator entry | `Settings > Personal > My Keys` opens the System API AK/SK Pairs page. | Check the current Operator role and menu permission. |
+| List filters | `Available`, `All`, and `Status` are visible. | Clear the filter and reopen the page. |
+| List columns | Key name / description, prefix, status, expiration, creation time, and actions are visible. | Check page loading and role permission. |
+| Create dialog | `Create Key` opens the `Create System API AK/SK Pair` dialog. | Check credential-creation permission. |
+| Safe review | `Cancel` closes the dialog without creating a credential. | Do not proceed to `Create`; ask an administrator to verify the environment. |
 
 ## FAQ
 
-#### A credential no longer works
+#### Why is the Model API Keys tab missing?
 
-**Symptom:**
+The Operator role currently exposes the System API AK/SK Pairs page only. Model API Key behavior belongs to the Provider or End User My Keys page and must be documented under those role-specific manuals.
 
-The caller receives an authentication error.
+#### Why is a target System API credential missing?
 
-**Possible cause:**
-
-The credential is disabled, the caller still uses an old value after rotation, or its quota is limited.
-
-**Resolution:**
-
-Review the credential status and quota. If it was rotated, ensure that the caller switches to the new value.
+The pair may belong to another account or tenant, may be unavailable in the current filter, or may be expired or disabled. Check the selected availability scope, status, expiration, and creation record.
 
 #### What should be checked before creation or rotation?
 
-**Symptom:**
-
-The page provides `Create Key` or rotation actions.
-
-**Possible cause:**
-
-Credentials are sensitive, and changing them affects callers.
-
-**Resolution:**
-
-Confirm the purpose, caller, and replacement window. Never record a complete credential in documentation or screenshots.
-
-#### Why is the target credential missing from operator My Keys?
-
-**Symptom:**
-
-The credential used by a management API or backend job is not shown.
-
-**Possible cause:**
-
-It was created from a user-side entry, is disabled or expired, or the current account lacks operator credential-management permission.
-
-**Resolution:**
-
-Confirm the current entry and credential type, then check its status, expiration, and creation record. If it is still missing, ask a platform administrator to generate a replacement and record its purpose.
+Confirm the caller, purpose, expiration window, secure storage path, and replacement plan. Never record the complete AK/SK pair in documentation or screenshots.
 
 ## Next Steps
 
 1. To review account details, go to [Profile](../profile/).
 2. To adjust member permissions, go to [Members](../../members-roles/members/).
+3. Use the approved security process to store or rotate the generated pair.
 
 ## Notes
 
-- Never copy, paste, or capture a complete Key, AK/SK pair, token, or secret.
-- Do not include real Keys, AK/SK, tokens, accounts, endpoints, customer names, or internal test parameters in documentation, screenshots, tickets, or examples.
-- A System API AK/SK Pair generates credentials for system API calls. AK/SK values may only be saved once through controlled channels.
-- `Create` and `Confirm` are final high-risk actions.
+- Never copy, paste, or capture a complete AK/SK pair, token, or secret.
+- Do not include real credentials, accounts, endpoints, customer names, IDs, or internal test values in documentation, screenshots, tickets, or examples.
+- `Create` is a final high-risk action.
 - Before rotating or disabling a credential, confirm that its callers have completed the switch.
-- A credential prefix is only an identifier; it is not the complete credential.
