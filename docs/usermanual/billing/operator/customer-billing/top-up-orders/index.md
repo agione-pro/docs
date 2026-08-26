@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-29
+Updated: 2026-08-26
 :::
 
 ## Feature Overview
@@ -64,6 +64,10 @@ The order table contains:
 | Created At | Time when the order was created. |
 | Actions | Row actions, usually including `Details`. |
 
+::: tip Table columns and horizontal viewport
+All columns remain part of the order table. Depending on the UI language and available width, longer English labels can place `Completed At` and `Created At` outside the initial horizontal viewport while the fixed `Actions` column remains visible. Scroll the table horizontally to verify the timestamp columns. The screenshot below shows the initial English viewport; missing timestamp headers in that image do not mean the fields were removed.
+:::
+
 The list screenshot is placed under the main operation steps. Screenshot data is masked to avoid exposing customer or order information.
 
 ## Main Operations
@@ -75,7 +79,7 @@ Use the following operation to review customer top-up orders and verify balance 
 1. Go to `Billing > Customer Billing > Customer Top-up Orders`.
 2. Enter filters such as `Top-up Order No.`, tenant, administrator, email, phone, Tenant ID, order status, top-up source, or date range as needed.
 3. Click `Search` and review the customer top-up order list.
-4. Verify the order number, customer, order scope, top-up source, payment amount, credits added, status, completed time, and created time.
+4. Verify the order number, customer, order scope, top-up source, payment amount, credits added, status, completed time, and created time. Scroll the table horizontally when the timestamp columns are outside the initial viewport.
 5. For an externally created order, compare the source, external reference information, and channel text.
 6. To verify a single top-up order, click `Details` for the target order.
 7. Compare with Customer Overview, Financial Accounts, or payment transactions to confirm that customer balance and top-up order status are consistent.

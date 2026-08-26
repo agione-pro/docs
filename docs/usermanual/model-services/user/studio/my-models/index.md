@@ -48,9 +48,9 @@ Updated: 2026-08-26
 
 The page includes three tabs: `Overview`, `My Published`, and `My Aggregate`. The `Overview` carousel now presents three entry cards: `AGIOne Deployed`, `BYOK`, and `Aggregate Model`. A model provider can use `Start` to enter a publishing or aggregation flow. An end user can see the overview cards, but protected entries show `Contact Us`; the visible action depends on the selected card and access scope. License and public-area identity checks can also block the next step.
 
-The following screenshot shows the `Overview` entries for publishing and aggregation.
-
-![My Models overview list](./images/my-models-overview-list.png)
+::: tip Overview carousel
+The active card changes automatically. Before selecting `Start` or `Contact Us`, use the previous/next controls and confirm both the card title and the `01 / 03` to `03 / 03` counter. This manual intentionally does not use a fixed `Overview` screenshot because a static capture can stop on a different card in each language and misrepresent the current selection.
+:::
 
 `My Published` shows published-model records, billing summaries, statuses, and available actions. The action set depends on the record status and the current account permission.
 
