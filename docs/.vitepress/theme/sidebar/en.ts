@@ -863,6 +863,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Tenant Settings", link: "/usermanual/settings/user/organizations/org-settings/" },
+                    { text: "Usage Log", link: "/usermanual/settings/user/organizations/usage-log/" },
                   ],
                 },
                 {

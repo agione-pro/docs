@@ -50,9 +50,9 @@ This scenario combines identity permissions, resource authorization, model visib
 8. Use the target account for a read-only check or controlled call.
 9. Record the reason, scope, validation result, and rollback method.
 
-When validating credential boundaries, open **Personal Key Management** and confirm that only the intended owner and active keys remain available.
+When validating credential boundaries, open **Settings > Personal > My Keys** from the target account's visible menu. Confirm the credential type, status, expiration, used / limit information, and available row actions for the current account. Use `Request More Quota` only to enter **Settings > Members & Roles > Quota Requests**; submitting the request is a separate write action. The My Keys page does not prove the business owner; validate project ownership or member responsibility in the relevant **Projects** or **Team Members** page.
 
-![Validate personal key ownership and state](./images/my-keys-live.png)
+![Validate the current account's personal key state and limits](./images/my-keys-live.png)
 
 ## Completion Checklist
 

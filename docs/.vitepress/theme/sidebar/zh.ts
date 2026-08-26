@@ -805,6 +805,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '租户设置', link: '/zh-CN/usermanual/settings/user/organizations/org-settings/' },
+                    { text: '额度使用日志', link: '/zh-CN/usermanual/settings/user/organizations/usage-log/' },
                   ],
                 },
                 {

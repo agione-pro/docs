@@ -33,13 +33,13 @@ next: true
 
 ### 3. 创建独立用途的 Key
 
-进入[我的 Keys](../../../usermanual/settings/user/personal/my-keys/)，选择 Model API Keys 或 System API AK/SK Pairs，填写名称、用途和过期时间。生产、测试和临时用途应使用不同 Key。
+从可见菜单进入[我的 Keys](../../../usermanual/settings/user/personal/my-keys/)，选择 `Model API Keys` 或 `System API AK/SK Pairs`。两种创建窗口都有 `Key 名称`、可选的 `描述` 和 `过期时间`；只有 Model API 创建窗口包含重置周期和限额配置。用途写入描述，不把“用途”当成独立字段。生产、测试和临时用途应使用不同 Key。
 
 ![创建具有明确用途和有效期的 Key](../../../usermanual/settings/user/personal/my-keys/images/create-key.png)
 
 ### 4. 设置 Key 限额并验证
 
-根据项目预算设置重置周期、周期限额、预警阈值和触限策略。创建后使用受控请求验证模型白名单、项目预算和 Key 限额是否共同生效。
+对 Model API Key，打开行内更多菜单并选择 `限额`，查看 `重置周期`、条件显示的重置日期和 `启用限额`；启用时，再按项目预算核对 `周期限额 (credits)` 和 `预警阈值 (%)`。未获得明确修改授权时停在 `取消`，不要单击 `保存限额`。完成获准的保存后，再使用受控请求验证模型白名单、项目预算和 Key 限额是否共同生效。
 
 ![设置 Key 的周期限额](../../../usermanual/settings/user/personal/my-keys/images/key-quota.png)
 
@@ -50,7 +50,7 @@ next: true
 | 检查项 | 通过标准 |
 | --- | --- |
 | 项目规则 | 预算、预警、超预算策略和模型白名单已保存。 |
-| Key 边界 | 用途、有效期、限额和责任人清晰。 |
+| Key 边界 | Key 名称、描述、有效期和适用限额清晰；责任人在项目或成员范围中核对。 |
 | 调用验证 | 允许模型可调用，禁止模型或超限请求按规则受限。 |
 | 审计记录 | 项目和 Key 变更能够在活动或操作日志中定位。 |
 

@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-26
 :::
 
 ## Feature Overview
@@ -38,7 +38,7 @@ Model review is like a quality check before listing. The focus is not only wheth
 
 ## Page Description
 
-This page processes reviews for model listing, updates, or delisting. It displays requested model, provider, meta-model, source credentials, risk notes, and review comments. Reviewers should provide clear conclusions around authorization, capability, compliance, and call availability.
+This page processes reviews for model listing, updates, or delisting. It displays requested model, provider, meta-model, source credentials, model visibility, risk notes, and review comments. Reviewers should provide clear conclusions around authorization, capability, compliance, and call availability.
 
 Page screenshot:
 
@@ -51,8 +51,8 @@ Used to view review status, requester, model, and processing entry points.
 ### Review Model
 
 1. Go to `Model Services > Approvals > Model Reviews`.
-2. In the model review list, view `Model name`, `Model type`, `Customer name`, `Version`, `Free quota`, `Status`, `Submit time`, `Review time`, and `Actions`.
-3. Use the `All`, `Pending Review`, `Approved`, and `Rejected` status tabs, or filter target records by `Select customer` and `Model name`.
+2. In the model review list, view `Model name`, `Model visibility`, `Model type`, `Customer name`, `Version`, `Free quota`, `Status`, `Submit time`, `Review time`, and `Actions`.
+3. Use the `All`, `Pending Review`, `Approved`, and `Rejected` status tabs. Use `All Models`, `Public`, and `Private` to filter model visibility, then narrow records by `Select customer`, `Model name`, or `Model type`.
 4. Click `Details` or `Review` for the target model to open the model review details.
 5. On the details page, check model name, model source, region, model source ID, rate limit configuration, release channel, model attribute, billing mode, status, free quota, and creation time.
 6. Continue checking `Model Parameter Configuration`, including input/output modalities, Token limits, protocols, capability description, and usage boundaries.
@@ -71,6 +71,7 @@ After Step 4, use the review details page to check the model profile, parameter 
 | Customer name | System-displayed | Text | `AGIOneSystem` | Customer or submitter that the model belongs to. |
 | Model Source | System-displayed | Text | `Model Mocker` | Model source or provider. |
 | Model type | System-displayed | Tag | `Video` / `Text` | Capability type of the model. |
+| Model visibility | System-displayed | Enum | `All Models` / `Public` / `Private` | Visibility scope of the model under review. |
 | Version | System-displayed | Text | `1.0.0` | Model version submitted for review. |
 | Free quota | System-displayed | Text | `None` | Whether the model has free quota configured. |
 | Review status | System-displayed | Enum | `Pending Review` / `Approved` / `Rejected` | Lifecycle status of the model review. |

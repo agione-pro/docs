@@ -33,13 +33,13 @@ Open the project from the list and review Overview, Members, Usage, API Keys, Ac
 
 ### 3. Create a Purpose-Specific Key
 
-Open [My Keys](../../../usermanual/settings/user/personal/my-keys/), choose Model API Keys or System API AK/SK Pairs, and enter a name, purpose, and expiration time. Use separate keys for production, testing, and temporary work.
+Open [My Keys](../../../usermanual/settings/user/personal/my-keys/) from the visible menu, then choose `Model API Keys` or `System API AK/SK Pairs`. Both creation dialogs contain `Key Name`, optional `Description`, and `Expire Time`; only the Model API dialog contains reset-cycle and limit controls. Use the description to record the purpose; do not treat Purpose as a separate field. Use separate Keys for production, testing, and temporary work.
 
 ![Create a key with a clear purpose and validity period](../../../usermanual/settings/user/personal/my-keys/images/create-key.png)
 
 ### 4. Set Key Limits and Validate
 
-Set the reset cycle, cycle limit, alert threshold, and limit-reached policy in line with the project budget. Run a controlled request to verify that the model allowlist, project budget, and key limit all apply.
+For a Model API Key, open the row overflow menu and select `Limit`. Review `Reset Cycle`, the conditional reset day, and `Enable Limit`; when enabled, review `Period Limit (credits)` and `Warning Threshold (%)` against the project budget. Stop before `Save Limit` unless the change is explicitly approved. After an approved save, use a controlled request to verify that the model allowlist, project budget, and Key limit all apply.
 
 ![Set the cycle limit for a key](../../../usermanual/settings/user/personal/my-keys/images/key-quota.png)
 
@@ -50,7 +50,7 @@ Set the reset cycle, cycle limit, alert threshold, and limit-reached policy in l
 | Check | Pass Criteria |
 | --- | --- |
 | Project rules | Budget, alert, over-budget policy, and model allowlist are saved. |
-| Key boundary | Purpose, validity period, limit, and owner are clear. |
+| Key boundary | Key Name, Description, validity period, and applicable limit are clear; ownership is verified in the Project or Member scope. |
 | Call validation | Allowed models work; disallowed or over-limit requests are restricted as configured. |
 | Audit records | Project and key changes can be located in activity or operation logs. |
 
