@@ -1,6 +1,6 @@
-# AGIOne 普通用户指南
+# {{DOCS_PRODUCT_NAME_ZH}} 普通用户指南
 
-本指南面向首次使用 AGIOne 的用户编写。指南将带您完成以下基本工作流程：登录、领取免费配额、在 Web 体验中心试用模型，以及使用 curl 调用模型。用户名、密码和 API 密钥仅作为占位符展示。
+本指南面向首次使用 {{DOCS_PRODUCT_NAME_ZH}} 的用户编写。指南将带您完成以下基本工作流程：登录、领取免费配额、在 Web 体验中心试用模型，以及使用 curl 调用模型。用户名、密码和 API 密钥仅作为占位符展示。
 
 ## 适用角色
 
@@ -9,35 +9,37 @@
 
 ## 1. 准备工作
 
-使用 AGIOne 前，请准备以下信息。
+使用 {{DOCS_PRODUCT_NAME_ZH}} 前，请准备以下信息。
 
 | 项目 | 示例或说明 |
 | --- | --- |
-| 平台 URL | `https://agione.cc/` |
+| 平台 URL | `{{DOCS_PLATFORM_URL}}` |
 | 用户名 | `{USERNAME}` |
 | 密码 | `{PASSWORD}` |
-| API 密钥 | `{API_KEY}`，从快速入门页面复制 |
+| 模型 API 密钥 | `{API_KEY}`，从快速入门页面复制 |
 
 本指南使用以下模型。
 
 | 项目 | 值 |
 | --- | --- |
 | 模型名称 | Qwen3.5-27b |
-| 模型标识符 | `qwen/qwen3.5-27b/8e413` |
+| 模型标识符 | `qwen/qwen3.5-27b/8cead` |
 | 协议 | `openai/chat_completions` |
-| API 端点 | `https://agione.cc/hyperone/xapi/api/v1/chat/completions` |
+| API 端点 | `{{DOCS_API_ENDPOINT}}` |
 
-## 2. 登录 AGIOne
+> 供应商实例的调用标识符可能因供应方或区域而变化。`8cead` 是当前 demo 中观察到的示例值；调用前请从所选供应商的 `快速入门` 面板复制当前标识符。
+
+## 2. 登录 {{DOCS_PRODUCT_NAME_ZH}}
 
 ### 2.1 打开登录页面
 
 在浏览器中输入以下地址：
 
 ```
-https://agione.cc/user/login
+{{DOCS_LOGIN_URL}}
 ```
 
-将看到 AGIOne 登录页面。
+将看到 {{DOCS_PRODUCT_NAME_ZH}} 登录页面。
 
 ![登录页面](./images/01-login-page.png)
 
@@ -65,7 +67,7 @@ https://agione.cc/user/login
 登录后，打开：
 
 ```
-https://agione.cc/modelone/store/model
+{{DOCS_MODEL_STORE_URL}}
 ```
 
 也可以通过页面菜单导航：
@@ -76,7 +78,7 @@ https://agione.cc/modelone/store/model
 
 ### 3.2 找到 Qwen3.5-27b
 
-在模型列表中找到`Qwen3.5-27b`。它通常位于当前列表的下方。找到后，点击该模型行右侧的"查看"。
+在模型列表中搜索`Qwen3.5-27b`。当前列表按"最新"排序，不要依赖模型在列表中的固定位置；找到后，点击该模型行的"查看"。
 
 ![模型列表中的 Qwen3.5-27b](./images/02-model-list-qwen35.png)
 
@@ -92,7 +94,7 @@ https://agione.cc/modelone/store/model
 | ---------- | ------------------------ |
 | 模型名称       | `Qwen3.5-27b`            |
 | 模型 ID      | `qwen/qwen3.5-27b`       |
-| 供应商卡片调用标识符 | `qwen/qwen3.5-27b/8e413` |
+| 供应商卡片调用标识符 | `qwen/qwen3.5-27b/8cead` |
 | 配额按钮       | `领取免费配额`                 |
 | 试用入口       | `体验中心`                   |
 
@@ -156,7 +158,7 @@ Web 体验中心是试用模型最简单的方式，无需编写代码。
 | 2   | 确认或选择模型    | Qwen3.5-27b 的供应商模型        |
 | 3   | 确认"协议"     | `openai/chat_completions` |
 | 4   | 按需调整参数     | 初学者可保持默认值                 |
-| 5   | 在底部输入框输入问题 | `请用一句话介绍 AGIOne。`         |
+| 5   | 在底部输入框输入问题 | `请用一句话介绍 {{DOCS_PRODUCT_NAME_ZH}}。`         |
 | 6   | 点击发送按钮     | 等待模型响应                    |
 
 如果对话区域出现生成的响应，说明体验中心调用成功。
@@ -200,9 +202,11 @@ Web 体验中心是试用模型最简单的方式，无需编写代码。
 
 | 信息 | 用途 |
 | --- | --- |
-| 调用标识符 | 用于 `model` 字段的值 |
-| 完整 URL | curl 请求 URL |
-| API 密钥 | 认证密钥 |
+| 模型 ID 调用标识符 | 供应商实例对应的 `model` 字段值 |
+| Base URL | API 服务基础地址 |
+| Path | 拼接到 Base URL 后的协议路径 |
+| 完整 URL | 完整的 curl 请求地址 |
+| 模型 API 密钥 | 在 `AUTHENTICATION` 区域选择的认证密钥 |
 | curl 示例 | 可直接使用的参考命令 |
 
 截图中的 API 密钥已脱敏。实际使用时，请从页面复制您自己的 API 密钥。
@@ -211,7 +215,7 @@ Web 体验中心是试用模型最简单的方式，无需编写代码。
 
 ### 6.2 复制 API 密钥
 
-在"AUTHENTICATION"部分找到`API Key`，然后点击"复制"。
+在"AUTHENTICATION"部分找到`Model API Keys`，选择已授权的密钥后点击"复制"。
 
 请注意：
 
@@ -226,12 +230,12 @@ Web 体验中心是试用模型最简单的方式，无需编写代码。
 将 `{API_KEY}` 替换为复制的 API 密钥，然后在终端中运行命令。
 
 ```bash
-curl -X POST "https://agione.cc/hyperone/xapi/api/v1/chat/completions" \
+curl -X POST "{{DOCS_API_ENDPOINT}}" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {API_KEY}" \
   -d '{
     "stream": true,
-    "model": "qwen/qwen3.5-27b/8e413",
+    "model": "qwen/qwen3.5-27b/8cead",
     "messages": [
       {
         "role": "user",
@@ -248,13 +252,13 @@ curl -X POST "https://agione.cc/hyperone/xapi/api/v1/chat/completions" \
 | 检查项 | 成功标志 |
 | --- | --- |
 | 响应内容 | 响应包含生成的文本 |
-| 模型字段 | 响应包含 `qwen/qwen3.5-27b/8e413` |
+| 模型字段 | 响应包含 `qwen/qwen3.5-27b/8cead` |
 | 无认证错误 | 未出现 `Unauthorized` 或 `Invalid API key` 错误 |
 | 无配额错误 | 未出现配额不足消息 |
 
 ## 6.5 快速实践
 
-访问 [AGIOne 最佳实践](https://agione.cc/docs/best-practice/integration/OpenCode.html)。
+访问 [{{DOCS_PRODUCT_NAME_ZH}} 最佳实践]({{DOCS_OPENCODE_URL}})。
 
 ## 7. 查看调用记录
 
@@ -310,8 +314,8 @@ curl -X POST "https://agione.cc/hyperone/xapi/api/v1/chat/completions" \
 | 错误现象 | 检查项 |
 | --- | --- |
 | 认证失败 | 检查 API 密钥是否完整，Header 是否为 `Authorization: Bearer {API_KEY}` |
-| 模型未找到 | 检查 `model` 是否为 `qwen/qwen3.5-27b/8e413` |
-| 请求 URL 错误 | 检查 URL 是否为 `https://agione.cc/hyperone/xapi/api/v1/chat/completions` |
+| 模型未找到 | 检查 `model` 是否与当前供应商卡片调用标识符一致，例如 `qwen/qwen3.5-27b/8cead` |
+| 请求 URL 错误 | 检查 URL 是否为 `{{DOCS_API_ENDPOINT}}` |
 | JSON 格式错误 | 检查引号、逗号和花括号 |
 | 配额不足 | 确认是否已领取免费配额，或检查账户配额 |
 
@@ -319,8 +323,8 @@ curl -X POST "https://agione.cc/hyperone/xapi/api/v1/chat/completions" \
 
 | 功能 | 入口 |
 | --- | --- |
-| 登录 | `https://agione.cc/user/login` |
-| 模型列表 | `https://agione.cc/modelone/store/model` |
+| 登录 | `{{DOCS_LOGIN_URL}}` |
+| 模型列表 | `{{DOCS_MODEL_STORE_URL}}` |
 | Qwen3.5-27b 详情页 | `模型服务 > 发现 > 模型 > Qwen3.5-27b > 查看` |
 | 领取免费配额 | Qwen3.5-27b 详情页供应商卡片 > `领取免费配额` |
 | Web 体验中心 | Qwen3.5-27b 详情页供应商卡片 > `体验中心` |

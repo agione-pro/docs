@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-31
 :::
 
 ## Feature Overview
@@ -43,7 +43,7 @@ Clicking the send button creates a real model call and may consume credits, gene
 
 ## Page Description
 
-This page is used to try text models. Focus on selecting the model and provider, entering a Prompt, adjusting Protocol, Temperature, Top-P, N, Stream, and other parameters, and observing the input area, response area, history, and error messages.
+This page is used to try text models. The current page exposes a model selector, `Copy Model ID`, `Model Compare`, `More settings`, a Personal Key selector, and the Prompt input. Focus on selecting the model and provider, entering a Prompt, adjusting Protocol, Temperature, Top-P, N, Stream, and other parameters, and observing the input area, response area, history, and error messages.
 
 Page screenshot:
 
@@ -58,7 +58,7 @@ The Text page includes the model selector, Prompt input box, parameter entry, ke
 1. Go to `Model Services > Playground > Text`.
 2. In the model selector at the top of the page, choose the text model and provider to try.
 3. Fill in the Prompt input box with a question, context, or other input content.
-4. Click the parameter button and view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `Stream`, and other parameters as needed.
+4. Select `More settings` and view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `Stream`, and other parameters as needed.
 5. Before clicking the send button, verify the input content, model, provider, key, and parameters.
 6. For page validation only, do not submit a real call request. You can view only the fields, parameter area, and history/response area.
 
@@ -74,8 +74,8 @@ In the parameter area, view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model | Yes | Dropdown | `Qwen3.7-Plus` | Text model currently being tried. |
-| Provider | Yes | Dropdown | `Alibaba` | Provider instance of the current model. |
+| Model | Yes | Dropdown | `DeepSeek-V4-Flash` | Text model currently being tried. The initial selection can vary by account and availability. |
+| Provider | Yes | Dropdown | `Alibaba-china` | Provider instance of the current model. |
 | Prompt | Yes | Multiline text | `Summarize this text` | Prompt, question, or context input to the model. |
 | Protocol | No | Dropdown | `openai/chat_completions` | Protocol used by the current call. |
 | Temperature | No | Number / Slider | `0.7` | Controls output randomness. Higher values are more divergent. |
@@ -97,9 +97,9 @@ In the parameter area, view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Text` page opens normally, and the left Playground menu and top model selector are visible. | Check account permissions, navigation path, and page loading status. |
+| Page is accessible | The `Text` page opens normally, and the left Playground menu, top model selector, `Model Compare`, and `More settings` controls are visible. | Check account permissions, navigation path, and page loading status. |
 | Model selector loads | The model selector can be opened and shows model list, provider instances, and status information. | Refresh the page and retry, or confirm whether the target model is visible to the current account. |
-| Input and parameter areas are visible | Prompt input box, parameter button, Protocol, Temperature, Top-P, N, Stream, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
+| Input and parameter areas are visible | Prompt input box, `More settings`, Protocol, Temperature, Top-P, N, Stream, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
 | History or response area is visible | The page can display conversation history, response content, error messages, or an empty state. | If there is no history, the input area should still be displayed normally. |
 | No real call is submitted | During learning or screenshot capture, the send button is not clicked, no Prompt is submitted, and no credits are consumed. | If a send action is triggered accidentally, record the time and model name, then check call logs later. |
 | Real call returns a response | When a call is explicitly allowed, the page returns a text response related to the Prompt. | Shorten the Prompt, lower parameters, and check error messages or call logs. |

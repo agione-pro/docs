@@ -23,7 +23,7 @@ A new End User completes registration and email verification; all roles can ente
 
 ### Create an Account
 
-1. Open the AGIOne sign-in URL provided by the tenant, such as `https://agione.pro/user/login`.
+1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in URL provided by the tenant, such as `{{DOCS_LOGIN_URL}}`.
 2. Select **Create Account** at the bottom of the sign-in card.
 3. Complete the registration form:
    - **Username**: account username.
@@ -52,13 +52,13 @@ A new End User completes registration and email verification; all roles can ente
 | Create Account | Button | Not applicable | Required; submits registration |
 | Back to Sign In | Link | Not applicable | Optional; returns to sign-in |
 
-### Sign In to AGIOne with a Password
+### Sign In to {{DOCS_PRODUCT_NAME_EN}} with Password
 
-1. Open the AGIOne sign-in URL provided by the tenant.
-2. Select **Password Sign-In**, which is selected by default.
+1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in URL provided by the tenant.
+2. Select the **Password** tab, which is selected by default.
 3. Enter the username or registered email and the password.
 4. Read and accept the Privacy Policy and Terms of Service.
-5. Select **Sign In** and verify that the correct workspace opens.
+5. Select **Sign in** and verify that the correct workspace opens.
 6. If sign-in fails, use the on-screen error to check the credentials and network before retrying.
 7. Use **Home**, **Create Account**, or **Forgot Password** when the corresponding action is needed.
 
@@ -71,20 +71,20 @@ A new End User completes registration and email verification; all roles can ente
 | Username or Email | Text | `provider-user` | Required; username or registered corporate email |
 | Password | Password | `********` | Required; account password |
 | Privacy Policy and Terms | Checkbox | Selected | Required; accepts the user agreements |
-| Sign In | Button | Not applicable | Required; submits the credentials |
+| Sign in | Button | Not applicable | Required; submits the credentials |
 | Home | Link | Not applicable | Optional; returns to the platform home page |
 | Create Account | Link | Not applicable | Optional; opens registration |
 | Forgot Password | Link | Not applicable | Optional; opens password recovery |
 
-### Sign In to AGIOne with an Email Code
+### Sign In to {{DOCS_PRODUCT_NAME_EN}} with a Verification Code
 
-1. Open the AGIOne sign-in URL provided by the tenant.
-2. Select **Email Verification Code**.
+1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in URL provided by the tenant.
+2. Select the **Verification Code** tab.
 3. Enter the registered corporate email.
 4. Select **Send Verification Code**.
 5. Enter the six-digit code before it expires.
 6. Read and accept the Privacy Policy and Terms of Service.
-7. Select **Sign In** and verify that the correct workspace opens.
+7. Select **Sign in** and verify that the correct workspace opens.
 8. Select **Continue with Google** only when the tenant allows Google sign-in.
 
 ![Use email verification-code sign-in](./images/verification-code.png)
@@ -97,7 +97,7 @@ A new End User completes registration and email verification; all roles can ente
 | Send Verification Code | Button | Not applicable | Required; sends a six-digit code |
 | Verification Code | Text | `4 4 2 5 6 8` | Required; code received by email before expiry |
 | Privacy Policy and Terms | Checkbox | Selected | Required; accepts the user agreements |
-| Sign In | Button | Not applicable | Required; submits email-code sign-in |
+| Sign in | Button | Not applicable | Required; submits verification-code sign-in |
 | Continue with Google | Button | Not applicable | Optional; uses tenant-approved Google sign-in |
 
 ### Reset a Forgotten Password
@@ -106,7 +106,7 @@ Password recovery has three steps: verify the email, reset the password, and com
 
 #### Step 1: Verify the Email
 
-1. Open the AGIOne sign-in URL provided by the tenant.
+1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in URL provided by the tenant.
 2. Select **Forgot Password**.
 3. Enter the registered corporate email.
 4. Select **Send Verification Code** and wait for the resend timer before requesting another code.

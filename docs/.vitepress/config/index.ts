@@ -3,10 +3,16 @@ import { baseConfig } from './shared'
 import { enTheme } from '../theme/en'
 import { zhTheme } from '../theme/zh'
 import { socialLinks } from '../social'
+import { installDocsProfile } from './profile'
 
 export default defineConfig({
   ...baseConfig,
   ignoreDeadLinks: true,
+  markdown: {
+    config(md) {
+      installDocsProfile(md)
+    },
+  },
   themeConfig: {
     outline: {
       level: [2, 3],

@@ -1,6 +1,6 @@
-# AGIOne User Guide for End Users
+# {{DOCS_PRODUCT_NAME_EN}} User Guide for End Users
 
-This guide is written for first-time AGIOne users. It walks you through the full basic workflow: signing in, claiming free quota, trying a model in the web playground, and calling the model with curl. Usernames, passwords, and API keys are shown as placeholders only.
+This guide is written for first-time {{DOCS_PRODUCT_NAME_EN}} users. It walks you through the full basic workflow: signing in, claiming free quota, trying a model in the web playground, and calling the model with curl. Usernames, passwords, and API keys are shown as placeholders only.
 
 ## Applicable Roles
 
@@ -10,35 +10,37 @@ This guide is written for first-time AGIOne users. It walks you through the full
 
 ## 1. Before You Start
 
-Prepare the following information before using AGIOne.
+Prepare the following information before using {{DOCS_PRODUCT_NAME_EN}}.
 
 | Item         | Example or Description                        |
 | ------------ | --------------------------------------------- |
-| Platform URL | `https://agione.pro/`                    |
+| Platform URL | `{{DOCS_PLATFORM_URL}}`                    |
 | Username     | `{USERNAME}`                                  |
 | Password     | `{PASSWORD}`                                  |
-| API Key      | `{API_KEY}`, copied from the Quick Start page |
+| Model API Key | `{API_KEY}`, copied from the Quick Start page |
 
 This guide uses the following model.
 
 | Item             | Value                                                          |
 | ---------------- | -------------------------------------------------------------- |
 | Model Name       | Qwen3.5-27b                                                    |
-| Model Identifier | `qwen/qwen3.5-27b/8e413`                                       |
+| Model Identifier | `qwen/qwen3.5-27b/8cead`                                       |
 | Protocol         | `openai/chat_completions`                                      |
-| API Endpoint     | `https://agione.pro/hyperone/xapi/api/v1/chat/completions` |
+| API Endpoint     | `{{DOCS_API_ENDPOINT}}` |
 
-## 2. Sign In to AGIOne
+> Provider-instance call identifiers can vary by provider or region. The `8cead` suffix is the value observed in the current demo; copy the selected provider's current identifier from `Quick Start` before calling.
+
+## 2. Sign In to {{DOCS_PRODUCT_NAME_EN}}
 
 ### 2.1 Open the Sign-In Page
 
 Enter the following address in your browser:
 
 ```text
-https://agione.pro/user/login
+{{DOCS_LOGIN_URL}}
 ```
 
-You will see the AGIOne sign-in page.
+You will see the {{DOCS_PRODUCT_NAME_EN}} sign-in page.
 
 ![Sign-in page](./images/01-login-page.png)
 
@@ -51,13 +53,13 @@ Fill in the form in the following order.
 | 1    | Enter your username in `Username or email` | `{USERNAME}`                  |
 | 2    | Enter your password in `Password`          | `{PASSWORD}`                  |
 | 3    | Select the agreement checkbox              | Check it                      |
-| 4    | Click `Sign In`                            | Wait for the platform to open |
+| 4    | Click `Sign in`                            | Wait for the platform to open |
 
 If a privacy policy or service terms dialog appears, click `Agree`.
 
 ### 2.3 Confirm That Sign-In Succeeded
 
-After signing in successfully, you should see a user avatar or initial in the upper-right corner. The left-side menu should show entries such as `Discover`, `Playground`, `Usage & Earnings`, and `My Calls`.
+After signing in successfully, you should see a user avatar or initial in the upper-right corner. The left-side menu should show entries such as `Discover`, `Playground`, `Studio`, `Usage & Earnings`, and `My Calls`.
 
 ## 3. Open the Model List
 
@@ -66,7 +68,7 @@ After signing in successfully, you should see a user avatar or initial in the up
 After signing in, open:
 
 ```text
-https://agione.pro/modelone/store/model
+{{DOCS_MODEL_STORE_URL}}
 ```
 
 You can also navigate through the page menu:
@@ -77,7 +79,7 @@ Model Services > Discover > Models
 
 ### 3.2 Find Qwen3.5-27b
 
-Find `Qwen3.5-27b` in the model list. It is usually near the lower part of the current list. After you find it, click `View` on the right side of the model row.
+Search for `Qwen3.5-27b` in the model list. The list is sorted by `Newest`, so use the search box instead of relying on the model's position in the current list. After you find it, click `View` on the model row.
 
 ![Qwen3.5-27b in the model list](./images/02-model-list-qwen35.png)
 
@@ -93,7 +95,7 @@ After opening the `Qwen3.5-27b` detail page, confirm that you can see the follow
 | --- | --- |
 | Model Name | `Qwen3.5-27b` |
 | Model ID | `qwen/qwen3.5-27b` |
-| Provider Card Call Identifier | `qwen/qwen3.5-27b/8e413` |
+| Provider Card Call Identifier | `qwen/qwen3.5-27b/8cead` |
 | Quota Button | `Claim Free Quota` |
 | Trial Entry | `Playground` |
 
@@ -157,7 +159,7 @@ After entering the text playground page, follow these steps.
 | 2 | Confirm or select the model | The provider model for Qwen3.5-27b |
 | 3 | Confirm `Protocol` | `openai/chat_completions` |
 | 4 | Adjust parameters if needed | Beginners can keep the default values |
-| 5 | Enter a question in the input box at the bottom | `Introduce AGIOne in one sentence.` |
+| 5 | Enter a question in the input box at the bottom | `Introduce {{DOCS_PRODUCT_NAME_EN}} in one sentence.` |
 | 6 | Click the send button | Wait for the model response |
 
 If the generated response appears in the chat area, the playground call has succeeded.
@@ -201,9 +203,11 @@ On the Quick Start page, you can find the following information.
 
 | Information | Purpose |
 | --- | --- |
-| Call Identifier | The value used in the `model` field |
-| Full URL | The curl request URL |
-| API Key | The authentication key |
+| Model ID Call Identifier | The provider-specific value used in the `model` field |
+| Base URL | The API service base address |
+| Path | The protocol path appended to the base URL |
+| Full URL | The complete curl request URL |
+| Model API Key | The authentication key selected in the `AUTHENTICATION` section |
 | Curl Example | A ready-to-use reference command |
 
 The API key in the screenshot is redacted. In actual use, copy your own API key from the page.
@@ -212,7 +216,7 @@ The API key in the screenshot is redacted. In actual use, copy your own API key 
 
 ### 6.2 Copy the API Key
 
-Find `API Key` in the `AUTHENTICATION` section, then click `Copy`.
+Find `Model API Keys` in the `AUTHENTICATION` section, select an authorized key, then click `Copy`.
 
 Please note:
 
@@ -227,12 +231,12 @@ Please note:
 Replace `{API_KEY}` with the API key you copied, then run the command in your terminal.
 
 ```bash
-curl -X POST "https://agione.pro/hyperone/xapi/api/v1/chat/completions" \
+curl -X POST "{{DOCS_API_ENDPOINT}}" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {API_KEY}" \
   -d '{
     "stream": true,
-    "model": "qwen/qwen3.5-27b/8e413",
+    "model": "qwen/qwen3.5-27b/8cead",
     "messages": [
       {
         "role": "user",
@@ -249,13 +253,13 @@ When the call succeeds, your terminal returns generated model output. Common sig
 | Check Item | Success Sign |
 | --- | --- |
 | Response content | The response includes generated text |
-| Model field | The response includes `qwen/qwen3.5-27b/8e413` |
+| Model field | The response includes `qwen/qwen3.5-27b/8cead` |
 | No authentication error | No `Unauthorized` or `Invalid API key` error appears |
 | No quota error | No insufficient quota message appears |
 
 ## 6.5 Quick Practice
 
-Go to [AGIOne Best Practices](https://agione.pro/docs/best-practice/integration/OpenCode.html).
+Go to [{{DOCS_PRODUCT_NAME_EN}} Best Practices]({{DOCS_OPENCODE_URL}}).
 
 ## 7. View Your Call Records
 
@@ -311,8 +315,8 @@ My Calls > Call Logs
 | Error Symptom          | What to Check                                                                                     |
 | ---------------------- | -------------------------------------------------------------------------------------------------- |
 | Authentication failure | Check whether the API key is complete and whether the header is `Authorization: Bearer {API_KEY}` |
-| Model not found        | Check whether `model` is `qwen/qwen3.5-27b/8e413`                                                 |
-| Incorrect request URL  | Check whether the URL is `https://agione.pro/hyperone/xapi/api/v1/chat/completions`           |
+| Model not found        | Check whether `model` matches the current provider card call identifier, such as `qwen/qwen3.5-27b/8cead` |
+| Incorrect request URL  | Check whether the URL is `{{DOCS_API_ENDPOINT}}`           |
 | Invalid JSON           | Check quotation marks, commas, and braces                                                         |
 | Insufficient quota     | Confirm that free quota has been claimed, or check your account quota                             |
 
@@ -320,8 +324,8 @@ My Calls > Call Logs
 
 | Feature                 | Entry                                                      |
 | ----------------------- | ---------------------------------------------------------- |
-| Sign in                 | `https://agione.pro/user/login`                        |
-| Model list              | `https://agione.pro/modelone/store/model`              |
+| Sign in                 | `{{DOCS_LOGIN_URL}}`                        |
+| Model list              | `{{DOCS_MODEL_STORE_URL}}`              |
 | Qwen3.5-27b detail page | `Model Services > Discover > Models > Qwen3.5-27b > View`  |
 | Claim free quota        | Qwen3.5-27b detail page provider card > `Claim Free Quota` |
 | Web playground          | Qwen3.5-27b detail page provider card > `Playground`       |

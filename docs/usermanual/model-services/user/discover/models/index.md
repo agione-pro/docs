@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-29
+Updated: 2026-08-31
 :::
 
 ## Feature Overview
@@ -66,7 +66,7 @@ Used to search models, view providers, filter model types, and confirm model car
 
 ![Model details and Providers](./images/providers.png)
 
-The `Providers` tab shows provider instances, billing, context, latency, throughput, success rate, weekly usage, and the `Quick Start` entry.
+The `Providers` tab shows provider instances, billing, context, latency, throughput, success rate, weekly usage, and the `Quick Start` entry. On the current details page, provider visibility uses the `All`, `Public`, `Private`, and `Aggregate` segmented control, while performance grouping uses `All`, `By Provider`, and `By Model Source`. Copy the provider-specific call identifier shown for the selected instance; do not reuse an identifier from another provider.
 
 Documentation examples and screenshots must remain redacted. Use real personal keys only in an approved integration environment.
 
@@ -83,7 +83,7 @@ Confirm model capability, context, and pricing boundaries in the overview.
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Name | Yes | Text | `Qwen3.7-Plus` | Display name used to identify the model in the list and details page. |
-| Provider | Yes | Text / Filter | `AGIOneSystem` | Tenant or channel that provides the model instance. |
+| Provider | Yes | Text / Filter | `{{DOCS_PROVIDER_EXAMPLE}}` | Tenant or channel that provides the model instance. |
 | Model Type | No | Filter / Tag | `Text` | Distinguishes multimodal, text, image, speech, video, embedding, reranking, and other model types. |
 | View | No | Switch | `Table` / `Card` | Changes the presentation without changing model visibility. |
 | Capability Tags | No | Tag | `Tool Calling` | Shows model capabilities such as tool calling or reasoning. |
@@ -97,7 +97,7 @@ Confirm model capability, context, and pricing boundaries in the overview.
 
 - The same model may have multiple providers. Confirm the selected provider instance before calling.
 - Copy the exact Model ID from the provider instance.
-- The API Key in quick-start examples must be replaced with a personal authorized key.
+- The Model API Key in quick-start examples must be replaced with a personal authorized key.
 - Trying a model or submitting a prompt may create call records, consume credits, or generate billing records. Do not submit real calls when learning the page.
 
 
