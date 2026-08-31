@@ -45,7 +45,7 @@ Complete this setup before validating recharge, project budgets, or model consum
 1. Open [Platform Settings](../../../usermanual/settings/operator/system-settings/platform-settings/) from `Settings > Platform Settings`, then select `Currency Settings`.
 2. Click `Edit` and set `Currency Code`, `Currency Name`, and `Currency Symbol`. Click `Save` after confirming the platform-wide display and settlement impact.
 3. In the same Platform Settings page, select `Account & Settlement` and click `Edit`.
-4. Set `Default Credit exchange rate` in the form `1 <currency code> = <N> credits`, then click `Save`. For example, the Demo page displays `1 USD = 100 credits`; use the rate approved for your deployment.
+4. Set `Default Credit exchange rate` in the form `1 <currency code> = <N> credits`, then click `Save`. Use the currency and rate displayed in the current environment.
 
 The exchange rate is used to convert a recharge amount in the configured currency into account Credits. It does not replace the billing price configured for a model.
 

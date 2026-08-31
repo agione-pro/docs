@@ -23,7 +23,7 @@ next: true
 1. 从 `设置 > 平台设置` 进入[平台设置](../../../usermanual/settings/operator/system-settings/platform-settings/)，选择 `币种设置`。
 2. 点击 `编辑`，设置 `币种代码`、`币种名称` 和 `货币符号`，确认全局影响后点击 `保存`。
 3. 选择 `账户与结算`，点击 `编辑`。
-4. 按 `1 <币种代码> = <N> credits` 设置 `Credit 默认兑换倍率`，然后点击 `保存`。Demo 环境当前显示为 `1 USD = 100 credits`；实际部署请使用已审批的倍率。
+4. 按 `1 <币种代码> = <N> credits` 设置 `Credit 默认兑换倍率`，然后点击 `保存`。请以当前环境页面显示的币种和倍率为准。下方截图用于说明这些字段的位置。
 
 ![币种设置](../../../usermanual/settings/operator/system-settings/platform-settings/images/currency-settings.png)
 

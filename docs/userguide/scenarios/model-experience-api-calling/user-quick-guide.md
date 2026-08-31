@@ -19,16 +19,16 @@ Prepare the following information before using {{DOCS_PRODUCT_NAME_EN}}.
 | Password     | `{PASSWORD}`                                  |
 | Model API Key | `{API_KEY}`, copied from the Quick Start page |
 
-This guide uses the following model.
+This guide uses Qwen3.5-27b as an example. Model availability and provider-instance identifiers can vary by environment.
 
 | Item             | Value                                                          |
 | ---------------- | -------------------------------------------------------------- |
 | Model Name       | Qwen3.5-27b                                                    |
-| Model Identifier | `qwen/qwen3.5-27b/8cead`                                       |
+| Model Identifier | `{MODEL_IDENTIFIER}`                                           |
 | Protocol         | `openai/chat_completions`                                      |
 | API Endpoint     | `{{DOCS_API_ENDPOINT_EN}}` |
 
-> Provider-instance call identifiers can vary by provider or region. The `8cead` suffix is the value observed in the current demo; copy the selected provider's current identifier from `Quick Start` before calling.
+> Provider-instance call identifiers can vary by environment, provider, or region. Copy the identifier shown in the current environment from the selected provider card or `Quick Start` before calling.
 
 ## 2. Sign In to {{DOCS_PRODUCT_NAME_EN}}
 
@@ -95,7 +95,7 @@ After opening the `Qwen3.5-27b` detail page, confirm that you can see the follow
 | --- | --- |
 | Model Name | `Qwen3.5-27b` |
 | Model ID | `qwen/qwen3.5-27b` |
-| Provider Card Call Identifier | `qwen/qwen3.5-27b/8cead` |
+| Provider Card Call Identifier | `{MODEL_IDENTIFIER}` |
 | Quota Button | `Claim Free Quota` |
 | Trial Entry | `Playground` |
 
@@ -228,7 +228,7 @@ Please note:
 
 ### 6.3 curl Example
 
-Replace `{API_KEY}` with the API key you copied, then run the command in your terminal.
+Replace `{API_KEY}` and `{MODEL_IDENTIFIER}` with values copied from the current environment, then run the command in your terminal.
 
 ```bash
 curl -X POST "{{DOCS_API_ENDPOINT_EN}}" \
@@ -236,7 +236,7 @@ curl -X POST "{{DOCS_API_ENDPOINT_EN}}" \
   -H "Authorization: Bearer {API_KEY}" \
   -d '{
     "stream": true,
-    "model": "qwen/qwen3.5-27b/8cead",
+    "model": "{MODEL_IDENTIFIER}",
     "messages": [
       {
         "role": "user",
@@ -253,7 +253,7 @@ When the call succeeds, your terminal returns generated model output. Common sig
 | Check Item | Success Sign |
 | --- | --- |
 | Response content | The response includes generated text |
-| Model field | The response includes `qwen/qwen3.5-27b/8cead` |
+| Model field | The response includes the current environment's model identifier |
 | No authentication error | No `Unauthorized` or `Invalid API key` error appears |
 | No quota error | No insufficient quota message appears |
 
@@ -315,7 +315,7 @@ My Calls > Call Logs
 | Error Symptom          | What to Check                                                                                     |
 | ---------------------- | -------------------------------------------------------------------------------------------------- |
 | Authentication failure | Check whether the API key is complete and whether the header is `Authorization: Bearer {API_KEY}` |
-| Model not found        | Check whether `model` matches the current provider card call identifier, such as `qwen/qwen3.5-27b/8cead` |
+| Model not found        | Check whether `model` matches the provider card call identifier copied from the current environment |
 | Incorrect request URL  | Check whether the URL is `{{DOCS_API_ENDPOINT_EN}}`           |
 | Invalid JSON           | Check quotation marks, commas, and braces                                                         |
 | Insufficient quota     | Confirm that free quota has been claimed, or check your account quota                             |

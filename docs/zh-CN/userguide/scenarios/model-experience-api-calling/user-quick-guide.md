@@ -18,16 +18,16 @@
 | 密码 | `{PASSWORD}` |
 | 模型 API 密钥 | `{API_KEY}`，从快速入门页面复制 |
 
-本指南使用以下模型。
+本指南以 Qwen3.5-27b 为示例。模型可用性以及供应商实例调用标识符可能因环境而变化。
 
 | 项目 | 值 |
 | --- | --- |
 | 模型名称 | Qwen3.5-27b |
-| 模型标识符 | `qwen/qwen3.5-27b/8cead` |
+| 模型标识符 | `{MODEL_IDENTIFIER}` |
 | 协议 | `openai/chat_completions` |
 | API 端点 | `{{DOCS_API_ENDPOINT_ZH}}` |
 
-> 供应商实例的调用标识符可能因供应方或区域而变化。`8cead` 是当前 demo 中观察到的示例值；调用前请从所选供应商的 `快速入门` 面板复制当前标识符。
+> 供应商实例调用标识符可能因环境、供应方或区域而变化。调用前请从当前环境的供应商卡片或`快速入门`面板复制标识符。
 
 ## 2. 登录 {{DOCS_PRODUCT_NAME_ZH}}
 
@@ -94,7 +94,7 @@
 | ---------- | ------------------------ |
 | 模型名称       | `Qwen3.5-27b`            |
 | 模型 ID      | `qwen/qwen3.5-27b`       |
-| 供应商卡片调用标识符 | `qwen/qwen3.5-27b/8cead` |
+| 供应商卡片调用标识符 | `{MODEL_IDENTIFIER}` |
 | 配额按钮       | `领取免费配额`                 |
 | 试用入口       | `体验中心`                   |
 
@@ -227,7 +227,7 @@ Web 体验中心是试用模型最简单的方式，无需编写代码。
 
 ### 6.3 curl 示例
 
-将 `{API_KEY}` 替换为复制的 API 密钥，然后在终端中运行命令。
+将 `{API_KEY}` 和 `{MODEL_IDENTIFIER}` 替换为从当前环境复制的值，然后在终端中运行命令。
 
 ```bash
 curl -X POST "{{DOCS_API_ENDPOINT_ZH}}" \
@@ -235,7 +235,7 @@ curl -X POST "{{DOCS_API_ENDPOINT_ZH}}" \
   -H "Authorization: Bearer {API_KEY}" \
   -d '{
     "stream": true,
-    "model": "qwen/qwen3.5-27b/8cead",
+    "model": "{MODEL_IDENTIFIER}",
     "messages": [
       {
         "role": "user",
@@ -252,7 +252,7 @@ curl -X POST "{{DOCS_API_ENDPOINT_ZH}}" \
 | 检查项 | 成功标志 |
 | --- | --- |
 | 响应内容 | 响应包含生成的文本 |
-| 模型字段 | 响应包含 `qwen/qwen3.5-27b/8cead` |
+| 模型字段 | 响应包含当前环境显示的模型标识符 |
 | 无认证错误 | 未出现 `Unauthorized` 或 `Invalid API key` 错误 |
 | 无配额错误 | 未出现配额不足消息 |
 
@@ -314,7 +314,7 @@ curl -X POST "{{DOCS_API_ENDPOINT_ZH}}" \
 | 错误现象 | 检查项 |
 | --- | --- |
 | 认证失败 | 检查 API 密钥是否完整，Header 是否为 `Authorization: Bearer {API_KEY}` |
-| 模型未找到 | 检查 `model` 是否与当前供应商卡片调用标识符一致，例如 `qwen/qwen3.5-27b/8cead` |
+| 模型未找到 | 检查 `model` 是否与从当前环境复制的供应商卡片调用标识符一致 |
 | 请求 URL 错误 | 检查 URL 是否为 `{{DOCS_API_ENDPOINT_ZH}}` |
 | JSON 格式错误 | 检查引号、逗号和花括号 |
 | 配额不足 | 确认是否已领取免费配额，或检查账户配额 |

@@ -23,7 +23,7 @@ Use this task to configure the billing foundation and then create a project with
 1. Open [Platform Settings](../../../usermanual/settings/operator/system-settings/platform-settings/) from `Settings > Platform Settings`, then select `Currency Settings`.
 2. Click `Edit`, set `Currency Code`, `Currency Name`, and `Currency Symbol`, and click `Save` after reviewing the platform-wide impact.
 3. Select `Account & Settlement` and click `Edit`.
-4. Set `Default Credit exchange rate` as `1 <currency code> = <N> credits`, then click `Save`. The Demo environment currently displays `1 USD = 100 credits`; use the approved rate for your deployment.
+4. Set `Default Credit exchange rate` as `1 <currency code> = <N> credits`, then click `Save`. Use the currency and rate displayed in the current environment. The screenshot below shows where to configure these values.
 
 ![Currency Settings](../../../usermanual/settings/operator/system-settings/platform-settings/images/currency-settings.png)
 
