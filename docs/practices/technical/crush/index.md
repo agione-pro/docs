@@ -19,7 +19,7 @@ crush --version
 
 ## Model Configuration
 
-1. Visit [AGIOne](https://tai.agione.co/) and register an account.
+1. Visit [AGIOne](https://agione.pro/) and register an account.
 2. Go to the model marketplace, select a model, enter the API Usage page, and obtain the *API key* and *model id*.
 
 ### Configuration instructions (Using AGIOne as the model provider)
@@ -29,7 +29,7 @@ After successful installation, run the `crush` command to launch the interactive
 Locate the crush.json file according to the path (create it manually if it doesn't exist), and configure the provider and model information, After saving the file, return to the command prompt (cmd) and rerun the `crush` command to select and use your custom model.
 
 - _Provider Name_: User-defined (The example name is AGIOne)
-- _base_url_: `https://tai.agione.co/hyperone/xapi/api`
+- _base_url_: `https://agione.pro/hyperone/xapi/api`
 - _api_key_: Obtain the `Certified TOKEN` from the AGIOne platform model API call page
 - _id_: Obtain the `Model Id` from the request parameters of the AGIOne platform model API call page
 - _name_: Model Name
@@ -40,7 +40,7 @@ Locate the crush.json file according to the path (create it manually if it doesn
   "providers": {
     "AGIOne": {
       "type": "openai-compat",
-      "base_url": "https://tai.agione.co/hyperone/xapi/api",
+      "base_url": "https://agione.pro/hyperone/xapi/api",
       "api_key": "your_api_key",
       "models": [
         {

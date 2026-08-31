@@ -14,7 +14,7 @@ Prepare the following information before using {{DOCS_PRODUCT_NAME_EN}}.
 
 | Item         | Example or Description                        |
 | ------------ | --------------------------------------------- |
-| Platform URL | `{{DOCS_PLATFORM_URL}}`                    |
+| Platform URL | `{{DOCS_PLATFORM_URL_EN}}`                    |
 | Username     | `{USERNAME}`                                  |
 | Password     | `{PASSWORD}`                                  |
 | Model API Key | `{API_KEY}`, copied from the Quick Start page |
@@ -26,7 +26,7 @@ This guide uses the following model.
 | Model Name       | Qwen3.5-27b                                                    |
 | Model Identifier | `qwen/qwen3.5-27b/8cead`                                       |
 | Protocol         | `openai/chat_completions`                                      |
-| API Endpoint     | `{{DOCS_API_ENDPOINT}}` |
+| API Endpoint     | `{{DOCS_API_ENDPOINT_EN}}` |
 
 > Provider-instance call identifiers can vary by provider or region. The `8cead` suffix is the value observed in the current demo; copy the selected provider's current identifier from `Quick Start` before calling.
 
@@ -37,7 +37,7 @@ This guide uses the following model.
 Enter the following address in your browser:
 
 ```text
-{{DOCS_LOGIN_URL}}
+{{DOCS_LOGIN_URL_EN}}
 ```
 
 You will see the {{DOCS_PRODUCT_NAME_EN}} sign-in page.
@@ -68,7 +68,7 @@ After signing in successfully, you should see a user avatar or initial in the up
 After signing in, open:
 
 ```text
-{{DOCS_MODEL_STORE_URL}}
+{{DOCS_MODEL_STORE_URL_EN}}
 ```
 
 You can also navigate through the page menu:
@@ -231,7 +231,7 @@ Please note:
 Replace `{API_KEY}` with the API key you copied, then run the command in your terminal.
 
 ```bash
-curl -X POST "{{DOCS_API_ENDPOINT}}" \
+curl -X POST "{{DOCS_API_ENDPOINT_EN}}" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {API_KEY}" \
   -d '{
@@ -259,7 +259,7 @@ When the call succeeds, your terminal returns generated model output. Common sig
 
 ## 6.5 Quick Practice
 
-Go to [{{DOCS_PRODUCT_NAME_EN}} Best Practices]({{DOCS_OPENCODE_URL}}).
+Go to [{{DOCS_PRODUCT_NAME_EN}} Best Practices]({{DOCS_OPENCODE_URL_EN}}).
 
 ## 7. View Your Call Records
 
@@ -316,7 +316,7 @@ My Calls > Call Logs
 | ---------------------- | -------------------------------------------------------------------------------------------------- |
 | Authentication failure | Check whether the API key is complete and whether the header is `Authorization: Bearer {API_KEY}` |
 | Model not found        | Check whether `model` matches the current provider card call identifier, such as `qwen/qwen3.5-27b/8cead` |
-| Incorrect request URL  | Check whether the URL is `{{DOCS_API_ENDPOINT}}`           |
+| Incorrect request URL  | Check whether the URL is `{{DOCS_API_ENDPOINT_EN}}`           |
 | Invalid JSON           | Check quotation marks, commas, and braces                                                         |
 | Insufficient quota     | Confirm that free quota has been claimed, or check your account quota                             |
 
@@ -324,8 +324,8 @@ My Calls > Call Logs
 
 | Feature                 | Entry                                                      |
 | ----------------------- | ---------------------------------------------------------- |
-| Sign in                 | `{{DOCS_LOGIN_URL}}`                        |
-| Model list              | `{{DOCS_MODEL_STORE_URL}}`              |
+| Sign in                 | `{{DOCS_LOGIN_URL_EN}}`                        |
+| Model list              | `{{DOCS_MODEL_STORE_URL_EN}}`              |
 | Qwen3.5-27b detail page | `Model Services > Discover > Models > Qwen3.5-27b > View`  |
 | Claim free quota        | Qwen3.5-27b detail page provider card > `Claim Free Quota` |
 | Web playground          | Qwen3.5-27b detail page provider card > `Playground`       |

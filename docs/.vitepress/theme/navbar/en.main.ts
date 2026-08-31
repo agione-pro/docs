@@ -25,7 +25,7 @@ export const enNavbar = [
       },
     ],
   },
-  { text: 'AGIOne', link: 'https://agione.cc/' },
+  { text: 'AGIOne', link: 'https://agione.pro/' },
   { text: 'AI Support', link: 'https://sourcelens.oneprocloud.com/lens/assistants/AI_AGIOne/chat' },
   // { text: 'Get Support', link: 'https://support.oneprocloud.com/' },
   // { text: 'FAQ', link: 'https://qa.oneprocloud.com/' },

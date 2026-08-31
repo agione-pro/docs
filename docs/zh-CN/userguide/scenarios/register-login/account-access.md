@@ -23,7 +23,7 @@ next: true
 
 ### 创建账号
 
-1. 打开租户提供的 {{DOCS_PRODUCT_NAME_ZH}} 登录地址（例如 `{{DOCS_LOGIN_URL}}`）。
+1. 打开租户提供的 {{DOCS_PRODUCT_NAME_ZH}} 登录地址（例如 `{{DOCS_LOGIN_URL_ZH}}`）。
 2. 在登录卡片底部，点击 **"创建账号"** 链接，进入账号注册页面。
 3. 填写注册表单：
    - **"用户名"**：设置账号用户名；
@@ -55,7 +55,7 @@ next: true
 
 ### 登录 {{DOCS_PRODUCT_NAME_ZH}}（密码登录）
 
-1. 打开租户提供的 {{DOCS_PRODUCT_NAME_ZH}} 登录地址（例如 `{{DOCS_LOGIN_URL}}`）。
+1. 打开租户提供的 {{DOCS_PRODUCT_NAME_ZH}} 登录地址（例如 `{{DOCS_LOGIN_URL_ZH}}`）。
 2. 在登录卡片顶部选择 **"密码登录"** 标签（默认选中）。
 3. 填写登录表单：
    - **"用户名或邮箱"**：填写账号用户名或企业邮箱；
@@ -81,7 +81,7 @@ next: true
 
 ### 登录 {{DOCS_PRODUCT_NAME_ZH}}（邮箱验证码）
 
-1. 打开租户提供的 {{DOCS_PRODUCT_NAME_ZH}} 登录地址（例如 `{{DOCS_LOGIN_URL}}`）。
+1. 打开租户提供的 {{DOCS_PRODUCT_NAME_ZH}} 登录地址（例如 `{{DOCS_LOGIN_URL_ZH}}`）。
 2. 在登录卡片顶部选择 **"邮箱验证码"** 标签。
 3. 填写登录表单：
    - **"企业邮箱"**：填写已注册的企业邮箱；
@@ -111,7 +111,7 @@ next: true
 
 #### Step 1：验证邮箱
 
-1. 打开租户提供的 {{DOCS_PRODUCT_NAME_ZH}} 登录地址（例如 `{{DOCS_LOGIN_URL}}`）。
+1. 打开租户提供的 {{DOCS_PRODUCT_NAME_ZH}} 登录地址（例如 `{{DOCS_LOGIN_URL_ZH}}`）。
 2. 在登录卡片底部，点击 **"忘记密码？"** 链接，进入密码重置页面。
 3. 在 **"验证邮箱"** 步骤中，填写 **"企业邮箱"**（已注册的企业邮箱）。
 4. 点击 **"发送验证码"** 按钮，系统将 6 位数字验证码发送至该邮箱（**61 秒后可重新发送**）。

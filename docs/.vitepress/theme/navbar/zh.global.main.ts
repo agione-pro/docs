@@ -24,7 +24,7 @@ export const zhNavbar = [
       },
     ]
   },
-  { text: 'AGIOne', link: 'https://agione.pro/' },
+  { text: 'AGIOne', link: 'https://agione.cc/' },
   { text: 'AI助手', link: 'https://sourcelens.oneprocloud.com/lens/assistants/AI_AGIOne/chat' },
   // { text: '技术支持', link: 'https://support.oneprocloud.com/' },
   // { text: '常见问题', link: 'https://qa.oneprocloud.com/' },

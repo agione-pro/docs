@@ -62,7 +62,7 @@ Architecture support: AGIOne can be deployed on both x86_64 and ARM64 / AArch64 
 
 Open the fixed download page first, then copy the package link from `Download URL`. `agione-release-latest` is a download page, not a direct `.tar.gz` package URL.
 
-Fixed download page: [Download link](https://agione.pro/release/download/agione-release-latest)
+Fixed download page: [Download link]({{DOCS_RELEASE_PAGE_URL_EN}})
 
 The page also provides an `MD5 URL`. Verify it after download. MD5 detects download or transfer corruption, but does not authenticate the package publisher. For a production delivery, independently obtain the outer `.tar.gz` SHA-256 digest through an access-controlled delivery channel and compare it as well.
 
@@ -70,7 +70,7 @@ Example:
 
 ```bash
 ssh root@<target-host>
-AGIONE_RELEASE_PAGE="https://agione.pro/release/download/agione-release-latest"
+AGIONE_RELEASE_PAGE="{{DOCS_RELEASE_PAGE_URL_EN}}"
 AGIONE_RELEASE_URL="<copy-the-Download-URL-from-the-page>"
 AGIONE_RELEASE_MD5_URL="<copy-the-MD5-URL-from-the-page>"
 AGIONE_RELEASE_ARCHIVE="${AGIONE_RELEASE_URL##*/}"

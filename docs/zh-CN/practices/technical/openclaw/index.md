@@ -13,7 +13,7 @@
 
 1. 编辑`~/.openclaw/openclaw.json`，在`models.providers`中添加AGIOne模型提供商
     - *provider*：agione（用户自定义）
-    - *baseUrl*：`https://zh.agione.co/hyperone/xpai/api`
+    - *baseUrl*：`https://agione.cc/hyperone/xpai/api`
     - *api*：openai-completions
     - *id*："AGIOne上的模型id"
     - *name*："AGIOne上的模型名称"

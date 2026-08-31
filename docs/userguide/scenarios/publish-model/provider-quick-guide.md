@@ -16,15 +16,15 @@ The model passes protocol testing, is submitted to the correct publication scope
 - Confirm that the Platform Operator has prepared the required meta-model, source, template, tags, and currency.
 - Prepare the model identifier, endpoint, credential, protocol, billing decision, rate limits, and harmless test data.
 
-## 1. Sign In To AGIOne
+## 1. Sign In To {{DOCS_PRODUCT_NAME_EN}}
 
-1. Open the AGIOne sign-in page at `https://agione.pro/user/login`.
+1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in page at `{{DOCS_LOGIN_URL_EN}}`.
 2. Select **"Password"** sign-in.
 3. Enter your **"Username or email"** and **"Password"**.
 4. Tick **"I agree to the Privacy Policy and Terms of Service"**.
 5. Click **"Sign In"**.
 
-![Sign in to AGIOne](./images/beginner-login-page-en.png)
+![Sign in to {{DOCS_PRODUCT_NAME_EN}}](./images/beginner-login-page-en.png)
 
 ## 2. Open The Model Publishing Page
 
@@ -32,7 +32,7 @@ The model passes protocol testing, is submitted to the correct publication scope
 2. In the left menu, go to **"Studio" > "My Models"**.
 3. Click **"Publish Model"**.
 4. In the dialog, choose a deployment method:
-   - **On-Prem / On-Cloud** for a model deployed on compute managed through AGIOne.
+   - **On-Prem / On-Cloud** for a model deployed on compute managed through {{DOCS_PRODUCT_NAME_EN}}.
    - **BYOK (Bring Your Own Key)** for an existing third-party or self-hosted model API.
 5. Choose **Private** for internal use or **Public** for the public marketplace.
 6. Click **Start**.
@@ -43,8 +43,8 @@ The model passes protocol testing, is submitted to the correct publication scope
 
 | Deployment Method | Use When | Confirm Before Publishing |
 | --- | --- | --- |
-| On-Prem / On-Cloud | AGIOne-managed compute will host the model | Model asset, resource pool, inference template, or cloud deployment prerequisites are ready |
-| BYOK (Bring Your Own Key) | An external or self-hosted model API should use AGIOne experience, billing, and governance | Endpoint, provider model ID, headers, key, protocol, and response format are ready |
+| On-Prem / On-Cloud | {{DOCS_BRAND_PREFIX_EN}}-managed compute will host the model | Model asset, resource pool, inference template, or cloud deployment prerequisites are ready |
+| BYOK (Bring Your Own Key) | An external or self-hosted model API should use {{DOCS_PRODUCT_NAME_EN}} experience, billing, and governance | Endpoint, provider model ID, headers, key, protocol, and response format are ready |
 
 Select the publication area and deployment method before clicking Start. Enter a BYOK credential only on the platform configuration page; never expose it in documentation, screenshots, or tickets.
 

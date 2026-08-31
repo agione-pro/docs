@@ -20,7 +20,7 @@ Open WebUI是一个可扩展、功能丰富且用户友好的‌**自托管AI平
 新开浏览器标签页，打开AGIOne平台，在模型广场中选择要添加的模型，点击**API调用**进入详情页面，
 ![](./openwebui-pics/file-20251217160734367.png)
 核心参数如下：
-- URL 地址：``https://zh.agione.co/hyperone/xapi/api``
+- URL 地址：``https://agione.cc/hyperone/xapi/api``
 - API 密钥：在 `认证 TOKEN` 中获取 API 密钥
 - 模型ID：在 `请求参数` 中获取
 ![](./openwebui-pics/file-20251217161135829.png)

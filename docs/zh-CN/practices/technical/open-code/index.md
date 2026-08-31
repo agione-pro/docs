@@ -15,14 +15,14 @@ opencode --version
 
 ## 模型配置
 
-1. 访问 [AGIOne](https://zh.agione.co/)，并注册一个账号。
+1. 访问 [AGIOne](https://agione.cc/)，并注册一个账号。
 2. 前往模型广场，选择一个模型，进入 api 调用页面，获取*Api key*和*model id*。
 
 ### 配置说明（使用AGIOne作为模型提供商）
 
 在项目目录下创建opencode.json文件，配置提供商及模型信息。
 - *name*：提供商名称（用户自定义，示例为agione）
-- *baseURL*：`https://zh.agione.co/hyperone/xapi/api`
+- *baseURL*：`https://agione.cc/hyperone/xapi/api`
 - *Authorization*：从AGIOne平台模型API调用页面 `认证 TOKEN` 中获取API Key
 - `provider.models`：从AGIOne平台模型API调用页面请求参数中获取`Model Id`
 - `model-id.name`：自定义模型名称
@@ -34,7 +34,7 @@ opencode --version
       "npm": "@ai-sdk/openai-compatible",
       "name": "agione",
       "options": {
-        "baseURL": "https://zh.agione.co/hyperone/xapi/api",
+        "baseURL": "https://agione.cc/hyperone/xapi/api",
             "headers": {
                 "Authorization": "Bearer your_agione_key"
             }

@@ -13,7 +13,7 @@
 
 | 项目 | 示例或说明 |
 | --- | --- |
-| 平台 URL | `{{DOCS_PLATFORM_URL}}` |
+| 平台 URL | `{{DOCS_PLATFORM_URL_ZH}}` |
 | 用户名 | `{USERNAME}` |
 | 密码 | `{PASSWORD}` |
 | 模型 API 密钥 | `{API_KEY}`，从快速入门页面复制 |
@@ -25,7 +25,7 @@
 | 模型名称 | Qwen3.5-27b |
 | 模型标识符 | `qwen/qwen3.5-27b/8cead` |
 | 协议 | `openai/chat_completions` |
-| API 端点 | `{{DOCS_API_ENDPOINT}}` |
+| API 端点 | `{{DOCS_API_ENDPOINT_ZH}}` |
 
 > 供应商实例的调用标识符可能因供应方或区域而变化。`8cead` 是当前 demo 中观察到的示例值；调用前请从所选供应商的 `快速入门` 面板复制当前标识符。
 
@@ -36,7 +36,7 @@
 在浏览器中输入以下地址：
 
 ```
-{{DOCS_LOGIN_URL}}
+{{DOCS_LOGIN_URL_ZH}}
 ```
 
 将看到 {{DOCS_PRODUCT_NAME_ZH}} 登录页面。
@@ -67,7 +67,7 @@
 登录后，打开：
 
 ```
-{{DOCS_MODEL_STORE_URL}}
+{{DOCS_MODEL_STORE_URL_ZH}}
 ```
 
 也可以通过页面菜单导航：
@@ -230,7 +230,7 @@ Web 体验中心是试用模型最简单的方式，无需编写代码。
 将 `{API_KEY}` 替换为复制的 API 密钥，然后在终端中运行命令。
 
 ```bash
-curl -X POST "{{DOCS_API_ENDPOINT}}" \
+curl -X POST "{{DOCS_API_ENDPOINT_ZH}}" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {API_KEY}" \
   -d '{
@@ -258,7 +258,7 @@ curl -X POST "{{DOCS_API_ENDPOINT}}" \
 
 ## 6.5 快速实践
 
-访问 [{{DOCS_PRODUCT_NAME_ZH}} 最佳实践]({{DOCS_OPENCODE_URL}})。
+访问 [{{DOCS_PRODUCT_NAME_ZH}} 最佳实践]({{DOCS_OPENCODE_URL_ZH}})。
 
 ## 7. 查看调用记录
 
@@ -315,7 +315,7 @@ curl -X POST "{{DOCS_API_ENDPOINT}}" \
 | --- | --- |
 | 认证失败 | 检查 API 密钥是否完整，Header 是否为 `Authorization: Bearer {API_KEY}` |
 | 模型未找到 | 检查 `model` 是否与当前供应商卡片调用标识符一致，例如 `qwen/qwen3.5-27b/8cead` |
-| 请求 URL 错误 | 检查 URL 是否为 `{{DOCS_API_ENDPOINT}}` |
+| 请求 URL 错误 | 检查 URL 是否为 `{{DOCS_API_ENDPOINT_ZH}}` |
 | JSON 格式错误 | 检查引号、逗号和花括号 |
 | 配额不足 | 确认是否已领取免费配额，或检查账户配额 |
 
@@ -323,8 +323,8 @@ curl -X POST "{{DOCS_API_ENDPOINT}}" \
 
 | 功能 | 入口 |
 | --- | --- |
-| 登录 | `{{DOCS_LOGIN_URL}}` |
-| 模型列表 | `{{DOCS_MODEL_STORE_URL}}` |
+| 登录 | `{{DOCS_LOGIN_URL_ZH}}` |
+| 模型列表 | `{{DOCS_MODEL_STORE_URL_ZH}}` |
 | Qwen3.5-27b 详情页 | `模型服务 > 发现 > 模型 > Qwen3.5-27b > 查看` |
 | 领取免费配额 | Qwen3.5-27b 详情页供应商卡片 > `领取免费配额` |
 | Web 体验中心 | Qwen3.5-27b 详情页供应商卡片 > `体验中心` |

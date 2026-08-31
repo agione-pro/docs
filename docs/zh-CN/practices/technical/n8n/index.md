@@ -72,7 +72,7 @@ https://cn.apihz.cn/api/tianqi/tqyb.php?id=10011034&key=b4138a4432bf6ac940702dc1
 搜索要连接的应用或服务，此处搜索并选择**OpenAi**，点击“**继续**”，
 ![](./n8n-pics/file-20251216101035723.png)
 将获取到的**API Key**和**Base URL**填入面板并点击“**保存**”，页面提示连接测试成功，表示Key已生效，点击面板右上角“**×**”按钮，返回个人页面，凭证保存成功后我们要去选择并使用模型。
-**Base URL**: ``https://zh.agione.co/hyperone/xapi/api``
+**Base URL**: ``https://agione.cc/hyperone/xapi/api``
 ![](./n8n-pics/file-20251216101814419.png)
 
 #### 添加大语言模型

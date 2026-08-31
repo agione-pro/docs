@@ -14,7 +14,7 @@
 ![](CherryStudio-pics/file-20260210152654344.png)
 3. 配置API密钥及地址    
 	- *API 密钥*：从AGIOne平台模型API调用页面 `认证 TOKEN` 中获取
-	- *API 地址*：`https://zh.agione.co/hyperone/xapi/api`
+	- *API 地址*：`https://agione.cc/hyperone/xapi/api`
 	- *说明：CherryStudio默认会在URL结尾拼接`/v1/chat/completions`格式，但AGIONE请求路由在CherryStudio平台不兼容该格式，所以用户需要在URL结尾输入`#`，表示不执行拼接操作。*
 ![](CherryStudio-pics/file-20260210152718055.png)
 4. 获取模型列表    

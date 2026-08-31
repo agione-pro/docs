@@ -22,7 +22,7 @@ Open a new browser tab and open the AGIOne platform. In the model square, select
 ![](./openwebui-pics/file-20251222103422090.png)
 The core parameters are as follows:
 
-- URL address: `https://tai.agione.co/hyperone/xapi/api`
+- URL address: `https://agione.pro/hyperone/xapi/api`
 - API key: Obtain the API key from `Authentication TOKEN`
 - Model ID: Obtain from `Request Parameters`
   ![](./openwebui-pics/file-20251222103518237.png)

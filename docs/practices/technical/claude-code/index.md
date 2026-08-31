@@ -38,7 +38,7 @@ winget install Anthropic.ClaudeCode
 
 ## Model Configuration
 
-1. Visit [AGIOne](https://tai.agione.co) and register an account.
+1. Visit [AGIOne](https://agione.pro) and register an account.
 2. Go to the model marketplace, select a model, enter the API Usage page, and obtain the *API key* and *model id*.
 
 ### Configuration instructions (Using AGIOne as the model provider)
@@ -48,14 +48,14 @@ Claude Code's configuration file is located at `~/.claude-code/settings.json`. I
 ### Basic configuration template
 
 Configuration information:
-- *ANTHROPIC_BASE_URL*: `https://tai.agione.co`
+- *ANTHROPIC_BASE_URL*: `https://agione.pro`
 - *ANTHROPIC_AUTH_TOKEN*: Obtain the `Certified TOKEN` from the AGIOne platform model API call page
 - *ANTHROPIC_DEFAULT_HAIKU_MODEL*、*ANTHROPIC_DEFAULT_SONNET_MODEL*、*ANTHROPIC_DEFAULT_OPUS_MODEL*: Obtain the `Model Id` from the request parameters of the AGIOne platform model API call page
 ```JSON
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "ANTHROPIC_BASE_URL": "https://tai.agione.co",
+    "ANTHROPIC_BASE_URL": "https://agione.pro",
     "ANTHROPIC_AUTH_TOKEN": "<agione-api-key>",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "<agione-model-id>",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "<agione-model-id>",

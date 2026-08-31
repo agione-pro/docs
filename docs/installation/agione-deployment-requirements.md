@@ -356,14 +356,14 @@ Before deployment, confirm each item to ensure a smooth rollout:
 - [ ] Operating system and kernel version meet requirements
 - [ ] Time is synchronized (NTP), and all nodes use a consistent time zone
 
-Fixed download page: [Download link](https://agione.pro/release/download/agione-release-latest)
+Fixed download page: [Download link]({{DOCS_RELEASE_PAGE_URL_EN}})
 
 After opening the page, copy `Download URL` and `MD5 URL`. MD5 detects download or transfer corruption only and does not authenticate the package publisher. For production delivery, independently obtain the outer `.tar.gz` SHA-256 digest through an access-controlled channel and verify it before extraction.
 
 ```bash
 # 1. Download the bundle and verify MD5
 ssh root@<target>
-AGIONE_RELEASE_PAGE="https://agione.pro/release/download/agione-release-latest"
+AGIONE_RELEASE_PAGE="{{DOCS_RELEASE_PAGE_URL_EN}}"
 AGIONE_RELEASE_URL="<copy-the-Download-URL-from-the-page>"
 AGIONE_RELEASE_MD5_URL="<copy-the-MD5-URL-from-the-page>"
 AGIONE_RELEASE_ARCHIVE="${AGIONE_RELEASE_URL##*/}"

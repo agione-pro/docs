@@ -14,7 +14,7 @@ Prompt message: Modifying the AGIOne model via the openclwa command without firs
 
 1. Edit `~/.openclaw/openclaw.json`, and add the AGIOne model provider in `models.providers`.
    - _provider_: agione (User-defined)
-   - _baseUrl_: `https://tai.agione.co/hyperone/xpai/api`
+   - _baseUrl_: `https://agione.pro/hyperone/xpai/api`
    - _api_: openai-completions
    - _id_: "Model ID on AGIOne"
    - _name_: "Model name on AGIOne"

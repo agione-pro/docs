@@ -23,7 +23,7 @@ A new End User completes registration and email verification; all roles can ente
 
 ### Create an Account
 
-1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in URL provided by the tenant, such as `{{DOCS_LOGIN_URL}}`.
+1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in URL provided by the tenant, such as `{{DOCS_LOGIN_URL_EN}}`.
 2. Select **Create Account** at the bottom of the sign-in card.
 3. Complete the registration form:
    - **Username**: account username.

@@ -62,7 +62,7 @@
 
 先打开固定下载页，再复制页面中的 `Download URL` 包下载直链。`agione-release-latest` 本身是下载页，不是 `.tar.gz` 安装包直链。
 
-固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
+固定下载页：[下载地址]({{DOCS_RELEASE_PAGE_URL_ZH}})
 
 页面中同时提供 `MD5 URL`，建议下载后一起校验。MD5 只能发现下载或传输损坏，不能证明安装包发布方身份。正式生产交付还应通过受控交付渠道独立获取外层 `.tar.gz` 的 SHA-256 摘要并核对。
 
@@ -70,7 +70,7 @@
 
 ```bash
 ssh root@<target-host>
-AGIONE_RELEASE_PAGE="https://agione.pro/release/download/agione-release-latest"
+AGIONE_RELEASE_PAGE="{{DOCS_RELEASE_PAGE_URL_ZH}}"
 AGIONE_RELEASE_URL="<复制下载页中的 Download URL>"
 AGIONE_RELEASE_MD5_URL="<复制下载页中的 MD5 URL>"
 AGIONE_RELEASE_ARCHIVE="${AGIONE_RELEASE_URL##*/}"

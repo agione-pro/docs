@@ -8,7 +8,7 @@
 
 ## Model Configuration
 
-1. Visit [AGIOne](https://tai.agione.co/) and register an account.
+1. Visit [AGIOne](https://agione.pro/) and register an account.
 2. Go to the model marketplace, select a model, enter the API Usage page, and obtain the *API key* and *model id*.
 
 ### Configuration instructions (Using AGIOne as the model provider)
@@ -20,7 +20,7 @@
 3. In the settings interface, find Environment Variables and click to edit the `settings.json` file.
    ![](./ClaudeCode-plugin-pics/file-20260210162057237.png)
 4. After opening the `settings.json` file, configure the provider information.
-   - _ANTHROPIC_BASE_URL_: https://tai.agione.co
+   - _ANTHROPIC_BASE_URL_: https://agione.pro
    - _ANTHROPIC_AUTH_TOKEN_: Obtain the `Certified TOKEN` from the AGIOne platform model API call page
    - _claudeCode.selectedModel_、_ANTHROPIC_DEFAULT_HAIKU_MODEL_、_ANTHROPIC_DEFAULT_SONNET_MODEL_、_ANTHROPIC_DEFAULT_OPUS_MODEL_: Obtain the `Model Id` from the request parameters of the AGIOne platform model API call page
 
@@ -32,7 +32,7 @@
   "claudeCode.environmentVariables": [
     {
       "name": "ANTHROPIC_BASE_URL",
-      "value": "https://tai.agione.co"
+      "value": "https://agione.pro"
     },
     {
       "name": "ANTHROPIC_AUTH_TOKEN",

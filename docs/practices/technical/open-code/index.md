@@ -19,7 +19,7 @@ opencode --version
 
 ## Model Configuration
 
-1. Visit [AGIOne](https://tai.agione.co/) and register an account.
+1. Visit [AGIOne](https://agione.pro/) and register an account.
 2. Go to the model marketplace, select a model, enter the API Usage page, and obtain the *API key* and *model id*.
 
 ### Configuration instructions(Using AGIOne as the model provider)
@@ -27,7 +27,7 @@ opencode --version
 Create an `opencode.json` file in the project directory and configure the provider and model information.
 
 - _name_：Provider Name（User-defined, an example being agione）
-- _baseURL_：`https://zh.agione.co/hyperone/xapi/api`
+- _baseURL_：`https://agione.pro/hyperone/xapi/api`
 - _Authorization_：Obtain the API Key from the `Certified TOKEN` section of the AGIOne platform's model API call page
 - `provider.models`: Obtain the `Model Id` from the request parameters of the AGIOne platform model API call page
 - `model-id.name`: Custom model name
@@ -40,7 +40,7 @@ Create an `opencode.json` file in the project directory and configure the provid
       "npm": "@ai-sdk/openai-compatible",
       "name": "agione",
       "options": {
-        "baseURL": "https://tai.agione.co/hyperone/xapi/api",
+        "baseURL": "https://agione.pro/hyperone/xapi/api",
         "headers": {
           "Authorization": "Bearer your_agione_key"
         }
