@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -58,6 +58,20 @@ The following screenshot shows Revenue Overview. Amounts, customers, and revenue
 | Customer Details | Entry for customer-level revenue details. |
 
 ## Main Operations
+
+::: warning Fact Status
+The Provider credentials were rejected by the Demo in this review, so Provider-only operations were not verified in the current Demo. The instructions use the existing Chinese and English manuals and cross-verifiable shared page structure. Recheck buttons, fields, and permissions with a valid Provider account before execution.
+:::
+
+
+
+### View Earnings
+
+1. Go to `Billing > Provider Earnings > Revenue Overview`.
+2. Select a billing period and filter by model, customer, or settlement status.
+3. Check total, pending, and settled earnings, trends, and refresh time.
+4. If no data is shown, expand the period and reset filters. Redact amounts and customer information before sharing.
+
 
 ### View Revenue Overview
 

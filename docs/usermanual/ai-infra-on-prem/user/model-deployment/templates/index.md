@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-23
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -57,6 +57,21 @@ The page displays model library, accelerators, business parameters, recommended 
 | Preview | Summarizes the selected configuration before submission. |
 
 ## Main Operations
+
+### View Deployment Templates
+
+1. Go to `Model Deployment > Deployment Templates`.
+2. Filter by template name, model, framework, status, or update time.
+3. Open details and check model version, image, resource flavor, ports, storage, and replica configuration.
+4. If no record is returned, reset filters. For an unavailable template, check dependent assets and quota.
+
+### Review Deployment Parameters and Cost
+
+1. After selecting a template, review region, cluster, flavor, replicas, and estimated resource usage.
+2. Compare capacity, availability, and quota with business requirements.
+3. If parameters are incompatible, correct them according to the page message without bypassing limits.
+4. Stop before the final deployment action during read-only validation. A real deployment requires separate confirmation of resource and cost impact.
+
 
 ### Deploy Template
 

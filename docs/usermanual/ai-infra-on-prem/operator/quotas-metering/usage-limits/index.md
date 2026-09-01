@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-22
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -47,6 +47,21 @@ After expanding a tenant row, operators can view or maintain the corresponding l
 ![Usage limits list](./images/usage-limits-list.png)
 
 ## Main Operations
+
+### View Usage Limits
+
+1. Go to `Quotas and Metering > Usage Limits`.
+2. Filter by tenant, project, resource type, status, or update time.
+3. Open details and check limit, used, remaining, and effective scope.
+4. If no record is returned, reset filters. Redact quota and tenant information before sharing.
+
+### Verify the Effect of a Limit Change
+
+1. After an approved change, reopen the target limit and check the new value and update time.
+2. In the same tenant or project context, review available quota and alert status.
+3. If not applied, check the save message, synchronization delay, and parent limit.
+4. Do not create real resources or repeatedly change quota to test the limit.
+
 
 ### View and Maintain Usage Limits
 

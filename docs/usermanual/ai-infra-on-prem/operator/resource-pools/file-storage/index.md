@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -48,6 +48,13 @@ The following figure shows the file storage page.
 ![File Storage](./images/file-storage-list.png)
 
 ## Main Operations
+
+### Inspect Components
+
+1. Open the corresponding resource-pool component page and filter by name, cluster, status, or update time.
+2. Open details and check redacted Endpoint information, capabilities, associated clusters, capacity, and health.
+3. If no record is returned, reset filters and check cluster status. Do not copy credentials, internal addresses, or complete configuration.
+4. For abnormal health, inspect connectivity and events before registering another component.
 
 ### Create File Storage Component
 

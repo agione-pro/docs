@@ -1,35 +1,39 @@
 # My Deployments
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-21
-:::
-
 ## Feature Overview
-
-`My Deployments` is used to view model deployment records in Studio and enter the model publishing flow from eligible deployments. Users can verify deployment status, model name, region, resource specification, and operation entries in the deployment list, then select a publish region and continue on the `My Models` publish model page.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model Provider or User with deployment publishing permissions |
-| Navigation path | Model Services > Studio > My Deployments |
-| Page route | `/modelone/my-deployments/models` |
-| Managed objects | Self-hosted models, on-cloud deployment records, deployment status, resource specifications, and publish entry |
-| Typical use | View deployment information, enter the publish model flow, and select a publish region |
+| Applicable Roles | Model Providers |
+| Navigation Path | Model Services > Studio > My Deployments |
+| Page Route | `/modelone/my-deployments/models` |
+| Managed Objects | On-Cloud deployments, On-Prem deployments, deployment status, and publishing entry |
 
 #### Beginner Explanation
 
-`My Deployments` is the deployment record entry for model providers. Users first confirm that a model service has been deployed and is eligible for publishing, then use `Publish` to choose `Private` or `Public` and continue with the publish model configuration flow in `My Models`.
+My Deployments works like a model deployment register. On-Cloud shows cloud deployments and On-Prem shows deployments in self-managed environments. Confirm the deployment type before reviewing status, resources, and call information.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| My Deployments | Shows model deployment records visible to the current account, including On-Prem and On-Cloud deployments. |
-| Publish Model | Sends the target deployment into the publishing flow, where model information, billing, and rate limits are configured in `My Models`. |
-| Publish Region | Publishes the model to `Private` or `Public`. |
-| Publish Entry | The `Publish` action in the deployment card's more actions menu, used to open the publish region dialog. |
-| Redirect Target | The `My Models > Publish Model` page opened after a publish region is selected. |
+| On-Cloud | A deployment that runs on cloud-platform resources. |
+| On-Prem | A deployment that runs in self-managed physical or virtual infrastructure. |
+| Deployment Status | The current creation, running, failed, or stopped state of a deployment. |
+| Call Information | The URL, protocol, and authentication requirements used after deployment. |
+
+#### Recommended Operation Order
+
+Open the relevant On-Cloud or On-Prem tab, locate the deployment, and review its details. To publish a new model, use the publishing entry and confirm the region before continuing.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| Unsure where a deployment runs | Check both deployment tabs | Query one tab repeatedly |
+| Deployment status is abnormal | Review details and status information | Redeploy immediately |
+| Preparing to record call information | Use URL and credential placeholders | Put real credentials in documentation |
+| Preparing to publish a model | Confirm region and resources first | Submit publication immediately |
 
 ## Prerequisites
 
@@ -37,42 +41,62 @@ Updated: 2026-07-21
 2. At least one deployment record is available on the page.
 3. The target deployment meets the conditions for displaying the publish entry, and `Publish` is visible in the more actions menu.
 4. Before publishing, the publish region, visibility scope, billing configuration, and call configuration risks have been confirmed.
-5. For learning or page validation only, view fields, dialogs, and redirect results without performing final publish, submit, or save actions.
+5. Before publication, confirm the deployment region, resources, model source, visibility, billing, and rate limits.
 
 ::: warning High-Risk Operation Boundary
-Publishing a model may affect model visibility, call methods, billing configuration, and user access. Selecting the wrong publish region may publish the model to the wrong site, region, or business scope. The final `Publish`, `Submit`, and `Save` actions after the redirect are high-risk final actions. For learning or page validation only, confirm the redirect and field display without final confirmation.
+Publishing a model affects model visibility, call methods, billing, and user access. Before submission, verify the publishing region, business scope, resources, model source, billing, and rate limits.
 :::
 
 ## Page Description
 
-The page title is `My Deployments`. It includes the `On-Prem` and `On-Cloud` tabs. The page supports filters by `Name`, `Status`, and `Model Name`, and refreshes the list with `Search` and `Reset`. Each deployment card shows deployment name, model, inference engine, version, deployment mode, cloud platform, region, resource specification, cost, deployment status, and operation entries such as `Start`, `Stop`, `Details`, and the more actions menu.
+The page separates deployment locations into On-Cloud and On-Prem. Lists show models, regions, status, and actions. The publishing entry starts a new model publication flow.
+
+Page screenshots:
 
 ![My Deployments list](./images/my-deployments-list.png)
 
-In the more actions menu of the target deployment, the page shows entries such as `Publish`, `Delete`, `Monitoring Information`, and `API Call Details`. This document only describes the `Publish` entry for viewing and redirecting to the publish flow.
-
-![Publish entry](./images/publish.png)
-
-After clicking the publish entry, the page shows the `Publish Model` dialog and asks the user to choose where to publish. Available destinations include `Private` and `Public`, with buttons `Publish to Private` and `Publish to Public`.
-
-![Choose where to publish](./images/choose-where-to-publish.png)
-
-After a publish region is selected, the page redirects to the `Publish Model` page under `Model Services > Studio > My Models`. The page includes the `Basic Information`, `Billing Configuration`, and `Rate Limit Configuration` steps, and shows fields such as `Meta Model`, `Model Source`, `Request URL`, `API Key`, `Model source ID`, and `Region`.
-
-![Publish Model page](./images/publish-model.png)
+Focus on deployment type, model name, region, status, and actions.
 
 ## Main Operations
 
-### Publish Model
+### View On-Cloud Deployments
 
 1. Go to `Model Services > Studio > My Deployments`.
-2. On the `On-Cloud` tab, find the target deployment and verify deployment name, model name, deployment status, region, and resource specification.
-3. Click the more actions menu `...` on the target deployment card, and select `Publish`.
-4. In the `Publish Model` dialog, review `Choose where to publish`.
-5. Select `Private` or `Public` according to the publish target.
-6. Click `Publish to Private` or `Publish to Public`. The page redirects to the `Publish Model` page under `Model Services > Studio > My Models`.
-7. On the publish model page, continue checking `Basic Information`, `Billing Configuration`, `Rate Limit Configuration`, and fields such as `Meta Model`, `Model Source`, `Request URL`, `API Key`, `Model source ID`, and `Region`.
-8. For learning or page validation only, confirm the redirect and field display. Do not perform the final `Publish`, `Submit`, or `Save`.
+2. Click **"On-Cloud"**.
+3. Locate a deployment by name or status and verify the model, cloud platform, region, and running state.
+
+![View On-Cloud deployments](./images/manual-on-cloud-deployments.png)
+
+The image shows On-Cloud deployments. Verify cloud platform, region, and status.
+
+### View On-Prem Deployments
+
+1. Go to `Model Services > Studio > My Deployments`.
+2. Click **"On-Prem"**.
+3. Locate a deployment by name or status and verify the model, resources, instances, and running state.
+
+![View On-Prem deployments](./images/manual-on-prem-deployments.png)
+
+The image shows On-Prem deployments. Verify resources, instances, and deployment status.
+
+### Publish a Model
+
+1. Click **"Publish Model"** on My Deployments.
+2. Select a publishing region and confirm deployment mode and visibility.
+3. Complete the publication form and verify resources, model source, billing, and rate limits before submission.
+4. Return to the relevant deployment tab to review status. If the status is abnormal, open details before submitting again.
+
+![Publish Model entry](./images/publish.png)
+
+Start a new deployment publication flow from this entry.
+
+![Choose where to publish](./images/choose-where-to-publish.png)
+
+Confirm the publishing region and deployment scope.
+
+![Publish Model page](./images/publish-model.png)
+
+Verify resources, source, billing, and rate limits before submission.
 
 ## Parameter Reference
 
@@ -97,7 +121,6 @@ After a publish region is selected, the page redirects to the `Publish Model` pa
 - When deployment is abnormal, check Resource Pool, Runtime Image, model asset, and startup logs before submitting again.
 - Deleting, stopping, or restarting a deployment may affect callers. Confirm traffic and rollback path first.
 
-
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
@@ -109,31 +132,88 @@ After a publish region is selected, the page redirects to the `Publish Model` pa
 | Publish region can be selected | The `Publish Model` dialog opens and shows `Private`, `Public`, and the corresponding publish buttons. | Close the dialog and retry, or check whether the account has permission for the selected publish region. |
 | Redirect target is correct | After selecting a publish region, the page opens the `Publish Model` page under `Model Services > Studio > My Models`. | Check publish region permissions, page route, and browser redirect status. |
 | Publish fields display normally | `Basic Information`, `Billing Configuration`, `Rate Limit Configuration`, and key fields are displayed normally. | Go back and select the publish region again, or refresh the publish model page. |
-| High-risk actions are not triggered | During learning or page validation, the final `Publish`, `Submit`, or `Save` is not clicked. | If a real publish action is triggered by mistake, immediately record the time, deployment name, and publish region, then notify the owner for review or rollback. |
 
 ## FAQ
 
-#### Why is the publish entry not visible in the deployment list?
+#### Deployment List Is Empty
 
-Common causes include a deployment status that does not meet publishing conditions, missing publishing permissions for the current account, or a deployment type that does not support direct publishing from `My Deployments`. Check deployment status and account permissions first, then confirm the actual entry in the more actions menu.
+**Symptom:**
 
-#### Why does the page not redirect after selecting a publish region?
+The target deployment is missing from On-Cloud or On-Prem.
 
-The selected publish region may be unavailable to the account, the page route may fail to load, or the target deployment information may be incomplete. Close the dialog and start the publish flow again, and confirm that the browser is not blocking the redirect.
+**Possible Causes:**
 
-#### What is the risk difference between publishing to Private and Public?
+- The wrong tab is open.
+- Filters or visibility do not match.
 
-`Private` usually affects visibility and calls within a controlled scope. `Public` may expand the model's external visibility. Before selecting a destination, verify the target site, region, business scope, billing configuration, and call configuration to avoid publishing the model to the wrong scope.
+**Resolution:**
 
-#### Can real Request URLs or API Keys be recorded in this document?
+1. Check both deployment tabs.
+2. Reset filters and verify permission.
 
-No. Do not write real accounts, secrets, tokens, AK/SK, Endpoints, API Keys, customer names, pricing strategies, cloud resource IDs, or internal test parameters in the document. Before screenshots or export, also confirm that sensitive fields are redacted.
+#### Deployment Details Do Not Open
 
-## Next Steps
+**Symptom:**
 
-1. Return to `My Models` to view the publish model configuration progress.
-2. Verify model visibility, billing configuration, and call configuration according to the selected publish region.
-3. If a real publish action has been performed, open model details or the call page to confirm status and access control.
+Opening a deployment returns no details or an error.
+
+**Possible Causes:**
+
+- The record is still being created.
+- The record expired or permission is missing.
+
+**Resolution:**
+
+1. Refresh the list and verify status.
+2. Confirm the record exists and the account can view it.
+
+#### Deployment Status Does Not Change
+
+**Symptom:**
+
+Status remains in creating or processing.
+
+**Possible Causes:**
+
+- Resources are not ready.
+- The deployment task encountered an error.
+
+**Resolution:**
+
+1. Review stages and errors in details.
+2. Ask an authorized operator to inspect the task.
+
+#### Call Information Is Unavailable
+
+**Symptom:**
+
+No call information is available after deployment.
+
+**Possible Causes:**
+
+- The service is not ready.
+- Call permission or network scope is not configured.
+
+**Resolution:**
+
+1. Verify deployment health.
+2. Check authorization and network access.
+
+#### Model Publication Fails
+
+**Symptom:**
+
+No deployment record is created after submission.
+
+**Possible Causes:**
+
+- Resource, source, or billing configuration is incomplete.
+- The name is duplicated or the region is incorrect.
+
+**Resolution:**
+
+1. Correct fields indicated by the page.
+2. Verify name and region before resubmission.
 
 ## Notes
 
@@ -141,3 +221,9 @@ No. Do not write real accounts, secrets, tokens, AK/SK, Endpoints, API Keys, cus
 - Selecting the wrong publish region may publish the model to the wrong site, region, or business scope.
 - `发布 / Publish`, `提交 / Submit`, and `保存 / Save` are high-risk final actions.
 - Do not write real accounts, secrets, tokens, AK/SK, Endpoints, API Keys, customer names, pricing strategies, cloud resource IDs, or internal test parameters.
+
+## Next Steps
+
+1. Return to `My Models` to view the publish model configuration progress.
+2. Verify model visibility, billing configuration, and call configuration according to the selected publish region.
+3. If a real publish action has been performed, open model details or the call page to confirm status and access control.

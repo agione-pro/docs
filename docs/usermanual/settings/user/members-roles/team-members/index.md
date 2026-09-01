@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-29
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -49,6 +49,13 @@ The page shows member usernames, names, contact information, role labels, status
 | High-risk action | Adding and enabling a member |
 
 ## Main Operations
+
+### View Members
+
+1. Go to `Settings > Members and Roles > Members`.
+2. Filter by name, username, email, role, or status.
+3. Open member details and check roles, projects, status, and update time.
+4. If no record is returned, reset filters and check the tenant context. Personal information must be redacted before sharing.
 
 ### Manage Members
 

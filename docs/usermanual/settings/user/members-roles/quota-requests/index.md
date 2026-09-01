@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-13
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -48,6 +48,21 @@ Quota Requests is the ticket entry for member quota. It is used to submit and tr
 | High-risk action | Submitting a quota request |
 
 ## Main Operations
+
+### View Quota Requests
+
+1. Go to `Settings > Members and Roles > Quota Requests`.
+2. Filter by requester, project, resource type, status, or request time.
+3. Check requested quota, current quota, reason, status, and processing time.
+4. If no record is returned, reset filters and check the time range. Request and quota information must be redacted before sharing.
+
+### View Request Details and Processing History
+
+1. Click **"Details"** for the target request.
+2. Review the reason, quota change, attachments or comments, and processing history.
+3. Check that the current status matches the list. If not, refresh and determine whether another processor acted on it.
+4. Do not submit, withdraw, approve, or reject requests during read-only validation.
+
 
 ### Manage Quota Requests
 

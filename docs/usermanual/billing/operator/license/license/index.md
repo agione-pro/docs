@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -76,6 +76,21 @@ The page shows platform state, license categories, managed object authorization 
 
 ## Main Operations
 
+### View Licenses
+
+1. Go to `Billing > License > License`.
+2. Filter by license name, product, status, licensed object, or expiration time.
+3. Open details and check scope, effective time, expiration, usage limits, and current status.
+4. If no record is returned, reset filters. Do not share license files or authorization identifiers.
+
+### Check Expiration and Capacity Risk
+
+1. Sort by expiration or remaining capacity to locate licenses that are expiring or near their limit.
+2. Compare the licensed object and usage scope with the actual product and tenant.
+3. A healthy license should have sufficient validity and capacity. For a risk, record a redacted identifier and start the renewal or expansion process.
+4. Do not upload, replace, disable, or delete a license during read-only validation.
+
+
 ### License Management
 
 #### Get Registration Code
@@ -93,7 +108,7 @@ The page shows platform state, license categories, managed object authorization 
 #### Send Registration Code and Get Activation Code
 
 1. Send the registration code to License support through an offline channel or email according to the internal process.
-2. Example email: `Ecosys@oneprocloud.com`.
+2. Example email: `<ACCOUNT_EMAIL>`.
 3. The email should include registration code, company or tenant name, contact person, contact method, and activation scenario.
 4. Before sending, confirm recipient, environment, instance, and activation scenario.
 5. After receiving `Activation Code`, do not write it into public documents or screenshots.

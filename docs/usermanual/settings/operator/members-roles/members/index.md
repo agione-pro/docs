@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -50,6 +50,14 @@ The following screenshot shows the Members page. Phone numbers and email address
 | Member table | Shows username, name, phone number, email, role, status, creation time, and actions. |
 
 ## Main Operations
+
+### View Members
+
+1. Go to `Settings > Members and Roles > Members`.
+2. Filter by name, username, email, role, or status.
+3. Open member details and check the tenant, roles, status, and latest update time.
+4. If no record is returned, reset filters and check the tenant context. Avoid screenshots or sharing when personal information is displayed.
+
 
 Use the following operations to work with members records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 

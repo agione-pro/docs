@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -62,6 +62,21 @@ The page provides instance type, status, search, and reset entrypoints. In the c
 | Pagination Area | View by page when there are many instances. |
 
 ## Main Operations
+
+### View Model Instances
+
+1. Go to `Model Deployment > Model Instances`.
+2. Filter by instance name, model, status, cluster, or update time.
+3. Open details and check model version, resource flavor, instance status, Endpoint, and events.
+4. If no record is returned, reset filters. Redact internal addresses and credentials before sharing.
+
+### View Monitoring and Diagnose Abnormal Status
+
+1. In instance details, review utilization, call status, events, and recent errors.
+2. Keep the same time range and compare cluster, node, and device monitoring to locate the affected layer.
+3. If information is insufficient, escalate with a redacted instance identifier, status, and time.
+4. Do not start, stop, restart, scale, or delete instances during read-only validation.
+
 
 ### View Instances
 

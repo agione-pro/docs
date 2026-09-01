@@ -7,11 +7,11 @@ Updated: 2026-07-23
 
 ## Subsystem Positioning
 
-Billing is the entry page for AGIOne billing, charging, settlement, reconciliation, and License management. It covers user billing, Provider earnings, customer billing, finance operations, and License. Operators, billing operators, finance reviewers, Providers, and End Users can use this page to choose the correct entry before reviewing balances, top-up orders, monthly bills, customer records, monthly settlement progress, settlement statements, financial accounts, reconciliation checks, and License authorization.
+Billing is the entry page for the platform's billing, charging, settlement, reconciliation, and License management. It covers user billing, Provider earnings, customer billing, finance operations, and License. Operators, billing operators, finance reviewers, Providers, and End Users can use this page to choose the correct entry before reviewing balances, top-up orders, monthly bills, customer records, monthly settlement progress, settlement statements, financial accounts, reconciliation checks, and License authorization.
 
 #### Beginner Explanation
 
-Billing works like the financial control room for AGIOne. User billing helps End Users check balances, transactions, top-ups, and monthly bills. Customer billing handles customer identity, tags, top-up sources, and business units. Finance operations handles settlement, financial accounts, and reconciliation status. License handles resource authorization, validity period, and quota. Start by classifying the issue before opening a specific statement or record.
+Billing works like the financial control room for the platform. User billing helps End Users check balances, transactions, top-ups, and monthly bills. Customer billing handles customer identity, tags, top-up sources, and business units. Finance operations handles settlement, financial accounts, and reconciliation status. License handles resource authorization, validity period, and quota. Start by classifying the issue before opening a specific statement or record.
 
 ## Core Terms Quick Reference
 

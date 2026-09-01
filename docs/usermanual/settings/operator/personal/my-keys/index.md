@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.1
-Updated: 2026-08-26
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -52,6 +52,14 @@ The current Operator page exposes the `System API AK/SK Pairs` tab only. It does
 | Empty state | When no pair exists, the page shows `No keys yet` and instructs the operator to click `+ Create Key`. |
 
 ## Main Operations
+
+### Check Key Status
+
+1. Go to `Settings > Personal > My Keys` and select the System API AK/SK Pairs tab.
+2. Filter keys by availability, status, or name.
+3. Check only the name, redacted prefix, status, expiration time, and creation time. Do not view or copy the secret.
+4. If no record is returned, check the tab and filters. For an abnormal status, ask the owner to confirm whether the key is disabled or expired.
+
 
 ### Review System API AK/SK Pairs
 

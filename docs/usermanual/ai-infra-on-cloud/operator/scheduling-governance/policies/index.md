@@ -1,79 +1,90 @@
 # Policies
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-21
-:::
-
 ## Feature Overview
-
-`Policies` is used to configure high-availability policies for models. It supports intelligent routing and failover for multi-cloud deployments through primary and backup routes, priority, and health probe rules.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Cloud > Scheduling Governance > Policies |
-| Page route | `/infrahub/op/schedule/policy` |
-| Managed objects | Policy name, Label ID, scenario, associated model, route topology, health probe rules, and action entries |
-| Typical use | Add high-availability model policies and configure primary/backup routes, priority, and health probe rules |
+| Applicable Roles | Operators |
+| Navigation Path | AI Infra(On-Cloud) > Scheduling Governance > Policies |
+| Page Route | `/infrahub/op/schedule/policy` |
+| Managed Objects | Application scenarios, associated models, primary/backup routes, and health probes |
 
 #### Beginner Explanation
 
-Policies work like routing and health check rules for model deployment. They decide which route node a model service uses first, which nodes act as backup routes, and how health probes detect service issues and trigger failover.
+Policies defines traffic rules for model deployment. It connects a model to primary and backup targets and uses health probes to determine routing.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Policy | High-availability routing configuration for a model, including basic information, model association, primary/backup routes, and health probe rules. |
-| Scenario | Scheduling objective for the policy. The page supports `Cost Priority`, `High Availability Production`, and `Fast Inference`. |
-| Associated Model | Model and version bound to the policy. It determines the route node resources that can be selected later. |
-| Primary Route | Route node used first by the policy. |
-| Backup Route | Backup route node used when the primary route is unavailable or needs failover. |
-| Health Probe | Probe method and threshold rules used to determine whether the service is available. |
+| Application Scenario | A scheduling objective such as cost priority, high availability, or low latency. |
+| Primary/Backup Route | The topology between primary and backup deployment targets. |
+| Health Probe | A rule that determines whether a target can continue receiving requests. |
+
+#### Recommended Operation Order
+
+Confirm the model and targets, create a policy, complete basic information, route topology, and health probes, then validate policy state and routing.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| First visit | Review existing objects, states, and available actions | Change an unknown object |
+| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
+| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
+| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
 
 ## Prerequisites
 
-1. Cloud platforms, resource pools, models, frameworks, and runtime images have been connected and are available.
-2. The target model, version, available specs, available frameworks, image, and startup commands have been verified.
-3. Policy name, Label ID, and description have been sanitized and do not contain real customer, tenant, business, or internal test information.
-4. Primary/backup routes, priority, and health probe thresholds have been evaluated against availability, cost, and latency requirements.
+1. The current account has the permission required for Policies.
+2. The associated model has at least one available deployment target, with confirmed framework version and resource flavor.
+3. Before changing a policy, assess live routing, capacity, cost, and failover impact.
 
 ## Page Description
 
-This page is used to view and add high-availability model policies. The list supports filtering by `Name` and `Label ID`, and provides `Search`, `Reset`, `Export`, `Import`, `Batch Delete`, and `Add Policy`. When no records are available, the page displays `No Data`.
+The page lists policies and provides a three-step creation flow.
 
-Page screenshot:
+Page screenshots:
 
-![Policies List](./images/policies-list.png)
+![Policies page](./images/manual-policies.png)
 
-The add policy flow contains three steps: `Basic Information & Model Association`, `Define Primary/Backup Route Topology`, and `Define Health Probe Rules`.
+The image shows Policies page. Verify the target object, current state, fields, and actions.
+
+![Policy list reference](./images/policies-list.png)
+
+The image shows Policy list reference. Verify the target object, current state, fields, and actions.
 
 ## Main Operations
 
-### Add Policy
+### Create Policy
 
-1. Go to `AI Infrastructure > On-Cloud > Scheduling Governance > Policies`.
-2. Click `Add Policy` in the policies list to open the `Add Policy` page.
-3. In `Basic Information & Model Association`, fill in `Name`, select `Scenario`, and select `Associated Model`.
-4. Review `Related Route Node Resources`, including `Cloud Platform`, `Region`, `Available specs`, and `Available frameworks`, and then fill in `Description`.
+1. Click **"Add Policy"**.
+2. Enter a name and select the application scenario and associated model.
+3. Click **"Next"** and configure primary/backup topology.
+4. Configure health probes and verify thresholds and targets.
+5. Click **"Submit"** and verify policy state in the list.
 
-![Basic Information & Model Association](./images/basic-information-model-association-add.png)
+![Create Policy](./images/manual-create-policy.png)
 
-5. Click `Next` to go to `Define Primary/Backup Route Topology`.
-6. In `Route Configuration`, select route nodes and use `Set as Backup`, `Set as Primary`, or priority controls to adjust primary/backup relationships and ordering.
-7. Review `Spec`, `Price`, `Framework`, `Version`, `Image`, `Master node startup command`, `Worker node startup command`, `Port`, and `Created at` for each route node.
+The image shows Create Policy. Verify the target object, current state, fields, and actions.
 
-![Define Primary/Backup Route Topology](./images/define-primary-backup-route-topology-add.png)
+![Basic information and model association](./images/basic-information-model-association-add.png)
 
-8. Click `Next` to go to `Define Health Probe Rules`.
-9. Select `Probe Type`. The page supports `HTTP Heartbeat`, `Performance Metrics (GPU)`, and `Service Status`.
-10. Fill in or review `Probe Path`, `Check Interval`, `Failure Threshold`, `Recovery Threshold`, and `Downtime Timeout`.
+The image shows Basic information and model association. Verify the target object, current state, fields, and actions.
 
-![Define Health Probe Rules](./images/define-health-probe-rules-add.png)
+![Primary/backup route topology](./images/define-primary-backup-route-topology-add.png)
 
-11. Before clicking the final `Submit`, verify the policy rules, primary/backup routes, priority, health probe, and impact scope again.
-12. For learning or page validation only, click `Previous` or close the page without submitting real policy configuration.
+The image shows Primary/backup route topology. Verify the target object, current state, fields, and actions.
+
+![Health probe rules](./images/define-health-probe-rules-add.png)
+
+The image shows Health probe rules. Verify the target object, current state, fields, and actions.
+
+### View Policies
+
+1. Locate the target policy in the list.
+2. Verify application scenario, associated model, state, and update time.
+3. Open details and verify that topology and health probes match deployment targets.
 
 ## Parameter Reference
 
@@ -96,7 +107,7 @@ The add policy flow contains three steps: `Basic Information & Model Association
 | Price | No | Display field | `Sample price/hour` | Cost reference for the route node. Real amount details are not shown in documentation. |
 | Framework | No | Display field | `Sample Framework` | Inference framework used by the route node. |
 | Version | No | Table field | `v1.0` | Image or runtime configuration version. |
-| Image | No | Table field | `registry.example.com/namespace/image:tag` | Image address example. Use placeholders only and do not write real registry addresses. |
+| Image | No | Table field | `<BASE_URL>/namespace/image:tag` | Image address example. Use placeholders only and do not write real registry addresses. |
 | Master node startup command | No | Table field | `--model-path /models/example` | Master node startup command. Use placeholder examples only. |
 | Worker node startup command | No | Table field | `--worker` | Worker node startup command. Do not write internal startup parameters. |
 | Port | No | Number | `8000` | Service listening port. |
@@ -118,88 +129,115 @@ The add policy flow contains three steps: `Basic Information & Model Association
 
 ## Pitfalls
 
-- The screenshots do not show tenant scope, business scope, resource pool scope, or enabled status fields, so this page does not document them as confirmed UI fields.
-- Primary/backup routes, priority, and health probe thresholds jointly affect real traffic routing and failover behavior.
-- Health probes that are too strict may cause false failover, while probes that are too loose may delay failover.
-- `Import` and `Batch Delete` affect multiple policy records. Do not use them during learning or page validation.
-- Image addresses, startup commands, customer information, tenant information, business names, tokens, AK/SK, and internal test parameters should not be written into documentation, screenshots, or tickets.
+- Do not skip the upstream dependency check: The associated model has at least one available deployment target, with confirmed framework version and resource flavor.
+- Confirm impact before a configuration change: Before changing a policy, assess live routing, capacity, cost, and failover impact.
+- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Policies` page and policy list are displayed. | Check menu permissions, route, and login status. |
-| Policy list loads | The page displays Name and Label ID filters, plus search, reset, and add entries. | Check filters, data permissions, and API status. |
-| Add entry is visible | `Add Policy` is displayed in the upper-right corner. | Check operator permissions and page configuration. |
-| Add page opens | Clicking the add entry opens the `Add Policy` page and displays the three-step flow. | Refresh the page and retry. If the issue persists, contact the administrator. |
-| Basic information can be filled | `Name`, `Scenario`, `Associated Model`, related route node resources, and `Description` are displayed. | Complete required fields as prompted and confirm the associated model is available. |
-| Route topology can be configured | Route nodes, primary/backup relationship, priority, and version configuration are displayed. | Verify the associated model, cloud platform, region, spec, framework, and image configuration. |
-| Health probe can be configured | Probe type, probe path, check interval, failure threshold, recovery threshold, and downtime timeout are displayed. | Check whether the probe method and thresholds match the actual service capability. |
-| No real submission during learning | The final `Submit` is not clicked and no real policy configuration is written. | If submitted by mistake, immediately check the policy list, deployment configuration, and route impact scope. |
-| Real submission can be tracked | The new policy appears in the list, and later deployments can be checked for route hits and failover behavior. | Return to the list or deployment events to verify policy configuration and actual scheduling results. |
-
-## Troubleshooting
-
-| Issue Type | Check First | Next Step |
-| --- | --- | --- |
-| Policy cannot be added | User permission, menu entry, and `Add Policy` button state. | Retry with an operator account that has permission. If the issue persists, contact the administrator. |
-| Associated model is unavailable | Whether the model, version, framework, and runtime image are available. | Return to Models or Frameworks to complete prerequisite assets. |
-| Route node resources are empty | Cloud platform, region, spec, framework, and model association. | Verify resource pools, deploy assets, and authorization configuration. |
-| Next or Submit is unavailable | Required fields, validation prompts, and selected items in the current step. | Complete fields as prompted and try again. |
-| Policy does not route as expected | Primary/backup relationship, priority, health probe status, and later deployment time. | Validate route hits with a test deployment and view deployment events. |
-| Failover behaves abnormally | Probe type, probe path, failure threshold, recovery threshold, and downtime timeout. | Adjust health probe rules and validate again. |
+| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
+| Managed objects are visible | Application scenarios, associated models, primary/backup routes, and health probes display as expected | Clear filters and verify upstream dependencies |
+| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
+| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
 
 ## FAQ
 
-#### Why Does the Deployment Not Route as Expected After Adding a Policy?
+#### Target Object Is Missing in Policies
 
-**Issue Symptom:**
+**Symptom:**
 
-A later deployment does not hit the expected primary route, or it uses a backup route directly.
-
-**Possible Causes:**
-
-- The primary route node is not selected or priority is not configured as expected.
-- The associated model, spec, framework, or image does not match deployment requirements.
-- The health probe determines that the primary route is unavailable.
-- The new policy only affects later deployments or newly triggered scheduling flows.
-
-**Handling:**
-
-1. Return to the policy details or edit page and verify primary/backup routes and priority.
-2. Verify the associated model, cloud platform, region, spec, framework, and image.
-3. View deployment events and health probe results.
-
-#### Why Are Next or Submit Unavailable?
-
-**Issue Symptom:**
-
-`Next` or `Submit` cannot continue during configuration.
+The expected object is missing from the list or selector.
 
 **Possible Causes:**
 
-- Required fields are missing.
-- The associated model or route node has not been selected.
-- Health probe configuration does not satisfy page validation rules.
-- The current account does not have permission to add or submit policies.
+- Active query criteria filter out the target object.
+- An upstream object is disabled, or the current role lacks visibility.
 
-**Handling:**
+**Resolution:**
 
-1. Complete required fields as prompted by the page.
-2. Confirm that the associated model and route node resources are available.
-3. Check the health probe parameter ranges.
-4. If permission is insufficient, contact the administrator to confirm operator permissions.
+1. Clear filters and refresh the page.
+2. Verify the prerequisite object: The associated model has at least one available deployment target, with confirmed framework version and resource flavor.
+3. Confirm the current role and data scope, then locate the object again.
+
+#### Policies Action Is Unavailable
+
+**Symptom:**
+
+An expected button, menu, or state switch is unavailable.
+
+**Possible Causes:**
+
+- The current account lacks the required action permission.
+- Object state, references, or prerequisites block the action.
+
+**Resolution:**
+
+1. Verify the permission for the action and the current object state.
+2. Check references and prerequisites identified by the page message.
+3. Remove the blocker, refresh the page, and perform the action once.
+
+#### Policies Change Does Not Reach Downstream
+
+**Symptom:**
+
+The page reports success, but a downstream page still shows the old state.
+
+**Possible Causes:**
+
+- An associated page has stale cache or synchronization delay.
+- The current and downstream pages use different roles, tenants, or data scopes.
+
+**Resolution:**
+
+1. Wait for synchronization and refresh both pages.
+2. Confirm that both pages use the same role, tenant, and object scope.
+3. If they still differ, return to the responsible object and verify the saved result.
+
+#### Policies Data Differs from Another Page
+
+**Symptom:**
+
+Counts or states differ from an associated page.
+
+**Possible Causes:**
+
+- The pages use different filters, aggregation rules, or update times.
+- The change is still synchronizing, or role-based data scopes differ.
+
+**Resolution:**
+
+1. Align filters and aggregation rules on both pages.
+2. Check update times and wait for synchronization.
+3. Compare object details instead of summary counts only.
+
+#### How to Troubleshoot a Policies Failure
+
+**Symptom:**
+
+Submission fails or the state does not change for an extended period.
+
+**Possible Causes:**
+
+- Required fields, field combinations, or object state do not meet submission rules.
+- An upstream dependency is invalid, the request failed, or the same action is already processing.
+
+**Resolution:**
+
+1. Record the redacted object, time, and complete page message.
+2. Verify required fields, object state, and upstream dependencies.
+3. Confirm that no identical job is processing before one retry.
+
+## Notes
+
+- Before changing a policy, assess live routing, capacity, cost, and failover impact.
+- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
+- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
 
 ## Next Steps
 
 1. Use a test deployment to validate policy hits, primary/backup routes, and failover behavior.
 2. Monitor model service status, latency, cost, and availability affected by the policy.
 3. Regularly review health probe thresholds, route priority, and associated model versions.
-
-## Notes
-
-- Adding a policy may affect real scheduling results, route selection, failover, and business availability.
-- Incorrect primary/backup routes, priority, health probe thresholds, or image configuration may cause abnormal routing, false failover, deployment failure, or resource waste.
-- `Submit`, `Save`, and `OK` are high-risk final actions. This document only describes field review and pre-submission checks, and does not guide users to submit during testing or learning.
-- `Export` may contain sensitive operational configuration. `Import` and `Batch Delete` may change policy records in bulk, so confirm permissions and impact scope before using them.
-- Do not write real tenant names, business names, customer information, accounts, secrets, tokens, AK/SK, internal resource pool codes, cloud resource IDs, image registry addresses, or internal test parameters.

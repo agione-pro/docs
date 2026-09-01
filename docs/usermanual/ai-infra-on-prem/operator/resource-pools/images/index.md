@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -57,6 +57,21 @@ The following figure shows the image management list, where image tags can be ma
 ![Image Management](./images/images-list.png)
 
 ## Main Operations
+
+### View Images
+
+1. Go to `Resource Pools > Image Management`.
+2. Filter by name, version, architecture, status, or update time.
+3. Open details and check format, architecture, size, validation status, and applicable scenarios.
+4. If no record is returned, reset filters. Do not share internal registry locations or credentials.
+
+### Manage Image Versions and Status
+
+1. Open the target image version list and record the current effective version and associated instances.
+2. Check new-version format, checksum information, architecture compatibility, and impact scope.
+3. Before switching, disabling, or deleting, confirm that no instance depends on it. Do not perform the final action during read-only validation.
+4. After an approved change, check options on creation pages. If abnormal, restore the previous version.
+
 
 ### Client Upload Guide
 

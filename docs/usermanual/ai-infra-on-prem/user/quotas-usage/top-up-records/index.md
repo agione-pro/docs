@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -63,6 +63,21 @@ The page provides search, reset, and top-up record tables. In the screenshot, th
 | Top-up Time | Arrival time. |
 
 ## Main Operations
+
+### View Top-up Records
+
+1. Go to `Quotas and Usage > Top-up Records`.
+2. Select a time range and filter by order number, status, resource type, or posting result.
+3. Check creation time, quota change, status, and completion time.
+4. If no record is returned, check the time zone and reset filters. Redact order and quota information before sharing.
+
+### Reconcile a Top-up with the Quota Change
+
+1. Open the target details and record a redacted order number, status, and completion time.
+2. Compare Resource Quotas or usage records and locate the corresponding quota change.
+3. The top-up status and quota change should be traceable. If not, check refresh time and posting status.
+4. Do not create another top-up or quota adjustment to test an anomaly.
+
 
 ### Query Top-Up Records
 

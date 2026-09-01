@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -59,6 +59,13 @@ The following figure shows the specification metric list, where monitoring metri
 ![Specification Metrics](./images/spec-metrics-list.png)
 
 ## Main Operations
+
+### View Flavor Metrics
+
+1. Go to `Resource Pools > Flavor Metrics`.
+2. Filter by name, type, unit, status, or update time.
+3. Open details and check data type, unit, range, default, and referenced flavors.
+4. If no record is returned, reset filters. For inconsistent units or ranges, check references first.
 
 ### Add Specification Metric
 

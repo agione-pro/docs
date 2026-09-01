@@ -1,11 +1,11 @@
-# Model Services
+# Overview
 
 ::: info Document Information
 Version: v1.0
 Updated: 2026-07-08
 :::
 
-## Subsystem Positioning
+## Feature Overview
 
 Model Services covers model publishing, review, experimentation, calling, logs, and revenue analysis. It helps model providers publish models, callers discover and use models, and operators govern model capabilities and review workflows.
 
@@ -13,7 +13,7 @@ Model Services covers model publishing, review, experimentation, calling, logs, 
 
 Model Services works like a model capability marketplace plus an operations console: model providers package and list models, callers try them in the model marketplace and Playground, and operators maintain meta-models, sources, templates, and review rules.
 
-## Core Terms Quick Reference
+### Core Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -27,7 +27,16 @@ Model Services works like a model capability marketplace plus an operations cons
 | Call log | A troubleshooting entry that records request ID, error code, latency, Token usage, and redacted summary. |
 | Revenue statistics | Revenue statistics by model, customer, and time. |
 
-## Role Entry Points
+## Prerequisites
+
+1. Confirm whether the current account is a model provider, caller, or operator admin.
+2. Before publishing a model, prepare the model source, protocol, pricing, rate limits, and security notes.
+3. Before calling a model, confirm the Personal Key, Endpoint, quota, and model visibility scope.
+4. Before viewing revenue or customer calls, confirm that the current account has the required data permissions.
+
+## Page Description
+
+### Role Entry Points
 
 | Role | Recommended Entry | Typical Tasks |
 | --- | --- | --- |
@@ -35,7 +44,9 @@ Model Services works like a model capability marketplace plus an operations cons
 | Model Caller | [Model Marketplace](./user/discover/models/), [Playground](./user/playground/text/), [My Calls](./user/my-calls/overview/) | Discover models, try outputs, integrate APIs, and troubleshoot calls. |
 | Operator Admin | [Meta-models](./operator/settings/meta-models/), [Model Sources](./operator/settings/model-source/), [Model Reviews](./operator/approvals/model-reviews/) | Maintain base configuration, review models, and govern visibility. |
 
-## Where Should I Start
+## Main Operations
+
+### Choose a Role-Based Entry
 
 | User or Goal | Start Here | Next Step |
 | --- | --- | --- |
@@ -45,7 +56,7 @@ Model Services works like a model capability marketplace plus an operations cons
 | Model Provider | [My Models](./user/studio/my-models/), [My Deployments](./user/studio/my-deployments/), [Model Earnings](./user/usage-earnings/model-earnings/) | Publish models, track deployment records, and view earnings and customer calls. |
 | Model Caller | [Model Marketplace](./user/discover/models/), [Playground](./user/playground/text/), [My Calls](./user/my-calls/overview/) | Browse models, try outputs, integrate APIs, and view call logs. |
 
-## Find an Entry by Goal
+### Locate a Page by Goal
 
 | Goal | Recommended Entry | Next Step |
 | --- | --- | --- |
@@ -54,7 +65,7 @@ Model Services works like a model capability marketplace plus an operations cons
 | Publish or maintain a model | [My Models](./user/studio/my-models/) | Prepare the model source, deployment configuration, review materials, and API information. |
 | Troubleshoot calls or earnings | [My Calls](./user/my-calls/overview/) | Cross-check call logs, analytics, and earnings data. |
 
-## Recommended Reading Path
+### Follow the Recommended Reading Path
 
 1. New users should first read [Getting Started](./getting-started/) to understand the relationship between model publishing, review, and calling.
 2. Operator admins should first maintain meta-models, sources, templates, and tags.
@@ -62,22 +73,21 @@ Model Services works like a model capability marketplace plus an operations cons
 4. Callers enter Playground from the model marketplace, then continuously optimize with call logs, usage, and revenue data.
 5. For the full workflow, read [Publish and Call a Model](./end-to-end/publish-and-call-model/).
 
-## Prerequisites
-
-1. Confirm whether the current account is a model provider, caller, or operator admin.
-2. Before publishing a model, prepare the model source, protocol, pricing, rate limits, and security notes.
-3. Before calling a model, confirm the Personal Key, Endpoint, quota, and model visibility scope.
-4. Before viewing revenue or customer calls, confirm that the current account has the required data permissions.
-
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Role Type | Yes | Enum | Model Provider | Used to decide whether to enter user-side or operator-side pages first. |
 | Model Object | No | Text | Example Model A | Used to locate the target model in Model Marketplace, My Models, reviews, or call records. |
-| Call Credential | No | Text | PERSONAL-KEY-001 | Used to confirm whether the caller has a valid credential for accessing the model. Use placeholders only in documentation. |
+| Call Credential | No | Text | `<PERSONAL_KEY>` | Used to confirm whether the caller has a valid credential for accessing the model. Use placeholders only in documentation. |
 | Review Status | No | Enum | Pending review | Used to determine whether a model or app can continue to listing and calling. |
 | Statistical Scope | No | Time range | 2026-07-01 to 2026-07-31 | Used to view call, revenue, and customer-call data. |
+
+## Pitfalls
+
+- Do not confuse meta-models, model sources, and published models. Meta-models define capabilities, model sources define access, and published models face the marketplace and callers.
+- A successful Playground test does not mean production integration is complete. Before formal calls, verify Personal Key, rate limits, billing, and error logs.
+- When a model is invisible in Model Marketplace, do not only refresh the page. Check review status, visibility scope, tags, and publishing index together.
 
 ## Result Validation
 
@@ -87,12 +97,6 @@ Model Services works like a model capability marketplace plus an operations cons
 | Workflow is clear | You understand the relationship among meta-models, model sources, templates, reviews, and the marketplace. | Read Getting Started and the end-to-end workflow first. |
 | Calls can be troubleshot | When a call fails, you can locate Key, Endpoint, rate limit, or log issues. | Go to call logs, My Keys, or model sources for troubleshooting. |
 | Earnings can be reconciled | You can find Model Earnings, Model Usage, and Customer Calls entries. | Align the statistical scope before comparing data. |
-
-## Pitfalls
-
-- Do not confuse meta-models, model sources, and published models. Meta-models define capabilities, model sources define access, and published models face the marketplace and callers.
-- A successful Playground test does not mean production integration is complete. Before formal calls, verify Personal Key, rate limits, billing, and error logs.
-- When a model is invisible in Model Marketplace, do not only refresh the page. Check review status, visibility scope, tags, and publishing index together.
 
 ## FAQ
 
@@ -132,14 +136,14 @@ Playground or API calls return authentication failure, rate limit, timeout, or u
 2. Check request ID, error code, and latency in call logs.
 3. Contact the provider or operator to verify source health, rate limits, and quota.
 
-## Next Steps
-
-1. Operator admins should periodically check consistency across meta-models, sources, and templates.
-2. Model providers should track call quality, revenue, and customer feedback after publishing.
-3. Callers should complete validation in Playground and call logs before production integration.
-
 ## Notes
 
 - This page is used to select a reading path for Model Services. Specific fields, buttons, and statuses are subject to the corresponding feature pages.
 - Publishing, review, delisting, rate limits, billing configuration, and publish regions affect model visibility, call methods, and real service exposure. Confirm the impact scope before making changes.
 - Do not expose real accounts, Personal Keys, API Keys, tokens, request IDs, internal addresses, test parameters, customer names, or complete call content in documentation, screenshots, or tickets.
+
+## Next Steps
+
+1. Operator admins should periodically check consistency across meta-models, sources, and templates.
+2. Model providers should track call quality, revenue, and customer feedback after publishing.
+3. Callers should complete validation in Playground and call logs before production integration.

@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -50,18 +50,20 @@ The following screenshot shows the Profile page. Account identifiers, phone numb
 
 ## Main Operations
 
-### Edit Personal Details
+### View Account and Tenant Information
 
 1. Go to `Settings > Personal > Profile`.
-2. Click `Edit personal details` in the upper-right corner of the profile page.
-3. In the `Edit personal details` dialog, review the editable fields.
+2. Check the username, display name, email, tenant, and roles.
+3. Confirm that sensitive fields are redacted and the account status is normal. If information is missing, refresh and check permissions.
+4. Hide email, contact details, and internal identifiers before screenshots or sharing.
 
-![Edit personal details](./images/edit-personal-details.png)
+### Verify Profile Changes
 
-4. Fill in or verify `Display name` and `Phone`.
-5. Confirm that `Display name` is required, and enter `Phone` according to page validation rules.
-6. Before clicking the final `Confirm`, verify that the display name and contact information changes do not affect account identification, notifications, or later audits.
-7. For learning or screenshots only, view the fields and click `Cancel` to close the dialog without submitting real changes.
+1. After an approved edit, reopen the profile.
+2. Check that the display name, avatar, or other editable fields changed and that protected fields such as username and tenant did not.
+3. If the change is not applied, check required fields, format, the save message, and cache refresh.
+4. Do not put passwords, Tokens, keys, or internal sensitive information in profile fields.
+
 
 ## Parameter Reference
 

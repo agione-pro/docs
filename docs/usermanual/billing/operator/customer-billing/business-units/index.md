@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -63,6 +63,14 @@ The following screenshot shows the filters and table fields. List data is masked
 
 ## Main Operations
 
+### View Business Units
+
+1. Go to `Billing > Customer Billing > Business Units`.
+2. Filter by business-unit name, identifier, status, or update time.
+3. Open details and check associated customers, billing scope, status, and update time.
+4. If no record is returned, reset filters. Do not disable or delete a business unit that is referenced by customers or bills.
+
+
 ### Add a Business Unit
 
 1. Go to `Billing > Customer Billing > Business Units`.
@@ -74,13 +82,6 @@ The following screenshot shows the filters and table fields. List data is masked
 7. For learning or screenshots only, view fields and the dialog without submitting real business unit configuration.
 
 ![Add Business Unit](./images/add-business-line.png)
-
-### Edit a Business Unit
-
-1. Click `Edit Business Unit` in the target row.
-2. Update the fields and click `Confirm` to save.
-
-> **Risk:** Editing a business unit immediately affects top-up options for existing customers. Evaluate the impact on online top-up flows before saving.
 
 ## Parameter Reference
 

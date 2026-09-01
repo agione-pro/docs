@@ -1,36 +1,39 @@
-# Customer Calls - Call Analytics
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
+# Call Analytics
 
 ## Feature Overview
 
-`Customer Calls - Call Analytics` is used to view customer-side call statistics from the Models and Customers tabs, including model name, model type, customer name, successful calls, failed calls, rate limit triggers, usage, and action entries. It helps model providers locate high-frequency and abnormal call objects.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model Provider |
-| Navigation path | Model Services > Customer Calls > Call Analytics |
-| Page route | `/modelone/monitoring/monitor/list` |
-| Managed objects | Customer call analytics, model list, customer list, successful calls, failed calls, and rate limit triggers |
-| Typical use | View customer-side call statistics by model or customer |
+| Applicable Roles | Model Providers |
+| Navigation Path | Model Services > Customer Calls > Call Analytics |
+| Page Route | `/modelone/monitoring/monitor/list/user` |
+| Managed Objects | Customer list, model list, successful calls, failed calls, and rate-limit triggers |
 
 #### Beginner Explanation
 
-Call Analytics is like a ranking table for customer calls. The `Models` tab helps users see which models are called by which customers, while the `Customers` tab helps users see how many models a customer uses and expand customer-level model details.
+Customer Call Analytics works like operational details split by customer and model. Customers shows how many models each customer uses, while Models shows call performance by model.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Models | Displays call statistics by model and customer combination. |
-| Customers | Displays call statistics aggregated by customer and can expand model details under a customer. |
-| Successful calls | Number of calls completed successfully within the filter range. |
-| Failed calls | Number of calls that failed, timed out, or returned errors within the filter range. |
-| Rate limit triggers | Number of calls that hit rate-limit policies. |
-| Usage | Token, quota, or other call usage information shown by the page. |
+| Customers | Aggregates model count and call indicators by customer. |
+| Models | Shows customer call analytics by model. |
+| Models Used | The number of models called by a customer in the selected scope. |
+| View Details | Opens additional analytics for a target customer or model. |
+
+#### Recommended Operation Order
+
+Locate the customer and review models used in Customers, switch to Models to compare model performance, and then open details for an abnormal object.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| A customer reports an issue | Locate the customer in Customers first | Review every model immediately |
+| Model performance is abnormal | Compare indicators in Models | Review customer totals only |
+| A query returns no result | Reset filters and expand the period | Add more filters |
+| Preparing to share analytics | Redact customer names and business identifiers | Share raw lists externally |
 
 ## Prerequisites
 
@@ -40,39 +43,41 @@ Call Analytics is like a ranking table for customer calls. The `Models` tab help
 
 ## Page Description
 
-Customer call analytics may contain customer names, model names, call volume, usage, costs, Keys, request content, and business identifiers. This document only describes viewing the model list and customer list, and does not display real customer information, Keys, request content, cost details, or internal test parameters. If the page provides an export entry, this document only describes the viewing boundary and does not guide exporting sensitive data.
+The page uses Customers and Models to show success, failure, rate limits, and usage. Query criteria and details entries depend on the active tab.
 
-Model list screenshot:
+Page screenshots:
 
-![Customer Calls - Model List](./images/call-analytics-models-list.png)
+![Customer Calls customer list](./images/call-analytics-customers-list.png)
 
-Customer list screenshot:
+Use Customers to review models used and call indicators by customer.
 
-![Customer Calls - Customer List](./images/call-analytics-customers-list.png)
+![Customer Calls model list](./images/call-analytics-models-list.png)
+
+Use Models to compare customer call performance by model.
 
 ## Main Operations
 
-### View Customer Calls - Model List
+### View Customer Call List
 
 1. Go to `Model Services > Customer Calls > Call Analytics`.
-2. Click or confirm that the current tab is `Models`.
-3. Select filters such as month, date range, model name, model type, or model ID.
-4. Click `Search` to refresh the model list. To clear filters, click `Reset`.
-5. In the model list, view model name, model type, customer name, successful calls, failed calls, rate limit triggers, usage, and action entries.
-6. Click `View Details` to view statistics for the target model and customer combination. To inspect a single request, click `View Log` or go to `Customer Calls > Call Logs`.
+2. Click **"Customers"** and enter a customer name or model name.
+3. Click **"Search"** and verify models used, successful calls, failed calls, and rate-limit triggers.
+4. Click **"View Details"** for the target customer. Click **"Reset"** if the criteria are incorrect.
 
-![Customer Calls - Model List](./images/call-analytics-models-list.png)
+![View customer call list](./images/manual-customer-list.png)
 
-### View Customer Calls - Customer List
+The image shows customer-list results. Verify customer criteria and call indicators.
 
-1. Go to `Model Services > Customer Calls > Call Analytics`.
-2. Click the `Customers` tab.
-3. Select filters such as month, date range, customer name, model name, or model type.
-4. Click `Search` to view matching customer records. To view more filters, click `Expand`.
-5. In the customer list, view customer name, models, successful calls, failed calls, rate limit triggers, and action entries.
-6. Expand a target customer to view model name, model type, successful calls, failed calls, rate limit triggers, and usage for each model under the customer. Click `View Details` if details are needed.
+### View Model Call List
 
-![Customer Calls - Customer List](./images/call-analytics-customers-list.png)
+1. Click **"Models"**.
+2. Enter a model name and select a model type if needed.
+3. Click **"Search"** and verify customer call analytics for the target model.
+4. Before opening details, confirm the active tab, time range, and model criteria.
+
+![View model call list](./images/manual-model-list.png)
+
+The image shows model-list results. Verify model criteria and customer call performance.
 
 ## Parameter Reference
 
@@ -98,7 +103,6 @@ Customer list screenshot:
 - When switching customer, model, or time granularity, chart scope changes. Keep filters visible in screenshots.
 - Peaks, failure rate, and average latency should be checked together with model version and Endpoint status.
 
-
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
@@ -112,26 +116,94 @@ Customer list screenshot:
 
 ## FAQ
 
-#### What if the model list is empty?
+#### Customer List Is Empty
 
-First confirm that the month and date range cover customer calls, and then check whether model name, model type, and model ID filters are too narrow. Click `Reset` and search again if needed.
+**Symptom:**
 
-#### What if the model count in the customer list is abnormal?
+Call Analytics shows the condition described by “Customer List Is Empty.”
 
-Switch to the target customer and expand details to check the model list under that customer. If it is still inconsistent, go to call logs and troubleshoot by customer and time range.
+**Possible Causes:**
 
-#### Can I export customer call analytics?
+- Time range or filters do not match.
+- Page data is still synchronizing.
 
-Customer call analytics may contain customer names, model names, call volume, usage, costs, and business identifiers. Before exporting, confirm permissions, redaction requirements, and usage scope. This document only describes viewing lists and does not guide exporting sensitive data.
+**Resolution:**
 
-## Next Steps
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
 
-1. Click `View Details` to view statistics for the target model or customer.
-2. Click `View Log` or go to `Customer Calls > Call Logs` to locate a single request.
-3. Return to `Customer Calls > Overview` to view trends, consumption statistics, and TOP rankings.
+#### Model List Is Empty
+
+**Symptom:**
+
+Call Analytics shows the condition described by “Model List Is Empty.”
+
+**Possible Causes:**
+
+- customer call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### The Lists Differ
+
+**Symptom:**
+
+Call Analytics shows the condition described by “The Lists Differ.”
+
+**Possible Causes:**
+
+- customer call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Query Results Do Not Match
+
+**Symptom:**
+
+Call Analytics shows the condition described by “Query Results Do Not Match.”
+
+**Possible Causes:**
+
+- customer call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Details Do Not Open
+
+**Symptom:**
+
+Call Analytics shows the condition described by “Details Do Not Open.”
+
+**Possible Causes:**
+
+- customer call data or status changed.
+- Permission is missing or the record expired.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Verify permission and record status, and then retry.
 
 ## Notes
 
 - Customer names, model names, call volume, costs, Keys, request content, and business identifiers are sensitive operational information.
 - Before external communication or screenshots, redact customer names, Keys, request content, cost details, and internal test parameters.
 - Call analytics is aggregated data. Use call logs when troubleshooting a single request.
+
+## Next Steps
+
+1. Click `View Details` to view statistics for the target model or customer.
+2. Click `View Log` or go to `Customer Calls > Call Logs` to locate a single request.
+3. Return to `Customer Calls > Overview` to view trends, consumption statistics, and TOP rankings.

@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -74,6 +74,13 @@ The following figure shows the Accelerator Management list, where hardware model
 | Operation Entry | Opens create, edit, view, or other actual page operation entries. |
 
 ## Main Operations
+
+### View Accelerators
+
+1. Go to `Resource Pools > Accelerator Management`.
+2. Filter by vendor, model, architecture, status, or update time.
+3. Open details and check memory, compute capability, driver requirements, supported frameworks, and enabled status.
+4. If no record is returned, reset filters. For a model mismatch, check naming and driver compatibility.
 
 ### Add Accelerator
 

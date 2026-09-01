@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-13
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -52,6 +52,21 @@ The following screenshot shows member quotas screenshot.
 ![Member Quotas screenshot](./images/member-quota-limit.png)
 
 ## Main Operations
+
+### View Member Quotas
+
+1. Go to `Settings > Members and Roles > Member Quotas`.
+2. Filter by member, project, resource type, or quota status.
+3. Check allocated, used, available quota, and update time.
+4. If no record is returned, reset filters and check the tenant or project context. Redact quota data before sharing.
+
+### View Quota Details and Usage Risk
+
+1. Click **"View"** or the details entry for the target member.
+2. Compare total, used, and remaining quota and limits to identify near-limit or exceeded status.
+3. If metrics differ, check the aggregation period, project, and refresh time.
+4. Do not adjust quota during read-only validation. Follow the approval process for changes and verify operation logs.
+
 
 ### View Member Quotas
 

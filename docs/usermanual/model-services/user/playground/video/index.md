@@ -1,39 +1,39 @@
-# Video Playground
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
+# Video
 
 ## Feature Overview
 
-Video Playground is used to select a video model, enter a prompt, upload or select a reference image, adjust resolution, aspect ratio, duration, and advanced parameters, and view generated videos or task status.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | Model Services > Playground > Video |
-| Page route | `/modelone/exploration/video` |
-| Managed objects | Video models, prompts, reference images, resolution, aspect ratio, duration, generation parameters, and generated results |
-| Typical use | Try video generation models on the page |
+| Applicable Roles | Model Providers and Model Consumers |
+| Navigation Path | Model Services > Playground > Video |
+| Page Route | `/modelone/exploration/video` |
+| Managed Objects | Video models, prompts, reference assets, generation parameters, and job results |
 
 #### Beginner Explanation
 
-The video Playground is like a screening room for video models. After selecting a video model, users enter the video they want to generate, optionally add a reference image according to model capability, adjust resolution, aspect ratio, duration, negative prompt, audio, watermark, and other parameters, and then check whether the generated result or task progress matches expectations.
+The Video playground works like a model test bench. Select an available video model and provider, enter the input, adjust parameters, and use the result or error message to decide whether to continue with integration.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Prompt | Text instruction describing the video subject, shot, action, style, and constraints. |
-| Reference Image | Image material used as a reference for video generation. |
-| Resolution | Output video resolution. |
-| Aspect Ratio | Output video aspect ratio. |
-| Duration | Output video duration. |
-| Negative Prompt | Describes content that should not appear in the video. |
-| Audio Setting | Audio-related configuration. |
-| Prompt Extend | Controls whether prompt extension is enabled. |
-| Watermark | Controls whether a watermark is added to generated videos. |
+| Model Instance | The model and provider combination used by the playground. |
+| Prompt | Instructions that describe the task, input, and expected output. |
+| Generation Parameters | Settings that control length, randomness, size, or other generation behavior. |
+| Personal Key | A personal credential used for calls. Documentation uses `<PERSONAL_KEY>`. |
+
+#### Recommended Operation Order
+
+For a first trial, select a video model, verify the provider and Personal Key, configure the input and parameters, and then submit and review the result. Change only a few parameters at a time so that results remain comparable.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| Unsure which video model to use | Compare status and capabilities in the selector | Submit with the default model immediately |
+| Preparing input | Remove credentials, customer data, and production data | Paste raw sensitive content |
+| Preparing parameter changes | Change only a few parameters at a time | Change every parameter together |
+| Generation fails | Review the page error and call logs first | Submit repeatedly |
 
 ## Prerequisites
 
@@ -43,39 +43,46 @@ The video Playground is like a screening room for video models. After selecting 
 4. Resolution, aspect ratio, duration, and advanced parameters have been confirmed to be within the target model support range.
 
 ::: warning Call, Billing, Async Task, and Content Risk
-Clicking the generate button creates a real model call and may consume credits, generate call logs, create billing records, or create async task/queue records. Video generation usually takes longer, and generated videos may involve copyright, portrait rights, compliance, or sensitive content risks. For page validation only, view the model selector, input box, parameter area, and result area. Do not submit a real generation request.
+Clicking Generate creates a real model call and may consume credits or create call logs, billing records, and asynchronous tasks. Before submission, verify the model, parameters, asset authorization, expected cost, and queue time.
 :::
 
 ## Page Description
 
-This page is used to try video generation models. Focus on selecting the model and provider, entering a video prompt or adding a reference image, and adjusting `Resolution`, `Ratio`, `Duration`, `Protocol`, `Negative Prompt`, `Audio Setting`, `Prompt Extend`, `Watermark`, and other parameters.
+The page contains video model selection, an input area, parameters, Personal Key selection, and a result area. Submission creates a real call and may create usage or billing records.
 
-Page screenshot:
+Page screenshots:
 
-![Video Playground](./images/video-list.png)
+![Video page](./images/video-list.png)
 
-The Video page includes the model selector, reference image entry, prompt input box, resolution, ratio, duration, parameter entry, key selector, and generate entry.
+Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
 
 ## Main Operations
 
-### Try Video Model
+### Select Video Model
 
 1. Go to `Model Services > Playground > Video`.
-2. In the model selector at the top of the page, choose the video model and provider to try.
-3. Fill in the prompt input box with the video content, shot, action, style, aspect ratio, or other constraints to generate.
-4. If required by the page or supported by the model, add an authorized and public-safe reference image.
-5. Adjust quick parameters such as `Resolution`, `Ratio`, and `Duration` as needed.
-6. Click the parameter button and view or adjust `Protocol`, `Negative Prompt`, `Audio Setting`, `Prompt Extend`, `Watermark`, and other advanced parameters as needed.
-7. Before clicking the generate button, verify the input content, model, provider, key, and parameters.
-8. For page validation only, do not submit a real generation request. You can view only the fields, parameter area, and result area.
+2. Click the current model name or **"Select Model"** to open the selector.
+3. Locate the target model and compare provider, context, price, latency, throughput, success rate, and status.
+4. Select an available instance and return to the playground. Confirm that the model and provider shown at the top are correct.
 
-![Select video model](./images/select-model.png)
+![Select video model](./images/manual-select-video-model.png)
 
-The model selection dialog is used to search models, select provider instances, and confirm model pricing, throughput, success rate, weekly calls, weekly generated seconds, and listing status.
+The image shows the model selector. Compare provider capability, price, performance, and availability.
 
-![Video parameter configuration](./images/video-list.png)
+![video model selection reference](./images/select-model.png)
 
-In the parameter area, view or adjust `Protocol`, `Negative Prompt`, `Audio Setting`, `Prompt Extend`, `Watermark`, and other settings. Do not click the generate button to submit a real request when learning the page.
+This image provides an additional view of model selection and instance information.
+
+### Configure and Generate Video Content
+
+1. Confirm that the current model, provider, and Personal Key are correct.
+2. Describe the video, upload reference assets when required, and set duration, aspect ratio, and generation parameters. Confirm asset authorization and cost, and then click **"Generate"**.
+3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
+4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
+
+![Configure video generation](./images/manual-configure-video.png)
+
+The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
 
 ## Parameter Reference
 
@@ -100,7 +107,7 @@ In the parameter area, view or adjust `Protocol`, `Negative Prompt`, `Audio Sett
 - Do not upload or describe videos or reference images containing customer privacy, faces, license plates, contracts, medical records, or unauthorized materials.
 - Video generation usually takes longer. Higher resolution, longer duration, and more complex reference materials increase cost and failure probability.
 - Generated videos may involve copyright, portrait rights, trademarks, and compliance boundaries. Confirm authorization before formal use.
-- Video generation may create async tasks or queue records. Do not click the generate button when learning the page or capturing screenshots.
+- Video generation may create asynchronous or queued tasks. Check existing task status before submitting again.
 
 ## Result Validation
 
@@ -110,91 +117,98 @@ In the parameter area, view or adjust `Protocol`, `Negative Prompt`, `Audio Sett
 | Model selector loads | The model selector can be opened and shows model list, provider instances, and status information. | Refresh the page and retry, or confirm whether the target model is visible to the current account. |
 | Input and parameter areas are visible | Reference image entry, prompt input box, Resolution, Ratio, Duration, Negative Prompt, Audio Setting, Prompt Extend, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
 | Result area is visible | The page can display generated results, task progress, error messages, or an empty state. | If there is no generation record, the input and parameter areas should still be displayed normally. |
-| No real generation is submitted | During learning or screenshot capture, the generate button is not clicked, no prompt is submitted, no task is created, and no credits are consumed. | If a generation action is triggered accidentally, record the time and model name, then check call logs later. |
 | Real generation returns a result | When generation is explicitly allowed, the page returns a generated video, task progress, or clear error message. | Adjust the prompt, lower resolution, or shorten duration, and check error messages or call logs. |
 
 ## FAQ
 
-#### Video Generation Times Out or Queues
+#### Target Model Is Missing
 
 **Symptom:**
 
-After submitting the prompt, there is no result for a long time, or the page shows queued, generating, or timeout status.
+The target model does not appear in the selector.
 
 **Possible Causes:**
 
-- Video resolution is too high or duration is too long.
-- Model queue or upstream service is congested.
-- Reference image, prompt, or advanced parameters make the generation task complex.
+- The model is not authorized for the account.
+- Its status or modality does not match the page.
 
-**Handling:**
+**Resolution:**
 
-1. Lower the resolution or shorten video duration and retry.
-2. Generate again later, or switch to a similar available model.
-3. Record model name, submission time, and error messages, then check call logs.
+1. Verify visibility and model status.
+2. Confirm input and output capabilities in Models.
 
-#### Generated Result Does Not Match Expectations
+#### Submit Is Unavailable
 
 **Symptom:**
 
-The generated video does not match the prompt, or the action, shot, style, or subject is not as expected.
+The request cannot be submitted after input is entered.
 
 **Possible Causes:**
 
-- The prompt is too broad and lacks subject, action, shot, style, or constraints.
-- Reference image quality, aspect ratio, or content does not match the target video.
-- The current model is not suitable for the target video type.
+- No model or Personal Key is selected.
+- Required input or parameters are incomplete.
 
-**Handling:**
+**Resolution:**
 
-1. Rewrite the prompt with clearer subject, action, shot, scene, style, and duration requirements.
-2. Use a clearer, authorized, and public-safe reference image.
-3. Adjust resolution, aspect ratio, duration, or switch to a video model that better supports the target scenario.
+1. Select the model and Personal Key again.
+2. Complete fields indicated by the page.
 
-#### Content or Safety Policy Fails
+#### Generation Fails or Times Out
 
 **Symptom:**
 
-The page indicates that content is non-compliant, safety check failed, or generation cannot proceed.
+The request fails or remains pending.
 
 **Possible Causes:**
 
-- The prompt or reference image contains sensitive, infringing, unauthorized, or prohibited content.
-- The generation target involves restricted people, brands, privacy, or content unsuitable for public distribution.
-- The model or platform has enabled safety filtering policies.
+- The model service is busy or rate-limited.
+- Input or parameters exceed model limits.
 
-**Handling:**
+**Resolution:**
 
-1. Remove sensitive, infringing, or unauthorized descriptions.
-2. Use authorized materials and public-safe scene descriptions.
-3. If the business requires this generation, confirm compliance requirements and authorization scope first.
+1. Review the page error and call logs.
+2. Shorten input or restore default parameters and retry.
 
-#### Reference Image or Video Material Fails Requirements
+#### Result Does Not Meet Expectations
 
 **Symptom:**
 
-After adding a reference image or material, the page reports format, file size, dimension, or safety check failure.
+The result does not meet content, format, or quality requirements.
 
 **Possible Causes:**
 
-- Material format is unsupported.
-- File is too large or resolution exceeds limits.
-- Material contains sensitive, unauthorized, or prohibited content.
+- The prompt lacks constraints.
+- Too many parameters changed together.
 
-**Handling:**
+**Resolution:**
 
-1. Convert to a format supported by the page.
-2. Compress the material or reduce resolution.
-3. Replace it with authorized and public-safe material.
+1. Add goals, format, and prohibited content.
+2. Restore baseline settings and compare one change at a time.
 
-## Next Steps
+#### Usage or Cost Is Unexpected
 
-1. Save reusable prompts and parameter combinations.
-2. When troubleshooting is needed, use model name, time, and error messages to view call logs.
-3. Before using generated videos formally, confirm copyright, portrait rights, compliance, and public distribution scope.
+**Symptom:**
+
+One trial creates more usage than expected.
+
+**Possible Causes:**
+
+- Output size or generation count is too large.
+- The same task was submitted repeatedly.
+
+**Resolution:**
+
+1. Check generation settings and call logs.
+2. Stop repeated submissions and confirm billing scope.
 
 ## Notes
 
 - Do not upload or describe videos containing customer privacy, faces, license plates, contracts, medical records, or unauthorized materials.
 - Long videos and high-resolution generation significantly increase latency, cost, and failure probability.
 - Before screenshots, confirm that prompts, materials, and generated content can be public.
+
+## Next Steps
+
+1. Save reusable prompts and parameter combinations.
+2. When troubleshooting is needed, use model name, time, and error messages to view call logs.
+3. Before using generated videos formally, confirm copyright, portrait rights, compliance, and public distribution scope.

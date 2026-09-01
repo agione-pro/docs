@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-08-26
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -71,6 +71,21 @@ All columns remain part of the order table. Depending on the UI language and ava
 The list screenshot is placed under the main operation steps. Screenshot data is masked to avoid exposing customer or order information.
 
 ## Main Operations
+
+### View Customer Top-up Orders
+
+1. Go to `Billing > Customer Billing > Customer Top-up Orders`.
+2. Select a time range and filter by customer, order number, status, payment channel, or posting result.
+3. Check creation time, customer, amount direction, status, and completion time.
+4. If no record is returned, check the time zone and reset filters. Redact order and customer information before screenshots or exports.
+
+### Reconcile a Top-up Order with Account Posting
+
+1. Open the target order details and record a redacted order number, status, and posting time.
+2. Compare the customer account or transactions and locate the corresponding posting and amount direction.
+3. The order status and account transaction should be mutually traceable. If not, check payment status and refresh time.
+4. Do not create another top-up, supplemental order, or adjustment to test an anomaly. Escalate to authorized personnel.
+
 
 Use the following operation to review customer top-up orders and verify balance changes. Complete view-only checks before any export, refund, correction, or manual adjustment.
 

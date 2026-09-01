@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -58,6 +58,14 @@ The following screenshot shows monthly overview list.
 ![Monthly Overview list](./images/monthly-overview-list.png)
 
 ## Main Operations
+
+### View Monthly Close Scope
+
+1. Go to `Billing > Finance Operations > Monthly Overview`.
+2. Select the target billing period and filter by provider, settlement status, or anomaly type.
+3. Check pending settlement count, amount due, anomaly count, and data refresh time.
+4. If no data is shown, check the billing period and settlement job status. Redact amounts before screenshots or exports.
+
 
 Use the following operations to work with monthly overview records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 

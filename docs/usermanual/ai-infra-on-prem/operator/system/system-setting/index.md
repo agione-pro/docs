@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-23
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -47,6 +47,13 @@ If the page provides buttons such as `Edit`, `Save`, `Submit`, or `OK`, open onl
 
 ## Main Operations
 
+### View Current System Configuration
+
+1. Go to `System > System Settings`.
+2. Review configuration groups for scheduling, storage, images, alerts, or other system parameters.
+3. Check the current value, source, effective scope, and update time.
+4. Do not record or share passwords, Tokens, internal Endpoints, or secret configuration.
+
 ### View System Setting
 
 #### Pre-Operation Check
@@ -78,10 +85,6 @@ If the page provides buttons such as `Edit`, `Save`, `Submit`, or `OK`, open onl
 
 ![Task scheduling and resource control](./images/job-scheduling-and-resource-governance.png)
 
-::: details Additional screenshot file
-![Task scheduling and resource control](./images/task-scheduling-resource-control.png)
-:::
-
 1. Go to `AI Infrastructure > On-Prem > System > System Setting`.
 2. Locate the `Task Scheduling and Resource Control` configuration group.
 3. Review configuration item names, configuration values, descriptions, status, and action entries.
@@ -90,10 +93,6 @@ If the page provides buttons such as `Edit`, `Save`, `Submit`, or `OK`, open onl
 ##### Task Runtime Environment and Storage
 
 ![Task runtime environment and storage](./images/job-runtime-and-storage.png)
-
-::: details Additional screenshot file
-![Task runtime environment and storage](./images/task-runtime-storage.png)
-:::
 
 1. Go to `AI Infrastructure > On-Prem > System > System Setting`.
 2. Locate the `Task Runtime Environment and Storage` configuration group.

@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-13
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -51,6 +51,21 @@ The following screenshot shows quota request settings.
 ![Quota request settings](./images/org-quota-request-settings.png)
 
 ## Main Operations
+
+### View Current Tenant Defaults
+
+1. Go to `Settings > Tenants and Settings > Tenant Settings`.
+2. Review organization information, quota-request settings, project defaults, and member-quota defaults.
+3. Record the current state and confirm that each setting applies to the current tenant.
+4. If information is missing, refresh and check administrative permission. Hide organization identifiers and quota before screenshots or sharing.
+
+### Verify Setting Changes
+
+1. After an approved change, reopen Tenant Settings.
+2. Compare switches, defaults, and update time with the change record.
+3. Before creating a project or member, confirm that the new defaults take effect as expected.
+4. If not applied, check the save message, permission, and cache. Do not submit repeatedly.
+
 
 ### Manage Tenant Settings
 

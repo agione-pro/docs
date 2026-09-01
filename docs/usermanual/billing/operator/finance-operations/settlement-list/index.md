@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -84,6 +84,14 @@ The following screenshot shows settlement details.
 | Failed | Generation, posting, or settlement is abnormal. | Open details and investigate in Reconciliation Center. |
 
 ## Main Operations
+
+### View Settlement Statements
+
+1. Go to `Billing > Finance Operations > Settlement List`.
+2. Filter by billing period, provider, statement number, status, or generation time.
+3. Check the target billing period, amount direction, status, and update time.
+4. If no record is returned, reset filters and check the billing period. Redact settlement data before sharing.
+
 
 Use the following operations to search, view, and generate settlement statements. Complete view-only checks before opening dialogs that may create, save, submit, confirm, or delete data.
 

@@ -1,36 +1,39 @@
-# My Calls - Call Logs
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-29
-:::
+# Call Logs
 
 ## Feature Overview
 
-`My Calls - Call Logs` is used to view model call records initiated by the current account, including call time, model, model type, call status, usage, time consumed, first token time, failure type, error message, and the details entry. It helps users locate single-call issues.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model Provider, End User |
-| Navigation path | Model Services > My Calls > Call Logs |
-| Page route | `/modelone/monitoring/calls/log` redirects to `/modelone/monitoring/calls/log/model` |
-| Managed objects | Model call logs, call status, latency, token usage, and error messages for the current account |
-| Typical use | View single-call logs and locate failed or slow calls |
+| Applicable Roles | Model Providers and Model Consumers |
+| Navigation Path | Model Services > My Calls > Call Logs |
+| Page Route | `/modelone/monitoring/calls/log/model` |
+| Managed Objects | Personal model-call records, results, usage, latency, and details |
 
 #### Beginner Explanation
 
-Call Logs are like receipts for model requests. Users can filter records by time, model, model type, or call status, and then click `Details` to view more information about a single call.
+Call Logs works like an itemized record of model requests. Locate a record by model, status, and time, and open details to review result, usage, and latency for a single failure.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Call time | Time when a single call occurred. |
-| Call status | Call processing result, such as `Success` or `Failed`. |
-| Usage | Token, free quota, or multimodal input/output usage shown by the page. |
-| Time consumed | Total time consumed by the request. |
-| First token time | Time consumed before the first token is returned by a text model. |
-| Failure type | Category of a failed request, such as platform or provider errors. |
+| Call Time | The time when the request was made and recorded. |
+| Call Result | The success or failure state of one call. |
+| First Token Time | The time for a text model to return its first token. |
+| Call Details | Model, status, usage, latency, and error summary for one call. |
+
+#### Recommended Operation Order
+
+Set time and model criteria, query logs, verify result, usage, and latency, and then open details for the target record.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| Cannot find a record | Check time range and time zone first | Repeat a model-name query only |
+| A call failed | Open details for the error summary | Repeat the call immediately |
+| Latency is abnormal | Compare adjacent records for the model | Review one latency value only |
+| Preparing to share details | Remove requests, responses, and credentials | Copy complete details |
 
 ## Prerequisites
 
@@ -40,25 +43,35 @@ Call Logs are like receipts for model requests. Users can filter records by time
 
 ## Page Description
 
-Call logs may contain request content, response content, Key names, costs, error details, and business troubleshooting information. This document only describes viewing logs and does not display real requests, responses, Keys, accounts, cost details, or internal test parameters. If the page provides an export entry, this document only describes the viewing boundary and does not guide exporting sensitive data.
+The page shows model-call records for the current account. Query by model name, model ID, type, status, and time range, and open details for individual call information.
 
-Page screenshot:
+Page screenshots:
 
 ![My Call Logs](./images/call-logs-list.png)
+
+Focus on query criteria, call result, usage, latency, and the details entry.
 
 ## Main Operations
 
-### View My Call Logs
+### Query Call Logs
 
 1. Go to `Model Services > My Calls > Call Logs`.
-2. The entry route redirects to the model call-log view at `/modelone/monitoring/calls/log/model`.
-3. On the `Models` tab, view call time, model, model type, call status, usage, time consumed, first token time, failure type, error message, and action entries.
-4. Use `Minimum Input Tokens` and `Maximum Input Tokens` together to narrow records by input-token range.
-5. Click `Search` to view matching call logs.
-6. Click `Reset` to clear filters. To view more filters, click `Expand`.
-7. Click `Details` for the target log to view more information about a single call. Hide requests, responses, Keys, and costs.
+2. Set a time range, enter a model name or model ID, and select model type and call status if needed.
+3. Click **"Search"** and verify call time, result, usage, and latency. Click **"Reset"** if the criteria are incorrect.
 
-![My Call Logs](./images/call-logs-list.png)
+![Query call logs](./images/manual-call-logs.png)
+
+The image shows call logs. Verify the time range, call result, and target record.
+
+### View Call Details
+
+1. Click **"Details"** for the target record.
+2. Verify model, call time, result, usage, latency, and error summary.
+3. For troubleshooting, retain only a redacted request identifier and error summary. Do not copy complete requests, responses, or credentials.
+
+![View call details](./images/manual-call-log-details.png)
+
+The image shows one call's details. Remove request, response, and credential information before sharing.
 
 ## Parameter Reference
 
@@ -85,7 +98,6 @@ Page screenshot:
 - For 429, check rate limits and quota first; for 401, check credentials and permissions; for 5xx, check model service and upstream status.
 - Before retrying, verify request parameters, model version, and input size to avoid repeated invalid calls.
 
-
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
@@ -99,26 +111,94 @@ Page screenshot:
 
 ## FAQ
 
-#### What if the target call log cannot be found?
+#### Target Log Is Missing
 
-First confirm that the month and date range cover the call time, and then check model, model type, and call status filters. Click `Reset` and search again if needed.
+**Symptom:**
 
-#### Why is the call status Failed?
+Call Logs shows the condition described by “Target Log Is Missing.”
 
-Failures are usually related to request parameters, model services, provider APIs, platform errors, rate limits, or quotas. Check the failure type and error message first, and then open `Details` to view redacted single-call information.
+**Possible Causes:**
 
-#### Can I export call logs?
+- Time range or filters do not match.
+- Page data is still synchronizing.
 
-Call logs may contain requests, responses, Keys, costs, and error details. Before exporting, confirm permissions, redaction requirements, and usage scope. This document only describes viewing logs and does not guide exporting sensitive data.
+**Resolution:**
 
-## Next Steps
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
 
-1. Adjust request parameters or calling methods based on the failure type and error message.
-2. To troubleshoot a single request, open `Details` and view redacted log information.
-3. To determine whether the issue is a batch anomaly, go back to `My Calls > Call Analytics` and view aggregated data.
+#### Call Status Is Failed
+
+**Symptom:**
+
+Call Logs shows the condition described by “Call Status Is Failed.”
+
+**Possible Causes:**
+
+- call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Call Latency Is Abnormal
+
+**Symptom:**
+
+Call Logs shows the condition described by “Call Latency Is Abnormal.”
+
+**Possible Causes:**
+
+- call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Token Usage Is Abnormal
+
+**Symptom:**
+
+Call Logs shows the condition described by “Token Usage Is Abnormal.”
+
+**Possible Causes:**
+
+- call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Details Contain Sensitive Data
+
+**Symptom:**
+
+Call Logs shows the condition described by “Details Contain Sensitive Data.”
+
+**Possible Causes:**
+
+- call data or status changed.
+- Permission is missing or the record expired.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Verify permission and record status, and then retry.
 
 ## Notes
 
 - Do not expose complete requests, response bodies, Keys, accounts, or cost details in documentation, screenshots, or tickets.
 - Call log data may be cleaned according to the retention period. Confirm the time range first during troubleshooting.
 - Error messages are only used for troubleshooting and must be redacted before public communication.
+
+## Next Steps
+
+1. Adjust request parameters or calling methods based on the failure type and error message.
+2. To troubleshoot a single request, open `Details` and view redacted log information.
+3. To determine whether the issue is a batch anomaly, go back to `My Calls > Call Analytics` and view aggregated data.

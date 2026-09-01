@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-13
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -47,6 +47,21 @@ Projects is the project ledger for a provider account. It shows project names, b
 | Detail tabs | Overview, Members, Usage, API Keys, Activity, and Settings |
 
 ## Main Operations
+
+### View Projects
+
+1. Go to `Settings > Personal > Projects`.
+2. Filter by project name, status, member, or update time.
+3. Open details and check members, quota, defaults, and status.
+4. If no record is returned, reset filters and check the tenant context. Project information must be redacted before sharing.
+
+### Create a Project
+
+1. Click **"Create Project"**.
+2. Check the name, members, quota, and defaults.
+3. Before saving, confirm quota and member scope. Close the form without submission during read-only validation.
+4. After an approved save, verify the new state in the list and details. If it fails, check name uniqueness, required fields, and quota limits.
+
 
 ### Manage Projects
 

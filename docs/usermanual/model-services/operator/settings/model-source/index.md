@@ -2,154 +2,325 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-08-26
+Updated: 2026-09-01
 :::
 
 ## Feature Overview
 
-Model Sources helps operators maintain upstream source channels, regions, Base URLs, request headers, authentication information, and connectivity status for model access.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation path | Model Services > Settings > Model Sources |
+| Applicable role | Operator |
+| Navigation path | **Model Services** > **Settings** > **Model Sources** |
 | Page route | `/modelone/settings/vendor` |
-| Managed objects | Source channels, regions, Base URLs, request headers, authentication information, and connectivity status |
-| Typical use | Maintain upstream model service sources |
+| Managed objects | Model Source names, identifiers, Regions, Base URLs, Request headers, and authentication settings |
 
 #### Beginner Explanation
 
-Model sources are like an address book for upstream model services. If a source is configured incorrectly, later model templates and published models will fail to call it.
+A Model Source stores the address and authentication settings for an upstream model service.
+A Meta-model describes what a model can do.
+A Model Source describes where the platform calls the service and how the platform authenticates.
 
-#### Terms Quick Reference
+#### Glossary
 
 | Term | Description |
 | --- | --- |
-| Source channel | Vendor, tenant, or access channel that owns the model service. |
-| Base URL | Base address of the upstream model service. |
-| Request header | Authentication or custom Header attached when calling the upstream service. |
-| Connectivity | Result of the platform test for upstream service reachability. |
+| Model Source | A record that stores an upstream service address and Request header settings. |
+| Region | A service location with its own Base URL. |
+| Base URL | The root address used before an API Endpoint path. |
+| Endpoint | The path for one API operation. It is usually added after the Base URL. |
+| API Key endpoint | The address used to obtain or manage API Keys. It is not the model call Endpoint. |
+| Request header | An authentication or custom header that the platform sends to the upstream service. |
+
+#### Beginner Quick Choice
+
+| Case | Do First | Avoid |
+| --- | --- | --- |
+| First connection to an upstream service | Add the Model Source. Enter the approved upstream address. | Creating a model template first |
+| A template requires a Region | Enter the Region identifier, Region name, and Base URL. | Entering only the Model Source name |
+| The upstream service requires authentication | Check the default header. Enter the approved value. | Putting API Keys in docs or tickets |
+| Template or published-model references are unclear | Open **"Details"** and confirm known references | Deleting the Model Source |
 
 ## Prerequisites
 
-1. The current account has model source maintenance permission.
-2. Endpoint, Base URL, region, authentication method, and request header fields are prepared.
-3. Network connectivity and certificate policy for the upstream model service have been confirmed.
-4. Credentials used for connectivity tests have been entered through a secure method.
+1. Confirm that the current account has permission to maintain Model Sources.
+2. Get the Region, address, and Request header requirements from the upstream service owner.
+3. Confirm network, certificate, and allowlist requirements with the responsible teams.
+4. Prepare an approved method to enter or reference credentials.
+5. Before an edit or deletion, identify the templates and published models that use the Model Source.
 
 ## Page Description
 
-This page maintains upstream model sources, including source name and identifier, region, Base URL, request header authentication, and connectivity. Names, identifiers, and Base URLs can be copied from the list when needed. If the model source is configured incorrectly, subsequent model publishing and calls will fail.
+Use this page to maintain upstream Model Sources.
+Each row shows the name, identifier, Region name, Base URL, creation time, and actions.
 
 Page screenshot:
 
-![Model source list](./images/model-source-list.png)
+![Model Source list](./images/model-source-list.png)
 
-The list shows source name, source identifier, region, Base URL, creation time, and actions. The previous `Back to old version` entry is no longer exposed. Row management is centered on `Edit` and the overflow menu rather than direct `Details` or `Delete` buttons.
+The row-end **"..."** opens **"Details"** and **"Delete"**.
+The screenshot masks address values. Do not include real credentials in documentation screenshots.
 
 ## Main Operations
 
-### Add Model Source
+<!-- main-operation-title-exceptions: Edit,Delete -->
 
-1. Go to `Model Services > Settings > Model Sources`.
-2. Click `Add` to open the `New Model Source` page.
-3. In `Basic Information`, maintain the `English` and `Chinese` display names for `Name`.
-4. Fill in `Model source identifier` to distinguish the model source.
-5. In `Region Information`, maintain `Region identifier`, `Region name`, `Base URL`, `API Key endpoint`, and `API documentation URL`. To add more regions, click `Add Region`.
-6. In `Headers Configuration`, maintain `Auth field name` and `Auth value`. To add more headers, click `Add request header`.
-7. Before clicking `Confirm`, verify the field values. For page validation only, click `Cancel` to close the page. Do not infer that a source was saved from opening the form.
+Use this order: initial setup, details verification, approved maintenance, and high-risk deletion.
 
-![Add Model Source](./images/model-source-add.png)
+### Add a Model Source
+
+1. Go to **Model Services** > **Settings** > **Model Sources**.
+2. Click **"Add"**.
+3. In **"English"**, enter the required `Name`.
+4. In **"Chinese"**, enter `Name` only when users need a Chinese display name.
+5. Enter a unique value in `Model source identifier`.
+6. When a template requires a Region, click **"Add Region"**.
+7. Enter the approved `Region identifier`, `Region name`, and `Base URL` as one complete set.
+8. Enter `API Key endpoint` and `API documentation URL` only when these links apply.
+9. When the upstream service requires an additional Request header, click **"Add request header"**.
+10. Enter the approved `Auth field name` and `Auth value`.
+11. Enter real credentials only through the approved secret-entry method.
+12. Compare all values with the approved upstream configuration.
+13. Click **"Confirm"** to submit the form.
+14. Return to the list and search for the new identifier.
+15. To close the form without submission, click **"Cancel"**.
+
+![Add a Model Source](./images/model-source-add.png)
+
+The screenshot shows the localized name tabs, Region fields, and Request header fields.
+The page requires the English `Name` and `Model source identifier`. Use the table below for all other field conditions.
+
+### View Model Source Details
+
+1. Go to **Model Services** > **Settings** > **Model Sources**.
+2. Locate the target Model Source.
+3. Click **"..."** at the end of the target row.
+4. Click **"Details"**.
+5. Check `Name`, `Model source identifier`, and the creation time.
+6. Check `Region identifier`, `Region name`, `Base URL`, `API Key endpoint`, and `API documentation URL`.
+7. Check the field names and value format in `Headers Configuration` and `Headers Preview`.
+8. Do not expose or copy a real authentication value into tickets or documentation.
+9. If the values do not match the approved configuration, return to the list and verify the target row.
+
+![View Model Source Details](./images/model-source-details.png)
+
+The details page groups the fields into `Basic Information`, `Region Information`, and `Headers Configuration`.
+The screenshot masks address and authentication values.
+
+### Edit a Model Source
+
+1. Go to **Model Services** > **Settings** > **Model Sources**.
+2. Locate the target Model Source.
+3. Click **"Edit"** in the target row.
+4. Verify that the page shows the expected record.
+5. Keep `Model source identifier` unchanged because it is read-only on the edit page.
+6. Change only the approved name, Region, address, or Request header fields.
+7. Click **"Confirm"** to submit the change.
+8. Open **"Details"** again.
+9. Confirm that the displayed values match the approved configuration.
+10. If the update is not visible, check the page message, required fields, URL values, and account permission.
+
+![Edit a Model Source](./images/model-source-edit.png)
+
+The edit page shows the multilingual name, read-only identifier, Region fields, and Request header fields.
+Review these values before you click **"Confirm"**.
+
+### Delete a Model Source
+
+1. Open **"Details"** for the target Model Source and verify its name, identifier, Region, and Base URL.
+2. Check the approved configuration inventory for known template and published-model use.
+3. Stop and confirm with the responsible owner when the use scope is unclear.
+4. Return to **Model Services** > **Settings** > **Model Sources** and click **"..."** on the verified row.
+5. Select **"Delete"** and read the confirmation message.
+6. The dialog does not show the target name. Return to the list and verify the row again when needed.
+7. Confirm the target and approval. Click **"OK"** in the dialog.
+8. Refresh the list and search for the identifier.
+9. Confirm that the identifier no longer appears. Record any visible error or remaining row.
+
+> **Recovery:** To recover an accidental deletion, use an approved record or backup. Recreate the record. Repeat details and downstream checks.
+
+![Delete a Model Source](./images/model-source-delete.png)
+
+The screenshot shows the delete confirmation dialog, not the **"..."** menu.
+The dialog has **"Cancel"** and **"OK"**. It does not identify the target row.
 
 ## Parameter Reference
 
-| Field Name | Required | Field Type | Example | Description |
-| --- | --- | --- | --- | --- |
-| Name | Yes | Multilingual text | `DashScope` | Model source name displayed in lists, details, and selectors. |
-| Model source identifier | Yes | Text | `dashscope-cn` | Unique identifier of the model source. |
-| Region identifier | Yes | Text | `cn-shanghai` | Identifier of the region where the source service is located. |
-| Region name | Yes | Multilingual text | `East China 1` | Display name of the region where the source service is located. |
-| Base URL | Yes | URL | `https://api.example.com/v1` | Upstream service base address. Use a placeholder in examples. |
-| API Key endpoint | No | URL | `https://example.com/keys` | URL for obtaining or managing upstream API Keys. |
-| API documentation URL | No | URL | `https://example.com/docs` | Upstream service API documentation URL. |
-| Auth field name | Conditionally required | Text | `Authorization` | Authentication field name in the request header. |
-| Auth value | Conditionally required | Text | `Bearer <key>` | Authentication value in the request header. Do not write real keys. |
-| Connectivity Status | System-generated | Enum | `Passed` | Tests whether the upstream service is reachable. |
+Page validation and business conditions are separate below.
+A page can mark a field optional while a template or upstream service requires it.
+
+| Field name | Page validation | Business condition | Field type | Example | Description |
+| --- | --- | --- | --- | --- | --- |
+| English Name | Required | Required for every Model Source | Multilingual text | `Example Source` | Lists and selectors show this English name. |
+| Chinese Name | Optional | Chinese UI display | Multilingual text | `Example Source` | The Chinese interface shows this name. |
+| Model source identifier | Required | All Model Sources | Text | `example-source` | Enter a unique value. Read-only on edit. |
+| Region identifier | Optional | Templates with a Region | Text | `example-region` | Enter with Region name and Base URL. |
+| Region name | Optional | Required when the template uses a Region | Multilingual text | `Example Region` | The Region selector shows this name. |
+| Base URL | Optional | Region call to upstream | URL | `https://api.example.com` | Root address. Add operation paths downstream. |
+| API Key endpoint | Optional | API Key management | URL | `https://api.example.com/keys` | Key link. Not a model call Endpoint. |
+| API documentation URL | Optional | Documentation link | URL | `https://api.example.com/docs` | Upstream documentation address. |
+| Auth field name | Optional | Upstream Request header auth | Text | `Authorization` | Default field: `Authorization`. |
+| Auth value | Optional | Upstream authentication | Text | `Bearer <API_KEY>` | Default format: `Bearer <key>`. Use the approved secret method. |
+| Headers Preview | System-generated | Configured Request headers | JSON preview | `{"Authorization":"Bearer <API_KEY>"}` | Generated from configured headers. Compare with the upstream specification. |
 
 ## Pitfalls
 
-- Do not misspell the protocol prefix or path in Endpoint.
-- Request header authentication values should use secure inputs and should not be written in remarks.
-- After connectivity passes, still test the protocol with a concrete model.
+- Do not enter an operation Endpoint in `Base URL` unless the upstream specification requires it.
+- When a template requires a Region, enter the Region identifier, Region name, and Base URL as one complete set.
+- Match the Request header field name, prefix, and value format to the upstream specification.
+- After an address or header change, reopen **"Details"** and compare the displayed values with the approved configuration.
+- Before deletion, confirm known template and published-model references. The confirmation dialog does not show dependency details.
 
 ## Result Validation
 
-| Check Item | Success Signal | If Abnormal |
+| Check item | Observable result | If the result is absent |
 | --- | --- | --- |
-| The model source shows connected or available status in the list | The model source shows connected or available status in the list. | Return to the page and check permissions, filters, and configuration status. |
-| The source can be selected in template and model publishing flows | The source can be selected in template and model publishing flows. | Return to the page and check permissions, filters, and configuration status. |
-| Request headers, region, and Base URL match upstream service requirements | Request headers, region, and Base URL match upstream service requirements. | Return to the page and check permissions, filters, and configuration status. |
-| Connectivity testing failures show clear error messages | When connectivity testing fails, a clear error message is visible. | Return to the page and check permissions, filters, and configuration status. |
+| New Model Source | List shows the expected name and identifier. | Clear filters. Refresh. Check the message after **"Confirm"**. |
+| Details | The details page shows the expected fields. | Verify the identifier. Reopen **"Details"**. |
+| Headers Preview | The preview shows the expected names and values. | Compare the headers with the upstream specification. |
+| Edit | The list or details page shows the new values. | Check the message. Submit the approved change again. |
+| Template provider selection | `Select Provider` shows the target source. | Reopen the selector. Check the name, identifier, and Operator permission. |
+| Template Region selection | `Select Region` shows the configured Region. | Stop the flow. Complete Region fields in Model Sources. |
+| Delete dialog | The dialog shows **"Cancel"** and **"OK"**. | Close the dialog. Verify the target row. |
+| Deleted Model Source | Search does not show the identifier. | Record errors or a remaining row. Do not assume completion. |
 
 ## FAQ
 
-#### Model Source Connectivity Test Fails
+#### Cannot Find the Model Source After Adding It
 
 **Symptom:**
 
-After saving the source, the connection test returns timeout, 401, 403, or 5xx.
+The list does not show the new name or identifier.
 
-**Possible Causes:**
+**Possible causes:**
 
-- Endpoint, path, or region is incorrect.
-- Request header authentication value is invalid or lacks permission.
-- Network, proxy, certificate, or firewall access is unavailable.
+- Search fields hide the record.
+- The form did not pass page validation.
+- The submission did not complete.
 
 **Handling:**
 
-1. Check Endpoint, region, and path.
-2. Update authentication request headers or credential references.
-3. Contact the network or upstream service administrator to check connectivity.
+1. Clear the search fields and refresh the list.
+2. Search for the exact `Model source identifier`.
+3. Check the message shown after **"Confirm"**.
 
-#### Template Cannot Reference the Model Source
+#### Details Do Not Match the Approved Configuration
 
 **Symptom:**
 
-The source has been created, but it cannot be selected in the model template or publishing flow.
+The details page shows an unexpected Region, address, or Request header structure.
 
-**Possible Causes:**
+**Possible causes:**
 
-- The source is not enabled.
-- Source provider or region does not match the template.
-- Source synchronization status is abnormal.
+- You opened a different row.
+- An edit was not submitted.
+- You entered the approved value in a different field.
 
 **Handling:**
 
-1. Confirm source status and provider.
-2. Check template applicability scope.
-3. Refresh synchronization and select again.
-#### Calls Still Fail Even Though the Source Connectivity Is Normal
+1. Return to the list and verify the identifier.
+2. Open **"Details"** again.
+3. Compare each visible field with the approved configuration.
+
+#### Headers Preview Does Not Match the Upstream Specification
 
 **Symptom:**
 
-The model source connectivity test passes, but calls fail in Model Marketplace or Playground.
+`Headers Preview` shows an unexpected field name, prefix, or value format.
 
-**Possible Causes:**
+**Possible causes:**
 
-The connectivity test only validates basic networking. Actual call parameters, model source ID, request headers, rate limits, or billing configuration may still be incomplete.
+- `Auth field name` is incorrect.
+- `Auth value` has an incorrect prefix or placeholder format.
+- Multiple Request headers use an incorrect combination.
 
 **Handling:**
 
-Compare the actual call request and check Base URL, model source ID, request headers, and protocol. Then view call logs for error codes and upstream return summaries.
+1. Compare the fields with the upstream API specification.
+2. Edit only the approved Request header values.
+3. Reopen **"Details"** and check `Headers Preview`.
 
-## Next Steps
+#### Model Templates Do Not Show the Model Source
 
-1. Run the connectivity test immediately and confirm that Endpoint, authentication request headers, and return format are usable.
-2. Select this source in related models or templates and validate whether the call chain works.
-3. Periodically check source health, rate-limit policy, and credential validity.
+**Symptom:**
+
+`Select Provider` does not show the target Model Source.
+
+**Possible causes:**
+
+- The selector search does not match the source name.
+- The Region fields are incomplete for a template that requires a Region.
+- The current Operator account cannot use the required record.
+
+**Handling:**
+
+1. Go to **Model Services** > **Settings** > **Model Templates**.
+2. Select the target source in the `Model Source` list.
+3. Click **"Add"**.
+4. In `Provider Information`, reopen `Select Provider`.
+5. If **"Select Region"** requires a value, complete the Region fields.
+
+#### Downstream Call Fails
+
+**Symptom:**
+
+The template can select the Model Source, but a downstream validation call fails.
+
+**Possible causes:**
+
+- Base URL or Endpoint is incorrect.
+- Request header authentication is incomplete or invalid.
+- Network, certificate, rate limit, or upstream service policy blocks the call.
+
+**Handling:**
+
+1. Model Source setup ends when you select the source in the template or publishing flow.
+2. Use the error shown in the downstream call flow to continue troubleshooting.
+3. See [Publish and Call a Model](../../../end-to-end/publish-and-call-model/) for the call procedure.
+
+#### Deletion Does Not Complete
+
+**Symptom:**
+
+The confirmation dialog remains open, an error appears, or the refreshed list still shows the Model Source.
+
+**Possible causes:**
+
+- The deletion request did not complete.
+- The current account does not have the required permission.
+- The service rejected the deletion for a reason that is not shown before confirmation.
+
+**Handling:**
+
+1. Record the visible error message.
+2. Search for the identifier after a refresh.
+3. Confirm known template and published-model use with the responsible owner.
+4. Do not repeat the deletion until the cause is understood.
 
 ## Notes
 
-- Model sources involve Endpoints, request headers, and authentication information. All examples must use placeholders.
-- Passing connectivity testing does not guarantee long-term availability. Review provider rate limits, allowlists, and health status as well.
-- After changing authentication method or request headers, validate Playground and API calls for associated models.
+- A Model Source visible in the list is not proof that the upstream service is callable.
+- Keep real authentication values in the approved secret-entry system.
+
+## Next Steps
+
+Use the [Model Templates](../model-templates/) manual for the next page.
+
+**When the Model Source has a Region**
+
+1. As an Operator, go to **Model Services** > **Settings** > **Model Templates**.
+2. Select the target source in the `Model Source` list.
+3. Click **"Add"**.
+4. In `Provider Information`, select the source from **"Select Provider"**.
+5. Select the configured Region from **"Select Region"**.
+6. Continue only after both selectors show the expected values.
+
+**When the Model Source has no Region**
+
+1. Open `Provider Information` and check **"Select Provider"**.
+2. If the source appears, check the state of **"Select Region"**.
+3. If the page requires **"Select Region"** or shows no option, stop the template flow.
+4. Continue without a Region only after the template owner confirms that this flow supports it.
+5. If the flow is not approved, return to Model Sources and add a complete Region configuration.
+
+After the template and publishing steps, follow [Publish and Call a Model](../../../end-to-end/publish-and-call-model/) for call validation.
+Call validation is outside the Model Sources page. Use the response or error shown by that flow.

@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -59,6 +59,13 @@ The following figure shows the resource specification list. Cards show CPU, memo
 ![Resource Specifications](./images/manager-flavor-list.png)
 
 ## Main Operations
+
+### View Resource Flavors
+
+1. Go to `Resource Pools > Resource Flavors`.
+2. Filter by name, resource type, accelerator, status, or update time.
+3. Open details and check CPU, memory, accelerators, storage, and applicable scenarios.
+4. If no record is returned, reset filters. For a mismatch, check metric and accelerator associations.
 
 ### Add Resource Specification
 

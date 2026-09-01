@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -57,6 +57,14 @@ The following screenshot shows today tasks list.
 ![Today Tasks list](./images/today-tasks-list.png)
 
 ## Main Operations
+
+### Prioritize Today's Tasks
+
+1. Go to `Billing > Finance Operations > Today's Tasks`.
+2. Filter by task type, status, owner, due time, or anomaly severity.
+3. Check pending, in-progress, overdue, and abnormal task counts.
+4. If no task is returned, reset filters and check the date. Prioritize by due time and business impact without bypassing approval.
+
 
 Use the following operations to work with today tasks records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 

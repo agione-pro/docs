@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-13
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -46,6 +46,21 @@ Dashboard is the Settings control panel. Use it to determine whether the current
 | Dialog entry | Request Quota dialog |
 
 ## Main Operations
+
+### Switch Projects and View the Quota Overview
+
+1. Go to `Settings > Personal > Overview`.
+2. Select the target project or workspace and review quota, usage, request status, and shortcuts.
+3. Compare total, used, and available quota and confirm that the same object is used.
+4. If metrics are empty, check project selection and refresh time. Redact quota information before sharing.
+
+### Drill Down into Quota or Usage Anomalies
+
+1. Click the related entry for quota, usage, or request status.
+2. Keep the same project context when opening Member Quotas, Quota Requests, or Usage Log.
+3. Check whether the anomaly results from a quota change, project switch, or data delay.
+4. If it cannot be explained, record a redacted project and time range. Do not submit a quota change directly.
+
 
 Use the following operations to work with dashboard records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 

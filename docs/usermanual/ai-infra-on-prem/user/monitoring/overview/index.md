@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -53,6 +53,20 @@ The page displays statistics overview capability for the selected region. When t
 | Update Time | `2026-07-03 10:00` | Determines whether data has collection delay. |
 
 ## Main Operations
+
+### View Monitored Objects
+
+1. Open the monitoring page and select the time range, region, and resource pool.
+2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
+3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
+4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
+
+### Drill Down into Abnormal Metrics
+
+1. Click an abnormal metric, trend point, or **"Details"** for the target object.
+2. Keep the same time range and inspect utilization, status, alerts, and related objects.
+3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
+4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
 
 ### View Statistics Overview
 

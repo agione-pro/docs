@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-23
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -57,6 +57,14 @@ The following screenshot shows Transactions. Sanitize transaction numbers, times
 | Details | Opens more information for one transaction. |
 
 ## Main Operations
+
+### Reconcile a Balance Change
+
+1. Select a transaction and record quota before, direction, change amount, and quota after.
+2. Compare adjacent transactions for balance continuity and check for top-ups, refunds, or adjustments.
+3. When ordered correctly, one transaction's quota after should equal the next transaction's quota before. If not, check sorting and delayed posting.
+4. If it cannot be explained, escalate with a redacted transaction number and time range. Do not create a top-up or adjustment directly.
+
 
 ### Query Transactions
 

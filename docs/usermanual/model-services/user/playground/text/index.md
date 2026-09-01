@@ -7,30 +7,39 @@ Updated: 2026-08-31
 
 ## Feature Overview
 
-`Text Playground` is used to select text models on the page, write Prompts, adjust generation parameters, and observe response quality, latency, and error Prompts.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | Model Services > Playground > Text |
-| Page route | `/modelone/exploration/chat` |
-| Managed objects | Text models, Prompts, generation parameters, output results, and debugging records |
-| Typical use | Test text model output on the page |
+| Applicable Roles | Model Providers and Model Consumers |
+| Navigation Path | Model Services > Playground > Text |
+| Page Route | `/modelone/exploration/chat` |
+| Managed Objects | Text models, prompts, generation parameters, and responses |
 
 #### Beginner Explanation
 
-The text Playground is like scratch paper for a model. It is used to quickly draft Prompts, adjust Temperature, Top-P, Max Tokens, and Stream, and observe whether model responses are stable, complete, and as expected.
+The Text playground works like a model test bench. Select an available text model and provider, enter the input, adjust parameters, and use the result or error message to decide whether to continue with integration.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Prompt | Prompt, question, or context input to the model. |
-| Temperature | Parameter that controls randomness and divergence of responses. |
-| Top-P | Parameter that controls the sampling range of candidate Tokens. |
-| Max Tokens | Limits the maximum output length of the model. |
-| Stream | Controls whether content is returned as it is generated. |
-| Protocol | Selects the text model call protocol, such as `openai/chat_completions`. |
+| Model Instance | The model and provider combination used by the playground. |
+| Prompt | Instructions that describe the task, input, and expected output. |
+| Generation Parameters | Settings that control length, randomness, size, or other generation behavior. |
+| Personal Key | A personal credential used for calls. Documentation uses `<PERSONAL_KEY>`. |
+
+#### Recommended Operation Order
+
+For a first trial, select a text model, verify the provider and Personal Key, configure the input and parameters, and then submit and review the result. Change only a few parameters at a time so that results remain comparable.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| Unsure which text model to use | Compare status and capabilities in the selector | Submit with the default model immediately |
+| Preparing input | Remove credentials, customer data, and production data | Paste raw sensitive content |
+| Preparing parameter changes | Change only a few parameters at a time | Change every parameter together |
+| Generation fails | Review the page error and call logs first | Submit repeatedly |
+
 ## Prerequisites
 
 1. The current account has access to the text Playground page.
@@ -38,22 +47,22 @@ The text Playground is like scratch paper for a model. It is used to quickly dra
 3. The Prompt does not contain real keys, customer privacy, or production business data.
 
 ::: warning Call and Billing Risk
-Clicking the send button creates a real model call and may consume credits, generate call logs, or create billing records. For page validation only, view the model selector, input box, and parameter area. Do not submit a real Prompt.
+Clicking Send creates a real model call and may consume credits, generate call logs, or create billing records. Before submission, verify the model, Personal Key, prompt, parameters, and expected usage.
 :::
 
 ## Page Description
 
 This page is used to try text models. The current page exposes a model selector, `Copy Model ID`, `Model Compare`, `More settings`, a Personal Key selector, and the Prompt input. Focus on selecting the model and provider, entering a Prompt, adjusting Protocol, Temperature, Top-P, N, Stream, and other parameters, and observing the input area, response area, history, and error messages.
 
-Page screenshot:
+Page screenshots:
 
-![Text Playground](./images/text-list.png)
+![Text page](./images/text-list.png)
 
-The Text page includes the model selector, Prompt input box, parameter entry, key selector, and send entry.
+Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
 
 ## Main Operations
 
-### Try Text Model
+### Select Text Model
 
 1. Go to `Model Services > Playground > Text`.
 2. In the model selector at the top of the page, choose the text model and provider to try.
@@ -62,13 +71,24 @@ The Text page includes the model selector, Prompt input box, parameter entry, ke
 5. Before clicking the send button, verify the input content, model, provider, key, and parameters.
 6. For page validation only, do not submit a real call request. You can view only the fields, parameter area, and history/response area.
 
-![Select text model](./images/select-model.png)
+![Select text model](./images/manual-select-text-model.png)
 
-The model selection dialog is used to search models, select provider instances, and confirm model context, pricing, latency, throughput, success rate, and listing status.
+The image shows the model selector. Compare provider capability, price, performance, and availability.
 
-![Text parameter configuration](./images/text-list.png)
+![text model selection reference](./images/select-model.png)
 
-In the parameter area, view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `Stream`, and other settings. Do not click the send button to submit a real Prompt when learning the page.
+This image provides an additional view of model selection and instance information.
+
+### Configure and Generate Text Content
+
+1. Confirm that the current model, provider, and Personal Key are correct.
+2. Enter a prompt and adjust Protocol, Temperature, Top-P, N, and Stream as needed. Confirm that the input contains no credentials, customer data, or production data, and then click **"Send"**.
+3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
+4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
+
+![Configure text generation](./images/manual-configure-text.png)
+
+The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
 
 ## Parameter Reference
 
@@ -84,14 +104,12 @@ In the parameter area, view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `
 | Stream | No | Toggle | `On` | Controls whether output is returned as a stream. |
 | Response | No | Text area | Model response content | Displays generated content, error messages, or status information. |
 
-
 ## Pitfalls
 
 - Do not set both Temperature and Top-P too high.
 - If Max Tokens is too small, answers may be truncated; if too large, costs may increase.
 - Do not enter real keys or customer privacy in Prompts.
-- Sending a Prompt may create call records, consume credits, or generate billing records. Do not submit real requests when learning the page.
-
+- Sending a prompt creates call records and may consume credits or generate billing records. Verify expected usage and billing scope before submission.
 
 ## Result Validation
 
@@ -101,71 +119,98 @@ In the parameter area, view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `
 | Model selector loads | The model selector can be opened and shows model list, provider instances, and status information. | Refresh the page and retry, or confirm whether the target model is visible to the current account. |
 | Input and parameter areas are visible | Prompt input box, `More settings`, Protocol, Temperature, Top-P, N, Stream, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
 | History or response area is visible | The page can display conversation history, response content, error messages, or an empty state. | If there is no history, the input area should still be displayed normally. |
-| No real call is submitted | During learning or screenshot capture, the send button is not clicked, no Prompt is submitted, and no credits are consumed. | If a send action is triggered accidentally, record the time and model name, then check call logs later. |
 | Real call returns a response | When a call is explicitly allowed, the page returns a text response related to the Prompt. | Shorten the Prompt, lower parameters, and check error messages or call logs. |
+
 ## FAQ
 
-#### Output Is Empty or Times Out
+#### Target Model Is Missing
 
 **Symptom:**
 
-After sending a Prompt, no content is returned, or the page stays in generation for a long time.
+The target model does not appear in the selector.
 
 **Possible Causes:**
 
-- Prompt is too long, context is too large, or Max Tokens is too high.
-- The model service is busy, queued, or rate-limited.
-- Network connection is interrupted or the browser session has expired.
+- The model is not authorized for the account.
+- Its status or modality does not match the page.
 
-**Handling:**
+**Resolution:**
 
-1. Shorten the Prompt or reduce Max Tokens and retry.
-2. Send again later and observe whether the timeout persists.
-3. Record request time, model name, and error Prompt, then check call logs or contact the operator.
+1. Verify visibility and model status.
+2. Confirm input and output capabilities in Models.
 
-#### High Temperature Causes Divergent Results
+#### Submit Is Unavailable
 
 **Symptom:**
 
-Model responses become off-topic, repetitive, poorly formatted, or inconsistent with business expectations.
+The request cannot be submitted after input is entered.
 
 **Possible Causes:**
 
-- Temperature is too high, making output too random.
-- Top-P is also high, making the sampling range too broad.
-- The Prompt lacks clear format, boundaries, or examples.
+- No model or Personal Key is selected.
+- Required input or parameters are incomplete.
 
-**Handling:**
+**Resolution:**
 
-1. Lower Temperature to the `0.2` to `0.7` range and retry.
-2. Do not set both Temperature and Top-P very high.
-3. Add output format, prohibited items, and examples to the Prompt.
+1. Select the model and Personal Key again.
+2. Complete fields indicated by the page.
 
-#### Streaming Output Is Interrupted
+#### Generation Fails or Times Out
 
 **Symptom:**
 
-After Stream is enabled, the page starts returning content but stops midway or misses the ending.
+The request fails or remains pending.
 
 **Possible Causes:**
 
-- Network connection is unstable or the browser tab was refreshed.
-- The model server connection timed out.
-- Max Tokens or output length limits caused early truncation.
+- The model service is busy or rate-limited.
+- Input or parameters exceed model limits.
 
-**Handling:**
+**Resolution:**
 
-1. Disable Stream and resend to confirm whether complete content can be returned.
-2. Reduce Max Tokens or shorten the Prompt to lower pressure on a single generation.
-3. Record request ID, model name, and time, then view error codes in call logs.
+1. Review the page error and call logs.
+2. Shorten input or restore default parameters and retry.
+
+#### Result Does Not Meet Expectations
+
+**Symptom:**
+
+The result does not meet content, format, or quality requirements.
+
+**Possible Causes:**
+
+- The prompt lacks constraints.
+- Too many parameters changed together.
+
+**Resolution:**
+
+1. Add goals, format, and prohibited content.
+2. Restore baseline settings and compare one change at a time.
+
+#### Usage or Cost Is Unexpected
+
+**Symptom:**
+
+One trial creates more usage than expected.
+
+**Possible Causes:**
+
+- Output size or generation count is too large.
+- The same task was submitted repeatedly.
+
+**Resolution:**
+
+1. Check generation settings and call logs.
+2. Stop repeated submissions and confirm billing scope.
+
+## Notes
+
+- Do not enter keys, access Tokens, or customer privacy in Prompts.
+- Redact request IDs and sensitive output content before screenshots.
+- When comparing parameters, adjust only a small number of variables at a time.
 
 ## Next Steps
 
 1. Save effective Prompt and parameter combinations.
 2. When troubleshooting is needed, use request ID to view call logs.
 3. Before production integration, organize API parameters and output format requirements.
-## Notes
-
-- Do not enter keys, access Tokens, or customer privacy in Prompts.
-- Redact request IDs and sensitive output content before screenshots.
-- When comparing parameters, adjust only a small number of variables at a time.

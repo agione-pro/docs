@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-08-26
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -43,6 +43,21 @@ The table contains:
 ![Usage Log list](./images/usage-log-list.png)
 
 ## Main Operations
+
+### View Quota Usage Events
+
+1. Go to `Settings > Tenants and Settings > Quota Usage Log`.
+2. Select a time range and filter by member, project, resource type, action, or result.
+3. Check the target event time, quota change, object, and reason.
+4. If no record is returned, check the time zone and clear combined filters. Redact quota and member data before sharing.
+
+### View Event Details and Reconcile the Quota Change
+
+1. Click **"Details"** for the target event.
+2. Compare quota before, change amount, quota after, and the related object.
+3. Check for a reversal or subsequent adjustment near the same time.
+4. If the change cannot be explained, escalate with a redacted event ID and time range. Do not modify quota directly.
+
 
 ### View Usage Events
 

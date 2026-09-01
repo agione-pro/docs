@@ -20,7 +20,19 @@ This document connects the Model Services operations of operator admins, model p
 
 Publishing and calling a model is like placing a model on a shelf and then completing a trial purchase: the operator prepares meta-models, sources, and templates; the provider publishes the model; the caller validates it in the marketplace, Playground, and API.
 
-## End-to-End Flow
+## Prerequisites
+
+1. The operator admin has permissions for model service settings, app list, model reviews, and app reviews.
+2. The model provider has permissions for Studio, model publishing, aggregation model creation, and review submission.
+3. The model caller has permissions for the model marketplace, Playground, and My Calls.
+4. The Endpoint, API Key, model source ID, protocol, and default parameters required for publishing are prepared and reachable.
+5. If the flow starts from On-Cloud Quick Deployment, the current account has permissions for `AI Infra > On-Cloud > Model Services > Quick Deployment` and `Model Services > Studio > My Deployments`.
+6. Billing, rate limits, publishing region, and review workflow are clear.
+7. All keys, internal Endpoint addresses, request IDs, and sensitive call parameters in documentation and screenshots are redacted.
+
+## Page Description
+
+### End-to-End Flow
 
 | Stage | Operator | Goal |
 | --- | --- | --- |
@@ -44,39 +56,9 @@ Publishing and calling a model is like placing a model on a shelf and then compl
 | Review record | The review record and handling comments created before a model or app is published. |
 | Call log | Request record used to troubleshoot 401, 429, 5xx, timeout, and abnormal output issues. |
 
-## Prerequisites
+## Main Operations
 
-1. The operator admin has permissions for model service settings, app list, model reviews, and app reviews.
-2. The model provider has permissions for Studio, model publishing, aggregation model creation, and review submission.
-3. The model caller has permissions for the model marketplace, Playground, and My Calls.
-4. The Endpoint, API Key, model source ID, protocol, and default parameters required for publishing are prepared and reachable.
-5. If the flow starts from On-Cloud Quick Deployment, the current account has permissions for `AI Infra > On-Cloud > Model Services > Quick Deployment` and `Model Services > Studio > My Deployments`.
-6. Billing, rate limits, publishing region, and review workflow are clear.
-7. All keys, internal Endpoint addresses, request IDs, and sensitive call parameters in documentation and screenshots are redacted.
-
-## Parameter Reference
-
-| Field Name | Required | Field Type | Example | Description |
-| --- | --- | --- | --- | --- |
-| Meta-model | Yes | Text | Example Meta-model A | Defines model protocol, modalities, context, and capability boundaries. |
-| Model Source | Yes | Text | Example Source A | Records Endpoint, authentication, request headers, and connectivity configuration. |
-| Published Model | Yes | Text | Example Model A | Target model that the Model Provider submits for review and listing. |
-| Review Record | System-generated | Text | REVIEW-202607130001 | Records model or app review status, comments, and processing result. |
-| Call Credential | Yes | Text | PERSONAL-KEY-001 | Credential used by callers for Playground and API integration. Placeholder examples are not real secrets. |
-| Call Log | System-generated | Text | REQ-202607130001 | Key clue for troubleshooting 401, 429, 5xx, timeout, and output exceptions. |
-
-## Pitfalls
-
-- Meta-models, model sources, and model templates are prerequisite configurations for publishing. Missing any one of them may make the publishing form unavailable.
-- Review approval only means listing is allowed. It does not mean the caller definitely has quota, visibility scope, and a valid Key.
-- A successful Playground test does not mean production integration is complete. Before formal calls, verify rate limits, billing, error logs, and call credentials.
-- Endpoint, API Key, request headers, and internal error logs are sensitive information and must be redacted before being written into documentation.
-- On-Cloud Quick Deployment, publish region selection, and model publishing may change real service exposure. For learning or page validation only, do not perform final `Publish`, `Submit`, `Save`, or `Create` actions.
-- `Publish`, `Submit for Review`, `Approve`, `Reject`, `List`, `Create Aggregation Model`, and `Delete` are high-risk actions. Confirm impact scope and rollback options before performing them.
-- For learning or screenshots, only view pages, fields, statuses, and navigation. Do not perform final publish, submit for review, approve, reject, list, create aggregation model, or delete actions.
-- Do not record real model IDs, API Keys, Endpoints, model source credentials, tenant information, user information, call logs, or test parameters.
-
-## Step 1: Operator Admin Maintains Meta-models
+### Step 1: Operator Admin Maintains Meta-models
 
 1. Go to `Settings > Meta-models`.
 2. If the model author is missing, add the model author first.
@@ -91,7 +73,7 @@ Result checks:
 | Model type, input/output modalities, protocol, and context limit | Model type, input/output modalities, protocol, and context limit meet publishing requirements. | Return to this step and check prerequisites, permissions, and configuration status. |
 | Model Provider can select this meta-model | The Model Provider can select this meta-model during publishing. | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Step 2: Operator Admin Maintains Model Sources
+### Step 2: Operator Admin Maintains Model Sources
 
 1. Go to `Settings > Model Sources`.
 2. Click add model source.
@@ -106,7 +88,7 @@ Result checks:
 | Source region, request URL, and request header configuration | Source region, request URL, and request header configuration are accurate. | Return to this step and check prerequisites, permissions, and configuration status. |
 | Source can be selected or reused when publishing a model | The source can be selected or reused when publishing a model. | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Step 3: Operator Admin Maintains Templates and Tags
+### Step 3: Operator Admin Maintains Templates and Tags
 
 1. Go to `Settings > Templates`.
 2. Add a template and select model provider, author, meta-model, protocol, capabilities, and default parameters.
@@ -121,7 +103,7 @@ Result checks:
 | Target tag is visible in Tags | The target tag is visible in [Tags](../../operator/settings/tags/). | Return to this step and check prerequisites, permissions, and configuration status. |
 | Corresponding template and tag can be selected | The corresponding template and tag can be selected when publishing a model or aggregation model. | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Step 4: Model Provider Publishes a Single Model
+### Step 4: Model Provider Publishes a Single Model
 
 1. Go to `Studio > My Models`.
 2. Switch to `My Published` and click `Publish Model`.
@@ -151,7 +133,7 @@ Result checks:
 | Protocol connectivity test passes | The protocol connectivity test passes. | Return to this step and check prerequisites, permissions, and configuration status. |
 | Model is saved or submitted for review | The model is saved or submitted for review successfully. | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Step 5: Model Provider Creates an Aggregation Model
+### Step 5: Model Provider Creates an Aggregation Model
 
 1. Go to `Studio > My Models`.
 2. Switch to `My Aggregations` and click `Create Aggregation Model`.
@@ -171,7 +153,7 @@ Result checks:
 | Member model count is at least two | The member model count is at least two. | Return to this step and check prerequisites, permissions, and configuration status. |
 | Matching strategy, billing configuration, and publishing method | Matching strategy, billing configuration, and publishing method match expectations. | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Step 6: Operator Admin Processes Model Review
+### Step 6: Operator Admin Processes Model Review
 
 1. Go to `Approvals > Model Reviews`.
 2. View the pending model list and filter by model name, status, or submission information.
@@ -186,7 +168,7 @@ Result checks:
 | Model can enter listing or display flow after approval | After approval, the model can enter the listing or display flow. | Return to this step and check prerequisites, permissions, and configuration status. |
 | Rejection reason is clear | When rejected, the reason is clear and the Model Provider can revise accordingly. | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Step 7: Model Caller Views the Model in the Marketplace
+### Step 7: Model Caller Views the Model in the Marketplace
 
 1. Go to `Discover > Model Marketplace`.
 2. Filter models by model name, model type, provider, tag, or search box.
@@ -201,7 +183,7 @@ Result checks:
 | Provider, quick start, performance, and overview information is complete | Provider, quick start, performance, and overview information is complete on the model details page. | Return to this step and check prerequisites, permissions, and configuration status. |
 | Caller can prepare integration | The caller can prepare integration based on quick-start information. | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Step 8: Model Caller Tries the Model in Playground
+### Step 8: Model Caller Tries the Model in Playground
 
 1. Go to `Playground > Text Chat`, or enter image generation, video generation, or audio generation according to model type.
 2. Click model selection and choose the target model.
@@ -217,7 +199,7 @@ Result checks:
 | Model returns an expected response | The model returns an expected response. | Return to this step and check prerequisites, permissions, and configuration status. |
 | Error information supports troubleshooting | If the call fails, the error information can help locate Endpoint, protocol, rate-limit, or billing issues. | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Step 9: View Calls, Usage, and Revenue
+### Step 9: View Calls, Usage, and Revenue
 
 1. The caller goes to `My Calls > Overview` to view overall call trends.
 2. The caller goes to `My Calls > Call Analytics` and `Call Logs` to view model-level and single-request details.
@@ -233,7 +215,29 @@ Result checks:
 | Single request can be located in Call Logs | A single request can be located in [Call Logs](../../user/my-calls/call-logs/). | Return to this step and check prerequisites, permissions, and configuration status. |
 | Earnings and consumption can be viewed | Earnings and consumption can be viewed in [Model Earnings](../../user/usage-earnings/model-earnings/) and [Model Usage](../../user/usage-earnings/model-usage/). | Return to this step and check prerequisites, permissions, and configuration status. |
 
-## Failure Branches and Troubleshooting Paths
+## Parameter Reference
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Meta-model | Yes | Text | Example Meta-model A | Defines model protocol, modalities, context, and capability boundaries. |
+| Model Source | Yes | Text | Example Source A | Records Endpoint, authentication, request headers, and connectivity configuration. |
+| Published Model | Yes | Text | Example Model A | Target model that the Model Provider submits for review and listing. |
+| Review Record | System-generated | Text | REVIEW-202607130001 | Records model or app review status, comments, and processing result. |
+| Call Credential | Yes | Text | `<PERSONAL_KEY>` | Credential used by callers for Playground and API integration. Placeholder examples are not real secrets. |
+| Call Log | System-generated | Text | REQ-202607130001 | Key clue for troubleshooting 401, 429, 5xx, timeout, and output exceptions. |
+
+## Pitfalls
+
+- Meta-models, model sources, and model templates are prerequisite configurations for publishing. Missing any one of them may make the publishing form unavailable.
+- Review approval only means listing is allowed. It does not mean the caller definitely has quota, visibility scope, and a valid Key.
+- A successful Playground test does not mean production integration is complete. Before formal calls, verify rate limits, billing, error logs, and call credentials.
+- Endpoint, API Key, request headers, and internal error logs are sensitive information and must be redacted before being written into documentation.
+- On-Cloud Quick Deployment, publish region selection, and model publishing may change real service exposure. For learning or page validation only, do not perform final `Publish`, `Submit`, `Save`, or `Create` actions.
+- `Publish`, `Submit for Review`, `Approve`, `Reject`, `List`, `Create Aggregation Model`, and `Delete` are high-risk actions. Confirm impact scope and rollback options before performing them.
+- For learning or screenshots, only view pages, fields, statuses, and navigation. Do not perform final publish, submit for review, approve, reject, list, create aggregation model, or delete actions.
+- Do not record real model IDs, API Keys, Endpoints, model source credentials, tenant information, user information, call logs, or test parameters.
+
+### Failure Branches and Troubleshooting Paths
 
 #### Failure Branch: Model Review Is Rejected
 
@@ -323,6 +327,10 @@ The statistical time range, model version, customer scope, billing rule, or sync
 
 Use the same time range, model version, and customer scope. Check call logs first, then model usage and revenue statistics. If still inconsistent, keep desensitized clues and contact operations.
 
+## Notes
+
+- This page follows the Meta Models manual structure. Use the linked feature pages for field-level operations.
+- Do not expose real accounts, API Keys, tokens, Endpoint addresses, request IDs, customer names, or call payloads in documentation or screenshots.
 
 ## Next Steps
 

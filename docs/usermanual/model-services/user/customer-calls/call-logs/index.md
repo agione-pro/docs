@@ -1,37 +1,39 @@
-# Customer Calls - Call Logs
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-29
-:::
+# Call Logs
 
 ## Feature Overview
 
-`Customer Calls - Call Logs` is available to model providers. It shows customer-side model call records and helps providers troubleshoot customer-reported failures, timeouts, rate limits, or usage anomalies. End users can review only their own records under `My Calls`.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model Provider |
-| Navigation path | Model Services > Customer Calls > Call Logs |
-| Page route | `/modelone/monitoring/monitor/log` |
-| Managed objects | Customer-side call logs, models, customer names, call status, usage, and error messages |
-| Typical use | Troubleshoot single-call issues by customer and model |
+| Applicable Roles | Model Providers |
+| Navigation Path | Model Services > Customer Calls > Call Logs |
+| Page Route | `/modelone/monitoring/monitor/log/model` |
+| Managed Objects | Customer model-call records, results, usage, latency, and failed records |
 
 #### Beginner Explanation
 
-Customer call logs are like receipts for customer requests. Users can filter records by time, model, model type, or call status, and then click `Details` to view more information about a single call.
+Customer Call Logs works like a troubleshooting register for customer requests. Locate records by time, model, and status, and use customer name, result, usage, and latency to assess impact.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Call time | Time when a single customer call occurred. |
-| Customer name | Name of the customer or caller that initiated the call. |
-| Call status | Call processing result, such as `Success` or a failed status. |
-| Usage | Input tokens, output tokens, cached input tokens, context size, or free usage information shown by the page. |
-| Time consumed | Total time consumed by the request. |
-| First token time | Time consumed before the first token is returned by a text model. |
-| Failure type | Category of a failed request. |
+| Customer Name | The customer identifier associated with a model call. |
+| Call Result | The success or failure state of one customer call. |
+| Usage | Token, count, or other consumption information for one call. |
+| First Token Time | The time for a text model to return its first token. |
+
+#### Recommended Operation Order
+
+Set a time range and query customer call logs, locate failed records, and use customer, model, error, and latency information to assess impact.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| A customer reports a failure | Check time and model first | Infer from customer name alone |
+| Many records failed | Locate by status and compare time distribution | Repeat calls one by one |
+| Cannot find a record | Reset filters and check time zone | Keep narrowing the scope |
+| Preparing to share logs | Redact customer, request, and credential data | Share complete details externally |
 
 ## Prerequisites
 
@@ -41,25 +43,36 @@ Customer call logs are like receipts for customer requests. Users can filter rec
 
 ## Page Description
 
-Customer call logs may contain customer information, request content, response content, Key names, costs, error details, and business troubleshooting information. This document only describes viewing call logs and does not display real customer information, request content, response content, Keys, accounts, cost details, or internal test parameters. If the page provides an export entry, this document only describes the viewing boundary and does not guide exporting sensitive data.
+The page shows customer model-call records. Query by model name, model ID, type, status, and time range. The list includes customer name, result, usage, latency, and details.
 
-Page screenshot:
+Page screenshots:
 
-![Customer Calls - Call Logs](./images/call-logs-list.png)
+![Customer Call Logs](./images/call-logs-list.png)
+
+Focus on time range, model criteria, customer name, call result, and details.
 
 ## Main Operations
 
-### View Customer Calls - Call Logs
+### Query Customer Call Logs
 
 1. Go to `Model Services > Customer Calls > Call Logs`.
-2. On the `Model Logs` tab, view call time, model, customer name, model type, call status, usage, time consumed, first token time, failure type, error message, and action entries.
-3. Select filters such as month, date range, model, model type, call status, or input-token range.
-4. Use `Minimum Input Tokens` and `Maximum Input Tokens` together to narrow records by input-token range.
-5. Click `Search` to view matching customer call logs.
-6. Click `Reset` to clear filters. To view more filters, click `Expand`.
-7. Click `Details` for the target log. Hide requests, responses, Keys, accounts, and costs.
+2. Set a time range, enter a model name or model ID, and select model type and call status if needed.
+3. Click **"Search"** and verify call time, customer name, result, usage, and latency.
+4. Click **"Reset"** if the criteria are incorrect. Redact customer and business identifiers before sharing results.
 
-![Customer Calls - Call Logs](./images/call-logs-list.png)
+![Query customer call logs](./images/manual-customer-call-logs.png)
+
+The image shows customer call-log results. Verify time, customer, model, and call result.
+
+### Locate Failed Call Records
+
+1. Select a failed state in Call Status.
+2. Click **"Search"** and compare customer, model, time, and latency across failed records.
+3. Open **"Details"** for the target record and retain only a redacted error summary. Do not copy complete requests, responses, or credentials.
+
+![Locate failed call records](./images/manual-failed-call-filter.png)
+
+The image shows a failed-status query. Compare customer, model, and time distribution across failed records.
 
 ## Parameter Reference
 
@@ -87,7 +100,6 @@ Page screenshot:
 - 401, 429, and 5xx point to different troubleshooting paths. Do not treat every failure as the same issue.
 - Log retention may be limited. Confirm the time range and keep desensitized clues early.
 
-
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
@@ -101,26 +113,94 @@ Page screenshot:
 
 ## FAQ
 
-#### What if the customer-reported call log cannot be found?
+#### Customer Log Is Missing
 
-First confirm that the month and date range cover the customer call time, and then check model, model type, and call status filters. Click `Reset` and search again if needed.
+**Symptom:**
 
-#### What if many failures occur for the same customer?
+Call Logs shows the condition described by “Customer Log Is Missing.”
 
-Filter by time range and check failure type, error message, and time consumed first. Then open `Details` to view redacted single-call information. To assess the impact scope, go back to `Customer Calls > Call Analytics`.
+**Possible Causes:**
 
-#### Can I export customer call logs?
+- Time range or filters do not match.
+- Page data is still synchronizing.
 
-Customer call logs may contain customer information, requests, responses, Keys, costs, and error details. Before exporting, confirm permissions, redaction requirements, and usage scope. This document only describes viewing logs and does not guide exporting sensitive data.
+**Resolution:**
 
-## Next Steps
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
 
-1. Click `Details` to view redacted details for the target customer call.
-2. Go to `Customer Calls > Call Analytics` to determine whether a batch anomaly exists.
-3. Return to `Customer Calls > Overview` to view trend changes by customer or model.
+#### No Failed Record Appears
+
+**Symptom:**
+
+Call Logs shows the condition described by “No Failed Record Appears.”
+
+**Possible Causes:**
+
+- customer call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### One Customer Has Many Failures
+
+**Symptom:**
+
+Call Logs shows the condition described by “One Customer Has Many Failures.”
+
+**Possible Causes:**
+
+- customer call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Call Latency Is Abnormal
+
+**Symptom:**
+
+Call Logs shows the condition described by “Call Latency Is Abnormal.”
+
+**Possible Causes:**
+
+- customer call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Details Contain Sensitive Data
+
+**Symptom:**
+
+Call Logs shows the condition described by “Details Contain Sensitive Data.”
+
+**Possible Causes:**
+
+- customer call data or status changed.
+- Permission is missing or the record expired.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Verify permission and record status, and then retry.
 
 ## Notes
 
 - Do not expose complete customer requests, response bodies, Keys, accounts, or cost details in documentation, screenshots, or tickets.
 - Customer logs are for troubleshooting and do not replace revenue settlement or billing details.
 - Error messages are only used for troubleshooting and must be redacted before public communication.
+
+## Next Steps
+
+1. Click `Details` to view redacted details for the target customer call.
+2. Go to `Customer Calls > Call Analytics` to determine whether a batch anomaly exists.
+3. Return to `Customer Calls > Overview` to view trend changes by customer or model.

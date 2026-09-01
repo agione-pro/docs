@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -53,7 +53,12 @@ The following screenshot shows the Rule Management page. Rule details are desens
 
 ## Main Operations
 
-Use the following operations to work with rule management records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+### View Rate-Control Rules
+
+1. Go to `Settings > API Rate Control > Rule Management`.
+2. Filter by name, status, scope, action, or update time.
+3. Open details and check match conditions, thresholds, actions, priority, target nodes, and version.
+4. If no record is returned, reset filters. For unexpected matches, compare Observability Audit and the currently published version.
 
 ### Create Rate Control Rule
 

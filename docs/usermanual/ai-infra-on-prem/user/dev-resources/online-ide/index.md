@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -64,6 +64,20 @@ The list page supports filtering by region and status, and provides refresh and 
 | Pagination Area | View by page when there are many IDEs. |
 
 ## Main Operations
+
+### View Resource Instances
+
+1. Open the corresponding development-resource page and filter by name, project, status, flavor, or update time.
+2. Open details and check image, flavor, storage, network, runtime status, and creation time.
+3. If no record is returned, reset filters and check project and region. Redact internal addresses and credentials before sharing.
+4. For abnormal status, inspect events and quota before creating another instance.
+
+### Connect to or Manage Instance Status
+
+1. Open the target details and confirm the connection entry, runtime status, and attached storage.
+2. Before connecting, confirm access permission and network scope and use only the platform-provided secure entry.
+3. Before starting, stopping, restarting, or deleting, confirm that work and data are saved. Do not perform these actions during read-only validation.
+4. After an approved action, check status and events. If abnormal, stop retrying and escalate with logs.
 
 ### Create Online IDE
 

@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-23
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -62,6 +62,27 @@ The following screenshot shows the Customers page. Customer names, tenants, admi
 | Manage Tags | Manages customer tag categories or tag configuration; this entry is not described as a main operation. |
 
 ## Main Operations
+
+::: warning Fact Status
+The Provider credentials were rejected by the Demo in this review, so Provider-only operations were not verified in the current Demo. The instructions use the existing Chinese and English manuals and cross-verifiable shared page structure. Recheck buttons, fields, and permissions with a valid Provider account before execution.
+:::
+
+
+
+### View Earnings Customers
+
+1. Go to `Billing > Provider Earnings > Customer Overview`.
+2. Select a billing period and filter by customer, model, contribution range, or activity status.
+3. Check customer count, call volume, earnings contribution, and refresh time.
+4. If no data is shown, expand the period and reset filters. Redact customer and earnings data before sharing.
+
+### Compare Customer Contribution and Anomalies
+
+1. Compare customer calls, Tokens, earnings, and trends within the same billing period.
+2. Open an abnormal customer's details and check associated models and records.
+3. If totals and details differ, check aggregation scope, settlement status, and refresh time.
+4. Do not change commercial policy or customer permissions based on one short-period metric.
+
 
 ### View Customer Details
 
@@ -161,15 +182,15 @@ Tags affect customer filtering, operations classification, and follow-up.
 
 Confirm tag meaning and customer scope before editing. For learning or screenshots, do not save tag changes.
 
-## Next Steps
-
-1. To return to the summary view, go to [Revenue](../revenue/).
-2. To reconcile billing-cycle settlement records, go to [Settlements](../settlements/).
-3. To reconcile received records, review Revenue Account Activity.
-
 ## Notes
 
 - Customer overview contains tenant, administrator, and revenue data. Desensitize screenshots before sharing.
 - For learning or screenshots, view only list fields and the details entry without modifying tags or exporting real customer revenue data.
 - Managing tags may affect customer classification. Confirm tag meaning, customer scope, and operation permissions before editing.
 - When reconciling customer revenue, check billing cycle, filters, Revenue Overview, Settlements, and Revenue Account Activity together.
+
+## Next Steps
+
+1. To return to the summary view, go to [Revenue](../revenue/).
+2. To reconcile billing-cycle settlement records, go to [Settlements](../settlements/).
+3. To reconcile received records, review Revenue Account Activity.

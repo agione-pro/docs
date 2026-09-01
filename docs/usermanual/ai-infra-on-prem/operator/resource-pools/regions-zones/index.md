@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -112,6 +112,14 @@ Resource usage is displayed in the "used/total" format, which helps you quickly 
 - Management actions may affect new resource creation, new cluster registration, or new job scheduling. Confirm region, availability zone, cluster, and job dependencies before applying changes.
 
 ## Main Operations
+
+### View Regions and Availability Zones
+
+1. Go to `Resource Pools > Regions and Availability Zones`.
+2. Filter by region name, availability zone, status, or update time.
+3. Open details and check hierarchy, resource bindings, status, and associated clusters.
+4. If no record is returned, reset filters. Before disabling, confirm that no resource or deployment depends on it.
+
 
 ### Add Region
 
@@ -413,16 +421,6 @@ After the availability zone is submitted successfully, check whether the configu
 3. If the cluster ownership is wrong, adjust it using the platform-supported method or register it again.
 4. If the cluster status is abnormal, continue troubleshooting on the cluster details and node pages.
 
-## Next Steps
-
-After completing this chapter, continue to check or perform the following:
-
-1. Go to `Resource Pools > Clusters` to register clusters, and confirm that the new region and availability zone can be selected.
-2. In the region details, confirm that the image service status is normal and that Endpoint and IP information are as expected.
-3. If storage components are enabled, confirm that object storage, file storage, or block storage components are normal.
-4. Associate specifications and required storage with the target cluster.
-5. Submit a test job and confirm that images can be pulled, resources can be scheduled, storage can be mounted, and the job can run normally.
-
 ## Notes
 
 - Region IDs and availability zone IDs are resource boundary identifiers. Name them according to long-term plans and avoid temporary names.
@@ -433,3 +431,13 @@ After completing this chapter, continue to check or perform the following:
 - `Confirm`, `Save`, and `Submit` are high-risk final actions. Do not click them during learning or screenshot capture.
 - Before taking screenshots, check whether real data center codes, internal addresses, cluster IDs, resource pool IDs, accounts, keys, tokens, certificates, private keys, access keys, or internal test parameters are exposed on the page.
 - The current account must have permissions to view and bind image services, storage components, regions, and availability zones. If a dropdown is empty, first check component status and account permissions.
+
+## Next Steps
+
+After completing this chapter, continue to check or perform the following:
+
+1. Go to `Resource Pools > Clusters` to register clusters, and confirm that the new region and availability zone can be selected.
+2. In the region details, confirm that the image service status is normal and that Endpoint and IP information are as expected.
+3. If storage components are enabled, confirm that object storage, file storage, or block storage components are normal.
+4. Associate specifications and required storage with the target cluster.
+5. Submit a test job and confirm that images can be pulled, resources can be scheduled, storage can be mounted, and the job can run normally.

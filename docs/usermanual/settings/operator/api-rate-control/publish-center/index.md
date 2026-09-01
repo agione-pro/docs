@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -50,6 +50,21 @@ The following screenshot shows the Publish Center page. Versions, nodes, and mes
 ![Publish Center](./images/publish-center-list.png)
 
 ## Main Operations
+
+### View Publish Records
+
+1. Go to `Settings > API Rate Control > Publish Center` and filter by version, status, publisher, or time.
+2. Check the version, rule count, target nodes, publish time, and status.
+3. If no record is returned, reset filters. For a long-running status, refresh once and inspect Node Cache.
+4. Publish records affect online traffic governance. Hide internal nodes and rule information before screenshots or sharing.
+
+### View Version Differences and Synchronization Status
+
+1. Click **"Details"** or the difference entry for the target version.
+2. Compare added, modified, and deleted rules and target nodes.
+3. Compare Publish Center status with node cache versions. If they differ, record the difference without republishing.
+4. Do not publish, roll back, or force synchronization during read-only validation.
+
 
 Use this operation to query publish records. Do not add publish, rollback, or cancel operations here because they are high-risk final actions.
 

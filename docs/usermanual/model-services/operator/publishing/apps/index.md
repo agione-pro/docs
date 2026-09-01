@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -48,6 +48,21 @@ Used to view app status, bound models, and visibility scope.
 
 ## Main Operations
 
+### View Applications
+
+1. Go to `Model Services > Publishing > Applications`.
+2. Filter by application name, type, status, publisher, or update time.
+3. Check the name, version, status, and update time in the filtered result. If no result is returned, reset the filters and check the active tab.
+4. The target application should be uniquely identifiable. If the list remains empty, check permissions and whether the application has been delisted.
+
+### View Application Details
+
+1. Click **"Details"** or the application name in the target row.
+2. View the description, version, associated models, visibility, publishing status, and update time.
+3. Compare the version and status with the list. If they differ, refresh the page and use the latest status shown in the details.
+4. Return to the list after read-only validation. Do not publish, delist, or delete the application.
+
+
 ### View App List
 
 1. Go to `Model Services > Publishing > Apps`.
@@ -62,7 +77,7 @@ Used to view app status, bound models, and visibility scope.
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| App Name | System-displayed | Text | `OnePro-HyperBDR-AI` | App name displayed in the app list. |
+| App Name | System-displayed | Text | `sample-app` | App name displayed in the app list. |
 | Tag | System-displayed | Tag | `Agents & Interaction` | App category or display tag. |
 | Author | System-displayed | Text | `lixipeng` | App creator or maintainer. |
 | Pricing Status | System-displayed | Tag | `Free` | Current pricing or billing status of the app. |
@@ -138,14 +153,14 @@ The review workflow is not complete, model permission configuration is missing, 
 
 Check app review records and model permissions. Confirm whether the publishing task has error prompts. If needed, record the app ID and time and ask the platform admin to troubleshoot.
 
-## Next Steps
-
-1. View app call logs.
-2. Analyze customer call trends.
-3. Adjust model or visibility scope based on customer feedback.
-
 ## Notes
 
 - Confirm customer call impact before delisting an app.
 - Redact customer names, app IDs, and call entries in screenshots.
 - Real call addresses and credentials should only be displayed in secure platform areas.
+
+## Next Steps
+
+1. View app call logs.
+2. Analyze customer call trends.
+3. Adjust model or visibility scope based on customer feedback.

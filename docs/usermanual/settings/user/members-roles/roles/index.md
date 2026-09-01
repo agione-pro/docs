@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-13
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -47,6 +47,13 @@ Roles is the permission-template library. Combine menu and action permissions in
 | High-risk action | Creating or changing a high-permission role |
 
 ## Main Operations
+
+### View Roles
+
+1. Go to `Settings > Members and Roles > Roles`.
+2. Filter by role name, status, or update time.
+3. Open details and check menu and action permissions and assigned members.
+4. If no record is returned, reset filters. For unexpected permissions, check whether a member has multiple roles.
 
 ### Manage Roles
 

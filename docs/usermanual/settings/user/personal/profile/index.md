@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-29
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -46,6 +46,14 @@ Profile is the identity card for the signed-in account. Use it to confirm who yo
 | Copy icon | Copies a supported account field and shows success feedback. |
 
 ## Main Operations
+
+### Verify Account and Permission Information
+
+1. Check the username, tenant, roles, and account status.
+2. Confirm that protected fields did not change during profile editing.
+3. If permissions are unexpected, inspect role assignments without elevating privileges.
+4. Hide email, contact details, and internal identifiers before screenshots or sharing.
+
 
 Use the following operations to work with profile records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 

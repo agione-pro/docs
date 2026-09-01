@@ -1,36 +1,39 @@
-# Audio Playground
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
+# Audio
 
 ## Feature Overview
 
-Audio Playground is used to select an audio model, enter text to convert into speech, configure Voice ID, speed, volume, pitch, and other parameters, and view the generated audio result or call status.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | Model Services > Playground > Audio |
-| Page route | `/modelone/exploration/audio` |
-| Managed objects | Audio models, Voice ID, text content, protocol, speed, volume, pitch, and generated results |
-| Typical use | Try text-to-speech audio models on the page |
+| Applicable Roles | Model Providers and Model Consumers |
+| Navigation Path | Model Services > Playground > Audio |
+| Page Route | `/modelone/exploration/audio` |
+| Managed Objects | Audio models, text or audio input, generation parameters, and audio results |
 
 #### Beginner Explanation
 
-The audio Playground is like a listening room for speech models. After selecting an audio model, users enter the text to synthesize, choose a Voice ID, adjust speed, volume, pitch, and other parameters according to page capability, and then check whether the generated result matches expectations.
+The Audio playground works like a model test bench. Select an available audio model and provider, enter the input, adjust parameters, and use the result or error message to decide whether to continue with integration.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Voice ID | Voice or speaker identifier used for speech generation. |
-| Text | Text content to convert into speech. |
-| Protocol | Current model call protocol. The page example is `openai/audio`. |
-| Speed | Controls how fast the generated speech is. |
-| Volume | Controls the loudness of the generated speech. |
-| Pitch | Controls the pitch of the generated speech. |
+| Model Instance | The model and provider combination used by the playground. |
+| Prompt | Instructions that describe the task, input, and expected output. |
+| Generation Parameters | Settings that control length, randomness, size, or other generation behavior. |
+| Personal Key | A personal credential used for calls. Documentation uses `<PERSONAL_KEY>`. |
+
+#### Recommended Operation Order
+
+For a first trial, select an audio model, verify the provider and Personal Key, configure the input and parameters, and then submit and review the result. Change only a few parameters at a time so that results remain comparable.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| Unsure which audio model to use | Compare status and capabilities in the selector | Submit with the default model immediately |
+| Preparing input | Remove credentials, customer data, and production data | Paste raw sensitive content |
+| Preparing parameter changes | Change only a few parameters at a time | Change every parameter together |
+| Generation fails | Review the page error and call logs first | Submit repeatedly |
 
 ## Prerequisites
 
@@ -40,33 +43,46 @@ The audio Playground is like a listening room for speech models. After selecting
 4. You understand that clicking the send or generation button may create a real model call and billing record.
 
 ::: warning Call And Content Risks
-Clicking the send button creates a real model call and may consume quota, generate billing records, or write call logs. Do not enter personal data, customer information, secrets, copyrighted text, or unauthorized content. For page validation only, view the fields and parameter area without submitting a real call request.
+Clicking Send creates a real model call and may consume quota or create billing records and call logs. Before submission, remove personal data, customer information, credentials, copyrighted text, and unauthorized content.
 :::
 
 ## Page Description
 
-This page is used to try text-to-speech audio models. It focuses on model selection, Voice ID, text input, protocol, speed, volume, pitch, Personal Key, and the result area. The parameter panel is used to maintain generation parameters, and the top model selector is used to switch available audio models.
+The page contains audio model selection, an input area, parameters, Personal Key selection, and a result area. Submission creates a real call and may create usage or billing records.
 
-![Audio Playground](./images/audio-list.png)
+Page screenshots:
+
+![Audio page](./images/audio-list.png)
+
+Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
 
 ## Main Operations
 
-### Try Audio Model
+### Select Audio Model
 
 1. Go to `Model Services > Playground > Audio`.
-2. In the model selector, choose the audio model to try.
-3. Enter the text content to generate speech in the input box.
-4. Select `Voice ID` as required by the page, and confirm `Protocol`, `Text`, `Speed`, `Volume`, `Pitch`, and other parameters.
-5. Before clicking `Send` or the actual call button on the page, verify the input content, parameters, and Key selection.
-6. For page validation only, do not submit a real call request. You can view only the fields, parameter area, and result area.
+2. Click the current model name or **"Select Model"** to open the selector.
+3. Locate the target model and compare provider, context, price, latency, throughput, success rate, and status.
+4. Select an available instance and return to the playground. Confirm that the model and provider shown at the top are correct.
 
-![Select audio model](./images/select-model.png)
+![Select audio model](./images/manual-select-audio-model.png)
 
-The Select Model dialog is used to view model name, model identifier, provider, pricing, context, latency, throughput, success rate, weekly calls, weekly chars, and other information, and close the selection with `Cancel` or `Confirm`.
+The image shows the model selector. Compare provider capability, price, performance, and availability.
 
-![Audio parameter configuration](./images/audio-list.png)
+![audio model selection reference](./images/select-model.png)
 
-The parameter area is used to confirm Voice ID, protocol, text, speed, volume, pitch, and the send entry.
+This image provides an additional view of model selection and instance information.
+
+### Configure and Generate Audio Content
+
+1. Confirm that the current model, provider, and Personal Key are correct.
+2. Enter the content to generate and set voice, speed, format, or other available parameters. Confirm that the input contains no sensitive information, and then click **"Send"**.
+3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
+4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
+
+![Configure audio generation](./images/manual-configure-audio.png)
+
+The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
 
 ## Parameter Reference
 
@@ -101,26 +117,94 @@ The parameter area is used to confirm Voice ID, protocol, text, speed, volume, p
 
 ## FAQ
 
-#### What should I check before clicking Send?
+#### Target Model Is Missing
 
-Check that the model, Voice ID, Text, Key, Speed, Volume, Pitch, and other settings are correct, and confirm that the text does not contain sensitive or unauthorized content.
+**Symptom:**
 
-#### Why does the generated speech sound abnormal?
+The target model does not appear in the selector.
 
-The text, Voice ID, Speed, Volume, or Pitch may be unsuitable. Restore the default parameters first, and then adjust them one by one.
+**Possible Causes:**
 
-#### Can I click Send when only learning the page?
+- The model is not authorized for the account.
+- Its status or modality does not match the page.
 
-Not recommended. Clicking Send creates a real model call and may consume quota, generate billing records, or write call logs. For page validation only, view the fields, parameter area, and result area.
+**Resolution:**
 
-## Next Steps
+1. Verify visibility and model status.
+2. Confirm input and output capabilities in Models.
 
-1. Record the model, Voice ID, and parameter combinations that fit the business scenario.
-2. If the call fails, go to call logs to view error information.
-3. Before production integration, confirm text source, audio generation compliance requirements, and budget.
+#### Submit Is Unavailable
+
+**Symptom:**
+
+The request cannot be submitted after input is entered.
+
+**Possible Causes:**
+
+- No model or Personal Key is selected.
+- Required input or parameters are incomplete.
+
+**Resolution:**
+
+1. Select the model and Personal Key again.
+2. Complete fields indicated by the page.
+
+#### Generation Fails or Times Out
+
+**Symptom:**
+
+The request fails or remains pending.
+
+**Possible Causes:**
+
+- The model service is busy or rate-limited.
+- Input or parameters exceed model limits.
+
+**Resolution:**
+
+1. Review the page error and call logs.
+2. Shorten input or restore default parameters and retry.
+
+#### Result Does Not Meet Expectations
+
+**Symptom:**
+
+The result does not meet content, format, or quality requirements.
+
+**Possible Causes:**
+
+- The prompt lacks constraints.
+- Too many parameters changed together.
+
+**Resolution:**
+
+1. Add goals, format, and prohibited content.
+2. Restore baseline settings and compare one change at a time.
+
+#### Usage or Cost Is Unexpected
+
+**Symptom:**
+
+One trial creates more usage than expected.
+
+**Possible Causes:**
+
+- Output size or generation count is too large.
+- The same task was submitted repeatedly.
+
+**Resolution:**
+
+1. Check generation settings and call logs.
+2. Stop repeated submissions and confirm billing scope.
 
 ## Notes
 
 - Do not write test accounts, passwords, access parameters, or internal test processes.
 - Do not display real keys, tokens, AK/SK, or private keys in the document.
 - Before screenshots or export, confirm that the page does not contain sensitive text, personal voice information, or real business data.
+
+## Next Steps
+
+1. Record the model, Voice ID, and parameter combinations that fit the business scenario.
+2. If the call fails, go to call logs to view error information.
+3. Before production integration, confirm text source, audio generation compliance requirements, and budget.

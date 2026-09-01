@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -52,6 +52,21 @@ The following figure shows the metering details page.
 ![Metering Details](./images/metering-details-list.png)
 
 ## Main Operations
+
+### View Metering Details
+
+1. Go to `Quotas and Metering > Metering Details` and select a time range.
+2. Filter by tenant, project, resource type, cluster, or metering status.
+3. Check usage, unit, metering time, and refresh time.
+4. If no record is returned, check the time zone and synchronization status. Redact metering and tenant data before sharing.
+
+### Reconcile Metering with Resource Events
+
+1. Open the target detail and record a redacted object, time, and metered value.
+2. Compare resource creation, running, stopping, or deletion time with the metering interval.
+3. Event time and metering interval should be traceable. If not, check data delay and measurement units.
+4. Do not start or stop real resources to test metering anomalies.
+
 
 ### View Metering Details
 

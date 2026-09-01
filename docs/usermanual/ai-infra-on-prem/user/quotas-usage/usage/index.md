@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -61,6 +61,21 @@ The page displays resource specifications, quotas, and operation entrypoints in 
 | Pagination Area | View by page when there are many usage records. |
 
 ## Main Operations
+
+### View Resource Usage
+
+1. Go to `Quotas and Usage > Resource Usage`.
+2. Select a time range and filter by project, region, resource type, or instance.
+3. Check usage, unit, consumption direction, and refresh time.
+4. If no record is returned, check the time zone and reset filters. Redact usage and project data before sharing.
+
+### Drill Down into Abnormal Consumption
+
+1. Click an abnormal total or target detail while keeping the same time range.
+2. Compare instance lifecycle, metering details, and top-up records.
+3. Determine whether the anomaly results from continuous runtime, flavor changes, delayed metering, or quota adjustment.
+4. Do not start or stop real resources to test consumption anomalies.
+
 
 ### View Consumption Details
 

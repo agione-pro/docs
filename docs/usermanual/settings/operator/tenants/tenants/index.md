@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-29
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -54,7 +54,12 @@ The tenant list uses the tenant `Name` for display and search. Before opening an
 
 ## Main Operations
 
-Use the following operations to work with tenants records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+### View Tenants
+
+1. Go to `Settings > Tenants and Settings > Tenants`.
+2. Filter by tenant name, identifier, status, or creation time.
+3. Open details and check tenant status, members, roles, quota, and update time.
+4. If no record is returned, reset filters. Tenant information is organization-sensitive and must be redacted before screenshots or sharing.
 
 ### Create Tenant
 

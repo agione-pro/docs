@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -51,6 +51,21 @@ The following figure shows the monthly metering page.
 ![Monthly Metering](./images/monthly-usage-list.png)
 
 ## Main Operations
+
+### View Metering Totals
+
+1. Go to `Quotas and Metering > Monthly Usage` and select the target month.
+2. Filter by tenant, project, resource type, or cluster.
+3. Check total usage, unit, resource count, and refresh time.
+4. If no data is shown, check the month and metering job status. Redact totals before sharing.
+
+### Drill Down into Monthly Metering Differences
+
+1. Click an abnormal total or details entry while keeping the same month and object filters.
+2. Compare Metering Details and resource events.
+3. The total should be traceable to detail aggregation. If not, check delay, units, and supplemental records.
+4. Do not modify metering or resource status to test the difference.
+
 
 ### View Monthly Metering
 

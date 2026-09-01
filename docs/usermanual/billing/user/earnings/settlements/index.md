@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-23
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -58,6 +58,27 @@ The following screenshot shows the Settlements page. Amounts, customers, account
 | Details | Opens settlement statement details. |
 
 ## Main Operations
+
+::: warning Fact Status
+The Provider credentials were rejected by the Demo in this review, so Provider-only operations were not verified in the current Demo. The instructions use the existing Chinese and English manuals and cross-verifiable shared page structure. Recheck buttons, fields, and permissions with a valid Provider account before execution.
+:::
+
+
+
+### View Monthly Settlement Statements
+
+1. Go to `Billing > Provider Earnings > Monthly Settlements`.
+2. Filter by billing period, statement number, status, or generation time.
+3. Check the billing period, amount direction, status, and update time.
+4. If no record is returned, reset filters and check the billing period. Redact settlement data before sharing.
+
+### Reconcile a Settlement with Earnings Details
+
+1. Open statement details and record a redacted statement number, billing period, and status.
+2. Compare Revenue Overview and model/customer details for the same aggregation scope.
+3. The amount direction and detail total should be traceable. If not, check settlement status and refresh time.
+4. Do not regenerate, confirm, or adjust a settlement to test an anomaly.
+
 
 ### View Settlement Statement Details
 

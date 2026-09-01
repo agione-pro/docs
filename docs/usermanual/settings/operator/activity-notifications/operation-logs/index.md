@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -50,6 +50,20 @@ The following screenshot shows the Operation Logs page. User identities, IP addr
 | Log table | Shows the time, user, action, method, IP address, processing time, and result. |
 
 ## Main Operations
+
+### Query Operation Logs
+
+1. Open Operation Logs, select a time range, and filter by operator, module, action type, result, or keyword.
+2. Check the target time, operator, object, result, and source. If no record is returned, check the time zone and clear filters one at a time.
+3. The target event should be uniquely identifiable. For duplicate names, narrow the range with a redacted object ID fragment and time.
+4. Logs may contain account, IP, and business-object information and must be redacted before export, screenshots, or sharing.
+
+### View Log Details and Diagnose Failures
+
+1. Click **"Details"** for the target record and inspect the request action, object, result, duration, and error summary.
+2. Compare preceding and following events to determine whether the action completed and whether a subsequent failure occurred.
+3. If information is insufficient, escalate with a redacted time, module, and error category. Do not copy Tokens, keys, cookies, or complete request bodies.
+4. Use log details only for audit and diagnosis. Do not replay high-risk operations from the page.
 
 Use the following operations to work with operation logs records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 

@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -55,6 +55,21 @@ The following screenshot shows the API Rate Control Overview page. Statistical d
 | Details | Opens details for a ranked rule. |
 
 ## Main Operations
+
+### Change the Time Range and View Rate-Control Trends
+
+1. Go to `Settings > API Rate Control > Overview` and select the target time range.
+2. Review request volume, blocked requests, enabled rules, node status, and trends.
+3. Compare the current and previous periods to identify spikes, continuous blocking, or node anomalies.
+4. If metrics are empty, check the time range and refresh time. Do not treat incomplete real-time aggregation as a final conclusion.
+
+### Drill Down into Rule or Block Anomalies
+
+1. Click an abnormal metric or related entry to open Rule Management or Observability Audit.
+2. Keep the same time range and check matched rules, nodes, and block reasons.
+3. A successful drill-down should map the overview to a specific rule or event. If not, check rule version and publish time.
+4. Do not modify rules or publish versions during read-only validation.
+
 
 Use the following operations to work with overview records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 
@@ -147,14 +162,14 @@ The current account lacks API rate-control permissions, the component is disable
 
 Verify the module permission and component status. Wait for the refresh to finish, and make rule changes from Rule Management.
 
-## Next Steps
-
-1. To adjust rules, go to [Rule Management](../rule-management/).
-2. To review block or audit details, go to [Observability & Audit](../observability-audit/).
-
 ## Notes
 
 - Overview is for observing trends; it does not replace rule configuration or audit details.
 - Do not disable a rule immediately after blocked requests increase. Confirm the business impact first.
 - Do not write real API paths, tokens, tenant IDs, accounts, customer names, internal error details, or load-test parameters in documentation.
 - If the page provides export or rule-configuration jump entries, export, publish, disable, and delete are high-risk actions.
+
+## Next Steps
+
+1. To adjust rules, go to [Rule Management](../rule-management/).
+2. To review block or audit details, go to [Observability & Audit](../observability-audit/).

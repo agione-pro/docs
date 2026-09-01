@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-23
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -59,6 +59,14 @@ The following screenshot shows Monthly Bill. Amounts and trend values in shared 
 | Detail List | Displays cost sources and summaries for the selected dimension. |
 
 ## Main Operations
+
+### Change the Billing Period and Reconcile a Monthly Bill
+
+1. Go to `Billing > My Billing > Monthly Bill`.
+2. Select the target billing period and filter by project, business type, or billing status.
+3. Check opening, consumption, top-up, adjustment, and closing amount directions.
+4. If no data is shown, check the billing period and bill-generation status. Redact bill amounts and business information before sharing.
+
 
 ### View a Monthly Bill
 

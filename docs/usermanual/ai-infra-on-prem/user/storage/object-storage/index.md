@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -45,6 +45,20 @@ The left side provides bucket search and bucket list, and the upper-right corner
 ![Object Storage](./images/object-storage-list.png)
 
 ## Main Operations
+
+### View Storage Resources
+
+1. Open the corresponding storage-service page and filter by name, project, status, capacity, or update time.
+2. Open details and check capacity, used space, access method, mount or connection status, and creation time.
+3. If no record is returned, reset filters and check project and region. Do not share internal addresses or access credentials.
+4. For capacity or status anomalies, inspect quota, events, and associated instances before creating another resource.
+
+### Manage Capacity, Mounts, or Access
+
+1. Open the target action menu and identify the impact of expansion, mount, unmount, permission, or deletion entries.
+2. Record current capacity, associated instances, and data-protection status before changes.
+3. Before expansion, unmount, or deletion, confirm tasks and backups. Do not perform the final action during read-only validation.
+4. After an approved change, check capacity, connection status, and events. If abnormal, stop subsequent actions and follow the recovery process.
 
 ### Add Bucket
 

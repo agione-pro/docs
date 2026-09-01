@@ -1,75 +1,87 @@
 # My Deployments
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-21
-:::
-
 ## Feature Overview
-
-`My Deployments` is used for users to view created cloud model services and start model publishing from eligible deployment records. The publishing flow first asks users to choose where to publish, and then redirects to the publish model page under `Model Services > Studio > My Models`.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | User |
-| Navigation path | AI Infrastructure > On-Cloud > Model Services > My Deployments |
-| Page route | `/infrahub/user/model/deployment` |
-| Managed objects | Deployment name, model name, deployment status, cloud platform, region, resource specification, publish region, and action entries |
-| Typical use | Publish a model from an existing deployment and continue configuring basic information, billing, and rate limits |
+| Applicable Roles | Model Providers |
+| Navigation Path | AI Infra(On-Cloud) > Model Services > My Deployments |
+| Page Route | `/infrahub/user/model/deployment` |
+| Managed Objects | Model deployments, states, events, service information, and publishing entry |
 
 #### Beginner Explanation
 
-My Deployments is the list of running model services. Users can verify whether a deployment is running, whether the model and resources are expected, and then choose `Publish` from more actions to publish the model to a private or public area.
+My Deployments is the task center for model services. Check status and events after creation, and publish only after the service is ready.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Deployment Record | One cloud model service deployment task displayed in the list. |
-| Publish | Moves the deployment output into the model publishing flow so it can enter a private or public model catalog. |
-| Publish Region | Target scope for publishing the model. The screenshots show `Private` and `Public`. |
-| Private | Publishes to the private model catalog. Only the current tenant can view and call it. |
-| Public | Publishes to the public model catalog, makes it available to end users, and supports independent pricing and billing. |
-| Publish Model Page | Page under `Studio > My Models` that opens after the publish region is selected. |
+| Deployment State | The current stage from creation to ready or failed. |
+| Event | A timeline of scheduling, pull, startup, and error information. |
+| Publishing Region | The visibility scope selected when converting a deployment into a model service. |
+
+#### Recommended Operation Order
+
+Review the deployment list, open details and events, and choose a publishing region only after the service is stable.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| First visit | Review existing objects, states, and available actions | Change an unknown object |
+| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
+| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
+| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
 
 ## Prerequisites
 
-1. The current account has permission to view `My Deployments` and publish models.
-2. The target deployment record has been created, and deployment status, model, cloud platform, region, and resource specification have been confirmed.
-3. Model publish scope, call method, billing configuration, and later user access boundaries have been confirmed.
-4. Sensitive information has been sanitized before publishing. Do not record real Endpoint, API Key, pricing strategy, or internal resource identifiers in documentation.
+1. The current account has the permission required for My Deployments.
+2. A Quick Deployment job exists and the current account can view it.
+3. Before starting, stopping, deleting, or publishing, confirm service impact, customer visibility, and cost.
 
 ## Page Description
 
-This page is used to view deployment records and enter the publishing flow. The list supports filtering by cloud platform tabs, `Name`, `Status`, and `Model Name`, and provides `Search` and `Reset`. Deployment cards display deployment name, description, running status, model name, inference engine, version, deployment mode, cloud platform, region, GPU, CPU, memory, cost, creation time, and action entries.
+The page lists deployments, states, and actions, with a publishing entry in more actions. The current Operator account does not expose this user entry, so this page is partially verified from existing screenshots and the cross-role workflow.
 
-Page screenshot:
+Page screenshots:
 
-![My Deployments List](./images/my-deployments-list.png)
+![My Deployments list](./images/my-deployments-list.png)
 
-More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Call Details`.
+The image shows My Deployments list. Verify the target object, current state, fields, and actions.
 
 ## Main Operations
 
-### Publish Model
+### View Deployment Details
 
-1. Go to `AI Infrastructure > On-Cloud > Model Services > My Deployments`.
-2. In the deployment list, find the target deployment and verify deployment name, running status, model name, cloud platform, region, GPU, CPU, memory, and cost information.
-3. Click the more actions entry in the lower-right corner of the target deployment, and then select `Publish`.
+1. Locate the target record in My Deployments.
+2. Open details and verify model, region, flavor, and current state.
+3. Review the event timeline for scheduling, image-pull, or startup failures.
 
-![Publish Entry](./images/publish.png)
+### View Service Information
 
-4. In the `Publish Model` dialog, review `Choose where to publish`.
-5. Select `Private` or `Public` according to the publish target.
-6. After clicking `Publish to Private` or `Publish to Public`, the page redirects to the `Publish Model` page under `Model Services > Studio > My Models`.
+1. Confirm that the deployment is ready.
+2. Verify service location, health state, and update time. Documentation uses only `<BASE_URL>` and `<ENDPOINT_PATH>`.
+3. Validate the service with a redacted test request and do not store real credentials in documentation.
 
-![Choose where to publish](./images/choose-where-to-publish.png)
+### Publish a Deployed Model
 
-7. On the `Publish Model` page, continue checking `Basic Information`, `Billing Configuration`, and `Rate Limit Configuration`.
-8. In `Model Source/Meta Model Information`, verify `Meta Model`, `Model Source`, `Request URL`, `API Key`, `Model source ID`, and `Region`.
-9. For learning or page validation only, stay in the review flow and do not perform the final `Publish`, `Submit`, `Save`, or next-step high-risk configuration.
+1. Click **"Publish"** from more actions for the target deployment.
+2. Select the publishing region and verify visibility.
+3. Open the publishing page and verify model source, billing, and rate limits.
+4. After submission, verify publication state in My Models under Model Services.
 
-![Publish Model Page](./images/publish-model.png)
+![Publishing entry](./images/publish.png)
+
+The image shows Publishing entry. Verify the target object, current state, fields, and actions.
+
+![Choose publishing region](./images/choose-where-to-publish.png)
+
+The image shows Choose publishing region. Verify the target object, current state, fields, and actions.
+
+![Publish model page](./images/publish-model.png)
+
+The image shows Publish model page. Verify the target object, current state, fields, and actions.
 
 ## Parameter Reference
 
@@ -92,90 +104,123 @@ More actions include `Publish`, `Delete`, `Monitoring Information`, and `API Cal
 | Public | No | Publish region | `Publish to Public` | Publishes to the public model catalog for end users. |
 | Redirect Target | Yes | Page redirect | `Studio > My Models > Publish Model` | Target page after selecting the publish region. |
 | Meta Model | Yes | Select | `Sample Model` | Meta model information on the publish model page. |
-| Model Source | Yes | Dropdown | `AGIOne` | Source of the model being published. |
-| Request URL | Yes | URL | `https://api.example.com/predict/demo` | Upstream request address. Use placeholder URLs only in documentation. |
+| Model Source | Yes | Dropdown | `source-a` | Source of the model being published. |
+| Request URL | Yes | URL | `<BASE_URL><ENDPOINT_PATH>` | Upstream request address. Use placeholder URLs only in documentation. |
 | API Key | Yes | Secret text | `<redacted>` | API key is sensitive and must be redacted in documentation. |
 | Model source ID | Yes | Text | `demo-model-id` | Model name or identifier sent to the upstream provider. |
 | Region | No | Dropdown | `Sample Region` | Region field on the publish model page. |
 
 ## Pitfalls
 
-- Only eligible deployments may display `Publish`. If the entry is unavailable, check deployment status, permissions, and the page menu first.
-- Selecting the wrong publish region may publish the model to the wrong site, region, or business scope.
-- Publishing to Public may affect external model visibility, invocation method, billing configuration, and later user access.
-- The screenshots show Request URL and API Key fields. Documentation, screenshots, and tickets must redact them.
-- `Delete`, stopping a deployment, final publish, submit, or save may affect real services or model visibility. Do not perform them during learning or validation.
+- Do not skip the upstream dependency check: A Quick Deployment job exists and the current account can view it.
+- Confirm impact before a configuration change: Before starting, stopping, deleting, or publishing, confirm service impact, customer visibility, and cost.
+- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `My Deployments` page and deployment list are displayed. | Check menu permissions, route, and login status. |
-| Deployment list loads | The page displays cloud platform tabs, Name, Status, Model Name filters, and deployment cards. | Check filters, data permissions, and API status. |
-| Target deployment status is visible | The target deployment displays running status, model name, cloud platform, region, and resource specification. | Clear filters and search again. If it is still unavailable, contact the operator. |
-| Publish entry is visible | `Publish` is displayed in more actions. | Check deployment status, model permission, and publishing permission. |
-| Publish region can be selected | The `Publish Model` dialog displays Private and Public. | Refresh the page and retry. If the issue persists, contact the administrator. |
-| Redirect target is correct | After selecting the publish region, the page opens the `Publish Model` page under `Studio > My Models`. | Check route, permissions, and publish region configuration. |
-| Publish model fields are visible | Basic information, billing configuration, rate limit configuration, and model source information are displayed. | Check page loading status and model publishing permission. |
-| No final submission during learning | No final publish, submit, or save is performed, and model visibility is not changed. | If submitted by mistake, immediately check model publishing status and contact the operator. |
-
-## Troubleshooting
-
-| Issue Type | Check First | Next Step |
-| --- | --- | --- |
-| Deployment record cannot be found | Cloud platform tabs, Name, Status, and Model Name filters. | Click `Reset` and search again. |
-| Publish entry is unavailable | Deployment status, current account permission, and whether the model can be published. | Contact the operator to verify publishing permission and deployment status. |
-| Region selection dialog cannot open | Browser state, page API, and target deployment record. | Refresh the page and retry. If the issue persists, contact the administrator. |
-| No permission after redirect | Studio, My Models, and Publish Model permissions. | Contact the administrator to grant model publishing permission. |
-| Publish model fields are abnormal | Meta model, model source, Request URL, API Key, and model source ID. | Return to the deployment record to verify source configuration and avoid exposing real credentials. |
+| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
+| Managed objects are visible | Model deployments, states, events, service information, and publishing entry display as expected | Clear filters and verify upstream dependencies |
+| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
+| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
 
 ## FAQ
 
-#### Why Is Publish Missing from More Actions?
+#### Target Object Is Missing in My Deployments
 
-**Issue Symptom:**
+**Symptom:**
 
-The deployment card is visible, but `Publish` is not displayed in more actions.
-
-**Possible Causes:**
-
-- The current deployment status does not meet publishing conditions.
-- The current account does not have model publishing permission.
-- The model or deployment source does not support publishing.
-
-**Handling:**
-
-1. Verify deployment status, model name, and deployment region.
-2. Confirm whether the current account has permission to publish models.
-3. Contact the operator to verify deployment source and publishing policy.
-
-#### Why Does Redirect Fail After Selecting Publish Region?
-
-**Issue Symptom:**
-
-After clicking `Publish to Private` or `Publish to Public`, the publish model page does not open.
+The expected object is missing from the list or selector.
 
 **Possible Causes:**
 
-- Permission for Studio or My Models is insufficient.
-- Publish region configuration is unavailable.
-- Page route or API is abnormal.
+- Active query criteria filter out the target object.
+- An upstream object is disabled, or the current role lacks visibility.
 
-**Handling:**
+**Resolution:**
 
-1. Refresh the page and select the publish region again.
-2. Check whether `Studio > My Models` can be opened directly.
-3. Contact the administrator to verify publish region, page permissions, and API status.
+1. Clear filters and refresh the page.
+2. Verify the prerequisite object: A Quick Deployment job exists and the current account can view it.
+3. Confirm the current role and data scope, then locate the object again.
+
+#### My Deployments Action Is Unavailable
+
+**Symptom:**
+
+An expected button, menu, or state switch is unavailable.
+
+**Possible Causes:**
+
+- The current account lacks the required action permission.
+- Object state, references, or prerequisites block the action.
+
+**Resolution:**
+
+1. Verify the permission for the action and the current object state.
+2. Check references and prerequisites identified by the page message.
+3. Remove the blocker, refresh the page, and perform the action once.
+
+#### My Deployments Change Does Not Reach Downstream
+
+**Symptom:**
+
+The page reports success, but a downstream page still shows the old state.
+
+**Possible Causes:**
+
+- An associated page has stale cache or synchronization delay.
+- The current and downstream pages use different roles, tenants, or data scopes.
+
+**Resolution:**
+
+1. Wait for synchronization and refresh both pages.
+2. Confirm that both pages use the same role, tenant, and object scope.
+3. If they still differ, return to the responsible object and verify the saved result.
+
+#### My Deployments Data Differs from Another Page
+
+**Symptom:**
+
+Counts or states differ from an associated page.
+
+**Possible Causes:**
+
+- The pages use different filters, aggregation rules, or update times.
+- The change is still synchronizing, or role-based data scopes differ.
+
+**Resolution:**
+
+1. Align filters and aggregation rules on both pages.
+2. Check update times and wait for synchronization.
+3. Compare object details instead of summary counts only.
+
+#### How to Troubleshoot a My Deployments Failure
+
+**Symptom:**
+
+Submission fails or the state does not change for an extended period.
+
+**Possible Causes:**
+
+- Required fields, field combinations, or object state do not meet submission rules.
+- An upstream dependency is invalid, the request failed, or the same action is already processing.
+
+**Resolution:**
+
+1. Record the redacted object, time, and complete page message.
+2. Verify required fields, object state, and upstream dependencies.
+3. Confirm that no identical job is processing before one retry.
+
+## Notes
+
+- Before starting, stopping, deleting, or publishing, confirm service impact, customer visibility, and cost.
+- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
+- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
 
 ## Next Steps
 
 1. Continue completing basic information, billing configuration, and rate limit configuration on the `Publish Model` page.
 2. Before publishing, confirm publish region, visibility scope, invocation method, and billing strategy again.
 3. After publishing, return to `My Models` or the model catalog to check model status and visibility.
-
-## Notes
-
-- Publishing a model may affect external model visibility, invocation method, billing configuration, and later user access.
-- Selecting the wrong publish region may publish the model to the wrong site, region, or business scope.
-- The redirected `Publish`, `Submit`, and `Save` actions are high-risk final actions. This document only describes the review and redirect flow, and does not guide users to execute them during testing or learning.
-- Do not write real accounts, secrets, tokens, AK/SK, Endpoint, API Key, customer names, pricing strategies, cloud resource IDs, Request URL, or internal test parameters.

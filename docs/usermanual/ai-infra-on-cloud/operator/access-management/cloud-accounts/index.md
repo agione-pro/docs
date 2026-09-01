@@ -1,62 +1,95 @@
 # Cloud Accounts
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
-
 ## Feature Overview
-
-`Cloud Accounts` is used to view and maintain cloud platform account access information. It supports filtering accounts by cloud platform and provides an add entry for entering account name, cloud platform, and access credentials.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Cloud > Access Management > Cloud Accounts |
-| Page route | `/infrahub/op/access/account` |
-| Managed objects | Cloud accounts, cloud platforms, cloud platform types, access credentials, and action entries |
-| Typical use | Add cloud accounts and provide the authentication foundation for resource pool discovery, resource synchronization, and authorization configuration |
+| Applicable Roles | Operators |
+| Navigation Path | AI Infra(On-Cloud) > Access Management > Cloud Accounts |
+| Page Route | `/infrahub/op/access/account` |
+| Managed Objects | Cloud accounts, associated cloud platforms, and access credentials |
 
 #### Beginner Explanation
 
-Cloud Accounts is like registering keys that let the platform access cloud provider resources. When adding an account, verify the account name, owning cloud platform, and credential source. Real credentials should only be entered in secure input fields and should not be written into documentation, screenshots, or tickets.
+Cloud Accounts registers the credentials used to access cloud resources. After credentials are saved, the platform can discover pools and support authorization and deployment. Real values belong only in secure fields.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Cloud Account Name | Account display name in the add dialog, also used by the list and search. |
-| Cloud Platform | Cloud provider or private cloud platform that owns the account. |
-| Access Key ID | Cloud-side access credential identifier used to identify the access identity. |
-| Access Key Secret | Sensitive credential paired with Access Key ID. It can only be maintained in secure input fields. |
-| Cloud Platform Type | Type shown on list cards, such as Public Cloud or Private Cloud. |
+| Cloud Account | An identity used to access resources on a cloud platform. |
+| Access Key ID | A cloud credential identifier. Documentation uses `<ACCESS_KEY_ID>`. |
+| Access Key Secret | A sensitive secret paired with the identifier. Documentation uses `<ACCESS_KEY_SECRET>`. |
+
+#### Recommended Operation Order
+
+Review the list to avoid duplicates, add the account and validate resource synchronization, edit it for credential rotation, and migrate pool and authorization dependencies before deletion.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| First visit | Review existing objects, states, and available actions | Change an unknown object |
+| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
+| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
+| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
 
 ## Prerequisites
 
-1. The current account has access to `Access Management > Cloud Accounts` and permission to add cloud accounts.
-2. The target cloud platform exists, and the account purpose, permission scope, and credential source have been confirmed.
-3. If resource synchronization or status checks are needed after adding, related cloud-side permissions and network connectivity are ready.
+1. The current account has the permission required for Cloud Accounts.
+2. The cloud platform is connected and least-privilege credentials are available through a secure channel.
+3. Before adding, rotating, or deleting credentials, check resource synchronization, authorization, and deployment impact.
 
 ## Page Description
 
-The page title is `Cloud Accounts`. The top area provides cloud platform filters, a `Cloud Account Name` search box, a type dropdown filter, and `Search` and `Reset` buttons. The upper-right corner provides `Add Cloud Account`. Accounts are displayed as cards with account name, cloud platform, cloud platform type, update time, and action entries such as `Edit` and more actions.
+The page filters by platform and account name. Account cards show the platform, type, update time, and actions.
 
-Page screenshot:
+Page screenshots:
 
-![Cloud Account List](./images/cloud-accounts-list.png)
+![Cloud Accounts page](./images/manual-cloud-accounts.png)
+
+The image shows Cloud Accounts page. Verify the target object, current state, fields, and actions.
+
+![Cloud account list reference](./images/cloud-accounts-list.png)
+
+The image shows Cloud account list reference. Verify the target object, current state, fields, and actions.
 
 ## Main Operations
 
 ### Add Cloud Account
 
-1. Go to `AI Infrastructure > On-Cloud > Access Management > Cloud Accounts`.
-2. On the `Cloud Accounts` page, click `Add Cloud Account` in the upper-right corner.
-3. In the `Add Cloud Account` dialog, fill in the required `Account Name`.
-4. In the `Select Cloud Platform` dropdown, select the cloud platform that owns the account.
-5. Fill in `Access Key ID` and `Access Key Secret`, and confirm the credential source, permission scope, and downstream resource synchronization impact.
-6. Before clicking the final `Confirm`, verify the account information, cloud platform, and access credentials again. For learning or page validation only, click `Cancel` or close the dialog without submitting real account configuration.
+1. Click **"Add Cloud Account"**.
+2. Enter the account name and select the cloud platform.
+3. Enter the real values corresponding to `<ACCESS_KEY_ID>` and `<ACCESS_KEY_SECRET>` in secure fields.
+4. Click **"Confirm"**, refresh the list, and check resource synchronization.
 
-![Add Cloud Account](./images/add-cloud-account.png)
+![Add Cloud Account](./images/manual-add-cloud-account.png)
+
+The image shows Add Cloud Account. Verify the target object, current state, fields, and actions.
+
+![Add cloud account reference](./images/add-cloud-account.png)
+
+The image shows Add cloud account reference. Verify the target object, current state, fields, and actions.
+
+### Edit Cloud Account
+
+1. Click **"Edit"** on the target account card.
+2. Verify the account name, platform, and credential state.
+3. Update only the fields that require rotation, click **"Confirm"**, and revalidate synchronization.
+
+![Edit Cloud Account](./images/manual-maintain-cloud-account.png)
+
+The image shows Edit Cloud Account. Verify the target object, current state, fields, and actions.
+
+### Delete Cloud Account
+
+1. Confirm that the account has no pool, authorization, or deployment dependency.
+2. Click **"Delete"** from more actions and verify the confirmation message.
+3. Refresh after deletion. If it fails, migrate the dependencies identified by the page.
+
+![Delete cloud account entry](./images/cloud-accounts-list.png)
+
+The image shows Delete cloud account entry. Verify the target object, current state, fields, and actions.
 
 ## Parameter Reference
 
@@ -66,88 +99,127 @@ Page screenshot:
 | Account Name | Yes | Text | Displayed on page | Account display name entered when adding a cloud account. |
 | Cloud Platform | Yes | Filter / dropdown | Displayed on page | Cloud platform that owns the account. Select it through `Select Cloud Platform` when adding. |
 | Cloud Platform Type | System-generated | Text | `Public Cloud` | Cloud platform type shown on list cards. |
-| Access Key ID | Yes | Secure input | Not shown in documentation | Cloud-side access credential identifier. |
-| Access Key Secret | Yes | Secure input | Not shown in documentation | Cloud-side sensitive credential. Do not write it into documentation or screenshots. |
+| Access Key ID | Yes | Secure input | `<ACCESS_KEY_ID>` | Cloud-side access credential identifier. |
+| Access Key Secret | Yes | Secure input | `<ACCESS_KEY_SECRET>` | Cloud-side sensitive credential. Do not write it into documentation or screenshots. |
 | Search | No | Action button | `Search` | Queries the cloud account list by filters. |
 | Reset | No | Action button | `Reset` | Clears filters and restores the default list. |
 | Add Cloud Account | No | Action button | `Add Cloud Account` | Opens the add cloud account dialog. |
-| Edit | No | Action entry | `Edit` | Opens existing cloud account configuration. |
+| Edit | No | Action entry | `Edit` | Opens existing cloud account configuration for maintenance. |
+| Delete | No | High-risk action entry | `Delete` | Removes a cloud account after dependency and authorization checks. |
 | Cancel | No | Action button | `Cancel` | Closes the add dialog without submitting configuration. |
 | Confirm | No | High-risk action | `Confirm` | Submits the new cloud account configuration and may save real credentials and trigger later validation or synchronization. |
 
 ## Pitfalls
 
-- The add dialog in the screenshot only confirms `Account Name`, `Select Cloud Platform`, `Access Key ID`, and `Access Key Secret`. If account type, region, authorization scope, or synchronization configuration appears on a subsequent page, verify those fields according to the real page.
-- Do not write real accounts, access credentials, endpoints, or internal test parameters into documentation, screenshots, or tickets.
-- Before adding or editing a cloud account, confirm that cloud-side permissions follow the least-privilege principle and avoid over-authorization.
+- Do not skip the upstream dependency check: The cloud platform is connected and least-privilege credentials are available through a secure channel.
+- Confirm impact before a configuration change: Before adding, rotating, or deleting credentials, check resource synchronization, authorization, and deployment impact.
+- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Cloud Accounts` page opens normally, and `Access Management > Cloud Accounts` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Cloud account list loads normally | Account cards show account name, cloud platform, cloud platform type, and action entries normally. | Refresh the page or check data permissions. |
-| Add entry is visible | `Add Cloud Account` is displayed in the upper-right corner. | Check whether the current account has add permission. |
-| Add dialog can be opened | Clicking `Add Cloud Account` opens the `Add Cloud Account` dialog. | Check browser state, page API, and permission configuration. |
-| Required fields display normally | `Account Name`, `Select Cloud Platform`, `Access Key ID`, and `Access Key Secret` all show required marks. | Check the page version or reopen the dialog. |
-| Learning validation does not submit | Only fields and the dialog are viewed; the final `Confirm` is not clicked. | If a final action is triggered by mistake, follow the change audit process to check the impact scope. |
-| Real submission can be tracked | If a real submission is performed, the new cloud account should appear in the list, and later validation, synchronization, or edit entries should be traceable. | Check required fields, credential validity, cloud platform selection, and API response. |
-
-## Troubleshooting Path
-
-| Issue Type | Check First | Next Step |
-| --- | --- | --- |
-| Add dialog cannot open | Add permission, page loading status, and browser console errors | Refresh the page or contact the administrator to check permissions |
-| Submission fails | Required fields, cloud platform selection, and credential validity | Fix the configuration according to the API error message |
-| New account not visible in list | Filters, pagination, and synchronization latency | Click `Reset`, then refresh the list |
+| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
+| Managed objects are visible | Cloud accounts, associated cloud platforms, and access credentials display as expected | Clear filters and verify upstream dependencies |
+| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
+| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
 
 ## FAQ
 
-#### What if the new cloud account is not shown in the list?
+#### Target Object Is Missing in Cloud Accounts
 
-**Issue Symptom:**
+**Symptom:**
 
-After clicking `Confirm`, the new account is not visible in the list.
-
-**Possible Causes:**
-
-- Current filters have not been cleared.
-- The add request was not submitted successfully.
-- List data has refresh latency.
-
-**Handling:**
-
-1. Click `Reset` to clear filters.
-2. Refresh the page and check the account list again.
-3. If it still does not exist, reopen the add dialog and check required fields and submission result.
-
-#### What if access credentials cannot pass validation?
-
-**Issue Symptom:**
-
-The cloud account has been added, but later resource synchronization, status check, or edit validation fails.
+The expected object is missing from the list or selector.
 
 **Possible Causes:**
 
-- Access Key ID or Access Key Secret is invalid, expired, or mismatched.
-- The cloud-side authorization scope is insufficient.
-- The wrong cloud platform was selected, or cloud-side APIs, network, or proxy are unreachable.
+- Active query criteria filter out the target object.
+- An upstream object is disabled, or the current role lacks visibility.
 
-**Handling:**
+**Resolution:**
 
-1. Check and update credentials in the secure credential source.
-2. Check the cloud-side authorization policy and least-privilege scope.
-3. Check cloud platform selection, network connectivity, and API response information.
+1. Clear filters and refresh the page.
+2. Verify the prerequisite object: The cloud platform is connected and least-privilege credentials are available through a secure channel.
+3. Confirm the current role and data scope, then locate the object again.
+
+#### Cloud Accounts Action Is Unavailable
+
+**Symptom:**
+
+An expected button, menu, or state switch is unavailable.
+
+**Possible Causes:**
+
+- The current account lacks the required action permission.
+- Object state, references, or prerequisites block the action.
+
+**Resolution:**
+
+1. Verify the permission for the action and the current object state.
+2. Check references and prerequisites identified by the page message.
+3. Remove the blocker, refresh the page, and perform the action once.
+
+#### Cloud Accounts Change Does Not Reach Downstream
+
+**Symptom:**
+
+The page reports success, but a downstream page still shows the old state.
+
+**Possible Causes:**
+
+- An associated page has stale cache or synchronization delay.
+- The current and downstream pages use different roles, tenants, or data scopes.
+
+**Resolution:**
+
+1. Wait for synchronization and refresh both pages.
+2. Confirm that both pages use the same role, tenant, and object scope.
+3. If they still differ, return to the responsible object and verify the saved result.
+
+#### Cloud Accounts Data Differs from Another Page
+
+**Symptom:**
+
+Counts or states differ from an associated page.
+
+**Possible Causes:**
+
+- The pages use different filters, aggregation rules, or update times.
+- The change is still synchronizing, or role-based data scopes differ.
+
+**Resolution:**
+
+1. Align filters and aggregation rules on both pages.
+2. Check update times and wait for synchronization.
+3. Compare object details instead of summary counts only.
+
+#### How to Troubleshoot a Cloud Accounts Failure
+
+**Symptom:**
+
+Submission fails or the state does not change for an extended period.
+
+**Possible Causes:**
+
+- Required fields, field combinations, or object state do not meet submission rules.
+- An upstream dependency is invalid, the request failed, or the same action is already processing.
+
+**Resolution:**
+
+1. Record the redacted object, time, and complete page message.
+2. Verify required fields, object state, and upstream dependencies.
+3. Confirm that no identical job is processing before one retry.
+
+## Notes
+
+- Before adding, rotating, or deleting credentials, check resource synchronization, authorization, and deployment impact.
+- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
+- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
 
 ## Next Steps
 
 1. Go to Resource Pools to view resource pools that can be synchronized or used by this account.
 2. Go to Tenant-Cloud Auth or Business-Region Auth to configure resource visibility scope.
 3. Go to Access Overview to review account, resource pool, and authorization flow status.
-
-## Notes
-
-- Adding a cloud account may save real cloud-side authentication information and trigger resource synchronization, status checks, or authorization scope changes.
-- `Confirm`, `Save`, and `Submit` are high-risk final actions. Do not click them during learning or screenshots.
-- This document only describes viewing fields and checking configuration before final submission. It does not guide real account configuration submission during test learning.
-- Do not write real accounts, passwords, keys, Tokens, AK/SK, endpoints, cloud resource IDs, or internal test parameters in the document.

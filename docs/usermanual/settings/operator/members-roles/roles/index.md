@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -50,7 +50,12 @@ The following screenshot shows the Roles page. Role details are desensitized.
 
 ## Main Operations
 
-Use the following operations to work with roles records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+### View Role Permissions
+
+1. Go to `Settings > Members and Roles > Roles`.
+2. Filter by role name, status, or update time.
+3. Open details and check menu, button, and API permissions and assigned members.
+4. If no record is returned, reset filters. For unexpected permissions, check whether the member has multiple roles.
 
 ### Add Role
 

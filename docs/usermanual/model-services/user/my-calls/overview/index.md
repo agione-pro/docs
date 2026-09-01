@@ -1,37 +1,39 @@
-# My Calls - Overview
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
+# Overview
 
 ## Feature Overview
 
-`My Calls - Overview` shows the overall status of calls initiated by the current account, including total calls, successful calls, failed calls, rate limit triggers, total consumed tokens, call trends, consumption statistics, model type statistics, and model call distribution.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | Model Services > My Calls > Overview |
-| Page route | `/modelone/monitoring/calls/overview` |
-| Managed objects | My calls, successful calls, failed calls, rate limit triggers, token consumption, model types, and call distribution |
-| Typical use | View personal call health and consumption trends |
+| Applicable Roles | Model Providers and Model Consumers |
+| Navigation Path | Model Services > My Calls > Overview |
+| Page Route | `/modelone/monitoring/calls/overview/model` |
+| Managed Objects | Personal call indicators, call trends, model rankings, and log entry |
 
 #### Beginner Explanation
 
-`My Calls - Overview` is a personal call dashboard. It first shows total calls, success and failure status, and token consumption, and then uses trend charts and statistics to help locate abnormal models or time periods.
+Overview works like a personal call dashboard. Review total, successful, and failed calls and usage trends, and then open logs from an abnormal model to locate individual requests.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Total Calls | Total number of requests initiated by the current account within the filter range. |
-| Successful calls | Number of requests completed successfully. |
-| Failed calls | Number of requests that returned errors, timed out, or failed. |
-| Rate limit triggers | Number of calls blocked by model, Key, quota, or policy limits. |
-| Total Consumed Tokens | Total input and output tokens consumed within the filter range. |
-| Call Trend | Time-based chart for total calls, call success, call fail, and model rate-limit triggers. |
-| Consumption Statistics | Shows total token consumption, average token consumption, and peak values. |
+| Total Calls | The number of calls made in the selected period. |
+| Failed Calls | Calls that did not complete successfully. |
+| Rate Limit Trigger | The number of calls restricted by rate-limit policies. |
+| Call Trend | Changes in calls, success, failure, or usage over time. |
+
+#### Recommended Operation Order
+
+Select a time range and review aggregate indicators, compare trends and model rankings, and use the log entry to investigate anomalies.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| No overview data | Expand the time range | Conclude immediately that calls were not recorded |
+| Success rate drops | Compare failure and rate-limit trends | Review total calls only |
+| A model is abnormal | Open logs for individual requests | Infer the cause from charts alone |
+| Preparing to share an image | Redact business identifiers and sensitive information | Share the original image |
 
 ## Prerequisites
 
@@ -40,28 +42,31 @@ Updated: 2026-07-08
 3. Before viewing or screenshots, confirm whether model names, Key names, fees, and business identifiers need to be redacted.
 
 ::: warning Sensitive Information Boundary
-The call overview may show sensitive operational data such as fees, call volume, model names, Key names, token consumption, and abnormal trends. This document only describes viewing the overview. It does not display real accounts, Keys, request content, fee details, or internal test parameters. If an export entry exists, this document only describes the viewing boundary and does not guide exporting sensitive data.
+The call overview may show fees, call volume, model names, Key names, token consumption, and abnormal trends. When viewing or sharing data, redact accounts, Keys, request content, fees, and business identifiers according to permission.
 :::
 
 ## Page Description
 
-The top of the page provides billing-cycle, date-range, and model-type filters. The page shows overview cards such as `Total Calls`, `Successful calls`, `Failed calls`, `Rate limit triggers`, and `Total Consumed Tokens`, and uses Call Trend, Consumption Statistics, Model Type Statistics, Model Call Distribution, Failed Call Records TOP5, and Rate Limit Trigger Records TOP5 to support call analysis.
+The page shows call totals, trends, and model rankings for the current account and provides an entry to call logs. Changing the time range updates indicators and charts.
+
+Page screenshots:
 
 ![My Calls overview](./images/overview-list.png)
+
+Focus on the time range, aggregate indicators, trend chart, and model list.
 
 ## Main Operations
 
-### View My Calls Overview
+### View Call Trends and Open Logs
 
 1. Go to `Model Services > My Calls > Overview`.
-2. Select billing cycle, date range, and model type in the filter area.
-3. View overview metrics such as `Total Calls`, `Successful calls`, `Failed calls`, `Rate limit triggers`, and `Total Consumed Tokens`.
-4. View `Call Trend` and `Consumption Statistics`, and check average call count, call peak value, total token consumption, average token consumption, and peak values.
-5. View `Model Type Statistics`, `Model Call Distribution`, `Failed Call Records TOP5`, and `Rate Limit Trigger Records TOP5`.
-6. To investigate abnormal models or time periods, click `View more`, `View logs`, or go to `Call Analytics` and `Call Logs` for details.
-7. Before screenshots or external communication, confirm that model names, Key names, fees, tokens, and call volume are redacted.
+2. Select a time range and model type, and verify total, successful, failed, and rate-limited calls and usage.
+3. Compare trends and the model list to locate an abnormal model.
+4. Click **"View Logs"** for the target model to continue in call logs.
 
-![My Calls overview](./images/overview-list.png)
+![View call trends](./images/manual-call-trends.png)
+
+The image shows call totals, trends, and the model list. Open logs from the target model when an anomaly is found.
 
 ## Parameter Reference
 
@@ -84,7 +89,6 @@ The top of the page provides billing-cycle, date-range, and model-type filters. 
 - When balance, Credits, or call count looks abnormal, check call logs, model usage, and billing pages together.
 - Align model and time range before comparing data, otherwise different model versions may be mixed.
 
-
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
@@ -98,26 +102,94 @@ The top of the page provides billing-cycle, date-range, and model-type filters. 
 
 ## FAQ
 
-#### What if overview data is empty?
+#### Overview Is Empty
 
-Expand the billing cycle or date range first, and then confirm whether the current account initiated calls in that range. If it is still empty, go to Call Logs to confirm whether request records exist.
+**Symptom:**
 
-#### What if the success rate drops suddenly?
+Overview shows the condition described by “Overview Is Empty.”
 
-Check Failed Call Records TOP5 and Call Trend to locate abnormal models or time periods. Then go to Call Logs to view error code, request time, Key, quota, rate limit, and model source status.
+**Possible Causes:**
 
-#### Can I screenshot or export the call overview?
+- Time range or filters do not match.
+- Page data is still synchronizing.
 
-It can be used for internal troubleshooting, but model names, Key names, fees, tokens, business identifiers, and other sensitive information must be redacted before screenshots or export. This document does not guide exporting sensitive data.
+**Resolution:**
 
-## Next Steps
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
 
-1. Go to `Call Analytics` for more detailed trend and dimension analysis.
-2. Go to `Call Logs` to view single requests, error codes, and request status.
-3. Adjust call strategy based on failed records, rate-limit triggers, and token peaks.
+#### Success Rate Drops
+
+**Symptom:**
+
+Overview shows the condition described by “Success Rate Drops.”
+
+**Possible Causes:**
+
+- call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Rate Limits Increase
+
+**Symptom:**
+
+Overview shows the condition described by “Rate Limits Increase.”
+
+**Possible Causes:**
+
+- call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Trend and List Differ
+
+**Symptom:**
+
+Overview shows the condition described by “Trend and List Differ.”
+
+**Possible Causes:**
+
+- call data or status changed.
+- Page data is still synchronizing.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Cross-check details or logs.
+
+#### Call Logs Do Not Open
+
+**Symptom:**
+
+Overview shows the condition described by “Call Logs Do Not Open.”
+
+**Possible Causes:**
+
+- call data or status changed.
+- Permission is missing or the record expired.
+
+**Resolution:**
+
+1. Reset filters and align the time range.
+2. Verify permission and record status, and then retry.
 
 ## Notes
 
 - Do not write real accounts, Keys, request content, fee details, or internal test parameters in the document.
 - Overview statistics may have delays. Use Call Logs for single-request troubleshooting.
 - Use only redacted aggregate information for external communication.
+
+## Next Steps
+
+1. Go to `Call Analytics` for more detailed trend and dimension analysis.
+2. Go to `Call Logs` to view single requests, error codes, and request status.
+3. Adjust call strategy based on failed records, rate-limit triggers, and token peaks.

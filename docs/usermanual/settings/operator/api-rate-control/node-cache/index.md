@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -49,6 +49,21 @@ The following screenshot shows the Node Cache page. Node addresses and cache det
 ![Node Cache](./images/node-cache-list.png)
 
 ## Main Operations
+
+### Inspect Node Cache
+
+1. Go to `Settings > API Rate Control > Node Cache` and filter by node, status, version, or update time.
+2. Check node availability, cached rule version, synchronization time, and error messages.
+3. If no node is returned, reset filters and check node availability. For a version mismatch, record the node and target version.
+4. Viewing cache does not change rate-control state. Do not clear cache or force synchronization during validation.
+
+### Compare Cache Versions and Diagnose Synchronization
+
+1. Open the abnormal node details and compare its cache version with the target version in Publish Center.
+2. Check the latest synchronization time, rule count, and error summary.
+3. A healthy node should show the same version or synchronized status. For a mismatch, first confirm that publishing completed, then escalate to authorized personnel.
+4. Do not repeatedly publish or clear cache to test the issue because online requests may be affected.
+
 
 Use this operation to query node cache status. Do not add create or publish operations to this query-oriented workflow.
 

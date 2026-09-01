@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -62,6 +62,21 @@ The page displays Total, Unused, and Used by resource type, and separately displ
 | View Resource Usage | Views resource occupation details for the corresponding type. |
 
 ## Main Operations
+
+### View Resource Quotas
+
+1. Go to `Quotas and Usage > Resource Quotas`.
+2. Filter by project, region, resource type, or status.
+3. Check total, used, and remaining quota and limits.
+4. If no record is returned, reset filters and check project and region. Redact quota information before sharing.
+
+### Identify Quota Risk and Open a Request
+
+1. Sort by utilization to locate resources near or over the limit.
+2. Open details and check associated instances and recent usage.
+3. If an increase is required, open the quota-request process and prepare business justification.
+4. Do not submit a request or adjust quota during read-only validation.
+
 
 ### View Resource Occupation
 

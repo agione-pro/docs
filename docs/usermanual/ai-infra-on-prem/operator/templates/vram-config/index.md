@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -47,6 +47,13 @@ The following figure shows the vram estimation configuration page.
 ![VRAM Estimation Configuration](./images/vram-config-list.png)
 
 ## Main Operations
+
+### View Configuration Assets
+
+1. Open the corresponding template-configuration page and filter by name, version, status, or update time.
+2. Open details and check associated models, frameworks, images, resource requirements, and current version.
+3. If no record is returned, reset filters. For incompatibility, first check dependencies.
+4. Redact internal images, storage locations, and startup configuration before sharing.
 
 ### Configure VRAM Rules
 

@@ -1,77 +1,95 @@
 # Frameworks
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-29
-:::
-
 ## Feature Overview
-
-`Frameworks` is used to maintain runtime frameworks that can be selected during model deployment. Operators can add frameworks by cloud platform and region, and configure framework version, image, port, master node startup command, worker node startup command, environment variables, and extended parameters.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Cloud > Deploy Assets > Frameworks |
-| Page route | `/infrahub/op/model/framework` |
-| Managed objects | Cloud platform, cloud account, region, framework type, framework name, version, image, and startup commands |
-| Typical use | Add or maintain inference frameworks that can be selected when adding models in the model library |
+| Applicable Roles | Operators |
+| Navigation Path | AI Infra(On-Cloud) > Deploy Assets > Frameworks |
+| Page Route | `/infrahub/op/model/framework` |
+| Managed Objects | Inference frameworks, framework versions, runtime images, and startup configuration |
 
 #### Beginner Explanation
 
-A framework works like the runtime instruction for model deployment. It tells the platform which cloud platform and region to use, which image to run, which port to listen on, and how master and worker nodes should start.
+Frameworks defines how a model service runs. A framework version combines the runtime image, startup method, and support scope for use by model-library records.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Cloud Platform | Cloud platform to which the framework belongs. |
-| Cloud Account | Account under the selected cloud platform used to manage framework resources. |
-| Region | Cloud platform region where the framework is available. |
-| Framework Type | Capability or runtime type of the framework, such as LLM or vLLM. |
-| Image | Container image required to run the framework. |
-| Master Node Startup Command | Command executed by the master node container to start the framework service. |
-| Worker Node Startup Command | Command executed by the worker node container to start the framework service. |
+| Inference Framework | The runtime framework that hosts model inference. |
+| Framework Version | A framework record bound to an image and startup configuration. |
+| Publish Version | Makes a maintained version available to model configuration. |
+
+#### Recommended Operation Order
+
+Review framework details and existing versions, add the framework, publish a configured version, and validate its availability in Models.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| First visit | Review existing objects, states, and available actions | Change an unknown object |
+| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
+| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
+| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
 
 ## Prerequisites
 
-1. The target cloud platform, cloud account, and region have been connected and are available.
-2. The inference image to be used is ready and can be selected on the page.
-3. The framework type, version, port, and startup commands have been confirmed.
-4. Environment variables and extended parameters have been sanitized and do not contain real credentials or internal sensitive parameters.
+1. The current account has the permission required for Frameworks.
+2. The target runtime image is registered and framework-version startup requirements are confirmed.
+3. Before publishing a version, check model references, image accessibility, and startup parameters.
 
 ## Page Description
 
-This page uses framework cards for the list. Select a card or its `Details` action to open the details view. The details view separates framework metadata from the version list. Version actions are displayed with their target versions.
+The page provides framework lists, details, versions, and the add entry.
 
-Page screenshot:
+Page screenshots:
 
-![Frameworks List](./images/frameworks-list.png)
+![Frameworks page](./images/manual-frameworks.png)
+
+The image shows Frameworks page. Verify the target object, current state, fields, and actions.
+
+![Framework list reference](./images/frameworks-list.png)
+
+The image shows Framework list reference. Verify the target object, current state, fields, and actions.
 
 ## Main Operations
 
-### View Framework Details and Versions
+### View Framework Details
 
-1. Go to `AI Infrastructure > On-Cloud > Deploy Assets > Frameworks`.
-2. Use the cloud platform tab, `Framework Name`, or `Framework Type` to locate a framework card.
-3. Open the framework details from the card.
-4. Review the framework metadata and version list separately.
-5. Before you open an edit action, verify the target version, runtime image, startup command, and availability.
+1. Locate the target framework and open its details.
+2. Verify the framework identifier, state, and version list.
+3. Open the target version and verify the runtime image and startup configuration.
+
+![Framework details](./images/manual-framework-details.png)
+
+The image shows Framework details. Verify the target object, current state, fields, and actions.
 
 ### Add Framework
 
-1. Go to `AI Infrastructure > On-Cloud > Deploy Assets > Frameworks`.
-2. Click `Add Framework` to open the add framework dialog.
-3. Select `Cloud Platform`, and then select `Cloud Account` and `Region` as required by the page.
-4. Fill in `Framework Type`, `Framework Name`, `Framework Description`, `Framework Version`, and `Default API Suffix`.
-5. Select `Image`, and fill in `Port`, `Master Node Startup Command`, and `Worker Node Startup Command`.
-6. If required by the page, click `Add Environment Variable` or `Add Extended Parameter` to add runtime parameters.
-7. Before clicking the final `Confirm`, verify the cloud platform, region, framework version, image, port, and startup commands again.
-8. For learning or page validation only, click `Cancel` or close the dialog without submitting real framework configuration.
+1. Click **"Add Framework"**.
+2. Enter basic information and add a version.
+3. Select the runtime image and maintain startup and support scope.
+4. Click **"Confirm"** and open the details for validation.
 
-Key step screenshot:
+![Add Framework](./images/manual-add-framework.png)
 
-![Add Framework](./images/add-framework.png)
+The image shows Add Framework. Verify the target object, current state, fields, and actions.
+
+![Add framework reference](./images/add-framework.png)
+
+The image shows Add framework reference. Verify the target object, current state, fields, and actions.
+
+### Publish Framework Version
+
+1. Locate the configured version in framework details.
+2. Click **"Publish"** and verify the version, image, and scope.
+3. After publication, confirm that the version is selectable in Models.
+
+![Publish framework version](./images/manual-publish-framework-version.png)
+
+The image shows Publish framework version. Verify the target object, current state, fields, and actions.
 
 ## Parameter Reference
 
@@ -98,71 +116,115 @@ Key step screenshot:
 
 ## Pitfalls
 
-- If framework version, image, and startup commands do not match, the service may fail to start after deployment.
-- The port should match the image and service listening port. Otherwise, deployment may succeed but access may fail.
-- Environment variables, extended parameters, and startup commands must not contain real keys, tokens, internal network addresses, or internal download paths.
-- `Import` may update framework configuration in bulk. Do not perform a real import during learning or page validation.
+- Do not skip the upstream dependency check: The target runtime image is registered and framework-version startup requirements are confirmed.
+- Confirm impact before a configuration change: Before publishing a version, check model references, image accessibility, and startup parameters.
+- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Frameworks` page and framework list are displayed. | Check menu permissions, route, and login status. |
-| Framework list loads | Framework cards display name, version, framework type, cloud platform, region, and action entries. | Check filters, data permissions, and API status. |
-| Details and versions load | Framework metadata and the version list are displayed as separate areas. | Reopen the card and check page data permissions. |
-| Add entry is visible | `Add Framework` is displayed in the upper-right corner. | Check operator permissions and page configuration. |
-| Add dialog opens | The dialog displays cloud platform, cloud account, region, framework type, framework name, version, image, port, and startup command fields. | Refresh the page and retry. If the issue persists, contact the administrator. |
-| Required fields and validation prompts work | Missing required fields trigger page validation prompts, and the flow can continue after they are completed. | Complete the prompted fields and verify cloud platform, cloud account, region, and image status. |
-| No real submission during learning | The final `Confirm` is not clicked and no real framework configuration is written. | If submitted by mistake, immediately check the framework list and model library options. |
-| Real submission can be tracked | The new framework appears in the list, and version, cloud platform, region, and availability can be viewed. | Return to the list or details page to verify configuration and test with a model. |
+| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
+| Managed objects are visible | Inference frameworks, framework versions, runtime images, and startup configuration display as expected | Clear filters and verify upstream dependencies |
+| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
+| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
 
 ## FAQ
 
-#### Framework Startup Fails
+#### Target Object Is Missing in Frameworks
 
-**Issue Symptom:**
+**Symptom:**
 
-The deployment instance enters failed status, restarts repeatedly, or the service is inaccessible.
-
-**Possible Causes:**
-
-- Master or worker node startup command parameters are incorrect.
-- The image lacks framework dependencies or the version does not match.
-- Port, environment variable, or extended parameter configuration is incorrect.
-
-**Handling:**
-
-1. View deployment events and container logs.
-2. Verify framework version, image, port, and startup commands.
-3. Revalidate framework availability with sanitized test parameters.
-
-#### Framework Is Unavailable in Model Configuration
-
-**Issue Symptom:**
-
-The framework has been added, but it cannot be selected when adding a model or selecting a compute plan in the model library.
+The expected object is missing from the list or selector.
 
 **Possible Causes:**
 
-- The framework cloud platform or region does not match the model deployment point.
-- Framework type or version does not match model requirements.
-- Image, cloud account, or region status is abnormal.
+- Active query criteria filter out the target object.
+- An upstream object is disabled, or the current role lacks visibility.
 
-**Handling:**
+**Resolution:**
 
-1. Check the framework cloud platform, cloud account, and region.
-2. Verify the model deployment point, model type, and framework type.
-3. Confirm that image and related authorization configuration are available.
+1. Clear filters and refresh the page.
+2. Verify the prerequisite object: The target runtime image is registered and framework-version startup requirements are confirmed.
+3. Confirm the current role and data scope, then locate the object again.
+
+#### Frameworks Action Is Unavailable
+
+**Symptom:**
+
+An expected button, menu, or state switch is unavailable.
+
+**Possible Causes:**
+
+- The current account lacks the required action permission.
+- Object state, references, or prerequisites block the action.
+
+**Resolution:**
+
+1. Verify the permission for the action and the current object state.
+2. Check references and prerequisites identified by the page message.
+3. Remove the blocker, refresh the page, and perform the action once.
+
+#### Frameworks Change Does Not Reach Downstream
+
+**Symptom:**
+
+The page reports success, but a downstream page still shows the old state.
+
+**Possible Causes:**
+
+- An associated page has stale cache or synchronization delay.
+- The current and downstream pages use different roles, tenants, or data scopes.
+
+**Resolution:**
+
+1. Wait for synchronization and refresh both pages.
+2. Confirm that both pages use the same role, tenant, and object scope.
+3. If they still differ, return to the responsible object and verify the saved result.
+
+#### Frameworks Data Differs from Another Page
+
+**Symptom:**
+
+Counts or states differ from an associated page.
+
+**Possible Causes:**
+
+- The pages use different filters, aggregation rules, or update times.
+- The change is still synchronizing, or role-based data scopes differ.
+
+**Resolution:**
+
+1. Align filters and aggregation rules on both pages.
+2. Check update times and wait for synchronization.
+3. Compare object details instead of summary counts only.
+
+#### How to Troubleshoot a Frameworks Failure
+
+**Symptom:**
+
+Submission fails or the state does not change for an extended period.
+
+**Possible Causes:**
+
+- Required fields, field combinations, or object state do not meet submission rules.
+- An upstream dependency is invalid, the request failed, or the same action is already processing.
+
+**Resolution:**
+
+1. Record the redacted object, time, and complete page message.
+2. Verify required fields, object state, and upstream dependencies.
+3. Confirm that no identical job is processing before one retry.
+
+## Notes
+
+- Before publishing a version, check model references, image accessibility, and startup parameters.
+- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
+- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
 
 ## Next Steps
 
 1. Select the framework when adding a model in the model library and validate the compute plan.
 2. Create a deployment with a test model to confirm service startup and health check results.
 3. Regularly review framework images, startup commands, and environment variables to avoid outdated configuration.
-
-## Notes
-
-- Adding a framework may affect available runtime environments and inference task startup behavior for model deployment.
-- Incorrect framework version, image, or startup command may cause deployment failure, resource waste, or service exceptions.
-- `Confirm`, `Save`, and `Submit` are high-risk final actions. This document only describes field review and pre-submission checks, and does not guide users to submit during testing or learning.
-- Do not write real image registry credentials, tokens, AK/SK, internal startup parameters, internal network addresses, cloud resource IDs, or internal test parameters.

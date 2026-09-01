@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -48,6 +48,21 @@ The page contains three views: `My Images`, `Public Images`, and `Push History`.
 ![Image Services](./images/images-list.png)
 
 ## Main Operations
+
+### View Image Projects
+
+1. Go to `Extension Services > Image Service`.
+2. Filter by project name, status, image count, or update time.
+3. Open details and check member permissions, registry scope, and image list.
+4. If no record is returned, reset filters. Do not share internal registry locations or access credentials.
+
+### Manage Project Members or Images
+
+1. Open the target project and distinguish member management, image upload, version management, and deletion entries.
+2. Record current members, permissions, and image versions referenced by instances.
+3. Before upload, permission changes, or deletion, confirm authorization and dependencies. Do not perform the final action during read-only validation.
+4. After an approved change, check the project, image list, and operation logs. If abnormal, restore according to the record.
+
 
 ### Add Image Project
 

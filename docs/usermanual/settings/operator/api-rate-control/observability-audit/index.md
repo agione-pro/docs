@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -54,6 +54,21 @@ The following screenshot shows the Observability Audit page. API, node, and log 
 ![Observability Audit](./images/observability-audit-list.png)
 
 ## Main Operations
+
+### View Observability Data
+
+1. Go to `Settings > API Rate Control > Observability Audit` and select a time range.
+2. Filter by rule, node, request result, block reason, or request ID.
+3. Check request volume, blocked requests, matched rules, and status distribution. If no data is shown, check the time zone, node, and filter scope.
+4. Observability data may contain call identifiers and business paths and must be redacted before export or screenshots.
+
+### Drill Down into a Block Event
+
+1. Click an abnormal metric or **"Details"** for the target event.
+2. Review the matched rule, node, action, status code, time, and error summary.
+3. Compare the rule version and conditions in Rule Management to determine whether the block was expected.
+4. If it cannot be explained, record a redacted request ID, rule ID, and time range. Do not change rules or republish.
+
 
 Use this operation to query observability and audit data. Do not add create, publish, or save operations to this query-oriented workflow.
 

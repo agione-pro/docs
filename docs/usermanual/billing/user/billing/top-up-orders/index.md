@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-23
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -62,6 +62,14 @@ The following screenshot shows Top-up Orders. Sanitize order numbers and amounts
 | Details | Opens top-up order details. |
 
 ## Main Operations
+
+### Reconcile a Top-up Order with Account Transactions
+
+1. Open the target order details and record a redacted order number, status, and completion time.
+2. Open Transactions and locate the corresponding posting in the same time range.
+3. The order status, posted amount direction, and transaction time should be mutually traceable.
+4. If they differ, check payment status and refresh time. Do not create another top-up or supplemental order.
+
 
 ### Query Top-up Orders
 

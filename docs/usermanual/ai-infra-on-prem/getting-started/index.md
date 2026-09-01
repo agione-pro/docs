@@ -16,7 +16,7 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-`AI Infra On-Prem` is AGIOne's access, scheduling, metering, and usage capability for localized heterogeneous computing resource pools. It connects regions, availability zones, clusters, nodes, specifications, images, storage, templates, quotas, and monitoring into a complete chain: operators first connect and govern resources, and End Users then create model services, online IDEs, runtime instances, and storage resources based on the opened capabilities.
+`AI Infra On-Prem` is the platform's access, scheduling, metering, and usage capability for localized heterogeneous computing resource pools. It connects regions, availability zones, clusters, nodes, specifications, images, storage, templates, quotas, and monitoring into a complete chain: operators first connect and govern resources, and End Users then create model services, online IDEs, runtime instances, and storage resources based on the opened capabilities.
 
 This document is an understanding-oriented getting-started page, not a concrete operation page. It explains On-Prem resource hierarchy, role boundaries, and reading paths. Real create, delete, start, stop, disable, unbind, credit adjustment, or resource change actions should be performed only in the corresponding feature pages and according to their risk notes.
 
@@ -39,9 +39,9 @@ AI Infra On-Prem is like the user guide for a self-built computing campus: first
 | End User | Create model services, online IDEs, runtime instances, storage, and image projects. | [User Overview](../user/overview/), [Templates](../user/model-deployment/templates/), [Runtime Instances](../user/dev-resources/runtime-instances/) |
 | Troubleshooter | Check permissions, quotas, images, storage, specifications, clusters, logs, and monitoring. | [Monitoring Overview](../user/monitoring/overview/), [Resource Usage](../user/quotas-usage/usage/) |
 
-## What Are AGIOne and On-Prem
+## What Is On-Prem
 
-AGIOne is an integrated platform for model services, computing resources, and operational governance. On-Prem refers to localized deployment or local resource pool management scenarios. The platform does not directly replace underlying components such as Kubernetes, Harbor, MinIO, Ceph, or NFS. Instead, it incorporates these capabilities into unified resource pool, template, quota, and monitoring views.
+The platform is an integrated service for model services, computing resources, and operational governance. On-Prem refers to localized deployment or local resource pool management scenarios. The platform does not directly replace underlying components such as Kubernetes, Harbor, MinIO, Ceph, or NFS. Instead, it incorporates these capabilities into unified resource pool, template, quota, and monitoring views.
 
 In an On-Prem scenario, the platform is responsible for:
 

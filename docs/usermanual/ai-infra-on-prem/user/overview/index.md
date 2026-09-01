@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
@@ -61,6 +61,21 @@ The upper area displays deployable templates and accelerator vendors; the middle
 | Consumption Trend | Displays consumption trend for the current cycle. If there is no job consumption, it is empty. |
 
 ## Main Operations
+
+### View Deployable Resources
+
+1. Open the user overview and select a project, region, or resource pool.
+2. Review available flavors, remaining quota, resource usage, and consumption trends.
+3. Confirm that all metrics use the same project and region scope.
+4. If metrics are empty, check authorization, quota, and refresh time. Redact resource data before sharing.
+
+### Drill Down into Quota or Resource Anomalies
+
+1. Click a quota, resource-usage, or deployment entry.
+2. Keep the same project and region when opening Resource Quotas, Resource Usage, or Model Deployment.
+3. Determine whether the anomaly relates to authorization, quota, capacity, or deployment status.
+4. Do not create or stop real resources to test the anomaly.
+
 
 ### View Deployable Resources
 
