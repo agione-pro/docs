@@ -1,21 +1,13 @@
 # Member Quotas
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Member Quotas` shows Personal Key usage and authorized quota for tenant members. You can search by member, review status, adjust quota, configure member limits, and open member quota details.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin |
+| Applicable Role | Model Consumer |
 | Navigation path | Settings > Members & Roles > Member Quotas |
 | Page route | `/user/user-space/member-quotas` |
 | Managed objects | Member Personal Key usage, authorized quota, and quota details |
-| Typical use | Review member quota, adjust quota, and verify usage |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Member Quotas is the team's quota allocation table. It shows each member's avail
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Member quota | Quota allocated to a member. | Check it when a call fails. |
-| Used quota | Quota already consumed by the member. | Adjust the limit when usage approaches it. |
-| Quota limit | The maximum quota that the member can consume. | Confirm the impact before changing it. |
-| Quota request | A member's request for additional quota. | Direct the member to submit one when quota is insufficient. |
+| Term | Description |
+| --- | --- |
+| Member quota | Quota allocated to a member.; Check it when a call fails. |
+| Used quota | Quota already consumed by the member.; Adjust the limit when usage approaches it. |
+| Quota limit | The maximum quota that the member can consume.; Confirm the impact before changing it. |
+| Quota request | A member's request for additional quota.; Direct the member to submit one when quota is insufficient. |
 
 ## Prerequisites
 
@@ -51,6 +43,10 @@ The following screenshot shows member quotas screenshot.
 
 ![Member Quotas screenshot](./images/member-quota-limit.png)
 
+![Member Quotas](./images/manual-settings-user-member-quotas.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Member Quotas page.
+
 ## Main Operations
 
 ### View Member Quotas
@@ -60,15 +56,34 @@ The following screenshot shows member quotas screenshot.
 3. Check allocated, used, available quota, and update time.
 4. If no record is returned, reset filters and check the tenant or project context. Redact quota data before sharing.
 
-### View Quota Details and Usage Risk
+![View Member Quotas](./images/manual-settings-user-member-quotas.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Member Quotas page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### View Member Quota Details
 
 1. Click **"View"** or the details entry for the target member.
 2. Compare total, used, and remaining quota and limits to identify near-limit or exceeded status.
 3. If metrics differ, check the aggregation period, project, and refresh time.
 4. Do not adjust quota during read-only validation. Follow the approval process for changes and verify operation logs.
 
+![View Member Quota Details](./images/manual-settings-user-member-quotas.png)
 
-### View Member Quotas
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Member Quotas page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Adjust Member Quota
 
 1. Go to `Settings > Members & Roles > Member Quotas`.
 2. Use the search box to locate the member.
@@ -101,7 +116,31 @@ The following screenshot shows the member quota limit dialog.
 
 ![Member Quota Limit](./images/member-quota-limit.png)
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Set Member Quota Limits
+
+1. Open `Settings > Members & Roles > Member Quotas`.
+2. Locate the target Member Quotas and click **"Limit"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Set Member Quota Limits](./images/manual-settings-user-member-quotas.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Member Quotas page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -173,13 +212,41 @@ The current account lacks quota-administrator permission, the member status does
 
 Confirm the member status and quota-management permission. Submit the required quota request first, then return to Member Quotas after approval.
 
-## Next Steps
+#### How should the Member Quotas page be exported or captured safely?
 
-1. Review member requests on Quota Requests.
-2. Adjust default quota for new members in Tenant Settings.
-3. Verify quota adjustments in Operation Logs.
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Member Quotas page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
 - Adjusting quota affects a member's calling ability. Confirm the member and amount first.
 - Exported CSV files may contain member usage data. Handle them according to tenant data-management requirements.
+
+## Next Steps
+
+1. Review member requests on Quota Requests.
+2. Adjust default quota for new members in Tenant Settings.
+3. Verify quota adjustments in Operation Logs.

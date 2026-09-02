@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`Today Tasks` is the finance operations workbench for viewing the current billing cycle settled amount, settlement progress, platform account status, alert items, and downstream processing entries.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Finance Operations > Today Tasks |
 | Page route | `/billing/admin/tasks` |
 | Managed objects | Billing cycle, settlement tasks, platform accounts, alert items, and downstream cards |
-| Typical use | Check daily billing status, identify pending items, and open the corresponding processing page |
+
+`Today Tasks` is the finance operations workbench for viewing the current billing cycle settled amount, settlement progress, platform account status, alert items, and downstream processing entries.
+
 
 #### Beginner Explanation
 
@@ -65,8 +65,11 @@ The following screenshot shows today tasks list.
 3. Check pending, in-progress, overdue, and abnormal task counts.
 4. If no task is returned, reset filters and check the date. Prioritize by due time and business impact without bypassing approval.
 
-
 Use the following operations to work with today tasks records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+
+![Today Tasks - Prioritize Today's Tasks](./images/manual-billing-today-tasks-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Today Tasks Overview
 
@@ -75,15 +78,22 @@ Use the following operations to work with today tasks records and related status
 3. Review settlement progress metrics such as `Awaiting Execution`, `Settling`, and `Settled`.
 4. Review `Platform Clearing Account`, `Payable to Provider`, `Platform Revenue Account`, and `Alert Items`.
 5. Review the downstream cards: `Settlement Workbench`, `Billing Reconciliation`, `Platform Account Reconciliation`, and `Account Adjustment`.
-6. For learning or screenshots only, view metrics and entries without clicking `Generate Settlement`, adjustment, or cleanup actions.
 
-### Open Downstream Pages
+![Today Tasks - View Today Tasks Overview](./images/manual-billing-today-tasks-page.png)
 
-1. In the `Settlement Workbench`, `Billing Reconciliation`, `Platform Account Reconciliation`, or `Account Adjustment` card, click `See Detail`.
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+### Open a Task Processing Page
+
+1. In the `Settlement Workbench`, `Billing Reconciliation`, `Platform Account Reconciliation`, or `Account Adjustment` card, click **"See Detail"**.
 2. Continue filtering, viewing details, or checking exceptions on the downstream page.
 3. If settlement generation or adjustment is required, confirm the billing period, tenant, amount, and approval basis before any final action.
 
-## Parameter Reference
+![Today Tasks - Open Downstream Pages](./images/manual-billing-today-tasks-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -127,7 +137,7 @@ Use the following operations to work with today tasks records and related status
 
 **Resolution:**
 
-1. Click `See Detail` on the related card.
+1. Click **"See Detail"** on the related card.
 2. Filter the destination page by billing period, tenant, or status.
 3. Follow the page guidance and confirm approval before any fund-changing action.
 
@@ -167,15 +177,34 @@ Use the following operations to work with today tasks records and related status
 2. Confirm whether settlement, compensation, rebuild, or adjustment is required.
 3. After handling completes, return to Today Tasks and refresh the data.
 
+
+#### A Completed Task Appears Again
+
+**Symptom:**
+
+The same or a similar item appears again in Today Tasks after handling.
+
+**Possible causes:**
+
+- The upstream issue was not fully closed.
+- The task was regenerated for a new billing cycle or object.
+- The page has not refreshed to the latest status.
+
+**How to handle:**
+
+1. Compare task type, billing cycle, object, and generation time.
+2. Open the processing page and confirm the upstream status.
+3. Refresh Today Tasks and compare the task identifier.
+4. If it is a duplicate exception, provide authorized personnel with desensitized clues.
+## Notes
+
+- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
+- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
+- Do not record real accounts, emails, tenant IDs, billing-cycle amounts, transaction numbers, tokens, or internal processing parameters in the manual, screenshots, notes, or tickets.
+
 ## Next Steps
 
 1. Open [Monthly Overview](../monthly-overview/) to advance month-end settlement.
 2. Open [Settlement List](../settlement-list/) to review settlement status.
 3. Open [Financial Accounts](../financial-accounts/) to check platform accounts.
 4. Open [Reconciliation Center](../reconciliation-center/) to investigate exceptions.
-
-## Notes
-
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Do not record real accounts, emails, tenant IDs, billing-cycle amounts, transaction numbers, tokens, or internal processing parameters in the manual, screenshots, notes, or tickets.

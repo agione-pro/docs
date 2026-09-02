@@ -1,44 +1,33 @@
 # Online IDE
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Online IDE` is used to create and manage interactive development environments. End Users can select single-node or cluster form and start a development environment based on platform images and specifications for code debugging, data processing, and experiment validation.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Development Resources > Online IDE |
-| Page route | `/powerone/dev-training/dev-ide` |
-| Managed objects | Online development environments, single-node IDEs, cluster IDEs, images, specifications, and runtime status |
-| Typical use | Create an interactive development environment, debug code online, run Notebook, or prepare training and inference scripts |
+| Applicable Role | Model Provider |
+| Navigation Path | AI Infra(On-Prem) > Dev Resources > Online IDE |
+| Page Route | `/powerone/dev-training/dev-ide` |
+| Managed Object | Configuration, status, and relationships on Online IDE |
 
 #### Beginner Explanation
 
 You can understand Online IDE as a cloud development machine running in the resource pool. You do not need to install a GPU environment locally. Select an image and specification, and the platform creates an accessible development environment.
 
-#### First-Time Flow
-
-1. Go to `Development Resources > Online IDE`.
-2. View the existing IDE list and status.
-3. Click `Create IDE`.
-4. Select `Single Node` or `Cluster` deployment type.
-5. Continue filling in image, specification, storage, and startup parameters.
-6. After creation, return to the list to view status and enter the IDE.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Image | Container environment required to run a job, usually from platform image services or a custom image project. |
 | Specification | Resource package that a job can request, such as CPU, memory, GPU model, and card count. |
 | Quota | Resource upper limit available to a tenant. Common dimensions include GPU, CPU, memory, and specifications. |
-| Single Node | Single-node development environment, suitable for regular debugging and small-scale experiments. |
-| Cluster | Cluster development environment, suitable for scenarios that require primary/worker nodes or distributed resources. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Online development environments, single-node IDEs, cluster IDEs, images, specifications, and runtime status, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Online IDE, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -49,9 +38,15 @@ You can understand Online IDE as a cloud development machine running in the reso
 
 ## Page Description
 
-The list page supports filtering by region and status, and provides refresh and create entrypoints. In the screenshot, the current list is empty. After clicking `Create IDE`, you enter the creation page and can select single-node or cluster deployment type.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
+
+Use this page to view and handle Configuration, status, and relationships on Online IDE.
 
 ![Online IDE](./images/online-ide-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The list page supports filtering by region and status, and provides refresh and create entrypoints. In the screenshot, the current list is empty. After clicking **"Create IDE"**, you enter the creation page and can select single-node or cluster deployment type.
 
 #### Page Areas
 
@@ -76,7 +71,7 @@ The list page supports filtering by region and status, and provides refresh and 
 
 1. Open the target details and confirm the connection entry, runtime status, and attached storage.
 2. Before connecting, confirm access permission and network scope and use only the platform-provided secure entry.
-3. Before starting, stopping, restarting, or deleting, confirm that work and data are saved. Do not perform these actions during read-only validation.
+3. Before starting, stopping, restarting, or deleting, confirm that work and data are saved. Before these actions, confirm the resource, data, and impact, and execute them only after approval.
 4. After an approved action, check status and events. If abnormal, stop retrying and escalate with logs.
 
 ### Create Online IDE
@@ -94,19 +89,18 @@ Create an online IDE when an interactive development, debugging, or Notebook env
 #### Procedure
 
 1. Go to `AI Infrastructure > On-Prem > Development Resources > Online IDE`.
-2. Click `Create IDE`.
+2. Click **"Create IDE"**.
 3. On the deployment type page, select `Single Node` or `Cluster`.
 
 ![Select deployment type](./images/deployment-type.png)
 
-4. Click `Fill Parameters` to open the online IDE creation configuration page.
+4. Click **"Fill Parameters"** to open the online IDE creation configuration page.
 5. Review or fill in IDE name, region, image, specification, storage mount, startup command, and other fields as provided by the page.
 6. Confirm configuration items, resource specification, storage path, and runtime mode.
-7. For learning or screenshots only, view fields and page status without clicking final `Submit`, `OK`, or `Confirm`.
 
 ![Create online IDE](./images/create-ide.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Description |
 | --- | --- | --- | --- |
@@ -124,65 +118,123 @@ Create an online IDE when an interactive development, debugging, or Notebook env
 - If the image lacks dependencies, the IDE may start but code may fail to run.
 - `Submit`, `OK`, and `Confirm` are final actions.
 - Creating an online IDE occupies quota and cluster resources.
-- For learning or screenshots only, view pages, fields, dialogs, and status without submitting a real creation task.
+
 - Do not write real tenant, region, image address, specification ID, storage path, token, password, endpoint, startup parameter, or test data.
+
+### Configuration Rules and Impact
+
+- Online IDEs occupy quotas and cluster resources. The longer they run, the more they consume.
+- Images, specifications, and storage are configured by operators. Model Consumers can only select visible items.
+- Before stopping, deleting, or releasing an IDE, confirm that code and output have been saved to persistent directories.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| IDE created | A new IDE appears in the list after creation. | Check the image, specification, startup command, mount path, and instance events. |
-| IDE status | The status changes to Running or Accessible. | Check the image, specification, startup command, mount path, and instance events. |
-| Development entry point | Web IDE, JupyterLab, or the corresponding development entry point opens. | Check the image, specification, startup command, mount path, and instance events. |
-
-## Configuration Rules and Impact
-
-- Online IDEs occupy quotas and cluster resources. The longer they run, the more they consume.
-- Images, specifications, and storage are configured by operators. End Users can only select visible items.
-- Before stopping, deleting, or releasing an IDE, confirm that code and output have been saved to persistent directories.
+| Page entry | Online IDE opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Online IDE is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### Create IDE Button Is Unavailable or Invisible
+#### Target Is Missing from Online IDE
 
-**Symptom:** The list page has no creation entrypoint.
+**Symptom:**
 
-**Possible Causes:**
-
-- The current account has no creation permission.
-- Online IDE is not opened in the selected region.
-- Page loading or permission status is abnormal.
-
-**Solution:**
-
-1. Refresh the page.
-2. Confirm the current region.
-3. Contact the operator to check account permissions and resource pool configuration.
-
-#### IDE Cannot Be Opened After Creation
-
-**Symptom:** The list has an IDE, but the access entrypoint cannot be opened or the page keeps loading.
+The page opens, but the expected Configuration, status, and relationships on Online IDE is missing.
 
 **Possible Causes:**
 
-- The instance is still starting.
-- The image startup script is abnormal.
-- Network entrypoint or proxy is unavailable.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Wait until the status enters Running.
-2. View instance logs or events.
-3. Contact the operator to check cluster entrypoint and image configuration.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
+
+#### The Operation Entry on Online IDE Is Unavailable
+
+**Symptom:**
+
+The create, register, or maintain entry is hidden or disabled.
+
+**Possible Causes:**
+
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
+
+**Solution:**
+
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
+
+#### A Required Field on Online IDE Has No Options
+
+**Symptom:**
+
+The form opens, but a selection list is empty.
+
+**Possible Causes:**
+
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
+
+**Solution:**
+
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Online IDE Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Online IDE
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Online IDE.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
+
+## Notes
+
+- Do not write account passwords, tokens, private keys, endpoints, startup parameters, or test data into Notebook, code repositories, or screenshots.
+- Confirm storage mount paths before creation to avoid saving output only in temporary container directories.
 
 ## Next Steps
 
 1. Enter the IDE to write and debug code.
 2. Save important code, data, and output to persistent storage.
 3. Stop or release the IDE when it is not in use.
-
-## Notes
-
-- Do not write account passwords, tokens, private keys, endpoints, startup parameters, or test data into Notebook, code repositories, or screenshots.
-- Confirm storage mount paths before creation to avoid saving output only in temporary container directories.
-- For learning or screenshots only, view pages, fields, dialogs, and status without submitting a real creation task.

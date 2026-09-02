@@ -7,15 +7,15 @@ Updated: 2026-07-29
 
 ## Feature Overview
 
-`Customer Overview` is used to view EU and Provider customer records, tags, account balances, consumption, and revenue-related information. Operators can use this page to locate customers, verify customer identity, and continue with downstream billing checks.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Customer Billing > Customer Overview |
 | Page route | `/billing/customers/overview` |
 | Managed objects | Customer records, customer tags, account balances, consumption, and revenue information |
-| Typical use | Search EU or Provider customers, maintain tags, and verify balances or consumption |
+
+`Customer Overview` is used to view EU and Provider customer records, tags, account balances, consumption, and revenue-related information. Operators can use this page to locate customers, verify customer identity, and continue with downstream billing checks.
+
 
 #### Beginner Explanation
 
@@ -75,43 +75,53 @@ Use the following operations to view EU and Provider customer overview records a
 ### View Customer Overview - EU
 
 1. Go to `Billing > Customer Billing > Customer Overview`.
-2. Select `EU` in `Business Identity`.
+2. Select **"EU"** in `Business Identity`.
 3. Enter tenant `Name`, customer ID, administrator email, tags, or other filters as needed.
-4. Click `Search` and review the EU customer list.
+4. Click **"Search"** and review the EU customer list.
 5. Verify tenant `Name`, administrator, business identity, tags, account balance, consumption, and last update time.
-6. For learning or screenshots only, view filters and list fields without exporting real customer data or recording sensitive customer information.
+
+![Customer Overview - View Customer Overview - EU](./images/manual-billing-customer-overview-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Customer Overview - Provider
 
 1. Go to `Billing > Customer Billing > Customer Overview`.
-2. Select `Provider` in `Business Identity`.
+2. Select **"Provider"** in `Business Identity`.
 3. Enter tenant `Name`, customer ID, administrator email, tags, or other filters as needed.
-4. Click `Search` and review the Provider customer list.
+4. Click **"Search"** and review the Provider customer list.
 5. Verify tenant `Name`, administrator, business identity, tags, account balance, revenue or consumption-related information, and last update time.
-6. For learning or screenshots only, view filters and list fields without exporting real customer data or recording sensitive customer information.
+
+![Customer Overview - View Customer Overview - Provider](./images/manual-billing-customer-overview-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Manage Tags
 
-1. Click `Manage Tags` at the top of the page.
+1. Click **"Manage Tags"** at the top of the page.
 2. Review the built-in tags. These tags are locked by the platform and cannot be edited.
-3. In the custom tag area, enter a new tag name and click `Create Tag`.
-4. Click `Close` to exit the dialog.
+3. In the custom tag area, enter a new tag name and click **"Create Tag"**.
+4. Click **"Close"** to exit the dialog.
 
-For learning or screenshots only, view tag names, counts, and permission prompts without recording real customer tagging policies or internal operation notes.
+Before managing tags, verify the target customer scope and account permission. Do not record real customer tagging policies or internal operation notes in manuals, tickets, or comments.
+
+![Customer Overview - Manage Tags](./images/manual-billing-customer-overview-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Review an Account Adjustment
 
 1. Locate the target customer by tenant `Name`.
-2. Open the row actions and select `Adjust Limit`.
+2. Open the row actions and select **"Adjust Limit"**.
 3. Confirm the target tenant `Name`, customer account, and account type.
 4. Select the limit mode and enter a non-empty `Adjust Limit` value.
 5. Review the prefilled `Remarks`. Replace it with the actual business reason when necessary.
 6. Keep `Remarks` non-empty. An empty reason prevents submission.
-7. For page validation only, click `Cancel`. Opening the dialog does not complete an adjustment.
+7. For page validation only, click **"Cancel"**. Opening the dialog does not complete an adjustment.
 
 ![Adjust Limit dialog](./images/customer-adjustment-dialog.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -138,7 +148,7 @@ For learning or screenshots only, view tag names, counts, and permission prompts
 - Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
 - Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
 - Customer name, administrator email, customer ID, account balance, consumption amount, and revenue amount are sensitive. Desensitize screenshots, exports, tickets, and comments.
-- For learning or screenshots only, view filters and list fields without exporting real customer data.
+- Before exporting customer data, verify the filter scope and recipient permission, and redact customer identity, accounts, and amounts.
 - Opening `Adjust Limit` does not change the account. The change occurs only after the final confirmation.
 - An empty adjustment reason prevents submission. Review the prefilled remark before confirmation.
 
@@ -183,7 +193,7 @@ Selecting `Manage Tags` does not open the dialog.
 
 **Resolution:**
 
-1. Refresh the page and select `Manage Tags` again.
+1. Refresh the page and select **"Manage Tags"** again.
 2. Check whether the browser blocks dialogs or scripts.
 3. Contact the platform administrator to confirm account permissions.
 
@@ -205,15 +215,53 @@ The new tag does not take effect after you enter a name and save it.
 2. Check the current number of tags and remove an unnecessary tag before retrying.
 3. Rename the tag and create it again.
 
-## Next Steps
 
-- Open [Customer Top-up Orders](../top-up-orders/) to handle top-up tasks.
-- Open [Business Units](../business-units/) to maintain customer business-unit configuration.
+#### Customer Overview Does Not Update After Refresh
 
+**Symptom:**
+
+The amount, count, or status in Customer Overview remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Customer Overview.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Customer Top-up Orders and Business Units.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Customer Overview Information?
+
+**Symptom:**
+
+Customer Overview results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Customer names, administrators, tags, amounts, and accounts may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Keep credentials, private operational details, and sensitive customer data out of the manual.
 - Do not record real customer names, tenant names, customer IDs, emails, phone numbers, account balances, consumption amounts, revenue amounts, order numbers, Token, or Key.
-- For learning or screenshots only, view filters and list fields without exporting real customer data.
+- Before exporting customer data, verify the filter scope and recipient permission, and redact customer identity, accounts, and amounts.
+
+## Next Steps
+
+- Open [Customer Top-up Orders](../top-up-orders/) to handle top-up tasks.
+- Open [Business Units](../business-units/) to maintain customer business-unit configuration.

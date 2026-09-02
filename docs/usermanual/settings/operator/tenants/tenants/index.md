@@ -1,21 +1,13 @@
 # Tenants
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Tenants` is used to manage tenant entities on the platform. You can filter by business identity, tenant keyword, status, role, and tag, and review administrator information, customer tags, creation and update times, status, and available actions.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator |
 | Navigation path | Settings > Tenants & Settings > Tenants |
 | Page route | `/user/tenant` |
 | Managed objects | Tenant entities, business identities, status, roles, and tags |
-| Typical use | Query tenants, review tenant information, and manage tenant status and tags |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Tenants is the platform's directory of business entities. It maintains tenants, 
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Tenant | A business entity on the platform. | Confirm its unique identity before an action. |
-| Tenant administrator | The account responsible for tenant administration. | Verify it before contact or authorization. |
-| Tenant role | A permission set available to a tenant. | Confirm the impact before changing it. |
-| Tenant tag | A label used to classify tenants. | Use it for filtering and operations. |
+| Term | Description |
+| --- | --- |
+| Tenant | A business entity on the platform.; Confirm its unique identity before an action. |
+| Tenant administrator | The account responsible for tenant administration.; Verify it before contact or authorization. |
+| Tenant role | A permission set available to a tenant.; Confirm the impact before changing it. |
+| Tenant tag | A label used to classify tenants.; Use it for filtering and operations. |
 
 ## Prerequisites
 
@@ -52,6 +44,10 @@ The tenant list uses the tenant `Name` for display and search. Before opening an
 | Manage Tags | Maintains tenant tags. |
 | Create Tenant | Opens the tenant creation flow. |
 
+![Tenants](./images/manual-settings-operator-tenants.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenants page.
+
 ## Main Operations
 
 ### View Tenants
@@ -61,10 +57,20 @@ The tenant list uses the tenant `Name` for display and search. Before opening an
 3. Open details and check tenant status, members, roles, quota, and update time.
 4. If no record is returned, reset filters. Tenant information is organization-sensitive and must be redacted before screenshots or sharing.
 
-### Create Tenant
+![View Tenants](./images/manual-settings-operator-tenants.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenants page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Create a Tenant
 
 1. Go to `Settings > Tenants > Tenants`.
-2. Click `Create Tenant` in the upper-right corner of the page.
+2. Click **"Create Tenant"** in the upper-right corner of the page.
 3. On the `Create Tenant` page, review the tenant creation fields.
 
 ![Create Tenant](./images/tenant-create.png)
@@ -75,7 +81,49 @@ The tenant list uses the tenant `Name` for display and search. Before opening an
 7. Before final submission, verify the tenant name, administrator account, email, role, and initial password.
 8. For learning or screenshots only, view the fields without submitting real tenant configuration.
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Manage Tenant Tags
+
+1. Open `Settings > Tenants & Settings > Tenants`.
+2. Locate the target Tenants and click **"Manage Tags"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Manage Tenant Tags](./images/manual-settings-operator-tenants.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenants page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Manage Tenant Roles
+
+1. Open `Settings > Tenants & Settings > Tenants`.
+2. Locate the target Tenants and click **"Manage Roles"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Manage Tenant Roles](./images/manual-settings-operator-tenants.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenants page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -157,10 +205,33 @@ The tenant was not created, is disabled, or is outside the current operator acco
 
 Clear the tenant name, status, and region filters. Confirm the tenant creation record and status. If the tenant is still missing, ask a platform administrator to check tenant authorization.
 
-## Next Steps
+#### How should the Tenants page be exported or captured safely?
 
-1. To manage member permissions, go to [Members](../../members-roles/members/).
-2. To review tenant changes, go to [Operation Logs](../../activity-notifications/operation-logs/).
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Tenants page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
@@ -169,3 +240,8 @@ Clear the tenant name, status, and region filters. Confirm the tenant creation r
 - Creating a tenant creates a real tenant entity and a fixed administrator account.
 - Initial passwords, administrator emails, and phone numbers are sensitive information. Do not write them into documentation or screenshots.
 - Final submission is a high-risk action. Do not submit real tenant configuration during learning or screenshots.
+
+## Next Steps
+
+1. To manage member permissions, go to [Members](../../members-roles/members/).
+2. To review tenant changes, go to [Operation Logs](../../activity-notifications/operation-logs/).

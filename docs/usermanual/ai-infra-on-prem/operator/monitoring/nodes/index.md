@@ -1,34 +1,33 @@
-# Node Statistics
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Nodes
 
 ## Feature Overview
-
-`Node Statistics` is used to view node status, node role, resource utilization, heartbeat, and owning cluster, helping operators perform capacity inspections, locate exceptions, and make resource scheduling judgments.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Node Statistics |
-| Page route | `/powerone/monitor/node` |
-| Managed objects | Node status, node role, resource utilization, heartbeat, and owning cluster |
-| Typical use | Locate resource bottlenecks, offline nodes, and abnormal job distribution by node |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Nodes |
+| Page Route | `/powerone/monitor/node` |
+| Managed Object | Configuration, status, and relationships on Nodes |
 
 #### Beginner Explanation
 
 Node statistics are like a server inspection checklist. They show CPU, memory, disk, and status for each node, helping determine which machine an issue lands on.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Node Status | Whether a node is Ready, unschedulable, or abnormal. |
 | CPU Usage | Current CPU load of the node. |
 | Memory Usage | Node memory occupation. |
-| Disk Watermark | Space usage of system disk or data disk. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Node status, node role, resource utilization, heartbeat, and owning cluster, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Nodes, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,11 +38,15 @@ Node statistics are like a server inspection checklist. They show CPU, memory, d
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Nodes.
+
+![Nodes](./images/manual-monitoring-nodes.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 Node statistics are used to view CPU, memory, disk, and runtime status for each node. Operators can use it to locate NotReady nodes, high-watermark nodes, or machines with interrupted collection curves.
 
 The following figure shows the node statistics page.
-
-![Node Statistics](./images/nodes-list.png)
 
 ## Main Operations
 
@@ -78,7 +81,6 @@ The following figure shows the node statistics page.
 3. Select cluster, node, resource type, status, or time range filters as provided by the page.
 4. Review CPU, memory, accelerator, storage, network, and job-related statistics to identify high load, insufficient resources, or abnormal node status.
 5. If a node is abnormal, continue troubleshooting in Devices or Jobs monitoring pages, together with cluster statistics and scheduling events.
-6. For learning or screenshots only, view statistic cards, charts, filters, and lists without modifying any configuration.
 
 ![View node statistics](./images/node-statistics.png)
 
@@ -88,7 +90,7 @@ The following figure shows the node statistics page.
 - Whether single-node resources are close to full load.
 - Whether abnormal nodes are concentrated in the same cluster or availability zone.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -114,66 +116,113 @@ The following figure shows the node statistics page.
 - Node exceptions should be investigated together with clusters, devices, jobs, scheduling events, and node logs.
 - Do not write real node names, node IPs, device IDs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Node status and metrics | The node list shows node name, status, and key resource metrics. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Status consistency | Node status corresponds to cluster health and job scheduling results. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Collection time | The metric update time indicates whether collection is delayed. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - **Node status before resource watermarks**: When a node is NotReady, unschedulable, or collection is abnormal, handle the status problem first.
 - **Disk pressure affects job stability**: High disk watermark may cause image pull, log write, or temporary file creation failures.
 - **Single-node exception can cause local queueing**: Scheduling failure is not necessarily overall cluster capacity shortage. It may be caused by target node labels or taint restrictions.
 - **Metric delay requires event judgment**: When node metrics are delayed, also view cluster events and job failure reasons.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page load | Nodes charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
+
 ## FAQ
 
-#### Node Status Is Abnormal
+#### No Data on Nodes
 
 **Symptom:**
 
-The node is displayed as unavailable, offline, or resource data is not updated for a long time.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- Node kubelet or container runtime is abnormal.
-- The link from node to platform or monitoring collection is unreachable.
-- The node is under maintenance, isolated, or has hardware failure.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. Go to the cluster node page to view node details.
-2. Check kubelet, container runtime, and monitoring collection components.
-3. Confirm whether the node is under maintenance or isolated.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Page List Is Empty
+#### Nodes Is Not Updating
 
 **Symptom:**
 
-No monitoring records or charts are visible after entering the page.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- Filters limit the result scope.
-- The target region does not yet have related resources or job data.
-- The current account has no view permission for this monitoring object.
-- Monitoring collection data has not been reported.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Click reset to clear filters.
-2. Confirm whether the region in the upper-right corner is correct.
-3. Go to resource pool or job pages to confirm whether objects exist.
-4. Contact the platform administrator to check permissions and collection links.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Nodes Differs from Adjacent Pages
 
-1. When a node is NotReady, check cluster events and node status.
-2. When resources have high watermarks, locate the instances or jobs occupying resources.
-3. When accelerators are involved, continue viewing device monitoring.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
@@ -182,3 +231,9 @@ No monitoring records or charts are visible after entering the page.
 - Before node maintenance, confirm impact on running tasks and mounted storage.
 - Before fault judgment, cross-check with cluster statistics, device monitoring, job monitoring, scheduling events, and node logs.
 - Documentation examples must not include real node names, node IPs, device IDs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data.
+
+## Next Steps
+
+1. When a node is NotReady, check cluster events and node status.
+2. When resources have high watermarks, locate the instances or jobs occupying resources.
+3. When accelerators are involved, continue viewing device monitoring.

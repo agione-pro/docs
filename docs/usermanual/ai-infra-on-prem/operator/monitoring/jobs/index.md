@@ -1,34 +1,33 @@
-# Job Monitoring
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Jobs
 
 ## Feature Overview
-
-`Job Monitoring` is used to view model instances, online IDEs, runtime instances, training tasks, and historical jobs, helping operators perform capacity inspections, locate exceptions, and make resource scheduling judgments.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Job Monitoring |
-| Page route | `/powerone/monitor/work` |
-| Managed objects | Model instances, online IDEs, runtime instances, training tasks, and historical jobs |
-| Typical use | Locate queueing, failures, high resource consumption, and long-running issues by job |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Jobs |
+| Page Route | `/powerone/monitor/work` |
+| Managed Object | Configuration, status, and relationships on Jobs |
 
 #### Beginner Explanation
 
 Job monitoring is like a task queue and execution list. It shows training, inference, or development task status, queueing reasons, runtime duration, and resource occupation.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Job Status | Queued, running, succeeded, failed, or canceled. |
 | Queueing Reason | Reason the job cannot start due to insufficient resources, quota limits, or scheduling constraints. |
 | Runtime Duration | Duration from job startup to the current time. |
-| Failure Information | Error summary or event when a job fails. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Model instances, online IDEs, runtime instances, training tasks, and historical jobs, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Jobs, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,11 +38,15 @@ Job monitoring is like a task queue and execution list. It shows training, infer
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Jobs.
+
+![Jobs](./images/manual-monitoring-jobs.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 Job monitoring is used to view job queueing, running status, failure causes, and resource occupation. Operators can use it to analyze insufficient resources, image pull failures, startup exceptions, or long-running tasks.
 
 The following figure shows the job monitoring page.
-
-![Job Monitoring](./images/jobs-list.png)
 
 ## Main Operations
 
@@ -78,7 +81,6 @@ The following figure shows the job monitoring page.
 3. Select job status, tenant/user, cluster, resource type, or time range filters as provided by the page.
 4. Review queue duration, runtime duration, GPU/accelerator occupation, failure information, and event entrypoints to identify long queueing, startup failures, insufficient resources, or abnormal occupation.
 5. If a job is abnormal, continue to job details and troubleshoot together with events, logs, image pull, startup command, storage mount, node status, and device status.
-6. For learning or screenshots only, view statistic cards, charts, filters, and lists without terminating, restarting, or modifying any configuration.
 
 ![View job monitoring](./images/job-monitoring.png)
 
@@ -88,7 +90,7 @@ The following figure shows the job monitoring page.
 - Whether long-running jobs occupy critical resources.
 - Whether job tenant, specification, image, and cluster match expectations.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -115,73 +117,126 @@ The following figure shows the job monitoring page.
 - Job exceptions should be investigated together with events, logs, image pull, startup command, storage mount, node status, and device status.
 - Long-running or high-resource jobs are not necessarily abnormal. Judge together with business expectations, tenant quotas, and model specifications.
 - Do not write real job IDs, instance names, image addresses, data paths, log contents, tenant information, node names, cluster IDs, resource pool IDs, internal metric keys, or test data in the document.
-- `Terminate`, `Restart`, and `Delete` are high-risk actions. Do not click them during learning or screenshots.
+- `Terminate`, `Restart`, and `Delete` are high-risk actions. Confirm the scope and impact before executing the final action.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Job status and resource usage | The job list shows ID, status, queue duration, runtime duration, and resource usage. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Failure details | A failed job provides an error summary or event entry point. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Filtered statistics | Statistics change accordingly after filtering by tenant, cluster, or time range. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - **For queueing, check resources and scheduling conditions first**: Queueing is not necessarily a platform fault. It may be caused by specification, labels, quotas, or cluster capacity limits.
 - **Use events with failure information**: Error codes and events can distinguish image, storage, startup command, permission, and insufficient resource issues.
 - **Runtime duration helps discover stuck tasks**: Long-running tasks should be judged together with logs, resource utilization, and business expectations.
 - **Resource occupation affects other users**: When large jobs are submitted intensively, monitor tenant quotas and cluster watermarks at the same time.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page load | Jobs charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
+
 ## FAQ
 
-#### Job Remains Queued for a Long Time
+#### No Data on Jobs
 
 **Symptom:**
 
-In job monitoring, a task remains queued or scheduling for a long time.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- Target specification resources are insufficient.
-- Quota is insufficient or template constraints are too strict.
-- Image pull, storage mount, or node scheduling conditions are not satisfied.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. View job details and events.
-2. Check remaining resources in clusters, nodes, and devices.
-3. Verify tenant quota, image address, and storage mount.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Page List Is Empty
+#### Jobs Is Not Updating
 
 **Symptom:**
 
-No monitoring records or charts are visible after entering the page.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- Filters limit the result scope.
-- The target region does not yet have related resources or job data.
-- The current account has no view permission for this monitoring object.
-- Monitoring collection data has not been reported.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Click reset to clear filters.
-2. Confirm whether the region in the upper-right corner is correct.
-3. Go to resource pool or job pages to confirm whether objects exist.
-4. Contact the platform administrator to check permissions and collection links.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Jobs Differs from Adjacent Pages
 
-1. For queueing issues, verify quotas, specifications, and cluster capacity.
-2. For failure issues, verify images, startup commands, storage, and events.
-3. For long-running tasks, enter usage and monitoring pages to evaluate consumption.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
 - Job names, image addresses, data paths, and log contents may contain sensitive information.
 - Before terminating a job, confirm business impact and output file retention policy.
 - High-frequency failed jobs should be reviewed through templates or images.
-- `Terminate`, `Restart`, and `Delete` affect real jobs. Do not click them during learning or screenshots.
+- `Terminate`, `Restart`, and `Delete` affect real jobs. Confirm the scope and impact before executing the final action.
 - Documentation examples must not include real job IDs, instance names, image addresses, data paths, log contents, tenant information, node names, cluster IDs, resource pool IDs, internal metric keys, or test data.
+
+## Next Steps
+
+1. For queueing issues, verify quotas, specifications, and cluster capacity.
+2. For failure issues, verify images, startup commands, storage, and events.
+3. For long-running tasks, enter usage and monitoring pages to evaluate consumption.

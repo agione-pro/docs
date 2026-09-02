@@ -1,21 +1,13 @@
 # Members
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Members` is used to view and manage operator members. You can filter by username or phone number, review each member's role and status, and add, edit, reset the password for, or delete a member.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator |
 | Navigation path | Settings > Members & Roles > Members |
 | Page route | `/user/user-space/team-members` |
 | Managed objects | Members, roles, status, and contact information |
-| Typical use | Query members, add members, and review member roles and status |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Operator members are the platform-console duty roster. They determine who can en
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Operator member | A member with access to platform administration functions. | Assign a role based on job responsibilities. |
-| Platform role | A role that controls which operator modules a member can manage. | Do not grant more permission than required. |
-| Member status | Indicates whether a member is enabled, disabled, or pending activation. | Check status first when login fails. |
-| Management scope | The tenants or system settings visible to a member. | Confirm the scope during troubleshooting. |
+| Term | Description |
+| --- | --- |
+| Operator member | A member with access to platform administration functions.; Assign a role based on job responsibilities. |
+| Platform role | A role that controls which operator modules a member can manage.; Do not grant more permission than required. |
+| Member status | Indicates whether a member is enabled, disabled, or pending activation.; Check status first when login fails. |
+| Management scope | The tenants or system settings visible to a member.; Confirm the scope during troubleshooting. |
 
 ## Prerequisites
 
@@ -49,6 +41,10 @@ The following screenshot shows the Members page. Phone numbers and email address
 | Add Member | Opens the member creation flow. |
 | Member table | Shows username, name, phone number, email, role, status, creation time, and actions. |
 
+![Members](./images/manual-settings-operator-members.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
+
 ## Main Operations
 
 ### View Members
@@ -58,21 +54,20 @@ The following screenshot shows the Members page. Phone numbers and email address
 3. Open member details and check the tenant, roles, status, and latest update time.
 4. If no record is returned, reset filters and check the tenant context. Avoid screenshots or sharing when personal information is displayed.
 
+![View Members](./images/manual-settings-operator-members.png)
 
-Use the following operations to work with members records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
 
-### Manage Members
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Add a Member
 
 1. Go to `Settings > Members & Roles > Members`.
-2. Use filters or tabs to locate the target record.
-3. Select the target row or entry related to members records and related status.
-4. Click the visible `Manage Members` entry when it is available.
-5. Before confirming any high-risk dialog, review the affected scope, amount, permission, or configuration and cancel if the impact is unclear.
-
-### Add Member
-
-1. Go to `Settings > Members & Roles > Members`.
-2. Click `Add Member` in the upper-right corner of the page.
+2. Click **"Add Member"** in the upper-right corner of the page.
 3. In the `Add Member` dialog, review the member creation fields.
 
 ![Add Member](./images/add-member.png)
@@ -82,9 +77,33 @@ Use the following operations to work with members records and related status. Co
 6. Select a member role from `Role`.
 7. Select `Enable` or `Disable` in `Status`.
 8. Before clicking the final `Confirm`, verify the member identity, role permissions, and enabled status.
-9. For learning or screenshots only, view the fields and click `Cancel` to close the dialog without submitting real member configuration.
+9. For learning or screenshots only, view the fields and click **"Cancel"** to close the dialog without submitting real member configuration.
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit a Member
+
+1. Open `Settings > Members & Roles > Members`.
+2. Locate the target Members and click **"Edit"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Edit a Member](./images/manual-settings-operator-members.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -162,10 +181,33 @@ The current account is not in the platform administration tenant, the members be
 
 Confirm that you are using the operator entry and verify the platform tenant and administrator role. Ask a super administrator to grant operator-member access when required.
 
-## Next Steps
+#### How should the Members page be exported or captured safely?
 
-1. To adjust role permissions, go to [Roles](../roles/).
-2. To review member actions, go to [Operation Logs](../../activity-notifications/operation-logs/).
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Members page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
@@ -174,3 +216,8 @@ Confirm that you are using the operator entry and verify the platform tenant and
 - `Confirm` is the final submit action. Before adding a member, verify the member identity, role permissions, and enabled status.
 - For learning or screenshots only, open the dialog to view fields and use `Cancel` to exit.
 - Do not write real phone numbers, emails, usernames, user IDs, passwords, customer names, or internal test data in documentation.
+
+## Next Steps
+
+1. To adjust role permissions, go to [Roles](../roles/).
+2. To review member actions, go to [Operation Logs](../../activity-notifications/operation-logs/).

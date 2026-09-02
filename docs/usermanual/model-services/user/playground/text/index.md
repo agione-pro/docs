@@ -9,14 +9,14 @@ Updated: 2026-08-31
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers and Model Consumers |
+| Applicable Roles | Model Provider, Model Consumer |
 | Navigation Path | Model Services > Playground > Text |
 | Page Route | `/modelone/exploration/chat` |
 | Managed Objects | Text models, prompts, generation parameters, and responses |
 
 #### Beginner Explanation
 
-The Text playground works like a model test bench. Select an available text model and provider, enter the input, adjust parameters, and use the result or error message to decide whether to continue with integration.
+The Text playground is a place to try a text model. Select a text model and provider from the selector, enter the input, adjust parameters, and review the result or error message before integration.
 
 #### Terminology
 
@@ -56,7 +56,7 @@ This page is used to try text models. The current page exposes a model selector,
 
 Page screenshots:
 
-![Text page](./images/text-list.png)
+![Text page](./images/text-list-public.png)
 
 Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
 
@@ -69,13 +69,13 @@ Focus on the model, input area, parameter entry, and submit button. Verify the i
 3. Fill in the Prompt input box with a question, context, or other input content.
 4. Select `More settings` and view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `Stream`, and other parameters as needed.
 5. Before clicking the send button, verify the input content, model, provider, key, and parameters.
-6. For page validation only, do not submit a real call request. You can view only the fields, parameter area, and history/response area.
+6. Before clicking **"Send"**, verify the model, Personal Key, input, parameters, and expected usage. The request creates a call record and can consume credits.
 
-![Select text model](./images/manual-select-text-model.png)
+![Select text model](./images/manual-select-text-model-public.png)
 
-The image shows the model selector. Compare provider capability, price, performance, and availability.
+The image shows the model selector. Compare provider capability, price, performance, and status.
 
-![text model selection reference](./images/select-model.png)
+![text model selection reference](./images/select-model-public.png)
 
 This image provides an additional view of model selection and instance information.
 
@@ -86,7 +86,7 @@ This image provides an additional view of model selection and instance informati
 3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
 4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
 
-![Configure text generation](./images/manual-configure-text.png)
+![Configure text generation](./images/manual-configure-text-public.png)
 
 The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
 
@@ -94,8 +94,8 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model | Yes | Dropdown | `DeepSeek-V4-Flash` | Text model currently being tried. The initial selection can vary by account and availability. |
-| Provider | Yes | Dropdown | `Alibaba-china` | Provider instance of the current model. |
+| Model | Yes | Dropdown | `Example Text Model` | Text model currently being tried. The initial selection can vary by account. |
+| Provider | Yes | Dropdown | `Example Provider` | Provider instance of the current model. |
 | Prompt | Yes | Multiline text | `Summarize this text` | Prompt, question, or context input to the model. |
 | Protocol | No | Dropdown | `openai/chat_completions` | Protocol used by the current call. |
 | Temperature | No | Number / Slider | `0.7` | Controls output randomness. Higher values are more divergent. |
@@ -107,7 +107,7 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 ## Pitfalls
 
 - Do not set both Temperature and Top-P too high.
-- If Max Tokens is too small, answers may be truncated; if too large, costs may increase.
+- If Max Tokens is too small, answers may be truncated. If it is too large, costs may increase.
 - Do not enter real keys or customer privacy in Prompts.
 - Sending a prompt creates call records and may consume credits or generate billing records. Verify expected usage and billing scope before submission.
 
@@ -115,10 +115,10 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Text` page opens normally, and the left Playground menu, top model selector, `Model Compare`, and `More settings` controls are visible. | Check account permissions, navigation path, and page loading status. |
+| Page is accessible | The `Text` page opens, and the left Playground menu, top model selector, `Model Compare`, and `More settings` controls are visible. | Check account permissions, navigation path, and page loading status. |
 | Model selector loads | The model selector can be opened and shows model list, provider instances, and status information. | Refresh the page and retry, or confirm whether the target model is visible to the current account. |
 | Input and parameter areas are visible | Prompt input box, `More settings`, Protocol, Temperature, Top-P, N, Stream, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
-| History or response area is visible | The page can display conversation history, response content, error messages, or an empty state. | If there is no history, the input area should still be displayed normally. |
+| History or response area is visible | The page shows conversation history, response content, an error message, or an empty state. | If there is no history, confirm that the input area remains visible. |
 | Real call returns a response | When a call is explicitly allowed, the page returns a text response related to the Prompt. | Shorten the Prompt, lower parameters, and check error messages or call logs. |
 
 ## FAQ
@@ -153,7 +153,7 @@ The request cannot be submitted after input is entered.
 **Resolution:**
 
 1. Select the model and Personal Key again.
-2. Complete fields indicated by the page.
+2. Complete the required fields marked on the page.
 
 #### Generation Fails or Times Out
 

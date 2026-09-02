@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`Monthly Overview` is used to review monthly billing cycles, tenant settlement status, monthly gross flow, payable amounts, platform retained fee, revenue mix, and pending settlement tasks. Operators use this page to decide whether settlement statements can be generated or whether exceptions need follow-up first.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Finance Operations > Monthly Overview |
 | Page route | `/billing/admin/provider-settlements/monthly-overview` |
 | Managed objects | Billing cycle, tenant settlement status, monthly revenue mix, and pending tasks |
-| Typical use | Review monthly settlement progress, identify settlement statements to generate, and verify revenue mix |
+
+`Monthly Overview` is used to review monthly billing cycles, tenant settlement status, monthly gross flow, payable amounts, platform retained fee, revenue mix, and pending settlement tasks. Operators use this page to decide whether settlement statements can be generated or whether exceptions need follow-up first.
+
 
 #### Beginner Explanation
 
@@ -66,27 +66,37 @@ The following screenshot shows monthly overview list.
 3. Check pending settlement count, amount due, anomaly count, and data refresh time.
 4. If no data is shown, check the billing period and settlement job status. Redact amounts before screenshots or exports.
 
-
 Use the following operations to work with monthly overview records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+
+![Monthly Overview - View Monthly Close Scope](./images/manual-billing-monthly-overview-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Monthly Overview
 
 1. Go to `Billing > Finance Operations > Monthly Overview`.
 2. Select the target month in `Billing Cycle` and confirm the billing-cycle scope.
-3. Click `Refresh` and wait for statistics and task lists to update.
+3. Click **"Refresh"** and wait for statistics and task lists to update.
 4. Review billing-cycle statistic cards, especially `Tenant Total`, `Settled`, `Pending Tenants`, and `Failed`.
 5. Review the revenue mix area, including `Platform Retained Fee`, `Self-operated Revenue`, and total statistical revenue.
 6. Review task counts such as `To generate`, `To advance`, and `Long unresolved`.
-7. For learning or screenshots only, view the billing cycle, statistic cards, and task list without clicking `Generate Settlement`.
+
+![Monthly Overview - View Monthly Overview](./images/manual-billing-monthly-overview-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Generate Settlement
 
 1. Confirm that `Billing Cycle` is correct.
 2. Review the To Generate count in the task list.
-3. Click `Generate Settlement`.
+3. Click **"Generate Settlement"**.
 4. Open [Settlement List](../settlement-list/) to view the generated settlement page.
 
-## Parameter Reference
+![Monthly Overview - Generate Settlement](./images/manual-billing-monthly-overview-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -169,17 +179,35 @@ Use the following operations to work with monthly overview records and related s
 **Resolution:**
 
 1. Use the same billing period and status filters on both pages.
-2. Click `Refresh` in Monthly Overview.
+2. Click **"Refresh"** in Monthly Overview.
 3. If the difference remains, open Reconciliation Center and check background tasks or exceptions.
+
+
+#### When Is Monthly Overview Ready for Settlement?
+
+**Symptom:**
+
+Monthly Overview shows data, but it is unclear whether settlement generation can continue.
+
+**Possible causes:**
+
+- Billing-cycle statistics are not complete.
+- Today Tasks or Reconciliation Center still has blocking exceptions.
+
+**How to handle:**
+
+1. Confirm the target billing cycle, update time, and statistics status.
+2. Check high-priority items in Today Tasks.
+3. Refresh Reconciliation Center and confirm that no blocking exception remains.
+4. Enter settlement generation only after all checks pass.
+## Notes
+
+- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
+- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
+- Do not record real billing-cycle amounts, tenants, tenants, customer names, settlement statement numbers, internal transaction numbers, or approval information in the manual, screenshots, notes, or tickets.
 
 ## Next Steps
 
 1. Review related billing records, transactions, settlement statements, and account balance changes.
 2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
 3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
-
-## Notes
-
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Do not record real billing-cycle amounts, tenants, tenants, customer names, settlement statement numbers, internal transaction numbers, or approval information in the manual, screenshots, notes, or tickets.

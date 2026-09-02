@@ -1,21 +1,13 @@
 # Quota Requests
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Quota Requests` is used to submit quota requests and review request and adjustment records. You can filter by status, member, reason, or request ID.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin |
+| Applicable Role | Model Consumer |
 | Navigation path | Settings > Members & Roles > Quota Requests |
 | Page route | `/user/user-space/quota-requests` |
 | Managed objects | Quota requests, request records, adjustment records, status, and request reasons |
-| Typical use | Submit quota requests and review request progress and adjustment records |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Quota Requests is the ticket entry for member quota. It is used to submit and tr
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Quota request | A record that requests additional member or project quota. | Explain the intended use before submission. |
-| Request status | The current processing stage of a request. | Contact the approver when it does not change for a long time. |
-| Requested quota | The amount requested in this submission. | Do not request more than the business needs. |
-| Approval comment | The approver's processing note. | If rejected, revise the request according to the comment. |
+| Term | Description |
+| --- | --- |
+| Quota request | A record that requests additional member or project quota.; Explain the intended use before submission. |
+| Request status | The current processing stage of a request.; Contact the approver when it does not change for a long time. |
+| Requested quota | The amount requested in this submission.; Do not request more than the business needs. |
+| Approval comment | The approver's processing note.; If rejected, revise the request according to the comment. |
 
 ## Prerequisites
 
@@ -47,6 +39,10 @@ Quota Requests is the ticket entry for member quota. It is used to submit and tr
 | Adjustment record columns | Time, member, event type, change, operator, and note |
 | High-risk action | Submitting a quota request |
 
+![Quota Requests](./images/manual-settings-user-quota-requests.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Quota Requests page.
+
 ## Main Operations
 
 ### View Quota Requests
@@ -56,15 +52,34 @@ Quota Requests is the ticket entry for member quota. It is used to submit and tr
 3. Check requested quota, current quota, reason, status, and processing time.
 4. If no record is returned, reset filters and check the time range. Request and quota information must be redacted before sharing.
 
-### View Request Details and Processing History
+![View Quota Requests](./images/manual-settings-user-quota-requests.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Quota Requests page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### View Quota Request Details
 
 1. Click **"Details"** for the target request.
 2. Review the reason, quota change, attachments or comments, and processing history.
 3. Check that the current status matches the list. If not, refresh and determine whether another processor acted on it.
 4. Do not submit, withdraw, approve, or reject requests during read-only validation.
 
+![View Quota Request Details](./images/manual-settings-user-quota-requests.png)
 
-### Manage Quota Requests
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Quota Requests page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Submit a Quota Request
 
 1. Go to `Settings > Members & Roles > Quota Requests`.
 2. On `Request Records`, review pending, approved, rejected, canceled, and expired requests.
@@ -82,7 +97,13 @@ The following screenshot shows the Request Quota dialog.
 
 ![Request Quota](./images/request-quota.png)
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -154,12 +175,40 @@ The current account lacks request or approval permission, an existing request is
 
 Check for pending records, then verify the current role and request status. An authorized approver must perform approval actions.
 
-## Next Steps
+#### How should the Quota Requests page be exported or captured safely?
 
-1. After approval, return to Overview or Member Quotas to verify the quota.
-2. Review request actions in Operation Logs.
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Quota Requests page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
 - Do not include customer-sensitive data, Keys, tokens, or passwords in the request reason.
 - Do not submit duplicate requests for the same purpose.
+
+## Next Steps
+
+1. After approval, return to Overview or Member Quotas to verify the quota.
+2. Review request actions in Operation Logs.

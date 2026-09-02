@@ -1,21 +1,13 @@
 # Tenant Settings
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Tenant Settings` maintains global defaults for a provider tenant, including credit-balance alerts, project defaults, member quota defaults, and quota request settings.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Role or Provider Account |
+| Applicable Role | Model Consumer |
 | Navigation path | Settings > Tenants & Settings > Tenant Settings |
 | Page route | `/user/user-space/settings` |
 | Managed objects | Credit-balance alerts, project defaults, member quota policy, and tenant-level defaults |
-| Typical use | Maintain tenant defaults and quota-alert configuration |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Tenant Settings is the tenant default-rule panel. It defines the initial policy 
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Tenant Settings | The entry for tenant-level default configuration. | Confirm the applicable scope before changing it. |
-| Default rule | A rule inherited when a new object is created. | It does not necessarily update existing objects. |
-| Tenant context | The tenant that owns the current settings. | Confirm it before switching tenant scope. |
-| Member default policy | The initial rule applied when a new member joins. | Verify it with a new member after a change. |
+| Term | Description |
+| --- | --- |
+| Tenant Settings | The entry for tenant-level default configuration.; Confirm the applicable scope before changing it. |
+| Default rule | A rule inherited when a new object is created.; It does not necessarily update existing objects. |
+| Tenant context | The tenant that owns the current settings.; Confirm it before switching tenant scope. |
+| Member default policy | The initial rule applied when a new member joins.; Verify it with a new member after a change. |
 
 ## Prerequisites
 
@@ -50,24 +42,30 @@ The following screenshot shows quota request settings.
 
 ![Quota request settings](./images/org-quota-request-settings.png)
 
+![Tenant Settings](./images/manual-settings-user-org-settings.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenant Settings page.
+
 ## Main Operations
 
-### View Current Tenant Defaults
+### View Tenant Settings
 
 1. Go to `Settings > Tenants and Settings > Tenant Settings`.
 2. Review organization information, quota-request settings, project defaults, and member-quota defaults.
 3. Record the current state and confirm that each setting applies to the current tenant.
 4. If information is missing, refresh and check administrative permission. Hide organization identifiers and quota before screenshots or sharing.
 
-### Verify Setting Changes
+![View Tenant Settings](./images/manual-settings-user-org-settings.png)
 
-1. After an approved change, reopen Tenant Settings.
-2. Compare switches, defaults, and update time with the change record.
-3. Before creating a project or member, confirm that the new defaults take effect as expected.
-4. If not applied, check the save message, permission, and cache. Do not submit repeatedly.
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenant Settings page.
 
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
 
-### Manage Tenant Settings
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Tenant Settings
 
 1. Go to `Tenants & Settings > Tenant Settings`.
 2. On `Credit Balance Alert`, configure the alert threshold.
@@ -96,7 +94,30 @@ The following screenshot shows Quota Request Settings.
 
 6. After reviewing all tabs, select `Save Settings`.
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Verify Tenant Settings
+
+1. After an approved change, reopen Tenant Settings.
+2. Compare switches, defaults, and update time with the change record.
+3. Before creating a project or member, confirm that the new defaults take effect as expected.
+4. If not applied, check the save message, permission, and cache. Do not submit repeatedly.
+
+![Verify Tenant Settings](./images/manual-settings-user-org-settings.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenant Settings page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -166,13 +187,41 @@ The current account lacks Tenant Settings permission, an upstream platform manag
 
 Verify Tenant Settings permission and configuration source. Ask the platform operator to change managed configuration, or wait until approval finishes.
 
-## Next Steps
+#### How should the Tenant Settings page be exported or captured safely?
 
-1. Create a new project to verify Project Defaults.
-2. Add a new member to verify Member Quota Defaults.
-3. Review Quota Requests to verify request rules.
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Tenant Settings page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
 - Saving settings affects later tenant-management flows. Confirm each value first.
 - `Reset to Defaults` overwrites the current page values. Confirm whether they must be retained before resetting.
+
+## Next Steps
+
+1. Create a new project to verify Project Defaults.
+2. Add a new member to verify Member Quota Defaults.
+3. Review Quota Requests to verify request rules.

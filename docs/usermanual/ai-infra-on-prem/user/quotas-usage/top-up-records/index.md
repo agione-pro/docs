@@ -1,42 +1,33 @@
-# Top-Up Records
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Top-up Records
 
 ## Feature Overview
 
-`Top-Up Records` is used to view the current tenant's credit top-up history, including granted amount, value amount, source, acquisition method, third-party serial number, and top-up time.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Top-Up Records |
-| Page route | `/powerone/quota-usage/top-up-history` |
-| Managed objects | Credit top-up records, source, acquisition method, third-party serial number, and top-up time |
-| Typical use | View top-up history for tenant credits or balance, and reconcile credit source and arrival |
+| Applicable Role | Model Provider and Model Consumer |
+| Navigation Path | AI Infra(On-Prem) > Quotas & Usage > Top-up Records |
+| Page Route | `/powerone/quota-usage/top-up-history` |
+| Managed Object | Configuration, status, and relationships on Top-up Records |
 
 #### Beginner Explanation
 
 Top-up records are like the transaction history of a credit wallet, used to view the time, quantity, and status of each top-up, deduction, or adjustment.
 
-#### First-Time Flow
-
-1. Go to `Quota & Usage > Top-Up Records`.
-2. Search for target records by conditions.
-3. View granted amount, source, and time.
-4. If there is no data, confirm whether the current tenant has had top-ups or grants.
-5. During reconciliation, use external payment or approval records together.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Granted Amount | Amount of credits granted to the account by the platform. |
 | Value Amount | Value amount corresponding to the credits. |
 | Source | Credit source, such as manual grant, campaign, or external system. |
-| Third-Party Serial Number | Serial identifier in an external payment or business system. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Credit top-up records, source, acquisition method, third-party serial number, and top-up time, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Top-up Records, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -46,9 +37,15 @@ Top-up records are like the transaction history of a credit wallet, used to view
 
 ## Page Description
 
-The page provides search, reset, and top-up record tables. In the screenshot, the list is empty, indicating no top-up records under the current conditions.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Top-Up Records](./images/top-up-records-list.png)
+Use this page to view and handle Configuration, status, and relationships on Top-up Records.
+
+![Top-up Records](./images/top-up-records-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The page provides search, reset, and top-up record tables. In the screenshot, the list is empty, indicating no top-up records under the current conditions.
 
 #### Page Areas
 
@@ -78,7 +75,6 @@ The page provides search, reset, and top-up record tables. In the screenshot, th
 3. The top-up status and quota change should be traceable. If not, check refresh time and posting status.
 4. Do not create another top-up or quota adjustment to test an anomaly.
 
-
 ### Query Top-Up Records
 
 #### Applicable Scenario
@@ -94,11 +90,11 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 
 1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Top-Up Records`.
 2. Enter query conditions.
-3. Click `Search`.
+3. Click **"Search"**.
 4. View records in the table.
-5. To restore the default list, click `Reset`.
+5. To restore the default list, Click **"Reset"**.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -111,55 +107,121 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 
 ## Pitfalls
 
-- When there is no data, click `Reset` first to exclude filter impact.
+- When there is no data, Click **"Reset"** first to exclude filter impact.
 - Top-up records are used for reconciliation and do not mean resource quotas have been adjusted.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Top-up record | The amount, source, and time in the record match expectations. | Check the resource type, time range, credit balance, and consumption details. |
-| Third-party serial number | The serial number matches the external system. | Check the resource type, time range, credit balance, and consumption details. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - Top-up records only reflect credit changes and do not reflect resource quotas such as GPU or CPU.
 - Credit arrival and resource quota adjustment are different concepts.
 - During reconciliation, retain external serial numbers and times.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page entry | Top-up Records opens with filters or statistics | Check menu permission, current business identity, and tenant scope |
+| Data scope | Lists or statistics match the selected time, region, and object | Reset filters and verify time boundaries, time zone, and aggregation scope |
+| Data update | Update time or latest record matches the expected cycle | Check whether the source job, metering, or quota record has been generated |
+| Cross-check | Configuration, status, and relationships on Top-up Records matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
+
 ## FAQ
 
-#### Top-Up Records Are Empty
+#### No Records on Top-up Records
 
-**Symptom:** The page shows No Data.
+**Symptom:**
+
+The page opens, but lists or statistics are empty.
 
 **Possible Causes:**
 
-- The current tenant has no top-up records.
 - Filters are too narrow.
-- The account has no permission to view historical records.
+- source records are not generated.
+- the role cannot see them.
 
 **Solution:**
 
-1. Click `Reset`.
-2. Confirm the current tenant.
-3. Contact the operator to verify credit grant records.
+1. Reset filters
+2. verify the source job or metering cycle
+3. check business identity and tenant scope.
 
-#### Resources Still Cannot Be Created After Top-Up Arrives
+#### Top-up Records Shows the Wrong Scope
 
-**Symptom:** There are top-up records, but instance creation still fails.
+**Symptom:**
+
+Data does not belong to the expected time, region, or object.
 
 **Possible Causes:**
 
-- Credits and resource quotas are not the same item.
-- Underlying cluster resources are insufficient.
-- Target specification is not opened.
+- Time boundaries differ.
+- the region filter did not apply.
+- ownership changed.
 
 **Solution:**
 
-1. View `Resource Quotas`.
-2. Confirm the instance creation error.
-3. Contact the operator to adjust resource quotas or specifications.
+1. Select time and region again
+2. verify object identifiers
+3. confirm ownership in source details.
+
+#### Top-up Records Is Delayed
+
+**Symptom:**
+
+A source operation completed, but its record is not visible.
+
+**Possible Causes:**
+
+- Aggregation is not complete.
+- the page is cached.
+- source state is still processing.
+
+**Solution:**
+
+1. Verify source state
+2. wait one aggregation cycle and refresh
+3. inspect the processing task if delay persists.
+
+#### Details or Download Is Unavailable
+
+**Symptom:**
+
+The details, expand, or download entry is disabled.
+
+**Possible Causes:**
+
+- The record does not support it.
+- role permission is insufficient.
+- the file is not generated.
+
+**Solution:**
+
+1. Select an eligible record
+2. check role permission
+3. confirm the statistics or export task is complete.
+
+#### Summary and Details Do Not Match
+
+**Symptom:**
+
+The summary differs from the total of individual records.
+
+**Possible Causes:**
+
+- Periods differ.
+- values are rounded.
+- some records are still processing.
+
+**Solution:**
+
+1. Align period and time zone
+2. compare by object
+3. wait for pending records and check again.
+
+## Notes
+
+- Top-up records involve credits and settlement information. Do not display complete screenshots in public channels.
+- After a record takes effect, the balance may still change due to metering deductions. View usage at the same time.
+- During reconciliation, use record ID and time range. Do not leak internal accounts or business contract information.
 
 ## Next Steps
 
@@ -167,9 +229,3 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 2. When abnormal deductions are found, troubleshoot together with usage records and operator metering details.
 3. For reconciliation, export or record top-up transactions by time range.
 4. When contacting the operator, provide record ID, time, change quantity, and a screenshot of current credits.
-
-## Notes
-
-- Top-up records involve credits and settlement information. Do not display complete screenshots in public channels.
-- After a record takes effect, the balance may still change due to metering deductions. View usage at the same time.
-- During reconciliation, use record ID and time range. Do not leak internal accounts or business contract information.

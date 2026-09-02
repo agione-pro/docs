@@ -1,21 +1,13 @@
 # Platform Settings
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-10
-:::
-
 ## Feature Overview
-
-`Platform Settings` is used to maintain platform-level configuration, including General Settings, Provider Relationship, Currency Settings, Payment Channels, Account & Settlement, Email Settings, and UI Configuration.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator |
 | Navigation path | Settings > System Settings > Platform Settings |
 | Page route | `/user/system/platform-settings/config` |
 | Managed objects | General configuration, provider relationships, currency settings, payment channels, accounts and settlement, email, and UI configuration |
-| Typical use | Review and maintain platform-level configuration |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Platform Settings is the global parameter panel. It controls basic platform beha
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Platform configuration | A system parameter that affects global behavior. | Confirm the scope before changing it. |
-| Provider relationship | Configuration that defines a relationship between the platform and a provider. | Confirm business ownership before changing it. |
-| Currency settings | Currency rules used for amount display and settlement. | Verify them before a billing change. |
-| Email settings | Configuration for notifications and verification-code delivery. | Compare it with Login Properties during troubleshooting. |
+| Term | Description |
+| --- | --- |
+| Platform configuration | A system parameter that affects global behavior.; Confirm the scope before changing it. |
+| Provider relationship | Configuration that defines a relationship between the platform and a provider.; Confirm business ownership before changing it. |
+| Currency settings | Currency rules used for amount display and settlement.; Verify them before a billing change. |
+| Email settings | Configuration for notifications and verification-code delivery.; Compare it with Login Properties during troubleshooting. |
 
 ## Prerequisites
 
@@ -54,22 +46,30 @@ The following screenshot shows the Platform Settings page. Configuration values 
 | UI Configuration | Maintains UI presentation configuration. |
 | Edit | Changes the selected configuration item. |
 
+![Platform Settings](./images/manual-settings-operator-platform-settings.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Platform Settings page.
+
 ## Main Operations
 
-Use the following operations to work with platform settings records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
-
-### General Configuration
+### Edit General Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
-2. Click `General Configuration`.
+2. Click **"General Configuration"**.
 3. Review general platform display and shared settings.
 
 ![General Configuration](./images/general-settings.png)
 
-### Provider Relationship Configuration
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Provider Relationship
 
 1. Go to `Settings > System Settings > Platform Settings`.
-2. Click `Provider Relationship`.
+2. Click **"Provider Relationship"**.
 3. Review provider relationships, enabled status, and settlement ownership settings.
 
 ![Provider Relationship Configuration](./images/provider-relation.png)
@@ -78,18 +78,30 @@ Use the following operations to work with platform settings records and related 
 ![Provider relationship](./images/provider-relationship.png)
 :::
 
-### Currency Settings
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Currency Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
-2. Click `Currency Settings`.
+2. Click **"Currency Settings"**.
 3. Review default currency, display rules, precision, or conversion-related settings.
 
 ![Currency Settings](./images/currency-settings.png)
 
-### Payment Channel Configuration
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Payment Channels
 
 1. Go to `Settings > System Settings > Platform Settings`.
-2. Click `Payment Channel`.
+2. Click **"Payment Channel"**.
 3. Review payment channel list, enabled status, and available maintenance entries.
 
 ![Payment Channel Configuration](./images/payment-channels-stripe.png)
@@ -98,11 +110,11 @@ Use the following operations to work with platform settings records and related 
 ![Payment channel](./images/payment-channel.png)
 :::
 
-4. In the Stripe area, click `Setup Help` to review required fields and integration guidance.
+4. In the Stripe area, click **"Setup Help"** to review required fields and integration guidance.
 
 ![Stripe Setup Help](./images/stripe-setup-help.png)
 
-5. Click Stripe `Edit`, and use placeholders to fill in or verify `<stripe_publishable_key>`, `<stripe_secret_key>`, `<stripe_webhook_signing_secret>`, and related fields.
+5. Click Stripe `Edit`, and use placeholders to fill in or verify `<API_KEY>`, `<API_KEY>`, `<API_KEY>`, and related fields.
 
 ![Stripe Edit](./images/stripe-edit.png)
 
@@ -110,11 +122,11 @@ Use the following operations to work with platform settings records and related 
 
 ![Stripe Test Connection](./images/stripe-connection-test.png)
 
-7. In the Alipay area, click `Setup Help` to review application, private key, and public key requirements.
+7. In the Alipay area, click **"Setup Help"** to review application, private key, and public key requirements.
 
 ![Alipay Setup Help](./images/alipay-setup-help.png)
 
-8. Click Alipay `Edit`, and use placeholders to fill in or verify `<alipay_app_id>`, `<alipay_app_private_key>`, `<alipay_public_key>`, and related fields.
+8. Click Alipay `Edit`, and use placeholders to fill in or verify `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<API_KEY>`, and related fields.
 
 ![Alipay Edit](./images/alipay-edit.png)
 
@@ -125,31 +137,55 @@ Use the following operations to work with platform settings records and related 
 10. Before clicking `Save`, verify credential source, permission scope, callback address, settlement impact, and rollback plan.
 11. For learning or screenshots only, view setup help, edit pages, and test connection entries without submitting real payment channel configuration.
 
-### Account and Settlement Configuration
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Account and Settlement Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
-2. Click `Account and Settlement`.
+2. Click **"Account and Settlement"**.
 3. Review account, settlement cycle, recharge, or credits-related parameters.
 
 ![Account and Settlement Configuration](./images/account-settlement.png)
 
-### Email Settings
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Email Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
-2. Click `Email Settings`.
+2. Click **"Email Settings"**.
 3. Review mail service, sender configuration, notification templates, or verification email settings.
 
 ![Email Settings](./images/email-settings.png)
 
-### UI Configuration
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit UI Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
-2. Click `UI Configuration`.
+2. Click **"UI Configuration"**.
 3. Review login page, platform identity, theme, or display-related settings.
 
 ![UI Configuration](./images/ui-configuration.png)
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -226,10 +262,33 @@ The current account lacks write permission, the setting is version-locked, or ap
 
 Verify system-administrator permission and the setting description. Complete the required approval, then ask an authorized administrator to save the change.
 
-## Next Steps
+#### How should the Platform Settings page be exported or captured safely?
 
-1. To maintain sign-in security, go to [Login Properties](../login-properties/).
-2. To maintain API rate control, go to [Overview](../../api-rate-control/overview/).
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Platform Settings page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
@@ -238,3 +297,8 @@ Verify system-administrator permission and the setting description. Complete the
 - `Save`, `Reset`, `Enable`, `Disable`, and `Test Connection` are high-risk actions.
 - For learning or screenshots, only view configuration items and do not submit real configuration changes.
 - Stripe / Alipay keys, private keys, Webhook secrets, SMTP passwords, internal addresses, accounts, tokens, customer names, and settlement parameters must not be written into documentation, screenshots, tickets, or chats.
+
+## Next Steps
+
+1. To maintain sign-in security, go to [Login Properties](../login-properties/).
+2. To maintain API rate control, go to [Overview](../../api-rate-control/overview/).

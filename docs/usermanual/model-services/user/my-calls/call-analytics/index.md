@@ -4,7 +4,7 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers and Model Consumers |
+| Applicable Roles | Model Provider, Model Consumer |
 | Navigation Path | Model Services > My Calls > Call Analytics |
 | Page Route | `/modelone/monitoring/calls/list/model` |
 | Managed Objects | Model call successes, failures, rate-limit triggers, usage, and analytics details |
@@ -42,7 +42,7 @@ Query by model name, model ID, or type, compare success, failure, rate limits, a
 3. Before viewing or screenshots, confirm whether model names, Key names, fees, business applications, and call volume need to be redacted.
 
 ::: warning Sensitive Information Boundary
-Call analytics may contain fees, call volume, Key names, business applications, model names, and abnormal calls. When viewing or sharing data, redact accounts, Keys, request content, fees, and business identifiers according to permission.
+Call analytics may contain fees, call volume, Key names, business applications, model names, and abnormal calls. Follow your tenant's data-access policy when you view or share this data. Redact accounts, Keys, request content, fees, and business identifiers.
 :::
 
 ## Page Description
@@ -51,7 +51,7 @@ The page lists successful calls, failed calls, rate-limit triggers, and usage by
 
 Page screenshots:
 
-![My Call Analytics](./images/call-analytics-list.png)
+![My Call Analytics](./images/call-analytics-list-public.png)
 
 Focus on query criteria, model statistics, and the details entry.
 
@@ -63,7 +63,7 @@ Focus on query criteria, model statistics, and the details entry.
 2. Enter a model name or model ID and select a model type if needed.
 3. Click **"Search"** and verify successes, failures, rate limits, and usage. Click **"Reset"** if the filters are incorrect.
 
-![View model call analytics](./images/manual-call-analytics.png)
+![View model call analytics](./images/manual-call-analytics-public.png)
 
 The image shows model call analytics. Compare success, failure, rate limits, and usage.
 
@@ -73,7 +73,7 @@ The image shows model call analytics. Compare success, failure, rate limits, and
 2. Verify the model name, time range, and aggregate indicators.
 3. Compare trends with list results. Open call logs when individual request information is required.
 
-![View model analytics details](./images/manual-call-analytics-details.png)
+![View model analytics details](./images/manual-call-analytics-details-public.png)
 
 The image shows analytics details. Verify the model, time range, and metric scope.
 
@@ -81,17 +81,15 @@ The image shows analytics details. Verify the model, time range, and metric scop
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Time Range | Yes | Month / date range | `2026-07` | Controls the statistical period for call analytics. |
-| Model | No | Input / selector | Enter on page | Filters statistics by model name. |
-| Application | No | Selector | Displayed on page | If the page provides an application dimension, filters call analytics by business application. |
-| Key | No | Selector | Displayed on page | If the page provides a Key dimension, identifies the call source by Key. |
-| Calls | System-generated | Number | `2` | Number of model calls within the filter range, which may be composed of success and failure statistics. |
-| Token Usage | System-generated | Number | Displayed on page | If the page shows token dimensions, it is used to view model consumption. |
-| Cost | System-generated | Number | Displayed by page unit | If the page shows cost dimensions, redact it before sharing. |
-| Success Rate | System-generated | Percentage / statistic | Calculated by page | Can be calculated from successful calls and total calls. |
-| Failure Rate | System-generated | Percentage / statistic | Calculated by page | Can be calculated from failed calls and total calls. |
-| Average Latency | System-generated | Number | Displayed on page | If the page shows latency dimensions, it is used to measure response speed. |
-| Status | System-generated | Tag / statistic | `Success` / `Failed` / `Rate limited` | Distinguishes successful calls, failed calls, or rate-limit triggers. |
+| Billing Cycle | Yes | Month selector | `2026-07` | Sets the billing cycle for Call Analytics. |
+| Date Range | Yes | Date range | `2026-07-01 to 2026-07-31` | Sets the time range for the analytics list. |
+| Model Name | No | Input | `Example Model` | Filters statistics by model name. |
+| Model Type | No | Selector | `Text` | Narrows statistics by model type. |
+| Model ID | No | Input | `example-model` | Locates a model by its call identifier. |
+| Successful Calls | System-generated | Number | `0` | Successful calls in the selected range. |
+| Failed Calls | System-generated | Number | `0` | Failed calls in the selected range. |
+| Rate Limit Triggers | System-generated | Number | `0` | Rate-limit triggers in the selected range. |
+| Action | System-generated | Link | `View Details` | Opens analytics details for the target model. |
 
 ## Pitfalls
 
@@ -103,12 +101,12 @@ The image shows analytics details. Verify the model, time range, and metric scop
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `My Calls - Call Analytics` page opens normally, and `My Calls > Call Analytics` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Statistics display normally | Model, Model type, Successful calls, Failed calls, Rate limit triggers, and action entries are displayed normally. | Expand the time range or confirm whether the current account has call records. |
-| Chart or statistics table loads normally | The call analytics table loads and shows model-level data. | Refresh the page, or switch billing cycle and date range and retry. |
-| Filters are available | Billing cycle, date range, Model, Model type, and Model ID can be entered or selected. | Click `Reset` and enter filter conditions again. |
-| Search / Reset is available | Clicking `Search` refreshes the table, and clicking `Reset` clears filter conditions. | Check filter format and network status. |
-| Statistics match filters | Model, model type, and call counts in the table update with filter conditions. | Compare Call Logs to confirm statistical delay and filter range. |
+| Page opens | The sidebar highlights `My Calls > Call Analytics`, and the statistics table appears. | Check account permissions, navigation path, and page loading status. |
+| Statistics are visible | The table shows Model, Model type, Successful calls, Failed calls, Rate limit triggers, and action entries. | Expand the time range or confirm whether the current account has call records. |
+| Model statistics are visible | The call analytics table shows one row for each model in the selected period. | Refresh the page, or switch the billing cycle and date range and retry. |
+| Filters accept values | Billing Cycle, Date Range, Model Name, Model Type, and Model ID accept input or a selection. | Click **"Reset"** and set the filters again. |
+| Search and Reset take effect | **"Search"** shows matching rows, and **"Reset"** clears the filters. | Check the date and Model ID formats one field at a time. |
+| Statistics match filters | Model name, model type, and call counts in the table match the current filters. | Use the same filters in Call Logs and compare the records. |
 
 ## FAQ
 
@@ -116,81 +114,86 @@ The image shows analytics details. Verify the model, time range, and metric scop
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Analytics List Is Empty.”
+The model analytics list shows an empty state after a search.
 
 **Possible Causes:**
 
-- Time range or filters do not match.
-- Page data is still synchronizing.
+- The time range contains no call record.
+- The model name, model type, or Model ID filter is too narrow.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Click **"Reset"** to clear the filters.
+2. Select a date range that contains a known call and search again.
+3. Search **"Call Logs"** for the same Model ID. Contact the administrator if the log exists but analytics remains empty.
 
-#### Failures Are Abnormal
+#### Failure Count Is Higher Than Expected
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Failures Are Abnormal.”
+The failure count or failure ratio increases for the target model.
 
 **Possible Causes:**
 
-- call data or status changed.
-- Page data is still synchronizing.
+- Authentication, Model ID, or request parameters are incorrect.
+- The target model or upstream service returns an error.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Record the affected model and time range.
+2. Filter failed records in **"Call Logs"** and review the error.
+3. Correct the request and check again. Contact the Model Provider if the same upstream error continues.
 
-#### Rate Limits Are Abnormal
+#### Rate-Limit Count Is Higher Than Expected
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Rate Limits Are Abnormal.”
+The rate-limit trigger count increases for the target model.
 
 **Possible Causes:**
 
-- call data or status changed.
-- Page data is still synchronizing.
+- Request frequency or concurrency exceeds the limit.
+- Several applications share the same call quota.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Filter by Model ID and time range.
+2. Use **"Call Logs"** to review the times of the rate-limited requests.
+3. Reduce the request rate and check again. Contact the Model Provider if many requests remain rate limited.
 
-#### Usage Is Inconsistent
+#### Usage and Log Totals Differ
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Usage Is Inconsistent.”
+Token or usage totals in analytics differ from the Call Logs total.
 
 **Possible Causes:**
 
-- call data or status changed.
-- Page data is still synchronizing.
+- The pages use different date or model filters.
+- The comparison uses different input, output, or total-token fields.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Use the same date range, model type, and Model ID.
+2. Sum input and output tokens from the log details again.
+3. If the difference remains, send the filters and redacted request IDs to the administrator.
 
-#### Analytics Details Do Not Open
+#### Analytics Details Does Not Open
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Analytics Details Do Not Open.”
+Nothing opens after you click **"View Details"** for the target row.
 
 **Possible Causes:**
 
-- call data or status changed.
-- Permission is missing or the record expired.
+- The current account does not have detail permission.
+- The target record is outside the current filters.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Verify permission and record status, and then retry.
+1. Clear the filters and locate the row again.
+2. Refresh the page and click **"View Details"** again.
+3. If it still does not open, ask the administrator to verify permissions and provide the Model ID and page route.
 
 ## Notes
 
@@ -200,6 +203,6 @@ Call Analytics shows the condition described by “Analytics Details Do Not Open
 
 ## Next Steps
 
-1. Click `View Details` to view model-level statistics.
-2. Click `View Log` or go to `Call Logs` to troubleshoot single requests.
+1. Click **"View Details"** to view model-level statistics.
+2. Click **"View Log"** or go to `Call Logs` to troubleshoot single requests.
 3. Adjust call strategy based on failed calls, rate-limit triggers, and model type.

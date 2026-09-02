@@ -1,46 +1,33 @@
-# Framework Configuration
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Frames
 
 ## Feature Overview
-
-`Framework Configuration` provides a unified and reusable deployment environment template for fast inference services by presetting core parameters such as container images, startup commands, network policies, and environment variables. It simplifies clustered inference deployment, keeps runtime environments consistent, and supports flexible scheduling across different infrastructure resources.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Templates > Framework Configuration |
-| Page route | `/powerone/fast-build-v2/frameworks` |
-| Managed objects | Framework name, version name, image, main node startup command, worker node startup command, extra parameters, environment variables, port exposure policy, port tags, and creation success message |
-| Typical use | Provide reusable deployment environment templates for inference templates |
+| Navigation Path | AI Infra(On-Prem) > Templates > Frames |
+| Page Route | `/powerone/fast-build-v2/frameworks` |
+| Managed Object | Configuration, status, and relationships on Frames |
 
 #### Beginner Explanation
 
 Framework configuration is like a standard startup manual for model services. It defines which container image to use, which commands the main node and worker nodes run, which ports are exposed, which environment variables are injected, and what message is shown to users after creation succeeds. When users deploy a model through an inference template, the platform assembles the runtime environment from this configuration.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Framework Configuration | A reusable deployment environment template composed of core parameters such as container images, startup commands, network policies, and environment variables. |
 | Framework Name | Name of the underlying inference framework or engine. Use the official framework name where possible, such as `VLLM`, `TensorRT`, or `Triton Inference Server`. |
 | Version Name | Version identifier of the framework configuration, used for iteration tracking or compatibility management. It can align with the underlying framework version or use an internal scenario name. |
-| Image | Container image required to run inference tasks, including the operating system, dependency libraries, and the framework itself. |
-| Main Node Startup Command | Startup command for the main node in the task cluster when quickly deploying an inference model. In single-node tasks, this is used directly as the node startup command. |
-| Worker Node Startup Command | Startup command for Worker nodes in an inference task cluster, used in distributed inference scenarios. |
-| Extra Parameters | Key-value parameters used to dynamically supplement or adjust startup commands. They can be used as individual placeholders or injected into commands through `${extraParamString}` or `${prefixExtraParamString}`. |
-| Environment Variables | Preset key-value configurations injected when the container starts, such as `LOG_LEVEL=DEBUG` or `CUDA_VISIBLE_DEVICES=0`. |
-| Port Exposure Policy | The default exposure method and access authentication mechanism for network ports after an inference service is deployed. |
-| Port Tag | A semantic tag attached to an exposed port to identify the protocol type or purpose. |
-| Creation Success Message | Message shown to users after the task cluster is created. Markdown and placeholders are supported. |
-| Parameter Placeholder | Variable used in startup commands or creation success messages. The platform replaces it with the actual parameter when the job is created. |
 
-#### Region Availability
+#### Recommended Operation Order
 
-Images used by framework configurations are usually hosted in region-specific image repositories, so configuration availability is affected by region. When a framework is selected for fast deployment, the platform filters available framework configurations by the selected region. Before maintaining a framework, confirm that the target region has an available image repository and that the cluster can pull the corresponding image.
+Confirm prerequisites for Framework name, version name, image, main node startup command, worker node startup command, extra parameters, environment variables, port exposure policy, port tags, and creation success message, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Frames, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -52,22 +39,26 @@ Images used by framework configurations are usually hosted in region-specific im
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Frames.
+
+![Frames](./images/manual-frames.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 The page displays the framework configuration list and supports maintaining framework basic information, image versions, startup commands, and configuration parameters.
 
 The following figure shows the framework configuration page.
 
-![Framework Configuration](./images/frames-list.png)
-
 ## Main Operations
 
-### View Configuration Assets
+### View Framework Configuration
 
 1. Open the corresponding template-configuration page and filter by name, version, status, or update time.
 2. Open details and check associated models, frameworks, images, resource requirements, and current version.
 3. If no record is returned, reset filters. For incompatibility, first check dependencies.
 4. Redact internal images, storage locations, and startup configuration before sharing.
 
-### Add Framework/Version
+### Add Framework or Version
 
 #### Pre-Operation Check
 
@@ -80,27 +71,204 @@ The following figure shows the framework configuration page.
 #### Procedure
 
 1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration`.
-2. Click `Add`, `Add Framework`, or the actual add entry on the page.
+2. Click **"Add"**, **"Add Framework"**, or the actual add entry on the page.
 3. In the basic information area, fill in framework name, version name, description, and supported scenarios.
 4. Select or fill in the framework image, and confirm image region, target cluster, and image registry pull permissions.
 5. Configure main node startup command and worker node startup command, and confirm that commands run as foreground processes.
 6. Maintain extra parameters, environment variables, and placeholder references as required by the page.
 7. Configure service port, port exposure policy, port tag, and health check.
 8. Configure the creation success message to describe access methods and follow-up operations, without real credentials or internal addresses.
-9. Before clicking the final `Save`, `Submit`, or `OK`, verify image, startup commands, ports, authentication policy, and region availability.
-10. For learning or screenshots only, view fields and pages without submitting real framework configuration.
+9. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify image, startup commands, ports, authentication policy, and region availability.
 
 The following figure shows the add framework page, used to configure basic information, runtime settings, port policy, and creation message.
 
 ![Add framework](./images/add-framework.png)
 
-## Parameter Reference
+### Import or Export Frameworks
+
+#### Applicable Scenarios
+
+Use the **"Import/Export"** menu to batch-maintain framework configurations, or to export framework definitions for audit, reconciliation, and controlled migration.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration`.
+2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
+3. For import, upload the file as required by the page and verify framework, version, image, startup commands, port policy, and parameter configuration.
+4. For export, confirm the framework or version filter scope, then generate and download the framework configuration as prompted by the page.
+5. Before importing, verify that image, region, port, and model dependencies are available in the target environment. Save export files in a controlled directory.
+
+#### Result Validation
+
+- After import, the Framework Configuration list shows the added or updated framework version.
+- The framework scope in the export file matches the current filter conditions.
+- Inference templates or deployment pages can correctly resolve the imported framework version and port configuration.
+
+#### Notes
+
+- Startup commands, images, and port settings must match the runtime environment. Verify foreground startup, health checks, and access policy before importing.
+- Import may update fields on a framework version with the same identifier. Check referenced templates and instances first.
+
+#### An Imported Framework Cannot Be Used by an Inference Template
+
+**Symptom:**
+
+The framework import completes, but the framework version is missing from an inference template or deployment page.
+
+**Possible Causes:**
+
+- Framework image, region, or port configuration is unavailable in the target environment.
+- Framework version state or visibility does not allow downstream selection.
+- Framework or version identifiers in the import file do not match dependency references.
+
+**Solution:**
+
+1. Open framework details and verify version, image, region, ports, and state.
+2. Check dependencies on Image Management, Regions & Zones, and Inference Templates.
+3. Correct identifiers or visibility according to page requirements before importing again.
+
+### Edit Framework Version
+
+#### Applicable Scenarios
+
+Edit a framework version when its image, startup parameters, ports, or description need to change.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration` and locate the target framework version.
+2. Click **"Edit"** in the target row and verify the framework and version identifiers.
+3. Update the editable configuration provided by the page, with special attention to image, startup commands, ports, and access policy.
+4. Before clicking the final **"Save"** or **"OK"**, verify the impact on referenced templates and running instances.
+5. Return to the list and verify the updated version information and state.
+
+#### Result Validation
+
+- The framework list shows the updated version configuration and update time.
+- Inference templates can read the updated framework configuration.
+- Ports, health checks, and startup parameters still match the runtime environment.
+
+#### Notes
+
+- Changing a startup command, image, or port may prevent new instances from starting. Arrange compatibility checks and rollback handling first.
+- Do not write real credentials or internal addresses in environment variables, extra parameters, or creation messages.
+
+#### An Instance Fails After Framework Version Editing
+
+**Symptom:**
+
+The framework saves successfully, but a new instance cannot start or its health check fails.
+
+**Possible Causes:**
+
+- The image lacks dependencies or cannot be pulled.
+- The startup command does not run as a foreground process.
+- Service port, port policy, or health check does not match the application.
+
+**Solution:**
+
+1. Verify image, startup command, port, and health check in framework details.
+2. Check image availability and network reachability in Image Management and Regions & Zones.
+3. Under the approved change process, restore the verified version and repeat startup validation.
+
+### Delete Framework Version
+
+#### Applicable Scenarios
+
+Delete a framework version when it is no longer used and no inference template, instance, or job depends on it.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration` and locate the target framework version.
+2. Click **"Delete"** in the target row.
+3. Read the confirmation prompt and verify framework, version, image, port, and downstream references.
+4. After confirming a replacement version and impact scope, click the confirmation button to delete it.
+5. Refresh the list and check framework choices on inference templates and deployment pages.
+
+#### Result Validation
+
+- The target framework version is removed from the framework configuration list.
+- Downstream templates and new instance configuration no longer offer that version.
+- Other framework versions, images, and running instances are not unintentionally removed.
+
+#### Notes
+
+- Deleting a framework version configuration does not necessarily delete the image in the registry. Handle dependencies and retention separately.
+- Do not directly delete a version referenced by templates or instances. Migrate or remove the reference first.
+
+#### Framework Version Deletion Fails
+
+**Symptom:**
+
+Deletion fails or the page reports that associated objects still exist.
+
+**Possible Causes:**
+
+- An inference template, instance, or job still references the version.
+- The current account lacks deletion permission.
+- Another framework task is still processing.
+
+**Solution:**
+
+1. Check version references on Inference Templates and deployment pages.
+2. Verify permission and framework task state.
+3. Complete migration or remove references, then delete according to approval.
+
+### Maintain Framework Ports
+
+#### Applicable Scenarios
+
+Maintain framework ports when a service port, exposure policy, or port tag must change, or when a port is no longer needed.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration`, locate the target version, and click **"Edit"**.
+2. In the port configuration area, verify service port, exposure policy, port tag, and health check.
+3. When a port is no longer used, click its **"Delete Port"** entry and verify the port number and impact scope.
+4. Before clicking the final **"Save"** or **"OK"**, verify that templates, instances, and access entries will not become invalid.
+5. Return to framework details and verify the port list and access policy.
+
+#### Result Validation
+
+- Framework details show the updated port, exposure policy, and tag.
+- Health checks and later access entries use the correct port.
+- Templates or instances depending on the port do not show a new missing-configuration error.
+
+#### Notes
+
+- Deleting or changing a port affects service probing, routing, and access. Confirm migration handling for existing instances and callers first.
+- Unsigned or direct port policies expand exposure. Use them only within a clearly controlled network boundary.
+
+#### The Access Entry Fails After Port Removal
+
+**Symptom:**
+
+The service access entry fails or health checks continue to fail after port maintenance.
+
+**Possible Causes:**
+
+- Application listening port does not match the configuration.
+- Port exposure policy or tag was changed.
+- Referenced templates or instances have not refreshed the new port configuration.
+
+**Solution:**
+
+1. Verify startup command, service port, and health-check path.
+2. Check exposure policy, port tag, and network access rules.
+3. Confirm references are updated in template or instance details; restore the previous port under the approved change process if needed.
+
+#### Operation Screenshots
+
+![Frames operation interface](./images/manual-add-frame.png)
+
+The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Framework Name | Yes | Text | `vLLM` | Name of the underlying inference framework or engine. Use the official framework name where possible for easier identification and technical integration. |
 | Version Name | Yes | Text | `v0.8.0` | Version identifier of the framework configuration, used for iteration tracking or compatibility management. Align it with the underlying framework version or use a stable internal scenario name. |
-| Image | Yes | Text | `registry.example.com/project/runtime:v1` | Container image required to run inference tasks. Use placeholders in documentation. Do not write real image registry addresses. |
+| Image | Yes | Text | `<BASE_URL>/<PROJECT>/<IMAGE>:<TAG>` | Container image required to run inference tasks. Use placeholders in documentation. Do not write real image registry addresses. |
 | Image Region | Conditionally required | Text | `wuhan` | Region where the image is hosted or can be pulled. Keep it consistent with target region, cluster network, and registry permissions. |
 | Main Node Startup Command | Yes | Configuration text | `Example value` | Startup command for the main node in the task cluster. In single-node tasks, this is used directly as the node startup command. The command must run as a foreground process to avoid immediate container exit. |
 | Worker Node Startup Command | Required for distributed scenarios | Configuration text | `python worker.py` | Startup command for Worker nodes, used in distributed inference. Keep it consistent with main-node communication, scheduling topology, and framework version. |
@@ -161,89 +329,117 @@ Startup commands, extra parameters, and creation success messages can use placeh
 - Inconsistent image region, image registry permissions, or target cluster network may cause image pull failures.
 - A non-authenticated port exposure policy may expand the real service exposure scope. Do not select it for external or cross-tenant access.
 - Environment variables, extra parameters, and creation success messages must not contain real tokens, AK/SK, private keys, passwords, or internal endpoints.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Do not click them during learning or screenshots.
+- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page can be opened | `AI Infra > On-Prem > Templates > Framework Configuration` is accessible. | Check menu configuration, account permissions, and frontend route. |
-| Framework/version appears in the list | The newly added or maintained framework version appears in the list. | Check filters, save result, enabled status, and version configuration. |
-| Inference templates can select this framework | The framework and version are available in inference template configuration. | Check framework status, model type, image region, and template filter conditions. |
-| Image can be pulled | The target cluster can pull the image when creating a service with this framework. | Check image region, registry permissions, network connectivity, and image address. |
-| Startup command can execute | Main-node or worker-node startup commands run normally as foreground processes. | Check commands, dependencies, working directory, environment variables, and logs. |
-| Port is accessible or health check passes | The service port is accessible, or the health check returns the expected result. | Check listening address, port exposure policy, port tag, and health check path. |
-| Creation success message placeholders are replaced | Placeholders in the creation success message are replaced with actual task parameters. | Check placeholder names, supported scope, and usage position. |
-| No real submission during learning | During learning or screenshots, the final `Save`, `Submit`, or `OK` action is not clicked. | If submitted by mistake, immediately check the framework list, template references, and service exposure scope. |
+| Page entry | Frames opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Frames is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### Framework Is Not Selectable in Inference Templates
+#### Target Is Missing from Frames
 
 **Symptom:**
 
-When configuring an inference template, the framework drop-down list does not contain the target framework.
+The page opens, but the expected Configuration, status, and relationships on Frames is missing.
 
 **Possible Causes:**
 
-- The framework is not enabled or the version is unavailable.
-- The model type supported by the framework does not match the current model.
-- The framework image region does not match the current deployment region.
-- The framework image or configuration has not passed validation.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Check framework status and version.
-2. Confirm the model type, quantization method, and framework support scope.
-3. Check whether the target region has an available image repository and corresponding image.
-4. Save the framework configuration and re-enter the inference template.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Port Is Inaccessible After Service Starts
+#### The Operation Entry on Frames Is Unavailable
 
 **Symptom:**
 
-The model instance is running, but service port access fails.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- The framework listening port is inconsistent with the template port.
-- The startup command does not bind to `0.0.0.0`.
-- The port exposure policy or port tag does not match the access method.
-- The container starts successfully, but the service process exits abnormally.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. Verify the framework port and inference template port.
-2. Check the startup command and logs.
-3. Confirm the port exposure policy, port tags, and access authentication method.
-4. Confirm the service listening address and health check configuration.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-#### Placeholders Are Not Replaced Correctly
+#### A Required Field on Frames Has No Options
 
 **Symptom:**
 
-The service fails to start, or the creation success message still shows variables in the `${...}` format.
+The form opens, but a selection list is empty.
 
 **Possible Causes:**
 
-- The placeholder name is misspelled.
-- The placeholder is used in a position that does not support the variable.
-- Extra parameters are not injected into the startup command through `${extraParamString}` or `${prefixExtraParamString}`.
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
 
 **Solution:**
 
-1. Check variable names against the parameter placeholder description.
-2. Check placeholder positions in startup commands, extra parameters, and the creation success message.
-3. Create a service with a test model and verify the actual replacement result.
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
 
-## Next Steps
+#### Frames Has an Abnormal State After the Operation
 
-1. Reference the framework in [Inference Templates](../inference-templates/).
-2. Use a test model to verify image, command, port, extra parameters, and placeholders.
-3. Include framework changes in version records to avoid affecting existing templates.
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Frames
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Frames.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
 
 ## Notes
 
 - Do not write keys in environment variable examples, extra parameters, creation success messages, or screenshots.
 - Before changing framework image, port exposure policy, or startup command, confirm the impact scope of templates and instances that use this framework.
 - Images are related to regions. After adding a region or migrating images, revalidate framework availability.
+
+## Next Steps
+
+1. Reference the framework in [Inference Templates](../inference-templates/).
+2. Use a test model to verify image, command, port, extra parameters, and placeholders.
+3. Include framework changes in version records to avoid affecting existing templates.

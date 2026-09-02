@@ -1,34 +1,33 @@
-# Cluster Statistics
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Clusters
 
 ## Feature Overview
 
-`Cluster Statistics` is used to view cluster resource trends, capacity, and health status within the user-visible scope from a End User perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Cluster Statistics |
-| Page route | `/powerone/user-monitor/cluster` |
-| Managed objects | Cluster resource trends, capacity, and health status within the user-visible scope |
-| Typical use | Determine whether the cluster where a task runs is resource-constrained or abnormal |
+| Applicable Role | Model Provider and Model Consumer |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Clusters |
+| Page Route | `/powerone/user-monitor/cluster` |
+| Managed Object | Configuration, status, and relationships on Clusters |
 
 #### Beginner Explanation
 
 Cluster statistics are like a capacity table for the user-visible resource pool. They help determine how much cluster capacity, node scale, and accelerator resources are still available in the current region for tasks.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Cluster Name | Kubernetes cluster identifier that hosts instances, jobs, and resource scheduling. |
 | Health Status | Overall cluster availability, usually determined by collection, node, and scheduling status together. |
 | Total GPUs | Number of accelerators visible or included in statistics for the current cluster. |
-| Node Count | Number of nodes included in monitoring statistics in the cluster. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Cluster resource trends, capacity, and health status within the user-visible scope, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Clusters, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,9 +38,15 @@ Cluster statistics are like a capacity table for the user-visible resource pool.
 
 ## Page Description
 
-The page displays cluster statistics capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Cluster Statistics](./images/clusters-list.png)
+Use this page to view and handle Configuration, status, and relationships on Clusters.
+
+![Clusters](./images/clusters-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The page displays cluster statistics capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
 #### Expected Page Elements When Capability Is Open
 
@@ -85,7 +90,7 @@ The page displays cluster statistics capability for the selected region. When th
 - Whether node count, total GPUs, and total CPUs match expectations.
 - Whether resource watermarks are close to thresholds that affect new task creation.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -106,68 +111,111 @@ The page displays cluster statistics capability for the selected region. When th
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Cluster list | The list shows cluster name, region, node count, and health status. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Resource capacity | Resource capacity is consistent with the current region and visible scope. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Drill-down details | Selecting or drilling down from a cluster shows the corresponding node, device, or job information. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-
-## Prepare Before Contacting the Operator
-
-If the cluster page is abnormal, prepare the following information so that the operator can distinguish cluster access, resource watermarks, and collection problems:
-
-| Information | Example | Purpose |
-| --- | --- | --- |
-| Cluster Name | `cluster-prod-a` | Identifies the target cluster. |
-| Region / Availability Zone | `Wuhan / wuhan-1` | Identifies the resource scope. |
-| Node Count | `32` | Confirms whether cluster capacity is as expected. |
-| Health Status | `Abnormal / High Watermark / No Data` | Distinguishes capacity problems from collection problems. |
-| Related Job Time | `2026-07-13 10:00` | Aligns job submission time with monitoring curves. |
+| Page load | Clusters charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
 
 ## FAQ
 
-#### Cluster Watermark Is High
+#### No Data on Clusters
 
 **Symptom:**
 
-Cluster GPU, CPU, or memory watermark stays close to the limit for a long time.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- Many training or inference tasks are running in the same region.
-- The cluster capacity bound to the target specification is insufficient.
-- Some nodes are unavailable, reducing schedulable capacity.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. View job monitoring to confirm whether long-running tasks exist.
-2. Switch to an available region or specification and retry creation.
-3. Contact the operator to evaluate capacity expansion, migration, or specification association adjustment.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Cluster Status Is Abnormal
+#### Clusters Is Not Updating
 
 **Symptom:**
 
-The cluster list shows abnormal, unavailable, or data has not updated for a long time.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- Cluster collection component is abnormal.
-- Node status affects cluster health.
-- The current account cannot view complete monitoring data.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Record cluster name, region, and page update time.
-2. View node statistics for NotReady nodes.
-3. Contact the operator to check cluster access and collection links.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Clusters Differs from Adjacent Pages
 
-1. Go to node statistics to check whether a small number of nodes caused the cluster exception.
-2. Go to device monitoring to confirm whether GPU/NPU resources are sufficient.
-3. Before creating tasks, judge together with resource quotas and specification availability.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
 - Do not expose real cluster names, internal domains, or node IPs in screenshots.
 - Cluster health status and single instance status may not be synchronized. Judge together with logs and events.
 - When capacity is insufficient, confirm the target specification first instead of looking only at total cluster watermarks.
+
+## Next Steps
+
+1. Go to node statistics to check whether a small number of nodes caused the cluster exception.
+2. Go to device monitoring to confirm whether GPU/NPU resources are sufficient.
+3. Before creating tasks, judge together with resource quotas and specification availability.

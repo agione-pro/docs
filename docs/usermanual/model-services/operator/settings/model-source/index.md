@@ -9,7 +9,7 @@ Updated: 2026-09-01
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator |
+| Applicable role | Operator Admin |
 | Navigation path | **Model Services** > **Settings** > **Model Sources** |
 | Page route | `/modelone/settings/vendor` |
 | Managed objects | Model Source names, identifiers, Regions, Base URLs, Request headers, and authentication settings |
@@ -55,7 +55,7 @@ Each row shows the name, identifier, Region name, Base URL, creation time, and a
 
 Page screenshot:
 
-![Model Source list](./images/model-source-list.png)
+![Model Source list](./images/model-source-list-public.png)
 
 The row-end **"..."** opens **"Details"** and **"Delete"**.
 The screenshot masks address values. Do not include real credentials in documentation screenshots.
@@ -84,7 +84,7 @@ Use this order: initial setup, details verification, approved maintenance, and h
 14. Return to the list and search for the new identifier.
 15. To close the form without submission, click **"Cancel"**.
 
-![Add a Model Source](./images/model-source-add.png)
+![Add a Model Source](./images/model-source-add-public.png)
 
 The screenshot shows the localized name tabs, Region fields, and Request header fields.
 The page requires the English `Name` and `Model source identifier`. Use the table below for all other field conditions.
@@ -101,7 +101,7 @@ The page requires the English `Name` and `Model source identifier`. Use the tabl
 8. Do not expose or copy a real authentication value into tickets or documentation.
 9. If the values do not match the approved configuration, return to the list and verify the target row.
 
-![View Model Source Details](./images/model-source-details.png)
+![View Model Source Details](./images/model-source-details-public.png)
 
 The details page groups the fields into `Basic Information`, `Region Information`, and `Headers Configuration`.
 The screenshot masks address and authentication values.
@@ -119,7 +119,7 @@ The screenshot masks address and authentication values.
 9. Confirm that the displayed values match the approved configuration.
 10. If the update is not visible, check the page message, required fields, URL values, and account permission.
 
-![Edit a Model Source](./images/model-source-edit.png)
+![Edit a Model Source](./images/model-source-edit-public.png)
 
 The edit page shows the multilingual name, read-only identifier, Region fields, and Request header fields.
 Review these values before you click **"Confirm"**.
@@ -138,17 +138,17 @@ Review these values before you click **"Confirm"**.
 
 > **Recovery:** To recover an accidental deletion, use an approved record or backup. Recreate the record. Repeat details and downstream checks.
 
-![Delete a Model Source](./images/model-source-delete.png)
+![Delete a Model Source](./images/model-source-delete-public.png)
 
 The screenshot shows the delete confirmation dialog, not the **"..."** menu.
 The dialog has **"Cancel"** and **"OK"**. It does not identify the target row.
 
 ## Parameter Reference
 
-Page validation and business conditions are separate below.
-A page can mark a field optional while a template or upstream service requires it.
+The table separates form requirements from downstream requirements.
+A field can be optional in this form but required by a template or upstream service.
 
-| Field name | Page validation | Business condition | Field type | Example | Description |
+| Field name | Form requirement | Downstream requirement | Field type | Example | Description |
 | --- | --- | --- | --- | --- | --- |
 | English Name | Required | Required for every Model Source | Multilingual text | `Example Source` | Lists and selectors show this English name. |
 | Chinese Name | Optional | Chinese UI display | Multilingual text | `Example Source` | The Chinese interface shows this name. |
@@ -178,7 +178,7 @@ A page can mark a field optional while a template or upstream service requires i
 | Details | The details page shows the expected fields. | Verify the identifier. Reopen **"Details"**. |
 | Headers Preview | The preview shows the expected names and values. | Compare the headers with the upstream specification. |
 | Edit | The list or details page shows the new values. | Check the message. Submit the approved change again. |
-| Template provider selection | `Select Provider` shows the target source. | Reopen the selector. Check the name, identifier, and Operator permission. |
+| Template provider selection | `Select Provider` shows the target source. | Reopen the selector. Check the name, identifier, and Operator Admin permission. |
 | Template Region selection | `Select Region` shows the configured Region. | Stop the flow. Complete Region fields in Model Sources. |
 | Delete dialog | The dialog shows **"Cancel"** and **"OK"**. | Close the dialog. Verify the target row. |
 | Deleted Model Source | Search does not show the identifier. | Record errors or a remaining row. Do not assume completion. |
@@ -194,7 +194,7 @@ The list does not show the new name or identifier.
 **Possible causes:**
 
 - Search fields hide the record.
-- The form did not pass page validation.
+- The form shows a validation message.
 - The submission did not complete.
 
 **Handling:**
@@ -249,7 +249,7 @@ The details page shows an unexpected Region, address, or Request header structur
 
 - The selector search does not match the source name.
 - The Region fields are incomplete for a template that requires a Region.
-- The current Operator account cannot use the required record.
+- The current Operator Admin account cannot use the required record.
 
 **Handling:**
 
@@ -307,7 +307,7 @@ Use the [Model Templates](../model-templates/) manual for the next page.
 
 **When the Model Source has a Region**
 
-1. As an Operator, go to **Model Services** > **Settings** > **Model Templates**.
+1. As an Operator Admin, go to **Model Services** > **Settings** > **Model Templates**.
 2. Select the target source in the `Model Source` list.
 3. Click **"Add"**.
 4. In `Provider Information`, select the source from **"Select Provider"**.

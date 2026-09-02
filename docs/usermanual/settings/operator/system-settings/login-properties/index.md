@@ -1,21 +1,13 @@
 # Login Properties
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-29
-:::
-
 ## Feature Overview
-
-`Login Properties` is used to review login security, registration entrances, default roles, registration codes, account recovery, Google Login, and external registration sources.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator |
 | Navigation path | Settings > System Settings > Login Properties |
 | Page route | `/user/system/login-properties` |
 | Managed objects | Login security, registration settings, registration codes, account recovery, Google Login, and external system integration |
-| Typical use | Review sign-in, registration, recovery, and external-source configuration |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Login Properties is the platform's entry gate. It controls verification codes, a
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Sign-in policy | Rules that control how users sign in and verify their identities. | Confirm the affected scope before a change. |
-| Verification code | A code used during sign-in, registration, or account recovery. | Check email or SMS configuration when delivery fails. |
-| Account recovery | A process that helps a user restore account access. | Confirm the security policy before enabling it. |
-| Third-party sign-in | An external identity entry such as Google Login. | Test the sign-in flow after a change. |
+| Term | Description |
+| --- | --- |
+| Sign-in policy | Rules that control how users sign in and verify their identities.; Confirm the affected scope before a change. |
+| Verification code | A code used during sign-in, registration, or account recovery.; Check email or SMS configuration when delivery fails. |
+| Account recovery | A process that helps a user restore account access.; Confirm the security policy before enabling it. |
+| Third-party sign-in | An external identity entry such as Google Login.; Test the sign-in flow after a change. |
 
 ## Prerequisites
 
@@ -54,11 +46,13 @@ The following screenshot shows login properties.
 
 ![Login Properties](./images/login-properties-list.png)
 
+![Login Properties](./images/manual-settings-operator-login-properties.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Login Properties page.
+
 ## Main Operations
 
-Use the following operations to work with login properties records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
-
-### Login Security Configuration
+### View Login Security Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Click or locate `Login Security`.
@@ -66,7 +60,13 @@ Use the following operations to work with login properties records and related s
 
 ![Login Security Configuration](./images/login-security.png)
 
-### Registration Settings
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Registration Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Select `Registration Settings`.
@@ -80,7 +80,13 @@ Use the following operations to work with login properties records and related s
 
 ![Registration Settings](./images/registration-properties.png)
 
-### Registration Verification Code Configuration
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Registration Verification Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Locate `Registration Verification Code`.
@@ -88,7 +94,13 @@ Use the following operations to work with login properties records and related s
 
 ![Registration Verification Code Configuration](./images/registration-codes.png)
 
-### Account Recovery Configuration
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Account Recovery Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Locate `Account Recovery`.
@@ -96,7 +108,13 @@ Use the following operations to work with login properties records and related s
 
 ![Account Recovery Configuration](./images/account-recovery.png)
 
-### Google Login Configuration
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Google Sign-in Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Locate `Google Login`.
@@ -104,7 +122,13 @@ Use the following operations to work with login properties records and related s
 
 ![Google Login Configuration](./images/google-login.png)
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -184,10 +208,33 @@ The current account lacks system-settings permission, the configuration is manag
 
 Verify system-settings permission and the current environment. Confirm whether an identity provider maintains the configuration. If it is still missing, ask a platform administrator to check configuration synchronization.
 
-## Next Steps
+#### How should the Login Properties page be exported or captured safely?
 
-1. To review platform configuration, go to [Platform Settings](../platform-settings/).
-2. To review sign-in-related actions, go to [Operation Logs](../../activity-notifications/operation-logs/).
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Login Properties page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
@@ -196,3 +243,8 @@ Verify system-settings permission and the current environment. Confirm whether a
 - `Save`, `Reset`, `Enable`, and `Disable` are high-risk actions.
 - Client Secret, callback URLs, internal domains, test accounts, and tokens in Google Login configuration must not be written into documentation or screenshots.
 - For learning or screenshots, only view configuration items and do not submit real configuration changes.
+
+## Next Steps
+
+1. To review platform configuration, go to [Platform Settings](../platform-settings/).
+2. To review sign-in-related actions, go to [Operation Logs](../../activity-notifications/operation-logs/).

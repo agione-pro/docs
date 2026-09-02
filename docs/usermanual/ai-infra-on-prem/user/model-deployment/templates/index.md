@@ -1,36 +1,33 @@
 # Templates
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Templates` is used by End Users to view deployment templates published by operators, select models and accelerators through a wizard, review business parameters and recommended specifications, and prepare model service deployment configuration.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Model Deployment > Templates |
-| Page route | `/powerone/quickstart/inference-template` |
-| Managed objects | Model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information |
-| Typical use | View templates published by operators and use them to create model service instances after confirming quota, specifications, and deployment impact |
+| Applicable Role | Model Provider |
+| Navigation Path | AI Infra(On-Prem) > Model Deployment > Templates |
+| Page Route | `/powerone/quickstart/inference-template` |
+| Managed Object | Configuration, status, and relationships on Templates |
 
 #### Beginner Explanation
 
 Templates can be understood as an ordering page for model services. The user first selects a model, then checks the available accelerator and recommended specification, fills in deployment settings when needed, and finally reviews the preview before creating a model instance.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Template | A deployable solution maintained by operators that combines model, framework, image, specification, startup parameters, and visibility rules. |
 | Model Library | Area that displays models available to the current user or tenant. |
 | Accelerator | Hardware option, such as GPU or NPU, that can run the selected model. |
-| Recommended Specification | Resource specification recommended by the platform based on the selected model and accelerator. |
-| Deployment Settings | Instance name, region, specification, startup parameters, and other settings used before creation. |
-| Preview | Final configuration summary displayed before submission. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Templates, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -41,9 +38,15 @@ Templates can be understood as an ordering page for model services. The user fir
 
 ## Page Description
 
-The page displays model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information in a wizard. The screenshot shows the templates list area.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Templates list](./images/templates-list.png)
+Use this page to view and handle Configuration, status, and relationships on Templates.
+
+![Templates](./images/templates-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The page displays model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information in a wizard. The screenshot shows the templates list area.
 
 #### Page Areas
 
@@ -70,8 +73,7 @@ The page displays model library, accelerators, business parameters, recommended 
 1. After selecting a template, review region, cluster, flavor, replicas, and estimated resource usage.
 2. Compare capacity, availability, and quota with business requirements.
 3. If parameters are incompatible, correct them according to the page message without bypassing limits.
-4. Stop before the final deployment action during read-only validation. A real deployment requires separate confirmation of resource and cost impact.
-
+4. Before the final deployment action, confirm resource and cost impact and execute the deployment only after approval.
 
 ### Deploy Template
 
@@ -79,7 +81,6 @@ The page displays model library, accelerators, business parameters, recommended 
 
 1. Confirm that the current account has access to `AI Infra > On-Prem > Model Deployment > Templates`.
 2. Confirm that the target tenant and region have been selected correctly if the page provides global selectors.
-3. For learning or screenshots, prepare to stop before any final submit or confirm action.
 
 #### Procedure
 
@@ -95,9 +96,8 @@ The page displays model library, accelerators, business parameters, recommended 
 ![Deployment settings](./images/deployment-settings.png)
 
 6. Review final configuration in `Preview`.
-7. For learning or screenshots only, do not click final `Submit`, `Confirm`, or `OK` actions.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Description |
 | --- | --- | --- | --- |
@@ -124,69 +124,111 @@ The page displays model library, accelerators, business parameters, recommended 
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Templates` page opens from `Model Deployment > Templates`. | Check account permission, sidebar route, and current language. |
-| Template visibility | Deployable templates are displayed in the model library. | Ask the operator to check template publishing status, tenant visibility, and model-source configuration. |
-| Recommended specification | Recommended specifications appear after the model and accelerator are selected. | Check accelerator adaptation, resource specification binding, quota, and region. |
-| Learning boundary | No final creation action is submitted during learning or screenshot collection. | If submitted by mistake, immediately review model instance list, quota usage, and operation records. |
+| Page entry | Templates opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Templates is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### The Template List Is Empty
+#### Target Is Missing from Templates
 
-**Symptom:** No deployable template is displayed on the page.
+**Symptom:**
 
-**Possible Causes:**
-
-- The operator has not published templates.
-- The current tenant is not included in the visible scope.
-- Required model, framework, image, specification, or accelerator configuration is incomplete.
-
-**Solution:**
-
-1. Confirm the current tenant and region.
-2. Ask the operator to check template status and visible scope.
-3. Check whether related specifications, images, and accelerators are available.
-
-#### The Continue Button Is Unavailable
-
-**Symptom:** The next wizard step cannot be entered after a model is selected, or recommended specifications are empty.
+The page opens, but the expected Configuration, status, and relationships on Templates is missing.
 
 **Possible Causes:**
 
-- No accelerator is selected.
-- The model and accelerator are not adapted.
-- The current tenant has no quota for the corresponding specification.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Confirm that both model and accelerator have been selected.
-2. Switch to another accelerator or instance type.
-3. Go to `Quotas` or `Usage` to check available quota and usage.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### The Model Instance Fails to Start After Submission
+#### The Operation Entry on Templates Is Unavailable
 
-**Symptom:** After an instance is created, its status is abnormal or it cannot provide service.
+**Symptom:**
+
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- Image pull failed.
-- Startup parameters are incorrect.
-- The target cluster has insufficient resources.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. Go to model instance details to view status, logs, and events.
-2. Recreate a test instance with template defaults only in an approved test scenario.
-3. Contact the operator to check image, specification, framework, and cluster resources.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-## Next Steps
+#### A Required Field on Templates Has No Options
 
-1. Go to [Instances](../instances/) to view model instance status.
-2. Go to [Usage](../../quotas-usage/usage/) or [Quotas](../../quotas-usage/quotas/) to review quota and usage changes.
-3. Go to [Monitoring Overview](../../monitoring/overview/) to monitor runtime status after deployment.
+**Symptom:**
+
+The form opens, but a selection list is empty.
+
+**Possible Causes:**
+
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
+
+**Solution:**
+
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Templates Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Templates
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Templates.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
 
 ## Notes
 
 - Deploying through a template may create real model instances, occupy resources, and generate usage. Confirm instance name, region, specification, and runtime cycle before submission.
 - Screenshots or tickets must not contain internal service addresses, access keys, endpoints, sensitive startup parameters, logs, or customer information.
 - Templates, specifications, and accelerators are maintained by operators. If the user side cannot select a target option, check publishing scope, tenant visibility, quota, and resource pool status with the operator.
+
+## Next Steps
+
+1. Go to [Instances](../instances/) to view model instance status.
+2. Go to [Usage](../../quotas-usage/usage/) or [Quotas](../../quotas-usage/quotas/) to review quota and usage changes.
+3. Go to [Monitoring Overview](../../monitoring/overview/) to monitor runtime status after deployment.

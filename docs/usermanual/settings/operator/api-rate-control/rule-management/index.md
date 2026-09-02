@@ -1,21 +1,13 @@
 # Rule Management
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Rule Management` is used to maintain API rate-control rules. You can filter by rule name and API Pattern, review each rule's counting key, counting scope, mode, quota, window, priority, publication status, enabled status, and available actions.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator |
 | Navigation path | Settings > API Rate Control > Rule Management |
 | Page route | `/user/system/rate-control/rules` |
 | Managed objects | API rate-control rules, API Patterns, enabled status, and publication status |
-| Typical use | Query, create, edit, enable, disable, and publish API rate-control rules |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Rule Management is the API rate-control rule library. It defines which APIs are 
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Rate-control rule | A rule that counts or limits API requests. | Confirm the match scope before publication. |
-| Threshold | The request limit that triggers counting or blocking. | A low threshold can block valid traffic. |
-| Statistical mode | A mode that records over-limit requests without blocking them. | Use it to observe behavior before enforcement. |
-| Publish | The action that synchronizes rules to nodes. | Check Node Cache after publication. |
+| Term | Description |
+| --- | --- |
+| Rate-control rule | A rule that counts or limits API requests.; Confirm the match scope before publication. |
+| Threshold | The request limit that triggers counting or blocking.; A low threshold can block valid traffic. |
+| Statistical mode | A mode that records over-limit requests without blocking them.; Use it to observe behavior before enforcement. |
+| Publish | The action that synchronizes rules to nodes.; Check Node Cache after publication. |
 
 ## Prerequisites
 
@@ -51,19 +43,33 @@ The following screenshot shows the Rule Management page. Rule details are desens
 | API Pattern | Filters by API match pattern. |
 | Rule table | Shows rules, counting scope, mode, quota, window, priority, publication state, enabled state, and actions. |
 
+![Rule Management](./images/manual-settings-operator-rule-management.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
+
 ## Main Operations
 
-### View Rate-Control Rules
+### View Rate Control Rules
 
 1. Go to `Settings > API Rate Control > Rule Management`.
 2. Filter by name, status, scope, action, or update time.
 3. Open details and check match conditions, thresholds, actions, priority, target nodes, and version.
 4. If no record is returned, reset filters. For unexpected matches, compare Observability Audit and the currently published version.
 
+![View Rate Control Rules](./images/manual-settings-operator-rule-management.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
 ### Create Rate Control Rule
 
 1. Go to `Settings > API Rate Control > Rule Management`.
-2. Click `Create Rule`, `Create Rate Control Rule`, or the actual create entry on the page.
+2. Click **"Create Rule"**, `Create Rate Control Rule`, or the actual create entry on the page.
 3. In the rule creation page or dialog, review the rule configuration fields.
 
 ![Create Rate Control Rule](./images/new-rate-limit-rule.png)
@@ -71,14 +77,74 @@ The following screenshot shows the Rule Management page. Rule details are desens
 4. Fill in rule name, API path, request method, match conditions, rate limit threshold, and time window.
 5. Select effective scope, result handling policy, enabled status, or priority according to page fields.
 6. Before clicking the final `Save`, `Submit`, or `Publish`, verify that the rule will not block normal business requests by mistake.
-7. For learning or screenshots only, view fields and click `Cancel` or return without submitting real rule configuration.
+7. For learning or screenshots only, view fields and click **"Cancel"** or return without submitting real rule configuration.
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Rate Control Rule
+
+1. Open `Settings > API Rate Control > Rule Management`.
+2. Locate the target Rule Management and click **"Edit"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Edit Rate Control Rule](./images/manual-settings-operator-rule-management.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Copy Rate Control Rule
+
+1. Open `Settings > API Rate Control > Rule Management`.
+2. Locate the target Rule Management and click **"Copy"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Copy Rate Control Rule](./images/manual-settings-operator-rule-management.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Publish Rate Control Rules
+
+1. Open `Settings > API Rate Control > Rule Management`.
+2. Locate the target Rule Management and click **"Publish All Rules"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Publish Rate Control Rules](./images/manual-settings-operator-rule-management.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Rule Name | Yes | Text | `Example Rule A` | Identifies the rate control rule. |
-| API Path | Yes | Text | `/api/example` | The API path matched by the rule. Desensitize it in documentation. |
+| API Path | Yes | Text | `<ENDPOINT_PATH>` | The API path matched by the rule. Desensitize it in documentation. |
 | Request Method | No | Enum | `GET` | The HTTP request method matched by the rule. |
 | Match Condition | Yes | Condition expression | `tenant = example` | The condition set used to match the rule. |
 | Rate Limit Threshold | Yes | Number | `100 requests/minute` | The request limit that triggers statistics or blocking. |
@@ -152,11 +218,33 @@ The rule belongs to another scope, is disabled, or the current account cannot vi
 
 Clear the rule type, status, and tenant filters. Confirm the rule scope. If it is still missing, ask the rate-control administrator to check the configuration and publication state.
 
-## Next Steps
+#### How should the Rule Management page be exported or captured safely?
 
-1. To review rate-control trends, go to [Overview](../overview/).
-2. To verify node synchronization, go to [Node Cache](../node-cache/).
-3. To review publication results, go to [Publish Center](../publish-center/).
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Rule Management page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
@@ -164,3 +252,9 @@ Clear the rule type, status, and tenant filters. Confirm the rule scope. If it i
 - Confirm the impact scope and rollback method before publishing or enabling a rule.
 - `Save`, `Submit`, `Publish`, `Publish All`, `Disable`, and `Delete` are high-risk actions.
 - Do not write real API paths, tokens, accounts, tenant IDs, customer names, internal error details, or load-test parameters in documentation.
+
+## Next Steps
+
+1. To review rate-control trends, go to [Overview](../overview/).
+2. To verify node synchronization, go to [Node Cache](../node-cache/).
+3. To review publication results, go to [Publish Center](../publish-center/).

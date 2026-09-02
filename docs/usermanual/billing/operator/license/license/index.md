@@ -1,4 +1,4 @@
-# License Management
+# License
 
 ::: info Document Information
 Version: v1.0
@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`License Management` is used to view the current instance license state, registration code, license categories, AI infrastructure authorization, authorized quota, and validity period. It also supports activating authorization by using an activation code. Operators use this page to confirm whether the platform authorization is valid, whether quota is sufficient, and whether the current instance can continue using AI infrastructure capabilities.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator; Administrators activate licenses |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > License > License |
 | Page route | `/user/usercenter/license/managed-objects` |
 | Managed objects | Registration code, activation code, AI infrastructure authorization, authorized quota, and validity period |
-| Typical use | Get registration code, get activation code, activate AI infrastructure authorization, and verify quota and validity |
+
+`License Management` is used to view the current instance license state, registration code, license categories, AI infrastructure authorization, authorized quota, and validity period. It also supports activating authorization by using an activation code. Operators use this page to confirm whether the platform authorization is valid, whether quota is sufficient, and whether the current instance can continue using AI infrastructure capabilities.
+
 
 #### Beginner Explanation
 
@@ -31,12 +31,21 @@ License Management works like the authorization center for a platform instance. 
 | Authorized Quota | Resource quota allowed by the License. | Check total quota, used quota, and remaining quota. |
 | Validity Period | Effective and expiry period of the License. | Renew before expiry. |
 
-## Applicable Scenarios
+#### Applicable Scenarios
 
 - The platform is deployed for the first time and needs a registration code and activation code.
 - AI infrastructure authorization is inactive, expired, or insufficient and needs activation or renewal.
 - Operators need to verify authorization state, validity period, total quota, used quota, and remaining quota.
 - Operators need to submit a desensitized activation request to License support.
+
+#### Flow Overview
+
+| Step | Description |
+| --- | --- |
+| Get Registration Code | Copy the current instance registration code from `License Management`. |
+| Send Registration Code and Get Activation Code | Send the registration code and required application information to License support. |
+| Activate AI Infrastructure Authorization | Enter the activation code in `AI Infrastructure Authorization` and click **"Activate"**. |
+| Verify Activation Result | Refresh the page and verify authorization state, validity period, and quota. |
 
 ## Prerequisites
 
@@ -48,15 +57,6 @@ License Management works like the authorization center for a platform instance. 
 ::: warning Security Reminder
 Registration codes and activation codes are sensitive credentials. Do not expose complete registration codes, activation codes, License file content, login credentials, Token, or Key in public documents, screenshots, tickets, chats, or comments.
 :::
-
-## Flow Overview
-
-| Step | Description |
-| --- | --- |
-| Get Registration Code | Copy the current instance registration code from `License Management`. |
-| Send Registration Code and Get Activation Code | Send the registration code and required application information to License support. |
-| Activate AI Infrastructure Authorization | Enter the activation code in `AI Infrastructure Authorization` and click `Activate`. |
-| Verify Activation Result | Refresh the page and verify authorization state, validity period, and quota. |
 
 ## Page Description
 
@@ -74,6 +74,12 @@ The page shows platform state, license categories, managed object authorization 
 
 `View Composition` shows authorized quota composition, current active licenses, and quota source. When quota is abnormal, check composition before contacting an administrator or License support.
 
+Page screenshot:
+
+![License Management](./images/manual-billing-license-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ## Main Operations
 
 ### View Licenses
@@ -83,6 +89,10 @@ The page shows platform state, license categories, managed object authorization 
 3. Open details and check scope, effective time, expiration, usage limits, and current status.
 4. If no record is returned, reset filters. Do not share license files or authorization identifiers.
 
+![License Management - View Licenses](./images/manual-billing-license-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ### Check Expiration and Capacity Risk
 
 1. Sort by expiration or remaining capacity to locate licenses that are expiring or near their limit.
@@ -90,8 +100,11 @@ The page shows platform state, license categories, managed object authorization 
 3. A healthy license should have sufficient validity and capacity. For a risk, record a redacted identifier and start the renewal or expansion process.
 4. Do not upload, replace, disable, or delete a license during read-only validation.
 
+![License Management - Check Expiration and Capacity Risk](./images/manual-billing-license-page.png)
 
-### License Management
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+### Manage Licenses
 
 #### Get Registration Code
 
@@ -107,36 +120,35 @@ The page shows platform state, license categories, managed object authorization 
 
 #### Send Registration Code and Get Activation Code
 
-1. Send the registration code to License support through an offline channel or email according to the internal process.
-2. Example email: `<ACCOUNT_EMAIL>`.
-3. The email should include registration code, company or tenant name, contact person, contact method, and activation scenario.
-4. Before sending, confirm recipient, environment, instance, and activation scenario.
-5. After receiving `Activation Code`, do not write it into public documents or screenshots.
-6. For learning or screenshots only, view fields and process descriptions without sending real registration codes.
+8. Send the registration code to License support through an offline channel or email according to the internal process.
+9. Example email: `<ACCOUNT_EMAIL>`.
+10. The email should include registration code, company or tenant name, contact person, contact method, and activation scenario.
+11. Before sending, confirm recipient, environment, instance, and activation scenario.
+12. After receiving `Activation Code`, do not write it into public documents or screenshots.
 
 #### Activate AI Infrastructure Authorization
 
-1. Return to `License > License`.
-2. Find `AI Infrastructure Authorization`.
-3. Click `Activate License`.
-4. In the activation window, find the `Activation Code` input field.
-5. Paste the activation code.
-6. Verify that the activation code is complete, with no missing characters, extra spaces, or truncated line breaks.
-7. Click the final `Activate`.
-8. Wait for the page to return the activation result.
+13. Return to `License > License`.
+14. Find `AI Infrastructure Authorization`.
+15. Click **"Activate License"**.
+16. In the activation window, find the `Activation Code` input field.
+17. Paste the activation code.
+18. Verify that the activation code is complete, with no missing characters, extra spaces, or truncated line breaks.
+19. Click the final `Activate`.
+20. Wait for the page to return the activation result.
 
 ![Activate License](./images/get-activate-license.png)
 
 #### Verify Activation Result
 
-1. Refresh the `License > License` page.
-2. Confirm whether `AI Infrastructure Authorization` is activated or valid.
-3. Check whether expiry time or validity period is displayed.
-4. Check whether total quota, used quota, and remaining quota are displayed.
-5. Confirm that the page shows no error message.
-6. If the state is not updated, refresh the page and check import records before resubmitting the same activation code.
+21. Refresh the `License > License` page.
+22. Confirm whether `AI Infrastructure Authorization` is activated or valid.
+23. Check whether expiry time or validity period is displayed.
+24. Check whether total quota, used quota, and remaining quota are displayed.
+25. Confirm that the page shows no error message.
+26. If the state is not updated, refresh the page and check import records before resubmitting the same activation code.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -212,14 +224,33 @@ Authorization state shows expired, or remaining quota is unavailable.
 2. Activate again after obtaining a new activation code.
 3. Complete renewal before business is affected.
 
-## Next Steps
 
-- After confirming License state, continue verifying resource availability in `AI Infra` or `Model and AI Services`.
-- When handling License exceptions, provide desensitized page path, time, and error message to an administrator or License support.
+#### Resources Remain Unavailable Although License Quota Is Sufficient
 
+**Symptom:**
+
+License quota and validity are normal, but the target resource or module is still unavailable.
+
+**Possible causes:**
+
+- Resource quota, permission, or status is abnormal.
+- License status has not synchronized to the target module.
+- The issue concerns billing balance or resource capacity rather than authorization quota.
+
+**How to handle:**
+
+1. Confirm License type, validity, status, and covered resource scope.
+2. Check quota, permission, and runtime status on the target resource page.
+3. Separate authorization quota, billing balance, and actual resource capacity.
+4. If the cause remains unclear, provide the desensitized License type, status, and target module information.
 ## Notes
 
 - Registration codes, activation codes, License file content, login credentials, Token, and Key must not be written into documents, screenshots, tickets, or chats.
 - `Activate` is a high-risk final action. Before clicking it, confirm environment, instance, registration code, and activation code source.
 - The current page does not provide a `Delete License` entry. Do not invent a deletion flow.
 - If the License is expired or quota is exhausted, contact an administrator for renewal before resources become unavailable.
+
+## Next Steps
+
+- After confirming License state, continue verifying resource availability in `AI Infra` or `Model and AI Services`.
+- When handling License exceptions, provide desensitized page path, time, and error message to an administrator or License support.

@@ -1,21 +1,13 @@
 # Operation Logs
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Operation Logs` is used to query user-operation records in the current tenant. You can filter by HTTP method, result, and time range, and review the time, user, action, method, IP address, processing time, and result.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Admin |
+| Applicable Role | Model Consumer |
 | Navigation path | Settings > Activity & Notifications > Operation Logs |
 | Page route | `/user/user-space/operation-logs` |
 | Managed objects | Tenant user-operation records, HTTP methods, results, time ranges, and operation details |
-| Typical use | Query tenant operation records, investigate abnormal operations, and audit critical actions |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Operation Logs is the audit trail for Settings. It shows who performed an action
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Operation log | Audit information that records a user action and its processing result. | Keep only desensitized clues during troubleshooting. |
-| Operator | The account that performed the action. | Confirm that the person was expected to perform it. |
-| Target object | The configuration, member, or rule that was viewed or changed. | Use it to identify the impact scope. |
-| Operation result | Success, failure, processing, or another action result. | Investigate the cause when it is not successful. |
+| Term | Description |
+| --- | --- |
+| Operation log | Audit information that records a user action and its processing result.; Keep only desensitized clues during troubleshooting. |
+| Operator | The account that performed the action.; Confirm that the person was expected to perform it. |
+| Target object | The configuration, member, or rule that was viewed or changed.; Use it to identify the impact scope. |
+| Operation result | Success, failure, processing, or another action result.; Investigate the cause when it is not successful. |
 
 ## Prerequisites
 
@@ -46,34 +38,47 @@ Operation Logs is the audit trail for Settings. It shows who performed an action
 | Actions | Search and Reset |
 | High-risk action | Export CSV |
 
+![Operation Logs](../../../operator/personal/profile/images/manual-settings-operator-profile.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
+
 ## Main Operations
 
-### Query Operation Logs
+### View Operation Logs
 
 1. Open Operation Logs, select a time range, and filter by operator, module, action type, result, or keyword.
 2. Check the target time, operator, object, result, and source. If no record is returned, check the time zone and clear filters one at a time.
 3. The target event should be uniquely identifiable. For duplicate names, narrow the range with a redacted object ID fragment and time.
 4. Logs may contain account, IP, and business-object information and must be redacted before export, screenshots, or sharing.
 
-### View Log Details and Diagnose Failures
+![View Operation Logs](../../../operator/personal/profile/images/manual-settings-operator-profile.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### View Operation Log Details
 
 1. Click **"Details"** for the target record and inspect the request action, object, result, duration, and error summary.
 2. Compare preceding and following events to determine whether the action completed and whether a subsequent failure occurred.
 3. If information is insufficient, escalate with a redacted time, module, and error category. Do not copy Tokens, keys, cookies, or complete request bodies.
 4. Use log details only for audit and diagnosis. Do not replay high-risk operations from the page.
 
-### View Operation Logs
+![View Operation Log Details](../../../operator/personal/profile/images/manual-settings-operator-profile.png)
 
-1. Go to `Settings > Activity & Notifications > Operation Logs`.
-2. Select an HTTP method, result, or time range.
-3. Select `Search` to display matching logs.
-4. To clear the conditions, select `Reset`.
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
 
-The following screenshot shows the Operation Logs list. User identities and IP addresses are hidden.
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
 
-![Operation Logs list](./images/operation-logs-list.png)
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
 
-## Parameter Reference
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -145,12 +150,44 @@ The current account lacks audit-export permission, the record is outside the vie
 
 Verify audit permission and the log retention range. Before sending logs outside the tenant, request export permission and follow desensitization requirements.
 
-## Next Steps
+#### How should the Operation Logs page be exported or captured safely?
 
-1. Retain audit records for critical operations.
-2. Compare member, role, and quota pages to identify the source of a change.
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Operation Logs page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
 - Exported CSV files may contain users, IP addresses, and audit information. Handle them according to tenant data-security requirements.
 - Do not distribute exported log files without authorization.
+
+## Next Steps
+
+1. Retain audit records for critical operations.
+2. Compare member, role, and quota pages to identify the source of a change.
+
+### Preserved Existing Screenshots
+
+![Preserved Existing Screenshots](./images/operation-logs-list.png)

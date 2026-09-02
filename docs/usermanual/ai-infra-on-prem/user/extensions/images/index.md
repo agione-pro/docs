@@ -1,37 +1,33 @@
-# Image Services
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Images
 
 ## Feature Overview
 
-`Image Services` is used to manage image projects, custom images, public images, and push history on the End User side. Users can create image projects, push locally built images to the platform image repository, and then select the image in Online IDE, Runtime Instances, or model services.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Extension Services > Image Services |
-| Page route | `/powerone/expand-service/image-service/custom` |
-| Managed objects | My image projects, public images, push history, and image upload entrypoint |
-| Typical use | Prepare custom runtime environments, pin dependency versions, and provide images for jobs and model services |
+| Applicable Role | Model Provider |
+| Navigation Path | AI Infra(On-Prem) > Extensions > Images |
+| Page Route | `/powerone/expand-service/image-service` |
+| Managed Object | Configuration, status, and relationships on Images |
 
 #### Beginner Explanation
 
 An image is the runtime environment of a job. It contains the system, framework, Python packages, startup scripts, and dependencies. An image project is like a namespace used to organize images from the same team or business. Before pushing images, confirm repository address, project name, image tag, and login credentials.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Image | Container runtime environment. |
 | Image Project | Project or namespace in the image repository. |
 | Image Tag | Image version identifier, such as `v1.0.0`. |
-| docker login | Command used to log in to the image repository. |
-| docker tag | Command used to tag a local image with a remote repository tag. |
-| docker push | Command used to push an image to the remote repository. |
-| Robot Credentials | Automated image repository account and password. These are sensitive credentials. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for My image projects, public images, push history, and image upload entrypoint, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Images, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -43,9 +39,15 @@ An image is the runtime environment of a job. It contains the system, framework,
 
 ## Page Description
 
-The page contains three views: `My Images`, `Public Images`, and `Push History`. The screenshot shows sync, add project, project list, and image information areas.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Image Services](./images/images-list.png)
+Use this page to view and handle Configuration, status, and relationships on Images.
+
+![Images](./images/images-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The page contains three views: `My Images`, `Public Images`, and `Push History`. The screenshot shows sync, add project, project list, and image information areas.
 
 ## Main Operations
 
@@ -60,26 +62,29 @@ The page contains three views: `My Images`, `Public Images`, and `Push History`.
 
 1. Open the target project and distinguish member management, image upload, version management, and deletion entries.
 2. Record current members, permissions, and image versions referenced by instances.
-3. Before upload, permission changes, or deletion, confirm authorization and dependencies. Do not perform the final action during read-only validation.
+3. Before upload, permission changes, or deletion, confirm authorization and dependencies. Before the final action, confirm the resource, data, and impact, and execute it only after approval.
 4. After an approved change, check the project, image list, and operation logs. If abnormal, restore according to the record.
-
 
 ### Add Image Project
 
 #### Procedure
 
 1. Go to `AI Infrastructure > On-Prem > Extension Services > Image Services`.
-2. On the `My Images` page, click `Add Project`.
+2. On the `My Images` page, Click **"Add Project"**.
 3. Fill in the project name.
-4. Click `Confirm`.
+4. Click **"Confirm"**.
 
-## Parameter Reference
+![Add image project](./images/add-project.png)
+
+The image shows the image-project creation dialog. Verify the project name and repository scope before confirming.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Project Name | Yes | Text | `team-a` | Image repository project name. |
-| Image Repository | System-generated | URL | `registry.example.com/team-a` | Repository address for pushing images. |
-| Robot Credentials | Conditionally required | Secret text | `<robot-token>` | Credentials used to push or pull images. |
+| Image Repository | System-generated | URL | `<BASE_URL>/<PROJECT>/<IMAGE>:<TAG>` | Repository address for pushing images. |
+| Robot Credentials | Conditionally required | Secret text | `<PERSONAL_KEY>` | Credentials used to push or pull images. |
 | Image Tag | Yes | Text | `app:v1` | Image version tag. |
 | Sync Status | System-generated | Enum | `Synced` | Whether the image can be selected by jobs. |
 
@@ -110,9 +115,9 @@ The page contains three views: `My Images`, `Public Images`, and `Push History`.
 The following examples use placeholders. Replace them with the repository address, project name, and local image name provided by the page when running them.
 
 ```bash
-docker login <registry.example.local>
-docker tag <local-image>:<local-tag> <registry.example.local>/<project>/<image>:<version>
-docker push <registry.example.local>/<project>/<image>:<version>
+docker login <BASE_URL>
+docker tag <local-image>:<local-tag> <BASE_URL>/<project>/<image>:<version>
+docker push <BASE_URL>/<project>/<image>:<version>
 ```
 
 If you need to build the image locally first, run:
@@ -140,83 +145,111 @@ docker build -t <local-image>:<local-tag> .
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Image project created | The new project appears in the `My Images` list, and repository address and push entrypoint are visible. | Check project name, region, permissions, and repository service status. |
-| Image push completed | After `docker push` succeeds and the page is synced, the target image and tag are visible. | Verify repository address, project name, login credentials, tag, and local network. |
-| Image can be used | The target image can be selected when creating an Online IDE, runtime instance, or model service. | Check image sync status, project visibility scope, and current account permissions. |
-| Sensitive information is not exposed | Robot credentials, repository passwords, and tokens do not appear in docs, screenshots, or command records. | Remove exposed content immediately and rotate related credentials according to the credential leakage process. |
+| Page entry | Images opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Images is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### docker login Fails
+#### Target Is Missing from Images
 
 **Symptom:**
 
-The login command reports authentication failure or cannot connect to the repository.
+The page opens, but the expected Configuration, status, and relationships on Images is missing.
 
 **Possible Causes:**
 
-- Repository address is incorrect.
-- Robot credentials or password is incorrect.
-- The local network cannot access the image repository.
-- Private certificate is not trusted by local Docker.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Copy the repository address provided by the page and log in again.
-2. Regenerate or copy robot credentials, avoiding extra spaces.
-3. Check local network and DNS.
-4. Configure Docker certificate trust according to enterprise certificate policy.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Custom Image Is Not Visible in Jobs
+#### The Operation Entry on Images Is Unavailable
 
 **Symptom:**
 
-The image has been pushed, but it is not selectable when creating an IDE, runtime instance, or model service.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- Sync was not clicked after the image was pushed successfully, so the platform list has not refreshed.
-- The image project does not match the current region, tenant, or account.
-- The image tag format does not meet platform recognition rules, or only a hard-to-identify temporary tag is used.
-- The current account has no view or use permission for this image project.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. Click `Sync` to synchronize image information.
-2. Confirm that the region selected when creating the job matches the image project.
-3. Push again with an explicit version tag, such as `v1.0.0`.
-4. Contact the project administrator to confirm image project permissions and visibility scope.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-#### docker push Fails
+#### A Required Field on Images Has No Options
 
 **Symptom:**
 
-Image push fails, hangs, or reports no permission.
+The form opens, but a selection list is empty.
 
 **Possible Causes:**
 
-- The image project does not exist, or the current account has no push permission for the project.
-- The remote image name, project name, or tag after `docker tag` does not meet repository requirements.
-- The image is too large, causing network timeout or connection interruption during push.
-- Local Docker login has expired, or it logged in to the wrong repository address.
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
 
 **Solution:**
 
-1. Confirm that the image project has been created and the current account has push permission.
-2. Check the full image name after `docker tag`; it should include repository address, project name, image name, and version tag.
-3. Run `docker login <registry>` again and push again.
-4. If the image is too large, clean cache layers, remove unnecessary dependencies, or split the image.
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
 
-![Add image project](./images/add-project.png)
+#### Images Has an Abnormal State After the Operation
 
-## Next Steps
+**Symptom:**
 
-1. Select this image in Online IDE or Runtime Instances to verify dependencies.
-2. Maintain version tags and change records for production images.
-3. Clean up unused tags to reduce image repository storage usage.
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Images
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Images.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
 
 ## Notes
 
 - Do not screenshot robot credentials, repository passwords, or tokens on image upload pages.
 - Production images should use explicit version tags and avoid using only `latest`.
 - When push fails, do not paste complete repository addresses, usernames, or robot passwords into public tickets.
+
+## Next Steps
+
+1. Select this image in Online IDE or Runtime Instances to verify dependencies.
+2. Maintain version tags and change records for production images.
+3. Clean up unused tags to reduce image repository storage usage.

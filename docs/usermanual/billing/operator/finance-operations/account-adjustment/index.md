@@ -7,15 +7,15 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Account Adjustment` is used to find billing records that require manual correction, evaluate adjustment impact, and review submitted adjustment records. The page warns that submitted adjustments may generate real fund flows and are usually irreversible, so approval, reason, and impact scope must be confirmed before submission.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Finance Operations > Account Adjustment |
 | Page route | `/billing/admin/account-adjustments` |
 | Managed objects | Billing records, adjustment impact assessment, and adjustment records |
-| Typical use | Locate records to correct, evaluate adjustment impact, and review adjustment history |
+
+`Account Adjustment` is used to find billing records that require manual correction, evaluate adjustment impact, and review submitted adjustment records. The page warns that submitted adjustments may generate real fund flows and are usually irreversible, so approval, reason, and impact scope must be confirmed before submission.
+
 
 #### Beginner Explanation
 
@@ -56,7 +56,7 @@ The following screenshot shows the risk notice, new adjustment area, and adjustm
 
 ## Main Operations
 
-Use the following operations to view the account adjustment page, evaluate adjustment impact, and review adjustment records. For learning or screenshots, only view page structure, fields, and records. Do not click real submit, confirm, or adjustment actions.
+Use the following operations to view the account adjustment page, evaluate adjustment impact, and review adjustment records. Before submitting an adjustment, verify the target billing record, approval status, direction, amount, and reason.
 
 ### View Account Adjustment
 
@@ -64,7 +64,6 @@ Use the following operations to view the account adjustment page, evaluate adjus
 2. Review the risk notice at the top of the page and confirm that submitted adjustments may generate real fund flows and are usually irreversible.
 3. Review the `New Adjustment` area and confirm that target records can be located by billing record, settlement detail, transaction number, or billing fact ID.
 4. Review the `Adjustment Records` list, including time, adjustment type, subject / account, direction, amount, reason, operator, and details entry.
-5. For learning or screenshots only, view page structure, fields, and records without clicking submit, confirm, or real adjustment actions.
 
 ![Account Adjustment](./images/account-adjustment-list.png)
 
@@ -75,18 +74,25 @@ Use the following operations to view the account adjustment page, evaluate adjus
 3. Before clicking `Evaluate Impact`, confirm record source, billing cycle, tenant, amount direction, and approval basis.
 4. Review affected account, direction, amount, related document, and reason in the evaluation result.
 5. If the result does not match expectations, stop submission and continue verification in Financial Accounts, Settlement List, or Reconciliation Center.
-6. For learning or screenshots only, view the evaluation entry and fields without submitting a real adjustment.
+
+![Account Adjustment - Evaluate Adjustment Impact](./images/manual-billing-account-adjustment-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Adjustment Records
 
 1. Go to `Billing > Finance Operations > Account Adjustment`.
 2. Review existing records in the `Adjustment Records` list.
 3. Locate the target record by time, subject / account, direction, amount, reason, or operator.
-4. Click `Details` to view more information for a single adjustment record.
+4. Click **"Details"** to view more information for a single adjustment record.
 5. Verify whether the record is consistent with approval basis, related document, and account transactions.
 6. Hide real account, tenant name, transaction number, amount, and approval information when sharing screenshots or external communication.
 
-## Parameter Reference
+![Account Adjustment - View Adjustment Records](./images/manual-billing-account-adjustment-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -113,7 +119,7 @@ Use the following operations to view the account adjustment page, evaluate adjus
 - Submitted adjustments may generate real fund flows and are usually irreversible.
 - Before adjustment, confirm approval, billing cycle, tenant, related document, amount direction, and affected account.
 - Adjustment cannot replace normal settlement, compensation, or reconciliation flows.
-- For learning or screenshots, only view the page, fields, and records. Do not execute real submission.
+- Before submitting an adjustment, verify the target billing record, approval status, direction, amount, and reason.
 - Do not record real accounts, account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, tokens, or keys.
 
 ## Result Validation
@@ -200,15 +206,33 @@ The adjustment record does not appear after processing completes.
 2. Confirm that approval and submission have completed.
 3. If the record is still missing, ask an administrator to check permissions and background processing status.
 
-## Next Steps
 
-1. Review related billing records, transactions, settlement statements, and account balance changes.
-2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
-3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
+#### Account Adjustment Entry Is Unavailable
 
+**Symptom:**
+
+A billing difference is confirmed, but no Account Adjustment entry is available.
+
+**Possible causes:**
+
+- The current account does not have adjustment permission.
+- The target record status does not allow adjustment.
+- Approval evidence or related records are incomplete.
+
+**How to handle:**
+
+1. Confirm the difference across Financial Accounts, Reconciliation Center, and Settlement List.
+2. Check the target record status and current account permission.
+3. Complete approval evidence, related records, and impact assessment before entering the adjustment process.
 ## Notes
 
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Submitted adjustments may generate real fund flows and are usually irreversible. Confirm approval, reason, direction, amount, subject, and impact scope before submission.
 - Do not record real accounts, account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, tokens, or keys in the manual, screenshots, notes, or tickets.
+
+## Next Steps
+
+1. Review related billing records, transactions, settlement statements, and account balance changes.
+2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
+3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.

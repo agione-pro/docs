@@ -4,7 +4,7 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
+| Applicable Role | Operator Admin |
 | Navigation path | Model Services > Settings > Meta Models |
 | Page route | `/modelone/settings/meta` |
 | Managed objects | Model capabilities, protocols, modalities, Token limits, default parameters, and capability tags |
@@ -50,7 +50,7 @@ This page maintains model capability abstractions, including input/output modali
 
 Page screenshot:
 
-![Meta-model list](./images/meta-models-list.png)
+![Meta-model list](./images/meta-models-list-public.png)
 
 In the image above, the red box on the left highlights the model author filter area, and the right side is the meta-model list. The "Status" column shows whether each meta-model is enabled.
 
@@ -69,7 +69,7 @@ The operations below are ordered for new users. Start with first setup, then che
 5. Upload or select an `Application Icon`.
 6. Click **"Confirm"** to save.
 
-![Add Model Author](./images/model-author-add.png)
+![Add Model Author](./images/model-author-add-public.png)
 
 The image above shows the add dialog for a model author. Check `Unique identifier`, multilingual `Display Name`, and `Application Icon`, because they affect the left-side author list and later meta-model ownership selection.
 
@@ -84,11 +84,11 @@ The image above shows the add dialog for a model author. Check `Unique identifie
 7. Before submission, check for duplicate identifiers and verify that protocols, modalities, and Token limits are complete.
 8. Click **"Submit"** to save. After a successful save, query the new meta-model in the list and open its details to verify its name, status, and capability configuration.
 
-![Add a Meta-model](./images/meta-model-configuration-add.png)
+![Add a Meta-model](./images/meta-model-configuration-add-public.png)
 
 In the image above, the red box highlights the Token limit configuration area. Please verify that the input and output limits match the real model capability.
 
-![Meta-model details step](./images/meta-model-details-add.png)
+![Meta-model details step](./images/meta-model-details-add-public.png)
 
 The image above shows the `Meta-model Details` step in the add wizard. The bottom action area contains **"Previous"** and **"Submit"**. Before submitting, check that the detail text is suitable for later publishing and marketplace display.
 
@@ -100,20 +100,20 @@ The image above shows the `Meta-model Details` step in the add wizard. The botto
 4. Check the unique identifier, model author, model type, input/output modalities, protocol, Token limits, default parameters, and current status.
 5. The details should match the list name and status. If no record is returned, clear the query conditions and confirm the active tab.
 
-![Query Meta-model Details](./images/meta-model-details.png)
+![Query Meta-model Details](./images/meta-model-details-public.png)
 
 The image above shows the meta-model details page. Check `Unique identifier`, `Status`, protocol, input/output modalities, and Token limits. Confirm that they match the list record and real model capability.
 
 ### Enable or Disable a Meta-model
 
 1. Query and open the target meta-model details. Confirm its current status and record whether templates, publishing flows, or marketplace filters use it.
-2. Before clicking **"Enable"** or **"Disable"**, confirm the impacted objects: future template selection, model publishing options, marketplace filtering, and any callers that may depend on this meta-model.
-3. If you cannot confirm the dependency scope, a publishing review is in progress, or this is the only available configuration for a live model, do not disable it yet. Ask the template maintainer or technical owner to confirm first.
+2. Before clicking **"Enable"** or **"Disable"**, confirm the impacted objects: future template selection, model publishing options, marketplace filtering, and any Model Consumers that may depend on this meta-model.
+3. If you cannot confirm the dependency scope, a publishing review is in progress, or this is the only configuration for a live model, do not disable it yet. Ask the template maintainer or technical owner to confirm first.
 4. Read the confirmation message. If the message does not match your expected impact, click **"Cancel"**.
-5. When the change is safe, confirm the action. After the operation succeeds, refresh the list and details and check status, update time, and availability in later flows.
+5. When the change is safe, confirm the action. After the operation succeeds, refresh the list and details and check status, update time, and selector entries in later flows.
 6. If the status does not change, check permission, references, page cache, and synchronization time instead of clicking repeatedly.
 
-![Enable or Disable a Meta-model](./images/meta-model-enable-disable.png)
+![Enable or Disable a Meta-model](./images/meta-model-enable-disable-public.png)
 
 The image above shows the status-change entry point. After the change, check the `Status` column in the list and the status field on the details page to confirm the expected `Enabled` or `Disabled` state.
 
@@ -122,10 +122,10 @@ The image above shows the status-change entry point. After the change, check the
 1. Locate the target record in the meta-model list and click the row action **"Edit"**.
 2. Check the model author, name, unique identifier, model type, input/output modalities, scene, protocols, Token limits, and advanced capabilities.
 3. Change only the fields that need to be modified. Assess the impact on templates, published models, and existing calls.
-4. Before changing Token limits, modalities, protocols, or default parameters, confirm whether templates, published models, or callers depend on the current configuration. If the dependency scope is unclear, do not submit the change yet.
+4. Before changing Token limits, modalities, protocols, or default parameters, confirm whether templates, published models, or Model Consumers depend on the current configuration. If the dependency scope is unclear, do not submit the change yet.
 5. Click **"Confirm"** to save. After a successful save, refresh the list and open the details. If saving fails, check required fields, field compatibility, references, and permission.
 
-![Edit a Meta-model](./images/meta-model-edit.png)
+![Edit a Meta-model](./images/meta-model-edit-public.png)
 
 The image above shows the meta-model edit page. The field layout is similar to the add page. After saving, return to the list and check whether the status and update time match the expected change.
 
@@ -137,7 +137,7 @@ The image above shows the meta-model edit page. The field layout is similar to t
 4. Before submission, verify capability boundaries and Token limits.
 5. After clicking **"Save"**, query the new identifier in the list and open its details to confirm the copy and its status.
 
-![Copy a Meta-model](./images/meta-model-copy.png)
+![Copy a Meta-model](./images/meta-model-copy-public.png)
 
 The image above shows the copy dialog opened from the row **"..."** menu. Check `Unique identifier` and `Name` carefully so the copy is not confused with the original meta-model in lists or publishing flows.
 
@@ -148,7 +148,7 @@ The image above shows the copy dialog opened from the row **"..."** menu. Check 
 3. Change only the fields that need to be modified. Check that the new name and icon will not affect list recognition or meta-model associations.
 4. Click **"Confirm"** to save. After a successful save, the list should show the updated name or icon. If saving fails, check required fields, name format, and permission.
 
-![Edit a Model Author](./images/model-author-edit.png)
+![Edit a Model Author](./images/model-author-edit-public.png)
 
 The image above shows the edit dialog for a model author. After saving, return to the left-side `Model Author` list and check whether the name and icon use the new configuration.
 
@@ -161,7 +161,7 @@ The image above shows the edit dialog for a model author. After saving, return t
 5. If the button is grayed out or deletion fails, follow the page message and check references, permission, and current status before removing references or migrating the configuration.
 6. After a successful deletion, refresh the list and confirm that the record is removed.
 
-![Delete a Meta-model](./images/meta-model-delete.png)
+![Delete a Meta-model](./images/meta-model-delete-public.png)
 
 The image above shows the delete confirmation dialog. Before confirming, check the dialog title and the target row again to avoid deleting a similarly named meta-model under the same author.
 
@@ -173,7 +173,7 @@ The image above shows the delete confirmation dialog. Before confirming, check t
 4. If the button is grayed out or deletion fails, follow the page message and check associated meta-models, current account permission, and author status.
 5. After a successful deletion, refresh the author list and confirm that the record is removed.
 
-![Delete a Model Author](./images/model-author-delete.png)
+![Delete a Model Author](./images/model-author-delete-public.png)
 
 The image above shows the delete confirmation dialog for a model author. Before confirming, check the selected author name on the left to avoid deleting an author still used by meta-models.
 
@@ -185,7 +185,7 @@ The image above shows the delete confirmation dialog for a model author. Before 
 4. Use a small test file first. Check field mapping, duplicate identifiers, and validation results before running the full import.
 5. After the import completes, clear filters and verify the new records. If the page reports success but no records appear, check filters, duplicate identifiers, associated model authors, and field formats first.
 
-![Import or Export Meta-models](./images/meta-model-import-export.png)
+![Import or Export Meta-models](./images/meta-model-import-export-public.png)
 
 The image above shows **"Import"** and **"Export"** above the meta-model list. After import, clear filters and check the list for new records or validation messages.
 
@@ -197,7 +197,7 @@ The image above shows **"Import"** and **"Export"** above the meta-model list. A
 4. Use a small test file first to validate the format and field mapping before running the full import.
 5. After the import completes, clear search conditions and verify the new records. If the new author does not appear, check duplicate identifiers, file format, icon fields, and account permission.
 
-![Import or Export Model Authors](./images/model-author-import-export.png)
+![Import or Export Model Authors](./images/model-author-import-export-public.png)
 
 The image above shows **"Import"** and **"Export"** in the model author area. After import, check whether the new author name and icon appear in the left-side author list.
 
@@ -208,7 +208,7 @@ The image above shows **"Import"** and **"Export"** in the model author area. Af
 3. The exported file can include protocol, capability, and parameter configuration. Do not send it to unauthorized chat groups, external email, or public knowledge bases.
 4. After a successful export, verify the file content. If the operation fails, check filter conditions, permission, browser download status, and download-blocking messages.
 
-![Import or Export Meta-models](./images/meta-model-import-export.png)
+![Import or Export Meta-models](./images/meta-model-import-export-public.png)
 
 The image above shows the import and export buttons located above the meta-model list.
 
@@ -219,7 +219,7 @@ The image above shows the import and export buttons located above the meta-model
 3. The exported file can include author identifiers and display information. Do not send it directly as external delivery material.
 4. After a successful export, verify the file content. If the operation fails, check filter conditions, permission, browser download status, and download-blocking messages.
 
-![Import or Export Model Authors](./images/model-author-import-export.png)
+![Import or Export Model Authors](./images/model-author-import-export-public.png)
 
 The image above shows the import and export buttons in the model author area.
 
@@ -242,7 +242,7 @@ The image above shows the import and export buttons in the model author area.
 | Unique identifier | Yes | Text / read-only text | `qwen-text` | Unique identifier of the meta-model, cannot be modified after creation |
 | Series | Yes | Text | `Qwen` | Series that the meta-model belongs to |
 | Scene | Yes | Dropdown | `Text Generation` | Business scenario where the meta-model is used |
-| Status | Yes | Dropdown | `Enabled` | Controls whether the meta-model can be used in later flows |
+| Status | Yes | Dropdown | `Enabled` | Status displayed for the meta-model |
 | Official Release Time | No | Date picker | `2026-07-08` | Official release time of the corresponding model capability |
 | Model description | No | Multilingual text | `For text generation.` | Description displayed on model cards and detail pages |
 | Model Type & Variants | Yes | Radio card | `Conversation Model` / `LLM Model` | Defines the capability category and subtype of the meta-model |
@@ -269,9 +269,9 @@ The image above shows the import and export buttons in the model author area.
 | The meta-model details match the list record | The details page shows the expected unique identifier, status, protocol, modalities, and Token limits | Return to the list and confirm that the correct record was opened. Clear filters and open the details again if needed |
 | The status changes after enable or disable | The list `Status` column and details page show the expected `Enabled` or `Disabled` state | Check permission, references, and page cache. Wait for synchronization, refresh the page, and confirm again |
 | A copied meta-model creates a new record | The new unique identifier appears in the list, and the details match the expected copy | Check whether the unique identifier or name conflicts with the original record or an existing record |
-| The meta-model can be selected in a template or publishing flow | The meta-model is available in the dropdown | Confirm the meta-model status is enabled, and check model type and modality match |
+| The meta-model can be selected in a template or publishing flow | The target meta-model appears in the dropdown | Confirm the meta-model status is enabled, and check model type and modality match |
 | Protocols, modalities, and Token limits match the real model capability | Protocols, modalities, and Token limits are consistent with official documentation | Return to the meta-model details page and verify configuration. Contact the technical owner if needed |
-| Default parameters take effect in Playground or call tests | Playground or API calls return expected results | Check default parameter configuration and verify whether caller parameters override defaults |
+| Default parameters take effect in Playground or call tests | Playground or API calls return expected results | Check default parameter configuration and verify whether Model Consumer parameters override defaults |
 | Import produces visible records or validation feedback | New records appear in the list, or the page returns a clear validation result | Clear filters, then check duplicate unique identifiers, file fields, associated model author, and import permission |
 | Export creates a downloaded file | The browser downloads an export file, and its content matches the current filter scope | Check filters, data permission, browser download status, and download-blocking messages |
 | The deleted meta-model no longer appears in the list | The target meta-model is removed from the list | Check whether templates, published models, or other business objects still reference it. Migrate configuration first if needed |
@@ -283,7 +283,7 @@ The image above shows the import and export buttons in the model author area.
 
 **Symptom:**
 
-After a model provider enters the publishing flow, the target item is missing from the meta-model dropdown.
+After a Model Provider enters the publishing flow, the target item is missing from the meta-model dropdown.
 
 **Possible Causes:**
 
@@ -307,7 +307,7 @@ Model Playground or API calls return context length, input length, or output len
 
 - The meta-model Token limit is smaller than the actual request.
 - Default Max Tokens is set too high.
-- The caller passed an excessively long context.
+- The Model Consumer passed an excessively long context.
 
 **Handling:**
 
@@ -409,4 +409,4 @@ Clicking **"Delete"** on a model author results in a grayed-out button or a reje
 
 1. Select this meta-model in the model template or publishing flow and confirm that protocol, modalities, and Token limits are referenced correctly.
 2. Use a representative model for one publishing validation and check whether input/output formats match.
-3. When protocol, context length, or default parameters change, notify template maintainers and model providers.
+3. When protocol, context length, or default parameters change, notify template maintainers and Model Providers.

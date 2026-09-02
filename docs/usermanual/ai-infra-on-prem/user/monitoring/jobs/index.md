@@ -1,34 +1,33 @@
-# Job Monitoring
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Jobs
 
 ## Feature Overview
 
-`Job Monitoring` is used to view model instances, online IDEs, runtime instances, and historical jobs within the user-visible scope from a End User perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Job Monitoring |
-| Page route | `/powerone/user-monitor/work` |
-| Managed objects | Model instances, online IDEs, runtime instances, and historical jobs within the user-visible scope |
-| Typical use | Locate queued, failed, long-running, and abnormal resource consumption jobs |
+| Applicable Role | Model Provider and Model Consumer |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Jobs |
+| Page Route | `/powerone/user-monitor/work` |
+| Managed Object | Configuration, status, and relationships on Jobs |
 
 #### Beginner Explanation
 
 Job monitoring is like a personal task queue list. It shows job ID, status, queue duration, runtime duration, GPU occupation, and failure causes.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Job ID | Identifier used to locate a single training, inference, or runtime task. |
 | Queue Duration | Time a job waits for resources or scheduling conditions. |
 | Runtime Duration | Duration after a job starts running. |
-| Failure Cause | Scheduling, image, startup, or resource error summary returned by the platform. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Model instances, online IDEs, runtime instances, and historical jobs within the user-visible scope, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Jobs, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,9 +38,15 @@ Job monitoring is like a personal task queue list. It shows job ID, status, queu
 
 ## Page Description
 
-The page displays job monitoring capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Job Monitoring](./images/jobs-list.png)
+Use this page to view and handle Configuration, status, and relationships on Jobs.
+
+![Jobs](./images/jobs-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The page displays job monitoring capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
 #### Expected Page Elements When Capability Is Open
 
@@ -85,7 +90,7 @@ The page displays job monitoring capability for the selected region. When the ca
 - Whether failure causes point to quota, image, startup command, or insufficient resources.
 - Whether GPU occupation and runtime duration match expectations.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -107,68 +112,111 @@ The page displays job monitoring capability for the selected region. When the ca
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Job list | The list shows job ID, status, queue duration, runtime duration, and resource usage. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Filtered results | The list and statistics change when the filters change. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Failure details | A failed job can be opened to view an error summary, events, or logs. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-
-## Prepare Before Contacting the Operator
-
-If the job page is abnormal, prepare the following information so that the operator can distinguish queueing, failure, resource shortages, and history-retention problems:
-
-| Information | Example | Purpose |
-| --- | --- | --- |
-| Job ID | `job-20260713001` | Identifies the task record. |
-| Job Status | `Queued / Failed / Running` | Determines the troubleshooting direction. |
-| Queue Duration | `25 minutes` | Indicates scheduling or resource-waiting problems. |
-| Failure Time | `2026-07-13 10:15` | Aligns events, logs, and monitoring curves. |
-| Specification / Queue | `2 * A800 / gpu-prod` | Confirms whether the resource pool and quota match. |
+| Page load | Jobs charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
 
 ## FAQ
 
-#### Job Remains Queued for a Long Time
+#### No Data on Jobs
 
 **Symptom:**
 
-The job remains Pending, Queued, or waiting for resources.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- Target specification or GPU model resources are insufficient.
-- Current tenant quota is insufficient.
-- Scheduling conditions, node labels, or storage mount conditions are not satisfied.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. Verify whether resource quotas and target specifications are available.
-2. View cluster, node, and device monitoring to confirm capacity.
-3. Switch specification or region if necessary, or contact the operator to adjust resources.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Job Fails but Logs Are Empty
+#### Jobs Is Not Updating
 
 **Symptom:**
 
-The job status is Failed, but the log page has no application output.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- The container did not start successfully, so logs have not been generated.
-- Image pull, startup command, or mount failure occurred before application startup.
-- Log collection has delay or permission restrictions.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. View events and the failure cause field.
-2. Check image address, startup command, environment variables, and mount paths.
-3. Provide job ID, submission time, and error summary to the operator for troubleshooting.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Jobs Differs from Adjacent Pages
 
-1. For queueing issues, verify quotas, specifications, and device capacity first.
-2. For failure issues, view events, image, startup command, and mount path first.
-3. For high-duration jobs, evaluate resource consumption together with the usage page.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
 - Job IDs, image addresses, data paths, and log contents may contain sensitive information.
 - Before stopping a job, confirm whether output files and logs need to be retained.
 - When the same error appears repeatedly, adjust configuration before retrying to avoid continuous credit consumption.
+
+## Next Steps
+
+1. For queueing issues, verify quotas, specifications, and device capacity first.
+2. For failure issues, view events, image, startup command, and mount path first.
+3. For high-duration jobs, evaluate resource consumption together with the usage page.

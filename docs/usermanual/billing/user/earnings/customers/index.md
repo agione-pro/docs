@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`Customers` is used to view Provider revenue by customer. The page focuses on billing cycle, keyword and tag filters, customer statistic cards, current-cycle revenue, revenue proportion, customer join time, latest revenue in the billing cycle, and the details entry. Providers can use it to locate key customers and verify customer-level revenue details.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Account, Customer Operations User, Revenue Analyst |
+| Applicable Role | Model provider |
 | Navigation path | Billing > Earnings > Customers |
 | Page route | `/billing/provider/customers` |
 | Managed objects | Customer revenue, billing cycle, customer tags, current-cycle revenue, revenue proportion, join time, latest revenue, and details entry |
-| Typical use | View customer-level revenue, locate key customers, and verify customer revenue details |
+
+`Customers` is used to view Provider revenue by customer. The page focuses on billing cycle, keyword and tag filters, customer statistic cards, current-cycle revenue, revenue proportion, customer join time, latest revenue in the billing cycle, and the details entry. Providers can use it to locate key customers and verify customer-level revenue details.
+
 
 #### Beginner Explanation
 
@@ -39,7 +39,7 @@ Customers works like a Provider customer revenue dashboard. Start with the billi
 3. Before opening customer details, confirm that the current account can view the target customer scope.
 
 ::: warning High-Risk Operation Boundary
-Customer overview contains tenant, administrator, tags, revenue amount, and proportion. For learning or screenshots, view only list fields and the details entry without modifying tags or exporting real customer revenue data.
+Customer overview contains tenant, administrator, tags, revenue amount, and proportion. Before modifying tags or exporting data, verify the target customer, account permission, and data scope.
 :::
 
 ## Page Description
@@ -64,10 +64,6 @@ The following screenshot shows the Customers page. Customer names, tenants, admi
 ## Main Operations
 
 ::: warning Fact Status
-The Provider credentials were rejected by the Demo in this review, so Provider-only operations were not verified in the current Demo. The instructions use the existing Chinese and English manuals and cross-verifiable shared page structure. Recheck buttons, fields, and permissions with a valid Provider account before execution.
-:::
-
-
 
 ### View Earnings Customers
 
@@ -76,6 +72,10 @@ The Provider credentials were rejected by the Demo in this review, so Provider-o
 3. Check customer count, call volume, earnings contribution, and refresh time.
 4. If no data is shown, expand the period and reset filters. Redact customer and earnings data before sharing.
 
+![Customers - View Earnings Customers](./images/customers-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ### Compare Customer Contribution and Anomalies
 
 1. Compare customer calls, Tokens, earnings, and trends within the same billing period.
@@ -83,20 +83,22 @@ The Provider credentials were rejected by the Demo in this review, so Provider-o
 3. If totals and details differ, check aggregation scope, settlement status, and refresh time.
 4. Do not change commercial policy or customer permissions based on one short-period metric.
 
+![Customers - Compare Customer Contribution and Anomalies](./images/customers-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Customer Details
 
 1. Go to `Billing > Earnings > Customers`.
 2. Review customer statistic cards, including customer total, new customers in the billing cycle, Top 1 customer, and Top 5 proportion.
-3. Select `Billing Cycle`, or use keyword and tag filters as needed to locate the target customer.
+3. Select **"Billing Cycle"**, or use keyword and tag filters as needed to locate the target customer.
 4. In the customer list, verify tenant information, administrator information, tags, current-cycle revenue, proportion, customer join time, and latest revenue in the billing cycle.
-5. Click `Details` in the target customer row.
+5. Click **"Details"** in the target customer row.
 6. In the details page or details area, review customer-level revenue details and cross-check with Revenue Overview, Settlements, or Revenue Account Activity.
-7. For learning or screenshots only, view list fields and the details entry without modifying tags or exporting real customer revenue data.
 
 ![Customers](./images/customers-list.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -133,10 +135,10 @@ The Provider credentials were rejected by the Demo in this review, so Provider-o
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page loading | Customer statistic cards, filters, and customer list are displayed normally. | Refresh the page or check Provider revenue permissions. |
-| Filters available | Billing cycle, keyword, and tag filters can locate customers. | Click `Reset` and filter again. |
+| Filters available | Billing cycle, keyword, and tag filters can locate customers. | Click **"Reset"** and filter again. |
 | Customer fields visible | Tenant information, administrator information, tags, current-cycle revenue, proportion, join time, and latest revenue are displayed normally. | Adjust billing cycle or filters and try again. |
 | Details available | Clicking `Details` opens customer revenue details. | Check whether the customer has visible details or whether the account has permission. |
-| High-risk action avoided | No tag modification or real customer-data export is performed during learning or screenshots. | If triggered by mistake, record the time and scope immediately and notify the owner for review. |
+| High-risk actions controlled | Tags are modified and customer data is exported only by authorized users for the intended customer scope. | If an unintended action occurs, record the time and scope immediately and notify the owner for review. |
 
 ## FAQ
 
@@ -152,7 +154,7 @@ Billing cycle, keyword, or tag filters may be too narrow, or the current account
 
 **How to handle:**
 
-Click `Reset` and select the billing cycle again. If the list is still empty, return to Revenue Overview to confirm whether the billing cycle has customer revenue.
+Click **"Reset"** and select the billing cycle again. If the list is still empty, return to Revenue Overview to confirm whether the billing cycle has customer revenue.
 
 #### Customer revenue proportion looks abnormal
 
@@ -180,12 +182,50 @@ Tags affect customer filtering, operations classification, and follow-up.
 
 **How to handle:**
 
-Confirm tag meaning and customer scope before editing. For learning or screenshots, do not save tag changes.
+Confirm tag meaning and customer scope before editing. If no change is required, close the dialog without saving.
 
+
+#### Customers Does Not Update After Refresh
+
+**Symptom:**
+
+The amount, count, or status in Customers remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Customers.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Revenue and Settlements.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Customers Information?
+
+**Symptom:**
+
+Customers results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Customer names, administrators, tags, revenue amounts, and proportions may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Customer overview contains tenant, administrator, and revenue data. Desensitize screenshots before sharing.
-- For learning or screenshots, view only list fields and the details entry without modifying tags or exporting real customer revenue data.
+- Before modifying tags or exporting customer revenue data, verify the target customer, account permission, and recipient scope.
 - Managing tags may affect customer classification. Confirm tag meaning, customer scope, and operation permissions before editing.
 - When reconciling customer revenue, check billing cycle, filters, Revenue Overview, Settlements, and Revenue Account Activity together.
 

@@ -1,35 +1,33 @@
 # Inference Templates
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Inference Templates` is used to combine models, frameworks, images, specifications, VRAM estimation, ports, variables, and default parameters into templates that End Users can deploy directly.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Templates > Inference Templates |
-| Page route | `/powerone/fast-build-v2/inference-templates` |
-| Managed objects | Inference templates, model scope, framework scope, specification recommendations, form parameters, and publication status |
-| Typical use | Publish deployable model service plans to End Users |
+| Navigation Path | AI Infra(On-Prem) > Templates > Inference Templates |
+| Page Route | `/powerone/fast-build-v2/inference-templates` |
+| Managed Object | Configuration, status, and relationships on Inference Templates |
 
 #### Beginner Explanation
 
 An inference template is like an assembly list for a model service. It combines frameworks, specifications, default parameters, and visibility scope so users can quickly create services from the template during deployment.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Template | Deployment plan selected when users create model instances. |
 | Factor Form | Parameter set filled in by users when creating instances. |
 | Dynamic Expression | Dynamically calculates field values or display conditions based on user input, model, precision, or resource conditions. |
-| VRAM Configuration | VRAM recommendation and validation rules used to reduce specification selection errors. |
-| Parameter Trigger Condition | Controls fields displayed under specific models, frameworks, or options. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Inference templates, model scope, framework scope, specification recommendations, form parameters, and publication status, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Inference Templates, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -40,15 +38,19 @@ An inference template is like an assembly list for a model service. It combines 
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Inference Templates.
+
+![Inference Templates](./images/manual-inference-templates.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 The page displays the inference template list, including template name, status, model scope, framework scope, update time, and operation entrypoints.
 
 The following figure shows the inference templates page.
 
-![Inference Templates](./images/inference-templates-list.png)
-
 ## Main Operations
 
-### View Configuration Assets
+### View Inference Templates
 
 1. Open the corresponding template-configuration page and filter by name, version, status, or update time.
 2. Open details and check associated models, frameworks, images, resource requirements, and current version.
@@ -67,21 +69,69 @@ The following figure shows the inference templates page.
 #### Procedure
 
 1. Go to `AI Infrastructure > On-Prem > Templates > Inference Templates`.
-2. Click `Add`, `Create Inference Template`, or the actual create entry on the page.
+2. Click **"Add"**, **"Create Inference Template"**, or the actual create entry on the page.
 3. In the basic information area, fill in template name, description, applicable scenario, publication scope, and visibility scope.
 4. In the model configuration area, select model, model version, model source, or applicable model scope.
 5. In the framework configuration area, select framework, framework version, runtime image, and startup configuration.
 6. In the resource configuration area, select resource specification, deployment mode, VRAM estimation rules, region, or cluster scope.
 7. In the port and network area, configure service port, port exposure policy, port tag, and health check.
 8. In the factor form area, configure parameters users must fill in when creating instances, default values, validation rules, dynamic expressions, and trigger conditions.
-9. Before clicking the final `Save`, `Submit`, `Publish`, or `OK`, verify model, framework, specifications, parameters, ports, visibility scope, and user-side impact.
-10. For learning or screenshots only, view fields and pages without submitting or publishing real inference templates.
+9. Before clicking the final **"Save"**, **"Submit"**, **"Publish"**, or **"OK"**, verify model, framework, specifications, parameters, ports, visibility scope, and user-side impact.
 
 The following figure shows the Create Inference Template page, used to configure basic information, resource specifications, and factor forms.
 
 ![Create inference template](./images/create-inference-template.png)
 
-## Parameter Reference
+### Import or Export Inference Templates
+
+#### Applicable Scenarios
+
+Use the **"Import/Export"** menu to batch-maintain inference templates, or to export template configurations for audit, reconciliation, and controlled migration.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Templates > Inference Templates`.
+2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
+3. For import, upload the file as required by the page and verify template, model, framework, resource specification, factor form, and visibility scope.
+4. For export, confirm the template filter scope, then generate and download the template configuration as prompted by the page.
+5. Before importing, verify that dependencies are available in the target environment. Save export files in a controlled directory.
+
+#### Result Validation
+
+- After import, the Inference Templates list shows the added or updated template and state.
+- The template scope in the export file matches the current filter conditions.
+- Model, framework, specification, and parameter references in template details can be resolved correctly.
+
+#### Notes
+
+- Template import depends on model, framework, image, and specification objects. Do not submit it when dependencies are missing in the target environment.
+- Import may update a template with the same identifier. Verify release scope, default parameter values, and downstream deployment impact first.
+
+#### An Imported Inference Template Cannot Be Published or Deployed
+
+**Symptom:**
+
+The template import completes, but its state is abnormal or the template cannot be used on later publish or deployment pages.
+
+**Possible Causes:**
+
+- The model, framework, image, or specification is missing or unavailable in the target environment.
+- Factor fields, default values, or validation rules are incompatible.
+- Template visibility or state does not allow downstream use.
+
+**Solution:**
+
+1. Open template details and verify the model, framework, image, and resource specification one by one.
+2. Open the corresponding configuration pages to verify dependency state and version compatibility.
+3. Check template visibility, release state, and factor-form validation rules.
+
+#### Operation Screenshots
+
+![Inference Templates operation interface](./images/manual-create-inference-template.png)
+
+The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -95,7 +145,7 @@ The following figure shows the Create Inference Template page, used to configure
 | Model Source | Conditionally required | Address / path | `Object Storage` | Model file source, repository source, or object storage source. Do not write real model repository addresses, endpoints, or internal paths. |
 | Framework | Yes | Number / capacity | `vLLM` | Runtime framework configuration called by the template. The framework must support the selected model type and runtime mode. |
 | Framework Version | Conditionally required | Text | `v0.8.0` | Framework version referenced by the template. Confirm impact on existing templates and instances before modification. |
-| Runtime Image | Conditionally required | Text | `registry.example.com/project/runtime:v1` | Container image used by the framework runtime. Confirm image region, registry permissions, and target cluster pull access. |
+| Runtime Image | Conditionally required | Text | `<BASE_URL>/<PROJECT>/<IMAGE>:<TAG>` | Container image used by the framework runtime. Confirm image region, registry permissions, and target cluster pull access. |
 | Resource Specification | Yes | Number / capacity | `gpu-a100-1card` | Default recommended or selectable compute specification for the template. Match model VRAM, concurrency, context length, and deployment mode. |
 | Deployment Mode | Yes | Dropdown / enum | `Single instance` | Determines service replicas, scaling, and scheduling mode. Keep it consistent with framework startup commands and resource specifications. |
 | VRAM Estimation Rule | Conditionally required | Number / capacity | `80` | VRAM rule used to recommend or validate specifications. Keep it consistent with model parameter count, quantization method, and context length. |
@@ -117,58 +167,115 @@ The following figure shows the Create Inference Template page, used to configure
 - Incorrect default parameters, dynamic expressions, or trigger conditions can cause missing user form fields, wrong parameters, or abnormal startup commands.
 - Incorrect port exposure policy may expand the service exposure scope.
 - Do not write real tokens, AK/SK, private keys, endpoints, internal addresses, model repository addresses, tenant IDs, cluster IDs, or test parameters.
-- `Save`, `Submit`, `Publish`, and `OK` are high-risk final actions. Do not click them during learning or screenshots.
+- `Save`, `Submit`, `Publish`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page can be opened | `AI Infra > On-Prem > Templates > Inference Templates` is accessible. | Check menu configuration, account permissions, and frontend route. |
-| Creation entry is visible | `Add`, `Create Inference Template`, or the actual creation entry is displayed. | Check operator permissions, License, and page configuration. |
-| Creation page can be opened | The basic information, model, framework, resource, port, and factor form sections can be viewed after clicking the entry. | Check route, permissions, and browser console errors. |
-| Required field validation works | Validation appears when template name, model, framework, specification, or visibility scope is empty. | Complete fields according to page prompts and do not bypass validation. |
-| Template appears in the list and status matches expectations | The template appears in the list, and status, update time, and publication status match expectations. | Check save result, publication status, filters, and backend processing status. |
-| User-side deployment template visibility matches scope | Target users or tenants can see the template, and non-target scopes cannot. | Check visibility scope, publication scope, tenant permissions, and template status. |
-| Parameters take effect when creating a test instance with the template | Model, framework, specification, parameters, and ports take effect as expected. | Check dependent objects, factor form, dynamic expressions, port policy, and startup logs. |
-| No real submission or publication during learning | During learning or screenshots, the final `Save`, `Submit`, `Publish`, or `OK` action is not clicked. | If clicked by mistake, immediately check the template list, user-side visibility scope, and service creation impact. |
+| Page entry | Inference Templates opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Inference Templates is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### User Side Cannot See the Template
+#### Target Is Missing from Inference Templates
 
 **Symptom:**
 
-The template has been saved, but it is not visible in the End User's deployment template list.
+The page opens, but the expected Configuration, status, and relationships on Inference Templates is missing.
 
 **Possible Causes:**
 
-- The template is not published or its status is unavailable.
-- The template visibility scope does not include the target tenant.
-- Model, framework, or specification has unavailable dependencies.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Check template status and publication scope.
-2. Verify tenant permissions and visibility scope.
-3. Check whether model, framework, specification, and VRAM configuration are available.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Parameters Do Not Match Expectations When Creating Instances
+#### The Operation Entry on Inference Templates Is Unavailable
 
 **Symptom:**
 
-When users create instances, form fields are missing, default values are incorrect, or trigger conditions do not take effect.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- Factor form configuration is incomplete.
-- Dynamic expression conditions are incorrect.
-- Model, framework, or specification trigger conditions do not match the actual selection.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. Check factor form fields, default values, and validation rules.
-2. Verify dynamic expressions one by one.
-3. Test form visibility with different model, framework, and specification combinations.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
+
+#### A Required Field on Inference Templates Has No Options
+
+**Symptom:**
+
+The form opens, but a selection list is empty.
+
+**Possible Causes:**
+
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
+
+**Solution:**
+
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Inference Templates Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Inference Templates
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Inference Templates.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
+
+## Notes
+
+- Template parameters must not contain real tokens, keys, or internal addresses.
+- Before publishing a template, confirm that dependent models, frameworks, images, specifications, and storage are all available.
+- Before modifying a published template, confirm the impact on user-side instance creation, template visibility scope, and active deployment entries.
+- Before save, submit, publish, or confirm actions, verify the scope and impact and execute them only after approval.
 
 ## Next Steps
 
@@ -176,10 +283,3 @@ When users create instances, form fields are missing, default values are incorre
 2. Adjust image, startup command, ports, and parameters based on failure logs.
 3. After template publication, periodically review model versions, framework versions, and specification scope.
 4. Review failure logs by model, framework, specification, and factor form combination to continuously calibrate the template.
-
-## Notes
-
-- Template parameters must not contain real tokens, keys, or internal addresses.
-- Before publishing a template, confirm that dependent models, frameworks, images, specifications, and storage are all available.
-- Before modifying a published template, confirm the impact on user-side instance creation, template visibility scope, and active deployment entries.
-- Do not perform real save, submit, publish, or OK actions during learning or screenshots.

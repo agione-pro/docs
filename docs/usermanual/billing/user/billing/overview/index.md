@@ -1,4 +1,4 @@
-# Account Overview
+# Overview
 
 ::: info Document Information
 Version: v1.0
@@ -7,15 +7,15 @@ Updated: 2026-07-29
 
 ## Feature Overview
 
-`Account Overview` summarizes the current account, including account balance, estimated available days, seven-day consumption, month-to-date spending, month-to-date top-ups, monthly estimate, last top-up, billing support, alert threshold, consumption analysis, top three cost sources, and recent transactions. Use it to assess account status before opening Transactions, Top-up Orders, Monthly Bill, or Quota Governance for details.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model Provider, End User |
+| Applicable Role | Model caller |
 | Navigation path | Billing > User Billing > Account Overview |
 | Page route | `/billing/my/account` |
 | Managed objects | Account balance, consumption trends, top-up entry, alert threshold, and recent transactions |
-| Typical use | Assess balance sufficiency, review consumption trends, and open transaction or top-up details |
+
+`Account Overview` summarizes the current account, including account balance, estimated available days, seven-day consumption, month-to-date spending, month-to-date top-ups, monthly estimate, last top-up, billing support, alert threshold, consumption analysis, top three cost sources, and recent transactions. Use it to assess account status before opening Transactions, Top-up Orders, Monthly Bill, or Quota Governance for details.
+
 
 #### Beginner Explanation
 
@@ -39,7 +39,7 @@ Account Overview is the billing home page. It first shows the current balance an
 3. Before checking balance, trends, or recent transactions, wait for the page to finish loading.
 
 ::: warning High-risk Operation Boundary
-Top-ups, alert-threshold changes, and billing-data exports may affect a real account or expose sensitive information. For learning or screenshots, view only the page, entrypoints, and fields; do not submit changes.
+Top-ups, alert-threshold changes, and billing-data exports can affect an account or expose sensitive information. Verify the target account, account permission, and impact scope before proceeding.
 :::
 
 ## Page Description
@@ -73,25 +73,37 @@ Top-ups, alert-threshold changes, and billing-data exports may affect a real acc
 2. Review `Account Balance` and `Estimated Available Days` to assess whether the balance is sufficient.
 3. Review `Last 7 Days Consumption`, `Month-to-date Spending`, `Month-to-date Top-ups`, and `Monthly Estimate`.
 4. Review `Consumption Analysis` and `Top 3 Cost Sources` for abnormal sources.
-5. For learning or screenshots, view only balance, trends, and entrypoints; do not submit a top-up or alert-threshold change.
+5. Before submitting a top-up or alert-threshold change, verify the target account, amount or threshold, and impact scope.
+
+![Account Overview - Review Account Overview](./images/overview-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Review Recent Transactions
 
 1. Go to `Billing > User Billing > Account Overview`.
 2. Review recent account changes in `Recent Transactions`.
 3. Check transaction time, type, amount direction, and description.
-4. If the subset cannot explain the balance change, click `View All` or open `Transactions`.
+4. If the subset cannot explain the balance change, click **"View All"** or open `Transactions`.
 5. Hide real amounts, accounts, order numbers, transaction numbers, and business context in external communication.
+
+![Account Overview - Review Recent Transactions](./images/overview-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Open Top-up Orders
 
 1. Go to `Billing > User Billing > Account Overview`.
-2. Click `Top-up Orders`.
+2. Click **"Top-up Orders"**.
 3. Locate an order by order number, status, or credit source.
 4. Check top-up status, credited amount, creation time, and completion time.
-5. For learning or screenshots, view only the entry and list fields; do not initiate a real top-up or export order data.
+5. Before initiating a top-up or exporting orders, verify the target account, data scope, and account permission.
 
-## Parameter Reference
+![Account Overview - Open Top-up Orders](./images/overview-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -129,7 +141,7 @@ Top-ups, alert-threshold changes, and billing-data exports may affect a real acc
 | Metric visibility | Seven-day consumption, month-to-date spending, top-ups, and monthly estimate are visible. | Wait for loading to finish and refresh. |
 | Entry availability | `Transactions`, `Top-up Orders`, and `View All` open their target pages. | Check menu permission or re-enter the page. |
 | Recent transaction review | Recent transactions show time, type, amount direction, and description. | Open Transactions and use the target time range. |
-| No unintended high-risk action | No top-up is submitted, alert threshold saved, or real data exported during learning or screenshot capture. | If triggered, record the time and scope and notify the owner for review. |
+| Account changes controlled | Top-ups, alert-threshold changes, and exports are performed only by authorized users for the confirmed scope. | If an unintended action occurs, record the time and scope and notify the owner for review. |
 
 ## FAQ
 
@@ -173,7 +185,52 @@ The overview shows only a subset of records; the full history is in Transactions
 
 **Solution:**
 
-Click `View All` or open `Transactions`, then filter again by time range and transaction type.
+Click **"View All"** or open `Transactions`, then filter again by time range and transaction type.
+
+
+#### Account Overview Does Not Update After Refresh
+
+**Symptom:**
+
+The amount, count, or status in Account Overview remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Account Overview.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Transactions and Top-up Orders.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Account Overview Information?
+
+**Symptom:**
+
+Account Overview results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Balances, estimated available days, accounts, and recent transactions may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
+## Notes
+
+- Do not paste complete account, email, order number, transaction number, or balance screenshots into external channels.
+- Account Overview is a summary entry; use Transactions and Monthly Bill for final reconciliation.
+- Confirm permission and approval before a top-up, refund, deduction, threshold change, or data export.
+- Before submitting a top-up, saving an alert threshold, or exporting data, verify the target account, permission, and impact scope.
 
 ## Next Steps
 
@@ -181,10 +238,3 @@ Click `View All` or open `Transactions`, then filter again by time range and tra
 2. To verify top-up status, open [Top-up Orders](../top-up-orders/).
 3. For monthly reconciliation, open [Monthly Bill](../monthly-bill/).
 4. To assess quota risk, open [Quota Governance](../quota-governance/).
-
-## Notes
-
-- Do not paste complete account, email, order number, transaction number, or balance screenshots into external channels.
-- Account Overview is a summary entry; use Transactions and Monthly Bill for final reconciliation.
-- Confirm permission and approval before a top-up, refund, deduction, threshold change, or data export.
-- For learning or screenshots, view only pages, entrypoints, and fields; do not submit changes.

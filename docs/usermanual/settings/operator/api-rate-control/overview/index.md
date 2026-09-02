@@ -1,21 +1,13 @@
 # Overview
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Overview` shows the global API rate-control status, including request volume, blocked requests, over-limit statistics, enabled rules, per-minute request trends, and the top five rules by hits.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator |
 | Navigation path | Settings > API Rate Control > API Rate Control Overview |
 | Page route | `/user/system/rate-control/overview` |
 | Managed objects | Global request volume, blocked requests, over-limit statistics, enabled rules, and node status |
-| Typical use | Review API rate-control metrics, request trends, and the top rules by hits |
 
 #### Beginner Explanation
 
@@ -23,13 +15,13 @@ The Overview page is the traffic dashboard. Start here to determine whether requ
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Request volume | The number of API requests that entered the gateway or rate-control path during the selected period. | When it rises unexpectedly, confirm the business peak and time range first. |
-| Blocked requests | The number of requests blocked by rate-control rules. | When it rises, use the top-rule ranking to identify the rules being hit. |
-| Over-limit statistics | Statistics recorded after requests exceed a rule threshold. | Compare the rule threshold, tenant, and model scope. |
-| Enabled rules | The number of rate-control rules currently in effect. | If the count is unexpected, verify publication status in Rule Management. |
-| Top 5 rules | The five rules with the highest hit counts. | Investigate high-hit rules with the largest impact first. |
+| Term | Description |
+| --- | --- |
+| Request volume | The number of API requests that entered the gateway or rate-control path during the selected period.; When it rises unexpectedly, confirm the business peak and time range first. |
+| Blocked requests | The number of requests blocked by rate-control rules.; When it rises, use the top-rule ranking to identify the rules being hit. |
+| Over-limit statistics | Statistics recorded after requests exceed a rule threshold.; Compare the rule threshold, tenant, and model scope. |
+| Enabled rules | The number of rate-control rules currently in effect.; If the count is unexpected, verify publication status in Rule Management. |
+| Top 5 rules | The five rules with the highest hit counts.; Investigate high-hit rules with the largest impact first. |
 
 ## Prerequisites
 
@@ -54,42 +46,52 @@ The following screenshot shows the API Rate Control Overview page. Statistical d
 | Top 5 rules | Shows the rules with the highest hit counts. |
 | Details | Opens details for a ranked rule. |
 
+![Overview](./images/manual-settings-operator-rate-overview.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Overview page.
+
 ## Main Operations
 
-### Change the Time Range and View Rate-Control Trends
+### View Rate Control Overview
 
 1. Go to `Settings > API Rate Control > Overview` and select the target time range.
 2. Review request volume, blocked requests, enabled rules, node status, and trends.
 3. Compare the current and previous periods to identify spikes, continuous blocking, or node anomalies.
 4. If metrics are empty, check the time range and refresh time. Do not treat incomplete real-time aggregation as a final conclusion.
 
-### Drill Down into Rule or Block Anomalies
+![View Rate Control Overview](./images/manual-settings-operator-rate-overview.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Overview page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### View Rate Control Details
 
 1. Click an abnormal metric or related entry to open Rule Management or Observability Audit.
 2. Keep the same time range and check matched rules, nodes, and block reasons.
 3. A successful drill-down should map the overview to a specific rule or event. If not, check rule version and publish time.
 4. Do not modify rules or publish versions during read-only validation.
 
+![View Rate Control Details](./images/manual-settings-operator-rate-overview.png)
 
-Use the following operations to work with overview records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Overview page.
 
-### View API Rate Control Overview
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
 
-1. Go to `Settings > API Rate Control > API Rate Control Overview`.
-2. Review request volume, blocked volume, matched rules, API distribution, or trend data on the overview page.
-3. Select a time range, API, rule, or result status according to available filters.
-4. Click `Search` or the actual query entry on the page to refresh overview data.
-5. Click `Reset` when you need to restore default filters.
-6. View trends and statistics only. Do not publish, disable, or delete rules from the overview workflow.
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
 
-![API Rate Control Overview](./images/overview-list.png)
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Time Range | No | Date time | `2026-07-13 09:00 to 10:00` | The time window for API request, blocked, and hit statistics. |
-| API | No | Text | `/api/example` | Filters overview data by API or API path. Desensitize it in documentation. |
+| API | No | Text | `<ENDPOINT_PATH>` | Filters overview data by API or API path. Desensitize it in documentation. |
 | Rule | No | Text | `Example rule` | Filters hit or blocked data by rate-control rule. |
 | Request Volume | System generated | Number | `12,000` | The total request volume in the current time range. |
 | Blocked Volume | System generated | Number | `320` | The number of requests blocked by rate-control rules. |
@@ -162,6 +164,34 @@ The current account lacks API rate-control permissions, the component is disable
 
 Verify the module permission and component status. Wait for the refresh to finish, and make rule changes from Rule Management.
 
+#### How should the Overview page be exported or captured safely?
+
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Overview page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
+
 ## Notes
 
 - Overview is for observing trends; it does not replace rule configuration or audit details.
@@ -173,3 +203,7 @@ Verify the module permission and component status. Wait for the refresh to finis
 
 1. To adjust rules, go to [Rule Management](../rule-management/).
 2. To review block or audit details, go to [Observability & Audit](../observability-audit/).
+
+### Preserved Existing Screenshots
+
+![Preserved Existing Screenshots](./images/overview-list.png)

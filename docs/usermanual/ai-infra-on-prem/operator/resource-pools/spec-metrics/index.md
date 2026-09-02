@@ -1,46 +1,33 @@
-# Specification Metrics
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Spec Metrics
 
 ## Feature Overview
-
-`Specification Metrics` is used to maintain base metrics that resource specifications can reference, including CPU, memory, AI accelerator metrics, and other resource metrics supported by the page. Metrics determine how resource specifications map to Kubernetes resource keys and affect job scheduling, monitoring display, and capacity statistics.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Resource Pools > Specification Metrics |
-| Page route | `/powerone/resourcepool/flavor/type` |
-| Managed objects | Metric name, metric type, resource key, unit, k8s-key, selector-key, monitoring metric, and enabled status |
-| Typical use | Define resource specification fields, associate accelerator models, and support job resource requests and monitoring display |
+| Navigation Path | AI Infra(On-Prem) > Resource Pools > Spec Metrics |
+| Page Route | `/powerone/resourcepool/flavor/type` |
+| Managed Object | Configuration, status, and relationships on Spec Metrics |
 
 #### Beginner Explanation
 
 Specification metrics are like units of measure in a resource specification table. Whether CPU, memory, GPU, VRAM, and other fields can be correctly identified, displayed, and counted depends on metric definitions. When metric definitions are inconsistent, the specification name users see can fail to match the actual scheduled resources.
 
-#### Configuration Flow
-
-1. Confirm resource keys, node labels, and monitoring metric definitions actually reported by the target cluster.
-2. Create CPU, memory, AI accelerator metrics, or other metrics supported by the page in `Specification Metrics`.
-3. For an AI accelerator metric, verify accelerator model, k8s-key, and selector-key.
-4. Reference the metric in `Resource Specifications`.
-5. Use a test job to verify resource requests, scheduling result, and monitoring display.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Metric Name | Metric name displayed on the page and referenced by resource specifications. |
 | Metric Type | CPU, memory, AI accelerator metric, or another metric type provided by the page. |
 | Resource Key | Resource identifier used for scheduling or metering. |
-| Unit | Resource display and metering unit, such as vCPU, GiB, Byte, or AI card(s). |
-| k8s-key | Kubernetes scheduling resource key, such as `cpu`, `memory`, or `nvidia.com/gpu`. |
-| selector-key | Accelerator model or node label filter key, used to distinguish different hardware under the same k8s-key. |
-| Monitoring Metric | Metric mapping used in platform resource monitoring. |
-| Enabled Status | Whether the metric can be referenced by resource specifications, templates, or job flows. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Metric name, metric type, resource key, unit, k8s-key, selector-key, monitoring metric, and enabled status, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Spec Metrics, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -48,19 +35,22 @@ Specification metrics are like units of measure in a resource specification tabl
 2. Target cluster resource reporting definitions have been confirmed, including k8s-key, selector-key, unit, and monitoring metric mapping.
 3. If creating an AI accelerator metric, accelerator model, node labels, and device plugin reporting information have been confirmed.
 4. The impact on resource specifications, templates, job scheduling, or metering rules has been evaluated.
-5. For learning or screenshots, only view page fields and drawers without submitting real specification metric configuration.
 
 ## Page Description
+
+Use this page to view and handle Configuration, status, and relationships on Spec Metrics.
+
+![Spec Metrics](./images/manual-spec-metrics.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays configured metrics as cards and supports filtering by metric name, AI accelerator metrics, and other metrics.
 
 The following figure shows the specification metric list, where monitoring metrics, k8s-key, selector-key, and units can be viewed.
 
-![Specification Metrics](./images/spec-metrics-list.png)
-
 ## Main Operations
 
-### View Flavor Metrics
+### View Specification Metrics
 
 1. Go to `Resource Pools > Flavor Metrics`.
 2. Filter by name, type, unit, status, or update time.
@@ -76,18 +66,67 @@ Add a specification metric when a new hardware resource type needs to be added, 
 #### Steps
 
 1. Go to `AI Infrastructure > On-Prem > Resource Pools > Specification Metrics`.
-2. Click `Add` or the actual add entry on the page.
+2. Click **"Add"** or the actual add entry on the page.
 3. Select a metric type, such as CPU, memory, AI accelerator metric, or another metric type provided by the page.
 4. Select AI card category, AI cards metrics, or other metrics, and fill in metric name, unit, k8s-key, and selector-key according to the page fields.
 5. For an AI accelerator metric, verify that selector-key is consistent with labels actually reported by cluster nodes.
-6. Before clicking the final `Save`, `Submit`, or `OK`, verify the metric scope, unit, k8s-key, and selector-key again.
+6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the metric scope, unit, k8s-key, and selector-key again.
 7. For learning or page validation only, view the fields and drawer without submitting real specification metric configuration.
 
 The following figure shows the Add Specification Metric drawer. AI accelerator metrics require k8s-key and selector-key.
 
 ![Add Specification Metric](./images/add.png)
 
-## Parameter Reference
+### Import or Export Specification Metrics
+
+#### Applicable Scenarios
+
+Use the **"Import/Export"** menu to batch-maintain specification metrics, or to export the current metric definitions for audit, reconciliation, and controlled migration.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Specification Metrics`.
+2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
+3. For import, upload the file as required by the page and verify metric type, name, unit, `k8s-key`, and `selector-key`.
+4. For export, confirm the filter scope and generate and download the metric list as prompted by the page.
+5. Before importing, verify that an incorrect metric used by resource specifications will not be overwritten. Save export files in a controlled directory.
+
+#### Result Validation
+
+- After import, the specification metrics list shows the added or updated definitions.
+- The metric scope in the export file matches the current filter conditions.
+- The Resource Specifications page can correctly reference the imported metrics.
+
+#### Notes
+
+- Unit, `k8s-key`, and `selector-key` affect resource reporting, specification matching, and scheduling. Do not judge equivalence by display name alone.
+- Verify identifiers and reference relationships before importing to avoid overwriting an in-use metric definition.
+
+#### An Imported Metric Cannot Be Referenced by Resource Specifications
+
+**Symptom:**
+
+The metric import completes, but the metric cannot be found when creating or editing a resource specification.
+
+**Possible Causes:**
+
+- The metric is disabled or still being validated.
+- Metric type, unit, or identifier does not match.
+- The current account cannot see the resource specification scope.
+
+**Solution:**
+
+1. Check the metric state, type, unit, and update time in Specification Metrics.
+2. Recheck the import file against the metric type and resource key used by Resource Specifications.
+3. Confirm visibility scope and refresh the resource specification form.
+
+#### Operation Screenshots
+
+![Spec Metrics operation interface](./images/manual-add-spec-metric.png)
+
+The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -98,7 +137,7 @@ The following figure shows the Add Specification Metric drawer. AI accelerator m
 | Unit | Yes | Text | `GiB` | Display or metering unit. Keep it consistent with capacity statistics and Resource Specs. |
 | k8s-key | Conditionally required | Credential / sensitive text | `nvidia.com/gpu` | Kubernetes scheduling resource key. Must match the resource key actually reported by Kubernetes nodes. |
 | selector-key | Conditionally required | Credential / sensitive text | `accelerator` | Accelerator model, node label, or device selector key. Must match the accelerator model or node label. |
-| Actions | System-generated | Action entry | `Edit` | Add, edit, import/export, delete, and similar entries. `Confirm` submits real configuration. Do not click it during learning or screenshot capture. |
+| Actions | System-generated | Action entry | `Edit` | Add, edit, import/export, delete, and similar entries. `Confirm` submits real configuration. Confirm the scope and impact before executing the final action. |
 
 ## Pitfalls
 
@@ -107,23 +146,9 @@ The following figure shows the Add Specification Metric drawer. AI accelerator m
 - selector-key must match accelerator models or node labels, or AI accelerator metrics may fail to match devices correctly.
 - Incorrect metric units may cause specification display, capacity statistics, or template recommendation deviations.
 - Before disabling or deleting metrics referenced by resource specifications, confirm the impact on specifications, templates, and running jobs.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Do not click them during learning or screenshots.
+- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page can be opened | `AI Infra > On-Prem > Resource Pools > Specification Metrics` is accessible. | Check menu configuration and account permissions. |
-| List loads normally | Metric cards, filters, k8s-key, selector-key, and units are displayed normally. | Refresh the page and check service status or browser console errors. |
-| Add entry is visible | The page shows `Add` or the actual add entry. | Check operator permissions and page status. |
-| Add drawer can be opened | Clicking the add entry opens the Add Specification Metric drawer. | Check route, permissions, and frontend errors. |
-| Required field validation works | Validation prompts appear when required fields are missing. | Fill in fields according to page prompts and do not use real internal parameters for learning tests. |
-| No real configuration is submitted during learning | Only fields and drawer are viewed. The final `Save`, `Submit`, or `OK` is not clicked. | If submitted by mistake, notify the platform administrator and follow the change process. |
-| Record is traceable after real submission | The new metric appears in the specification metric list. | Check filters, enabled status, and submission result. |
-| Resource specification can reference it | The resource specification creation page can select this metric. | Check metric enabled status, k8s-key, and selector-key. |
-| Test job can be scheduled | A test job can request resources according to this metric and schedule normally. | Verify Kubernetes node reporting, device plugin, and resource specification configuration. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - **Metric before specification**: Resource specifications must reference existing and available specification metrics.
 - **k8s-key consistency**: Use the key actually reported by Kubernetes nodes, not the page display name.
@@ -132,47 +157,106 @@ The following figure shows the Add Specification Metric drawer. AI accelerator m
 - **Disable impact**: Disabling a metric may affect resource specifications, template recommendations, job creation, and metering statistics.
 - **Monitoring impact**: Incorrect monitoring metric mapping may cause abnormal resource monitoring display or capacity statistics deviations.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page entry | Spec Metrics opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Spec Metrics is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
+
 ## FAQ
 
-#### Metric units are inconsistent
+#### Target Is Missing from Spec Metrics
 
-**Symptom:** The same resource appears with inconsistent units or quantities across specification, monitoring, and metering pages.
+**Symptom:**
 
-**Resolution:**
+The page opens, but the expected Configuration, status, and relationships on Spec Metrics is missing.
 
-1. Confirm metric units, such as vCPU, GiB, Byte, and AI card(s).
-2. Compare cluster resource reporting and monitoring definitions.
-3. Synchronize resource specifications, template recommendations, and metering rules.
-4. Use a test job to confirm that display and actual resource requests are consistent.
+**Possible Causes:**
 
-#### Job cannot request resources after k8s-key is filled in
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
-**Symptom:** The metric has been created and referenced by a resource specification, but job scheduling events indicate that the resource does not exist or is insufficient.
+**Solution:**
 
-**Resolution:**
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-1. Verify the real k8s-key in cluster node resources.
-2. Check whether the device plugin and node labels are reported normally.
-3. Verify whether selector-key matches the accelerator model or node label.
-4. Correct the metric, re-associate the resource specification, and submit a test job.
+#### The Operation Entry on Spec Metrics Is Unavailable
 
-#### Referenced metric cannot be safely taken offline
+**Symptom:**
 
-**Symptom:** When preparing to disable or delete a metric, it is unclear which specifications and jobs will be affected.
+The create, register, or maintain entry is hidden or disabled.
 
-**Resolution:**
+**Possible Causes:**
 
-1. Search for resource specifications that reference this metric first.
-2. Confirm associated clusters, templates, and running jobs.
-3. Migrate specifications during a maintenance window before disabling the metric.
-4. After disabling, use a test job to confirm that the new metric and specification can schedule normally.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
-## Next Steps
+**Solution:**
 
-1. Go to `Resource Pools > Resource Specifications` to create or adjust specifications.
-2. Go to `Resource Pools > Accelerator Management` to confirm accelerator model associations.
-3. Verify in a test job that the metric resource can be requested normally.
-4. Return to the Specification Metrics list and confirm that enabled status, unit, and filter results are as expected.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
+
+#### A Required Field on Spec Metrics Has No Options
+
+**Symptom:**
+
+The form opens, but a selection list is empty.
+
+**Possible Causes:**
+
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
+
+**Solution:**
+
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Spec Metrics Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Spec Metrics
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Spec Metrics.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
 
 ## Notes
 
@@ -181,3 +265,10 @@ The following figure shows the Add Specification Metric drawer. AI accelerator m
 - Do not directly delete metrics referenced by specifications. Migrate specifications and verify job scheduling first.
 - `Save`, `Submit`, and `OK` are high-risk final actions.
 - Do not write real internal resource key mappings, node labels, cluster IDs, resource pool IDs, internal addresses, accounts, keys, tokens, or internal test parameters.
+
+## Next Steps
+
+1. Go to `Resource Pools > Resource Specifications` to create or adjust specifications.
+2. Go to `Resource Pools > Accelerator Management` to confirm accelerator model associations.
+3. Verify in a test job that the metric resource can be requested normally.
+4. Return to the Specification Metrics list and confirm that enabled status, unit, and filter results are as expected.

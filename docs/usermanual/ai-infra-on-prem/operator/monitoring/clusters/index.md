@@ -1,34 +1,33 @@
-# Cluster Statistics
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Clusters
 
 ## Feature Overview
-
-`Cluster Statistics` is used to view cluster status, resource capacity, job count, and region/availability zone ownership, helping operators perform capacity inspections, locate exceptions, and make resource scheduling judgments.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Cluster Statistics |
-| Page route | `/powerone/monitor/cluster` |
-| Managed objects | Cluster status, resource capacity, job count, and region/availability zone ownership |
-| Typical use | Judge resource watermarks, health status, and scheduling carrying capacity by cluster |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Clusters |
+| Page Route | `/powerone/monitor/cluster` |
+| Managed Object | Configuration, status, and relationships on Clusters |
 
 #### Beginner Explanation
 
 Cluster statistics are like health check reports for each equipment room. They compare capacity, health status, and resource watermarks across clusters to determine whether an issue is a local cluster problem or global resource shortage.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Cluster Capacity | Total CPU, memory, GPU/NPU, and other resources the cluster can provide. |
 | Resource Watermark | Ratio of used resources to remaining resources. |
 | Health Status | Whether cluster components, nodes, and scheduling capability are normal. |
-| Schedulable Resources | Resources currently capable of hosting new jobs. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Cluster status, resource capacity, job count, and region/availability zone ownership, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Clusters, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,11 +38,15 @@ Cluster statistics are like health check reports for each equipment room. They c
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Clusters.
+
+![Clusters](./images/manual-monitoring-clusters.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 Cluster statistics are used to compare cluster capacity, health status, and resource watermarks across different regions or resource pools. Operators can use the cluster dimension to determine whether there is overall capacity shortage, collection exception, or a hotspot in a single cluster.
 
 The following figure shows the cluster statistics page.
-
-![Cluster Statistics](./images/clusters-list.png)
 
 ## Main Operations
 
@@ -78,7 +81,6 @@ The following figure shows the cluster statistics page.
 3. Select region, cluster, resource type, or time range filters as provided by the page.
 4. Review CPU, memory, accelerator, storage, node status, and job-related statistics to identify insufficient resources, abnormal nodes, or unavailable devices.
 5. If a cluster shows abnormal usage, continue troubleshooting in Nodes, Devices, or Jobs monitoring pages.
-6. For learning or screenshots only, view statistic cards, charts, filters, and lists without modifying any configuration.
 
 ![View cluster statistics](./images/cluster-statistics.png)
 
@@ -88,7 +90,7 @@ The following figure shows the cluster statistics page.
 - Whether GPU, CPU, memory, and disk usage rates are abnormal.
 - Whether jobs are concentrated on a small number of clusters.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -117,66 +119,113 @@ The following figure shows the cluster statistics page.
 - Abnormal cluster usage should be investigated together with nodes, devices, jobs, and scheduling events.
 - Do not write real cluster IDs, node names, device IDs, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Cluster status and capacity | The cluster list shows health status, capacity, and update time. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Resource watermarks | Resource watermarks correspond to node and device details. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Exception location | An abnormal cluster can be traced to a node, device, or collection link. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - **Cluster status is used for capacity judgment**: If the cluster is healthy but watermarks are high, look at expansion or scheduling first. If abnormal, troubleshoot cluster access and collection first.
 - **View resource watermarks by type**: CPU, memory, GPU/NPU, and storage bottlenecks mean different things. Do not look only at a single total score.
 - **Fix the time range for cross-cluster comparison**: Different time windows affect peak values, averages, and exception statistics.
 - **Unavailable clusters affect instance creation**: When users fail to create instances, also check cluster health, specification association, and quotas.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page load | Clusters charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
+
 ## FAQ
 
-#### A Cluster Has No Monitoring Data
+#### No Data on Clusters
 
 **Symptom:**
 
-The cluster is visible in the cluster list, but the monitoring page has no corresponding metrics.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- Cluster monitoring collection has not reported or reporting is delayed.
-- Filtered region, availability zone, or status does not match.
-- The cluster is accessing, unavailable, or under maintenance.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. Reset filters.
-2. Go to resource pool cluster management and verify cluster status.
-3. Check monitoring collection components and cluster network connectivity.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Page List Is Empty
+#### Clusters Is Not Updating
 
 **Symptom:**
 
-No monitoring records or charts are visible after entering the page.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- Filters limit the result scope.
-- The target region does not yet have related resources or job data.
-- The current account has no view permission for this monitoring object.
-- Monitoring collection data has not been reported.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Click reset to clear filters.
-2. Confirm whether the region in the upper-right corner is correct.
-3. Go to resource pool or job pages to confirm whether objects exist.
-4. Contact the platform administrator to check permissions and collection links.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Clusters Differs from Adjacent Pages
 
-1. When watermarks are high, enter node statistics to locate hotspot nodes.
-2. When accelerators are tight, enter device monitoring to confirm model and VRAM.
-3. When a cluster is unavailable, return to resource pool cluster management to check access status.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
@@ -185,3 +234,9 @@ No monitoring records or charts are visible after entering the page.
 - Do not expose internal cluster names, API Server, or network information.
 - Before expansion, migration, or fault judgment, cross-check with node statistics, device monitoring, job monitoring, and scheduling events.
 - Documentation examples must not include real cluster IDs, node names, device IDs, resource pool IDs, tenant information, internal metric keys, or test data.
+
+## Next Steps
+
+1. When watermarks are high, enter node statistics to locate hotspot nodes.
+2. When accelerators are tight, enter device monitoring to confirm model and VRAM.
+3. When a cluster is unavailable, return to resource pool cluster management to check access status.

@@ -4,7 +4,7 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers |
+| Applicable Roles | Model Provider |
 | Navigation Path | Model Services > Studio > My Deployments |
 | Page Route | `/modelone/my-deployments/models` |
 | Managed Objects | On-Cloud deployments, On-Prem deployments, deployment status, and publishing entry |
@@ -38,7 +38,7 @@ Open the relevant On-Cloud or On-Prem tab, locate the deployment, and review its
 ## Prerequisites
 
 1. The current account has permission to view `Studio > My Deployments`.
-2. At least one deployment record is available on the page.
+2. At least one deployment record is listed on the page.
 3. The target deployment meets the conditions for displaying the publish entry, and `Publish` is visible in the more actions menu.
 4. Before publishing, the publish region, visibility scope, billing configuration, and call configuration risks have been confirmed.
 5. Before publication, confirm the deployment region, resources, model source, visibility, billing, and rate limits.
@@ -53,7 +53,7 @@ The page separates deployment locations into On-Cloud and On-Prem. Lists show mo
 
 Page screenshots:
 
-![My Deployments list](./images/my-deployments-list.png)
+![My Deployments list](./images/my-deployments-list-public.png)
 
 Focus on deployment type, model name, region, status, and actions.
 
@@ -65,7 +65,7 @@ Focus on deployment type, model name, region, status, and actions.
 2. Click **"On-Cloud"**.
 3. Locate a deployment by name or status and verify the model, cloud platform, region, and running state.
 
-![View On-Cloud deployments](./images/manual-on-cloud-deployments.png)
+![View On-Cloud deployments](./images/manual-on-cloud-deployments-public.png)
 
 The image shows On-Cloud deployments. Verify cloud platform, region, and status.
 
@@ -75,7 +75,7 @@ The image shows On-Cloud deployments. Verify cloud platform, region, and status.
 2. Click **"On-Prem"**.
 3. Locate a deployment by name or status and verify the model, resources, instances, and running state.
 
-![View On-Prem deployments](./images/manual-on-prem-deployments.png)
+![View On-Prem deployments](./images/manual-on-prem-deployments-public.png)
 
 The image shows On-Prem deployments. Verify resources, instances, and deployment status.
 
@@ -86,15 +86,15 @@ The image shows On-Prem deployments. Verify resources, instances, and deployment
 3. Complete the publication form and verify resources, model source, billing, and rate limits before submission.
 4. Return to the relevant deployment tab to review status. If the status is abnormal, open details before submitting again.
 
-![Publish Model entry](./images/publish.png)
+![Publish Model entry](./images/publish-public.png)
 
 Start a new deployment publication flow from this entry.
 
-![Choose where to publish](./images/choose-where-to-publish.png)
+![Choose where to publish](./images/choose-where-to-publish-public.png)
 
 Confirm the publishing region and deployment scope.
 
-![Publish Model page](./images/publish-model.png)
+![Publish Model page](./images/publish-model-public.png)
 
 Verify resources, source, billing, and rate limits before submission.
 
@@ -102,36 +102,36 @@ Verify resources, source, billing, and rate limits before submission.
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Deployment Name | Yes | Text | Displayed on page | Identifies the target deployment record. |
-| Model Name | Yes | Text | `Qwen3-8b` | Model associated with the target deployment. |
+| Deployment Name | Yes | Text | `Example Deployment` | Identifies the target deployment record. |
+| Model Name | Yes | Text | `Example Model` | Model associated with the target deployment. |
 | Deployment Status | Yes | Status tag | `Running` | Indicates whether the deployment may show a publish entry or meet later publishing conditions. |
 | Region | Yes | Text | `China (Shanghai)` | Region where the target deployment is running. Verify it against the publish region and business scope before publishing. |
 | Resource Specification | Yes | Text | `NVIDIA A10 x 1` | Shows GPU, CPU, memory, and other resource specifications used by the deployment. |
 | Publish Entry | Yes | More actions | `Publish` | Entry from the target deployment to the publish region selection flow. |
 | Publish Region | Yes | Card selection | `Private` / `Public` | Determines the publish target and visibility scope after the redirect. |
 | Redirect Target | Yes | Page redirect | `My Models > Publish Model` | Target page after a publish region is selected. |
-| Publish Scope | Conditionally required | Page configuration | Displayed on the publish model page | Confirms the model visibility scope on the publish model page. |
-| Billing Configuration | Conditionally required | Step configuration | Displayed on the publish model page | Confirms pricing, free quota, or billing method on the publish model page. |
-| Call Configuration | Conditionally required | Step configuration | Displayed on the publish model page | Confirms request URL, API Key, model source ID, rate limits, and other call-related settings. |
+| Publish Scope | Conditionally required | Page configuration | `Private` / `Public` | Confirms the model visibility scope on the publish model page. |
+| Billing Configuration | Conditionally required | Step configuration | `Token` / `Free` | Confirms pricing, free quota, or billing method on the publish model page. |
+| Call Configuration | Conditionally required | Step configuration | `<BASE_URL><ENDPOINT_PATH>` | Confirms request URL, API Key, model source ID, rate limits, and other call-related settings. |
 | Actions | No | Row buttons / more menu | `Start` / `Stop` / `Details` / `Publish` | Page entries for viewing, controlling, or entering the publish flow. |
 
 ## Pitfalls
 
 - My Deployments shows deployment status. It does not mean the model has been published to the marketplace.
 - When deployment is abnormal, check Resource Pool, Runtime Image, model asset, and startup logs before submitting again.
-- Deleting, stopping, or restarting a deployment may affect callers. Confirm traffic and rollback path first.
+- Deleting, stopping, or restarting a deployment may affect Model Consumers. Confirm traffic and rollback path first.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `My Deployments` page opens normally, and the `On-Prem` and `On-Cloud` tabs are visible. | Check account permissions, navigation path, and page loading status. |
-| Deployment list loads | The target deployment card shows deployment name, model name, status, region, and resource specification. | Click `Search` or `Reset` and retry. Check filters and deployment permissions if needed. |
+| Page is accessible | The `My Deployments` page opens, and the `On-Prem` and `On-Cloud` tabs are visible. | Check account permissions, navigation path, and page loading status. |
+| Deployment list loads | The target deployment card shows deployment name, model name, status, region, and resource specification. | Click **"Search"** or `Reset` and retry. Check filters and deployment permissions if needed. |
 | Target deployment status is visible | The target deployment status is shown as the real page status, such as `Running`. | Confirm whether the deployment task is complete, or open `Details` to view deployment status. |
-| Publish entry is visible | Eligible deployments show `Publish` in the more actions menu. | Check deployment status, account permissions, and available page actions. |
+| Publish entry is visible | Eligible deployments show `Publish` in the more actions menu. | Check deployment status, account permissions, and row actions. |
 | Publish region can be selected | The `Publish Model` dialog opens and shows `Private`, `Public`, and the corresponding publish buttons. | Close the dialog and retry, or check whether the account has permission for the selected publish region. |
 | Redirect target is correct | After selecting a publish region, the page opens the `Publish Model` page under `Model Services > Studio > My Models`. | Check publish region permissions, page route, and browser redirect status. |
-| Publish fields display normally | `Basic Information`, `Billing Configuration`, `Rate Limit Configuration`, and key fields are displayed normally. | Go back and select the publish region again, or refresh the publish model page. |
+| Publish fields are visible | The page shows `Basic Information`, `Billing Configuration`, `Rate Limit Configuration`, and their key fields. | Go back and select the publish region again, or refresh the publish model page. |
 
 ## FAQ
 
@@ -187,7 +187,7 @@ Status remains in creating or processing.
 
 **Symptom:**
 
-No call information is available after deployment.
+No call information is listed after deployment.
 
 **Possible Causes:**
 
@@ -225,5 +225,5 @@ No deployment record is created after submission.
 ## Next Steps
 
 1. Return to `My Models` to view the publish model configuration progress.
-2. Verify model visibility, billing configuration, and call configuration according to the selected publish region.
+2. Verify the model visibility, billing configuration, and call configuration for the selected publish region.
 3. If a real publish action has been performed, open model details or the call page to confirm status and access control.

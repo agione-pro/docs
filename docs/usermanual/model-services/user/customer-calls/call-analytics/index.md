@@ -4,7 +4,7 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers |
+| Applicable Roles | Model Provider |
 | Navigation Path | Model Services > Customer Calls > Call Analytics |
 | Page Route | `/modelone/monitoring/monitor/list/user` |
 | Managed Objects | Customer list, model list, successful calls, failed calls, and rate-limit triggers |
@@ -39,7 +39,7 @@ Locate the customer and review models used in Customers, switch to Models to com
 
 1. The current account has access to the `Call Analytics` page.
 2. The month, date range, model, customer, or model type to view has been clarified.
-3. Sensitive fields such as customer names, model names, call volume, and usage are displayed according to permissions.
+3. The page shows only the customer names, model names, call volume, and usage fields that your account can access.
 
 ## Page Description
 
@@ -47,11 +47,11 @@ The page uses Customers and Models to show success, failure, rate limits, and us
 
 Page screenshots:
 
-![Customer Calls customer list](./images/call-analytics-customers-list.png)
+![Customer Calls customer list](./images/call-analytics-customers-list-public.png)
 
 Use Customers to review models used and call indicators by customer.
 
-![Customer Calls model list](./images/call-analytics-models-list.png)
+![Customer Calls model list](./images/call-analytics-models-list-public.png)
 
 Use Models to compare customer call performance by model.
 
@@ -64,7 +64,7 @@ Use Models to compare customer call performance by model.
 3. Click **"Search"** and verify models used, successful calls, failed calls, and rate-limit triggers.
 4. Click **"View Details"** for the target customer. Click **"Reset"** if the criteria are incorrect.
 
-![View customer call list](./images/manual-customer-list.png)
+![View customer call list](./images/manual-customer-list-public.png)
 
 The image shows customer-list results. Verify customer criteria and call indicators.
 
@@ -75,7 +75,7 @@ The image shows customer-list results. Verify customer criteria and call indicat
 3. Click **"Search"** and verify customer call analytics for the target model.
 4. Before opening details, confirm the active tab, time range, and model criteria.
 
-![View model call list](./images/manual-model-list.png)
+![View model call list](./images/manual-model-list-public.png)
 
 The image shows model-list results. Verify model criteria and customer call performance.
 
@@ -86,15 +86,15 @@ The image shows model-list results. Verify model criteria and customer call perf
 | Month | Yes | Month selector | `2026-07` | Controls the statistical month for call analytics. |
 | Date Range | Yes | Date range | `2026-07-01 to 2026-07-17` | Controls the query time range for list data. |
 | Analytics Tab | Yes | Tab | `Models` / `Customers` | Switches between the model list and customer list. |
-| Model Name | No | Input | Enter on page | Filters the model list or customer list by model name. |
+| Model Name | No | Input | `Example Model` | Filters the model list or customer list by model name. |
 | Model Type | No | Selector | `Text` / `Image` | Filters statistics by model capability type. |
-| Model ID | No | Input | Enter on page | Filters by model ID on the Models tab. |
-| Customer Name | No | Input / text | Enter on page | Filters statistics by customer name on the Customers tab. |
-| Models | System-generated | Number | Displayed on page | Shows the number of models used by a customer on the Customers tab. |
-| Successful Calls | System-generated | Number | Displayed on page | Number of successful calls within the selected range. |
-| Failed Calls | System-generated | Number | Displayed on page | Number of failed calls within the selected range. |
-| Rate Limit Triggers | System-generated | Number | Displayed on page | Number of rate-limit triggers within the selected range. |
-| Usage | System-generated | Text / tag | Displayed on page | Shows token, quota, or other call usage information. |
+| Model ID | No | Input | `<MODEL_ID>` | Filters by model ID on the Models tab. |
+| Customer Name | No | Input / text | `Example Customer` | Filters statistics by customer name on the Customers tab. |
+| Models | System-generated | Number | `2` | Shows the number of models used by a customer on the Customers tab. |
+| Successful Calls | System-generated | Number | `40` | Number of successful calls within the selected range. |
+| Failed Calls | System-generated | Number | `2` | Number of failed calls within the selected range. |
+| Rate Limit Triggers | System-generated | Number | `1` | Number of rate-limit triggers within the selected range. |
+| Usage | System-generated | Text / tag | `1,280 Tokens` | Shows token, quota, or other call usage information. |
 | Actions | No | Action entry | `View Details` / `View Log` | Opens analytics details or jumps to call logs. |
 
 ## Pitfalls
@@ -107,10 +107,10 @@ The image shows model-list results. Verify model criteria and customer call perf
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Customer Calls - Call Analytics` page opens normally, and `Customer Calls > Call Analytics` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Model list displays normally | The `Models` tab shows model name, model type, customer name, successful calls, failed calls, rate limit triggers, and action entries. | Adjust the month, date range, or model filters and retry. |
-| Customer list displays normally | The `Customers` tab shows customer name, models, successful calls, failed calls, rate limit triggers, and action entries. | Adjust the date range, customer name, or model name and retry. |
-| Filters are available | After switching month, date range, model, customer, or model type, list data changes accordingly. | Check whether filters are too narrow, and click `Reset` if needed. |
+| Page is accessible | The `Customer Calls - Call Analytics` page opens, and `Customer Calls > Call Analytics` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
+| Model list displays | The `Models` tab shows model name, model type, customer name, successful calls, failed calls, rate limit triggers, and action entries. | Adjust the month, date range, or model filters and retry. |
+| Customer list displays | The `Customers` tab shows customer name, models, successful calls, failed calls, rate limit triggers, and action entries. | Adjust the date range, customer name, or model name and retry. |
+| Filter controls can be selected | After switching month, date range, model, customer, or model type, list data changes accordingly. | Check whether filters are too narrow, and click **"Reset"** if needed. |
 | Search / Reset works | `Search` displays matching data, and `Reset` clears filters. | Check network status, page API responses, and account permissions. |
 | List data is consistent | Successful calls, failed calls, rate limit triggers, and usage in the list are consistent with details or logs. | Open `View Details` or `View Log` for cross-checking. |
 
@@ -120,81 +120,86 @@ The image shows model-list results. Verify model criteria and customer call perf
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Customer List Is Empty.”
+The Customers tab shows an empty state and no customer row.
 
 **Possible Causes:**
 
-- Time range or filters do not match.
-- Page data is still synchronizing.
+- The date range contains no customer call.
+- The customer-name or another filter is too narrow.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Click **"Reset"** to clear the filters.
+2. Select a date range that contains a known call and search again.
+3. Search Customer Call Logs with the same range. Contact the administrator if the log exists but the list remains empty.
 
 #### Model List Is Empty
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Model List Is Empty.”
+The Models tab shows an empty state and no model row.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- The date range contains no customer call to the target model.
+- The model name, model type, or Model ID filter is too narrow.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Clear model filters and expand the date range.
+2. Search again by Model ID.
+3. Confirm the record in Customer Call Logs. If the list remains empty, send the administrator the redacted filters.
 
-#### The Lists Differ
+#### Customer and Model Totals Differ
 
 **Symptom:**
 
-Call Analytics shows the condition described by “The Lists Differ.”
+The tabs show different totals or row counts.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- One customer calls several models, or several customers call one model.
+- The tabs use different filters.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Use the same date, model type, and other filters.
+2. Compare call totals. Do not compare customer-row and model-row counts directly.
+3. If call totals still differ, send the filters and a redacted screenshot to the administrator.
 
-#### Query Results Do Not Match
+#### Results Do Not Match the Filters
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Query Results Do Not Match.”
+The list contains a record outside the target date, customer, or model.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- The filters were not submitted or an old filter remains active.
+- The Customers and Models tabs use different filters.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Click **"Reset"**.
+2. Set the date and target filters one at a time, and click **"Search"**.
+3. If a mismatched record remains, record the tab and filters and contact the administrator.
 
-#### Details Do Not Open
+#### Analytics Details Does Not Open
 
 **Symptom:**
 
-Call Analytics shows the condition described by “Details Do Not Open.”
+Nothing opens after you click **"View Details"** for a customer or model.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Permission is missing or the record expired.
+- The current account lacks detail permission.
+- The target record is outside the current filters.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Verify permission and record status, and then retry.
+1. Clear the filters and locate the row again.
+2. Refresh the page and open the details again.
+3. If it still fails, ask the administrator to verify Model Provider permissions and provide the page route.
 
 ## Notes
 
@@ -204,6 +209,6 @@ Call Analytics shows the condition described by “Details Do Not Open.”
 
 ## Next Steps
 
-1. Click `View Details` to view statistics for the target model or customer.
-2. Click `View Log` or go to `Customer Calls > Call Logs` to locate a single request.
+1. Click **"View Details"** to view statistics for the target model or customer.
+2. Click **"View Log"** or go to `Customer Calls > Call Logs` to locate a single request.
 3. Return to `Customer Calls > Overview` to view trends, consumption statistics, and TOP rankings.

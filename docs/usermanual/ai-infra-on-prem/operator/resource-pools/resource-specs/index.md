@@ -1,21 +1,13 @@
-# Resource Specifications
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Resource Specs
 
 ## Feature Overview
-
-`Resource Specifications` is used to maintain resource packages that users can select when creating online IDEs, runtime instances, training jobs, or model services. It combines specification metrics such as CPU, memory, and AI accelerators, and becomes available to users after being associated with clusters.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Resource Pools > Resource Specifications |
-| Page route | `/powerone/resourcepool/flavor/list` |
-| Managed objects | Specification name, CPU, memory, accelerator, accelerator quantity, specification metrics, associated clusters, and enabled status |
-| Typical use | Define job resource packages, limit the resource request scope for users, and open specifications to jobs or model services after cluster association |
+| Navigation Path | AI Infra(On-Prem) > Resource Pools > Resource Specs |
+| Page Route | `/powerone/resourcepool/flavor/list` |
+| Managed Object | Configuration, status, and relationships on Resource Specs |
 
 #### Beginner Explanation
 
@@ -23,24 +15,21 @@ Updated: 2026-08-27
 - **Specification metric** is a resource item in the package. CPU, memory, or accelerator metrics must exist before they can be combined into specifications.
 - **Associated cluster** determines where the specification is available. After creation, the specification still needs to match actual cluster capacity.
 
-#### Configuration Flow
-
-1. Prepare CPU, memory, accelerator, and other specification metrics.
-2. Add a resource specification, fill in the specification ID, and combine metric quantities.
-3. If the specification includes accelerators, verify accelerator metric, k8s-key, selector-key, and resources actually reported by the cluster.
-4. Enable the specification and associate it with the target cluster.
-5. Submit a test job or model service to confirm that the specification is selectable and schedulable.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Specification ID | Resource package name displayed on the user side or job creation page. |
 | CPU | CPU cores or CPU metric quantity included in the specification. |
 | Memory | Memory capacity included in the specification. |
-| Accelerator | Optional hardware resource, usually configured by accelerator metric and quantity. |
-| Specification Metric | Base metric referenced by resource specifications, such as CPU, memory, or AI accelerator metric. |
-| Associated Cluster | Cluster scope where the specification can be scheduled. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Specification name, CPU, memory, accelerator, accelerator quantity, specification metrics, associated clusters, and enabled status, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Resource Specs, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -48,19 +37,22 @@ Updated: 2026-08-27
 2. Specification metrics have been configured, and CPU, memory, and accelerator metrics are available.
 3. If the specification includes accelerators, accelerator model, k8s-key, selector-key, and resources actually reported by cluster nodes have been confirmed.
 4. Specification naming, resource tiers, applicable job types, and later cluster association scope have been planned.
-5. For learning or screenshots, only view page fields and dialogs without submitting real specification configuration.
 
 ## Page Description
+
+Use this page to view and handle Configuration, status, and relationships on Resource Specs.
+
+![Resource Specs](./images/manual-resource-specs.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays specification ID, status, CPU, memory, accelerator type, and quantity. It supports filtering by GPU vendor.
 
 The following figure shows the resource specification list. Cards show CPU, memory, and accelerator quantity.
 
-![Resource Specifications](./images/manager-flavor-list.png)
-
 ## Main Operations
 
-### View Resource Flavors
+### View Resource Specifications
 
 1. Go to `Resource Pools > Resource Flavors`.
 2. Filter by name, resource type, accelerator, status, or update time.
@@ -76,18 +68,67 @@ Add a specification when resource tiers are required for training, inference, de
 #### Steps
 
 1. Go to `AI Infrastructure > On-Prem > Resource Pools > Resource Specifications`.
-2. Click `Add` or the actual add entry on the page.
+2. Click **"Add"** or the actual add entry on the page.
 3. Fill in the specification ID. Use an ID that reflects CPU, memory, accelerator model, card count, and applicable scenario.
 4. Select CPU, memory, accelerator, and other specification metrics, and fill in the corresponding quantities.
 5. If the specification includes accelerators, verify that the accelerator metric, k8s-key, and selector-key are consistent with resources actually reported by the cluster.
-6. Before clicking the final `Save`, `Submit`, or `OK`, verify the resource combination, naming convention, and later cluster association impact.
+6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the resource combination, naming convention, and later cluster association impact.
 7. For learning or page validation only, view the fields and dialog without submitting real specification configuration.
 
 The following figure shows the Add Resource Specification dialog. Clarify the CPU, memory, and accelerator combination during creation.
 
 ![Add Resource Specification](./images/add-new-specification.png)
 
-## Parameter Reference
+### Import or Export Resource Specifications
+
+#### Applicable Scenarios
+
+Use the **"Import/Export"** menu to batch-maintain resource specifications, or to export specification combinations for audit, reconciliation, and controlled migration.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Resource Specifications`.
+2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
+3. For import, upload the file as required by the page and verify specification ID, resource metrics, quantities, accelerator model, and applicable scenario.
+4. For export, confirm the filter scope, then generate and download the resource specification list as prompted by the page.
+5. Before importing, verify that an incorrect definition used by cluster associations or jobs will not be overwritten. Save export files in a controlled directory.
+
+#### Result Validation
+
+- After import, the Resource Specifications list shows the added or updated combinations.
+- The records in the export file match the current filter scope.
+- Cluster specification association or job creation can correctly identify the imported specifications.
+
+#### Notes
+
+- Specification ID, metric quantities, and accelerator model must match actual cluster capacity; otherwise specification matching or scheduling may fail.
+- Import may update fields on a specification with the same identifier. Check cluster associations, job dependencies, and file scope first.
+
+#### An Imported Resource Specification Cannot Be Associated with a Cluster
+
+**Symptom:**
+
+The resource specification import completes, but the specification cannot be found in the specification association list in cluster details.
+
+**Possible Causes:**
+
+- The specification is unavailable or still being validated.
+- Specification metrics do not match reported cluster resources.
+- Specification scope or active filters do not match.
+
+**Solution:**
+
+1. Check state, specification ID, and update time in Resource Specifications.
+2. Check metrics, keys, and model in Specification Metrics and Accelerators.
+3. Reset filters, reopen cluster details, and verify the visibility scope.
+
+#### Operation Screenshots
+
+![Resource Specs operation interface](./images/manual-add-resource-spec.png)
+
+The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -109,20 +150,7 @@ The following figure shows the Add Resource Specification dialog. Clarify the CP
 - `Save`, `Submit`, and `OK` are high-risk final actions.
 - Do not record real cluster IDs, resource pool IDs, node labels, internal resource key mappings, tenant information, accounts, keys, tokens, or internal test parameters.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page can be opened | `AI Infra > On-Prem > Resource Pools > Resource Specifications` is accessible. | Check menu configuration and account permissions. |
-| List loads normally | Specification cards, status, CPU, memory, accelerator type, and quantity are displayed normally. | Refresh the page and check service status or browser console errors. |
-| Add entry is visible | `Add` or the actual add entry is displayed on the page. | Check operator permissions and page configuration. |
-| Add dialog can be opened | Clicking the add entry opens the Add Resource Specification dialog. | Check route, permissions, and frontend errors. |
-| Required field validation works | Validation prompts appear when specification ID, specification metric, or quantity is missing. | Complete fields according to page prompts without bypassing validation. |
-| No real submission during learning | No real save, submit, or OK action is triggered. | If submitted by mistake, immediately check the list and follow the handling process. |
-| Record is traceable after real submission | The new specification appears in the Resource Specifications list, and status is visible. | Check filters, enabled status, and submission result. |
-| Cluster association can be verified | The target cluster details can associate or show this specification. | Check specification enabled status, associated cluster, and cluster resource capacity. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - **Metrics before specifications**: Specifications depend on specification metrics. Without metrics, CPU, memory, or accelerators cannot be configured accurately.
 - **Then associate clusters**: After a specification is created, it must still be associated with clusters before users can select it.
@@ -130,74 +158,117 @@ The following figure shows the Add Resource Specification dialog. Clarify the CP
 - **Readable naming**: Specification names should help capacity troubleshooting, user selection, and later template references.
 - **Change enabled status carefully**: Before disabling or modifying an opened specification, confirm impacts on templates, tenant quotas, and running instances.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page entry | Resource Specs opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Resource Specs is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
+
 ## FAQ
 
-#### Resource Specification Is Not Selectable When Users Create Instances
+#### Target Is Missing from Resource Specs
 
 **Symptom:**
 
-The resource specification has been created, but users cannot see it when creating an online IDE, runtime instance, or model service.
+The page opens, but the expected Configuration, status, and relationships on Resource Specs is missing.
 
 **Possible Causes:**
 
-- The specification is not enabled or is excluded by filters.
-- The specification is not associated with the target cluster.
-- The accelerator metric in the specification is inconsistent with the resource key actually reported by the cluster.
-- Tenant quota or template visibility scope does not cover the specification.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Confirm specification status and name.
-2. Go to cluster details and check associated specifications.
-3. Verify the k8s-key and selector-key in the specification metric.
-4. Check tenant quota, template specification scope, and the region selected by the user.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Scheduling Fails Because Specification and Cluster Are Not Associated
+#### The Operation Entry on Resource Specs Is Unavailable
 
 **Symptom:**
 
-The user can submit an instance, but the instance remains queued for a long time or events indicate that no resources are available.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- The target specification is not associated with the hosting cluster.
-- The specification is associated with the cluster, but cluster resources are insufficient.
-- The region or availability zone selected by the user is inconsistent with the associated cluster.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. Associate the target specification with the target cluster in cluster details.
-2. View cluster, node, and device monitoring to confirm remaining capacity.
-3. Ask the user to reselect the correct region or use another specification.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-#### Resource Usage Definition Is Inconsistent After Specification Configuration
+#### A Required Field on Resource Specs Has No Options
 
 **Symptom:**
 
-The CPU, memory, or accelerator quantity displayed by the specification is inconsistent with monitoring, metering, or instance events.
+The form opens, but a selection list is empty.
 
 **Possible Causes:**
 
-- Specification metric units or quantities are inconsistent.
-- Metric key is inconsistent with the Kubernetes reported resource key.
-- Metering rules and specification display definitions are not synchronized.
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
 
 **Solution:**
 
-1. Verify specification metrics, resource specifications, and metering rules.
-2. Use a test instance to confirm actual requested resources.
-3. Standardize metric units and display names if necessary.
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
 
-## Next Steps
+#### Resource Specs Has an Abnormal State After the Operation
 
-1. Go to `AI Infra > On-Prem > Resource Pools > Cluster Management` and associate specifications with the target cluster.
-2. Submit a test job, online IDE, or model service to verify specification scheduling results.
-3. Return to the Resource Specifications list and confirm that enabled status, filter results, and associations are as expected.
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Resource Specs
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Resource Specs.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
 
 ## Notes
 
 - Once opened to users, resource specifications directly affect creation choices for model instances, online IDEs, runtime instances, and training jobs.
 - Before modifying specification ID, resource quantity, or enabled/disabled status, confirm associated clusters, templates, tenant quotas, and running instances.
 - Large specifications may increase queue time, while small specifications may cause insufficient resources after task startup. Calibrate with monitoring and failure cases.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Do not trigger them during learning or screenshots.
+- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
 - Do not record real cluster IDs, resource pool IDs, node labels, internal resource key mappings, tenant information, accounts, keys, tokens, or internal test parameters.
+
+## Next Steps
+
+1. Go to `AI Infra > On-Prem > Resource Pools > Cluster Management` and associate specifications with the target cluster.
+2. Submit a test job, online IDE, or model service to verify specification scheduling results.
+3. Return to the Resource Specifications list and confirm that enabled status, filter results, and associations are as expected.

@@ -1,43 +1,33 @@
 # Instances
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Model Instances` is used to view model services created through deployment templates. End Users can filter instances by instance type, status, and name here, and enter subsequent details, logs, or access troubleshooting flows.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Model Deployment > Instances |
-| Page route | `/powerone/quickstart/model-service` |
-| Managed objects | Model service instances created through deployment templates |
-| Typical use | View the model instance list, filter instances by type and status, and locate instance runtime status |
+| Applicable Role | Model Provider |
+| Navigation Path | AI Infra(On-Prem) > Model Deployment > Instances |
+| Page Route | `/powerone/quickstart/model-service` |
+| Managed Object | Configuration, status, and relationships on Instances |
 
 #### Beginner Explanation
 
 Model instances can be understood as model services that have already been ordered and started. Deployment templates are responsible for creation, while the Model Instances page is responsible for checking whether creation succeeded, whether the instance is still running, and whether further troubleshooting is needed.
 
-#### First-Time Flow
-
-1. Create a model instance in `Model Deployment > Templates` first.
-2. Go to `AI Infra > On-Prem > Model Deployment > Instances`.
-3. Filter the list by instance type or status.
-4. Use search conditions to locate the target instance.
-5. View instance status and enter details or logs if necessary.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Instance | A runtime object created by the platform and scheduled to a cluster, such as a model service, online IDE, or runtime instance. |
 | Specification | Resource package that a job can request, such as CPU, memory, GPU model, and card count. |
 | Single Instance | One model service instance runs independently, suitable for testing or low-traffic scenarios. |
-| Multi-instance | One model service has multiple replicas, suitable for higher availability or higher concurrency. |
-| Cluster Instance | Model service running in cluster form, usually for more complex deployment requirements. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Model service instances created through deployment templates, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Instances, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -47,9 +37,15 @@ Model instances can be understood as model services that have already been order
 
 ## Page Description
 
-The page provides instance type, status, search, and reset entrypoints. In the current environment screenshot, the list is empty, indicating that the tenant has no model service instances under the current conditions.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Instances list](./images/instances-list.png)
+Use this page to view and handle Configuration, status, and relationships on Instances.
+
+![Instances](./images/instances-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The page provides instance type, status, search, and reset entrypoints. In the current environment screenshot, the list is empty, indicating that the tenant has no model service instances under the current conditions.
 
 #### Page Areas
 
@@ -57,7 +53,7 @@ The page provides instance type, status, search, and reset entrypoints. In the c
 | --- | --- |
 | Instance Type Filter | Narrows the scope by All, Single Instance, Multi-instance, Cluster, and other types. |
 | Status Filter | Views instances by all statuses or a specific runtime status. |
-| Search Area | Enter conditions and click `Search` to locate the target instance. |
+| Search Area | Enter conditions and Click **"Search"** to locate the target instance. |
 | List Area | Displays model instances and their status. When no data exists, it displays No model services. |
 | Pagination Area | View by page when there are many instances. |
 
@@ -75,8 +71,7 @@ The page provides instance type, status, search, and reset entrypoints. In the c
 1. In instance details, review utilization, call status, events, and recent errors.
 2. Keep the same time range and compare cluster, node, and device monitoring to locate the affected layer.
 3. If information is insufficient, escalate with a redacted instance identifier, status, and time.
-4. Do not start, stop, restart, scale, or delete instances during read-only validation.
-
+4. Before starting, stopping, restarting, scaling, or deleting instances, verify the resource, data, and impact and execute the action only after approval.
 
 ### View Instances
 
@@ -94,12 +89,11 @@ When you need to confirm whether a model service was created successfully, is st
 1. Go to `AI Infrastructure > On-Prem > Model Deployment > Instances`.
 2. View the instance list and confirm instance name, instance type, running status, model, specification, region, and creation time.
 3. Use `Instance Type`, `Status`, or the search box to filter target instances.
-4. Click `Search` and confirm that filters have taken effect.
-5. To view all data again, click `Reset` to clear filters.
+4. Click **"Search"** and confirm that filters have taken effect.
+5. To view all data again, Click **"Reset"** to clear filters.
 6. If the list is empty, first check whether filters exist, whether the instance was just created, and whether the current tenant or region is correct.
-7. For learning or screenshots only, view the list, filters, and empty state without stopping, restarting, or deleting instances.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Description |
 | --- | --- |
@@ -118,57 +112,109 @@ When you need to confirm whether a model service was created successfully, is st
 - The instance list may have refresh delay. A newly created instance may not appear immediately.
 - An empty list does not necessarily mean there are no instances. Check filters, tenant, region, and permissions first.
 - `Stop`, `Restart`, and `Delete` are high-risk actions.
-- For learning or screenshots, only view the page and do not perform instance lifecycle operations.
+
 - Do not write real instance IDs, instance names, tenant information, regions, nodes, endpoints, logs, error details, or test data in the document.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Filter result | The instance list matches the selected `Instance Type`, `Status`, or search condition. | Click `Reset`, confirm tenant and region, and search again. |
-| Target instance visible | The target instance appears in the list after creation and refresh. | Check whether the instance was just created, whether the creation flow succeeded, and whether permissions are sufficient. |
-| Status check | The instance status matches the expected runtime state. | Enter details, logs, events, or monitoring pages for further troubleshooting. |
-| Learning boundary | No `Stop`, `Restart`, or `Delete` action is performed during learning or screenshot collection. | If triggered by mistake, immediately check instance status, access impact, and operation records. |
+| Page entry | Instances opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Instances is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### Instance Is Not Visible in the List After Creation
+#### Target Is Missing from Instances
 
-**Symptom:** After deployment template submission, the model instance list is still empty.
+**Symptom:**
 
-**Possible Causes:**
-
-- Current filters filtered out the instance.
-- The instance is still being created and the list has not refreshed.
-- Creation flow submission failed.
-
-**Solution:**
-
-1. Click `Reset` and search again.
-2. Refresh the page and view again.
-3. Return to deployment templates or operation records to confirm whether submission succeeded.
-
-#### Instance Status Is Abnormal
-
-**Symptom:** The instance shows Failed, Unavailable, or remains Creating for a long time.
+The page opens, but the expected Configuration, status, and relationships on Instances is missing.
 
 **Possible Causes:**
 
-- Image pull failed.
-- Resources are insufficient or the specification cannot be scheduled.
-- Startup parameters or model files are abnormal.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Enter instance details to view logs.
-2. Confirm quota and target specification.
-3. Contact the operator to check image, cluster, and template configuration.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-## Next Steps
+#### The Operation Entry on Instances Is Unavailable
 
-1. View instance details and logs.
-2. Confirm service access address and invocation method.
-3. Track runtime cost in `Resource Usage`.
+**Symptom:**
+
+The create, register, or maintain entry is hidden or disabled.
+
+**Possible Causes:**
+
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
+
+**Solution:**
+
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
+
+#### A Required Field on Instances Has No Options
+
+**Symptom:**
+
+The form opens, but a selection list is empty.
+
+**Possible Causes:**
+
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
+
+**Solution:**
+
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Instances Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Instances
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Instances.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
 
 ## Notes
 
@@ -176,3 +222,9 @@ When you need to confirm whether a model service was created successfully, is st
 - Before providing external service, confirm access control, instance specification, and runtime cycle.
 - `Stop`, `Restart`, and `Delete` may interrupt service, release resources, or remove instance records. Confirm business impact before operating.
 - Use the list and detail pages as the primary basis for instance status. Overview pages only provide entrypoints and summaries.
+
+## Next Steps
+
+1. View instance details and logs.
+2. Confirm service access address and invocation method.
+3. Track runtime cost in `Resource Usage`.

@@ -1,42 +1,33 @@
-# Resource Quotas
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Quotas
 
 ## Feature Overview
 
-`Resource Quotas` displays the total amount, used amount, and availability of the current tenant across AI cards, CPU, memory, and different instance types. End Users should confirm whether quotas meet requirements before creating instances.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Quota & Usage > Resource Quotas |
-| Page route | `/powerone/quota-usage/quota` |
-| Managed objects | AI card, CPU, memory, online IDE, and runtime instance quotas |
-| Typical use | View current tenant resource limits and used amount to determine whether resources are available for instance creation |
+| Applicable Role | Model Provider and Model Consumer |
+| Navigation Path | AI Infra(On-Prem) > Quotas & Usage > Quotas |
+| Page Route | `/powerone/quota-usage/quota` |
+| Managed Object | Configuration, status, and relationships on Quotas |
 
 #### Beginner Explanation
 
 My quota is like a personal resource balance sheet. It shows how many instances can still be created and how much compute and storage can still be used.
 
-#### First-Time Flow
-
-1. Go to `Quota & Usage > Resource Quotas`.
-2. View total and used amounts for AI card, CPU, and Memory.
-3. View resource occupation for Runtime Instance and Online IDE.
-4. Click `View Resource Usage` to view occupation details.
-5. If quota is insufficient, release idle instances or contact the operator for adjustment.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Quota | Resource upper limit available to a tenant. Common dimensions include GPU, CPU, memory, and specifications. |
 | AI card | AI accelerator quota, which may include GPU, NPU, or other cards. |
 | Used | Used resource amount. |
-| Total | Total quota. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for AI card, CPU, memory, online IDE, and runtime instance quotas, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Quotas, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -46,9 +37,15 @@ My quota is like a personal resource balance sheet. It shows how many instances 
 
 ## Page Description
 
-The page displays Total, Unused, and Used by resource type, and separately displays resource occupation for runtime instances and online IDEs. In the screenshot, GPU, CPU, and Memory are Unlimited or 0 Used.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Resource Quotas](./images/quotas-list.png)
+Use this page to view and handle Configuration, status, and relationships on Quotas.
+
+![Quotas](./images/quotas-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The page displays Total, Unused, and Used by resource type, and separately displays resource occupation for runtime instances and online IDEs. In the screenshot, GPU, CPU, and Memory are Unlimited or 0 Used.
 
 #### Page Areas
 
@@ -75,8 +72,7 @@ The page displays Total, Unused, and Used by resource type, and separately displ
 1. Sort by utilization to locate resources near or over the limit.
 2. Open details and check associated instances and recent usage.
 3. If an increase is required, open the quota-request process and prepare business justification.
-4. Do not submit a request or adjust quota during read-only validation.
-
+4. Before submitting a request or adjusting quota, verify the amount and impact and execute the action only after approval.
 
 ### View Resource Occupation
 
@@ -93,7 +89,7 @@ When creation fails with insufficient quota, or when you need to confirm which i
 
 1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Resource Quotas`.
 2. Find the `Runtime Instance` or `Online IDE` area.
-3. Click `View Resource Usage`.
+3. Click **"View Resource Usage"**.
 4. View resource occupation items in the dialog.
 5. After locating the occupying instance, go to the corresponding instance list for handling.
 
@@ -101,7 +97,7 @@ The following figure shows the resource occupation details dialog, used to view 
 
 ![Resource usage details](./images/resource-usage-dialog.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -117,53 +113,118 @@ The following figure shows the resource occupation details dialog, used to view 
 - When quota is sufficient but creation fails, actual cluster resources may be insufficient.
 - If occupation details are empty but Used is not 0, statistical delay may exist.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Resource usage dialog | The resource usage dialog opens. | Check the resource type, time range, credit balance, and consumption details. |
-| Usage items | The usage items match the instance type. | Check the resource type, time range, credit balance, and consumption details. |
-| Related instances | Instances that must be released or retained can be identified. | Check the resource type, time range, credit balance, and consumption details. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - Quotas control tenant upper limits and are not equivalent to real-time idle resources in the underlying cluster.
 - Online IDE and runtime instance occupation may be counted separately.
 - Quota reclamation may have a short delay after instances are released.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page entry | Quotas opens with filters or statistics | Check menu permission, current business identity, and tenant scope |
+| Data scope | Lists or statistics match the selected time, region, and object | Reset filters and verify time boundaries, time zone, and aggregation scope |
+| Data update | Update time or latest record matches the expected cycle | Check whether the source job, metering, or quota record has been generated |
+| Cross-check | Configuration, status, and relationships on Quotas matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
+
 ## FAQ
 
-#### Can Creation Still Fail When Quota Shows Unlimited
+#### No Records on Quotas
 
-**Symptom:** Quota shows Unlimited, but instance creation fails.
+**Symptom:**
 
-**Possible Causes:**
-
-- The underlying cluster has no idle resources.
-- The specification cannot be scheduled.
-- Image or storage configuration failed.
-
-**Solution:**
-
-1. View the instance creation error.
-2. Switch specification or region.
-3. Contact the operator to confirm cluster capacity.
-
-#### Quota Does Not Recover Immediately After Instance Release
-
-**Symptom:** After an instance is stopped or deleted, Used still shows occupied.
+The page opens, but lists or statistics are empty.
 
 **Possible Causes:**
 
-- Statistical delay.
-- The instance is still releasing.
-- Other instances still occupy the same type of resource.
+- Filters are too narrow.
+- source records are not generated.
+- the role cannot see them.
 
 **Solution:**
 
-1. Wait for the page to refresh.
-2. View resource occupation details.
-3. Confirm that the instance lifecycle has ended.
+1. Reset filters
+2. verify the source job or metering cycle
+3. check business identity and tenant scope.
+
+#### Quotas Shows the Wrong Scope
+
+**Symptom:**
+
+Data does not belong to the expected time, region, or object.
+
+**Possible Causes:**
+
+- Time boundaries differ.
+- the region filter did not apply.
+- ownership changed.
+
+**Solution:**
+
+1. Select time and region again
+2. verify object identifiers
+3. confirm ownership in source details.
+
+#### Quotas Is Delayed
+
+**Symptom:**
+
+A source operation completed, but its record is not visible.
+
+**Possible Causes:**
+
+- Aggregation is not complete.
+- the page is cached.
+- source state is still processing.
+
+**Solution:**
+
+1. Verify source state
+2. wait one aggregation cycle and refresh
+3. inspect the processing task if delay persists.
+
+#### Details or Download Is Unavailable
+
+**Symptom:**
+
+The details, expand, or download entry is disabled.
+
+**Possible Causes:**
+
+- The record does not support it.
+- role permission is insufficient.
+- the file is not generated.
+
+**Solution:**
+
+1. Select an eligible record
+2. check role permission
+3. confirm the statistics or export task is complete.
+
+#### Summary and Details Do Not Match
+
+**Symptom:**
+
+The summary differs from the total of individual records.
+
+**Possible Causes:**
+
+- Periods differ.
+- values are rounded.
+- some records are still processing.
+
+**Solution:**
+
+1. Align period and time zone
+2. compare by object
+3. wait for pending records and check again.
+
+## Notes
+
+- Sufficient remaining quota does not guarantee successful creation. Region, specification, image, storage, and cluster capability must also be satisfied.
+- Do not expose tenant names, business project names, or internal resource IDs in screenshots.
+- Quota refresh may be delayed. After releasing resources, wait until page update time changes.
 
 ## Next Steps
 
@@ -171,9 +232,3 @@ The following figure shows the resource occupation details dialog, used to view 
 2. After confirming that business expansion is required, contact the operator to request credit adjustment.
 3. When instance creation fails, verify credits, specification availability, and cluster capacity together.
 4. Periodically view credit changes to avoid long-running resources occupying all quotas.
-
-## Notes
-
-- Sufficient remaining quota does not guarantee successful creation. Region, specification, image, storage, and cluster capability must also be satisfied.
-- Do not expose tenant names, business project names, or internal resource IDs in screenshots.
-- Quota refresh may be delayed. After releasing resources, wait until page update time changes.

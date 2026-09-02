@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`Business Units` is used to configure business units, payment channels, single top-up amount ranges, initial balance, overdraft limit, and enabled or disabled status. These settings affect the customer top-up flow, available payment channels, and balance rules.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Customer Billing > Business Units |
 | Page route | `/billing/customers/business-units` |
 | Managed objects | Business units, payment channels, top-up amount limits, initial balance, overdraft limit, and status |
-| Typical use | Add or edit business units, control top-up channels and amount limits, and manage overdraft rules |
+
+`Business Units` is used to configure business units, payment channels, single top-up amount ranges, initial balance, overdraft limit, and enabled or disabled status. These settings affect the customer top-up flow, available payment channels, and balance rules.
+
 
 #### Beginner Explanation
 
@@ -70,25 +70,27 @@ The following screenshot shows the filters and table fields. List data is masked
 3. Open details and check associated customers, billing scope, status, and update time.
 4. If no record is returned, reset filters. Do not disable or delete a business unit that is referenced by customers or bills.
 
+![Business Units - View Business Units](./images/manual-billing-business-units-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Add a Business Unit
 
 1. Go to `Billing > Customer Billing > Business Units`.
-2. Click `Add Business Unit` at the top of the page.
+2. Click **"Add Business Unit"** at the top of the page.
 3. In the dialog, fill in `Business Unit Name`, `Business Unit Code`, contact name, contact phone number, and business unit description.
 4. Configure payment channels, single top-up amount range, initial balance, overdraft limit, and whether overdraft is disabled.
 5. Confirm that the business unit code is stable, payment channels are available, and top-up amount limits match operation policy.
 6. Before clicking the final `Confirm`, verify business unit name, code, payment channels, initial balance, and overdraft limit again.
-7. For learning or screenshots only, view fields and the dialog without submitting real business unit configuration.
 
 ![Add Business Unit](./images/add-business-line.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Business Unit Name | Required | Text | `Example business unit` | Display name of the business unit. |
-| Business Unit Code | Required | Text | `demo-cn` | Unique code of the business unit. Keep it stable after creation. |
+| Business Unit Code | Required | Text | `retail-cn` | Unique code of the business unit. Keep it stable after creation. |
 | Contact Name | No | Text | `Example owner` | Contact person for the business unit. Desensitize it in screenshots or tickets. |
 | Contact Phone Number | No | Text | `138****0000` | Contact phone number. Desensitize it in screenshots or tickets. |
 | Business Unit Description | No | Text | `Example top-up scope` | Business purpose and scope description. Do not write internal sensitive parameters. |
@@ -110,7 +112,7 @@ The following screenshot shows the filters and table fields. List data is masked
 - Adding a business unit affects customer top-up entry, available payment channels, single top-up amount range, initial balance, and overdraft rules.
 - Business unit code should remain stable. An incorrect code may cause later top-up, customer ownership, or billing statistics issues.
 - Incorrect payment channel, overdraft limit, or initial balance may affect real customer top-up and balance calculation.
-- `Confirm` is a high-risk final action. For learning or screenshots only, view fields and the dialog without submitting real configuration.
+- Clicking **"Confirm"** submits the business unit configuration. Verify the code, owner, and customer scope before proceeding.
 
 ## Result Validation
 
@@ -148,15 +150,53 @@ The displayed balance, consumption, settlement status, monthly bill, or License 
 
 Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
 
-## Next Steps
 
-- Open [Customer Top-up Orders](../top-up-orders/) to verify whether the business unit affects order filters and posting checks.
-- Confirm whether the customer top-up flow references this business unit.
+#### Business Units Does Not Update After Refresh
 
+**Symptom:**
+
+The amount, count, or status in Business Units remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Business Units.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Customer Billing and payment channels.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Business Units Information?
+
+**Symptom:**
+
+Business Units results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Business-unit names, payment channels, statuses, and settlement settings may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Keep credentials, private operational details, and sensitive customer data out of the manual.
 - Do not record real contact names, phone numbers, internal business codes, customer information, payment channel secrets, accounts, Token, or Key.
-- For learning or screenshots only, view fields and the dialog without submitting real configuration.
+- If no business unit is required, close the dialog without submitting the configuration.
+
+## Next Steps
+
+- Open [Customer Top-up Orders](../top-up-orders/) to verify whether the business unit affects order filters and posting checks.
+- Confirm whether the customer top-up flow references this business unit.

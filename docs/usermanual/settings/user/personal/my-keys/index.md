@@ -1,21 +1,13 @@
 # My Keys
 
-::: info Document Information
-Version: v1.1
-Updated: 2026-08-26
-:::
-
 ## Feature Overview
-
-`My Keys` is the personal credential page for Provider and End User accounts. Both roles currently expose the `Model API Keys` and `System API AK/SK Pairs` tabs. The Model API tab also shows the current member quota and per-Key usage or limit information.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Account, End User |
+| Applicable Role | Model Consumer |
 | Navigation path | Settings > Personal > My Keys |
 | Page route | Enter through the visible menu; do not paste a hidden route. |
 | Managed objects | Model API Keys, System API AK/SK Pairs, status, expiration, and applicable quota settings |
-| Typical use | Review personal credentials, open a creation or quota dialog, and stop before the final save or create action |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Use a separate credential for each application or workload. Give it a clear name
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Model API Key | A credential used to call model APIs. | Use separate Keys for separate workloads. |
-| System API AK/SK Pair | A credential pair used to call system APIs. | Never place the complete pair in documentation or frontend code. |
-| Member quota | The current-cycle allowance shared by the account's Model API Keys. | Check it before diagnosing a quota failure. |
-| Key limit | A per-Key cycle limit, when the page enables it. | Keep it consistent with the project or member policy. |
+| Term | Description |
+| --- | --- |
+| Model API Key | A credential used to call model APIs.; Use separate Keys for separate workloads. |
+| System API AK/SK Pair | A credential pair used to call system APIs.; Never place the complete pair in documentation or frontend code. |
+| Member quota | The current-cycle allowance shared by the account's Model API Keys.; Check it before diagnosing a quota failure. |
+| Key limit | A per-Key cycle limit, when the page enables it.; Keep it consistent with the project or member policy. |
 
 ## Prerequisites
 
@@ -51,43 +43,79 @@ On the visible personal page, the Model API tab provides the member-quota summar
 | Table columns | Key name / description, prefix, status, expiration, used / limit, created time, and actions. |
 | Row actions | `View key` is displayed directly. The overflow menu currently contains `View details`, `Edit details`, `Extend validity`, `Limit`, `Rotate`, and `Disable`. |
 
+![My Keys](./images/manual-settings-user-my-keys.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the My Keys page.
+
 ## Main Operations
 
-### Review My Keys
+### View Model API Keys
 
 1. Open `Settings > Personal > My Keys` from the visible menu.
 2. Select `Model API Keys` or `System API AK/SK Pairs` when the tab is available.
 3. Review the Key name / description, prefix, status, expiration, used / limit, created time, and available row actions.
 4. For a Model API Key, open the overflow menu to review `View details`, `Edit details`, `Extend validity`, `Limit`, `Rotate`, and `Disable`. Do not execute a write action during a read-only review.
 
+![View Model API Keys](./images/manual-settings-user-my-keys.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the My Keys page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
 ### Open the Model API Key Creation Dialog
 
-1. Click `Create Key`.
+1. Click **"Create Key"**.
 2. Review the required `Expire Time` and `Key Name` fields and the optional `Description` field (maximum 200 characters).
 3. Select the required `Reset Cycle`. If `Monthly` is selected, review `Day of Month`.
 4. If the page exposes `Enable Limit`, decide whether to set a `Period Limit (credits)` and `Warning Threshold (%)`.
 5. Review the limit-reached policy shown by the dialog, then confirm the caller, purpose, expiration, and quota policy.
-6. For documentation review or screenshot capture, click `Cancel`. Do not click the final `Create` button.
+6. For documentation review or screenshot capture, click **"Cancel"**. Do not click the final `Create` button.
 
 ![Create Model API Key](./images/create-key.png)
 
-### Open the System API AK/SK Pair Creation Dialog
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Open the System API Key Creation Dialog
 
 1. Select `System API AK/SK Pairs`.
-2. Click `Create Key`.
+2. Click **"Create Key"**.
 3. Review the required `Expire Time` and `Key Name` fields and the optional `Description` field (maximum 200 characters).
 4. Confirm that this dialog does not contain Model API quota, reset-cycle, warning-threshold, or limit-reached fields.
-5. Click `Cancel`. Do not click the final `Create` button during documentation review.
+5. Click **"Cancel"**. Do not click the final `Create` button during documentation review.
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
 
-### Open Quota Requests
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
 
-1. On the `Model API Keys` tab, click `Request More Quota`.
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Submit a Quota Request
+
+1. On the `Model API Keys` tab, click **"Request More Quota"**.
 2. Confirm that the page opens `Settings > Members & Roles > Quota Requests`.
 3. Review existing request and adjustment records. Stop before the final quota-request submission unless a change is explicitly approved.
 
-### Review or Adjust a Key Limit
+![Submit a Quota Request](./images/manual-settings-user-my-keys.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the My Keys page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Adjust a Model API Key Limit
 
 1. Open the target Model API Key's overflow menu and select `Limit`.
 2. Review `Reset Cycle`, `Day of Month`, and whether `Enable Limit` is on.
@@ -96,7 +124,13 @@ On the visible personal page, the Model API tab provides the member-quota summar
 
 ![Key quota](./images/key-quota.png)
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -153,7 +187,40 @@ On the visible personal page, the Model API tab provides the member-quota summar
 
 **Resolution:** The action may depend on role, tenant policy, Key state, or the selected credential type. Use the visible menu and current row state as the source of truth.
 
+#### How should the My Keys page be exported or captured safely?
+
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the My Keys page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
+
 ## Notes
 
 - Never expose a complete Key, AK/SK pair, token, or private key in documentation, screenshots, or chat.
 - `Create`, `Save Limit`, `Rotate`, and `Disable` can affect existing callers. Confirm the business impact before any approved change.
+
+## Next Steps
+
+1. Return to Settings > Personal > My Keys and verify the status and update time.
+2. If a related object must be processed, open the next business entry shown on the page.

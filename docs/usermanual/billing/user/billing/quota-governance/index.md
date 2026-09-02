@@ -7,15 +7,15 @@ Updated: 2026-07-23
 
 ## Feature Overview
 
-`Quota Governance` displays quota usage, available balance, and risk state by project and member in the current billing cycle. Use it to identify projects or members approaching their quota limit and adjust usage plans before business is affected.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
+| Applicable Role | Model caller |
 | Navigation path | Billing > User Billing > Quota Governance |
 | Page route | `/billing/my/quota-governance` |
 | Managed objects | Project quotas, member quotas, billing-cycle usage, and risk action queue |
-| Typical use | Review quota levels, identify overage risk, and open project or member details |
+
+`Quota Governance` displays quota usage, available balance, and risk state by project and member in the current billing cycle. Use it to identify projects or members approaching their quota limit and adjust usage plans before business is affected.
+
 
 #### Beginner Explanation
 
@@ -66,18 +66,26 @@ The following screenshot shows Quota Governance. Sanitize project, member, quota
 ### View Project Quotas
 
 1. Go to `Billing > User Billing > Quota Governance`.
-2. Select `Project` in `Current Quota Status`.
+2. Select **"Project"** in `Current Quota Status`.
 3. Review project, current cycle, used/limit, handling method, available quota, state, and operation.
 4. Click row-level `View` to open project details when needed.
-5. For learning or screenshots, view only quota levels and details; do not reset projects or change defaults.
+5. Before resetting a project or changing defaults, verify the target project, account permission, and impact scope.
+
+![Quota Governance - View Project Quotas](./images/quota-governance-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Member Quotas
 
 1. Go to `Billing > User Billing > Quota Governance`.
-2. Select `Member` in `Current Quota Status`.
+2. Select **"Member"** in `Current Quota Status`.
 3. Review the current cycle, used/limit, handling method, available quota, and state for each member.
 4. For members close to the limit, adjust workload plans according to business use.
 5. Hide real member emails, project names, quota limits, and consumption details in external communication.
+
+![Quota Governance - View Member Quotas](./images/quota-governance-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Review Risks and Actions
 
@@ -85,9 +93,13 @@ The following screenshot shows Quota Governance. Sanitize project, member, quota
 2. Review `Risk & Action Queue` at the bottom of the page.
 3. Prioritize items close to the limit, over quota, or blocking continued use.
 4. Before changing a quota rule, confirm the scope, affected objects, and approval basis.
-5. For learning or screenshots, view only risk items and recommended actions; do not submit a real quota adjustment.
+5. Before submitting a quota adjustment, verify the target project or member, requested amount, and impact scope.
 
-## Parameter Reference
+![Quota Governance - Review Risks and Actions](./images/quota-governance-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -122,7 +134,7 @@ The following screenshot shows Quota Governance. Sanitize project, member, quota
 | Dimension switching | `Project` and `Member` views can be selected. | Check page permission and loading state. |
 | List fields | Current cycle, used/limit, handling method, available quota, and state are visible. | Ask the operator to confirm quota rules. |
 | Detail entry | Row-level `View` opens project or member details. | Check account permission or page loading state. |
-| No unintended high-risk action | No project reset, default change, or quota adjustment is submitted during learning or screenshot capture. | If triggered, record the time and scope and notify the owner for review. |
+| Quota changes controlled | Project resets, default changes, and quota adjustments are performed only by authorized users for the confirmed scope. | If an unintended action occurs, record the time and scope and notify the owner for review. |
 
 ## FAQ
 
@@ -168,15 +180,53 @@ Data refresh is delayed or the action did not cover every affected object.
 
 Refresh the page and review the current billing cycle again. If the risk remains, open the related project or member details.
 
-## Next Steps
 
-1. To review cost sources, open [Transactions](../transactions/).
-2. To review account balance, open [Account Overview](../overview/).
-3. To review monthly quota impact, open [Monthly Bill](../monthly-bill/).
+#### Quota Governance Does Not Update After Refresh
 
+**Symptom:**
+
+The amount, count, or status in Quota Governance remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Quota Governance.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Account Overview and member quotas.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Quota Governance Information?
+
+**Symptom:**
+
+Quota Governance results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Project names, members, quotas, usage rates, and risk statuses may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Quota Governance is for risk assessment and is not a top-up or deduction page.
 - Before changing a quota rule, confirm the affected scope, billing cycle, and business priority.
 - Do not expose complete member, project, quota-limit, or consumption details in communication.
-- For learning or screenshots, view quota levels, risks, and details only; do not submit real quota changes.
+- Before resetting projects, changing defaults, or adjusting quotas, verify the target, account permission, and impact scope.
+
+## Next Steps
+
+1. To review cost sources, open [Transactions](../transactions/).
+2. To review account balance, open [Account Overview](../overview/).
+3. To review monthly quota impact, open [Monthly Bill](../monthly-bill/).

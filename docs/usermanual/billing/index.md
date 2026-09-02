@@ -1,57 +1,68 @@
-# Billing
+# Overview
 
 ::: info Document Information
 Version: v1.0
 Updated: 2026-07-23
 :::
 
-## Subsystem Positioning
+## Feature Overview
 
-Billing is the entry page for the platform's billing, charging, settlement, reconciliation, and License management. It covers user billing, Provider earnings, customer billing, finance operations, and License. Operators, billing operators, finance reviewers, Providers, and End Users can use this page to choose the correct entry before reviewing balances, top-up orders, monthly bills, customer records, monthly settlement progress, settlement statements, financial accounts, reconciliation checks, and License authorization.
+| Item | Content |
+| --- | --- |
+| Applicable Roles | End User / Provider / Operator |
+| Navigation Path | User Manual > Billing > Overview |
+| Page Route | `/usermanual/billing/` |
+| Coverage | User billing, Provider earnings, customer billing, finance operations, and License |
 
 #### Beginner Explanation
 
 Billing works like the financial control room for the platform. User billing helps End Users check balances, transactions, top-ups, and monthly bills. Customer billing handles customer identity, tags, top-up sources, and business units. Finance operations handles settlement, financial accounts, and reconciliation status. License handles resource authorization, validity period, and quota. Start by classifying the issue before opening a specific statement or record.
 
-## Core Terms Quick Reference
+#### Terms Quick Reference
 
-| Term | Meaning | Common location |
+| Term | Meaning | Common Location |
 | --- | --- | --- |
 | Billing Cycle | The time period used for billing statistics and settlement, usually viewed by month. | Monthly Bill, Monthly Overview, Settlement List, Reconciliation Center |
 | Credits | The unit used for balance, top-up, or billing display in the platform. | Overview, Customer Overview, Top-up Orders, user bills |
 | Top-up Order | A processing record created after a user or customer starts a top-up. | Top-up Orders, Customer Top-up Orders |
 | Transaction | A record for balance, income, expense, or adjustment changes. | Transactions, Financial Accounts |
-| Settlement Statement | A settlement record for an tenant and billing cycle. | Settlement List, Settlements |
-| Clearing Account | An account used to aggregate or reconcile transaction funds. | Financial Accounts |
-| Revenue Account | An account related to platform or Provider revenue. | Financial Accounts, Revenue |
-| Compensation Queue | Billing tasks that require retry, compensation, or manual handling. | Reconciliation Center |
-| Account Adjustment | A financial correction after approval. | Account Adjustment |
+| Settlement Statement | A settlement record for a tenant and billing cycle. | Settlement List, Settlements |
 | License | Authorization that controls platform modules, resource quota, and validity period. | License |
 
-## Role Entry Points
+## Prerequisites
 
-| Role | What to read first | Next step |
+1. The current account has permission to access billing-related menus.
+2. The issue has been classified as user billing, Provider earnings, customer billing, finance operations, or License.
+3. For amount reconciliation, billing cycle, tenant, customer, business unit, account, and transaction type have been aligned.
+4. Before settlement generation, account adjustment, compensation, rebuild, or License activation, approval basis, billing cycle, tenant, and impact scope have been confirmed.
+5. Amounts, tenants, accounts, emails, transaction numbers, order numbers, and License information have been desensitized before external communication.
+
+## Page Description
+
+#### Read by Role
+
+| Role | Start Here | Next Step |
 | --- | --- | --- |
-| End User | [Billing](./user/billing/overview/) | Check balance, transactions, top-up orders, quota governance, and monthly bills. |
-| Provider | [Earnings](./user/earnings/revenue/) | Check revenue overview, settlements, and customer revenue. |
-| Platform Operator | [Customer Billing](./operator/customer-billing/customer-overview/) | Verify customers, business units, and customer top-up orders before checking finance status. |
-| Billing Operator | [Finance Operations](./operator/finance-operations/today-tasks/) | Start from Today Tasks and Monthly Overview, then proceed by billing cycle. |
-| Finance Reviewer | [Financial Accounts](./operator/finance-operations/financial-accounts/) | Compare account transactions, settlement statements, and reconciliation results. |
-| License Admin | [License](./operator/license/license/) | Check authorized quota, validity period, and activation status. |
+| End User | [User Billing](./user/billing/overview/) | Check balance, transactions, top-up orders, quota governance, and monthly bills. |
+| Provider | [Provider Earnings](./user/earnings/revenue/) | Check revenue overview, settlements, and customers. |
+| Operator | [Customer Billing](./operator/customer-billing/customer-overview/) | Check customers, business units, and top-up orders, then open Finance Operations when needed. |
+| Billing Operator | [Finance Operations](./operator/finance-operations/today-tasks/) | Start with Today Tasks and Monthly Overview, then continue by billing cycle. |
+| Finance Reviewer | [Financial Accounts](./operator/finance-operations/financial-accounts/) | Compare account transactions, settlement statements, and reconciliation exceptions. |
+| License Admin | [License](./operator/license/license/) | Check authorization quota, expiration time, and activation status. |
 
-## Where to Start
+#### Where to Start
 
-| Module | Entry | Best for |
+| Module | Entry | Suitable Issue |
 | --- | --- | --- |
-| Getting Started | [Billing Getting Started](./getting-started/) | First-time reading and path selection. |
-| End-to-end workflow | [Reconcile and Settle a Billing Cycle](./end-to-end/reconcile-billing-cycle/) | Connecting monthly overview, tasks, accounts, reconciliation, settlement statements, and adjustments. |
-| User Billing | [Billing](./user/billing/overview/) | End Users checking balances, quotas, transactions, top-up orders, and monthly bills. |
-| Provider Earnings | [Earnings](./user/earnings/revenue/) | Providers checking revenue overview, settlements, and customer revenue. |
-| Customer Billing | [Customer Billing](./operator/customer-billing/customer-overview/) | Customer records, customer tags, customer top-up orders, business units, and payment-channel configuration. |
-| Finance Operations | [Finance Operations](./operator/finance-operations/today-tasks/) | Today tasks, monthly overview, settlement statements, financial accounts, reconciliation center, and account adjustment. |
-| License | [License](./operator/license/license/) | Platform authorization, resource license, quota composition, validity period, and activation status. |
+| Getting Started | [Getting Started](./getting-started/) | First-time reading or choosing the correct Billing path. |
+| Billing-cycle Workflow | [Reconcile and Settle a Billing Cycle](./end-to-end/reconcile-billing-cycle/) | Connecting monthly overview, tasks, accounts, reconciliation, settlement statements, and account adjustment. |
+| User Billing | [User Billing](./user/billing/overview/) | Checking balance, quota, transactions, top-up orders, and monthly bills. |
+| Provider Earnings | [Provider Earnings](./user/earnings/revenue/) | Checking revenue, customers, and settlements. |
+| Customer Billing | [Customer Billing](./operator/customer-billing/customer-overview/) | Managing customer records, tags, top-up orders, business units, and payment channels. |
+| Finance Operations | [Finance Operations](./operator/finance-operations/today-tasks/) | Handling Today Tasks, monthly overview, settlement statements, accounts, reconciliation, and account adjustment. |
+| License | [License](./operator/license/license/) | Checking authorization type, quota, validity period, and activation status. |
 
-## Find an Entry by Goal
+#### Find an Entry by Goal
 
 | Goal | Recommended Entry | Next Step |
 | --- | --- | --- |
@@ -60,27 +71,19 @@ Billing works like the financial control room for the platform. User billing hel
 | Troubleshoot settlement or amount differences | [Finance Operations](./operator/finance-operations/today-tasks/) | Review Today's Tasks, Monthly Overview, Settlement Statements, Financial Accounts, and Reconciliation Center. |
 | Manage authorization credits | [License](./operator/license/license/) | Distinguish authorization credits and validity from the billing account balance. |
 
-## Recommended Reading Path
+## Main Operations
 
-1. For first-time reading, start from this page to understand user billing, Provider earnings, customer billing, finance operations, and License boundaries.
-2. To build a quick global understanding, continue with [Billing Getting Started](./getting-started/).
-3. For user-side balance, top-up, or bill issues, open [Billing](./user/billing/overview/).
-4. For Provider revenue, open [Revenue](./user/earnings/revenue/), then review settlements or customers as needed.
-5. For customer-related issues, open [Customer Billing](./operator/customer-billing/customer-overview/), then check Customer Overview, Customer Top-up Orders, or Business Units.
-6. For settlement and reconciliation issues, open [Finance Operations](./operator/finance-operations/today-tasks/), start with Today Tasks and Monthly Overview, then continue to Settlement List, Financial Accounts, or Reconciliation Center.
-7. For a complete billing-cycle workflow, read [Reconcile and Settle a Billing Cycle](./end-to-end/reconcile-billing-cycle/).
-8. For authorization and quota issues, open [License](./operator/license/license/) and confirm license type, remaining quota, and validity period.
-9. In operation records or tickets, keep only desensitized billing cycle, statement status, conclusion, and next action.
+### Choose a Billing Entry
 
-## Usage Prerequisites
+1. Choose a feature page by role and goal.
+2. Verify the title, billing period, and object scope.
+3. Continue with the Main Operations on that feature page.
 
-1. The current account has permission to access billing-related menus.
-2. The issue has been classified as user billing, Provider earnings, customer billing, finance operations, or License.
-3. For amount reconciliation, billing cycle, tenant, customer, business unit, account, and transaction type have been aligned.
-4. Before settlement generation, account adjustment, compensation, rebuild, or License activation, approval basis, billing cycle, tenant, and impact scope have been confirmed.
-5. Amounts, tenants, accounts, emails, transaction numbers, order numbers, and License information have been desensitized before external communication.
+![Billing](./operator/finance-operations/today-tasks/images/manual-billing-today-tasks-page.png)
 
-## Parameter Reference
+The image shows the page entry or current state for this workflow step. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 #### Scope Definitions
 
@@ -102,6 +105,13 @@ Billing works like the financial control room for the platform. User billing hel
 | Tenant / Customer | Conditionally required | Text | `Desensitized tenant` | Limits customer, settlement statement, and account-transaction scope. |
 | Next Entry | System generated | Link | `Finance Operations` | Points to the next page according to issue type. |
 
+## Pitfalls
+
+- Do not make amount conclusions on the entry page. Amount issues should be checked in Monthly Bill, Settlement List, Financial Accounts, or Transactions.
+- User billing, Provider earnings, customer billing, finance operations, and License use different perspectives. Do not mix their statistics.
+- Amounts and statuses may differ when billing cycle, tenant, customer, or business unit scope is inconsistent.
+- Do not record real tenants, customer names, accounts, emails, amounts, order numbers, transaction numbers, License registration codes, activation codes, Token, or Key.
+
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
@@ -110,13 +120,6 @@ Billing works like the financial control room for the platform. User billing hel
 | Paths available | Getting Started, the end-to-end workflow, and core module entries can be opened. | Check sidebar configuration and account menu permissions. |
 | Scope separated | Balance, revenue, settlement, account transactions, and authorized quota are not mixed. | Open the specific feature page and align billing cycle, tenant, customer, and business unit. |
 | Follow-up path clear | The reader can continue to Getting Started or the billing-cycle workflow. | Follow the recommended reading path. |
-
-## Pitfalls
-
-- Do not make amount conclusions on the entry page. Amount issues should be checked in Monthly Bill, Settlement List, Financial Accounts, or Transactions.
-- User billing, Provider earnings, customer billing, finance operations, and License use different perspectives. Do not mix their statistics.
-- Amounts and statuses may differ when billing cycle, tenant, customer, or business unit scope is inconsistent.
-- Do not record real tenants, customer names, accounts, emails, amounts, order numbers, transaction numbers, License registration codes, activation codes, Token, or Key.
 
 ## FAQ
 
@@ -162,6 +165,47 @@ Billing balance handles customer or platform financial issues, while License han
 
 If the issue is top-up, deduction, settlement, or balance-related, use user billing, customer billing, or finance operations. If the issue is resource quota, restricted module, expired authorization, or activation, open License.
 
+
+#### The Recommended Entry Is Not Available for the Current Role
+
+**Symptom:**
+
+The current account cannot see a Billing entry recommended on the Overview page.
+
+**Possible causes:**
+
+- The current role does not have permission for that menu.
+- The tenant or business identity does not match the recommended reading role.
+
+**How to handle:**
+
+1. Confirm whether the current role is an End User, Provider, or Operator.
+2. Use the entry that is actually visible in the left navigation.
+3. If access is required, ask authorized personnel to review role and menu permissions.
+
+#### What Scope Information Is Required Before Reconciliation?
+
+**Symptom:**
+
+You need to reconcile amounts but are not sure which conditions must be aligned first.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business unit is not confirmed.
+- Related pages use different statistical scopes.
+
+**How to handle:**
+
+1. Record the target billing cycle and business object.
+2. Confirm the tenant, customer, business unit, account, and transaction type.
+3. Use the same scope on every related page before comparing amounts and statuses.
+## Notes
+
+- This entry page is for path selection only. Amount conclusions must be verified in specific feature pages with aligned filters.
+- User billing, Provider earnings, customer billing, finance operations, and License have different data scopes and permission boundaries.
+- For billing-cycle workflows, use the end-to-end page to connect monthly overview, tasks, accounts, reconciliation, and settlement statements.
+- Examples in this document are placeholders. External materials still require desensitization according to security requirements.
+
 ## Next Steps
 
 - To build a quick global understanding, open [Billing Getting Started](./getting-started/).
@@ -170,10 +214,3 @@ If the issue is top-up, deduction, settlement, or balance-related, use user bill
 - To maintain customers and customer top-ups, open [Customer Billing](./operator/customer-billing/customer-overview/).
 - To proceed with settlement and reconciliation, open [Finance Operations](./operator/finance-operations/today-tasks/).
 - To confirm authorization and quota, open [License](./operator/license/license/).
-
-## Notes
-
-- This entry page is for path selection only. Amount conclusions must be verified in specific feature pages with aligned filters.
-- User billing, Provider earnings, customer billing, finance operations, and License have different data scopes and permission boundaries.
-- For billing-cycle workflows, use the end-to-end page to connect monthly overview, tasks, accounts, reconciliation, and settlement statements.
-- Examples in this document are placeholders. External materials still require desensitization according to security requirements.

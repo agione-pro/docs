@@ -1,39 +1,32 @@
-# Monthly Metering
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Monthly Usage
 
 ## Feature Overview
-
-`Monthly Metering` is used to view monthly aggregated metering results by billing period.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Quotas & Metering > Monthly Metering |
-| Page route | `/powerone/quota-metric/month` |
-| Managed objects | Billing period, status, creation time, and monthly summary records |
-| Typical use | Month-end reconciliation, billing period confirmation, and discovery of abnormal monthly consumption |
+| Navigation Path | AI Infra(On-Prem) > Quotas & Metering > Monthly Usage |
+| Page Route | `/powerone/quota-metric/month` |
+| Managed Object | Configuration, status, and relationships on Monthly Usage |
 
 #### Beginner Explanation
 
 Monthly usage is like a monthly resource bill summary. It aggregates scattered compute, storage, and instance consumption into month, tenant, and resource type dimensions.
 
-#### View Flow
-
-1. Go to `Quota & Metering > Monthly Metering`.
-2. Filter by time, status, resource type, or keyword.
-3. View the list or chart results.
-4. If an exception is found, drill down into the associated page.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Billing Period | Month or cycle to which metering belongs. |
 | Monthly Summary | Consumption result aggregated by billing period. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Billing period, status, creation time, and monthly summary records, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Monthly Usage, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -43,12 +36,15 @@ Monthly usage is like a monthly resource bill summary. It aggregates scattered c
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Monthly Usage.
+
+![Monthly Usage](./images/manual-monthly-usage.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 Monthly metering aggregates tenant resource consumption, Credits conversion, and export status by month. Operators can first view monthly summaries, then drill down to metering details to reconcile abnormal growth, cross-cycle resources, or delayed postings.
 
 The following figure shows the monthly metering page.
-
-
-![Monthly Metering](./images/monthly-usage-list.png)
 
 ## Main Operations
 
@@ -66,7 +62,6 @@ The following figure shows the monthly metering page.
 3. The total should be traceable to detail aggregation. If not, check delay, units, and supplemental records.
 4. Do not modify metering or resource status to test the difference.
 
-
 ### View Monthly Metering
 
 #### Procedure
@@ -76,7 +71,7 @@ The following figure shows the monthly metering page.
 3. View billing period status and creation time in the list.
 4. If the monthly summary is abnormal, go to metering details for reconciliation.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -93,55 +88,117 @@ The following figure shows the monthly metering page.
 - Metering data may be delayed. Use a unified time range and statistical definition during reconciliation.
 - Sanitize tenant, amount, and business identifiers before exporting data.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Billing periods | The billing period list matches expectations. | Check the tenant, billing period, quota, usage records, and metering synchronization status. |
-| Summary and detail totals | The summary corresponds to the total of the detail records. | Check the tenant, billing period, quota, usage records, and metering synchronization status. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - **Summary before details**: Monthly exceptions should be traced back to metering details.
 - **Do not mix billing periods**: Clarify billing period scope during reconciliation.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page entry | Monthly Usage opens with filters or statistics | Check menu permission, current business identity, and tenant scope |
+| Data scope | Lists or statistics match the selected time, region, and object | Reset filters and verify time boundaries, time zone, and aggregation scope |
+| Data update | Update time or latest record matches the expected cycle | Check whether the source job, metering, or quota record has been generated |
+| Cross-check | Configuration, status, and relationships on Monthly Usage matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
+
 ## FAQ
 
-#### Monthly Metering Data Is Not Updated
+#### No Records on Monthly Usage
 
 **Symptom:**
 
-After entering the monthly metering page, current-month data is empty or still remains at an old time.
+The page opens, but lists or statistics are empty.
 
 **Possible Causes:**
 
-- The metering task has not completed.
-- The selected month or tenant is incorrect.
-- The target tenant has not generated meterable resources.
+- Filters are too narrow.
+- source records are not generated.
+- the role cannot see them.
 
 **Solution:**
 
-1. Confirm the selected month and tenant.
-2. Check metering task execution time.
-3. Go to metering details to verify whether instance consumption records exist.
+1. Reset filters
+2. verify the source job or metering cycle
+3. check business identity and tenant scope.
 
-#### Monthly Summary and Metering Details Are Inconsistent
+#### Monthly Usage Shows the Wrong Scope
 
 **Symptom:**
 
-Monthly metering totals do not match accumulated metering details.
+Data does not belong to the expected time, region, or object.
 
 **Possible Causes:**
 
-- Details and summaries were refreshed at different times.
-- Filter dimensions, tenant, or specification are inconsistent.
-- Cross-month running instances or recalculation records exist.
+- Time boundaries differ.
+- the region filter did not apply.
+- ownership changed.
 
 **Solution:**
 
-1. Reconcile again with unified filters.
-2. View cross-month instances and recalculation records.
-3. Use the summary after metering task completion as the settlement basis.
+1. Select time and region again
+2. verify object identifiers
+3. confirm ownership in source details.
+
+#### Monthly Usage Is Delayed
+
+**Symptom:**
+
+A source operation completed, but its record is not visible.
+
+**Possible Causes:**
+
+- Aggregation is not complete.
+- the page is cached.
+- source state is still processing.
+
+**Solution:**
+
+1. Verify source state
+2. wait one aggregation cycle and refresh
+3. inspect the processing task if delay persists.
+
+#### Details or Download Is Unavailable
+
+**Symptom:**
+
+The details, expand, or download entry is disabled.
+
+**Possible Causes:**
+
+- The record does not support it.
+- role permission is insufficient.
+- the file is not generated.
+
+**Solution:**
+
+1. Select an eligible record
+2. check role permission
+3. confirm the statistics or export task is complete.
+
+#### Summary and Details Do Not Match
+
+**Symptom:**
+
+The summary differs from the total of individual records.
+
+**Possible Causes:**
+
+- Periods differ.
+- values are rounded.
+- some records are still processing.
+
+**Solution:**
+
+1. Align period and time zone
+2. compare by object
+3. wait for pending records and check again.
+
+## Notes
+
+- Monthly usage is a reference for business operations and settlement. Confirm statistical definitions and final posting status before publishing.
+- Exported reports may contain tenant names, fees, and usage details. Restrict distribution scope.
+- Cross-month running resources may be split by cycle. Do not infer full-month fees from single-day details only.
 
 ## Next Steps
 
@@ -149,9 +206,3 @@ Monthly metering totals do not match accumulated metering details.
 2. Before settlement, confirm that statistical cycles, delayed postings, and correction records have been processed.
 3. After exporting reports, perform internal reviews by tenant or business line.
 4. When abnormal fee growth is found, combine monitoring and job records to locate high-consumption resources.
-
-## Notes
-
-- Monthly usage is a reference for business operations and settlement. Confirm statistical definitions and final posting status before publishing.
-- Exported reports may contain tenant names, fees, and usage details. Restrict distribution scope.
-- Cross-month running resources may be split by cycle. Do not infer full-month fees from single-day details only.

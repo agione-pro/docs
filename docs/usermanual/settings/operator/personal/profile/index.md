@@ -1,13 +1,6 @@
 # Profile
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Profile` shows the current account's user information, password status, security information, phone number, email address, and other basic details.
 
 | Item | Content |
 | --- | --- |
@@ -15,7 +8,6 @@ Updated: 2026-08-27
 | Navigation path | Settings > Personal > Profile |
 | Page route | `/user/user-space/profile` |
 | Managed objects | User information, password status, security information, phone number, and email address |
-| Typical use | Review account details, security status, and contact information |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Profile is the identity card for a platform administrator. Use it to confirm the
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Operator account | An administrator identity that can access the operator console. | Confirm its management scope before a change. |
-| Identity source | Indicates whether an account was created locally or synchronized from an identity provider. | Check the source first when a field cannot be edited. |
-| Sign-in method | Password, single sign-on, or another authentication method. | Compare it with Login Properties during troubleshooting. |
-| Security information | MFA, password status, recent sign-in, and other security indicators. | Do not expose complete account information during troubleshooting. |
+| Term | Description |
+| --- | --- |
+| Operator account | An administrator identity that can access the operator console.; Confirm its management scope before a change. |
+| Identity source | Indicates whether an account was created locally or synchronized from an identity provider.; Check the source first when a field cannot be edited. |
+| Sign-in method | Password, single sign-on, or another authentication method.; Compare it with Login Properties during troubleshooting. |
+| Security information | MFA, password status, recent sign-in, and other security indicators.; Do not expose complete account information during troubleshooting. |
 
 ## Prerequisites
 
@@ -48,24 +40,47 @@ The following screenshot shows the Profile page. Account identifiers, phone numb
 | Account Password | Shows password status and related information. |
 | Security | Shows the phone number, email address, and other security contact information. |
 
+![Profile](./images/manual-settings-operator-profile.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
+
 ## Main Operations
 
-### View Account and Tenant Information
+### View Account Information
 
 1. Go to `Settings > Personal > Profile`.
 2. Check the username, display name, email, tenant, and roles.
 3. Confirm that sensitive fields are redacted and the account status is normal. If information is missing, refresh and check permissions.
 4. Hide email, contact details, and internal identifiers before screenshots or sharing.
 
-### Verify Profile Changes
+![View Account Information](./images/manual-settings-operator-profile.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit Account Profile
 
 1. After an approved edit, reopen the profile.
 2. Check that the display name, avatar, or other editable fields changed and that protected fields such as username and tenant did not.
 3. If the change is not applied, check required fields, format, the save message, and cache refresh.
 4. Do not put passwords, Tokens, keys, or internal sensitive information in profile fields.
 
+![Edit Account Profile](./images/manual-settings-operator-profile.png)
 
-## Parameter Reference
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -135,10 +150,33 @@ The account is managed by an identity provider, sensitive changes require admini
 
 Request the change through the platform account process. Maintain identity-provider fields in the identity platform, then sign in again to confirm synchronization.
 
-## Next Steps
+#### How should the Profile page be exported or captured safely?
 
-1. To manage personal credentials, go to [My Keys](../my-keys/).
-2. To manage operator members, go to [Members](../../members-roles/members/).
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Profile page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
@@ -146,3 +184,8 @@ Request the change through the platform account process. Maintain identity-provi
 - Do not send screenshots containing complete account information through external communication channels.
 - `Confirm` is the final submit action. For learning or screenshots, only open the dialog to view fields and use `Cancel` to exit.
 - Do not write real phone numbers, emails, user IDs, account names, customer names, or internal test data in documentation, screenshots, tickets, or examples.
+
+## Next Steps
+
+1. To manage personal credentials, go to [My Keys](../my-keys/).
+2. To manage operator members, go to [Members](../../members-roles/members/).

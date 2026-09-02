@@ -1,21 +1,13 @@
 # Profile
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Profile` shows the current account's basic information, password status, and security information.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model Provider, End User |
+| Applicable Role | Model Consumer |
 | Navigation path | Settings > Personal > Profile |
 | Page route | `/user/user-space/profile` |
 | Managed objects | Basic account information, password status, security information, phone number, and email address |
-| Typical use | Review account details and security status |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Profile is the identity card for the signed-in account. Use it to confirm who yo
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| User information | Basic display information for the current account. | Desensitize it before taking a screenshot. |
-| Username | The name used to sign in to or identify an account. | Verify it during identity troubleshooting. |
-| Security information | Phone number, email address, and other security contact information. | Ask an administrator to complete it when empty. |
-| Account context | The current tenant or identity scope of the account. | Confirm it before a cross-tenant action. |
+| Term | Description |
+| --- | --- |
+| User information | Basic display information for the current account.; Desensitize it before taking a screenshot. |
+| Username | The name used to sign in to or identify an account.; Verify it during identity troubleshooting. |
+| Security information | Phone number, email address, and other security contact information.; Ask an administrator to complete it when empty. |
+| Account context | The current tenant or identity scope of the account.; Confirm it before a cross-tenant action. |
 
 ## Prerequisites
 
@@ -45,17 +37,11 @@ Profile is the identity card for the signed-in account. Use it to confirm who yo
 | Top action | No create or save action is displayed on this page. |
 | Copy icon | Copies a supported account field and shows success feedback. |
 
+![Profile](./images/manual-settings-user-profile.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
+
 ## Main Operations
-
-### Verify Account and Permission Information
-
-1. Check the username, tenant, roles, and account status.
-2. Confirm that protected fields did not change during profile editing.
-3. If permissions are unexpected, inspect role assignments without elevating privileges.
-4. Hide email, contact details, and internal identifiers before screenshots or sharing.
-
-
-Use the following operations to work with profile records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
 
 ### View Profile
 
@@ -66,7 +52,34 @@ Use the following operations to work with profile records and related status. Co
 5. Confirm the success feedback before you paste the value.
 6. Treat copied account IDs and email addresses as sensitive data. Do not paste them into public channels.
 
-## Parameter Reference
+![View Profile](./images/manual-settings-user-profile.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Verify Account Permissions
+
+1. Check the username, tenant, roles, and account status.
+2. Confirm that protected fields did not change during profile editing.
+3. If permissions are unexpected, inspect role assignments without elevating privileges.
+4. Hide email, contact details, and internal identifiers before screenshots or sharing.
+
+![Verify Account Permissions](./images/manual-settings-user-profile.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -140,11 +153,39 @@ An enterprise identity provider synchronizes the profile, sensitive fields do no
 
 Change basic information in the enterprise identity provider. Request security-field changes through the account-management process, then sign in again to verify synchronization.
 
-## Next Steps
+#### How should the Profile page be exported or captured safely?
 
-1. Return to Dashboard to review quota and shortcuts.
-2. Open My Keys to manage calling credentials.
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Profile page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
 - Do not retain complete accounts, email addresses, phone numbers, IDs, or passwords in documentation or screenshots.
+
+## Next Steps
+
+1. Return to Dashboard to review quota and shortcuts.
+2. Open My Keys to manage calling credentials.

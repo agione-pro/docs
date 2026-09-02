@@ -7,11 +7,11 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-Apps helps operators view apps, model permissions, call scopes, status, and publishing records for application-level model access governance.
+Apps helps Operator Admins view apps, model permissions, call scopes, status, and publishing records for application-level model access governance.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
+| Applicable Role | Operator Admin |
 | Navigation path | Model Services > Publishing > Apps |
 | Page route | `/modelone/publish/application` |
 | Managed objects | Apps, model permissions, call scopes, status, and publishing records |
@@ -19,7 +19,7 @@ Apps helps operators view apps, model permissions, call scopes, status, and publ
 
 #### Beginner Explanation
 
-Apps packages model capabilities into a customer-facing entry point. Operators focus on whether app information, visibility scope, called models, and publishing status are consistent.
+Apps packages model capabilities into a customer-facing entry point. Operator Admins check whether app information, visibility scope, called models, and publishing status are consistent.
 
 #### Terms Quick Reference
 
@@ -38,11 +38,11 @@ Apps packages model capabilities into a customer-facing entry point. Operators f
 
 ## Page Description
 
-This page manages app publishing records, including app name, bound model, visibility scope, publishing status, call entry, and review information. Operators should confirm that app display information, model permissions, and customer visibility scope match.
+This page manages app publishing records, including app name, bound model, visibility scope, publishing status, call entry, and review information. Operator Admins should confirm that app display information, model permissions, and customer visibility scope match.
 
 Page screenshot:
 
-![App publishing list](./images/apps-list.png)
+![App publishing list](./images/apps-list-public.png)
 
 Used to view app status, bound models, and visibility scope.
 
@@ -50,7 +50,7 @@ Used to view app status, bound models, and visibility scope.
 
 ### View Applications
 
-1. Go to `Model Services > Publishing > Applications`.
+1. Go to `Model Services > Publishing > Apps`.
 2. Filter by application name, type, status, publisher, or update time.
 3. Check the name, version, status, and update time in the filtered result. If no result is returned, reset the filters and check the active tab.
 4. The target application should be uniquely identifiable. If the list remains empty, check permissions and whether the application has been delisted.
@@ -68,22 +68,25 @@ Used to view app status, bound models, and visibility scope.
 1. Go to `Model Services > Publishing > Apps`.
 2. On the `Application List` page, view the app name, tag, author, pricing status, collect count, and browse count.
 3. Enter a model, author, series, or source keyword in the search box in the upper-right corner.
-4. To use more filters, click `Expand Filter` and query by the filter fields shown on the page.
+4. To use more filters, click **"Expand Filter"** and query by the filter fields shown on the page.
 5. In an app card, view operation entries such as `Pin To Top` and `Edit Tag` as needed. Before performing change actions, confirm the impact scope.
 
-![App List](./images/apps-list.png)
+![App List](./images/apps-list-public.png)
+
+The search box is in the upper-right corner. **"Expand Filter"** is below the page title, and the change actions are on the right side of each app card.
+After a search or filter change, confirm that the remaining card matches the entered criteria. Before **"Pin To Top"** or **"Edit Tag"**, confirm who will see the changed order or tag.
 
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| App Name | System-displayed | Text | `sample-app` | App name displayed in the app list. |
+| App Name | System-displayed | Text | `Example App` | App name displayed in the app list. |
 | Tag | System-displayed | Tag | `Agents & Interaction` | App category or display tag. |
-| Author | System-displayed | Text | `lixipeng` | App creator or maintainer. |
+| Author | System-displayed | Text | `Example Maintainer` | App creator or maintainer. |
 | Pricing Status | System-displayed | Tag | `Free` | Current pricing or billing status of the app. |
 | Collect Count | System-displayed | Number | `1` | Number of times the app has been collected. |
 | Browse Count | System-displayed | Number | `126` | Number of times the app has been viewed. |
-| Actions | Displayed by permission | Button | `Pin To Top` / `Edit Tag` | App list operation entries available to the current account. |
+| Actions | Displayed by permission | Button | `Pin To Top` / `Edit Tag` | App list operation entries shown for the current account. |
 
 ## Pitfalls
 
@@ -95,11 +98,11 @@ Used to view app status, bound models, and visibility scope.
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| The page can be opened | The app list page opens normally. | Return to the page and check permissions, menu entry, and page loading status. |
-| The list loads normally | App cards, collect count, browse count, and operation entries are displayed normally. | Return to the page and check permissions, filters, and data status. |
-| Search works | After a keyword is entered, matching apps can be located. | Return to the page and check the keyword, filters, and data status. |
-| Filters work | After `Expand Filter` is clicked, filter fields can be viewed and used. | Return to the page and check page state and filter conditions. |
-| View entries are available | App cards can be used to view basic app information and available operation entries. | Return to the page and check permissions and page state. |
+| Page entry | The page title shows `Application List`, with a search box and **"Expand Filter"**. | Check the `Model Services > Publishing > Apps` path and the current account permission. |
+| List result | The page shows app cards or an empty-state message. | Clear the search and filters, then reload the page. |
+| Search result | Every remaining card matches the entered keyword. | Check the keyword, clear other filters, and search again. |
+| Filter result | After **"Expand Filter"**, the page shows filter controls and updates the card list after selection. | Clear the active filter and check the page message. |
+| Card actions | The target card shows the actions allowed for the current account. | Confirm the target card and ask the Operator Admin to check permission when an expected action is absent. |
 
 ## FAQ
 
@@ -113,13 +116,14 @@ The app status is published, but the customer-side list does not display it.
 
 - The visibility scope does not include this customer.
 - The bound model is not authorized or has been delisted.
-- Publishing cache has not refreshed.
+- The current customer account is outside the configured visibility scope.
 
 **Handling:**
 
 1. Verify app visibility scope.
 2. Check bound model status and authorization.
-3. Refresh the customer-side page or wait for synchronization.
+3. Open the customer-side list with the intended account and clear its filters.
+4. If the app is still absent, ask the Operator Admin to compare the visible publishing status and customer scope.
 
 #### App Call Fails
 
@@ -137,7 +141,8 @@ The customer can see the app, but calls return errors.
 
 1. Check model status and call logs.
 2. Verify app parameter mapping.
-3. View customer call error codes and quota.
+3. Open `Customer Calls > Call Logs` and record the visible error code or request ID.
+4. Contact the Model Provider when the bound model or upstream response is the remaining cause.
 
 #### App Publishing Record Status Does Not Change for a Long Time
 
@@ -151,7 +156,45 @@ The review workflow is not complete, model permission configuration is missing, 
 
 **Handling:**
 
-Check app review records and model permissions. Confirm whether the publishing task has error prompts. If needed, record the app ID and time and ask the platform admin to troubleshoot.
+Open App Reviews and check the visible review status and comment. Then compare the app's model permission and publishing status. If no page explains the state, provide a redacted app identifier and time range to the platform admin.
+
+#### Search or Filters Return No Apps
+
+**Symptom:**
+
+The page opens, but no app card remains after a search or filter change.
+
+**Possible Causes:**
+
+- The keyword does not match the app name, author, model, or source.
+- Multiple filters exclude the target card.
+- The current account cannot view the target app.
+
+**Handling:**
+
+1. Clear the keyword and all expanded filters.
+2. Search with one known value only.
+3. Confirm that the page shows either a matching card or its empty-state message.
+4. Ask the Operator Admin to check visibility when another authorized account can see the app.
+
+#### A Card Action Is Missing or the Change Is Not Visible
+
+**Symptom:**
+
+The target card does not show **"Pin To Top"** or **"Edit Tag"**, or the card still shows the previous order or tag after a submitted change.
+
+**Possible Causes:**
+
+- The current account does not have the action permission.
+- A search or filter hides the changed card.
+- The page shows a visible error after submission.
+
+**Handling:**
+
+1. Confirm that you are on the intended card.
+2. Record any message shown after the action.
+3. Clear filters and reopen the card list.
+4. If the action is still missing or the visible value is unchanged, ask the Operator Admin to check permission and the submitted change.
 
 ## Notes
 

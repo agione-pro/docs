@@ -7,15 +7,15 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Financial Accounts` is used to review platform clearing accounts, platform revenue accounts, balances, income, expense, available amount, and transactions. Billing operators use this page to confirm whether funds are in the expected account and continue to settlement, monthly overview, or reconciliation pages when amounts differ.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Finance Operations > Financial Accounts |
 | Page route | `/billing/admin/financial-accounts` |
 | Managed objects | Platform clearing account, platform revenue account, account balance, transactions, and transaction details |
-| Typical use | Verify account balance, review fund changes, locate transactions, and support settlement and reconciliation |
+
+`Financial Accounts` is used to review platform clearing accounts, platform revenue accounts, balances, income, expense, available amount, and transactions. Billing operators use this page to confirm whether funds are in the expected account and continue to settlement, monthly overview, or reconciliation pages when amounts differ.
+
 
 #### Beginner Explanation
 
@@ -40,16 +40,6 @@ Settlement List is the statement pool and focuses on whether an tenant has a set
 | Platform Clearing Account | Temporary transit ledger for collected funds | Review fund inflow, clearing, and pre-settlement status. |
 | Platform Revenue Account | Final platform revenue ledger | Review retained fee, service fee, or revenue summary. |
 | Transactions | Fund change records | Investigate income, expense, refund, and settlement differences. |
-
-## Where to Look
-
-| Your Goal | Start Here | Next Step |
-| --- | --- | --- |
-| Confirm whether an account balance is correct | Account list | Review account income, expense, and balance. |
-| Investigate a specific fund change | Transaction details | Filter by transaction time, type, or number. |
-| Check a settlement amount | [Settlement List](../settlement-list/) | Compare settlement amounts with account transactions. |
-| Check monthly revenue | [Monthly Overview](../monthly-overview/) | Compare billing-period totals with account changes. |
-| Locate a billing difference | [Reconciliation Center](../reconciliation-center/) | Investigate by billing period, tenant, or transaction type. |
 
 ## Prerequisites
 
@@ -78,9 +68,19 @@ The following screenshot shows the platform revenue account view. It includes re
 
 ![Platform revenue account](./images/platform-revenue-account-list.png)
 
+#### Where to Look
+
+| Your Goal | Start Here | Next Step |
+| --- | --- | --- |
+| Confirm whether an account balance is correct | Account list | Review account income, expense, and balance. |
+| Investigate a specific fund change | Transaction details | Filter by transaction time, type, or number. |
+| Check a settlement amount | [Settlement List](../settlement-list/) | Compare settlement amounts with account transactions. |
+| Check monthly revenue | [Monthly Overview](../monthly-overview/) | Compare billing-period totals with account changes. |
+| Locate a billing difference | [Reconciliation Center](../reconciliation-center/) | Investigate by billing period, tenant, or transaction type. |
+
 ## Main Operations
 
-Use the following operations to review account information and transactions. This page records view-only checks. Do not perform adjustment, posting confirmation, clearing, export, or other high-risk actions when learning or taking screenshots.
+Use the following operations to review account information and transactions. Before adjustment, posting confirmation, clearing, or export, verify the target account, operation permission, and impact scope.
 
 ### View Account List
 
@@ -89,14 +89,21 @@ Use the following operations to review account information and transactions. Thi
 3. Check account balance, total income, total expense, available amount, and last update time.
 4. If the list is empty, reset filters first, then confirm whether the current account has financial-account view permission.
 
+![Financial Accounts - View Account List](./images/manual-billing-financial-accounts-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ### View Platform Clearing Account
 
 1. Go to `Billing > Finance Operations > Financial Accounts`.
 2. Find `Platform Clearing Account` in the account list.
 3. Review account balance, income, expense, available amount, and last update time.
-4. To verify fund flow, click `Details` or the transaction entry for the account.
+4. To verify fund flow, click **"Details"** or the transaction entry for the account.
 5. Compare with Monthly Overview, Settlement List, or Reconciliation Center to confirm that the clearing account amount matches the billing-cycle settlement status.
-6. For learning or screenshots only, view account information and transactions without performing adjustment, clearing, or posting confirmation actions.
+
+![Financial Accounts - View Platform Clearing Account](./images/manual-billing-financial-accounts-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Platform Revenue Account
 
@@ -105,7 +112,6 @@ Use the following operations to review account information and transactions. Thi
 3. Review account balance, income, expense, available amount, and last update time.
 4. Focus on platform retained fee, self-operated revenue, or other platform revenue amounts.
 5. Compare with Monthly Overview, Settlement Statement Details, and Financial Account transactions to confirm that revenue amount scopes are consistent.
-6. For learning or screenshots only, view account information and transactions without performing adjustment, posting confirmation, or sensitive export actions.
 
 The following screenshot shows the Platform Revenue Account area. Use it to compare the revenue amount with the billing-period summary.
 
@@ -118,6 +124,10 @@ The following screenshot shows the Platform Revenue Account area. Use it to comp
 3. Review basic account information, balance changes, income and expense summary, and transactions.
 4. Record the last update time to avoid using stale data for reconciliation.
 
+![Financial Accounts - View Account Details](./images/manual-billing-financial-accounts-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ### View Transactions
 
 1. Open the target account details.
@@ -126,7 +136,17 @@ The following screenshot shows the Platform Revenue Account area. Use it to comp
 4. Verify the amount, fund direction, related settlement statement, related order, or business source.
 5. Before sharing transaction details in tickets or comments, desensitize the amount, tenant name, transaction number, and account information.
 
+![Financial Accounts - View Transactions](./images/manual-billing-financial-accounts-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ### Troubleshoot Account Differences
+
+1. Confirm the target account, billing cycle, tenant, and transaction type to avoid cross-scope comparison.
+2. In Settlement List, compare the amount, tenant, billing cycle, and posting status.
+3. In Monthly Overview, compare billing-cycle totals with account income and expenses.
+4. If the difference remains unexplained, open Reconciliation Center and investigate by billing cycle, tenant, or transaction type.
+5. Record only the desensitized account type, billing cycle, symptom, and update time. Do not record real amounts, accounts, or transaction numbers.
 
 | Symptom | Recommended Page | What to Check |
 | --- | --- | --- |
@@ -134,7 +154,11 @@ The following screenshot shows the Platform Revenue Account area. Use it to comp
 | The monthly summary is incorrect | [Monthly Overview](../monthly-overview/) | Compare billing-cycle totals with account income and expenses. |
 | A billing difference cannot be explained | [Reconciliation Center](../reconciliation-center/) | Investigate by billing cycle, tenant, or transaction type. |
 
-## Parameter Reference
+![Financial Accounts - Troubleshoot Account Differences](./images/manual-billing-financial-accounts-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -153,15 +177,6 @@ The following screenshot shows the Platform Revenue Account area. Use it to comp
 | Tenant | No | Text | `Example Tenant A` | Locates account transactions or settlement differences by tenant. |
 | Account Status | No | Enum | `Normal` | Indicates whether the account can be viewed, receive entries, or continue reconciliation. |
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page access | The `Finance Operations > Financial Accounts` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
-
 ## Pitfalls
 
 - Do not rely on one amount field alone for financial confirmation; cross-check transactions, bills, settlement statements, and reconciliation results.
@@ -170,6 +185,15 @@ The following screenshot shows the Platform Revenue Account area. Use it to comp
 - Financial account amounts are sensitive billing information. Screenshots and documents must be desensitized.
 - Adjustment, posting confirmation, clearing, and export are high-risk actions. This page records view-only steps and does not guide real submission.
 - Do not record real account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys.
+
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page access | The `Finance Operations > Financial Accounts` page opens and data loads normally. | Check role permissions and refresh the page. |
+| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
+| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
+| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
 
 ## FAQ
 
@@ -205,15 +229,32 @@ The following screenshot shows the Platform Revenue Account area. Use it to comp
 
 **Resolution:** Check the last update time and recent transactions. Confirm that the upstream transaction completed. If it completed but the account did not change, open Reconciliation Center and check for unmatched transactions or failed tasks.
 
+
+#### Account Details Entry Is Unavailable
+
+**Symptom:**
+
+The account list is visible, but the target account details or transactions cannot be opened.
+
+**Possible causes:**
+
+- The current account has list-only permission.
+- The target account status is abnormal or page data has not finished loading.
+
+**How to handle:**
+
+1. Refresh the account list and confirm the target account status.
+2. Check whether the current account has permission for account details and transactions.
+3. If the entry is still unavailable, provide authorized personnel with the desensitized account type, status, and update time.
+## Notes
+
+- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
+- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
+- Do not record real account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.
+
 ## Next Steps
 
 1. Open [Settlement List](../settlement-list/) to check settlement documents.
 2. Open [Monthly Overview](../monthly-overview/) to review billing-period income, expense, and totals.
 3. Open [Reconciliation Center](../reconciliation-center/) to investigate billing differences, unmatched transactions, or failed tasks.
 4. After amounts are confirmed, deliver sanitized account information, transaction scope, and conclusions to Finance for confirmation or archiving.
-
-## Notes
-
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Do not record real account IDs, customer names, tenant names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.

@@ -4,14 +4,14 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers and Model Consumers |
+| Applicable Roles | Model Provider, Model Consumer |
 | Navigation Path | Model Services > Playground > Video |
 | Page Route | `/modelone/exploration/video` |
 | Managed Objects | Video models, prompts, reference assets, generation parameters, and job results |
 
 #### Beginner Explanation
 
-The Video playground works like a model test bench. Select an available video model and provider, enter the input, adjust parameters, and use the result or error message to decide whether to continue with integration.
+The Video playground is a place to try a video model. Select a video model and provider from the selector, enter the input, adjust parameters, and review the result or error message before integration.
 
 #### Terminology
 
@@ -52,7 +52,7 @@ The page contains video model selection, an input area, parameters, Personal Key
 
 Page screenshots:
 
-![Video page](./images/video-list.png)
+![Video page](./images/video-list-public.png)
 
 Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
 
@@ -63,13 +63,13 @@ Focus on the model, input area, parameter entry, and submit button. Verify the i
 1. Go to `Model Services > Playground > Video`.
 2. Click the current model name or **"Select Model"** to open the selector.
 3. Locate the target model and compare provider, context, price, latency, throughput, success rate, and status.
-4. Select an available instance and return to the playground. Confirm that the model and provider shown at the top are correct.
+4. Select a listed instance and return to the playground. Confirm that the model and provider shown at the top are correct.
 
-![Select video model](./images/manual-select-video-model.png)
+![Select video model](./images/manual-select-video-model-public.png)
 
-The image shows the model selector. Compare provider capability, price, performance, and availability.
+The image shows the model selector. Compare provider capability, price, performance, and status.
 
-![video model selection reference](./images/select-model.png)
+![video model selection reference](./images/select-model-public.png)
 
 This image provides an additional view of model selection and instance information.
 
@@ -80,7 +80,7 @@ This image provides an additional view of model selection and instance informati
 3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
 4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
 
-![Configure video generation](./images/manual-configure-video.png)
+![Configure video generation](./images/manual-configure-video-public.png)
 
 The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
 
@@ -89,7 +89,7 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Dropdown | `Mock Ali Wan 2.7 Video Edit` | Video model currently being tried. |
-| Provider | Yes | Dropdown | `Model Mocker` | Provider instance of the current model. |
+| Provider | Yes | Dropdown | `Example Provider` | Provider instance of the current model. |
 | Prompt | Yes | Multiline text | `Generate a product showcase video` | Describes the video content, action, and style to generate. |
 | Reference Image | Conditionally required | Image upload | `reference.png` | Used for image-to-video, reference-to-video, or video editing scenarios. |
 | Resolution | No | Option | `1080P` | Controls the generated video resolution. |
@@ -113,10 +113,10 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Video` page opens normally, and the left Playground menu and top model selector are visible. | Check account permissions, navigation path, and page loading status. |
+| Page is accessible | The `Video` page opens, and the left Playground menu and top model selector are visible. | Check account permissions, navigation path, and page loading status. |
 | Model selector loads | The model selector can be opened and shows model list, provider instances, and status information. | Refresh the page and retry, or confirm whether the target model is visible to the current account. |
 | Input and parameter areas are visible | Reference image entry, prompt input box, Resolution, Ratio, Duration, Negative Prompt, Audio Setting, Prompt Extend, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
-| Result area is visible | The page can display generated results, task progress, error messages, or an empty state. | If there is no generation record, the input and parameter areas should still be displayed normally. |
+| Result area is visible | The page shows generated results, task progress, an error message, or an empty state. | If there is no generation record, confirm that the input and parameter areas remain visible. |
 | Real generation returns a result | When generation is explicitly allowed, the page returns a generated video, task progress, or clear error message. | Adjust the prompt, lower resolution, or shorten duration, and check error messages or call logs. |
 
 ## FAQ
@@ -151,7 +151,7 @@ The request cannot be submitted after input is entered.
 **Resolution:**
 
 1. Select the model and Personal Key again.
-2. Complete fields indicated by the page.
+2. Complete the required input and parameter fields marked on the page.
 
 #### Generation Fails or Times Out
 

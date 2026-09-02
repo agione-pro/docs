@@ -1,36 +1,33 @@
 # Runtime Instances
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Runtime Instances` is used to create and manage non-template runtime tasks. End Users can select single-node or cluster form, specify image, specification, startup command, parameters, environment variables, and storage mounts, and start training, batch processing, or custom service instances.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Development Resources > Runtime Instances |
-| Page route | `/powerone/inference/online-inference` |
-| Managed objects | Runtime instances, single-node tasks, cluster tasks, images, specifications, startup commands, and runtime status |
-| Typical use | Create training, batch processing, custom service, or temporary runtime tasks |
+| Applicable Role | Model Provider |
+| Navigation Path | AI Infra(On-Prem) > Dev Resources > Runtime Instances |
+| Page Route | `/powerone/inference/online-inference` |
+| Managed Object | Configuration, status, and relationships on Runtime Instances |
 
 #### Beginner Explanation
 
 A runtime instance is like an on-demand task machine: you prepare the image, code, data, and startup command, and the platform starts the instance according to the selected specification. It is more task-execution oriented than Online IDE and more flexible than model instances.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Image | Instance runtime environment. |
 | Startup Command | Command or script executed after container startup. |
 | Batch Processing | One-time or periodic task that processes data, converts files, or generates results, usually exiting after completion. |
-| Parameters | Command-line parameters passed to scripts or services. |
-| Environment Variables | Key-value configuration passed to the container process. |
-| Storage Mount | Mounts object storage, file storage, or shared directories to paths inside the container. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Runtime instances, single-node tasks, cluster tasks, images, specifications, startup commands, and runtime status, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Runtime Instances, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -42,9 +39,15 @@ A runtime instance is like an on-demand task machine: you prepare the image, cod
 
 ## Page Description
 
-The list page supports filtering by region and status, and provides refresh and create entrypoints. The creation page first selects single-node or cluster deployment type.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Runtime instances](./images/runtime-instances-list.png)
+Use this page to view and handle Configuration, status, and relationships on Runtime Instances.
+
+![Runtime Instances](./images/runtime-instances-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The list page supports filtering by region and status, and provides refresh and create entrypoints. The creation page first selects single-node or cluster deployment type.
 
 ## Main Operations
 
@@ -59,7 +62,7 @@ The list page supports filtering by region and status, and provides refresh and 
 
 1. Open the target details and confirm the connection entry, runtime status, and attached storage.
 2. Before connecting, confirm access permission and network scope and use only the platform-provided secure entry.
-3. Before starting, stopping, restarting, or deleting, confirm that work and data are saved. Do not perform these actions during read-only validation.
+3. Before starting, stopping, restarting, or deleting, confirm that work and data are saved. Before these actions, confirm the resource, data, and impact, and execute them only after approval.
 4. After an approved action, check status and events. If abnormal, stop retrying and escalate with logs.
 
 ### Create Runtime Instance
@@ -67,15 +70,14 @@ The list page supports filtering by region and status, and provides refresh and 
 #### Procedure
 
 1. Go to `AI Infrastructure > On-Prem > Development Resources > Runtime Instances`.
-2. Click `Create Instance`.
+2. Click **"Create Instance"**.
 3. On the deployment type page, select `Single Node` or `Cluster`.
 
 ![Select deployment type](./images/deployment-type.png)
 
-4. Click `Fill Parameters` to open the runtime instance creation configuration page.
+4. Click **"Fill Parameters"** to open the runtime instance creation configuration page.
 5. Review or fill in instance name, region, image, resource specification, startup command, parameters, environment variables, storage mounts, and other fields as provided by the page.
 6. Confirm deployment type, image, specification, startup command, parameter passing method, and storage path.
-7. For learning or screenshots only, view fields and page status without clicking final `Submit`, `OK`, or `Confirm`.
 
 ![Create runtime instance](./images/create-runtime-instance.png)
 
@@ -102,7 +104,7 @@ Used to start a long-running service process. Before creation, confirm the servi
 | Configuration file | Many parameters or reusable configuration is needed. | Confirm that the configuration file comes from a mounted directory or an image built-in path. |
 | Mount path | Input data, model files, or output results. | Confirm that input and output directories use persistent storage. |
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Description |
 | --- | --- | --- | --- |
@@ -125,77 +127,116 @@ Used to start a long-running service process. Before creation, confirm the servi
 - `Submit`, `OK`, and `Confirm` are final actions.
 - Creating a runtime instance occupies quota, scheduling resources, and storage resources.
 - Incorrect startup command, environment variable, or mount path configuration may cause instance startup failure or output loss.
-- For learning or screenshots only, view pages, fields, and status without submitting a real creation task.
+
 - Do not write real tenant, region, image address, resource specification ID, data path, output path, token, password, endpoint, startup parameter, log, or test data.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Instance created | The instance appears in the list. | Check the image, specification, startup command, mount path, and instance events. |
-| Instance status | The status changes to Running, Succeeded, or another status appropriate for the task type. | Check the image, specification, startup command, mount path, and instance events. |
-| Runtime logs | The logs contain no image pull, command execution, or mount errors. | Check the image, specification, startup command, mount path, and instance events. |
-| Output files | The expected files are generated in the output directory. | Check the image, specification, startup command, mount path, and instance events. |
+| Page entry | Runtime Instances opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Runtime Instances is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### Instance Fails Immediately After Startup
+#### Target Is Missing from Runtime Instances
 
 **Symptom:**
 
-The runtime instance status quickly becomes Failed.
+The page opens, but the expected Configuration, status, and relationships on Runtime Instances is missing.
 
 **Possible Causes:**
 
-- The startup command does not exist, the path is wrong, or it returns non-zero.
-- The image lacks dependencies.
-- The storage mount path is incorrect.
-- Script parameters or environment variables do not meet program requirements.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. View instance logs and events.
-2. Validate the command in Online IDE with the same image.
-3. Check image, working directory, parameters, and mount path.
-4. Write output to a persistent directory and retry.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Instance Remains Queued or Creating
+#### The Operation Entry on Runtime Instances Is Unavailable
 
 **Symptom:**
 
-The instance does not enter the running state for a long time after submission.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- Target specification resources are insufficient.
-- Tenant quota or credits are insufficient.
-- Cluster scheduling is abnormal.
-- Image pull or storage mount prerequisites are not met.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. Check resource quotas and usage.
-2. Use a smaller specification or another region.
-3. Contact the operator to confirm cluster resources and scheduling status.
-4. Check image and storage configuration.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-#### Output Cannot Be Found After Task Completion
+#### A Required Field on Runtime Instances Has No Options
 
 **Symptom:**
 
-After the instance ends, result files are not found in the expected directory.
+The form opens, but a selection list is empty.
 
 **Possible Causes:**
 
-- Output was written to a temporary container directory.
-- The output path did not mount persistent storage.
-- The output directory in script parameters is incorrect.
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
 
 **Solution:**
 
-1. View `--output` in the startup command or configuration file.
-2. Set the output directory to object storage, file storage, or shared directory mount path.
-3. Rerun a small sample task to verify output.
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Runtime Instances Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Runtime Instances
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Runtime Instances.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
+
+## Notes
+
+- Do not write keys directly in startup commands, environment variables, or screenshots.
+- Output data should be written to persistent storage to avoid loss after instance release.
+
+- Do not write real tenant, region, image address, resource specification ID, data path, output path, token, password, endpoint, startup parameter, log, or test data.
 
 ## Next Steps
 
@@ -203,10 +244,3 @@ After the instance ends, result files are not found in the expected directory.
 2. Evaluate resource consumption from the usage page.
 3. Stop or release the instance after task completion.
 4. Accumulate stable commands into team scripts or inference template parameters.
-
-## Notes
-
-- Do not write keys directly in startup commands, environment variables, or screenshots.
-- Output data should be written to persistent storage to avoid loss after instance release.
-- For learning or screenshots only, view pages, fields, and status without submitting a real creation task.
-- Do not write real tenant, region, image address, resource specification ID, data path, output path, token, password, endpoint, startup parameter, log, or test data.

@@ -4,14 +4,14 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
+| Applicable Role | Operator Admin |
 | Navigation path | Model Services > Settings > Model Templates |
 | Page route | `/modelone/settings/provider-template` |
 | Managed objects | Vendor templates, source previews, protocols, default parameters, and publishing forms |
 
 #### Beginner Explanation
 
-A model template is like a preset for the model publishing form — it packages a provider, meta-model, default parameters, and protocol into one reusable configuration. After a template is set up, model providers can select it when publishing and have most fields auto-filled, reducing repeated input and configuration drift. When multiple models need to be published with the same configuration, create a template first.
+A model template is like a preset for the model publishing form — it packages a provider, meta-model, default parameters, and protocol into one reusable configuration. After a template is set up, Model Providers can select it when publishing and have most fields auto-filled, reducing repeated input and configuration drift. When multiple models need to be published with the same configuration, create a template first.
 
 #### Glossary
 
@@ -45,11 +45,11 @@ For the first setup, use this order: confirm that the model author and meta-mode
 
 ## Page Description
 
-This page maintains model publishing templates. A template combines provider, meta-model, default parameters, protocol, and source preview to help model providers reduce repeated input.
+This page maintains model publishing templates. A template combines provider, meta-model, default parameters, protocol, and source preview to help Model Providers reduce repeated input.
 
 Page screenshot:
 
-![Template list](./images/model-templates-list.png)
+![Template list](./images/model-templates-list-public.png)
 
 The image above shows the template list page. You can view each template's name, status, provider, and associated configuration, along with operation entry points.
 
@@ -65,7 +65,7 @@ The image above shows the template list page. You can view each template's name,
 4. In `Provider Information`, select the provider and region. To maintain a new source configuration, click **"Add Model Source"**.
 5. Before clicking **"Next"**, verify the provider and region information.
 
-![Add Template - Provider Information](./images/model-provider-author-add.png)
+![Add Template - Provider Information](./images/model-provider-author-add-public.png)
 
 The image above shows the provider information step when adding a template. Confirm that the model author, provider, and region are correct, as these affect meta-model filtering and the fields carried into the publishing form.
 
@@ -73,14 +73,14 @@ The image above shows the provider information step when adding a template. Conf
 7. Check `Input / Output modalities`, `Advanced capability configuration`, `Token Limit`, and `Official Native Protocol & Default Advanced Parameters`.
 8. Before clicking **"Next"**, verify the meta-model and protocol parameters.
 
-![Add Template - Meta Model](./images/meta-model-add.png)
+![Add Template - Meta Model](./images/meta-model-add-public.png)
 
 The image above shows the meta-model selection step when adding a template. Confirm that the meta-model name, modalities, and Token limits match the target model capability.
 
 9. In the `Preview` step, check `Provider Information`, `Meta Model`, `Input / Output modalities`, `Advanced capability configuration`, `Token Limit`, and protocol parameters.
 10. Click **"Submit"** to save. After a successful save, query the new template in the list and open its details to verify the configuration.
 
-![Add Template - Preview](./images/preview-add.png)
+![Add Template - Preview](./images/preview-add-public.png)
 
 The image above shows the final preview confirmation step when adding a template. Before submitting, verify that all configuration fields are complete and correct.
 
@@ -92,7 +92,7 @@ The image above shows the final preview confirmation step when adding a template
 4. Check the provider, region, meta-model, model source ID, input/output modalities, protocol mapping, Token limits, and default parameters.
 5. The details should match the list name and status. If no record is returned, clear the query conditions and confirm the active tab.
 
-![Query Template Details](./images/model-templates-details.png)
+![Query Template Details](./images/model-templates-details-public.png)
 
 The image above shows the details entry point and details page. Click the template name or details button, then verify that all configuration fields match the expected values.
 
@@ -104,7 +104,7 @@ The image above shows the details entry point and details page. Click the templa
 4. Before changing the meta-model, protocol, or default parameters, confirm whether any publishing flows depend on the current configuration. If the dependency scope is unclear, do not submit the change yet.
 5. Click **"Confirm"** to save. After a successful save, refresh the list and query template details. If saving fails, check required fields, field compatibility, references, and permission.
 
-![Edit a Template](./images/model-templates-edit.png)
+![Edit a Template](./images/model-templates-edit-public.png)
 
 The image above shows the template edit page. After editing and saving, return to the list, check whether the update time for the target template has been refreshed, and query template details to verify fields.
 
@@ -116,7 +116,7 @@ The image above shows the template edit page. After editing and saving, return t
 4. If the button is grayed out or deletion fails, the template is still referenced. Follow the page message and check references, permission, and current status before removing references first.
 5. After a successful deletion, refresh the list and confirm that the record is removed.
 
-![Delete a Template](./images/model-templates-delete.png)
+![Delete a Template](./images/model-templates-delete-public.png)
 
 The image above shows the template list page. Before deleting, confirm the target row name to avoid accidentally deleting a similarly named template.
 
@@ -155,7 +155,7 @@ The image above shows the template list page. Before deleting, confirm the targe
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | The new template is visible in the list | The new template appears in the list | Check account permission, filter conditions, and configuration status |
-| The template can be selected in the model publishing flow | The template appears in the publishing flow dropdown | Confirm the template status is enabled, and check whether the associated meta-model and provider are available |
+| The template can be selected in the model publishing flow | The template appears in the publishing flow dropdown | Confirm the template status is enabled, and check whether the associated meta-model and provider appear in their selectors |
 | Parameters carried by the template match expectations | The publishing form auto-fills parameters, modalities, and protocols consistent with the template configuration | Open the template details and check default parameters and protocol mapping. Confirm the meta-model has not changed |
 | The update time in the list refreshes after editing | The update time for the template shows the most recent edit time | Refresh the page and re-check. Confirm that the save was successful |
 | The deleted template no longer appears in the list | The target template is removed from the list | Check whether publishing flows still reference it. Disable first and confirm no references before deleting |
@@ -167,7 +167,7 @@ The image above shows the template list page. Before deleting, confirm the targe
 
 **Symptom:**
 
-The model provider cannot see the expected template when creating a model.
+The Model Provider cannot see the expected template when creating a model.
 
 **Possible Causes:**
 

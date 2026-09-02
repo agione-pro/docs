@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`Top-up Orders` displays top-up records initiated by or associated with the current account, including order number, credit source, top-up amount, credited amount, order state, completion time, creation time, and details. Locate a top-up by order number, state, or credit source to confirm whether processing completed.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
+| Applicable Role | Model caller |
 | Navigation path | Billing > User Billing > Top-up Orders |
 | Page route | `/billing/my/top-ups/orders` |
 | Managed objects | Top-up orders, credit sources, top-up amounts, credited amounts, and order states |
-| Typical use | Query top-up results, verify credited amounts, and troubleshoot failed or canceled orders |
+
+`Top-up Orders` displays top-up records initiated by or associated with the current account, including order number, credit source, top-up amount, credited amount, order state, completion time, creation time, and details. Locate a top-up by order number, state, or credit source to confirm whether processing completed.
+
 
 #### Beginner Explanation
 
@@ -70,25 +70,36 @@ The following screenshot shows Top-up Orders. Sanitize order numbers and amounts
 3. The order status, posted amount direction, and transaction time should be mutually traceable.
 4. If they differ, check payment status and refresh time. Do not create another top-up or supplemental order.
 
+![Top-up Orders - Reconcile a Top-up Order with Account Transactions](./images/top-up-orders-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Query Top-up Orders
 
 1. Go to `Billing > User Billing > Top-up Orders`.
 2. Enter `Top-up Order Number` or select an order state and credit source.
-3. Click `Search`.
+3. Click **"Search"**.
 4. Review top-up amount, credited amount, and state in the order list.
-5. Click `Reset` to clear filters when needed.
-6. For learning or screenshots, view only filters and list fields; do not export real order data.
+5. Click **"Reset"** to clear filters when needed.
+6. Before exporting orders, verify the filters, data scope, and recipient permission.
+
+![Top-up Orders - Query Top-up Orders](./images/top-up-orders-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Order Details
 
 1. Go to `Billing > User Billing > Top-up Orders`.
-2. Click `Details` in the target row.
+2. Click **"Details"** in the target row.
 3. Review order state, credit source, amounts, credited information, creation time, and completion time.
 4. If the order failed or was canceled, keep a sanitized order number and contact the operator.
 5. Hide real order numbers, payment transaction numbers, accounts, emails, amounts, and payment evidence in external communication.
 
-## Parameter Reference
+![Top-up Orders - View Order Details](./images/top-up-orders-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -119,10 +130,10 @@ The following screenshot shows Top-up Orders. Sanitize order numbers and amounts
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page loading | Filters and the top-up order list are displayed. | Refresh the page or check user-side billing permission. |
-| Filtering | Order number, state, and credit source locate target orders. | Click `Reset` and filter again. |
+| Filtering | Order number, state, and credit source locate target orders. | Click **"Reset"** and filter again. |
 | List fields | Order number, source, amounts, state, and time fields are visible. | Adjust filters and retry. |
 | Detail entry | Row-level `Details` opens order information. | Check permission or page loading state. |
-| No unintended high-risk action | No retry, refund, or real order export occurs during learning or screenshot capture. | If triggered, record the time and scope and notify the owner for review. |
+| Funding actions controlled | Retry, refund, and order export are performed only by authorized users for the confirmed scope. | If an unintended action occurs, record the time and scope and notify the owner for review. |
 
 ## FAQ
 
@@ -168,15 +179,53 @@ Posting is delayed or the current account, billing cycle, and transaction scope 
 
 Refresh Account Overview, then open `Transactions` and check for the income record. Contact the operator if the records remain inconsistent.
 
-## Next Steps
 
-1. To verify the credited transaction, open [Transactions](../transactions/).
-2. To review the balance change, open [Account Overview](../overview/).
-3. For monthly reconciliation, open [Monthly Bill](../monthly-bill/).
+#### Top-up Orders Does Not Update After Refresh
 
+**Symptom:**
+
+The amount, count, or status in Top-up Orders remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Top-up Orders.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Account Overview and Transactions.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Top-up Orders Information?
+
+**Symptom:**
+
+Top-up Orders results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Order numbers, amounts, payment channels, statuses, and accounts may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Order number, payment source, amounts, and credited information are sensitive billing data and must be sanitized in screenshots and communication.
 - Do not initiate another top-up before confirming the payment result.
 - Refunds, repayment, order export, and abnormal posting must follow the platform process and be handled by an authorized user.
-- For learning or screenshots, view only filters, list fields, and details; do not perform a real funding action.
+- Before retrying, refunding, or exporting, verify the target order, account permission, amount, and impact scope.
+
+## Next Steps
+
+1. To verify the credited transaction, open [Transactions](../transactions/).
+2. To review the balance change, open [Account Overview](../overview/).
+3. For monthly reconciliation, open [Monthly Bill](../monthly-bill/).

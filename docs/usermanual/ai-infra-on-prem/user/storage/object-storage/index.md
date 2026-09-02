@@ -1,35 +1,33 @@
 # Object Storage
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Object Storage` is used to manage buckets and objects of the current tenant in the On-Prem resource pool. Object storage is suitable for storing model weights, datasets, compressed packages, log archives, and runtime artifacts.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Storage Services > Object Storage |
-| Page route | `/powerone/storage-service/object` |
-| Managed objects | Object storage buckets, object files, object paths, and object storage capability within a region |
-| Typical use | Create buckets, upload, download, and delete objects, and provide data paths for IDEs, runtime instances, and model services |
+| Applicable Role | Model Provider |
+| Navigation Path | AI Infra(On-Prem) > Storage > Object Storage |
+| Page Route | `/powerone/storage-service/object` |
+| Managed Object | Configuration, status, and relationships on Object Storage |
 
 #### Beginner Explanation
 
 Object storage is like cloud drive for models and data. It stores files, datasets, model packages, and output results with buckets and objects. It is suitable for uploading, downloading, and sharing files by path, but it is not the same as a directly mountable POSIX shared directory.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Bucket | Top-level container in object storage. |
 | Object | A single file or data item in a bucket. |
 | Object Path | File path inside a bucket, used to locate data in jobs. |
-| POSIX Shared Directory Semantics | Directory, permission, random read/write, and file lock semantics similar to a local file system. Object storage usually does not provide complete POSIX semantics. Evaluate file storage first when shared directories are needed. |
-| Region | Large resource boundary where resources are located, affecting object storage visibility and job access scope. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Object storage buckets, object files, object paths, and object storage capability within a region, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Object Storage, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -40,9 +38,15 @@ Object storage is like cloud drive for models and data. It stores files, dataset
 
 ## Page Description
 
-The left side provides bucket search and bucket list, and the upper-right corner provides the add bucket entrypoint. After entering a bucket, you can upload, download, or delete objects through object list entrypoints provided by the page.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
+
+Use this page to view and handle Configuration, status, and relationships on Object Storage.
 
 ![Object Storage](./images/object-storage-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The left side provides bucket search and bucket list, and the upper-right corner provides the add bucket entrypoint. After entering a bucket, you can upload, download, or delete objects through object list entrypoints provided by the page.
 
 ## Main Operations
 
@@ -57,7 +61,7 @@ The left side provides bucket search and bucket list, and the upper-right corner
 
 1. Open the target action menu and identify the impact of expansion, mount, unmount, permission, or deletion entries.
 2. Record current capacity, associated instances, and data-protection status before changes.
-3. Before expansion, unmount, or deletion, confirm tasks and backups. Do not perform the final action during read-only validation.
+3. Before expansion, unmount, or deletion, confirm tasks and backups. Before the final action, confirm the resource, data, and impact, and execute it only after approval.
 4. After an approved change, check capacity, connection status, and events. If abnormal, stop subsequent actions and follow the recovery process.
 
 ### Add Bucket
@@ -66,15 +70,15 @@ The left side provides bucket search and bucket list, and the upper-right corner
 
 1. Go to `AI Infrastructure > On-Prem > Storage Services > Object Storage`.
 2. Confirm the region in the upper-right corner.
-3. Click `Add Bucket`.
+3. Click **"Add Bucket"**.
 4. Fill in Bucket Name.
-5. Click `Confirm` to submit.
+5. Click **"Confirm"** to submit.
 
 The following screenshot shows the Add Bucket dialog. Confirm the bucket name before submitting.
 
 ![Add Bucket](./images/add-bucket.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -90,129 +94,121 @@ The following screenshot shows the Add Bucket dialog. Confirm the bucket name be
 - If mounting fails, confirm region, permissions, and storage component status first.
 - Before deleting storage resources, confirm that no instances, tasks, or output artifacts depend on them.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Bucket created | The new bucket appears in the bucket list. | Check the bucket, path, permissions, mount status, and access credentials. |
-| Bucket search | Searching by bucket name locates the bucket. | Check the bucket, path, permissions, mount status, and access credentials. |
-| Bucket details | The object list or upload entry point is visible after you open bucket details. | Check the bucket, path, permissions, mount status, and access credentials. |
-
-#### Upload Object
-
-#### Procedure
-
-1. Open the target bucket in the bucket list.
-2. Click the upload entrypoint provided by the page.
-3. Select a local file or directory and confirm the object path.
-4. Submit the upload and wait for completion.
-5. Refresh the object list and confirm file size, update time, and path.
-
-#### Naming Recommendations
-
-| Type | Example Path | Description |
-| --- | --- | --- |
-| Model file | `models/qwen/version-1/model.safetensors` | Organize by model and version. |
-| Dataset | `datasets/train/train.jsonl` | Organize by use and batch. |
-| Output result | `outputs/job-20260703/result.json` | Organize by task or date. |
-
-#### Download Object
-
-#### Procedure
-
-1. Open the target bucket.
-2. Find the target file in the object list.
-3. Click the download entrypoint.
-4. After download, verify file size, format, and content.
-
-#### Delete Object or Bucket
-
-#### Delete Object
-
-1. Open the target bucket.
-2. Select or locate the target object.
-3. Click the delete entrypoint.
-4. Read the confirmation prompt and submit.
-5. Refresh the list to confirm that the object has been removed.
-
-#### Delete Bucket
-
-Before deleting a bucket, confirm that objects in the bucket have been backed up or are no longer used. If the platform requires an empty bucket before deletion, clean up objects first, then delete the bucket.
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - Buckets are regional storage resources. Cross-region access capability depends on operator configuration.
 - Object storage is suitable for unstructured files and not suitable for scenarios requiring POSIX shared directory semantics.
 - Before deleting buckets or objects, confirm that no instances, models, scripts, or jobs depend on them.
 - Object paths can be used in startup commands or parameters, but do not write access keys into commands.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page entry | Object Storage opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Object Storage is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
+
 ## FAQ
 
-#### Object Storage List Is Empty
+#### Target Is Missing from Object Storage
 
 **Symptom:**
 
-The page shows no bucket or object data.
+The page opens, but the expected Configuration, status, and relationships on Object Storage is missing.
 
 **Possible Causes:**
 
-- The current tenant has not created buckets.
-- Object storage capability in the target region has not been opened to the current tenant.
-- The account has no view permission.
-- Filters limit the results.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Confirm the region in the upper-right corner.
-2. Click the add bucket entrypoint to create a bucket.
-3. Contact the operator to confirm object storage component and account permissions.
-4. Clear filters and refresh.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Object Upload Fails
+#### The Operation Entry on Object Storage Is Unavailable
 
 **Symptom:**
 
-After selecting a file and submitting, upload fails or the object does not appear in the list.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- The file is too large or its format does not meet platform limits.
-- Bucket permissions are insufficient.
-- The object storage component is unavailable or the network is abnormal.
-- The object path contains special characters that are not recommended.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. Check the page error message and file size.
-2. Retry with a standard object path.
-3. Confirm bucket permissions and region selection.
-4. Contact the operator to check object storage component status.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-#### Job Cannot Read Object
+#### A Required Field on Object Storage Has No Options
 
 **Symptom:**
 
-After a runtime instance or model service starts, logs indicate that the object path cannot be found.
+The form opens, but a selection list is empty.
 
 **Possible Causes:**
 
-- Bucket name or object path in the startup command is incorrect.
-- The region where the job runs cannot access this bucket.
-- Object permissions or mount configuration does not match.
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
 
 **Solution:**
 
-1. Copy the complete path from the object list and reconfigure it.
-2. Confirm that the job and object storage are within an accessible region scope.
-3. View instance logs and contact the operator to verify permissions.
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Object Storage Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Object Storage
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Object Storage.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
+
+## Notes
+
+- Do not write keys, accounts, tokens, or customer-sensitive information in object paths or file names.
+- Before deleting important data, confirm backups and dependencies.
 
 ## Next Steps
 
 1. Reference object paths in runtime instances, online IDEs, or model services.
 2. Periodically clean up unused objects to control storage usage.
 3. Establish backup or version archive rules for important models and datasets.
-
-## Notes
-
-- Do not write keys, accounts, tokens, or customer-sensitive information in object paths or file names.
-- Before deleting important data, confirm backups and dependencies.

@@ -1,34 +1,33 @@
-# Statistics Overview
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Overview
 
 ## Feature Overview
-
-`Statistics Overview` is used to view resource pool overview, cluster count, node status, job distribution, and resource capacity, helping operators perform capacity inspections, locate exceptions, and make resource scheduling judgments.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Overview |
-| Page route | `/powerone/monitor/overview` |
-| Managed objects | Resource pool overview, cluster count, node status, job distribution, and resource capacity |
-| Typical use | Daily inspection, quick capacity risk discovery, and entry to drill-down pages |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Overview |
+| Page Route | `/powerone/monitor/overview` |
+| Managed Object | Configuration, status, and relationships on Overview |
 
 #### Beginner Explanation
 
 Statistics overview is like the resource pool cockpit. First check overall watermarks, exception counts, and update time, then decide whether to drill down to cluster, node, device, or job pages for further troubleshooting.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Global Watermark | Overall platform resource usage. |
 | Exception Aggregation | Centralized display of cluster, node, device, and job exceptions. |
 | Trend Entrypoint | Analysis entrypoint that jumps to a specific monitoring object. |
-| Update Time | Time point used to determine whether monitoring data is delayed. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Resource pool overview, cluster count, node status, job distribution, and resource capacity, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Overview, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,11 +38,15 @@ Statistics overview is like the resource pool cockpit. First check overall water
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Overview.
+
+![Overview](./images/manual-monitoring-overview.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 Statistics overview is used to view global resource watermarks, exception aggregation, and trend entrypoints from an operator perspective. The page helps operators first determine whether an issue is concentrated in clusters, nodes, devices, or jobs, then enter the corresponding monitoring page for drill-down.
 
 The following figure shows the statistics overview page.
-
-![Statistics Overview](./images/overview-list.png)
 
 ## Main Operations
 
@@ -78,7 +81,6 @@ The following figure shows the statistics overview page.
 3. Focus on total resources, used resources, remaining resources, online status, abnormal status, and trend metrics.
 4. If the page provides time range, region, cluster, or resource type filters, select the filters before reviewing statistics.
 5. If high resource usage, device exceptions, or job exceptions are found, continue troubleshooting in Clusters, Nodes, Devices, or Jobs monitoring pages.
-6. For learning or screenshots only, view statistic cards, charts, and filters without exporting data or modifying configuration.
 
 ![Monitoring overview](./images/overview-list.png)
 
@@ -88,7 +90,7 @@ The following figure shows the statistics overview page.
 - Whether GPU, CPU, memory, and disk watermarks are close to limits.
 - Whether failed, queued, or long-running jobs increase.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -116,82 +118,113 @@ The following figure shows the statistics overview page.
 - Mask tenants, node names, and business identifiers before screenshots.
 - Do not write real cluster IDs, node names, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Overview summaries | Overview cards show summaries for clusters, nodes, devices, jobs, and exceptions. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Region and time filters | Trends and exception counts change after you switch the region or time range. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Drill-down scope | The object scope on detail pages is consistent with the overview statistics. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - **Use overview to determine direction first**: Confirm whether exceptions are concentrated in a region, cluster, or resource type before entering drill-down pages.
 - **Interpret exception count with time range**: The longer the time window, the more easily historical exceptions are included. Fix the time range during troubleshooting.
 - **Update time determines trustworthiness**: If update time is clearly delayed, check the collection link before judging whether resources are truly abnormal.
 - **Watermark changes require trends**: Instant high watermarks are not necessarily failures. Judge them together with new jobs, expansion, maintenance windows, and historical trends.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page load | Overview charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
+
 ## FAQ
 
-#### Monitoring Data Is Delayed or Missing
+#### No Data on Overview
 
 **Symptom:**
 
-Resource, job, or node status in statistics overview is inconsistent with the actual situation.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- Monitoring collection is delayed.
-- Cluster or node collection components are abnormal.
-- Filtered region or time range is incorrect.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. Confirm page update time and filters.
-2. Enter cluster statistics, node statistics, and job monitoring for cross-validation.
-3. Contact operations to check collection components and reporting links.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Overview Resource Watermark Suddenly Rises
+#### Overview Is Not Updating
 
 **Symptom:**
 
-GPU, CPU, memory, or disk watermark suddenly approaches the limit.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- Batch jobs or large-specification instances were submitted intensively.
-- Some nodes became unavailable, reducing available capacity.
-- Statistical definitions changed or data was backfilled after collection recovery.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Enter job monitoring to locate high-consumption jobs.
-2. Enter node statistics to confirm whether nodes are abnormal.
-3. Expand capacity, migrate jobs, or adjust tenant quotas if necessary.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-#### Expected Cluster Is Not Visible in Overview
+#### Overview Differs from Adjacent Pages
 
 **Symptom:**
 
-A cluster already exists in the resource pool, but statistics overview does not show its data.
+The same object has different values on two monitoring pages.
 
 **Possible Causes:**
 
-- Cluster monitoring access has not been completed.
-- The cluster is unavailable or excluded by filters.
-- Account permissions cannot view this cluster's monitoring.
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
 
 **Solution:**
 
-1. Check the region and filters in the upper-right corner.
-2. Go to resource pool cluster management to confirm cluster status.
-3. Verify monitoring permissions and collection configuration.
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
 
-## Next Steps
+#### Cannot Drill Down to the Target
 
-1. If exceptions are concentrated in clusters, go to cluster statistics.
-2. If exceptions are concentrated in nodes or devices, go to the corresponding monitoring page.
-3. If job failures or queueing increase, go to job monitoring and troubleshoot with quotas.
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
@@ -200,3 +233,9 @@ A cluster already exists in the resource pool, but statistics overview does not 
 - Watermark exceptions need to be judged together with historical trends, business windows, and job changes.
 - Before expansion, migration, or fault handling, cross-check with cluster statistics, node statistics, device monitoring, and job monitoring.
 - Documentation examples must not include real cluster IDs, node names, resource pool IDs, tenant information, internal metric keys, or test data.
+
+## Next Steps
+
+1. If exceptions are concentrated in clusters, go to cluster statistics.
+2. If exceptions are concentrated in nodes or devices, go to the corresponding monitoring page.
+3. If job failures or queueing increase, go to job monitoring and troubleshoot with quotas.

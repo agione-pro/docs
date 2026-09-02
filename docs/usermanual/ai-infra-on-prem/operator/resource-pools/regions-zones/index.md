@@ -1,21 +1,13 @@
 # Regions & Zones
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Regions & Zones` is used to maintain logical resource boundaries for AI Infra On-Prem resource pools. Operators must create a region first, then create availability zones under that region. After that, clusters can be registered in the corresponding availability zone to host jobs and display resource usage.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Resource Pools > Regions & Zones |
-| Page route | `/powerone/resourcepool/region` |
-| Managed objects | Region, Availability Zone, region-associated components, and cluster resources under availability zones |
-| Typical use | Divide compute resource pools, bind image and storage capabilities, host cluster registration, and support later job scheduling |
+| Navigation Path | AI Infra(On-Prem) > Resource Pools > Regions & Zones |
+| Page Route | `/powerone/resourcepool/region` |
+| Managed Object | Configuration, status, and relationships on Regions & Zones |
 
 #### Beginner Explanation
 
@@ -30,27 +22,21 @@ You can think of an On-Prem resource pool as an office system:
 
 Therefore, the first-time configuration order cannot be reversed: create a region first, then create an availability zone, register clusters into the availability zone, and finally submit a job to verify that the resources are usable.
 
-#### Initial Configuration Flow
-
-For the first configuration, use the following order:
-
-1. Connect an image service. The image service is usually Harbor. Harbor is a container image registry used to store and distribute images required by jobs.
-2. Create a region and bind an available image service to the region. If required by the business, also bind object storage, file storage, or block storage.
-3. Create an availability zone and assign it to the created region.
-4. Go to `Resource Pools > Clusters` and register a Kubernetes cluster (a container orchestration system used to manage compute nodes, containers, and job scheduling) to the corresponding region and availability zone.
-5. Associate specifications and storage with the cluster as required.
-6. Submit a test job to verify image pulling, resource scheduling, storage mounting, and job results.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Harbor | A container image registry used to store and distribute images required by jobs. After a region is bound to an image service, later jobs can pull images from the corresponding registry. |
 | Endpoint | The service access entry, usually used by the platform or jobs to access components such as image and storage services. |
 | IP | The service location address or access address, used to determine whether the component network is reachable. |
-| Object Storage | Storage for unstructured data, suitable for model files, datasets, artifact packages, and similar content. |
-| File Storage | Storage for shared directories, suitable for multiple nodes or jobs reading and writing the same file system concurrently. |
-| Block Storage | Storage for independent disk volumes, suitable for scenarios that require independent volumes, low-level block devices, or specific storage performance. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Region, Availability Zone, region-associated components, and cluster resources under availability zones, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Regions & Zones, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -63,11 +49,15 @@ Before configuration, confirm that the following conditions are met:
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Regions & Zones.
+
+![Regions & Zones](./images/manual-regions-zones.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 The page consists of the filter area, region list, and region detail area. After you enter the page, the system displays the region list that matches the current filter criteria by default. After you select a region, the right side displays the component bindings, availability zones, and cluster resources of that region.
 
 In the screenshot, the upper-right corner is the `Add Region` entry, the left side is the region list, and the right side shows the component bindings and availability zone resources of the current region.
-
-![Regions and Zones list](./images/regions-zones-list.png)
 
 #### Filter Area
 
@@ -77,7 +67,7 @@ The filter area is at the top of the page and is used to narrow down the region 
 | --- | --- |
 | Region Type | Filter by `Public Region` or `Dedicated Region`. Public regions can be shared by platform tenants. Dedicated regions are used to restrict the usage scope. |
 | Status | Filter regions by `All`, `Normal`, `Disabled`, or `Invalid`. |
-| Name | Enter a region name keyword and click `Search` to quickly locate regions. Click `Reset` to clear filter criteria. |
+| Name | Enter a region name keyword and Click **"Search"** to quickly locate regions. Click **"Reset"** to clear filter criteria. |
 
 #### Region List
 
@@ -120,7 +110,6 @@ Resource usage is displayed in the "used/total" format, which helps you quickly 
 3. Open details and check hierarchy, resource bindings, status, and associated clusters.
 4. If no record is returned, reset filters. Before disabling, confirm that no resource or deployment depends on it.
 
-
 ### Add Region
 
 #### Applicable Scenarios
@@ -156,7 +145,7 @@ Confirm the following first:
 #### Steps
 
 1. Go to `AI Infrastructure > On-Prem > Resource Pools > Regions & Zones`.
-2. Click `Add Region` in the upper-right corner of the page to open the Add Region dialog.
+2. Click **"Add Region"** in the upper-right corner of the page to open the Add Region dialog.
 3. In the `Region Basics` section, fill in `Region ID`, select `Visibility Policy`, and maintain multilingual `Display Name`.
 4. In the `Resource Binding` section, select the required `Image Service (Harbor)`, and enable `Object Storage`, `File Storage`, or `Block Storage` as needed.
 
@@ -164,9 +153,8 @@ The following screenshot shows the Add Region form. The upper area configures th
 
 ![Add Region](./images/add-region.png)
 
-5. Before clicking the final `Confirm`, verify the region ID, visibility policy, display name, and resource binding again.
-6. To discard the configuration, click `Cancel` to close the dialog.
-7. For learning or screenshot capture only, view the fields and dialog without submitting a real configuration.
+5. Before clicking the final **"Confirm"**, verify the region ID, visibility policy, display name, and resource binding again.
+6. To discard the configuration, Click **"Cancel"** to close the dialog.
 
 #### Add Region Field Notes
 
@@ -197,6 +185,92 @@ After the region is submitted successfully, check whether the configuration has 
 4. If storage components are enabled, confirm that the corresponding storage components appear in the associated component list.
 5. If clusters will be registered later, go to the cluster registration page and confirm that the region can be selected.
 
+### Edit Region
+
+#### Applicable Scenarios
+
+Edit a region when its multilingual display name or resource binding must change while the region ID and resource boundary remain unchanged. The region ID is read-only in the edit form.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Regions & Zones`.
+2. Select the target region in the left list, open the row's **"..."** menu, and click **"Edit"**.
+3. Verify the read-only `Region ID`, then update the multilingual display name or resource bindings provided by the page.
+4. Before clicking **"Confirm"**, verify that the change will not unintentionally unbind an image or storage component in use.
+5. Return to the list and region details to verify the updated name, bindings, and update time.
+
+#### Result Validation
+
+- The region list shows the updated multilingual name while the region ID and hierarchy remain unchanged.
+- Region details show the resource bindings submitted in the form.
+- The downstream cluster registration page can still select the region as expected.
+
+#### Notes
+
+- The region ID is a resource boundary identifier and cannot be changed by editing. Replacing it requires a separate assessment for creating a new region and migrating downstream resources.
+- Removing a component binding may affect image pulls, storage mounts, or later resource creation. Check associated clusters and jobs before submitting.
+
+#### The Region Name or Binding Does Not Change After Editing
+
+**Symptom:**
+
+The old name is still shown after saving, or the new resource binding is missing from region details.
+
+**Possible Causes:**
+
+- The final confirmation was not completed.
+- The page state or data update has not refreshed.
+- The component is unavailable or not visible to the current account.
+
+**Solution:**
+
+1. Reopen the region edit entry and verify the fields and page message.
+2. Refresh the list, select the region again, and check the update time.
+3. Open the corresponding component page and verify its status and visibility scope.
+
+### Disable or Enable Region
+
+#### Applicable Scenarios
+
+Disable a region when new resource use must be temporarily stopped, or enable it again after maintenance. When the current state is `Normal`, the menu shows **"Disable"**; when the current state is `Disabled`, it shows **"Enable"**.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Regions & Zones` and filter by status to locate the target region.
+2. Open the target region row's **"..."** menu and select **"Disable"** or **"Enable"** according to its current state.
+3. Read the confirmation prompt and verify the impact on the region, availability zones, clusters, and job scheduling.
+4. After confirming the impact scope, click the confirmation button to change the state.
+5. Refresh the list and verify the region state and downstream selectable scope.
+
+#### Result Validation
+
+- After disabling, the region state is `Disabled`; after enabling, it returns to the page-defined normal available state.
+- The changed region can be located with the status filter.
+- Cluster registration, job scheduling, or resource creation applies the corresponding region-state restriction.
+
+#### Notes
+
+- Disabling a region usually affects new cluster registration, new resource creation, and new job scheduling. It does not mean that existing resources are deleted; verify the business window first.
+- Before enabling, verify that image services, storage components, and downstream clusters are healthy so that newly available resources do not immediately fail.
+
+#### Why Is the Enable Entry Missing?
+
+**Symptom:**
+
+The target region menu shows only **"Disable"**, not **"Enable"**.
+
+**Possible Causes:**
+
+- The region is still in the normal state.
+- The `Disabled` filter has not been applied to other records.
+- The current account cannot view disabled records.
+
+**Solution:**
+
+1. Confirm the current state of the target region.
+2. Select the `Disabled` status filter and search for the region to restore.
+3. If it is still unavailable, check Operator permission and region visibility.
+
 ### Create AZ
 
 #### Applicable Scenarios
@@ -221,7 +295,7 @@ Confirm the following first:
 #### Steps
 
 1. Select the target region in the region list on the left.
-2. In the `Availability Zone` section on the right, click `Create AZ` to open the Create AZ dialog.
+2. In the `Availability Zone` section on the right, Click **"Create AZ"** to open the Create AZ dialog.
 3. Confirm that the `Region` field is the target region.
 4. Fill in `Availability Zone ID`.
 5. Fill in `Display Name` in each multilingual tab.
@@ -231,8 +305,7 @@ The following screenshot shows the Create AZ form. The top area shows the owning
 
 ![Create AZ](./images/add-availability-zone.png)
 
-7. Before clicking the final `Confirm`, verify the parent region, availability zone ID, display name, and description again.
-8. For learning or screenshot capture only, view the fields and dialog without submitting a real configuration.
+7. Before clicking the final **"Confirm"**, verify the parent region, availability zone ID, display name, and description again.
 
 #### Create AZ Field Notes
 
@@ -258,7 +331,103 @@ After the availability zone is submitted successfully, check whether the configu
 3. Confirm that the availability zone status is `Normal` or the expected status.
 4. Go to the cluster registration page and confirm that the new availability zone can be selected under the region.
 
-## Parameter Reference
+### Edit Availability Zone
+
+#### Applicable Scenarios
+
+Edit an availability zone when its multilingual display name or description must change while its availability zone ID and parent region remain unchanged. The region and availability zone ID are read-only in the edit form.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Regions & Zones` and select the target region.
+2. In the `Availability Zone` section, find the target zone, open its row's **"..."** menu, and click **"Edit"**.
+3. Verify the read-only `Region` and `Availability Zone ID`, then update the multilingual display name or description provided by the page.
+4. Before clicking **"Confirm"**, verify that the zone still belongs to the correct region and that the name change will not affect identification or operations handover.
+5. Return to the availability zone list and verify the name, description, state, and update time.
+
+#### Result Validation
+
+- The availability zone list shows the updated multilingual name or description while the region and zone ID remain unchanged.
+- The cluster count and resource relationships in the zone details are not unintentionally changed.
+- The cluster registration page can still select the zone under the correct region.
+
+#### Notes
+
+- The availability zone ID and parent region cannot be changed by editing. Moving ownership requires a separate assessment for resource migration and scheduling impact.
+- Changing a display name does not change the actual ownership of clusters, nodes, or jobs. Update operating records to use the new name.
+
+#### The Availability Zone Shows the Wrong Parent After Editing
+
+**Symptom:**
+
+The zone is shown under the wrong region after editing, or the cluster registration page cannot find it.
+
+**Possible Causes:**
+
+- The wrong region was selected during the edit.
+- Active filters hide the target record.
+- The zone state or parent region is not available for registration.
+
+**Solution:**
+
+1. Return to region details and verify the zone's parent region and state.
+2. Reset filters and reload the availability zone list.
+3. In cluster registration, verify the region, availability zone, and available state.
+
+### Disable or Enable Availability Zone
+
+#### Applicable Scenarios
+
+Disable an availability zone when new cluster registration or job use must be temporarily stopped, or enable it again after maintenance. When the current state is `Normal`, the menu shows **"Disable"**; when the current state is `Disabled`, it shows **"Enable"**.
+
+#### Steps
+
+1. Go to `AI Infrastructure > On-Prem > Resource Pools > Regions & Zones` and select the target region.
+2. In the `Availability Zone` section, find the target zone, open its row action menu, and select **"Disable"** or **"Enable"** according to its current state.
+3. Read the confirmation prompt and verify the impact on clusters, nodes, jobs, and storage under the zone.
+4. After confirming the impact scope, click the confirmation button to change the state.
+5. Refresh the availability zone list and verify the state and selectable scope in cluster registration and job scheduling.
+
+#### Result Validation
+
+- After disabling, the zone state is `Disabled`; after enabling, it returns to the page-defined normal available state.
+- The target zone can be located with the status filter.
+- Cluster registration and job scheduling apply the corresponding availability-zone state restriction.
+
+#### Notes
+
+- Disabling a zone affects new cluster registration or job scheduling under that zone. Confirm the handling of existing jobs, nodes, and storage first.
+- Before enabling, verify cluster health, resource reporting, and storage configuration under the zone to avoid scheduling failures.
+
+#### Why Is the Availability Zone Enable Entry Missing?
+
+**Symptom:**
+
+The target availability zone menu shows only **"Disable"**, not **"Enable"**.
+
+**Possible Causes:**
+
+- The zone is still in the normal state.
+- Disabled records are hidden by the current status filter.
+- The current account cannot view the zone.
+
+**Solution:**
+
+1. Check the current state of the availability zone.
+2. Select the `Disabled` status filter and locate the record again.
+3. Check Operator permission, the parent region, and the zone visibility scope.
+
+#### Operation Screenshots
+
+![Regions & Zones operation interface](./images/manual-add-region.png)
+
+The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+
+![Regions & Zones operation interface](./images/manual-add-zone.png)
+
+The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -270,7 +439,7 @@ After the availability zone is submitted successfully, check whether the configu
 | Image Service (Harbor) | Required for region | Dropdown | `image-xxx` | Image service bound to the region. It affects job image pulling. |
 | Object Storage / File Storage / Block Storage | No | Switch / Dropdown | `Off` | Storage capabilities bound based on business requirements. |
 | Description | No | Multi-line text | `Wuhan zone 1` | Records data center location, purpose, network boundary, or maintenance notes. |
-| Actions | Conditionally triggered | Button | `Confirm` / `Cancel` | `Confirm` submits real configuration. Do not click it during learning or screenshot capture. |
+| Actions | Conditionally triggered | Button | `Confirm` / `Cancel` | `Confirm` submits real configuration. Confirm the scope and impact before executing the final action. |
 
 ## Pitfalls
 
@@ -289,137 +458,102 @@ After the availability zone is submitted successfully, check whether the configu
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | You can enter `AI Infra > On-Prem > Resource Pools > Regions & Zones`. | Check account permissions and menu configuration. |
-| List loads normally | The region list, availability zone area, and region details are displayed normally. | Refresh the page and check API or permission status. |
-| Add Region entry is visible | The upper-right entry or actual add entry can open the Add Region dialog. | Check operator permissions and page status. |
-| Create AZ entry is visible | After a target region is selected, the availability zone area shows the add entry. | Confirm that the target region exists and is selected. |
-| Dialog can be opened | The Add Region or Create AZ dialog opens normally. | Check page status, permissions, and browser console errors. |
-| Required field validation works | Validation prompts appear when Region ID, Display Name, Image Service, or Availability Zone ID is empty. | Fill in fields according to page prompts. |
-| No submission during learning | The final `Confirm` action is not clicked during learning or screenshot capture. | Close the dialog or click `Cancel`. |
-| Record is correct after real submission | The new region or availability zone appears in the list, and the region-availability zone hierarchy is correct. | Recheck Region ID, Availability Zone ID, and Region. |
+| Page entry | Regions & Zones opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Regions & Zones is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### Image service dropdown is empty
+#### Target Is Missing from Regions & Zones
 
-**Symptom:** When adding a region, the image service dropdown has no selectable items.
+**Symptom:**
 
-**Possible Causes:**
-
-- The image component has not been connected.
-- The image component has been connected but is not enabled or is in an abnormal state.
-- The current account does not have permission to view or bind image services.
-
-**How to Handle:**
-
-1. Go to `Resource Pools > Image Services` and check whether an available image service exists.
-2. Confirm that the image service status is normal and that the Endpoint or access address is usable.
-3. Confirm that the current account has permission to bind the image service.
-4. Return to the Add Region dialog, refresh the page, and try again.
-
-#### Storage component cannot be enabled or dropdown is empty
-
-**Symptom:** Object storage, file storage, or block storage cannot be selected, or there are no selectable components after the switch is enabled.
+The page opens, but the expected Configuration, status, and relationships on Regions & Zones is missing.
 
 **Possible Causes:**
 
-- The corresponding storage component has not been connected.
-- The component is not enabled, is abnormal, or cannot be bound.
-- The current account does not have permission to view or bind the corresponding component.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
-**How to Handle:**
+**Solution:**
 
-1. According to the component type, go to `Resource Pools > Object Storage`, `Resource Pools > File Storage`, or `Resource Pools > Block Storage`.
-2. Check whether the component has been connected and is available.
-3. Check whether the component matches the target region plan.
-4. After confirming permissions, reopen the Add Region dialog.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Region status is abnormal
+#### The Operation Entry on Regions & Zones Is Unavailable
 
-**Symptom:** After a region is created, its status is not `Normal`, or it appears in the `Disabled` or `Invalid` list when filtering.
+**Symptom:**
 
-**Possible Causes:**
-
-- The region has been manually disabled.
-- The bound image service or storage component is in an abnormal state.
-- The region configuration does not meet platform check conditions.
-
-**How to Handle:**
-
-1. Clear the status filter and confirm whether the region exists.
-2. Open the region details and check the image component and storage component status.
-3. If the region is disabled, confirm the impact scope before enabling it.
-4. If a component is abnormal, repair the corresponding component first, then return to the region page and confirm the status.
-
-#### Availability Zone ID reports an error
-
-**Symptom:** When adding an availability zone, the availability zone ID cannot be submitted or the system reports a validation failure.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- The availability zone ID duplicates an existing availability zone.
-- The name does not meet page validation requirements.
-- The wrong region is selected, causing the ID plan to be inconsistent with the ownership relationship.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
-**How to Handle:**
+**Solution:**
 
-1. Check whether the currently selected region is correct.
-2. Use a recommended format that includes the region prefix and sequence number, such as `wuhan-1`.
-3. Avoid temporary meanings, spaces, or names that are hard to identify.
-4. If submission still fails, use a combination of lowercase letters, numbers, and hyphens and try again.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-#### Region ID / Availability Zone ID naming is hard to maintain after using a poor name
+#### A Required Field on Regions & Zones Has No Options
 
-**Symptom:** The region or availability zone has been created, but the ID meaning is unclear. Later cluster registration, resource ownership troubleshooting, or capacity statistics become difficult.
+**Symptom:**
 
-**Possible Causes:**
-
-- A name with a temporary meaning is used, such as `test1`.
-- A name without business meaning is used, such as `aaa`.
-- A seemingly standardized name lacks regional meaning, such as `region01`.
-- The availability zone ID does not reflect the owning region, resource type, or sequence number.
-
-**How to Handle:**
-
-1. When creating new resources, use names that reflect the region and hierarchy.
-2. Recommended region IDs: `wuhan`, `prod-wuhan`.
-3. Recommended availability zone IDs: `wuhan-1`, `wuhan-gpu-1`, `prod-wuhan-1`.
-4. Not recommended: `test1`, because its test meaning becomes invalid over time; `aaa`, because the resource ownership cannot be identified; `region01`, because the actual region cannot be determined.
-5. Created region IDs and availability zone IDs are disabled on the edit page and cannot be modified after creation. If the existing naming already affects maintenance, plan a new region or availability zone and gradually migrate clusters and jobs.
-
-#### Failed to disable a region
-
-**Symptom:** Disabling a region fails, or the system reports that dependent resources exist.
+The form opens, but a selection list is empty.
 
 **Possible Causes:**
 
-- Availability zones or clusters still exist under the region.
-- Running jobs or resource dependencies still exist under the region.
-- The current account does not have sufficient permissions.
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
 
-**How to Handle:**
+**Solution:**
 
-1. Expand the region details and check availability zones and cluster resources.
-2. Go to `Resource Pools > Clusters` and confirm the status and jobs of related clusters.
-3. Complete job migration or resource decommissioning during a business window.
-4. Confirm permissions and the impact scope before disabling the region again.
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
 
-#### No cluster resources under an availability zone
+#### Regions & Zones Has an Abnormal State After the Operation
 
-**Symptom:** The availability zone has been created, but no cluster cards or resource usage are displayed after it is expanded.
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
 
 **Possible Causes:**
 
-- No cluster has been registered under the availability zone.
-- The cluster was registered to another region or availability zone.
-- The cluster is abnormal, and resource information is not displayed normally.
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
 
-**How to Handle:**
+**Solution:**
 
-1. Go to `Resource Pools > Clusters` and check whether clusters belong to the region and availability zone.
-2. If no cluster exists, register a cluster according to the initial configuration flow.
-3. If the cluster ownership is wrong, adjust it using the platform-supported method or register it again.
-4. If the cluster status is abnormal, continue troubleshooting on the cluster details and node pages.
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Regions & Zones
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Regions & Zones.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
 
 ## Notes
 
@@ -428,7 +562,7 @@ After the availability zone is submitted successfully, check whether the configu
 - Region IDs and availability zone IDs cannot be modified after creation. Confirm the naming, ownership, and display names before submitting.
 - Adding a region or availability zone may affect resource pool ownership, cluster management, scheduling scope, and capacity display. Confirm the impact scope before production configuration.
 - Incorrect region or availability zone IDs may cause later resource binding, authorization, or scheduling exceptions.
-- `Confirm`, `Save`, and `Submit` are high-risk final actions. Do not click them during learning or screenshot capture.
+- `Confirm`, `Save`, and `Submit` are high-risk final actions. Confirm the scope and impact before executing the final action.
 - Before taking screenshots, check whether real data center codes, internal addresses, cluster IDs, resource pool IDs, accounts, keys, tokens, certificates, private keys, access keys, or internal test parameters are exposed on the page.
 - The current account must have permissions to view and bind image services, storage components, regions, and availability zones. If a dropdown is empty, first check component status and account permissions.
 

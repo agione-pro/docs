@@ -1,42 +1,33 @@
 # Overview
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Overview` is the summary page End Users enter after opening AI Infra-On Prem. It is used to centrally view deployment templates, accelerator capabilities, quick creation entrypoints, specification quotas, and resource consumption trends.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Overview |
-| Page route | `/powerone/overview` |
-| Managed objects | Deployment templates, accelerator resources, quick entrypoints, specification quotas, and resource usage trends |
-| Typical use | Quickly understand deployable models, available accelerators, quotas, and recent resource usage after entering On-Prem |
+| Applicable Role | Model Provider and Model Consumer |
+| Navigation Path | AI Infra(On-Prem) > Overview |
+| Page Route | `/powerone/overview` |
+| Managed Object | Configuration, status, and relationships on Overview |
 
 #### Beginner Explanation
 
 The overview page can be understood as the homepage of the On-Prem user console: the upper area tells you which models can be deployed and which accelerators are available; the middle area provides quick entrypoints for Online IDE and Runtime Instance; the lower area helps you confirm whether quota is sufficient and whether resources have consumption records.
 
-#### First-Time Flow
-
-1. Go to `AI Infra(On-Prem) > Overview`.
-2. View `Deployment Templates` to confirm whether deployable models exist.
-3. View `Accelerator Vendors` to confirm accelerator types supported by the current resource pool.
-4. Use the `Online IDE` or `Runtime Instance` quick entrypoint to enter the creation flow.
-5. View specification quota, consumption trends, and resource usage to confirm whether resources are available for job creation.
-
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Specification | Resource package that a job can request, such as CPU, memory, GPU model, and card count. |
 | Quota | Resource upper limit available to a tenant. Common dimensions include GPU, CPU, memory, and specifications. |
 | Accelerator | GPU, NPU, or other AI computing device, displayed on the page by vendor and model. |
-| Consumption Trend | Resource consumption changes over time, used to determine whether recent jobs generated fees or credit consumption. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Deployment templates, accelerator resources, quick entrypoints, specification quotas, and resource usage trends, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Overview, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -46,9 +37,15 @@ The overview page can be understood as the homepage of the On-Prem user console:
 
 ## Page Description
 
-The upper area displays deployable templates and accelerator vendors; the middle area provides quick entrypoints for Online IDE and Runtime Instance; the lower area displays specification quota, consumption trends, and resource usage. The screenshot shows the left user menu, deployment template area, accelerator area, and quick entrypoints.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
+
+Use this page to view and handle Configuration, status, and relationships on Overview.
 
 ![Overview](./images/overview-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The upper area displays deployable templates and accelerator vendors; the middle area provides quick entrypoints for Online IDE and Runtime Instance; the lower area displays specification quota, consumption trends, and resource usage. The screenshot shows the left user menu, deployment template area, accelerator area, and quick entrypoints.
 
 #### Page Areas
 
@@ -76,7 +73,6 @@ The upper area displays deployable templates and accelerator vendors; the middle
 3. Determine whether the anomaly relates to authorization, quota, capacity, or deployment status.
 4. Do not create or stop real resources to test the anomaly.
 
-
 ### View Deployable Resources
 
 #### Applicable Scenario
@@ -93,9 +89,8 @@ Before creating a model service, online IDE, or runtime instance, confirm on the
 1. View model vendors and model cards in deployment templates.
 2. View accelerator vendors, models, VRAM, and adaptation status in accelerator vendors.
 3. Confirm whether the target specification still has available quota in specification quota.
-4. If a job needs to be created, click `Create Job` to enter the corresponding creation page. For learning or screenshots only, view the entrypoint without submitting a real task.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -109,7 +104,7 @@ Before creating a model service, online IDE, or runtime instance, confirm on the
 
 - When the deployment button is unavailable, usually no model or accelerator has been selected.
 - Sufficient quota does not mean the cluster definitely has idle resources. If creation fails, check region, availability zone, and specifications.
-- `Create Job` jumps to a creation flow. For learning or screenshots only, view the entrypoint without submitting a real task.
+
 - Do not record real tenants, regions, clusters, specifications, resource usage, consumption data, or test parameters.
 - Overview data may have statistical delays. For troubleshooting, verify again on instance details, monitoring, or quota pages.
 
@@ -117,54 +112,112 @@ Before creating a model service, online IDE, or runtime instance, confirm on the
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Model and quick entry point | The target model or quick entry point is visible. | Check the target object, filters, permission scope, and recent operation records on this page. |
-| Quota specification | The target specification is visible in the quota table. | Check the target object, filters, permission scope, and recent operation records on this page. |
-| Consumption data | If consumption data exists, the trend and usage areas refresh normally. | Check the target object, filters, permission scope, and recent operation records on this page. |
+| Page entry | Overview opens with filters or statistics | Check menu permission, current business identity, and tenant scope |
+| Data scope | Lists or statistics match the selected time, region, and object | Reset filters and verify time boundaries, time zone, and aggregation scope |
+| Data update | Update time or latest record matches the expected cycle | Check whether the source job, metering, or quota record has been generated |
+| Cross-check | Configuration, status, and relationships on Overview matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
 
 ## FAQ
 
-#### No Deployable Templates on the Overview Page
+#### No Records on Overview
 
-**Symptom:** The deployment template area is empty or has no clickable model.
+**Symptom:**
 
-**Possible Causes:**
-
-- The operator has not published templates.
-- The current tenant has no template visibility permission.
-- Filters or region scope do not match.
-
-**Solution:**
-
-1. Go to `Model Deployment > Deployment Templates` to view the full list.
-2. Switch or confirm the current region.
-3. Contact the operator to confirm whether templates have been published to the current tenant.
-
-#### Quota Looks Sufficient but Creation Fails
-
-**Symptom:** The overview page shows unlimited or remaining quota, but job creation fails.
+The page opens, but lists or statistics are empty.
 
 **Possible Causes:**
 
-- The target cluster has insufficient idle resources.
-- The specification is not associated with an available cluster.
-- Image, storage, or region configuration is incomplete.
+- Filters are too narrow.
+- source records are not generated.
+- the role cannot see them.
 
 **Solution:**
 
-1. Enter the creation page and view the specific error message.
-2. Check `Resource Quotas` and `Resource Usage`.
-3. Contact the operator to confirm the association between specifications and clusters.
+1. Reset filters
+2. verify the source job or metering cycle
+3. check business identity and tenant scope.
 
-## Next Steps
+#### Overview Shows the Wrong Scope
 
-1. Go to `Model Deployment > Deployment Templates` to create a model instance.
-2. Go to `Development Resources > Online IDE` to create an interactive development environment.
-3. Go to `Quota & Usage > Resource Quotas` to view resource limits.
+**Symptom:**
+
+Data does not belong to the expected time, region, or object.
+
+**Possible Causes:**
+
+- Time boundaries differ.
+- the region filter did not apply.
+- ownership changed.
+
+**Solution:**
+
+1. Select time and region again
+2. verify object identifiers
+3. confirm ownership in source details.
+
+#### Overview Is Delayed
+
+**Symptom:**
+
+A source operation completed, but its record is not visible.
+
+**Possible Causes:**
+
+- Aggregation is not complete.
+- the page is cached.
+- source state is still processing.
+
+**Solution:**
+
+1. Verify source state
+2. wait one aggregation cycle and refresh
+3. inspect the processing task if delay persists.
+
+#### Details or Download Is Unavailable
+
+**Symptom:**
+
+The details, expand, or download entry is disabled.
+
+**Possible Causes:**
+
+- The record does not support it.
+- role permission is insufficient.
+- the file is not generated.
+
+**Solution:**
+
+1. Select an eligible record
+2. check role permission
+3. confirm the statistics or export task is complete.
+
+#### Summary and Details Do Not Match
+
+**Symptom:**
+
+The summary differs from the total of individual records.
+
+**Possible Causes:**
+
+- Periods differ.
+- values are rounded.
+- some records are still processing.
+
+**Solution:**
+
+1. Align period and time zone
+2. compare by object
+3. wait for pending records and check again.
 
 ## Notes
 
 - Do not judge failure causes only by the homepage summary. Key instance status should be based on the corresponding detail page.
 - Before creation, confirm region, specification, and image source to avoid creation failure caused by unschedulable resources after submission.
 - The overview page only provides summary display and does not replace creation, detail, or troubleshooting pages of specific modules.
-- Templates, specifications, and accelerators are configured by operators. End Users cannot modify them directly on the overview page.
-- For learning or screenshots only, do not submit real jobs or write real resource scopes or consumption data in documentation.
+- Templates, specifications, and accelerators are configured by operators. Model Consumers cannot modify them directly on the overview page.
+
+## Next Steps
+
+1. Go to `Model Deployment > Deployment Templates` to create a model instance.
+2. Go to `Development Resources > Online IDE` to create an interactive development environment.
+3. Go to `Quota & Usage > Resource Quotas` to view resource limits.

@@ -4,7 +4,7 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers and Model Consumers |
+| Applicable Roles | Model Provider, Model Consumer |
 | Navigation Path | Model Services > My Calls > Call Logs |
 | Page Route | `/modelone/monitoring/calls/log/model` |
 | Managed Objects | Personal model-call records, results, usage, latency, and details |
@@ -47,7 +47,7 @@ The page shows model-call records for the current account. Query by model name, 
 
 Page screenshots:
 
-![My Call Logs](./images/call-logs-list.png)
+![My Call Logs](./images/call-logs-list-public.png)
 
 Focus on query criteria, call result, usage, latency, and the details entry.
 
@@ -59,7 +59,7 @@ Focus on query criteria, call result, usage, latency, and the details entry.
 2. Set a time range, enter a model name or model ID, and select model type and call status if needed.
 3. Click **"Search"** and verify call time, result, usage, and latency. Click **"Reset"** if the criteria are incorrect.
 
-![Query call logs](./images/manual-call-logs.png)
+![Query call logs](./images/manual-call-logs-public.png)
 
 The image shows call logs. Verify the time range, call result, and target record.
 
@@ -69,7 +69,7 @@ The image shows call logs. Verify the time range, call result, and target record
 2. Verify model, call time, result, usage, latency, and error summary.
 3. For troubleshooting, retain only a redacted request identifier and error summary. Do not copy complete requests, responses, or credentials.
 
-![View call details](./images/manual-call-log-details.png)
+![View call details](./images/manual-call-log-details-public.png)
 
 The image shows one call's details. Remove request, response, and credential information before sharing.
 
@@ -79,32 +79,32 @@ The image shows one call's details. Remove request, response, and credential inf
 | --- | --- | --- | --- | --- |
 | Month | Yes | Month selector | `2026-07` | Controls the statistical month for call logs. |
 | Date Range | Yes | Date range | `2026-07-01 to 2026-07-17` | Controls the query time range for call logs. |
-| Model | No | Input | Enter on page | Filters call logs by model name. |
+| Model | No | Input | `Example Model` | Filters call logs by model name. |
 | Model Type | No | Selector | `Text` / `Video` | Filters call logs by model capability type. |
 | Call Status | No | Selector | `Success` / `Failed` | Filters logs by call processing result. |
 | Minimum Input Tokens | No | Number input | `0` | Sets the lower input-token boundary for the query. |
 | Maximum Input Tokens | No | Number input | `1000` | Sets the upper input-token boundary for the query. |
-| Call Time | System-generated | Time | Displayed on page | Shows when a single call occurred. |
-| Usage | System-generated | Text / tag | Displayed on page | Shows token, free quota, or multimodal input/output usage. |
-| Time Consumed | System-generated | Time | Displayed on page | Shows the total time consumed by a single call. |
-| First Token Time | System-generated | Time | Displayed on page | Shows the time before the first token is returned. |
-| Failure Type | System-generated | Text | Displayed on page | Shows the issue category for a failed request. |
-| Error Message | System-generated | Text | Displayed on page | Shows the error summary for a failed request. Redact it before screenshots or external communication. |
+| Call Time | System-generated | Time | `2026-07-17 14:30` | Shows when a single call occurred. |
+| Usage | System-generated | Text / tag | `Input 100 / Output 40 Tokens` | Shows token, free quota, or multimodal input/output usage. |
+| Time Consumed | System-generated | Time | `1.2 s` | Shows the total time consumed by a single call. |
+| First Token Time | System-generated | Time | `0.3 s` | Shows the time before the first token is returned. |
+| Failure Type | System-generated | Text | `Authentication` | Shows the issue category for a failed request. |
+| Error Message | System-generated | Text | `Redacted error message` | Shows the error summary for a failed request. Redact it before screenshots or external communication. |
 | Actions | No | Action entry | `Details` | Opens single-call log details. |
 
 ## Pitfalls
 
 - API Key, Token, Prompt, response content, and complete Endpoint may contain sensitive data. Record only sanitized snippets.
-- For 429, check rate limits and quota first; for 401, check credentials and permissions; for 5xx, check model service and upstream status.
+- For 429, check rate limits and quota first. For 401, check credentials and permissions. For 5xx, check model service and upstream status.
 - Before retrying, verify request parameters, model version, and input size to avoid repeated invalid calls.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `My Calls - Call Logs` page opens normally, and `My Calls > Call Logs` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Call log list loads normally | The list shows columns such as call time, model, call status, usage, latency, and error message. | Refresh the page or retry after adjusting the month and date range. |
-| Filters are available | After filtering by month, date range, model, model type, or call status, the list refreshes. | Check whether filters are too narrow, and click `Reset` if needed. |
+| Page is accessible | The `My Calls - Call Logs` page opens, and `My Calls > Call Logs` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
+| Call log list loads | The list shows columns such as call time, model, call status, usage, latency, and error message. | Refresh the page or retry after adjusting the month and date range. |
+| Filter controls can be selected | After filtering by month, date range, model, model type, or call status, the list refreshes. | Check whether filters are too narrow, and click **"Reset"** if needed. |
 | Search / Reset works | `Search` displays matching logs, and `Reset` clears the filters. | Check network status, page API responses, and account permissions. |
 | Log details can be opened | Clicking `Details` opens more information about a single call. | Confirm that the record is still within the log retention period. |
 | Field information is consistent | Call status, time consumed, usage, failure type, and error message are consistent with the details page. | Reopen details or expand the time range for cross-checking. |
@@ -115,86 +115,92 @@ The image shows one call's details. Remove request, response, and credential inf
 
 **Symptom:**
 
-Call Logs shows the condition described by “Target Log Is Missing.”
+The target request does not appear after you search by time or model.
 
 **Possible Causes:**
 
-- Time range or filters do not match.
-- Page data is still synchronizing.
+- The time range, model, or status filter excludes the request.
+- Another account or Personal Key created the request.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Click **"Reset"** and select the request date.
+2. Narrow the list by Model ID and call status.
+3. Verify the account that made the call. If the record is still missing, send the administrator the redacted request time and Model ID.
 
 #### Call Status Is Failed
 
 **Symptom:**
 
-Call Logs shows the condition described by “Call Status Is Failed.”
+The target log shows a failed result or an error.
 
 **Possible Causes:**
 
-- call data or status changed.
-- Page data is still synchronizing.
+- The Personal Key is invalid or lacks call permission.
+- The Model ID, request body, or model parameters are incorrect.
+- The quota is insufficient or the target model returns an error.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Open **"Details"** and record the redacted error.
+2. Verify the Personal Key, Model ID, request format, and quota.
+3. Call again after correction. Contact the Model Provider or administrator if the same error continues.
 
-#### Call Latency Is Abnormal
+#### Call Latency Increases
 
 **Symptom:**
 
-Call Logs shows the condition described by “Call Latency Is Abnormal.”
+Total latency or first-token latency is much higher than for similar requests.
 
 **Possible Causes:**
 
-- call data or status changed.
-- Page data is still synchronizing.
+- The input is longer or the output limit is higher.
+- The model or provider responds slowly during the selected period.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Compare requests with the same Model ID and a similar input size.
+2. Review total latency and first-token latency separately.
+3. If latency remains high, send the Model Provider the time range and redacted request IDs.
 
-#### Token Usage Is Abnormal
+#### Token Usage Is Higher Than Expected
 
 **Symptom:**
 
-Call Logs shows the condition described by “Token Usage Is Abnormal.”
+Input or output token usage is much higher than expected.
 
 **Possible Causes:**
 
-- call data or status changed.
-- Page data is still synchronizing.
+- The request contains a long message history or attachments.
+- The output limit or generation parameters are too high.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Review input and output tokens in Details.
+2. Shorten the input or reduce the output limit, and call again.
+3. If similar requests still differ, send redacted request IDs to the administrator for metering review.
 
-#### Details Contain Sensitive Data
+#### Log Details Contains Sensitive Data
 
 **Symptom:**
 
-Call Logs shows the condition described by “Details Contain Sensitive Data.”
+Details shows credentials, a full Endpoint, customer input, or response content.
 
 **Possible Causes:**
 
-- call data or status changed.
-- Permission is missing or the record expired.
+- The call itself contains sensitive data.
+- A screenshot or support ticket was not redacted.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Verify permission and record status, and then retry.
+1. Stop copying or sharing the content.
+2. Mask the Personal Key, authentication header, request body, response body, and full Endpoint.
+3. If a credential was exposed, contact the administrator or security owner immediately and rotate it.
 
 ## Notes
 
 - Do not expose complete requests, response bodies, Keys, accounts, or cost details in documentation, screenshots, or tickets.
-- Call log data may be cleaned according to the retention period. Confirm the time range first during troubleshooting.
+- Call log data may be removed after the configured retention period. Confirm the time range first during troubleshooting.
 - Error messages are only used for troubleshooting and must be redacted before public communication.
 
 ## Next Steps

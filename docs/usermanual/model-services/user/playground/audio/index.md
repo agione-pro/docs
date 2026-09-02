@@ -4,14 +4,14 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers and Model Consumers |
+| Applicable Roles | Model Provider, Model Consumer |
 | Navigation Path | Model Services > Playground > Audio |
 | Page Route | `/modelone/exploration/audio` |
 | Managed Objects | Audio models, text or audio input, generation parameters, and audio results |
 
 #### Beginner Explanation
 
-The Audio playground works like a model test bench. Select an available audio model and provider, enter the input, adjust parameters, and use the result or error message to decide whether to continue with integration.
+The Audio playground is a place to try an audio model. Select an audio model and provider from the selector, enter the input, adjust parameters, and review the result or error message before integration.
 
 #### Terminology
 
@@ -38,7 +38,7 @@ For a first trial, select an audio model, verify the provider and Personal Key, 
 ## Prerequisites
 
 1. The current account has access to the audio Playground page.
-2. The target audio model is published and available for trial.
+2. The target audio model is published and listed for trial.
 3. Text content has been checked to avoid sensitive information, private data, or unauthorized content.
 4. You understand that clicking the send or generation button may create a real model call and billing record.
 
@@ -52,7 +52,7 @@ The page contains audio model selection, an input area, parameters, Personal Key
 
 Page screenshots:
 
-![Audio page](./images/audio-list.png)
+![Audio page](./images/audio-list-public.png)
 
 Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
 
@@ -63,24 +63,24 @@ Focus on the model, input area, parameter entry, and submit button. Verify the i
 1. Go to `Model Services > Playground > Audio`.
 2. Click the current model name or **"Select Model"** to open the selector.
 3. Locate the target model and compare provider, context, price, latency, throughput, success rate, and status.
-4. Select an available instance and return to the playground. Confirm that the model and provider shown at the top are correct.
+4. Select a listed instance and return to the playground. Confirm that the model and provider shown at the top are correct.
 
-![Select audio model](./images/manual-select-audio-model.png)
+![Select audio model](./images/manual-select-audio-model-public.png)
 
-The image shows the model selector. Compare provider capability, price, performance, and availability.
+The image shows the model selector. Compare provider capability, price, performance, and status.
 
-![audio model selection reference](./images/select-model.png)
+![audio model selection reference](./images/select-model-public.png)
 
 This image provides an additional view of model selection and instance information.
 
 ### Configure and Generate Audio Content
 
 1. Confirm that the current model, provider, and Personal Key are correct.
-2. Enter the content to generate and set voice, speed, format, or other available parameters. Confirm that the input contains no sensitive information, and then click **"Send"**.
+2. Enter the content to generate and set voice, speed, format, or other parameters shown in the panel. Confirm that the input contains no sensitive information, and then click **"Send"**.
 3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
 4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
 
-![Configure audio generation](./images/manual-configure-audio.png)
+![Configure audio generation](./images/manual-configure-audio-public.png)
 
 The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
 
@@ -88,7 +88,7 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model | Yes | Dropdown | `Mock MiniMax Speech T2A` | The audio model currently being tried. |
+| Model | Yes | Dropdown | `Example Audio Model` | The audio model currently being tried. |
 | Voice ID | Yes | Input or selector | `male-qn-qingse` | Specifies the voice or speaker for generated speech. |
 | Text | Yes | Text input | `please input` | Text content to convert into speech. |
 | Protocol | Yes | Dropdown | `openai/audio` | Current audio model call protocol. |
@@ -109,10 +109,10 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Audio` page opens normally, and the left Playground menu and top model selector are visible. | Check account permissions, navigation path, and page loading status. |
-| Model can be selected | The Select Model dialog opens normally, and model name, provider, pricing, and status are visible. | Confirm whether available models are published, or switch to another model. |
-| Input area is visible | Text input, Voice ID, Key, and send entry are displayed normally. | Refresh the page or check model capability configuration. |
-| Parameter area is visible | `Protocol`, `Text`, `Speed`, `Volume`, `Pitch`, and other fields are displayed normally. | Check whether the parameter panel is expanded, or select the model again. |
+| Page is accessible | The `Audio` page opens, and the left Playground menu and top model selector are visible. | Check account permissions, navigation path, and page loading status. |
+| Model can be selected | The `Select Model` dialog opens, and model name, provider, pricing, and status are visible. | Confirm whether listed models are published, or switch to another model. |
+| Input area is visible | Text input, Voice ID, Key, and send entry are visible. | Refresh the page or check model capability configuration. |
+| Parameter area is visible | `Protocol`, `Text`, `Speed`, `Volume`, `Pitch`, and other fields are visible. | Check whether the parameter panel is expanded, or select the model again. |
 | Result area is visible | If a real call is executed, the page shows an audio result, task status, or error message. | Record the request ID or error message, and check text, Key, and parameter configuration. |
 
 ## FAQ
@@ -147,7 +147,7 @@ The request cannot be submitted after input is entered.
 **Resolution:**
 
 1. Select the model and Personal Key again.
-2. Complete fields indicated by the page.
+2. Complete the required input and parameter fields marked on the page.
 
 #### Generation Fails or Times Out
 
@@ -199,7 +199,7 @@ One trial creates more usage than expected.
 
 ## Notes
 
-- Do not write test accounts, passwords, access parameters, or internal test processes.
+- Do not write real accounts, passwords, access parameters, or internal business data.
 - Do not display real keys, tokens, AK/SK, or private keys in the document.
 - Before screenshots or export, confirm that the page does not contain sensitive text, personal voice information, or real business data.
 

@@ -1,21 +1,13 @@
 # Roles
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
-
 ## Feature Overview
-
-`Roles` is used to view and manage platform roles. You can filter by role name, review role identifiers, descriptions, and creation times, and add, edit, authorize, or delete roles.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator |
 | Navigation path | Settings > Members & Roles > Roles |
 | Page route | `/user/user-space/roles` |
 | Managed objects | Role names, role identifiers, permission scopes, and creation times |
-| Typical use | Query roles, review role permissions, and maintain role configurations |
 
 #### Beginner Explanation
 
@@ -23,12 +15,12 @@ Operator roles are platform-console permission templates. They define which syst
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Platform role | A set of operator-administration permissions. | Separate roles by responsibility. |
-| Permission | A menu, button, or API-level control item. | Confirm the impact before changing it. |
-| Built-in role | A system-provided role that usually cannot be deleted. | View it or use it as a reference. |
-| Member assignment | The operator members assigned to a role. | Remove assignments before deleting the role. |
+| Term | Description |
+| --- | --- |
+| Platform role | A set of operator-administration permissions.; Separate roles by responsibility. |
+| Permission | A menu, button, or API-level control item.; Confirm the impact before changing it. |
+| Built-in role | A system-provided role that usually cannot be deleted.; View it or use it as a reference. |
+| Member assignment | The operator members assigned to a role.; Remove assignments before deleting the role. |
 
 ## Prerequisites
 
@@ -48,19 +40,33 @@ The following screenshot shows the Roles page. Role details are desensitized.
 | Add Role | Opens the role creation flow. |
 | Role table | Shows role name, identifier, description, creation time, and actions. |
 
+![Roles](./images/manual-settings-operator-roles.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
+
 ## Main Operations
 
-### View Role Permissions
+### View Roles
 
 1. Go to `Settings > Members and Roles > Roles`.
 2. Filter by role name, status, or update time.
 3. Open details and check menu, button, and API permissions and assigned members.
 4. If no record is returned, reset filters. For unexpected permissions, check whether the member has multiple roles.
 
-### Add Role
+![View Roles](./images/manual-settings-operator-roles.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
+
+**Result validation:** The list, details, and status fields show the target object and remain consistent.
+
+**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Add a Role
 
 1. Go to `Settings > Members & Roles > Roles`.
-2. Click `Add Role` in the upper-right corner of the page.
+2. Click **"Add Role"** in the upper-right corner of the page.
 3. In the `Add Role` dialog, review the role creation fields.
 
 ![Add Role](./images/add-role.png)
@@ -69,9 +75,69 @@ The following screenshot shows the Roles page. Role details are desensitized.
 5. Fill in the required `Role code`. Use a stable, readable, lowercase English code that is easy to audit.
 6. Fill in `Role description` according to the intended role usage.
 7. Before clicking the final `Confirm`, verify that the role name, role code, and later authorization scope follow the least-privilege principle.
-8. For learning or screenshots only, view the fields and click `Cancel` to close the dialog without submitting real role configuration.
+8. For learning or screenshots only, view the fields and click **"Cancel"** to close the dialog without submitting real role configuration.
 
-## Parameter Reference
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Edit a Role
+
+1. Open `Settings > Members & Roles > Roles`.
+2. Locate the target Roles and click **"Edit"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Edit a Role](./images/manual-settings-operator-roles.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Authorize a Role
+
+1. Open `Settings > Members & Roles > Roles`.
+2. Locate the target Roles and click **"Authorize"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Authorize a Role](./images/manual-settings-operator-roles.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+### Delete a Role
+
+1. Open `Settings > Members & Roles > Roles`.
+2. Locate the target Roles and click **"Delete"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+![Delete a Role](./images/manual-settings-operator-roles.png)
+
+The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
+
+**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
+
+**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
+
+**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -147,10 +213,33 @@ The current account lacks operator role-management permission, the roles belong 
 
 Confirm that you are using operator-side Settings and verify the role-management permission. Ask a super administrator to check abnormal built-in roles.
 
-## Next Steps
+#### How should the Roles page be exported or captured safely?
 
-1. To view members assigned to roles, go to [Members](../members/).
-2. To trace permission changes, go to [Operation Logs](../../activity-notifications/operation-logs/).
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Roles page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
@@ -160,3 +249,8 @@ Confirm that you are using operator-side Settings and verify the role-management
 - Once `Role code` is referenced, later changes may affect permission identification, auditing, and automation configuration.
 - For learning or screenshots only, open the dialog to view fields and use `Cancel` to exit.
 - Do not write real internal role codes, accounts, member IDs, customer names, or internal test data.
+
+## Next Steps
+
+1. To view members assigned to roles, go to [Members](../members/).
+2. To trace permission changes, go to [Operation Logs](../../activity-notifications/operation-logs/).

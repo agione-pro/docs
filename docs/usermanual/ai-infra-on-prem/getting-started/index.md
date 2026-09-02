@@ -1,222 +1,196 @@
-# AI Infra On-Prem Getting Started
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
-
-## 30-Second Quick Reference
-
-| Who Am I | What to Read First | Next Step |
-| --- | --- | --- |
-| First time using On-Prem | Understand the hierarchy of regions, availability zones, clusters, nodes, and resource pools first. | Read [Deploy a Model Service from Scratch](../end-to-end/deploy-model-service/). |
-| Operator | Complete region / availability zone setup and cluster access first. | Continue configuring specifications, images, storage, templates, quotas, and monitoring. |
-| End User | Confirm available regions, quotas, images, and storage first. | Create deployment templates, online IDEs, or runtime instances. |
-| Troubleshooter | First locate whether the issue is about permissions, quotas, images, storage, specifications, or clusters. | View instance logs, events, resource usage, and monitoring. |
+# Getting Started
 
 ## Feature Overview
 
-`AI Infra On-Prem` is the platform's access, scheduling, metering, and usage capability for localized heterogeneous computing resource pools. It connects regions, availability zones, clusters, nodes, specifications, images, storage, templates, quotas, and monitoring into a complete chain: operators first connect and govern resources, and End Users then create model services, online IDEs, runtime instances, and storage resources based on the opened capabilities.
-
-This document is an understanding-oriented getting-started page, not a concrete operation page. It explains On-Prem resource hierarchy, role boundaries, and reading paths. Real create, delete, start, stop, disable, unbind, credit adjustment, or resource change actions should be performed only in the corresponding feature pages and according to their risk notes.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator, End User |
-| Recommended Entrypoint | This document, [Heterogeneous Accelerator Management Overview](../), [Deploy a Model Service from Scratch](../end-to-end/deploy-model-service/) |
-| Key Objects | Regions, availability zones, clusters, nodes, resource specifications, image services, storage components, templates, quotas, monitoring |
-| Typical Use | Build an On-Prem resource understanding framework, clarify the operation boundary between operators and users, and choose the correct reading path |
+| Applicable Role | Operator, Model Provider, and Model Consumer |
+| Navigation Path | User Manual > AI Infra(On-Prem) > Getting Started |
+| Page Route | `N/A` |
+| Managed Object | Role boundaries, resource hierarchy, preparation order, and page entries |
 
 #### Beginner Explanation
 
-AI Infra On-Prem is like the user guide for a self-built computing campus: first learn regions, availability zones, clusters, nodes, and resource pools, then read along the path of operator resource preparation and user resource consumption.
+Getting Started is a route map for first-time use. It explains the three roles and connects regions, zones, clusters, resource specs, templates, and instances in the required order.
 
-## Applicable Roles
-
-| Role | Reading Focus | Recommended Entrypoint |
-| --- | --- | --- |
-| Operator | Connect regions, availability zones, clusters, specifications, images, storage, templates, and quotas. | [Regions / Availability Zones](../operator/resource-pools/regions-zones/), [Cluster Management](../operator/resource-pools/clusters/), [Templates](../operator/templates/models/) |
-| End User | Create model services, online IDEs, runtime instances, storage, and image projects. | [User Overview](../user/overview/), [Templates](../user/model-deployment/templates/), [Runtime Instances](../user/dev-resources/runtime-instances/) |
-| Troubleshooter | Check permissions, quotas, images, storage, specifications, clusters, logs, and monitoring. | [Monitoring Overview](../user/monitoring/overview/), [Resource Usage](../user/quotas-usage/usage/) |
-
-## What Is On-Prem
-
-The platform is an integrated service for model services, computing resources, and operational governance. On-Prem refers to localized deployment or local resource pool management scenarios. The platform does not directly replace underlying components such as Kubernetes, Harbor, MinIO, Ceph, or NFS. Instead, it incorporates these capabilities into unified resource pool, template, quota, and monitoring views.
-
-In an On-Prem scenario, the platform is responsible for:
-
-1. Recording resource boundaries, such as regions, availability zones, and clusters.
-2. Maintaining schedulable capabilities, such as nodes, accelerators, resource specifications, and storage mounts.
-3. Managing job entrypoints, such as deployment templates, model instances, online IDEs, and runtime instances.
-4. Metering user usage and providing resource monitoring and troubleshooting entrypoints.
-
-## Role Relationships
-
-| Role | Main Responsibilities | Common Sections |
-| --- | --- | --- |
-| Operator | Connect regions, availability zones, clusters, specifications, images, and storage components; maintain templates, quotas, metering, and monitoring. | [Regions / Availability Zones](../operator/resource-pools/regions-zones/), [Cluster Management](../operator/resource-pools/clusters/), [Templates](../operator/templates/models/) |
-| End User | Use resources opened by operators to create model services, online IDEs, runtime instances, object storage, and image projects, and view quotas, usage, and monitoring. | [User Overview](../user/overview/), [Templates](../user/model-deployment/templates/), [Runtime Instances](../user/dev-resources/runtime-instances/) |
-
-Operators decide "which resources are available." End Users decide "how to use the opened resources for business." If the user side cannot see a resource, troubleshooting usually starts from region, permissions, quotas, templates, specifications, and cluster status.
-
-## Cross-System Boundary
-
-| Issue Type | Target Subsystem | Description |
-| --- | --- | --- |
-| Accounts, roles, permissions, keys, tenant members | [Settings](../../settings/end-to-end/configure-account-and-permissions/) | Account and permission configuration does not belong to On-Prem. Do not create a same-name route under On-Prem. |
-| Invisible resources, unavailable specifications, queued instances | AI Infra On-Prem | Troubleshoot with regions, availability zones, clusters, templates, quotas, images, storage, and monitoring pages. |
-| Model publishing, review, listing, or calling | [Model Services](../../model-services/) | Model business lifecycle content is not handled in On-Prem resource getting-started content. |
-
-## Resource Hierarchy
-
-| Layer | Description | Impact Scope |
-| --- | --- | --- |
-| Region | The largest resource boundary, usually corresponding to a city, equipment room, resource pool, or tenant boundary. | Affects user-visible resources, component binding, and scheduling scope. |
-| Availability Zone | A resource group under a region, usually corresponding to an equipment room area, network domain, or cluster group. | Affects cluster ownership and fault isolation. |
-| Cluster | A Kubernetes cluster managed by the platform. | Determines whether jobs have schedulable nodes. |
-| Node | A server in the cluster that actually provides CPU, memory, disk, and accelerator resources. | Determines runtime capacity and hardware capability. |
-| Resource Pool | A schedulable capability set composed of regions, availability zones, clusters, specifications, images, and storage. | Determines which instances users can create and whether instances can run normally. |
-| Job / Instance | A model service, online IDE, runtime instance, or training task created by a user. | Consumes quota and credits, and generates monitoring and metering data. |
-
-The recommended configuration order is: create regions first, then create availability zones, register clusters, associate specifications, images, and storage, and finally open templates and quotas to users.
-
-## User-Side and Operator-Side Function Boundaries
-
-| Capability | Operator | End User |
-| --- | --- | --- |
-| Region / Availability Zone | Create, edit, enable, disable, and bind components. | Select opened regions and view results related to their own resources. |
-| Cluster / Node | Register clusters, view nodes, and associate specifications and storage. | Perceive resource runtime results through instance status, logs, and monitoring. |
-| Image | Connect image components and maintain base images and image resources. | Create image projects, push custom images, and select images to run instances. |
-| Storage | Connect object storage, block storage, and file storage components. | Create buckets or use opened storage capabilities to save data. |
-| Template | Configure models, frameworks, inference templates, and VRAM estimation rules. | Use deployment templates to create model instances. |
-| Quota / Metering | Set tenant quotas, credits, and metering rules. | View resource quotas, usage, and top-up records. |
-| Monitoring | View resource pool, cluster, node, device, and job monitoring. | View authorized user-side monitoring and instance runtime status. |
-
-## Global Core Terms
+#### Terms
 
 | Term | Description |
 | --- | --- |
-| Kubernetes | A container orchestration system and the foundation of On-Prem cluster access and job scheduling. |
-| kubeconfig | A Kubernetes connection configuration file that contains API Server, certificate, and authentication information. It is sensitive material. |
-| Harbor / Registry | A container image repository used to store and distribute job images. |
-| MinIO / S3 | Common object storage implementations or protocols used for bucket and object read/write. |
-| Ceph / RBD | Common block storage solutions. RBD provides block device capability. |
-| NFS | Network File System, commonly used for shared directory mounts. |
-| Resource Specification | A resource package that includes CPU, memory, accelerators, VRAM, and other resources. |
-| VRAM Estimation | Estimates VRAM usage based on factors such as model, precision, KV Token, and concurrency. |
-| KV Token | Tokens related to Key/Value Cache during inference, which affect VRAM usage. |
-| Dynamic Expression | Used to dynamically calculate recommended specifications, VRAM, or form display conditions based on parameters. |
-| Quota | The upper limit of resources that a tenant or user can request. |
-| Credit | A billing or consumption control value corresponding to resource usage. |
+| Operator | The role that maintains resource pools, templates, quotas, and system settings. |
+| Model Provider | The role that creates development resources, deploys models, and maintains runtime instances. |
+| Model Consumer | The role that uses available capabilities and reviews relevant quota, usage, and monitoring information. |
+
+#### Recommended Operation Order
+
+Confirm the role and goal, check regions and clusters, prepare specs and templates after foundation resources are ready, and then create instances and review usage and monitoring.
+
+#### First-Time User Notes
+
+Confirm that the task involves Role boundaries, resource hierarchy, preparation order, and page entries, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
-1. You have confirmed whether the current account role is operator or End User.
+1. You have confirmed whether the current account role is operator or Model Consumer.
 2. You have confirmed that the target resource is in a local cluster or private resource pool.
 3. Before creating instances, you have confirmed the region, specification, image, storage, and quota.
 
-## Parameter Reference
+## Page Description
+
+This page explains roles, resource hierarchy, and major entries. The image shows the Operator starting point for foundation resources.
+
+![Regions and Zones reference](../operator/resource-pools/regions-zones/images/manual-regions-zones.png)
+
+Focus on the Resource Pools menu, creation entries, and the region-zone hierarchy.
+
+## Main Operations
+
+### Confirm Role Responsibilities
+
+1. The Operator manages resource pools, templates, quotas, and system settings.
+2. The Model Provider manages development resources, images, and model instances.
+3. The Model Consumer uses capabilities within the available scope and reviews relevant state.
+
+### Confirm Resource Preparation Order
+
+1. Create regions and zones before registering clusters.
+2. After clusters are available, maintain accelerators, spec metrics, and resource specs.
+3. Prepare models, frameworks, and inference templates before creating instances.
+
+### Choose the Next Entry
+
+1. Open **"Regions & Zones"** or **"Clusters"** when foundation resources are incomplete.
+2. Open **"Spec Metrics"** and **"Resource Specs"** when specs are incomplete.
+3. Open **"Templates"** after templates and quotas are available.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Role Type | Yes | Selection | End User | Determines whether to read operator-side resource governance or user-side resource usage flows. |
+| Role Type | Yes | Selection | Model Consumer | Determines whether to read operator-side resource governance or user-side resource usage flows. |
 | Resource Scope | No | Text | Example Region / Example Cluster | Locates regions, availability zones, clusters, nodes, and resource pools. |
 | Job Type | No | Selection | Model Instance | Distinguishes model services, Online IDEs, runtime instances, and training jobs. |
 | Quota Object | No | Text | Example Tenant | Identifies the quota, credit, usage, and metering scope. |
-
-## Result Validation
-
-- You can explain the hierarchy of regions, availability zones, clusters, nodes, and resource pools.
-- You can distinguish operator-side resource preparation from end-user resource usage.
-- You know to check quotas, specifications, images, storage, and monitoring first when instance creation fails.
 
 ## Pitfalls
 
 - Do not use user-side invisibility alone as proof of missing resources; check authorization, tenant scope, filters, and resource binding first.
 - Do not paste kubeconfig, registry credentials, storage keys, or internal endpoints into screenshots or tickets.
 - For capacity issues, check quota, specification association, node resources, and job events together.
-- Getting Started is only for understanding entrypoints, role boundaries, and resource relationships. Do not perform real create, delete, disable, unbind, credit adjustment, or resource change actions.
+- Getting Started confirms entry points, role boundaries, and resource relationships. Before creating, deleting, disabling, unbinding, adjusting credits, or changing resources, verify the impact on the corresponding function page and obtain approval.
 - Account, role, key, and permission configuration belongs to Settings. Do not record real accounts, tokens, AK/SK, API keys, tenants, resource IDs, cluster IDs, node IPs, endpoints, or test parameters in On-Prem getting-started content.
 
-## Understanding Checklist
+## Result Validation
 
-- You can clearly explain the hierarchy of regions, availability zones, clusters, nodes, and resource pools.
-- You can distinguish operator resource preparation from End User resource usage.
-- You know to check quotas, specifications, images, storage, and monitoring first when instance creation fails.
-
-## Recommended Reading Path
-
-#### Operators
-
-1. Read this document to confirm role boundaries and resource hierarchy.
-2. Complete [Regions / Availability Zones](../operator/resource-pools/regions-zones/).
-3. Complete [Cluster Management](../operator/resource-pools/clusters/).
-4. Connect image, object storage, block storage, and file storage components.
-5. Configure resource specifications, models, frameworks, inference templates, and VRAM estimation.
-6. Configure tenant quotas and credits.
-7. Use monitoring pages to verify resource pool, node, device, and job status.
-
-#### End Users
-
-1. Read [User Overview](../user/overview/) to confirm the current entrypoint.
-2. Use [Templates](../user/model-deployment/templates/) or [Model Instances](../user/model-deployment/instances/) to create inference services.
-3. Use [Online IDE](../user/dev-resources/online-ide/) or [Runtime Instances](../user/dev-resources/runtime-instances/) to run development, training, or batch processing tasks.
-4. Use [Object Storage](../user/storage/object-storage/) and [Image Services](../user/extensions/images/) to retain data and environments.
-5. View [Resource Quotas](../user/quotas-usage/quotas/) and [Resource Usage](../user/quotas-usage/usage/).
-6. Use monitoring, logs, and events to locate runtime issues.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page entry | Getting Started opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Role boundaries, resource hierarchy, preparation order, and page entries is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### User Side Cannot See a Resource
+#### Target Is Missing from Getting Started
 
 **Symptom:**
 
-When a user creates an instance, selects an image, selects a specification, or views monitoring, the target resource does not appear in the list.
+The page opens, but the expected Role boundaries, resource hierarchy, preparation order, and page entries is missing.
 
 **Possible Causes:**
 
-- The operator has not connected or enabled the corresponding resource in the target region.
-- The resource has been connected, but it has not been bound to the region, availability zone, cluster, or tenant selected by the user.
-- The current account lacks menu, resource, or tenant authorization.
-- User-side filters limit the list scope.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Confirm the region, availability zone, and filters selected by the user.
-2. Ask the operator to check the binding relationships among regions, clusters, specifications, images, storage, and templates.
-3. Check tenant quotas, credits, and account permissions.
-4. If the resource was just adjusted, refresh the page or re-enter the creation flow.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Instance Remains Queued for a Long Time After Creation
+#### The Operation Entry on Getting Started Is Unavailable
 
 **Symptom:**
 
-A model instance, online IDE, or runtime instance does not enter the running state after submission.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- The target specification has insufficient resources.
-- Tenant quota or credit is insufficient.
-- Image pull, storage mount, or cluster scheduling is abnormal.
-- The target cluster is under maintenance, unavailable, or in a monitoring data delay state.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. View the instance status, events, and logs first.
-2. Check resource quotas and usage.
-3. Try a smaller specification or another available region.
-4. Contact the operator to check cluster nodes, specification associations, image services, and storage mounts.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-## Next Steps
+#### A Required Field on Getting Started Has No Options
 
-1. Operators should continue with regions, clusters, specifications, storage, images, templates, quotas, and monitoring pages.
-2. End Users should continue with user overview, deployment templates, runtime instances, object storage, image services, quotas, and usage.
-3. Troubleshooters should keep events, logs, monitoring, quota, image, storage, and cluster status in the same investigation path.
+**Symptom:**
+
+The form opens, but a selection list is empty.
+
+**Possible Causes:**
+
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
+
+**Solution:**
+
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Getting Started Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Getting Started
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Role boundaries, resource hierarchy, preparation order, and page entries.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
 
 ## Notes
 
 - This document is a platform-level getting started guide and does not replace field-level descriptions on each feature page.
 - For operations involving deletion, disablement, offline changes, credit adjustment, or resource unbinding, confirm the impact scope, maintenance window, and rollback plan first.
 - Before taking screenshots, check whether the page exposes internal addresses, credentials, keys, certificates, or a complete kubeconfig.
-- For learning or screenshots only, view entrypoints, fields, status, and navigation without submitting real create, delete, start, stop, disable, unbind, credit adjustment, or resource change actions.
+
 - If the issue is about accounts, roles, permissions, keys, or tenant members, go to Settings. If the issue is about invisible resources, unavailable specifications, or queued instances, go to On-Prem resource, quota, and monitoring pages.
+
+## Next Steps
+
+1. Operators should continue with regions, clusters, specifications, storage, images, templates, quotas, and monitoring pages.
+2. Model Consumers should continue with user overview, deployment templates, runtime instances, object storage, image services, quotas, and usage.
+3. Operators should keep events, logs, monitoring, quota, image, storage, and cluster status in the same investigation path.

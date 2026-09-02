@@ -1,34 +1,33 @@
-# Device Monitoring
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Devices
 
 ## Feature Overview
-
-`Device Monitoring` is used to view accelerator devices such as GPUs/NPUs, VRAM, utilization, temperature, and health status, helping operators perform capacity inspections, locate exceptions, and make resource scheduling judgments.
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Device Monitoring |
-| Page route | `/powerone/monitor/device` |
-| Managed objects | Accelerator devices such as GPU/NPU, VRAM, utilization, temperature, and health status |
-| Typical use | Discover high accelerator load, insufficient VRAM, missing cards, and hardware health issues |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Devices |
+| Page Route | `/powerone/monitor/device` |
+| Managed Object | Configuration, status, and relationships on Devices |
 
 #### Beginner Explanation
 
 Device monitoring is like an accelerator dashboard. It observes GPU/NPU utilization, VRAM, temperature, and health status to determine whether compute cards can continue hosting tasks.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Device Utilization | Current compute utilization of GPU/NPU. |
 | VRAM Usage | Accelerator VRAM occupation ratio. |
 | Temperature | Device operating temperature. |
-| Health Status | Whether the device can be scheduled and run normally. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Accelerator devices such as GPU/NPU, VRAM, utilization, temperature, and health status, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Devices, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,11 +38,15 @@ Device monitoring is like an accelerator dashboard. It observes GPU/NPU utilizat
 
 ## Page Description
 
+Use this page to view and handle Configuration, status, and relationships on Devices.
+
+![Devices](./images/manual-monitoring-devices.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
 Device monitoring is used to view GPU/NPU utilization, VRAM, temperature, and health status. Operators can use it to determine whether accelerators are offline, overheating, out of VRAM, or occupied by a single task for a long time.
 
 The following figure shows the device monitoring page.
-
-![Device Monitoring](./images/devices-list.png)
 
 ## Main Operations
 
@@ -78,7 +81,6 @@ The following figure shows the device monitoring page.
 3. Select cluster, node, device type, device status, or time range filters as provided by the page.
 4. Review accelerator usage, VRAM usage, temperature, health status, bound jobs, and exception information to identify unavailable devices, insufficient VRAM, or hardware exceptions.
 5. If a device is abnormal, continue troubleshooting in Nodes or Jobs monitoring pages, together with cluster statistics, node logs, and scheduling events.
-6. For learning or screenshots only, view statistic cards, charts, filters, and lists without modifying any configuration.
 
 ![View device monitoring](./images/device-monitoring.png)
 
@@ -88,7 +90,7 @@ The following figure shows the device monitoring page.
 - Whether VRAM and utilization are close to limits.
 - Whether temperature, error counts, or health status are abnormal.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -115,66 +117,113 @@ The following figure shows the device monitoring page.
 - High VRAM watermark does not necessarily mean a device fault. Judge together with bound jobs and model specifications.
 - Do not write real device IDs, node names, node IPs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-## Result Validation
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Device status and metrics | The device list shows model, node, utilization, VRAM, temperature, and health status. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Exception mapping | An abnormal device can be mapped to its node and affected jobs. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Trend consistency | VRAM and utilization trends match the job runtime window. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-
-## Configuration Rules and Impact
+### Configuration Rules and Impact
 
 - **VRAM watermark directly affects model startup**: When VRAM is insufficient, instance creation may fail even if total cluster resources look sufficient.
 - **View temperature and health together**: High temperature, missing cards, or driver exceptions can all cause job failures.
 - **Device dimension is suitable for hotspot location**: When cluster watermarks are normal but jobs are slow, use the device dimension to confirm whether a single-card hotspot exists.
 - **Model differences affect schedulability**: The same specification may require a specific GPU/NPU model, driver, or compute capability.
 
+## Result Validation
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page load | Devices charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
+
 ## FAQ
 
-#### Device Data Is Empty
+#### No Data on Devices
 
 **Symptom:**
 
-The node has accelerators, but device monitoring shows no data.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- The node has not installed or enabled the corresponding device collection component.
-- Driver, device plugin, or collection permissions are abnormal.
-- Filters do not cover the target cluster or node.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. Confirm that the target node has accelerators.
-2. Check device plugin, driver, and monitoring collection status.
-3. Reset filters and view again by cluster and node.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Page List Is Empty
+#### Devices Is Not Updating
 
 **Symptom:**
 
-No monitoring records or charts are visible after entering the page.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- Filters limit the result scope.
-- The target region does not yet have related resources or job data.
-- The current account has no view permission for this monitoring object.
-- Monitoring collection data has not been reported.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Click reset to clear filters.
-2. Confirm whether the region in the upper-right corner is correct.
-3. Go to resource pool or job pages to confirm whether objects exist.
-4. Contact the platform administrator to check permissions and collection links.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Devices Differs from Adjacent Pages
 
-1. When VRAM is high, enter job monitoring to locate occupying tasks.
-2. When temperature or health is abnormal, contact operations to handle hardware or drivers.
-3. When model resources are insufficient, review accelerator configuration and specification association.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
@@ -183,3 +232,9 @@ No monitoring records or charts are visible after entering the page.
 - Device health exceptions should be handled according to hardware procedures first.
 - Before device fault judgment, cross-check with node status, job status, scheduling events, device plugins, and node logs.
 - Documentation examples must not include real device IDs, node names, node IPs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data.
+
+## Next Steps
+
+1. When VRAM is high, enter job monitoring to locate occupying tasks.
+2. When temperature or health is abnormal, contact operations to handle hardware or drivers.
+3. When model resources are insufficient, review accelerator configuration and specification association.

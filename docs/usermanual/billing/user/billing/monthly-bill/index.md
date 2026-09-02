@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`Monthly Bill` shows consumption trends and billing summaries for the current account by billing cycle. Select a cycle to review consumption, top-ups, net change, and billing events, then break down cost sources by model, AI Infra, project, or member.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
+| Applicable Role | Model caller |
 | Navigation path | Billing > User Billing > Monthly Bill |
 | Page route | `/billing/my/account/transactions/monthly-summary` |
 | Managed objects | Billing-cycle trends, cycle summaries, billing events, and grouped bills |
-| Typical use | Monthly reconciliation, cost-source review, and verification of top-ups and net changes |
+
+`Monthly Bill` shows consumption trends and billing summaries for the current account by billing cycle. Select a cycle to review consumption, top-ups, net change, and billing events, then break down cost sources by model, AI Infra, project, or member.
+
 
 #### Beginner Explanation
 
@@ -67,25 +67,36 @@ The following screenshot shows Monthly Bill. Amounts and trend values in shared 
 3. Check opening, consumption, top-up, adjustment, and closing amount directions.
 4. If no data is shown, check the billing period and bill-generation status. Redact bill amounts and business information before sharing.
 
+![Monthly Bill - Change the Billing Period and Reconcile a Monthly Bill](./images/monthly-bill-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View a Monthly Bill
 
 1. Go to `Billing > User Billing > Monthly Bill`.
 2. Select the target month in `Billing Cycle`.
-3. Click `Refresh Data` to update statistics for the cycle.
+3. Click **"Refresh Data"** to update statistics for the cycle.
 4. Review `Consumption Trend`, `Current-cycle Consumption`, `Top-ups`, `Net Change`, and `Billing Events`.
-5. For learning or screenshots, view only the cycle statistics and detail list; do not export real billing data.
+5. Before exporting a bill, verify the billing period, data scope, and recipient permission.
+
+![Monthly Bill - View a Monthly Bill](./images/monthly-bill-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Reconcile Consumption by Dimension
 
 1. Go to `Billing > User Billing > Monthly Bill`.
 2. Confirm that `Billing Cycle` matches the month being reconciled.
-3. Select `By Model`, `By AI Infra`, `By Project`, or `By Member` in the detail area.
+3. Select **"By Model"**, `By AI Infra`, `By Project`, or `By Member` in the detail area.
 4. Review the consumption summary and detail list for that dimension.
 5. For a high or abnormal cost source, open `Transactions` and use the same billing cycle.
 6. In external communication, record only sanitized dimension names, time ranges, and symptoms.
 
-## Parameter Reference
+![Monthly Bill - Reconcile Consumption by Dimension](./images/monthly-bill-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -116,10 +127,10 @@ The following screenshot shows Monthly Bill. Amounts and trend values in shared 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page loading | Billing cycle, consumption trend, summary metrics, and detail list are displayed. | Refresh the page or check user-side billing permission. |
-| Cycle switching | Selecting a billing cycle displays its data. | Select the cycle again and click `Refresh Data`. |
+| Cycle switching | Selecting a billing cycle displays its data. | Select the cycle again and click **"Refresh Data"**. |
 | Summary visibility | Consumption, top-ups, net change, and billing events are visible. | Wait for loading to finish and refresh. |
 | Dimension switching | Model, AI Infra, project, and member views can be selected. | Check permission or page loading state. |
-| No unintended high-risk action | No real bill data is exported during learning or screenshot capture. | If triggered, record the time and scope and notify the owner for review. |
+| Bill export controlled | Bills are exported only by authorized users for the confirmed billing period and scope. | If an unintended export occurs, record the time and scope and notify the owner for review. |
 
 ## FAQ
 
@@ -165,15 +176,53 @@ The dimension may have more recent workloads or high-cost calls, training, or de
 
 Record the sanitized dimension name and billing cycle, then review Transactions for the same time range and compare with business usage records when needed.
 
-## Next Steps
 
-1. To trace an individual source, open [Transactions](../transactions/).
-2. To review the current balance, open [Account Overview](../overview/).
-3. To review quota risk, open [Quota Governance](../quota-governance/).
+#### Monthly Bill Does Not Update After Refresh
 
+**Symptom:**
+
+The amount, count, or status in Monthly Bill remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Monthly Bill.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Transactions and Account Overview.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Monthly Bill Information?
+
+**Symptom:**
+
+Monthly Bill results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Billing cycles, consumption amounts, model or resource usage, and accounts may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Current-cycle data can change before the cycle ends and is not the final monthly-settlement result.
 - Sanitize amounts, accounts, order numbers, and transaction numbers when discussing bill differences externally.
 - Monthly Bill is for summary reconciliation; use Transactions to explain an individual source.
-- For learning or screenshots, view only cycle controls, summary cards, and details; do not export real billing data.
+- Before exporting a bill, verify the billing period, data scope, and recipient permission, and redact amounts and details.
+
+## Next Steps
+
+1. To trace an individual source, open [Transactions](../transactions/).
+2. To review the current balance, open [Account Overview](../overview/).
+3. To review quota risk, open [Quota Governance](../quota-governance/).

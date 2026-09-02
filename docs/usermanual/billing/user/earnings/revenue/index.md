@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`Revenue` is used to view Provider revenue overview, revenue account balance, current month estimate, billing cycle analysis, revenue account activity, settlements, and customer revenue details. Provider accounts can use this page to understand revenue trends, verify revenue account activity, and reconcile revenue with monthly settlements and customer details.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Provider Account, Provider Finance Viewer, Revenue Operator |
+| Applicable Role | Model provider |
 | Navigation path | Billing > Earnings > Revenue |
 | Page route | `/billing/provider/revenue` |
 | Managed objects | Revenue overview, revenue account balance, account activity, billing cycle analysis, settlements, and customer revenue |
-| Typical use | View provider revenue, verify revenue account activity, and reconcile revenue with settlements and customer details |
+
+`Revenue` is used to view Provider revenue overview, revenue account balance, current month estimate, billing cycle analysis, revenue account activity, settlements, and customer revenue details. Provider accounts can use this page to understand revenue trends, verify revenue account activity, and reconcile revenue with monthly settlements and customer details.
+
 
 #### Beginner Explanation
 
@@ -38,7 +38,7 @@ Revenue works like a Provider earnings dashboard. Start with revenue account bal
 3. The page has finished loading before you verify revenue, billing cycle, customer, or model data.
 
 ::: warning High-Risk Operation Boundary
-Revenue account balance, activity amount, customer name, billing cycle, and settlement status are sensitive. For learning or screenshots only, view pages, tabs, list fields, and status without exporting real revenue data or recording real customer names, accounts, amounts, transaction numbers, settlement statement numbers, Token, or Key.
+Revenue account balance, activity amount, customer name, billing cycle, and settlement status are sensitive. Before exporting revenue data, verify account permission and recipient scope. Do not record real customer names, accounts, amounts, transaction numbers, settlement statement numbers, Token, or Key.
 :::
 
 ## Page Description
@@ -60,10 +60,6 @@ The following screenshot shows Revenue Overview. Amounts, customers, and revenue
 ## Main Operations
 
 ::: warning Fact Status
-The Provider credentials were rejected by the Demo in this review, so Provider-only operations were not verified in the current Demo. The instructions use the existing Chinese and English manuals and cross-verifiable shared page structure. Recheck buttons, fields, and permissions with a valid Provider account before execution.
-:::
-
-
 
 ### View Earnings
 
@@ -72,6 +68,9 @@ The Provider credentials were rejected by the Demo in this review, so Provider-o
 3. Check total, pending, and settled earnings, trends, and refresh time.
 4. If no data is shown, expand the period and reset filters. Redact amounts and customer information before sharing.
 
+![Revenue - View Earnings](./images/overview-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Revenue Overview
 
@@ -80,7 +79,10 @@ The Provider credentials were rejected by the Demo in this review, so Provider-o
 3. Confirm the current `Billing Cycle` used for analysis.
 4. Review `Daily Revenue`, `Top Customers`, and `Top Models` to understand revenue trends and major sources.
 5. To reconcile settlement results, review the settlement overview on the page or open monthly settlements.
-6. For learning or screenshots only, view summary metrics and desensitized charts without exporting real revenue data or recording customer, amount, or account-sensitive information.
+
+![Revenue - View Revenue Overview](./images/overview-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Revenue Account Activity
 
@@ -89,11 +91,10 @@ The Provider credentials were rejected by the Demo in this review, so Provider-o
 3. Review the revenue account activity list.
 4. Verify activity time, activity type, amount, status, related billing cycle, and description as needed.
 5. To reconcile with settlement results, return to Revenue Overview or open monthly settlements for the corresponding billing cycle.
-6. For learning or screenshots only, view list fields and status without exporting real revenue data or recording customer, amount, or account-sensitive information.
 
 ![Revenue account activity](./images/account-activity-list.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -118,7 +119,7 @@ The Provider credentials were rejected by the Demo in this review, so Provider-o
 - Current month estimate changes with consumption and settlement processing. Do not treat it as final credited amount.
 - Empty Top Customers or Top Models is not always abnormal. Confirm whether the selected billing cycle has real revenue first.
 - Revenue account balance, activity amount, customer name, billing cycle, and settlement status are sensitive. Desensitize screenshots, exports, tickets, and comments.
-- For learning or screenshots only, view pages, tabs, list fields, and status without exporting real revenue data.
+- Before exporting revenue data, verify the billing cycle, account permission, data scope, and recipient.
 
 ## Result Validation
 
@@ -155,15 +156,53 @@ No activity record appears after switching to `Revenue Account Activity`.
 
 Return to Revenue Overview to check settlement history, then open monthly settlements to verify whether the corresponding billing cycle has been settled.
 
-## Next Steps
 
-1. To verify settlement status, go to [Settlements](../settlements/).
-2. To verify revenue by customer, go to [Customers](../customers/).
-3. To troubleshoot revenue account activity, keep only desensitized page paths, billing cycles, and status information.
+#### Revenue Does Not Update After Refresh
 
+**Symptom:**
+
+The amount, count, or status in Revenue remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Revenue.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Revenue Account Activity and Settlements.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Revenue Information?
+
+**Symptom:**
+
+Revenue results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Revenue balances, billing-cycle amounts, customers, models, and settlement statuses may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Revenue Overview is a summary view. Final reconciliation should use revenue account activity, settlements, and customer details together.
 - Revenue account balance, activity amount, customer name, account, billing cycle, transaction number, and settlement statement number are sensitive. Do not share them directly.
 - Desensitize screenshots, exports, tickets, and comments.
 - Do not record real customer names, accounts, amounts, transaction numbers, settlement statement numbers, Token, or Key.
+
+## Next Steps
+
+1. To verify settlement status, go to [Settlements](../settlements/).
+2. To verify revenue by customer, go to [Customers](../customers/).
+3. To troubleshoot revenue account activity, keep only desensitized page paths, billing cycles, and status information.

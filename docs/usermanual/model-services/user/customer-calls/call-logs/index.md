@@ -4,7 +4,7 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers |
+| Applicable Roles | Model Provider |
 | Navigation Path | Model Services > Customer Calls > Call Logs |
 | Page Route | `/modelone/monitoring/monitor/log/model` |
 | Managed Objects | Customer model-call records, results, usage, latency, and failed records |
@@ -47,7 +47,7 @@ The page shows customer model-call records. Query by model name, model ID, type,
 
 Page screenshots:
 
-![Customer Call Logs](./images/call-logs-list.png)
+![Customer Call Logs](./images/call-logs-list-public.png)
 
 Focus on time range, model criteria, customer name, call result, and details.
 
@@ -60,7 +60,7 @@ Focus on time range, model criteria, customer name, call result, and details.
 3. Click **"Search"** and verify call time, customer name, result, usage, and latency.
 4. Click **"Reset"** if the criteria are incorrect. Redact customer and business identifiers before sharing results.
 
-![Query customer call logs](./images/manual-customer-call-logs.png)
+![Query customer call logs](./images/manual-customer-call-logs-public.png)
 
 The image shows customer call-log results. Verify time, customer, model, and call result.
 
@@ -70,7 +70,7 @@ The image shows customer call-log results. Verify time, customer, model, and cal
 2. Click **"Search"** and compare customer, model, time, and latency across failed records.
 3. Open **"Details"** for the target record and retain only a redacted error summary. Do not copy complete requests, responses, or credentials.
 
-![Locate failed call records](./images/manual-failed-call-filter.png)
+![Locate failed call records](./images/manual-failed-call-filter-public.png)
 
 The image shows a failed-status query. Compare customer, model, and time distribution across failed records.
 
@@ -80,18 +80,18 @@ The image shows a failed-status query. Compare customer, model, and time distrib
 | --- | --- | --- | --- | --- |
 | Month | Yes | Month selector | `2026-07` | Controls the statistical month for call logs. |
 | Date Range | Yes | Date range | `2026-07-01 to 2026-07-17` | Controls the query time range for call logs. |
-| Model | No | Input | Enter on page | Filters call logs by model name. |
+| Model | No | Input | `Example Model` | Filters call logs by model name. |
 | Model Type | No | Selector | `Text` | Filters call logs by model capability type. |
 | Call Status | No | Selector | `Success` | Filters logs by call processing result. |
 | Minimum Input Tokens | No | Number input | `0` | Sets the lower input-token boundary for the query. |
 | Maximum Input Tokens | No | Number input | `1000` | Sets the upper input-token boundary for the query. |
-| Call Time | System-generated | Time | Displayed on page | Shows when a single customer call occurred. |
-| Customer Name | System-generated | Text | Displayed on page | Shows the customer that initiated the call. |
-| Usage | System-generated | Text / tag | Displayed on page | Shows input tokens, output tokens, cached input tokens, context size, or free usage information. |
-| Time Consumed | System-generated | Time | Displayed on page | Shows the total time consumed by a single call. |
-| First Token Time | System-generated | Time | Displayed on page | Shows the time before the first token is returned. |
-| Failure Type | System-generated | Text | Displayed on page | Shows the issue category for a failed request. |
-| Error Message | System-generated | Text | Displayed on page | Shows the error summary for a failed request. Redact it before screenshots or external communication. |
+| Call Time | System-generated | Time | `2026-07-17 14:30` | Shows when a single customer call occurred. |
+| Customer Name | System-generated | Text | `Example Customer` | Shows the customer that initiated the call. |
+| Usage | System-generated | Text / tag | `Input 100 / Output 40 Tokens` | Shows input tokens, output tokens, cached input tokens, context size, or free usage information. |
+| Time Consumed | System-generated | Time | `1.2 s` | Shows the total time consumed by a single call. |
+| First Token Time | System-generated | Time | `0.3 s` | Shows the time before the first token is returned. |
+| Failure Type | System-generated | Text | `Authentication` | Shows the issue category for a failed request. |
+| Error Message | System-generated | Text | `Redacted error message` | Shows the error summary for a failed request. Redact it before screenshots or external communication. |
 | Actions | No | Action entry | `Details` | Opens single customer call log details. |
 
 ## Pitfalls
@@ -104,94 +104,99 @@ The image shows a failed-status query. Compare customer, model, and time distrib
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Customer Calls - Call Logs` page opens normally, and `Customer Calls > Call Logs` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Log list loads normally | The list shows columns such as call time, model, customer name, call status, usage, latency, and error message. | Refresh the page or retry after adjusting the month and date range. |
-| Filters are available | After filtering by month, date range, model, model type, or call status, the list refreshes. | Check whether filters are too narrow, and click `Reset` if needed. |
+| Page is accessible | The `Customer Calls - Call Logs` page opens, and `Customer Calls > Call Logs` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
+| Log list loads | The list shows columns such as call time, model, customer name, call status, usage, latency, and error message. | Refresh the page or retry after adjusting the month and date range. |
+| Filter controls can be selected | After filtering by month, date range, model, model type, or call status, the list refreshes. | Check whether filters are too narrow, and click **"Reset"** if needed. |
 | Search / Reset works | `Search` displays matching logs, and `Reset` clears the filters. | Check network status, page API responses, and account permissions. |
 | Log details can be opened | Clicking `Details` opens more information about a single customer call. | Confirm that the record is still within the log retention period. |
 | Field information is consistent | Call status, time consumed, usage, failure type, and error message are consistent with the details page. | Reopen details or expand the time range for cross-checking. |
 
 ## FAQ
 
-#### Customer Log Is Missing
+#### Customer Call Log Is Missing
 
 **Symptom:**
 
-Call Logs shows the condition described by “Customer Log Is Missing.”
+The target record does not appear after a search by customer, model, or time.
 
 **Possible Causes:**
 
-- Time range or filters do not match.
-- Page data is still synchronizing.
+- The filters exclude the target call.
+- The current account cannot view the customer record.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Click **"Reset"** and select the call date.
+2. Filter by customer, Model ID, and status one at a time.
+3. If the record remains missing, ask the administrator to verify Model Provider permissions and provide the redacted call time.
 
-#### No Failed Record Appears
+#### Failed-Status Filter Shows No Record
 
 **Symptom:**
 
-Call Logs shows the condition described by “No Failed Record Appears.”
+The list is empty after you select the failed status.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- The selected range contains no failed request.
+- A model, customer, or date filter excludes failed records.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Keep the failed status and clear other filters.
+2. Expand the date range and search again.
+3. If Overview shows failures but the log remains empty, send the administrator the same filters and a redacted screenshot.
 
 #### One Customer Has Many Failures
 
 **Symptom:**
 
-Call Logs shows the condition described by “One Customer Has Many Failures.”
+One customer has several failed logs in a short period.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- The customer uses an invalid credential, Model ID, or request format.
+- The target model returns repeated upstream errors.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Keep the same customer and time range.
+2. Open several failed records and compare the error type and Model ID.
+3. Send the redacted error to the customer. Contact the Model Provider if the upstream error continues.
 
-#### Call Latency Is Abnormal
+#### Customer Call Latency Increases
 
 **Symptom:**
 
-Call Logs shows the condition described by “Call Latency Is Abnormal.”
+Total latency or first-token latency increases for the same model.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- The customer request has a longer input or higher output limit.
+- The model or provider responds slowly during the selected period.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Compare calls with the same customer, Model ID, and a similar input size.
+2. Review total latency and first-token latency separately.
+3. If latency remains high, send the Model Provider the time range and redacted request IDs.
 
-#### Details Contain Sensitive Data
+#### Customer Log Contains Sensitive Data
 
 **Symptom:**
 
-Call Logs shows the condition described by “Details Contain Sensitive Data.”
+Details shows a customer credential, full Endpoint, input, or response content.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Permission is missing or the record expired.
+- The call itself contains sensitive data.
+- A screenshot or support ticket was not redacted.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Verify permission and record status, and then retry.
+1. Stop copying or sharing the details.
+2. Mask the customer name, Personal Key, request header, request body, response, and full Endpoint.
+3. If a credential was exposed, contact the administrator or security owner immediately and rotate it.
 
 ## Notes
 
@@ -201,6 +206,6 @@ Call Logs shows the condition described by “Details Contain Sensitive Data.”
 
 ## Next Steps
 
-1. Click `Details` to view redacted details for the target customer call.
+1. Click **"Details"** to view redacted details for the target customer call.
 2. Go to `Customer Calls > Call Analytics` to determine whether a batch anomaly exists.
 3. Return to `Customer Calls > Overview` to view trend changes by customer or model.

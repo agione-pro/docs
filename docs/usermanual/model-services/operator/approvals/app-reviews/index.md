@@ -9,14 +9,14 @@ Updated: 2026-08-31
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
+| Applicable Role | Operator Admin |
 | Navigation path | Model Services > Approvals > App Reviews |
 | Page route | `/modelone/audit/app` |
 | Managed objects | App review records, app configuration, visibility scope, and review comments |
 
 #### Beginner Explanation
 
-App Reviews is the checkpoint before an app becomes available to its intended callers. The Operator checks what the app does, which models it uses, where it can be seen, and whether the submitted information is complete before making a decision.
+App Reviews is the checkpoint before an app is shown to its intended Model Consumers. The Operator Admin checks what the app does, which models it uses, where it can be seen, and whether the submitted information is complete before making a decision.
 
 #### Glossary
 
@@ -29,7 +29,7 @@ App Reviews is the checkpoint before an app becomes available to its intended ca
 
 #### Recommended Operation Sequence
 
-1. Locate the target record with the status tabs and available filters.
+1. Locate the target record with the status tabs and the filters shown on the page.
 2. Open **"Details"** to compare the submitted information with the review criteria.
 3. Open **"Review"**, record a clear conclusion, and then verify the resulting status.
 
@@ -48,11 +48,11 @@ App Reviews is the checkpoint before an app becomes available to its intended ca
 
 ## Page Description
 
-This page lists app review records by status and provides filters for the app name and category. The list shows the app name, category, customer affiliation, version, review status, submission time, review time, and available actions.
+This page lists app review records by status and provides filters for the app name and category. The list shows the app name, category, customer affiliation, version, review status, submission time, review time, and the actions shown for the current account.
 
 Page screenshot:
 
-![App review list](./images/app-reviews-list.png)
+![App review list](./images/app-reviews-list-public.png)
 
 The screenshot focuses on the status tabs, search controls, batch entry, result table, and pagination. The screenshot uses a neutral empty result set so that no customer or environment data is exposed.
 
@@ -65,7 +65,7 @@ The screenshot focuses on the status tabs, search controls, batch entry, result 
 3. Enter an app name or select a category, then click **"Search"**. Check the app name, category, customer affiliation, version, status, and submission time in the result.
 4. If no result is returned, click **"Reset"** and apply one condition at a time. If duplicate names remain, compare the version and submission time before opening a record.
 
-![Query app reviews](./images/app-reviews-list.png)
+![Query app reviews](./images/app-reviews-list-public.png)
 
 The screenshot highlights the status tabs, app name and category filters, **"Search"**, **"Reset"**, and the result table.
 
@@ -76,13 +76,13 @@ The screenshot highlights the status tabs, app name and category filters, **"Sea
 3. Check the app name, version, category, publication channel, publication method, customer affiliation, application configuration, release channel, and visibility-related information.
 4. Compare the detail values with the list record. For read-only inspection, click **"Cancel"** or close the panel without submitting a review decision.
 
-The screenshot highlights the detail tabs, review information, application configuration, release channel, and the available review actions.
+The screenshot highlights the detail tabs, review information, application configuration, release channel, and the review actions shown on the page.
 
 ### Review an App
 
 1. Locate a record with the appropriate review status and click **"Review"**.
 2. Check the `Review Info`, `Application Test`, and `App Details` tabs. Confirm the app purpose, bound model use, publication channel, category, visibility scope, and usage boundary.
-3. Choose **"Approve"** only when the submitted information is complete and the bound models are available. Choose **"Reject"** when a required condition is not met.
+3. Choose **"Approve"** only when the submitted information is complete and the bound models show the expected status. Choose **"Reject"** when a required condition is not met.
 4. Before the final confirmation, verify the target app, version, review comment, and impact scope. When rejecting, write the missing or incorrect item in the review comment.
 5. After submission, return to the list and confirm that the record has moved to the expected status tab.
 
@@ -115,8 +115,8 @@ The screenshot highlights the batch entry and the result table used to select re
 ## Pitfalls
 
 - Searching only by app name can return multiple versions; compare the version and submission time before reviewing.
-- An app can be approved while still being unavailable if its publication channel or visibility scope is incomplete; check both before the decision.
-- A bound model that is unavailable, restricted, or rate-limited changes the app's review risk and should be called out in the review comment.
+- An app can be approved while its publication channel or visibility scope is incomplete; check both before the decision.
+- A bound model with a restricted or rate-limited status changes the app's review risk and should be called out in the review comment.
 - Do not put customer privacy, real business data, complete request headers, or real credentials in the app description or review comment.
 - Batch review can apply one conclusion to several records; verify the selected count and versions before submitting.
 
@@ -205,7 +205,7 @@ The app is approved, but the intended customer cannot find it.
 2. Compare the customer's tenant with the visibility scope.
 3. Refresh the publication state and validate again after synchronization.
 
-#### The Caller Cannot Use the App After Approval
+#### The Model Consumer Cannot Use the App After Approval
 
 **Symptom:**
 
@@ -250,5 +250,5 @@ Some selected records remain pending after batch review.
 ## Next Steps
 
 1. Check the app publication page and confirm the approved version and visibility scope.
-2. Ask the model calling party to verify that the app entry and bound model are available.
+2. Ask the Model Consumer to verify that the app entry and bound model are shown as expected.
 3. Review call logs and customer feedback after publication.

@@ -7,15 +7,15 @@ Updated: 2026-07-10
 
 ## Feature Overview
 
-`Reconciliation Center` is used to inspect billing-operation exceptions, including bilateral ledger checks, compensation queues, revenue detail rebuilds, unmatched transfers, and missing revenue details. Operators select a billing cycle, refresh inspection results, and then continue verification in Financial Accounts, Settlement List, or Account Adjustment when exceptions appear.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Finance Operations > Reconciliation Center |
 | Page route | `/billing/admin/reconciliation` |
 | Managed objects | Bilateral ledger check, compensation queue, revenue detail rebuild, unmatched transfer, and missing revenue detail |
-| Typical use | Find billing exceptions, locate ledger differences, inspect compensation tasks, and rebuild missing revenue details |
+
+`Reconciliation Center` is used to inspect billing-operation exceptions, including bilateral ledger checks, compensation queues, revenue detail rebuilds, unmatched transfers, and missing revenue details. Operators select a billing cycle, refresh inspection results, and then continue verification in Financial Accounts, Settlement List, or Account Adjustment when exceptions appear.
+
 
 #### Beginner Explanation
 
@@ -72,27 +72,36 @@ The page includes billing-cycle selection, refresh, inspection entries, and exce
 | Unmatched Transfer | Shows transfer records without a matched counterpart. |
 | Missing Revenue Detail | Shows records missing revenue details. |
 
+Page screenshot:
+
+![Reconciliation Center](./images/manual-billing-reconciliation-center-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ## Main Operations
 
-Use the following operations to view reconciliation results and exception areas. For learning or screenshots, only view results and counts. Do not perform retry, compensation, adjustment, confirmation, or real rebuild submission.
+Use the following operations to view reconciliation results and exception areas. Before retry, compensation, adjustment, confirmation, or rebuild, verify the exception scope, operation permission, and downstream impact.
 
 ### View Reconciliation Results
 
 1. Go to `Billing > Finance Operations > Reconciliation Center`.
 2. Select the target `Billing Cycle`.
-3. Click `Refresh`.
+3. Click **"Refresh"**.
 4. Review result update time or exception count changes.
 5. Check unmatched transfers, missing revenue details, and compensation queue status.
 6. Continue in Financial Accounts, Settlement List, or Account Adjustment according to the exception type.
+
+![Reconciliation Center - View Reconciliation Results](./images/manual-billing-reconciliation-center-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Bilateral Ledger Check
 
 1. Go to `Billing > Finance Operations > Reconciliation Center`.
 2. Select the target `Billing Cycle`.
-3. Click `Refresh` and wait for reconciliation results to update.
+3. Click **"Refresh"** and wait for reconciliation results to update.
 4. Review the `Bilateral Ledger Check` area, especially unmatched transfers, fund direction, transaction object, business context, and reference information.
 5. If unmatched records or amount differences exist, continue verification in Financial Accounts, Settlement List, or transactions.
-6. For learning or screenshots only, view check results and exception counts without performing compensation, adjustment, or confirmation actions.
 
 ![Bilateral ledger check](./images/bilateral-ledger-check-list.png)
 
@@ -100,10 +109,9 @@ Use the following operations to view reconciliation results and exception areas.
 
 1. Go to `Billing > Finance Operations > Reconciliation Center`.
 2. Select the target `Billing Cycle`.
-3. Click `Refresh` and confirm that compensation queue status has updated.
+3. Click **"Refresh"** and confirm that compensation queue status has updated.
 4. Review the `Compensation Queue` area, especially task status, failure reason, retry count, related transaction, related settlement statement, and processing time.
 5. If pending, retrying, or failed items exist, first confirm whether unmatched transfers or missing revenue details exist in the same billing cycle.
-6. For learning or screenshots only, view queue status and failure reason without performing retry, compensation, adjustment, or confirmation actions.
 
 ![Compensation queue](./images/compensation-queue-list.png)
 
@@ -114,11 +122,10 @@ Use the following operations to view reconciliation results and exception areas.
 3. Review the `Revenue Detail Rebuild` area and confirm whether missing revenue details exist.
 4. Verify tenant, billing cycle, business source, related transaction, and exception reason for missing records.
 5. If rebuild is required, first confirm that Monthly Overview, Settlement List, and Financial Account transactions use a consistent scope.
-6. For learning or screenshots only, view rebuild entry, missing records, and check results without submitting a real rebuild task.
 
 ![Revenue detail rebuild](./images/revenue-detail-rebuild-list.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -199,6 +206,14 @@ Use the following operations to view reconciliation results and exception areas.
 
 **Resolution:** Wait for completion and refresh again. Check the billing period, tenant, and business records. Continue in Settlement List, Financial Accounts, and Account Adjustment if the list cannot be cleared.
 
+## Notes
+
+- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
+- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
+- Reconciliation results are investigation entries, not final financial conclusions.
+- Rebuild or compensation must be preceded by billing-cycle and impact-scope confirmation.
+- Do not record real account IDs, tenant names, customer names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.
+
 ## Next Steps
 
 | Exception Type | Next Page | Goal |
@@ -207,11 +222,3 @@ Use the following operations to view reconciliation results and exception areas.
 | Settlement amount difference | [Settlement List](../settlement-list/) | Check settlement status and amount. |
 | Manual correction required | [Account Adjustment](../account-adjustment/) | Submit or process an approved adjustment. |
 | Billing-period summary exception | [Monthly Overview](../monthly-overview/) | Check the billing-period summary and statistical definition. |
-
-## Notes
-
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Reconciliation results are investigation entries, not final financial conclusions.
-- Rebuild or compensation must be preceded by billing-cycle and impact-scope confirmation.
-- Do not record real account IDs, tenant names, customer names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.

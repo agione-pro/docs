@@ -1,4 +1,4 @@
-# Customer Top-up Orders
+# Top-up Orders
 
 ::: info Document Information
 Version: v1.0
@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-`Customer Top-up Orders` is used to view the customer top-up order list, top-up amount, credited credits, payment channel, order status, created time, completed time, and details entry. Operators use this page to verify customer balance changes and troubleshoot top-up issues.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Customer Billing > Customer Top-up Orders |
 | Page route | `/billing/customers/top-ups/orders` |
 | Managed objects | Customer top-up orders, payment channel, credited credits, order status, and customer balance changes |
-| Typical use | Search top-up orders, verify credited amount, track order status, and troubleshoot customer balance issues |
+
+`Customer Top-up Orders` is used to view the customer top-up order list, top-up amount, credited credits, payment channel, order status, created time, completed time, and details entry. Operators use this page to verify customer balance changes and troubleshoot top-up issues.
+
 
 #### Beginner Explanation
 
@@ -70,6 +70,12 @@ All columns remain part of the order table. Depending on the UI language and ava
 
 The list screenshot is placed under the main operation steps. Screenshot data is masked to avoid exposing customer or order information.
 
+Page screenshot:
+
+![Customer Top-up Orders](./images/manual-billing-customer-top-up-orders-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ## Main Operations
 
 ### View Customer Top-up Orders
@@ -79,30 +85,36 @@ The list screenshot is placed under the main operation steps. Screenshot data is
 3. Check creation time, customer, amount direction, status, and completion time.
 4. If no record is returned, check the time zone and reset filters. Redact order and customer information before screenshots or exports.
 
+![Customer Top-up Orders - View Customer Top-up Orders](./images/manual-billing-customer-top-up-orders-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ### Reconcile a Top-up Order with Account Posting
 
 1. Open the target order details and record a redacted order number, status, and posting time.
 2. Compare the customer account or transactions and locate the corresponding posting and amount direction.
 3. The order status and account transaction should be mutually traceable. If not, check payment status and refresh time.
-4. Do not create another top-up, supplemental order, or adjustment to test an anomaly. Escalate to authorized personnel.
-
+4. If records are inconsistent, do not create another top-up, supplemental order, or adjustment. Escalate the case to authorized personnel.
 
 Use the following operation to review customer top-up orders and verify balance changes. Complete view-only checks before any export, refund, correction, or manual adjustment.
 
-### View Customer Top-up Orders
+![Customer Top-up Orders - Reconcile a Top-up Order with Account Posting](./images/manual-billing-customer-top-up-orders-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+### View Customer Top-up Order Details
 
 1. Go to `Billing > Customer Billing > Customer Top-up Orders`.
 2. Enter filters such as `Top-up Order No.`, tenant, administrator, email, phone, Tenant ID, order status, top-up source, or date range as needed.
-3. Click `Search` and review the customer top-up order list.
+3. Click **"Search"** and review the customer top-up order list.
 4. Verify the order number, customer, order scope, top-up source, payment amount, credits added, status, completed time, and created time. Scroll the table horizontally when the timestamp columns are outside the initial viewport.
 5. For an externally created order, compare the source, external reference information, and channel text.
-6. To verify a single top-up order, click `Details` for the target order.
+6. To verify a single top-up order, click **"Details"** for the target order.
 7. Compare with Customer Overview, Financial Accounts, or payment transactions to confirm that customer balance and top-up order status are consistent.
-8. For learning or screenshots only, view filters and list fields without exporting real orders or recording sensitive information.
 
 ![Customer Top-up Orders](./images/top-up-orders-list.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -129,7 +141,7 @@ Use the following operation to review customer top-up orders and verify balance 
 - Top-up orders include customer identity, order number, amount, payment channel, and credited information. Desensitize screenshots and tickets.
 - Do not mix top-up order numbers with payment transaction numbers. They are different objects.
 - Long channel values can occupy more than one line. Do not infer a different order from text wrapping alone.
-- For learning or screenshots only, view filters, list fields, and details entries without exporting real order data.
+- Before exporting top-up order data, verify the data scope and recipient permission, and redact customer identity, order numbers, and amounts.
 
 ## Result Validation
 
@@ -193,15 +205,53 @@ The customer balance does not change after the order shows Succeeded.
 2. Open `Finance Operations > Financial Accounts` and check the posted transaction.
 3. Check the business unit status and contact the platform administrator if necessary.
 
-## Next Steps
 
-- Open [Customer Overview](../customer-overview/) to check the customer balance and top-up posting.
-- Open `Finance Operations > Financial Accounts` to handle related fund transactions.
+#### Customer Top-up Orders Does Not Update After Refresh
 
+**Symptom:**
+
+The amount, count, or status in Customer Top-up Orders remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Customer Top-up Orders.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Customer Overview and Financial Accounts.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Customer Top-up Orders Information?
+
+**Symptom:**
+
+Customer Top-up Orders results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Customer names, order numbers, amounts, payment channels, and transaction numbers may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Keep credentials, private operational details, and sensitive customer data out of the manual.
 - Do not record real customer names, customer IDs, phone numbers, emails, top-up order numbers, payment transaction numbers, amounts, payment vouchers, accounts, Token, or Key.
-- For learning or screenshots only, view filters, list fields, and details entries without exporting real order data.
+- Before exporting top-up order data, verify the data scope and recipient permission, and redact customer identity, order numbers, and amounts.
+
+## Next Steps
+
+- Open [Customer Overview](../customer-overview/) to check the customer balance and top-up posting.
+- Open `Finance Operations > Financial Accounts` to handle related fund transactions.

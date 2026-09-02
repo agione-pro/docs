@@ -9,14 +9,14 @@ Updated: 2026-08-31
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
+| Applicable Role | Operator Admin |
 | Navigation path | Model Services > Approvals > Model Reviews |
 | Page route | `/modelone/audit/model` |
 | Managed objects | Model review records, model source configuration, model parameters, visibility scope, and review comments |
 
 #### Beginner Explanation
 
-Model Reviews is the checkpoint before a model becomes available for discovery or calling. The Operator checks the model source, capability settings, usage boundary, billing and rate-limit settings, and visibility scope before making a decision.
+Model Reviews is the checkpoint before a model is listed for discovery or calling. The Operator Admin checks the model source, capability settings, usage boundary, billing and rate-limit settings, and visibility scope before making a decision.
 
 #### Glossary
 
@@ -49,11 +49,11 @@ Model Reviews is the checkpoint before a model becomes available for discovery o
 
 ## Page Description
 
-This page lists model review records by review status and model visibility. The filters include customer, model name, and model type; the list shows the model name, visibility, type, customer, version, free quota, status, submission time, review time, and available actions.
+This page lists model review records by review status and model visibility. The filters include customer, model name, and model type; the list shows the model name, visibility, type, customer, version, free quota, status, submission time, review time, and the actions shown for the current account.
 
 Page screenshot:
 
-![Model review list](./images/model-reviews-list.png)
+![Model review list](./images/model-reviews-list-public.png)
 
 The screenshot focuses on the status tabs, visibility controls, search filters, batch entry, result table, and pagination. The screenshot uses a neutral empty result set so that no customer or environment data is exposed.
 
@@ -66,7 +66,7 @@ The screenshot focuses on the status tabs, visibility controls, search filters, 
 3. Select a customer when needed, enter a model name or choose a model type, and click **"Search"**.
 4. Check the model name, visibility, model type, customer, version, free quota, status, submission time, and review time. If no result is returned, click **"Reset"** and apply one condition at a time.
 
-![Query model reviews](./images/model-reviews-list.png)
+![Query model reviews](./images/model-reviews-list-public.png)
 
 The screenshot highlights the review status, model visibility, customer, model name, model type, **"Search"**, and **"Reset"** controls.
 
@@ -77,7 +77,7 @@ The screenshot highlights the review status, model visibility, customer, model n
 3. Expand `Model Parameter Configuration` and review input/output modalities, Token limits, advanced capability settings, protocol information, and usage boundaries.
 4. Compare the detail version with the list version. For read-only inspection, close the panel without submitting a review decision.
 
-![Model review details](./images/model-details.png)
+![Model review details](./images/model-details-public.png)
 
 The screenshot highlights the model profile and `Model Parameter Configuration` section used during detail inspection.
 
@@ -89,7 +89,7 @@ The screenshot highlights the model profile and `Model Parameter Configuration` 
 4. Before the final confirmation, verify the target model, version, review comment, and impact scope. When rejecting, write the missing or incorrect item in the review comment.
 5. After submission, return to the list and confirm that the record has moved to the expected status tab.
 
-![Review a model](./images/model-review.png)
+![Review a model](./images/model-review-public.png)
 
 The screenshot highlights the final **"Reject"** and **"Approve"** actions at the bottom of the review panel. Use the visible page state as the source of truth for the final confirmation wording.
 
@@ -101,7 +101,7 @@ The screenshot highlights the final **"Reject"** and **"Approve"** actions at th
 4. Select the conclusion shown by the page, confirm the impact scope, and submit only after the selected records are correct.
 5. Refresh the list and verify every selected record in its corresponding status tab. If any record remains pending, review that record individually.
 
-![Batch review models](./images/model-batch-review.png)
+![Batch review models](./images/model-batch-review-public.png)
 
 The screenshot highlights the batch entry and the result table used to select records. Do not include customer-sensitive data when sharing a batch-review screenshot.
 
@@ -178,7 +178,7 @@ The detail panel does not show the expected source or parameter information.
 
 1. Close the panel and reopen it from the refreshed list.
 2. Expand `Model Parameter Configuration` and check each visible section.
-3. Ask the model provider to supplement the missing source, protocol, or capability information.
+3. Ask the Model Provider to supplement the missing source, protocol, or capability information.
 
 #### Review Materials Are Insufficient
 
@@ -188,7 +188,7 @@ The review record lacks source authorization, protocol information, test evidenc
 
 **Possible Causes:**
 
-- The model provider submitted only basic identification fields.
+- The Model Provider submitted only basic identification fields.
 - The source authorization scope is unclear.
 - Connectivity or representative-call validation was not completed.
 
@@ -202,37 +202,37 @@ The review record lacks source authorization, protocol information, test evidenc
 
 **Symptom:**
 
-The model is approved, but the intended caller cannot find it in the model marketplace.
+The model is approved, but the intended Model Consumer cannot find it in the model marketplace.
 
 **Possible Causes:**
 
 - Publication has not completed.
-- The visibility scope or release channel excludes the caller.
+- The visibility scope or release channel excludes the Model Consumer.
 - Publication synchronization is delayed.
 
 **Handling:**
 
 1. Check the model publication status and release channel.
-2. Compare the caller's tenant with the model visibility scope.
+2. Compare the Model Consumer's tenant with the model visibility scope.
 3. Refresh the publication state and validate again after synchronization.
 
 #### The Model Cannot Be Called After Approval
 
 **Symptom:**
 
-The model is approved and visible, but the model calling party receives a call failure.
+The model is approved and visible, but the Model Consumer receives a call failure.
 
 **Possible Causes:**
 
 - The model source is unavailable or the protocol path is inconsistent.
 - Billing or rate-limit configuration is incomplete.
-- The caller lacks the required visibility or call permission.
+- The Model Consumer lacks the required visibility or call permission.
 
 **Handling:**
 
 1. Check the model source status and protocol configuration.
 2. Check billing mode, free quota, and rate-limit configuration.
-3. Review call logs and caller permissions to separate access errors from source errors.
+3. Review call logs and Model Consumer permissions to separate access errors from source errors.
 
 #### Batch Review Does Not Process Every Selected Model
 
@@ -261,5 +261,5 @@ Some selected records remain pending after batch review.
 ## Next Steps
 
 1. Check the model publication page and confirm the approved version and visibility scope.
-2. Validate that the model calling party can discover the model and use the expected protocol.
+2. Validate that the Model Consumer can discover the model and use the expected protocol.
 3. Track call logs, billing results, and user feedback after publication.

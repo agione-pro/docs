@@ -4,14 +4,14 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers |
+| Applicable Roles | Model Provider |
 | Navigation Path | Model Services > Customer Calls > Overview |
 | Page Route | `/modelone/monitoring/monitor/overview/model` |
 | Managed Objects | Model- and customer-dimension call indicators, trends, rankings, and details entry |
 
 #### Beginner Explanation
 
-Customer Calls Overview works like an operations dashboard for Model Providers. Model Analytics answers which models are called, while Customer Analytics answers which customers are calling them. Use both views to assess impact.
+Customer Calls Overview works like an operations dashboard for a Model Provider. Model Analytics answers which models are called, while Customer Analytics answers which customers are calling them. Use both views to assess impact.
 
 #### Terminology
 
@@ -39,7 +39,7 @@ Review overall trends and abnormal models in Model Analytics, switch to Customer
 
 1. The current account has access to the `Overview` page.
 2. The statistical month, date range, and dimension to view have been clarified.
-3. Customer names, model names, call volume, and cost-related fields are displayed according to permissions.
+3. The page shows only the customer names, model names, call volume, and cost-related fields that your account can access.
 
 ## Page Description
 
@@ -47,11 +47,11 @@ The page contains Model Analytics and Customer Analytics, with aggregate indicat
 
 Page screenshots:
 
-![Customer calls by model](./images/overview-model-analytics-list.png)
+![Customer calls by model](./images/overview-model-analytics-list-public.png)
 
 Use Model Analytics to review totals, success, failure, rate limits, and rankings.
 
-![Customer calls by customer](./images/overview-customer-analytics-list.png)
+![Customer calls by customer](./images/overview-customer-analytics-list-public.png)
 
 Use Customer Analytics to review customer call trends and rankings.
 
@@ -64,7 +64,7 @@ Use Customer Analytics to review customer call trends and rankings.
 3. Verify total, successful, failed, and rate-limited calls, trends, and model rankings.
 4. Open details for an abnormal model to continue investigation.
 
-![View model call overview](./images/manual-model-analytics.png)
+![View model call overview](./images/manual-model-analytics-public.png)
 
 The image shows Model Analytics. Verify the time range, aggregate indicators, trends, and model list.
 
@@ -75,7 +75,7 @@ The image shows Model Analytics. Verify the time range, aggregate indicators, tr
 3. Verify customer count, call trends, consumption statistics, and customer rankings.
 4. Open details for an abnormal customer to continue investigation.
 
-![View customer call overview](./images/manual-customer-analytics.png)
+![View customer call overview](./images/manual-customer-analytics-public.png)
 
 The image shows Customer Analytics. Verify customer scope, trends, and rankings.
 
@@ -88,12 +88,12 @@ The image shows Customer Analytics. Verify customer scope, trends, and rankings.
 | Analytics Tab | Yes | Tab | `Customer Analytics` / `Model Analytics` | Switches between customer aggregation and model aggregation. |
 | Customer | No | Selector | `All` or target customer | Filters statistics by customer on Customer Analytics. |
 | Model | No | Selector | `All` or target model | Filters statistics by model on Model Analytics. |
-| Customers | System-generated | Number | Displayed on page | Number of customers that generated calls in the selected range. |
-| Total Calls | System-generated | Number | Displayed on page | Total number of calls in the selected range. |
-| Successful Calls | System-generated | Number | Displayed on page | Number of successful calls in the selected range. |
-| Failed Calls | System-generated | Number | Displayed on page | Number of failed calls in the selected range. |
-| Rate Limit Triggers | System-generated | Number | Displayed on page | Number of calls that hit model rate limits in the selected range. |
-| Token Usage | System-generated | Number | Displayed on page | Shows total consumed tokens, input tokens, output tokens, average tokens per minute, and peaks. |
+| Customers | System-generated | Number | `3` | Number of customers that generated calls in the selected range. |
+| Total Calls | System-generated | Number | `42` | Total number of calls in the selected range. |
+| Successful Calls | System-generated | Number | `40` | Number of successful calls in the selected range. |
+| Failed Calls | System-generated | Number | `2` | Number of failed calls in the selected range. |
+| Rate Limit Triggers | System-generated | Number | `1` | Number of calls that hit model rate limits in the selected range. |
+| Token Usage | System-generated | Number | `1,280 Tokens` | Shows total consumed tokens, input tokens, output tokens, average tokens per minute, and peaks. |
 | Actions | No | Action entry | `View Details` | Opens customer-level or model-level details. |
 
 ## Pitfalls
@@ -106,94 +106,99 @@ The image shows Customer Analytics. Verify customer scope, trends, and rankings.
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Customer Calls - Overview` page opens normally, and `Customer Calls > Overview` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Customer analytics data displays normally | The `Customer Analytics` tab shows customers, call trend, consumption statistics, and Top 5 Customers by Call Volume. | Adjust the date range or customer filter and retry. |
-| Model analytics data displays normally | The `Model Analytics` tab shows model-level trends, consumption statistics, and Top 5 Models by Calls. | Adjust the date range or model filter and retry. |
-| Filters are available | After switching month, date range, customer, or model, charts and TOP tables change accordingly. | Check whether filters are too narrow, and switch back to `All` if needed. |
-| Detail entry is available | Clicking `View Details` opens the corresponding customer or model details. | Confirm data permissions and whether the statistical object still exists. |
+| Page is accessible | The `Customer Calls - Overview` page opens, and `Customer Calls > Overview` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
+| Customer analytics data displays | The `Customer Analytics` tab shows customers, call trend, consumption statistics, and Top 5 Customers by Call Volume. | Adjust the date range or customer filter and retry. |
+| Model analytics data displays | The `Model Analytics` tab shows model-level trends, consumption statistics, and Top 5 Models by Calls. | Adjust the date range or model filter and retry. |
+| Filter controls can be selected | After switching month, date range, customer, or model, charts and TOP tables change accordingly. | Check whether filters are too narrow, and switch back to `All` if needed. |
+| Detail entry opens | Clicking `View Details` opens the corresponding customer or model details. | Confirm data permissions and whether the statistical object still exists. |
 | Statistics are consistent | Call trends, consumption statistics, and TOP tables match the selected filters. | Refresh the page or expand the time range for cross-checking. |
 
 ## FAQ
 
-#### Customer Call Data Is Empty
+#### Customer Calls Overview Shows No Data
 
 **Symptom:**
 
-Overview shows the condition described by “Customer Call Data Is Empty.”
+Customer count, call totals, trend charts, and rankings all show an empty state.
 
 **Possible Causes:**
 
-- Time range or filters do not match.
-- Page data is still synchronizing.
+- The selected time range contains no customer call.
+- A customer, model, or other filter excludes the target record.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Click **"Reset"** to clear the filters.
+2. Select a date range that contains a known customer call and search again.
+3. Search **"Customer Calls > Call Logs"** with the same range. Contact the administrator if the log exists but Overview remains empty.
 
-#### Model and Customer Views Differ
+#### Model and Customer Totals Differ
 
 **Symptom:**
 
-Overview shows the condition described by “Model and Customer Views Differ.”
+Model Analytics and Customer Analytics show different totals.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- The tabs use different filters.
+- One customer calls several models, or several customers call one model.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Use the same date range and filters on both tabs.
+2. Review customer and model details separately. Do not compare row counts directly.
+3. If the totals still differ, send the filters and a redacted screenshot to the administrator.
 
-#### Failures Increase
+#### Customer Failure Count Increases
 
 **Symptom:**
 
-Overview shows the condition described by “Failures Increase.”
+Failed customer calls increase in the target time range.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- One or more customers send invalid requests repeatedly.
+- The target model or upstream service returns an error.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Open Customer Analytics and locate the affected customer.
+2. Open **"Call Logs"** and review failed statuses and errors.
+3. If the same error continues, contact the affected customer and Model Provider.
 
-#### Rate Limits Increase
+#### Customer Rate-Limit Count Increases
 
 **Symptom:**
 
-Overview shows the condition described by “Rate Limits Increase.”
+The rate-limit trigger count is greater than zero or continues to increase.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Page data is still synchronizing.
+- Customer request frequency or concurrency exceeds the limit.
+- Many requests occur in the same period.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Cross-check details or logs.
+1. Identify the customer and model that trigger the limit.
+2. Use **"Call Logs"** to review the request times.
+3. Reduce traffic and check again. Contact the administrator if rate limiting continues.
 
-#### Details Do Not Open
+#### Customer or Model Details Does Not Open
 
 **Symptom:**
 
-Overview shows the condition described by “Details Do Not Open.”
+Nothing opens after you click **"View Details"** for a customer or model.
 
 **Possible Causes:**
 
-- customer call data or status changed.
-- Permission is missing or the record expired.
+- The current account lacks customer-call detail permission.
+- The target record is outside the current filters.
 
 **Resolution:**
 
-1. Reset filters and align the time range.
-2. Verify permission and record status, and then retry.
+1. Clear the filters and locate the row again.
+2. Refresh the page and click **"View Details"** again.
+3. If it still does not open, ask the administrator to verify Model Provider permissions and provide the page route.
 
 ## Notes
 

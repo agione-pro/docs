@@ -4,10 +4,10 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
+| Applicable Role | Operator Admin |
 | Navigation Path | Model Services > Settings > Tags |
 | Page Route | `/modelone/settings/tags` |
-| Managed Objects | Tag categories, child tags, display hierarchy, and availability status |
+| Managed Objects | Tag categories, child tags, display hierarchy, and status |
 
 #### Beginner Explanation
 
@@ -20,7 +20,7 @@ Tags work like shelf labels in the model marketplace. They tell users which capa
 | Tag | User-visible classification for model capability, scenario, or industry |
 | Tag category | Top-level node in the tag tree that organizes related child tags |
 | Child tag | Specific tag under a category, used for model filtering and display |
-| Availability status | Controls whether the tag can continue to be bound and filtered |
+| Tag status | Status shown for the tag in binding and filter controls |
 | Binding relationship | Reference relationship between a tag and a model, app, or display entry |
 
 #### Recommended Operation Sequence
@@ -39,7 +39,7 @@ When organizing tags for the first time, add tag categories first, then add chil
 ## Prerequisites
 
 1. The current account has `Tags` configuration permission.
-2. Tag categories, child tag naming rules, display hierarchy, and availability policy have been confirmed.
+2. Tag categories, child tag naming rules, display hierarchy, and status policy have been confirmed.
 3. Before adding a tag, check whether synonymous, duplicate, or overly narrow tags already exist.
 4. Before editing, disabling, or deleting a tag, assess the impact on model bindings, marketplace filters, and listed model display.
 
@@ -49,7 +49,7 @@ This page maintains the tag tree for Model Services, including tag categories, c
 
 Page screenshot:
 
-![Tag list](./images/tags-list.png)
+![Tag list](./images/tags-list-public.png)
 
 The top area contains status and name filters. The `Actions` column shows the edit, add, disable, and delete entries. Indentation on the left indicates tag hierarchy, and parent categories can be expanded to display child tags.
 
@@ -68,7 +68,7 @@ The operations below follow a beginner-friendly order: create tag categories fir
 5. Fill in `Notes` as needed to describe the capability scope or usage boundary.
 6. Click **"Confirm"** to save. After saving, return to the list and confirm that the new category appears in `Category name`.
 
-![Add a Tag Category](./images/add-tag.png)
+![Add a Tag Category](./images/add-tag-public.png)
 
 The screenshot shows the `Add Tag` dialog. Focus on `Code`, multilingual `Name`, and `Notes`, because these fields affect list display and later marketplace filtering.
 
@@ -81,7 +81,7 @@ The screenshot shows the `Add Tag` dialog. Focus on `Code`, multilingual `Name`,
 5. Use `Notes` to describe the model capability or scenario that should use this child tag.
 6. Click **"Confirm"** to save. After saving, expand the parent category and confirm that the child tag appears under the correct hierarchy.
 
-![Add a Child Tag](./images/add-child-tag.png)
+![Add a Child Tag](./images/add-child-tag-public.png)
 
 The screenshot shows the `Add Tag` dialog opened from a parent category row. `Parent` is filled automatically; before saving, check the parent, code, and multilingual names.
 
@@ -91,10 +91,10 @@ The screenshot shows the `Add Tag` dialog opened from a parent category row. `Pa
 2. Select `All`, `Available`, or `Unavailable` in the status switcher.
 3. Enter a tag name or keyword in the `Name` field.
 4. Click **"Search"** to query results. Click **"Reset"** when you need to clear conditions and start again.
-5. Expand the target category and check tag name, creation time, status, hierarchy, and available actions.
+5. Expand the target category and check tag name, creation time, status, hierarchy, and the actions shown for the current account.
 6. If the target tag is missing, switch back to `All`, clear the name condition, and confirm whether the English and Chinese names are consistent.
 
-![Query Tags](./images/tags-list.png)
+![Query Tags](./images/tags-list-public.png)
 
 The screenshot shows the status switcher, name filter, and tag list. Confirm the status condition first, then check the hierarchy of the target tag.
 
@@ -106,7 +106,7 @@ The screenshot shows the status switcher, name filter, and tag list. Confirm the
 4. Change only the name or notes that need to be updated, and confirm that the new name will not conflict with sibling tags.
 5. Click **"Confirm"** to save. After saving, refresh or query the target tag again and confirm that the list name and status remain correct.
 
-![Edit a Tag](./images/edit-tag.png)
+![Edit a Tag](./images/edit-tag-public.png)
 
 The screenshot shows the `Edit Tag` dialog. The parent and existing values are populated automatically; confirm that the correct child tag is open, then check the code and multilingual names.
 
@@ -119,7 +119,7 @@ The screenshot shows the `Edit Tag` dialog. The parent and existing values are p
 5. After the operation succeeds, switch to `Available` or `Unavailable` and confirm that the target tag appears in the expected list.
 6. If the status does not change, check account permission, binding relationships, filter conditions, and page refresh state. Avoid repeated clicks.
 
-![Enable or Disable a Tag](./images/tags-list.png)
+![Enable or Disable a Tag](./images/tags-list-public.png)
 
 The screenshot shows the **"Disable"** entry in the tag list. After changing status, use the status switcher to confirm that the tag moved to the expected state.
 
@@ -132,7 +132,7 @@ The screenshot shows the **"Disable"** entry in the tag list. After changing sta
 5. After confirming deletion, refresh the list and query with `All` status and the name condition to confirm that the target tag no longer appears.
 6. If the delete button is grayed out or deletion fails, follow the page prompt and check child tags, binding relationships, account permission, and current status.
 
-![Delete a Tag](./images/delete-tag.png)
+![Delete a Tag](./images/delete-tag-public.png)
 
 The screenshot shows the delete confirmation for a child tag. Before clicking **"OK"**, check the tag name in the prompt; after deletion, the tag is removed from its parent category.
 
@@ -145,14 +145,14 @@ The screenshot shows the delete confirmation for a child tag. Before clicking **
 | Name | Yes | Text | `Text Generation` | Name maintained under the current language tab |
 | Notes | No | Text | `For text generation models` | Describes tag purpose, scope, or operational boundary |
 | Parent Category | Depends on operation | Tag hierarchy | `Language & Text` | Confirms the parent when adding a child tag |
-| Status | System-generated / operation changed | Enum | `Available` | Controls whether the tag can continue to be bound and filtered |
+| Status | System-generated / operation changed | Enum | `Available` | Status shown for the tag in binding and filter controls |
 | Display Hierarchy | System display | Tree structure | `Language & Text > Text Generation` | Determines where the tag appears in the list and filter system |
 
 ## Pitfalls
 
 - Do not mix tag categories and child tags. Categories organize the tree, while child tags provide more specific filter options.
 - Maintain both English and Chinese names; otherwise, the English and Chinese sites can show filters with different meanings.
-- Before disabling a tag, check model bindings and marketplace filter entries so callers do not suddenly lose a common discovery path.
+- Before disabling a tag, check model bindings and marketplace filter entries so Model Consumers do not suddenly lose a common discovery path.
 - Handle child tags before deleting a parent category, or useful child tags may be affected together.
 - Do not use internal project codenames, customer abbreviations, or temporary campaign names as general model tags.
 
@@ -166,7 +166,7 @@ The screenshot shows the delete confirmation for a child tag. Before clicking **
 | The list display updates after editing | The target row name or notes are saved, and hierarchy remains unchanged | Reopen the edit dialog and check fields; confirm whether only the current language name was changed |
 | Status changes after enabling or disabling | The target tag appears in the corresponding `Available` or `Unavailable` list | Check account permission, binding relationships, and page refresh state; wait for sync and query again |
 | The tag disappears from the list after deletion | The target tag cannot be found with `All` status and name query | Check whether another same-name tag was deleted, or whether the target still has child tags or bindings |
-| Marketplace filters match expectations | Callers can filter the correct models by the new tag | Check whether models are bound to the tag, listed, and visible to the caller |
+| Marketplace filters match expectations | Model Consumers can filter the correct models by the new tag | Check whether models are bound to the tag, listed, and visible to the Model Consumer |
 
 ## FAQ
 
@@ -174,17 +174,17 @@ The screenshot shows the delete confirmation for a child tag. Before clicking **
 
 **Symptom:**
 
-A model caller clicks a tag, but no models are displayed.
+A model Model Consumer clicks a tag, but no models are displayed.
 
 **Possible Causes:**
 
 - No listed models are bound to this tag.
 - The tag status is unavailable.
-- Model visibility scope does not include the current caller.
+- Model visibility scope does not include the current Model Consumer.
 
 **Handling:**
 
-1. Return to the Tags page and confirm that the tag status is available.
+1. Return to the Tags page and confirm that the tag status is `Available`.
 2. Check tag binding in model editing or publishing configuration.
 3. Check model listing status and visibility scope.
 
@@ -234,12 +234,12 @@ The tag has been disabled, but it still appears in the marketplace or model edit
 
 - Page cache or index sync is delayed.
 - Existing model bindings are still displayed.
-- A same-name tag, not the target tag, remains available.
+- A same-name tag, not the target tag, remains in `Available` status.
 
 **Handling:**
 
 1. On the Tags page, switch to `Unavailable` and confirm the target tag status.
-2. Check whether another available tag has the same name.
+2. Check whether another tag with `Available` status has the same name.
 3. After synchronization, recheck the marketplace and model editing page.
 
 #### Delete Button Is Grayed Out or Deletion Fails
@@ -280,7 +280,7 @@ The Chinese site and English site show tag names with different meanings.
 
 ## Notes
 
-- Tags affect marketplace filters, model display, and the caller discovery path. Confirm the impact scope before making changes.
+- Tags affect marketplace filters, model display, and the Model Consumer discovery path. Confirm the impact scope before making changes.
 - Tag names should be understandable to users. Avoid internal project codenames, temporary campaign terms, or abbreviations only the operations team understands.
 - For tags involving customer names, industry-specific meanings, or restricted models, confirm display boundaries and visibility scope first.
 - Before bulk tag cleanup, export the existing tag and binding relationship list to avoid deleting tags that are still in use.

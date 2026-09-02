@@ -1,34 +1,33 @@
-# Device Monitoring
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
-:::
+# Devices
 
 ## Feature Overview
 
-`Device Monitoring` is used to view utilization, VRAM, and health status of devices such as GPU/NPU within the user-visible scope from a End User perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Device Monitoring |
-| Page route | `/powerone/user-monitor/device` |
-| Managed objects | Utilization, VRAM, and health status of GPU/NPU and other devices within the user-visible scope |
-| Typical use | Determine whether model instances or training tasks are affected by accelerator resources |
+| Applicable Role | Model Provider and Model Consumer |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Devices |
+| Page Route | `/powerone/user-monitor/device` |
+| Managed Object | Configuration, status, and relationships on Devices |
 
 #### Beginner Explanation
 
 Device monitoring is like a health check table for each GPU/NPU. It shows device type, health status, temperature, and VRAM usage to determine whether accelerators affect task execution.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Device Name | Identifier of a single GPU/NPU or accelerator device. |
 | Device Type | Accelerator model or vendor type, such as GPU or NPU. |
 | VRAM Usage | Device VRAM occupation ratio, which affects whether models can start. |
-| Health Status | Whether the device is available, alerted, or offline. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Utilization, VRAM, and health status of GPU/NPU and other devices within the user-visible scope, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Devices, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,9 +38,15 @@ Device monitoring is like a health check table for each GPU/NPU. It shows device
 
 ## Page Description
 
-The page displays device monitoring capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
+> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
 
-![Device Monitoring](./images/devices-list.png)
+Use this page to view and handle Configuration, status, and relationships on Devices.
+
+![Devices](./images/devices-list.png)
+
+The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+
+The page displays device monitoring capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
 #### Expected Page Elements When Capability Is Open
 
@@ -85,7 +90,7 @@ The page displays device monitoring capability for the selected region. When the
 - Whether VRAM usage is close to the limit.
 - Whether temperature and health status have alerts.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -107,68 +112,111 @@ The page displays device monitoring capability for the selected region. When the
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Device list | The list shows device name, type, health status, temperature, and VRAM usage. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Metric scope | Device metrics correspond to the correct node and time range. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-| Exception relationship | An abnormal device can be correlated with affected instances, jobs, or specifications. | Check the time range, cluster, node, device, and job filters, and verify monitoring collection status. |
-
-## Prepare Before Contacting the Operator
-
-If the device page is abnormal, prepare the following information so that the operator can distinguish collection problems, VRAM pressure, and hardware health problems:
-
-| Information | Example | Purpose |
-| --- | --- | --- |
-| Device Name / ID | `GPU-0` | Identifies one GPU or NPU. |
-| Node IP / Node Name | `node-gpu-01` | Identifies the node that hosts the device. |
-| Utilization | `GPU 95%` | Indicates whether the compute units are under high load. |
-| VRAM | `76 GB / 80 GB` | Indicates whether VRAM is insufficient. |
-| Temperature / Health | `78 C / Alert` | Indicates whether hardware operations must intervene. |
+| Page load | Devices charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
 
 ## FAQ
 
-#### GPU/NPU Utilization Is Empty
+#### No Data on Devices
 
 **Symptom:**
 
-Devices exist in the list, but utilization or VRAM curves are empty.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- No task ran in the current time range.
-- Device collection component or driver reporting is abnormal.
-- The current account has no permission to view complete device metrics.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. Switch to the task runtime range and view again.
-2. Compare node statistics and job monitoring to confirm whether tasks occupy devices.
-3. Contact the operator to check device plugins, drivers, and monitoring collection.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Temperature or VRAM Is Abnormal
+#### Devices Is Not Updating
 
 **Symptom:**
 
-Device temperature stays high, or VRAM usage approaches the limit and causes instance startup failure.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- High-load tasks are running intensively.
-- Model VRAM requirement exceeds specification capability.
-- Device cooling, driver, or hardware status is abnormal.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Confirm the model size and resource specification of affected jobs.
-2. Reduce concurrency, switch specifications, or retry after resources are released.
-3. Provide the operator with device name, node, and abnormal time range.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Devices Differs from Adjacent Pages
 
-1. When VRAM is insufficient, return to instance or job configuration to reduce model size, concurrency, or context length.
-2. When device health is abnormal, avoid continuing to submit high-priority tasks with the same device type.
-3. When operator handling is needed, provide device type, node, time range, and error symptoms.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
 - Node IP, device ID, and hardware status screenshots should be sanitized.
 - Device monitoring only describes hardware-side status. Model parameter errors still require instance logs.
 - Do not directly equate low single-card utilization with resource waste. It may be caused by sampling window or task type.
+
+## Next Steps
+
+1. When VRAM is insufficient, return to instance or job configuration to reduce model size, concurrency, or context length.
+2. When device health is abnormal, avoid continuing to submit high-priority tasks with the same device type.
+3. When operator handling is needed, provide device type, node, time range, and error symptoms.

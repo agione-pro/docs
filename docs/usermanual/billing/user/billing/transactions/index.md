@@ -7,15 +7,15 @@ Updated: 2026-08-27
 
 ## Feature Overview
 
-The `Transactions` page is titled `Income & Expense Details` in the UI and is used to query billing records for the current account. Filter by transaction type, income/expense direction, and time range, then review transaction number, occurrence time, transaction type, context, credit change, post-change credits, business transaction number, remarks, and details.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | User-Side Account, Business Admin, Billing Viewer |
+| Applicable Role | Model caller |
 | Navigation path | Billing > User Billing > Transactions |
 | Page route | `/billing/my/account/transactions/records` |
 | Managed objects | Income records, expense records, transaction context, and business transaction numbers |
-| Typical use | Trace balance changes, verify top-up posting, and troubleshoot consumption sources |
+
+The `Transactions` page is titled `Income & Expense Details` in the UI and is used to query billing records for the current account. Filter by transaction type, income/expense direction, and time range, then review transaction number, occurrence time, transaction type, context, credit change, post-change credits, business transaction number, remarks, and details.
+
 
 #### Beginner Explanation
 
@@ -65,16 +65,23 @@ The following screenshot shows Transactions. Sanitize transaction numbers, times
 3. When ordered correctly, one transaction's quota after should equal the next transaction's quota before. If not, check sorting and delayed posting.
 4. If it cannot be explained, escalate with a redacted transaction number and time range. Do not create a top-up or adjustment directly.
 
+![Transactions - Reconcile a Balance Change](./images/transactions-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Query Transactions
 
 1. Go to `Billing > User Billing > Transactions`.
-2. Select `Transaction Type` in the filter area.
-3. Select `Income/Expense Type`.
+2. Select **"Transaction Type"** in the filter area.
+3. Select **"Income/Expense Type"**.
 4. Select a time range when needed.
-5. Click `Search`.
-6. Click `Reset` to clear filters before a new query.
-7. For learning or screenshots, view only filters and list fields; do not export real transaction data.
+5. Click **"Search"**.
+6. Click **"Reset"** to clear filters before a new query.
+7. Before exporting transactions, verify the filters, data scope, and recipient permission.
+
+![Transactions - Query Transactions](./images/transactions-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View an Individual Transaction
 
@@ -85,7 +92,11 @@ The following screenshot shows Transactions. Sanitize transaction numbers, times
 5. Click row-level `Details` when it is available.
 6. Hide real transaction numbers, business transaction numbers, accounts, amounts, and business context in external communication.
 
-## Parameter Reference
+![Transactions - View an Individual Transaction](./images/transactions-list.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -119,10 +130,10 @@ The following screenshot shows Transactions. Sanitize transaction numbers, times
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page loading | Filters and the transaction list are displayed. | Refresh the page or check user-side billing permission. |
-| Filtering | Transaction type, direction, and time range locate target records. | Click `Reset` and filter again. |
+| Filtering | Transaction type, direction, and time range locate target records. | Click **"Reset"** and filter again. |
 | List fields | Transaction number, time, direction, type, amount, and business transaction number are visible. | Widen the time range or clear filters. |
 | Detail entry | Row-level `Details` opens the individual transaction. | Check permission or contact the operator with a sanitized transaction number. |
-| No unintended high-risk action | No real transaction data is exported during learning or screenshot capture. | If triggered, record the time and scope and notify the owner for review. |
+| Transaction export controlled | Transactions are exported only by authorized users for the confirmed scope. | If an unintended export occurs, record the time and scope and notify the owner for review. |
 
 ## FAQ
 
@@ -168,15 +179,53 @@ The billing cycle, time range, transaction type, or statistical scope differs be
 
 Align the billing cycle and time range, refresh Monthly Bill, and group the comparison by transaction type when needed.
 
-## Next Steps
 
-1. To verify a top-up transaction, open [Top-up Orders](../top-up-orders/).
-2. To reconcile the monthly summary, open [Monthly Bill](../monthly-bill/).
-3. To review balance status, open [Account Overview](../overview/).
+#### Transactions Does Not Update After Refresh
 
+**Symptom:**
+
+The amount, count, or status in Transactions remains unchanged after the related process finishes.
+
+**Possible causes:**
+
+- The billing cycle, tenant, customer, or business scope does not match the processed object.
+- An upstream statistics, posting, or settlement task is still running.
+- The current account can view only part of the data scope.
+
+**How to handle:**
+
+1. Recheck the billing cycle and object scope in Transactions.
+2. Refresh the page, reopen the target record, and verify the update time.
+3. Cross-check the upstream status in Account Overview and Monthly Bill.
+4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
+
+#### What Must Be Checked Before Sharing Transactions Information?
+
+**Symptom:**
+
+Transactions results must be shared in a screenshot, ticket, or report.
+
+**Possible causes:**
+
+- Transaction numbers, amounts, transaction types, accounts, and related records may be sensitive billing information.
+- The sharing scope may exceed the recipient's business permission.
+- A full screenshot may include account, environment, or unrelated information.
+
+**How to handle:**
+
+1. Keep only fields, statuses, and time ranges required for troubleshooting.
+2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
+3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
+4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
 - Transaction numbers, business transaction numbers, context, and amounts are sensitive billing information and must be sanitized before sharing.
 - Do not use one transaction to explain an entire month; compare it with Monthly Bill.
 - When an anomaly is found, record the filters and a sanitized transaction identifier before contacting the operator.
-- For learning or screenshots, view only filters, list fields, and details; do not export real transaction data.
+- Before exporting transactions, verify the filters, data scope, and recipient permission, and redact transaction numbers, accounts, and amounts.
+
+## Next Steps
+
+1. To verify a top-up transaction, open [Top-up Orders](../top-up-orders/).
+2. To reconcile the monthly summary, open [Monthly Bill](../monthly-bill/).
+3. To review balance status, open [Account Overview](../overview/).

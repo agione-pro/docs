@@ -7,24 +7,24 @@ Updated: 2026-07-08
 
 ## Feature Overview
 
-This document connects the Model Services operations of operator admins, model providers, and model callers into one end-to-end path: operator admins first maintain meta-models, model sources, templates, and tags; model providers publish single models or aggregation models and submit them for review; after operator admins complete review, model callers view, try, and call models in the model marketplace and Playground; finally, each role views call, usage, and revenue data.
+This document connects the Model Services operations of Operator Admins, Model Providers, and Model Consumers into one end-to-end path: Operator Admins first maintain meta-models, Model Sources, Model Templates, and tags; Model Providers publish single models or aggregation models and submit them for review; after review processing, Model Consumers view, try, and call models in **"Models"** and **"Playground"**; finally, each role views call, usage, and revenue data.
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operator Admins, Model Providers, Model Callers |
-| Recommended prerequisites | [Getting Started](../../getting-started/), [Meta-models](../../operator/settings/meta-models/), [My Models](../../user/studio/my-models/), [My Deployments](../../user/studio/my-deployments/) |
+| Applicable Roles | Operator Admins, Model Providers, Model Consumers |
+| Recommended prerequisites | [Getting Started](../../getting-started/), [Meta Models](../../operator/settings/meta-models/), [My Models](../../user/studio/my-models/), [My Deployments](../../user/studio/my-deployments/) |
 | Output | A configured, reviewed model that is visible in the model marketplace and can be tried and called |
 | Typical use | New model listing, third-party Endpoint access, aggregation model publishing, review acceptance, and call troubleshooting |
 
 #### Beginner Explanation
 
-Publishing and calling a model is like placing a model on a shelf and then completing a trial purchase: the operator prepares meta-models, sources, and templates; the provider publishes the model; the caller validates it in the marketplace, Playground, and API.
+Publishing and calling a model is like placing a model on a shelf and then completing a trial purchase: the operator prepares meta-models, sources, and templates; the provider publishes the model; the Model Consumer validates it in the marketplace, Playground, and API.
 
 ## Prerequisites
 
-1. The operator admin has permissions for model service settings, app list, model reviews, and app reviews.
-2. The model provider has permissions for Studio, model publishing, aggregation model creation, and review submission.
-3. The model caller has permissions for the model marketplace, Playground, and My Calls.
+1. The Operator Admin has permissions for model service settings, app list, model reviews, and app reviews.
+2. The Model Provider has permissions for Studio, model publishing, aggregation model creation, and review submission.
+3. The Model Consumer has permissions for **"Models"**, **"Playground"**, and My Calls.
 4. The Endpoint, API Key, model source ID, protocol, and default parameters required for publishing are prepared and reachable.
 5. If the flow starts from On-Cloud Quick Deployment, the current account has permissions for `AI Infra > On-Cloud > Model Services > Quick Deployment` and `Model Services > Studio > My Deployments`.
 6. Billing, rate limits, publishing region, and review workflow are clear.
@@ -41,8 +41,8 @@ Publishing and calling a model is like placing a model on a shelf and then compl
 | On-Cloud Quick Deployment Branch | Model Provider | Create a deployment record through On-Cloud Quick Deployment first, then select a publish region from My Deployments and enter the publish model page. |
 | Aggregation Model Publishing | Model Provider | Select member models and configure routing policy, billing, and publishing method. |
 | Review processing | Operator Admin | Review model or app publishing requests. |
-| Marketplace display | Model Caller | View details, providers, quick start, and performance in the model marketplace. |
-| Playground call | Model Caller | Select a model in Playground and complete text, image, video, or audio trials. |
+| Marketplace display | Model Consumer | View details, providers, quick start, and performance in **"Models"**. |
+| Playground call | Model Consumer | Select a model in **"Playground"** and complete text, image, video, or audio trials. |
 | Data viewing | All Roles | View My Calls, call logs, usage details, model revenue, and customer calls. |
 | Troubleshooting loop | All Roles | Check base configuration, review status, Endpoint, billing, rate limits, and call logs based on the failure path. |
 
@@ -58,25 +58,25 @@ Publishing and calling a model is like placing a model on a shelf and then compl
 
 ## Main Operations
 
-### Step 1: Operator Admin Maintains Meta-models
+### Step 1: Operator Admin Maintains Meta Models
 
-1. Go to `Settings > Meta-models`.
+1. Go to `Settings > Meta Models`.
 2. If the model author is missing, add the model author first.
-3. Click add meta-model, then configure model name, model type, input modalities, output modalities, advanced capabilities, Token limits, protocol, and meta-model details.
+3. Click **"Add"** and configure the model name, model type, input modalities, output modalities, advanced capabilities, Token limits, protocol, and meta-model details.
 4. After submission, confirm that the meta-model is visible in the list.
 
 Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Target meta-model is visible in Meta-models | The target meta-model is visible in [Meta-models](../../operator/settings/meta-models/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Model type, input/output modalities, protocol, and context limit | Model type, input/output modalities, protocol, and context limit meet publishing requirements. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Model Provider can select this meta-model | The Model Provider can select this meta-model during publishing. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Target meta-model is visible in Meta Models | The target meta-model appears in [Meta Models](../../operator/settings/meta-models/). | Check the list filters, target status, and Operator Admin permission. |
+| Model type, input/output modalities, protocol, and context limit | Model type, input/output modalities, protocol, and context limit meet publishing requirements. | Check the page message first. Then check the target status, region, and account permission. |
+| Publishing form shows this meta-model | Reopen the publishing form and check the meta-model selection control. | Compare the meta-model status and publishing region, then ask the Operator Admin to check permissions. |
 
 ### Step 2: Operator Admin Maintains Model Sources
 
 1. Go to `Settings > Model Sources`.
-2. Click add model source.
+2. Click **"Add"**.
 3. Fill in provider, region, request URL, request headers, authentication information, and source description.
 4. After submission, confirm that the model source is visible in the list.
 
@@ -84,36 +84,36 @@ Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Target source is visible in Model Sources | The target source is visible in [Model Sources](../../operator/settings/model-source/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Source region, request URL, and request header configuration | Source region, request URL, and request header configuration are accurate. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Source can be selected or reused when publishing a model | The source can be selected or reused when publishing a model. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Target source is visible in Model Sources | The target source is visible in [Model Sources](../../operator/settings/model-source/). | Check the page message first. Then check the target status, region, and account permission. |
+| Source region, request URL, and request header configuration | Source region, request URL, and request header configuration are accurate. | Check the page message first. Then check the target status, region, and account permission. |
+| Publishing form shows this Model Source | Reopen the publishing form and check the Model Source selection control. | Compare the source region with the publishing region, then ask the Operator Admin to check status and permissions. |
 
 ### Step 3: Operator Admin Maintains Templates and Tags
 
-1. Go to `Settings > Templates`.
-2. Add a template and select model provider, author, meta-model, protocol, capabilities, and default parameters.
+1. Go to `Settings > Model Templates`.
+2. Add a template and select Model Provider, author, meta-model, protocol, capabilities, and default parameters.
 3. Go to `Settings > Tags` and maintain classification tags required in the model marketplace and publishing flow.
-4. Confirm that templates and tags are both available.
+4. Confirm that the expected template and tag entries appear in their lists.
 
 Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Target template is visible in Templates | The target template is visible in [Templates](../../operator/settings/model-templates/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Target tag is visible in Tags | The target tag is visible in [Tags](../../operator/settings/tags/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Corresponding template and tag can be selected | The corresponding template and tag can be selected when publishing a model or aggregation model. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Target template is visible in Model Templates | The target template appears in [Model Templates](../../operator/settings/model-templates/). | Check the template status, associated meta-model, and Operator Admin permission. |
+| Target tag is visible in Tags | The target tag is visible in [Tags](../../operator/settings/tags/). | Check the page message first. Then check the target status, region, and account permission. |
+| Publishing form shows the template and tag | Reopen the publishing form and check the corresponding selection controls. | Compare the object status and publishing region, then ask the Operator Admin to check permissions. |
 
 ### Step 4: Model Provider Publishes a Single Model
 
 1. Go to `Studio > My Models`.
-2. Switch to `My Published` and click `Publish Model`.
+2. Switch to `My Published` and click **"Publish Model"**.
 3. Select a publishing region, such as publishing to a private region or public region.
 4. In basic information, select meta-model and model source, then fill in request URL, API Key, model source ID, request headers, input/output modalities, advanced capabilities, and Token limits.
-5. Select supported protocols and complete the protocol connectivity test.
+5. Select the supported protocol. If the page provides a connectivity control, run it and record the visible result. If it does not, use the approved representative-call path before submission.
 6. Fill in personalized identifier, description, and publishing method.
 7. Go to billing configuration, select free or Token-based billing, and configure tier prices, cache-hit pricing, WebSearch, and free quota.
 8. Go to rate-limit configuration and set RPM, TPM, or no limit.
-9. Click `Save Only` or `Submit for Review`.
+9. Click **"Save Only"** or **"Submit for Review"** after checking the target, visibility, billing, rate limits, and recovery plan.
 
 On-Cloud Quick Deployment branch:
 
@@ -122,36 +122,36 @@ On-Cloud Quick Deployment branch:
 3. After submission, the deployment record is displayed in the `On-Cloud` list under `Model Services > Studio > My Deployments`.
 4. In [My Deployments](../../user/studio/my-deployments/), find the target deployment, click the publish entry, and select a publish region.
 5. After the publish region is selected, the page redirects to the publish model page in [My Models](../../user/studio/my-models/), where you continue checking basic information, billing configuration, call configuration, and visibility.
-6. For learning or page validation only, confirm the deployment record, publish region dialog, and redirect result without performing the final `Publish`, `Submit`, or `Save`.
+6. Before the final **"Publish"**, **"Submit"**, or **"Save"**, confirm the target, visibility, cost, permission, and recovery plan.
 
 Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Target model is visible in My Models | The target model is visible in [My Models](../../user/studio/my-models/). | Return to this step and check prerequisites, permissions, and configuration status. |
+| Target model is visible in My Models | The target model is visible in [My Models](../../user/studio/my-models/). | Check the page message first. Then check the target status, region, and account permission. |
 | On-Cloud record is visible in My Deployments | After Quick Deployment submission, the target deployment record is visible in the `On-Cloud` list in [My Deployments](../../user/studio/my-deployments/). | Check Quick Deployment task status, account permissions, and deployment filters. |
-| Protocol connectivity test passes | The protocol connectivity test passes. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Model is saved or submitted for review | The model is saved or submitted for review successfully. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Connectivity result is visible, when provided | The connectivity control shows its actual success or error message. A saved record alone is not a connectivity result. | Check Endpoint, request headers, protocol, and the exact page message; otherwise use the approved representative-call path. |
+| Model record shows the submitted state | My Models or the review page shows the actual record and status after the action. | Check the page message, selected publish region, permissions, and review status before retrying. |
 
 ### Step 5: Model Provider Creates an Aggregation Model
 
 1. Go to `Studio > My Models`.
-2. Switch to `My Aggregations` and click `Create Aggregation Model`.
+2. Switch to `My Aggregations` and click **"Create Aggregation Model"**.
 3. Select a publishing region.
 4. Select model type and model subtype.
 5. Add two or more published member models.
 6. Configure enabled status, minimum success rate, maximum concurrency rate, maximum context length, input Token cost, and output Token cost for member models.
 7. Fill in personalized identifier, select matching strategy, tags, description, and publishing method.
 8. Configure billing method, billing mode, and price.
-9. Click `Save Only` or `Submit for Review`.
+9. Click **"Save Only"** or **"Submit for Review"** after checking the target, billing, visibility, and recovery plan.
 
 Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Target aggregation model is visible | The target aggregation model is visible in the My Aggregations list in [My Models](../../user/studio/my-models/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Member model count is at least two | The member model count is at least two. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Matching strategy, billing configuration, and publishing method | Matching strategy, billing configuration, and publishing method match expectations. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Target aggregation model is visible | The target aggregation model is visible in the My Aggregations list in [My Models](../../user/studio/my-models/). | Check the page message first. Then check the target status, region, and account permission. |
+| Member model count is at least two | The member model count is at least two. | Check the page message first. Then check the target status, region, and account permission. |
+| Matching strategy, billing configuration, and publishing method | Matching strategy, billing configuration, and publishing method match expectations. | Check the page message first. Then check the target status, region, and account permission. |
 
 ### Step 6: Operator Admin Processes Model Review
 
@@ -164,13 +164,13 @@ Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Target review record status is updated | The target review record status is updated in [Model Reviews](../../operator/approvals/model-reviews/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Model can enter listing or display flow after approval | After approval, the model can enter the listing or display flow. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Rejection reason is clear | When rejected, the reason is clear and the Model Provider can revise accordingly. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Target review record status is updated | The target record in [Model Reviews](../../operator/approvals/model-reviews/) shows the actual status after processing. | Check the page message, review comment, and current permission before retrying. |
+| Approved record is visible to the next role | The review record shows **"Approved"**; check **"Models"** or the publishing page separately for visibility. | Compare visibility scope, publishing status, and selected region. Do not treat approval alone as listing proof. |
+| Rejection reason is clear | The rejected record shows a review comment that the Model Provider can act on. | Reopen the detail and check whether the comment is present; ask the Operator Admin if it is missing. |
 
-### Step 7: Model Caller Views the Model in the Marketplace
+### Step 7: Model Consumer Views the Model in Models
 
-1. Go to `Discover > Model Marketplace`.
+1. Go to `Discover > Models`.
 2. Filter models by model name, model type, provider, tag, or search box.
 3. Open target model details and view provider, quick start, performance, and overview.
 4. Record the protocol, price, context, capability, and limits that must be confirmed before calling.
@@ -179,11 +179,11 @@ Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Target model is visible in Model Marketplace | The target model is visible in [Model Marketplace](../../user/discover/models/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Provider, quick start, performance, and overview information is complete | Provider, quick start, performance, and overview information is complete on the model details page. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Caller can prepare integration | The caller can prepare integration based on quick-start information. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Target model is visible in Models | The target model appears in [Models](../../user/discover/models/). | Check review status, visibility scope, publishing status, tags, and the current account permission. |
+| Provider, quick start, performance, and overview information is complete | Provider, quick start, performance, and overview information is complete on the model details page. | Check the page message first. Then check the target status, region, and account permission. |
+| Consumer can view quick-start information | The model details page shows the protocol, request information, and quick-start content. | Refresh the detail page, check model visibility, and ask the Model Provider or Operator Admin to update missing content. |
 
-### Step 8: Model Caller Tries the Model in Playground
+### Step 8: Model Consumer Tries the Model in Playground
 
 1. Go to `Playground > Text Chat`, or enter image generation, video generation, or audio generation according to model type.
 2. Click model selection and choose the target model.
@@ -195,25 +195,25 @@ Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Target model can be selected in Text Chat | The target model can be selected in [Text Chat](../../user/playground/text/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Model returns an expected response | The model returns an expected response. | Return to this step and check prerequisites, permissions, and configuration status. |
-| Error information supports troubleshooting | If the call fails, the error information can help locate Endpoint, protocol, rate-limit, or billing issues. | Return to this step and check prerequisites, permissions, and configuration status. |
+| Target model appears in Text Chat | The target model appears in the model selector in [Text Chat](../../user/playground/text/). | Check model visibility, modality, Personal Key, and account permission. |
+| Response or error is visible | The response area shows generated content, or the page shows an error message. | Record the visible message and request ID, then check **"Call Logs"** and the Model Source configuration. |
+| Call record is traceable | A related request ID or log entry appears in **"Call Logs"**, when the page provides one. | Check the selected model, time range, and log permissions; do not infer success from the page loading alone. |
 
 ### Step 9: View Calls, Usage, and Revenue
 
-1. The caller goes to `My Calls > Overview` to view overall call trends.
-2. The caller goes to `My Calls > Call Analytics` and `Call Logs` to view model-level and single-request details.
-3. The model provider goes to `Usage & Earnings > Model Earnings` to view earnings overview and earning details.
-4. The model provider goes to `Usage & Earnings > Model Usage` to view consumption details.
-5. The model provider goes to `Customer Calls` to view customer-level overview, analytics, and logs.
+1. The Model Consumer goes to `My Calls > Overview` to view overall call trends.
+2. The Model Consumer goes to `My Calls > Call Analytics` and `Call Logs` to view model-level and single-request details.
+3. The Model Provider goes to `Usage & Earnings > Model Earnings` to view earnings overview and earning details.
+4. The Model Provider goes to `Usage & Earnings > Model Usage` to view consumption details.
+5. The Model Provider goes to `Customer Calls` to view customer-level overview, analytics, and logs.
 
 Result checks:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Call data is visible in My Call Overview | Call data is visible in [My Call Overview](../../user/my-calls/overview/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Single request can be located in Call Logs | A single request can be located in [Call Logs](../../user/my-calls/call-logs/). | Return to this step and check prerequisites, permissions, and configuration status. |
-| Earnings and consumption can be viewed | Earnings and consumption can be viewed in [Model Earnings](../../user/usage-earnings/model-earnings/) and [Model Usage](../../user/usage-earnings/model-usage/). | Return to this step and check prerequisites, permissions, and configuration status. |
+| Call data appears in My Call Overview | [My Call Overview](../../user/my-calls/overview/) shows a call record or the page's empty-state message. | Check the time range, selected model, call status, and log permission. |
+| Single request can be located in Call Logs | [Call Logs](../../user/my-calls/call-logs/) shows the request ID or a matching log entry. | Check the request time range and model filter, then ask the Operator Admin about log retention. |
+| Earnings and consumption pages show data | [Model Earnings](../../user/usage-earnings/model-earnings/) and [Model Usage](../../user/usage-earnings/model-usage/) show records or the page's empty-state message. | Align the date range, model version, and account scope before contacting the Model Provider. |
 
 ## Parameter Reference
 
@@ -223,18 +223,17 @@ Result checks:
 | Model Source | Yes | Text | Example Source A | Records Endpoint, authentication, request headers, and connectivity configuration. |
 | Published Model | Yes | Text | Example Model A | Target model that the Model Provider submits for review and listing. |
 | Review Record | System-generated | Text | REVIEW-202607130001 | Records model or app review status, comments, and processing result. |
-| Call Credential | Yes | Text | `<PERSONAL_KEY>` | Credential used by callers for Playground and API integration. Placeholder examples are not real secrets. |
+| Call Credential | Yes | Text | `<PERSONAL_KEY>` | Credential used by Model Consumers for Playground and API integration. Placeholder examples are not real secrets. |
 | Call Log | System-generated | Text | REQ-202607130001 | Key clue for troubleshooting 401, 429, 5xx, timeout, and output exceptions. |
 
 ## Pitfalls
 
 - Meta-models, model sources, and model templates are prerequisite configurations for publishing. Missing any one of them may make the publishing form unavailable.
-- Review approval only means listing is allowed. It does not mean the caller definitely has quota, visibility scope, and a valid Key.
+- Review approval only means listing is allowed. It does not mean the Model Consumer definitely has quota, visibility scope, and a valid Key.
 - A successful Playground test does not mean production integration is complete. Before formal calls, verify rate limits, billing, error logs, and call credentials.
 - Endpoint, API Key, request headers, and internal error logs are sensitive information and must be redacted before being written into documentation.
-- On-Cloud Quick Deployment, publish region selection, and model publishing may change real service exposure. For learning or page validation only, do not perform final `Publish`, `Submit`, `Save`, or `Create` actions.
-- `Publish`, `Submit for Review`, `Approve`, `Reject`, `List`, `Create Aggregation Model`, and `Delete` are high-risk actions. Confirm impact scope and rollback options before performing them.
-- For learning or screenshots, only view pages, fields, statuses, and navigation. Do not perform final publish, submit for review, approve, reject, list, create aggregation model, or delete actions.
+- On-Cloud Quick Deployment, publish region selection, and model publishing may change real service exposure. Before final **"Publish"**, **"Submit for Review"**, **"Save Only"**, or **"Create Aggregation Model"**, confirm the target, cost, visibility, permission, and recovery plan.
+- **"Publish"**, **"Submit for Review"**, **"Approve"**, **"Reject"**, **"Create Aggregation Model"**, and **"Delete"** are high-risk actions. Confirm impact scope and rollback options before performing them.
 - Do not record real model IDs, API Keys, Endpoints, model source credentials, tenant information, user information, call logs, or test parameters.
 
 ### Failure Branches and Troubleshooting Paths
@@ -243,7 +242,7 @@ Result checks:
 
 Next hop: [Model Reviews](../../operator/approvals/model-reviews/)
 
-**Symptom:** The model provider cannot publish after submission, and the review record shows rejection.
+**Symptom:** The Model Provider cannot publish after submission, and the review record shows rejection.
 
 **Troubleshooting Path:**
 
@@ -255,19 +254,19 @@ Next hop: [Model Reviews](../../operator/approvals/model-reviews/)
 
 Next hop: [Model Sources](../../operator/settings/model-source/)
 
-**Symptom:** The model source test fails, or Playground cannot call the model after publishing.
+**Symptom:** A Model Source or publishing-page connectivity control shows an error, or **"Playground"** cannot call the model after publishing.
 
 **Troubleshooting Path:**
 
 1. Check Endpoint, authentication request headers, API Key, and return format.
 2. Confirm that the upstream service has no rate limits, allowlist restrictions, or network access restrictions.
-3. After a redacted request sample passes validation, associate the source with a template or publish the model.
+3. After the visible error is resolved, use the approved representative-call path before associating the source with a template or publishing the model.
 
 #### Failure Branch: Call Returns 401/429/5xx
 
 Next hop: [My Call Logs](../../user/my-calls/call-logs/)
 
-**Symptom:** The caller fails through API or Playground and receives authentication, rate-limit, or upstream errors.
+**Symptom:** The Model Consumer fails through API or Playground and receives authentication, rate-limit, or upstream errors.
 
 **Troubleshooting Path:**
 
@@ -279,9 +278,9 @@ Next hop: [My Call Logs](../../user/my-calls/call-logs/)
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Model visible | The target model can be searched in the model marketplace | Enter details and quick start |
-| Normal status | Model review has passed and Playground can return results | Start production calling or revenue tracking |
-| Troubleshooting entry available | Review records, call logs, or source tests can locate the error | Continue troubleshooting by failure branch |
+| Model visible | The target model appears in **"Models"** search results. | Check review status, visibility scope, publishing status, tags, and account permission. |
+| Observable call result | **"Playground"** shows generated content or an error message. | Record the visible message and request ID, then check **"Call Logs"** and the Model Source configuration. |
+| Troubleshooting entry | Review records, call logs, or a page-provided source test exposes a visible status or error message. | Open the matching review or call-log page, record the exact message and request ID, then follow the relevant failure branch. |
 
 ## FAQ
 
@@ -289,7 +288,7 @@ Next hop: [My Call Logs](../../user/my-calls/call-logs/)
 
 **Symptom:**
 
-The model submission is rejected, and callers cannot use it from the model marketplace.
+The model submission is rejected, and Model Consumers cannot use it from the model marketplace.
 
 **Possible Causes:**
 
@@ -297,7 +296,7 @@ Model description, tags, source, template, billing configuration, test results, 
 
 **How to Handle:**
 
-Read the review comments. Complete model description, examples, source, template, and test materials. Before resubmission, confirm that sensitive information is sanitized.
+Read the review comments. Complete model description, examples, source, template, and supporting materials. Before resubmission, confirm that sensitive information is sanitized. The record should then show the updated review status or the next page message.
 
 #### What if the model is published but calls fail?
 
@@ -311,7 +310,7 @@ API Key, Token, Endpoint, rate-limit policy, model service status, or upstream m
 
 **How to Handle:**
 
-Check credentials, Endpoint, and request parameters first. Then review call logs, rate-limit configuration, model deployment status, and model source connectivity.
+Check credentials, Endpoint, and request parameters first. Then open [My Call Logs](../../user/my-calls/call-logs/) and review the visible request ID and error code. Ask the Model Provider or Operator Admin to check rate limits and Model Source configuration; retry after the error signal changes.
 
 #### Why do usage and revenue numbers not match?
 
@@ -325,7 +324,43 @@ The statistical time range, model version, customer scope, billing rule, or sync
 
 **How to Handle:**
 
-Use the same time range, model version, and customer scope. Check call logs first, then model usage and revenue statistics. If still inconsistent, keep desensitized clues and contact operations.
+Use the same time range, model version, and customer scope. Check call logs first, then model usage and revenue statistics. The pages should show the same filter scope before you compare values. If they still differ, keep redacted clues and contact the Operator Admin.
+
+#### The Model Source Is Listed but Is Missing From the Publishing Form
+
+**Symptom:**
+
+The Model Source list contains the target record, but the publishing form does not show it.
+
+**Possible causes:**
+
+- The source region does not match the selected publishing region.
+- The source status or account permission prevents selection.
+
+**How to Handle:**
+
+1. Open [Model Sources](../../operator/settings/model-source/) and check the source status, region, and identifier.
+2. Compare those values with the publishing form's region and provider controls.
+3. Reopen the form and check the Model Source selector.
+4. Ask the Operator Admin to correct the mismatch; the source should then appear in the selector.
+
+#### The Call Log Does Not Show the Recent Request
+
+**Symptom:**
+
+The Playground or API page shows a result or error, but no matching entry appears in **"Call Logs"**.
+
+**Possible causes:**
+
+- The time range or model filter excludes the request.
+- The current role cannot view that log, or the record is outside the retention period.
+
+**How to Handle:**
+
+1. Record the call time, selected model, and any request ID shown on the calling page.
+2. Clear the log filters and search again.
+3. Ask the Operator Admin to check log permission and retention using the redacted request ID.
+4. Continue only when the matching log entry or an explicit page error is visible.
 
 ## Notes
 
@@ -338,4 +373,4 @@ Use the same time range, model version, and customer scope. Check call logs firs
 2. Build stable tags, billing, rate limits, and quick-start instructions for high-frequency models.
 3. For models that enter publishing through On-Cloud Quick Deployment, keep checking status consistency across [My Deployments](../../user/studio/my-deployments/), [My Models](../../user/studio/my-models/), and the model marketplace.
 4. Periodically check call logs, revenue, customer calls, and failure rates.
-5. Before delisting or deleting deprecated models, confirm caller impact scope and alternatives.
+5. Before delisting or deleting deprecated models, confirm Model Consumer impact scope and alternatives.
