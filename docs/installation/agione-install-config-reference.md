@@ -52,11 +52,13 @@ Standard command:
 ./agione quick --file /root/agione-install.yml
 ```
 
-For repeated reinstall tests where existing runtime data can be overwritten:
+After backing up required data, use the following command only when existing runtime data must be replaced after all prechecks pass:
 
 ```bash
-./agione quick -f --file /root/agione-install.yml
+./agione quick --file /root/agione-install.yml --force-overwrite
 ```
+
+`-f PATH` is an alias for `--file PATH`; it selects the configuration file and never grants overwrite permission. `--force-overwrite` is a separate destructive-operation option. The installer binds the target directory, runtime root, configuration, and `SHA256SUMS` fingerprint to the precheck and replaces managed runtime data only after every check passes. This workflow does not create a backup automatically.
 
 ## 1. Choose a Template First
 
@@ -176,6 +178,8 @@ If nodes use different SSH users, ports, or passwords, add `topology.ssh_credent
 ### 2.3 Multi-Node Managed Middleware Minimal Config
 
 Use this when database, Redis, Nacos, Kafka, and object storage are provided by cloud services or existing customer services, and target machines run only AGIOne App / Edge services.
+
+> **Check the compatibility matrix first**: `provider: generic` below is only the installer's generic endpoint-adapter label; it does not mean every provider or product is supported. Formal delivery may use only the verified Alibaba Cloud / Huawei Cloud products, versions, and access modes in the [cloud middleware compatibility matrix](./agione-deployment-requirements#_5-1-2-databases-and-middleware). Endpoint reachability during precheck does not replace product and version compatibility validation.
 
 ```yaml
 global_config:
@@ -471,7 +475,7 @@ When `auto_create_topics` stays `false`, the installer checks that required AGIO
 | --- | --- | --- |
 | `kubem` | `core_kubem`, `core_codelab`, `core_iam` | Enables training / job, CodeLab, and IAM services. The installer automatically appends `wm` initialization. |
 | `cloud` | `core_sgeneral`, `core_saws`, `core_saliyun`, `core_general`, `core_aliyun` | Enables cloud provider integration services. |
-| `core_isync` | `core_isync`, `influxdb3` | Supported only with self-managed MariaDB and a standby database node. Placed on the same node as `db_mariadb_standby` by default. |
+| `core_isync` | `core_isync`, `influxdb3` | Supported only in host-mode with self-managed MariaDB and exactly one standby database node. Placed on the same node as `db_mariadb_standby` by default. |
 
 Example:
 
@@ -481,6 +485,33 @@ agione_app:
     - kubem
     - cloud
 ```
+
+If `core_isync` is not in this list, but the deployment uses host-mode, self-managed MariaDB, exactly one standby node, and does not disable `agione_app.influxdb.enabled`, the initial installation prepares the `core_isync` and `influxdb3` assets and images on the standby node. Preparation does not create or start containers and does not mark the group as enabled; it only makes later offline incremental enablement cheaper.
+
+#### Incremental enablement after installation
+
+Before installation, keep using `start_optional_app_services` so the groups are deployed with `quick`. After an installation is complete, use the following commands instead of rerunning the full installation just to add optional services:
+
+```bash
+./agione services status
+./agione services enable kubem,cloud --dry-run
+./agione services enable kubem,cloud
+```
+
+`services status` shows groups in the final configuration, services declared in Compose, and services currently running. States include `enabled`, `disabled`, and `partial`. In host-mode it also shows per-node status and unfinished transactions. When the preparation conditions above are met and the remote assets are intact, `core_isync` is reported as `prepared (installed, not started)`.
+
+`services enable` reads `outputs/final-result-config.yml` from the installed target directly, so no `--file` argument is required. `--dry-run` performs checks only and does not change Compose, containers, or final configuration. Supported groups are:
+
+| Deployment mode | Groups available for incremental enablement |
+| --- | --- |
+| Single-node / All in One | `kubem`, `cloud` |
+| Host-mode multi-node | `kubem`, `cloud`, `core_isync` |
+
+Incrementally enabling `core_isync` in host-mode requires self-managed MariaDB and exactly one standby database node. Primary-to-standby replication should be healthy. If replication has not been established, automatic bootstrap is allowed only when the standby is empty, read-only, has no replication metadata, and its only health failure is missing replication metadata. Non-empty data, unhealthy replication, role mismatch, or ambiguous state blocks enablement.
+
+When `core_isync` is disabled, the base installation does not import `metis-influx-sync.yml`. Incremental enablement publishes and verifies this Nacos configuration only after private InfluxDB credentials are prepared, and restores the previous configuration if a later step fails. A real operation starts only newly requested services and does not recreate existing services. Failure rolls back the current transaction, and an already healthy group is a no-op. The command currently supports enablement only, not disablement.
+
+After success, the command updates installed `outputs/final-result-config.yml`. If `/root/agione-install.yml` will be used for a later full reinstall, add the new groups to `agione_app.start_optional_app_services` there as well.
 
 ### 5.4 Database Replication Initialization
 

@@ -52,11 +52,13 @@ next: true
 ./agione quick --file /root/agione-install.yml
 ```
 
-反复重装测试且确认可以覆盖已有运行数据时：
+确认所需数据已备份，并且需要在全部预检通过后替换已有运行数据时：
 
 ```bash
-./agione quick -f --file /root/agione-install.yml
+./agione quick --file /root/agione-install.yml --force-overwrite
 ```
+
+`-f PATH` 是 `--file PATH` 的缩写，只用于选择配置文件，不表示允许覆盖。`--force-overwrite` 是独立的破坏性操作参数；安装器会先绑定本次使用的目标目录、运行根目录、配置和 `SHA256SUMS` 指纹，全部预检通过后才替换受管运行数据。该流程不会自动创建备份。
 
 ## 1. 先选择模板
 
@@ -176,6 +178,8 @@ agione_app:
 ### 2.3 多节点托管中间件最小配置
 
 数据库、Redis、Nacos、Kafka、对象存储由云服务或客户已有服务提供，目标机器只运行 AGIOne App / Edge 服务时使用。
+
+> **先核对兼容矩阵**：下面的 `provider: generic` 只是安装器内部的通用端点适配标识，不表示任意厂商或任意产品均受支持。正式交付只能填写 [部署综述中的云中间件兼容矩阵](./agione-deployment-requirements#_5-1-2-数据库与中间件) 已验证的阿里云 / 华为云产品、版本和接入方式。预检能够连通端点，也不能替代产品与版本兼容性验证。
 
 ```yaml
 global_config:
@@ -471,7 +475,7 @@ agione_app:
 | --- | --- | --- |
 | `kubem` | `core_kubem`、`core_codelab`、`core_iam` | 启用训练 / 作业、CodeLab、IAM 服务；安装器会自动追加 `wm` 初始化。 |
 | `cloud` | `core_sgeneral`、`core_saws`、`core_saliyun`、`core_general`、`core_aliyun` | 启用云厂商集成服务。 |
-| `core_isync` | `core_isync`、`influxdb3` | 仅支持自建 MariaDB 且有数据库备库节点；默认和 `db_mariadb_standby` 放在同一节点。 |
+| `core_isync` | `core_isync`、`influxdb3` | 仅支持 host-mode、自建 MariaDB 且恰好一个数据库备库节点；默认和 `db_mariadb_standby` 放在同一节点。 |
 
 示例：
 
@@ -481,6 +485,33 @@ agione_app:
     - kubem
     - cloud
 ```
+
+如果没有把 `core_isync` 写入该列表，但部署使用 host-mode、自建 MariaDB、恰好一个备库节点，且 `agione_app.influxdb.enabled` 未关闭，初始安装会把 `core_isync` 和 `influxdb3` 的资产与镜像预置到备库节点。预置不会创建或启动容器，也不会把该组写成已启用；它只是为以后离线增量启用准备资源。
+
+#### 安装后增量启用
+
+如果环境尚未安装，继续通过 `start_optional_app_services` 配置服务组，并随 `quick` 一起部署。环境已经安装完成时，不要为了增加可选服务重新执行完整安装，改用：
+
+```bash
+./agione services status
+./agione services enable kubem,cloud --dry-run
+./agione services enable kubem,cloud
+```
+
+`services status` 会显示最终配置中的服务组、Compose 中已声明的服务、当前运行服务；状态包括“已启用”“未启用”“部分存在”。host-mode 还会逐节点显示状态并列出未完成事务；满足上述预置条件且远端资产完整时，`core_isync` 显示“已预置（已安装、未启动）”。
+
+`services enable` 直接读取已安装目录中的 `outputs/final-result-config.yml`，不需要传入 `--file`。`--dry-run` 只执行检查，不修改 Compose、容器或最终配置。模式支持如下：
+
+| 部署模式 | 可增量启用的组 |
+| --- | --- |
+| 单节点 / All in One | `kubem`、`cloud` |
+| host-mode 多节点 | `kubem`、`cloud`、`core_isync` |
+
+host-mode 增量启用 `core_isync` 时，必须使用自建 MariaDB，并且恰好一个数据库备库节点。主备复制应处于健康状态；如果尚未建立复制，只有备库为空、只读、没有复制元数据，并且唯一健康问题是缺少复制元数据时，安装器才允许自动初始化。备库非空、复制异常、角色错误或状态不明确都会阻止启用。
+
+基础安装未启用 `core_isync` 时不会导入 `metis-influx-sync.yml`。增量启用会在生成私有 InfluxDB 凭据后单独发布并校验该 Nacos 配置；后续步骤失败时会恢复原配置。正式执行只启动本次新增服务，不重建已有服务；失败会回滚本次事务，已健康启用的组再次执行不会重复变更。当前命令只支持启用，不支持禁用。
+
+命令成功后会更新已安装的 `outputs/final-result-config.yml`。如果以后仍使用 `/root/agione-install.yml` 做完整重装，也要把新增组同步写回 `agione_app.start_optional_app_services`。
 
 ### 5.4 数据库主备初始化
 

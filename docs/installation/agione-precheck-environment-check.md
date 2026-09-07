@@ -20,7 +20,7 @@ Precheck is a rehearsal, not an installation. It tells you whether the host, por
 | --- | --- | --- |
 | Step 1: Prepare bundle | Enter the bundle directory and make `./agione` executable | `./agione help` can run |
 | Step 2: Run doctor | Run `./agione doctor` for single-node, or `./agione doctor --file /root/agione-install.yml` for multi-node | Terminal prints a precheck conclusion |
-| Step 3: Verify bundle | Run `./agione verify-bundle` | Bundle integrity verification passes |
+| Step 3: Verify bundle | Run `./agione verify-bundle` | Split-bundle SHA-256 integrity verification passes |
 | Step 4: Fix FAIL | Fix blockers such as disk, port, permission, SSH, or middleware issues | No `FAIL` items remain |
 | Step 5: Confirm WARN | Confirm risk acceptance with the customer and delivery owner | Each `WARN` item has a clear decision |
 | Step 6: Install | Run `quick` or TUI installation with the same configuration | Precheck report is archived |
@@ -30,7 +30,8 @@ Precheck is a rehearsal, not an installation. It tells you whether the host, por
 | Term | Plain Explanation |
 | --- | --- |
 | `doctor` | Pre-install diagnostic command for host and configuration risks |
-| `verify-bundle` | Command that verifies bundle integrity before installation |
+| `verify-bundle` | Command that validates split-bundle files against `SHA256SUMS` |
+| MD5 / SHA-256 | MD5 detects download corruption; SHA-256 checks the outer archive and extracted split-bundle content |
 | `PASS` | The check passed and you can continue |
 | `WARN` | A risk exists but may not block installation; owner confirmation is required |
 | `FAIL` | A blocker that must be fixed before installation |
@@ -65,6 +66,8 @@ Verify the release bundle after transfer:
 ```bash
 ./agione verify-bundle
 ```
+
+This command validates split-bundle file SHA-256 checksums against `SHA256SUMS`. The download-page MD5 checks transfer corruption only and does not replace `verify-bundle`. For production delivery, independently obtain and verify the outer `.tar.gz` SHA-256 through an access-controlled channel. Do not set `AGIONE_SKIP_BUNDLE_VERIFY=1` for formal delivery.
 
 For host-mode multi-node installation, run the precheck with the same configuration file that will be used for installation:
 
@@ -154,14 +157,17 @@ For host-mode multi-node installation, check every node defined in `agione-insta
 | SSH connectivity | Target node can be reached through the configured user and port | Authentication failure or timeout |
 | Private IPv4 address | Node address is an RFC1918 private IPv4 address | Public IP address, public DNS name, or placeholder hostname |
 | Remote commands | `bash`, `tar`, and Python are available or repairable from bundled assets | Required commands are missing and cannot be repaired |
+| SHA-256 tool | Every target node has either `sha256sum` or `shasum` | A node has neither command, so installation stops before bundle synchronization |
 | Remote resources | CPU, memory, and selected install disk meet the selected role | Node resource below the threshold |
-| Existing data | Old runtime data is either absent or explicitly overwritten with `-f` | Old runtime data exists and overwrite was not confirmed |
+| Existing data | Old runtime data is absent, or it is backed up and controlled reinstall is requested with `quick --force-overwrite` | Old runtime data exists without a backup, cleanup decision, or secure precheck authorization |
 | Docker status | Docker and Compose are running or can be installed from offline assets | Docker repair failed |
 | Ports | Required ports are free on the node that will bind them | Existing process occupies a required port |
 
 ## 8. External Managed Middleware Checks
 
 When external managed middleware is selected in `agione-install.yml`, verify connectivity before installation.
+
+> **Important**: These checks validate network access, credentials, and required operation permissions only; they do not prove product implementation compatibility. Only the providers, products, versions, and access modes in the [cloud middleware compatibility matrix](./agione-deployment-requirements#_5-1-2-databases-and-middleware) are supported. An unlisted combination remains unsupported even if every check reports `PASS`.
 
 | Component | Required Check |
 | --- | --- |
@@ -184,7 +190,7 @@ The precheck or doctor report should contain at least:
 | Ports | Occupying process, listening address, conflicting port list |
 | Docker / Compose | Version, service status, whether offline installation is available |
 | Host-mode nodes | SSH result, private address validation, remote resources, remote commands, old data, Docker, and ports |
-| Offline assets | bundle manifest, checksum, image package, offline Python |
+| Offline assets | `SHA256SUMS` verification result, bundle manifest, image package, offline Python |
 | External middleware | Endpoint reachability and credential validation result |
 | Conclusion | PASS / WARN / FAIL, blocking items, remediation suggestions |
 
@@ -198,7 +204,7 @@ Enter formal installation only after:
 4. External managed middleware connectivity is `PASS` when external managed middleware is selected.
 5. All `FAIL` items have been remediated and passed recheck.
 6. All `WARN` items have been accepted by the delivery owner and customer owner.
-7. Offline delivery has passed `./agione verify-bundle`.
+7. Offline delivery has passed split-bundle SHA-256 verification with `./agione verify-bundle`; production delivery has also verified the outer archive SHA-256.
 
 ## 11. Relationship with the Installation Workflow
 
