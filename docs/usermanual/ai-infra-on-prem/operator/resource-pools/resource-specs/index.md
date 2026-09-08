@@ -40,11 +40,9 @@ Confirm that the task involves Configuration, status, and relationships on Resou
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Resource Specs.
+Use this page to manage specification IDs, CPU, memory, accelerators, accelerator count, specification metrics, associated clusters, and enabled state.
 
 ![Resource Specs](./images/manual-resource-specs.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays specification ID, status, CPU, memory, accelerator type, and quantity. It supports filtering by GPU vendor.
 
@@ -73,7 +71,6 @@ Add a specification when resource tiers are required for training, inference, de
 4. Select CPU, memory, accelerator, and other specification metrics, and fill in the corresponding quantities.
 5. If the specification includes accelerators, verify that the accelerator metric, k8s-key, and selector-key are consistent with resources actually reported by the cluster.
 6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the resource combination, naming convention, and later cluster association impact.
-7. For learning or page validation only, view the fields and dialog without submitting real specification configuration.
 
 The following figure shows the Add Resource Specification dialog. Clarify the CPU, memory, and accelerator combination during creation.
 

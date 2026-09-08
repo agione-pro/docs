@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on File 
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on File Storage.
+Use this page to manage shared file systems, directories, capacity, mount relationships, and access policies.
 
 ![File Storage](./images/file-storage-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page is used to display file storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
 
@@ -125,6 +121,18 @@ The page is used to display file storage capability in the selected region. When
 - To save model files, datasets, or artifact packages, consider [Object Storage](../object-storage/) first.
 - When shared directory semantics are required, use file storage or cluster shared storage configured by the operator.
 - When independent volume capability is required, use block storage. If the page is not opened, contact the operator to confirm whether the target region has underlying storage components.
+
+### Troubleshooting Information to Prepare
+
+When file storage is abnormal, prepare the following information to distinguish shared-path, permission, client-node, and multi-node access issues:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| File-system ID | `fs-20260713001` | Locates the target file storage. |
+| Mount path | `/mnt/share` | Determines whether the container path conflicts with another mount. |
+| Permission | `Read-write / Read-only` | Determines whether a write failure is permission-related. |
+| Client node | `node-gpu-01` | Identifies the node on which mounting failed. |
+| Shared directory | `/exports/models` | Verifies the NFS export path and tenant directory. |
 
 ## Result Validation
 

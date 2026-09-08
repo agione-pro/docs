@@ -7,17 +7,19 @@
 | Applicable Roles | Model Provider |
 | Navigation Path | Model Services > Customer Calls > Call Logs |
 | Page Route | `/modelone/monitoring/monitor/log/model` |
-| Managed Objects | Customer model-call records, results, usage, latency, and failed records |
+| Managed Objects | Customer model-call records, Model ID, attribution, customer account, results, usage, and failed records |
 
 #### Beginner Explanation
 
-Customer Call Logs works like a troubleshooting register for customer requests. Locate records by time, model, and status, and use customer name, result, usage, and latency to assess impact.
+Customer Call Logs works like a troubleshooting register for customer requests. Locate records by time, model, Model ID, and status. Use Customer Name for the customer account or tenant dimension, and use Attribution for the member, project, and Key scope inside that customer.
 
 #### Terminology
 
 | Term | Description |
 | --- | --- |
-| Customer Name | The customer identifier associated with a model call. |
+| Model ID | The platform model identifier used by the customer request. |
+| Customer Name | The customer account or tenant associated with a model call. |
+| Attribution | The member, project, and Key scope to which the customer call is attributed. |
 | Call Result | The success or failure state of one customer call. |
 | Usage | Token, count, or other consumption information for one call. |
 | First Token Time | The time for a text model to return its first token. |
@@ -43,7 +45,7 @@ Set a time range and query customer call logs, locate failed records, and use cu
 
 ## Page Description
 
-The page shows customer model-call records. Query by model name, model ID, type, status, and time range. The list includes customer name, result, usage, latency, and details.
+The page shows customer model-call records. Query by model name, Model ID, type, status, and time range. The list separates Model ID, Attribution, and Customer Name so that model identity, internal ownership scope, and customer account are not confused.
 
 Page screenshots:
 
@@ -57,7 +59,7 @@ Focus on time range, model criteria, customer name, call result, and details.
 
 1. Go to `Model Services > Customer Calls > Call Logs`.
 2. Set a time range, enter a model name or model ID, and select model type and call status if needed.
-3. Click **"Search"** and verify call time, customer name, result, usage, and latency.
+3. Click **"Search"** and verify call time, model name, Model ID, Attribution, Customer Name, result, and usage.
 4. Click **"Reset"** if the criteria are incorrect. Redact customer and business identifiers before sharing results.
 
 ![Query customer call logs](./images/manual-customer-call-logs-public.png)
@@ -67,8 +69,8 @@ The image shows customer call-log results. Verify time, customer, model, and cal
 ### Locate Failed Call Records
 
 1. Select a failed state in Call Status.
-2. Click **"Search"** and compare customer, model, time, and latency across failed records.
-3. Open **"Details"** for the target record and retain only a redacted error summary. Do not copy complete requests, responses, or credentials.
+2. Click **"Search"** and compare Customer Name, Model ID, Attribution, and time across failed records.
+3. Open **"Details"** for the target record and verify Model ID and Attribution before retaining only a redacted error summary. Do not copy complete requests, responses, or credentials.
 
 ![Locate failed call records](./images/manual-failed-call-filter-public.png)
 
@@ -81,12 +83,14 @@ The image shows a failed-status query. Compare customer, model, and time distrib
 | Month | Yes | Month selector | `2026-07` | Controls the statistical month for call logs. |
 | Date Range | Yes | Date range | `2026-07-01 to 2026-07-17` | Controls the query time range for call logs. |
 | Model | No | Input | `Example Model` | Filters call logs by model name. |
+| Model ID | No | Input | `<MODEL_ID>` | Filters customer call logs by the exact platform model identifier. |
 | Model Type | No | Selector | `Text` | Filters call logs by model capability type. |
-| Call Status | No | Selector | `Success` | Filters logs by call processing result. |
+| Call Status | No | Selector | `All` / `Success` / `Failed` / `Rate Limited` | Filters logs by call processing result. |
 | Minimum Input Tokens | No | Number input | `0` | Sets the lower input-token boundary for the query. |
 | Maximum Input Tokens | No | Number input | `1000` | Sets the upper input-token boundary for the query. |
 | Call Time | System-generated | Time | `2026-07-17 14:30` | Shows when a single customer call occurred. |
-| Customer Name | System-generated | Text | `Example Customer` | Shows the customer that initiated the call. |
+| Attribution | System-generated | Text | `Member / Project / Key scope` | Shows the member, project, and Key scope associated with the call. |
+| Customer Name | System-generated | Text | `Example Customer` | Shows the customer account or tenant that initiated the call; it is separate from Attribution. |
 | Usage | System-generated | Text / tag | `Input 100 / Output 40 Tokens` | Shows input tokens, output tokens, cached input tokens, context size, or free usage information. |
 | Time Consumed | System-generated | Time | `1.2 s` | Shows the total time consumed by a single call. |
 | First Token Time | System-generated | Time | `0.3 s` | Shows the time before the first token is returned. |
@@ -105,11 +109,11 @@ The image shows a failed-status query. Compare customer, model, and time distrib
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page is accessible | The `Customer Calls - Call Logs` page opens, and `Customer Calls > Call Logs` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Log list loads | The list shows columns such as call time, model, customer name, call status, usage, latency, and error message. | Refresh the page or retry after adjusting the month and date range. |
+| Log list loads | The list shows columns such as call time, model name, Model ID, Attribution, Customer Name, model type, call result, and usage. | Refresh the page or retry after adjusting the month and date range. |
 | Filter controls can be selected | After filtering by month, date range, model, model type, or call status, the list refreshes. | Check whether filters are too narrow, and click **"Reset"** if needed. |
 | Search / Reset works | `Search` displays matching logs, and `Reset` clears the filters. | Check network status, page API responses, and account permissions. |
 | Log details can be opened | Clicking `Details` opens more information about a single customer call. | Confirm that the record is still within the log retention period. |
-| Field information is consistent | Call status, time consumed, usage, failure type, and error message are consistent with the details page. | Reopen details or expand the time range for cross-checking. |
+| Field information is consistent | Model ID, Attribution, Customer Name, call status, usage, failure type, and error message are consistent with the details page. | Reopen details or expand the time range for cross-checking. |
 
 ## FAQ
 
@@ -117,7 +121,7 @@ The image shows a failed-status query. Compare customer, model, and time distrib
 
 **Symptom:**
 
-The target record does not appear after a search by customer, model, or time.
+The target record does not appear after a search by model or time.
 
 **Possible Causes:**
 
@@ -127,7 +131,7 @@ The target record does not appear after a search by customer, model, or time.
 **Resolution:**
 
 1. Click **"Reset"** and select the call date.
-2. Filter by customer, Model ID, and status one at a time.
+2. Filter by Model ID and status one at a time, and then compare Customer Name and Attribution in the returned records.
 3. If the record remains missing, ask the administrator to verify Model Provider permissions and provide the redacted call time.
 
 #### Failed-Status Filter Shows No Record
@@ -160,8 +164,8 @@ One customer has several failed logs in a short period.
 
 **Resolution:**
 
-1. Keep the same customer and time range.
-2. Open several failed records and compare the error type and Model ID.
+1. Keep the same time range and Model ID.
+2. Open several failed records and compare Customer Name, Attribution, and error type.
 3. Send the redacted error to the customer. Contact the Model Provider if the upstream error continues.
 
 #### Customer Call Latency Increases

@@ -36,7 +36,7 @@ The create form contains role name, role description, and an Initial permissions
 
 ![Roles list](./images/manual-settings-user-roles-live-20260902.png)
 
-The screenshot hides only the top menu and keeps the left navigation and complete functional area. Check the list fields, role-name filter, and the Edit, Authorize, and Delete entries in each row.
+Read the page from the role-name filter to the result list, then use the Edit, Authorize, or Delete entry for the confirmed role. Role creation and authorization are separate tasks and should be verified separately.
 
 ## Main Operations
 

@@ -41,11 +41,9 @@ Confirm that the task involves Configuration, status, and relationships on Objec
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Object Storage.
+Use this page to manage object-storage type, name, endpoint, IP address, access credentials, storage limits, descriptions, and available actions.
 
 ![Object Storage](./images/manual-object-storage.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays connected object storage components, status, access Endpoint, internal address, capacity information, and associated regions.
 
@@ -73,7 +71,6 @@ Register a storage component when a new MinIO, S3-compatible storage, or another
 3. Fill in `Service Type`, `Object Storage`, `Name`, `Endpoint (Public URL)`, `IP Address`, `Access Key`, `Secret Key`, `Limit Storage Quota`, and `Description` according to the page fields.
 4. If the page provides `Test Connection`, run the read-only connectivity check first and confirm the returned result.
 5. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify Endpoint (Public URL), IP Address, Access Key, Secret Key, and quota limit again.
-6. For learning or page validation only, view fields and forms without submitting real object storage configuration.
 
 The following figure shows the Register Storage Component form, used to configure object storage access method and connection parameters.
 

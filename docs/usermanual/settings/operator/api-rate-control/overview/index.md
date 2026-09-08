@@ -31,7 +31,7 @@ The Overview page is the traffic dashboard. Start here to determine whether requ
 
 ## Page Description
 
-The following screenshot shows the API Rate Control Overview page. Statistical details are desensitized.
+The page summarizes API rate-control status, rule coverage, node state, publishing state, and observability entries.
 
 ![API Rate Control Overview](./images/overview-list.png)
 
@@ -46,10 +46,6 @@ The following screenshot shows the API Rate Control Overview page. Statistical d
 | Top 5 rules | Shows the rules with the highest hit counts. |
 | Details | Opens details for a ranked rule. |
 
-![Overview](./images/manual-settings-operator-rate-overview.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Overview page.
-
 ## Main Operations
 
 ### View Rate Control Overview
@@ -59,32 +55,12 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Compare the current and previous periods to identify spikes, continuous blocking, or node anomalies.
 4. If metrics are empty, check the time range and refresh time. Do not treat incomplete real-time aggregation as a final conclusion.
 
-![View Rate Control Overview](./images/manual-settings-operator-rate-overview.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Overview page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### View Rate Control Details
 
 1. Click an abnormal metric or related entry to open Rule Management or Observability Audit.
 2. Keep the same time range and check matched rules, nodes, and block reasons.
 3. A successful drill-down should map the overview to a specific rule or event. If not, check rule version and publish time.
 4. Do not modify rules or publish versions during read-only validation.
-
-![View Rate Control Details](./images/manual-settings-operator-rate-overview.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Overview page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 
@@ -203,7 +179,3 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. To adjust rules, go to [Rule Management](../rule-management/).
 2. To review block or audit details, go to [Observability & Audit](../observability-audit/).
-
-### Preserved Existing Screenshots
-
-![Preserved Existing Screenshots](./images/overview-list.png)

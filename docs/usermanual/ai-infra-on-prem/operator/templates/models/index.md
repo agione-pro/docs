@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Model
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Models.
+Use this page to manage meta-models, model versions, model sources, quantization methods, tags, and associated clusters.
 
 ![Models](./images/manual-models.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays configurations by model author, model category, and model series, and supports maintaining public or private models.
 

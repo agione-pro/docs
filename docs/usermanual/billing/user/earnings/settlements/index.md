@@ -68,20 +68,12 @@ The following screenshot shows the Settlements page. Amounts, customers, account
 3. Check the billing period, amount direction, status, and update time.
 4. If no record is returned, reset filters and check the billing period. Redact settlement data before sharing.
 
-![Settlements - View Monthly Settlement Statements](./images/settlements-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Reconcile a Settlement with Earnings Details
 
 1. Open statement details and record a redacted statement number, billing period, and status.
 2. Compare Revenue Overview and model/customer details for the same aggregation scope.
 3. The amount direction and detail total should be traceable. If not, check settlement status and refresh time.
 4. If an anomaly occurs, do not regenerate, confirm, or adjust the settlement before the cause is verified.
-
-![Settlements - Reconcile a Settlement with Earnings Details](./images/settlements-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Settlement Statement Details
 
@@ -91,8 +83,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. In the target row, verify billing cycle, status, amount to settle, actual received amount, rounding adjustment, and received time.
 5. Click **"Details"** in the row to view settlement statement details.
 6. In the details page or details area, verify settlement composition, received information, processing status, and exception prompts.
-
-![Settlements](./images/settlements-list.png)
 
 ## Parameter Quick Reference
 

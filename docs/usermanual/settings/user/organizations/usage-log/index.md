@@ -46,10 +46,6 @@ The table contains:
 
 ![Usage Log list](./images/usage-log-list.png)
 
-![Usage Log](./images/manual-settings-user-usage-log.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Usage Log page.
-
 ## Main Operations
 
 ### View Quota Usage Events
@@ -59,32 +55,12 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Check the target event time, quota change, object, and reason.
 4. If no record is returned, check the time zone and clear combined filters. Redact quota and member data before sharing.
 
-![View Quota Usage Events](./images/manual-settings-user-usage-log.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Usage Log page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### View Quota Usage Event Details
 
 1. Click **"Details"** for the target event.
 2. Compare quota before, change amount, quota after, and the related object.
 3. Check for a reversal or subsequent adjustment near the same time.
 4. If the change cannot be explained, escalate with a redacted event ID and time range. Do not modify quota directly.
-
-![View Quota Usage Event Details](./images/manual-settings-user-usage-log.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Usage Log page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

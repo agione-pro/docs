@@ -71,10 +71,6 @@ The following screenshot shows Quota Governance. Sanitize project, member, quota
 4. Click row-level `View` to open project details when needed.
 5. Before resetting a project or changing defaults, verify the target project, account permission, and impact scope.
 
-![Quota Governance - View Project Quotas](./images/quota-governance-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View Member Quotas
 
 1. Go to `Billing > User Billing > Quota Governance`.
@@ -83,10 +79,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. For members close to the limit, adjust workload plans according to business use.
 5. Hide real member emails, project names, quota limits, and consumption details in external communication.
 
-![Quota Governance - View Member Quotas](./images/quota-governance-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Review Risks and Actions
 
 1. Go to `Billing > User Billing > Quota Governance`.
@@ -94,10 +86,6 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Prioritize items close to the limit, over quota, or blocking continued use.
 4. Before changing a quota rule, confirm the scope, affected objects, and approval basis.
 5. Before submitting a quota adjustment, verify the target project or member, requested amount, and impact scope.
-
-![Quota Governance - Review Risks and Actions](./images/quota-governance-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

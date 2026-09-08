@@ -79,19 +79,11 @@ The image shows the page entry or current state for this operation. Verify the p
 4. Review `Platform Clearing Account`, `Payable to Provider`, `Platform Revenue Account`, and `Alert Items`.
 5. Review the downstream cards: `Settlement Workbench`, `Billing Reconciliation`, `Platform Account Reconciliation`, and `Account Adjustment`.
 
-![Today Tasks - View Today Tasks Overview](./images/manual-billing-today-tasks-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Open a Task Processing Page
 
 1. In the `Settlement Workbench`, `Billing Reconciliation`, `Platform Account Reconciliation`, or `Account Adjustment` card, click **"See Detail"**.
 2. Continue filtering, viewing details, or checking exceptions on the downstream page.
 3. If settlement generation or adjustment is required, confirm the billing period, tenant, amount, and approval basis before any final action.
-
-![Today Tasks - Open Downstream Pages](./images/manual-billing-today-tasks-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

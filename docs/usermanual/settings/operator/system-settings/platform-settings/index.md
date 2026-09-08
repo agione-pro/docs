@@ -30,27 +30,36 @@ Platform Settings is the global parameter panel. It controls basic platform beha
 
 ## Page Description
 
-The following screenshot shows the Platform Settings page. Configuration values are desensitized.
+The Platform Settings page groups global configuration by business impact.
 
 ![Platform Settings](./images/platform-settings-list.png)
 
-| Area | Description |
-| --- | --- |
-| Refresh | Reloads platform configuration. |
-| General Settings | Maintains shared platform and display configuration. |
-| Provider Relationship | Maintains provider relationship configuration. |
-| Currency Settings | Maintains currency display and usage configuration. |
-| Payment Channels | Maintains payment-channel configuration. |
-| Account & Settlement | Maintains account and settlement configuration. |
-| Email Settings | Maintains email-delivery configuration. |
-| UI Configuration | Maintains UI presentation configuration. |
-| Edit | Changes the selected configuration item. |
+| Configuration Area | Main Responsibility | Typical Impact to Verify |
+| --- | --- | --- |
+| General Settings | Maintains shared platform parameters and default display settings. | Platform-wide defaults and common presentation. |
+| Provider Relationship | Maintains provider relationships, enabled status, and settlement ownership. | Provider visibility, business ownership, and settlement relationships. |
+| Currency Settings | Maintains available currencies, display rules, precision, and conversion-related settings. | Amount display, recharge, billing, and settlement. |
+| Payment Channels | Maintains payment providers, credentials, callbacks, and connectivity. | Recharge, payment callbacks, and settlement. |
+| Account & Settlement | Maintains account, settlement cycle, recharge, and Credits-related parameters. | Account balance, Credits calculation, billing, and settlement. |
+| Email Settings | Maintains mail service, sender, notification, and verification-email settings. | Login verification and notification delivery. |
+| UI Configuration | Maintains login-page, platform identity, theme, and display settings. | User-visible interface and branding. |
+| Refresh / Edit | Reloads the page or opens the selected configuration for maintenance. | Whether the displayed value is current and whether the account has write permission. |
 
-![Platform Settings](./images/manual-settings-operator-platform-settings.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Platform Settings page.
+Use the configuration-area name and its **"Edit"** entry to locate the intended setting before making a change.
 
 ## Main Operations
+
+### Common Operation Sequence
+
+Use the same control sequence for each configuration area, then follow the area-specific notes below:
+
+1. Open the target configuration area and confirm the current value, enabled status, and affected modules.
+2. For an approved change, open **"Edit"** and change only the intended fields.
+3. Before **"Save"**, **"Enable"**, **"Disable"**, **"Reset"**, or **"Test Connection"**, confirm approval, external-system impact, and the rollback method.
+4. Follow the page message, then reopen the configuration area and verify the displayed value or enabled status.
+5. Validate the affected business module, such as sign-in, recharge, settlement, email delivery, or UI display.
+
+If the task is only to learn the page or capture screenshots, stop after viewing the configuration and do not submit changes.
 
 ### Edit General Settings
 
@@ -59,12 +68,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review general platform display and shared settings.
 
 ![General Configuration](./images/general-settings.png)
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Edit Provider Relationship
 
@@ -78,12 +81,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 ![Provider relationship](./images/provider-relationship.png)
 :::
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit Currency Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
@@ -91,12 +88,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review default currency, display rules, precision, or conversion-related settings.
 
 ![Currency Settings](./images/currency-settings.png)
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Edit Payment Channels
 
@@ -137,12 +128,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 10. Before clicking `Save`, verify credential source, permission scope, callback address, settlement impact, and rollback plan.
 11. For learning or screenshots only, view setup help, edit pages, and test connection entries without submitting real payment channel configuration.
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit Account and Settlement Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
@@ -150,12 +135,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review account, settlement cycle, recharge, or credits-related parameters.
 
 ![Account and Settlement Configuration](./images/account-settlement.png)
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Edit Email Settings
 
@@ -165,12 +144,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 
 ![Email Settings](./images/email-settings.png)
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit UI Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
@@ -178,12 +151,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review login page, platform identity, theme, or display-related settings.
 
 ![UI Configuration](./images/ui-configuration.png)
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 
@@ -216,6 +183,8 @@ The screenshot keeps the left navigation and the complete functional area with t
 | Categories | Configuration categories are displayed. | Refresh the page and open it again. |
 | Configuration values | Configuration items and values are readable. | Check system-configuration permission. |
 | Edit entry | Edit is displayed according to permission. | Ask an administrator to make the change when you lack permission. |
+| Saved value | After an approved change, reopening the area shows the intended value or enabled status. | Check the page message, permission, approval status, and whether the page needs to be refreshed. |
+| Business impact | The affected sign-in, recharge, settlement, email, or UI flow behaves as expected. | Roll back according to the change plan and inspect Operation Logs and the related business module. |
 | Screenshots | General configuration, provider relationship, currency settings, payment channel, account and settlement, email settings, and UI configuration screenshots render normally. | Check whether image paths exist. |
 
 ## FAQ

@@ -39,13 +39,9 @@ Confirm that the task involves Configuration, status, and relationships on Runti
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Runtime Instances.
+Use this page to manage runtime instances, single-node and cluster tasks, images, specifications, startup commands, and runtime state.
 
 ![Runtime Instances](./images/runtime-instances-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The list page supports filtering by region and status, and provides refresh and create entrypoints. The creation page first selects single-node or cluster deployment type.
 

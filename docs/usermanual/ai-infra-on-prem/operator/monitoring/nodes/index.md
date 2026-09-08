@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Nodes
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Nodes.
+Use this page to inspect node state, node role, resource utilization, heartbeat, and cluster ownership.
 
 ![Nodes](./images/manual-monitoring-nodes.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 Node statistics are used to view CPU, memory, disk, and runtime status for each node. Operators can use it to locate NotReady nodes, high-watermark nodes, or machines with interrupted collection curves.
 

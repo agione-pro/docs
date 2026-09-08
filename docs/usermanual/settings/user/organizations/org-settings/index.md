@@ -38,14 +38,6 @@ Tenant Settings is the tenant default-rule panel. It defines the initial policy 
 | Quota Request Settings | Configures automatic expiration and request rules for pending requests. |
 | Bottom actions | Reset to Defaults and Save Settings |
 
-The following screenshot shows quota request settings.
-
-![Quota request settings](./images/org-quota-request-settings.png)
-
-![Tenant Settings](./images/manual-settings-user-org-settings.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenant Settings page.
-
 ## Main Operations
 
 ### View Tenant Settings
@@ -54,16 +46,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 2. Review organization information, quota-request settings, project defaults, and member-quota defaults.
 3. Record the current state and confirm that each setting applies to the current tenant.
 4. If information is missing, refresh and check administrative permission. Hide organization identifiers and quota before screenshots or sharing.
-
-![View Tenant Settings](./images/manual-settings-user-org-settings.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenant Settings page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Edit Tenant Settings
 
@@ -94,12 +76,6 @@ The following screenshot shows Quota Request Settings.
 
 6. After reviewing all tabs, select `Save Settings`.
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Verify Tenant Settings
 
 1. After an approved change, reopen Tenant Settings.
@@ -107,25 +83,15 @@ The following screenshot shows Quota Request Settings.
 3. Before creating a project or member, confirm that the new defaults take effect as expected.
 4. If not applied, check the save message, permission, and cache. Do not submit repeatedly.
 
-![Verify Tenant Settings](./images/manual-settings-user-org-settings.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Tenant Settings page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Tenant / customer / member | No | Text | `Example tenant` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Tenant name | System-generated | Text | `Example Tenant A` | Identifies the tenant to which the settings apply. |
+| Default project rule | No | Configuration | `Enabled` | Applies to projects created after the rule takes effect. |
+| Default member policy | No | Configuration | `Standard member` | Applies to members added after the policy takes effect. |
+| Quota rule | No | Configuration | `Default quota` | Controls quota allocation or request behavior. |
+| Save | No | Button | `Save` | Submits changes made to tenant settings. |
 
 ## Pitfalls
 

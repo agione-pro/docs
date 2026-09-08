@@ -52,8 +52,6 @@ The page includes a risk notice, `New Adjustment` area, and `Adjustment Records`
 
 The following screenshot shows the risk notice, new adjustment area, and adjustment records list.
 
-![Account Adjustment](./images/account-adjustment-list.png)
-
 ## Main Operations
 
 Use the following operations to view the account adjustment page, evaluate adjustment impact, and review adjustment records. Before submitting an adjustment, verify the target billing record, approval status, direction, amount, and reason.
@@ -87,10 +85,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. Click **"Details"** to view more information for a single adjustment record.
 5. Verify whether the record is consistent with approval basis, related document, and account transactions.
 6. Hide real account, tenant name, transaction number, amount, and approval information when sharing screenshots or external communication.
-
-![Account Adjustment - View Adjustment Records](./images/manual-billing-account-adjustment-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

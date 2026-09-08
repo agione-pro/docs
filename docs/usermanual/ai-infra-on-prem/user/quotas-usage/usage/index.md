@@ -37,13 +37,9 @@ Confirm that the task involves Configuration, status, and relationships on Usage
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Usage.
+Use this page to review resource-specification usage, quota occupancy, and consumption details.
 
 ![Usage](./images/usage-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays resource specifications, quotas, and operation entrypoints in a table. The screenshot shows multiple specifications with Unlimited credits and provides `Consumption Details`.
 

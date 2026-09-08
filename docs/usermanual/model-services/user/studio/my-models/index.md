@@ -48,7 +48,15 @@ For a first publication, open the publishing entry, confirm the region, and comp
 
 ## Page Description
 
-The page contains Overview, My Published, and My Aggregate. Lists show existing models, while business entries in Overview start model publication or aggregate-model creation.
+The page combines two record lists with two multi-step creation flows. Select the tab or entry according to the task:
+
+| Tab / Entry | Use It To | Completion Signal |
+| --- | --- | --- |
+| Overview | Start model publishing or aggregate-model creation. | The intended publishing-destination dialog opens. |
+| My Published | Locate directly published models and review their region, status, and actions. | The target record and current publishing state are visible. |
+| My Aggregate | Locate aggregate models and review their region, status, and actions. | The target aggregate model and current state are visible. |
+| Publish Model | Complete destination, basic information, billing, and rate-limit stages. | The submission result is shown and the record can be checked in My Published. |
+| Create Aggregate Model | Complete destination, candidate-model, routing, and billing stages. | The submission result is shown and the record can be checked in My Aggregate. |
 
 Page screenshots:
 
@@ -62,27 +70,24 @@ My Aggregate shows aggregate models and their current status.
 
 ## Main Operations
 
-### View Published Models
+### Inspect Existing Model Records
 
 1. Go to `Model Services > Studio > My Models`.
-2. Click **"My Published"**.
-3. Locate a model by name, region, or status, and verify its state and row actions.
+2. To inspect a directly published model, click **"My Published"**, locate it by name, region, or status, and verify its state and row actions.
 
 ![View My Published](./images/manual-my-published-public.png)
 
 The image shows My Published. Verify the publishing region, status, and actions.
 
-### View Aggregate Models
-
-1. Go to `Model Services > Studio > My Models`.
-2. Click **"My Aggregate"**.
-3. Verify the aggregate-model name, region, status, and candidate-model information.
+3. To inspect an aggregate model, click **"My Aggregate"** and verify its name, region, status, candidate-model information, and row actions.
 
 ![View My Aggregate](./images/manual-my-aggregate-public.png)
 
-The image shows My Aggregate. Verify aggregate-model status and row actions.
+The image shows My Aggregate. Verify aggregate-model status and row actions. Switching tabs changes the record type being inspected; it does not start a publishing or creation flow.
 
 ### Publish a Model
+
+Complete the flow in four checkpoints: publishing destination, basic information, billing configuration, and rate-limit configuration.
 
 1. Open the model publishing entry from My Models Overview.
 2. Select Private Region or Public Region and confirm the intended visibility.
@@ -111,6 +116,8 @@ Verify the rate-limit period, threshold, and scope.
 
 ### Create an Aggregate Model
 
+Complete the flow in four checkpoints: publishing destination, candidate-model and basic information, routing strategy, and billing configuration.
+
 1. Open the aggregate-model entry from My Models Overview.
 2. Select Private Region or Public Region and confirm the target customer scope.
 3. Enter basic information, select listed candidate models, and configure routing, billing, and rate limits.
@@ -132,7 +139,7 @@ Verify the name, candidate models, and routing strategy.
 
 Verify aggregate-model billing units and price.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -177,10 +184,12 @@ Verify aggregate-model billing units and price.
 | --- | --- | --- |
 | Page opens | The page shows the `Overview`, `My Published`, and `My Aggregate` tabs. | Check account permissions, navigation path, and page loading status. |
 | Model list loads | `My Published` or `My Aggregate` shows model records, status, version, and operation entries. | Click **"Search"** or `Reset` and retry. Check permissions and filters if needed. |
-| Publish Model entry is visible | The `Publish Model` button or publishing entry is visible and can open the publishing destination dialog. | Check whether the account has model publishing permission. |
-| Create Aggregate Model entry is visible | The `Create Aggregate Model` button or entry is visible and opens the publishing destination dialog. | Confirm that compatible published models are listed. |
-| Publish fields are visible | The page shows the Basic Information, Billing Configuration, and Rate Limit Configuration steps. | Go back to select the publishing destination again, or refresh the page. |
-| Aggregate fields are visible | The page shows Model Selection, row controls, tags, name preview, Route Strategy, Access Mode, and Billing Configuration. | Check whether selected models meet the same meta model requirement. |
+| Publishing destination | `Publish Model` opens the destination dialog and allows the intended Private or Public Region to be selected. | Check publishing permission and whether the required region is available. |
+| Publish flow | The Basic Information, Billing Configuration, and Rate Limit Configuration stages are visible and retain the intended values. | Return to the previous stage, verify required fields, and reselect the publishing destination when needed. |
+| Published result | The page shows the submission result and My Published displays the expected record and status. | Do not submit repeatedly; check the page message, active tab, filters, and review status. |
+| Aggregate destination | `Create Aggregate Model` opens the destination dialog and shows compatible candidate models after the region is selected. | Confirm that compatible published models are listed and visible in the selected region. |
+| Aggregate flow | Model Selection, row controls, tags, name preview, Route Strategy, Access Mode, and Billing Configuration are visible and retain the intended values. | Check whether selected models meet the same meta model requirement and return to the relevant stage. |
+| Aggregate result | The page shows the submission result and My Aggregate displays the expected record and status. | Do not submit repeatedly; check candidate-model status, the active tab, filters, and the page message. |
 
 ## FAQ
 

@@ -7,7 +7,7 @@
 | Applicable Role | Operator |
 | Navigation Path | AI Infra(On-Prem) > Monitoring > Overview |
 | Page Route | `/powerone/monitor/overview` |
-| Managed Object | Configuration, status, and relationships on Overview |
+| Managed Object | Resource status, capacity watermarks, exception summaries, and drill-down entries |
 
 #### Beginner Explanation
 
@@ -23,11 +23,11 @@ Statistics overview is like the resource pool cockpit. First check overall water
 
 #### Recommended Operation Order
 
-Confirm prerequisites for Resource pool overview, cluster count, node status, job distribution, and resource capacity, follow Main Operations, run Result Validation, and continue to the next page.
+Set the monitoring scope first, confirm data freshness, read the overall status and watermarks, and then drill down with the same scope when an exception is found.
 
 #### First-Time User Notes
 
-Confirm that the task involves Configuration, status, and relationships on Overview, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
+This is a monitoring and navigation page, not a resource-configuration page. Use it to identify the direction of an issue; verify the final cause on the relevant cluster, node, device, or job page.
 
 ## Prerequisites
 
@@ -38,57 +38,45 @@ Confirm that the task involves Configuration, status, and relationships on Overv
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Overview.
+Use this page to understand the current on-prem resource state and decide where to investigate next.
 
 ![Overview](./images/manual-monitoring-overview.png)
 
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
+Statistics overview presents global resource watermarks, exception aggregation, and trend entrypoints from an operator perspective. Read the page in the following order:
 
-Statistics overview is used to view global resource watermarks, exception aggregation, and trend entrypoints from an operator perspective. The page helps operators first determine whether an issue is concentrated in clusters, nodes, devices, or jobs, then enter the corresponding monitoring page for drill-down.
-
-The following figure shows the statistics overview page.
+| Page Area | What to Confirm |
+| --- | --- |
+| Scope and filters | Time range, region, resource pool, cluster, or resource type used for the statistics. |
+| Summary cards | Total, used, remaining, online, and abnormal quantities in the current scope. |
+| Trends and distributions | Whether utilization or job status changes continuously or only at one point in time. |
+| Update time | Whether the displayed data is within the expected collection interval. |
+| Drill-down entry | Which cluster, node, device, or job page should be opened while retaining the same scope. |
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
-### View Statistics Overview
-
-#### Procedure
+### Confirm Scope and Data Freshness
 
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Overview`.
-2. Confirm the region in the upper-right corner and page filters.
-3. View lists, charts, or statistic cards.
-4. Focus on abnormal status, high watermarks, long periods without updates, or data inconsistent with expectations.
-5. After finding an exception, go to cluster statistics, node statistics, device monitoring, or job monitoring for further location.
+2. Select the time range, region, resource pool, cluster, or resource type provided by the page.
+3. Confirm the update time and object count before comparing metrics.
+4. If no data is shown, expand the time range and clear filters one at a time.
 
-#### Monitoring Overview
+### Read the Overview and Identify Exceptions
 
-1. Go to `AI Infrastructure > On-Prem > Monitoring > Overview`.
-2. View the overall running status of resource pools, clusters, nodes, devices, and jobs.
-3. Focus on total resources, used resources, remaining resources, online status, abnormal status, and trend metrics.
-4. If the page provides time range, region, cluster, or resource type filters, select the filters before reviewing statistics.
-5. If high resource usage, device exceptions, or job exceptions are found, continue troubleshooting in Clusters, Nodes, Devices, or Jobs monitoring pages.
+1. Review the total, used, and remaining resources and the online or abnormal status of clusters, nodes, devices, and jobs.
+2. Compare statistic cards, distributions, and trends within the same scope.
+3. Focus on high watermarks, abnormal status, long periods without updates, and increases in failed, queued, or long-running jobs.
+4. Determine whether the signal is a short spike, a single-object issue, a cluster-level issue, or an environment-wide trend.
 
 ![Monitoring overview](./images/overview-list.png)
 
-#### Key Focus
+### Drill Down with the Same Scope
 
-- Whether cluster and node counts change abnormally.
-- Whether GPU, CPU, memory, and disk watermarks are close to limits.
-- Whether failed, queued, or long-running jobs increase.
+1. Click an abnormal metric, trend point, or **"Details"** entry when available.
+2. Keep the same time range, region, and target object while opening cluster statistics, node statistics, device monitoring, or job monitoring.
+3. Cross-check utilization, status, alerts, and related objects before deciding the cause.
+4. Do not start, stop, migrate, or delete resources only to reproduce a monitoring anomaly.
+5. Redact internal resource names and metrics before sharing evidence.
 
 ## Parameter Quick Reference
 
@@ -118,7 +106,7 @@ The following figure shows the statistics overview page.
 - Mask tenants, node names, and business identifiers before screenshots.
 - Do not write real cluster IDs, node names, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-### Configuration Rules and Impact
+### Reading Rules and Impact
 
 - **Use overview to determine direction first**: Confirm whether exceptions are concentrated in a region, cluster, or resource type before entering drill-down pages.
 - **Interpret exception count with time range**: The longer the time window, the more easily historical exceptions are included. Fix the time range during troubleshooting.

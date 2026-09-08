@@ -65,10 +65,6 @@ The following screenshot shows Transactions. Sanitize transaction numbers, times
 3. When ordered correctly, one transaction's quota after should equal the next transaction's quota before. If not, check sorting and delayed posting.
 4. If it cannot be explained, escalate with a redacted transaction number and time range. Do not create a top-up or adjustment directly.
 
-![Transactions - Reconcile a Balance Change](./images/transactions-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Query Transactions
 
 1. Go to `Billing > User Billing > Transactions`.
@@ -79,10 +75,6 @@ The image shows the page entry or current state for this operation. Verify the p
 6. Click **"Reset"** to clear filters before a new query.
 7. Before exporting transactions, verify the filters, data scope, and recipient permission.
 
-![Transactions - Query Transactions](./images/transactions-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View an Individual Transaction
 
 1. Go to `Billing > User Billing > Transactions`.
@@ -91,10 +83,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. Review credit change, post-change credits, business transaction number, and remarks.
 5. Click row-level `Details` when it is available.
 6. Hide real transaction numbers, business transaction numbers, accounts, amounts, and business context in external communication.
-
-![Transactions - View an Individual Transaction](./images/transactions-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

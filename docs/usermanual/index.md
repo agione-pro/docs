@@ -21,7 +21,7 @@ The manual is organized into five modules in the left sidebar:
 
 | Your role or goal | Recommended entry | Next step |
 | --- | --- | --- |
-| First-Time End User | Start from this page, then open the target module getting-started page. | Confirm your role, permissions, and target resource before entering a feature page. |
+| First-Time End User | Start from this page, then select the role group under the target module. | Confirm your role, permissions, and target resource before entering a feature page. |
 | End User | Model Services, AI Infra On-Prem, Billing, or Settings. | Decide whether you need to call models, use resources, check billing, or manage personal settings. |
 | Platform Operator | Settings, AI Infra On-Cloud, AI Infra On-Prem, and Model Services. | Confirm account permissions, resource onboarding, and approval boundaries first. |
 | Billing or Finance User | Billing. | Confirm billing cycle, customer, tenant, and business-line scope. |
@@ -31,11 +31,11 @@ The manual is organized into five modules in the left sidebar:
 
 | Module | Applicable Roles | Core Features | Recommended Entry |
 | --- | --- | --- | --- |
-| Model Services | Model Providers, Model Callers, Platform Operators | Meta-models, model sources, model publishing, reviews, Playground, call logs, revenue statistics | [Overview](./model-services/), [Getting Started](./model-services/getting-started/), [Publish and Call a Model](./model-services/end-to-end/publish-and-call-model/) |
-| AI Infra On-Cloud | Cloud Resource Operators, End Users | Cloud platforms, cloud accounts, resource pools, tenant authorization, business-region authorization, deployment assets, scheduling policies, quick deployment | [Overview](./ai-infra-on-cloud/), [Getting Started](./ai-infra-on-cloud/getting-started/), [Deploy a Cloud Model Service](./ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) |
-| AI Infra On-Prem | Resource Pool Operators, End Users | Regions, availability zones, clusters, accelerators, specifications, images, storage, templates, quotas, metering, monitoring | [Overview](./ai-infra-on-prem/), [Getting Started](./ai-infra-on-prem/getting-started/), [Deploy a Model Service](./ai-infra-on-prem/end-to-end/deploy-model-service/) |
-| Billing | End Users, Platform Operators, Billing Operators, License Managers | User billing, customer billing, finance operations, top-up orders, monthly bills, settlements, adjustments, License | [Overview](./billing/), [Getting Started](./billing/getting-started/), [Reconcile and Settle a Billing Cycle](./billing/end-to-end/reconcile-billing-cycle/) |
-| Settings | End Users, Platform Operators, System Maintainers, Security Roles | Personal Keys, account information, projects, team members, roles, tenant settings, operation logs, system configuration, API rate control | [Overview](./settings/), [Getting Started](./settings/getting-started/), [Configure Account and Permissions](./settings/end-to-end/configure-account-and-permissions/) |
+| Model Services | Model Providers, Model Callers, Platform Operators | Meta-models, model sources, model publishing, reviews, Playground, call logs, revenue statistics | [Operator: Meta Models](./model-services/operator/settings/meta-models/), [Provider & End User: Models](./model-services/user/discover/models/) |
+| AI Infra On-Cloud | Cloud Resource Operators, End Users | Cloud platforms, cloud accounts, resource pools, tenant authorization, business-region authorization, deployment assets, scheduling policies, quick deployment | [Operator: Access Overview](./ai-infra-on-cloud/operator/access-workbench/access-overview/), [User: Quick Deployment](./ai-infra-on-cloud/user/model-services/quick-deployment/) |
+| AI Infra On-Prem | Resource Pool Operators, End Users | Regions, availability zones, clusters, accelerators, specifications, images, storage, templates, quotas, metering, monitoring | [Operator: Regions & Zones](./ai-infra-on-prem/operator/resource-pools/regions-zones/), [User: Overview](./ai-infra-on-prem/user/overview/) |
+| Billing | End Users, Platform Operators, Billing Operators, License Managers | User billing, customer billing, finance operations, top-up orders, monthly bills, settlements, adjustments, License | [Operator: Today Tasks](./billing/operator/finance-operations/today-tasks/), [Provider & End User: Account Overview](./billing/user/billing/overview/) |
+| Settings | End Users, Platform Operators, System Maintainers, Security Roles | Personal Keys, account information, projects, team members, roles, tenant settings, operation logs, system configuration, API rate control | [Operator: Members](./settings/operator/members-roles/members/), [Provider & End User: Dashboard](./settings/user/personal/dashboard/) |
 
 ## Core Terms
 
@@ -61,8 +61,8 @@ The manual is organized into five modules in the left sidebar:
 ## Recommended Reading Path
 
 1. Read this page first to identify your role and target module.
-2. Read the getting-started page for the module to understand core objects, prerequisites, and common limits.
-3. For cross-module tasks, read the end-to-end workflow page before entering feature pages.
+2. Expand the Operator, Provider & End User, or User group for the module according to your role.
+3. For cross-module tasks, use the related scenario in the User Guide, then return to the feature pages for fields and operations.
 4. If you already know the target page, open the feature page and check page description, procedure, parameters, and result validation.
 5. If something is abnormal, check the feature page FAQ, notes, events, logs, monitoring, call records, or billing records first.
 
@@ -76,7 +76,7 @@ The manual is organized into five modules in the left sidebar:
 ## Pitfalls
 
 - Do not choose an entry only by menu name. Confirm your role, target object, and permission scope first.
-- For cross-module tasks, start from the end-to-end workflow. Use feature pages for page-level fields and procedures.
+- For cross-module tasks, start from the related User Guide scenario. Use User Manual feature pages for page-level fields and procedures.
 - For cost, credential, deployment, deletion, publishing, or authorization operations, confirm impact scope before final confirmation.
 
 
@@ -86,7 +86,7 @@ The manual is organized into five modules in the left sidebar:
 | --- | --- | --- |
 | Entry point identified | You can decide which module owns the target task. | Return to “Find The Right Entry By Goal” and locate the task again. |
 | Role path is clear | You can find the recommended reading path for your role. | Return to “Read By Role” and confirm permissions and responsibilities. |
-| Next step is clear | You can open the related overview, getting-started, or end-to-end page. | Check the link, sidebar entry, and visible menus under your account. |
+| Next step is clear | You can open the role group and related feature page. | Check the link, sidebar entry, and visible menus under your account. |
 | Sensitive data is not exposed | Messages and screenshots do not include passwords, tokens, AK/SK values, customer data, or internal addresses. | Remove exposed content immediately and follow the security process. |
 
 ## FAQ

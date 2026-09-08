@@ -15,31 +15,31 @@ next: true
 
 ## 场景目标
 
-- 调用方能从调用记录定位 Token、次数、时长和消费结果。
-- 提供方能按模型和客户查看调用量、成功率和收益。
+- 调用方能从调用记录定位模型 ID、调用归属、Token、次数、时长和消费结果。
+- 提供方能在查看调用量、成功率和收益时区分客户名称与调用归属。
 - 用量、收益和调用日志能在同一时间范围内互相验证。
 - 异常可以定位到模型、调用方、账期或计费配置。
 
 ## 开始前准备
 
 1. 确认当前账号是调用方还是模型提供方。
-2. 明确目标模型、供应方、时间范围、账期和计费单位。
+2. 明确目标模型、模型 ID、供应方、时间范围、账期和计费单位。
 3. 准备调用记录中的请求时间或请求标识，排障材料保持脱敏。
 
 ## 操作流程
 
 | 角色 | 操作 | 参考手册 | 完成标志 |
 | --- | --- | --- | --- |
-| 调用方 | 查看自己的调用概览和日志 | [我的调用概览](../../../usermanual/model-services/user/my-calls/overview/)、[调用日志](../../../usermanual/model-services/user/my-calls/call-logs/) | 调用状态、模型和时间可定位 |
-| 调用方 | 查看模型用量 | [模型用量](../../../usermanual/model-services/user/usage-earnings/model-usage/) | Token、次数或时长与调用记录一致 |
-| 提供方 | 查看客户调用概览、日志和分析 | [客户调用概览](../../../usermanual/model-services/user/customer-calls/overview/)、[客户调用日志](../../../usermanual/model-services/user/customer-calls/call-logs/)、[客户调用分析](../../../usermanual/model-services/user/customer-calls/call-analytics/) | 客户维度数据可定位 |
+| 调用方 | 查看自己的调用概览和日志 | [我的调用概览](../../../usermanual/model-services/user/my-calls/overview/)、[调用日志](../../../usermanual/model-services/user/my-calls/call-logs/) | 模型 ID、调用归属、调用状态和时间可定位 |
+| 调用方 | 查看模型用量 | [模型用量](../../../usermanual/model-services/user/usage-earnings/model-usage/) | 模型 ID、调用归属、Token、次数或时长与调用记录一致 |
+| 提供方 | 查看客户调用概览、日志和分析 | [客户调用概览](../../../usermanual/model-services/user/customer-calls/overview/)、[客户调用日志](../../../usermanual/model-services/user/customer-calls/call-logs/)、[客户调用分析](../../../usermanual/model-services/user/customer-calls/call-analytics/) | 客户名称与调用归属可分别定位 |
 | 提供方 | 查看模型收益 | [模型收益](../../../usermanual/model-services/user/usage-earnings/model-earnings/) | 收益与有效调用和价格规则对应 |
 | 双方 | 对照发布时的计费方式和币种 | [我的模型](../../../usermanual/model-services/user/studio/my-models/) 和平台币种设置页面 | 计费单位、价格和账期一致 |
 
 ## 推荐对账顺序
 
-1. 先在调用日志中确认请求状态，以及实际 Token、请求次数或时长。
-2. 使用相同的时间和模型筛选条件打开**模型用量**，确认用量汇总与调用记录一致。
+1. 先在调用日志中确认模型 ID、调用归属、请求状态，以及实际 Token、请求次数或时长。
+2. 使用相同的时间和模型筛选条件打开**模型用量**，先比较模型 ID 和调用归属列，再核对用量汇总。当前 Demo 尚未提供成员或项目归属筛选。
 
 ![对照模型用量和调用记录](./images/model-usage-overview.png)
 
@@ -55,9 +55,9 @@ next: true
 
 | 检查项 | 通过标准 |
 | --- | --- |
-| 1 | 调用日志与用量统计中的模型、时间和调用数量一致。 |
+| 1 | 调用日志与用量统计中的模型 ID、调用归属、时间和调用数量一致。 |
 | 2 | 失败或取消的调用是否计费符合当前规则。 |
-| 3 | 提供方客户调用数据能对应调用方记录。 |
+| 3 | 提供方的客户名称和调用归属能分别对应调用方记录，不混淆两个维度。 |
 | 4 | 收益金额能回溯到有效用量和生效价格。 |
 | 5 | 对账材料不包含完整 Prompt、响应正文或密钥。 |
 
@@ -66,6 +66,6 @@ next: true
 | 现象 | 优先检查 |
 | --- | --- |
 | 用量为空 | 时间范围、模型筛选、调用是否成功和统计延迟 |
-| 用量突然升高 | 调用日志、客户或项目维度、重试和并发变化 |
+| 用量突然升高 | 调用日志、模型 ID、页面显示的调用归属、重试和并发变化 |
 | 收益为空 | 模型是否产生收费调用、价格配置和收益账期 |
 | 用量与收益不一致 | 计费模式、币种、价格生效时间和免费调用规则 |

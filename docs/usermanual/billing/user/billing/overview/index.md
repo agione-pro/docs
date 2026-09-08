@@ -75,10 +75,6 @@ Top-ups, alert-threshold changes, and billing-data exports can affect an account
 4. Review `Consumption Analysis` and `Top 3 Cost Sources` for abnormal sources.
 5. Before submitting a top-up or alert-threshold change, verify the target account, amount or threshold, and impact scope.
 
-![Account Overview - Review Account Overview](./images/overview-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Review Recent Transactions
 
 1. Go to `Billing > User Billing > Account Overview`.
@@ -87,10 +83,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. If the subset cannot explain the balance change, click **"View All"** or open `Transactions`.
 5. Hide real amounts, accounts, order numbers, transaction numbers, and business context in external communication.
 
-![Account Overview - Review Recent Transactions](./images/overview-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Open Top-up Orders
 
 1. Go to `Billing > User Billing > Account Overview`.
@@ -98,10 +90,6 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Locate an order by order number, status, or credit source.
 4. Check top-up status, credited amount, creation time, and completion time.
 5. Before initiating a top-up or exporting orders, verify the target account, data scope, and account permission.
-
-![Account Overview - Open Top-up Orders](./images/overview-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

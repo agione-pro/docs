@@ -353,5 +353,5 @@ My Calls > Call Logs
 
 ## User Manual
 
-- [Model Services Getting Started](../../../usermanual/model-services/getting-started/)
-- [Publish and Call a Model](../../../usermanual/model-services/end-to-end/publish-and-call-model/)
+- [Models](../../../usermanual/model-services/user/discover/models/)
+- [My Calls Overview](../../../usermanual/model-services/user/my-calls/overview/)

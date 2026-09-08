@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Block
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Block Storage.
+Use this page to manage block-storage type, cluster, monitor nodes, FSID, storage pool, administrator key, overcommit ratio, tenant quota limits, thresholds, and description.
 
 ![Block Storage](./images/manual-block-storage.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays connected block storage components, status, capacity, connection information summary, and associated regions.
 
@@ -70,7 +68,6 @@ Create a block storage component when a new Ceph RBD or compatible block storage
 3. Fill in `Block Storage Type`, `Cluster Name`, `Mon Node`, `FSID`, `Storage Pool`, `Admin Key`, `Over-provision Ratio`, `Tenant Quota Limit`, `Physical Threshold`, `Logical Threshold`, `Snapshot Limit per Vol`, and `Description` according to the page fields.
 4. If the page provides `Test Connection`, run the read-only connectivity check first and confirm the returned result.
 5. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify Mon Node, FSID, Storage Pool, Admin Key, thresholds, and capacity impact again.
-6. For learning or page validation only, view fields and dialogs without submitting real block storage configuration.
 
 The following figure shows the New Block Storage page, used to fill in block storage connection parameters.
 

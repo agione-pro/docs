@@ -36,7 +36,7 @@ The text or chat model passes protocol testing, publishes in the intended scope,
 5. Configure token billing, tiers, cache pricing, and any free quota.
 6. Configure RPM and TPM limits, then save or submit for review.
 
-See [My Models](../../../../usermanual/model-services/user/studio/my-models/) and [Publish and Call a Model](../../../../usermanual/model-services/end-to-end/publish-and-call-model/) for detailed operations.
+See [My Models](../../../../usermanual/model-services/user/studio/my-models/) and [My Calls Overview](../../../../usermanual/model-services/user/my-calls/overview/) for detailed operations.
 
 ## Completion Checklist
 

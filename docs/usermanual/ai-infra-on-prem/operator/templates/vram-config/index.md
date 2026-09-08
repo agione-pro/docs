@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on VRAM 
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on VRAM Config.
+Use this page to manage device-memory formulas, precision, KV tokens, factor fields, dynamic expressions, and recommended specifications.
 
 ![VRAM Config](./images/manual-vram-config.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays VRAM estimation rules and precision configurations, and supports maintaining VRAM estimation logic for different model, framework, or precision combinations.
 

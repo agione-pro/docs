@@ -43,10 +43,6 @@ On the visible personal page, the Model API tab provides the member-quota summar
 | Table columns | Key name / description, prefix, status, expiration, used / limit, created time, and actions. |
 | Row actions | `View key` is displayed directly. The overflow menu currently contains `View details`, `Edit details`, `Extend validity`, `Limit`, `Rotate`, and `Disable`. |
 
-![My Keys](./images/manual-settings-user-my-keys.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the My Keys page.
-
 ## Main Operations
 
 ### View Model API Keys
@@ -55,16 +51,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 2. Select `Model API Keys` or `System API AK/SK Pairs` when the tab is available.
 3. Review the Key name / description, prefix, status, expiration, used / limit, created time, and available row actions.
 4. For a Model API Key, open the overflow menu to review `View details`, `Edit details`, `Extend validity`, `Limit`, `Rotate`, and `Disable`. Do not execute a write action during a read-only review.
-
-![View Model API Keys](./images/manual-settings-user-my-keys.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the My Keys page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Open the Model API Key Creation Dialog
 
@@ -77,12 +63,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 
 ![Create Model API Key](./images/create-key.png)
 
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Open the System API Key Creation Dialog
 
 1. Select `System API AK/SK Pairs`.
@@ -93,27 +73,11 @@ The screenshot keeps the left navigation and the complete functional area with t
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
 
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Submit a Quota Request
 
 1. On the `Model API Keys` tab, click **"Request More Quota"**.
 2. Confirm that the page opens `Settings > Members & Roles > Quota Requests`.
 3. Review existing request and adjustment records. Stop before the final quota-request submission unless a change is explicitly approved.
-
-![Submit a Quota Request](./images/manual-settings-user-my-keys.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the My Keys page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Adjust a Model API Key Limit
 
@@ -123,12 +87,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 4. Stop before `Save Limit` unless an authorized change has been explicitly approved.
 
 ![Key quota](./images/key-quota.png)
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

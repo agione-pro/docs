@@ -36,11 +36,9 @@ Confirm that the task involves Configuration, status, and relationships on Month
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Monthly Usage.
+Use this page to review billing cycles, processing states, creation times, and monthly usage summaries.
 
 ![Monthly Usage](./images/manual-monthly-usage.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 Monthly metering aggregates tenant resource consumption, Credits conversion, and export status by month. Operators can first view monthly summaries, then drill down to metering details to reconcile abnormal growth, cross-cycle resources, or delayed postings.
 

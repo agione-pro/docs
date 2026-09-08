@@ -46,10 +46,6 @@ The following screenshot shows login properties.
 
 ![Login Properties](./images/login-properties-list.png)
 
-![Login Properties](./images/manual-settings-operator-login-properties.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Login Properties page.
-
 ## Main Operations
 
 ### View Login Security Settings
@@ -59,12 +55,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review password policy, login restrictions, session validity, MFA, or security verification settings.
 
 ![Login Security Configuration](./images/login-security.png)
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Edit Registration Settings
 
@@ -80,12 +70,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 
 ![Registration Settings](./images/registration-properties.png)
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit Registration Verification Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
@@ -93,12 +77,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review verification code type, sending method, validity period, rate limits, and enabled status.
 
 ![Registration Verification Code Configuration](./images/registration-codes.png)
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Edit Account Recovery Settings
 
@@ -108,12 +86,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 
 ![Account Recovery Configuration](./images/account-recovery.png)
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit Google Sign-in Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
@@ -121,12 +93,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review Client ID, callback URL, enabled status, and login entry settings.
 
 ![Google Login Configuration](./images/google-login.png)
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

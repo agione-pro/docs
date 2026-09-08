@@ -58,11 +58,11 @@ Main responsibilities by subsystem:
 
 | Subsystem | Responsibilities | Manual Entry |
 | --- | --- | --- |
-| AI Infra On-Prem | Prepare resource topology, specifications, storage, images, templates, quotas, metering, and monitoring | [On-Prem Getting Started](../usermanual/ai-infra-on-prem/getting-started/) |
-| AI Infra On-Cloud | Maintain supported cloud access, accounts, resource pools, authorization, deployment assets, and scheduling policies | [On-Cloud Getting Started](../usermanual/ai-infra-on-cloud/getting-started/) |
-| Model Services | Maintain meta-models, model sources, templates, tags, and currency settings; process model and app reviews | [Model Services Getting Started](../usermanual/model-services/getting-started/) |
-| Billing | Maintain customer finance, operation finance, reconciliation, settlement, adjustment, and License status | [Billing Getting Started](../usermanual/billing/getting-started/) |
-| Settings | Maintain members, roles, tenants, operation logs, platform settings, login properties, and API rate-control rules | [Settings Getting Started](../usermanual/settings/getting-started/) |
+| AI Infra On-Prem | Prepare resource topology, specifications, storage, images, templates, quotas, metering, and monitoring | [Regions & Zones](../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/) |
+| AI Infra On-Cloud | Maintain supported cloud access, accounts, resource pools, authorization, deployment assets, and scheduling policies | [Access Overview](../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) |
+| Model Services | Maintain meta-models, model sources, templates, tags, and currency settings; process model and app reviews | [Meta Models](../usermanual/model-services/operator/settings/meta-models/) |
+| Billing | Maintain customer finance, operation finance, reconciliation, settlement, adjustment, and License status | [Today Tasks](../usermanual/billing/operator/finance-operations/today-tasks/) |
+| Settings | Maintain members, roles, tenants, operation logs, platform settings, login properties, and API rate-control rules | [Members](../usermanual/settings/operator/members-roles/members/) |
 
 Boundary:
 
@@ -88,7 +88,7 @@ Boundary:
 - A provider cannot approve its own model or app publication.
 - A provider does not manage platform-wide tenants, menus, resource policies, or another provider's data.
 
-See [Publish and Call a Model](../usermanual/model-services/end-to-end/publish-and-call-model/).
+See the [Publish Model scenario](../userguide/scenarios/publish-model/).
 
 ## `enduser`: End User and Model Consumer
 

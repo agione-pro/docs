@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Block
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Block Storage.
+Use this page to manage block volumes, capacity, mount relationships, and volume state.
 
 ![Block Storage](./images/block-storage-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page is used to display block storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
 
@@ -125,6 +121,18 @@ The page is used to display block storage capability in the selected region. Whe
 - To save model files, datasets, or artifact packages, consider [Object Storage](../object-storage/) first.
 - When shared directory semantics are required, use file storage or cluster shared storage configured by the operator.
 - When independent volume capability is required, use block storage. If the page is not opened, contact the operator to confirm whether the target region has underlying storage components.
+
+### Troubleshooting Information to Prepare
+
+When block storage is abnormal, prepare the following information to distinguish volume creation, mounting, expansion, and unmount risks:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| Volume ID | `pvc-20260713001` | Locates the target block volume. |
+| Mounted instance | `infer-001` | Identifies the instance using the volume. |
+| Capacity | `100 GiB` | Determines whether capacity is insufficient or expansion has taken effect. |
+| Storage class | `ceph-rbd-prod` | Identifies the underlying block-storage component and policy. |
+| Mount state | `Pending / Mounted / Failed` | Determines whether to inspect scheduling, CSI, or instance events next. |
 
 ## Result Validation
 

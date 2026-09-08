@@ -39,11 +39,9 @@ Confirm that the task involves Configuration, status, and relationships on Frame
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Frames.
+Use this page to manage framework names, versions, images, primary and worker startup commands, extended parameters, environment variables, and port policies.
 
 ![Frames](./images/manual-frames.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays the framework configuration list and supports maintaining framework basic information, image versions, startup commands, and configuration parameters.
 

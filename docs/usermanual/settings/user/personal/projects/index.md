@@ -38,10 +38,6 @@ Projects is the project ledger for a provider account. It shows project names, b
 | Row actions | View and Archive |
 | Detail tabs | Overview, Members, Usage, API Keys, Activity, and Settings |
 
-![Projects](./images/manual-settings-user-projects.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Projects page.
-
 ## Main Operations
 
 ### View Projects
@@ -51,32 +47,12 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Open details and check members, quota, defaults, and status.
 4. If no record is returned, reset filters and check the tenant context. Project information must be redacted before sharing.
 
-![View Projects](./images/manual-settings-user-projects.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Projects page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Create a Project
 
 1. Click **"Create Project"**.
 2. Check the name, members, quota, and defaults.
 3. Before saving, confirm quota and member scope. Close the form without submission during read-only validation.
 4. After an approved save, verify the new state in the list and details. If it fails, check name uniqueness, required fields, and quota limits.
-
-![Create a Project](./images/manual-settings-user-projects.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Projects page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Edit a Project
 
@@ -103,12 +79,6 @@ The following screenshot shows project details.
 
 ![Project Details](./images/project-detail.png)
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### View Project Details
 
 1. Open `Settings > Personal > Projects`.
@@ -117,25 +87,15 @@ The following screenshot shows project details.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
 
-![View Project Details](./images/manual-settings-user-projects.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Projects page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Tenant / customer / member | No | Text | `Example tenant` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Project name | No | Text | `Example Project A` | Identifies the project. |
+| Budget | No | Credits | `10,000 Credits` | Limits the credits available to the project. |
+| Model count | System-generated | Number | `5` | Shows the number of models associated with the project. |
+| Project status | System-generated | Enum | `Enabled` | Indicates whether the project can continue to be used. |
+| Members | System-generated | List | `Example Member A` | Shows the members included in the project scope. |
 
 ## Pitfalls
 

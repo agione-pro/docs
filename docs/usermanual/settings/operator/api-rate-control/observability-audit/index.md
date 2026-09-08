@@ -30,7 +30,7 @@ Observability Audit works like a detail viewer for API rate control. Use it to c
 
 ## Page Description
 
-The following screenshot shows the Observability Audit page. API, node, and log details are desensitized.
+The page provides API, node, and audit-log views for tracing rate-control decisions and abnormal requests.
 
 | Area | Description |
 | --- | --- |
@@ -45,10 +45,6 @@ The following screenshot shows the Observability Audit page. API, node, and log 
 
 ![Observability Audit](./images/observability-audit-list.png)
 
-![Observability Audit](./images/manual-settings-operator-observability-audit.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Observability Audit page.
-
 ## Main Operations
 
 ### View Observability Metrics
@@ -57,16 +53,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 2. Filter by rule, node, request result, block reason, or request ID.
 3. Check request volume, blocked requests, matched rules, and status distribution. If no data is shown, check the time zone, node, and filter scope.
 4. Observability data may contain call identifiers and business paths and must be redacted before export or screenshots.
-
-![View Observability Metrics](./images/manual-settings-operator-observability-audit.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Observability Audit page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### View Block Event Details
 
@@ -77,16 +63,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 
 Use this operation to query observability and audit data. Do not add create, publish, or save operations to this query-oriented workflow.
 
-![View Block Event Details](./images/manual-settings-operator-observability-audit.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Observability Audit page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Export Observability Data
 
 1. Open `Settings > API Rate Control > Observability Audit`.
@@ -95,16 +71,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
 
-![Export Observability Data](./images/manual-settings-operator-observability-audit.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Observability Audit page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Clean Observability Data
 
 1. Open `Settings > API Rate Control > Observability Audit`.
@@ -112,16 +78,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
-
-![Clean Observability Data](./images/manual-settings-operator-observability-audit.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Observability Audit page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 
@@ -232,7 +188,3 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. To adjust rules, go to [Rule Management](../rule-management/).
 2. To check node status, go to [Node Cache](../node-cache/).
-
-### Preserved Existing Screenshots
-
-![Preserved Existing Screenshots](./images/observability-audit-list.png)

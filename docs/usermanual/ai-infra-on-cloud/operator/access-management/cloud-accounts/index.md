@@ -87,10 +87,6 @@ The image shows Edit Cloud Account. Verify the target object, current state, fie
 2. Click **"Delete"** from more actions and verify the confirmation message.
 3. Refresh after deletion. If it fails, migrate the dependencies identified by the page.
 
-![Delete cloud account entry](./images/cloud-accounts-list.png)
-
-The image shows Delete cloud account entry. Verify the target object, current state, fields, and actions.
-
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |

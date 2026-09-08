@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - On Cloud Resource Access
 
-This scenario guides Platform Operators through connecting external cloud platforms, accounts, and regions to AGIOne and authorizing them for business and tenant use.
+This scenario guides Platform Operators through connecting external cloud platforms, accounts, and regions to {{DOCS_PRODUCT_NAME_EN}} and authorizing them for business and tenant use.
 
 ## Applicable Roles
 
@@ -50,7 +50,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 | [Resource Pools](./Resource-Pools/) | Enable regions and maintain display data |
 | [Business-Region Authorization](./Business-Region-Auth/) | Grant access by business type, platform, and region |
 | [Tenant-Cloud Authorization](./Tenant-Cloud-Auth/) | Grant access by tenant and platform |
-| [Deploy a Cloud Model Service](../../../usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) | Follow the complete On-Cloud workflow from operator resource onboarding through user deployment and validation |
+| [Access Overview](../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) | Review the operator entry for cloud resource onboarding and status checks |
 
 ## Related Scenarios
 

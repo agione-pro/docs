@@ -127,7 +127,7 @@ Some deployments distinguish platform-governance tenants from ordinary business 
 
 - [Role Comparison](./role-comparison)
 - [Features and Capabilities](./technical/features)
-- [User Manual: Settings](../usermanual/settings/)
+- [User Manual](../usermanual/)
 - [Tenants](../usermanual/settings/operator/tenants/tenants/)
 - [Team Members](../usermanual/settings/operator/members-roles/members/)
 - [Projects](../usermanual/settings/user/personal/projects/)

@@ -44,10 +44,10 @@ The required public- or private-cloud platform is available for later account ac
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
 | Cloud Platform Type | Two-option tab | `Public Cloud` / `Private Cloud` | Required; identifies the platform type |
-| Provider Identifier | Select / Text | `aliyun` / `agione-powerone` | Required; uniquely identifies the platform |
+| Provider Identifier | Select / Text | `aliyun` / `{{DOCS_CLOUD_PLATFORM_EN}}` | Required; uniquely identifies the platform |
 | Display Name | Localized text | `Alibaba Cloud / 阿里云` | Required; maintain English and Simplified Chinese values |
 | URL | URL | `http://test.metis.opr/infrahub/op/access/platform` | Required only for private clouds |
-| Logo | Image | `Alibaba Cloud / AWS / AGIOne-powerone` | Optional; platform icon. Huawei Cloud access is not currently supported. |
+| Logo | Image | `Alibaba Cloud / AWS / {{DOCS_CLOUD_PLATFORM_EN}}` | Optional; platform icon. Huawei Cloud access is not currently supported. |
 
 ## Completion Checklist
 

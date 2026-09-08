@@ -5,7 +5,7 @@ next: true
 
 # Enable Cloud Resource Pools
 
-Enable the cloud regions that AGIOne may use and maintain readable localized names.
+Enable the cloud regions that {{DOCS_PRODUCT_NAME_EN}} may use and maintain readable localized names.
 
 ## Target Outcome
 

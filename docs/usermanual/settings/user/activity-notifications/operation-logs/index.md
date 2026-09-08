@@ -38,9 +38,9 @@ Operation Logs is the audit trail for Settings. It shows who performed an action
 | Actions | Search and Reset |
 | High-risk action | Export CSV |
 
-![Operation Logs](../../../operator/personal/profile/images/manual-settings-operator-profile.png)
+![Operation Logs](./images/operation-logs-list.png)
 
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
+The screenshot shows the filters, operation-log list, and result fields available to the current tenant.
 
 ## Main Operations
 
@@ -51,16 +51,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. The target event should be uniquely identifiable. For duplicate names, narrow the range with a redacted object ID fragment and time.
 4. Logs may contain account, IP, and business-object information and must be redacted before export, screenshots, or sharing.
 
-![View Operation Logs](../../../operator/personal/profile/images/manual-settings-operator-profile.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### View Operation Log Details
 
 1. Click **"Details"** for the target record and inspect the request action, object, result, duration, and error summary.
@@ -68,25 +58,15 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. If information is insufficient, escalate with a redacted time, module, and error category. Do not copy Tokens, keys, cookies, or complete request bodies.
 4. Use log details only for audit and diagnosis. Do not replay high-risk operations from the page.
 
-![View Operation Log Details](../../../operator/personal/profile/images/manual-settings-operator-profile.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Tenant / customer / member | No | Text | `Example tenant` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Time range | No | Date-time range | `2026-07-13 00:00 to 23:59` | Filters logs by operation time. |
+| Operator | No | Text | `Example user` | Filters records by the person who performed the action. |
+| Operation type | No | Enum | `Edit` | Filters records by action type. |
+| Operation object | No | Text | `Role` | Locates the object affected by the action. |
+| Result | No | Enum | `Succeeded` | Filters records by execution result. |
 
 ## Pitfalls
 
@@ -187,7 +167,3 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. Retain audit records for critical operations.
 2. Compare member, role, and quota pages to identify the source of a change.
-
-### Preserved Existing Screenshots
-
-![Preserved Existing Screenshots](./images/operation-logs-list.png)

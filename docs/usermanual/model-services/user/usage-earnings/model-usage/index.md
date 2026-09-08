@@ -4,14 +4,14 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider |
+| Applicable Roles | Model Provider, Model Consumer |
 | Navigation Path | Model Services > Usage and Earnings > Model Usage |
-| Page Route | `/modelone/accounting/deduction/overview/model` |
-| Managed Objects | Usage overview, consumption trends, model distribution, and usage details |
+| Page Routes | Overview: `/modelone/accounting/deduction/overview/model`<br>Usage Details: `/modelone/accounting/deduction/detail/model` |
+| Managed Objects | Usage overview, Model ID, attribution, consumption trends, model distribution, and usage details |
 
 #### Beginner Explanation
 
-Model Usage works like a usage ledger for model activity. Use the overview for totals and trends, and use details to reconcile records by time, user, or model.
+Model Usage works like a usage ledger for model activity. Use the overview for totals and trends, and use details to reconcile records by time, model, Model ID, and attribution scope.
 
 #### Terminology
 
@@ -19,6 +19,8 @@ Model Usage works like a usage ledger for model activity. Use the overview for t
 | --- | --- |
 | Overview | Summarizes usage indicators and trends for the selected time range. |
 | Usage Details | Shows individual usage records by time and business object. |
+| Model ID | The platform model identifier associated with the usage record. |
+| Attribution | The member, project, and Key scope to which the usage record is attributed. |
 | Statistics Period | Determines the time range and aggregation scope for overview and details. |
 | Model Distribution | Shows each model's share of total usage. |
 
@@ -48,7 +50,7 @@ Use this page to view and reconcile usage overview and details. Charging, accoun
 
 ## Page Description
 
-The page contains Overview and Usage Details. The overview shows aggregate indicators and trends, while details provide a queryable record list.
+The page contains Overview and Usage Details. The overview shows aggregate indicators and trends. Usage Details provides a queryable record list with Model ID and Attribution columns. The current Demo does not expose member or project attribution filters, so use the visible billing-status, model-name, and model-type filters only.
 
 Page screenshots:
 
@@ -73,7 +75,7 @@ The image shows the overview. Verify the period, aggregate indicators, trends, a
 
 1. Click **"Usage Details"**.
 2. Set the time range, then filter by billing status, model name, or model type.
-3. Verify record time, model, business object, and usage value.
+3. Verify usage time, model name, Model ID, Attribution, model type, billing scope, latency, metered usage, and Credits.
 4. Before sharing or reconciliation, remove user names, business identifiers, and other sensitive information.
 
 ![Query usage details](./images/manual-usage-details-public.png)
@@ -93,6 +95,8 @@ This image provides an additional view of detail fields and list structure.
 | Billed usage | No | Dropdown | `Billed usage` | Filters usage details by whether the record is billed. |
 | Model Name | No | Input | `Example Model` | Filters usage records by model. |
 | Model Type | No | Dropdown | `Text` | Filters usage details by model capability type. |
+| Model ID | System-generated | Text | `<MODEL_ID>` | Shows the platform model identifier associated with the usage record. |
+| Attribution | System-generated | Text | `Member / Project / Key scope` | Shows the ownership scope to which the usage record is attributed. |
 | Input Usage | System-generated | Number | `Input Tokens` | Request input tokens or input-side usage. |
 | Output Usage | System-generated | Number | `Output Tokens` | Model output tokens or output-side usage. |
 | Cache Usage | System-generated | Number | `Cached Input Tokens` | Cached input hits or cache-related usage. |
@@ -114,9 +118,9 @@ This image provides an additional view of detail fields and list structure.
 | Page is accessible | The `Model Usage` page opens, and `Overview` and `Usage Details` tabs are visible. | Check account permissions, navigation path, and page loading status. |
 | Usage overview displays | Used Models, Total Consumption, Total Token Consumption, and charts are visible. | Switch Billing cycle or Date and retry. Confirm whether the current period has usage data. |
 | Filter controls can be selected | Billing cycle, Date, Billed usage, Model name, and Model type can be entered or selected. | Check filter format, or click **"Reset"** and query again. |
-| List data loads | The usage details list shows Usage time, Model, Metered usage, Billing mode, Billing rules, and Credits. | Confirm whether the billing cycle contains usage records, or broaden filters. |
+| List data loads | The usage details list shows Usage time, Model name, Model ID, Attribution, Model type, Billing scope, Latency, Metered usage, and Credits. | Confirm whether the billing cycle contains usage records, or broaden filters. |
 | Details entry opens | Pricing rules, detail, or view entries display related information. | Check whether the record is complete, or refresh the page and retry. |
-| Fields match filters | Usage, cost, status, and time fields match the filter conditions. | Compare call logs and model earnings to confirm statistical delay or billing-rule differences. |
+| Fields match filters | Model ID, Attribution, usage, cost, status, and time fields match the filter conditions and related call logs. | Compare call logs and model earnings to confirm statistical delay or billing-rule differences. |
 
 ## FAQ
 

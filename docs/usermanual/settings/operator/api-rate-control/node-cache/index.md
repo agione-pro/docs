@@ -30,7 +30,7 @@ Node Cache works like a synchronization status table for rate-control rules on e
 
 ## Page Description
 
-The following screenshot shows the Node Cache page. Node addresses and cache details are desensitized.
+The page lists rate-control nodes and cache state so that Operators can verify synchronization and identify stale or abnormal nodes.
 
 | Area | Description |
 | --- | --- |
@@ -39,10 +39,6 @@ The following screenshot shows the Node Cache page. Node addresses and cache det
 | Node table | Displays node, status, rule version, rule count, counter cache, identity cache, refresh time, and message. |
 
 ![Node Cache](./images/node-cache-list.png)
-
-![Node Cache](./images/manual-settings-operator-node-cache.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Node Cache page.
 
 ## Main Operations
 
@@ -53,16 +49,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. If no node is returned, reset filters and check node availability. For a version mismatch, record the node and target version.
 4. Viewing cache does not change rate-control state. Do not clear cache or force synchronization during validation.
 
-![View Node Cache](./images/manual-settings-operator-node-cache.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Node Cache page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Compare Node Cache Versions
 
 1. Open the abnormal node details and compare its cache version with the target version in Publish Center.
@@ -72,16 +58,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 
 Use this operation to query node cache status. Do not add create or publish operations to this query-oriented workflow.
 
-![Compare Node Cache Versions](./images/manual-settings-operator-node-cache.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Node Cache page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Refresh Node Cache
 
 1. Go to `Settings > API Rate Control > Node Cache`.
@@ -90,14 +66,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 4. Click **"Refresh Nodes"** to fetch node cache status again.
 5. If the page provides clear or rebuild cache entries, confirm node scope, business impact, and approval requirements first.
 6. For learning or screenshots, only view the list and refresh status. Do not clear, rebuild, or perform other high-risk operations.
-
-![Node Cache](./images/node-cache-list.png)
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

@@ -2,7 +2,7 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-09-01
+Updated: 2026-09-07
 :::
 
 ## Feature Overview
@@ -50,21 +50,27 @@ A Model Source describes where the platform calls the service and how the platfo
 
 ## Page Description
 
-Use this page to maintain upstream Model Sources.
-Each row shows the name, identifier, Region name, Base URL, creation time, and actions.
+Use this page to manage the complete lifecycle of an upstream Model Source. Each page state has a different responsibility:
+
+| Page State | Responsibility | Leave the State After |
+| --- | --- | --- |
+| List | Locate a source and review its name, identifier, Region, Base URL, creation time, and available actions. | The target row and intended operation are confirmed. |
+| Add form | Create the source, Region, address, and Request header configuration. | Required values have been compared with the approved upstream configuration. |
+| Details | Read the saved basic information, Region information, and Headers Preview. | The saved values and target record are confirmed. |
+| Edit form | Maintain approved values while keeping the source identifier unchanged. | The changed fields and impact scope have been rechecked. |
+| Delete dialog | Confirm a high-risk removal after downstream references are checked. | The target and approval are confirmed, or the operation is cancelled. |
 
 Page screenshot:
 
 ![Model Source list](./images/model-source-list-public.png)
 
-The row-end **"..."** opens **"Details"** and **"Delete"**.
-The screenshot masks address values. Do not include real credentials in documentation screenshots.
+The row-end **"..."** opens **"Details"** and **"Delete"**. Use the list and details page together to confirm the target before editing or deleting it. Do not include real credentials in documentation screenshots.
 
 ## Main Operations
 
 <!-- main-operation-title-exceptions: Edit,Delete -->
 
-Use this order: initial setup, details verification, approved maintenance, and high-risk deletion.
+Follow the object lifecycle: add the source, verify its saved details, perform approved maintenance when required, and delete it only after checking downstream references.
 
 ### Add a Model Source
 
@@ -104,7 +110,6 @@ The page requires the English `Name` and `Model source identifier`. Use the tabl
 ![View Model Source Details](./images/model-source-details-public.png)
 
 The details page groups the fields into `Basic Information`, `Region Information`, and `Headers Configuration`.
-The screenshot masks address and authentication values.
 
 ### Edit a Model Source
 
@@ -143,7 +148,7 @@ Review these values before you click **"Confirm"**.
 The screenshot shows the delete confirmation dialog, not the **"..."** menu.
 The dialog has **"Cancel"** and **"OK"**. It does not identify the target row.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 The table separates form requirements from downstream requirements.
 A field can be optional in this form but required by a template or upstream service.

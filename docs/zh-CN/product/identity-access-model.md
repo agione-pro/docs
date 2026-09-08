@@ -127,7 +127,7 @@ AGIOne 的访问范围不是只由账号决定，而是由**租户、成员、�
 
 - [角色对比总览](./role-comparison)
 - [功能与能力](./technical/features)
-- [用户手册：设置](../usermanual/settings/)
+- [用户手册](../usermanual/)
 - [租户](../usermanual/settings/operator/tenants/tenants/)
 - [团队成员](../usermanual/settings/operator/members-roles/members/)
 - [项目](../usermanual/settings/user/personal/projects/)

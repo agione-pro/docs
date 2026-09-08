@@ -36,7 +36,7 @@ AGIOne 将模型服务交付所需的工作连接成一条路径：
 | 角色 | 主要职责 | 推荐入口 |
 | --- | --- | --- |
 | **运营方（`operator`）** | 准备资源和模板，配置治理规则，维护配额与监控，审核发布内容 | [角色对比总览](./role-comparison) |
-| **模型提供方（`provider`）** | 发布单模型或聚合模型，维护版本和定价，提交审核，查看客户调用与收益 | [Model Services 平台入门](../usermanual/model-services/getting-started/) |
+| **模型提供方（`provider`）** | 发布单模型或聚合模型，维护版本和定价，提交审核，查看客户调用与收益 | [我的模型](../usermanual/model-services/user/studio/my-models/) |
 | **普通用户（`enduser`）** | 发现和体验模型，获取调用权限，调用 API，部署可用服务并查看个人用量 | [用户手册](../usermanual/) |
 
 账号可见的菜单取决于角色、所属租户、授权范围和当前可用资源。

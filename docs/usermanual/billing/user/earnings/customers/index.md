@@ -72,20 +72,12 @@ The following screenshot shows the Customers page. Customer names, tenants, admi
 3. Check customer count, call volume, earnings contribution, and refresh time.
 4. If no data is shown, expand the period and reset filters. Redact customer and earnings data before sharing.
 
-![Customers - View Earnings Customers](./images/customers-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Compare Customer Contribution and Anomalies
 
 1. Compare customer calls, Tokens, earnings, and trends within the same billing period.
 2. Open an abnormal customer's details and check associated models and records.
 3. If totals and details differ, check aggregation scope, settlement status, and refresh time.
 4. Do not change commercial policy or customer permissions based on one short-period metric.
-
-![Customers - Compare Customer Contribution and Anomalies](./images/customers-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Customer Details
 
@@ -95,8 +87,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. In the customer list, verify tenant information, administrator information, tags, current-cycle revenue, proportion, customer join time, and latest revenue in the billing cycle.
 5. Click **"Details"** in the target customer row.
 6. In the details page or details area, review customer-level revenue details and cross-check with Revenue Overview, Settlements, or Revenue Account Activity.
-
-![Customers](./images/customers-list.png)
 
 ## Parameter Quick Reference
 

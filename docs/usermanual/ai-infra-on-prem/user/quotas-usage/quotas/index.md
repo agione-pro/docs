@@ -37,13 +37,9 @@ Confirm that the task involves Configuration, status, and relationships on Quota
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Quotas.
+Use this page to review accelerator, CPU, memory, online IDE, and runtime-instance quotas.
 
 ![Quotas](./images/quotas-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays Total, Unused, and Used by resource type, and separately displays resource occupation for runtime instances and online IDEs. In the screenshot, GPU, CPU, and Memory are Unlimited or 0 Used.
 

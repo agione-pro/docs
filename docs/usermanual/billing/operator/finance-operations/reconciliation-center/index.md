@@ -91,10 +91,6 @@ Use the following operations to view reconciliation results and exception areas.
 5. Check unmatched transfers, missing revenue details, and compensation queue status.
 6. Continue in Financial Accounts, Settlement List, or Account Adjustment according to the exception type.
 
-![Reconciliation Center - View Reconciliation Results](./images/manual-billing-reconciliation-center-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View Bilateral Ledger Check
 
 1. Go to `Billing > Finance Operations > Reconciliation Center`.

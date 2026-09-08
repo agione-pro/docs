@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Clust
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Clusters.
+Use this page to inspect cluster resource trends, capacity, and health state within the current user's scope.
 
 ![Clusters](./images/clusters-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays cluster statistics capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
@@ -106,6 +102,18 @@ The page displays cluster statistics capability for the selected region. When th
 - High cluster watermarks do not necessarily mean your task will fail. Also check target specification and quota.
 - When cluster health is abnormal, do not repeatedly submit the same job. Confirm platform events first.
 - Do not mix resources from different regions in the same judgment.
+
+### Troubleshooting Information to Prepare
+
+When cluster data is abnormal, prepare the following information to distinguish cluster onboarding, resource watermark, and collection issues:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| Cluster name | `cluster-prod-a` | Locates the target cluster. |
+| Region / Availability zone | `Wuhan / wuhan-1` | Confirms the resource ownership scope. |
+| Node count | `32` | Determines whether cluster capacity matches the expectation. |
+| Health state | `Abnormal / High watermark / No data` | Distinguishes capacity issues from collection issues. |
+| Related job time | `2026-07-13 10:00` | Aligns job submission with the monitoring curve. |
 
 ## Result Validation
 

@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Overv
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Overview.
+Use this page to review resource-pool monitoring, instance state, and key resource trends.
 
 ![Overview](./images/monitoring-overview.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays statistics overview capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
@@ -105,6 +101,18 @@ The page displays statistics overview capability for the selected region. When t
 - Overview is suitable for determining direction and should not be the sole basis for a single instance failure.
 - When exception counts differ from detail pages, fix region and time range first.
 - If the page only shows a capability prompt, prioritize instance logs, events, and usage, then contact the operator to confirm opening conditions.
+
+### Troubleshooting Information to Prepare
+
+When overview data is abnormal, prepare the following information to distinguish time-window, regional-scope, and collection-delay issues:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| Time range | `Last 1 hour` | Confirms whether the chart covers the incident time. |
+| Region | `Wuhan` | Confirms whether the overview includes only the target region. |
+| Exception type | `Cluster / Node / Device watermark / Failed job` | Identifies the monitoring page to open next. |
+| Update time | `2026-07-13 10:20` | Determines whether collection is delayed. |
+| Related instance or job | `job-20260713001` | Supports cross-checking with events, logs, and usage records. |
 
 ## Result Validation
 

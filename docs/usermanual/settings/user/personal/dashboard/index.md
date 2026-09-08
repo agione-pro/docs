@@ -34,7 +34,7 @@ Dashboard shows the Personal Keys quota and **"Request Quota"** at the top. The 
 
 ![Dashboard](./images/manual-settings-user-dashboard-live-20260902.png)
 
-The screenshot hides only the top menu and keeps the left navigation and full functional area. Light-gray mosaics cover only the account, quota, and statistic values. Check the summary cards, **"Request Quota"**, and the three quick actions.
+Read the quota summary first, then review the four statistic cards. Use **"Request Quota"** only when additional quota is required, and use the three quick actions to open the corresponding detail pages.
 
 ## Main Operations
 
@@ -47,7 +47,7 @@ The screenshot hides only the top menu and keeps the left navigation and full fu
 
 ![View Dashboard](./images/manual-settings-user-dashboard-live-20260902.png)
 
-The screenshot shows the dashboard summary and quick actions. Statistic values are redacted, while field names and card order match the live page.
+The Dashboard summary provides a quick status check. Project membership, Key details, and quota-request progress must be confirmed on their corresponding detail pages.
 
 **Result validation:** All four summary cards show a statistic or quota state, and Projects, My Keys, and Member Quota Requests are available below them.
 

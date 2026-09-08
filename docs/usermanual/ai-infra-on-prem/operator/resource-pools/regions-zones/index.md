@@ -49,11 +49,9 @@ Before configuration, confirm that the following conditions are met:
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Regions & Zones.
+Use this page to manage regions, availability zones, region-level components, and cluster resources assigned to each availability zone.
 
 ![Regions & Zones](./images/manual-regions-zones.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page consists of the filter area, region list, and region detail area. After you enter the page, the system displays the region list that matches the current filter criteria by default. After you select a region, the right side displays the component bindings, availability zones, and cluster resources of that region.
 

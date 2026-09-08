@@ -85,10 +85,6 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Check creation time, customer, amount direction, status, and completion time.
 4. If no record is returned, check the time zone and reset filters. Redact order and customer information before screenshots or exports.
 
-![Customer Top-up Orders - View Customer Top-up Orders](./images/manual-billing-customer-top-up-orders-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Reconcile a Top-up Order with Account Posting
 
 1. Open the target order details and record a redacted order number, status, and posting time.
@@ -97,10 +93,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. If records are inconsistent, do not create another top-up, supplemental order, or adjustment. Escalate the case to authorized personnel.
 
 Use the following operation to review customer top-up orders and verify balance changes. Complete view-only checks before any export, refund, correction, or manual adjustment.
-
-![Customer Top-up Orders - Reconcile a Top-up Order with Account Posting](./images/manual-billing-customer-top-up-orders-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Customer Top-up Order Details
 

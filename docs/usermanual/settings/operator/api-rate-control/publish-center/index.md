@@ -30,7 +30,7 @@ Publish Center works like a result dashboard for API rate-control publishing. Us
 
 ## Page Description
 
-The following screenshot shows the Publish Center page. Versions, nodes, and message details are desensitized.
+The page lists configuration versions, target nodes, publishing progress, and result messages for each rate-control release.
 
 | Area | Description |
 | --- | --- |
@@ -41,10 +41,6 @@ The following screenshot shows the Publish Center page. Versions, nodes, and mes
 
 ![Publish Center](./images/publish-center-list.png)
 
-![Publish Center](./images/manual-settings-operator-publish-center.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Publish Center page.
-
 ## Main Operations
 
 ### View Publish Records
@@ -53,16 +49,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 2. Check the version, rule count, target nodes, publish time, and status.
 3. If no record is returned, reset filters. For a long-running status, refresh once and inspect Node Cache.
 4. Publish records affect online traffic governance. Hide internal nodes and rule information before screenshots or sharing.
-
-![View Publish Records](./images/manual-settings-operator-publish-center.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Publish Center page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### View Publish Version Details
 
@@ -73,16 +59,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 
 Use this operation to query publish records. Do not add publish, rollback, or cancel operations here because they are high-risk final actions.
 
-![View Publish Version Details](./images/manual-settings-operator-publish-center.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Publish Center page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Refresh Publish Records
 
 1. Open `Settings > API Rate Control > Publish Center`.
@@ -90,16 +66,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
-
-![Refresh Publish Records](./images/manual-settings-operator-publish-center.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Publish Center page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 
@@ -211,7 +177,3 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. To view node synchronization, go to [Node Cache](../node-cache/).
 2. To view rule configuration, go to [Rule Management](../rule-management/).
-
-### Preserved Existing Screenshots
-
-![Preserved Existing Screenshots](./images/publish-center-list.png)

@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Templ
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Templates.
+Use this page to select a model, accelerator, business parameters, recommended specification, deployment settings, and preview information.
 
 ![Templates](./images/templates-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information in a wizard. The screenshot shows the templates list area.
 

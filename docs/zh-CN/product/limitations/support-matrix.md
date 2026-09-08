@@ -21,25 +21,25 @@
 
 | 子系统 | 能力 | 状态 | 主要条件 | 手册入口 |
 | --- | --- | --- | --- | --- |
-| AI Infra On-Prem | 地域、可用区、集群、节点和加速卡管理 | 支持 | 兼容基础设施已准备并完成授权 | [On-Prem 平台入门](../../usermanual/ai-infra-on-prem/getting-started/) |
-| AI Infra On-Prem | 规格、镜像、存储和模板 | 支持 | 所需后端资源和模板已配置 | [On-Prem 用户手册](../../usermanual/ai-infra-on-prem/) |
-| AI Infra On-Prem | 开发环境、训练任务和在线推理 | 支持 | 配额、镜像、存储、加速卡和模板满足要求 | [从零部署模型服务](../../usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/) |
-| AI Infra On-Prem | 配额、额度、计量、用量和监控 | 支持 | 数据可见范围取决于角色、租户和采集状态 | [On-Prem 用户手册](../../usermanual/ai-infra-on-prem/) |
-| AI Infra On-Cloud | 云平台、账号、资源池和授权管理 | 支持 | 仅能使用已配置并完成验证的平台类型 | [On-Cloud 平台入门](../../usermanual/ai-infra-on-cloud/getting-started/) |
-| AI Infra On-Cloud | 框架、模型、运行镜像和调度策略 | 支持 | 资产和策略需匹配目标云平台与地域 | [从零部署云上模型服务](../../usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) |
+| AI Infra On-Prem | 地域、可用区、集群、节点和加速卡管理 | 支持 | 兼容基础设施已准备并完成授权 | [地域/可用区](../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/) |
+| AI Infra On-Prem | 规格、镜像、存储和模板 | 支持 | 所需后端资源和模板已配置 | [资源规格](../../usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/) |
+| AI Infra On-Prem | 开发环境、训练任务和在线推理 | 支持 | 配额、镜像、存储、加速卡和模板满足要求 | [用户概览](../../usermanual/ai-infra-on-prem/user/overview/) |
+| AI Infra On-Prem | 配额、额度、计量、用量和监控 | 支持 | 数据可见范围取决于角色、租户和采集状态 | [资源用量](../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/) |
+| AI Infra On-Cloud | 云平台、账号、资源池和授权管理 | 支持 | 仅能使用已配置并完成验证的平台类型 | [接入总览](../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) |
+| AI Infra On-Cloud | 框架、模型、运行镜像和调度策略 | 支持 | 资产和策略需匹配目标云平台与地域 | [模型库](../../usermanual/ai-infra-on-cloud/operator/deploy-assets/models/) |
 | AI Infra On-Cloud | 快速部署和部署跟踪 | 支持 | 账号、平台、地域、资产、算力方案和授权均可用 | [快速部署](../../usermanual/ai-infra-on-cloud/user/model-services/quick-deployment/) |
-| Model Services | 元模型、来源、模板、标签和币种设置 | 支持 | 需要运营方权限和有效基础配置 | [Model Services 平台入门](../../usermanual/model-services/getting-started/) |
+| Model Services | 元模型、来源、模板、标签和币种设置 | 支持 | 需要运营方权限和有效基础配置 | [元模型](../../usermanual/model-services/operator/settings/meta-models/) |
 | Model Services | 单模型和 BYOK 发布 | 支持 | Endpoint 或部署信息、定价、可见范围和审核要求有效 | [我的模型](../../usermanual/model-services/user/studio/my-models/) |
-| Model Services | 聚合模型发布和路由 | 支持 | 由模型提供方使用符合条件的成员模型和可用策略创建 | [从发布到调用模型](../../usermanual/model-services/end-to-end/publish-and-call-model/) |
-| Model Services | 模型与应用审核 | 支持 | 由运营方处理，发布状态会影响用户可见性 | [从发布到调用模型](../../usermanual/model-services/end-to-end/publish-and-call-model/) |
-| Model Services | 模型发现和 Playground | 支持 | 需要可见、已审核且可用的模型，模态取决于具体模型 | [Model Services 用户手册](../../usermanual/model-services/) |
-| Model Services | 模型对应的 API 访问与调用记录 | 支持 | 访问权限、Endpoint、凭据、配额和模型可用 | [从发布到调用模型](../../usermanual/model-services/end-to-end/publish-and-call-model/) |
-| Model Services | 用量、客户调用和模型收益 | 支持 | 范围和数据新鲜度取决于角色、计量与同步状态 | [Model Services 用户手册](../../usermanual/model-services/) |
-| 财务 | 用户账务、交易流水、充值订单、月度账单和额度治理 | 支持 | 范围取决于账号、租户、账期和同步状态 | [财务用户手册](../../usermanual/billing/) |
-| 财务 | 客户财务、运营财务、结算、巡检对账和调账 | 支持 | 需要运营方权限、统一账期和源记录同步 | [财务快速入门](../../usermanual/billing/getting-started/) |
+| Model Services | 聚合模型发布和路由 | 支持 | 由模型提供方使用符合条件的成员模型和可用策略创建 | [我的模型](../../usermanual/model-services/user/studio/my-models/) |
+| Model Services | 模型与应用审核 | 支持 | 由运营方处理，发布状态会影响用户可见性 | [模型审核](../../usermanual/model-services/operator/approvals/model-reviews/) |
+| Model Services | 模型发现和 Playground | 支持 | 需要可见、已审核且可用的模型，模态取决于具体模型 | [模型广场](../../usermanual/model-services/user/discover/models/) |
+| Model Services | 模型对应的 API 访问与调用记录 | 支持 | 访问权限、Endpoint、凭据、配额和模型可用 | [我的调用概览](../../usermanual/model-services/user/my-calls/overview/) |
+| Model Services | 用量、客户调用和模型收益 | 支持 | 范围和数据新鲜度取决于角色、计量与同步状态 | [模型用量](../../usermanual/model-services/user/usage-earnings/model-usage/) |
+| 财务 | 用户账务、交易流水、充值订单、月度账单和额度治理 | 支持 | 范围取决于账号、租户、账期和同步状态 | [账户概览](../../usermanual/billing/user/billing/overview/) |
+| 财务 | 客户财务、运营财务、结算、巡检对账和调账 | 支持 | 需要运营方权限、统一账期和源记录同步 | [巡检中心](../../usermanual/billing/operator/finance-operations/reconciliation-center/) |
 | 财务 | License 额度、有效期、激活状态和模块授权 | 支持 | License 状态取决于交付包、激活状态和已配置额度 | [License](../../usermanual/billing/operator/license/license/) |
-| 设置 | 个人 Key、账号信息、项目、成员、角色和租户 | 支持 | 可见范围取决于角色、租户范围和菜单授权 | [设置用户手册](../../usermanual/settings/) |
-| 设置 | 平台设置、登录配置、操作日志和审计记录 | 支持 | 高风险变更需要平台或安全管理权限 | [设置快速入门](../../usermanual/settings/getting-started/) |
+| 设置 | 个人 Key、账号信息、项目、成员、角色和租户 | 支持 | 可见范围取决于角色、租户范围和菜单授权 | [概览](../../usermanual/settings/user/personal/dashboard/) |
+| 设置 | 平台设置、登录配置、操作日志和审计记录 | 支持 | 高风险变更需要平台或安全管理权限 | [平台设置](../../usermanual/settings/operator/system-settings/platform-settings/) |
 | 设置 | API 流控规则、观测审计、节点缓存和发布中心 | 支持 | 规则效果取决于发布状态、节点同步和当前流量范围 | [API 流控概览](../../usermanual/settings/operator/api-rate-control/overview/) |
 
 ## 云平台与加速卡状态

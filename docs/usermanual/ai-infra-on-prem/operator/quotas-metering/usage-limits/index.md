@@ -37,11 +37,9 @@ Confirm that the task involves Configuration, status, and relationships on Usage
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Usage Limits.
+Use this page to manage tenant resource quotas, flavor limits, resource items, resource IDs, and quota configuration.
 
 ![Usage Limits](./images/manual-usage-limits.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 Go to `Quotas & Metering > Usage Limits`. The page provides two top switches: `Resource Limits` and `Spec Credits`. The search box supports `Tenant Name / ID`. The main table shows `Tenant Name / ID`, `Resource Limits`, and `Spec Credits`.
 

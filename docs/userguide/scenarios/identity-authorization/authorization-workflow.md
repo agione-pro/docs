@@ -34,7 +34,7 @@ This scenario guides platform administrators through setting organizational boun
 | 2 | Select a role from the default capability matrix | [Role Comparison](../../../product/role-comparison) | Role matches responsibilities |
 | 3 | Confirm member ownership in Tenant Settings and Team Members | [Tenant Settings](../../../usermanual/settings/user/organizations/org-settings/), [Team Members](../../../usermanual/settings/user/members-roles/team-members/) | The member is active in the correct tenant |
 | 4 | Select a built-in role or create a least-privilege role | [Roles](../../../usermanual/settings/user/members-roles/roles/) | The role contains only necessary permissions |
-| 5 | Sign in with the validation account and inspect menus, actions, and resource scope | [Configure Accounts and Permissions](../../../usermanual/settings/end-to-end/configure-account-and-permissions/) | Allowed items work and prohibited items do not |
+| 5 | Sign in with the validation account and inspect menus, actions, and resource scope | [Roles](../../../usermanual/settings/operator/members-roles/roles/) | Allowed items work and prohibited items do not |
 | 6 | Review the permission change and validation in Operation Logs | [Operation Logs](../../../usermanual/settings/user/activity-notifications/operation-logs/) | Time, operator, and target are traceable |
 
 The **Role Management** view is used in steps 3-5 to confirm the role record and its scope before signing in with the validation account.

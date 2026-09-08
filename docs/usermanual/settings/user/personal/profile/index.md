@@ -37,13 +37,11 @@ Profile is the identity card for the signed-in account. Use it to confirm who yo
 | Top action | No create or save action is displayed on this page. |
 | Copy icon | Copies a supported account field and shows success feedback. |
 
-![Profile](./images/manual-settings-user-profile.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
-
 ## Main Operations
 
 ### View Profile
+
+![Profile details](./images/profile-detail.png)
 
 1. Go to `Settings > Personal > Profile`.
 2. Confirm the tenant name, tenant ID, and business identity.
@@ -52,32 +50,12 @@ The screenshot keeps the left navigation and the complete functional area with t
 5. Confirm the success feedback before you paste the value.
 6. Treat copied account IDs and email addresses as sensitive data. Do not paste them into public channels.
 
-![View Profile](./images/manual-settings-user-profile.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Verify Account Permissions
 
 1. Check the username, tenant, roles, and account status.
 2. Confirm that protected fields did not change during profile editing.
 3. If permissions are unexpected, inspect role assignments without elevating privileges.
 4. Hide email, contact details, and internal identifiers before screenshots or sharing.
-
-![Verify Account Permissions](./images/manual-settings-user-profile.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

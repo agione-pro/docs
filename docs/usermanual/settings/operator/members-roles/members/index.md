@@ -30,7 +30,7 @@ Operator members are the platform-console duty roster. They determine who can en
 
 ## Page Description
 
-The following screenshot shows the Members page. Phone numbers and email addresses are desensitized.
+The page provides member filters, a member list, and row actions for adding members, reviewing account state, and maintaining role assignments.
 
 ![Members](./images/members-list.png)
 
@@ -41,10 +41,6 @@ The following screenshot shows the Members page. Phone numbers and email address
 | Add Member | Opens the member creation flow. |
 | Member table | Shows username, name, phone number, email, role, status, creation time, and actions. |
 
-![Members](./images/manual-settings-operator-members.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
-
 ## Main Operations
 
 ### View Members
@@ -53,16 +49,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 2. Filter by name, username, email, role, or status.
 3. Open member details and check the tenant, roles, status, and latest update time.
 4. If no record is returned, reset filters and check the tenant context. Avoid screenshots or sharing when personal information is displayed.
-
-![View Members](./images/manual-settings-operator-members.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Add a Member
 
@@ -79,12 +65,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 8. Before clicking the final `Confirm`, verify the member identity, role permissions, and enabled status.
 9. For learning or screenshots only, view the fields and click **"Cancel"** to close the dialog without submitting real member configuration.
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit a Member
 
 1. Open `Settings > Members & Roles > Members`.
@@ -93,15 +73,9 @@ The screenshot keeps the left navigation and the complete functional area with t
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
 
-![Edit a Member](./images/manual-settings-operator-members.png)
+![Edit User](./images/edit-member.png)
 
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+The dialog shows the username, full name, email, contact number, role, and status fields. Click `Cancel` when you only need to review the configuration.
 
 ## Parameter Quick Reference
 

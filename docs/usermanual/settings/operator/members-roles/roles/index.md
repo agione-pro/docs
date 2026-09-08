@@ -30,7 +30,7 @@ Operator roles are platform-console permission templates. They define which syst
 
 ## Page Description
 
-The following screenshot shows the Roles page. Role details are desensitized.
+The page provides the role list and role actions for creating, editing, authorizing, and removing permission templates.
 
 ![Roles](./images/roles-list.png)
 
@@ -40,10 +40,6 @@ The following screenshot shows the Roles page. Role details are desensitized.
 | Add Role | Opens the role creation flow. |
 | Role table | Shows role name, identifier, description, creation time, and actions. |
 
-![Roles](./images/manual-settings-operator-roles.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
-
 ## Main Operations
 
 ### View Roles
@@ -52,16 +48,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 2. Filter by role name, status, or update time.
 3. Open details and check menu, button, and API permissions and assigned members.
 4. If no record is returned, reset filters. For unexpected permissions, check whether the member has multiple roles.
-
-![View Roles](./images/manual-settings-operator-roles.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Add a Role
 
@@ -77,12 +63,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 7. Before clicking the final `Confirm`, verify that the role name, role code, and later authorization scope follow the least-privilege principle.
 8. For learning or screenshots only, view the fields and click **"Cancel"** to close the dialog without submitting real role configuration.
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit a Role
 
 1. Open `Settings > Members & Roles > Roles`.
@@ -90,16 +70,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
-
-![Edit a Role](./images/manual-settings-operator-roles.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Authorize a Role
 
@@ -109,16 +79,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
 
-![Authorize a Role](./images/manual-settings-operator-roles.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Delete a Role
 
 1. Open `Settings > Members & Roles > Roles`.
@@ -126,16 +86,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
-
-![Delete a Role](./images/manual-settings-operator-roles.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Roles page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

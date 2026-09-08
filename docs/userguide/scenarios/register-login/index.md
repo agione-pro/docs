@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Register and Login
 
-This scenario covers account registration, password login, email-code login, and password recovery before users enter an AGIOne subsystem.
+This scenario covers account registration, password login, email-code login, and password recovery before users enter an {{DOCS_PRODUCT_NAME_EN}} subsystem.
 
 ## Applicable Roles
 

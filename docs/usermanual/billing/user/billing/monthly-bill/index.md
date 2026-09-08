@@ -67,10 +67,6 @@ The following screenshot shows Monthly Bill. Amounts and trend values in shared 
 3. Check opening, consumption, top-up, adjustment, and closing amount directions.
 4. If no data is shown, check the billing period and bill-generation status. Redact bill amounts and business information before sharing.
 
-![Monthly Bill - Change the Billing Period and Reconcile a Monthly Bill](./images/monthly-bill-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View a Monthly Bill
 
 1. Go to `Billing > User Billing > Monthly Bill`.
@@ -78,10 +74,6 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Click **"Refresh Data"** to update statistics for the cycle.
 4. Review `Consumption Trend`, `Current-cycle Consumption`, `Top-ups`, `Net Change`, and `Billing Events`.
 5. Before exporting a bill, verify the billing period, data scope, and recipient permission.
-
-![Monthly Bill - View a Monthly Bill](./images/monthly-bill-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Reconcile Consumption by Dimension
 
@@ -91,10 +83,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. Review the consumption summary and detail list for that dimension.
 5. For a high or abnormal cost source, open `Transactions` and use the same billing cycle.
 6. In external communication, record only sanitized dimension names, time ranges, and symptoms.
-
-![Monthly Bill - Reconcile Consumption by Dimension](./images/monthly-bill-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

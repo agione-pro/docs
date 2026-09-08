@@ -58,11 +58,11 @@
 
 | 子系统 | 主要职责 | 手册入口 |
 | --- | --- | --- |
-| AI Infra On-Prem | 准备资源拓扑、规格、存储、镜像、模板、配额、计量和监控 | [On-Prem 平台入门](../usermanual/ai-infra-on-prem/getting-started/) |
-| AI Infra On-Cloud | 维护受支持的云平台接入、账号、资源池、授权、部署资产和调度策略 | [On-Cloud 平台入门](../usermanual/ai-infra-on-cloud/getting-started/) |
-| Model Services | 维护元模型、模型来源、模板、标签和币种设置，处理模型与应用审核 | [Model Services 平台入门](../usermanual/model-services/getting-started/) |
-| 财务 | 维护客户财务、运营财务、巡检对账、结算、调账和 License 状态 | [财务快速入门](../usermanual/billing/getting-started/) |
-| 设置 | 维护成员、角色、租户、操作日志、平台设置、登录配置和 API 流控规则 | [设置快速入门](../usermanual/settings/getting-started/) |
+| AI Infra On-Prem | 准备资源拓扑、规格、存储、镜像、模板、配额、计量和监控 | [地域/可用区](../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/) |
+| AI Infra On-Cloud | 维护受支持的云平台接入、账号、资源池、授权、部署资产和调度策略 | [接入总览](../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) |
+| Model Services | 维护元模型、模型来源、模板、标签和币种设置，处理模型与应用审核 | [元模型](../usermanual/model-services/operator/settings/meta-models/) |
+| 财务 | 维护客户财务、运营财务、巡检对账、结算、调账和 License 状态 | [今日任务](../usermanual/billing/operator/finance-operations/today-tasks/) |
+| 设置 | 维护成员、角色、租户、操作日志、平台设置、登录配置和 API 流控规则 | [成员](../usermanual/settings/operator/members-roles/members/) |
 
 职责边界：
 
@@ -88,7 +88,7 @@
 - 模型提供方不能审核自己发布的模型或应用。
 - 模型提供方不管理平台级租户、菜单、资源策略或其他提供方的数据。
 
-操作流程见[从发布到调用模型](../usermanual/model-services/end-to-end/publish-and-call-model/)。
+操作流程见用户指南中的[发布模型场景](../userguide/scenarios/publish-model/)。
 
 ## `enduser`：普通用户与模型使用方
 

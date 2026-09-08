@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Clust
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Clusters.
+Use this page to compare cluster status, resource capacity, job counts, and region or availability-zone ownership.
 
 ![Clusters](./images/manual-monitoring-clusters.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 Cluster statistics are used to compare cluster capacity, health status, and resource watermarks across different regions or resource pools. Operators can use the cluster dimension to determine whether there is overall capacity shortage, collection exception, or a hotspot in a single cluster.
 

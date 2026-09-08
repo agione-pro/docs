@@ -37,11 +37,9 @@ Confirm that the task involves Configuration, status, and relationships on Meter
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Metering Details.
+Use this page to query metering records by resource ID, resource name, resource type, region, availability zone, batch number, tenant, and time range.
 
 ![Metering Details](./images/manual-metering-details.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 Metering details are used to reconcile tenants, resources, billing cycles, usage, and Credits consumption record by record. Operators can locate abnormal details by tenant, resource name, or time range, and cross-check them with monthly metering summaries.
 

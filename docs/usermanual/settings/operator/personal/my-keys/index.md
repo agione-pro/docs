@@ -43,10 +43,6 @@ The current Operator page exposes the `System API AK/SK Pairs` tab only. It does
 | Credential list | Shows Key name / description, prefix, status, expiration time, creation time, and actions. |
 | Empty state | When no pair exists, the page shows `No keys yet` and instructs the operator to click **"+ Create Key"**. |
 
-![My Keys](./images/manual-settings-operator-my-keys.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the My Keys page.
-
 ## Main Operations
 
 ### View System API Keys
@@ -56,16 +52,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Use `Available` or `All` and the `Status` selector to review the list.
 4. Check the Key name / description, prefix, status, expiration time, creation time, and available actions.
 
-![View System API Keys](./images/manual-settings-operator-my-keys.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the My Keys page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Open the System API Key Creation Dialog
 
 1. Click **"Create Key"** in the upper-right corner.
@@ -74,12 +60,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 4. During documentation review or screenshot capture, click **"Cancel"**. Do not create a real credential.
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

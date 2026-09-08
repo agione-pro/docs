@@ -39,13 +39,9 @@ Confirm that the task involves Configuration, status, and relationships on Image
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Images.
+Use this page to manage personal image projects, public images, push history, and image-upload entries.
 
 ![Images](./images/images-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page contains three views: `My Images`, `Public Images`, and `Push History`. The screenshot shows sync, add project, project list, and image information areas.
 

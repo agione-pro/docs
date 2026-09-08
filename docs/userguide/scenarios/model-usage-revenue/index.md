@@ -13,9 +13,9 @@ This scenario shows callers how to review usage and providers how to reconcile c
 
 ## Goals
 
-- Match usage data with call logs.
+- Match usage data with call logs by time, Model ID, and Attribution.
 - Trace revenue back to valid calls and pricing rules.
-- Locate discrepancies by model, caller, billing period, or configuration.
+- Locate discrepancies by Model ID, attribution scope, caller, billing period, or configuration.
 
 ## Scenario Flow
 
@@ -23,14 +23,14 @@ This scenario shows callers how to review usage and providers how to reconcile c
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Align scope | User, model, provider, currency, and time range are consistent |
-| 2. Check calls | Success, failure, token, or duration records are traceable |
-| 3. Check usage | Aggregated usage maps to valid calls in the same scope |
+| 1. Align scope | User, model, Model ID, provider, currency, and time range are consistent |
+| 2. Check calls | Model ID, Attribution, success, failure, token, or duration records are traceable |
+| 3. Check usage | Usage details map to valid calls by Model ID and Attribution in the same scope |
 | 4. Reconcile settlement | User charges, provider revenue, and publication pricing explain each other |
 
 ## Before You Start
 
-- Define the model, time range, billing period, and unit.
+- Define the model, Model ID, time range, billing period, and unit.
 - Prepare a redacted request time or call identifier.
 
 ## Recommended Reading Order
@@ -53,5 +53,5 @@ This scenario shows callers how to review usage and providers how to reconcile c
 | Check | Pass Criteria |
 | --- | --- |
 | 1 | Successful and failed calls can be located over one consistent time range. |
-| 2 | Tokens, requests, or duration in Model Usage map to valid call records. |
+| 2 | Model ID, Attribution, tokens, requests, or duration in Model Usage map to valid call records. |
 | 3 | User charges, provider revenue, billing units, currency, and publication pricing explain each other. |

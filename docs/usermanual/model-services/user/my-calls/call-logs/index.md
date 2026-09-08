@@ -7,17 +7,19 @@
 | Applicable Roles | Model Provider, Model Consumer |
 | Navigation Path | Model Services > My Calls > Call Logs |
 | Page Route | `/modelone/monitoring/calls/log/model` |
-| Managed Objects | Personal model-call records, results, usage, latency, and details |
+| Managed Objects | Personal model-call records, Model ID, attribution, results, usage, latency, and details |
 
 #### Beginner Explanation
 
-Call Logs works like an itemized record of model requests. Locate a record by model, status, and time, and open details to review result, usage, and latency for a single failure.
+Call Logs works like an itemized record of model requests. Locate a record by model, Model ID, status, and time, and use attribution to distinguish the member, project, and Key scope associated with the call.
 
 #### Terminology
 
 | Term | Description |
 | --- | --- |
 | Call Time | The time when the request was made and recorded. |
+| Model ID | The platform model identifier used by the request. Use it to distinguish models with similar display names. |
+| Attribution | The member, project, and Key scope to which the call is attributed. |
 | Call Result | The success or failure state of one call. |
 | First Token Time | The time for a text model to return its first token. |
 | Call Details | Model, status, usage, latency, and error summary for one call. |
@@ -43,7 +45,7 @@ Set time and model criteria, query logs, verify result, usage, and latency, and 
 
 ## Page Description
 
-The page shows model-call records for the current account. Query by model name, model ID, type, status, and time range, and open details for individual call information.
+The page shows model-call records for the current account. Query by model name, Model ID, type, status, and time range. The list and details show Model ID and Attribution separately from the model display name.
 
 Page screenshots:
 
@@ -57,7 +59,7 @@ Focus on query criteria, call result, usage, latency, and the details entry.
 
 1. Go to `Model Services > My Calls > Call Logs`.
 2. Set a time range, enter a model name or model ID, and select model type and call status if needed.
-3. Click **"Search"** and verify call time, result, usage, and latency. Click **"Reset"** if the criteria are incorrect.
+3. Click **"Search"** and verify call time, model name, Model ID, Attribution, result, and usage. Click **"Reset"** if the criteria are incorrect.
 
 ![Query call logs](./images/manual-call-logs-public.png)
 
@@ -66,7 +68,7 @@ The image shows call logs. Verify the time range, call result, and target record
 ### View Call Details
 
 1. Click **"Details"** for the target record.
-2. Verify model, call time, result, usage, latency, and error summary.
+2. Verify model name, Model ID, Attribution, call time, result, usage, latency, and error summary.
 3. For troubleshooting, retain only a redacted request identifier and error summary. Do not copy complete requests, responses, or credentials.
 
 ![View call details](./images/manual-call-log-details-public.png)
@@ -80,11 +82,13 @@ The image shows one call's details. Remove request, response, and credential inf
 | Month | Yes | Month selector | `2026-07` | Controls the statistical month for call logs. |
 | Date Range | Yes | Date range | `2026-07-01 to 2026-07-17` | Controls the query time range for call logs. |
 | Model | No | Input | `Example Model` | Filters call logs by model name. |
+| Model ID | No | Input | `<MODEL_ID>` | Filters call logs by the exact platform model identifier. |
 | Model Type | No | Selector | `Text` / `Video` | Filters call logs by model capability type. |
-| Call Status | No | Selector | `Success` / `Failed` | Filters logs by call processing result. |
+| Call Status | No | Selector | `Success` / `Failed` / `Rate Limited` | Filters logs by call processing result. |
 | Minimum Input Tokens | No | Number input | `0` | Sets the lower input-token boundary for the query. |
 | Maximum Input Tokens | No | Number input | `1000` | Sets the upper input-token boundary for the query. |
 | Call Time | System-generated | Time | `2026-07-17 14:30` | Shows when a single call occurred. |
+| Attribution | System-generated | Text | `Member / Project / Key scope` | Shows the ownership scope to which the call is attributed. |
 | Usage | System-generated | Text / tag | `Input 100 / Output 40 Tokens` | Shows token, free quota, or multimodal input/output usage. |
 | Time Consumed | System-generated | Time | `1.2 s` | Shows the total time consumed by a single call. |
 | First Token Time | System-generated | Time | `0.3 s` | Shows the time before the first token is returned. |
@@ -103,11 +107,11 @@ The image shows one call's details. Remove request, response, and credential inf
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page is accessible | The `My Calls - Call Logs` page opens, and `My Calls > Call Logs` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Call log list loads | The list shows columns such as call time, model, call status, usage, latency, and error message. | Refresh the page or retry after adjusting the month and date range. |
+| Call log list loads | The list shows columns such as call time, model name, Model ID, Attribution, model type, call result, and usage. | Refresh the page or retry after adjusting the month and date range. |
 | Filter controls can be selected | After filtering by month, date range, model, model type, or call status, the list refreshes. | Check whether filters are too narrow, and click **"Reset"** if needed. |
 | Search / Reset works | `Search` displays matching logs, and `Reset` clears the filters. | Check network status, page API responses, and account permissions. |
 | Log details can be opened | Clicking `Details` opens more information about a single call. | Confirm that the record is still within the log retention period. |
-| Field information is consistent | Call status, time consumed, usage, failure type, and error message are consistent with the details page. | Reopen details or expand the time range for cross-checking. |
+| Field information is consistent | Model ID, Attribution, call status, time consumed, usage, failure type, and error message are consistent with the details page. | Reopen details or expand the time range for cross-checking. |
 
 ## FAQ
 

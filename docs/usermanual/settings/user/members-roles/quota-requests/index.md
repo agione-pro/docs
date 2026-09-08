@@ -39,10 +39,6 @@ Quota Requests is the ticket entry for member quota. It is used to submit and tr
 | Adjustment record columns | Time, member, event type, change, operator, and note |
 | High-risk action | Submitting a quota request |
 
-![Quota Requests](./images/manual-settings-user-quota-requests.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Quota Requests page.
-
 ## Main Operations
 
 ### View Quota Requests
@@ -52,32 +48,12 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Check requested quota, current quota, reason, status, and processing time.
 4. If no record is returned, reset filters and check the time range. Request and quota information must be redacted before sharing.
 
-![View Quota Requests](./images/manual-settings-user-quota-requests.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Quota Requests page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### View Quota Request Details
 
 1. Click **"Details"** for the target request.
 2. Review the reason, quota change, attachments or comments, and processing history.
 3. Check that the current status matches the list. If not, refresh and determine whether another processor acted on it.
 4. Do not submit, withdraw, approve, or reject requests during read-only validation.
-
-![View Quota Request Details](./images/manual-settings-user-quota-requests.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Quota Requests page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Submit a Quota Request
 
@@ -97,21 +73,15 @@ The following screenshot shows the Request Quota dialog.
 
 ![Request Quota](./images/request-quota.png)
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Keyword or name | No | Text | `Example name` | Used to locate a specific record. |
-| Status | No | Enum | `Enabled` | Used to determine the current processing or availability state. |
-| Time range or billing cycle | No | Date / Month | `2026-07` | Used to narrow statistics, logs, bills, or settlements. |
-| Tenant / customer / member | No | Text | `Example tenant` | Used to identify the business ownership scope. |
-| Operation | System generated | Button / link | `View Details` | Provides row-level entry points for follow-up checks. |
+| Applicant | Yes | Member | `Example Member A` | Account that submits the quota request. |
+| Requested quota | Yes | Credits | `1,000 Credits` | Amount of additional quota requested. |
+| Purpose | Yes | Text | `Model testing` | Explains how the requested quota will be used. |
+| Status | System-generated | Enum | `Under review` | Shows the current processing state. |
+| Review comment | System-generated | Text | `Provide more details` | Shows the reviewer's response or required follow-up. |
 
 ## Pitfalls
 

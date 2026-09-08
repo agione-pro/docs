@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Nodes
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Nodes.
+Use this page to inspect node resource trends and states within the current user's scope.
 
 ![Nodes](./images/nodes-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays node statistics capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
@@ -107,6 +103,18 @@ The page displays node statistics capability for the selected region. When the c
 - Temporary CPU or memory spikes are not necessarily failures. Judge them together with the task runtime window.
 - Curve interruption may be collection delay or node unavailability.
 - Users usually cannot maintain nodes directly. During troubleshooting, prepare time range and instance information for the operator.
+
+### Troubleshooting Information to Prepare
+
+When node data is abnormal, prepare the following information to distinguish a single-node failure, resource exhaustion, and collection delay:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| Node name | `node-gpu-01` | Locates the specific machine. |
+| Cluster | `cluster-prod-a` | Confirms node ownership and impact scope. |
+| CPU / Memory curve | `CPU 92% / Memory 85%` | Determines whether resources are at a high watermark. |
+| Disk curve | `Disk 90%` | Identifies image-pull, log-write, and temporary-file risks. |
+| Node-state duration | `NotReady for 10 minutes` | Determines how long the abnormal state has continued. |
 
 ## Result Validation
 

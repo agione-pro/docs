@@ -80,10 +80,6 @@ Use the following operations to view EU and Provider customer overview records a
 4. Click **"Search"** and review the EU customer list.
 5. Verify tenant `Name`, administrator, business identity, tags, account balance, consumption, and last update time.
 
-![Customer Overview - View Customer Overview - EU](./images/manual-billing-customer-overview-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View Customer Overview - Provider
 
 1. Go to `Billing > Customer Billing > Customer Overview`.
@@ -91,10 +87,6 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Enter tenant `Name`, customer ID, administrator email, tags, or other filters as needed.
 4. Click **"Search"** and review the Provider customer list.
 5. Verify tenant `Name`, administrator, business identity, tags, account balance, revenue or consumption-related information, and last update time.
-
-![Customer Overview - View Customer Overview - Provider](./images/manual-billing-customer-overview-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Manage Tags
 
@@ -104,10 +96,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. Click **"Close"** to exit the dialog.
 
 Before managing tags, verify the target customer scope and account permission. Do not record real customer tagging policies or internal operation notes in manuals, tickets, or comments.
-
-![Customer Overview - Manage Tags](./images/manual-billing-customer-overview-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Review an Account Adjustment
 

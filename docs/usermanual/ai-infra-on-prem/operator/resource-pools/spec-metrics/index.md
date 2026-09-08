@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Spec 
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Spec Metrics.
+Use this page to manage metric names, metric types, resource keys, units, Kubernetes keys, selector keys, monitoring metrics, and enabled state.
 
 ![Spec Metrics](./images/manual-spec-metrics.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays configured metrics as cards and supports filtering by metric name, AI accelerator metrics, and other metrics.
 
@@ -71,7 +69,6 @@ Add a specification metric when a new hardware resource type needs to be added, 
 4. Select AI card category, AI cards metrics, or other metrics, and fill in metric name, unit, k8s-key, and selector-key according to the page fields.
 5. For an AI accelerator metric, verify that selector-key is consistent with labels actually reported by cluster nodes.
 6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the metric scope, unit, k8s-key, and selector-key again.
-7. For learning or page validation only, view the fields and drawer without submitting real specification metric configuration.
 
 The following figure shows the Add Specification Metric drawer. AI accelerator metrics require k8s-key and selector-key.
 

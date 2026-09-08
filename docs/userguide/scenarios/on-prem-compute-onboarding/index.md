@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - On-Prem Compute Onboarding
 
-This scenario explains how to connect a local Kubernetes cluster and its GPU, NPU, or XPU devices to AGIOne, then expose the hardware through schedulable resource specifications. For the task “How do I manage four NPU cards?”, this scenario covers device identity, cluster onboarding, and flavor planning.
+This scenario explains how to connect a local Kubernetes cluster and its GPU, NPU, or XPU devices to {{DOCS_PRODUCT_NAME_EN}}, then expose the hardware through schedulable resource specifications. For the task “How do I manage four NPU cards?”, this scenario covers device identity, cluster onboarding, and flavor planning.
 
 ## Applicable Roles
 
@@ -14,7 +14,7 @@ This scenario explains how to connect a local Kubernetes cluster and its GPU, NP
 
 ## Scenario Goals
 
-- AGIOne recognizes the target NPU model and resource key.
+- {{DOCS_PRODUCT_NAME_EN}} recognizes the target NPU model and resource key.
 - Cluster nodes report all four NPU cards.
 - Users can select one-card, two-card, and four-card resource specifications.
 
@@ -53,7 +53,7 @@ This scenario explains how to connect a local Kubernetes cluster and its GPU, NP
 | [Maintain Accelerator Models](./accelerator-management/) | Verify the NPU model, memory, managed state, and Kubernetes resource key |
 | [Onboard the Cluster and Verify Devices](./cluster-onboarding/) | Register the cluster and verify that all four NPU cards are reported |
 | [Configure Metrics and Resource Specifications](./resource-specifications/) | Create scheduling metrics and one-card, two-card, and four-card flavors |
-| [Deploy a Model Service from Scratch](../../../usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/) | Follow the complete On-Prem path from operator preparation through user deployment and validation |
+| [Regions & Zones](../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/) | Start with the first operator page for On-Prem resource onboarding |
 
 ## Completion Checklist
 
@@ -63,7 +63,7 @@ This scenario explains how to connect a local Kubernetes cluster and its GPU, NP
 | --- | --- |
 | 1 | The region and availability zone exist and are selectable during cluster registration. |
 | 2 | The cluster and nodes are available. |
-| 3 | AGIOne reports four target NPU cards. |
+| 3 | {{DOCS_PRODUCT_NAME_EN}} reports four target NPU cards. |
 | 4 | Inference templates or test workloads can select the new resource specifications. |
 
 ## Related Scenarios

@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Image
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Images.
+Use this page to manage client tools, registries, projects or namespaces, image names, tags, addresses, types, architectures, and synchronization states.
 
 ![Images](./images/manual-images.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays image name, tags, creation time, update time, and operation entrypoints in a table.
 
@@ -78,7 +76,6 @@ Use the client upload guide when a locally built or existing runtime image needs
 4. Log in to the image registry and push the image. Use placeholders only in learning or documentation examples. Do not write real registry addresses, accounts, or passwords.
 5. Return to `Image Management`, Click **"Image Upload"**, **"Sync"**, or the actual page entry, and add the image address, tags, purpose, architecture, and other information to platform management.
 6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the image source, tag meaning, purpose, and impact on existing jobs.
-7. For learning or page validation only, view fields, dialogs, and client command formats. Do not push real images or submit real configuration.
 
 Use placeholder-only client command examples:
 

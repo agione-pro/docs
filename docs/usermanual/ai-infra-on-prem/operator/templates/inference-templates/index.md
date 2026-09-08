@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Infer
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Inference Templates.
+Use this page to manage inference templates, model and framework scopes, recommended specifications, form parameters, and publishing state.
 
 ![Inference Templates](./images/manual-inference-templates.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays the inference template list, including template name, status, model scope, framework scope, update time, and operation entrypoints.
 

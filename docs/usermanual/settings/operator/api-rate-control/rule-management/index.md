@@ -30,7 +30,7 @@ Rule Management is the API rate-control rule library. It defines which APIs are 
 
 ## Page Description
 
-The following screenshot shows the Rule Management page. Rule details are desensitized.
+The page provides rule filters, a rule list, and lifecycle actions for creating, reviewing, editing, enabling, disabling, and deleting rate-control rules.
 
 ![Rule Management](./images/rule-management-list.png)
 
@@ -43,10 +43,6 @@ The following screenshot shows the Rule Management page. Rule details are desens
 | API Pattern | Filters by API match pattern. |
 | Rule table | Shows rules, counting scope, mode, quota, window, priority, publication state, enabled state, and actions. |
 
-![Rule Management](./images/manual-settings-operator-rule-management.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
-
 ## Main Operations
 
 ### View Rate Control Rules
@@ -55,16 +51,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 2. Filter by name, status, scope, action, or update time.
 3. Open details and check match conditions, thresholds, actions, priority, target nodes, and version.
 4. If no record is returned, reset filters. For unexpected matches, compare Observability Audit and the currently published version.
-
-![View Rate Control Rules](./images/manual-settings-operator-rule-management.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Create Rate Control Rule
 
@@ -79,12 +65,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 6. Before clicking the final `Save`, `Submit`, or `Publish`, verify that the rule will not block normal business requests by mistake.
 7. For learning or screenshots only, view fields and click **"Cancel"** or return without submitting real rule configuration.
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit Rate Control Rule
 
 1. Open `Settings > API Rate Control > Rule Management`.
@@ -92,16 +72,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
-
-![Edit Rate Control Rule](./images/manual-settings-operator-rule-management.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Copy Rate Control Rule
 
@@ -111,16 +81,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
 
-![Copy Rate Control Rule](./images/manual-settings-operator-rule-management.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Publish Rate Control Rules
 
 1. Open `Settings > API Rate Control > Rule Management`.
@@ -128,16 +88,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
-
-![Publish Rate Control Rules](./images/manual-settings-operator-rule-management.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Rule Management page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

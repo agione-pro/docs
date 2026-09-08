@@ -81,20 +81,12 @@ The image shows the page entry or current state for this operation. Verify the p
 5. Review the revenue mix area, including `Platform Retained Fee`, `Self-operated Revenue`, and total statistical revenue.
 6. Review task counts such as `To generate`, `To advance`, and `Long unresolved`.
 
-![Monthly Overview - View Monthly Overview](./images/manual-billing-monthly-overview-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Generate Settlement
 
 1. Confirm that `Billing Cycle` is correct.
 2. Review the To Generate count in the task list.
 3. Click **"Generate Settlement"**.
 4. Open [Settlement List](../settlement-list/) to view the generated settlement page.
-
-![Monthly Overview - Generate Settlement](./images/manual-billing-monthly-overview-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

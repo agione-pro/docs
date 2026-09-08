@@ -34,7 +34,7 @@ next: true
 | 2 | 对照默认角色能力选择角色 | [角色对比总览](../../../product/role-comparison) | 角色与岗位职责匹配 |
 | 3 | 在租户设置和团队成员中确认成员归属 | [租户设置](../../../usermanual/settings/user/organizations/org-settings/)、[团队成员](../../../usermanual/settings/user/members-roles/team-members/) | 成员状态正常且租户关系正确 |
 | 4 | 在角色中选择内置角色，必要时创建最小权限角色 | [角色管理](../../../usermanual/settings/user/members-roles/roles/) | 角色只包含必要权限 |
-| 5 | 使用验证账号重新登录，检查菜单、按钮和资源范围 | [账号与权限配置](../../../usermanual/settings/end-to-end/configure-account-and-permissions/) | 允许项可用，禁止项不可见或不可操作 |
+| 5 | 使用验证账号重新登录，检查菜单、按钮和资源范围 | [角色](../../../usermanual/settings/operator/members-roles/roles/) | 允许项可用，禁止项不可见或不可操作 |
 | 6 | 在操作日志中核对权限变更和验证结果 | [操作日志](../../../usermanual/settings/user/activity-notifications/operation-logs/) | 变更时间、操作人和对象可追溯 |
 
 步骤 3-5 需要在**角色管理**中核对角色记录和权限范围，再使用验证账号重新登录。

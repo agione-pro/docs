@@ -36,7 +36,7 @@ These modules can be used independently for a focused task or together as an end
 | Role | Main Responsibility | Typical Starting Point |
 | --- | --- | --- |
 | **Operator (`operator`)** | Prepare resources and templates, configure governance rules, maintain quotas and monitoring, and review published content | [Role Comparison](./role-comparison) |
-| **Model Provider (`provider`)** | Publish single or aggregate models, maintain versions and pricing, submit reviews, and view customer calls and revenue | [Model Services Getting Started](../usermanual/model-services/getting-started/) |
+| **Model Provider (`provider`)** | Publish single or aggregate models, maintain versions and pricing, submit reviews, and view customer calls and revenue | [My Models](../usermanual/model-services/user/studio/my-models/) |
 | **End User (`enduser`)** | Discover and experience models, obtain access, call APIs, deploy available services, and view personal usage | [User Manual](../usermanual/) |
 
 The menus visible to an account depend on its role, tenant, authorization scope, and available resources.

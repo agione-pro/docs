@@ -30,7 +30,7 @@ Profile is the identity card for a platform administrator. Use it to confirm the
 
 ## Page Description
 
-The following screenshot shows the Profile page. Account identifiers, phone numbers, email addresses, and other sensitive information are desensitized.
+The page displays the current account's identity, contact, security, and permission information. Use it to confirm the active account before administrative actions.
 
 ![Profile](./images/profile-list.png)
 
@@ -39,10 +39,6 @@ The following screenshot shows the Profile page. Account identifiers, phone numb
 | User Information | Shows the account name, account identifier, and other basic information. |
 | Account Password | Shows password status and related information. |
 | Security | Shows the phone number, email address, and other security contact information. |
-
-![Profile](./images/manual-settings-operator-profile.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
 
 ## Main Operations
 
@@ -53,16 +49,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Confirm that sensitive fields are redacted and the account status is normal. If information is missing, refresh and check permissions.
 4. Hide email, contact details, and internal identifiers before screenshots or sharing.
 
-![View Account Information](./images/manual-settings-operator-profile.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit Account Profile
 
 1. After an approved edit, reopen the profile.
@@ -70,15 +56,9 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. If the change is not applied, check required fields, format, the save message, and cache refresh.
 4. Do not put passwords, Tokens, keys, or internal sensitive information in profile fields.
 
-![Edit Account Profile](./images/manual-settings-operator-profile.png)
+![Edit personal details](./images/edit-personal-details.png)
 
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Profile page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
+The dialog shows the editable personal-detail fields. Verify the values before saving, or click `Cancel` when only reviewing the page.
 
 ## Parameter Quick Reference
 

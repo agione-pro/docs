@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Devic
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Devices.
+Use this page to inspect GPU and NPU utilization, device memory, temperature, and health state.
 
 ![Devices](./images/manual-monitoring-devices.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 Device monitoring is used to view GPU/NPU utilization, VRAM, temperature, and health status. Operators can use it to determine whether accelerators are offline, overheating, out of VRAM, or occupied by a single task for a long time.
 

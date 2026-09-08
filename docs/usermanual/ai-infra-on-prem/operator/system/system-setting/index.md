@@ -37,11 +37,9 @@ Confirm that the task involves Configuration, status, and relationships on Syste
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on System Setting.
+Use this page to review system configuration names, values, descriptions, states, and available actions.
 
 ![System Setting](./images/manual-system-setting.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 Go to `AI Infra > On-Prem > System > System Setting`. The page displays system-level configuration items. The list is used to view configuration item names, configuration values, descriptions, status, and possible action entries.
 

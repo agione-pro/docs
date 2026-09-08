@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Devic
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Devices.
+Use this page to inspect GPU and NPU utilization, device memory, and health state within the current user's scope.
 
 ![Devices](./images/devices-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays device monitoring capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
@@ -107,6 +103,18 @@ The page displays device monitoring capability for the selected region. When the
 - Empty utilization may mean not collected, no task, or device plugin exception. Do not directly judge it as idle.
 - High VRAM directly affects model startup even when total cluster capacity looks sufficient.
 - Temperature exceptions should be handled as hardware health issues. Avoid relying only on task retry.
+
+### Troubleshooting Information to Prepare
+
+When device data is abnormal, prepare the following information to distinguish collection, memory-pressure, and hardware-health issues:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| Device name / ID | `GPU-0` | Locates a specific GPU or NPU. |
+| Node IP / Node name | `node-gpu-01` | Locates the node that contains the device. |
+| Utilization | `GPU 95%` | Determines whether the compute unit is under high load. |
+| Device memory | `76 GB / 80 GB` | Determines whether device memory is insufficient. |
+| Temperature / Health state | `78°C / Alert` | Determines whether hardware maintenance is required. |
 
 ## Result Validation
 

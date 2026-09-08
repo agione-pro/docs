@@ -352,5 +352,5 @@ curl -X POST "{{DOCS_API_ENDPOINT_ZH}}" \
 
 ## 操作手册
 
-- [模型服务快速入门](../../../usermanual/model-services/getting-started/)
-- [从发布到调用模型](../../../usermanual/model-services/end-to-end/publish-and-call-model/)
+- [模型广场](../../../usermanual/model-services/user/discover/models/)
+- [我的调用概览](../../../usermanual/model-services/user/my-calls/overview/)

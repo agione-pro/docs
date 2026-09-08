@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Jobs,
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Jobs.
+Use this page to inspect model instances, online IDEs, runtime instances, and historical jobs within the current user's scope.
 
 ![Jobs](./images/jobs-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays job monitoring capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
@@ -107,6 +103,18 @@ The page displays job monitoring capability for the selected region. When the ca
 - Job queueing is usually related to quotas, specifications, capacity, or scheduling conditions. Do not only refresh the page.
 - When failure cause is empty, view instance events and logs first.
 - When GPU occupation is normal but results are abnormal, return to training scripts or model parameters for troubleshooting.
+
+### Troubleshooting Information to Prepare
+
+When job data is abnormal, prepare the following information to distinguish queueing, failure, insufficient-resource, and retention issues:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| Job ID | `job-20260713001` | Locates the exact job record. |
+| Job state | `Queued / Failed / Running` | Determines the troubleshooting direction. |
+| Queue duration | `25 minutes` | Identifies scheduling or resource-wait issues. |
+| Failure time | `2026-07-13 10:15` | Aligns events, logs, and monitoring curves. |
+| Flavor / Queue | `2 * A800 / gpu-prod` | Determines whether the resource pool and quota match the request. |
 
 ## Result Validation
 

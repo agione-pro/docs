@@ -31,7 +31,7 @@ next: true
 | --- | --- | --- | --- |
 | 1 | 进入 `审批 > 模型审核` 并筛选待处理申请 | [模型审核](../../../usermanual/model-services/operator/approvals/model-reviews/) | 找到目标申请且状态为待处理 |
 | 2 | 核对模型、提供方、来源和发布区域 | [模型审核](../../../usermanual/model-services/operator/approvals/model-reviews/) | 基础信息与申请目标一致 |
-| 3 | 核对协议测试、模态、Token、计费和限流 | [从发布到调用模型](../../../usermanual/model-services/end-to-end/publish-and-call-model/) | 关键配置完整且符合规则 |
+| 3 | 核对协议测试、模态、Token、计费和限流 | [模型审核](../../../usermanual/model-services/operator/approvals/model-reviews/) | 关键配置完整且符合规则 |
 | 4 | 通过申请或填写原因后驳回 | [模型审核](../../../usermanual/model-services/operator/approvals/model-reviews/) | 状态和处理意见保存成功 |
 | 5 | 使用提供方账号查看申请状态 | [我的模型](../../../usermanual/model-services/user/studio/my-models/) | 提供方能看到结果和原因 |
 | 6 | 对通过的公有模型进行可见性验证 | [模型市场](../../../usermanual/model-services/user/discover/models/) | 目标用户能在预期范围看到模型 |

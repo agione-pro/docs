@@ -406,9 +406,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "Model Services",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/model-services/" },
-            { text: "Getting Started", link: "/usermanual/model-services/getting-started/" },
-            { text: "Publish and Call a Model", link: "/usermanual/model-services/end-to-end/publish-and-call-model/" },
             {
               text: "Operator",
               collapsed: false,
@@ -503,9 +500,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "AI Infra(On-Cloud)",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/ai-infra-on-cloud/" },
-            { text: "Getting Started", link: "/usermanual/ai-infra-on-cloud/getting-started/" },
-            { text: "Deploy a Cloud Model Service from Scratch", link: "/usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/" },
             {
               text: "Operator",
               collapsed: false,
@@ -580,9 +574,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "AI Infra(On-Prem)",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/ai-infra-on-prem/" },
-            { text: "Getting Started", link: "/usermanual/ai-infra-on-prem/getting-started/" },
-            { text: "Deploy a Model Service from Scratch", link: "/usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/" },
             {
               text: "Operator",
               collapsed: false,
@@ -707,9 +698,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "Billing",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/billing/" },
-            { text: "Getting Started", link: "/usermanual/billing/getting-started/" },
-            { text: "Reconcile and Settle a Billing Cycle", link: "/usermanual/billing/end-to-end/reconcile-billing-cycle/" },
             {
               text: "Operator",
               collapsed: false,
@@ -776,9 +764,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "Settings",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/settings/" },
-            { text: "Getting Started", link: "/usermanual/settings/getting-started/" },
-            { text: "Configure Accounts and Permissions", link: "/usermanual/settings/end-to-end/configure-account-and-permissions/" },
             {
               text: "Operator",
               collapsed: false,

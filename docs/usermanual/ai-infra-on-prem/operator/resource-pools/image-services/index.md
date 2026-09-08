@@ -38,11 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Image
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Image Services.
+Use this page to manage image-service type, image, name, public endpoint, internal IP address, account information, description, and available actions.
 
 ![Image Services](./images/manual-image-services.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page displays connected image components, status, access address, project count, sync status, and associated regions.
 
@@ -71,7 +69,6 @@ Register an image component when a new Harbor, Docker Registry, or compatible im
 4. If the page provides `Test Connection`, run the read-only connectivity check first and confirm the returned result.
 5. Before submission, confirm that the repository address is reachable from both the platform side and target clusters, and that robot credentials or access accounts have minimum required permissions.
 6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify Endpoint, internal IP address, credential source, and component usage scope again.
-7. For learning or page validation only, view fields and forms without submitting real image component configuration.
 
 The following figure shows the Register Image Component form, used to fill in image service connection information and sync configuration.
 

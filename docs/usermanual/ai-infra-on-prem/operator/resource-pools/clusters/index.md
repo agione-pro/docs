@@ -50,11 +50,9 @@ Before creating a cluster, confirm that the following conditions are met:
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Clusters.
+Use this page to manage Kubernetes clusters, regions, availability zones, nodes, resource specifications, storage, jobs, and resource monitoring.
 
 ![Clusters](./images/manual-clusters.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The Cluster Management page mainly includes the cluster list, cluster details, and cluster nodes information.
 
@@ -110,7 +108,6 @@ The following figure shows the `New Cluster - Clusters` page. Use it to locate k
 6. Select `Authentication Type`, fill in the corresponding authentication materials according to the page fields, and verify `Context Name`.
 7. Configure `Cluster CIDR`, `Service CIDR`, `NodePort`, monitoring service, JupyterLab address, `Support RDMA Network`, description, and other advanced options.
 8. Before clicking the final **"Submit"**, verify sensitive information, region/availability zone, network configuration, and scheduling impact again.
-9. For learning or page validation only, view fields and screenshots. Do not perform the final `Submit`, `OK`, or `Save`.
 
 ### Associate Cluster Specifications
 
@@ -127,7 +124,6 @@ Associate specifications when the target cluster needs to run jobs with specific
 5. Click **"Associate Specifications"** or the actual association entry on the page.
 6. Select the specifications to associate with the cluster, and verify specification name, specification type, CPU, memory, GPU, or other accelerator configuration.
 7. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify that the specifications match the cluster resource capability.
-8. For learning or page validation only, view the fields and dialog without submitting real association configuration.
 
 ![Associate Specifications](./images/associate-specification.png)
 
@@ -146,7 +142,6 @@ Add storage when jobs need shared directories, model repositories, local Git rep
 5. Click **"Add Storage"** or the actual add entry on the page.
 6. Configure storage name, storage type, shared path, container mount path, access mode, tenant scope, and description according to the page fields.
 7. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the storage path, mount policy, permission scope, and impact on running jobs.
-8. For learning or page validation only, view the fields and dialog without submitting real storage configuration.
 
 ![Add Storage](./images/add-storage.png)
 

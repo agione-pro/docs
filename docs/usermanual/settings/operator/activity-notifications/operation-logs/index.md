@@ -30,7 +30,7 @@ Operator operation logs are the audit trail for the platform console. Use them t
 
 ## Page Description
 
-The following screenshot shows the Operation Logs page. User identities, IP addresses, and log details are desensitized.
+The page provides filters, an operation-log list, and record details for tracing who performed an action, when it occurred, and whether it succeeded.
 
 ![Operation Logs](./images/operation-logs-list.png)
 
@@ -41,10 +41,6 @@ The following screenshot shows the Operation Logs page. User identities, IP addr
 | Export CSV | Exports logs in the current query scope. |
 | Log table | Shows the time, user, action, method, IP address, processing time, and result. |
 
-![Operation Logs](./images/manual-settings-operator-operation-logs.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
-
 ## Main Operations
 
 ### View Operation Logs
@@ -54,32 +50,12 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. The target event should be uniquely identifiable. For duplicate names, narrow the range with a redacted object ID fragment and time.
 4. Logs may contain account, IP, and business-object information and must be redacted before export, screenshots, or sharing.
 
-![View Operation Logs](./images/manual-settings-operator-operation-logs.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### View Operation Log Details
 
 1. Click **"Details"** for the target record and inspect the request action, object, result, duration, and error summary.
 2. Compare preceding and following events to determine whether the action completed and whether a subsequent failure occurred.
 3. If information is insufficient, escalate with a redacted time, module, and error category. Do not copy Tokens, keys, cookies, or complete request bodies.
 4. Use log details only for audit and diagnosis. Do not replay high-risk operations from the page.
-
-![View Operation Log Details](./images/manual-settings-operator-operation-logs.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Export Operation Logs
 
@@ -88,16 +64,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
-
-![Export Operation Logs](./images/manual-settings-operator-operation-logs.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Operation Logs page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 
@@ -218,7 +184,3 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. To verify member changes, go to [Members](../../members-roles/members/).
 2. To verify role changes, go to [Roles](../../members-roles/roles/).
-
-### Preserved Existing Screenshots
-
-![Preserved Existing Screenshots](./images/operation-logs-list.png)

@@ -101,10 +101,6 @@ The image shows the page entry or current state for this operation. Verify the p
 4. To verify fund flow, click **"Details"** or the transaction entry for the account.
 5. Compare with Monthly Overview, Settlement List, or Reconciliation Center to confirm that the clearing account amount matches the billing-cycle settlement status.
 
-![Financial Accounts - View Platform Clearing Account](./images/manual-billing-financial-accounts-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View Platform Revenue Account
 
 1. Go to `Billing > Finance Operations > Financial Accounts`.
@@ -115,18 +111,12 @@ The image shows the page entry or current state for this operation. Verify the p
 
 The following screenshot shows the Platform Revenue Account area. Use it to compare the revenue amount with the billing-period summary.
 
-![Platform Revenue Account](./images/platform-revenue-account-list.png)
-
 ### View Account Details
 
 1. Select the target account in the account list.
 2. Open account details.
 3. Review basic account information, balance changes, income and expense summary, and transactions.
 4. Record the last update time to avoid using stale data for reconciliation.
-
-![Financial Accounts - View Account Details](./images/manual-billing-financial-accounts-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Transactions
 
@@ -135,10 +125,6 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Open transaction details.
 4. Verify the amount, fund direction, related settlement statement, related order, or business source.
 5. Before sharing transaction details in tickets or comments, desensitize the amount, tenant name, transaction number, and account information.
-
-![Financial Accounts - View Transactions](./images/manual-billing-financial-accounts-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### Troubleshoot Account Differences
 
@@ -153,10 +139,6 @@ The image shows the page entry or current state for this operation. Verify the p
 | The account amount does not match the settlement statement | [Settlement List](../settlement-list/) | Compare the amount, tenant, billing cycle, and posting status. |
 | The monthly summary is incorrect | [Monthly Overview](../monthly-overview/) | Compare billing-cycle totals with account income and expenses. |
 | A billing difference cannot be explained | [Reconciliation Center](../reconciliation-center/) | Investigate by billing cycle, tenant, or transaction type. |
-
-![Financial Accounts - Troubleshoot Account Differences](./images/manual-billing-financial-accounts-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

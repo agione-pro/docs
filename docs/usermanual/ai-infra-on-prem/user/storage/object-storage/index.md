@@ -38,13 +38,9 @@ Confirm that the task involves Configuration, status, and relationships on Objec
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Object Storage.
+Use this page to manage object-storage buckets, objects, paths, and regional object-storage capability.
 
 ![Object Storage](./images/object-storage-list.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The left side provides bucket search and bucket list, and the upper-right corner provides the add bucket entrypoint. After entering a bucket, you can upload, download, or delete objects through object list entrypoints provided by the page.
 

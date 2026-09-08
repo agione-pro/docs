@@ -7,7 +7,7 @@
 | Applicable Role | Model Provider and Model Consumer |
 | Navigation Path | AI Infra(On-Prem) > Quotas & Usage > Top-up Records |
 | Page Route | `/powerone/quota-usage/top-up-history` |
-| Managed Object | Configuration, status, and relationships on Top-up Records |
+| Managed Object | Credit top-up records, sources, acquisition methods, external serial numbers, and top-up times |
 
 #### Beginner Explanation
 
@@ -23,11 +23,11 @@ Top-up records are like the transaction history of a credit wallet, used to view
 
 #### Recommended Operation Order
 
-Confirm prerequisites for Credit top-up records, source, acquisition method, third-party serial number, and top-up time, follow Main Operations, run Result Validation, and continue to the next page.
+Define the target tenant and query range, search for the record, review the returned fields, and then reconcile the record with the related credit change or external evidence.
 
 #### First-Time User Notes
 
-Confirm that the task involves Configuration, status, and relationships on Top-up Records, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
+This is a read-only record page. An empty list can mean that no record matches the current conditions; reset the filters and confirm the tenant and time range before treating it as an exception.
 
 ## Prerequisites
 
@@ -37,21 +37,17 @@ Confirm that the task involves Configuration, status, and relationships on Top-u
 
 ## Page Description
 
-> **Verification status: Partially verified.** Screenshots and fields use existing user-side evidence. The live Operator menu does not replace independent Model Provider or Model Consumer evidence.
-
-Use this page to view and handle Configuration, status, and relationships on Top-up Records.
+Use this page to locate credit top-up records and trace when, how, and from which source credits were granted.
 
 ![Top-up Records](./images/top-up-records-list.png)
 
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
-
-The page provides search, reset, and top-up record tables. In the screenshot, the list is empty, indicating no top-up records under the current conditions.
+The page contains a query area and a result table. In the screenshot, the list is empty, which means that no record matches the current conditions; it does not by itself indicate that top-up processing failed.
 
 #### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
-| Search Area | Filters top-up records by conditions. |
+| Search Area | Sets the query conditions. Use **"Search"** to apply them and **"Reset"** to restore the default list. |
 | Granted Amount | Granted credit quantity. |
 | Value Amount | Credit value amount. |
 | Source | Credit source. |
@@ -61,49 +57,33 @@ The page provides search, reset, and top-up record tables. In the screenshot, th
 
 ## Main Operations
 
-### View Top-up Records
+### Query and Review Top-up Records
 
-1. Go to `Quotas and Usage > Top-up Records`.
-2. Select a time range and filter by order number, status, resource type, or posting result.
-3. Check creation time, quota change, status, and completion time.
-4. If no record is returned, check the time zone and reset filters. Redact order and quota information before sharing.
+1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Top-Up Records`.
+2. Confirm that the current account is viewing the target tenant and define the time range or serial information to query.
+3. Enter the available query conditions and click **"Search"**.
+4. Review the granted amount, value amount, source, acquisition method, third-party serial number, and top-up time in the returned rows.
+5. If no record is returned, check the time zone and tenant scope, then click **"Reset"** and apply conditions one at a time.
+6. Redact external serial numbers and credit information before sharing evidence.
 
 ### Reconcile a Top-up with the Quota Change
 
-1. Open the target details and record a redacted order number, status, and completion time.
-2. Compare Resource Quotas or usage records and locate the corresponding quota change.
-3. The top-up status and quota change should be traceable. If not, check refresh time and posting status.
+1. Record the target row's redacted third-party serial number, source, top-up time, and granted amount.
+2. Compare external payment or approval evidence and locate the corresponding credit change or usage record.
+3. The external record, top-up record, and credit change should be traceable by serial number and time. If not, check refresh time and posting status.
 4. Do not create another top-up or quota adjustment to test an anomaly.
-
-### Query Top-Up Records
-
-#### Applicable Scenario
-
-When you need to confirm whether credits have arrived, reconcile accounts, or trace credit source, query top-up records.
-
-#### Pre-Operation Check
-
-1. The time range or serial information to query is clear.
-2. The current account is viewing the target tenant.
-
-#### Procedure
-
-1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Top-Up Records`.
-2. Enter query conditions.
-3. Click **"Search"**.
-4. View records in the table.
-5. To restore the default list, Click **"Reset"**.
 
 ## Parameter Quick Reference
 
-| Field Name | Required | Field Type | Example | Description |
+| Area / Field | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Record ID | System-generated | Text | `topup-20260706-001` | Locates a single top-up or adjustment record. |
-| Change Type | System-generated | Enum | `Top-up` | Shows top-up, deduction, refund, or manual adjustment type. |
-| Change Quantity | System-generated | Number | `2000 Credits` | Quantity of credits changed this time. |
-| Operation Time | System-generated | Date time | `2026-07-06 10:00` | Time when the credit change occurred. |
-| Effective Status | System-generated | Status | `Effective` | Whether the record has affected available credits. |
-| Remarks | No | Text | `Project expansion` | Describes the business background or source of this change. |
+| Query conditions | No | Search fields | `Time range / serial number` | Narrows the result table. Available conditions depend on the current page. |
+| Granted Amount | System-generated | Number | `2000 Credits` | Amount of credits granted by the record. |
+| Value Amount | System-generated | Number | `20 USD` | Value amount corresponding to the granted credits. |
+| Source | System-generated | Text | `Manual grant` | Identifies where the credit change originated. |
+| Acquisition Method | System-generated | Text / Enum | `Top-up` | Describes how the credits were obtained. |
+| Third Party Serial Number | System-generated | Text | `external-001` | Links the platform record to external payment or approval evidence. |
+| Top-up Time | System-generated | Date time | `2026-07-06 10:00` | Time when the top-up record was generated or posted. |
 
 ## Pitfalls
 
@@ -120,10 +100,10 @@ When you need to confirm whether credits have arrived, reconcile accounts, or tr
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page entry | Top-up Records opens with filters or statistics | Check menu permission, current business identity, and tenant scope |
-| Data scope | Lists or statistics match the selected time, region, and object | Reset filters and verify time boundaries, time zone, and aggregation scope |
-| Data update | Update time or latest record matches the expected cycle | Check whether the source job, metering, or quota record has been generated |
-| Cross-check | Configuration, status, and relationships on Top-up Records matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
+| Page entry | Top-up Records opens with the query area and result table | Check menu permission, current business identity, and tenant scope |
+| Query result | Returned rows match the selected tenant, time range, and available conditions | Reset filters and verify time boundaries, time zone, and tenant scope |
+| Empty state | Resetting filters either restores records or confirms that no record exists in the current scope | Confirm whether the tenant has had a top-up or grant and whether the source record has been generated |
+| Reconciliation | The external serial number, top-up time, source, and granted amount correspond to external evidence and the credit change | Compare records by serial number and time, then check posting status and data refresh |
 
 ## FAQ
 

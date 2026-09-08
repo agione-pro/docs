@@ -42,11 +42,9 @@ Confirm that the task involves Configuration, status, and relationships on Accel
 
 ## Page Description
 
-Use this page to view and handle Configuration, status, and relationships on Accelerators.
+Use this page to manage accelerator vendors, architectures, series, models, device memory, compute capability, specification metrics, and managed state.
 
 ![Accelerators](./images/manual-accelerators.png)
-
-The image keeps the sidebar and complete feature area. Confirm the page title, scope, and primary operation entry.
 
 The page organizes accelerator models by vendor and architecture. The top area displays management status statistics, the left side supports vendor filtering, and cards display model, VRAM, compute power, and adaptation status.
 
@@ -83,7 +81,6 @@ Before a new hardware model is connected to the platform, accelerator basic info
 3. Fill in vendor, architecture, series, model, Memory (GB) GiB, compute capability, precision mode, and peak compute (TFLOPS) according to the page fields.
 4. Select or associate the specification metric as required by the page, and verify Kubernetes resource key, selector-key, or monitoring identification fields.
 5. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify that the hardware model, resource metric, and actual cluster-reported information are consistent.
-6. For learning or page validation only, view the fields and dialog without submitting real accelerator configuration.
 
 The following figure shows the Create Accelerator dialog. Focus on hardware basic information and specification metric association.
 

@@ -68,10 +68,6 @@ The following screenshot shows Revenue Overview. Amounts, customers, and revenue
 3. Check total, pending, and settled earnings, trends, and refresh time.
 4. If no data is shown, expand the period and reset filters. Redact amounts and customer information before sharing.
 
-![Revenue - View Earnings](./images/overview-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View Revenue Overview
 
 1. Go to `Billing > Earnings > Revenue`.
@@ -79,10 +75,6 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Confirm the current `Billing Cycle` used for analysis.
 4. Review `Daily Revenue`, `Top Customers`, and `Top Models` to understand revenue trends and major sources.
 5. To reconcile settlement results, review the settlement overview on the page or open monthly settlements.
-
-![Revenue - View Revenue Overview](./images/overview-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ### View Revenue Account Activity
 

@@ -70,10 +70,6 @@ The following screenshot shows Top-up Orders. Sanitize order numbers and amounts
 3. The order status, posted amount direction, and transaction time should be mutually traceable.
 4. If they differ, check payment status and refresh time. Do not create another top-up or supplemental order.
 
-![Top-up Orders - Reconcile a Top-up Order with Account Transactions](./images/top-up-orders-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### Query Top-up Orders
 
 1. Go to `Billing > User Billing > Top-up Orders`.
@@ -83,10 +79,6 @@ The image shows the page entry or current state for this operation. Verify the p
 5. Click **"Reset"** to clear filters when needed.
 6. Before exporting orders, verify the filters, data scope, and recipient permission.
 
-![Top-up Orders - Query Top-up Orders](./images/top-up-orders-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View Order Details
 
 1. Go to `Billing > User Billing > Top-up Orders`.
@@ -94,10 +86,6 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Review order state, credit source, amounts, credited information, creation time, and completion time.
 4. If the order failed or was canceled, keep a sanitized order number and contact the operator.
 5. Hide real order numbers, payment transaction numbers, accounts, emails, amounts, and payment evidence in external communication.
-
-![Top-up Orders - View Order Details](./images/top-up-orders-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
 ## Parameter Quick Reference
 

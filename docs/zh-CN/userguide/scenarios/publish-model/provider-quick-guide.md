@@ -134,5 +134,5 @@
 
 ## 操作手册
 
-- [从发布到调用模型](../../../usermanual/model-services/end-to-end/publish-and-call-model/)
+- [我的模型](../../../usermanual/model-services/user/studio/my-models/)
 - [我的模型](../../../usermanual/model-services/user/studio/my-models/)

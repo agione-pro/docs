@@ -40,10 +40,6 @@ The page shows member usernames, names, contact information, role labels, status
 | Form fields | Username, name, phone number, email, password, confirm password, role, and status |
 | High-risk action | Adding and enabling a member |
 
-![Members](./images/manual-settings-user-team-members.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
-
 ## Main Operations
 
 ### View Members
@@ -52,16 +48,6 @@ The screenshot keeps the left navigation and the complete functional area with t
 2. Filter by name, username, email, role, or status.
 3. Open member details and check roles, projects, status, and update time.
 4. If no record is returned, reset filters and check the tenant context. Personal information must be redacted before sharing.
-
-![View Members](./images/manual-settings-user-team-members.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
-
-**Result validation:** The list, details, and status fields show the target object and remain consistent.
-
-**Note:** Use only the fields and entries visible on the current page. Do not infer behavior from another role's page.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ### Invite a Member
 
@@ -84,12 +70,6 @@ The following screenshot shows the Add Member form.
 
 ![Add Member](./images/create-member.png)
 
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
-
 ### Edit a Member
 
 1. Open `Settings > Members & Roles > Members`.
@@ -97,16 +77,6 @@ The following screenshot shows the Add Member form.
 3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
 4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
 5. After the action, return to the list or details page and verify the status, update time, or result message.
-
-![Edit a Member](./images/manual-settings-user-team-members.png)
-
-The screenshot keeps the left navigation and the complete functional area with the top menu hidden. Check the fields, buttons, and action locations on the Members page.
-
-**Result validation:** Follow the page success message, then return to the list or details page to verify the object status, update time, and affected scope.
-
-**Note:** Recheck the target object and impact before submission. For changes to permissions, status, data, or external settings, confirm approval and rollback information first.
-
-**FAQ:** If the entry is hidden, the button is disabled, or the result is not updated, check the current account permission, filters, object status, and page refresh time.
 
 ## Parameter Quick Reference
 

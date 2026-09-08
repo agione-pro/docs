@@ -348,9 +348,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '模型及AI服务',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/model-services/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/model-services/getting-started/' },
-            { text: '从发布到调用模型', link: '/zh-CN/usermanual/model-services/end-to-end/publish-and-call-model/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -445,9 +442,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '多平台调度',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/ai-infra-on-cloud/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/ai-infra-on-cloud/getting-started/' },
-            { text: '从零开始部署云上模型服务', link: '/zh-CN/usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -522,9 +516,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '异构卡纳管',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/ai-infra-on-prem/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/ai-infra-on-prem/getting-started/' },
-            { text: '从零开始部署模型服务', link: '/zh-CN/usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -649,9 +640,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '账务',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/billing/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/billing/getting-started/' },
-            { text: '完成一次账期对账与结算', link: '/zh-CN/usermanual/billing/end-to-end/reconcile-billing-cycle/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -718,9 +706,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '设置',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/settings/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/settings/getting-started/' },
-            { text: '配置账号与权限闭环', link: '/zh-CN/usermanual/settings/end-to-end/configure-account-and-permissions/' },
             {
               text: '运营管理员',
               collapsed: false,
