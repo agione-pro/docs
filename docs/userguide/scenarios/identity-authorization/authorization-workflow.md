@@ -39,7 +39,7 @@ This scenario guides platform administrators through setting organizational boun
 
 The **Role Management** view is used in steps 3-5 to confirm the role record and its scope before signing in with the validation account.
 
-![Confirm the role and member count in Roles](../../../usermanual/settings/user/members-roles/roles/images/roles-list.png)
+![Confirm the role and member count in Roles](../../../usermanual/settings/user/members-roles/roles/images/manual-settings-user-roles-live-20260902.png)
 
 ## Completion Checklist
 

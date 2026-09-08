@@ -23,13 +23,13 @@ next: true
 
 进入[应用列表](../../../usermanual/model-services/operator/publishing/apps/)，按应用名称或发布状态筛选，打开详情核对绑定模型、调用入口、参数映射、客户可见范围和发布说明。
 
-![在应用列表中定位发布记录](../../../usermanual/model-services/operator/publishing/apps/images/apps-list.png)
+![在应用列表中定位发布记录](../../../usermanual/model-services/operator/publishing/apps/images/apps-list-public.png)
 
 ### 2. 处理应用审核
 
 进入[应用审核](../../../usermanual/model-services/operator/approvals/app-reviews/)，按状态、应用名称、申请人或提交时间筛选。核对应用说明、绑定模型、调用入口和客户范围后，选择通过、驳回或要求补充材料，并填写具体审核意见。
 
-![在应用审核列表中定位申请](../../../usermanual/model-services/operator/approvals/app-reviews/images/app-reviews-list.png)
+![在应用审核列表中定位申请](../../../usermanual/model-services/operator/approvals/app-reviews/images/app-reviews-list-public.png)
 
 ### 3. 验证发布状态和客户可见性
 

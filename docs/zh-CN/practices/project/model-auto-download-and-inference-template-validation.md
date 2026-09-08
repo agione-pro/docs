@@ -38,7 +38,7 @@
 3. 搜索目标模型，例如 `DeepSeek-R1-Distill-Qwen-7B`。
 4. 模型通常已预先创建。如果列表中没有所需模型，点击 `添加模型`，先完成模型基础信息配置。
 
-![在模型页面搜索目标模型](../../usermanual/ai-infra-on-prem/operator/templates/models/images/models-list.png)
+![在模型页面搜索目标模型](../../usermanual/ai-infra-on-prem/operator/templates/models/images/manual-models.png)
 
 ### 1.2 选择集群和模型版本
 
@@ -93,7 +93,7 @@
 6. 将框架状态改为 `可用`。
 7. 保存模板，并确认它已成功显示在推理模板列表中。
 
-![确认推理模板处于可用状态](../../usermanual/ai-infra-on-prem/operator/templates/inference-templates/images/inference-templates-list.png)
+![确认推理模板处于可用状态](../../usermanual/ai-infra-on-prem/operator/templates/inference-templates/images/manual-inference-templates.png)
 
 **成功标准：** 模板关联了预期模型版本、框架、显存系数和加速卡关系；框架状态为 `可用`，且 End User 可以在部署页面选择该模板。
 

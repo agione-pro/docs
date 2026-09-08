@@ -176,15 +176,15 @@ Web 体验中心是试用模型最简单的方式，无需编写代码。
 
 体验图像模型时，选择可体验的图像或多模态模型，上传脱敏且已授权的素材，设置提示词和尺寸后发送请求。
 
-![选择图像体验模型](../../../usermanual/model-services/user/playground/images/images/select-model.png)
+![选择图像体验模型](../../../usermanual/model-services/user/playground/images/images/select-model-public.png)
 
 体验视频模型时，先使用短时长的脱敏素材验证抽帧、输出格式和异步结果，再逐步扩大输入。
 
-![配置视频体验参数](../../../usermanual/model-services/user/playground/video/images/video-list.png)
+![配置视频体验参数](../../../usermanual/model-services/user/playground/video/images/video-list-public.png)
 
 体验语音模型时，确认输入格式、语言和输出类型；不要上传包含客户隐私的原始录音。
 
-![选择语音体验模型](../../../usermanual/model-services/user/playground/audio/images/select-model.png)
+![选择语音体验模型](../../../usermanual/model-services/user/playground/audio/images/select-model-public.png)
 
 ## 6. 使用 curl 调用模型
 

@@ -39,7 +39,7 @@ next: true
 
 步骤 3-5 需要在**角色管理**中核对角色记录和权限范围，再使用验证账号重新登录。
 
-![在角色管理中核对角色和成员数量](../../../usermanual/settings/user/members-roles/roles/images/roles-list.png)
+![在角色管理中核对角色和成员数量](../../../usermanual/settings/user/members-roles/roles/images/manual-settings-user-roles-live-20260902.png)
 
 ## 完成检查
 

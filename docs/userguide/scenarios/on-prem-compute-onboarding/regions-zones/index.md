@@ -24,7 +24,7 @@ Create the region and availability zone for a local cluster so that clusters, sp
 
 1. Open Regions & Zones and review existing regions, availability zones, and states before creating records.
 
-![Review regions and availability zones](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/regions-zones-list.png)
+![Review regions and availability zones](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/manual-regions-zones.png)
 
 2. Add a region, enter its name, unique identifier, and localized display names, and make it available for downstream resource onboarding.
 

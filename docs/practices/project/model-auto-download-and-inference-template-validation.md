@@ -38,7 +38,7 @@ Saving the model version starts a download; submitting an instance consumes comp
 3. Search for the target model, for example `DeepSeek-R1-Distill-Qwen-7B`.
 4. Models are normally pre-created. If the required model is not listed, click `Add Model` and complete the model information first.
 
-![Search for the target model on the Models page](../../usermanual/ai-infra-on-prem/operator/templates/models/images/models-list.png)
+![Search for the target model on the Models page](../../usermanual/ai-infra-on-prem/operator/templates/models/images/manual-models.png)
 
 ### 1.2 Select the cluster and model version
 
@@ -93,7 +93,7 @@ For example, if you use ModelScope, search for the target model on ModelScope an
 6. Change the framework status to `Available`.
 7. Save the template and confirm that it appears successfully in the inference-template list.
 
-![Verify that the inference template is available](../../usermanual/ai-infra-on-prem/operator/templates/inference-templates/images/inference-templates-list.png)
+![Verify that the inference template is available](../../usermanual/ai-infra-on-prem/operator/templates/inference-templates/images/manual-inference-templates.png)
 
 **Success criteria:** the template references the intended model version, framework, VRAM factor, and accelerator relation; the framework status is `Available`, and the template can be selected for deployment.
 

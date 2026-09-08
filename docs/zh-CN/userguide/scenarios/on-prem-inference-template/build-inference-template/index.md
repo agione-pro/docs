@@ -23,12 +23,12 @@
 
 1. 进入[模型配置](../../../../usermanual/ai-infra-on-prem/operator/templates/models/)，确认模型名称、类型、存储位置和状态可用。
 
-![确认模型配置可供模板选择](../../../../usermanual/ai-infra-on-prem/operator/templates/models/images/models-list.png)
+![确认模型配置可供模板选择](../../../../usermanual/ai-infra-on-prem/operator/templates/models/images/manual-models.png)
 
 2. 进入[推理框架](../../../../usermanual/ai-infra-on-prem/operator/templates/frames/)，确认框架版本、运行镜像和目标 NPU 兼容。
 3. 进入[显存测算](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/)，根据参数规模、精度和并行方式确认单卡及多卡显存需求。
 
-![按模型精度和规模核对显存测算](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/images/vram-config-list.png)
+![按模型精度和规模核对显存测算](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/images/manual-vram-config.png)
 
 4. 点击 **新增**，填写模板名称和用途，选择已维护的模型配置和推理框架。
 5. 选择包含目标 NPU 型号、卡数和显存容量的资源规格。

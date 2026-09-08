@@ -50,7 +50,7 @@
 
 选择发布区域和部署方式后再点击“开始”。BYOK 的密钥只填写在平台配置页，文档、截图和工单中不得出现明文。
 
-![选择发布区域和部署方式](../../../usermanual/model-services/user/studio/my-models/images/my-published-choose-where-to-publish-add.png)
+![选择发布区域和部署方式](../../../usermanual/model-services/user/studio/my-models/images/my-published-choose-where-to-publish-add-public.png)
 
 ## 3. 填写基本信息
 

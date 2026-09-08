@@ -177,15 +177,15 @@ The model's capabilities and input/output modalities determine which playground 
 
 For an image model, choose an available image or multimodal model, upload sanitized and authorized material, set the prompt and size, and send the request.
 
-![Select an image playground model](../../../usermanual/model-services/user/playground/images/images/select-model.png)
+![Select an image playground model](../../../usermanual/model-services/user/playground/images/images/select-model-public.png)
 
 For a video model, first use a short sanitized sample to validate frame sampling, output format, and asynchronous results before increasing input size.
 
-![Configure video playground parameters](../../../usermanual/model-services/user/playground/video/images/video-list.png)
+![Configure video playground parameters](../../../usermanual/model-services/user/playground/video/images/video-list-public.png)
 
 For an audio model, confirm input format, language, and output type. Do not upload original recordings that contain customer privacy.
 
-![Select an audio playground model](../../../usermanual/model-services/user/playground/audio/images/select-model.png)
+![Select an audio playground model](../../../usermanual/model-services/user/playground/audio/images/select-model-public.png)
 
 ## 6. Call the Model with curl
 

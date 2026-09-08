@@ -23,7 +23,7 @@ Use this task to review application publishing information, process approval, an
 
 Open [Apps](../../../usermanual/model-services/operator/publishing/apps/), filter by app name or publication state, and open the details. Review the bound model, calling entry point, parameter mapping, customer scope, and publication description.
 
-![Locate a publication record in Apps](../../../usermanual/model-services/operator/publishing/apps/images/apps-list.png)
+![Locate a publication record in Apps](../../../usermanual/model-services/operator/publishing/apps/images/apps-list-public.png)
 
 ### 2. Process Application Approval
 

@@ -24,7 +24,7 @@
 
 1. 进入地域 / 可用区页面，先核对现有地域、可用区及启用状态，避免重复创建。
 
-![核对地域与可用区列表](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/regions-zones-list.png)
+![核对地域与可用区列表](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/manual-regions-zones.png)
 
 2. 点击新增地域，填写地域名称、唯一标识和展示名称，确认状态为可用于后续资源接入。
 

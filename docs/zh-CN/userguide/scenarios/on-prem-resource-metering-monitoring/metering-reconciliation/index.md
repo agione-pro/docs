@@ -20,11 +20,11 @@
 
 2. 进入[月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)，选择同一租户和账期，核对资源类型、规格和汇总用量。
 
-![按租户和账期查看月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/images/monthly-usage-list.png)
+![按租户和账期查看月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/images/manual-monthly-usage.png)
 
 3. 进入[计量明细](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)，按实例、作业和时间范围追溯汇总值。
 
-![将汇总用量追溯到计量明细](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/images/metering-details-list.png)
+![将汇总用量追溯到计量明细](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/images/manual-metering-details.png)
 
 4. 对照设备、节点和作业监控中的运行时间及规格，确认停止时间、卡数和计量单位一致。
 
