@@ -59,8 +59,6 @@ The following screenshot shows the Settlements page. Amounts, customers, account
 
 ## Main Operations
 
-::: warning Fact Status
-
 ### View Monthly Settlement Statements
 
 1. Go to `Billing > Provider Earnings > Monthly Settlements`.

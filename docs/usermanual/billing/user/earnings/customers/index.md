@@ -63,8 +63,6 @@ The following screenshot shows the Customers page. Customer names, tenants, admi
 
 ## Main Operations
 
-::: warning Fact Status
-
 ### View Earnings Customers
 
 1. Go to `Billing > Provider Earnings > Customer Overview`.

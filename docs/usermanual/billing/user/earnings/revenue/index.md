@@ -59,8 +59,6 @@ The following screenshot shows Revenue Overview. Amounts, customers, and revenue
 
 ## Main Operations
 
-::: warning Fact Status
-
 ### View Earnings
 
 1. Go to `Billing > Provider Earnings > Revenue Overview`.
