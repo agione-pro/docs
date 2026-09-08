@@ -20,14 +20,14 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 模型来源 | Model Source | 保存上游服务地址和请求头配置的记录。 |
-| 地域 | Region | 具有独立 Base URL 的服务位置。 |
-| Base URL | Base URL | 拼接 API Endpoint 前使用的根地址。 |
-| Endpoint | Endpoint | 某个 API 操作的具体路径，通常拼接在 Base URL 后。 |
-| API密钥地址 | API Key endpoint | 获取或管理 API Key 的地址，不是模型调用 Endpoint。 |
-| 请求头 | Request header | 平台调用上游服务时发送的认证或自定义 Header。 |
+| 术语 | 说明 |
+| --- | --- |
+| 模型来源 | 保存上游服务地址和请求头配置的记录。 |
+| 地域 | 具有独立 Base URL 的服务位置。 |
+| Base URL | 拼接 API Endpoint 前使用的根地址。 |
+| Endpoint | 某个 API 操作的具体路径，通常拼接在 Base URL 后。 |
+| API密钥地址 | 获取或管理 API Key 的地址，不是模型调用 Endpoint。 |
+| 请求头 | 平台调用上游服务时发送的认证或自定义 Header。 |
 
 #### 小白先看
 

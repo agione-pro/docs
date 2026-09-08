@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 元模型 | Base Model | Base Model |
-| 模型版本 | Model Version | Model Version |
-| KV Token | KV Token | KV Token |
+| 术语 | 说明 |
+| --- | --- |
+| 元模型 | 模型家族或基础模型的抽象定义，例如对同一模型系列的通用描述。 |
+| 模型版本 | 具体权重、量化方式、来源和文件路径的版本记录。 |
+| KV Token | 与推理 KV Cache 相关并影响显存估算的 Token 数量。 |
 
 #### 推荐操作顺序
 

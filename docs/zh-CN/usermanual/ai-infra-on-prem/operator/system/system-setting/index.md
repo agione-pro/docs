@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 配置项 | Configuration Item | Configuration Item |
-| 配置值 | Configuration Value | Configuration Value |
-| 状态 | Status | Status |
+| 术语 | 说明 |
+| --- | --- |
+| 配置项 | 平台提供的系统级参数或开关。 |
+| 配置值 | 配置项当前使用的值，可以是开关、文本、枚举或数字。 |
+| 状态 | 配置项是否已启用、可用或已生效。 |
 
 #### 推荐操作顺序
 

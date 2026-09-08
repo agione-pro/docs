@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 全局水位 | Global Watermark | Global Watermark |
-| 异常聚合 | Exception Aggregation | Exception Aggregation |
-| 趋势入口 | Trend Entrypoint | Trend Entrypoint |
+| 术语 | 说明 |
+| --- | --- |
+| 全局水位 | 平台整体的资源使用情况。 |
+| 异常聚合 | 集中展示集群、节点、设备和作业的异常。 |
+| 趋势入口 | 跳转到具体监控对象的分析入口。 |
 
 #### 推荐操作顺序
 

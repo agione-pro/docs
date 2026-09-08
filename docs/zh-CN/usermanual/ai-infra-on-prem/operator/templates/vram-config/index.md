@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| VRAM | VRAM | VRAM |
-| KV Token | KV Token | KV Token |
-| 因子 | Factor | Factor |
+| 术语 | 说明 |
+| --- | --- |
+| VRAM | 用于存储模型权重、KV Cache 和中间计算结果的加速卡显存。 |
+| KV Token | 推理上下文中与 Key/Value Cache 相关的 Token 数量。 |
+| 因子 | 参与显存计算的变量，例如参数量、精度、并发数和上下文长度。 |
 
 #### 推荐操作顺序
 

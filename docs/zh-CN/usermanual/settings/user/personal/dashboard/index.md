@@ -15,12 +15,12 @@
 
 #### 术语速查
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| Personal Keys 额度 | Personal Keys quota | 当前成员使用个人 Key 时可用的额度。 |
-| 活跃项目 | Active Projects | 当前成员可见且处于活跃状态的项目数量。 |
-| API Keys 总数 | Total API Keys | 当前范围内个人 Key 与项目 Key 的总数。 |
-| 成员配额申请 | Member Quota Request | 成员提交并等待审批的额度申请。 |
+| 术语 | 说明 |
+| --- | --- |
+| Personal Keys 额度 | 当前成员使用个人 Key 时可用的额度。 |
+| 活跃项目 | 当前成员可见且处于活跃状态的项目数量。 |
+| API Keys 总数 | 当前范围内个人 Key 与项目 Key 的总数。 |
+| 成员配额申请 | 成员提交并等待审批的额度申请。 |
 
 ## 前提条件
 

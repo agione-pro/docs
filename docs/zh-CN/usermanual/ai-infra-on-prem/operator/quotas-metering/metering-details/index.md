@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 资源类型 | Resource Type | Resource Type |
-| 批次号 | Batch Number | Batch Number |
-| 明细下载 | Detail Download | Detail Download |
+| 术语 | 说明 |
+| --- | --- |
+| 资源类型 | 被计量对象的类型，例如在线 IDE 或运行实例。 |
+| 批次号 | 计量任务或汇总批次的标识。 |
+| 明细下载 | 导出当前筛选范围内的计量明细。 |
 
 #### 推荐操作顺序
 

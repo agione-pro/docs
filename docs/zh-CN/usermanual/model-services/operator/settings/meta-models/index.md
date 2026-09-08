@@ -15,14 +15,14 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 元模型 | Meta-model | 描述模型能力和调用协议的抽象定义，像模型的能力模板 |
-| 模型作者 | Model Author | 模型的提供方或开发组织，如 Qwen、GLM |
-| 输入输出模态 | Input/Output Modalities | 模型支持的文本、图像、音频或视频输入输出类型 |
-| Token 限制 | Token Limits | 模型上下文、输入和输出长度限制 |
-| 官方原生协议 | Official Native Protocol | OpenAI、Anthropic 等兼容协议定义 |
-| Endpoint 路径 | Endpoint Path | 协议调用的接口地址，如 `/v1/chat/completions` |
+| 术语 | 说明 |
+| --- | --- |
+| 元模型 | 描述模型能力和调用协议的抽象定义，像模型的能力模板 |
+| 模型作者 | 模型的提供方或开发组织，如 Qwen、GLM |
+| 输入输出模态 | 模型支持的文本、图像、音频或视频输入输出类型 |
+| Token 限制 | 模型上下文、输入和输出长度限制 |
+| 官方原生协议 | OpenAI、Anthropic 等兼容协议定义 |
+| Endpoint 路径 | 协议调用的接口地址，如 `/v1/chat/completions` |
 
 #### 推荐操作顺序
 

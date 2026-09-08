@@ -23,11 +23,11 @@ On-Prem 资源池像一套本地算力管理体系：
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| Kubernetes | Kubernetes | Kubernetes |
-| kubeconfig | kubeconfig | kubeconfig |
-| 服务器地址 | Server Address | Server Address |
+| 术语 | 说明 |
+| --- | --- |
+| Kubernetes | 用于管理计算节点、容器、服务发现和作业调度的容器编排系统。 |
+| kubeconfig | Kubernetes 连接配置文件，通常包含集群地址、证书、用户和认证信息。 |
+| 服务器地址 | Kubernetes 的控制入口，平台通过该地址读取节点、资源、作业和状态。 |
 
 #### 推荐操作顺序
 

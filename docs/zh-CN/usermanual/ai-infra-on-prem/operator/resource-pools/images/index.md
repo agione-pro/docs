@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 客户端工具 | Client Tool | Client Tool |
-| 镜像仓库 | Image Registry | Image Registry |
-| 项目/命名空间 | Project/Namespace | Project/Namespace |
+| 术语 | 说明 |
+| --- | --- |
+| 客户端工具 | 用于构建、登录和推送镜像的本地工具，例如 Docker、Podman 或页面实际支持的客户端。 |
+| 镜像仓库 | 用于存储镜像的 Registry 服务。 |
+| 项目/命名空间 | 镜像仓库中用于隔离镜像的项目、租户或命名空间。 |
 
 #### 推荐操作顺序
 

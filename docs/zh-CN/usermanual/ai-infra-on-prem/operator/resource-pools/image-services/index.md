@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| Harbor | Harbor | Harbor |
-| Registry | Registry | Registry |
-| Endpoint | Endpoint | Endpoint |
+| 术语 | 说明 |
+| --- | --- |
+| Harbor | 常见的企业级容器镜像仓库。 |
+| Registry | 用于存储和分发容器镜像的镜像仓库服务。 |
+| Endpoint | 平台或集群访问镜像仓库时使用的服务地址。 |
 
 #### 推荐操作顺序
 

@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 配额 | Quota | Quota |
-| 规格 | Specification | Specification |
-| 消费明细 | Consumption Details | Consumption Details |
+| 术语 | 说明 |
+| --- | --- |
+| 配额 | 租户可使用的资源上限，常见维度包括 GPU、CPU、内存和规格。 |
+| 规格 | 作业可申请的资源套餐，例如 CPU、内存、GPU 型号和卡数。 |
+| 消费明细 | 某个规格下具体的资源消费记录。 |
 
 #### 推荐操作顺序
 

@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| Ceph | Ceph | Ceph |
-| Mon 地址 | Mon Addresses | Mon Addresses |
-| FSID | FSID | FSID |
+| 术语 | 说明 |
+| --- | --- |
+| Ceph | 可提供对象存储、块存储和文件存储能力的分布式存储系统。 |
+| Mon 地址 | 用于访问 Ceph 集群并发现其状态的 Monitor 地址。 |
+| FSID | Ceph 集群的唯一标识，用于区分不同的 Ceph 集群。 |
 
 #### 推荐操作顺序
 

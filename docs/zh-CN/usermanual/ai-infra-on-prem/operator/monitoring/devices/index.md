@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 设备利用率 | Device Utilization | Device Utilization |
-| 显存使用率 | VRAM Usage | VRAM Usage |
-| 温度 | Temperature | Temperature |
+| 术语 | 说明 |
+| --- | --- |
+| 设备利用率 | GPU/NPU 当前的计算利用率。 |
+| 显存使用率 | 加速卡显存的占用比例。 |
+| 温度 | 设备当前的运行温度。 |
 
 #### 推荐操作顺序
 

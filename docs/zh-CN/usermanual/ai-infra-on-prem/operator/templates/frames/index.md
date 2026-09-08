@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 框架配置 | Framework Configuration | Framework Configuration |
-| 框架名称 | Framework Name | Framework Name |
-| 版本名称 | Version Name | Version Name |
+| 术语 | 说明 |
+| --- | --- |
+| 框架配置 | 由容器镜像、启动命令、网络策略和环境变量等核心参数组成的可复用部署环境模板。 |
+| 框架名称 | 底层推理框架或引擎的名称，建议使用官方名称，例如 `VLLM`、`TensorRT` 或 `Triton Inference Server`。 |
+| 版本名称 | 框架配置的版本标识，用于迭代追踪或兼容性管理，可与底层框架版本一致或使用内部场景名称。 |
 
 #### 推荐操作顺序
 

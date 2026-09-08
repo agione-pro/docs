@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 云账号 | Cloud Account | 云平台侧用于访问资源的身份。 |
-| Access Key ID | Access Key ID | 云侧访问凭据标识，示例写为 `<ACCESS_KEY_ID>`。 |
-| Access Key Secret | Access Key Secret | 与访问标识配套的敏感凭据，示例写为 `<ACCESS_KEY_SECRET>`。 |
+| 术语 | 说明 |
+| --- | --- |
+| 云账号 | 云平台侧用于访问资源的身份。 |
+| Access Key ID | 云侧访问凭据标识，示例写为 `<ACCESS_KEY_ID>`。 |
+| Access Key Secret | 与访问标识配套的敏感凭据，示例写为 `<ACCESS_KEY_SECRET>`。 |
 
 #### 推荐操作顺序
 

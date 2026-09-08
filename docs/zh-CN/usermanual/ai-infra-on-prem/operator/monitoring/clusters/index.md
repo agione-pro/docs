@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 集群容量 | Cluster Capacity | Cluster Capacity |
-| 资源水位 | Resource Watermark | Resource Watermark |
-| 健康状态 | Health Status | Health Status |
+| 术语 | 说明 |
+| --- | --- |
+| 集群容量 | 集群能够提供的 CPU、内存、GPU/NPU 等资源总量。 |
+| 资源水位 | 已用资源占可用资源总量的比例。 |
+| 健康状态 | 集群组件、节点及调度能力是否正常。 |
 
 #### 推荐操作顺序
 

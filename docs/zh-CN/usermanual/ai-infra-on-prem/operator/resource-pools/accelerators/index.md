@@ -19,11 +19,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 加速卡厂商 | Accelerator Vendor | Accelerator Vendor |
-| 型号 | Model | Model |
-| 架构 | Architecture | Architecture |
+| 术语 | 说明 |
+| --- | --- |
+| 加速卡厂商 | 加速卡的生产厂商，例如 NVIDIA、华为、AMD 或 Intel。 |
+| 型号 | 具体的加速卡型号，例如 A100、H100 或昇腾 910B。 |
+| 架构 | 同一厂商下的硬件架构或代际，例如 Ampere 或 Hopper。 |
 
 #### 推荐操作顺序
 

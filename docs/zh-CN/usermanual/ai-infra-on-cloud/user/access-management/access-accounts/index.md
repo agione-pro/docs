@@ -15,11 +15,11 @@
 
 #### 术语表
 
-| 术语 | 英文 | 说明 |
-| --- | --- | --- |
-| 接入账号 | Access Account | 模型提供方用于访问云平台资源的账号。 |
-| Access Key ID | Access Key ID | 凭据标识，文档示例使用 `<ACCESS_KEY_ID>`。 |
-| Access Key Secret | Access Key Secret | 敏感凭据，文档示例使用 `<ACCESS_KEY_SECRET>`。 |
+| 术语 | 说明 |
+| --- | --- |
+| 接入账号 | 模型提供方用于访问云平台资源的账号。 |
+| Access Key ID | 凭据标识，文档示例使用 `<ACCESS_KEY_ID>`。 |
+| Access Key Secret | 敏感凭据，文档示例使用 `<ACCESS_KEY_SECRET>`。 |
 
 #### 推荐操作顺序
 
