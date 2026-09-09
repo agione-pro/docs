@@ -185,30 +185,6 @@ Edit a system setting when an editable configuration must change and change appr
 - System settings are global configuration. Changes may affect multiple tenants, jobs, or services; do not submit without approval, rollback handling, and an impact window.
 - Configuration values, access tokens, passwords, internal addresses, and secret material must not be written in documents, screenshots, tickets, or chats.
 
-#### Service Behavior Is Abnormal After Saving a System Setting
-
-**Symptom:**
-
-The system setting reports success, but user service access, job scheduling, storage, or monitoring behavior is unexpected.
-
-**Possible Causes:**
-
-- The value format or unit does not meet page requirements.
-- The edited group or effective scope is not the target.
-- Downstream service cache has not refreshed or a dependent service has not reloaded.
-
-**Solution:**
-
-1. Return to the configuration group and verify the new value, description, scope, and update time.
-2. Check the state, logs, or page prompt of affected services.
-3. Restore the last verified configuration under the rollback plan and verify service state again.
-
-#### Operation Screenshots
-
-![System Setting operation interface](./images/manual-edit-system-setting.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
@@ -238,6 +214,24 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### Service Behavior Is Abnormal After Saving a System Setting
+
+**Symptom:**
+
+The system setting reports success, but user service access, job scheduling, storage, or monitoring behavior is unexpected.
+
+**Possible Causes:**
+
+- The value format or unit does not meet page requirements.
+- The edited group or effective scope is not the target.
+- Downstream service cache has not refreshed or a dependent service has not reloaded.
+
+**Solution:**
+
+1. Return to the configuration group and verify the new value, description, scope, and update time.
+2. Check the state, logs, or page prompt of affected services.
+3. Restore the last verified configuration under the rollback plan and verify service state again.
 
 #### Target Is Missing from System Setting
 

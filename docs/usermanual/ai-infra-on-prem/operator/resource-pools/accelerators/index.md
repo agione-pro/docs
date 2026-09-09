@@ -111,24 +111,6 @@ Use the **"Import/Export"** menu to batch-maintain accelerator data, or to use t
 - Model, resource key, selector-key, and memory values in the import file must match actual hardware reporting.
 - Import may overwrite fields on objects with the same identifier. Back up and verify the file scope first; exported files may contain resource configuration and must not be shared externally.
 
-#### An Imported Accelerator Does Not Appear
-
-**Symptom:**
-
-The import reports completion, but the target accelerator is not visible or its state is unchanged.
-
-**Possible Causes:**
-
-- Active filters hide the target record.
-- The file identifier, required column, or enum value does not meet page requirements.
-- The record conflicts with an existing model or background validation is incomplete.
-
-**Solution:**
-
-1. Reset filters and search again by model or vendor.
-2. Check column names, identifiers, and metric values against the page requirements.
-3. Check the page prompt and update time, then handle conflicts after validation finishes.
-
 #### Operation Screenshots
 
 ![Accelerators operation interface](./images/manual-add-accelerator.png)
@@ -177,6 +159,24 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### An Imported Accelerator Does Not Appear
+
+**Symptom:**
+
+The import reports completion, but the target accelerator is not visible or its state is unchanged.
+
+**Possible Causes:**
+
+- Active filters hide the target record.
+- The file identifier, required column, or enum value does not meet page requirements.
+- The record conflicts with an existing model or background validation is incomplete.
+
+**Solution:**
+
+1. Reset filters and search again by model or vendor.
+2. Check column names, identifiers, and metric values against the page requirements.
+3. Check the page prompt and update time, then handle conflicts after validation finishes.
 
 #### Target Is Missing from Accelerators
 

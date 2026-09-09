@@ -208,24 +208,6 @@ Edit a region when its multilingual display name or resource binding must change
 - The region ID is a resource boundary identifier and cannot be changed by editing. Replacing it requires a separate assessment for creating a new region and migrating downstream resources.
 - Removing a component binding may affect image pulls, storage mounts, or later resource creation. Check associated clusters and jobs before submitting.
 
-#### The Region Name or Binding Does Not Change After Editing
-
-**Symptom:**
-
-The old name is still shown after saving, or the new resource binding is missing from region details.
-
-**Possible Causes:**
-
-- The final confirmation was not completed.
-- The page state or data update has not refreshed.
-- The component is unavailable or not visible to the current account.
-
-**Solution:**
-
-1. Reopen the region edit entry and verify the fields and page message.
-2. Refresh the list, select the region again, and check the update time.
-3. Open the corresponding component page and verify its status and visibility scope.
-
 ### Disable or Enable Region
 
 #### Applicable Scenarios
@@ -250,24 +232,6 @@ Disable a region when new resource use must be temporarily stopped, or enable it
 
 - Disabling a region usually affects new cluster registration, new resource creation, and new job scheduling. It does not mean that existing resources are deleted; verify the business window first.
 - Before enabling, verify that image services, storage components, and downstream clusters are healthy so that newly available resources do not immediately fail.
-
-#### Why Is the Enable Entry Missing?
-
-**Symptom:**
-
-The target region menu shows only **"Disable"**, not **"Enable"**.
-
-**Possible Causes:**
-
-- The region is still in the normal state.
-- The `Disabled` filter has not been applied to other records.
-- The current account cannot view disabled records.
-
-**Solution:**
-
-1. Confirm the current state of the target region.
-2. Select the `Disabled` status filter and search for the region to restore.
-3. If it is still unavailable, check Operator permission and region visibility.
 
 ### Create AZ
 
@@ -354,24 +318,6 @@ Edit an availability zone when its multilingual display name or description must
 - The availability zone ID and parent region cannot be changed by editing. Moving ownership requires a separate assessment for resource migration and scheduling impact.
 - Changing a display name does not change the actual ownership of clusters, nodes, or jobs. Update operating records to use the new name.
 
-#### The Availability Zone Shows the Wrong Parent After Editing
-
-**Symptom:**
-
-The zone is shown under the wrong region after editing, or the cluster registration page cannot find it.
-
-**Possible Causes:**
-
-- The wrong region was selected during the edit.
-- Active filters hide the target record.
-- The zone state or parent region is not available for registration.
-
-**Solution:**
-
-1. Return to region details and verify the zone's parent region and state.
-2. Reset filters and reload the availability zone list.
-3. In cluster registration, verify the region, availability zone, and available state.
-
 ### Disable or Enable Availability Zone
 
 #### Applicable Scenarios
@@ -396,34 +342,6 @@ Disable an availability zone when new cluster registration or job use must be te
 
 - Disabling a zone affects new cluster registration or job scheduling under that zone. Confirm the handling of existing jobs, nodes, and storage first.
 - Before enabling, verify cluster health, resource reporting, and storage configuration under the zone to avoid scheduling failures.
-
-#### Why Is the Availability Zone Enable Entry Missing?
-
-**Symptom:**
-
-The target availability zone menu shows only **"Disable"**, not **"Enable"**.
-
-**Possible Causes:**
-
-- The zone is still in the normal state.
-- Disabled records are hidden by the current status filter.
-- The current account cannot view the zone.
-
-**Solution:**
-
-1. Check the current state of the availability zone.
-2. Select the `Disabled` status filter and locate the record again.
-3. Check Operator permission, the parent region, and the zone visibility scope.
-
-#### Operation Screenshots
-
-![Regions & Zones operation interface](./images/manual-add-region.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
-
-![Regions & Zones operation interface](./images/manual-add-zone.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
 
 ## Parameter Quick Reference
 
@@ -462,6 +380,78 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### The Region Name or Binding Does Not Change After Editing
+
+**Symptom:**
+
+The old name is still shown after saving, or the new resource binding is missing from region details.
+
+**Possible Causes:**
+
+- The final confirmation was not completed.
+- The page state or data update has not refreshed.
+- The component is unavailable or not visible to the current account.
+
+**Solution:**
+
+1. Reopen the region edit entry and verify the fields and page message.
+2. Refresh the list, select the region again, and check the update time.
+3. Open the corresponding component page and verify its status and visibility scope.
+
+#### Why Is the Enable Entry Missing?
+
+**Symptom:**
+
+The target region menu shows only **"Disable"**, not **"Enable"**.
+
+**Possible Causes:**
+
+- The region is still in the normal state.
+- The `Disabled` filter has not been applied to other records.
+- The current account cannot view disabled records.
+
+**Solution:**
+
+1. Confirm the current state of the target region.
+2. Select the `Disabled` status filter and search for the region to restore.
+3. If it is still unavailable, check Operator permission and region visibility.
+
+#### The Availability Zone Shows the Wrong Parent After Editing
+
+**Symptom:**
+
+The zone is shown under the wrong region after editing, or the cluster registration page cannot find it.
+
+**Possible Causes:**
+
+- The wrong region was selected during the edit.
+- Active filters hide the target record.
+- The zone state or parent region is not available for registration.
+
+**Solution:**
+
+1. Return to region details and verify the zone's parent region and state.
+2. Reset filters and reload the availability zone list.
+3. In cluster registration, verify the region, availability zone, and available state.
+
+#### Why Is the Availability Zone Enable Entry Missing?
+
+**Symptom:**
+
+The target availability zone menu shows only **"Disable"**, not **"Enable"**.
+
+**Possible Causes:**
+
+- The zone is still in the normal state.
+- Disabled records are hidden by the current status filter.
+- The current account cannot view the zone.
+
+**Solution:**
+
+1. Check the current state of the availability zone.
+2. Select the `Disabled` status filter and locate the record again.
+3. Check Operator permission, the parent region, and the zone visibility scope.
 
 #### Target Is Missing from Regions & Zones
 

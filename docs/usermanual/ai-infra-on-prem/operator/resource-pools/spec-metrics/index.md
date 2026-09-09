@@ -99,24 +99,6 @@ Use the **"Import/Export"** menu to batch-maintain specification metrics, or to 
 - Unit, `k8s-key`, and `selector-key` affect resource reporting, specification matching, and scheduling. Do not judge equivalence by display name alone.
 - Verify identifiers and reference relationships before importing to avoid overwriting an in-use metric definition.
 
-#### An Imported Metric Cannot Be Referenced by Resource Specifications
-
-**Symptom:**
-
-The metric import completes, but the metric cannot be found when creating or editing a resource specification.
-
-**Possible Causes:**
-
-- The metric is disabled or still being validated.
-- Metric type, unit, or identifier does not match.
-- The current account cannot see the resource specification scope.
-
-**Solution:**
-
-1. Check the metric state, type, unit, and update time in Specification Metrics.
-2. Recheck the import file against the metric type and resource key used by Resource Specifications.
-3. Confirm visibility scope and refresh the resource specification form.
-
 #### Operation Screenshots
 
 ![Spec Metrics operation interface](./images/manual-add-spec-metric.png)
@@ -164,6 +146,24 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### An Imported Metric Cannot Be Referenced by Resource Specifications
+
+**Symptom:**
+
+The metric import completes, but the metric cannot be found when creating or editing a resource specification.
+
+**Possible Causes:**
+
+- The metric is disabled or still being validated.
+- Metric type, unit, or identifier does not match.
+- The current account cannot see the resource specification scope.
+
+**Solution:**
+
+1. Check the metric state, type, unit, and update time in Specification Metrics.
+2. Recheck the import file against the metric type and resource key used by Resource Specifications.
+3. Confirm visibility scope and refresh the resource specification form.
 
 #### Target Is Missing from Spec Metrics
 

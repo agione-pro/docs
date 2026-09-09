@@ -112,24 +112,6 @@ Use **"Sync"** in the upper-right corner when images or tags in the image regist
 - Synchronization may add tags or update states; it is not the same as deleting existing platform records. Confirm registry content and impact scope first.
 - Do not submit repeatedly during synchronization. If the state does not change for a long time, check image component connectivity and page prompts.
 
-#### An Image Tag Is Missing After Synchronization
-
-**Symptom:**
-
-Synchronization completes, but the target image or tag is still not listed.
-
-**Possible Causes:**
-
-- The registry project, tag, or architecture is outside the current synchronization scope.
-- The image component connection is abnormal or synchronization is incomplete.
-- Active list filters hide the target record.
-
-**Solution:**
-
-1. Reset filters and search again by image name.
-2. Open Image Services and verify Endpoint, state, and connectivity.
-3. Check image update time and synchronization state, then recheck after processing completes.
-
 ### Edit Image
 
 #### Applicable Scenarios
@@ -155,24 +137,6 @@ Edit an image when page-editable information must change but the image content i
 - Editing page information does not replace image build, push, or synchronization in the registry. Push registry changes from a client and then synchronize them.
 - Before changing tags, architecture, or purpose, check dependencies from instances, jobs, and templates to avoid incorrect downstream image selection.
 
-#### Image Information Is Still Old After Editing
-
-**Symptom:**
-
-The edit reports success, but the list or details still show old information.
-
-**Possible Causes:**
-
-- Page cache has not refreshed.
-- Final confirmation was not completed or background validation is incomplete.
-- The searched row is not the same object that was edited.
-
-**Solution:**
-
-1. Refresh the list and locate the record again by image address or identifier.
-2. Check the page prompt and update time to confirm processing finished.
-3. Verify address, tag, and architecture so that another record was not edited by mistake.
-
 ### Remove Image
 
 #### Applicable Scenarios
@@ -197,24 +161,6 @@ Remove an image when its platform record is no longer needed and no job, IDE, te
 
 - Removing a platform record does not necessarily delete image data in the registry. Confirm the boundary and retention requirement first.
 - Do not remove an image with running jobs or template dependencies. Configure and migrate to a replacement image first.
-
-#### The Image Still Appears Downstream After Deletion
-
-**Symptom:**
-
-The image is gone from Image Management, but a downstream page still offers it.
-
-**Possible Causes:**
-
-- The downstream page cache has not refreshed.
-- The downstream page stores a historical configuration or uses a registry-side record.
-- The deletion request is still processing.
-
-**Solution:**
-
-1. Refresh the downstream page and reset filters.
-2. Check whether the downstream object references a platform image record or a registry address.
-3. Check image update time and page prompt to confirm removal has completed.
 
 ## Parameter Quick Reference
 
@@ -257,6 +203,60 @@ The image is gone from Image Management, but a downstream page still offers it.
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### An Image Tag Is Missing After Synchronization
+
+**Symptom:**
+
+Synchronization completes, but the target image or tag is still not listed.
+
+**Possible Causes:**
+
+- The registry project, tag, or architecture is outside the current synchronization scope.
+- The image component connection is abnormal or synchronization is incomplete.
+- Active list filters hide the target record.
+
+**Solution:**
+
+1. Reset filters and search again by image name.
+2. Open Image Services and verify Endpoint, state, and connectivity.
+3. Check image update time and synchronization state, then recheck after processing completes.
+
+#### Image Information Is Still Old After Editing
+
+**Symptom:**
+
+The edit reports success, but the list or details still show old information.
+
+**Possible Causes:**
+
+- Page cache has not refreshed.
+- Final confirmation was not completed or background validation is incomplete.
+- The searched row is not the same object that was edited.
+
+**Solution:**
+
+1. Refresh the list and locate the record again by image address or identifier.
+2. Check the page prompt and update time to confirm processing finished.
+3. Verify address, tag, and architecture so that another record was not edited by mistake.
+
+#### The Image Still Appears Downstream After Deletion
+
+**Symptom:**
+
+The image is gone from Image Management, but a downstream page still offers it.
+
+**Possible Causes:**
+
+- The downstream page cache has not refreshed.
+- The downstream page stores a historical configuration or uses a registry-side record.
+- The deletion request is still processing.
+
+**Solution:**
+
+1. Refresh the downstream page and reset filters.
+2. Check whether the downstream object references a platform image record or a registry address.
+3. Check image update time and page prompt to confirm removal has completed.
 
 #### Target Is Missing from Images
 

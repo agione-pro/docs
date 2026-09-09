@@ -98,24 +98,6 @@ Use **"Set Default Quota"** when an image service needs a default resource quota
 - A default quota affects multiple tenants or objects without dedicated settings. Confirm capacity and business scope first.
 - Do not write real registry addresses, accounts, passwords, or access keys in quota descriptions or screenshots.
 
-#### The Default Quota Does Not Take Effect
-
-**Symptom:**
-
-The save succeeds, but a related tenant still shows the old image quota.
-
-**Possible Causes:**
-
-- The tenant already has an individual quota.
-- Page data or quota calculation has not refreshed.
-- The edited service is not the service actually being used.
-
-**Solution:**
-
-1. Check the tenant-quota entry for a dedicated configuration.
-2. Refresh service details and check the update time.
-3. Verify service name, scope, and downstream image relationships.
-
 ### Set Tenant Image Service Quota
 
 #### Applicable Scenarios
@@ -139,24 +121,6 @@ Use **"Set Tenant Quota"** when a specified tenant needs an image service quota 
 
 - Verify tenant name and scope before selection so the quota is not applied to the wrong tenant.
 - Lowering a quota may affect image synchronization, upload, or use in progress. Confirm the business window first.
-
-#### The Target Tenant Is Missing from the Tenant Quota Entry
-
-**Symptom:**
-
-The target tenant is not available after opening **"Set Tenant Quota"**.
-
-**Possible Causes:**
-
-- The tenant is outside the visible scope of the image service.
-- Tenant or image service state is unavailable.
-- The current account lacks tenant-quota permission.
-
-**Solution:**
-
-1. Verify image service state and scope.
-2. Check tenant visibility and state on the tenant or permission page.
-3. Check Operator permission and reopen the quota entry.
 
 ### Remove Image Service
 
@@ -182,30 +146,6 @@ Remove an image service when it is no longer needed and no region, job, template
 
 - Removing the service may break image synchronization, upload, job pulls, and region resource creation. Complete dependency migration first.
 - Removing the platform service record does not necessarily delete registry data. Handle registry-side content according to its retention policy.
-
-#### The Image Service Cannot Be Removed
-
-**Symptom:**
-
-The removal fails or the page reports that associated objects still exist.
-
-**Possible Causes:**
-
-- A region, image, or other resource object still binds the service.
-- The current account lacks removal permission.
-- Synchronization or another background task is running.
-
-**Solution:**
-
-1. Check relationships on Regions & Zones, Image Management, and quota configuration.
-2. Check service task state and update time.
-3. Remove dependencies or complete migration, then retry according to approval.
-
-#### Operation Screenshots
-
-![Image Services operation interface](./images/manual-register-image-service.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
 
 ## Parameter Quick Reference
 
@@ -239,6 +179,60 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### The Default Quota Does Not Take Effect
+
+**Symptom:**
+
+The save succeeds, but a related tenant still shows the old image quota.
+
+**Possible Causes:**
+
+- The tenant already has an individual quota.
+- Page data or quota calculation has not refreshed.
+- The edited service is not the service actually being used.
+
+**Solution:**
+
+1. Check the tenant-quota entry for a dedicated configuration.
+2. Refresh service details and check the update time.
+3. Verify service name, scope, and downstream image relationships.
+
+#### The Target Tenant Is Missing from the Tenant Quota Entry
+
+**Symptom:**
+
+The target tenant is not available after opening **"Set Tenant Quota"**.
+
+**Possible Causes:**
+
+- The tenant is outside the visible scope of the image service.
+- Tenant or image service state is unavailable.
+- The current account lacks tenant-quota permission.
+
+**Solution:**
+
+1. Verify image service state and scope.
+2. Check tenant visibility and state on the tenant or permission page.
+3. Check Operator permission and reopen the quota entry.
+
+#### The Image Service Cannot Be Removed
+
+**Symptom:**
+
+The removal fails or the page reports that associated objects still exist.
+
+**Possible Causes:**
+
+- A region, image, or other resource object still binds the service.
+- The current account lacks removal permission.
+- Synchronization or another background task is running.
+
+**Solution:**
+
+1. Check relationships on Regions & Zones, Image Management, and quota configuration.
+2. Check service task state and update time.
+3. Remove dependencies or complete migration, then retry according to approval.
 
 #### Target Is Missing from Image Services
 

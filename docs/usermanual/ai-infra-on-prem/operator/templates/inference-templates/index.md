@@ -105,24 +105,6 @@ Use the **"Import/Export"** menu to batch-maintain inference templates, or to ex
 - Template import depends on model, framework, image, and specification objects. Do not submit it when dependencies are missing in the target environment.
 - Import may update a template with the same identifier. Verify release scope, default parameter values, and downstream deployment impact first.
 
-#### An Imported Inference Template Cannot Be Published or Deployed
-
-**Symptom:**
-
-The template import completes, but its state is abnormal or the template cannot be used on later publish or deployment pages.
-
-**Possible Causes:**
-
-- The model, framework, image, or specification is missing or unavailable in the target environment.
-- Factor fields, default values, or validation rules are incompatible.
-- Template visibility or state does not allow downstream use.
-
-**Solution:**
-
-1. Open template details and verify the model, framework, image, and resource specification one by one.
-2. Open the corresponding configuration pages to verify dependency state and version compatibility.
-3. Check template visibility, release state, and factor-form validation rules.
-
 #### Operation Screenshots
 
 ![Inference Templates operation interface](./images/manual-create-inference-template.png)
@@ -177,6 +159,24 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### An Imported Inference Template Cannot Be Published or Deployed
+
+**Symptom:**
+
+The template import completes, but its state is abnormal or the template cannot be used on later publish or deployment pages.
+
+**Possible Causes:**
+
+- The model, framework, image, or specification is missing or unavailable in the target environment.
+- Factor fields, default values, or validation rules are incompatible.
+- Template visibility or state does not allow downstream use.
+
+**Solution:**
+
+1. Open template details and verify the model, framework, image, and resource specification one by one.
+2. Open the corresponding configuration pages to verify dependency state and version compatibility.
+3. Check template visibility, release state, and factor-form validation rules.
 
 #### Target Is Missing from Inference Templates
 

@@ -101,24 +101,6 @@ Use the **"Import/Export"** menu to batch-maintain resource specifications, or t
 - Specification ID, metric quantities, and accelerator model must match actual cluster capacity; otherwise specification matching or scheduling may fail.
 - Import may update fields on a specification with the same identifier. Check cluster associations, job dependencies, and file scope first.
 
-#### An Imported Resource Specification Cannot Be Associated with a Cluster
-
-**Symptom:**
-
-The resource specification import completes, but the specification cannot be found in the specification association list in cluster details.
-
-**Possible Causes:**
-
-- The specification is unavailable or still being validated.
-- Specification metrics do not match reported cluster resources.
-- Specification scope or active filters do not match.
-
-**Solution:**
-
-1. Check state, specification ID, and update time in Resource Specifications.
-2. Check metrics, keys, and model in Specification Metrics and Accelerators.
-3. Reset filters, reopen cluster details, and verify the visibility scope.
-
 #### Operation Screenshots
 
 ![Resource Specs operation interface](./images/manual-add-resource-spec.png)
@@ -165,6 +147,24 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### An Imported Resource Specification Cannot Be Associated with a Cluster
+
+**Symptom:**
+
+The resource specification import completes, but the specification cannot be found in the specification association list in cluster details.
+
+**Possible Causes:**
+
+- The specification is unavailable or still being validated.
+- Specification metrics do not match reported cluster resources.
+- Specification scope or active filters do not match.
+
+**Solution:**
+
+1. Check state, specification ID, and update time in Resource Specifications.
+2. Check metrics, keys, and model in Specification Metrics and Accelerators.
+3. Reset filters, reopen cluster details, and verify the visibility scope.
 
 #### Target Is Missing from Resource Specs
 

@@ -123,24 +123,6 @@ Use the **"Import/Export"** menu to batch-maintain model configurations, or to e
 - Model import may update fields on an object with the same identifier. Verify version, source, cluster scope, and downstream template dependencies first.
 - Model paths, registry addresses, and source credentials are sensitive. Redact and store both import and export files under control.
 
-#### An Imported Model Cannot Be Used by an Inference Template
-
-**Symptom:**
-
-The model import completes, but the model cannot be found in an inference template or publish flow.
-
-**Possible Causes:**
-
-- The base model, model source, or model version is missing or unavailable in the target environment.
-- Cluster association, visibility, or model state does not meet downstream selection conditions.
-- Model identifier or version fields in the import file are inconsistent.
-
-**Solution:**
-
-1. Open model details and verify base model, source, version, state, and visibility.
-2. Open Model Sources and Clusters to verify dependencies and associations.
-3. Check identifiers and version fields in the import file against page requirements.
-
 ### Delete Model
 
 #### Applicable Scenarios
@@ -165,24 +147,6 @@ Delete a model when its platform configuration is no longer needed and no infere
 
 - Deleting a model configuration does not necessarily delete model files or registry data. Handle retention separately according to storage policy.
 - Do not delete a model with running instances, published templates, or job dependencies. Configure and migrate to a replacement first.
-
-#### The Model Is Still Selectable After Deletion
-
-**Symptom:**
-
-The model is gone from Model Configuration, but a downstream page still offers it.
-
-**Possible Causes:**
-
-- The downstream page cache has not refreshed.
-- A downstream template or instance stores a historical reference.
-- The deletion request is still processing.
-
-**Solution:**
-
-1. Refresh the downstream page and reopen the model selector.
-2. Check historical references in inference templates, publish records, and running instances.
-3. Check model update time and page prompt to confirm deletion has completed.
 
 #### Operation Screenshots
 
@@ -231,6 +195,42 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### An Imported Model Cannot Be Used by an Inference Template
+
+**Symptom:**
+
+The model import completes, but the model cannot be found in an inference template or publish flow.
+
+**Possible Causes:**
+
+- The base model, model source, or model version is missing or unavailable in the target environment.
+- Cluster association, visibility, or model state does not meet downstream selection conditions.
+- Model identifier or version fields in the import file are inconsistent.
+
+**Solution:**
+
+1. Open model details and verify base model, source, version, state, and visibility.
+2. Open Model Sources and Clusters to verify dependencies and associations.
+3. Check identifiers and version fields in the import file against page requirements.
+
+#### The Model Is Still Selectable After Deletion
+
+**Symptom:**
+
+The model is gone from Model Configuration, but a downstream page still offers it.
+
+**Possible Causes:**
+
+- The downstream page cache has not refreshed.
+- A downstream template or instance stores a historical reference.
+- The deletion request is still processing.
+
+**Solution:**
+
+1. Refresh the downstream page and reopen the model selector.
+2. Check historical references in inference templates, publish records, and running instances.
+3. Check model update time and page prompt to confirm deletion has completed.
 
 #### Target Is Missing from Models
 

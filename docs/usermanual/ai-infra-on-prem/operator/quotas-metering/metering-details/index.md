@@ -92,24 +92,6 @@ The following figure shows the metering details page.
 - Download files may contain tenant, resource, and metering information. Store and share them under access control.
 - For a large range, narrow time, region, or resource-type filters first to reduce omissions and reconciliation difficulty.
 
-#### Downloaded Records Do Not Match the Page Details
-
-**Symptom:**
-
-Record count or time range in the downloaded file does not match the page list.
-
-**Possible Causes:**
-
-- Download filters differ from the current page filters.
-- Page data refreshed between search and download, or statistics are incomplete.
-- Time zone, billing-period boundaries, or pagination caused a mistaken comparison.
-
-**Solution:**
-
-1. Set time, region, availability zone, and resource type again and record the filter scope.
-2. Search and download again, then compare samples by resource ID and start and end time.
-3. Align time zone and billing-period definitions and confirm the source metering task has completed.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
@@ -146,6 +128,24 @@ Record count or time range in the downloaded file does not match the page list.
 | Cross-check | Configuration, status, and relationships on Metering Details matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
 
 ## FAQ
+
+#### Downloaded Records Do Not Match the Page Details
+
+**Symptom:**
+
+Record count or time range in the downloaded file does not match the page list.
+
+**Possible Causes:**
+
+- Download filters differ from the current page filters.
+- Page data refreshed between search and download, or statistics are incomplete.
+- Time zone, billing-period boundaries, or pagination caused a mistaken comparison.
+
+**Solution:**
+
+1. Set time, region, availability zone, and resource type again and record the filter scope.
+2. Search and download again, then compare samples by resource ID and start and end time.
+3. Align time zone and billing-period definitions and confirm the source metering task has completed.
 
 #### No Records on Metering Details
 

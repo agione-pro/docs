@@ -168,24 +168,6 @@ View cluster details when you need to verify the basic information, device infor
 - Addresses, authentication materials, and cluster identifiers in details may be sensitive. Keep only redacted content in documents, screenshots, and tickets.
 - Details do not replace node and job monitoring. Continue to the monitoring pages when investigating resource anomalies.
 
-#### The Cluster Details Entry Is Missing
-
-**Symptom:**
-
-The target cluster is visible in the list, but **"Cluster Details"** is missing from its operation menu.
-
-**Possible Causes:**
-
-- The current account has list-view permission only.
-- The cluster is being processed abnormally and details are temporarily unavailable.
-- The current view does not expose the operation menu.
-
-**Solution:**
-
-1. Check Operator permission and cluster state.
-2. Switch to a list or card view that supports cluster operations.
-3. If the entry is still missing, follow the page prompt and contact the permission or cluster maintainer.
-
 ### View Cluster Nodes
 
 #### Applicable Scenarios
@@ -208,24 +190,6 @@ View cluster nodes when you need to verify node state, resource usage, job infor
 
 - When node resources look abnormal, first check the collection time and monitoring range instead of judging cluster availability from one instantaneous metric.
 - Node details may contain internal addresses, labels, or runtime information. Redact them before sharing.
-
-#### The Cluster Nodes Page Has No Data
-
-**Symptom:**
-
-After clicking **"Cluster Nodes"**, the node list is empty or resource metrics are not updated.
-
-**Possible Causes:**
-
-- Cluster onboarding is incomplete or nodes have not reported.
-- Monitoring collection, network, or time-range settings are abnormal.
-- The selected cluster scope does not match the target cluster.
-
-**Solution:**
-
-1. Return to cluster details and verify onboarding state and node count.
-2. Check monitoring collection state, update time, and network configuration.
-3. Select the target cluster again and refresh the node page.
 
 ### Disable or Enable Cluster
 
@@ -252,24 +216,6 @@ Disable a cluster when new job scheduling must be temporarily stopped, or enable
 - Disabling a cluster may prevent new jobs from being scheduled, but does not mean that running jobs are automatically migrated or stopped. Confirm the actual impact first.
 - Before enabling, verify node health, monitoring data, specification association, and storage mounts.
 
-#### The Disabled Cluster Still Appears as Selectable
-
-**Symptom:**
-
-The cluster state is disabled, but a downstream resource selection page still shows it.
-
-**Possible Causes:**
-
-- The downstream page uses stale data or filters.
-- The page is showing existing resource relationships rather than the new-job scheduling scope.
-- State processing is still in progress.
-
-**Solution:**
-
-1. Refresh the downstream page and reset filters.
-2. Distinguish existing resource associations from the selectable scope for new jobs.
-3. Check the cluster update time and page prompt to confirm processing has finished.
-
 ### Edit Cluster Storage
 
 #### Applicable Scenarios
@@ -295,24 +241,6 @@ Edit cluster storage when a shared path, container mount path, access mode, tena
 - Changing a shared path or container mount path may prevent jobs from starting or reading existing data. Verify that the path exists and permissions are valid.
 - Reducing tenant scope or changing to read-only may affect running jobs. Confirm impact and rollback handling before the change.
 
-#### Jobs Cannot Access Data After Storage Editing
-
-**Symptom:**
-
-Storage saves successfully, but new or running jobs cannot read the old path or write to the mounted directory.
-
-**Possible Causes:**
-
-- The shared path or container mount path is incorrect.
-- Access mode, tenant scope, or underlying permission changed.
-- Nodes cannot reach the storage service.
-
-**Solution:**
-
-1. Verify the path, access mode, and tenant scope in cluster details.
-2. Check node network reachability and underlying storage permission.
-3. Under the approved change process, restore the last verified configuration and repeat the mount validation.
-
 ### Remove Cluster Storage
 
 #### Applicable Scenarios
@@ -337,30 +265,6 @@ Remove cluster storage when a storage configuration is no longer needed or an in
 
 - Removing the configuration does not necessarily delete underlying storage data, but it cancels the platform association and mount entry. Confirm data retention first.
 - Do not remove storage directly when running or upcoming jobs depend on it. Arrange migration or a maintenance window first.
-
-#### The Storage Is Still Visible After Removal
-
-**Symptom:**
-
-The old storage configuration is still visible in the list or job page after removal.
-
-**Possible Causes:**
-
-- The page cache or detail data has not refreshed.
-- Another cluster still has a same-named storage association.
-- The removal request is still processing.
-
-**Solution:**
-
-1. Refresh cluster details and verify the target cluster and storage ID.
-2. Check associations on other clusters so a same-named record is not mistaken for the target.
-3. Check the page prompt and update time for the processing state.
-
-#### Operation Screenshots
-
-![Clusters operation interface](./images/manual-register-cluster.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
 
 ## Parameter Quick Reference
 
@@ -430,6 +334,96 @@ The image shows fields and the confirmation area after opening the operation ent
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### The Cluster Details Entry Is Missing
+
+**Symptom:**
+
+The target cluster is visible in the list, but **"Cluster Details"** is missing from its operation menu.
+
+**Possible Causes:**
+
+- The current account has list-view permission only.
+- The cluster is being processed abnormally and details are temporarily unavailable.
+- The current view does not expose the operation menu.
+
+**Solution:**
+
+1. Check Operator permission and cluster state.
+2. Switch to a list or card view that supports cluster operations.
+3. If the entry is still missing, follow the page prompt and contact the permission or cluster maintainer.
+
+#### The Cluster Nodes Page Has No Data
+
+**Symptom:**
+
+After clicking **"Cluster Nodes"**, the node list is empty or resource metrics are not updated.
+
+**Possible Causes:**
+
+- Cluster onboarding is incomplete or nodes have not reported.
+- Monitoring collection, network, or time-range settings are abnormal.
+- The selected cluster scope does not match the target cluster.
+
+**Solution:**
+
+1. Return to cluster details and verify onboarding state and node count.
+2. Check monitoring collection state, update time, and network configuration.
+3. Select the target cluster again and refresh the node page.
+
+#### The Disabled Cluster Still Appears as Selectable
+
+**Symptom:**
+
+The cluster state is disabled, but a downstream resource selection page still shows it.
+
+**Possible Causes:**
+
+- The downstream page uses stale data or filters.
+- The page is showing existing resource relationships rather than the new-job scheduling scope.
+- State processing is still in progress.
+
+**Solution:**
+
+1. Refresh the downstream page and reset filters.
+2. Distinguish existing resource associations from the selectable scope for new jobs.
+3. Check the cluster update time and page prompt to confirm processing has finished.
+
+#### Jobs Cannot Access Data After Storage Editing
+
+**Symptom:**
+
+Storage saves successfully, but new or running jobs cannot read the old path or write to the mounted directory.
+
+**Possible Causes:**
+
+- The shared path or container mount path is incorrect.
+- Access mode, tenant scope, or underlying permission changed.
+- Nodes cannot reach the storage service.
+
+**Solution:**
+
+1. Verify the path, access mode, and tenant scope in cluster details.
+2. Check node network reachability and underlying storage permission.
+3. Under the approved change process, restore the last verified configuration and repeat the mount validation.
+
+#### The Storage Is Still Visible After Removal
+
+**Symptom:**
+
+The old storage configuration is still visible in the list or job page after removal.
+
+**Possible Causes:**
+
+- The page cache or detail data has not refreshed.
+- Another cluster still has a same-named storage association.
+- The removal request is still processing.
+
+**Solution:**
+
+1. Refresh cluster details and verify the target cluster and storage ID.
+2. Check associations on other clusters so a same-named record is not mistaken for the target.
+3. Check the page prompt and update time for the processing state.
 
 #### Target Is Missing from Clusters
 

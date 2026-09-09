@@ -107,24 +107,6 @@ Use the **"Import/Export"** menu to batch-maintain framework configurations, or 
 - Startup commands, images, and port settings must match the runtime environment. Verify foreground startup, health checks, and access policy before importing.
 - Import may update fields on a framework version with the same identifier. Check referenced templates and instances first.
 
-#### An Imported Framework Cannot Be Used by an Inference Template
-
-**Symptom:**
-
-The framework import completes, but the framework version is missing from an inference template or deployment page.
-
-**Possible Causes:**
-
-- Framework image, region, or port configuration is unavailable in the target environment.
-- Framework version state or visibility does not allow downstream selection.
-- Framework or version identifiers in the import file do not match dependency references.
-
-**Solution:**
-
-1. Open framework details and verify version, image, region, ports, and state.
-2. Check dependencies on Image Management, Regions & Zones, and Inference Templates.
-3. Correct identifiers or visibility according to page requirements before importing again.
-
 ### Edit Framework Version
 
 #### Applicable Scenarios
@@ -149,24 +131,6 @@ Edit a framework version when its image, startup parameters, ports, or descripti
 
 - Changing a startup command, image, or port may prevent new instances from starting. Arrange compatibility checks and rollback handling first.
 - Do not write real credentials or internal addresses in environment variables, extra parameters, or creation messages.
-
-#### An Instance Fails After Framework Version Editing
-
-**Symptom:**
-
-The framework saves successfully, but a new instance cannot start or its health check fails.
-
-**Possible Causes:**
-
-- The image lacks dependencies or cannot be pulled.
-- The startup command does not run as a foreground process.
-- Service port, port policy, or health check does not match the application.
-
-**Solution:**
-
-1. Verify image, startup command, port, and health check in framework details.
-2. Check image availability and network reachability in Image Management and Regions & Zones.
-3. Under the approved change process, restore the verified version and repeat startup validation.
 
 ### Delete Framework Version
 
@@ -193,24 +157,6 @@ Delete a framework version when it is no longer used and no inference template, 
 - Deleting a framework version configuration does not necessarily delete the image in the registry. Handle dependencies and retention separately.
 - Do not directly delete a version referenced by templates or instances. Migrate or remove the reference first.
 
-#### Framework Version Deletion Fails
-
-**Symptom:**
-
-Deletion fails or the page reports that associated objects still exist.
-
-**Possible Causes:**
-
-- An inference template, instance, or job still references the version.
-- The current account lacks deletion permission.
-- Another framework task is still processing.
-
-**Solution:**
-
-1. Check version references on Inference Templates and deployment pages.
-2. Verify permission and framework task state.
-3. Complete migration or remove references, then delete according to approval.
-
 ### Maintain Framework Ports
 
 #### Applicable Scenarios
@@ -235,24 +181,6 @@ Maintain framework ports when a service port, exposure policy, or port tag must 
 
 - Deleting or changing a port affects service probing, routing, and access. Confirm migration handling for existing instances and callers first.
 - Unsigned or direct port policies expand exposure. Use them only within a clearly controlled network boundary.
-
-#### The Access Entry Fails After Port Removal
-
-**Symptom:**
-
-The service access entry fails or health checks continue to fail after port maintenance.
-
-**Possible Causes:**
-
-- Application listening port does not match the configuration.
-- Port exposure policy or tag was changed.
-- Referenced templates or instances have not refreshed the new port configuration.
-
-**Solution:**
-
-1. Verify startup command, service port, and health-check path.
-2. Check exposure policy, port tag, and network access rules.
-3. Confirm references are updated in template or instance details; restore the previous port under the approved change process if needed.
 
 #### Operation Screenshots
 
@@ -339,6 +267,78 @@ Startup commands, extra parameters, and creation success messages can use placeh
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### An Imported Framework Cannot Be Used by an Inference Template
+
+**Symptom:**
+
+The framework import completes, but the framework version is missing from an inference template or deployment page.
+
+**Possible Causes:**
+
+- Framework image, region, or port configuration is unavailable in the target environment.
+- Framework version state or visibility does not allow downstream selection.
+- Framework or version identifiers in the import file do not match dependency references.
+
+**Solution:**
+
+1. Open framework details and verify version, image, region, ports, and state.
+2. Check dependencies on Image Management, Regions & Zones, and Inference Templates.
+3. Correct identifiers or visibility according to page requirements before importing again.
+
+#### An Instance Fails After Framework Version Editing
+
+**Symptom:**
+
+The framework saves successfully, but a new instance cannot start or its health check fails.
+
+**Possible Causes:**
+
+- The image lacks dependencies or cannot be pulled.
+- The startup command does not run as a foreground process.
+- Service port, port policy, or health check does not match the application.
+
+**Solution:**
+
+1. Verify image, startup command, port, and health check in framework details.
+2. Check image availability and network reachability in Image Management and Regions & Zones.
+3. Under the approved change process, restore the verified version and repeat startup validation.
+
+#### Framework Version Deletion Fails
+
+**Symptom:**
+
+Deletion fails or the page reports that associated objects still exist.
+
+**Possible Causes:**
+
+- An inference template, instance, or job still references the version.
+- The current account lacks deletion permission.
+- Another framework task is still processing.
+
+**Solution:**
+
+1. Check version references on Inference Templates and deployment pages.
+2. Verify permission and framework task state.
+3. Complete migration or remove references, then delete according to approval.
+
+#### The Access Entry Fails After Port Removal
+
+**Symptom:**
+
+The service access entry fails or health checks continue to fail after port maintenance.
+
+**Possible Causes:**
+
+- Application listening port does not match the configuration.
+- Port exposure policy or tag was changed.
+- Referenced templates or instances have not refreshed the new port configuration.
+
+**Solution:**
+
+1. Verify startup command, service port, and health-check path.
+2. Check exposure policy, port tag, and network access rules.
+3. Confirm references are updated in template or instance details; restore the previous port under the approved change process if needed.
 
 #### Target Is Missing from Frames
 

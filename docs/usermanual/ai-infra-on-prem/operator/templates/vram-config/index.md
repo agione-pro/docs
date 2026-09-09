@@ -108,24 +108,6 @@ Use the **"Import/Export"** menu to batch-maintain VRAM estimation rules, or to 
 - VRAM rules affect recommended specifications and pre-deployment resource assessment. Verify model size, precision, context length, and concurrency definitions before importing.
 - Import may update a rule with the same identifier. Check referenced templates and instances first; rule files must not contain real credentials or internal addresses.
 
-#### An Imported VRAM Rule Produces an Abnormal Result
-
-**Symptom:**
-
-The rule import completes, but an inference template produces a result that is much too large, too small, or unavailable.
-
-**Possible Causes:**
-
-- Model size, precision, KV Token, or context-length definitions differ.
-- Framework version or dynamic expression is unavailable in the target environment.
-- The referenced recommended specification is missing or its metrics do not match.
-
-**Solution:**
-
-1. Open rule details and verify factors and dynamic expressions one by one.
-2. Check model, framework, and resource specification versions and metrics.
-3. Recalculate with representative parameters and reconcile with a verified result.
-
 ### Edit VRAM Rules
 
 #### Applicable Scenarios
@@ -151,24 +133,6 @@ Edit VRAM rules when precision, factors, or dynamic expressions need to change.
 - Changing factors or expressions may change recommended specifications for existing templates. Preserve the previous rule and test representative models first.
 - Do not treat one calculation as a replacement for deployment stress testing. Check runtime VRAM pressure after a rule change.
 
-#### The Calculation Does Not Change After Editing
-
-**Symptom:**
-
-The rule saves successfully, but an inference template still shows the old VRAM result.
-
-**Possible Causes:**
-
-- The template references another rule or cached data has not refreshed.
-- Final confirmation was not completed.
-- Input parameters do not trigger the changed expression branch.
-
-**Solution:**
-
-1. Verify the referenced rule and update time in template details.
-2. Refresh the rule and template pages and check the save prompt.
-3. Recalculate with parameters that trigger the target branch and compare results.
-
 ### Remove VRAM Rules
 
 #### Applicable Scenarios
@@ -193,24 +157,6 @@ Remove a VRAM rule when it is no longer used and no inference template or deploy
 
 - Do not remove a rule referenced by a template or deployment configuration. Switch to a verified replacement first.
 - Removing the rule configuration does not delete model or framework data. Handle those objects according to their own lifecycle.
-
-#### VRAM Rule Deletion Fails
-
-**Symptom:**
-
-Deletion fails or the page reports that associated objects still exist.
-
-**Possible Causes:**
-
-- An inference template or deployment configuration still references the rule.
-- The current account lacks removal permission.
-- The rule is still being calculated or processed.
-
-**Solution:**
-
-1. Check rule references on inference template and deployment pages.
-2. Verify permission, rule state, and update time.
-3. Replace or remove references, then remove the rule according to approval.
 
 ## Parameter Quick Reference
 
@@ -239,6 +185,60 @@ Deletion fails or the page reports that associated objects still exist.
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
+
+#### An Imported VRAM Rule Produces an Abnormal Result
+
+**Symptom:**
+
+The rule import completes, but an inference template produces a result that is much too large, too small, or unavailable.
+
+**Possible Causes:**
+
+- Model size, precision, KV Token, or context-length definitions differ.
+- Framework version or dynamic expression is unavailable in the target environment.
+- The referenced recommended specification is missing or its metrics do not match.
+
+**Solution:**
+
+1. Open rule details and verify factors and dynamic expressions one by one.
+2. Check model, framework, and resource specification versions and metrics.
+3. Recalculate with representative parameters and reconcile with a verified result.
+
+#### The Calculation Does Not Change After Editing
+
+**Symptom:**
+
+The rule saves successfully, but an inference template still shows the old VRAM result.
+
+**Possible Causes:**
+
+- The template references another rule or cached data has not refreshed.
+- Final confirmation was not completed.
+- Input parameters do not trigger the changed expression branch.
+
+**Solution:**
+
+1. Verify the referenced rule and update time in template details.
+2. Refresh the rule and template pages and check the save prompt.
+3. Recalculate with parameters that trigger the target branch and compare results.
+
+#### VRAM Rule Deletion Fails
+
+**Symptom:**
+
+Deletion fails or the page reports that associated objects still exist.
+
+**Possible Causes:**
+
+- An inference template or deployment configuration still references the rule.
+- The current account lacks removal permission.
+- The rule is still being calculated or processed.
+
+**Solution:**
+
+1. Check rule references on inference template and deployment pages.
+2. Verify permission, rule state, and update time.
+3. Replace or remove references, then remove the rule according to approval.
 
 #### Target Is Missing from VRAM Config
 
