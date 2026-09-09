@@ -78,6 +78,8 @@ The screenshot highlights the status tabs, app name and category filters, **"Sea
 
 The screenshot highlights the detail tabs, review information, application configuration, release channel, and the review actions shown on the page.
 
+![App review details](./images/application-review-public.png)
+
 ### Review an App
 
 1. Locate a record with the appropriate review status and click **"Review"**.
@@ -88,6 +90,8 @@ The screenshot highlights the detail tabs, review information, application confi
 
 The screenshot highlights the final **"Reject"** and **"Approve"** actions at the bottom of the review panel. Use the visible page state as the source of truth for the final confirmation wording.
 
+![Review an app](./images/application-review-public.png)
+
 ### Batch Review Apps
 
 1. Filter the list to records that are eligible for the same conclusion.
@@ -97,6 +101,8 @@ The screenshot highlights the final **"Reject"** and **"Approve"** actions at th
 5. Refresh the list and verify every selected record in its corresponding status tab. If any record remains pending, review that record individually.
 
 The screenshot highlights the batch entry and the result table used to select records. Do not include customer-sensitive data when sharing a batch-review screenshot.
+
+![Batch review apps](./images/app-reviews-list-public.png)
 
 ## Parameter Reference
 

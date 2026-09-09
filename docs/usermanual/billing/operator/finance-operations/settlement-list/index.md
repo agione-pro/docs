@@ -116,6 +116,8 @@ The image shows the page entry or current state for this operation. Verify the p
 
 The following screenshot shows settlement details. Use it to verify the billing period, tenant, status, amount, and posting information.
 
+![Settlement details](./images/detail.png)
+
 ### Generate Settlement
 
 #### Pre-operation Checks

@@ -89,7 +89,7 @@ Use the following operations to review account information and transactions. Bef
 3. Check account balance, total income, total expense, available amount, and last update time.
 4. If the list is empty, reset filters first, then confirm whether the current account has financial-account view permission.
 
-![Financial Accounts - View Account List](./images/manual-billing-financial-accounts-page.png)
+![Financial Accounts - View Account List](./images/platform-revenue-account-list.png)
 
 The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
 
@@ -110,6 +110,8 @@ The image shows the page entry or current state for this operation. Verify the p
 5. Compare with Monthly Overview, Settlement Statement Details, and Financial Account transactions to confirm that revenue amount scopes are consistent.
 
 The following screenshot shows the Platform Revenue Account area. Use it to compare the revenue amount with the billing-period summary.
+
+![Platform revenue account](./images/platform-revenue-account-list.png)
 
 ### View Account Details
 
