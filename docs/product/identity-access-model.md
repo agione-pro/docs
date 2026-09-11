@@ -76,11 +76,14 @@ Having a menu does not mean that every resource is visible. Seeing a resource do
 
 ## Default Role Model
 
-| Role | Main Responsibility | Typical Scope |
+For enterprise deployments, the following role mapping is recommended.
+
+| Role | Description | Typical Mapping at the Customer |
 | --- | --- | --- |
-| `operator` | Prepare and govern platform resources, published content, finance operations, and settings | Resource onboarding, templates, authorization, quotas, monitoring, base settings, reviews, customer finance, License, audit, and API rate control |
-| `provider` | Supply and operate model services | Publish single or aggregate models, maintain versions and pricing, submit reviews, view customer calls and revenue, and manage authorized team, project, and Key settings |
-| `enduser` | Consume authorized platform capabilities | Discover and experience models, call APIs, deploy available services, and view personal calls, projects, usage, billing, or settings |
+| Operator | Platform administrator. Configures compute resource pools (Specs), downloads model weights and container images, defines inference parameter Templates, sets Provider Quotas, and monitors platform-wide resource usage. | Central platform/infrastructure administration team. The customer is expected to operate with a single Operator account. |
+| Provider | Has access rights to computing resources (as defined by the Operator). Deploys configured models onto Operator-defined Specs with one click via a Template. Publishes public models, which can be set to be accessible to all tenants or only selected designated tenants. | Public model administrators; a published public model can be made accessible to all teams or specified teams. |
+| End-User | **End-User (tenant administrator):** Has access rights to computing resources (as defined by the Operator). Deploys configured models onto Operator-defined Specs with one click via a Template. Controls which End-Users (members) within the same tenant can access which deployed private models. | An internal team within the bank (e.g., a business unit or development team). The PoC will be executed with one End-User (tenant administrator); in production, each team would have its own End-User (tenant administrator) account. |
+| End-User | **End-User (member):** API consumer. Views the available models and consumes their endpoints using API Keys. The platform supports default tenant keys as well as personal and project keys, along with key-management capabilities such as creation, limit configuration, rotation, and disabling. | Individual employees/developers belonging to a team. |
 
 The exact menus available to a role can vary with the deployed version and platform configuration. Use the current environment as the final source for visible entries.
 
