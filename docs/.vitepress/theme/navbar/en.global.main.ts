@@ -13,6 +13,7 @@ export const enNavbar = [
         items: [
           { text: "Technical Practices", link: "/practices/technical/" },
           { text: "Project Practices", link: "/practices/project/" },
+          { text: "Monitor Matrix", link: "/practices/monitor-matrix/" },
         ]
       },
       // { text: "Tools", link: "/tools/" },

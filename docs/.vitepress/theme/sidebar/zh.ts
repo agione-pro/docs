@@ -857,6 +857,16 @@ export const zhSidebar: DefaultTheme.Sidebar = {
             },
           ],
         },
+        {
+          text: '监控矩阵',
+          collapsed: false,
+          items: [
+            {
+              text: 'Metis InfluxDB 数据字典',
+              link: '/zh-CN/practices/monitor-matrix/metis-influxdb-data-dictionary',
+            },
+          ],
+        },
       ],
     },
   ],

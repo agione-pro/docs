@@ -13,6 +13,7 @@ export const zhNavbar = [
         items: [
           { text: '技术实践', link: '/zh-CN/practices/technical/' },
           { text: '项目实践', link: '/zh-CN/practices/project/' },
+          { text: '监控矩阵', link: '/zh-CN/practices/monitor-matrix/' },
         ]
       },
       {

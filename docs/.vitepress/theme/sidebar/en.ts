@@ -907,6 +907,16 @@ export const enSidebar: DefaultTheme.Sidebar = {
             { text: "Single-Node Multi-Card Multi-Model Deployment Best Practice", link: "/practices/project/single-node-multi-card-multi-model-deployment" },
             { text: "Model Auto-Download and Inference Template Validation Best Practice", link: "/practices/project/model-auto-download-and-inference-template-validation" }
           ]
+        },
+        {
+          text: "Monitor Matrix",
+          collapsed: false,
+          items: [
+            {
+              text: "Metis InfluxDB Data Dictionary",
+              link: "/practices/monitor-matrix/metis-influxdb-data-dictionary"
+            }
+          ]
         }
       ]
     }
