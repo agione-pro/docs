@@ -25,6 +25,10 @@ export const enSidebar: DefaultTheme.Sidebar = {
         {
           text: "Technical Highlights",
           link: "/product/technical/tech-highlights"
+        },
+        {
+          text: "Security Overview",
+          link: "/product/technical/security-overview"
         }
       ]
     },

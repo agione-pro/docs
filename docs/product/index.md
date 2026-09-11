@@ -1,4 +1,4 @@
-﻿# Product Overview
+# Product Overview
 
 :::: info Document Information
 Version: v1.0
@@ -50,6 +50,7 @@ The menus visible to an account depend on its role, tenant, authorization scope,
 | What does a page or field mean, and how do I operate it? | [User Manual](../usermanual/) |
 | How do I prepare or install the platform? | [Installation Guide](../installation/) and [Network Planning](./technical/network) |
 | Is a chip, cloud platform, or model capability supported? | [Supported Accelerators](./limitations/chips) and [Support Matrix](./limitations/support-matrix) |
+| What are the platform security, data protection, and isolation controls? | [Security Overview](./technical/security-overview) |
 | How should I collect requirements before a PoC or delivery? | [Quick Requirement Survey](./investigation/quick-requirement-investigation) and [Quick Environment Survey](./investigation/quick-env-investigation) |
 
 ## How to Read Support Status

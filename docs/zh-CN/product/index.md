@@ -1,4 +1,4 @@
-﻿# 产品概述
+# 产品概述
 
 :::: info 文档信息
 版本：v1.0
@@ -50,6 +50,7 @@ AGIOne 将模型服务交付所需的工作连接成一条路径：
 | 页面或字段是什么意思，具体如何操作？ | [用户手册](../usermanual/) |
 | 如何准备环境或安装平台？ | [安装指南](../installation/)和[网络规划](./technical/network) |
 | 某个芯片、云平台或模型能力是否支持？ | [纳管芯片](./limitations/chips)和[支持矩阵](./limitations/support-matrix) |
+| 平台的安全、数据保护与隔离机制如何？ | [平台安全概览](./technical/security-overview) |
 | PoC 或交付前如何收集需求？ | [需求快速调研](./investigation/quick-requirement-investigation)和[环境快速调研](./investigation/quick-env-investigation) |
 
 ## 支持状态说明

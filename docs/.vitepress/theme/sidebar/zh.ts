@@ -11,6 +11,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
         { text: '功能与能力', link: '/zh-CN/product/technical/features' },
         { text: '网络规划', link: '/zh-CN/product/technical/network' },
         { text: '技术亮点', link: '/zh-CN/product/technical/tech-highlights' },
+        { text: '平台安全概览', link: '/zh-CN/product/technical/security-overview' },
       ],
     },
     {
