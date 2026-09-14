@@ -249,6 +249,14 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
+              text: "On-Prem New Model Template Preparation & Deployment",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/new-model-template-inference/" },
+                { text: "New Model Template Preparation & Deployment Guide", link: "/userguide/scenarios/new-model-template-inference/template-deployment-guide" },
+              ],
+            },
+            {
               text: "On-Prem Development, Training & Assets",
               collapsed: true,
               items: [

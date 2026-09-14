@@ -187,6 +187,14 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
+              text: '异构卡纳管：新模型模板准备与部署调用',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/new-model-template-inference/' },
+                { text: '新模型模板准备与端到端部署调用指引', link: '/zh-CN/userguide/scenarios/new-model-template-inference/template-deployment-guide' },
+              ],
+            },
+            {
               text: '异构卡纳管：开发训练与资产沉淀',
               collapsed: true,
               items: [
