@@ -22,7 +22,8 @@
 | 第 2 步：下载安装包 | 打开固定下载页，复制 `Download URL` 和 `MD5 URL` | MD5 传输校验通过；正式交付另已核对外层包 SHA-256 |
 | 第 3 步：执行 quick | 执行 `./agione quick`，或带配置文件执行 | 终端输出 `Installation Result` |
 | 第 4 步：浏览器访问 | 打开 `http://<目标主机IP>:18090/modelone/` | 页面可正常打开 |
-| 第 5 步：交付归档 | 保存访问地址、默认账号、健康报告和 handover 包 | 客户或运维团队可接手 |
+| 第 5 步：接入运维纳管（附加步骤） | 安装 `hyperone-daemon-client` 将平台托管至 OnePro 统一运维中心（可选/推荐） | 客户端服务运行正常，完成纳管绑定 |
+| 第 6 步：交付归档 | 保存访问地址、默认账号、健康报告、纳管信息和 handover 包 | 客户或运维团队可接手 |
 
 安装前建议先完成 [环境快速调研](/zh-CN/product/investigation/quick-env-investigation)，判断资源、网络和上线风险。
 
@@ -39,6 +40,8 @@
 | `/root/agione-install.yml` | 可选配置文件，用于固定密码、域名、证书、运行路径和其他交付参数 |
 | Nacos | AGIOne 使用的配置中心和服务注册中心 |
 | 默认控制台账号 | 安装完成后面向客户交付的 `operator` 和 `provider` 账号 |
+| `hyperone-daemon` | OnePro 公司针对 AGIOne 开发的统一运维纳管中心，提供集中化巡检、升级和运维保障 |
+| `hyperone-daemon-client` | 运行在客户目标主机上的纳管客户端代理，将客户环境部署的 AGIOne 平台托管到 OnePro 公司 |
 
 ---
 
@@ -185,6 +188,79 @@ http://<target-host-ip>:18090/modelone/
 ```
 
 如果使用域名或完整访问地址，请以安装配置中的 `agione_app.frontend.domain` / `agione_app.frontend.public_access_url` 为准。
+
+### 5. （附加步骤）安装统一运维纳管客户端（hyperone-daemon-client）
+
+#### 介绍与说明
+
+`hyperone-daemon` 是 OnePro 公司针对 AGIOne 平台打造的统一运维纳管中心。
+
+在客户环境的目标主机上安装 `hyperone-daemon-client` 后，相当于把客户本地部署的 AGIOne 平台安全托管到 OnePro 公司。通过该纳管通道，OnePro 公司可为客户部署的 AGIOne 环境提供更高效、专业的运维服务：
+
+- **日常巡检保障**：持续关注 AGIOne 服务健康状态、中间件指标与系统资源瓶颈，防患于未然；
+- **版本升级与补丁分发**：支持远程推送平台安全补丁与版本升级，降低现场版本维护成本；
+- **远程专业运维**：在出现异常故障时，OnePro 原厂技术团队能够快速定位根因并协同排查。
+
+> **说明**：
+> - 本步骤为**附加步骤（推荐执行）**。如果客户与 OnePro 签署了托管运维服务协议，或者需要原厂远程技术保障支持，推荐在 AGIOne 安装完成后接入纳管。
+> - 若客户环境为完全物理隔离或严格禁止外部连接的网络环境，可按需跳过此步骤。
+
+#### 前置要求
+
+1. **执行权限**：必须使用 `root` 权限执行安装命令。
+2. **网络连通性**：目标主机需要能够访问 OnePro 统一运维纳管中心服务端口（默认服务地址为 `http://119.3.23.26:26910`）。安装前可快速检测连通性：
+   ```bash
+   curl -I http://119.3.23.26:26910
+   ```
+
+#### 安装方式
+
+安装 `hyperone-daemon-client` 支持以下两种方式，可根据现场交付场景选择：
+
+##### 方式一：OnePro 实施人员直接在客户环境安装
+
+适用于 OnePro 公司的实施人员在客户现场交付或通过受控远程协助执行安装的场景。
+
+1. 下载安装脚本并赋予执行权限：
+   ```bash
+   curl -fsSL 'http://119.3.23.26:26910/daemon/tools/daemonctl/install.sh' -o hyperone-daemonctl-install.sh
+   chmod 700 hyperone-daemonctl-install.sh
+   ```
+
+2. 运行安装脚本：
+   ```bash
+   ./hyperone-daemonctl-install.sh
+   ```
+
+3. **认证交互**：在脚本安装过程中，终端会提示输入 OnePro 运维人员的用户名及口令（Username/Password）。按提示输入认证凭据后，脚本将自动完成客户端注册与服务启动。
+
+##### 方式二：客户自主使用预授权指令安装
+
+适用于由客户方运维工程师自主执行安装，且无需输入或获取 OnePro 内部人员账号口令的场景。
+
+1. **获取预授权指令**：由 OnePro 实施人员在统一运维纳管中心后台提前生成专属的预授权 Ticket（该 Ticket 具备安全时效控制，**生成后 10 分钟内有效**）。
+2. **执行一键安装**：客户运维人员获取到带有实际 Ticket 的指令后，直接在目标主机上执行：
+   ```bash
+   curl -fsSL 'http://119.3.23.26:26910/daemon/installer/bootstrap/1216754786260002/auto?ticket={预授权指令.由onepro实施人员生成，10分钟有效}' | bash
+   ```
+
+> **注意**：
+> - 执行命令时，需将 `{预授权指令.由onepro实施人员生成，10分钟有效}` 整体替换为实施人员提供的真实有效 Ticket 字符串（不要保留花括号 `{}`）。
+> - 若安装时提示 Ticket 已过期或无效，请联系 OnePro 实施人员重新生成并在 10 分钟内执行。
+
+#### 验证客户端状态
+
+安装完成后，可通过以下命令验证客户端服务运行状态：
+
+```bash
+# 查看 Systemd 服务运行状态
+systemctl status hyperone-daemon-client
+
+# 或使用命令行管理工具查看纳管状态
+daemonctl status
+```
+
+当服务状态显示为 `active (running)` 且纳管连接正常时，即表示 AGIOne 平台已成功接入 OnePro 统一运维中心。
 
 ---
 
@@ -520,6 +596,14 @@ docker logs <container-name> --tail 300
 - `handover` 交付包
 - 如使用强制安装，还需记录备份路径
 
+### Q10：必须安装 hyperone-daemon-client 吗？
+
+不是强制步骤。AGIOne 核心平台在单机或多节点部署完成后即可独立提供业务服务。安装 `hyperone-daemon-client` 的目的是将平台纳管至 OnePro 统一运维中心，享受原厂巡检、版本升级与故障排查等运维服务。如果客户环境属于严格内网隔离或不允许外部纳管，可跳过此步骤。
+
+### Q11：使用预授权指令安装 hyperone-daemon-client 提示鉴权失败怎么办？
+
+预授权 Ticket 的有效期仅为 10 分钟。如果超过 10 分钟执行，该 Ticket 将自动失效。遇到鉴权失败或过期提示，请联系 OnePro 实施人员重新生成最新的预授权指令，并在生成后 10 分钟内完成执行。同时确认主机能够正常访问 `http://119.3.23.26:26910`。
+
 ---
 
 ## 附录：推荐安装流程
@@ -541,6 +625,12 @@ chmod +x ./agione
 ./agione health
 ./agione ps
 
-# 6. 导出交付包
+# 6. （附加步骤）接入 OnePro 统一运维纳管中心（可选/推荐）
+# 方式 1：实施人员现场安装
+# curl -fsSL 'http://119.3.23.26:26910/daemon/tools/daemonctl/install.sh' -o hyperone-daemonctl-install.sh && chmod 700 hyperone-daemonctl-install.sh && ./hyperone-daemonctl-install.sh
+# 方式 2：客户使用预授权指令安装
+# curl -fsSL 'http://119.3.23.26:26910/daemon/installer/bootstrap/1216754786260002/auto?ticket=<VALID_TICKET>' | bash
+
+# 7. 导出交付包
 ./agione handover
 ```

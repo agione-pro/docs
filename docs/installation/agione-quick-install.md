@@ -22,7 +22,8 @@ Single-node installation is the shortest path to get AGIOne running: prepare one
 | Step 2: Download bundle | Open the fixed download page and copy `Download URL` and `MD5 URL` | MD5 transfer check passes; production delivery also verifies the outer archive SHA-256 |
 | Step 3: Run quick | Run `./agione quick` or run it with a configuration file | Terminal prints `Installation Result` |
 | Step 4: Browser access | Open `http://<target-host-ip>:18090/modelone/` | The page opens successfully |
-| Step 5: Handover archive | Save the access URL, default accounts, health report, and handover package | Customer or operations team can take over |
+| Step 5: Connect to operations management (Additional Step) | Install `hyperone-daemon-client` to host the platform under OnePro's management center (Optional/Recommended) | Client service is running normally; management binding completed |
+| Step 6: Handover archive | Save the access URL, default accounts, health report, management status, and handover package | Customer or operations team can take over |
 
 Before installation, complete the [Quick Environmental Investigation](/product/investigation/quick-env-investigation) to identify resource, network, and go-live risks.
 
@@ -39,6 +40,8 @@ Before installation, complete the [Quick Environmental Investigation](/product/i
 | `/root/agione-install.yml` | Optional configuration file for fixed passwords, domain names, certificates, runtime path, and other delivery parameters |
 | Nacos | Configuration center and service registry used by AGIOne |
 | Default console accounts | Customer-facing `operator` and `provider` accounts printed after installation |
+| `hyperone-daemon` | Unified operations and management center developed by OnePro for AGIOne, providing centralized inspections, upgrades, and maintenance support |
+| `hyperone-daemon-client` | Managed client agent installed on the customer target host to connect the local AGIOne platform to OnePro |
 
 ---
 
@@ -185,6 +188,79 @@ http://<target-host-ip>:18090/modelone/
 ```
 
 If a domain name or full access URL is used, follow `agione_app.frontend.domain` / `agione_app.frontend.public_access_url` in the installation configuration.
+
+### 5. (Additional Step) Install Unified Operations Management Client (hyperone-daemon-client)
+
+#### Introduction & Overview
+
+`hyperone-daemon` is a unified operations and management center developed by OnePro for the AGIOne platform.
+
+Installing `hyperone-daemon-client` on the target host in the customer environment connects the customer-deployed AGIOne platform to OnePro. Through this managed channel, OnePro provides professional, efficient maintenance and operational support:
+
+- **Routine & Proactive Health Inspections**: Continuously monitors AGIOne service health, middleware metrics, and system resource bottlenecks to prevent issues proactively;
+- **Version Upgrades & Hotfixes**: Enables remote distribution of security patches and platform feature updates, reducing on-site maintenance overhead;
+- **Expert Operations Support**: When anomalies occur, OnePro technical engineers can quickly diagnose root causes and provide collaborative troubleshooting.
+
+> **Note**:
+> - This is an **additional step (recommended)**. If the customer has signed a managed operations service agreement with OnePro or requires official remote technical support, it is recommended to complete this step after AGIOne is installed and verified.
+> - If the customer environment is physically air-gapped or strictly prohibits outbound connections, this step can be skipped.
+
+#### Prerequisites
+
+1. **Permissions**: Must be executed with `root` privileges.
+2. **Network Connectivity**: The target host must be able to connect to the OnePro Unified Operations Management Center endpoint (default address: `http://119.3.23.26:26910`). You can test network reachability with:
+   ```bash
+   curl -I http://119.3.23.26:26910
+   ```
+
+#### Installation Methods
+
+Two installation methods are available depending on the delivery scenario:
+
+##### Method 1: Direct Installation by OnePro Implementation Engineers
+
+Applicable when OnePro implementation engineers carry out delivery on-site or via controlled remote assistance.
+
+1. Download the installation script and grant execution permissions:
+   ```bash
+   curl -fsSL 'http://119.3.23.26:26910/daemon/tools/daemonctl/install.sh' -o hyperone-daemonctl-install.sh
+   chmod 700 hyperone-daemonctl-install.sh
+   ```
+
+2. Run the installation script:
+   ```bash
+   ./hyperone-daemonctl-install.sh
+   ```
+
+3. **Authentication**: During execution, the script prompts for the OnePro operations engineer's username and password. Enter the credentials to complete registration and service startup.
+
+##### Method 2: Self-Service Installation by Customer Using Pre-Authorized Command
+
+Applicable when customer operations engineers install independently without needing OnePro internal account credentials.
+
+1. **Obtain Pre-Authorized Command**: A OnePro implementation engineer generates a dedicated pre-authorization ticket in the Unified Operations Management Center console (**valid for 10 minutes**).
+2. **Run One-Click Installation**: The customer operations engineer executes the command with the valid ticket on the target host:
+   ```bash
+   curl -fsSL 'http://119.3.23.26:26910/daemon/installer/bootstrap/1216754786260002/auto?ticket={预授权指令.由onepro实施人员生成，10分钟有效}' | bash
+   ```
+
+> **Important**:
+> - Replace `{预授权指令.由onepro实施人员生成，10分钟有效}` with the actual ticket string provided by OnePro staff (do not keep the curly braces `{}`).
+> - If the script reports that the ticket has expired or is invalid, contact OnePro engineers to regenerate a new ticket and execute it within 10 minutes.
+
+#### Verifying Client Status
+
+After installation, verify that the client service is running normally:
+
+```bash
+# Check systemd service status
+systemctl status hyperone-daemon-client
+
+# Or inspect management status with daemonctl
+daemonctl status
+```
+
+When the service shows `active (running)` and the connection to the management center is established, the AGIOne platform is successfully hosted.
 
 ---
 
@@ -520,6 +596,14 @@ At minimum, hand over:
 - `handover` package
 - if force installation is used, record the backup path
 
+### Q10: Is installing hyperone-daemon-client mandatory?
+
+No, it is not mandatory. The core AGIOne platform functions independently once installed. Installing `hyperone-daemon-client` connects the environment to the OnePro Unified Operations Management Center for remote inspections, version upgrades, and technical support. If the customer environment is air-gapped or external management is not permitted, this step can be skipped.
+
+### Q11: What should I do if installation with a pre-authorized ticket fails with authentication or expiration errors?
+
+The pre-authorized ticket is valid for only 10 minutes. If this window is exceeded, the ticket automatically expires. Contact OnePro implementation engineers to generate a new ticket and run the command within 10 minutes. Also verify that the host can reach `http://119.3.23.26:26910`.
+
 ---
 
 ## Appendix: Recommended Installation Flow
@@ -541,6 +625,12 @@ chmod +x ./agione
 ./agione health
 ./agione ps
 
-# 6. Export handover package
+# 6. (Additional Step) Connect to OnePro Unified Operations Management Center (Optional/Recommended)
+# Method 1: On-site installation by engineer
+# curl -fsSL 'http://119.3.23.26:26910/daemon/tools/daemonctl/install.sh' -o hyperone-daemonctl-install.sh && chmod 700 hyperone-daemonctl-install.sh && ./hyperone-daemonctl-install.sh
+# Method 2: Customer self-service installation
+# curl -fsSL 'http://119.3.23.26:26910/daemon/installer/bootstrap/1216754786260002/auto?ticket=<VALID_TICKET>' | bash
+
+# 7. Export handover package
 ./agione handover
 ```
