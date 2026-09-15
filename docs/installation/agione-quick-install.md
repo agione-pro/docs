@@ -241,11 +241,11 @@ Applicable when customer operations engineers install independently without need
 1. **Obtain Pre-Authorized Command**: A OnePro implementation engineer generates a dedicated pre-authorization ticket in the Unified Operations Management Center console (**valid for 10 minutes**).
 2. **Run One-Click Installation**: The customer operations engineer executes the command with the valid ticket on the target host:
    ```bash
-   curl -fsSL 'http://119.3.23.26:26910/daemon/installer/bootstrap/1216754786260002/auto?ticket={预授权指令.由onepro实施人员生成，10分钟有效}' | bash
+   curl -fsSL 'http://119.3.23.26:26910/daemon/installer/bootstrap/1216754786260002/auto?ticket={PRE_AUTHORIZED_TICKET_GENERATED_BY_ONEPRO_VALID_FOR_10_MINUTES}' | bash
    ```
 
 > **Important**:
-> - Replace `{预授权指令.由onepro实施人员生成，10分钟有效}` with the actual ticket string provided by OnePro staff (do not keep the curly braces `{}`).
+> - Replace `{PRE_AUTHORIZED_TICKET_GENERATED_BY_ONEPRO_VALID_FOR_10_MINUTES}` with the actual ticket string provided by OnePro staff (do not keep the curly braces `{}`).
 > - If the script reports that the ticket has expired or is invalid, contact OnePro engineers to regenerate a new ticket and execute it within 10 minutes.
 
 #### Verifying Client Status
