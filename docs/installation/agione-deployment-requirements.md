@@ -91,14 +91,14 @@ The current installer supports only the Alibaba Cloud and Huawei Cloud managed-m
 
 ### 4.1 Resource Requirements
 
-| Item | Minimum Requirement |
-|---|---|
-| Number of nodes | 1 |
-| CPU | >= 8 cores |
-| Memory | >= 24 GB |
-| Disk | >= 200 GB |
-| Network | Internet access required |
-| Operating system | Linux (Ubuntu 22.04 / CentOS 7+ recommended) |
+| Item | Minimum Requirement                         |
+|---|---------------------------------------------|
+| Number of nodes | 1                                           |
+| CPU | >= 16 cores                                 |
+| Memory | >= 24 GB                                    |
+| Disk | >= 200 GB                                   |
+| Network | Internet access required                    |
+| Operating system | Linux (Ubuntu 22.04 recommended) |
 
 ### 4.2 Architecture Diagram
 
