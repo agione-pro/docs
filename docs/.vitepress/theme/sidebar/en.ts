@@ -25,6 +25,10 @@ export const enSidebar: DefaultTheme.Sidebar = {
         {
           text: "Technical Highlights",
           link: "/product/technical/tech-highlights"
+        },
+        {
+          text: "Security Overview",
+          link: "/product/technical/security-overview"
         }
       ]
     },
@@ -71,7 +75,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
   ],
   "/installation/": [
     {
-      text: "Installation",
+      text: "Deployment & Configuration",
       collapsed: false,
       items: [
         {
@@ -105,6 +109,20 @@ export const enSidebar: DefaultTheme.Sidebar = {
         {
           text: 'Compute Nodes-Installation with ClusterD',
           link: '/installation/quick-install-with-agione-clusterd'
+        },
+        {
+          text: "Post-Deployment",
+          collapsed: false,
+          items: [
+            {
+              text: "Operations Edition",
+              link: "/installation/post-deployment/operation-edition"
+            },
+            {
+              text: "Enterprise Internal Edition",
+              link: "/installation/post-deployment/enterprise-internal-edition"
+            },
+          ],
         },
       ],
     }
@@ -228,6 +246,14 @@ export const enSidebar: DefaultTheme.Sidebar = {
               items: [
                 { text: "Scenario Overview", link: "/userguide/scenarios/on-prem-model-deployment-status/" },
                 { text: "Deploy and Check a Model", link: "/userguide/scenarios/on-prem-model-deployment-status/deploy-and-check/" },
+              ],
+            },
+            {
+              text: "On-Prem New Model Template Preparation & Deployment",
+              collapsed: true,
+              items: [
+                { text: "Scenario Overview", link: "/userguide/scenarios/new-model-template-inference/" },
+                { text: "New Model Template Preparation & Deployment Guide", link: "/userguide/scenarios/new-model-template-inference/template-deployment-guide" },
               ],
             },
             {
@@ -392,9 +418,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "Model Services",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/model-services/" },
-            { text: "Getting Started", link: "/usermanual/model-services/getting-started/" },
-            { text: "Publish and Call a Model", link: "/usermanual/model-services/end-to-end/publish-and-call-model/" },
             {
               text: "Operator",
               collapsed: false,
@@ -489,9 +512,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "AI Infra(On-Cloud)",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/ai-infra-on-cloud/" },
-            { text: "Getting Started", link: "/usermanual/ai-infra-on-cloud/getting-started/" },
-            { text: "Deploy a Cloud Model Service from Scratch", link: "/usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/" },
             {
               text: "Operator",
               collapsed: false,
@@ -566,9 +586,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "AI Infra(On-Prem)",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/ai-infra-on-prem/" },
-            { text: "Getting Started", link: "/usermanual/ai-infra-on-prem/getting-started/" },
-            { text: "Deploy a Model Service from Scratch", link: "/usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/" },
             {
               text: "Operator",
               collapsed: false,
@@ -693,9 +710,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "Billing",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/billing/" },
-            { text: "Getting Started", link: "/usermanual/billing/getting-started/" },
-            { text: "Reconcile and Settle a Billing Cycle", link: "/usermanual/billing/end-to-end/reconcile-billing-cycle/" },
             {
               text: "Operator",
               collapsed: false,
@@ -762,9 +776,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
           text: "Settings",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/usermanual/settings/" },
-            { text: "Getting Started", link: "/usermanual/settings/getting-started/" },
-            { text: "Configure Accounts and Permissions", link: "/usermanual/settings/end-to-end/configure-account-and-permissions/" },
             {
               text: "Operator",
               collapsed: false,
@@ -849,6 +860,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Tenant Settings", link: "/usermanual/settings/user/organizations/org-settings/" },
+                    { text: "Usage Log", link: "/usermanual/settings/user/organizations/usage-log/" },
                   ],
                 },
                 {
@@ -900,7 +912,18 @@ export const enSidebar: DefaultTheme.Sidebar = {
           collapsed: false,
           items: [
             { text: "Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice", link: "/practices/project/multi-compute-pool-heterogeneous-inference-scheduling" },
-            { text: "Single-Node Multi-Card Multi-Model Deployment Best Practice", link: "/practices/project/single-node-multi-card-multi-model-deployment" }
+            { text: "Single-Node Multi-Card Multi-Model Deployment Best Practice", link: "/practices/project/single-node-multi-card-multi-model-deployment" },
+            { text: "Model Auto-Download and Inference Template Validation Best Practice", link: "/practices/project/model-auto-download-and-inference-template-validation" }
+          ]
+        },
+        {
+          text: "Monitor Matrix",
+          collapsed: false,
+          items: [
+            {
+              text: "Metis InfluxDB Data Dictionary",
+              link: "/practices/monitor-matrix/metis-influxdb-data-dictionary"
+            }
           ]
         }
       ]

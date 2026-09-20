@@ -1,37 +1,41 @@
 # Model Usage
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
-
 ## Feature Overview
-
-`Model Usage` helps model providers view usage overview and usage details for model calls. It supports filtering by billing cycle, date, billed usage, model name, and model type, so providers can reconcile model usage, Credit consumption, Token consumption, and billing rules.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model Provider |
-| Navigation path | Model Services > Usage & Earnings > Model Usage |
-| Page route | `/modelone/accounting/deduction` |
-| Managed objects | Usage overview, usage details, billing cycle, date, metered usage, free quota, billing mode, billing rules, and Credits |
-| Typical use | View model call consumption, Token consumption trends, model usage distribution, and usage details |
+| Applicable Roles | Model Provider, Model Consumer |
+| Navigation Path | Model Services > Usage and Earnings > Model Usage |
+| Page Routes | Overview: `/modelone/accounting/deduction/overview/model`<br>Usage Details: `/modelone/accounting/deduction/detail/model` |
+| Managed Objects | Usage overview, Model ID, attribution, consumption trends, model distribution, and usage details |
 
 #### Beginner Explanation
 
-`Model Usage` is the consumption ledger for model calls. `Overview` shows overall consumption and trends. `Usage Details` is used to reconcile each request by Tokens, cost, billing rules, and posted status.
+Model Usage works like a usage ledger for model activity. Use the overview for totals and trends, and use details to reconcile records by time, model, Model ID, and attribution scope.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Overview | Shows Used Models, Total Consumption, Total Token Consumption, consumption trends, and usage distribution. |
-| Usage Details | Shows Cycle spend, Posted, Rounded, and usage details by call record. |
-| Metered usage | Usage included in billing, such as input tokens, output tokens, and cached input tokens. |
-| Free quota | Free or deducted quota applied to the call. |
-| Billing mode | Billing method used by the usage record, such as Token. |
-| Billing rules | Pricing rule matched by the usage record, such as tier, cache, or output price. |
-| Credits | Unit used by the page to display consumption. |
+| Overview | Summarizes usage indicators and trends for the selected time range. |
+| Usage Details | Shows individual usage records by time and business object. |
+| Model ID | The platform model identifier associated with the usage record. |
+| Attribution | The member, project, and Key scope to which the usage record is attributed. |
+| Statistics Period | Determines the time range and aggregation scope for overview and details. |
+| Model Distribution | Shows each model's share of total usage. |
+
+#### Recommended Operation Order
+
+Review totals, trends, and model distribution in Overview, and then query records in Usage Details. Use the same statistics period in both tabs during reconciliation.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| No data | Expand the statistics period first | Conclude that there is no usage |
+| Overview and details differ | Align time range and filters | Mix different scopes |
+| Preparing reconciliation | Record the period and filters | Keep screenshot values only |
+| Sharing data | Redact users and business identifiers first | Share raw details externally |
 
 ## Prerequisites
 
@@ -41,50 +45,62 @@ Updated: 2026-07-08
 4. Consumption amount, model call records, request content, and request IDs are sensitive information and must be redacted before screenshots or export.
 
 ::: warning High-Risk Operation Boundary
-Exporting sensitive data, charging, account adjustment, settlement, or sending usage details externally are high-risk operations and may affect financial reconciliation or expose call information. This document only describes viewing the usage overview and usage details. It does not guide export, charging, adjustment, or settlement, and does not write real accounts, request content, amounts, secrets, request IDs, or internal test parameters.
+Use this page to view and reconcile usage overview and details. Charging, account adjustment, settlement, and sensitive-data export are not performed here. Redact accounts, requests, amounts, credentials, and business identifiers before sharing data.
 :::
 
 ## Page Description
 
-The page includes two tabs: `Overview` and `Usage Details`. `Overview` shows Billing cycle, Date, Used Models, Total Consumption (Credit), Total Token Consumption, Trend of Model Consumption, Model Usage Distribution, Trend of Model Call Frequency, and Distribution of Model Call Times. `Usage Details` shows billing-cycle summaries, filters, and usage detail records.
+The page contains Overview and Usage Details. The overview shows aggregate indicators and trends. Usage Details provides a queryable record list with Model ID and Attribution columns. The current Demo does not expose member or project attribution filters, so use the visible billing-status, model-name, and model-type filters only.
+
+Page screenshots:
+
+![Model Usage overview](./images/model-usage-overview-list-public.png)
+
+Use this image to identify aggregate indicators and charts.
 
 ## Main Operations
 
-### View Usage Overview
+### View Model Usage Overview
 
-1. Go to `Model Services > Usage & Earnings > Model Usage`.
-2. Open the `Overview` tab.
-3. Select `Billing cycle` and `Date` in the filter area.
-4. View overview metrics such as `Used Models`, `Total Consumption (Credit)`, and `Total Token Consumption`.
-5. View `Trend of Model Consumption`, `Model Usage Distribution`, `Trend of Model Call Frequency`, and `Distribution of Model Call Times`.
-6. When checking trends or distribution data, do not capture or send unredacted model, amount, Credit, request, or business identifier information externally.
+1. Go to `Model Services > Usage and Earnings > Model Usage`.
+2. Click **"Overview"**.
+3. Select a statistics period and verify totals, trends, model distribution, and update time.
+4. If no data is shown, expand the period and confirm that the current account has relevant records.
 
-![Model usage overview](./images/model-usage-overview-list.png)
+![View usage overview](./images/manual-usage-overview-public.png)
 
-### View Usage Details
+The image shows the overview. Verify the period, aggregate indicators, trends, and model distribution.
 
-1. On the `Model Usage` page, switch to the `Usage Details` tab.
-2. View the top billing-cycle summary, including `Billing cycle`, `Cycle spend`, `Posted`, and `Rounded`.
-3. Select `Billed usage`, and enter or select `Model name` and `Model type` in the filter area.
-4. Click `Search` to view matching usage details. To clear filters, click `Reset`.
-5. In the usage details list, view `Usage time`, `Model`, `Latency`, `Metered usage`, `Free quota`, `Billing mode`, `Billing rules`, and `Credits`.
-6. If the page provides view, export, charging, adjustment, or settlement entries, view only fields and status. Do not perform real charging, adjustment, settlement, or sensitive data export.
+### Query Model Usage Details
 
-![Usage details](./images/model-usage-usage-details-list.png)
+1. Click **"Usage Details"**.
+2. Set the time range, then filter by billing status, model name, or model type.
+3. Verify usage time, model name, Model ID, Attribution, model type, billing scope, latency, metered usage, and Credits.
+4. Before sharing or reconciliation, remove user names, business identifiers, and other sensitive information.
+
+![Query usage details](./images/manual-usage-details-public.png)
+
+The image shows detail filters and results. Verify the time range, filters, and result scope.
+
+![Model Usage details reference](./images/model-usage-usage-details-list-public.png)
+
+This image provides an additional view of detail fields and list structure.
 
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing cycle | Yes | Month selector | `2026-07` | Month that the usage statistics and posting belong to. |
-| Date | No | Date range | Select on page | Limits the statistical time range for overview charts. |
-| Billed usage | No | Dropdown | Select on page | Filters usage details by whether the record is billed. |
-| Model Name | No | Input | Enter on page | Filters usage records by model. |
+| Date | No | Date range | `2026-07-01 to 2026-07-17` | Limits the statistical time range for overview charts. |
+| Billed usage | No | Dropdown | `Billed usage` | Filters usage details by whether the record is billed. |
+| Model Name | No | Input | `Example Model` | Filters usage records by model. |
 | Model Type | No | Dropdown | `Text` | Filters usage details by model capability type. |
+| Model ID | System-generated | Text | `<MODEL_ID>` | Shows the platform model identifier associated with the usage record. |
+| Attribution | System-generated | Text | `Member / Project / Key scope` | Shows the ownership scope to which the usage record is attributed. |
 | Input Usage | System-generated | Number | `Input Tokens` | Request input tokens or input-side usage. |
 | Output Usage | System-generated | Number | `Output Tokens` | Model output tokens or output-side usage. |
 | Cache Usage | System-generated | Number | `Cached Input Tokens` | Cached input hits or cache-related usage. |
-| Web Search Usage | System-generated | Number | Displayed on page | Consumption generated by Web Search tools or related capabilities. |
+| Web Search Usage | System-generated | Number | `12` | Consumption generated by Web Search tools or related capabilities. |
 | Cost | System-generated | Number | `Credits` | Credit consumption generated by the call. |
 | Status | System-generated | Tag | `Billed usage` | Billing or posting status of the usage record. |
 | Actions | No | Row entry | `View` | View usage records, pricing rules, or related billing information. |
@@ -95,41 +111,112 @@ The page includes two tabs: `Overview` and `Usage Details`. `Overview` shows Bil
 - Align model, customer, time range, and call type before comparing usage.
 - Recent calls may not appear immediately because of statistical delay. Check call logs at the same time.
 
-
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Model Usage` page opens normally, and `Overview` and `Usage Details` tabs are visible. | Check account permissions, navigation path, and page loading status. |
-| Usage overview displays normally | Used Models, Total Consumption, Total Token Consumption, and charts are displayed normally. | Switch Billing cycle or Date and retry. Confirm whether the current period has usage data. |
-| Filters are available | Billing cycle, Date, Billed usage, Model name, and Model type can be entered or selected. | Check filter format, or click `Reset` and query again. |
-| List data loads normally | The usage details list shows Usage time, Model, Metered usage, Billing mode, Billing rules, and Credits. | Confirm whether the billing cycle contains usage records, or broaden filters. |
-| Details entry can be opened | Pricing rules, detail, or view entries display related information normally. | Check whether the record is complete, or refresh the page and retry. |
-| Fields match filters | Usage, cost, status, and time fields match the filter conditions. | Compare call logs and model earnings to confirm statistical delay or billing-rule differences. |
-| High-risk actions are not triggered | During learning or screenshots, export, charging, adjustment, or settlement is not performed. | If a real financial operation is triggered by mistake, immediately record the time and record scope and notify the owner for review. |
+| Page is accessible | The `Model Usage` page opens, and `Overview` and `Usage Details` tabs are visible. | Check account permissions, navigation path, and page loading status. |
+| Usage overview displays | Used Models, Total Consumption, Total Token Consumption, and charts are visible. | Switch Billing cycle or Date and retry. Confirm whether the current period has usage data. |
+| Filter controls can be selected | Billing cycle, Date, Billed usage, Model name, and Model type can be entered or selected. | Check filter format, or click **"Reset"** and query again. |
+| List data loads | The usage details list shows Usage time, Model name, Model ID, Attribution, Model type, Billing scope, Latency, Metered usage, and Credits. | Confirm whether the billing cycle contains usage records, or broaden filters. |
+| Details entry opens | Pricing rules, detail, or view entries display related information. | Check whether the record is complete, or refresh the page and retry. |
+| Fields match filters | Model ID, Attribution, usage, cost, status, and time fields match the filter conditions and related call logs. | Compare call logs and model earnings to confirm statistical delay or billing-rule differences. |
 
 ## FAQ
 
-#### What if usage data is empty?
+#### Model Usage Data Is Empty
 
-Check whether the billing cycle, date range, billed usage status, and model filters are correct, then confirm that the model has successful calls. Usage statistics may have delay.
+**Symptom:**
 
-#### Why do usage and earnings not match?
+No usage data appears for the selected period.
 
-Align billing cycle, date range, and model filters first, and then check free quota, rounded amount, cache price, settlement delay, and billing rules. Usage details and model earnings may differ because of posting or statistical timing.
+**Possible Causes:**
 
-#### Can I export usage details?
+- No relevant record exists in the period.
+- The filters are too narrow.
 
-Usage details may include model, amount, request, and billing information, so they are sensitive data. Before export, confirm permissions, redaction requirements, and usage scope. Do not export when only learning the page.
+**Resolution:**
 
-## Next Steps
+1. Click **"Reset"** to clear the filters.
+2. Select a billing cycle and date range that contain a known call.
+3. Check **"My Calls > Call Logs"** with the same range. Contact the administrator if the log exists but Model Usage remains empty.
 
-1. Cross-check with model earnings, call analytics, and call logs.
-2. Use redacted usage details for reconciliation.
-3. Adjust rate limits, pricing, or model operations strategy based on consumption trends, model usage distribution, and call frequency distribution.
+#### Overview and Details Differ
+
+**Symptom:**
+
+The overview total differs from the sum of details.
+
+**Possible Causes:**
+
+- The tabs use different time ranges.
+- Detail filters are still active.
+
+**Resolution:**
+
+1. Align the statistics period.
+2. Reset detail filters and calculate again.
+3. If the totals still differ, send the billing cycle, date range, and Model ID to the administrator.
+
+#### Target Model Has No Record
+
+**Symptom:**
+
+No usage record appears for the target model.
+
+**Possible Causes:**
+
+- Model name or time criteria do not match.
+- The current account does not include the record in its visible model scope.
+
+**Resolution:**
+
+1. Query the model and expand the period.
+2. Check the same Model ID in **"My Calls > Call Logs"**.
+3. If the log exists but Model Usage has no record, send a redacted request ID to the administrator.
+
+#### Data Update Time Is Abnormal
+
+**Symptom:**
+
+A recent call appears in Call Logs but has no related Model Usage record.
+
+**Possible Causes:**
+
+- Model Usage and Call Logs use different billing cycles or date ranges.
+- The target call uses a different model or account.
+
+**Resolution:**
+
+1. Use the same billing cycle, date range, and Model ID.
+2. Record the redacted request ID from Call Logs.
+3. If Model Usage still has no record, send the filters and request ID to the administrator.
+
+#### Reconciliation Has a Difference
+
+**Symptom:**
+
+Page usage differs from an external record.
+
+**Possible Causes:**
+
+- Billing units or time boundaries differ.
+- Model or customer scopes differ.
+
+**Resolution:**
+
+1. Fix time, model, and billing unit.
+2. Reconcile record by record from details.
+3. If the difference remains, send the redacted details and reconciliation rules to the billing administrator.
 
 ## Notes
 
 - Do not write real accounts, request content, amounts, secrets, request IDs, or internal test parameters in the document.
 - Before screenshots or export, confirm that model names, business identifiers, Credits, and billing details are redacted.
 - Exporting sensitive data, charging, account adjustment, and settlement are outside the scope of this document.
+
+## Next Steps
+
+1. Cross-check with model earnings, call analytics, and call logs.
+2. Use redacted usage details for reconciliation.
+3. Adjust rate limits, pricing, or model operations strategy based on consumption trends, model usage distribution, and call frequency distribution.

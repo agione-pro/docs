@@ -27,6 +27,8 @@ Define the NPU model once with the correct vendor, model identifier, memory, and
 4. Associate the model with the metric used by the cluster device plugin.
 5. Save and verify the expected managed state.
 
+6. Before using the model in specifications or inference templates, confirm that its vendor, model identifier, memory, and resource key match the values reported by the cluster device plug-in.
+
 ![Accelerator management](./images/accelerators-list.png)
 
 ## Four-NPU Notes
@@ -51,6 +53,7 @@ Define the NPU model once with the correct vendor, model identifier, memory, and
 | --- | --- |
 | The model is unavailable in a specification | Accelerator status, model identifier, and vendor mapping |
 | Monitoring cannot match the device | Whether the cluster-reported model matches this entry exactly |
+| A downstream specification cannot use the accelerator | Managed/adaptation state, metric association, resource key, and cluster visibility |
 
 ## User Manual
 

@@ -5,7 +5,7 @@ next: true
 
 # 场景概览 - 异构卡纳管：算力接入
 
-本场景介绍如何把本地 Kubernetes 集群及其中的 GPU、NPU、XPU 接入 AGIOne，并把硬件能力转换为可调度的资源规格。对于“我有 4 张 NPU 卡，如何管理？”这一任务，本场景负责完成卡型识别、集群接入和规格规划。
+本场景介绍如何把本地 Kubernetes 集群及其中的 GPU、NPU、XPU 接入 {{DOCS_PRODUCT_NAME_ZH}}，并把硬件能力转换为可调度的资源规格。对于“我有 4 张 NPU 卡，如何管理？”这一任务，本场景负责完成卡型识别、集群接入和规格规划。
 
 ## 适用角色
 
@@ -53,7 +53,7 @@ next: true
 | [维护加速卡型号](./accelerator-management/) | 确认 NPU 型号、显存、适配状态和 Kubernetes 资源 key |
 | [接入集群并核对设备](./cluster-onboarding/) | 注册集群，确认节点和 4 张 NPU 卡全部上报 |
 | [配置规格指标与资源规格](./resource-specifications/) | 建立调度指标，并规划 1 卡、2 卡、4 卡规格 |
-| [从零开始部署模型服务](../../../usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/) | 串联运营方准备资源、用户部署和状态验证的完整 On-Prem 流程 |
+| [地域/可用区](../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/) | 从异构资源纳管的首个运营页面开始查看 |
 
 ## 完成检查
 

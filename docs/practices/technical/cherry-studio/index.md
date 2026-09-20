@@ -11,7 +11,7 @@ Visit the official [Cherry Studio](https://www.cherry-ai.com/) website to downlo
 2. Add a provider - _Provider Name_: Enter a custom name - _Provider Type_: Select OpenAI
    ![](./CherryStudio-pics/file-20260210171009981.png)
 3. Configure API Key and API Address
-   - _API Key_: Obtain the `Certified TOKEN` from the AGIOne platform model API call page - _API Address_: `https://tai.agione.co/hyperone/xapi/api` - _Note: CherryStudio will append `/chat/completions` to the end of the URL by default. However, AGIONE request routing is not compatible with this format on the CherryStudio platform. Therefore, users need to enter `#` at the end of the URL to indicate that the appending operation will not be performed._
+   - _API Key_: Obtain the `Certified TOKEN` from the AGIOne platform model API call page - _API Address_: `https://agione.pro/hyperone/xapi/api` - _Note: CherryStudio will append `/chat/completions` to the end of the URL by default. However, AGIONE request routing is not compatible with this format on the CherryStudio platform. Therefore, users need to enter `#` at the end of the URL to indicate that the appending operation will not be performed._
      ![](./CherryStudio-pics/file-20260210171105113.png)
 4. Retrieve the Model List  
     After configuration, go to **Model → Manage** to retrieve the model list (most model providers predefine available models), then select your desired model.

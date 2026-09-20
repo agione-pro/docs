@@ -8,7 +8,7 @@
 
 ## 模型配置
 
-1. 访问 [AGIOne](https://zh.agione.co/)，并注册一个账号。
+1. 访问 [AGIOne](https://agione.cc/)，并注册一个账号。
 2. 前往模型广场，选择一个模型，进入 api 调用页面，获取*Api key*和*model id*。
 
 ### 配置说明（使用AGIOne作为模型提供商）
@@ -20,7 +20,7 @@
 3. 在设置界面，找到Environment Variables，点击编辑`settings.json`文件。
 	![](./claudeCode-plugin-pics/file-20260210153234110.png)
 4. 打开`settings.json`文件后，配置提供商信息。
-	- *ANTHROPIC_BASE_URL*：`https://zh.agione.co`
+	- *ANTHROPIC_BASE_URL*：`https://agione.cc`
 	- *ANTHROPIC_AUTH_TOKEN*：从AGIOne平台模型API调用页面 `认证 TOKEN` 中获取
 	- *claudeCode.selectedModel*、*ANTHROPIC_DEFAULT_HAIKU_MODEL*、*ANTHROPIC_DEFAULT_SONNET_MODEL*、*ANTHROPIC_DEFAULT_OPUS_MODEL*：从AGIOne平台模型API调用页面请求参数中获取`Model Id`
 ```json
@@ -31,7 +31,7 @@
     "claudeCode.environmentVariables": [
         {
             "name": "ANTHROPIC_BASE_URL",
-            "value": "https://zh.agione.co"
+            "value": "https://agione.cc"
         },
         {
             "name": "ANTHROPIC_AUTH_TOKEN",

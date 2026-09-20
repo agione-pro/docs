@@ -38,8 +38,8 @@ Through AI Infra On-Prem, AGIOne manages regions, availability zones, clusters, 
 | **NVIDIA** | Ampere | A100 / A800 / A40 / A30 / A10 / RTX A Series / RTX 30 Series | Confirm device memory and data-center deployment conditions by model |
 | **NVIDIA** | Ada | L40 / L40S / L20 / L20S / L4 / L2 / RTX 4090, etc. | Workstation or consumer models require additional stability and delivery validation |
 | **Huawei Ascend** | Ascend 910 | Ascend 910B / Ascend 910C | Validate CANN, MindIE, driver, image, and model by project |
-| **Enflame** | Enflame | 106 | Validate vendor driver, runtime, inference framework, and model |
-| **Biren** | Biren | S60 | Validate vendor driver, runtime, inference framework, and model |
+| **Enflame** | Enflame | S60 | Validate vendor driver, runtime, inference framework, and model |
+| **Biren** | Biren | 106 | Validate vendor driver, runtime, inference framework, and model |
 | **Hygon** | BW | BW200 | Validate vendor driver, runtime, inference framework, and model |
 
 #### 1.1.3 Core Sub-capabilities
@@ -358,7 +358,20 @@ An **Aggregated Model** is created by a model provider from eligible published m
 - **Purpose**: Select among eligible member models in round-robin order.
 - **Validation**: After member changes, recheck call logs to confirm that the round-robin results match expectations.
 
-### 5.4 Multi-scenario Aggregation Configurations
+### 5.4 Runtime Routing and Aggregation Governance
+
+During a call, an aggregated model uses request requirements, candidate runtime state, and aggregation type to select members, retry eligible failures, and assign billing. These capabilities describe the current code behavior. Their availability depends on model metadata, aggregation type, environment configuration, and the deployed version.
+
+| Runtime Capability | Current Behavior | Availability Boundary |
+|---|---|---|
+| **Request-level capability-aware routing** | For each call, the router filters member models by protocol, Function, Reasoning, Web Search, and context, input, and output token limits. | This filter compares request requirements and model capability metadata. It does not make Function Calling a deliverable feature. See the [Support Matrix](../limitations/support-matrix). |
+| **Runtime health and load awareness** | The router uses minute-level success rate, circuit state, in-flight requests, and node count to adjust eligible candidates. | Actual selection depends on the available runtime data and the current matching strategy. |
+| **Automatic retry across model sources** | For an eligible service, timeout, or platform error, the router retries before it returns output. It excludes the tried model and models from the same source. The default maximum is three attempts. | The router does not retry after it returns output or for an error that does not meet the retry conditions. |
+| **Adaptive route plans and experience feedback** | The router records time to first token, output speed, success, and failure in the runtime state. It uses this data to update later route plans. | The route plan changes with actual call results and does not define a fixed member distribution. |
+| **Public candidate pool for default aggregation** | A platform default aggregate can discover approved, listed, public models that map to the same meta model. | This behavior applies to platform default aggregates. A provider-created aggregate uses configured member models, and final access control still applies. |
+| **Layered billing and responsibility assignment** | The platform uses the default, public, or private aggregation type to assign the balance, service publisher, and routed member model. | Actual charges and records depend on model prices, billing rules, and call data. |
+
+### 5.5 Multi-scenario Aggregation Configurations
 
 | Aggregation Scenario | Available Strategy | Configuration and Validation Focus |
 |---|---|---|
@@ -367,7 +380,7 @@ An **Aggregated Model** is created by a model provider from eligible published m
 | **Balanced cost and experience** | Balanced cost and experience | Validate the combined selection result through call logs |
 | **Request distribution among members** | Random or round-robin | Check member-selection distribution through multiple calls |
 
-### 5.5 Member Adjustment and Validation for Aggregated Models
+### 5.6 Member Adjustment and Validation for Aggregated Models
 
 ![Figure 5   Member Adjustment and Invocation Continuity Validation Workflow for Aggregated Models](./images/fig_scaling_flow.svg)
 

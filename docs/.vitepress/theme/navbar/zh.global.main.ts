@@ -4,7 +4,7 @@ export const zhNavbar = [
   {
     text: '文档中心',
     items: [
-      { text: '安装部署', link: '/zh-CN/installation/' },
+      { text: '部署与配置', link: '/zh-CN/installation/' },
       { text: '购买与激活', link: '/zh-CN/license/' },
       { text: '用户指南', link: '/zh-CN/userguide/scenarios' },
       { text: '用户手册', link: '/zh-CN/usermanual/' },
@@ -13,6 +13,7 @@ export const zhNavbar = [
         items: [
           { text: '技术实践', link: '/zh-CN/practices/technical/' },
           { text: '项目实践', link: '/zh-CN/practices/project/' },
+          { text: '监控矩阵', link: '/zh-CN/practices/monitor-matrix/' },
         ]
       },
       {
@@ -24,7 +25,7 @@ export const zhNavbar = [
       },
     ]
   },
-  { text: 'AGIOne', link: 'https://agione.pro/' },
+  { text: 'AGIOne', link: 'https://agione.cc/' },
   { text: 'AI助手', link: 'https://sourcelens.oneprocloud.com/lens/assistants/AI_AGIOne/chat' },
   // { text: '技术支持', link: 'https://support.oneprocloud.com/' },
   // { text: '常见问题', link: 'https://qa.oneprocloud.com/' },

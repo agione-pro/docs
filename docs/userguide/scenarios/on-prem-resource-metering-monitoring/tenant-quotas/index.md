@@ -27,6 +27,8 @@ The tenant can request approved NPU plans without reserving more than its share 
 4. Save and verify that the four-card flavor is selectable for the user.
 5. Submit a test workload and verify that quota usage changes.
 
+6. If the page exposes a region or resource-type scope, verify that the quota is maintained in the same scope used by the target template and cluster.
+
 ![Tenant quotas](./images/tenant-quotas-list.png)
 
 ## Quota Strategy
@@ -51,6 +53,7 @@ The tenant can request approved NPU plans without reserving more than its share 
 | --- | --- |
 | Quota looks sufficient but creation fails | Specification availability, tenant credits, capacity, and current workloads |
 | Quota does not recover after release | Instance final state, metering delay, and stale allocation |
+| A four-card flavor is not selectable after the change | Enabled specification, cluster association, region/zone scope, tenant credits, and current card capacity |
 
 ## User Manual
 

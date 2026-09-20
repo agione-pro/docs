@@ -283,7 +283,7 @@ export AGIONE_DISK_TOLERANCE_RATIO=0.80
 
 Open the fixed download page on the initiating machine first, then copy the package link from `Download URL`. After extraction, the directory name is determined by the top-level directory inside the archive, for example `agione-release-v1.0-XXX/`. Download it on the initiating machine first; the installer synchronizes it to the other target nodes during multi-node installation.
 
-Fixed download page: [Download link](https://agione.pro/release/download/agione-release-latest)
+Fixed download page: [Download link]({{DOCS_RELEASE_PAGE_URL_EN}})
 
 The page also provides an `MD5 URL`. Verify it after download. MD5 detects download or transfer corruption, but does not authenticate the package publisher. For a production delivery, independently obtain the outer `.tar.gz` SHA-256 digest through an access-controlled delivery channel and compare it as well.
 
@@ -291,7 +291,7 @@ It is recommended to run the installation from machine 1, the primary App / Edge
 
 ```bash
 ssh root@<app-node-1>
-AGIONE_RELEASE_PAGE="https://agione.pro/release/download/agione-release-latest"
+AGIONE_RELEASE_PAGE="{{DOCS_RELEASE_PAGE_URL_EN}}"
 AGIONE_RELEASE_URL="<copy-the-Download-URL-from-the-page>"
 AGIONE_RELEASE_MD5_URL="<copy-the-MD5-URL-from-the-page>"
 AGIONE_RELEASE_ARCHIVE="${AGIONE_RELEASE_URL##*/}"

@@ -8,7 +8,7 @@
 
 ## 模型配置
 
-1. 访问 [AGIOne](https://zh.agione.co/)，并注册一个账号。
+1. 访问 [AGIOne](https://agione.cc/)，并注册一个账号。
 2. 前往模型广场，选择一个模型，进入 api 调用页面，获取*Api key*和*model id*。
 
 ### 配置说明（使用AGIOne作为模型提供商）
@@ -18,7 +18,7 @@
 	![](./cline-pics/file-20260210174410146.png)
 3. 配置提供商信息，填写完毕后，点击*Continue*。
 	- *API Provider*：选择 `OpenAI Compatible`
-	- *Base URL*：`https://zh.agione.co/hyperone/xapi/api`
+	- *Base URL*：`https://agione.cc/hyperone/xapi/api`
 	- *API Key*：从AGIOne平台模型API调用页面 `认证 TOKEN` 中获取
 	- *Model ID*：从AGIOne平台模型API调用页面请求参数中获取`Model Id`
 	![](./cline-pics/file-20260211101649157.png)

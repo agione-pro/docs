@@ -1,52 +1,46 @@
 # Login Properties
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-10
-:::
-
 ## Feature Overview
-
-`Login Properties` is used to view, filter, and maintain login properties information. It helps operator admin work with login properties records and related status from a consistent page entry.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
+| Applicable Role | Operator |
 | Navigation path | Settings > System Settings > Login Properties |
 | Page route | `/user/system/login-properties` |
-| Managed objects | Login Properties records and related status |
-| Typical use | View, filter, and maintain login properties information |
+| Managed objects | Login security, registration settings, registration codes, account recovery, Google Login, and external system integration |
 
 #### Beginner Explanation
 
-Login Properties is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Login Properties is the platform's entry gate. It controls verification codes, account recovery, registration policy, and third-party sign-in. Before a change, confirm which sign-in methods and users will be affected.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Term | Description |
+| --- | --- |
+| Sign-in policy | Rules that control how users sign in and verify their identities.; Confirm the affected scope before a change. |
+| Verification code | A code used during sign-in, registration, or account recovery.; Check email or SMS configuration when delivery fails. |
+| Account recovery | A process that helps a user restore account access.; Confirm the security policy before enabling it. |
+| Third-party sign-in | An external identity entry such as Google Login.; Test the sign-in flow after a change. |
 
 ## Prerequisites
 
-1. The current account can access `System Settings > Login Properties`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to manage login configuration.
+2. You have opened `System Settings > Login Properties`.
+3. Before changing a login security policy, you have confirmed the impact scope and notification plan.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for login properties records and related status.
+The page includes `Login security`, `Registration Settings`, `Registration Codes`, `Account Recovery`, and `Google Login`. `Registration Settings` contains registration entrances, default roles, the `Platform Source Catalog`, and `External System Integration`.
 
 | Area | Description |
 | --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
+| Refresh | Reloads the login configuration. |
+| Login security | Shows email-code login, password lockout, and send-code limits. |
+| Registration Settings | Shows registration entrances, default roles, platform sources, and external integrations. |
+| Registration Codes | Shows verification-code configuration for registration. |
+| Account Recovery | Shows account-recovery configuration. |
+| Google Login | Shows third-party sign-in configuration. |
+| Edit | Changes the selected configuration category. |
 
 The following screenshot shows login properties.
 
@@ -54,9 +48,7 @@ The following screenshot shows login properties.
 
 ## Main Operations
 
-Use the following operations to work with login properties records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
-
-### Login Security Configuration
+### View Login Security Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Click or locate `Login Security`.
@@ -64,7 +56,21 @@ Use the following operations to work with login properties records and related s
 
 ![Login Security Configuration](./images/login-security.png)
 
-### Registration Verification Code Configuration
+### Edit Registration Settings
+
+1. Go to `Settings > System Settings > Login Properties`.
+2. Select `Registration Settings`.
+3. Review each registration entrance and its default roles.
+4. Confirm that each default role belongs to the `DEFAULT` application before you edit the configuration.
+5. Review the `Platform Source Catalog` and the controlled recharge channel for each enabled source.
+6. Review the source and note in `External System Integration`.
+7. A disabled master switch also disables its dependent registration path.
+8. If the configuration does not load, refresh the page before you open an edit action.
+9. Do not save an endpoint or credential until you confirm its owner and rollback plan.
+
+![Registration Settings](./images/registration-properties.png)
+
+### Edit Registration Verification Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Locate `Registration Verification Code`.
@@ -72,7 +78,7 @@ Use the following operations to work with login properties records and related s
 
 ![Registration Verification Code Configuration](./images/registration-codes.png)
 
-### Account Recovery Configuration
+### Edit Account Recovery Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Locate `Account Recovery`.
@@ -80,7 +86,7 @@ Use the following operations to work with login properties records and related s
 
 ![Account Recovery Configuration](./images/account-recovery.png)
 
-### Google Login Configuration
+### Edit Google Sign-in Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Locate `Google Login`.
@@ -88,7 +94,7 @@ Use the following operations to work with login properties records and related s
 
 ![Google Login Configuration](./images/google-login.png)
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -97,6 +103,10 @@ Use the following operations to work with login properties records and related s
 | Default Value | System displayed | Text | `5 minutes` | The default or system-provided value of the configuration item. |
 | Current Value | System displayed / Editable | Text | `5 minutes` | The currently effective configuration value. |
 | Enabled Status | System displayed / Editable | Enum | `Enabled` | Indicates whether the configuration item or login capability is enabled. |
+| Registration Entrance | System displayed / Editable | Text | `Email Registration` | Identifies a registration path and its entrance code. |
+| Default Roles | System displayed / Editable | Role list | Displayed on page | Lists the roles assigned to new users for an entrance. Roles must belong to `DEFAULT`. |
+| Platform Source Catalog | System displayed / Editable | Source list | Displayed on page | Lists external business sources, source status, and controlled recharge channels. |
+| External System Integration | System displayed / Editable | Integration settings | Displayed on page | Shows an external registration source, master switch, and note. |
 | Save | Operation button | Button | `Save` | Saves the current login configuration change. |
 | Reset | Operation button | Button | `Reset` | Restores the configuration to the default value or last saved state. |
 | Actions | System generated | Button / link | `Edit / Enable / Disable` | Provides login configuration view or maintenance entries. |
@@ -115,51 +125,92 @@ Use the following operations to work with login properties records and related s
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `System Settings > Login Properties` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
-| Screenshots | Login security, registration verification code, account recovery, and Google Login screenshots render normally. | Check whether image paths exist. |
+| Policy categories | Login security, registration codes, and other categories are displayed. | Refresh the page and open it again. |
+| Edit entry | Edit is displayed according to permission. | Check the current account's system-configuration permission. |
+| Code-delivery limits | Per-minute, per-hour, and per-day limits are displayed. | Compare sign-in logs with operation logs. |
+| Screenshots | Login security, Registration Settings, registration verification code, account recovery, and Google Login screenshots render normally. | Check whether image paths exist. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Login Properties
+#### A user does not receive a verification code
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The user does not receive a code during sign-in or account recovery.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Login Properties
+The code-delivery limits are too restrictive, the email or SMS channel is misconfigured, or the account's contact information is incorrect.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+Check the delivery limits, email configuration, and account contact information, then review operation logs.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### What should be done before changing a sign-in policy?
 
-#### Why does the login configuration not load?
+**Symptom:**
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+The page provides an Edit action for login configuration.
 
-## Next Steps
+**Possible cause:**
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+A sign-in policy change can affect all users.
+
+**Resolution:**
+
+Confirm the change window, impact scope, and rollback method before changing the policy.
+
+#### Why does Login Properties not load?
+
+**Symptom:**
+
+Password policy, sign-in methods, or identity-source configuration is not displayed.
+
+**Possible cause:**
+
+The current account lacks system-settings permission, the configuration is managed by an upstream identity provider, or configuration synchronization is delayed.
+
+**Resolution:**
+
+Verify system-settings permission and the current environment. Confirm whether an identity provider maintains the configuration. If it is still missing, ask a platform administrator to check configuration synchronization.
+
+#### How should the Login Properties page be exported or captured safely?
+
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Login Properties page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- Login configuration changes can affect sign-in across the platform.
+- Balance verification-code and lockout policies between security and availability.
 - `Save`, `Reset`, `Enable`, and `Disable` are high-risk actions.
 - Client Secret, callback URLs, internal domains, test accounts, and tokens in Google Login configuration must not be written into documentation or screenshots.
 - For learning or screenshots, only view configuration items and do not submit real configuration changes.
+
+## Next Steps
+
+1. To review platform configuration, go to [Platform Settings](../platform-settings/).
+2. To review sign-in-related actions, go to [Operation Logs](../../activity-notifications/operation-logs/).

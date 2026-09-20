@@ -1,34 +1,33 @@
-# Node Statistics
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
+# Nodes
 
 ## Feature Overview
 
-`Node Statistics` is used to view node resource trends and status within the user-visible scope from a End User perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Node Statistics |
-| Page route | `/powerone/user-monitor/node` |
-| Managed objects | Node resource trends and status within the user-visible scope |
-| Typical use | Determine whether an instance is affected by node resources or node status |
+| Applicable Role | Model Provider and Model Consumer |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Nodes |
+| Page Route | `/powerone/user-monitor/node` |
+| Managed Object | Configuration, status, and relationships on Nodes |
 
 #### Beginner Explanation
 
 Node statistics are like a dashboard for each server. They show node CPU, memory, GPU, and status to determine whether a task is slow or failed because of a specific node.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Node Name | Server node identifier in the cluster that hosts instances or jobs. |
 | CPU Usage | Node compute resource usage ratio. |
 | Memory Usage | Node memory occupation ratio. |
-| GPU Usage | Node accelerator compute resource usage ratio. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Node resource trends and status within the user-visible scope, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Nodes, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,9 +38,11 @@ Node statistics are like a dashboard for each server. They show node CPU, memory
 
 ## Page Description
 
-The page displays node statistics capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
+Use this page to inspect node resource trends and states within the current user's scope.
 
-![Node Statistics](./images/nodes-list.png)
+![Nodes](./images/nodes-list.png)
+
+The page displays node statistics capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
 #### Expected Page Elements When Capability Is Open
 
@@ -54,6 +55,20 @@ The page displays node statistics capability for the selected region. When the c
 | Node Status | `Ready / NotReady` | Determines whether the node can host jobs. |
 
 ## Main Operations
+
+### View Monitored Objects
+
+1. Open the monitoring page and select the time range, region, and resource pool.
+2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
+3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
+4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
+
+### Drill Down into Abnormal Metrics
+
+1. Click an abnormal metric, trend point, or **"Details"** for the target object.
+2. Keep the same time range and inspect utilization, status, alerts, and related objects.
+3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
+4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
 
 ### View Node Statistics
 
@@ -71,7 +86,7 @@ The page displays node statistics capability for the selected region. When the c
 - Whether CPU, memory, or GPU curves remain high.
 - Whether curves are interrupted or update time is clearly delayed.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -89,77 +104,127 @@ The page displays node statistics capability for the selected region. When the c
 - Curve interruption may be collection delay or node unavailability.
 - Users usually cannot maintain nodes directly. During troubleshooting, prepare time range and instance information for the operator.
 
-## Result Validation
+### Troubleshooting Information to Prepare
 
-1. The node list displays node name, owning cluster, status, and key metrics.
-2. Metric curves match the selected time range.
-3. Abnormal nodes can be mapped to affected instance or job time ranges.
-
-## Prepare Before Contacting the Operator
-
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+When node data is abnormal, prepare the following information to distinguish a single-node failure, resource exhaustion, and collection delay:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
+| Node name | `node-gpu-01` | Locates the specific machine. |
+| Cluster | `cluster-prod-a` | Confirms node ownership and impact scope. |
+| CPU / Memory curve | `CPU 92% / Memory 85%` | Determines whether resources are at a high watermark. |
+| Disk curve | `Disk 90%` | Identifies image-pull, log-write, and temporary-file risks. |
+| Node-state duration | `NotReady for 10 minutes` | Determines how long the abnormal state has continued. |
 
-Alternative troubleshooting paths:
+## Result Validation
 
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page load | Nodes charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
 
 ## FAQ
 
-#### Node Is Unavailable
+#### No Data on Nodes
 
 **Symptom:**
 
-The node status is abnormal, and related instance or job creation fails, restarts, or migrates.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- The node is NotReady, unschedulable, or under maintenance.
-- Node resources are exhausted or devices are abnormal.
-- Monitoring collection delay prevents status from recovering in time.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. Record node name, region, cluster, and abnormal time.
-2. View job or instance events to confirm whether it was scheduled to this node.
-3. Contact the operator to handle node status or migrate resources.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### CPU/Memory Curve Is Interrupted
+#### Nodes Is Not Updating
 
 **Symptom:**
 
-Node metric curves are interrupted or have no new data for a long time.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- Monitoring collection component is abnormal.
-- Node network or system status is abnormal.
-- The selected time range does not cover collected data.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Adjust the time range to confirm whether it is only a short gap.
-2. Compare cluster statistics and job monitoring to determine impact scope.
-3. Provide the operator with sanitized node name and time period.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Nodes Differs from Adjacent Pages
 
-1. When node metrics are abnormal, check whether affected jobs or instances are concentrated on this node.
-2. For GPU-related issues, continue to device monitoring.
-3. If the node remains abnormal, avoid repeatedly retrying on the same specification.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
 - Node names, IPs, and labels are operations-sensitive information and must be sanitized before screenshots.
 - Node metrics only describe resource status. Business failures still require logs and events.
 - Users cannot directly repair nodes. Provide evidence to the operator.
+
+## Next Steps
+
+1. When node metrics are abnormal, check whether affected jobs or instances are concentrated on this node.
+2. For GPU-related issues, continue to device monitoring.
+3. If the node remains abnormal, avoid repeatedly retrying on the same specification.

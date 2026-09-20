@@ -1057,6 +1057,18 @@ const scenarios: Scenario[] = [
     subsystems: ['billing', 'platform'],
     tasks: ['account', 'bill'],
   },
+  {
+    id: 29,
+    guideSlug: 'new-model-template-inference',
+    title: { zh: '异构卡纳管：新模型模板准备与部署调用', en: 'On-Prem New Model Template Preparation & Deployment' },
+    description: {
+      zh: '完成 ModelScope 模型下载与昇腾 910B 推理模板制作，并由模型提供方完成实例部署、发布与调用验证。',
+      en: 'Complete ModelScope model download, Ascend 910B inference template creation, and validate instance deployment, publishing, and API calls.',
+    },
+    roles: ['operator', 'provider'],
+    subsystems: ['on-prem', 'model-services'],
+    tasks: ['gpu', 'publish', 'call'],
+  },
 ]
 
 const currentRole = ref('all')

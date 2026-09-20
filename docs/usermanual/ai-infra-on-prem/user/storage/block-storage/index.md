@@ -1,34 +1,33 @@
 # Block Storage
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
-
 ## Feature Overview
-
-`Block Storage` is used to view and use block storage volume capabilities opened by the operator in the target region. After the capability is opened, the page displays available volumes, capacity, status, and mount entrypoints. When the capability is not opened, users need to confirm region, permissions, quotas, and operator component access status.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Storage Services > Block Storage |
-| Page route | `/powerone/storage-service/block` |
-| Managed objects | Block storage volumes, capacity, mount relationships, and volume status |
-| Typical use | Provide independent persistent volumes for instances, suitable for tasks that require block devices or independent volumes |
+| Applicable Role | Model Provider |
+| Navigation Path | AI Infra(On-Prem) > Storage > Block Storage |
+| Page Route | `/powerone/storage-service/block` |
+| Managed Object | Configuration, status, and relationships on Block Storage |
 
 #### Beginner Explanation
 
 Block storage is like attaching an independent disk to an instance. It is suitable for tasks that require persistent writes, independent volumes, or block device semantics. It is not a shared directory. Before multiple instances read and write simultaneously, confirm whether the platform supports the corresponding mount mode.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Volume | Persistent block device that can be mounted by an instance. |
 | Capacity | Usable storage size of a volume. |
 | Mount | Connects a volume to an instance or in-container path. |
-| Unmount | Removes the mount relationship between a volume and an instance. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Block storage volumes, capacity, mount relationships, and volume status, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Block Storage, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,11 +38,27 @@ Block storage is like attaching an independent disk to an instance. It is suitab
 
 ## Page Description
 
-The page is used to display block storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
+Use this page to manage block volumes, capacity, mount relationships, and volume state.
 
 ![Block Storage](./images/block-storage-list.png)
 
+The page is used to display block storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
+
 ## Main Operations
+
+### View Storage Resources
+
+1. Open the corresponding storage-service page and filter by name, project, status, capacity, or update time.
+2. Open details and check capacity, used space, access method, mount or connection status, and creation time.
+3. If no record is returned, reset filters and check project and region. Do not share internal addresses or access credentials.
+4. For capacity or status anomalies, inspect quota, events, and associated instances before creating another resource.
+
+### Manage Capacity, Mounts, or Access
+
+1. Open the target action menu and identify the impact of expansion, mount, unmount, permission, or deletion entries.
+2. Record current capacity, associated instances, and data-protection status before changes.
+3. Before expansion, unmount, or deletion, confirm tasks and backups. Before the final action, confirm the resource, data, and impact, and execute it only after approval.
+4. After an approved change, check capacity, connection status, and events. If abnormal, stop subsequent actions and follow the recovery process.
 
 ### Create Volume
 
@@ -64,7 +79,7 @@ The page is used to display block storage capability in the selected region. Whe
 4. After submission, return to the list and view status.
 5. Select this volume in instance creation or instance details and set the in-container path.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -95,113 +110,138 @@ The page is used to display block storage capability in the selected region. Whe
 2. Run `df -h` inside the instance or perform application-side capacity checks.
 3. If capacity is insufficient, expand according to page capabilities or contact the operator to adjust quota.
 
-## Alternative Paths
-
-- To save model files, datasets, or artifact packages, consider [Object Storage](../object-storage/) first.
-- When shared directory semantics are required, use file storage or cluster shared storage configured by the operator.
-- When independent volume capability is required, use block storage. If the page is not opened, contact the operator to confirm whether the target region has underlying storage components.
-
-## Prepare Before Contacting the Operator
-
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
-
-| Information | Example | Purpose |
-| --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
-
 ## Pitfalls
 
 - Block storage is usually not suitable for multiple instances reading and writing the same path simultaneously. Confirm the access mode before use.
 - Mount paths must not overwrite system directories, startup directories, or key directories inside the image.
 - Before deleting a volume, confirm that no running instances, training tasks, or output artifacts depend on it.
 
+### Alternative Paths
+
+- To save model files, datasets, or artifact packages, consider [Object Storage](../object-storage/) first.
+- When shared directory semantics are required, use file storage or cluster shared storage configured by the operator.
+- When independent volume capability is required, use block storage. If the page is not opened, contact the operator to confirm whether the target region has underlying storage components.
+
+### Troubleshooting Information to Prepare
+
+When block storage is abnormal, prepare the following information to distinguish volume creation, mounting, expansion, and unmount risks:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| Volume ID | `pvc-20260713001` | Locates the target block volume. |
+| Mounted instance | `infer-001` | Identifies the instance using the volume. |
+| Capacity | `100 GiB` | Determines whether capacity is insufficient or expansion has taken effect. |
+| Storage class | `ceph-rbd-prod` | Identifies the underlying block-storage component and policy. |
+| Mount state | `Pending / Mounted / Failed` | Determines whether to inspect scheduling, CSI, or instance events next. |
+
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The block storage page opens and shows volume records or an empty-state message. | Check account permission, region scope, and block storage component availability. |
-| Create-volume entry is visible | Users with permission can see the create-volume entry and open the form. | Confirm whether block storage is opened to the current tenant. |
-| Mount relationship is clear | Volume ID, mounted instance, capacity, status, and mount path are visible. | Verify target instance, volume status, mount mode, and permission scope. |
-| Unmount or delete has confirmation | High-risk operations show confirmation or restriction prompts before final action. | Pause the operation and confirm whether instances or data still depend on the volume. |
-
-
+| Page entry | Block Storage opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on Block Storage is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### Page Has No Block Storage Data
+#### Target Is Missing from Block Storage
 
 **Symptom:**
 
-No available block storage resources are visible after entering the page, or the page indicates that the capability is not opened to the selected region.
+The page opens, but the expected Configuration, status, and relationships on Block Storage is missing.
 
 **Possible Causes:**
 
-- The operator has not connected block storage components in the target region.
-- The current account has no view or use permission.
-- Tenant quota or capacity is insufficient.
-- The filtered region is inconsistent with the instance region.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Confirm the region in the upper-right corner.
-2. Contact the operator to confirm block storage component, region binding, and tenant permissions.
-3. Check resource quotas and capacity.
-4. In the short term, object storage or temporary directories inside instances can be used, but temporary directories are not suitable for saving important results.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Path Is Unavailable After Mounting
+#### The Operation Entry on Block Storage Is Unavailable
 
 **Symptom:**
 
-After the instance starts, the block storage mount path cannot be accessed inside the container.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- Mount path is incorrect or conflicts with the application directory.
-- The cluster where the instance runs cannot access underlying storage.
-- Permissions, access policy, or capacity configuration is incorrect.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. View instance events and logs.
-2. Confirm in-container path, access policy, and instance region.
-3. Contact the operator to check underlying storage components and cluster mount capability.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-#### Delete or Unmount Fails
+#### A Required Field on Block Storage Has No Options
 
 **Symptom:**
 
-Attempts to delete or unmount a block storage resource fail.
+The form opens, but a selection list is empty.
 
 **Possible Causes:**
 
-- Running instances are still using this resource.
-- The resource is abnormal, expanding, or recycling.
-- Current account permissions are insufficient.
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
 
 **Solution:**
 
-1. Stop or migrate dependent instances first.
-2. Refresh the page and confirm resource status.
-3. Contact the operator to check permissions and underlying storage reclaim status.
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### Block Storage Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use Block Storage
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Block Storage.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
+
+## Notes
+
+- Before deleting or unmounting, confirm that no running instances depend on it.
+- Mount paths must not overwrite system directories, application directories, or key directories inside the image.
 
 ## Next Steps
 
 1. Verify the mount path in runtime instances or Online IDE.
 2. Write input data and output results to persistent paths.
 3. Periodically clean up unused data to avoid exhausting quotas.
-
-## Notes
-
-- Before deleting or unmounting, confirm that no running instances depend on it.
-- Mount paths must not overwrite system directories, application directories, or key directories inside the image.

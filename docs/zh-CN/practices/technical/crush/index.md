@@ -15,7 +15,7 @@ crush --version
 
 ## 模型配置
 
-1. 访问 [AGIOne](https://zh.agione.co/)，并注册一个账号。
+1. 访问 [AGIOne](https://agione.cc/)，并注册一个账号。
 2. 前往模型广场，选择一个模型，进入 api 调用页面，获取*Api key*和*model id*。
 
 ### 配置说明（使用AGIOne作为模型提供商）
@@ -24,7 +24,7 @@ crush --version
 ![](./crush-pics/file-20260225144700605.png)
 根据路径找到`crush.json`文件（如果没有就手动创建），配置提供商及模型信息，保存文件后返回cmd界面，重新运行`crush`命令，即可选择并使用自定义的模型。
 - *提供商名称*：用户自定义（示例名称为AGIOne）
-- *base_url*：`https://zh.agione.co/hyperone/xapi/api`
+- *base_url*：`https://agione.cc/hyperone/xapi/api`
 - *api_key*：从AGIOne平台模型API调用页面 `认证 TOKEN` 中获取
 - *id*：从AGIOne平台模型API调用页面请求参数中获取`Model Id`
 - *name*：模型名称
@@ -34,7 +34,7 @@ crush --version
   "providers": {
     "AGIOne": {
       "type": "openai-compat",
-      "base_url": "https://zh.agione.co/hyperone/xapi/api",
+      "base_url": "https://agione.cc/hyperone/xapi/api",
       "api_key": "your_api_key",
       "models": [
         {

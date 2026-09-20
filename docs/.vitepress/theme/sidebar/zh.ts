@@ -11,6 +11,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
         { text: '功能与能力', link: '/zh-CN/product/technical/features' },
         { text: '网络规划', link: '/zh-CN/product/technical/network' },
         { text: '技术亮点', link: '/zh-CN/product/technical/tech-highlights' },
+        { text: '平台安全概览', link: '/zh-CN/product/technical/security-overview' },
       ],
     },
     {
@@ -41,7 +42,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
   ],
   '/zh-CN/installation/': [
     {
-      text: '安装部署',
+      text: '部署与配置',
       collapsed: false,
       items: [
         { text: '部署综述', link: '/zh-CN/installation/agione-deployment-requirements' },
@@ -52,6 +53,14 @@ export const zhSidebar: DefaultTheme.Sidebar = {
         { text: '节点纳管-部署配置要求', link: '/zh-CN/installation/deployment-requirements-for-managing-compute-nodes' },
         { text: '节点纳管-快速安装指南', link: '/zh-CN/installation/quick-install-for-managing-compute-nodes' },
         { text: '节点纳管-ClusterD快速安装', link: '/zh-CN/installation/quick-install-with-agione-clusterd' },
+        {
+          text: '部署后配置',
+          collapsed: false,
+          items: [
+            { text: '运营版部署后配置', link: '/zh-CN/installation/post-deployment/operation-edition' },
+            { text: '企业自用版部署后配置', link: '/zh-CN/installation/post-deployment/enterprise-internal-edition' },
+          ],
+        },
       ],
     },
   ],
@@ -175,6 +184,14 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/on-prem-model-deployment-status/' },
                 { text: '部署模型并检查状态', link: '/zh-CN/userguide/scenarios/on-prem-model-deployment-status/deploy-and-check/' },
+              ],
+            },
+            {
+              text: '异构卡纳管：新模型模板准备与部署调用',
+              collapsed: true,
+              items: [
+                { text: '场景概览', link: '/zh-CN/userguide/scenarios/new-model-template-inference/' },
+                { text: '新模型模板准备与端到端部署调用指引', link: '/zh-CN/userguide/scenarios/new-model-template-inference/template-deployment-guide' },
               ],
             },
             {
@@ -340,9 +357,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '模型及AI服务',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/model-services/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/model-services/getting-started/' },
-            { text: '从发布到调用模型', link: '/zh-CN/usermanual/model-services/end-to-end/publish-and-call-model/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -437,9 +451,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '多平台调度',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/ai-infra-on-cloud/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/ai-infra-on-cloud/getting-started/' },
-            { text: '从零开始部署云上模型服务', link: '/zh-CN/usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -514,9 +525,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '异构卡纳管',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/ai-infra-on-prem/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/ai-infra-on-prem/getting-started/' },
-            { text: '从零开始部署模型服务', link: '/zh-CN/usermanual/ai-infra-on-prem/end-to-end/deploy-model-service/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -641,9 +649,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '账务',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/billing/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/billing/getting-started/' },
-            { text: '完成一次账期对账与结算', link: '/zh-CN/usermanual/billing/end-to-end/reconcile-billing-cycle/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -710,9 +715,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           text: '设置',
           collapsed: false,
           items: [
-            { text: '概览', link: '/zh-CN/usermanual/settings/' },
-            { text: '快速入门', link: '/zh-CN/usermanual/settings/getting-started/' },
-            { text: '配置账号与权限闭环', link: '/zh-CN/usermanual/settings/end-to-end/configure-account-and-permissions/' },
             {
               text: '运营管理员',
               collapsed: false,
@@ -759,7 +761,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: 'API 流控',
                   collapsed: false,
                   items: [
-                    { text: 'Overview', link: '/zh-CN/usermanual/settings/operator/api-rate-control/overview/' },
+                    { text: '概览', link: '/zh-CN/usermanual/settings/operator/api-rate-control/overview/' },
                     { text: '规则管理', link: '/zh-CN/usermanual/settings/operator/api-rate-control/rule-management/' },
                     { text: '观测审计', link: '/zh-CN/usermanual/settings/operator/api-rate-control/observability-audit/' },
                     { text: '节点缓存', link: '/zh-CN/usermanual/settings/operator/api-rate-control/node-cache/' },
@@ -797,6 +799,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '租户设置', link: '/zh-CN/usermanual/settings/user/organizations/org-settings/' },
+                    { text: '额度使用日志', link: '/zh-CN/usermanual/settings/user/organizations/usage-log/' },
                   ],
                 },
                 {
@@ -855,6 +858,20 @@ export const zhSidebar: DefaultTheme.Sidebar = {
             {
               text: '单节点多卡多模型部署最佳实践',
               link: '/zh-CN/practices/project/single-node-multi-card-multi-model-deployment',
+            },
+            {
+              text: '模型自动下载与推理模板验证最佳实践',
+              link: '/zh-CN/practices/project/model-auto-download-and-inference-template-validation',
+            },
+          ],
+        },
+        {
+          text: '监控矩阵',
+          collapsed: false,
+          items: [
+            {
+              text: 'Metis InfluxDB 数据字典',
+              link: '/zh-CN/practices/monitor-matrix/metis-influxdb-data-dictionary',
             },
           ],
         },

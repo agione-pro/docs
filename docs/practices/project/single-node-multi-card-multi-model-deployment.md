@@ -29,23 +29,23 @@ This practice primarily belongs to `AI Infra On-Prem`. It is separate from the m
 | --- | --- | --- |
 | Onboard Kubernetes clusters and nodes | Clusters, cluster nodes, and device monitoring | [Clusters](/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/) |
 | Define selectable compute packages | Spec metrics, resource specs, and cluster-spec association | [Resource Specs](/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/) |
-| Control resources available to an tenant | Tenant credits, quotas, and metering | [Metering Details](/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) |
+| Control resources available to a tenant | Tenant credits, quotas, and metering | [Metering Details](/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) |
 | Standardize model deployment | Inference templates, model configuration, frameworks, images, resource specs, and VRAM configuration | [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/) |
 | Deploy and inspect model services | Model instances, instance status, logs, and access troubleshooting | [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | Monitor resource health and capacity | Overview, cluster, node, device, and job monitoring | [Monitoring Overview](/usermanual/ai-infra-on-prem/operator/monitoring/overview/) |
 
 ## Roles and Responsibilities
 
-A single-node multi-card deployment mainly involves the Operator and End User roles. A Provider enters the main workflow only for model publishing, aggregated models, or model services offered externally. Do not assign all model deployment work to the Provider by default.
+A single-node multi-card deployment mainly involves the Operator and End User roles. In this On-Prem workflow, the End User creates a model instance and can publish the running instance as a private model for the current tenant. The Provider role is not part of this private-model workflow; use the Provider role documentation for separate Provider-specific publishing scenarios.
 
 | Role | Responsibilities | Out of Scope |
 | --- | --- | --- |
 | Operator | Onboard clusters, maintain accelerators, create resource specs, associate specs with clusters, configure tenant credits, maintain inference templates, and troubleshoot resource or scheduling issues. | Long-term management of application invocation logic on behalf of business users. |
-| End User | Select templates, specs, and parameters within the authorized scope; create model instances; and view deployment status, logs, and invocation information. | Management of the underlying Kubernetes environment, physical nodes, resource specs, or platform-level tenant credits. |
-| Provider | Publish and maintain model assets, submit them for review, and inspect customer invocations and revenue in model publishing scenarios. | Management of platform resource pools, clusters, or tenant credits. |
+| End User | Select templates, specs, and parameters within the authorized scope; create model instances; publish a running On-Prem instance as a private model for the current tenant; and view deployment status, logs, and invocation information. | Management of the underlying Kubernetes environment, physical nodes, resource specs, or platform-level tenant credits. |
+| Provider | Not part of the On-Prem private-model publishing workflow described in this guide. Follow the Provider role documentation for separate Provider-specific publishing scenarios. | Onboarding platform resource pools or clusters, configuring tenant credits, or publishing an End User's running On-Prem instance as a private model. |
 | Admin | Manage tenants, users, roles, and basic platform access settings. | Day-to-day compute operations and model deployment. |
 
-A simple way to distinguish the roles is: the Operator prepares usable resources and templates, the End User creates runnable model instances, and the Provider maintains publishable and commercial model services.
+A simple way to distinguish the roles in this guide is: the Operator prepares usable resources and templates, and the End User creates runnable model instances and can publish them as private models for the current tenant. The Provider is outside this On-Prem private-model workflow.
 
 ## Recommended Resource Plan
 
@@ -72,7 +72,7 @@ Do not create only one eight-card spec during a POC. That setup can prove that o
 
 ### Tenant Credit Design
 
-Tenant credits define the amount of resource that an tenant can consume from the resource pool. Sufficient credits do not guarantee that an instance can be created. The selected spec, cluster capacity, template constraints, and scheduling policy must also be satisfied.
+Tenant credits define the amount of resource that a tenant can consume from the resource pool. Sufficient credits do not guarantee that an instance can be created. The selected spec, cluster capacity, template constraints, and scheduling policy must also be satisfied.
 
 | Example Tenant | Limit | Validation Goal |
 | --- | ---: | --- |
@@ -134,7 +134,7 @@ The Associated Specifications section above confirms which specs the cluster can
 
 ### 3. Operator Configures Usage Limits
 
-Tenant credits control the CPU, GPU/NPU, memory, and other resources available to an tenant. A resource spec controls the resource used by one instance; tenant credits control the tenant's aggregate resource use. Both conditions must be satisfied.
+Tenant credits control the CPU, GPU/NPU, memory, and other resources available to a tenant. A resource spec controls the resource used by one instance; tenant credits control the tenant's aggregate resource use. Both conditions must be satisfied.
 
 ![Usage limits](./images/single-node-multi-card/tenant-credits-list.png)
 

@@ -20,13 +20,15 @@
 
 2. 进入[月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)，选择同一租户和账期，核对资源类型、规格和汇总用量。
 
-![按租户和账期查看月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/images/monthly-usage-list.png)
+![按租户和账期查看月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/images/manual-monthly-usage.png)
 
 3. 进入[计量明细](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)，按实例、作业和时间范围追溯汇总值。
 
-![将汇总用量追溯到计量明细](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/images/metering-details-list.png)
+![将汇总用量追溯到计量明细](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/images/manual-metering-details.png)
 
 4. 对照设备、节点和作业监控中的运行时间及规格，确认停止时间、卡数和计量单位一致。
+
+5. 需要离线对账时，在相同筛选范围内使用 **Detail Download** 下载明细。导出文件应在受控范围内保存，并记录本次选择的租户、地域或可用区、资源类型和时间范围。
 
 ## 完成检查
 
@@ -46,3 +48,4 @@
 | 月度用量与明细合计不一致 | 账期边界、时区、聚合延迟和计量单位 |
 | 实例停止后仍有用量 | 作业结束时间、残留实例和状态同步 |
 | 额度充足但任务不能创建 | 租户配额、规格容量、模板和集群空闲资源 |
+| 下载明细与页面数据不一致 | 重新应用相同的租户、地域/可用区、资源类型、账期、时区和分页条件后再比较 |

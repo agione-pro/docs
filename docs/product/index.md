@@ -1,4 +1,4 @@
-﻿# Product Overview
+# Product Overview
 
 :::: info Document Information
 Version: v1.0
@@ -36,7 +36,7 @@ These modules can be used independently for a focused task or together as an end
 | Role | Main Responsibility | Typical Starting Point |
 | --- | --- | --- |
 | **Operator (`operator`)** | Prepare resources and templates, configure governance rules, maintain quotas and monitoring, and review published content | [Role Comparison](./role-comparison) |
-| **Model Provider (`provider`)** | Publish single or aggregate models, maintain versions and pricing, submit reviews, and view customer calls and revenue | [Model Services Getting Started](../usermanual/model-services/getting-started/) |
+| **Model Provider (`provider`)** | Publish single or aggregate models, maintain versions and pricing, submit reviews, and view customer calls and revenue | [My Models](../usermanual/model-services/user/studio/my-models/) |
 | **End User (`enduser`)** | Discover and experience models, obtain access, call APIs, deploy available services, and view personal usage | [User Manual](../usermanual/) |
 
 The menus visible to an account depend on its role, tenant, authorization scope, and available resources.
@@ -50,6 +50,7 @@ The menus visible to an account depend on its role, tenant, authorization scope,
 | What does a page or field mean, and how do I operate it? | [User Manual](../usermanual/) |
 | How do I prepare or install the platform? | [Installation Guide](../installation/) and [Network Planning](./technical/network) |
 | Is a chip, cloud platform, or model capability supported? | [Supported Accelerators](./limitations/chips) and [Support Matrix](./limitations/support-matrix) |
+| What are the platform security, data protection, and isolation controls? | [Security Overview](./technical/security-overview) |
 | How should I collect requirements before a PoC or delivery? | [Quick Requirement Survey](./investigation/quick-requirement-investigation) and [Quick Environment Survey](./investigation/quick-env-investigation) |
 
 ## How to Read Support Status

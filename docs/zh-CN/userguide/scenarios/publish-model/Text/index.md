@@ -36,7 +36,7 @@ next: true
 5. 配置 Token 计费、阶梯价格、缓存价格和免费额度。
 6. 配置 RPM 和 TPM 限流，再保存或提交审核。
 
-详细字段和按钮请查看[我的模型](../../../../usermanual/model-services/user/studio/my-models/)和[从发布到调用模型](../../../../usermanual/model-services/end-to-end/publish-and-call-model/)。
+详细字段和按钮请查看[我的模型](../../../../usermanual/model-services/user/studio/my-models/)和[我的调用概览](../../../../usermanual/model-services/user/my-calls/overview/)。
 
 ## 完成检查
 

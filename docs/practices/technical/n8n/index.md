@@ -84,7 +84,7 @@ Return to your n8n personal page, switch to the "**Credentials**" tab, and click
 Search for the application or service you want to connect to. Here, search for and select **OpenAi**, then click "**Continue**".
 ![](./n8n-pics/file-20251223144641059.png)
 Enter the obtained **API Key** and **URL** into the panel and click "**Save**". The page will indicate that the connection test was successful, meaning the Key has been activated. Click the "**×**" button in the upper right corner of the panel to return to your personal page. After the credentials are successfully saved, we need to select and use the model.
-**Base URL**: `https://tai.agione.co/hyperone/xapi/api`
+**Base URL**: `https://agione.pro/hyperone/xapi/api`
 ![](./n8n-pics/file-20251223144810963.png)
 
 #### Adding a Large Language Model

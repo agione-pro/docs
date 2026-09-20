@@ -23,18 +23,18 @@
 
 1. 进入[模型配置](../../../../usermanual/ai-infra-on-prem/operator/templates/models/)，确认模型名称、类型、存储位置和状态可用。
 
-![确认模型配置可供模板选择](../../../../usermanual/ai-infra-on-prem/operator/templates/models/images/models-list.png)
+![确认模型配置可供模板选择](../../../../usermanual/ai-infra-on-prem/operator/templates/models/images/manual-models.png)
 
 2. 进入[推理框架](../../../../usermanual/ai-infra-on-prem/operator/templates/frames/)，确认框架版本、运行镜像和目标 NPU 兼容。
 3. 进入[显存测算](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/)，根据参数规模、精度和并行方式确认单卡及多卡显存需求。
 
-![按模型精度和规模核对显存测算](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/images/vram-config-list.png)
+![按模型精度和规模核对显存测算](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/images/manual-vram-config.png)
 
 4. 点击 **新增**，填写模板名称和用途，选择已维护的模型配置和推理框架。
 5. 选择包含目标 NPU 型号、卡数和显存容量的资源规格。
-6. 配置启动命令、环境变量、端口、健康检查和模型路径。
+6. 配置启动命令、环境变量、端口、健康检查、模型路径，以及页面支持的 Extra parameters。
 7. 多卡模板中设置与 2 卡或 4 卡一致的并行参数。
-8. 保存模板，并使用测试部署验证镜像、驱动、显存和启动参数。
+8. 保存模板；只有在模型、框架、加速卡关联、显存参数和启动配置验证通过后，才将模板设置为 **Available**，并通过测试部署验证镜像、驱动、显存和启动参数。
 
 ![推理模板列表](./images/inference-templates-list.png)
 
@@ -60,6 +60,8 @@
 | --- | --- |
 | 选不到框架或模型 | 状态、地域、兼容性和模板前置项 |
 | 4 卡实例无法启动 | 资源规格、分布式参数、空闲卡数、端口和存储 |
+| 模板一直不可用 | 模型或框架状态、加速卡关联、显存系数、必填项，以及是否已显式设置为 `Available` |
+| Extra parameters 导致启动失败 | 参数名称、值格式、框架支持情况，以及该参数是否需要专业服务校验 |
 
 ## 操作手册
 

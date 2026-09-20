@@ -2,20 +2,20 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-10
+Updated: 2026-08-27
 :::
 
 ## Feature Overview
 
-`Settlement List` is used to search, generate, and track tenant settlement statements. Billing operators can filter settlement statements by billing cycle, status, and tenant, open details to verify amount, status, and posting confirmation, and start the settlement generation flow from this page.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | Platform Operator, Billing Operator |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Finance Operations > Settlement List |
 | Page route | `/billing/admin/provider-settlements` |
 | Managed objects | Settlement statements, tenants, billing cycles, settlement status, payable amount, and posting confirmation |
-| Typical use | Search settlement statements, view details, track settlement status, and generate settlement statements |
+
+`Settlement List` is used to search, generate, and track tenant settlement statements. Billing operators can filter settlement statements by billing cycle, status, and tenant, open details to verify amount, status, and posting confirmation, and start the settlement generation flow from this page.
+
 
 #### Beginner Explanation
 
@@ -34,13 +34,6 @@ Settlement List is not a complete finance backend. It provides entries for viewi
 | Settlement status | The processing stage of the settlement statement. | Decide the next action based on status. |
 | Generation Checks | Pre-generation checks before creating settlement statements. | Do not submit repeatedly when checks fail. |
 | Settlement Preview | Preview of settlement scope and amount before submission. | Verify tenant and billing cycle again before submitting. |
-
-## Where to Look First
-
-1. Open [Monthly Overview](../monthly-overview/) to confirm the overall billing-cycle settlement status.
-2. Open `Finance Operations > Settlement List` to search for a specific tenant's settlement statement.
-3. Open [Financial Accounts](../financial-accounts/) to reconcile account flows.
-4. Open [Reconciliation Center](../reconciliation-center/) to investigate settlement exceptions.
 
 ## Prerequisites
 
@@ -71,7 +64,17 @@ The following screenshot shows settlement details.
 
 ![Settlement Details](./images/detail.png)
 
-## Status Quick Reference
+#### Where to Look First
+
+| Your Goal | Start Here | Next Step |
+| --- | --- | --- |
+| Review overall billing-period settlement | [Monthly Overview](../monthly-overview/) | Confirm whether billing-period statistics are complete. |
+| Find a tenant settlement statement | Settlement List | Search by billing period, status, and tenant. |
+| Check fund transactions | [Financial Accounts](../financial-accounts/) | Compare account transactions and posting status. |
+| Investigate settlement exceptions | [Reconciliation Center](../reconciliation-center/) | Review unmatched transfers or missing revenue details. |
+| Review document details | Settlement details | Check amount, status, and posting confirmation. |
+
+#### Status Quick Reference
 
 | Status | Meaning | Next action |
 | --- | --- | --- |
@@ -80,17 +83,40 @@ The following screenshot shows settlement details.
 | Settled | The settlement flow has completed. | Archive or continue downstream reconciliation. |
 | Failed | Generation, posting, or settlement is abnormal. | Open details and investigate in Reconciliation Center. |
 
+#### Completion Checks
+
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page access | The `Finance Operations > Settlement List` page opens and data loads normally. | Check role permissions and refresh the page. |
+| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
+| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
+| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+
 ## Main Operations
+
+### View Settlement Statements
+
+1. Go to `Billing > Finance Operations > Settlement List`.
+2. Filter by billing period, provider, statement number, status, or generation time.
+3. Check the target billing period, amount direction, status, and update time.
+4. If no record is returned, reset filters and check the billing period. Redact settlement data before sharing.
 
 Use the following operations to search, view, and generate settlement statements. Complete view-only checks before opening dialogs that may create, save, submit, confirm, or delete data.
 
+![Settlement List - View Settlement Statements](./images/manual-billing-settlement-list-page.png)
+
+The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+
 ### View Settlement Statement Details
 
-1. Go to `Billing > Finance Operations > Settlement List`.
-2. Find the target settlement statement in the table.
-3. Click `Details` in the row.
-4. Verify settlement statement, tenant, billing cycle, status, amount, and posting confirmation.
-5. If the status or amount is abnormal, return to the list, record the billing cycle, tenant, and settlement statement number in a desensitized form, and investigate in Reconciliation Center.
+1. Find the target settlement statement in the table.
+2. Click **"Details"** in the row.
+3. Verify the settlement statement, tenant, billing period, status, amount, and posting confirmation.
+4. If the status or amount is abnormal, return to the list, record the billing period, tenant, and sanitized settlement statement number, and investigate in Reconciliation Center.
+
+The following screenshot shows settlement details. Use it to verify the billing period, tenant, status, amount, and posting information.
+
+![Settlement details](./images/detail.png)
 
 ### Generate Settlement
 
@@ -106,34 +132,34 @@ Before generating a settlement statement, confirm that:
 
 #### Steps
 
-1. Go to `Billing > Finance Operations > Settlement List`.
-2. Click `Generate Settlement`.
-3. Select the target `Billing Cycle` and `Tenant`.
+6. Go to `Billing > Finance Operations > Settlement List`.
+7. Click **"Generate Settlement"**.
+8. Select the target `Billing Cycle` and `Tenant`.
 
    The following screenshot shows selecting billing cycle and tenant. Use it to specify the settlement scope.
 
    ![Select billing cycle and tenant](./images/select-billing-cycle-and-organization.png)
 
-4. Review `Generation Checks` and confirm that no blocking exception exists.
+9. Review `Generation Checks` and confirm that no blocking exception exists.
 
    The following screenshot shows generation checks before settlement submission.
 
    ![Generation checks](./images/generation-checks.png)
 
-5. Review `Settlement Preview`, including tenant, billing cycle, payable amount, and settlement status.
+10. Review `Settlement Preview`, including tenant, billing cycle, payable amount, and settlement status.
 
    The following screenshot shows settlement preview before generation.
 
    ![Settlement preview](./images/settlement-preview.png)
 
-6. Enter only desensitized processing notes in `Remark`. Do not write real bank accounts, contract numbers, customer-sensitive information, or internal handling comments.
+11. Enter only desensitized processing notes in `Remark`. Do not write real bank accounts, contract numbers, customer-sensitive information, or internal handling comments.
 
    The following screenshot shows the remark step.
 
    ![Enter remarks](./images/remark.png)
 
-7. After submission, return to the settlement list and search by billing cycle and tenant.
-8. Click `Details` to confirm settlement status, amount, and posting confirmation information.
+12. After submission, return to the settlement list and search by billing cycle and tenant.
+13. Click **"Details"** to confirm settlement status, amount, and posting confirmation information.
 
 #### Risk Notes
 
@@ -143,7 +169,7 @@ Before generating a settlement statement, confirm that:
 - `Submit` is a high-risk final action.
 - Do not record real bank accounts, contract numbers, customer names, settlement statement numbers, internal transaction numbers, approval comments, accounts, tokens, or keys.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -174,69 +200,101 @@ Before generating a settlement statement, confirm that:
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Finance Operations > Settlement List` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Statement visible | The target settlement statement can be found by billing period, status, or tenant. | Open statement details. |
+| Amount verified | The payable tenant amount matches Monthly Overview. | Open Financial Accounts and check transactions. |
+| Status traceable | The status is Generated, Posting Confirmation, Settled, or Failed. | Continue according to the current status. |
+| Details available | Details show the amount, tenant, and posting information. | Continue reconciliation or archive the record. |
+| Exception path available | Failed or long-running statuses have a clear investigation path. | Open Reconciliation Center. |
 | Generated record | After generation, the target statement can be searched by billing cycle and tenant. | Check Generation Checks and failure reason. |
-
-## Completion Checks
-
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page access | The `Finance Operations > Settlement List` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
 
 ## FAQ
 
-#### Target billing data is not visible in Settlement List
+#### The Target Settlement Statement Cannot Be Found
 
-The expected account, customer, order, bill, settlement, adjustment, or License record does not appear on this page.
+**Symptom:** The list does not show the target statement after a search by billing period or tenant.
 
-**How to check:**
+**Possible causes:** The billing period is incorrect, the status filter is too narrow, or no statement has been generated for the tenant.
 
-1. Confirm the current tenant, tenant, customer, account, and role scope.
-2. Check page filters such as billing cycle, time range, customer, account type, status, and keyword.
-3. Verify that upstream actions, such as top-up, reconciliation, settlement, adjustment, or License activation, have completed successfully.
-4. If the record was just created or updated, refresh the list and compare it with related transaction, bill, settlement, or operation records.
+**Resolution:**
 
-#### Amount, status, or billing cycle does not match in Settlement List
+1. Click **"Reset"** to clear the filters.
+2. Select the billing period again and search.
+3. Return to Monthly Overview and confirm that statistics are complete for the billing period.
+4. Generate a statement only after the pre-operation checks confirm that one is required.
 
-The displayed balance, consumption, settlement status, monthly bill, or License status differs from the expected result.
+#### Settlement Status Has Not Changed for a Long Time
 
-**How to check:**
+**Symptom:** The statement remains Processing or Posting Confirmation for a long time.
 
-1. Confirm settlement period, tenant, settlement status, and generated amount before comparing account balance.
-2. Check whether pending top-up orders, adjustments, refunds, settlement reviews, or metering synchronization are still in progress.
-3. Compare the summary number with the detail list and operation records on the related billing pages.
-4. For financial-impacting differences, pause confirmation actions and escalate with desensitized record IDs, time range, customer scope, and screenshots without credentials.
+**Possible causes:** Posting confirmation is incomplete, downstream account processing is delayed, or an exception requires operator handling.
 
-#### The Generate Settlement button is unavailable
+**Resolution:**
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+1. Open settlement details and review status information.
+2. Open Financial Accounts and check account transactions and posting status.
+3. Open Reconciliation Center and check for unmatched transfers or missing revenue details.
 
-#### Settlement amount is inconsistent with expectations
+#### Generate Settlement Is Unavailable
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+**Symptom:** The button cannot be selected or does not open the generation flow.
 
-#### Settlement statement generation fails
+**Possible causes:** The current account lacks permission, billing-period statistics are incomplete, or current page state does not meet generation conditions.
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+**Resolution:**
 
-#### Can a settlement statement be generated repeatedly?
+1. Confirm that the current account has finance-operations generation permission.
+2. Return to Monthly Overview and check billing-period statistics.
+3. Clear the filters, refresh, and open the generation flow again.
 
-Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
+#### The Settlement Amount Is Unexpected
 
-## Next Steps
+**Symptom:** The payable tenant amount differs from the expected amount or Monthly Overview.
 
-1. Review related billing records, transactions, settlement statements, and account balance changes.
-2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
-3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
+**Possible causes:** The billing period, tenant, or settlement definition differs; statistics are incomplete; or unmatched transfers, missing revenue details, or account exceptions exist.
+
+**Resolution:**
+
+1. Confirm that the statement and Monthly Overview use the same billing period and tenant.
+2. Open Financial Accounts and check account transactions.
+3. Open Reconciliation Center and review exception items.
+4. Do not archive or deliver the statement to Finance until the difference is resolved.
+
+#### Settlement Generation Fails
+
+**Symptom:** Submission fails or the statement status is Failed.
+
+**Possible causes:** Generation checks found a blocking exception, billing-period or tenant data is incomplete, or a statement already exists for the same tenant and billing period.
+
+**Resolution:**
+
+1. Review generation checks and the failure message.
+2. Open Reconciliation Center and investigate unmatched transfers, missing revenue details, or other exceptions.
+3. Confirm that no duplicate statement exists before starting generation again.
+4. Do not select the generation action repeatedly.
+
+#### Can a Settlement Statement Be Generated Repeatedly?
+
+**Symptom:** A statement already exists for the tenant and billing period, and the operator is unsure whether another can be generated.
+
+**Possible causes:** Generation rules are unclear, the existing statement has an abnormal status or amount, or pre-generation checks are incomplete.
+
+**Resolution:**
+
+1. Search for the existing statement by billing period and tenant.
+2. Open details and confirm its status and amount.
+3. If correction is required, check Monthly Overview, Financial Accounts, and Reconciliation Center first.
+4. Do not generate another statement for the same tenant and billing period until the rule and required action are confirmed.
 
 ## Notes
 
 - Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
 - Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
 - Do not record real bank accounts, contract numbers, customer names, settlement statement numbers, internal transaction numbers, approval comments, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.
+
+## Next Steps
+
+1. Open [Monthly Overview](../monthly-overview/) to review overall billing-period status.
+2. Open [Financial Accounts](../financial-accounts/) to check fund transactions.
+3. Open [Reconciliation Center](../reconciliation-center/) when a financial exception exists.
+4. Archive settled statements through the internal process or deliver them to Finance for confirmation.
+5. Investigate failed, long-running, or amount-mismatch statements before any follow-up action.

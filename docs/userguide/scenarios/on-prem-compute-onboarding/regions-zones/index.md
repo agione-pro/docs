@@ -24,7 +24,7 @@ Create the region and availability zone for a local cluster so that clusters, sp
 
 1. Open Regions & Zones and review existing regions, availability zones, and states before creating records.
 
-![Review regions and availability zones](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/regions-zones-list.png)
+![Review regions and availability zones](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/manual-regions-zones.png)
 
 2. Add a region, enter its name, unique identifier, and localized display names, and make it available for downstream resource onboarding.
 
@@ -35,6 +35,10 @@ Create the region and availability zone for a local cluster so that clusters, sp
 ![Create an availability zone](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/add-availability-zone.png)
 
 4. Return to the list, confirm that both records are visible and available, and record the availability zone to select during cluster registration.
+
+5. To temporarily stop new use of a region, open its `...` menu and select **Disable**. Filter for `Disabled` records when the region is not shown in the normal list.
+6. To restore use, open the disabled region's `...` menu and select **Enable**. Repeat the same operation in the availability-zone section when an individual zone must be restored.
+7. Refresh the list and confirm the changed state before continuing to cluster registration or workload scheduling. Existing resources are not deleted by a disable operation, but new registration, creation, or scheduling may be restricted.
 
 ## Completion Checklist
 
@@ -53,6 +57,8 @@ Create the region and availability zone for a local cluster so that clusters, sp
 | A region or zone cannot be created | Account permissions, required fields, unique identifiers, and duplicate records |
 | The zone is unavailable during cluster registration | Region and zone state, assignment, and current tenant scope |
 | Resources appear in the wrong location | Region choices for the cluster, specifications, images, and storage |
+| The Enable action is not visible | Filter by `Disabled`, verify the selected object state, confirm Operator permission and the parent region, and refresh the page |
+| A disabled region or zone cannot be enabled | Check parent-region state, downstream cluster or workload dependencies, and whether the account can operate on that resource scope |
 
 ## User Manual
 

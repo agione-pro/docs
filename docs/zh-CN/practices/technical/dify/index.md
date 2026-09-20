@@ -31,7 +31,7 @@ Dify的核心优势在于其工程化设计，内置了对数百个模型的支�
 - 模型名称：模型的名称
 - 模型类型：模型的子类型，例如：LLM
 	![](./dify-pics/file-20251217103109890.png)
-- API endpoint URL：``https://zh.agione.co/hyperone/xapi/api``
+- API endpoint URL：``https://agione.cc/hyperone/xapi/api``
 - API Key：在 `认证 TOKEN` 中获取 API 密钥
 - API endpoint：在请求参数处获取`Model Id`
 	![](./dify-pics/file-20251217103147674.png)

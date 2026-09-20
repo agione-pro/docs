@@ -1,34 +1,33 @@
 # File Storage
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
-
 ## Feature Overview
-
-`File Storage` is used to view and use shared file storage capability opened by the operator in the target region. After the capability is opened, the page displays available file systems, shared directories, capacity, status, and mount entrypoints. When the capability is not opened, users need to confirm region, permissions, quotas, and operator component access status.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Storage Services > File Storage |
-| Page route | `/powerone/storage-service/file` |
-| Managed objects | Shared file systems, directories, capacity, mount relationships, and access policies |
-| Typical use | Provide shared directories for multiple instances or jobs, suitable for datasets, model repositories, and output directories |
+| Applicable Role | Model Provider |
+| Navigation Path | AI Infra(On-Prem) > Storage > File Storage |
+| Page Route | `/powerone/storage-service/file` |
+| Managed Object | Configuration, status, and relationships on File Storage |
 
 #### Beginner Explanation
 
 File storage is like a team shared folder, suitable for multiple instances or jobs to read the same data, model files, or output directories. It emphasizes directory and file semantics, which are different from the independent disk semantics of block storage.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Shared Directory | File system directory accessible by multiple instances or jobs. |
 | NFS | Common shared file system protocol. |
 | Mount Path | Path used to access the shared directory inside the container. |
-| Access Policy | Read-only or read/write permission control. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Shared file systems, directories, capacity, mount relationships, and access policies, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on File Storage, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,11 +38,27 @@ File storage is like a team shared folder, suitable for multiple instances or jo
 
 ## Page Description
 
-The page is used to display file storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
+Use this page to manage shared file systems, directories, capacity, mount relationships, and access policies.
 
 ![File Storage](./images/file-storage-list.png)
 
+The page is used to display file storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
+
 ## Main Operations
+
+### View Storage Resources
+
+1. Open the corresponding storage-service page and filter by name, project, status, capacity, or update time.
+2. Open details and check capacity, used space, access method, mount or connection status, and creation time.
+3. If no record is returned, reset filters and check project and region. Do not share internal addresses or access credentials.
+4. For capacity or status anomalies, inspect quota, events, and associated instances before creating another resource.
+
+### Manage Capacity, Mounts, or Access
+
+1. Open the target action menu and identify the impact of expansion, mount, unmount, permission, or deletion entries.
+2. Record current capacity, associated instances, and data-protection status before changes.
+3. Before expansion, unmount, or deletion, confirm tasks and backups. Before the final action, confirm the resource, data, and impact, and execute it only after approval.
+4. After an approved change, check capacity, connection status, and events. If abnormal, stop subsequent actions and follow the recovery process.
 
 ### Create Shared Directory
 
@@ -64,7 +79,7 @@ The page is used to display file storage capability in the selected region. When
 4. After submission, return to the list and view status.
 5. Select this shared directory in instance creation or instance details and set the in-container path.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -95,113 +110,138 @@ The page is used to display file storage capability in the selected region. When
 2. Run `df -h` inside the instance or perform application-side capacity checks.
 3. If capacity is insufficient, expand according to page capabilities or contact the operator to adjust quota.
 
-## Alternative Paths
-
-- To save model files, datasets, or artifact packages, consider [Object Storage](../object-storage/) first.
-- When shared directory semantics are required, use file storage or cluster shared storage configured by the operator.
-- When independent volume capability is required, use block storage. If the page is not opened, contact the operator to confirm whether the target region has underlying storage components.
-
-## Prepare Before Contacting the Operator
-
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
-
-| Information | Example | Purpose |
-| --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
-
-Alternative troubleshooting paths:
-
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
-
 ## Pitfalls
 
 - Files in shared directories are visible to multiple tasks. Confirm naming and overwrite risks before writing.
 - NFS or shared storage paths must be sanitized before screenshots.
 - High-concurrency small-file read/write may affect performance. Split directories or use object storage if necessary.
 
+### Alternative Paths
+
+- To save model files, datasets, or artifact packages, consider [Object Storage](../object-storage/) first.
+- When shared directory semantics are required, use file storage or cluster shared storage configured by the operator.
+- When independent volume capability is required, use block storage. If the page is not opened, contact the operator to confirm whether the target region has underlying storage components.
+
+### Troubleshooting Information to Prepare
+
+When file storage is abnormal, prepare the following information to distinguish shared-path, permission, client-node, and multi-node access issues:
+
+| Information | Example | Purpose |
+| --- | --- | --- |
+| File-system ID | `fs-20260713001` | Locates the target file storage. |
+| Mount path | `/mnt/share` | Determines whether the container path conflicts with another mount. |
+| Permission | `Read-write / Read-only` | Determines whether a write failure is permission-related. |
+| Client node | `node-gpu-01` | Identifies the node on which mounting failed. |
+| Shared directory | `/exports/models` | Verifies the NFS export path and tenant directory. |
+
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The file storage page opens and shows shared directory records or an empty-state message. | Check account permission, region scope, and file storage component availability. |
-| Create-directory entry is visible | Users with permission can see the create shared directory entry and open the form. | Confirm whether file storage is opened to the current tenant. |
-| Mount information is clear | File system ID, mount path, permission, client node, and status are visible. | Verify NFS address, exported directory, read/write permission, and client network. |
-| Multi-node access can be verified | The shared directory can be read or written as expected from target instances or nodes. | Check export policy, permission scope, mount parameters, and node connectivity. |
-
-
+| Page entry | File Storage opens with the target operation entry | Check Operator permission and whether the menu is available |
+| Object record | Configuration, status, and relationships on File Storage is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
 
-#### Page Has No File Storage Data
+#### Target Is Missing from File Storage
 
 **Symptom:**
 
-No available file storage resources are visible after entering the page, or the page indicates that the capability is not opened to the selected region.
+The page opens, but the expected Configuration, status, and relationships on File Storage is missing.
 
 **Possible Causes:**
 
-- The operator has not connected file storage components in the target region.
-- The current account has no view or use permission.
-- Tenant quota or capacity is insufficient.
-- The filtered region is inconsistent with the instance region.
+- Filters remain active.
+- the object belongs to another scope.
+- a prerequisite is incomplete.
 
 **Solution:**
 
-1. Confirm the region in the upper-right corner.
-2. Contact the operator to confirm file storage component, region binding, and tenant permissions.
-3. Check resource quotas and capacity.
-4. In the short term, object storage or temporary directories inside instances can be used, but temporary directories are not suitable for saving important results.
+1. Reset filters
+2. verify region or tenant ownership
+3. confirm prerequisite state.
 
-#### Path Is Unavailable After Mounting
+#### The Operation Entry on File Storage Is Unavailable
 
 **Symptom:**
 
-After the instance starts, the file storage mount path cannot be accessed inside the container.
+The create, register, or maintain entry is hidden or disabled.
 
 **Possible Causes:**
 
-- Mount path is incorrect or conflicts with the application directory.
-- The cluster where the instance runs cannot access underlying storage.
-- Permissions, access policy, or capacity configuration is incorrect.
+- Role permission is insufficient.
+- the page is read-only.
+- dependencies are not ready.
 
 **Solution:**
 
-1. View instance events and logs.
-2. Confirm in-container path, access policy, and instance region.
-3. Contact the operator to check underlying storage components and cluster mount capability.
+1. Check Operator permission
+2. read the page message
+3. complete dependency configuration first.
 
-#### Delete or Unmount Fails
+#### A Required Field on File Storage Has No Options
 
 **Symptom:**
 
-Attempts to delete or unmount a file storage resource fail.
+The form opens, but a selection list is empty.
 
 **Possible Causes:**
 
-- Running instances are still using this resource.
-- The resource is abnormal, expanding, or recycling.
-- Current account permissions are insufficient.
+- Candidates are disabled.
+- ownership differs.
+- the current account cannot see them.
 
 **Solution:**
 
-1. Stop or migrate dependent instances first.
-2. Refresh the page and confirm resource status.
-3. Contact the operator to check permissions and underlying storage reclaim status.
+1. Check candidate state
+2. verify ownership
+3. confirm visibility and refresh the form.
+
+#### File Storage Has an Abnormal State After the Operation
+
+**Symptom:**
+
+A record exists after submission, but its state is unexpected.
+
+**Possible Causes:**
+
+- Connectivity or validation failed.
+- a dependency is abnormal.
+- processing is incomplete.
+
+**Solution:**
+
+1. Check feedback and update time
+2. inspect related objects
+3. troubleshoot the processing stage.
+
+#### A Downstream Page Cannot Use File Storage
+
+**Symptom:**
+
+The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on File Storage.
+
+**Possible Causes:**
+
+- Visibility differs.
+- the object is disabled.
+- downstream cache is stale.
+
+**Solution:**
+
+1. Check enabled state and ownership
+2. verify role visibility
+3. refresh and select again.
+
+## Notes
+
+- Before deleting or unmounting, confirm that no running instances depend on it.
+- Mount paths must not overwrite system directories, application directories, or key directories inside the image.
 
 ## Next Steps
 
 1. Verify the mount path in runtime instances or Online IDE.
 2. Write input data and output results to persistent paths.
 3. Periodically clean up unused data to avoid exhausting quotas.
-
-## Notes
-
-- Before deleting or unmounting, confirm that no running instances depend on it.
-- Mount paths must not overwrite system directories, application directories, or key directories inside the image.

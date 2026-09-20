@@ -33,7 +33,7 @@ The core parameters are as follows:
 - Model Name: The name of the model
 - Model Type: The subtype of the model, for example: LLM
   ![](./dify-pics/file-20251219100905965.png)
-- API endpoint URL: `https://tai.agione.co/hyperone/xapi/api`
+- API endpoint URL: `https://agione.pro/hyperone/xapi/api`
 - API Key: Obtain the API key from the `Certified TOKEN`
 - API endpoint: Obtain the `Model Id` from the Request Parameters
   ![](./dify-pics/file-20251219101102470.png)

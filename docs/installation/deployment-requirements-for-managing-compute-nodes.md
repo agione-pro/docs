@@ -109,8 +109,8 @@ The accelerator models that have been validated against the AGIOne platform span
 
 | Vendor | Architecture / Series | Models |
 | --- | --- | --- |
-| Enflame | Enflame | 106 (S60) |
-| Biren | Biren | S60 |
+| Enflame | Enflame | S60 |
+| Biren | Biren | 106 |
 
 ### 2.2 Compatibility Checkpoints
 

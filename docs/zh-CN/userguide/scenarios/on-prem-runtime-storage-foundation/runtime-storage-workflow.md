@@ -24,13 +24,13 @@ next: true
 
 进入[镜像组件](../../../usermanual/ai-infra-on-prem/operator/resource-pools/image-services/)，填写仓库 Endpoint、认证信息和关联地域。注册后检查组件和同步状态；只在浏览器能打开仓库不代表集群节点能够拉取镜像。
 
-![检查镜像组件及其同步状态](../../../usermanual/ai-infra-on-prem/operator/resource-pools/image-services/images/image-services-list.png)
+![检查镜像组件及其同步状态](../../../usermanual/ai-infra-on-prem/operator/resource-pools/image-services/images/manual-image-services.png)
 
 ### 2. 同步或上传运行镜像
 
 进入[镜像管理](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/)，同步仓库或上传镜像条目。使用包含框架、版本、硬件环境和用途的稳定标签，生产环境不要只使用 `latest`。
 
-![在镜像管理中确认运行镜像可见](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/images/images-list.png)
+![在镜像管理中确认运行镜像可见](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/images/manual-images.png)
 
 ### 3. 按工作负载选择存储组件
 
@@ -45,6 +45,8 @@ next: true
 ### 4. 绑定地域并运行联合验证
 
 确认镜像和存储组件已经关联目标地域或集群。创建一个最小测试工作负载，验证镜像拉取、启动、卷挂载或对象访问；结束后检查数据保留和资源回收是否符合策略。
+
+删除或替换镜像组件、存储组件前，先检查其关联的地域、集群、模板和作业依赖，并先完成迁移或解除关联；否则后续镜像拉取、挂载或对象访问可能失败。
 
 ## 完成检查
 
@@ -66,3 +68,4 @@ next: true
 | 平台有镜像但用户侧不可选 | 镜像同步、地域绑定、租户权限和标签状态 |
 | 卷创建或挂载失败 | CSI/存储驱动、访问模式、容量、网络和认证信息 |
 | 对象或共享目录不可访问 | Endpoint、路径/Bucket、权限策略和租户隔离 |
+| 组件无法安全删除或替换 | 地域和集群关联、模板或作业引用、活动挂载以及组件当前健康状态 |

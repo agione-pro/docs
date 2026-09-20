@@ -1,34 +1,33 @@
-# Statistics Overview
-
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
+# Overview
 
 ## Feature Overview
 
-`Statistics Overview` is used to view resource pool monitoring overview, instance runtime status, and key resource trends from a End User perspective. When the operator has opened user-side monitoring and collection data is normal, the page displays corresponding charts, lists, or statistics. If the capability is not opened to the selected region, users should troubleshoot with instance status, logs, and events, and contact the operator to confirm monitoring opening conditions.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | AI Infrastructure > On-Prem > Monitoring > Overview |
-| Page route | `/powerone/user-monitor/overview` |
-| Managed objects | Resource pool monitoring overview, instance runtime status, and key resource trends |
-| Typical use | Quickly determine whether the selected region has visible monitoring data and enter drill-down pages |
+| Applicable Role | Model Provider and Model Consumer |
+| Navigation Path | AI Infra(On-Prem) > Monitoring > Overview |
+| Page Route | `/powerone/user-monitor/overview` |
+| Managed Object | Configuration, status, and relationships on Overview |
 
 #### Beginner Explanation
 
-Statistics overview is like a resource weather map for End Users. It shows cluster count, node status, exception count, and update time in one screen, helping decide whether to drill down further.
+Statistics overview is like a resource weather map for Model Consumers. It shows cluster count, node status, exception count, and update time in one screen, helping decide whether to drill down further.
 
-#### Terms Quick Reference
+#### Terms
 
 | Term | Description |
 | --- | --- |
 | Time Range | Limits the query window for overview cards, trends, and exception statistics. |
 | Region | Resource scope visible to the current user. Overview data changes after switching. |
 | Exception Count | Summary of failed jobs, high-watermark resources, or offline objects within the current time range. |
-| Update Time | Time point used to determine whether monitoring data is delayed. |
+
+#### Recommended Operation Order
+
+Confirm prerequisites for Resource pool monitoring overview, instance runtime status, and key resource trends, follow Main Operations, run Result Validation, and continue to the next page.
+
+#### First-Time User Notes
+
+Confirm that the task involves Configuration, status, and relationships on Overview, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -39,9 +38,11 @@ Statistics overview is like a resource weather map for End Users. It shows clust
 
 ## Page Description
 
-The page displays statistics overview capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
+Use this page to review resource-pool monitoring, instance state, and key resource trends.
 
-![Statistics Overview](./images/monitoring-overview.png)
+![Overview](./images/monitoring-overview.png)
+
+The page displays statistics overview capability for the selected region. When the capability is opened, users can view metric trends, list data, or key status. When the capability is not opened, the page shows a capability prompt.
 
 #### Expected Page Elements When Capability Is Open
 
@@ -53,6 +54,20 @@ The page displays statistics overview capability for the selected region. When t
 | Update Time | `2026-07-03 10:00` | Determines whether data has collection delay. |
 
 ## Main Operations
+
+### View Monitored Objects
+
+1. Open the monitoring page and select the time range, region, and resource pool.
+2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
+3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
+4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
+
+### Drill Down into Abnormal Metrics
+
+1. Click an abnormal metric, trend point, or **"Details"** for the target object.
+2. Keep the same time range and inspect utilization, status, alerts, and related objects.
+3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
+4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
 
 ### View Statistics Overview
 
@@ -70,7 +85,7 @@ The page displays statistics overview capability for the selected region. When t
 - Whether resource trends are consistent with recent instance creation, training tasks, or deployment changes.
 - Whether update time is later than the latest operation.
 
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -87,77 +102,127 @@ The page displays statistics overview capability for the selected region. When t
 - When exception counts differ from detail pages, fix region and time range first.
 - If the page only shows a capability prompt, prioritize instance logs, events, and usage, then contact the operator to confirm opening conditions.
 
-## Result Validation
+### Troubleshooting Information to Prepare
 
-1. Overview cards display time range, region, cluster count, and exception count.
-2. After switching time range, trend charts or exception counts change accordingly.
-3. After drilling down to cluster, node, device, or job pages, the object scope is consistent with the overview.
-
-## Prepare Before Contacting the Operator
-
-When page capability is not opened, data is empty, or mounting fails, prepare the following information before contacting the operator:
+When overview data is abnormal, prepare the following information to distinguish time-window, regional-scope, and collection-delay issues:
 
 | Information | Example | Purpose |
 | --- | --- | --- |
-| Current Region | `Wuhan` | Determines whether the capability is opened in this region. |
-| Current Account / Tenant | `tenant-a` | Determines menu, resource, and monitoring permissions. |
-| Target Instance or Job | `train-job-001` | Helps locate logs, events, and metering records. |
-| Target Specification or Resource | `gpu-a100-1-16c-64g` | Determines quota, specification, and cluster capability. |
-| Page Symptom | `No data / Mount failed / Chart empty` | Helps the operator determine entrypoint, collection, or underlying resource issues. |
+| Time range | `Last 1 hour` | Confirms whether the chart covers the incident time. |
+| Region | `Wuhan` | Confirms whether the overview includes only the target region. |
+| Exception type | `Cluster / Node / Device watermark / Failed job` | Identifies the monitoring page to open next. |
+| Update time | `2026-07-13 10:20` | Determines whether collection is delayed. |
+| Related instance or job | `job-20260713001` | Supports cross-checking with events, logs, and usage records. |
 
-Alternative troubleshooting paths:
+## Result Validation
 
-1. View instance details, logs, and events first.
-2. View resource usage and resource quotas to confirm whether quota or credit limits exist.
-3. When storage capability is unavailable, prioritize object storage for models, datasets, and output artifacts.
-4. When monitoring capability is not opened, use instance status, logs, events, and usage as short-term troubleshooting basis.
+| Check Item | Success Signal | If Abnormal |
+| --- | --- | --- |
+| Page load | Overview charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
+| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
+| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
+| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
 
 ## FAQ
 
-#### Overview Data Is Delayed
+#### No Data on Overview
 
 **Symptom:**
 
-The instance has been created or the job has ended, but overview cards have not updated.
+The page opens, but charts or lists are empty.
 
 **Possible Causes:**
 
-- Monitoring collection synchronization is delayed.
-- The page time range does not cover the latest operation time.
-- User-side monitoring capability in the current region is not fully opened.
+- No job ran in the selected time.
+- collection is unavailable in the region.
+- the role lacks metric permission.
 
 **Solution:**
 
-1. Confirm the difference between page update time and current time.
-2. Switch to a time range that covers the operation time.
-3. Cross-check status with instance details, events, and logs before contacting the operator.
+1. Expand the time range and reset filters
+2. verify regional monitoring capability
+3. compare an adjacent monitoring page.
 
-#### Exception Count Is Inconsistent with Detail Page
+#### Overview Is Not Updating
 
 **Symptom:**
 
-The overview shows exceptions, but the count or objects do not match after entering the detail page.
+The data does not change for an extended period.
 
 **Possible Causes:**
 
-- Overview and detail pages use different time ranges or regions.
-- Exception objects recovered or were cleaned up during refresh.
-- Some objects are not displayed on the detail page due to permission restrictions.
+- The next collection cycle has not arrived.
+- the collector is abnormal.
+- the page is cached.
 
 **Solution:**
 
-1. Align region, time range, and filters.
-2. Refresh the page and check whether update times are consistent.
-3. Provide the operator with sanitized time range, region, and exception type.
+1. Check update time
+2. inspect collector status and alerts
+3. refresh with the same time range.
 
-## Next Steps
+#### Overview Differs from Adjacent Pages
 
-1. Enter cluster, node, device, or job pages based on exception type.
-2. If only your own instance is affected, prioritize instance details, logs, and events.
-3. If multiple metric types are abnormal, record the time range and resource objects, then contact the operator.
+**Symptom:**
+
+The same object has different values on two monitoring pages.
+
+**Possible Causes:**
+
+- Aggregation granularity differs.
+- time range or time zone differs.
+- filters target different objects.
+
+**Solution:**
+
+1. Align time range and time zone
+2. verify aggregation scope
+3. clear and restore filters one at a time.
+
+#### Cannot Drill Down to the Target
+
+**Symptom:**
+
+The metric or details entry does not lead to the expected object.
+
+**Possible Causes:**
+
+- The object ended or was removed.
+- the role cannot see it.
+- relationship identifiers differ.
+
+**Solution:**
+
+1. Record object and time
+2. check its list state
+3. ask the Operator to verify visibility.
+
+#### A Spike Cannot Be Reproduced
+
+**Symptom:**
+
+A spike was recorded, but current details are normal.
+
+**Possible Causes:**
+
+- The spike was brief.
+- sampling is coarse.
+- the job has ended.
+
+**Solution:**
+
+1. Lock the spike interval
+2. compare job and node events
+3. retain a sanitized screenshot and object identifier.
 
 ## Notes
 
 - Mask tenant names, node names, node IPs, and business identifiers before screenshots.
 - Do not directly equate instant high watermarks in the overview with failures.
 - Use sanitized resource IDs and time ranges in external feedback.
+
+## Next Steps
+
+1. Enter cluster, node, device, or job pages based on exception type.
+2. If only your own instance is affected, prioritize instance details, logs, and events.
+3. If multiple metric types are abnormal, record the time range and resource objects, then contact the operator.

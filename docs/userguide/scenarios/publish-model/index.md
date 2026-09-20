@@ -52,7 +52,7 @@ This scenario helps model providers publish models as services that can be tried
 | [Publish Image Models](./Image/) | Publish an image model with image-specific billing and response parsing |
 | [Publish Speech Models](./Speech/) | Publish a speech model with audio protocol and character-based billing |
 | [Publish Video Models](./Video/) | Publish an asynchronous video model with callback and result parsing |
-| [Publish and Call a Model](../../../usermanual/model-services/end-to-end/publish-and-call-model/) | Follow the complete workflow from operator preparation through publishing, review, trial calls, and usage verification |
+| [My Models](../../../usermanual/model-services/user/studio/my-models/) | Review the model publishing entry, fields, and operations |
 
 ## Related Scenarios
 

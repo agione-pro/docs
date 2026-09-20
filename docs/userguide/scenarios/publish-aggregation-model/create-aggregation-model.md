@@ -127,5 +127,5 @@ next: true
 
 ## User Manual
 
-- [Publish and Call a Model](../../../usermanual/model-services/end-to-end/publish-and-call-model/)
+- [My Models](../../../usermanual/model-services/user/studio/my-models/)
 - [My Models](../../../usermanual/model-services/user/studio/my-models/)

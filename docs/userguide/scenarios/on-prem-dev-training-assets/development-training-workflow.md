@@ -32,11 +32,11 @@ This scenario guides users through creating an On-Prem development or training e
 2. Prepare or select a versioned runtime image that the target region can pull. See [Image Service](../../../usermanual/ai-infra-on-prem/user/extensions/images/).
 3. Open [Development Environments](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/), create an online IDE, select the image and resource specification, mount the persistent workspace, and confirm that the IDE opens normally.
 
-![Create an online IDE with a persistent workspace](./images/create-ide.png)
+![Create an online IDE with a persistent workspace](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/images/create-ide.png)
 
 4. Open [Model Training](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/), create a training or batch runtime instance, review code, data, output directory, and startup command, and confirm that the workload runs and emits logs.
 
-![Create a training runtime instance](./images/create-instance.png)
+![Create a training runtime instance](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/images/create-runtime-instance.png)
 
 5. Preserve images, models, and outputs in controlled storage so later workloads can reuse them.
 6. Review [Job Monitoring](../../../usermanual/ai-infra-on-prem/user/monitoring/jobs/) and [Resource Usage](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/), then stop idle instances.

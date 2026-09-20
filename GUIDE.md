@@ -283,7 +283,7 @@ export const enNavbar = [
       { text: 'Deployment', link: '/deployment/' },
     ],
   },
-  { text: 'AGIOne', link: 'https://agione.pro/' },  // CN 版为 https://agione.cc/
+  { text: 'AGIOne', link: 'https://agione.pro/' },  // 英文导航
   { text: 'OneProCloud', link: 'https://oneprocloud.com/' },
 ]
 ```
@@ -393,16 +393,20 @@ export const socialLinks = [
 | `vars.DEPLOY_USER` | SSH 用户名（两套共用） |
 | `secrets.DEPLOY_KEY` | SSH 私钥（两套共用） |
 
-### 两套版本差异
+### 文档语言与 AGIOne URL 规则
 
-CN 版和 Global 版唯一的区别是导航栏中 **AGIOne** 的链接地址：
+CN 和 Global 仍是两套独立的文档站部署，但文章内容和导航栏中的 AGIOne 产品链接按文档语言确定，不按部署 job 确定：
 
-| 版本 | AGIOne 链接 |
-|------|------------|
-| CN (`deploy`) | `https://agione.cc/` |
-| Global (`deploy-global`) | `https://agione.pro/` |
+| 文档语言 | 路径范围 | AGIOne 产品域名 |
+|----------|----------|--------------------|
+| 英文 | `docs/**`（排除 `docs/zh-CN/**`） | `https://agione.pro` |
+| 中文 | `docs/zh-CN/**` | `https://agione.cc` |
 
-如需添加新的外部链接且两套版本不同，需要分别在 `*.main.ts` 和 `*.global.main.ts` 模板中修改。
+本规则适用于产品首页、登录页、模型列表、API 端点、下载页、技术实践中的 Base URL 和导航栏 AGIOne 外链。禁止继续使用历史域名 `tai.agione.co` 和 `zh.agione.co`。
+
+`docs.agione.cc` 与 `docs.agione.pro` 是文档站的部署域名，不改变上述文章语言规则。因此 `en.main.ts` 和 `en.global.main.ts` 中的 AGIOne 链接都使用 `.pro`，`zh.main.ts` 和 `zh.global.main.ts` 都使用 `.cc`。
+
+如需添加其他随部署环境变化的外部链接，再分别修改 `*.main.ts` 和 `*.global.main.ts` 模板。
 
 ### Preview 环境部署
 

@@ -1,65 +1,62 @@
 # Tenants
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-10
-:::
-
 ## Feature Overview
-
-`Tenants` is used to view, filter, and maintain tenants information. It helps operator admin work with tenants records and related status from a consistent page entry.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
-| Navigation path | Settings > Tenants > Tenants |
+| Applicable Role | Operator |
+| Navigation path | Settings > Tenants & Settings > Tenants |
 | Page route | `/user/tenant` |
-| Managed objects | Tenant records and related status |
-| Typical use | View, filter, and maintain tenants information |
+| Managed objects | Tenant entities, business identities, status, roles, and tags |
 
 #### Beginner Explanation
 
-Tenants is part of the settings and access-control workspace. Treat it as a place to confirm identities, permissions, tenant rules, audit records, or rate-control status before changing configuration.
+Tenants is the platform's directory of business entities. It maintains tenants, administrators, roles, tags, and business ownership. Confirm the tenant identity before creating a tenant, changing a role, or investigating billing.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Member | A user account that belongs to an tenant or team. | Check role and status before troubleshooting access. |
-| Role | A permission set assigned to members. | Use least privilege and review scope before changes. |
-| Operation log | An audit record of user or platform actions. | Use it to trace risky or abnormal operations. |
-| API rate control rule | A policy that limits API request patterns. | Publish and verify rules carefully. |
+| Term | Description |
+| --- | --- |
+| Tenant | A business entity on the platform.; Confirm its unique identity before an action. |
+| Tenant administrator | The account responsible for tenant administration.; Verify it before contact or authorization. |
+| Tenant role | A permission set available to a tenant.; Confirm the impact before changing it. |
+| Tenant tag | A label used to classify tenants.; Use it for filtering and operations. |
 
 ## Prerequisites
 
-1. The current account can access `Tenants > Tenants`.
-2. The target tenant, member, customer, billing cycle, rule, or record scope has been confirmed.
-3. Required upstream data is already available and the page has finished loading.
-4. For high-risk changes, confirm the impact scope and rollback path before continuing.
+1. The current account has permission to manage tenants.
+2. You have opened `Tenants & Settings > Tenants`.
+3. Before creating a tenant or managing its roles or tags, you have confirmed its business identity and authorization boundary.
 
 ## Page Description
 
-The page usually includes filters, summary cards, data tables, detail entries, status fields, and related operation buttons for tenants records and related status.
-
-| Area | Description |
-| --- | --- |
-| Filters | Narrow records by keyword, status, time range, tenant, customer, member, or billing cycle. |
-| Summary area | Displays key balances, counts, trends, warnings, or processing progress when available. |
-| List or table | Shows records, statuses, timestamps, owners, amounts, and row-level actions. |
-| Details or dialog | Provides more context before follow-up operations. |
-
-The following screenshot shows tenants.
+The tenant list uses the tenant `Name` for display and search. Before opening an action, confirm the target by its `Name`, tenant ID, administrator, and business identity. Tenant names, administrator information, and email addresses are desensitized in the following screenshot.
 
 ![Tenants](./images/tenants-list.png)
 
+| Area | Description |
+| --- | --- |
+| Business Identity | Filters by identities such as EU or Provider. |
+| Tenant / Administrator / Tenant ID | Searches by tenant, administrator, or tenant ID. |
+| Status | Filters by tenant status. |
+| Role | Filters by tenant role. |
+| Tag filter | Filters by tags such as VIP, High Potential, Trial, Follow-up, or Churn Risk. |
+| Manage Tags | Maintains tenant tags. |
+| Create Tenant | Opens the tenant creation flow. |
+
 ## Main Operations
 
-Use the following operations to work with tenants records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+### View Tenants
 
-### Create Tenant
+1. Go to `Settings > Tenants and Settings > Tenants`.
+2. Filter by tenant name, identifier, status, or creation time.
+3. Open details and check tenant status, members, roles, quota, and update time.
+4. If no record is returned, reset filters. Tenant information is organization-sensitive and must be redacted before screenshots or sharing.
+
+### Create a Tenant
 
 1. Go to `Settings > Tenants > Tenants`.
-2. Click `Create Tenant` in the upper-right corner of the page.
+2. Click **"Create Tenant"** in the upper-right corner of the page.
 3. On the `Create Tenant` page, review the tenant creation fields.
 
 ![Create Tenant](./images/tenant-create.png)
@@ -70,11 +67,28 @@ Use the following operations to work with tenants records and related status. Co
 7. Before final submission, verify the tenant name, administrator account, email, role, and initial password.
 8. For learning or screenshots only, view the fields without submitting real tenant configuration.
 
-## Parameter Reference
+### Manage Tenant Tags
+
+1. Open `Settings > Tenants & Settings > Tenants`.
+2. Locate the target Tenants and click **"Manage Tags"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+### Manage Tenant Roles
+
+1. Open `Settings > Tenants & Settings > Tenants`.
+2. Locate the target Tenants and click **"Manage Roles"**.
+3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
+4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
+5. After the action, return to the list or details page and verify the status, update time, or result message.
+
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Tenant Name | Yes | Text | `Example Tenant A` | Identifies the tenant entity. |
+| Business Identity | No | Filter / tag | `Provider` | Filters or identifies the tenant business identity. |
 | Admin name | Yes | Text | `Example Admin` | The display name of the tenant administrator. |
 | Admin sign-in account | Yes | Text | `tenant-admin` | The sign-in account of the tenant administrator. |
 | Admin email | Yes | Text | `admin@example.com` | The email address of the tenant administrator. |
@@ -93,58 +107,101 @@ Use the following operations to work with tenants records and related status. Co
 - Creating a tenant creates a real tenant entity and a fixed administrator account.
 - Initial passwords, administrator emails, and phone numbers are sensitive information. Do not write them into documentation or screenshots.
 - Role selection affects the platform access scope of the tenant administrator.
+- The current UI does not provide an action to turn off the `Provider` business identity after enablement. Confirm the tenant, business owner, and downstream impact before enablement.
+- This restriction applies to the `Provider` business identity. The `Manage Roles` dialog can still remove ordinary role tags when permitted.
 - Final submission is a high-risk action. Do not submit real tenant configuration during learning or screenshots.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Tenants > Tenants` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Filter result | The list changes according to the selected filters. | Reset filters and search again. |
-| Record detail | Details, status, amount, permission, or configuration values are visible. | Confirm the record scope and permissions. |
-| Follow-up path | Related pages or dialogs can be opened from visible entries. | Return to the sidebar and enter the downstream page directly. |
+| Filters | The tenant list refreshes according to the selected conditions. | Select Reset and query again. |
+| Tags | The list scope changes after selecting a tag. | Check whether any tenant has that tag. |
+| Tenant actions | Manage Roles, Manage Tags, and other actions are displayed according to permission. | Check the current account's tenant-management permission. |
 | Create page | Clicking `Create Tenant` opens the same-name creation page. | Check whether the current account has tenant creation permission. |
 | Learning exit | Real tenant configuration is not submitted when only reviewing fields. | Refresh the list and confirm no test tenant was added. |
 
 ## FAQ
 
-#### Target settings entry is not visible in Tenants
+#### A target tenant cannot be found
 
-The expected account, project, member, role, tenant, key, operation log, system configuration, or API rate-control entry does not appear on this page.
+**Symptom:**
 
-**How to check:**
+The list is empty after searching by tenant name or tenant ID.
 
-1. Confirm the current tenant, tenant, project, role, and account permission scope.
-2. Check page filters such as keyword, status, project, member, role, tenant, time range, and configuration type.
-3. Verify that prerequisite objects, such as projects, members, roles, keys, or system configurations, have been created and enabled.
-4. If the entry was just changed, refresh the page and compare it with operation logs or related settings pages.
+**Possible cause:**
 
-#### Configuration change does not take effect in Tenants
+The filters are too restrictive, or the business identity, status, or role filter does not match the tenant.
 
-A permission, project, role, key, notification, system setting, or rate-control change was submitted, but the page or downstream behavior still shows the old result.
+**Resolution:**
 
-**How to check:**
+Select `Reset`, then search again with fewer filters.
 
-1. Confirm that the save operation completed and the target object status is enabled or active.
-2. Check whether the change applies to the correct tenant, project, member, role, API key, or policy scope.
-3. Compare downstream behavior with operation logs and related settings pages to rule out cache, permission, or synchronization delay.
-4. For security-sensitive settings, verify impact scope before repeating the operation or escalating with desensitized page paths and timestamps.
+#### What should be checked before changing tenant roles?
+
+**Symptom:**
+
+The page provides a `Manage Roles` action.
+
+**Possible cause:**
+
+Tenant roles control which functions the tenant can use.
+
+**Resolution:**
+
+Confirm the tenant identity, administrator, and business scope, then follow the permission-change process.
 
 #### Why is the target tenant missing from the tenant list?
 
-Check the current tenant, tenant, project, role permissions, object status, feature switch, and operation logs. Do not repeat save, submit, publish, rollback, disable, or delete actions until the scope and impact are confirmed.
+**Symptom:**
 
-## Next Steps
+The operator-side tenant page does not show the target tenant.
 
-1. Recheck the affected users, tenants, projects, roles, keys, policies, or configuration objects.
-2. Verify operation logs and downstream behavior after the configuration is saved or refreshed.
-3. Keep only desensitized page paths, timestamps, object names, and status values when escalating.
+**Possible cause:**
+
+The tenant was not created, is disabled, or is outside the current operator account's authorized scope.
+
+**Resolution:**
+
+Clear the tenant name, status, and region filters. Confirm the tenant creation record and status. If the tenant is still missing, ask a platform administrator to check tenant authorization.
+
+#### How should the Tenants page be exported or captured safely?
+
+**Symptom:**
+
+Page information is needed for troubleshooting, audit, or delivery.
+
+**Possible causes:**
+
+The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
+
+**Resolution:**
+
+Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
+
+#### What should I do when the Tenants page shows unexpected data?
+
+**Symptom:**
+
+A field, status, metric, or related object differs from the expectation.
+
+**Possible causes:**
+
+The page scope, time condition, role permission, or upstream setting does not match.
+
+**Resolution:**
+
+Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
-- Permission, Key, login, tenant, and rate-control changes can affect real users. Confirm scope before changes.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
+- The page contains administrator details, email addresses, and tenant IDs. Desensitize screenshots before sharing them.
+- Creating a tenant or changing roles can affect the functions visible to the tenant. Confirm the authorization boundary first.
 - Creating a tenant creates a real tenant entity and a fixed administrator account.
 - Initial passwords, administrator emails, and phone numbers are sensitive information. Do not write them into documentation or screenshots.
 - Final submission is a high-risk action. Do not submit real tenant configuration during learning or screenshots.
+
+## Next Steps
+
+1. To manage member permissions, go to [Members](../../members-roles/members/).
+2. To review tenant changes, go to [Operation Logs](../../activity-notifications/operation-logs/).

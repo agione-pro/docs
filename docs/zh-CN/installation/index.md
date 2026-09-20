@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# 安装部署
+# 部署与配置
 
 本章节包含 AGIOne 产品的部署、配置和验收相关文档。
 
@@ -18,3 +18,5 @@ next: true
 | [(AGIOne) 安装配置文件字段说明](./agione-install-config-reference)                  | `/root/agione-install.yml` 配置字段说明           |
 | [(AGIOne) 节点纳管-部署配置要求](./deployment-requirements-for-managing-compute-nodes) | 纳管算力节点的环境调研、资源规划和部署配置要求                 |
 | [(AGIOne) 节点纳管-快速安装指南](./quick-install-for-managing-compute-nodes)          | 纳管算力节点的 Kubernetes 集群、组件和验证流程              |
+| [(AGIOne) 运营版部署后配置](./post-deployment/operation-edition)                    | 运营版新部署上线前的业务配置、直达入口和验收检查模板              |
+| [(AGIOne) 企业自用版部署后配置](./post-deployment/enterprise-internal-edition)        | 企业内部自用场景的新部署初始化、配置确认和上线验收模板            |

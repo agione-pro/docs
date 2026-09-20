@@ -1,0 +1,71 @@
+---
+prev: false
+next: true
+---
+
+# 场景概览 - 异构卡纳管：新模型模板准备与部署调用
+
+本场景介绍如何在异构算力（华为昇腾 910B）集群环境中完成新模型（如 ModelScope 开源模型）的自动下载、显存参数配置与推理模板制作，并由模型提供方基于模板完成实例部署、服务发布与端到端调用验证。
+
+## 适用角色
+
+- 平台运营管理员（负责模型下载与推理模板构建）
+- 模型提供方（负责模型实例部署、发布与调用验证）
+
+## 场景目标
+
+- 在 On-Prem 模型库配置 ModelScope 权重下载并绑定关联集群。
+- 针对昇腾 910B 算力卡制作支持 vLLM 显存测算系数的推理模板并置为可用状态。
+- 使用模型提供方账号基于模板创建模型实例，并验证 Running 状态及端口连通性。
+- 完成模型公有发布、协议测试与计费限流配置。
+- 在 Playground 在线聊天体验及终端 cURL 脚本中验证流式响应调用。
+
+## 场景流程
+
+**主线：** 运营管理员准备模型与模板（ModelScope 下载 → 创建昇腾 910B 模板） → 模型提供方部署实例（选模板规格 → 启动运行） → 发布模型（协议测试 → 计费限流） → 调用验证（Playground → cURL）
+
+| 阶段 | 核心结果 |
+| --- | --- |
+| 1. 准备模型权重 | 在 On-Prem 配置 ModelScope 来源及 Model ID，开启下载后自动启用 |
+| 2. 制作推理模板 | 关联模型版本、vLLM 显存表与 Ascend 910B 卡型，模板状态置为 Available |
+| 3. 创建模型实例 | 模型提供方基于模板配置并发与上下文，启动实例并确认 Running 状态 |
+| 4. 发布模型服务 | 完成 OpenAI 协议测试，配置标签、免费计费与限流并提交发布 |
+| 5. 验证端到端调用 | 在 Playground 界面对话，并通过 cURL 命令行验证流式响应 |
+
+## 开始前准备
+
+- 已接入昇腾 910B 集群并拥有运营管理员账号与模型提供方账号。
+- 集群具备访问 ModelScope 官方站点的网络连通性。
+- 已明确待部署模型（如 DeepSeek-R1-Distill-Qwen-7B）的 Model ID 及支持的并发与上下文要求。
+- 已为模型提供方准备创建实例的权限，并确认本场景使用公有还是私有发布范围。
+
+## 推荐阅读顺序
+
+1. 查看当前场景概览，了解运营管理员与模型提供方的分工协作。
+2. 阅读 [新模型模板准备与端到端部署调用指引](./template-deployment-guide) 完成全流程 23 步实操。
+3. 结合 [推理模板构建](../on-prem-inference-template/) 与 [模型部署与状态检查](../on-prem-model-deployment-status/) 深入排查单项配置。
+
+## 操作手册参考
+
+- [On-Prem 模型](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/)
+- [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
+- [我的模型](/zh-CN/usermanual/model-services/user/studio/my-models/)
+- [我的部署](/zh-CN/usermanual/model-services/user/studio/my-deployments/)
+
+## 文档索引
+
+| 文档 | 说明 |
+| --- | --- |
+| [新模型模板准备与端到端部署调用指引](./template-deployment-guide) | 包含从 ModelScope 下载、昇腾 910B 模板创建到实例启动、发布和 cURL 调用的完整 23 步图文实操 |
+
+## 完成检查
+
+> **用途：** 以下检查是本场景的退出条件，用于判断是否已经取得可观察、可复核的结果，以及是否可以进入下一场景。它不是操作步骤的重复；任一项不满足时，请返回对应功能文档排查。
+
+| 检查项 | 通过标准 |
+| --- | --- |
+| 1 | On-Prem 模型库中目标模型成功下载并已启用。 |
+| 2 | 推理模板成功关联 Ascend 910B 算力卡及显存系数表，状态为 Available。 |
+| 3 | 模型提供方成功创建实例，实例状态为 Running 且服务端口可用。 |
+| 4 | 模型公有发布完成，API 协议测试通过。 |
+| 5 | Playground 对话正常响应，终端 cURL 获得正确的流式输出。 |

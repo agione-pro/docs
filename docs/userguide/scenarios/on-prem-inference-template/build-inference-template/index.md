@@ -23,18 +23,18 @@ The template exposes a compatible framework, model, runtime configuration, and o
 
 1. Open [Model Configuration](../../../../usermanual/ai-infra-on-prem/operator/templates/models/) and confirm that model name, type, storage location, and state are available.
 
-![Confirm that model configuration is selectable](./images/model-config-list-browser.png)
+![Confirm that model configuration is selectable](../../../../usermanual/ai-infra-on-prem/operator/templates/models/images/manual-models.png)
 
 2. Open [Inference Frameworks](../../../../usermanual/ai-infra-on-prem/operator/templates/frames/) and confirm that framework version and runtime image support the target NPU.
 3. Open [VRAM Estimation](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/) and confirm one-card and multi-card memory requirements for the parameter scale, precision, and parallel method.
 
-![Review VRAM estimation by model precision and scale](./images/vram-config-list-browser.png)
+![Review VRAM estimation by model precision and scale](../../../../usermanual/ai-infra-on-prem/operator/templates/vram-config/images/manual-vram-config.png)
 
 4. Create a template, enter its purpose, and select the prepared model configuration and inference framework.
 5. Select a resource specification with the target NPU model, card count, and memory.
-6. Configure the command, environment variables, ports, health check, and model path.
+6. Configure the command, environment variables, ports, health check, model path, and any page-supported extra parameters.
 7. Align multi-card parallel parameters with the two-card or four-card specification.
-8. Save and validate image, driver, VRAM, and startup parameters through a test deployment.
+8. Save the template, set it to **Available** only after the model, framework, accelerator relation, VRAM parameters, and startup settings pass validation, and use a test deployment to verify image, driver, VRAM, and startup parameters.
 
 ![Inference templates](./images/inference-templates-list.png)
 
@@ -60,6 +60,8 @@ The template exposes a compatible framework, model, runtime configuration, and o
 | --- | --- |
 | Framework or model is unavailable | Status, region, compatibility, and template prerequisites |
 | Four-card deployment cannot start | Specification, distributed parameters, free cards, ports, and storage |
+| Template remains unavailable | Model or framework state, accelerator relation, VRAM factor, required fields, and whether the template was explicitly set to `Available` |
+| Extra parameters cause a startup failure | Parameter names, value format, framework support, and whether the parameter requires professional-service validation |
 
 ## User Manual
 

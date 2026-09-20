@@ -9,7 +9,7 @@ Connect an operator-managed cloud account used to discover and deploy regional r
 
 ## Target Outcome
 
-AGIOne can validate the cloud account and discover only the regions and resources that it is permitted to use.
+{{DOCS_PRODUCT_NAME_EN}} can validate the cloud account and discover only the regions and resources that it is permitted to use.
 
 ## Applicable Roles
 
@@ -17,7 +17,7 @@ AGIOne can validate the cloud account and discover only the regions and resource
 
 ## Before You Start
 
-- Create a dedicated least-privilege cloud credential for AGIOne.
+- Create a dedicated least-privilege cloud credential for {{DOCS_PRODUCT_NAME_EN}}.
 - Confirm that the target cloud platform has already been connected.
 
 ## Procedure

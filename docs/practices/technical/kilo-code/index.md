@@ -8,7 +8,7 @@
 
 ## Model Configuration
 
-1. Visit [AGIOne](https://tai.agione.co/) and register an account.
+1. Visit [AGIOne](https://agione.pro/) and register an account.
 2. Go to the model marketplace, select a model, enter the API Usage page, and obtain the *API key* and *model id*.
 
 ### Configuration instructions
@@ -18,7 +18,7 @@
    ![](./KiloCode-pics/file-20260211121140507.png)
 3. Configure Provider Information, After filling in the information, click the _Save_ button.
    - _API Provider_: Select `OpenAI Compatible`
-   - _Base URL_: `https://tai.agione.co/hyperone/xapi/api`
+   - _Base URL_: `https://agione.pro/hyperone/xapi/api`
    - _API Key_: Obtain the `Certified TOKEN` from the AGIOne platform model API call page
    - _Model_: Obtain the `Model Id` from the request parameters of the AGIOne platform model API call page
      ![](./KiloCode-pics/file-20260211121104232.png)

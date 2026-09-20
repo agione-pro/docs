@@ -28,6 +28,8 @@ Map tenant credits, monthly usage, and metering details to actual instances or w
 
 4. Compare runtime and specification in device, node, and workload monitoring. Confirm that end time, card count, and metering unit agree.
 
+5. When an offline reconciliation is required, use **Detail Download** from the same filter scope. Keep the exported file under access control and record the selected tenant, region or availability zone, resource type, and time range with the evidence.
+
 ## Completion Checklist
 
 > **Purpose:** These checks explain why credits changed and which workloads form the monthly total. Do not stop after viewing only a summary number.
@@ -46,3 +48,4 @@ Map tenant credits, monthly usage, and metering details to actual instances or w
 | Monthly usage differs from detail totals | Billing-cycle boundary, time zone, aggregation delay, and metering unit |
 | Usage continues after the instance stops | Workload end time, residual instance, and state synchronization |
 | Credits remain but workload creation fails | Tenant quota, specification capacity, template, and free cluster resources |
+| Detail download does not match the page | Reapply the same tenant, region/zone, resource-type, billing-period, time-zone, and pagination filters before comparing totals |

@@ -2,102 +2,162 @@
 
 ::: info Document Information
 Version: v1.0
-Updated: 2026-07-08
+Updated: 2026-08-31
 :::
 
 ## Feature Overview
 
-The Models page helps users discover available models, compare providers, review quick-start information, and check performance details before trying or calling a model.
-
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User |
-| Navigation path | Model Services > Discover > Models |
-| Page route | `/modelone/store/model` |
-| Managed objects | Model lists, providers, quick start, performance metrics, and model overview |
-| Typical use | Discover models, view providers, and obtain redacted call methods |
+| Applicable Roles | Model Provider, Model Consumer |
+| Navigation Path | Model Services > Discover > Models |
+| Page Route | `/modelone/store/model` |
+| Managed Objects | Model listings, model details, provider instances, and quick-start information |
 
 #### Beginner Explanation
 
-The Models page is like a model catalog. Users first check model capabilities and providers, then enter quick start to obtain Base URL, Path, Full URL, and authentication method. Call examples must use placeholders and must not contain real API Keys.
+Models works like a searchable model catalog. Find a model with the required input and output capabilities, review its provider, price, context, and status, and then decide whether to try it or integrate it from the quick-start information.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Base URL | Base address of the model service. The example uses `https://api.example.com/v1`. |
-| Full URL | Complete call address. The example uses `https://api.example.com/v1/chat/completions`. |
-| Provider | Tenant or channel that provides the model instance. |
-| Personal Key | Personal call key. This is a sensitive credential. |
+| Model Author | The organization or brand associated with a model. |
+| Model Source | The upstream service that provides a callable model instance. |
+| Context Length | The total input and output capacity of one request. |
+| Quick Start | The integration area that shows the URL, protocol, and authentication method. |
+| Personal Key | A personal credential that a Model Consumer uses to call a model through the platform. |
+| API Key | A general term for an API credential. Use a Personal Key for the examples on this page. A Model Provider can use a separate upstream API Key when publishing a model. |
+| Request header | The fields sent with a request. A request header commonly carries authentication data. |
+| Endpoint | The target URL that receives a request. It combines the Base URL and API path. |
+| Model ID | The identifier that selects the target model instance for a call. |
+
+#### First-Use Paths
+
+| Role | First-Use Path | Completion Signal |
+| --- | --- | --- |
+| Model Consumer | Prepare a Personal Key → select a model and provider in **"Models"** → make one controlled call in **"Playground"** → find the request in **"My Calls"** → review consumption in **"Model Usage"** | The response area shows a response or error, Call Logs contains the request, and Model Usage contains the related record. |
+| Model Provider | Create a model in **"My Models"** → publish it from **"My Deployments"** → review calls in **"Customer Calls"** → review revenue in **"Model Earnings"** | The model and deployment appear in their lists, and the customer-call and earnings pages show the related statistics. |
+
+When a model has multiple providers, compare price, status, and context first. A model in the list is not proof of a successful call. Confirm the response, Call Logs record, and Model Usage record for the same request.
 
 ## Prerequisites
 
-1. The current account has model marketplace access permission.
+1. The current account can open **"Models"**.
 2. The target model has been listed and is visible to the current account or customer.
 3. Before calling, quota, pricing, context limits, and terms of use have been confirmed.
 
 ::: warning Call and Billing Risk
-Trying a model, submitting a prompt, or calling an API may create call records, consume credits, or generate billing records. For page validation only, view the model list and details. Do not submit a real call request.
+Trying a model, submitting a prompt, or calling an API creates call records and may consume credits or generate billing records. Before calling, verify the model, provider, price, quota, and usage scope.
 :::
 
 ## Page Description
 
-This page displays model lists, model details, provider instances, recommendation tags, quick start, and performance information. Users should confirm the model name, Model ID, provider, capability tags, input/output modalities, pricing, and status before trying or calling a model.
+The page provides model search, capability filters, sorting, and listings. Open a model to use the `Providers`, `Quick Start`, `Performance`, and `Overview` tabs. Provider cards also provide `Try Now` and `Quick Start` entries.
 
-Page screenshot:
+Page screenshots:
 
-![Models list](./images/models-list.png)
+![Models list](./images/models-list-public.png)
 
-Used to search models, view providers, filter model types, and confirm model card information.
+Focus on the search field, capability filters, and model list. The active filters jointly determine the result set.
 
 ## Main Operations
 
-### View Model
+### Query Models
 
 1. Go to `Model Services > Discover > Models`.
-2. In the model list, view model name, author, model type, input/output capabilities, billing method, weekly calls, weekly token volume, release time, and other information.
-3. Filter target models by model name, author, model series, model source, model type, capability, context length, billing, or scenario.
-4. Click `View` on the target model card to open the model details page.
-5. On the details page, view model introduction, author, Model ID, context, input/output limits, reference pricing, input/output modalities, capabilities, and supported protocols.
-6. Switch between `Providers`, `Quick Start`, `Performance`, and `Overview` to view provider instances, call methods, performance metrics, and model descriptions.
-7. To try the model, use the `Playground` entry on the details page. For page validation only, view details and do not submit a call request.
+2. Enter a model name, author, series, or source in the search field.
+3. Narrow the results by input capability, output capability, context, billing, model author, model source, or scenario.
+4. Verify the model name, capability labels, and status. Clear combined filters and query again if no result is returned.
 
-![Providers](./images/providers.png)
+![Query models](./images/models-list-public.png)
 
-The Providers tab shows provider instances, recommendation status, billing, context, latency, throughput, success rate, and weekly usage data.
+The `Providers` tab shows provider instances, billing, context, latency, throughput, success rate, weekly usage, and the `Quick Start` entry. On the current details page, provider visibility uses the `All`, `Public`, `Private`, and `Aggregate` segmented control. Performance grouping uses `All`, `By Provider`, and `By Model Source`. Copy the provider-specific call identifier shown for the selected instance. Do not reuse an identifier from another provider.
 
-![Quick start](./images/quick-start.png)
+### View Model Details
 
-Documentation examples and screenshots must remain redacted. Use real personal keys only in an approved integration environment.
+1. Open the target model from the list.
+2. Verify the model name, author, type, input and output capabilities, context length, and billing method.
+3. Confirm the model summary, capability labels, modalities, and protocol on the details page.
+4. Based on the next task, open Providers, Quick Start, Performance, or Overview. Keep information from each tab in its own context.
 
-![Performance](./images/performance.png)
+![View model details](./images/models-providers-public.png)
 
-The Performance tab shows time range, time granularity, average request latency, average first token latency, real-time request frequency, request success rate, and token request volume.
+The image shows the model details page. Verify the summary and capabilities before entering a provider card or tab.
 
-![Model overview](./images/overview.png)
+### Compare Provider Instances
 
-Confirm model capability, context, and pricing boundaries in the overview.
+1. Select the **"Providers"** tab on the model details page.
+2. Compare provider instance status, price, context, latency, throughput, and success rate.
+3. Before trying or integrating the model, confirm the Model ID, protocol, and status on the target provider card.
+
+![Model providers](./images/models-providers-public.png)
+
+Use the provider area to compare listed instances. Confirm the target card instead of selecting a provider by model name alone.
+
+### Try a Model
+
+1. Click **"Try Now"** on the target provider card.
+2. The platform opens the Playground page for the model type, such as text chat, image generation, video generation, or speech generation.
+3. In Playground, verify that the model and provider shown at the top match the selection on the details page.
+4. Before trying the model, confirm the Personal Key, price, and quota. Submitting a prompt or generating content creates call records and consumes usage.
+
+![Try model entry](./images/models-providers-public.png)
+
+The provider card contains the Try Now entry. After it opens the corresponding Playground page, follow that page's configuration and submission instructions.
+
+### View Quick Start
+
+1. Select the **"Quick Start"** tab, or click **"Quick Start"** on the target provider card.
+2. Confirm the selected provider and switch the code example between `SDK`, `HTTP`, and `Curl`.
+3. Review the `Model ID`, `Base URL`, `Path`, `Full URL`, request headers, and authentication method.
+4. Record integration information with placeholders such as `<BASE_URL>`, `<ENDPOINT_PATH>`, `<API_KEY>`, or `<PERSONAL_KEY>`. Do not store real credentials.
+
+![Quick Start entry](./images/models-quick-start-public.png)
+
+The Quick Start tab and provider-card entry are both visible from the details page. Keep addresses, keys, and request parameters redacted in documentation.
+
+### View Performance
+
+1. Select the **"Performance"** tab on the model details page.
+2. Set the time range and data granularity to review.
+3. Review average request latency, average first-token latency, real-time request frequency, and request success rate.
+4. When comparing time ranges or providers, keep the filters consistent so that metrics use the same scope.
+
+![Model performance](./images/models-performance-public.png)
+
+Use the Performance area to review request latency, first-token latency, request frequency, and success rate. If no data is shown, verify the time range, provider, and model.
+
+### View Model Overview
+
+1. Select the **"Overview"** tab on the model details page.
+2. Review the model description, capability tags, input/output modalities, context, and usage boundaries.
+3. Keep the overview consistent with the provider instance and the Model ID and protocol shown in Quick Start.
+
+![Model overview](./images/models-overview-public.png)
+
+Use the Overview area to confirm the model description, capabilities, and usage boundaries before trying or integrating the model.
 
 ## Parameter Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model Name | Yes | Text | `Qwen3.7-Plus` | Display name used to identify the model in the list and details page. |
-| Provider | Yes | Text / Filter | `AGIOneSystem` | Tenant or channel that provides the model instance. |
+| Model Name | Yes | Text | `Example Model` | Display name used to identify the model in the list and details page. |
+| Provider | Yes | Text / Filter | `Example Provider` | Tenant or channel that provides the model instance. |
 | Model Type | No | Filter / Tag | `Text` | Distinguishes multimodal, text, image, speech, video, embedding, reranking, and other model types. |
+| View | No | Switch | `Table` / `Card` | Changes the presentation without changing model visibility. |
 | Capability Tags | No | Tag | `Tool Calling` | Shows model capabilities such as tool calling or reasoning. |
 | Input/Output Modalities | No | Tag | `Text / Image` | Shows supported input and output types. |
 | Billing Method | No | Text | `Credits / 1M Tokens` | Shows the model billing unit for input, output, or per-request pricing. |
-| Status | No | Tag | `Published` | Shows the availability status of the model or provider instance. |
-| Actions | No | Button | `View`, `Playground` | Used to open model details or enter the playground. |
-
+| Status | No | Tag | `Published` | Shows the status of the model or provider instance. |
+| Actions | No | Button | `View`, `Try Now`, `Quick Start` | Used to open model details, enter Playground, or view integration information. |
 
 ## Pitfalls
 
 - The same model may have multiple providers. Confirm the selected provider instance before calling.
 - Copy the exact Model ID from the provider instance.
-- The API Key in quick-start examples must be replaced with a personal authorized key.
-- Trying a model or submitting a prompt may create call records, consume credits, or generate billing records. Do not submit real calls when learning the page.
+- Replace the API Key placeholder in each quick-start example with an authorized Personal Key.
+- Trying a model or submitting a prompt creates call records and can consume credits or generate billing records. Before submission, verify the model, Personal Key, input, and expected usage.
 
 
 ## Result Validation
@@ -105,75 +165,105 @@ Confirm model capability, context, and pricing boundaries in the overview.
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Model list is accessible | Model cards or list entries are displayed, and the filter area loads correctly. | Check account permissions, navigation path, and page loading status. |
-| Filters are available | After changing model type, capability, provider, or scenario filters, list results update accordingly. | Clear filters and search again, or refresh the page. |
+| Filters can be selected | After changing model type, capability, provider, or scenario filters, list results update accordingly. | Clear filters and search again, or refresh the page. |
 | Model details can be opened | Clicking `View` opens the details page with model introduction, providers, pricing, context, and modality information. | Return to the list and open the model again, or check whether the model is still visible to the current account. |
 | Details match the list | Model name, author, status, and billing information in details are consistent with the list. | Use the details page as the source of truth and report synchronization issues if needed. |
-| No real call is submitted | During learning or validation, no prompt is submitted, no API call is made, and no credits are consumed. | If the playground is opened accidentally, close it or go back without submitting a call request. |
+| Try Now entry is visible | Clicking `Try Now` opens the Playground page for the corresponding modality, and the model and provider at the top match the details page. | Return to model details, select a listed provider, and verify model type and Playground permission. |
+| Quick Start opens | The Quick Start tab or provider-card entry shows the protocol, Model ID, URL, and authentication method. | Verify provider instance status, then check call permission and visibility for the current account. |
+| Performance data is visible | The Performance tab shows metrics for the selected time range and data granularity. | Adjust the time range and granularity, and verify that the selected provider has call data. |
+| Overview tab opens | The Overview tab shows the model description, capabilities, modalities, and usage boundaries. | Refresh the model details page and ask the Model Provider to complete missing fields. |
+
 ## FAQ
 
 #### Cannot Find the Target Model
 
 **Symptom:**
 
-After searching by model name, provider, or tag in the model marketplace, the expected model is not found.
+The target model does not appear after a name or capability query.
 
 **Possible Causes:**
 
-- The model is not published to the current visibility scope.
-- Filters restrict provider, modality, price, or recommendation tags.
-- The model is delisted, under review, or its source is unavailable.
+- Combined filters are too narrow.
+- The model is not visible to the current account.
 
-**Handling:**
+**Resolution:**
 
-1. Clear filters and search again by model name or Model ID.
-2. Enter model details or provider information and confirm whether the model is open to the current account.
-3. If the model should be visible but is still invisible, contact the model provider or operator to verify publishing scope.
+1. Clear filters and query again.
+2. Verify model visibility and provider status.
 
 #### Model Details Are Incomplete
 
 **Symptom:**
 
-Model details are missing pricing, context length, input/output modalities, quick-start examples, or provider notes.
+Capabilities, context, or billing information is missing.
 
 **Possible Causes:**
 
-- The model provider has not completed model materials.
-- Model template or meta-model fields are incomplete.
-- Page data synchronization is delayed.
+- Model information is incomplete.
+- Page data has not synchronized yet.
 
-**Handling:**
+**Resolution:**
 
-1. First check whether model name, provider, Model ID, and protocol are complete.
-2. Do not formally integrate models that lack pricing, rate limits, or usage boundary descriptions.
-3. Report missing fields to the model provider and validate again after supplementation.
+1. Refresh details and review the provider tab.
+2. Do not integrate a model with missing usage boundaries.
 
-#### Model Source Shows Unavailable
+#### No Provider Is Listed
 
 **Symptom:**
 
-The model is visible in the marketplace, but details or quick start indicates that the source is abnormal, not callable, or temporarily unavailable.
+No provider instance can be selected in model details.
 
 **Possible Causes:**
 
-- Upstream Endpoint, authentication request headers, or API Key expired.
-- Model source connectivity test failed.
-- Provider temporarily delisted or rate-limited the model.
+- Provider instances are not listed or are disabled.
+- The current account is outside the authorization scope.
 
-**Handling:**
+**Resolution:**
 
-1. View source status, protocol, and available region Prompts on the details page.
-2. Use a similar available model for temporary validation.
-3. Contact the provider to verify Endpoint, authentication method, and service health.
+1. Verify instance status and authorization.
+2. Ask the Model Provider when an instance will be listed.
 
-## Next Steps
+#### Billing or Context Is Unclear
 
-1. Go to model details and view Model ID, context length, pricing, rate limits, and input/output modalities.
-2. Use the redacted call example in quick start for local validation.
-3. Go to text, image, audio, or video Playground pages and observe output.
-4. Before production integration, confirm quota, call limits, and model source availability.
+**Symptom:**
+
+Price or context differs across displayed records.
+
+**Possible Causes:**
+
+- The records use different provider instances.
+- Billing units or model versions differ.
+
+**Resolution:**
+
+1. Compare the same provider and version.
+2. Record the scope shown in current model details.
+
+#### Quick Start Is Unavailable
+
+**Symptom:**
+
+Quick Start does not open or lacks integration information.
+
+**Possible Causes:**
+
+- The model instance is not ready for calls.
+- The account lacks call permission.
+
+**Resolution:**
+
+1. Verify model and provider status.
+2. Check call authorization and Personal Key.
 
 ## Notes
 
 - Do not externally share screenshots containing call credentials or customer identifiers from details pages.
 - Model capabilities, pricing, and context limits are subject to the details page.
-- Endpoints and API Keys in quick-start examples must be replaced according to the actual environment.
+- Replace the Endpoint and API Key placeholders in quick-start examples with values from your tenant.
+
+## Next Steps
+
+1. Compare provider instances in model details and review Model ID, context length, pricing, rate limits, and input/output modalities.
+2. Click **"Try Now"** to enter the corresponding Playground page, or click **"Quick Start"** to obtain a redacted integration example.
+3. Review Performance and Overview to confirm latency, success rate, capabilities, and usage boundaries.
+4. Before production integration, confirm quota, call limits, and Model Source status.

@@ -1,64 +1,77 @@
 # Resource Pools
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
-
 ## Feature Overview
-
-`Resource Pools` is used to view and maintain accessible regional resource pools by cloud platform. It uses status switches to control whether a resource pool is enabled, helping operators manage cloud resource visibility and downstream scheduling scope.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Cloud > Access Management > Resource Pools |
-| Page route | `/infrahub/op/access/region` |
-| Managed objects | Cloud platform, regional resource pools, enabled status, import and export entries |
-| Typical use | Enable or disable a regional resource pool under a cloud platform |
+| Applicable Roles | Operators |
+| Navigation Path | AI Infra(On-Cloud) > Access Management > Resource Pools |
+| Page Route | `/infrahub/op/access/region` |
+| Managed Objects | Regional resource pools under cloud platforms and their enabled states |
 
 #### Beginner Explanation
 
-Resource Pools is like setting an availability switch for regions under different cloud platforms. After a resource pool is enabled, it may enter the authorization and scheduling scope. After it is disabled, related deployments, authorization, or capacity display may be affected.
+Resource Pools controls whether cloud regions are available. Enabled pools can enter authorization and scheduling scopes; disabling affects deployment choices.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Cloud Platform | Platform in the left list that owns resource pools, such as `Alibaba Cloud`, `Google Cloud`, or `Huawei Cloud`. |
-| Resource Pool | Resource pool entry displayed by region on the current page, such as `China (Hangzhou)`. |
-| Resource Pool Count | Count shown after the cloud platform name, such as `26 items`. |
-| Enabled Status | Status switch on the right side of each resource pool. |
-| Show only enabled | Filter that shows only currently enabled resource pools. |
-| Confirmation Prompt | Secondary confirmation dialog shown before enabling or disabling. |
+| Resource Pool | An available resource scope organized by cloud platform and region. |
+| Enabled State | Whether a pool can enter authorization and scheduling workflows. |
+| Enabled Only | A filter that shows only enabled pools. |
+
+#### Recommended Operation Order
+
+Select a cloud platform and review its pools, assess authorization and deployment impact, then change the target state and verify downstream visibility.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| First visit | Review existing objects, states, and available actions | Change an unknown object |
+| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
+| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
+| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
 
 ## Prerequisites
 
-1. The current account has access to `Access Management > Resource Pools`.
-2. The target cloud platform has been accessed, and the resource pool list can load normally.
-3. Before enabling or disabling, confirm the resource pool's authorization scope, scheduling dependencies, and business impact.
+1. The current account has the permission required for Resource Pools.
+2. The target cloud platform is connected and its pool list loads correctly.
+3. Before changing state, check tenant authorization, business authorization, scheduling policies, and existing deployments.
 
 ## Page Description
 
-The page title is `Resource Pools`. The left side supports searching cloud platforms by name and shows platforms with resource pool counts. The right side displays regional resource pool cards under the selected cloud platform, and each card provides a status switch. The upper-right corner provides `Export` and `Import` entries, and `Show only enabled` can be selected to filter resource pools.
+The left side lists cloud platforms; the right side shows regional pools and state switches for the selected platform.
 
-Page screenshot:
+Page screenshots:
 
-![Resource Pool List](./images/resource-pools-list.png)
+![Resource Pools page](./images/manual-resource-pools.png)
+
+The image shows Resource Pools page. Verify the target object, current state, fields, and actions.
+
+![Resource pool list reference](./images/resource-pools-list.png)
+
+The image shows Resource pool list reference. Verify the target object, current state, fields, and actions.
 
 ## Main Operations
 
-### Enable/Disable Resource Pool
+### View Resource Pools
 
-1. Go to `AI Infrastructure > On-Cloud > Access Management > Resource Pools`.
-2. Select the target cloud platform in the left cloud platform list, such as `Alibaba Cloud`.
-3. Find the target resource pool in the list on the right, and check the resource pool region name and the enabled status switch.
-4. To filter currently enabled resource pools, select `Show only enabled`.
-5. Click the status switch on the right side of the target resource pool to start enabling or disabling.
-6. If a `Prompt` confirmation dialog appears, verify the resource pool name, current action, and impact scope. The screenshot example is `Are you sure you want to Disable region China (Hangzhou)?`.
-7. Before clicking the final `OK`, confirm again. For learning or page validation only, click `Cancel` or close the dialog without applying a real change.
+1. Select the target cloud platform on the left.
+2. Use `Enabled Only` within the step when a narrower list is needed.
+3. Verify region names and enabled states.
 
-![Enable or Disable Resource Pool](./images/disable.png)
+### Enable or Disable Resource Pool
+
+1. Locate the target region and confirm its current state.
+2. Toggle the state switch and read the region and action in the confirmation message.
+3. Click **"Confirm"** and refresh the list.
+4. Verify the expected visibility on authorization and deployment pages.
+
+![Enable or disable a resource pool](./images/disable.png)
+
+The image shows Enable or disable a resource pool. Verify the target object, current state, fields, and actions.
 
 ## Parameter Reference
 
@@ -78,77 +91,115 @@ Page screenshot:
 
 ## Pitfalls
 
-- The screenshot does not show capacity, synchronization status, or availability zone fields. If these fields appear on an actual detail page, verify them according to the real page.
-- The enabled status switch affects resource pool visibility and downstream scheduling boundaries. Do not judge availability only by list count.
-- `Import`, `Export`, and status switching may involve real configuration or sensitive data. Do not perform these actions during learning or screenshots.
+- Do not skip the upstream dependency check: The target cloud platform is connected and its pool list loads correctly.
+- Confirm impact before a configuration change: Before changing state, check tenant authorization, business authorization, scheduling policies, and existing deployments.
+- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Resource Pools` page opens normally, and `Access Management > Resource Pools` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Resource pool list loads normally | The left cloud platform list and right regional resource pool cards display normally. | Refresh the page or check cloud platform and resource pool synchronization status. |
-| Target resource pool status is visible | Each resource pool shows an enabled status switch on the right. | Check list filters and page permissions. |
-| Enable/disable entry is visible | The status switch on the target resource pool is visible. | Confirm whether the account has permission to change resource pool status. |
-| Confirmation dialog displays normally | Switching status displays a `Prompt` dialog with the resource pool name and enable or disable action. | Check browser state, API response, and permission configuration. |
-| Learning validation does not submit | Only the list, switch, and confirmation dialog are viewed; the final `OK` is not clicked. | If a final action is triggered by mistake, follow the change audit process to check the impact scope. |
-| Status updates after real execution | If a real enable or disable action is performed, the list switch status should update and remain consistent with scheduling and authorization scope. | Refresh the page, and check authorization pages, scheduling policies, and related deployment status. |
-
-## Troubleshooting Path
-
-| Issue Type | Check First | Next Step |
-| --- | --- | --- |
-| Resource pool unavailable | Resource pool switch status, selected cloud platform, and `Show only enabled` filter | Check authorization pages and scheduling policies |
-| User cannot see the resource pool | Tenant authorization and business-region authorization | Go to authorization pages and verify visibility scope |
-| Business abnormal after disabling | Whether running deployments, scheduling policies, or authorization dependencies exist | Restore status or roll back through the change process |
+| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
+| Managed objects are visible | Regional resource pools under cloud platforms and their enabled states display as expected | Clear filters and verify upstream dependencies |
+| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
+| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
 
 ## FAQ
 
-#### Users can still select a resource pool after it is disabled
+#### Target Object Is Missing in Resource Pools
 
-**Issue Symptom:**
+**Symptom:**
 
-The resource pool has been turned off on the page, but users can still see or select it.
-
-**Possible Causes:**
-
-- Authorization or scheduling data has synchronization latency.
-- The user-side page cache has not been refreshed.
-- Other available resource pools or same-name region mappings still exist.
-
-**Handling:**
-
-1. Refresh Resource Pools and confirm the switch status.
-2. Check Tenant-Cloud Auth and Business-Region Auth.
-3. After synchronization completes, review the user-side deployment page.
-
-#### No confirmation prompt appears after switching status
-
-**Issue Symptom:**
-
-After clicking the resource pool status switch, no `Prompt` confirmation dialog appears.
+The expected object is missing from the list or selector.
 
 **Possible Causes:**
 
-- The current account does not have permission to change status.
-- The page request failed or the dialog was closed abnormally.
-- The current resource pool status does not allow switching.
+- Active query criteria filter out the target object.
+- An upstream object is disabled, or the current role lacks visibility.
 
-**Handling:**
+**Resolution:**
 
-1. Check the current account permissions and page API response.
-2. Refresh the page, then select the target cloud platform and resource pool again.
-3. If the issue persists, contact the platform administrator to confirm resource pool status and change restrictions.
+1. Clear filters and refresh the page.
+2. Verify the prerequisite object: The target cloud platform is connected and its pool list loads correctly.
+3. Confirm the current role and data scope, then locate the object again.
+
+#### Resource Pools Action Is Unavailable
+
+**Symptom:**
+
+An expected button, menu, or state switch is unavailable.
+
+**Possible Causes:**
+
+- The current account lacks the required action permission.
+- Object state, references, or prerequisites block the action.
+
+**Resolution:**
+
+1. Verify the permission for the action and the current object state.
+2. Check references and prerequisites identified by the page message.
+3. Remove the blocker, refresh the page, and perform the action once.
+
+#### Resource Pools Change Does Not Reach Downstream
+
+**Symptom:**
+
+The page reports success, but a downstream page still shows the old state.
+
+**Possible Causes:**
+
+- An associated page has stale cache or synchronization delay.
+- The current and downstream pages use different roles, tenants, or data scopes.
+
+**Resolution:**
+
+1. Wait for synchronization and refresh both pages.
+2. Confirm that both pages use the same role, tenant, and object scope.
+3. If they still differ, return to the responsible object and verify the saved result.
+
+#### Resource Pools Data Differs from Another Page
+
+**Symptom:**
+
+Counts or states differ from an associated page.
+
+**Possible Causes:**
+
+- The pages use different filters, aggregation rules, or update times.
+- The change is still synchronizing, or role-based data scopes differ.
+
+**Resolution:**
+
+1. Align filters and aggregation rules on both pages.
+2. Check update times and wait for synchronization.
+3. Compare object details instead of summary counts only.
+
+#### How to Troubleshoot a Resource Pools Failure
+
+**Symptom:**
+
+Submission fails or the state does not change for an extended period.
+
+**Possible Causes:**
+
+- Required fields, field combinations, or object state do not meet submission rules.
+- An upstream dependency is invalid, the request failed, or the same action is already processing.
+
+**Resolution:**
+
+1. Record the redacted object, time, and complete page message.
+2. Verify required fields, object state, and upstream dependencies.
+3. Confirm that no identical job is processing before one retry.
+
+## Notes
+
+- Before changing state, check tenant authorization, business authorization, scheduling policies, and existing deployments.
+- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
+- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
 
 ## Next Steps
 
 1. Go to Tenant-Cloud Auth or Business-Region Auth to verify resource pool visibility scope.
 2. Go to Policies to confirm scheduling rules after enabling or disabling.
 3. Go to Access Overview to review resource pool status and resource checklist display.
-
-## Notes
-
-- Enabling a resource pool may let real business traffic start scheduling to that resource pool.
-- Disabling a resource pool may affect existing deployments, scheduling, capacity display, and business availability.
-- `OK`, `Save`, and `Submit` are high-risk final actions. Do not click them during learning or screenshots.
-- Do not write real accounts, secrets, Tokens, AK/SK, intranet addresses, cloud resource IDs, resource pool internal codes, or test parameters in the document.

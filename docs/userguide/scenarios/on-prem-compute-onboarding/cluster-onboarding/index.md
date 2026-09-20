@@ -27,6 +27,10 @@ The cluster is available, all four NPU cards are discovered on the expected node
 4. Open cluster details and verify that all accelerator nodes are Ready.
 5. Verify that the reported target NPU count is four, with no missing or duplicate devices.
 
+6. Open **Cluster Details** and review the cluster's region, availability zone, status, associated specifications, and storage configuration.
+7. Open **Cluster Nodes** and confirm node state, device visibility, and resource reporting for every node that hosts an accelerator.
+8. If a cluster is disabled, do not select it for new resource creation until it is enabled and its nodes return to the expected state.
+
 ![Cluster management](./images/clusters-list.png)
 
 ## How to Verify All Four NPU Cards
@@ -55,6 +59,10 @@ The cluster is available, all four NPU cards are discovered on the expected node
 | --- | --- |
 | Cluster registration fails | Endpoint, network, registration data, agent state, and time synchronization |
 | Fewer than four cards appear | Node health, driver, device plug-in, accelerator mapping, and hardware visibility |
+| Cluster Details has no expected data | Cluster state, selected region/zone, permission scope, synchronization time, and whether the cluster has finished onboarding |
+| Cluster Nodes is empty | Cluster availability, node registration, node permission scope, and synchronization or collection status |
+| A disabled cluster is still selectable | Refresh the page, recheck cluster state and downstream associations, and do not submit a workload until the selectable scope is corrected |
+| Workloads cannot access cluster storage after a change | Cluster storage association, region/zone binding, storage component health, and workload mount configuration |
 
 ## User Manual
 

@@ -3,7 +3,7 @@ prev: false
 next: true
 ---
 
-# Installation
+# Deployment & Configuration
 
 This section contains deployment, configuration, and acceptance documentation for AGIOne products.
 
@@ -18,3 +18,5 @@ This section contains deployment, configuration, and acceptance documentation fo
 | [AGIOne-Installation Configuration Reference](./agione-install-config-reference)    | Field reference for `/root/agione-install.yml`                                    |
 | [AGIOne-Compute Nodes Requirements](./deployment-requirements-for-managing-compute-nodes) | Environment survey, resource planning, and deployment configuration requirements for managed compute nodes |
 | [AGIOne-Compute Nodes Installation](./quick-install-for-managing-compute-nodes)     | Kubernetes cluster, components, and validation workflow for managed compute nodes |
+| [AGIOne Operations Edition Post-Deployment Configuration](./post-deployment/operation-edition) | Business configuration, direct-entry links, and go-live acceptance checklist for Operations Edition deployments |
+| [AGIOne Enterprise Internal Edition Post-Deployment Configuration](./post-deployment/enterprise-internal-edition) | Initialization, configuration confirmation, and go-live acceptance checklist for enterprise internal deployments |

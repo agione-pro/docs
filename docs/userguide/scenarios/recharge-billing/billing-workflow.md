@@ -85,3 +85,4 @@ Operator references: [Metering Details](../../../usermanual/ai-infra-on-prem/ope
 | Stopped instance still incurs usage | Metering end time, residual job, and state synchronization |
 | Amount differs from expectation | Billing mode, unit, effective price time, currency, and period |
 | User and operator views differ | Tenant, time range, aggregation level, and synchronization delay |
+| Credit conversion does not match the expected amount | Current currency setting, the operator-configured default credit exchange rate, model pricing rule, token or resource usage, and effective time |

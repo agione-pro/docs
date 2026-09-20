@@ -19,7 +19,7 @@ codex --version
 
 ## Model Configuration
 
-1. Visit [Agione International Version](https://tai.agione.co/) and register an account.
+1. Visit [Agione International Version](https://agione.pro/) and register an account.
 2. Go to the model marketplace, select a model, enter the API Usage page, and obtain the *API key* and *model id*.
 
 ### Configuration Instructions (Using AGIOne as the Model Provider)
@@ -28,7 +28,7 @@ In the `~/.codex` folder, create a `config.toml` file and configure the provider
 
 - `model_provider`: Custom provider name (example: agione)
 - `model`: Obtain the `Model Id` from the API endpoint in the AGIOne platform's quick model start interface
-- `base_url`: `https://tai.agione.co/hyperone/xapi/api/v1`
+- `base_url`: `https://agione.pro/hyperone/xapi/api/v1`
 - `wire_api`: Supports the response protocol
 - `env_key`: Obtain the `API Key` from the authentication process in the AGIOne platform's quick model start interface, and set the environment variable name corresponding to the API key.
 
@@ -40,7 +40,7 @@ model = "openai/gpt-5-mini/61db2"
 # Custom Provider Details
 [model_providers.agione]
 name = "agione"
-base_url = "https://tai.agione.co/hyperone/xapi/api/v1"
+base_url = "https://agione.pro/hyperone/xapi/api/v1"
 wire_api = "responses"
 env_key = "AGIONE_API_KEY" # Corresponding environment variable name
 ```

@@ -1,63 +1,79 @@
 # Access Overview
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-08
-:::
-
 ## Feature Overview
-
-`Access Overview` is used to view the InfraHub access foundation, operator resource checklist, and grant status. It helps operators quickly confirm whether cloud platforms, resource pools, accounts, inference images, inference frameworks, model library models, policies, and grant configurations are complete.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Cloud > Access Workbench > Access Overview |
-| Page route | `/infrahub/op/workbanch/overview` |
-| Managed objects | Connected clouds, connected resource pools, connected accounts, operator resource checklist, tenant grants, and business resource pool grants |
-| Typical use | View cloud infrastructure access completeness and grant status |
+| Applicable Roles | Operators |
+| Navigation Path | AI Infra(On-Cloud) > Access Workbench > Access Overview |
+| Page Route | `/infrahub/op/workbanch/overview` |
+| Managed Objects | Access foundation, operational resource checklist, and authorization status |
 
 #### Beginner Explanation
 
-Access Overview is like a dashboard for cloud infrastructure access. It does not replace specific configuration pages. Instead, it puts cloud platforms, resource pools, accounts, operator resources, and grant status on one page so operators can determine whether the access chain is complete.
+Access Overview is a dashboard for cloud access readiness. It combines platforms, pools, accounts, deployment assets, and both authorization types so that missing prerequisites are visible.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Access Foundation | Shows the basic access status of connected clouds, resource pools, and accounts. |
-| Operator Resource Checklist | Shows resource types such as inference images, inference frameworks, model library models, and policies, including count, prerequisites, supports, and action entries. |
-| Grant Status | Shows tenant-cloud platform grants and business-resource pool grants. |
-| Prerequisites | Access configurations that must be completed before a resource can be used. |
-| Action | Entry that jumps to the corresponding resource management page. |
+| Access Foundation | A summary of connected cloud platforms, resource pools, and accounts. |
+| Operational Resource Checklist | Readiness of runtime images, frameworks, models, and policies. |
+| Authorization Status | A summary of tenant-cloud and business-region authorization. |
+
+#### Recommended Operation Order
+
+Review Access Foundation, then the operational resource checklist, and finally both authorization areas. Open the responsible object page for each missing item.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| First visit | Review existing objects, states, and available actions | Change an unknown object |
+| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
+| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
+| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
 
 ## Prerequisites
 
-1. The current account has access to `Access Workbench > Access Overview`.
-2. At least one cloud platform, resource pool, or access account has been configured.
-3. Before viewing grant status, tenant, business type, and resource pool grant rules have been configured according to actual operational needs.
+1. The current account has the permission required for Access Overview.
+2. The current account can view Access Overview and its linked detail pages.
+3. Use the overview to assess status. Make changes on the responsible object page and return to validate.
 
 ## Page Description
 
-The page displays `InfraHub Access Overview`. The top `Access Foundation` section shows connected clouds, connected resource pools, and connected accounts. The middle `Operator Resource Checklist` shows resource, count, prerequisites, supports, and action entries. The bottom `Grant Status` section shows Tenant-Cloud Platform Grants and Business-Resource Pool Grants.
+The upper area shows the access foundation, the middle area shows operational resources, and the lower area shows authorization status and management entries.
 
-Page screenshot:
+Page screenshots:
 
-![Access Overview](./images/access-overview-list.png)
+![Access Overview page](./images/manual-access-overview.png)
+
+The image shows Access Overview page. Verify the target object, current state, fields, and actions.
 
 ## Main Operations
 
 ### View Access Overview
 
-1. Go to `AI Infrastructure > On-Cloud > Access Workbench > Access Overview`.
-2. In `Access Foundation`, view the counts and names of `Connected clouds`, `Connected resource pools`, and `Connected accounts`.
-3. Click `Connect Cloud Platforms`, `Connect Resource Pools`, or `Access Accounts` to open the corresponding access management page and view details.
-4. In `Operator Resource Checklist`, view Resource, Count, Prerequisites, Supports, and Action to confirm whether inference images, inference frameworks, model library models, and policies are ready.
-5. Click `Open` in a resource row to enter the corresponding resource management page for viewing or handling configuration.
-6. In `Grant Status`, view `Tenant-Cloud Platform Grants`, `Business-Resource Pool Grants`, total tenants, granted tenants, ungranted tenants, and authorized resource pool counts.
-7. To adjust grants, click `Manage Tenant-Cloud Grants` or `Manage Business-Region Grants` to enter the grant management page. For learning or page validation, only view information and do not perform real grant or configuration changes.
+1. Go to `AI Infra(On-Cloud) > Access Workbench > Access Overview`.
+2. Verify connected platform, pool, and account counts.
+3. Verify runtime-image, framework, model, and policy counts and prerequisites.
+4. Verify tenant and business authorization status.
 
-![Access Overview](./images/access-overview-list.png)
+![Access Overview details](./images/access-overview-list.png)
+
+The image shows Access Overview details. Verify the target object, current state, fields, and actions.
+
+### Open Resource Management Pages
+
+1. Locate the target item in the operational resource checklist.
+2. Click **"Open"** on the row.
+3. After processing, return to Access Overview and refresh.
+
+### Open Authorization Management Pages
+
+1. Locate the tenant or business authorization area.
+2. Click **"Manage Authorization"** to open the responsible page.
+3. After authorization, return and confirm that counts and status are synchronized.
 
 ## Parameter Reference
 
@@ -78,67 +94,115 @@ Page screenshot:
 
 ## Pitfalls
 
-- Access Overview is an aggregated view. During troubleshooting, go to the cloud platform, resource pool, account, resource, or grant page for verification.
-- Entries such as `Open`, grant management, and access entries may jump to configuration pages. Do not perform real configuration changes during learning or screenshots.
-- Before screenshots or external communication, redact cloud accounts, resource pool names, internal resource identifiers, access endpoints, Keys, Tokens, AK/SK, and internal test parameters.
+- Do not skip the upstream dependency check: The current account can view Access Overview and its linked detail pages.
+- Confirm impact before a configuration change: Use the overview to assess status. Make changes on the responsible object page and return to validate.
+- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `InfraHub Access Overview` page opens normally, and `Access Workbench > Access Overview` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Access Foundation displays normally | Connected clouds, connected resource pools, and connected accounts cards show counts and names normally. | Return to the cloud platform, resource pool, or access account page and check access status. |
-| Operator Resource Checklist loads normally | Resource rows such as inference images, inference frameworks, model library models, and policies display normally. | Check prerequisites and resource synchronization status. |
-| Grant Status displays normally | Tenant-Cloud Platform Grants and Business-Resource Pool Grants show grant counts normally. | Go to the grant management page and check grant configurations. |
-| Entries can be opened | Clicking `Open`, `Connect Cloud Platforms`, `Connect Resource Pools`, `Access Accounts`, or grant management entries opens the corresponding page. | Check target page permissions and route configuration. |
-| Data is consistent with configuration | Card counts, resource counts, and grant counts are consistent with the corresponding management pages. | Refresh the page or wait for synchronization tasks to complete, then review again. |
+| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
+| Managed objects are visible | Access foundation, operational resource checklist, and authorization status display as expected | Clear filters and verify upstream dependencies |
+| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
+| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
 
 ## FAQ
 
-#### Access overview counts are inconsistent with detail pages
+#### Target Object Is Missing in Access Overview
 
-**Issue Symptom:**
+**Symptom:**
 
-The access overview card count or resource count is inconsistent with data shown on the detail page.
-
-**Possible Causes:**
-
-- Aggregated overview data has refresh latency.
-- Resource or grant synchronization tasks have not completed.
-- The current account has different data permissions on the detail page and overview page.
-
-**Handling:**
-
-1. Refresh Access Overview and confirm the latest data.
-2. Go to the corresponding cloud platform, resource pool, account, or grant page and check status.
-3. Wait for synchronization tasks to complete, then review again.
-
-#### What if Grant Status shows ungranted tenants?
-
-**Issue Symptom:**
-
-`Ungranted tenants` is greater than 0, or the target resource pool is missing from Business-Resource Pool Grants.
+The expected object is missing from the list or selector.
 
 **Possible Causes:**
 
-- The tenant has not been configured with cloud platform grants.
-- The business type has not been bound to available resource pools.
-- Grant configuration has changed but the overview has not refreshed.
+- Active query criteria filter out the target object.
+- An upstream object is disabled, or the current role lacks visibility.
 
-**Handling:**
+**Resolution:**
 
-1. Click the grant management entry to open the corresponding grant page.
-2. Check the tenant, business type, and resource pool grant scope.
-3. After completing grants, return to Access Overview and confirm that the counts changed.
+1. Clear filters and refresh the page.
+2. Verify the prerequisite object: The current account can view Access Overview and its linked detail pages.
+3. Confirm the current role and data scope, then locate the object again.
+
+#### Access Overview Action Is Unavailable
+
+**Symptom:**
+
+An expected button, menu, or state switch is unavailable.
+
+**Possible Causes:**
+
+- The current account lacks the required action permission.
+- Object state, references, or prerequisites block the action.
+
+**Resolution:**
+
+1. Verify the permission for the action and the current object state.
+2. Check references and prerequisites identified by the page message.
+3. Remove the blocker, refresh the page, and perform the action once.
+
+#### Access Overview Change Does Not Reach Downstream
+
+**Symptom:**
+
+The page reports success, but a downstream page still shows the old state.
+
+**Possible Causes:**
+
+- An associated page has stale cache or synchronization delay.
+- The current and downstream pages use different roles, tenants, or data scopes.
+
+**Resolution:**
+
+1. Wait for synchronization and refresh both pages.
+2. Confirm that both pages use the same role, tenant, and object scope.
+3. If they still differ, return to the responsible object and verify the saved result.
+
+#### Access Overview Data Differs from Another Page
+
+**Symptom:**
+
+Counts or states differ from an associated page.
+
+**Possible Causes:**
+
+- The pages use different filters, aggregation rules, or update times.
+- The change is still synchronizing, or role-based data scopes differ.
+
+**Resolution:**
+
+1. Align filters and aggregation rules on both pages.
+2. Check update times and wait for synchronization.
+3. Compare object details instead of summary counts only.
+
+#### How to Troubleshoot a Access Overview Failure
+
+**Symptom:**
+
+Submission fails or the state does not change for an extended period.
+
+**Possible Causes:**
+
+- Required fields, field combinations, or object state do not meet submission rules.
+- An upstream dependency is invalid, the request failed, or the same action is already processing.
+
+**Resolution:**
+
+1. Record the redacted object, time, and complete page message.
+2. Verify required fields, object state, and upstream dependencies.
+3. Confirm that no identical job is processing before one retry.
+
+## Notes
+
+- Use the overview to assess status. Make changes on the responsible object page and return to validate.
+- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
+- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
 
 ## Next Steps
 
 1. Go to the cloud platform, resource pool, or access account page to complete access configuration.
 2. Go to inference images, inference frameworks, model library models, or policies to view operator resource readiness.
 3. Go to grant management pages to check tenant and business resource pool grants.
-
-## Notes
-
-- Access Overview is mainly for viewing. Configuration changes should be completed on the corresponding management pages.
-- Synchronization, export, configuration, refreshing access data, or changing resource mappings are sensitive entries. This document does not guide real configuration changes.
-- Do not write real provider-sensitive information, internal resource identifiers, access endpoints, Keys, Tokens, AK/SK, or internal test parameters in the document.

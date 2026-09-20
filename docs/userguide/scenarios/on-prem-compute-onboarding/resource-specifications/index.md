@@ -32,6 +32,8 @@ Users can request clear one-card, two-card, and four-card NPU plans, each mapped
 
 4. Validate the one-card plan with a test workload before testing the two-card and four-card plans.
 
+5. Before exposing a specification to users, confirm that its enabled state, associated cluster, region/availability-zone scope, and tenant quota allow the intended downstream template or workload to select it.
+
 ## Recommended Four-Card Plan
 
 | Flavor | NPU Count | Typical Use |
@@ -58,6 +60,7 @@ Do not assume that a single pod can request all four cards when they are distrib
 | --- | --- |
 | A specification is not selectable | Status, tenant quota, cluster association, and region availability |
 | A workload remains pending | Resource key, requested card count, free capacity, and node labels |
+| A specification is visible in the list but unavailable downstream | Enabled state, cluster association, region/zone scope, tenant quota, and stale page data |
 
 ## User Manual
 

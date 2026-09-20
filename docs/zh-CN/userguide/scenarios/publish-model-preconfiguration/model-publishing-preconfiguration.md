@@ -2,7 +2,7 @@
 
 本指南说明 模型提供方 发布公有模型前，平台运营方 需要先在 **模型及 AI 服务** 中完成的预配置。
 
-开始前，使用 平台运营方 账号登录 AGIOne，打开 **"模型及AI服务"**，确认左侧菜单中可以看到 **"设置"** 和 **"审批"**。
+开始前，使用 平台运营方 账号登录 {{DOCS_PRODUCT_NAME_ZH}}，打开 **"模型及AI服务"**，确认左侧菜单中可以看到 **"设置"** 和 **"审批"**。
 
 ## 场景目标
 
@@ -206,4 +206,4 @@
 
 ## 操作手册
 
-[模型服务端到端发布流程](../../../usermanual/model-services/end-to-end/publish-and-call-model/)
+[我的模型](../../../usermanual/model-services/user/studio/my-models/)

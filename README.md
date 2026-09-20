@@ -102,6 +102,10 @@ When adding a new scenario:
 ## Content Rules
 
 - Keep English and Chinese paths aligned.
+- Use `https://agione.pro` for AGIOne product, login, model, API, and download URLs in English documents and English navigation.
+- Use `https://agione.cc` for the equivalent URLs in `docs/zh-CN/` documents and Chinese navigation.
+- Do not use the legacy `tai.agione.co` or `zh.agione.co` domains in documentation content.
+- Treat `docs.agione.cc` and `docs.agione.pro` as documentation deployment hosts; they do not override the language-specific product URL rule.
 - Do not commit real secrets, API keys, AK/SK, tokens, cookies, internal customer data, or real credentials.
 - Use sanitized placeholders in examples and screenshots.
 - Prefer relative Markdown links for nearby pages and images.

@@ -4,7 +4,7 @@ export const enNavbar = [
   {
     text: 'Documentation',
     items: [
-      { text: "Installation", link: '/installation/' },
+      { text: "Deployment & Configuration", link: '/installation/' },
       { text: "Purchase & Activation", link: "/license/" },
       { text: "User Guide", link: "/userguide/scenarios" },
       { text: "User Manual", link: "/usermanual/" },
@@ -13,6 +13,7 @@ export const enNavbar = [
         items: [
           { text: "Technical Practices", link: "/practices/technical/" },
           { text: "Project Practices", link: "/practices/project/" },
+          { text: "Monitor Matrix", link: "/practices/monitor-matrix/" },
         ]
       },
       // { text: "Tools", link: "/tools/" },
@@ -25,7 +26,7 @@ export const enNavbar = [
       },
     ],
   },
-  { text: 'AGIOne', link: 'https://agione.cc/' },
+  { text: 'AGIOne', link: 'https://agione.pro/' },
   { text: 'AI Support', link: 'https://sourcelens.oneprocloud.com/lens/assistants/AI_AGIOne/chat' },
   // { text: 'Get Support', link: 'https://support.oneprocloud.com/' },
   // { text: 'FAQ', link: 'https://qa.oneprocloud.com/' },

@@ -29,7 +29,7 @@ The intended tenant can see the authorized cloud platform, while unrelated tenan
 
 ![Review tenant-cloud authorization](./images/tenant-cloud-auth.png)
 
-3. Select one or more currently supported cloud platforms, such as Alibaba Cloud, AWS, or AGIOne-powerone. Huawei Cloud access is not currently supported.
+3. Select one or more currently supported cloud platforms, such as Alibaba Cloud, AWS, or {{DOCS_CLOUD_PLATFORM_EN}}. Huawei Cloud access is not currently supported.
 4. Select the authorization scope:
    - **Single Tenant** grants access to one named tenant.
    - **All Tenants** grants access to every tenant and does not require a tenant name.
@@ -43,7 +43,7 @@ The intended tenant can see the authorized cloud platform, while unrelated tenan
 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
-| Cloud Platform | Multi-select | `Alibaba Cloud / AWS / AGIOne-powerone` | Required; one or more currently supported platforms |
+| Cloud Platform | Multi-select | `Alibaba Cloud / AWS / {{DOCS_CLOUD_PLATFORM_EN}}` | Required; one or more currently supported platforms |
 | Authorization Scope | Single select | `Single Tenant / All Tenants` | Required; determines the authorization target |
 | Tenant | Text | `tenant-a` | Required only for Single Tenant authorization |
 

@@ -2,7 +2,7 @@
 
 This guide explains the preconfiguration that an Operator needs to complete in **Model Services** before a Provider publishes a public model.
 
-Before you begin, sign in to AGIOne with an Operator account, open **"Model Services"**, and confirm that **"Settings"** and **"Approvals"** are available in the left-side menu.
+Before you begin, sign in to {{DOCS_PRODUCT_NAME_EN}} with an Operator account, open **"Model Services"**, and confirm that **"Settings"** and **"Approvals"** are available in the left-side menu.
 
 ## Target Outcome
 
@@ -206,4 +206,4 @@ Before the Provider submits a public model, the Operator should confirm at least
 
 ## User Manual
 
-[Model Services end-to-end publishing flow](../../../usermanual/model-services/end-to-end/publish-and-call-model/)
+[My Models](../../../usermanual/model-services/user/studio/my-models/)

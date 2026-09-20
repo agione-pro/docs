@@ -283,7 +283,7 @@ export AGIONE_DISK_TOLERANCE_RATIO=0.80
 
 先在安装发起机打开固定下载页，再复制页面中的 `Download URL` 包下载直链；解压后目录名由交付包内部目录决定，例如 `agione-release-v1.0-XXX/`。只需要先下载到安装发起机，安装器会在多节点安装过程中同步到其他目标节点。
 
-固定下载页：[下载地址](https://agione.pro/release/download/agione-release-latest)
+固定下载页：[下载地址]({{DOCS_RELEASE_PAGE_URL_ZH}})
 
 页面中同时提供 `MD5 URL`，建议下载后一起校验。MD5 只能发现下载或传输损坏，不能证明安装包发布方身份。正式生产交付还应通过受控交付渠道独立获取外层 `.tar.gz` 的 SHA-256 摘要并核对。
 
@@ -291,7 +291,7 @@ export AGIONE_DISK_TOLERANCE_RATIO=0.80
 
 ```bash
 ssh root@<app-node-1>
-AGIONE_RELEASE_PAGE="https://agione.pro/release/download/agione-release-latest"
+AGIONE_RELEASE_PAGE="{{DOCS_RELEASE_PAGE_URL_ZH}}"
 AGIONE_RELEASE_URL="<复制下载页中的 Download URL>"
 AGIONE_RELEASE_MD5_URL="<复制下载页中的 MD5 URL>"
 AGIONE_RELEASE_ARCHIVE="${AGIONE_RELEASE_URL##*/}"

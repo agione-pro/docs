@@ -1,4 +1,4 @@
-﻿# 产品概述
+# 产品概述
 
 :::: info 文档信息
 版本：v1.0
@@ -36,7 +36,7 @@ AGIOne 将模型服务交付所需的工作连接成一条路径：
 | 角色 | 主要职责 | 推荐入口 |
 | --- | --- | --- |
 | **运营方（`operator`）** | 准备资源和模板，配置治理规则，维护配额与监控，审核发布内容 | [角色对比总览](./role-comparison) |
-| **模型提供方（`provider`）** | 发布单模型或聚合模型，维护版本和定价，提交审核，查看客户调用与收益 | [Model Services 平台入门](../usermanual/model-services/getting-started/) |
+| **模型提供方（`provider`）** | 发布单模型或聚合模型，维护版本和定价，提交审核，查看客户调用与收益 | [我的模型](../usermanual/model-services/user/studio/my-models/) |
 | **普通用户（`enduser`）** | 发现和体验模型，获取调用权限，调用 API，部署可用服务并查看个人用量 | [用户手册](../usermanual/) |
 
 账号可见的菜单取决于角色、所属租户、授权范围和当前可用资源。
@@ -50,6 +50,7 @@ AGIOne 将模型服务交付所需的工作连接成一条路径：
 | 页面或字段是什么意思，具体如何操作？ | [用户手册](../usermanual/) |
 | 如何准备环境或安装平台？ | [安装指南](../installation/)和[网络规划](./technical/network) |
 | 某个芯片、云平台或模型能力是否支持？ | [纳管芯片](./limitations/chips)和[支持矩阵](./limitations/support-matrix) |
+| 平台的安全、数据保护与隔离机制如何？ | [平台安全概览](./technical/security-overview) |
 | PoC 或交付前如何收集需求？ | [需求快速调研](./investigation/quick-requirement-investigation)和[环境快速调研](./investigation/quick-env-investigation) |
 
 ## 支持状态说明

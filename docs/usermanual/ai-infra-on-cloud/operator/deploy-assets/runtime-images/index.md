@@ -1,66 +1,91 @@
 # Runtime Images
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-07-20
-:::
-
 ## Feature Overview
-
-`Runtime Images` is used to maintain native container image resources commonly used across multiple clouds and regions. Operators can add runtime images by cloud platform and region, so inference frameworks or model deployment flows can select them later.
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator |
-| Navigation path | AI Infrastructure > On-Cloud > Deploy Assets > Runtime Images |
-| Page route | `/infrahub/op/model/image` |
-| Managed objects | Cloud platform, region, image name, image type, image size, registry path, and action entries |
-| Typical use | Add runtime images that can be used by inference frameworks and model deployments |
+| Applicable Roles | Operators |
+| Navigation Path | AI Infra(On-Cloud) > Deploy Assets > Runtime Images |
+| Page Route | `/infrahub/op/model/image` |
+| Managed Objects | Runtime images, image locations, platform architecture, and pool scope |
 
 #### Beginner Explanation
 
-A runtime image works like the runtime package for a model service. It usually contains framework dependencies, drivers, service programs, and base tools. If the image path or version does not match, later deployments may fail to pull the image or start the service.
+Runtime Images defines the runtime package for model services. It tells frameworks where an image is located and which platforms and pools can use it; incorrect configuration causes pull or startup failures.
 
-#### Terms Quick Reference
+#### Terminology
 
 | Term | Description |
 | --- | --- |
-| Cloud Platform | Cloud platform to which the image belongs or on which it can be used. |
-| Region | Cloud platform region where the image is located or can be pulled. |
-| Type | Image visibility scope. The page supports `Public` and `Private`. |
-| Name | Image identifier. It is recommended to include framework, version, and environment. |
-| Registry Path | Complete image repository path, usually including repository address, namespace, image name, and tag. |
+| Image Location | A reference in an image registry. Documentation uses placeholders only. |
+| Platform Architecture | The processor or runtime architecture supported by the image. |
+| Resource Pool Scope | The platforms and pools allowed to use the image. |
+
+#### Recommended Operation Order
+
+Check for an existing image, add it and confirm platform, architecture, and pool scope, edit when location or scope changes, and validate it in a framework version.
+
+#### Beginner Checklist
+
+| Scenario | Do First | Do Not Do Directly |
+| --- | --- | --- |
+| First visit | Review existing objects, states, and available actions | Change an unknown object |
+| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
+| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
+| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
 
 ## Prerequisites
 
-1. The target cloud platform and region have been connected and are available.
-2. The image to be registered has been built and confirmed to be pullable by the target resource environment.
-3. Image name, registry path, image type, and description have been sanitized.
-4. If the image repository requires credentials, maintain them in the platform security configuration instead of documentation.
+1. The current account has the permission required for Runtime Images.
+2. The image owner has confirmed accessibility, and platform and architecture are known.
+3. Before adding or editing, check framework versions, pool permissions, and image-pull requirements.
 
 ## Page Description
 
-This page is used to view and add runtime images. The list supports filtering by cloud platform tab, `Name`, and `Type`, and provides `Search`, `Reset`, `Export`, `Import`, and `Add Runtime Image`. The table displays `Name`, `Type`, `Size`, `Registry Path`, `Cloud Platform`, `Created at`, and `Actions`, with entries such as `Edit` and `Delete`.
+The page lists runtime images and provides an add entry, including ownership, state, and actions.
 
-Page screenshot:
+Page screenshots:
 
-![Runtime Images List](./images/runtime-images-list.png)
+![Runtime Images page](./images/manual-runtime-images.png)
+
+The image shows Runtime Images page. Verify the target object, current state, fields, and actions.
+
+![Runtime image list reference](./images/runtime-images-list.png)
+
+The image shows Runtime image list reference. Verify the target object, current state, fields, and actions.
 
 ## Main Operations
 
 ### Add Runtime Image
 
-1. Go to `AI Infrastructure > On-Cloud > Deploy Assets > Runtime Images`.
-2. Click `Add Runtime Image` to open the add runtime image dialog.
-3. Select `Cloud Platform`, and then select `Region` as required by the page.
-4. Select `Public` or `Private` under `Type`.
-5. Fill in `Name`, `Registry Path`, and `Description`.
-6. Before clicking the final `Confirm`, verify the cloud platform, region, image type, name, and registry path again.
-7. For learning or page validation only, click `Cancel` or close the dialog without submitting real image configuration.
+1. Click **"Add Runtime Image"**.
+2. Enter the name, image location, and platform architecture.
+3. Select the applicable platform and pool scope.
+4. Click **"Confirm"** and verify the new record.
 
-Key step screenshot:
+![Add Runtime Image](./images/manual-add-runtime-image.png)
 
-![Add Runtime Image](./images/add-runtime-image.png)
+The image shows Add Runtime Image. Verify the target object, current state, fields, and actions.
+
+![Add runtime image reference](./images/add-runtime-image.png)
+
+The image shows Add runtime image reference. Verify the target object, current state, fields, and actions.
+
+### Edit Runtime Image
+
+1. Click **"Edit"** on the target image row.
+2. Verify the image location, architecture, and pool scope.
+3. Save and verify that framework versions can still select and pull the image.
+
+![Edit Runtime Image](./images/manual-maintain-runtime-image.png)
+
+The image shows Edit Runtime Image. Verify the target object, current state, fields, and actions.
+
+### View Runtime Images
+
+1. Locate the target image by name or state.
+2. Verify platform, architecture, pool scope, and update time.
+3. If information differs, verify it in Edit instead of adding a duplicate.
 
 ## Parameter Reference
 
@@ -70,7 +95,7 @@ Key step screenshot:
 | Region | Yes | Dropdown | `East China-Shanghai 1` | Selects the region where the image is located or available. |
 | Type | Yes | Segmented control | `Public` | Selects public or private image. |
 | Name | Yes | Text | `framework:v1.0-runtime` | Image identifier. It is recommended to include framework, version, and environment. |
-| Registry Path | Yes | Multiline text | `registry.example.com/namespace/image:tag` | Complete image repository path. Use placeholders only in documentation. |
+| Registry Path | Yes | Multiline text | `<BASE_URL>/namespace/image:tag` | Complete image repository path. Use placeholders only in documentation. |
 | Description | No | Multiline text | `Sample runtime image description` | Briefly describes the core library and applicable model types. Do not write internal sensitive information. |
 | Size | No | Text | `16 GB` | Image size displayed in the list. |
 | Created at | No | Date time | `2026-07-20 10:00:00` | Image creation time displayed in the list. |
@@ -85,80 +110,115 @@ Key step screenshot:
 
 ## Pitfalls
 
-- Use fixed image tags in registry paths and avoid relying on unstable tags such as `latest` for long-term use.
-- Image repository credentials, pull keys, tokens, and internal network addresses should not be written into documentation, screenshots, or tickets.
-- An incorrect cloud platform, region, or image path may cause later image pull failures during deployment.
-- The screenshots do not show startup command, runtime parameters, applicable framework, or pull credential fields, so this page does not document them as confirmed UI fields.
+- Do not skip the upstream dependency check: The image owner has confirmed accessibility, and platform and architecture are known.
+- Confirm impact before a configuration change: Before adding or editing, check framework versions, pool permissions, and image-pull requirements.
+- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `Runtime Images` page and image list are displayed. | Check menu permissions, route, and login status. |
-| Runtime image list loads | The table displays name, type, size, registry path, cloud platform, created time, and action entries. | Check filters, data permissions, and API status. |
-| Add entry is visible | `Add Runtime Image` is displayed in the upper-right corner. | Check operator permissions and page configuration. |
-| Add dialog opens | The dialog displays cloud platform, region, type, name, registry path, description, cancel, and confirm. | Refresh the page and retry. If the issue persists, contact the administrator. |
-| Required fields and validation prompts work | Missing required fields trigger page validation prompts, and the flow can continue after they are completed. | Complete cloud platform, region, type, name, and registry path as prompted. |
-| No real submission during learning | The final `Confirm` is not clicked and no real image configuration is written. | If submitted by mistake, immediately check the image list and downstream framework references. |
-| Real submission can be tracked | The new runtime image appears in the list, and type, cloud platform, registry path, and created time can be viewed. | Return to the list or details page to verify configuration and validate pulling with a test deployment. |
-
-## Troubleshooting
-
-| Issue Type | Check First | Next Step |
-| --- | --- | --- |
-| Image pull fails | Whether cloud platform, region, registry path, and image tag are correct. | Validate pulling with a test deployment and check repository access permissions. |
-| Image record is not visible | Filters, cloud platform tab, and data permissions. | Click `Reset` and search again. If the issue persists, contact the administrator. |
-| Service startup fails | Image content, framework dependencies, driver version, and startup configuration. | Return to Frameworks or Models to verify runtime configuration. |
-| Image is deleted or changed by mistake | Operation records and affected model deployment scope. | Pause related deployment changes and restore or add the correct image again. |
+| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
+| Managed objects are visible | Runtime images, image locations, platform architecture, and pool scope display as expected | Clear filters and verify upstream dependencies |
+| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
+| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
 
 ## FAQ
 
-#### Image Pull Fails
+#### Target Object Is Missing in Runtime Images
 
-**Issue Symptom:**
+**Symptom:**
 
-Deployment events show image pull or authentication failure.
-
-**Possible Causes:**
-
-- Registry path or tag is incorrect.
-- Image repository credentials are invalid or not configured.
-- The target resource environment cannot access the image repository.
-
-**Handling:**
-
-1. Verify cloud platform, region, and registry path.
-2. Update repository credentials or pull permissions in platform security configuration.
-3. Check network connectivity from the resource environment to the image repository.
-
-#### Image Can Be Pulled but the Service Fails to Start
-
-**Issue Symptom:**
-
-After the image is pulled successfully, the container exits, restarts repeatedly, or the health check fails.
+The expected object is missing from the list or selector.
 
 **Possible Causes:**
 
-- The image lacks framework dependencies.
-- Driver or runtime versions do not match.
-- The startup command in the inference framework is inconsistent with the image directory structure.
+- Active query criteria filter out the target object.
+- An upstream object is disabled, or the current role lacks visibility.
 
-**Handling:**
+**Resolution:**
 
-1. View deployment events and container logs.
-2. Verify image dependencies, driver version, and runtime environment.
-3. Adjust inference framework configuration or switch to a compatible image.
+1. Clear filters and refresh the page.
+2. Verify the prerequisite object: The image owner has confirmed accessibility, and platform and architecture are known.
+3. Confirm the current role and data scope, then locate the object again.
+
+#### Runtime Images Action Is Unavailable
+
+**Symptom:**
+
+An expected button, menu, or state switch is unavailable.
+
+**Possible Causes:**
+
+- The current account lacks the required action permission.
+- Object state, references, or prerequisites block the action.
+
+**Resolution:**
+
+1. Verify the permission for the action and the current object state.
+2. Check references and prerequisites identified by the page message.
+3. Remove the blocker, refresh the page, and perform the action once.
+
+#### Runtime Images Change Does Not Reach Downstream
+
+**Symptom:**
+
+The page reports success, but a downstream page still shows the old state.
+
+**Possible Causes:**
+
+- An associated page has stale cache or synchronization delay.
+- The current and downstream pages use different roles, tenants, or data scopes.
+
+**Resolution:**
+
+1. Wait for synchronization and refresh both pages.
+2. Confirm that both pages use the same role, tenant, and object scope.
+3. If they still differ, return to the responsible object and verify the saved result.
+
+#### Runtime Images Data Differs from Another Page
+
+**Symptom:**
+
+Counts or states differ from an associated page.
+
+**Possible Causes:**
+
+- The pages use different filters, aggregation rules, or update times.
+- The change is still synchronizing, or role-based data scopes differ.
+
+**Resolution:**
+
+1. Align filters and aggregation rules on both pages.
+2. Check update times and wait for synchronization.
+3. Compare object details instead of summary counts only.
+
+#### How to Troubleshoot a Runtime Images Failure
+
+**Symptom:**
+
+Submission fails or the state does not change for an extended period.
+
+**Possible Causes:**
+
+- Required fields, field combinations, or object state do not meet submission rules.
+- An upstream dependency is invalid, the request failed, or the same action is already processing.
+
+**Resolution:**
+
+1. Record the redacted object, time, and complete page message.
+2. Verify required fields, object state, and upstream dependencies.
+3. Confirm that no identical job is processing before one retry.
+
+## Notes
+
+- Before adding or editing, check framework versions, pool permissions, and image-pull requirements.
+- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
+- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
 
 ## Next Steps
 
 1. Select or reference the runtime image in Frameworks.
 2. Verify whether the image can be used in compute plans when adding a model in Models.
 3. Use a test deployment to validate image pull, service startup, and health check results.
-
-## Notes
-
-- Adding a runtime image may affect selectable images and inference task runtime environments for model deployment.
-- Incorrect registry path, tag, startup command, or runtime parameter may cause deployment failure, resource waste, or service exceptions.
-- Image repository credentials may contain sensitive information and must not be written into documentation.
-- `Confirm`, `Save`, and `Submit` are high-risk final actions. This document only describes field review and pre-submission checks, and does not guide users to submit during testing or learning.
-- Do not write real image repository credentials, tokens, AK/SK, internal registry addresses, cloud resource IDs, or internal test parameters.

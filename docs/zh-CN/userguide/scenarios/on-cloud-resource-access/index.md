@@ -5,7 +5,7 @@ next: true
 
 # 场景概览 - 多云资源接入
 
-指导运营管理员将外部云平台资源（云厂商、云账号、地域）接入 AGIOne 平台，并完成面向业务与租户的授权分配，为后续的部署、调用与计量提供底层资源。
+指导运营管理员将外部云平台资源（云厂商、云账号、地域）接入 {{DOCS_PRODUCT_NAME_ZH}} 平台，并完成面向业务与租户的授权分配，为后续的部署、调用与计量提供底层资源。
 
 ## 适用角色
 
@@ -50,7 +50,7 @@ next: true
 | [接入资源池](./Resource-Pools/) | 启用地域节点并维护显示信息 |
 | [业务-资源池授权](./Business-Region-Auth/) | 按业务类型、云平台和地域授权 |
 | [租户-云平台授权](./Tenant-Cloud-Auth/) | 按租户和云平台授权 |
-| [部署云上模型服务](../../../usermanual/ai-infra-on-cloud/end-to-end/deploy-cloud-model-service/) | 串联运营方资源接入、资产准备、用户部署与结果验证的完整 On-Cloud 流程 |
+| [接入总览](../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) | 查看云资源接入与状态检查的运营入口 |
 
 ## 相关场景
 

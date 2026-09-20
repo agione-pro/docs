@@ -51,7 +51,7 @@ Representative role screenshot:
 | Document | Description |
 | --- | --- |
 | [Identity Authorization Workflow](./authorization-workflow) | Role design, member assignment, access verification, and a role-page screenshot |
-| [Configure Accounts and Permissions](../../../usermanual/settings/end-to-end/configure-account-and-permissions/) | Follow the complete manual workflow for account preparation, role configuration, member assignment, and least-privilege validation |
+| [Members](../../../usermanual/settings/operator/members-roles/members/) | Review member management; use the adjacent Roles page for role configuration and authorization |
 
 ## Completion Checklist
 

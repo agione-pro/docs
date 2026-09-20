@@ -109,8 +109,8 @@ AGIOne 平台当前已完成兼容性验证的加速卡型号涵盖英伟达、�
 
 | 厂商 | 架构 / 系列 | 型号 |
 | --- | --- | --- |
-| 燧原（Enflame） | Enflame | 106（S60） |
-| 壁仞（Biren） | Biren | S60 |
+| 燧原（Enflame） | Enflame | S60 |
+| 壁仞（Biren） | Biren | 106 |
 
 ### 2.2 兼容性核对要点
 
