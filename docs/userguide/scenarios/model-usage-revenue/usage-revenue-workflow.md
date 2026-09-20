@@ -39,7 +39,7 @@ This scenario helps callers reconcile model consumption and providers reconcile 
 ## Reconciliation Order
 
 1. Use call logs to confirm Model ID, Attribution, success, and actual tokens, requests, or duration.
-2. Open **Model Usage** with the same time and model filters. Compare Model ID and Attribution columns before reconciling usage totals. The current Demo does not expose member or project attribution filters.
+2. Open **Model Usage** with the same time and model filters. Compare Model ID and Attribution columns before reconciling usage totals. If the current environment does not expose member or project attribution filters, reconcile using the dimensions shown on the page.
 
 ![Compare model usage with call records](./images/model-usage-overview.png)
 

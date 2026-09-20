@@ -30,19 +30,27 @@ next: true
 | 2. 制作推理模板 | 关联模型版本、vLLM 显存表与 Ascend 910B 卡型，模板状态置为 Available |
 | 3. 创建模型实例 | 模型提供方基于模板配置并发与上下文，启动实例并确认 Running 状态 |
 | 4. 发布模型服务 | 完成 OpenAI 协议测试，配置标签、免费计费与限流并提交发布 |
-| 5. 验证端到端调用 | 在 Displayground 界面对话，并通过 cURL 命令行验证流式响应 |
+| 5. 验证端到端调用 | 在 Playground 界面对话，并通过 cURL 命令行验证流式响应 |
 
 ## 开始前准备
 
 - 已接入昇腾 910B 集群并拥有运营管理员账号与模型提供方账号。
 - 集群具备访问 ModelScope 官方站点的网络连通性。
 - 已明确待部署模型（如 DeepSeek-R1-Distill-Qwen-7B）的 Model ID 及支持的并发与上下文要求。
+- 已为模型提供方准备创建实例的权限，并确认本场景使用公有还是私有发布范围。
 
 ## 推荐阅读顺序
 
 1. 查看当前场景概览，了解运营管理员与模型提供方的分工协作。
 2. 阅读 [新模型模板准备与端到端部署调用指引](./template-deployment-guide) 完成全流程 23 步实操。
 3. 结合 [推理模板构建](../on-prem-inference-template/) 与 [模型部署与状态检查](../on-prem-model-deployment-status/) 深入排查单项配置。
+
+## 操作手册参考
+
+- [On-Prem 模型](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/)
+- [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
+- [我的模型](/zh-CN/usermanual/model-services/user/studio/my-models/)
+- [我的部署](/zh-CN/usermanual/model-services/user/studio/my-deployments/)
 
 ## 文档索引
 
@@ -60,4 +68,4 @@ next: true
 | 2 | 推理模板成功关联 Ascend 910B 算力卡及显存系数表，状态为 Available。 |
 | 3 | 模型提供方成功创建实例，实例状态为 Running 且服务端口可用。 |
 | 4 | 模型公有发布完成，API 协议测试通过。 |
-| 5 | Displayground 对话正常响应，终端 cURL 获得正确的流式输出。 |
+| 5 | Playground 对话正常响应，终端 cURL 获得正确的流式输出。 |

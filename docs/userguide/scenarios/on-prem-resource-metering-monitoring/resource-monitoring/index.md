@@ -36,6 +36,8 @@ All four NPU cards have traceable health and utilization, and each abnormal sign
 
 4. Correlate an abnormal device with its node and workload before choosing a hardware, driver, quota, or application fix.
 
+Use the same region, availability-zone, object, and time-range scope on all three pages. If the pages show different totals, clear filters and restore them one at a time before treating the difference as a fault.
+
 ## Four-NPU Inspection Table
 
 | Check | Expected Result |
@@ -62,6 +64,7 @@ All four NPU cards have traceable health and utilization, and each abnormal sign
 | --- | --- |
 | Device metrics are empty | Monitoring agent, device plug-in, time range, cluster state, and device mapping |
 | A card is idle while jobs wait | Requested specification, scheduler events, node labels, quota, and card health |
+| Device, node, and workload totals differ | Region/zone scope, time range, update time, aggregation level, and collection delay |
 
 ## User Manual
 

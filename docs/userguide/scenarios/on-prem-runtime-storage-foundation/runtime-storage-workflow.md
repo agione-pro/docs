@@ -46,6 +46,8 @@ Enter connection information, capacity, access policy, and associated region, th
 
 Confirm that image and storage components are associated with the target region or cluster. Create a minimal test workload and validate image pull, startup, volume mounting, or object access. After it ends, confirm data-retention and resource-reclaim behavior.
 
+Before deleting or replacing an image service or storage component, check the component's downstream region, cluster, template, and workload dependencies. Remove or migrate those dependencies first; otherwise later image pulls, mounts, or object access may fail.
+
 ## Completion Checklist
 
 > **Purpose:** These checks confirm that the current foundation supports a real workload. Do not create IDE, training, or inference instances at scale while any check fails.
@@ -66,3 +68,4 @@ Confirm that image and storage components are associated with the target region 
 | Image exists in the platform but users cannot select it | Synchronization, region binding, tenant permission, and label state |
 | Volume cannot be created or mounted | CSI/storage driver, access mode, capacity, network, and authentication |
 | Object or shared directory cannot be accessed | Endpoint, path or bucket, access policy, and tenant isolation |
+| A component cannot be deleted or replaced safely | Region and cluster bindings, template or workload references, active mounts, and the component's current health state |

@@ -1,10 +1,14 @@
 # 新模型模板准备与端到端部署调用指引
 
-使用运营管理员准备好的模型启动模型
+::: tip 环境与参数说明
+本指引使用当前环境页面中的菜单、字段和状态名称。模型 ID、模型提供方实例 ID、服务端口和可选发布范围可能因环境而异，请以当前页面显示的值为准。
+:::
+
+使用运营管理员准备好的模型启动模型：
 
 **使用模板创建模型实例（使用模型提供方账号）：使用已创建的模板创建新的模型实例。此步骤用于检查模板中配置的参数是否正确。**
 
-**使用已创建的实例发布模型（使用模型提供方账号）：发布已创建的模型实例，并在 Displayground 中调用模型或使用 curl 命令调用模型。此步骤用于检查模型 API。**
+**使用已创建的实例发布模型（使用模型提供方账号）：将实例发布到已批准的公有或私有范围，并在 Playground 中调用模型或使用 curl 命令调用模型。此步骤用于检查模型 API。**
 
 为客户创建新的推理模板，以便启动模型实例
 
@@ -14,7 +18,7 @@
 
 **使用模板创建模型实例（使用模型提供方账号）：使用已创建的模板创建新的模型实例。此步骤用于检查模板中配置的参数是否正确。**
 
-**使用已创建的实例发布模型（使用模型提供方账号）：发布已创建的模型实例，并在 Displayground 中调用模型或使用 curl 命令调用模型。此步骤用于检查模型 API。**
+**使用已创建的实例发布模型（使用模型提供方账号）：将实例发布到已批准的公有或私有范围，并在 Playground 中调用模型或使用 curl 命令调用模型。此步骤用于检查模型 API。**
 
 # 启动模型并调用的步骤
 
@@ -42,7 +46,7 @@
 
 ![图 05](./images/05-publish-model-action.png)
 
-选择 Public 进入发布页面。至少启用一种 API 协议（例如 OpenAI-ChatCompletions），然后单击 “Test” 确认模型可用。
+选择已批准的 **Public** 或 **Private** 范围进入发布页面。至少启用一种 API 协议（例如 OpenAI-ChatCompletions），然后单击 **Test** 确认模型可用。
 
 ![图 06](./images/06-publish-protocol-test.png)
 
@@ -54,7 +58,7 @@
 
 ![图 08](./images/08-publish-billing-options.png)
 
-然后进入 Rate Limit 页面。测试时可以设置为不启用。接着提交审批（此环境已启用自动审批，因此不需要运营管理员审批）。
+然后进入 Rate Limit 页面。受控测试只有在当前环境策略允许时才可以不启用限流。页面要求审批时提交审批；如果不需要审批，则直接核对发布后的状态。
 
 ![图 09](./images/09-publish-rate-limit-submit.png)
 
@@ -64,7 +68,7 @@
 
 ![图 10](./images/10-model-store-search.png)
 
-找到在模型提供方页面发布的模型（通常是第一个），单击 “Displayground”，在新的浏览器标签页中打开 Chat 页面。
+找到在模型提供方页面发布的模型（通常是第一个），单击 “Playground”，在新的浏览器标签页中打开 Chat 页面。
 
 ![图 11](./images/11-displayground-chat-entry.png)
 
@@ -100,7 +104,7 @@
 
 ![图 18](./images/18-edit-version-modelscope-source.png)
 
-打开 ModelScope，搜索模型并复制 Model Id，然后在 AGIOne 中设置。
+打开 ModelScope，搜索模型并复制 Model Id，然后在平台中填写该值。
 
 ![图 19](./images/19-modelscope-website-model-id.png)
 
@@ -116,7 +120,7 @@
 
 在 “Linked VRAM Factor” 表单中单击 Edit，并选择 “Common Model Inference VRAM param table for vLLM”（目前大多数开源模型支持 MoE，因此选择 “Common Model Inference VRAM param table for vLLM”；其他模型需要专业服务支持）。
 
-向下滚动到 “Framework Relations” 部分，单击 Edit，然后选择加速卡；此环境选择 Ascend 910B，最后确认。
+向下滚动到 “Framework Relations” 部分，单击 Edit，选择所需的加速卡规格（例如 Ascend 910B），确认后保存。
 
 ![图 22](./images/22-vram-factor-and-card-relations.png)
 
@@ -126,4 +130,19 @@
 
 ![图 23](./images/23-available-inference-template.png)
 
-完成以上操作后，推理模板创建成功。
+以上检查通过后，推理模板即可供后续模型实例部署使用。
+
+## 完成检查
+
+完成上述步骤后，按以下标准确认整个流程已闭环：
+
+1. **模板就绪**：在 **Inference Templates** 列表中，新建的推理模板状态显示为 **Available**，关联的模型版本与加速卡规格正确。
+2. **实例运行正常**：在 **My Deployments** 中，基于新模板创建的模型实例处于 **Running** 状态，服务端口正常暴露。
+3. **API 与调用验证**：在模型列表通过 **Playground** 成功进行对话交互，或通过 `cURL` 发送请求能收到预期的模型推理结果。
+
+## 操作手册参考
+
+- [On-Prem 模型](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/)
+- [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
+- [我的模型](/zh-CN/usermanual/model-services/user/studio/my-models/)
+- [我的部署](/zh-CN/usermanual/model-services/user/studio/my-deployments/)

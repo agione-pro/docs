@@ -1,10 +1,14 @@
 # New Model Template Preparation and Deployment Guide
 
-To launch model with prepared models by operator
+::: tip Environment and Parameter Notes
+This guide uses the current environment's page labels and status values. Model IDs, provider instance IDs, ports, and available publication options vary by environment; use the values shown on the current page.
+:::
+
+To launch a model with a model asset prepared by the Operator:
 
 **Create model instance with template(with provider role account): Create new model instance with created template. This step will check whether the parameters configured in template are correct.**
 
-**Publish model with created instance(with provider role account): Publish the created instance, do some call in display ground or using curl command. This step will check the model API.**
+**Publish model with created instance (with a Model Provider account): Publish the created instance to the approved public or private scope, then call it in Playground or with cURL. This step checks the model API.**
 
 To create new inference template for customers for launching model instance
 
@@ -14,7 +18,7 @@ To create new inference template for customers for launching model instance
 
 **Create model instance with template(with provider role account): Create new model instance with created template. This step will check whether the parameters configured in template are correct.**
 
-**Publish model with created instance(with provider role account): Publish the created instance, do some call in display ground or using curl command. This step will check the model API.**
+**Publish model with created instance (with a Model Provider account): Publish the created instance to the approved public or private scope, then call it in Playground or with cURL. This step checks the model API.**
 
 # Steps to launch model and call
 
@@ -42,7 +46,7 @@ After model instances available, click to publish it(see bellow)
 
 ![Figure 05](./images/05-publish-model-action.png)
 
-Select public and go to publishing page. Enable at least one API protocol(Such as OpenAI-ChatCompletions), click “Test” button to make sure the model is available.
+Select the approved **Public** or **Private** publication scope and go to the publishing page. Enable at least one API protocol (such as OpenAI-ChatCompletions), then click **Test** to verify that the model is available.
 
 ![Figure 06](./images/06-publish-protocol-test.png)
 
@@ -54,7 +58,7 @@ Next step, configure billing options, for testing, can set “Free”
 
 ![Figure 08](./images/08-publish-billing-options.png)
 
-Then, next, to rate limit page, can set not enabled for testing. And then submit for approval(This environment had enable auto-approve, so do not need approve by operator).
+Then continue to the rate-limit page. For a controlled test, leave rate limiting disabled only when that is allowed by the current environment policy. Submit for approval when the page requires it; otherwise verify the resulting publication status.
 
 ![Figure 09](./images/09-publish-rate-limit-submit.png)
 
@@ -64,7 +68,7 @@ Click “Models”, and search the model you published.
 
 ![Figure 10](./images/10-model-store-search.png)
 
-Fetch the one you published at provider page(commonly, the first one). Click “Displayground” to Chat page in new web tab.
+Fetch the one you published at provider page(commonly, the first one). Click “Playground” to Chat page in new web tab.
 
 ![Figure 11](./images/11-displayground-chat-entry.png)
 
@@ -100,7 +104,7 @@ Change model source from local to ModelScope or HuggingFace(Current environment,
 
 ![Figure 18](./images/18-edit-version-modelscope-source.png)
 
-Open ModelScope and search the model to copy model id, and then set in AGIOne.
+Open ModelScope, search for the model, copy its Model ID, and enter that value in the platform.
 
 ![Figure 19](./images/19-modelscope-website-model-id.png)
 
@@ -116,7 +120,7 @@ Click new inference template at “Inference Templates” page, change the model
 
 At “Linked VRAM Factor form”, edit and select “Common Model Inference VRAM param table for vLLM”(Most current open source models support MoE, so choose “Common Model Inference VRAM param table for vLLM”, others need professional services).
 
-Scroll down, at “Framework Relations” section, click edit, and then select accelerator card, choose Ascend 910B for this environment, and then confirm.
+Scroll down to the "Framework Relations" section, click Edit, select the required accelerator card specification (such as Ascend 910B), and then confirm.
 
 ![Figure 22](./images/22-vram-factor-and-card-relations.png)
 
@@ -126,4 +130,19 @@ Then, change framework to available state.
 
 ![Figure 23](./images/23-available-inference-template.png)
 
-After all, inference template create successful.
+After these checks pass, the inference template is ready for downstream model-instance deployment.
+
+## Completion Check
+
+After completing the steps above, verify that the end-to-end workflow is in a ready state:
+
+1. **Template Ready**: In the **Inference Templates** list, the new template displays an **Available** status with the correct model version and accelerator associations.
+2. **Instance Running**: In **My Deployments**, the model instance created from the template shows a **Running** status with an active service port.
+3. **API and Invocation Verified**: The published model responds successfully to chat prompts in **Playground** or returns expected inference outputs via `cURL`.
+
+## User Manual References
+
+- [On-Prem Models](/usermanual/ai-infra-on-prem/operator/templates/models/)
+- [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
+- [My Models](/usermanual/model-services/user/studio/my-models/)
+- [My Deployments](/usermanual/model-services/user/studio/my-deployments/)

@@ -29,7 +29,7 @@ Open [Apps](../../../usermanual/model-services/operator/publishing/apps/), filte
 
 Open [Application Reviews](../../../usermanual/model-services/operator/approvals/app-reviews/) and filter by state, application name, applicant, or submission time. Review the description, bound model, entry point, and customer scope, then approve, reject, or request more information and enter specific comments.
 
-![Locate a request in Application Reviews](./images/app-reviews-list.png)
+![Locate a request in Application Reviews](../../../usermanual/model-services/operator/approvals/app-reviews/images/app-reviews-list-public.png)
 
 ### 3. Validate Publication State and Customer Visibility
 
