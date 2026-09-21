@@ -157,6 +157,29 @@ for (const filePath of allFiles) {
       errorCount++
     }
   }
+
+  // Check 6: Leaked untranslated UI terms or obscure jargon in Chinese user manual
+  if (relPath.startsWith('docs/zh-CN/usermanual/')) {
+    lines.forEach((line, idx) => {
+      if (
+        /["“'](Consumption Details|View Resource Usage|More settings)["”']|\|[ ]*Resource Specification[ ]*\|/i.test(
+          line,
+        )
+      ) {
+        console.error(
+          `❌ [UNTRANSLATED_UI_TERMS] ${relPath}:${idx + 1}: Untranslated English UI term detected in Chinese doc: "${line.trim()}"`,
+        )
+        errorCount++
+      }
+
+      if (/保持相同范围下钻|下钻异常消费/.test(line)) {
+        console.error(
+          `❌ [OBSCURE_JARGON] ${relPath}:${idx + 1}: Obscure jargon detected in Chinese doc: "${line.trim()}"`,
+        )
+        errorCount++
+      }
+    })
+  }
 }
 
 console.log(`\n[check-docs-images] Audit complete: ${errorCount} errors, ${warningCount} warnings.`)

@@ -56,33 +56,22 @@ The page displays job monitoring capability for the selected region. When the ca
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
 ### View Job Monitoring
 
-#### Procedure
-
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Job Monitoring`.
-2. Confirm the region in the upper-right corner.
-3. Filter by time, status, or keyword provided by the page.
-4. View charts, lists, or prompt information.
-5. If monitoring capability is not opened, return to instance details to view logs, events, and status.
+2. Confirm the region and time range in the upper-right corner, and filter by job status or keyword.
+3. View charts and job lists, checking queue duration, run duration, and GPU usage.
+4. If monitoring capability is not open, return to specific instance or task details to view logs, events, and status.
+
+### Troubleshoot Abnormal Job Metrics
+
+1. If a job queues for a long time, suddenly aborts, or displays a failed status, record the job ID and time range.
+2. Check whether failure details point to insufficient quota, image pull failures, startup command errors, or OOM.
+3. Check node and device monitoring to determine whether scheduling delays result from unavailable node resources; contact administrators if necessary.
 
 #### Key Focus When Capability Is Open
 
-- Whether jobs remain queued for a long time.
+- Whether jobs queue for a long time.
 - Whether failure causes point to quota, image, startup command, or insufficient resources.
 - Whether GPU occupation and runtime duration match expectations.
 
@@ -181,7 +170,7 @@ The same object has different values on two monitoring pages.
 2. verify aggregation scope
 3. clear and restore filters one at a time.
 
-#### Cannot Drill Down to the Target
+#### Cannot Locate Target Object in Related Monitoring
 
 **Symptom:**
 

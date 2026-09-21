@@ -40,34 +40,23 @@ Use this page to review billing cycles, processing states, creation times, and m
 
 ![Monthly Usage](./images/manual-monthly-usage.png)
 
-Monthly metering aggregates tenant resource consumption, Credits conversion, and export status by month. Operators can first view monthly summaries, then drill down to metering details to reconcile abnormal growth, cross-cycle resources, or delayed postings.
+Monthly metering aggregates tenant resource consumption, Credits conversion, and export status by month. Operators can first view monthly summaries, then check metering details to reconcile abnormal growth, cross-cycle resources, or delayed postings.
 
 The following figure shows the monthly metering page.
 
 ## Main Operations
 
-### View Metering Totals
-
-1. Go to `Quotas and Metering > Monthly Usage` and select the target month.
-2. Filter by tenant, project, resource type, or cluster.
-3. Check total usage, unit, resource count, and refresh time.
-4. If no data is shown, check the month and metering job status. Redact totals before sharing.
-
-### Drill Down into Monthly Metering Differences
-
-1. Click an abnormal total or details entry while keeping the same month and object filters.
-2. Compare Metering Details and resource events.
-3. The total should be traceable to detail aggregation. If not, check delay, units, and supplemental records.
-4. Do not modify metering or resource status to test the difference.
-
 ### View Monthly Metering
 
-#### Procedure
-
 1. Go to `AI Infrastructure > On-Prem > Quotas & Metering > Monthly Metering`.
-2. Filter by billing period or status.
-3. View billing period status and creation time in the list.
-4. If the monthly summary is abnormal, go to metering details for reconciliation.
+2. Filter monthly summary records by billing period month or status.
+3. Review the billing period, total usage, status, and creation time in the list to confirm complete metering records.
+
+### Reconcile Monthly Metering Details
+
+1. When a monthly summary does not match expectations, maintain the same month and tenant filters.
+2. Go to `Metering Details` or correlate with job consumption events to verify duration and deduction records for specific resources.
+3. Confirm whether cross-cycle resources, delayed postings, or calculation standards match; do not verify differences by directly modifying underlying database entries.
 
 ## Parameter Quick Reference
 
@@ -200,7 +189,7 @@ The summary differs from the total of individual records.
 
 ## Next Steps
 
-1. When monthly summaries are abnormal, drill down to metering details to reconcile resources and time ranges.
+1. When monthly summaries are abnormal, go to metering details to reconcile resources and time ranges.
 2. Before settlement, confirm that statistical cycles, delayed postings, and correction records have been processed.
 3. After exporting reports, perform internal reviews by tenant or business line.
 4. When abnormal fee growth is found, combine monitoring and job records to locate high-consumption resources.

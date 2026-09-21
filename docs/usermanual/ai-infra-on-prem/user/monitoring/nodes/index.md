@@ -56,29 +56,18 @@ The page displays node statistics capability for the selected region. When the c
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
 ### View Node Statistics
 
-#### Procedure
-
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Node Statistics`.
-2. Confirm the region in the upper-right corner.
-3. Filter by time, status, or keyword provided by the page.
-4. View charts, lists, or prompt information.
-5. If monitoring capability is not opened, return to instance details to view logs, events, and status.
+2. Confirm the region and time range in the upper-right corner, and filter by node status or keyword.
+3. Review node metric charts and lists, and inspect changes across CPU, memory, and GPU curves.
+4. If monitoring capability is not opened, return to the instance details page to view logs, events, and status.
+
+### Investigate Abnormal Node Metrics
+
+1. When a node hosting your workload becomes NotReady or resource curves remain saturated, record the node ID and timestamp.
+2. Switch to `Job Monitoring` to confirm whether your jobs on that node are experiencing failures or abnormal queueing.
+3. If persistent node abnormalities cause training interruptions or inference latency, contact the operator to troubleshoot node health.
 
 #### Key Focus When Capability Is Open
 
@@ -181,7 +170,7 @@ The same object has different values on two monitoring pages.
 2. verify aggregation scope
 3. clear and restore filters one at a time.
 
-#### Cannot Drill Down to the Target
+#### Cannot Locate Target Object in Related Monitoring
 
 **Symptom:**
 

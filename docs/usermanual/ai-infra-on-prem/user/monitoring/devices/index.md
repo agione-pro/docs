@@ -56,29 +56,18 @@ The page displays device monitoring capability for the selected region. When the
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
 ### View Device Monitoring
 
-#### Procedure
-
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Device Monitoring`.
-2. Confirm the region in the upper-right corner.
-3. Filter by time, status, or keyword provided by the page.
-4. View charts, lists, or prompt information.
-5. If monitoring capability is not opened, return to instance details to view logs, events, and status.
+2. Confirm the region and time range in the upper-right corner, and filter by device model, status, or keyword.
+3. View the device list and utilization charts, checking GPU/NPU utilization, memory usage, and temperature health status.
+4. If monitoring capability is not open, return to specific job or instance detail pages to view related status and logs.
+
+### Troubleshoot Abnormal Device Metrics
+
+1. If device utilization remains 0% while marked as occupied, or memory usage triggers high alerts, record the device identifier and time range.
+2. Switch to `Job Monitoring` to verify whether jobs occupying this device have deadlocks or memory leak risks.
+3. If a device shows offline status, abnormal high temperatures, or driver faults, contact operations administrators promptly to inspect physical nodes and hardware health.
 
 #### Key Focus When Capability Is Open
 
@@ -181,7 +170,7 @@ The same object has different values on two monitoring pages.
 2. verify aggregation scope
 3. clear and restore filters one at a time.
 
-#### Cannot Drill Down to the Target
+#### Cannot Locate Target Object in Related Monitoring
 
 **Symptom:**
 

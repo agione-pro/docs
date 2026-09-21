@@ -62,7 +62,7 @@ The page displays resource specifications, quotas, and operation entrypoints in 
 3. Check usage, unit, consumption direction, and refresh time.
 4. If no record is returned, check the time zone and reset filters. Redact usage and project data before sharing.
 
-### Drill Down into Abnormal Consumption
+### Investigate Abnormal Consumption Details
 
 1. Click an abnormal total or target detail while keeping the same time range.
 2. Compare instance lifecycle, metering details, and top-up records.

@@ -56,29 +56,18 @@ The page displays cluster statistics capability for the selected region. When th
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
 ### View Cluster Statistics
 
-#### Procedure
-
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Cluster Statistics`.
-2. Confirm the region in the upper-right corner.
-3. Filter by time, status, or keyword provided by the page.
-4. View charts, lists, or prompt information.
-5. If monitoring capability is not opened, return to instance details to view logs, events, and status.
+2. Confirm the region and time range in the upper-right corner, and filter by cluster name or status.
+3. View the cluster list and operational status, and verify available capacity, CPU/GPU watermarks, and health status.
+4. If monitoring capability is not opened, return to the instance details page to view logs, events, and status.
+
+### Investigate Abnormal Cluster Metrics
+
+1. When cluster resource watermarks approach full capacity or enter maintenance status, record the cluster name and load level.
+2. Switch to `Node Statistics` or `Job Monitoring` to inspect individual node utilization and current queued jobs.
+3. If persistent cluster capacity shortages prevent new instances from being created, contact the administrator to request quota adjustments or allocate alternative resource pools.
 
 #### Key Focus When Capability Is Open
 
@@ -180,7 +169,7 @@ The same object has different values on two monitoring pages.
 2. verify aggregation scope
 3. clear and restore filters one at a time.
 
-#### Cannot Drill Down to the Target
+#### Unable to Locate Target Object in Related Monitoring
 
 **Symptom:**
 
