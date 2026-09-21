@@ -22,7 +22,9 @@ next: true
 
 ### 1. 检查当前 License 状态
 
-进入[License 管理](../../../usermanual/billing/operator/license/license/)，先查看顶部总览，分别核对 Platform License 和 Managed Objects，并确认当前页面及注册码属于目标环境和目标部署。
+从 `账务 > License > License` 进入[License 管理](../../../usermanual/billing/operator/license/license/)，先查看顶部总览，分别核对 Platform License 和 Managed Objects，并确认当前页面及注册码属于目标环境和目标部署。
+
+![License 管理页面总览与授权状态](../../../usermanual/billing/operator/license/license/images/manual-billing-license-page.png)
 
 ### 2. 选择区域并准备 License
 

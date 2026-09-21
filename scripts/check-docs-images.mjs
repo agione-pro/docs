@@ -7,9 +7,11 @@ import process from 'node:process'
 
 const repoRoot = process.cwd()
 
-const manualDirs = [
+const auditDirs = [
   path.join(repoRoot, 'docs/zh-CN/usermanual'),
   path.join(repoRoot, 'docs/usermanual'),
+  path.join(repoRoot, 'docs/zh-CN/userguide'),
+  path.join(repoRoot, 'docs/userguide'),
 ]
 
 function parseArgs(argv) {
@@ -48,14 +50,14 @@ function getMd5(filePath) {
   }
 }
 
-const allFiles = manualDirs.flatMap(getMdFiles)
+const allFiles = auditDirs.flatMap(getMdFiles)
 
 let errorCount = 0
 let warningCount = 0
 
 const imgRegex = /!\[(.*?)\]\((.*?)\)/g
 
-console.log(`[check-docs-images] Auditing ${allFiles.length} user manual markdown files...`)
+console.log(`[check-docs-images] Auditing ${allFiles.length} documentation markdown files...`)
 
 for (const filePath of allFiles) {
   const relPath = path.relative(repoRoot, filePath).replace(/\\/g, '/')
@@ -144,10 +146,11 @@ for (const filePath of allFiles) {
     const start2 = images[i + 1].index
     const textBetween = content.substring(end1, start2).trim()
 
+    const isDirectlyAdjacent = textBetween.length === 0
     const isBoilerplate =
       /上图展示.*?重点核对|The image shows.*?Verify the target object|::: details/s.test(textBetween)
 
-    if (textBetween.length <= 160 && isBoilerplate) {
+    if (isDirectlyAdjacent || (textBetween.length <= 160 && isBoilerplate)) {
       console.error(
         `❌ [STACKED_SCREENSHOTS] ${relPath}:${images[i].lineNum}: Consecutive stacked screenshots without substantive steps between "${images[i].rawSrc}" and "${images[i + 1].rawSrc}".`,
       )
