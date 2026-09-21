@@ -61,10 +61,6 @@ Focus on query criteria, call result, usage, latency, and the details entry.
 2. Set a time range, enter a model name or model ID, and select model type and call status if needed.
 3. Click **"Search"** and verify call time, model name, Model ID, Attribution, result, and usage. Click **"Reset"** if the criteria are incorrect.
 
-![Query call logs](./images/manual-call-logs-public.png)
-
-The image shows call logs. Verify the time range, call result, and target record.
-
 ### View Call Details
 
 1. Click **"Details"** for the target record.
@@ -73,7 +69,7 @@ The image shows call logs. Verify the time range, call result, and target record
 
 ![View call details](./images/manual-call-log-details-public.png)
 
-The image shows one call's details. Remove request, response, and credential information before sharing.
+Inspect the call details panel to verify the model identifier, request duration, token consumption, and error response details.
 
 ## Parameter Reference
 

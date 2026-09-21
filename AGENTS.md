@@ -35,6 +35,10 @@ screenshots, masking, and acceptance requirements. If a general example in
 11. Use Gaussian blur only for actual Key values and telephone-number values.
 12. Do not mask names, amounts, order numbers, status values, field labels, buttons, borders, or adjacent content.
 13. Do not invent fields, operations, permissions, states, workflows, or menu entries that have not been verified in the current product.
+14. Keep written steps and UI elements strictly aligned with adjacent screenshots. Never invent tabs, form sections, or wizard steps. When written content and screenshots conflict or are ambiguous, verify against the AGIOne Demo environment (`https://demo.agione.pro/`) using the corresponding role as the single source of truth (SSOT).
+15. Do not duplicate screenshots within the same document. Never stack new and old screenshots of the same screen side-by-side (e.g., `manual-*.png` next to `*-list.png`). Do not use `::: details` containers to append duplicate screenshots.
+16. Do not reuse full-page overview or list screenshots across multiple action subsections (such as delete, edit, or adjust). If a dedicated dialog/drawer screenshot is unavailable, provide clear written steps without repeating the overview image.
+17. Avoid repetitive boilerplate captions (e.g., "上图展示...。重点核对目标对象、当前状态、字段和操作入口。"). Captions must explain specific fields, inputs, or critical actions shown in the image.
 
 ## Navigation And Content
 
@@ -50,18 +54,19 @@ screenshots, masking, and acceptance requirements. If a general example in
 Before editing user-manual content:
 
 1. Inspect the Chinese page, English page, their screenshots, and nearby pages that use the same content pattern.
-2. Check the current live UI when the requested change depends on current menu visibility, fields, behavior, permissions, or visual appearance.
+2. Check the current live UI (using Demo environment `https://demo.agione.pro/` as SSOT) when the requested change depends on current menu visibility, fields, behavior, permissions, or visual appearance.
 3. Keep unrelated existing worktree changes intact.
 
 After editing:
 
 1. Check Chinese and English page correspondence.
 2. Check modified image references, file existence, and filename casing.
-3. Confirm screenshots use the light theme and serve the adjacent operation.
+3. Confirm screenshots use the light theme, serve the adjacent operation, and contain no duplicate or stacked images.
 4. Confirm sensitive values follow the masking rules in `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md`.
-5. Run `npm run check:docs-profile`.
-6. Run `npm run docs:build`.
-7. Review the final Git diff and exclude unrelated files from the change.
+5. Run `npm run check:docs-images`.
+6. Run `npm run check:docs-profile`.
+7. Run `npm run docs:build`.
+8. Review the final Git diff and exclude unrelated files from the change.
 
 Do not report the task as complete if a required check fails. If a check cannot
 run because of the environment, state exactly what was not verified and why.

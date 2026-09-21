@@ -51,7 +51,7 @@ Page screenshot:
 
 ![Tag list](./images/tags-list-public.png)
 
-The top area contains status and name filters. The `Actions` column shows the edit, add, disable, and delete entries. Indentation on the left indicates tag hierarchy, and parent categories can be expanded to display child tags.
+The image shows the Tags management page, displaying a hierarchical tree of tag categories and child tags, with top-level status and name search, and row-level edit, add child, disable, and delete actions on the right.
 
 ## Main Operations
 
@@ -63,23 +63,23 @@ The operations below follow a beginner-friendly order: create tag categories fir
 
 1. Go to `Model Services > Settings > Tags`.
 2. Click **"Add Tag"** in the upper-right corner to open the `Add Tag` dialog.
-3. Fill in `Code` as the unique identifier of the tag category. Use a stable lowercase identifier with hyphens, such as `language-text`.
-4. In `Tag Content`, maintain the `English` and `Chinese` values for `Name`.
-5. Fill in `Notes` as needed to describe the capability scope or usage boundary.
-6. Click **"Confirm"** to save. After saving, return to the list and confirm that the new category appears in `Category name`.
+3. Enter a `Code` to uniquely identify the tag category. Use stable lowercase English hyphen-separated naming, such as `language-text`.
+4. Maintain `English` and `Simplified Chinese` `Name` fields in the `Tag Name` section.
+5. Enter `Notes` as needed to describe the capability scope or usage boundary of the category.
+6. Click **"Confirm"** to save. After saving, return to the list and confirm that the new category appears in the `Category Name` column.
 
 ![Add a Tag Category](./images/add-tag-public.png)
 
-The screenshot shows the `Add Tag` dialog. Focus on `Code`, multilingual `Name`, and `Notes`, because these fields affect list display and later marketplace filtering.
+The screenshot shows the `Add Tag` dialog. Check `Code`, multilingual `Name`, and `Notes`; these values affect list display and model filtering.
 
 ### Add a Child Tag
 
 1. Go to `Model Services > Settings > Tags`.
-2. Locate the target parent category in `Category name`.
-3. Click **"Add"** in the target category row to open the child tag dialog.
-4. Fill in the child tag `Code`, then maintain the `English` and `Chinese` values for `Name`.
-5. Use `Notes` to describe the model capability or scenario that should use this child tag.
-6. Click **"Confirm"** to save. After saving, expand the parent category and confirm that the child tag appears under the correct hierarchy.
+2. Locate the target parent category in the `Category Name` column.
+3. Click **"Add"** in the target category row to open the child-tag dialog.
+4. Enter the child-tag `Code`, then maintain `English` and `Simplified Chinese` `Name` fields.
+5. In `Notes`, explain the model capability or scenario suitable for this child tag.
+6. Click **"Confirm"** to save. After saving, expand the parent category and confirm that the child tag appears under the correct level.
 
 ![Add a Child Tag](./images/add-child-tag-public.png)
 
@@ -93,10 +93,6 @@ The screenshot shows the `Add Tag` dialog opened from a parent category row. `Pa
 4. Click **"Search"** to query results. Click **"Reset"** when you need to clear conditions and start again.
 5. Expand the target category and check tag name, creation time, status, hierarchy, and the actions shown for the current account.
 6. If the target tag is missing, switch back to `All`, clear the name condition, and confirm whether the English and Chinese names are consistent.
-
-![Query Tags](./images/tags-list-public.png)
-
-The screenshot shows the status switcher, name filter, and tag list. Confirm the status condition first, then check the hierarchy of the target tag.
 
 ### Edit a Tag
 
@@ -118,10 +114,6 @@ The screenshot shows the `Edit Tag` dialog. The parent and existing values are p
 4. Read the page prompt and confirm that the target tag is correct before completing the status change.
 5. After the operation succeeds, switch to `Available` or `Unavailable` and confirm that the target tag appears in the expected list.
 6. If the status does not change, check account permission, binding relationships, filter conditions, and page refresh state. Avoid repeated clicks.
-
-![Enable or Disable a Tag](./images/tags-list-public.png)
-
-The screenshot shows the **"Disable"** entry in the tag list. After changing status, use the status switcher to confirm that the tag moved to the expected state.
 
 ### Delete a Tag
 

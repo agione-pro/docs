@@ -53,50 +53,48 @@ The page separates deployment locations into On-Cloud and On-Prem. Lists show mo
 
 Page screenshots:
 
-![My Deployments list](./images/my-deployments-list-public.png)
+![My Deployments list](./images/manual-on-cloud-deployments-public.png)
 
-Focus on deployment type, model name, region, status, and actions.
+The "My Deployments" page defaults to the On-Cloud model deployments list, displaying deployment name, associated model, cloud platform, running status, and management actions.
 
 ## Main Operations
 
 ### View On-Cloud Deployments
 
-1. Go to `Model Services > Studio > My Deployments`.
-2. Click **"On-Cloud"**.
-3. Locate a deployment by name or status and verify the model, cloud platform, region, and running state.
-
-![View On-Cloud deployments](./images/manual-on-cloud-deployments-public.png)
-
-The image shows On-Cloud deployments. Verify cloud platform, region, and status.
+1. Go to `Model Services > Studio > My Deployments`, which defaults to the `On-Cloud` tab.
+2. Filter cloud deployment instances by deployment name, model, or status.
+3. Verify deployment name, model type, cloud platform provider, deployment region, and current running status.
+4. In the action column, start, stop, view details, or initiate model publishing.
 
 ### View On-Prem Deployments
 
-1. Go to `Model Services > Studio > My Deployments`.
-2. Click **"On-Prem"**.
-3. Locate a deployment by name or status and verify the model, resources, instances, and running state.
+1. Click the **"On-Prem"** tab on the My Deployments page.
+2. The list displays model instances deployed on local private resource pools.
+3. Verify compute nodes, GPU card counts, container health status, and service endpoint addresses for target deployments.
+4. Manage the lifecycle or publish ready instances using the action column.
 
 ![View On-Prem deployments](./images/manual-on-prem-deployments-public.png)
 
-The image shows On-Prem deployments. Verify resources, instances, and deployment status.
+Switch to the On-Prem tab to inspect local model deployments on private resource pools, including GPU quota and service readiness status.
 
 ### Publish a Model
 
-1. Click **"Publish Model"** on My Deployments.
-2. Select a publishing region and confirm deployment mode and visibility.
-3. Complete the publication form and verify resources, model source, billing, and rate limits before submission.
-4. Return to the relevant deployment tab to review status. If the status is abnormal, open details before submitting again.
+1. Click **"Publish"** in the action menu of a target running deployment card.
+2. In the dialog, select the publishing region (Private or Public Region) to determine visibility.
+3. Complete the service details, API key, billing mode, and rate limits, then submit.
+4. Return to `My Models > My Published` to verify the published model service status.
 
 ![Publish Model entry](./images/publish-public.png)
 
-Start a new deployment publication flow from this entry.
+Click "Publish" in the deployment action menu to start the model publication workflow.
 
 ![Choose where to publish](./images/choose-where-to-publish-public.png)
 
-Confirm the publishing region and deployment scope.
+Select whether to publish the model to the tenant's Private Region or the platform's Public Region.
 
 ![Publish Model page](./images/publish-model-public.png)
 
-Verify resources, source, billing, and rate limits before submission.
+Verify the auto-filled service endpoint URL, enter access credentials, configure billing and rate limits, and submit.
 
 ## Parameter Reference
 

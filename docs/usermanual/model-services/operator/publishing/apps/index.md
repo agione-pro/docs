@@ -44,37 +44,29 @@ Page screenshot:
 
 ![App publishing list](./images/apps-list-public.png)
 
-Used to view app status, bound models, and visibility scope.
+The image shows the Apps publication management page, displaying published app cards, category tags, maintainers, billing status, and usage metrics, along with search, filters, pin, and tag editing actions.
 
 ## Main Operations
 
-### View Applications
+### View and Search Applications
 
 1. Go to `Model Services > Publishing > Apps`.
-2. Filter by application name, type, status, publisher, or update time.
-3. Check the name, version, status, and update time in the filtered result. If no result is returned, reset the filters and check the active tab.
-4. The target application should be uniquely identifiable. If the list remains empty, check permissions and whether the application has been delisted.
+2. Enter an app, author, series, or source keyword in the upper-right search box to find target applications.
+3. Click **"Expand Filter"** to filter by categories or status if more criteria are needed.
+4. Verify the application name, category tag, author, billing status, and usage statistics in the resulting cards.
 
 ### View Application Details
 
-1. Click **"Details"** or the application name in the target row.
-2. View the description, version, associated models, visibility, publishing status, and update time.
-3. Compare the version and status with the list. If they differ, refresh the page and use the latest status shown in the details.
-4. Return to the list after read-only validation. Do not publish, delist, or delete the application.
+1. Click the application name on the target card to view details.
+2. Review the application description, version, associated models, visibility scope, publishing status, and update time.
+3. Verify that the configuration complies with operational standards against the list record.
+4. Return to the list after read-only inspection.
 
+### Pin Applications and Edit Tags
 
-### View App List
-
-1. Go to `Model Services > Publishing > Apps`.
-2. On the `Application List` page, view the app name, tag, author, pricing status, collect count, and browse count.
-3. Enter a model, author, series, or source keyword in the search box in the upper-right corner.
-4. To use more filters, click **"Expand Filter"** and query by the filter fields shown on the page.
-5. In an app card, view operation entries such as `Pin To Top` and `Edit Tag` as needed. Before performing change actions, confirm the impact scope.
-
-![App List](./images/apps-list-public.png)
-
-The search box is in the upper-right corner. **"Expand Filter"** is below the page title, and the change actions are on the right side of each app card.
-After a search or filter change, confirm that the remaining card matches the entered criteria. Before **"Pin To Top"** or **"Edit Tag"**, confirm who will see the changed order or tag.
+1. On the right side of the target app card, click **"Pin To Top"** if prioritized display is required; pinned items appear at the top ordered by sequence number.
+2. Click **"Edit Tag"** to adjust the application's category or business tags in the dialog.
+3. Save changes and refresh the page to verify updated positions and tags in the list and client portal.
 
 ## Parameter Reference
 

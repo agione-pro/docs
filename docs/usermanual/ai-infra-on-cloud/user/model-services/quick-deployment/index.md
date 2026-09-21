@@ -48,7 +48,7 @@ Page screenshots:
 
 ![Deployable scope](./images/deployable-scope.png)
 
-The image shows Deployable scope. Verify the target object, current state, fields, and actions.
+The image shows the Quick Deployment main page, displaying authorized cloud platforms and regions on the left, with matched model cards, capability tags, and Deploy Model action entries on the right.
 
 ## Main Operations
 
@@ -66,7 +66,7 @@ The image shows Deployable scope. Verify the target object, current state, field
 
 ![Smart deployment recommendation](./images/smart-deployment-recommendation.png)
 
-The image shows Smart deployment recommendation. Verify the target object, current state, fields, and actions.
+The image shows the Smart Deployment Recommendation page, supporting deployment modes (single node/low cost/HA), inference engines (vLLM/SGLang), business strategy preferences, and presenting the recommended compute plan with cost estimates on the right.
 
 ### Create Model Deployment
 
@@ -77,7 +77,7 @@ The image shows Smart deployment recommendation. Verify the target object, curre
 
 ![Create model deployment](./images/publish-deployment.png)
 
-The image shows Create model deployment. Verify the target object, current state, fields, and actions.
+The image shows the Publish Deployment task creation dialog, where you select the target cloud account, specify the deployment task name, and provide an optional description before launching deployment.
 
 ## Parameter Reference
 

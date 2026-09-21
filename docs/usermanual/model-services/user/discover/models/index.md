@@ -70,20 +70,12 @@ Focus on the search field, capability filters, and model list. The active filter
 3. Narrow the results by input capability, output capability, context, billing, model author, model source, or scenario.
 4. Verify the model name, capability labels, and status. Clear combined filters and query again if no result is returned.
 
-![Query models](./images/models-list-public.png)
-
-The `Providers` tab shows provider instances, billing, context, latency, throughput, success rate, weekly usage, and the `Quick Start` entry. On the current details page, provider visibility uses the `All`, `Public`, `Private`, and `Aggregate` segmented control. Performance grouping uses `All`, `By Provider`, and `By Model Source`. Copy the provider-specific call identifier shown for the selected instance. Do not reuse an identifier from another provider.
-
 ### View Model Details
 
-1. Open the target model from the list.
+1. In the model list, click the target model card to enter its details page.
 2. Verify the model name, author, type, input and output capabilities, context length, and billing method.
-3. Confirm the model summary, capability labels, modalities, and protocol on the details page.
-4. Based on the next task, open Providers, Quick Start, Performance, or Overview. Keep information from each tab in its own context.
-
-![View model details](./images/models-providers-public.png)
-
-The image shows the model details page. Verify the summary and capabilities before entering a provider card or tab.
+3. Confirm the model summary, capability labels, modalities, and protocol information displayed in the header.
+4. The page body provides four tabs: `Providers`, `Quick Start`, `Performance`, and `Overview`. Switch between them based on your follow-up task.
 
 ### Compare Provider Instances
 
@@ -93,18 +85,14 @@ The image shows the model details page. Verify the summary and capabilities befo
 
 ![Model providers](./images/models-providers-public.png)
 
-Use the provider area to compare listed instances. Confirm the target card instead of selecting a provider by model name alone.
+Verify the pricing, maximum context, latency, and success rate metrics for each provider instance to determine the target instance.
 
 ### Try a Model
 
 1. Click **"Try Now"** on the target provider card.
-2. The platform opens the Playground page for the model type, such as text chat, image generation, video generation, or speech generation.
+2. The platform opens the Playground page corresponding to the model type, such as text chat, image generation, video generation, or speech generation.
 3. In Playground, verify that the model and provider shown at the top match the selection on the details page.
 4. Before trying the model, confirm the Personal Key, price, and quota. Submitting a prompt or generating content creates call records and consumes usage.
-
-![Try model entry](./images/models-providers-public.png)
-
-The provider card contains the Try Now entry. After it opens the corresponding Playground page, follow that page's configuration and submission instructions.
 
 ### View Quick Start
 
@@ -115,7 +103,7 @@ The provider card contains the Try Now entry. After it opens the corresponding P
 
 ![Quick Start entry](./images/models-quick-start-public.png)
 
-The Quick Start tab and provider-card entry are both visible from the details page. Keep addresses, keys, and request parameters redacted in documentation.
+Inspect the integration code sample in the Quick Start tab to verify the Base URL, request path, and authentication header format.
 
 ### View Performance
 
@@ -126,7 +114,7 @@ The Quick Start tab and provider-card entry are both visible from the details pa
 
 ![Model performance](./images/models-performance-public.png)
 
-Use the Performance area to review request latency, first-token latency, request frequency, and success rate. If no data is shown, verify the time range, provider, and model.
+Review average response latency, first-token latency, and request success rate trends under the selected time range and granularity.
 
 ### View Model Overview
 
@@ -136,7 +124,7 @@ Use the Performance area to review request latency, first-token latency, request
 
 ![Model overview](./images/models-overview-public.png)
 
-Use the Overview area to confirm the model description, capabilities, and usage boundaries before trying or integrating the model.
+Review the capability description, supported modalities, and parameter boundaries in the Overview tab to ensure model characteristics meet business requirements.
 
 ## Parameter Reference
 

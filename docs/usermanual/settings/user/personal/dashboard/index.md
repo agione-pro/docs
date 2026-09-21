@@ -45,10 +45,6 @@ Read the quota summary first, then review the four statistic cards. Use **"Reque
 3. Check `Active Projects`, `Total Members`, `Total API Keys`, and `My Remaining Quota` in order.
 4. Use the card descriptions to confirm member status and whether Total API Keys includes both personal and project Keys.
 
-![View Dashboard](./images/manual-settings-user-dashboard-live-20260902.png)
-
-The Dashboard summary provides a quick status check. Project membership, Key details, and quota-request progress must be confirmed on their corresponding detail pages.
-
 **Result validation:** All four summary cards show a statistic or quota state, and Projects, My Keys, and Member Quota Requests are available below them.
 
 **Note:** Dashboard provides a quick summary. Use the Projects, Keys, Members, and Quota Requests pages for details.
@@ -80,10 +76,6 @@ The screenshot shows the quota summary, requested amount, reason, and submission
 3. Click the card or its active-project entry to open Projects.
 4. On Projects, review the project list, member scope, and budget information.
 
-![Open Projects](./images/manual-settings-user-dashboard-live-20260902.png)
-
-The `Projects` card at the lower left opens project management. The value in the card is the current active-project statistic.
-
 **Result validation:** The page opens `/user/user-space/projects`, and `Projects` is selected in the left navigation.
 
 **Note:** Dashboard shows only the number of active projects. Project members and budgets are defined on Projects.
@@ -97,10 +89,6 @@ The `Projects` card at the lower left opens project management. The value in the
 3. Click the card or its personal-Key count to open My Keys.
 4. On the target page, confirm the visible scope for personal and project Keys. Never expose a complete credential in documentation, tickets, or screenshots.
 
-![Open My Keys](./images/manual-settings-user-dashboard-live-20260902.png)
-
-The `My Keys` card in the center opens personal-Key management. Dashboard does not display complete Key values.
-
 **Result validation:** The page opens `/user/user-space/my-keys`, and `My Keys` is selected in the left navigation.
 
 **Note:** Total API Keys includes personal and project Keys, while the My Keys quick-action card shows a personal-Key statistic. These counts use different scopes.
@@ -113,10 +101,6 @@ The `My Keys` card in the center opens personal-Key management. Dashboard does n
 2. Locate the `Member Quota Requests` card under `Quick Actions`.
 3. Click the card or **"Open queue"** to open Quota Requests.
 4. On the target page, review the requester, requested amount, status, and submission time, then continue according to the current permissions.
-
-![Open Member Quota Requests](./images/manual-settings-user-dashboard-live-20260902.png)
-
-The `Member Quota Requests` card at the lower right opens the request queue. Search, filters, and pagination are supporting actions on the target page.
 
 **Result validation:** The page opens `/user/user-space/quota-requests`, and `Quota Requests` is selected in the left navigation.
 

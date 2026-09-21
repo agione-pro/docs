@@ -67,18 +67,18 @@ The following figure shows the inference templates page.
 #### Procedure
 
 1. Go to `AI Infrastructure > On-Prem > Templates > Inference Templates`.
-2. Click **"Add"**, **"Create Inference Template"**, or the actual create entry on the page.
-3. In the basic information area, fill in template name, description, applicable scenario, publication scope, and visibility scope.
-4. In the model configuration area, select model, model version, model source, or applicable model scope.
-5. In the framework configuration area, select framework, framework version, runtime image, and startup configuration.
-6. In the resource configuration area, select resource specification, deployment mode, VRAM estimation rules, region, or cluster scope.
-7. In the port and network area, configure service port, port exposure policy, port tag, and health check.
-8. In the factor form area, configure parameters users must fill in when creating instances, default values, validation rules, dynamic expressions, and trigger conditions.
-9. Before clicking the final **"Save"**, **"Submit"**, **"Publish"**, or **"OK"**, verify model, framework, specifications, parameters, ports, visibility scope, and user-side impact.
+2. In the top right, click **"Create Inference Template"**.
+3. In the **Model** dropdown, select the target model (e.g., DeepSeek-R1-Distill-Qwen-7B).
+4. In the **Model Version** dropdown, select a version that does not have an inference template created yet.
+5. In the **Framework Version** dropdown, select an adapted inference framework version (e.g., vLLM · v0.13.0).
+6. In **Template Name**, verify or customize the template name (defaults to the model name).
+7. Confirm the model and framework dependencies, then click **"Save"** to finish creation.
 
-The following figure shows the Create Inference Template page, used to configure basic information, resource specifications, and factor forms.
+#### Operation Screenshot
 
-![Create inference template](./images/create-inference-template.png)
+![Create inference template](./images/manual-create-inference-template.png)
+
+The image shows the Create Inference Template dialog. Select model, model version, and framework version, then confirm the template name. After saving, it serves as the standard deployment template for that model version.
 
 ### Import or Export Inference Templates
 
@@ -104,12 +104,6 @@ Use the **"Import/Export"** menu to batch-maintain inference templates, or to ex
 
 - Template import depends on model, framework, image, and specification objects. Do not submit it when dependencies are missing in the target environment.
 - Import may update a template with the same identifier. Verify release scope, default parameter values, and downstream deployment impact first.
-
-#### Operation Screenshots
-
-![Inference Templates operation interface](./images/manual-create-inference-template.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
 
 ## Parameter Quick Reference
 

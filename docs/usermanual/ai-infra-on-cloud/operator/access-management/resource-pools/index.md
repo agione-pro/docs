@@ -48,11 +48,7 @@ Page screenshots:
 
 ![Resource Pools page](./images/manual-resource-pools.png)
 
-The image shows Resource Pools page. Verify the target object, current state, fields, and actions.
-
-![Resource pool list reference](./images/resource-pools-list.png)
-
-The image shows Resource pool list reference. Verify the target object, current state, fields, and actions.
+The image shows the Resource Pools management page, with connected cloud platforms listed on the left and corresponding regional resource pools with enable/disable toggles on the right.
 
 ## Main Operations
 
@@ -71,7 +67,7 @@ The image shows Resource pool list reference. Verify the target object, current 
 
 ![Enable or disable a resource pool](./images/disable.png)
 
-The image shows Enable or disable a resource pool. Verify the target object, current state, fields, and actions.
+The image shows the secondary confirmation dialog when enabling or disabling a regional resource pool, where you must confirm the target region before proceeding.
 
 ## Parameter Reference
 

@@ -64,10 +64,6 @@ The following screenshot shows the platform clearing account view. It includes a
 
 ![Platform clearing account](./images/platform-clearing-accounts-list.png)
 
-The following screenshot shows the platform revenue account view. It includes revenue account overview, revenue trend, and transaction list.
-
-![Platform revenue account](./images/platform-revenue-account-list.png)
-
 #### Where to Look
 
 | Your Goal | Start Here | Next Step |
@@ -89,10 +85,6 @@ Use the following operations to review account information and transactions. Bef
 3. Check account balance, total income, total expense, available amount, and last update time.
 4. If the list is empty, reset filters first, then confirm whether the current account has financial-account view permission.
 
-![Financial Accounts - View Account List](./images/platform-revenue-account-list.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View Platform Clearing Account
 
 1. Go to `Billing > Finance Operations > Financial Accounts`.
@@ -109,9 +101,9 @@ The image shows the page entry or current state for this operation. Verify the p
 4. Focus on platform retained fee, self-operated revenue, or other platform revenue amounts.
 5. Compare with Monthly Overview, Settlement Statement Details, and Financial Account transactions to confirm that revenue amount scopes are consistent.
 
-The following screenshot shows the Platform Revenue Account area. Use it to compare the revenue amount with the billing-period summary.
-
 ![Platform revenue account](./images/platform-revenue-account-list.png)
+
+Review total income, expenditure, and current balance in the Platform Revenue Account to confirm revenue calculation scope.
 
 ### View Account Details
 

@@ -75,11 +75,7 @@
 2. 点击 **"服务商关系"**。
 3. 查看服务商、关联关系、启用状态或结算归属等配置。
 
-![服务商关系配置](./images/provider-relation.png)
-
-::: details 补充截图文件
-![服务商关系](./images/provider-relationship.png)
-:::
+![服务商关系配置](./images/provider-relationship.png)
 
 ### 编辑币种配置
 
@@ -95,11 +91,7 @@
 2. 点击 **"支付通道"**。
 3. 查看支付通道列表、启用状态和可维护入口。
 
-![支付通道配置](./images/payment-channels-stripe.png)
-
-::: details 补充截图文件
-![支付通道](./images/payment-channel.png)
-:::
+![支付通道配置](./images/payment-channel.png)
 
 4. 在 Stripe 区域点击 **"配置帮助"**，查看所需字段和对接说明。
 

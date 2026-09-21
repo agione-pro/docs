@@ -54,7 +54,7 @@ Page screenshot:
 
 ![App review list](./images/app-reviews-list-public.png)
 
-The screenshot focuses on the status tabs, search controls, batch entry, result table, and pagination. The screenshot uses a neutral empty result set so that no customer or environment data is exposed.
+The image shows the main App Reviews list page, supporting status filtering (All, Pending Review, Approved, Rejected), app name/category search, and access to batch or single review actions.
 
 ## Main Operations
 
@@ -65,20 +65,12 @@ The screenshot focuses on the status tabs, search controls, batch entry, result 
 3. Enter an app name or select a category, then click **"Search"**. Check the app name, category, customer affiliation, version, status, and submission time in the result.
 4. If no result is returned, click **"Reset"** and apply one condition at a time. If duplicate names remain, compare the version and submission time before opening a record.
 
-![Query app reviews](./images/app-reviews-list-public.png)
-
-The screenshot highlights the status tabs, app name and category filters, **"Search"**, **"Reset"**, and the result table.
-
 ### Query App Review Details
 
 1. Locate the target record and click **"Details"** to open its detail panel.
 2. Review the `Review Info`, `Application Test`, and `App Details` tabs in order.
 3. Check the app name, version, category, publication channel, publication method, customer affiliation, application configuration, release channel, and visibility-related information.
 4. Compare the detail values with the list record. For read-only inspection, click **"Cancel"** or close the panel without submitting a review decision.
-
-The screenshot highlights the detail tabs, review information, application configuration, release channel, and the review actions shown on the page.
-
-![App review details](./images/application-review-public.png)
 
 ### Review an App
 
@@ -88,9 +80,9 @@ The screenshot highlights the detail tabs, review information, application confi
 4. Before the final confirmation, verify the target app, version, review comment, and impact scope. When rejecting, write the missing or incorrect item in the review comment.
 5. After submission, return to the list and confirm that the record has moved to the expected status tab.
 
-The screenshot highlights the final **"Reject"** and **"Approve"** actions at the bottom of the review panel. Use the visible page state as the source of truth for the final confirmation wording.
-
 ![Review an app](./images/application-review-public.png)
+
+The image shows the application review drawer with Review Info, Application Test, and App Details tabs, along with the Reject and Approve actions at the bottom.
 
 ### Batch Review Apps
 
@@ -99,10 +91,6 @@ The screenshot highlights the final **"Reject"** and **"Approve"** actions at th
 3. Click **"Batch Review"** and check the records, review status, and review comment in the batch panel.
 4. Select the conclusion shown by the page, confirm the impact scope, and submit only after the selected records are correct.
 5. Refresh the list and verify every selected record in its corresponding status tab. If any record remains pending, review that record individually.
-
-The screenshot highlights the batch entry and the result table used to select records. Do not include customer-sensitive data when sharing a batch-review screenshot.
-
-![Batch review apps](./images/app-reviews-list-public.png)
 
 ## Parameter Reference
 

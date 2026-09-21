@@ -99,10 +99,6 @@
 
 ![前端页面配置](./images/frontend-page-configuration.png)
 
-::: details 补充截图文件
-![前端页面配置](./images/frontend-page-config.png)
-:::
-
 1. 进入 `AI基础设施 > On-Prem > 系统 > 系统设置`。
 2. 定位 `前端页面配置` 配置分组。
 3. 查看配置项名称、配置值、说明、状态和操作入口。
@@ -110,10 +106,6 @@
 ##### 规格单位转换
 
 ![规格单位转换](./images/specification-unit-conversion.png)
-
-::: details 补充截图文件
-![规格单位转换](./images/spec-unit-conversion.png)
-:::
 
 1. 进入 `AI基础设施 > On-Prem > 系统 > 系统设置`。
 2. 定位 `规格单位转换` 配置分组。

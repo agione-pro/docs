@@ -66,22 +66,18 @@ The following figure shows the vram estimation configuration page.
 
 #### Procedure
 
-1. Go to `AI Infrastructure > On-Prem > Templates > VRAM Estimation Configuration`.
-2. Click the add or edit entrypoint.
-3. On the Basic Information tab, fill in rule name, applicable model, framework, and precision.
-4. On the Factor Form tab, configure factors such as parameter count, KV Token, concurrency, and context length.
-5. On the Dynamic Expression tab, configure VRAM calculation formulas, recommended specifications, and trigger conditions.
-6. Save, then reference and verify it in inference templates.
+1. Go to `AI Infrastructure > On-Prem > Templates > VRAM Config`.
+2. On the `Precision Spec Dictionary` tab list, click **"Add Precision Spec"** in the top right (or click **"Edit"** on a target entry).
+3. Enter the `Precision Name` (e.g., fp16, bf16, awq_w4a16).
+4. Configure `Bits`, `Bytes Per Value`, and `Overhead Ratio`.
+5. (Optional) In `Remark`, describe the quantization estimation criteria or applicable model architecture.
+6. Verify the parameters and click **"Save"**. The newly added precision specification serves as a foundational dictionary for framework and template VRAM estimation.
 
-![Create VRAM precision rule](./images/add-precision-spec.png)
-
-The image shows the precision and memory-estimation fields. Verify model size, precision, accelerator type, and context assumptions before saving.
-
-#### Operation Screenshots
+#### Operation Screenshot
 
 ![VRAM Config operation interface](./images/manual-add-vram-spec.png)
 
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+The image shows the Add Precision Spec dialog. Configure precision name, bit width, bytes per value, and overhead ratio, which serve as foundational dictionary metrics for VRAM estimation rules.
 
 ### Import or Export VRAM Rules
 

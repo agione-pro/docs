@@ -48,11 +48,7 @@ Page screenshots:
 
 ![Frameworks page](./images/manual-frameworks.png)
 
-The image shows Frameworks page. Verify the target object, current state, fields, and actions.
-
-![Framework list reference](./images/frameworks-list.png)
-
-The image shows Framework list reference. Verify the target object, current state, fields, and actions.
+The image shows the Frameworks list page, displaying framework cards, framework types, and publish status by cloud platform, along with the Add Framework button.
 
 ## Main Operations
 
@@ -64,7 +60,7 @@ The image shows Framework list reference. Verify the target object, current stat
 
 ![Framework details](./images/manual-framework-details.png)
 
-The image shows Framework details. Verify the target object, current state, fields, and actions.
+The image shows the Framework Details drawer, displaying framework metadata, version list, associated runtime images, and master/worker startup command settings.
 
 ### Add Framework
 
@@ -75,11 +71,7 @@ The image shows Framework details. Verify the target object, current state, fiel
 
 ![Add Framework](./images/manual-add-framework.png)
 
-The image shows Add Framework. Verify the target object, current state, fields, and actions.
-
-![Add framework reference](./images/add-framework.png)
-
-The image shows Add framework reference. Verify the target object, current state, fields, and actions.
+The image shows the Add Framework form, containing configurations for cloud account, region, framework type, framework name, initial version number, and container startup commands.
 
 ### Publish Framework Version
 
@@ -89,7 +81,7 @@ The image shows Add framework reference. Verify the target object, current state
 
 ![Publish framework version](./images/manual-publish-framework-version.png)
 
-The image shows Publish framework version. Verify the target object, current state, fields, and actions.
+The image shows the confirmation dialog for publishing a framework version, making it available for reference in model configurations.
 
 ## Parameter Reference
 

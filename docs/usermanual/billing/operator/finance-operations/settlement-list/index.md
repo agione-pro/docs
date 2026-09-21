@@ -56,13 +56,11 @@ The page includes the `Generate Settlement` button, filters, settlement table, d
 | Settlement table | Shows settlement statement, tenant, billing cycle, settlement status, payable amount, created time, and actions. |
 | Details | Opens settlement statement details to verify status, amount, and posting confirmation. |
 
-The following screenshot shows settlement list.
+Page screenshots:
 
-![Settlement List](./images/settlement-list.png)
+![Settlement List](./images/manual-billing-settlement-list-page.png)
 
-The following screenshot shows settlement details.
-
-![Settlement Details](./images/detail.png)
+The settlement statement list displays billing cycles, Provider tenants, settlement statement numbers, status, and payable amounts.
 
 #### Where to Look First
 
@@ -101,12 +99,6 @@ The following screenshot shows settlement details.
 3. Check the target billing period, amount direction, status, and update time.
 4. If no record is returned, reset filters and check the billing period. Redact settlement data before sharing.
 
-Use the following operations to search, view, and generate settlement statements. Complete view-only checks before opening dialogs that may create, save, submit, confirm, or delete data.
-
-![Settlement List - View Settlement Statements](./images/manual-billing-settlement-list-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
 ### View Settlement Statement Details
 
 1. Find the target settlement statement in the table.
@@ -114,9 +106,9 @@ The image shows the page entry or current state for this operation. Verify the p
 3. Verify the settlement statement, tenant, billing period, status, amount, and posting confirmation.
 4. If the status or amount is abnormal, return to the list, record the billing period, tenant, and sanitized settlement statement number, and investigate in Reconciliation Center.
 
-The following screenshot shows settlement details. Use it to verify the billing period, tenant, status, amount, and posting information.
-
 ![Settlement details](./images/detail.png)
+
+Verify the billing period, tenant, payable amount, and posting confirmation status in settlement statement details.
 
 ### Generate Settlement
 

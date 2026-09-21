@@ -49,10 +49,6 @@ Read the page from the role-name filter to the result list, then use the Edit, A
 3. Read the role name, role code, role description, and creation time in the table. Check whether **"Edit"**, **"Authorize"**, and **"Delete"** are shown in the Actions column.
 4. The current page provides list-level information and action entries, but no separate role-details entry. Open **"Authorize"** when you need to review permission details.
 
-![View Roles](./images/manual-settings-user-roles-live-20260902.png)
-
-The screenshot keeps the list and Actions column with the top menu hidden. `Default` is a neutral example record shown on the page.
-
 **Result validation:** The list shows the target role, its name, code, description, and creation time are readable, and the result matches the filter.
 
 **Note:** Do not treat pagination, filtering, or sorting as role-object operations. Do not infer fields that are not shown on this page from another page.
@@ -118,10 +114,6 @@ The screenshot shows the authorization workbench, service counts, menu navigatio
 2. In the confirmation prompt, verify the role name and impact. Confirm that the role no longer controls member access.
 3. If the page reports member assignments or another dependency, resolve the dependency first, then return to the Roles list and start deletion again.
 4. After confirming the scope, click the final delete button in the prompt and wait for the result.
-
-![Delete a Role](./images/manual-settings-user-roles-live-20260902.png)
-
-The screenshot shows the actual Delete entry. Always use the page confirmation prompt as the final evidence; this list screenshot does not replace the prompt or show a fabricated post-delete result.
 
 **Result validation:** After successful deletion, the role is absent from the list and a search for its former name returns no match. The member's effective role should also be adjusted as intended.
 

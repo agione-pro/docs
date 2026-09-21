@@ -54,37 +54,29 @@ The page contains Overview and Usage Details. The overview shows aggregate indic
 
 Page screenshots:
 
-![Model Usage overview](./images/model-usage-overview-list-public.png)
+![Model Usage overview](./images/manual-usage-overview-public.png)
 
-Use this image to identify aggregate indicators and charts.
+The "Overview" tab displays total credits consumed, total invocation count, and model usage distribution charts for the selected period.
 
 ## Main Operations
 
 ### View Model Usage Overview
 
-1. Go to `Model Services > Usage and Earnings > Model Usage`.
-2. Click **"Overview"**.
-3. Select a statistics period and verify totals, trends, model distribution, and update time.
-4. If no data is shown, expand the period and confirm that the current account has relevant records.
-
-![View usage overview](./images/manual-usage-overview-public.png)
-
-The image shows the overview. Verify the period, aggregate indicators, trends, and model distribution.
+1. Go to `Model Services > Usage and Earnings > Model Usage`, which defaults to the `Overview` tab.
+2. Select an accounting month and specify the date range to review total credit consumption, invocation counts, and average cost per call.
+3. Inspect the consumption trend charts and model breakdown percentages to analyze which models contribute most to overall usage.
+4. If no data appears, adjust the time period or verify whether the current account initiated any model calls during this interval.
 
 ### Query Model Usage Details
 
-1. Click **"Usage Details"**.
-2. Set the time range, then filter by billing status, model name, or model type.
-3. Verify usage time, model name, Model ID, Attribution, model type, billing scope, latency, metered usage, and Credits.
-4. Before sharing or reconciliation, remove user names, business identifiers, and other sensitive information.
+1. Click the **"Usage Details"** tab at the top of the page.
+2. Set the date range and filter by billing inclusion status, model name, or model type as needed.
+3. Click **"Search"** to review the invocation timestamp, model name, Model ID, Attribution, latency, metered tokens, and deducted Credits.
+4. Redact organization identifiers and sensitive business parameters before sharing logs or exporting records for reconciliation.
 
 ![Query usage details](./images/manual-usage-details-public.png)
 
-The image shows detail filters and results. Verify the time range, filters, and result scope.
-
-![Model Usage details reference](./images/model-usage-usage-details-list-public.png)
-
-This image provides an additional view of detail fields and list structure.
+The "Usage Details" list displays the call time, model identifier, attribution, latency, and credit consumption for each invocation.
 
 ## Parameter Reference
 
