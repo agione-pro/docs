@@ -89,7 +89,7 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Dropdown | `Example Audio Model` | The audio model currently being tried. |
-| Voice ID | Yes | Input or selector | `male-qn-qingse` | Specifies the voice or speaker for generated speech. |
+| Voice ID | Yes | Input or selector | `example-voice-01` | Specifies the voice or speaker for generated speech. |
 | Text | Yes | Text input | `please input` | Text content to convert into speech. |
 | Protocol | Yes | Dropdown | `openai/audio` | Current audio model call protocol. |
 | Speed | No | Slider / number input | `1.0` | Controls the speed of generated speech. |

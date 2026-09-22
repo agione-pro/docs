@@ -88,7 +88,7 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model | Yes | Dropdown | `Mock Ali Wan 2.7 Video Edit` | Video model currently being tried. |
+| Model | Yes | Dropdown | `Example Video Model` | Video model currently being tried. |
 | Provider | Yes | Dropdown | `Example Provider` | Provider instance of the current model. |
 | Prompt | Yes | Multiline text | `Generate a product showcase video` | Describes the video content, action, and style to generate. |
 | Reference Image | Conditionally required | Image upload | `reference.png` | Used for image-to-video, reference-to-video, or video editing scenarios. |

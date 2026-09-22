@@ -87,7 +87,7 @@ The image shows the input and parameter area. Verify the model, input, Personal 
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model | Yes | Dropdown | `Mock Ali Wan 2.7 Image Pro` | Image model currently being tried. |
+| Model | Yes | Dropdown | `Example Image Model` | Image model currently being tried. |
 | Provider | Yes | Dropdown | `Example Provider` | Provider instance of the current model. |
 | Prompt | Yes | Multiline text | `Generate a product poster` | Describes the image content and style to generate. |
 | Size | No | Option | `2K` | Controls the generated image size or quality tier. |
