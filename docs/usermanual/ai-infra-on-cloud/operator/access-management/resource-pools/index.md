@@ -65,7 +65,7 @@ The image shows the Resource Pools management page, with connected cloud platfor
 3. Click **"Confirm"** and refresh the list.
 4. Verify the expected visibility on authorization and deployment pages.
 
-![Enable or disable a resource pool](./images/disable.png)
+![Enable or disable a resource pool](./images/manual-disable.png)
 
 The image shows the secondary confirmation dialog when enabling or disabling a regional resource pool, where you must confirm the target region before proceeding.
 
