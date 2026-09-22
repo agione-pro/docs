@@ -148,12 +148,6 @@ Delete a model when its platform configuration is no longer needed and no infere
 - Deleting a model configuration does not necessarily delete model files or registry data. Handle retention separately according to storage policy.
 - Do not delete a model with running instances, published templates, or job dependencies. Configure and migrate to a replacement first.
 
-#### Operation Screenshots
-
-![Models operation interface](./images/manual-add-model.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
