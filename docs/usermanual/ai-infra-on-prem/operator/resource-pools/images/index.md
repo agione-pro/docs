@@ -258,24 +258,6 @@ The image is gone from Image Management, but a downstream page still offers it.
 2. Check whether the downstream object references a platform image record or a registry address.
 3. Check image update time and page prompt to confirm removal has completed.
 
-#### Target Is Missing from Images
-
-**Symptom:**
-
-The page opens, but the expected Configuration, status, and relationships on Images is missing.
-
-**Possible Causes:**
-
-- Filters remain active.
-- the object belongs to another scope.
-- a prerequisite is incomplete.
-
-**Solution:**
-
-1. Reset filters
-2. verify region or tenant ownership
-3. confirm prerequisite state.
-
 #### The Operation Entry on Images Is Unavailable
 
 **Symptom:**
@@ -311,42 +293,6 @@ The form opens, but a selection list is empty.
 1. Check candidate state
 2. verify ownership
 3. confirm visibility and refresh the form.
-
-#### Images Has an Abnormal State After the Operation
-
-**Symptom:**
-
-A record exists after submission, but its state is unexpected.
-
-**Possible Causes:**
-
-- Connectivity or validation failed.
-- a dependency is abnormal.
-- processing is incomplete.
-
-**Solution:**
-
-1. Check feedback and update time
-2. inspect related objects
-3. troubleshoot the processing stage.
-
-#### A Downstream Page Cannot Use Images
-
-**Symptom:**
-
-The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Images.
-
-**Possible Causes:**
-
-- Visibility differs.
-- the object is disabled.
-- downstream cache is stale.
-
-**Solution:**
-
-1. Check enabled state and ownership
-2. verify role visibility
-3. refresh and select again.
 
 ## Notes
 

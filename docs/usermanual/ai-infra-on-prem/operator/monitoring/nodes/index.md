@@ -48,39 +48,21 @@ The following figure shows the node statistics page.
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
-### View Node Statistics
-
-#### Procedure
+### Filter and View Node Statistics
 
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Node Statistics`.
-2. Confirm the region in the upper-right corner and page filters.
-3. View lists, charts, or statistic cards.
-4. Focus on abnormal status, high watermarks, long periods without updates, or data inconsistent with expectations.
-5. When a node is abnormal, go to the cluster node page to view labels, taints, hardware, runtime, and job information.
-
-#### View Node Statistics
-
-1. Go to `AI Infrastructure > On-Prem > Monitoring > Node Statistics`.
-2. View the node list and overall running status, and confirm node name, cluster, region/AZ, node status, and resource usage level.
-3. Select cluster, node, resource type, status, or time range filters as provided by the page.
+2. Confirm the region and resource pool in the upper-right corner, and filter by cluster, node name, status, or time range.
+3. View the node list and overall running status, and verify node name, cluster, region/AZ, node status, and resource usage level.
 4. Review CPU, memory, accelerator, storage, network, and job-related statistics to identify high load, insufficient resources, or abnormal node status.
-5. If a node is abnormal, continue troubleshooting in Devices or Jobs monitoring pages, together with cluster statistics and scheduling events.
 
 ![View node statistics](./images/node-statistics.png)
+
+### Investigate Abnormal Node Metrics
+
+1. When a node status is NotReady, resources are near full load, or metric collection curves break, note the node name and cluster.
+2. Keeping the same time range, cross-check `Device Monitoring` for accelerator temperature and health on that node.
+3. Cross-reference with `Job Monitoring` and cluster node details to inspect running instances, labels, taints, and events.
+4. If hardware failure or driver exception occurs, coordinate with platform operations to drain or maintain the node rather than deleting resources directly.
 
 #### Key Focus
 
@@ -186,7 +168,7 @@ The same object has different values on two monitoring pages.
 2. verify aggregation scope
 3. clear and restore filters one at a time.
 
-#### Cannot Drill Down to the Target
+#### Unable to Locate Target Object in Related Monitoring
 
 **Symptom:**
 

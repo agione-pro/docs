@@ -55,7 +55,7 @@ Page screenshot:
 
 ![Model review list](./images/model-reviews-list-public.png)
 
-The screenshot focuses on the status tabs, visibility controls, search filters, batch entry, result table, and pagination. The screenshot uses a neutral empty result set so that no customer or environment data is exposed.
+The image shows the Model Reviews list page, supporting status and visibility (All, Public, Private) filtering, multi-dimensional search by customer and model type, and access to individual and batch review actions.
 
 ## Main Operations
 
@@ -66,10 +66,6 @@ The screenshot focuses on the status tabs, visibility controls, search filters, 
 3. Select a customer when needed, enter a model name or choose a model type, and click **"Search"**.
 4. Check the model name, visibility, model type, customer, version, free quota, status, submission time, and review time. If no result is returned, click **"Reset"** and apply one condition at a time.
 
-![Query model reviews](./images/model-reviews-list-public.png)
-
-The screenshot highlights the review status, model visibility, customer, model name, model type, **"Search"**, and **"Reset"** controls.
-
 ### Query Model Review Details
 
 1. Locate the target record and click **"Details"** to open the model detail panel.
@@ -79,7 +75,7 @@ The screenshot highlights the review status, model visibility, customer, model n
 
 ![Model review details](./images/model-details-public.png)
 
-The screenshot highlights the model profile and `Model Parameter Configuration` section used during detail inspection.
+The image shows the Model Details drawer, displaying basic information and expanded Model Parameter Configuration to verify Token limits, modalities, and protocols.
 
 ### Review a Model
 
@@ -91,7 +87,7 @@ The screenshot highlights the model profile and `Model Parameter Configuration` 
 
 ![Review a model](./images/model-review-public.png)
 
-The screenshot highlights the final **"Reject"** and **"Approve"** actions at the bottom of the review panel. Use the visible page state as the source of truth for the final confirmation wording.
+The image shows the single model review drawer, where you verify parameters and boundaries before clicking Approve or Reject with audit comments.
 
 ### Batch Review Models
 
@@ -103,7 +99,7 @@ The screenshot highlights the final **"Reject"** and **"Approve"** actions at th
 
 ![Batch review models](./images/model-batch-review-public.png)
 
-The screenshot highlights the batch entry and the result table used to select records. Do not include customer-sensitive data when sharing a batch-review screenshot.
+The image shows the Batch Review dialog, allowing you to apply approval or rejection decisions and comments across selected model records simultaneously.
 
 ## Parameter Reference
 

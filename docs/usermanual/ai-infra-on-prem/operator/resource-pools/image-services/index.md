@@ -234,24 +234,6 @@ The removal fails or the page reports that associated objects still exist.
 2. Check service task state and update time.
 3. Remove dependencies or complete migration, then retry according to approval.
 
-#### Target Is Missing from Image Services
-
-**Symptom:**
-
-The page opens, but the expected Configuration, status, and relationships on Image Services is missing.
-
-**Possible Causes:**
-
-- Filters remain active.
-- the object belongs to another scope.
-- a prerequisite is incomplete.
-
-**Solution:**
-
-1. Reset filters
-2. verify region or tenant ownership
-3. confirm prerequisite state.
-
 #### The Operation Entry on Image Services Is Unavailable
 
 **Symptom:**
@@ -269,42 +251,6 @@ The create, register, or maintain entry is hidden or disabled.
 1. Check Operator permission
 2. read the page message
 3. complete dependency configuration first.
-
-#### A Required Field on Image Services Has No Options
-
-**Symptom:**
-
-The form opens, but a selection list is empty.
-
-**Possible Causes:**
-
-- Candidates are disabled.
-- ownership differs.
-- the current account cannot see them.
-
-**Solution:**
-
-1. Check candidate state
-2. verify ownership
-3. confirm visibility and refresh the form.
-
-#### Image Services Has an Abnormal State After the Operation
-
-**Symptom:**
-
-A record exists after submission, but its state is unexpected.
-
-**Possible Causes:**
-
-- Connectivity or validation failed.
-- a dependency is abnormal.
-- processing is incomplete.
-
-**Solution:**
-
-1. Check feedback and update time
-2. inspect related objects
-3. troubleshoot the processing stage.
 
 #### A Downstream Page Cannot Use Image Services
 

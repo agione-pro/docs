@@ -59,7 +59,7 @@ The page summarizes API rate-control status, rule coverage, node state, publishi
 
 1. Click an abnormal metric or related entry to open Rule Management or Observability Audit.
 2. Keep the same time range and check matched rules, nodes, and block reasons.
-3. A successful drill-down should map the overview to a specific rule or event. If not, check rule version and publish time.
+3. A successful check should map the overview to a specific rule or event. If not, check rule version and publish time.
 4. Do not modify rules or publish versions during read-only validation.
 
 ## Parameter Quick Reference

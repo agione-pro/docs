@@ -187,7 +187,7 @@ The image above shows the delete confirmation dialog for a model author. Before 
 
 ![Import or Export Meta-models](./images/meta-model-import-export-public.png)
 
-The image above shows **"Import"** and **"Export"** above the meta-model list. After import, clear filters and check the list for new records or validation messages.
+The image shows the Import and Export action buttons above the meta-model list, supporting batch import and export of configured meta-model JSON data.
 
 ### Import Model Authors
 
@@ -199,7 +199,7 @@ The image above shows **"Import"** and **"Export"** above the meta-model list. A
 
 ![Import or Export Model Authors](./images/model-author-import-export-public.png)
 
-The image above shows **"Import"** and **"Export"** in the model author area. After import, check whether the new author name and icon appear in the left-side author list.
+The image shows the Import and Export action buttons in the model author area, supporting batch configuration of model author vendors and icons.
 
 ### Export Meta-models
 
@@ -208,20 +208,12 @@ The image above shows **"Import"** and **"Export"** in the model author area. Af
 3. The exported file can include protocol, capability, and parameter configuration. Do not send it to unauthorized chat groups, external email, or public knowledge bases.
 4. After a successful export, verify the file content. If the operation fails, check filter conditions, permission, browser download status, and download-blocking messages.
 
-![Import or Export Meta-models](./images/meta-model-import-export-public.png)
-
-The image above shows the import and export buttons located above the meta-model list.
-
 ### Export Model Authors
 
 1. In the `Model Author` area, click **"Export"**.
 2. Before exporting, confirm the current search conditions, scope, and data permission. Store exported files in a controlled location. Do not distribute them without authorization.
 3. The exported file can include author identifiers and display information. Do not send it directly as external delivery material.
 4. After a successful export, verify the file content. If the operation fails, check filter conditions, permission, browser download status, and download-blocking messages.
-
-![Import or Export Model Authors](./images/model-author-import-export-public.png)
-
-The image above shows the import and export buttons in the model author area.
 
 ## Parameter Reference
 

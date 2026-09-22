@@ -48,37 +48,42 @@ Page screenshots:
 
 ![Policies page](./images/manual-policies.png)
 
-The image shows Policies page. Verify the target object, current state, fields, and actions.
-
-![Policy list reference](./images/policies-list.png)
-
-The image shows Policy list reference. Verify the target object, current state, fields, and actions.
+The image shows the Policies management page, displaying multi-cloud routing policy cards, scenario types, primary/backup topology, and runtime status, with an Add Policy button.
 
 ## Main Operations
 
 ### Create Policy
 
-1. Click **"Add Policy"**.
-2. Enter a name and select the application scenario and associated model.
-3. Click **"Next"** and configure primary/backup topology.
-4. Configure health probes and verify thresholds and targets.
-5. Click **"Submit"** and verify policy state in the list.
+#### Step 1: Basic Information and Model Association
 
-![Create Policy](./images/manual-create-policy.png)
-
-The image shows Create Policy. Verify the target object, current state, fields, and actions.
+1. Click **"Add Policy"** on the Policies page.
+2. Enter the policy name and select an application scenario (such as "Cost Priority", "High-Availability Production", or "Ultra-Fast Inference").
+3. Select the target model and version (such as `Qwen3-8b / v1.0`), which automatically populates the available routing node resources across cloud platforms below.
+4. Enter the description and click **"Next"**.
 
 ![Basic information and model association](./images/basic-information-model-association-add.png)
 
-The image shows Basic information and model association. Verify the target object, current state, fields, and actions.
+The image shows "Add Policy - Step 1: Basic Information and Model Association", entering policy name, scenario, and associated model while displaying available cloud nodes.
+
+#### Step 2: Define Primary and Backup Route Topology
+
+1. In the routing configuration, select primary and backup route nodes based on multi-cloud resource specifications and costs.
+2. Configure priority rankings (P1, P2, etc.) for backup route nodes to establish traffic dispatching and failover orders.
+3. Review cloud providers, specifications, estimated costs, and inference framework versions for each node, then click **"Next"**.
 
 ![Primary/backup route topology](./images/define-primary-backup-route-topology-add.png)
 
-The image shows Primary/backup route topology. Verify the target object, current state, fields, and actions.
+The image shows "Add Policy - Step 2: Define Primary and Backup Route Topology", configuring primary and backup route nodes with priority ranks and failover paths.
+
+#### Step 3: Define Health Probe Rules
+
+1. Configure health probe parameters for primary and backup nodes, including probe intervals, timeouts, and healthy/unhealthy threshold counts.
+2. Specify the probe endpoint path and expected response status codes to ensure unhealthy nodes are promptly evicted and traffic shifted.
+3. Confirm the probe rules and click **"Submit"** to complete policy creation, then verify the new policy in the list.
 
 ![Health probe rules](./images/define-health-probe-rules-add.png)
 
-The image shows Health probe rules. Verify the target object, current state, fields, and actions.
+The image shows "Add Policy - Step 3: Define Health Probe Rules", configuring probe intervals, timeouts, and failover threshold rules.
 
 ### View Policies
 

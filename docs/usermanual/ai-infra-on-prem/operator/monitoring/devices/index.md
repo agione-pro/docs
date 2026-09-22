@@ -48,39 +48,21 @@ The following figure shows the device monitoring page.
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
-### View Device Monitoring
-
-#### Procedure
+### Filter and View Device Monitoring
 
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Device Monitoring`.
-2. Confirm the region in the upper-right corner and page filters.
-3. View lists, charts, or statistic cards.
-4. Focus on abnormal status, high watermarks, long periods without updates, or data inconsistent with expectations.
-5. When a device is abnormal, combine node statistics, job monitoring, and underlying driver status to judge whether it is job occupation or a hardware issue.
-
-#### View Device Monitoring
-
-1. Go to `AI Infrastructure > On-Prem > Monitoring > Device Monitoring`.
-2. View the device list and overall running status, and confirm device ID, device type, node, cluster, region/AZ, and device status.
-3. Select cluster, node, device type, device status, or time range filters as provided by the page.
+2. Confirm the region and resource pool in the upper-right corner, and filter by cluster, node, device type, device status, or time range.
+3. View the device list and overall running status, and verify device ID, device type, node, cluster, region/AZ, and device status.
 4. Review accelerator usage, VRAM usage, temperature, health status, bound jobs, and exception information to identify unavailable devices, insufficient VRAM, or hardware exceptions.
-5. If a device is abnormal, continue troubleshooting in Nodes or Jobs monitoring pages, together with cluster statistics, node logs, and scheduling events.
 
 ![View device monitoring](./images/device-monitoring.png)
+
+### Investigate Abnormal Device Metrics
+
+1. When an accelerator is offline, overheated, running out of VRAM, or throwing driver errors, note the device ID and node.
+2. Keeping the same time range, navigate to `Job Monitoring` to confirm if a large model training or high-concurrency inference job is occupying the card.
+3. Switch to `Node Statistics` to check the host node load, network, and driver service health.
+4. If a hardware failure or PCIe bus error is verified, coordinate with hardware engineers for isolation and maintenance rather than force-killing workloads without review.
 
 #### Key Focus
 
@@ -187,7 +169,7 @@ The same object has different values on two monitoring pages.
 2. verify aggregation scope
 3. clear and restore filters one at a time.
 
-#### Cannot Drill Down to the Target
+#### Unable to Locate Target Object in Related Monitoring
 
 **Symptom:**
 

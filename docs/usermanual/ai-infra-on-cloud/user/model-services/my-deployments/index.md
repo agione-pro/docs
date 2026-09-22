@@ -48,7 +48,7 @@ Page screenshots:
 
 ![My Deployments list](./images/my-deployments-list.png)
 
-The image shows My Deployments list. Verify the target object, current state, fields, and actions.
+The image shows the My Deployments service list page, filtering cards by cloud platform and displaying deployment name, model version, node specifications, running state, and hourly cost estimates.
 
 ## Main Operations
 
@@ -66,22 +66,36 @@ The image shows My Deployments list. Verify the target object, current state, fi
 
 ### Publish a Deployed Model
 
-1. Click **"Publish"** from more actions for the target deployment.
-2. Select the publishing region and verify visibility.
-3. Open the publishing page and verify model source, billing, and rate limits.
-4. After submission, verify publication state in My Models under Model Services.
+#### Step 1: Open the Publish Entry
+
+1. In the My Deployments list, locate the target running deployment card.
+2. Click the more actions icon (`···`) in the lower-right corner of the card and select **"Publish"** from the menu.
 
 ![Publishing entry](./images/publish.png)
 
-The image shows Publishing entry. Verify the target object, current state, fields, and actions.
+The image shows selecting the Publish action from the more actions menu on a deployment card.
+
+#### Step 2: Choose Publication Target Area
+
+1. In the "Choose Where to Publish" dialog, select the target visibility area based on your intended audience:
+   - **Private Area**: Publish to the private model library, accessible and invokable only within the current organization/tenant.
+   - **Public Area**: Publish to the public model library, available for all platform users to invoke with independent pricing.
+2. Click "Publish to Private Area" or "Publish to Public Area" to proceed to the detailed configuration form.
 
 ![Choose publishing region](./images/choose-where-to-publish.png)
 
-The image shows Choose publishing region. Verify the target object, current state, fields, and actions.
+The image shows the target publication area selection dialog, allowing models to be published to an organization's private area or the platform's public catalog.
+
+#### Step 3: Complete Model Publishing Details and Submit
+
+1. The system automatically populates the meta-model, model source, and upstream prediction request URL.
+2. Enter or verify the API key and Model Source ID.
+3. Complete the billing configuration and rate-limiting rules step-by-step, then click Submit.
+4. After submission, navigate to `Creative Space > My Models` to confirm that the model is published and ready for invocation.
 
 ![Publish model page](./images/publish-model.png)
 
-The image shows Publish model page. Verify the target object, current state, fields, and actions.
+The image shows the Publish Model form, automatically populating the deployment prediction URL while configuring the API key, billing, and rate-limiting rules.
 
 ## Parameter Reference
 

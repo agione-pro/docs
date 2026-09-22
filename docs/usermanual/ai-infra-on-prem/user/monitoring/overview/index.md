@@ -11,7 +11,7 @@
 
 #### Beginner Explanation
 
-Statistics overview is like a resource weather map for Model Consumers. It shows cluster count, node status, exception count, and update time in one screen, helping decide whether to drill down further.
+Statistics overview is like a resource weather map for Model Consumers. It shows cluster count, node status, exception count, and update time in one screen, helping determine whether resource operations are normal or abnormal fluctuations exist.
 
 #### Terms
 
@@ -55,35 +55,20 @@ The page displays statistics overview capability for the selected region. When t
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
 ### View Statistics Overview
 
-#### Procedure
-
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Overview`.
-2. Confirm the region in the upper-right corner.
-3. Filter by time, status, or keyword provided by the page.
-4. View charts, lists, or prompt information.
-5. If monitoring capability is not opened, return to instance details to view logs, events, and status.
+2. Confirm the region and time range in the upper-right corner.
+3. Review cluster count, node status, job distribution, and exception count in overview cards.
+4. Review resource usage trends to ensure compute and storage workloads align with recent tasks.
+5. If monitoring capability is not opened in the current region, go to the instance details page to view logs, events, and running status.
 
-#### Key Focus When Capability Is Open
+### Investigate Abnormal Monitoring Metrics
 
-- Cluster count, node status, and exception count in overview cards.
-- Whether resource trends are consistent with recent instance creation, training tasks, or deployment changes.
-- Whether update time is later than the latest operation.
+1. When the overview dashboard indicates a spike in failed jobs or resources approaching capacity bottlenecks, note the time window and affected resource types.
+2. Keeping the same time range, use the left menu to navigate to `Job Monitoring`, `Cluster Statistics`, `Node Statistics`, or `Device Monitoring`.
+3. Check specific error reasons on abnormal jobs or nodes to determine if issues stem from code failures, configuration conflicts, or infrastructure shortages.
+4. If recovery cannot be achieved via standard operations, record the redacted job ID and error timestamps, and contact platform operations.
 
 ## Parameter Quick Reference
 
@@ -179,7 +164,7 @@ The same object has different values on two monitoring pages.
 2. verify aggregation scope
 3. clear and restore filters one at a time.
 
-#### Cannot Drill Down to the Target
+#### Unable to Locate Target Object in Related Monitoring
 
 **Symptom:**
 

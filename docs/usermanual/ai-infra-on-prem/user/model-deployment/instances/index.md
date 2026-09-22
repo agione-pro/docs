@@ -55,39 +55,18 @@ The page provides instance type, status, search, and reset entrypoints. In the c
 
 ## Main Operations
 
-### View Model Instances
-
-1. Go to `Model Deployment > Model Instances`.
-2. Filter by instance name, model, status, cluster, or update time.
-3. Open details and check model version, resource flavor, instance status, Endpoint, and events.
-4. If no record is returned, reset filters. Redact internal addresses and credentials before sharing.
-
-### View Monitoring and Diagnose Abnormal Status
-
-1. In instance details, review utilization, call status, events, and recent errors.
-2. Keep the same time range and compare cluster, node, and device monitoring to locate the affected layer.
-3. If information is insufficient, escalate with a redacted instance identifier, status, and time.
-4. Before starting, stopping, restarting, scaling, or deleting instances, verify the resource, data, and impact and execute the action only after approval.
-
-### View Instances
-
-#### Applicable Scenario
-
-When you need to confirm whether a model service was created successfully, is still running, or has exceptions, view the model instance list.
-
-#### Pre-Operation Check
-
-1. Model instance creation has been completed, or you explicitly need to confirm that there are no instances.
-2. Filters are not too narrow, avoiding false empty results.
-
-#### Procedure
+### Filter and View Model Instances
 
 1. Go to `AI Infrastructure > On-Prem > Model Deployment > Instances`.
-2. View the instance list and confirm instance name, instance type, running status, model, specification, region, and creation time.
-3. Use `Instance Type`, `Status`, or the search box to filter target instances.
-4. Click **"Search"** and confirm that filters have taken effect.
-5. To view all data again, Click **"Reset"** to clear filters.
-6. If the list is empty, first check whether filters exist, whether the instance was just created, and whether the current tenant or region is correct.
+2. Filter target instances using `Instance Type`, `Status`, or search keywords, then click **"Search"**.
+3. In the list, review instance name, type, running status, model, specification, region, and creation time.
+4. Click **"Details"** on the target instance to check model version, resource flavor, instance status, Endpoint, and associated events.
+
+### Troubleshoot and Handle Abnormal Status
+
+1. In instance details, review resource utilization, invocation status, events, and recent error logs.
+2. Keep the same time range and compare cluster, node, and device monitoring to locate the affected layer (e.g., resource shortage or OOM).
+3. If starting, stopping, restarting, scaling, or deleting instances is required, verify impact on online workloads and obtain authorization before proceeding.
 
 ## Parameter Quick Reference
 

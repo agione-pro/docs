@@ -145,7 +145,7 @@ Before managing tags, verify the target customer scope and account permission. D
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filters | The list refreshes according to the selected filters. | Clear the filters and search again. |
-| Customer details | Selecting `Details` opens customer drill-down information. | Check customer permissions and the details entry point. |
+| Customer details | Selecting `Details` opens customer detailed information. | Check customer permissions and the details entry point. |
 | Tag visibility | The Manage Tags dialog shows built-in tags and existing custom tags. | Check tag-management permissions. |
 
 ## FAQ

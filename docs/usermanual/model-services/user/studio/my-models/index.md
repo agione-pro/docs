@@ -60,30 +60,29 @@ The page combines two record lists with two multi-step creation flows. Select th
 
 Page screenshots:
 
-![My Published list](./images/my-models-my-published-list-public.png)
+![My Published list](./images/manual-my-published-public.png)
 
-My Published shows directly published models, regions, status, and actions.
-
-![My Aggregate list](./images/my-models-my-aggregate-list-public.png)
-
-My Aggregate shows aggregate models and their current status.
+The "My Published" list displays model instances directly published by the current tenant, along with publication region, operational status, and management actions.
 
 ## Main Operations
 
-### Inspect Existing Model Records
+### View Directly Published Models
 
-1. Go to `Model Services > Studio > My Models`.
-2. To inspect a directly published model, click **"My Published"**, locate it by name, region, or status, and verify its state and row actions.
+1. Go to `Model Services > Studio > My Models`, which defaults to the `My Published` tab.
+2. Filter published model records by model name, publication region (Private/Public), or status.
+3. Verify the model name, version, source, billing mode, and publication status in the list.
+4. In the action column, perform management actions such as edit, disable, publish/unpublish, or delete.
 
-![View My Published](./images/manual-my-published-public.png)
+### View Aggregate Models
 
-The image shows My Published. Verify the publishing region, status, and actions.
-
-3. To inspect an aggregate model, click **"My Aggregate"** and verify its name, region, status, candidate-model information, and row actions.
+1. Click the **"My Aggregate"** tab at the top of the My Models page.
+2. The list displays all configured aggregate models, including model name, routing mode, candidate models, and current status.
+3. Verify candidate model health status, traffic split weights, and active routing policies.
+4. Switching tabs only changes the viewed record type; use the action column to edit or delete aggregate models.
 
 ![View My Aggregate](./images/manual-my-aggregate-public.png)
 
-The image shows My Aggregate. Verify aggregate-model status and row actions. Switching tabs changes the record type being inspected; it does not start a publishing or creation flow.
+The "My Aggregate" list displays configured aggregate models, candidate model groups, routing policies, and current availability status.
 
 ### Publish a Model
 
@@ -96,23 +95,23 @@ Complete the flow in four checkpoints: publishing destination, basic information
 
 ![Open the model publishing entry](./images/manual-publish-model-entry-public.png)
 
-The image shows publishing-region options. Confirm Private or Public Region before continuing.
+Select the "Publish Model" action on the overview card to launch the publishing wizard.
 
 ![Choose where to publish](./images/my-published-choose-where-to-publish-add-public.png)
 
-Confirm that the publishing region matches the intended visibility.
+Select whether to publish to the tenant's Private Region or the platform's Public Region based on intended audience.
 
 ![Enter publishing details](./images/my-published-basic-information-add-public.png)
 
-Verify the model name, source, and display information.
+Configure the meta-model, model source, service endpoint URL, and upstream access credentials.
 
 ![Configure model billing](./images/my-published-billing-configuration-add-public.png)
 
-Verify billing units, price, and free quota.
+Set the model billing method, input/output unit prices, and free quota policies.
 
 ![Configure model rate limits](./images/my-published-rate-limit-configuration-add-public.png)
 
-Verify the rate-limit period, threshold, and scope.
+Configure request frequency and concurrency rate-limiting thresholds at the organization, tenant, or global level.
 
 ### Create an Aggregate Model
 
@@ -125,19 +124,19 @@ Complete the flow in four checkpoints: publishing destination, candidate-model a
 
 ![Open the aggregate-model entry](./images/manual-create-aggregate-entry-public.png)
 
-The image shows aggregate-model region options. Confirm visibility before continuing.
+Click "Create Aggregate Model" on the overview card to enter the aggregate model wizard.
 
 ![Choose aggregate-model region](./images/my-aggregate-choose-where-to-publish-add-public.png)
 
-Confirm the aggregate-model region and customer scope.
+Select the publication region and authorized customer scope for the aggregate model.
 
 ![Enter aggregate-model details](./images/my-aggregate-basic-information-add-public.png)
 
-Verify the name, candidate models, and routing strategy.
+Set the aggregate model identifier, add candidate models, and configure traffic routing rules.
 
 ![Configure aggregate-model billing](./images/my-aggregate-billing-configuration-add-public.png)
 
-Verify aggregate-model billing units and price.
+Configure the unified external calling price and billing method for the aggregate model.
 
 ## Parameter Quick Reference
 

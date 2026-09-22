@@ -23,7 +23,7 @@ VRAM configuration is like a capacity estimator before deployment. It estimates 
 
 #### Recommended Operation Order
 
-Confirm prerequisites for VRAM formula, precision, KV Token, factor form, dynamic expressions, and recommended specifications, follow Main Operations, run Result Validation, and continue to the next page.
+Confirm prerequisites for VRAM formula, precision, KV Token, factor form, dynamic expressions, follow Main Operations, run Result Validation, and continue to the next page.
 
 #### First-Time User Notes
 
@@ -38,13 +38,11 @@ Confirm that the task involves Configuration, status, and relationships on VRAM 
 
 ## Page Description
 
-Use this page to manage device-memory formulas, precision, KV tokens, factor fields, dynamic expressions, and recommended specifications.
+Use this page to manage device-memory formulas, precision, KV tokens, factor fields, dynamic expressions.
 
 ![VRAM Config](./images/manual-vram-config.png)
 
-The page displays VRAM estimation rules and precision configurations, and supports maintaining VRAM estimation logic for different model, framework, or precision combinations.
-
-The following figure shows the vram estimation configuration page.
+The page is organized into five tabs: `Precision Spec Dictionary`, `Framework Quantization Config`, `Model KV Token`, `Dynamic Expression Text`, and `VRAM Calculation Factor Form Maintenance`. The screenshot shows the default `Precision Spec Dictionary` tab, where you maintain bits, bytes per value, and overhead ratio for each precision.
 
 ## Main Operations
 
@@ -55,7 +53,7 @@ The following figure shows the vram estimation configuration page.
 3. If no record is returned, reset filters. For incompatibility, first check dependencies.
 4. Redact internal images, storage locations, and startup configuration before sharing.
 
-### Configure VRAM Rules
+### Add Precision Spec
 
 #### Pre-Operation Check
 
@@ -66,22 +64,18 @@ The following figure shows the vram estimation configuration page.
 
 #### Procedure
 
-1. Go to `AI Infrastructure > On-Prem > Templates > VRAM Estimation Configuration`.
-2. Click the add or edit entrypoint.
-3. On the Basic Information tab, fill in rule name, applicable model, framework, and precision.
-4. On the Factor Form tab, configure factors such as parameter count, KV Token, concurrency, and context length.
-5. On the Dynamic Expression tab, configure VRAM calculation formulas, recommended specifications, and trigger conditions.
-6. Save, then reference and verify it in inference templates.
+1. Go to `AI Infrastructure > On-Prem > Templates > VRAM Config`.
+2. On the `Precision Spec Dictionary` tab list, click **"Add Precision Spec"** in the top right (or click **"Edit"** on a target entry).
+3. Enter the `Precision Name` (e.g., fp16, bf16, awq_w4a16).
+4. Configure `Bits`, `Bytes Per Value`, and `Overhead Ratio`.
+5. (Optional) In `Remark`, describe the quantization estimation criteria or applicable model architecture.
+6. Verify the parameters and click **"Save"**. The newly added precision specification serves as a foundational dictionary for framework and template VRAM estimation.
 
-![Create VRAM precision rule](./images/add-precision-spec.png)
-
-The image shows the precision and memory-estimation fields. Verify model size, precision, accelerator type, and context assumptions before saving.
-
-#### Operation Screenshots
+#### Operation Screenshot
 
 ![VRAM Config operation interface](./images/manual-add-vram-spec.png)
 
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+The image shows the Add Precision Spec dialog. Configure precision name, bit width, bytes per value, and overhead ratio, which serve as foundational dictionary metrics for VRAM estimation rules.
 
 ### Import or Export VRAM Rules
 
@@ -93,7 +87,7 @@ Use the **"Import/Export"** menu to batch-maintain VRAM estimation rules, or to 
 
 1. Go to `AI Infrastructure > On-Prem > Templates > VRAM Estimation Configuration`.
 2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
-3. For import, upload the file as required by the page and verify precision specification, framework version, model parameters, KV Token, dynamic expression, and recommended specification.
+3. For import, upload the file as required by the page and verify precision specification, framework version, model parameters, KV Token, and dynamic expression.
 4. For export, confirm the current rule or tab filter scope, then generate and download the rule configuration as prompted by the page.
 5. Before importing, verify that model, framework, and precision dependencies are available in the target environment. Save export files in a controlled directory.
 
@@ -105,7 +99,7 @@ Use the **"Import/Export"** menu to batch-maintain VRAM estimation rules, or to 
 
 #### Notes
 
-- VRAM rules affect recommended specifications and pre-deployment resource assessment. Verify model size, precision, context length, and concurrency definitions before importing.
+- VRAM rules affect VRAM estimation results and pre-deployment resource assessment. Verify model size, precision, context length, and concurrency definitions before importing.
 - Import may update a rule with the same identifier. Check referenced templates and instances first; rule files must not contain real credentials or internal addresses.
 
 ### Edit VRAM Rules
@@ -118,7 +112,7 @@ Edit VRAM rules when precision, factors, or dynamic expressions need to change.
 
 1. Go to `AI Infrastructure > On-Prem > Templates > VRAM Estimation Configuration` and locate the target rule.
 2. Click **"Edit"** for the target rule and verify rule name and associated model and framework.
-3. Update precision specification, factor form, dynamic expression, or recommended specification on the tabs provided by the page.
+3. Update precision specification, factor form, or dynamic expression on the tabs provided by the page.
 4. Before clicking the final **"Save"** or **"OK"**, verify the formula, trigger conditions, and impact on referenced templates.
 5. Return to the list and recheck the result in an inference template.
 
@@ -126,11 +120,11 @@ Edit VRAM rules when precision, factors, or dynamic expressions need to change.
 
 - The rule list shows updated precision, factor, or expression configuration.
 - A calculation with the same input parameters follows the new rule as expected.
-- Referenced templates load the rule and recommended specifications remain within resource capacity.
+- Referenced templates load the rule and VRAM estimation results remain within resource capacity.
 
 #### Notes
 
-- Changing factors or expressions may change recommended specifications for existing templates. Preserve the previous rule and test representative models first.
+- Changing factors or expressions may change VRAM estimation results for existing templates. Preserve the previous rule and test representative models first.
 - Do not treat one calculation as a replacement for deployment stress testing. Check runtime VRAM pressure after a rule change.
 
 ### Remove VRAM Rules
@@ -172,7 +166,7 @@ Remove a VRAM rule when it is no longer used and no inference template or deploy
 ## Pitfalls
 
 - KV Token, context length, and concurrency significantly affect VRAM estimation. Do not look only at model parameter scale.
-- Incorrect quantization precision causes recommended specifications to be too small or too large.
+- Incorrect quantization precision causes VRAM estimation results to be too small or too large.
 - VRAM estimation results should be verified through test deployments and cannot replace real stress tests.
 
 ## Result Validation
@@ -196,31 +190,13 @@ The rule import completes, but an inference template produces a result that is m
 
 - Model size, precision, KV Token, or context-length definitions differ.
 - Framework version or dynamic expression is unavailable in the target environment.
-- The referenced recommended specification is missing or its metrics do not match.
+- The referenced resource specification is missing or its metrics do not match.
 
 **Solution:**
 
 1. Open rule details and verify factors and dynamic expressions one by one.
 2. Check model, framework, and resource specification versions and metrics.
 3. Recalculate with representative parameters and reconcile with a verified result.
-
-#### The Calculation Does Not Change After Editing
-
-**Symptom:**
-
-The rule saves successfully, but an inference template still shows the old VRAM result.
-
-**Possible Causes:**
-
-- The template references another rule or cached data has not refreshed.
-- Final confirmation was not completed.
-- Input parameters do not trigger the changed expression branch.
-
-**Solution:**
-
-1. Verify the referenced rule and update time in template details.
-2. Refresh the rule and template pages and check the save prompt.
-3. Recalculate with parameters that trigger the target branch and compare results.
 
 #### VRAM Rule Deletion Fails
 
@@ -276,42 +252,6 @@ The create, register, or maintain entry is hidden or disabled.
 2. read the page message
 3. complete dependency configuration first.
 
-#### A Required Field on VRAM Config Has No Options
-
-**Symptom:**
-
-The form opens, but a selection list is empty.
-
-**Possible Causes:**
-
-- Candidates are disabled.
-- ownership differs.
-- the current account cannot see them.
-
-**Solution:**
-
-1. Check candidate state
-2. verify ownership
-3. confirm visibility and refresh the form.
-
-#### VRAM Config Has an Abnormal State After the Operation
-
-**Symptom:**
-
-A record exists after submission, but its state is unexpected.
-
-**Possible Causes:**
-
-- Connectivity or validation failed.
-- a dependency is abnormal.
-- processing is incomplete.
-
-**Solution:**
-
-1. Check feedback and update time
-2. inspect related objects
-3. troubleshoot the processing stage.
-
 #### A Downstream Page Cannot Use VRAM Config
 
 **Symptom:**
@@ -338,5 +278,5 @@ The current page is normal, but a downstream page cannot select or associate Con
 ## Next Steps
 
 1. Reference VRAM estimation rules in inference templates.
-2. Verify recommended specifications with small, medium, and large models.
+2. Verify VRAM estimation results with small, medium, and large models.
 3. Continuously calibrate VRAM formulas and safety margins based on online failure cases.

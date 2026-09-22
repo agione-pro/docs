@@ -57,34 +57,15 @@ The upper area displays deployable templates and accelerator vendors; the middle
 
 ### View Deployable Resources
 
-1. Open the user overview and select a project, region, or resource pool.
-2. Review available flavors, remaining quota, resource usage, and consumption trends.
-3. Confirm that all metrics use the same project and region scope.
-4. If metrics are empty, check authorization, quota, and refresh time. Redact resource data before sharing.
+1. Open the On-Prem overview page and confirm the region and project scope in the upper-right corner.
+2. In deployment templates and accelerator vendor sections, review adapted hardware models, VRAM, and availability status.
+3. Check specification quotas and resource consumption trends to verify whether sufficient compute allowance remains.
 
-### Drill Down into Quota or Resource Anomalies
+### Troubleshoot Quota or Resource Anomalies
 
-1. Click a quota, resource-usage, or deployment entry.
-2. Keep the same project and region when opening Resource Quotas, Resource Usage, or Model Deployment.
-3. Determine whether the anomaly relates to authorization, quota, capacity, or deployment status.
-4. Do not create or stop real resources to test the anomaly.
-
-### View Deployable Resources
-
-#### Applicable Scenario
-
-Before creating a model service, online IDE, or runtime instance, confirm on the overview page whether templates, accelerators, and quotas are available.
-
-#### Pre-Operation Check
-
-1. You have entered the On-Prem overview page.
-2. The region or resource scope in the upper-right corner matches the current use scenario.
-
-#### Procedure
-
-1. View model vendors and model cards in deployment templates.
-2. View accelerator vendors, models, VRAM, and adaptation status in accelerator vendors.
-3. Confirm whether the target specification still has available quota in specification quota.
+1. If available quota is insufficient or a target specification cannot be deployed, record the flavor model and region.
+2. Go to `Quotas & Usage > Quota Usage` to verify allocated quotas and consumption records for the current tenant or project.
+3. If quota is sufficient but deploying an instance still fails scheduling, check monitoring and availability zone status to verify whether physical cards are fully occupied.
 
 ## Parameter Quick Reference
 

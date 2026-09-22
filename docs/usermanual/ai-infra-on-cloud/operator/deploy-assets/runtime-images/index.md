@@ -48,11 +48,7 @@ Page screenshots:
 
 ![Runtime Images page](./images/manual-runtime-images.png)
 
-The image shows Runtime Images page. Verify the target object, current state, fields, and actions.
-
-![Runtime image list reference](./images/runtime-images-list.png)
-
-The image shows Runtime image list reference. Verify the target object, current state, fields, and actions.
+The image shows the Runtime Images list page, displaying image names, repository paths, image types, and sizes across cloud platforms and regions, with an Add Runtime Image button.
 
 ## Main Operations
 
@@ -65,11 +61,7 @@ The image shows Runtime image list reference. Verify the target object, current 
 
 ![Add Runtime Image](./images/manual-add-runtime-image.png)
 
-The image shows Add Runtime Image. Verify the target object, current state, fields, and actions.
-
-![Add runtime image reference](./images/add-runtime-image.png)
-
-The image shows Add runtime image reference. Verify the target object, current state, fields, and actions.
+The image shows the Add Runtime Image dialog, configuring the cloud platform, region, image type (public/private), image name, repository path, and description.
 
 ### Edit Runtime Image
 
@@ -79,7 +71,7 @@ The image shows Add runtime image reference. Verify the target object, current s
 
 ![Edit Runtime Image](./images/manual-maintain-runtime-image.png)
 
-The image shows Edit Runtime Image. Verify the target object, current state, fields, and actions.
+The image shows the Edit Runtime Image dialog, where you can update the repository path and description.
 
 ### View Runtime Images
 

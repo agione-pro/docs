@@ -47,37 +47,29 @@ The page contains Model Analytics and Customer Analytics, with aggregate indicat
 
 Page screenshots:
 
-![Customer calls by model](./images/overview-model-analytics-list-public.png)
+![Customer Calls model analytics overview](./images/manual-model-analytics-public.png)
 
-Use Model Analytics to review totals, success, failure, rate limits, and rankings.
-
-![Customer calls by customer](./images/overview-customer-analytics-list-public.png)
-
-Use Customer Analytics to review customer call trends and rankings.
+The "Overview" page defaults to model-dimension analytics, showing total call volume, success rate trends, and top invoked models.
 
 ## Main Operations
 
 ### View Model Call Overview
 
-1. Go to `Model Services > Customer Calls > Overview`.
-2. Click **"Model Analytics"** and select a time range and model criteria.
-3. Verify total, successful, failed, and rate-limited calls, trends, and model rankings.
-4. Open details for an abnormal model to continue investigation.
-
-![View model call overview](./images/manual-model-analytics-public.png)
-
-The image shows Model Analytics. Verify the time range, aggregate indicators, trends, and model list.
+1. Go to `Model Services > Customer Calls > Overview`, which defaults to the `Model Analytics` tab.
+2. Set the statistics month and date range, and filter by target model if needed.
+3. Verify total invocations, success rates, failure rates, rate-limit triggers, trend curves, and model rankings.
+4. Click inline details for an abnormal model to troubleshoot errors or latency.
 
 ### View Customer Call Overview
 
-1. Click **"Customer Analytics"**.
-2. Select a time range and customer criteria.
-3. Verify customer count, call trends, consumption statistics, and customer rankings.
-4. Open details for an abnormal customer to continue investigation.
+1. Click the **"Customer Analytics"** tab at the top of the page.
+2. Select the statistics month and date range, and filter by target customer.
+3. Review active customer count, invocation trends, token consumption statistics, and customer rankings.
+4. Click inline details for any customer with anomalous volume spikes or high failure rates to investigate further.
 
 ![View customer call overview](./images/manual-customer-analytics-public.png)
 
-The image shows Customer Analytics. Verify customer scope, trends, and rankings.
+The "Customer Analytics" tab displays invocation frequency distribution across customers, total token usage, and top customer rankings.
 
 ## Parameter Reference
 

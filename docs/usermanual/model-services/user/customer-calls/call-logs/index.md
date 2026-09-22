@@ -62,10 +62,6 @@ Focus on time range, model criteria, customer name, call result, and details.
 3. Click **"Search"** and verify call time, model name, Model ID, Attribution, Customer Name, result, and usage.
 4. Click **"Reset"** if the criteria are incorrect. Redact customer and business identifiers before sharing results.
 
-![Query customer call logs](./images/manual-customer-call-logs-public.png)
-
-The image shows customer call-log results. Verify time, customer, model, and call result.
-
 ### Locate Failed Call Records
 
 1. Select a failed state in Call Status.
@@ -74,7 +70,7 @@ The image shows customer call-log results. Verify time, customer, model, and cal
 
 ![Locate failed call records](./images/manual-failed-call-filter-public.png)
 
-The image shows a failed-status query. Compare customer, model, and time distribution across failed records.
+Review log entries filtered by failed status, focusing on the associated customer, model identifier, and specific error summary.
 
 ## Parameter Reference
 

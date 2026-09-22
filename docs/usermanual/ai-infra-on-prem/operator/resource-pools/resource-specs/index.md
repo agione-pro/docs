@@ -166,24 +166,6 @@ The resource specification import completes, but the specification cannot be fou
 2. Check metrics, keys, and model in Specification Metrics and Accelerators.
 3. Reset filters, reopen cluster details, and verify the visibility scope.
 
-#### Target Is Missing from Resource Specs
-
-**Symptom:**
-
-The page opens, but the expected Configuration, status, and relationships on Resource Specs is missing.
-
-**Possible Causes:**
-
-- Filters remain active.
-- the object belongs to another scope.
-- a prerequisite is incomplete.
-
-**Solution:**
-
-1. Reset filters
-2. verify region or tenant ownership
-3. confirm prerequisite state.
-
 #### The Operation Entry on Resource Specs Is Unavailable
 
 **Symptom:**

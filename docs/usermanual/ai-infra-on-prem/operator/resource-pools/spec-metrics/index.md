@@ -72,7 +72,7 @@ Add a specification metric when a new hardware resource type needs to be added, 
 
 The following figure shows the Add Specification Metric drawer. AI accelerator metrics require k8s-key and selector-key.
 
-![Add Specification Metric](./images/add.png)
+![Add Specification Metric](./images/manual-add-spec-metric.png)
 
 ### Import or Export Specification Metrics
 
@@ -94,16 +94,18 @@ Use the **"Import/Export"** menu to batch-maintain specification metrics, or to 
 - The metric scope in the export file matches the current filter conditions.
 - The Resource Specifications page can correctly reference the imported metrics.
 
+![Import configuration data dialog](./images/manual-import-spec-metric.png)
+
+The import dialog uses **"Read File"** to upload the ZIP configuration package exported by the backend and run a pre-check. Before submitting, verify that the metric type, name, unit, `k8s-key`, and `selector-key` match the target environment.
+
+![Export configuration package dialog](./images/manual-export-spec-metric.png)
+
+The export dialog selects the scope under **"Select Module"** by groups such as resource pool, templates, and VRAM calculation. Before exporting, confirm the current filter conditions to avoid bringing out unnecessary metric definitions.
+
 #### Notes
 
 - Unit, `k8s-key`, and `selector-key` affect resource reporting, specification matching, and scheduling. Do not judge equivalence by display name alone.
 - Verify identifiers and reference relationships before importing to avoid overwriting an in-use metric definition.
-
-#### Operation Screenshots
-
-![Spec Metrics operation interface](./images/manual-add-spec-metric.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
 
 ## Parameter Quick Reference
 
@@ -200,24 +202,6 @@ The create, register, or maintain entry is hidden or disabled.
 1. Check Operator permission
 2. read the page message
 3. complete dependency configuration first.
-
-#### A Required Field on Spec Metrics Has No Options
-
-**Symptom:**
-
-The form opens, but a selection list is empty.
-
-**Possible Causes:**
-
-- Candidates are disabled.
-- ownership differs.
-- the current account cannot see them.
-
-**Solution:**
-
-1. Check candidate state
-2. verify ownership
-3. confirm visibility and refresh the form.
 
 #### Spec Metrics Has an Abnormal State After the Operation
 

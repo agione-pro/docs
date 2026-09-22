@@ -219,24 +219,6 @@ The details, expand, or download entry is disabled.
 2. check role permission
 3. confirm the statistics or export task is complete.
 
-#### Summary and Details Do Not Match
-
-**Symptom:**
-
-The summary differs from the total of individual records.
-
-**Possible Causes:**
-
-- Periods differ.
-- values are rounded.
-- some records are still processing.
-
-**Solution:**
-
-1. Align period and time zone
-2. compare by object
-3. wait for pending records and check again.
-
 ## Notes
 
 - Metering details may have statistical delays. Confirm final posting status before settlement.

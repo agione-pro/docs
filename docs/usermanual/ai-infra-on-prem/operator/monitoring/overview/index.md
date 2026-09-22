@@ -7,95 +7,86 @@
 | Applicable Role | Operator |
 | Navigation Path | AI Infra(On-Prem) > Monitoring > Overview |
 | Page Route | `/powerone/monitor/overview` |
-| Managed Object | Resource status, capacity watermarks, exception summaries, and drill-down entries |
+| Managed Object | Resource status, capacity watermarks, exception summaries, and dedicated monitoring entries |
 
 #### Beginner Explanation
 
-Statistics overview is like the resource pool cockpit. First check overall watermarks, exception counts, and update time, then decide whether to drill down to cluster, node, device, or job pages for further troubleshooting.
+Statistics overview serves as the resource pool cockpit, centrally presenting overall platform resource utilization and health summaries to help operators quickly evaluate system health and decide whether to open cluster, node, device, or job monitoring pages for targeted investigation.
 
 #### Terms
 
 | Term | Description |
 | --- | --- |
-| Global Watermark | Overall platform resource usage. |
-| Exception Aggregation | Centralized display of cluster, node, device, and job exceptions. |
-| Trend Entrypoint | Analysis entrypoint that jumps to a specific monitoring object. |
+| Global Watermark | Overall platform resource utilization across GPU, CPU, memory, and disk. |
+| Exception Aggregation | Centralized summary of abnormal clusters, abnormal nodes, and failed jobs. |
+| Dedicated Monitoring | Sub-monitoring pages in the left navigation, including Cluster Statistics, Node Statistics, Device Monitoring, and Job Monitoring. |
 
 #### Recommended Operation Order
 
-Set the monitoring scope first, confirm data freshness, read the overall status and watermarks, and then drill down with the same scope when an exception is found.
+First review top cluster, node, and job health summaries, then check GPU, CPU, memory, and disk resource utilization; if anomalies are discovered, switch to the corresponding dedicated monitoring page via the left menu for targeted investigation.
 
 #### First-Time User Notes
 
-This is a monitoring and navigation page, not a resource-configuration page. Use it to identify the direction of an issue; verify the final cause on the relevant cluster, node, device, or job page.
+This is a read-only global status dashboard, not a resource configuration page. Use it to judge health direction and capacity bottlenecks from a macro perspective; verify specific root causes on dedicated object pages via the left navigation.
 
 ## Prerequisites
 
 1. The current account has operator monitoring view permissions.
 2. Target regions, availability zones, and clusters have completed resource access.
 3. Monitoring collection components normally report cluster, node, device, and job data.
-4. For troubleshooting, the time range and affected resource type have been clarified.
+4. The resource pool and affected resource types under investigation have been clarified.
 
 ## Page Description
 
-Use this page to understand the current on-prem resource state and decide where to investigate next.
+Use this page to understand the current on-prem resource state and decide which dedicated monitoring page to investigate next.
 
 ![Overview](./images/manual-monitoring-overview.png)
 
-Statistics overview presents global resource watermarks, exception aggregation, and trend entrypoints from an operator perspective. Read the page in the following order:
+Statistics overview presents global resource status, job distribution, and hardware utilization dashboards. Read the page in the following order:
 
 | Page Area | What to Confirm |
 | --- | --- |
-| Scope and filters | Time range, region, resource pool, cluster, or resource type used for the statistics. |
-| Summary cards | Total, used, remaining, online, and abnormal quantities in the current scope. |
-| Trends and distributions | Whether utilization or job status changes continuously or only at one point in time. |
-| Update time | Whether the displayed data is within the expected collection interval. |
-| Drill-down entry | Which cluster, node, device, or job page should be opened while retaining the same scope. |
+| Cluster Status | Total cluster count, along with normal and abnormal cluster distribution. |
+| Node Status | Total physical/compute node count, along with normal and abnormal node distribution. |
+| Job Distribution | Bar charts comparing Online IDE and Runtime Instance counts, and donut charts showing shares of running, completed, failed, paused, and terminated jobs. |
+| GPU Information | GPU driver model identifier (e.g. `nvidia.com/gpu`), total AI cards, unused count, used count, and the overall usage percentage gauge. |
+| Compute & Storage Information | Gauge charts for CPU, memory, and disk utilization, along with total, used, and remaining capacity figures. |
+| Dedicated Navigation | Left menu entries for Cluster Statistics, Node Statistics, Device Monitoring, and Job Monitoring. |
 
 ## Main Operations
 
-### Confirm Scope and Data Freshness
+### Read the Overview and Identify Resource Watermarks
 
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Overview`.
-2. Select the time range, region, resource pool, cluster, or resource type provided by the page.
-3. Confirm the update time and object count before comparing metrics.
-4. If no data is shown, expand the time range and clear filters one at a time.
+2. Inspect the top **Cluster Status** and **Node Status** cards to check if any abnormal objects are highlighted in red.
+3. Review the **Job Distribution** cards to confirm whether failed or unexpectedly terminated jobs have increased.
+4. Review the bottom **GPU Information**, **CPU Information**, **Memory Information**, and **Disk Information** dashboards, checking percentage gauges and used/remaining capacity numbers.
+5. When utilization falls into yellow (moderate) or red (critical) zones, evaluate platform capacity risks.
 
-### Read the Overview and Identify Exceptions
+### Navigate to Dedicated Monitoring by Metric
 
-1. Review the total, used, and remaining resources and the online or abnormal status of clusters, nodes, devices, and jobs.
-2. Compare statistic cards, distributions, and trends within the same scope.
-3. Focus on high watermarks, abnormal status, long periods without updates, and increases in failed, queued, or long-running jobs.
-4. Determine whether the signal is a short spike, a single-object issue, a cluster-level issue, or an environment-wide trend.
-
-![Monitoring overview](./images/overview-list.png)
-
-### Drill Down with the Same Scope
-
-1. Click an abnormal metric, trend point, or **"Details"** entry when available.
-2. Keep the same time range, region, and target object while opening cluster statistics, node statistics, device monitoring, or job monitoring.
-3. Cross-check utilization, status, alerts, and related objects before deciding the cause.
-4. Do not start, stop, migrate, or delete resources only to reproduce a monitoring anomaly.
-5. Redact internal resource names and metrics before sharing evidence.
+1. **Cluster Exceptions**: If abnormal clusters appear in Cluster Status, click **Cluster Statistics** in the left navigation to identify the affected cluster name and events.
+2. **Node Exceptions**: If abnormal nodes appear in Node Status, click **Node Statistics** in the left navigation to locate offline or unready physical nodes.
+3. **Compute Contention**: If total GPU utilization is high (e.g., above 85%), click **Device Monitoring** in the left navigation to inspect VRAM usage and allocation per GPU card.
+4. **Job Failures**: If failed jobs increase in Job Distribution, click **Job Monitoring** in the left navigation to find failed job instances and container error logs.
+5. Redact internal resource names and sensitive identifiers before sharing screenshots externally.
 
 ## Parameter Quick Reference
 
-| Field Name | Required | Field Type | Example | Description |
+| Field / Metric Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Resource Pool | System-generated | Summary object | `Resource Pool` | Shows the overall running and capacity status of resource pools in the current operator scope. |
-| Cluster | System-generated | Summary object | `Cluster` | Shows the count, status, and exceptions of clusters included in monitoring statistics. |
-| Node | System-generated | Summary object | `Node` | Shows node online status, abnormal status, and resource watermarks. |
-| Device | System-generated | Summary object | `Device` | Shows running status and availability of device resources such as GPU. |
-| Job | System-generated | Summary object | `Job` | Shows job count, running status, and exception distribution. |
-| Total Resources | System-generated | Number | `Total` | Shows the total capacity in the current filter scope. |
-| Used Resources | System-generated | Number | `Used` | Shows the resources already occupied in the current filter scope. |
-| Remaining Resources | System-generated | Number | `Remaining` | Shows resources still available for scheduling or use in the current filter scope. |
-| Abnormal Status | System-generated | Status | `Abnormal` | Shows aggregated abnormal status for clusters, nodes, devices, or jobs. |
-| Time Range | Yes | Date range | `Last 1 hour` | Controls the query window for overview cards, trend charts, and exception statistics. |
-| Region | Conditionally required | Drop-down | `Central China Zone 1` | Limits the resource scope covered by the statistics overview. |
-| Cluster Count | System-generated | Number | `12` | Total number of clusters included in monitoring statistics in the current region. |
-| Exception Count | System-generated | Number | `3` | Aggregates abnormal objects in clusters, nodes, devices, or jobs. |
-| Update Time | System-generated | Date time | `2026-07-06 10:00` | Used to determine whether overview data has collection delay. |
+| Cluster Status (Total / Normal / Abnormal) | System-generated | Status count | `Total: 1 / 1 Normal / 0 Abnormal` | Total managed clusters and normal/abnormal breakdown. |
+| Node Status (Total / Normal / Abnormal) | System-generated | Status count | `Total: 2 / 2 Normal / 0 Abnormal` | Total compute nodes, where green indicates ready and red indicates abnormal. |
+| Job Distribution (Category Bar Chart) | System-generated | Distribution chart | `Online IDE: 1 / Runtime Instance: 1` | Task counts categorized by online IDE and runtime instance. |
+| Job Status (Donut Chart) | System-generated | Ratio chart | `Running / Completed / Failed / Paused / Terminated` | Share and percentage of all jobs across lifecycle states. |
+| GPU Information | System-generated | Resource capacity | `Total: 16 AI card(s) / Unused: 16 / Used: 0` | GPU driver model identifier and AI card total, free, and used counts. |
+| Total GPU Usage | System-generated | Percentage gauge | `0%` | Overall platform GPU utilization rate. |
+| CPU Information | System-generated | Resource capacity | `Total: 160 vCPU / Used: 29 / Remaining: 131` | Total vCPU cores, allocated cores, and remaining available cores. |
+| CPU Utilization | System-generated | Semicircular gauge | `18.13% (Low / Med / High)` | Global CPU load percentage with low/medium/high zone indicators. |
+| Memory Information | System-generated | Resource capacity | `Total: 502.47 GB / Used: 56.84 / Remaining: 445.64` | Total physical memory, allocated memory, and remaining memory. |
+| Memory Utilization | System-generated | Semicircular gauge | `11.31% (Low / Med / High)` | Global memory resource utilization percentage. |
+| Disk Information | System-generated | Resource capacity | `Total: 877.1 GB / Used: 20 / Remaining: 857.1` | Local or attached disk storage total, used, and remaining capacity. |
+| Disk Utilization | System-generated | Semicircular gauge | `2.28% (Low / Med / High)` | Platform disk storage capacity utilization percentage. |
 
 ## Pitfalls
 
@@ -108,19 +99,19 @@ Statistics overview presents global resource watermarks, exception aggregation, 
 
 ### Reading Rules and Impact
 
-- **Use overview to determine direction first**: Confirm whether exceptions are concentrated in a region, cluster, or resource type before entering drill-down pages.
-- **Interpret exception count with time range**: The longer the time window, the more easily historical exceptions are included. Fix the time range during troubleshooting.
-- **Update time determines trustworthiness**: If update time is clearly delayed, check the collection link before judging whether resources are truly abnormal.
-- **Watermark changes require trends**: Instant high watermarks are not necessarily failures. Judge them together with new jobs, expansion, maintenance windows, and historical trends.
+- **Use overview to determine direction first**: Identify the anomalous metric type first, then switch to cluster, node, or job dedicated monitoring via the left menu.
+- **Interpret exception count across cycles**: Check whether an anomaly is a temporary spike or continuous failure to prevent false alarms caused by momentary jitter.
+- **Metric availability determines trustworthiness**: If card numbers are clearly abnormal or empty, check the monitoring collection pipeline first.
+- **Evaluate watermarks comprehensively**: Temporary high utilization is not necessarily a failure; judge it together with new workloads, scaling, and historical trends.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page load | Overview charts or lists are visible | Check monitoring permission and whether collection is available in the selected region |
-| Scope | Time range, region, and object count match the investigation | Clear filters and restore them one at a time to avoid mixed scopes |
-| Freshness | Update time is within the expected collection interval | Check collection interval, connection, and alerts in system or monitoring configuration |
-| Correlation | An abnormal metric can be linked to a cluster, node, device, or job | Keep the same time range and cross-check adjacent monitoring pages and object details |
+| Page load | All 6 overview metric dashboards and cards render properly | Check operator monitoring permissions and monitoring agent service status |
+| Status verification | Cluster and node counts match the actual scale of managed resources | Refresh the page; if numbers mismatch, verify cluster onboarding status |
+| Freshness | Resource utilization and job counts dynamically reflect running workloads | Check collection cycle, connectivity, and alerts in system or monitoring settings |
+| Navigation flow | Smoothly navigates to the corresponding sub-monitoring page upon discovering an issue | Check sub-page menu permissions and visible scope |
 
 ## FAQ
 
@@ -128,91 +119,85 @@ Statistics overview presents global resource watermarks, exception aggregation, 
 
 **Symptom:**
 
-The page opens, but charts or lists are empty.
+The page opens, but charts or cards appear empty or show all zeros.
 
 **Possible Causes:**
 
-- No job ran in the selected time.
-- collection is unavailable in the region.
-- the role lacks metric permission.
+- The monitoring collection agent is stopped or network disconnected.
+- The current role lacks monitoring metric permissions.
+- The underlying cluster has not completed monitoring onboarding.
 
 **Solution:**
 
-1. Expand the time range and reset filters
-2. verify regional monitoring capability
-3. compare an adjacent monitoring page.
+1. Check underlying Prometheus / monitoring agent service status.
+2. Confirm the logged-in role has On-Prem monitoring operator permissions.
+3. Go to Cluster Management to confirm the cluster is in a healthy managed state.
 
-#### Overview Is Not Updating
+#### Overview Data Is Not Updating
 
 **Symptom:**
 
-The data does not change for an extended period.
+Workloads have started or finished, but utilization and job status do not change for an extended period.
 
 **Possible Causes:**
 
-- The next collection cycle has not arrived.
-- the collector is abnormal.
-- the page is cached.
+- Collection interval introduces a periodic delay.
+- Browser page cache has not refreshed.
+- Metric reporting pipeline is congested.
 
 **Solution:**
 
-1. Check update time
-2. inspect collector status and alerts
-3. refresh with the same time range.
+1. Refresh the browser page or navigate to Overview again.
+2. Check monitoring container logs and collector status.
+3. Switch to Job Monitoring to verify real-time job status.
 
-#### Overview Differs from Adjacent Pages
+#### Overview Differs from Dedicated Pages
 
 **Symptom:**
 
-The same object has different values on two monitoring pages.
+The node or job counts on Overview cards differ from the rows displayed in sub-page lists.
 
 **Possible Causes:**
 
-- Aggregation granularity differs.
-- time range or time zone differs.
-- filters target different objects.
+- Overview cards and detail lists have different aggregation cache refresh frequencies.
+- Sub-pages have additional active filter conditions applied.
 
 **Solution:**
 
-1. Align time range and time zone
-2. verify aggregation scope
-3. clear and restore filters one at a time.
+1. Check if the sub-page has active project, status, or name filters.
+2. Clear temporary filters on the sub-page and compare again.
 
-#### Cannot Drill Down to the Target
+#### Cannot Find the Target Object in Dedicated Monitoring
 
 **Symptom:**
 
-The metric or details entry does not lead to the expected object.
+Overview indicates an abnormal node or failed job, but it is not directly visible in the sub-page list.
 
 **Possible Causes:**
 
-- The object ended or was removed.
-- the role cannot see it.
-- relationship identifiers differ.
+- The target object has self-healed or was cleaned up/released.
+- The sub-page list defaults to filtering out certain states.
 
 **Solution:**
 
-1. Record object and time
-2. check its list state
-3. ask the Operator to verify visibility.
+1. In Node Statistics or Job Monitoring, switch status filters to "All" or "Abnormal/Failed".
+2. Check recent audit logs and cluster events.
 
 #### A Spike Cannot Be Reproduced
 
 **Symptom:**
 
-A spike was recorded, but current details are normal.
+A high watermark was recorded earlier, but current metrics have returned to normal.
 
 **Possible Causes:**
 
-- The spike was brief.
-- sampling is coarse.
-- the job has ended.
+- The spike was a momentary burst caused by short-lived jobs.
+- The workload completed normally and released GPU compute resources.
 
 **Solution:**
 
-1. Lock the spike interval
-2. compare job and node events
-3. retain a sanitized screenshot and object identifier.
+1. Filter historical jobs in Job Monitoring during that specific time window.
+2. Cross-check job runtime duration with resource quotas.
 
 ## Notes
 
@@ -224,6 +209,6 @@ A spike was recorded, but current details are normal.
 
 ## Next Steps
 
-1. If exceptions are concentrated in clusters, go to cluster statistics.
-2. If exceptions are concentrated in nodes or devices, go to the corresponding monitoring page.
-3. If job failures or queueing increase, go to job monitoring and troubleshoot with quotas.
+1. If exceptions are concentrated in clusters, click **Cluster Statistics** in the left menu.
+2. If exceptions are concentrated in nodes or hardware, click **Node Statistics** or **Device Monitoring** in the left menu.
+3. If job failures or queueing increase, click **Job Monitoring** in the left menu and troubleshoot with quotas.

@@ -48,11 +48,7 @@ Page screenshots:
 
 ![Cloud Platforms page](./images/manual-cloud-platforms.png)
 
-The image shows Cloud Platforms page. Verify the target object, current state, fields, and actions.
-
-![Cloud platform list reference](./images/access-cloudtype-list.png)
-
-The image shows Cloud platform list reference. Verify the target object, current state, fields, and actions.
+The image shows the main Cloud Platforms page, allowing users to view connected provider cards by public or private cloud, search platforms, and access Add, Import, and Export actions.
 
 ## Main Operations
 
@@ -65,11 +61,7 @@ The image shows Cloud platform list reference. Verify the target object, current
 
 ![Add Cloud Platform](./images/manual-add-cloud-platform.png)
 
-The image shows Add Cloud Platform. Verify the target object, current state, fields, and actions.
-
-![Add cloud platform reference](./images/cloud-platform-add.png)
-
-The image shows Add cloud platform reference. Verify the target object, current state, fields, and actions.
+The image shows the Add Cloud Platform dialog, where you choose the platform type (Public Cloud/Private Cloud) and select the specific provider from the platform dropdown before confirming.
 
 ### Edit Cloud Platform
 
@@ -79,7 +71,7 @@ The image shows Add cloud platform reference. Verify the target object, current 
 
 ![Edit Cloud Platform](./images/manual-maintain-cloud-platform.png)
 
-The image shows Edit Cloud Platform. Verify the target object, current state, fields, and actions.
+The image shows the Edit Cloud Platform dialog for private cloud platforms, where you can maintain the platform identifier, multilingual display names, platform URL, and logo.
 
 ### Delete Cloud Platform
 

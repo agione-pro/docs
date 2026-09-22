@@ -48,7 +48,7 @@ Page screenshots:
 
 ![Quick Access page](./images/manual-quick-access.png)
 
-The image shows Quick Access page. Verify the target object, current state, fields, and actions.
+The image shows the Quick Start onboarding workflow page, detailing the overall connection status, completion progress across the 5 setup steps (cloud platform, platform auth, account, resource pool, and pool auth), and the shortcut to Connection Overview.
 
 ## Main Operations
 
@@ -57,10 +57,6 @@ The image shows Quick Access page. Verify the target object, current state, fiel
 1. Go to `AI Infra(On-Cloud) > Access Workbench > Quick Access`.
 2. Review the overall status and completion progress.
 3. Check each step from cloud platform to resource-pool authorization.
-
-![Quick Access progress](./images/quick-start-list.png)
-
-The image shows Quick Access progress. Verify the target object, current state, fields, and actions.
 
 ### Complete Access Steps
 

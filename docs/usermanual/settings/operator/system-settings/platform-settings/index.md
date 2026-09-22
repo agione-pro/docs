@@ -75,11 +75,7 @@ If the task is only to learn the page or capture screenshots, stop after viewing
 2. Click **"Provider Relationship"**.
 3. Review provider relationships, enabled status, and settlement ownership settings.
 
-![Provider Relationship Configuration](./images/provider-relation.png)
-
-::: details Additional screenshot file
-![Provider relationship](./images/provider-relationship.png)
-:::
+![Provider Relationship Configuration](./images/provider-relationship.png)
 
 ### Edit Currency Settings
 
@@ -95,11 +91,7 @@ If the task is only to learn the page or capture screenshots, stop after viewing
 2. Click **"Payment Channel"**.
 3. Review payment channel list, enabled status, and available maintenance entries.
 
-![Payment Channel Configuration](./images/payment-channels-stripe.png)
-
-::: details Additional screenshot file
-![Payment channel](./images/payment-channel.png)
-:::
+![Payment Channel Configuration](./images/payment-channel.png)
 
 4. In the Stripe area, click **"Setup Help"** to review required fields and integration guidance.
 

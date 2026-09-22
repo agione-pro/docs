@@ -48,11 +48,7 @@ Page screenshots:
 
 ![Models page](./images/manual-models.png)
 
-The image shows Models page. Verify the target object, current state, fields, and actions.
-
-![Model list reference](./images/models-list.png)
-
-The image shows Model list reference. Verify the target object, current state, fields, and actions.
+The image shows the Models management page, displaying managed meta-model cards, model series, publish status, and associated deployment targets, along with the Add Model button.
 
 ## Main Operations
 
@@ -64,43 +60,56 @@ The image shows Model list reference. Verify the target object, current state, f
 
 ![Model details](./images/manual-model-details.png)
 
-The image shows Model details. Verify the target object, current state, fields, and actions.
+The image shows the Model Details drawer, displaying basic meta-model information, configured cloud deployment targets, compute plans, inference framework versions, and health probe states.
 
 ### Add Model
 
-1. Click **"Add Model"** and select a meta-model.
-2. Add a deployment target and select the platform, region, and cloud model.
-3. Select the compute plan, framework version, and output configuration.
-4. Review each configuration step and click **"Submit"**.
-5. Return to Models and validate availability in Policies and Quick Deployment.
+#### Step 1: Select Meta-Model
 
-![Add Model](./images/manual-add-model.png)
-
-The image shows Add Model. Verify the target object, current state, fields, and actions.
+1. Click **"Add Model"** in the upper right of the Models page to enter the configuration wizard.
+2. Search for the target base model (such as `Qwen3-8b`) by author, type, or keyword, and verify the context window, maximum input/output constraints, and protocol compatibility on the right.
+3. After selection, click **"Next"**.
 
 ![Select meta-model](./images/meta-model.png)
 
-The image shows Select meta-model. Verify the target object, current state, fields, and actions.
+The image shows "Add Model - Step 1: Meta-Model", filtering and selecting the target foundation model while displaying its parameters and capability constraints on the right.
+
+#### Step 2: Configure Deployment Target and Compute
+
+1. In the deployment configuration step, click **"Add Deployment Target"**.
+2. Select the target cloud platform (such as Alibaba Cloud) and an enabled regional resource pool.
 
 ![Add deployment target](./images/add-deployment-point.png)
 
-The image shows Add deployment target. Verify the target object, current state, fields, and actions.
+The image shows clicking "Add Deployment Target" in Step 2 to select the cloud platform and available region.
+
+3. Select a cloud preset model or specify a custom model identifier.
 
 ![Select cloud model](./images/assign-cloud-model.png)
 
-The image shows Select cloud model. Verify the target object, current state, fields, and actions.
+The image shows specifying the cloud provider model identifier or version for the deployment target.
+
+4. Select the compute plan specifications and associate the compatible inference framework version.
 
 ![Select compute plan](./images/select-compute-plan.png)
 
-The image shows Select compute plan. Verify the target object, current state, fields, and actions.
+The image shows selecting compute plan specifications and compatible inference framework versions for the deployment target.
+
+5. Add output configuration as needed, specifying listening ports, timeout thresholds, and related parameters.
 
 ![Add output configuration](./images/add-output-configuration.png)
 
-The image shows Add output configuration. Verify the target object, current state, fields, and actions.
+The image shows configuring the deployment target's output parameters and communication protocol settings.
+
+#### Step 3: Confirm Configuration and Submit
+
+1. Proceed to Step 3 to review the summary information for the meta-model, multi-cloud deployment targets, compute plans, and framework versions.
+2. Confirm the settings and click **"Submit"** (or "Publish Version") to complete model onboarding.
+3. After submission, return to the Models list and verify that the new model is available.
 
 ![Confirm model configuration](./images/confirm-configuration.png)
 
-The image shows Confirm model configuration. Verify the target object, current state, fields, and actions.
+The image shows "Add Model - Step 3: Confirm Configuration / Publish Version", performing final verification of multi-cloud deployment targets and parameters before submitting.
 
 ## Parameter Reference
 

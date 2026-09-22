@@ -52,37 +52,29 @@ The page contains Overview and Earning Details. The overview shows aggregate ind
 
 Page screenshots:
 
-![Model Earnings overview](./images/model-earnings-overview-list-public.png)
+![Model Earnings overview](./images/manual-earnings-overview-public.png)
 
-Use this image to identify aggregate indicators and charts.
+The "Overview" tab displays earnings summary metrics, call volume trends, and model revenue distribution charts within the selected period.
 
 ## Main Operations
 
 ### View Model Earnings Overview
 
-1. Go to `Model Services > Usage and Earnings > Model Earnings`.
-2. Click **"Overview"**.
-3. Select a statistics period and verify totals, trends, model distribution, and update time.
-4. If no data is shown, expand the period and confirm that the current account has relevant records.
-
-![View earnings overview](./images/manual-earnings-overview-public.png)
-
-The image shows the overview. Verify the period, aggregate indicators, trends, and model distribution.
+1. Go to `Model Services > Usage and Earnings > Model Earnings`, which defaults to the `Overview` tab.
+2. Select an accounting month and date range to verify total earnings, call volume, and active model count.
+3. Inspect earnings trend charts and model breakdown percentages to analyze revenue contributions.
+4. If no data appears, adjust the time span or verify that published models have received customer invocations.
 
 ### Query Model Earnings Details
 
-1. Click **"Earning Details"**.
-2. Set the time range, then filter by username or model name.
-3. Verify record time, model, business object, and earnings value.
-4. Before sharing or reconciliation, remove user names, business identifiers, and other sensitive information.
+1. Click the **"Earning Details"** tab at the top of the page.
+2. Set the date range and filter by user name, model name, or model type as needed.
+3. Click **"Search"** to verify record time, calling user, model name, billing rules, and earnings amount.
+4. Click inline "Billing Rule" links to view fee breakdown details; redact user names and identifiers before sharing.
 
 ![Query earnings details](./images/manual-earning-details-public.png)
 
-The image shows detail filters and results. Verify the time range, filters, and result scope.
-
-![Model Earnings details reference](./images/model-earnings-earning-details-list-public.png)
-
-This image provides an additional view of detail fields and list structure.
+The "Earning Details" list displays earnings generated per model call, corresponding users, billing rule details, and token usage.
 
 ## Parameter Reference
 

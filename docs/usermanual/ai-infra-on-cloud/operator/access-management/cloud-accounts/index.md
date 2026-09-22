@@ -48,11 +48,7 @@ Page screenshots:
 
 ![Cloud Accounts page](./images/manual-cloud-accounts.png)
 
-The image shows Cloud Accounts page. Verify the target object, current state, fields, and actions.
-
-![Cloud account list reference](./images/cloud-accounts-list.png)
-
-The image shows Cloud account list reference. Verify the target object, current state, fields, and actions.
+The image shows the Cloud Accounts page. Quickly filter managed accounts by cloud platform tags or name; cards display platform type, last updated time, and management actions.
 
 ## Main Operations
 
@@ -65,21 +61,13 @@ The image shows Cloud account list reference. Verify the target object, current 
 
 ![Add Cloud Account](./images/manual-add-cloud-account.png)
 
-The image shows Add Cloud Account. Verify the target object, current state, fields, and actions.
-
-![Add cloud account reference](./images/add-cloud-account.png)
-
-The image shows Add cloud account reference. Verify the target object, current state, fields, and actions.
+The image shows the Add Cloud Account dialog. Specify the account name, target cloud platform, and access key credentials.
 
 ### Edit Cloud Account
 
-1. Click **"Edit"** on the target account card.
-2. Verify the account name, platform, and credential state.
-3. Update only the fields that require rotation, click **"Confirm"**, and revalidate synchronization.
-
-![Edit Cloud Account](./images/manual-maintain-cloud-account.png)
-
-The image shows Edit Cloud Account. Verify the target object, current state, fields, and actions.
+1. Click **"Edit"** on the right side of the target account card to open the maintenance dialog.
+2. Verify the account name, target cloud platform, and current credential state.
+3. Update only the fields requiring rotation (such as entering a new Access Key Secret), then click **"Confirm"** to revalidate cloud resource synchronization.
 
 ### Delete Cloud Account
 

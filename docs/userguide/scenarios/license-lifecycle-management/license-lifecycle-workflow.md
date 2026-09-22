@@ -22,7 +22,9 @@ Use this task to confirm Platform License and Managed Objects states independent
 
 ### 1. Review Current License State
 
-Open [License Management](../../../usermanual/billing/operator/license/license/) and review the overview banner. Check Platform License and Managed Objects separately, and first confirm that the page and registration code belong to the target environment and deployment.
+Open [License Management](../../../usermanual/billing/operator/license/license/) from `Billing > License > License` and review the overview banner. Check Platform License and Managed Objects separately, and first confirm that the page and registration code belong to the target environment and deployment.
+
+![License Management overview and authorization status](../../../usermanual/billing/operator/license/license/images/manual-billing-license-page.png)
 
 ### 2. Select the Area and Prepare the License
 

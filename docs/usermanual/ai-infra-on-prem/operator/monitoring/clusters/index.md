@@ -48,39 +48,21 @@ The following figure shows the cluster statistics page.
 
 ## Main Operations
 
-### View Monitored Objects
-
-1. Open the monitoring page and select the time range, region, and resource pool.
-2. Filter the objects supported by the current page, such as clusters, nodes, devices, jobs, or status.
-3. Check aggregation scope, data refresh time, and object count to avoid comparing different scopes.
-4. If no data is shown, expand the range and clear filters one at a time. Redact internal resource names and metrics before sharing.
-
-### Drill Down into Abnormal Metrics
-
-1. Click an abnormal metric, trend point, or **"Details"** for the target object.
-2. Keep the same time range and inspect utilization, status, alerts, and related objects.
-3. Determine whether the anomaly affects one object, one cluster, or the whole environment. Compare adjacent monitoring pages if information is insufficient.
-4. Do not start, stop, migrate, or delete resources to test a monitoring anomaly.
-
-### View Cluster Statistics
-
-#### Procedure
+### Filter and View Cluster Statistics
 
 1. Go to `AI Infrastructure > On-Prem > Monitoring > Cluster Statistics`.
-2. Confirm the region in the upper-right corner and page filters.
-3. View lists, charts, or statistic cards.
-4. Focus on abnormal status, high watermarks, long periods without updates, or data inconsistent with expectations.
-5. When cluster watermarks are abnormal, enter cluster details, node statistics, and job monitoring to confirm specific nodes and jobs.
-
-#### View Cluster Statistics
-
-1. Go to `AI Infrastructure > On-Prem > Monitoring > Cluster Statistics`.
-2. View the cluster list and overall running status, and confirm cluster name, region/AZ, node count, device count, and resource usage level.
-3. Select region, cluster, resource type, or time range filters as provided by the page.
+2. Confirm the region and resource pool in the upper-right corner, and filter by cluster name, resource type, or time range.
+3. View the cluster list and overall running status, and verify cluster name, region/AZ, node count, device count, and resource usage level.
 4. Review CPU, memory, accelerator, storage, node status, and job-related statistics to identify insufficient resources, abnormal nodes, or unavailable devices.
-5. If a cluster shows abnormal usage, continue troubleshooting in Nodes, Devices, or Jobs monitoring pages.
 
 ![View cluster statistics](./images/cluster-statistics.png)
+
+### Investigate Abnormal Cluster Metrics
+
+1. When cluster resource utilization shows high watermarks or abnormal status, note the cluster name and timestamp.
+2. Keeping the same time range, navigate via the left menu to `Node Statistics` or `Device Monitoring` to check specific nodes and hardware health.
+3. Cross-reference with `Job Monitoring` to determine whether the anomaly is caused by single hardware failure, uneven node load, or sudden high-load training/inference jobs.
+4. If scheduling adjustments or node isolation are required, coordinate with platform operations rather than modifying underlying resources directly.
 
 #### Key Focus
 
@@ -112,7 +94,7 @@ The following figure shows the cluster statistics page.
 
 - Normal cluster watermarks do not mean every node or device is available.
 - Use the same time range and metric units for cross-cluster comparison.
-- Continue drilling down into node and device monitoring when a cluster is abnormal.
+- Proceed to the Node Statistics and Device Monitoring pages when a cluster is abnormal.
 - Cluster statistics may have collection latency. Do not judge faults based only on a single instant metric.
 - Abnormal cluster usage should be investigated together with nodes, devices, jobs, and scheduling events.
 - Do not write real cluster IDs, node names, device IDs, resource pool IDs, tenant information, internal metric keys, or test data in the document.
@@ -189,7 +171,7 @@ The same object has different values on two monitoring pages.
 2. verify aggregation scope
 3. clear and restore filters one at a time.
 
-#### Cannot Drill Down to the Target
+#### Unable to Locate Target Object in Related Monitoring
 
 **Symptom:**
 

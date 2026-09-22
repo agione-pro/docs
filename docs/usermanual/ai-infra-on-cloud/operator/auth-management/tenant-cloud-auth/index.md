@@ -48,11 +48,7 @@ Page screenshots:
 
 ![Tenant-Cloud Auth page](./images/manual-tenant-cloud-auth.png)
 
-The image shows Tenant-Cloud Auth page. Verify the target object, current state, fields, and actions.
-
-![Tenant authorization list reference](./images/tenant-cloud-auth-list.png)
-
-The image shows Tenant authorization list reference. Verify the target object, current state, fields, and actions.
+The image shows the Tenant-Cloud Authorization list page, listing tenant names, tenant IDs, authorized cloud platforms, with tenant search, add authorization, and row-level edit/delete actions.
 
 ## Main Operations
 
@@ -65,11 +61,7 @@ The image shows Tenant authorization list reference. Verify the target object, c
 
 ![Add tenant authorization](./images/manual-add-tenant-cloud-auth.png)
 
-The image shows Add tenant authorization. Verify the target object, current state, fields, and actions.
-
-![Add tenant authorization reference](./images/add-tenant-cloud-authorization.png)
-
-The image shows Add tenant authorization reference. Verify the target object, current state, fields, and actions.
+The image shows the Add Tenant-Cloud Authorization dialog, where you select the cloud platform, authorization mode (single tenant or all tenants), and pick the target tenant.
 
 ### Edit Tenant-Cloud Authorization
 
@@ -79,7 +71,7 @@ The image shows Add tenant authorization reference. Verify the target object, cu
 
 ![Edit tenant authorization](./images/manual-maintain-tenant-cloud-auth.png)
 
-The image shows Edit tenant authorization. Verify the target object, current state, fields, and actions.
+The image shows the Edit Tenant-Cloud Authorization dialog, where you can verify or adjust the cloud platform authorization scope for the selected tenant.
 
 ### Delete Tenant-Cloud Authorization
 
@@ -89,7 +81,7 @@ The image shows Edit tenant authorization. Verify the target object, current sta
 
 ![Delete tenant authorization](./images/manual-remove-tenant-cloud-auth.png)
 
-The image shows Delete tenant authorization. Verify the target object, current state, fields, and actions.
+The image shows the secondary confirmation dialog for deleting a tenant-cloud authorization, which revokes the tenant's access permissions to the specified cloud platform.
 
 ## Parameter Reference
 

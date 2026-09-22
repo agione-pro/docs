@@ -47,37 +47,29 @@ The page uses Customers and Models to show success, failure, rate limits, and us
 
 Page screenshots:
 
-![Customer Calls customer list](./images/call-analytics-customers-list-public.png)
+![Customer Calls customer list](./images/manual-customer-list-public.png)
 
-Use Customers to review models used and call indicators by customer.
-
-![Customer Calls model list](./images/call-analytics-models-list-public.png)
-
-Use Models to compare customer call performance by model.
+The "Customers" tab displays aggregated statistics for customers invoking models during the selected period, including model counts, success/failure/rate-limit metrics, and detail links.
 
 ## Main Operations
 
 ### View Customer Call List
 
-1. Go to `Model Services > Customer Calls > Call Analytics`.
-2. Click **"Customers"** and enter a customer name or model name.
-3. Click **"Search"** and verify models used, successful calls, failed calls, and rate-limit triggers.
-4. Click **"View Details"** for the target customer. Click **"Reset"** if the criteria are incorrect.
-
-![View customer call list](./images/manual-customer-list-public.png)
-
-The image shows customer-list results. Verify customer criteria and call indicators.
+1. Go to `Model Services > Customer Calls > Call Analytics`, which defaults to the `Customers` tab.
+2. Filter records by customer name or model name, and specify the accounting month or date range.
+3. Click **"Search"** to review the number of models used, successful calls, failed calls, and rate-limit triggers.
+4. Click **"View Details"** in the action column for a specific customer to inspect detailed usage; click **"Reset"** if filters need clearing.
 
 ### View Model Call List
 
-1. Click **"Models"**.
-2. Enter a model name and select a model type if needed.
-3. Click **"Search"** and verify customer call analytics for the target model.
-4. Before opening details, confirm the active tab, time range, and model criteria.
+1. Click the **"Models"** tab at the top of the Call Analytics page.
+2. Filter target models by model name or model type.
+3. Click **"Search"** to compare call volume, success rates, and rate-limiting across different models.
+4. Click inline "View Details" to analyze the customer breakdown for a specific model.
 
 ![View model call list](./images/manual-model-list-public.png)
 
-The image shows model-list results. Verify model criteria and customer call performance.
+The "Models" tab displays total call volume, customer reach, and success rate trends for each model.
 
 ## Parameter Reference
 

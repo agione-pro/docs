@@ -10,7 +10,8 @@
     "docs:preview": "vitepress preview docs",
     "build": "npm run docs:build",
     "check:docs-profile": "node scripts/check-docs-profile.mjs --profile public --scope source",
-    "check:docs-profile:dist": "node scripts/check-docs-profile.mjs --profile public --scope dist"
+    "check:docs-profile:dist": "node scripts/check-docs-profile.mjs --profile public --scope dist",
+    "check:docs-images": "node scripts/check-docs-images.mjs"
   },
   "dependencies": {
     "medium-zoom": "^1.1.0"

@@ -48,11 +48,7 @@ Page screenshots:
 
 ![Business-Region Auth page](./images/manual-business-region-auth.png)
 
-The image shows Business-Region Auth page. Verify the target object, current state, fields, and actions.
-
-![Business authorization list reference](./images/business-region-auth-list.png)
-
-The image shows Business authorization list reference. Verify the target object, current state, fields, and actions.
+The image shows the Business-Region Authorization list page, displaying the number of authorized cloud platform regions per business type, along with Import, Export, and Authorize Regions action entries.
 
 ## Main Operations
 
@@ -71,11 +67,7 @@ The image shows Business authorization list reference. Verify the target object,
 
 ![Authorize resource pools](./images/manual-authorize-resource-pools.png)
 
-The image shows Authorize resource pools. Verify the target object, current state, fields, and actions.
-
-![Authorize regions reference](./images/auth-regions.png)
-
-The image shows Authorize regions reference. Verify the target object, current state, fields, and actions.
+The image shows the Authorize Regions dialog, displaying a tree hierarchy of regions by cloud platform to select the specific regional resource pools authorized for the current business.
 
 ## Parameter Reference
 
