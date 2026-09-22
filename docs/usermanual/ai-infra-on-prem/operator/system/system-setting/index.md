@@ -261,24 +261,6 @@ The create, register, or maintain entry is hidden or disabled.
 2. read the page message
 3. complete dependency configuration first.
 
-#### A Required Field on System Setting Has No Options
-
-**Symptom:**
-
-The form opens, but a selection list is empty.
-
-**Possible Causes:**
-
-- Candidates are disabled.
-- ownership differs.
-- the current account cannot see them.
-
-**Solution:**
-
-1. Check candidate state
-2. verify ownership
-3. confirm visibility and refresh the form.
-
 #### System Setting Has an Abnormal State After the Operation
 
 **Symptom:**

@@ -178,24 +178,6 @@ The import reports completion, but the target accelerator is not visible or its 
 2. Check column names, identifiers, and metric values against the page requirements.
 3. Check the page prompt and update time, then handle conflicts after validation finishes.
 
-#### Target Is Missing from Accelerators
-
-**Symptom:**
-
-The page opens, but the expected Configuration, status, and relationships on Accelerators is missing.
-
-**Possible Causes:**
-
-- Filters remain active.
-- the object belongs to another scope.
-- a prerequisite is incomplete.
-
-**Solution:**
-
-1. Reset filters
-2. verify region or tenant ownership
-3. confirm prerequisite state.
-
 #### The Operation Entry on Accelerators Is Unavailable
 
 **Symptom:**
