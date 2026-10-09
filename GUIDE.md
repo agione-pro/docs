@@ -8,11 +8,15 @@
 │   ├── .vitepress/                # 项目配置目录
 │   │   ├── config/                # 配置文件
 │   │   │   ├── index.ts           # 主配置入口（合并所有配置）
-│   │   │   └── shared.ts          # 共享基础配置（title、description）
+│   │   │   ├── shared.ts          # 共享基础配置（title、description）
+│   │   │   └── profile.ts         # 品牌占位符配置（public / private 两套值）
 │   │   ├── theme/                 # 主题配置
-│   │   │   ├── index.ts           # 主题入口（扩展默认主题）
+│   │   │   ├── index.ts           # 主题入口（扩展默认主题、注册组件、图片放大）
+│   │   │   ├── custom.css         # 自定义样式
 │   │   │   ├── en.ts              # 英文主题配置（合并 navbar + sidebar）
 │   │   │   ├── zh.ts              # 中文主题配置（合并 navbar + sidebar）
+│   │   │   ├── components/              # 自定义组件
+│   │   │   │   └── ScenarioGuide.vue    # 用户指南场景卡片与筛选
 │   │   │   ├── navbar/                  # 导航栏配置
 │   │   │   │   ├── en.ts                # Preview 版英文导航栏（生产环境构建时由模板生成，勿手动修改）
 │   │   │   │   ├── zh.ts                # Preview 版中文导航栏（生产环境构建时由模板生成，勿手动修改）
@@ -29,29 +33,33 @@
 │   ├── assets/                    # 文档资源文件（图片等）
 │   ├── public/                    # 静态资源（favicon、logo 等，直接复制到构建输出）
 │   ├── index.md                   # 英文首页
-│   ├── presales/                  # 英文售前文档
-│   │   ├── best-practices/        # 最佳实践子目录
-│   │   └── survey/                # 调研子目录
-│   ├── solution/                  # 英文方案设计文档
-│   ├── deployment/                # 英文交付部署文档
-│   ├── operations/                # 英文运维运营文档
-│   ├── troubleshooting/           # 英文排错支持文档
-│   ├── oem/                       # 英文 OEM 配置文档
-│   └── zh-CN/                        # 中文文档目录
+│   ├── product/                   # 产品概述
+│   ├── installation/              # 交付部署
+│   ├── license/                   # 购买与激活
+│   ├── userguide/                 # 用户指南（按场景组织）
+│   ├── usermanual/                # 用户手册（按功能页组织）
+│   ├── practices/                 # 最佳实践
+│   ├── operations/                # 运维运营
+│   ├── others/                    # 常见问题与版本说明
+│   └── zh-CN/                     # 中文文档目录（与英文一一对应）
 │       ├── index.md               # 中文首页
-│       ├── presales/              # 中文售前文档
-│       │   ├── best-practices/    # 最佳实践子目录
-│       │   └── survey/            # 调研子目录
-│       ├── solution/              # 中文方案设计文档
-│       ├── deployment/            # 中文交付部署文档
-│       ├── operations/            # 中文运维运营文档
-│       ├── troubleshooting/       # 中文排错支持文档
-│       └── oem/                   # 中文 OEM 配置文档
+│       └── product/ installation/ license/ userguide/
+│           usermanual/ practices/ operations/ others/
 ├── .github/workflows/             # CI/CD 配置
+├── scripts/                       # 文档校验脚本
+│   ├── check-docs-profile.mjs     # 品牌占位符与 AGIOne 域名一致性检查
+│   └── check-docs-images.mjs      # 图片引用与文件名大小写检查
+├── AGENTS.md                      # 文档维护规则（协作铁律）
+├── GUIDE.md                       # 本文件（VitePress 维护指南）
+├── USER_MANUAL_PAGE_STRUCTURE_GUIDE.md  # 用户手册页面结构规范
 ├── .gitignore
 ├── package.json
 └── README.md
 ```
+
+中英文目录严格一一对应：同一份内容在 `docs/<section>/` 与 `docs/zh-CN/<section>/` 下使用**相同的相对路径和文件名**（例如 `docs/usermanual/index.md` 与 `docs/zh-CN/usermanual/index.md`）。新增、移动或重命名页面时必须两侧同步，并同步更新两侧侧边栏。
+
+`docs/` 下当前的八个内容章节为：`product/`、`installation/`、`license/`、`userguide/`、`usermanual/`、`practices/`、`operations/`、`others/`。目录结构只在产品信息架构实际变化时调整，不要凭代码路径或配置项新增章节。
 
 ## 如何添加新文档
 
@@ -61,9 +69,9 @@
 
 | 文件路径 | 访问路径 |
 |----------|----------|
-| `docs/presales/new-doc.md` | `/presales/new-doc` |
-| `docs/zh-CN/presales/new-doc.md` | `/zh-CN/presales/new-doc` |
-| `docs/deployment/subdir/guide.md` | `/deployment/subdir/guide` |
+| `docs/practices/new-doc.md` | `/practices/new-doc` |
+| `docs/zh-CN/practices/new-doc.md` | `/zh-CN/practices/new-doc` |
+| `docs/practices/technical/guide.md` | `/practices/technical/guide` |
 
 ### 2. 更新侧边栏配置
 
@@ -72,12 +80,12 @@
 **英文侧边栏** `docs/.vitepress/theme/sidebar/en.ts`：
 
 ```typescript
-'/presales/': [
+'/practices/': [
   {
-    text: 'Pre-Sales',
+    text: 'Best Practices',
     collapsed: false,
     items: [
-      { text: 'New Document', link: '/presales/new-doc' },
+      { text: 'New Document', link: '/practices/new-doc' },
       // ... 其他文档
     ],
   },
@@ -87,17 +95,19 @@
 **中文侧边栏** `docs/.vitepress/theme/sidebar/zh.ts`：
 
 ```typescript
-'/presales/': [
+'/zh-CN/practices/': [
   {
-    text: '售前资料',
+    text: '最佳实践',
     collapsed: false,
     items: [
-      { text: '新文档', link: '/zh-CN/presales/new-doc' },
+      { text: '新文档', link: '/zh-CN/practices/new-doc' },
       // ... 其他文档
     ],
   },
 ],
 ```
+
+> 侧边栏的 key 是**路径前缀**：英文侧写 `/practices/`，中文侧写 `/zh-CN/practices/`。两侧的条目数量与顺序应保持对应。
 
 ### 3. 更新导航栏配置
 
@@ -169,15 +179,19 @@
 
 3. **添加到导航栏**（可选）：
 
-   `docs/.vitepress/theme/navbar/en.ts`：
+   导航栏请修改**模板文件**，不要直接改 `en.ts` / `zh.ts`（它们是构建时由模板生成的）：
+
+   `docs/.vitepress/theme/navbar/en.main.ts` 与 `en.global.main.ts`：
    ```typescript
    { text: 'API', link: '/api/' },
    ```
 
-   `docs/.vitepress/theme/navbar/zh.ts`：
+   `docs/.vitepress/theme/navbar/zh.main.ts` 与 `zh.global.main.ts`：
    ```typescript
    { text: 'API', link: '/zh-CN/api/' },
    ```
+
+   CN 版与 Global 版模板需要分别修改，确保两边同步。
 
 ## 主要配置说明
 
@@ -199,7 +213,7 @@ export default defineConfig({
       provider: 'local',            // 'local' 或 'algolia'
       options: {
         locales: {
-          zh: {                     // 中文搜索翻译
+          'zh-CN': {                // 中文搜索翻译
             translations: { /* ... */ },
           },
         },
@@ -215,10 +229,10 @@ export default defineConfig({
         socialLinks,
       },
     },
-    zh: {                           // 中文
+    'zh-CN': {                      // 中文（locale key 必须与目录名一致）
       label: '简体中文',
       lang: 'zh-CN',
-      link: '/zh-CN/',                 // 切换语言时的默认链接
+      link: '/zh-CN/',              // 切换语言时的默认链接
       themeConfig: {
         ...zhTheme,
         socialLinks,
@@ -236,13 +250,13 @@ export default defineConfig({
 import type { DefaultTheme } from 'vitepress'
 
 export const enSidebar: DefaultTheme.Sidebar = {
-  '/presales/': [                   // 访问 /presales/* 时显示
+  '/practices/': [                  // 访问 /practices/* 时显示
     {
-      text: 'Pre-Sales',            // 分组标题
+      text: 'Best Practices',       // 分组标题
       collapsed: false,             // false=默认展开，true=默认折叠
       items: [
-        { text: 'Overview', link: '/presales/' },
-        { text: 'Feature List', link: '/presales/feature-list' },
+        { text: 'Overview', link: '/practices/' },
+        { text: 'Technical Practices', link: '/practices/technical/' },
       ],
     },
   ],
@@ -275,15 +289,18 @@ CI/CD 构建时会自动将模板复制为生成文件：
 ```typescript
 export const enNavbar = [
   { text: 'Home', link: '/' },
-  { text: 'Product Overview', link: '/presales/' },
+  { text: 'Product Overview', link: '/product/' },
   {
     text: 'Documentation',
     items: [
-      { text: 'Solution', link: '/solution/' },
-      { text: 'Deployment', link: '/deployment/' },
+      { text: 'Deployment & Configuration', link: '/installation/' },
+      { text: 'Purchase & Activation', link: '/license/' },
+      { text: 'User Guide', link: '/userguide/scenarios' },
+      { text: 'User Manual', link: '/usermanual/' },
+      // ... Best Practices、Others 等分组
     ],
   },
-  { text: 'AGIOne', link: 'https://agione.pro/' },  // 英文导航
+  { text: 'AGIOne', link: 'https://agione.pro/' },  // 英文导航用 .pro
   { text: 'OneProCloud', link: 'https://oneprocloud.com/' },
 ]
 ```
@@ -306,7 +323,7 @@ search: {
   provider: 'local',
   options: {
     locales: {
-      zh: {
+      'zh-CN': {
         translations: {
           button: {
             buttonText: '搜索文档',
@@ -454,10 +471,10 @@ Preview 环境需要额外配置以下变量：
 ## 注意事项
 
 1. **路由规则**：`docs/foo/bar.md` 对应访问路径 `/foo/bar`，`.md` 后缀自动省略
-2. **首页文件**：目录下的 `index.md` 对应该目录的首页，如 `docs/presales/index.md` → `/presales/`
+2. **首页文件**：目录下的 `index.md` 对应该目录的首页，如 `docs/product/index.md` → `/product/`
 3. **中英文同步**：添加新文档时，建议同时添加对应的中文版本并更新两侧的配置
 4. **静态资源**：放在 `docs/public/` 下的文件可通过 `/filename` 直接访问
-5. **文档内图片**：建议使用相对路径或 `~assets/` 前缀引用 `docs/assets/` 下的资源
+5. **文档内图片**：使用**相对路径**引用与页面同级的 `images/` 子目录，例如 `![云账号页面](./images/manual-cloud-accounts.png)`。放在 `docs/public/` 下的文件可用 `/文件名` 直接引用。VitePress 不支持 `~assets` 这类资源别名前缀，不要使用
 6. **侧边栏路径**：侧边栏的 `link` 不需要 `.md` 后缀
 
 ## 场景文档写作规范

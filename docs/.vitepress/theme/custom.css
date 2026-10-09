@@ -26,6 +26,11 @@ html[lang="en"] .VPHomeHero .text {
   line-height: 1.12;
 }
 
+/* Keep configuration examples visually distinct from ordinary syntax colors. */
+.vp-doc [class*='language-'] code .highlighted.info {
+  background-color: var(--vp-c-green-soft);
+}
+
 html[lang="en"] .VPHomeHero .tagline {
   font-size: clamp(16px, 1.25vw, 20px);
   line-height: 1.45;

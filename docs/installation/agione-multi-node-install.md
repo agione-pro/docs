@@ -246,7 +246,7 @@ Optional application services are not enabled by the IP-based quick path by defa
 
 ### 3.4 Offline environment
 
-For offline installation, ensure the bundle includes the installer core package, AGIOne application package, Docker offline package, Docker image package, database baseline package, MinStore baseline package, offline Python runtime, `SHA256SUMS`, and `bundle-manifest.json`.
+For offline installation, ensure the bundle contains the installer, application and middleware resources, Docker and Kubernetes offline resources, and the integrity manifests. The typical filenames in the current delivery bundle are listed in section 4.2 below; a new release may change only the version number or resource content, so do not infer filenames from an older bundle.
 
 The `Enable offline delivery asset integrity checks` switch in the TUI only validates local bundle assets. It does not download missing packages from the public internet. Managed middleware is supported through `managed-middleware` and `hybrid`; when external endpoints are selected and `verify_connectivity` is enabled, the installer checks endpoint reachability from App / Edge nodes during preflight.
 
@@ -281,17 +281,23 @@ export AGIONE_DISK_TOLERANCE_RATIO=0.80
 
 ### 4.2 Package acquisition
 
-Open the fixed download page on the initiating machine first, then copy the package link from `Download URL`. After extraction, the directory name is determined by the top-level directory inside the archive, for example `agione-release-v1.0-XXX/`. Download it on the initiating machine first; the installer synchronizes it to the other target nodes during multi-node installation.
+::: tip Confirm where to run these steps
+Start a multi-node installation from machine 1, the primary App / Edge node. Run all download, verification, extraction, and installation commands below on this machine, replacing `<app-node-1>` with its real IP. The installer synchronizes the bundle from this machine to the other target nodes.
+:::
 
 Fixed download page: [Download link]({{DOCS_RELEASE_PAGE_URL_EN}})
 
-The page also provides an `MD5 URL`. Verify it after download. MD5 detects download or transfer corruption, but does not authenticate the package publisher. For a production delivery, independently obtain the outer `.tar.gz` SHA-256 digest through an access-controlled delivery channel and compare it as well.
+Find the same release version on the download page and copy both addresses:
+
+1. `Download URL`: the `.tar.gz` package direct-download URL. Put it in `AGIONE_RELEASE_URL`.
+2. `MD5 URL`: the direct-download URL for the package MD5 digest file. Put it in `AGIONE_RELEASE_MD5_URL`.
+
+Do not put the download page URL itself in `AGIONE_RELEASE_URL`; copy the `Download URL` shown on the page. The MD5 check below detects download or transfer corruption. It passes only when the command prints `<filename>: OK`. If it prints `FAILED`, cannot find a file, or reports a checksum mismatch, download the package again and recheck it before extraction. MD5 does not authenticate the package publisher.
 
 It is recommended to run the installation from machine 1, the primary App / Edge node:
 
 ```bash
 ssh root@<app-node-1>
-AGIONE_RELEASE_PAGE="{{DOCS_RELEASE_PAGE_URL_EN}}"
 AGIONE_RELEASE_URL="<copy-the-Download-URL-from-the-page>"
 AGIONE_RELEASE_MD5_URL="<copy-the-MD5-URL-from-the-page>"
 AGIONE_RELEASE_ARCHIVE="${AGIONE_RELEASE_URL##*/}"
@@ -303,12 +309,14 @@ curl -fL -o "$AGIONE_RELEASE_ARCHIVE.md5" "$AGIONE_RELEASE_MD5_URL" && \
 echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c -
 ```
 
-Verify the outer archive SHA-256 for a production delivery:
+For a formal delivery, also verify the outer archive SHA-256. Obtain the digest through an access-controlled delivery channel, and make sure it belongs to the downloaded outer `.tar.gz` file. Do not use an internal asset digest from `SHA256SUMS` as the outer archive digest. The check passes only when it prints `<filename>: OK`:
 
 ```bash
 AGIONE_RELEASE_SHA256="<outer-archive-SHA-256-from-a-trusted-delivery-channel>"
 echo "$AGIONE_RELEASE_SHA256  $AGIONE_RELEASE_ARCHIVE" | sha256sum -c -
 ```
+
+These two checks serve different purposes: the download-page MD5 quickly detects a damaged download, while the formal SHA-256 check validates the outer delivery archive. After extraction, also run `./agione verify-bundle` in section 4.3 to verify that the files inside the bundle are complete.
 
 Extract the archive only after verification passes:
 
@@ -322,15 +330,24 @@ Typical extracted bundle contents:
 
 ```text
 agione
-agione-installer-core.tar.gz
 agione-app.tar.gz
+agione-installer-core.tar.gz
+bundle-files.txt
+bundle-manifest.json
+database.tar.gz
 docker-images.tar.gz
 docker-offline.tar.gz
-database-*.tar.gz
-minstore.*.tar.gz
+kube-cluster-install.tar.gz
+mamba.tar.gz
+metis.tar.gz
+minstore-<version>.tar.gz
+offline-install-assets.tar.gz
+scripts/
 SHA256SUMS
-bundle-manifest.json
+uninstall-docker.sh
 ```
+
+Here, `agione` is the installation launcher; `agione-installer-core.tar.gz`, `agione-app.tar.gz`, `mamba.tar.gz`, and `metis.tar.gz` contain installer or platform runtime assets; `database.tar.gz` and `minstore-<version>.tar.gz` are the database and object-storage baseline assets; `docker-offline.tar.gz`, `docker-images.tar.gz`, `kube-cluster-install.tar.gz`, and `offline-install-assets.tar.gz` provide offline runtime resources; `bundle-files.txt`, `bundle-manifest.json`, and `SHA256SUMS` support bundle inventory and integrity verification. `scripts/` and `uninstall-docker.sh` are supporting operations scripts.
 
 ### 4.3 Package integrity check
 
@@ -346,6 +363,12 @@ chmod +x ./agione
 Before synchronizing a host-mode bundle, the installer verifies that every target node has either `sha256sum` or `shasum`; one failed node stops the operation. `AGIONE_SKIP_BUNDLE_VERIFY=1` skips SHA-256 verification only. It is a high-risk switch for troubleshooting a trusted local package and must not be used for formal delivery.
 
 ### 4.4 Execute installation
+
+::: warning Open the configuration reference before using `/root/agione-install.yml`
+If you install with a configuration file, do not guess the fields from an empty YAML file. First open the [Installation Configuration Reference](https://docs-preview.agione.cc/installation/agione-install-config-reference.html), copy the minimal template from section 2.1, 2.2, or 2.3 for your deployment scenario, then replace the node IPs, SSH credentials, middleware endpoints, passwords, and domain placeholders.
+
+After preparing the file, run `doctor` with the same YAML for preflight checks, then run the `quick` installation command below.
+:::
 
 For the standard multi-node scenario, write the node topology, SSH credentials, middleware endpoints, frontend access, optional service groups, and default account policy in one main installation YAML, then run `quick` with that YAML:
 

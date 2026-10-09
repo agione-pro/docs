@@ -246,7 +246,7 @@ host-mode 多节点不再使用 Docker `network_mode: host`。安装器会为每
 
 ### 3.4 离线环境
 
-离线安装时应确保交付包内包含：安装器核心包、AGIOne 应用包、Docker 离线安装包、Docker 镜像包、database 基线包、MinStore 基线包、Python 离线运行时、`SHA256SUMS` 和 `bundle-manifest.json`。
+离线安装时应确保交付包包含安装器、应用与中间件资源、Docker 和 Kubernetes 离线资源，以及校验清单。当前交付包中的典型文件名见下方 4.2；不同版本可能只会改变版本号或资源内容，不要根据旧版本自行改写文件名。
 
 TUI 中的“启用离线交付资源完整性校验”只检查本地交付包资产完整性，不会从公网下载缺失包。当前安装器已支持 `managed-middleware` 和 `hybrid` 托管中间件模式；选择外部端点且启用 `verify_connectivity` 时，预检会从应用 / 入口节点检查端点连通性。
 
@@ -281,17 +281,23 @@ export AGIONE_DISK_TOLERANCE_RATIO=0.80
 
 ### 4.2 软件包获取
 
-先在安装发起机打开固定下载页，再复制页面中的 `Download URL` 包下载直链；解压后目录名由交付包内部目录决定，例如 `agione-release-v1.0-XXX/`。只需要先下载到安装发起机，安装器会在多节点安装过程中同步到其他目标节点。
+::: tip 先确认执行位置
+多节点安装只需要在第 1 台应用 / 入口节点发起。下面的下载、校验、解压和安装命令都应在这台机器上执行；请把 `<app-node-1>` 替换为第 1 台应用 / 入口节点的真实 IP。安装器会从这里把交付包同步到其他目标节点。
+:::
 
 固定下载页：[下载地址]({{DOCS_RELEASE_PAGE_URL_ZH}})
 
-页面中同时提供 `MD5 URL`，建议下载后一起校验。MD5 只能发现下载或传输损坏，不能证明安装包发布方身份。正式生产交付还应通过受控交付渠道独立获取外层 `.tar.gz` 的 SHA-256 摘要并核对。
+在下载页找到同一版本的两个地址，并分别复制：
+
+1. `Download URL`：安装包 `.tar.gz` 的下载直链，填入 `AGIONE_RELEASE_URL`。
+2. `MD5 URL`：该安装包的 MD5 摘要文件下载直链，填入 `AGIONE_RELEASE_MD5_URL`。
+
+不要把下载页地址本身填入 `AGIONE_RELEASE_URL`；必须复制页面列出的 `Download URL` 直链。下面的 MD5 校验用于确认下载或传输过程中没有损坏，命令输出 `<文件名>: OK` 才表示通过。如果输出 `FAILED`、找不到文件或摘要不匹配，请重新下载并重新校验，不要继续解压。MD5 不能证明安装包来源可信。
 
 推荐在第 1 台应用 / 入口节点执行安装：
 
 ```bash
 ssh root@<app-node-1>
-AGIONE_RELEASE_PAGE="{{DOCS_RELEASE_PAGE_URL_ZH}}"
 AGIONE_RELEASE_URL="<复制下载页中的 Download URL>"
 AGIONE_RELEASE_MD5_URL="<复制下载页中的 MD5 URL>"
 AGIONE_RELEASE_ARCHIVE="${AGIONE_RELEASE_URL##*/}"
@@ -303,12 +309,14 @@ curl -fL -o "$AGIONE_RELEASE_ARCHIVE.md5" "$AGIONE_RELEASE_MD5_URL" && \
 echo "$(awk '{print $1}' "$AGIONE_RELEASE_ARCHIVE.md5")  $AGIONE_RELEASE_ARCHIVE" | md5sum -c -
 ```
 
-正式交付核对外层压缩包 SHA-256：
+正式交付还必须核对外层压缩包 SHA-256。SHA-256 摘要应从受控交付渠道获取，并且必须对应当前下载的外层 `.tar.gz` 文件；不要把 `SHA256SUMS` 文件中的内部资源摘要当作外层压缩包摘要。输出 `<文件名>: OK` 后才算通过：
 
 ```bash
 AGIONE_RELEASE_SHA256="<从可信交付渠道获取的外层压缩包 SHA-256>"
 echo "$AGIONE_RELEASE_SHA256  $AGIONE_RELEASE_ARCHIVE" | sha256sum -c -
 ```
+
+本节的两类校验作用不同：下载页 MD5 用于快速发现下载损坏，正式交付 SHA-256 用于核对外层交付包。解压后还要继续执行 4.3 的 `./agione verify-bundle`，检查交付包内部文件是否完整。
 
 校验通过后再解压：
 
@@ -322,15 +330,24 @@ cd "/opt/hyperone/$AGIONE_RELEASE_DIR"
 
 ```text
 agione
-agione-installer-core.tar.gz
 agione-app.tar.gz
+agione-installer-core.tar.gz
+bundle-files.txt
+bundle-manifest.json
+database.tar.gz
 docker-images.tar.gz
 docker-offline.tar.gz
-database-*.tar.gz
-minstore.*.tar.gz
+kube-cluster-install.tar.gz
+mamba.tar.gz
+metis.tar.gz
+minstore-<version>.tar.gz
+offline-install-assets.tar.gz
+scripts/
 SHA256SUMS
-bundle-manifest.json
+uninstall-docker.sh
 ```
+
+其中，`agione` 是安装启动器；`agione-installer-core.tar.gz`、`agione-app.tar.gz`、`mamba.tar.gz` 和 `metis.tar.gz` 是安装器或平台运行资源；`database.tar.gz` 和 `minstore-<version>.tar.gz` 是数据库与对象存储基线资源；`docker-offline.tar.gz`、`docker-images.tar.gz`、`kube-cluster-install.tar.gz` 和 `offline-install-assets.tar.gz` 用于离线运行环境；`bundle-files.txt`、`bundle-manifest.json` 和 `SHA256SUMS` 用于交付包清单与完整性校验。`scripts/` 和 `uninstall-docker.sh` 为配套运维脚本。
 
 ### 4.3 软件包完整性检查
 
@@ -346,6 +363,12 @@ chmod +x ./agione
 host-mode 会在同步 bundle 前确认所有目标节点至少具备 `sha256sum` 或 `shasum`，任一节点不满足即停止。`AGIONE_SKIP_BUNDLE_VERIFY=1` 只会跳过 SHA-256 校验，是仅供可信本地改包排障使用的高风险开关，正式交付禁止使用。
 
 ### 4.4 执行安装
+
+::: warning 使用 `/root/agione-install.yml` 前，先打开配置字段说明
+如果使用配置文件安装，请不要从空白 YAML 开始猜字段。先打开[安装配置文件字段说明](https://docs-preview.agione.cc/zh-CN/installation/agione-install-config-reference.html)，根据部署场景复制 2.1、2.2 或 2.3 的最小配置，再替换节点 IP、SSH 凭据、中间件地址、密码和域名等占位值。
+
+配置文件准备好后，先用同一份文件执行 `doctor` 预检，再执行下面的 `quick` 安装命令。
+:::
 
 标准多节点场景推荐把节点拓扑、SSH 凭据、中间件端点、前端入口、可选服务组和默认账号策略统一写入主安装 YAML，再使用 `quick` 执行：
 

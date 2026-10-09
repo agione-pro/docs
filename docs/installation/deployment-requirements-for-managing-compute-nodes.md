@@ -54,7 +54,7 @@ Before formal deployment, a complete environment survey must be conducted on eve
 | Hardware | Inter-card interconnect | PCIe / NVLink | Affects multi-card tensor-parallel performance |
 | Hardware | System disk | 500 GB | ≥ 100 GB minimum, ≥ 200 GB recommended for production |
 | Hardware | Data storage | 1 × 3 TB NVMe SSD | Used for model weights and container data |
-| Hardware | Management network bandwidth | 1000 Mbps | Inter-node management network ≥ 100 Mbps |
+| Hardware | Management network bandwidth | 1000 Mbps | Inter-node management network ≥ 1000 Mbps |
 | Hardware | Public internet access | Yes / No | **"Yes" recommended** to simplify online retrieval of drivers and dependencies |
 | Hardware | RDMA enabled | Yes / No | Mandatory for multi-host tensor-parallel scenarios |
 | Hardware | RDMA network type | RoCE / IB | Influences SR-IOV and component configuration |
@@ -133,9 +133,9 @@ Management nodes host the AGIOne core services, databases, middleware, and Kuber
 | CPU cores | ≥ 4 | ≥ 16 |
 | Memory | ≥ 8 GB | ≥ 16 GB |
 | System disk | ≥ 100 GB | ≥ 200 GB |
-| Data disk | Optional, ≥ 500 GB | ≥ 400 GB (NAS volume acceptable) |
+| Data disk | Optional, ≥ 500 GB | ≥ 2 TB (NAS recommended) |
 | Node count | ≥ 1 | ≥ 3 |
-| Shared storage | — | ≥ 1024 GB (block device or NAS) |
+| Shared storage | — | ≥ 2 TB (NAS) |
 
 #### 3.1.2 Capacity Tiering by Cluster Size
 

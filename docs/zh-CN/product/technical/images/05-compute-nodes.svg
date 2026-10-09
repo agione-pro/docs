@@ -294,5 +294,7 @@
     <text x="50" y="0" font-size="10.5" fill="#3F3F46">• 每个地域算力池独立部署</text>
     <text x="250" y="0" font-size="10.5" fill="#3F3F46">• 镜像服务部署于算力节点近端，可复用纳管节点</text>
     <text x="610" y="0" font-size="10.5" fill="#3F3F46">• 平台管理层通过 6443 与 32761–32765 端口管控集群</text>
+    <text x="50" y="18" font-size="10.2" fill="#3F3F46">• 存储：NAS ≥ 2 TB；可选 S3 对象存储 &gt; 2 TB</text>
+    <text x="430" y="18" font-size="10.2" fill="#3F3F46">• 网络：管理网络同一局域网；节点间 ≥ 1000 Mbps</text>
   </g>
 </svg>

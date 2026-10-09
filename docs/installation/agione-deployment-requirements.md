@@ -419,7 +419,7 @@ chmod +x ./agione
 
 | Deployment Mode | Minimum Nodes | Minimum Per-Node Specification | Total Resource Reference |
 |---|---|--------------------------------|---|
-| PoC All in One | 1 | 8C / 24G / 200G                | 8C / 24G / 200G |
+| PoC All in One | 1 | 16C / 24G / 200G               | 16C / 24G / 200G |
 | Public Cloud (business nodes) | 2 | 8C / 16G / 200G                | 16C / 32G / 1 TB+ |
 | Private Cloud IDC | 4 | 8C / 16G / 200G                | 32C / 64G / 800G+ |
 
