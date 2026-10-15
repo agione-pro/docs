@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Resource Pools > Accelerators |
+| Navigation Path | On-Prem > Resource Pools > Accelerators |
 | Page Route | `/powerone/resourcepool/accelerators` |
 | Managed Object | Configuration, status, and relationships on Accelerators |
 
@@ -27,7 +27,11 @@
 
 #### Recommended Operation Order
 
-Confirm prerequisites for AI accelerator vendors, architectures, series, models, VRAM, compute capability, specification metrics, and management status, follow Main Operations, run Result Validation, and continue to the next page.
+1. Confirm the accelerator vendors, models, memory, and Kubernetes resource keys actually present in the cluster.
+2. Prepare the corresponding AI accelerator metric in `Resource Pools > Specification Metrics`.
+3. Enter `On-Prem > Resource Pools > Accelerators` to create or maintain accelerator models.
+4. Associate each accelerator model with the correct specification metric.
+5. Reference the metric in resource specifications and verify scheduling, monitoring, and template recommendations with a test job.
 
 #### First-Time User Notes
 
@@ -35,7 +39,7 @@ Confirm that the task involves Configuration, status, and relationships on Accel
 
 ## Prerequisites
 
-1. The current account has operator permissions and can enter `AI Infra > On-Prem > Resource Pools > Accelerator Management`.
+1. The current account has operator permissions and can enter `On-Prem > Resource Pools > Accelerators`.
 2. The target accelerator vendor, model, architecture, series, VRAM capacity, and compute capability have been confirmed.
 3. Kubernetes resource key, selector-key, or monitoring identification fields have been confirmed to match actual cluster-reported information.
 4. If the model needs to be managed for job scheduling, the corresponding metric has been prepared in `Resource Pools > Specification Metrics`.
@@ -46,9 +50,9 @@ Use this page to manage accelerator vendors, architectures, series, models, devi
 
 ![Accelerators](./images/manual-accelerators.png)
 
-The page organizes accelerator models by vendor and architecture. The top area displays management status statistics, the left side supports vendor filtering, and cards display model, VRAM, compute power, and adaptation status.
+The page groups accelerator models by architecture under each vendor in collapsible sections (use **Collapse All** in the top-right). The top area shows management status statistics, a vendor filter bar across the top narrows the list by vendor, and each model card displays the model, memory (shown in GB on the card), compute capability, and per-precision peak compute.
 
-The following figure shows the Accelerator Management list, where hardware models can be viewed by vendor and management status.
+The following figure shows the Accelerators list, where hardware models can be viewed by vendor and management status.
 
 #### Vendor and Status Filters
 
@@ -56,14 +60,14 @@ The following figure shows the Accelerator Management list, where hardware model
 | --- | --- |
 | Status Statistics | Displays the counts of managed, adapted but not managed, and not adapted models. |
 | Vendor Filter | Narrows the scope by vendors such as NVIDIA, AMD, Intel, and Huawei. |
-| Model Card | Displays series, model, VRAM, compute capability, and peak compute power under different precisions. |
-| Operation Entry | Opens create, edit, view, or other actual page operation entries. |
+| Model Card | Displays series, model, VRAM (shown in GB on the card), compute capability, and peak compute power under different precisions. |
+| Operation Entry | The top-right **New Accelerator** and **Import/Export** entries open the create dialog and the batch-maintenance entry. Hovering a model card reveals **Edit / Copy / Delete** icons. Copy and Delete are write actions; confirm their scope and impact before use. |
 
 ## Main Operations
 
 ### View Accelerators
 
-1. Go to `Resource Pools > Accelerator Management`.
+1. Go to `On-Prem > Resource Pools > Accelerators`.
 2. Filter by vendor, model, architecture, status, or update time.
 3. Open details and check memory, compute capability, driver requirements, supported frameworks, and enabled status.
 4. If no record is returned, reset filters. For a model mismatch, check naming and driver compatibility.
@@ -76,11 +80,12 @@ Before a new hardware model is connected to the platform, accelerator basic info
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Accelerator Management`.
-2. Click **"New Accelerator"** or the actual add entry on the page.
-3. Fill in vendor, architecture, series, model, Memory (GB) GiB, compute capability, precision mode, and peak compute (TFLOPS) according to the page fields.
-4. Select or associate the specification metric as required by the page, and verify Kubernetes resource key, selector-key, or monitoring identification fields.
-5. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify that the hardware model, resource metric, and actual cluster-reported information are consistent.
+1. Go to `On-Prem > Resource Pools > Accelerators`.
+2. Click **"New Accelerator"** in the top-right corner to open the creation dialog.
+3. Fill in vendor, architecture, series, and model as free text, then enter Memory (GB) (unit shown as GiB on the page) and compute capability (optional) according to the page fields.
+4. Under Compute profile, use **Add profile** to enter one or more precision/peak-compute rows (each row pairs a Precision mode from the dropdown with a Peak compute (TFLOPS) value). An **Icon** can be uploaded or chosen from the preset vendor logos.
+5. Select or associate the specification metric as required by the page, and verify Kubernetes resource key, selector-key, or monitoring identification fields.
+6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify that the hardware model, resource metric, and actual cluster-reported information are consistent.
 
 The following figure shows the Create Accelerator dialog. Focus on hardware basic information and specification metric association.
 
@@ -94,8 +99,8 @@ Use the **"Import/Export"** menu to batch-maintain accelerator data, or to use t
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Accelerator Management`.
-2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
+1. Go to `On-Prem > Resource Pools > Accelerators`.
+2. Click **"Import/Export"** in the top-right corner and choose **"Import"** or **"Export"** according to the business purpose.
 3. For import, upload the controlled data file as required by the page and verify vendor, architecture, model, memory, and specification metric fields.
 4. For export, confirm the current filter scope, then generate and download the accelerator list as prompted by the page.
 5. Before importing, verify that the wrong models will not be overwritten. After exporting, save the file in a controlled directory.
@@ -113,25 +118,25 @@ Use the **"Import/Export"** menu to batch-maintain accelerator data, or to use t
 
 #### Operation Screenshots
 
-![Accelerators operation interface](./images/manual-add-accelerator.png)
+![Accelerator maintenance form (fields and Save / Cancel confirmation area)](./images/manual-add-accelerator.png)
 
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+The image above shows the accelerator maintenance form (the same vendor, architecture, series, model, memory, compute, adaptation status, and spec-metric fields an import populates) together with its **Save** / **Cancel** confirmation area. A screenshot of the dedicated import/export dialog is pending re-capture; treat the live page as authoritative for its exact fields.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Vendor | Yes | Dropdown / enum | `NVIDIA` | Accelerator vendor. Keep it consistent with the real hardware vendor. |
-| Architecture | Yes | Dropdown / enum | `Ampere` | Accelerator architecture. Select according to page options or the real hardware architecture. |
-| Series | Yes | Text | `Example value` | Accelerator series. Keep it consistent with vendor and model. |
-| Model | Yes | Dropdown / enum | `A100-SXM4-80GB` | Accelerator model. Match the model actually reported by cluster nodes. |
+| Vendor | Yes | Text | `NVIDIA` | Accelerator vendor. Enter as free text; keep it consistent with the real hardware vendor. |
+| Architecture | Yes | Text | `Ampere` | Accelerator architecture. Enter as free text; keep it consistent with the real hardware architecture. |
+| Series | Yes | Text | `Tesla V100` | Accelerator series. Enter as free text; keep it consistent with vendor and model. |
+| Model | Yes | Text | `A100-SXM4-80GB` | Accelerator model. Enter as free text; match the model actually reported by cluster nodes. |
 | Memory (GB) GiB | Yes | Number / capacity | `128 GiB` | Single-card memory capacity. Use the page unit and avoid mixing GiB and GB. |
 | Compute Capability | Optional | Text | `8.0` | CUDA or hardware capability version. Do not invent a value when it is not confirmed. |
-| Precision mode | Conditionally required | Number / capacity | `FP16` | Precision mode for compute capability configuration. Keep it consistent with supported page options and hardware capability. |
+| Precision mode | Conditionally required | Dropdown / enum | `FP32` | Precision mode selected from a searchable dropdown (FP32, TF32, FP16, BF16, INT8, FP64). Keep it consistent with supported page options and hardware capability. |
 | Peak compute (TFLOPS) | Conditionally required | Number / capacity | `312` | Peak compute value under the selected precision mode. Fill in only confirmed public or hardware-reported data. |
 | Accelerator Spec Metric | Conditionally required | Text | `gpu-a100-80g` | Link an existing spec metric or create an accelerator spec metric. Verify k8s-key and selector-key against labels actually reported by nodes. |
 | Adaptation Status | Yes | Status | `Adapted` | Whether platform resource recognition and scheduling are adapted. Do not expose unadapted devices to users. |
-| Actions | System-generated | Action entry | `Edit` | New, edit, import/export, save, and similar entries. `Save` submits real configuration. Confirm the scope and impact before executing the final action. |
+| Actions | System-generated | Action entry | `Edit` | New, edit, copy, delete, import/export, save, and similar entries. `Save`, `Copy`, and `Delete` are write actions. Confirm the scope and impact before executing the final action. |
 
 ## Pitfalls
 
@@ -262,4 +267,4 @@ The current page is normal, but a downstream page cannot select or associate Con
 1. Go to `Resource Pools > Specification Metrics` to maintain or confirm the corresponding metric.
 2. Go to `Resource Pools > Resource Specifications` to create a specification that includes this accelerator.
 3. Verify that this model can be selected correctly in an inference template or test job.
-4. Return to the Accelerator Management list and confirm that status statistics, vendor filters, and model card information are as expected.
+4. Return to the Accelerators list and confirm that status statistics, vendor filters, and model card information are as expected.
