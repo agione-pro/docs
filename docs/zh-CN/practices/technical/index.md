@@ -11,6 +11,7 @@
 | [Claude Code Plugin](./claude-code-plugin/) | 使用 Claude Code 插件接入 AGIOne 模型 |
 | [Cline](./cline/) | 使用 Cline 在 VSCode 中访问 AGIOne 模型 |
 | [Codex](./codex/) | 安装 Codex 并使用 AGIOne 作为模型提供商 |
+| [Codex Desktop (CC Switch)](./codex-desktop/) | 使用 CC Switch 配置 Codex Desktop 接入 AGIOne 模型 |
 | [Crush](./crush/) | 安装 Crush 并使用 AGIOne 作为模型提供商 |
 | [Cursor](./cursor/) | 安装 Cursor 并使用 AGIOne 作为模型提供商 |
 | [Dify](./dify/) | 将 AGIOne 集成到 Dify 平台 |

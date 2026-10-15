@@ -11,6 +11,7 @@ This section provides integration guides for various AI coding tools and platfor
 | [Claude Code Plugin](./claude-code-plugin/) | Integrate AGIOne models using Claude Code plugin |
 | [Cline](./cline/) | Using Cline to access AGIOne models in VSCode |
 | [Codex](./codex/) | Install Codex and use AGIOne as the model provider |
+| [Codex Desktop (CC Switch)](./codex-desktop/) | Configure Codex Desktop with CC Switch and AGIOne |
 | [Crush](./crush/) | Install Crush and use AGIOne as the model provider |
 | [Cursor](./cursor/) | Install Cursor and use AGIOne as the model provider |
 | [Dify](./dify/) | Integrate AGIOne with Dify platform |

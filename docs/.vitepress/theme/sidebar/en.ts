@@ -901,7 +901,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                 { text: "Claude Code Plugin", link: "/practices/technical/claude-code-plugin/" },
                 { text: "Cline", link: "/practices/technical/cline/" },
                 { text: "Codex", link: "/practices/technical/codex/" },
-                { text: 'Codex Desktop(CC Switch)', link: '/practices/technical/codex-desktop/' },
+                { text: 'Codex Desktop (CC Switch)', link: '/practices/technical/codex-desktop/' },
             { text: "Crush", link: "/practices/technical/crush/" },
                 { text: "Cursor", link: "/practices/technical/cursor/" },
                 { text: "Dify", link: "/practices/technical/dify/" },
