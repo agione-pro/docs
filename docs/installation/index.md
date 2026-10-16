@@ -20,4 +20,4 @@ This section contains deployment, configuration, and acceptance documentation fo
 | [AGIOne-Compute Nodes Installation](./quick-install-for-managing-compute-nodes)     | Kubernetes cluster, components, and validation workflow for managed compute nodes |
 | [AGIOne Operations Edition Post-Deployment Configuration](./post-deployment/operation-edition) | Business configuration, direct-entry links, and go-live acceptance checklist for Operations Edition deployments |
 | [AGIOne Enterprise Internal Edition Post-Deployment Configuration](./post-deployment/enterprise-internal-edition) | Initialization, configuration confirmation, and go-live acceptance checklist for enterprise internal deployments |
-| [ClusterD Installation, Upgrade, and Uninstallation](./clusterd/) | Package download and verification, first use with a regular account, upgrade backup, and uninstallation |
+| [ClusterD Installation, Upgrade, and Uninstallation](./clusterd/) | New-environment installation, account creation, AGIOne deployment checks, and ClusterD upgrade and removal |

@@ -1,105 +1,113 @@
 # ClusterD Installation, Upgrade, and Uninstallation
 
-This guide takes you from obtaining a release package to installing ClusterD, signing in for the first time, deploying your own AGIOne cluster, and later upgrading or uninstalling ClusterD.
+This guide is for installers working in a new environment. Follow the steps in order: obtain the package, prepare the host, install ClusterD, create an account, and deploy AGIOne.
+
+For a first installation, read sections 1-5. To update an existing ClusterD installation, go to [6. Upgrade ClusterD](#_6-upgrade-clusterd). To remove it, read [7. Uninstall ClusterD](#_7-uninstall-clusterd).
 
 | Item | Description |
 | --- | --- |
-| Intended readers | Delivery engineers, field installers, and platform operations staff |
-| Current delivery scope | Linux x86_64 release packages; Ubuntu 22.04 is used in the examples |
-| Default Web URL | `http://<ClusterD-host-IP>:18093/` |
+| Environment | Linux x86_64 hosts; examples use Ubuntu 22.04, and installation steps assume a new environment |
 | Installation entry | `install.sh` in the extracted package directory |
-| Web operations | Use the regular account you create for yourself |
+| Default Web URL | `http://<ClusterD-host-IP>:18093/` |
+| Goal | Access ClusterD, then deploy AGIOne through its Web interface and verify login |
 
-::: tip Distinguish the two machine roles
-The **ClusterD host** runs the installation Web interface and task service. **AGIOne target nodes** run Kubernetes, middleware, and business services. Install ClusterD once on the ClusterD host, not on every target node.
+::: tip Understand where ClusterD and AGIOne run
+The **ClusterD host** provides the installation Web interface and task service. **AGIOne target nodes** run Kubernetes, middleware, and business services. Install ClusterD once on the ClusterD host, not on every target node.
 
-The roles can share a machine, but plan their disk, ports, and resources together. Installing ClusterD does not deploy AGIOne; select target nodes and start deployment in the Web interface afterward.
+They can share a machine, but plan disk space, ports, and resources together. **After installing ClusterD, select target nodes in the Web interface to start deploying AGIOne.**
 :::
 
-This guide applies to release packages using `install.sh` and systemd. The older `start.sh` / `8080` workflow does not apply. ARM, CentOS, and macOS are outside the verified delivery scope of this guide; do not reuse these instructions unchanged on those platforms.
+This guide applies to delivery packages using `install.sh` and systemd. ARM, CentOS, and macOS are outside the verified installation scope of this guide; do not apply these instructions unchanged.
 
 ## Workflow Timeline
 
 | Stage | What you do | Completion signal |
 | --- | --- | --- |
-| 1. Obtain the package | Choose a full or light package and obtain its SHA-256 | Release version, architecture, and trusted checksum are confirmed |
-| 2. Prepare the host | Check the system, tools, disk, and network | systemd works and target nodes are reachable |
-| 3. Download and verify | Download, verify the outer archive, extract, and verify package contents | All verification commands exit successfully |
-| 4. Install ClusterD | Run `install.sh install` | Service is `active` and the home page returns HTTP 200 |
-| 5. First use | Create a regular account and precheck your cluster | Start AGIOne deployment after precheck passes |
-| 6. Maintain | Upgrade or uninstall when needed | Upgrade preserves data; backup precedes uninstallation |
+| 1. Obtain the package | Obtain a full or light package and its trusted SHA-256 checksum | Version, architecture, and checksum are confirmed |
+| 2. Prepare the host | Check the system, tools, disk, and network | Host requirements are met and target nodes are reachable |
+| 3. Download and verify | Download, verify the archive, extract, and verify its contents | Both verification steps pass |
+| 4. Install ClusterD | Run the installer and check the service and Web interface | Service is `active` and the home page returns `HTTP 200` |
+| 5. Deploy AGIOne | Create an account, configure deployment, run precheck, and install | Nodes and services are ready, and AGIOne login works |
+| 6. Upgrade (when needed) | Verify the new package, upgrade, and check the result | New service runs and existing accounts and cluster records remain available |
+| 7. Uninstall (when needed) | Stop the service, remove the program, and optionally erase data | Service is removed and ClusterD no longer listens on its Web port |
 
 ## Terminology Quick Reference
 
 | Term | Plain explanation |
 | --- | --- |
 | Full package | Includes the ClusterD program, execution engine, Python, and offline deployment resources |
-| Light package | Includes the program and execution engine, but not offline deployment resources or embedded Python installation assets |
-| SHA-256 | A file checksum that compares downloaded contents with a trusted delivery; it is not a digital signature |
-| systemd | Linux service management for starting, stopping, and enabling ClusterD at boot |
-| Endpoint | A cluster connection entry; use the Web access URL displayed on the page to visit AGIOne |
-| `data_dir` | Directory holding ClusterD accounts, clusters, tasks, and resource records |
-| `secret.key` | Encryption key protecting stored sensitive information; back it up with the database |
+| Light package | Includes the program and execution engine, but not offline deployment resources or embedded Python installation files |
+| SHA-256 | A file checksum used to check that the package is intact and matches the delivered file |
+| systemd | Linux service management; the installer uses it to start ClusterD and enable it at boot |
+| SSH | The remote connection ClusterD uses to access target nodes and run installation tasks |
+| Precheck | Checks node connectivity, resources, ports, and other requirements before deployment |
+| Web access URL | The AGIOne Web entry provided on the page after deployment |
 
 ## 1. Obtain the Release Package
 
 **ClusterD download URL: to be provided.**
 
-::: warning The download URL has not been published
-No clickable download link is available on this page yet. Obtain the package URL and the outer archive SHA-256 from your delivery contact. `<CLUSTERD_PACKAGE_URL>` and `XXX` below are placeholders; replace them before running the commands. Do not substitute an older ClusterD package URL.
+::: warning Obtain the actual download URL first
+Ask your delivery contact for the package URL and the archive's SHA-256 checksum. Replace `<CLUSTERD_PACKAGE_URL>`, `XXX`, and `<TRUSTED_OUTER_ARCHIVE_SHA256>` below with actual values before running the commands.
 :::
 
 ### 1.1 Choose a package
 
-| Package | Example filename | Use case and prerequisites |
+| Package | Example filename | When to choose it |
 | --- | --- | --- |
 | Full package, recommended for offline delivery | `agione-clusterd-full-release-XXX-linux-x86_64.tar.gz` | Includes offline resources; select offline AGIOne deployment after installation |
-| Light package | `agione-clusterd-release-XXX-linux-x86_64.tar.gz` | Host needs Python 3.10 or later; deployments need online resources or previously imported, verified categorized offline resources |
+| Light package | `agione-clusterd-release-XXX-linux-x86_64.tar.gz` | Host needs Python 3.10 or later; deployment requires online resources or matching offline resources imported beforehand |
 
-The following steps use a full package. For a light package, substitute its URL and filename; installation and upgrade commands remain the same.
+The following steps use a full package. For a light package, substitute its URL and filename; the installation command is the same.
 
-**Confirm the release version, Linux x86_64 architecture, and trusted archive SHA-256 before starting.** Computing a checksum from the file you just downloaded does not replace the checksum supplied through the delivery channel.
+**Before starting, confirm the release version, Linux x86_64 architecture, and trusted SHA-256 supplied by the delivery contact.** Do not use a checksum calculated from the file you just downloaded as the trusted delivery checksum.
 
-## 2. Prepare the Host
+## 2. Prepare for Installation
 
-### 2.1 Host and basic tools
+### 2.1 Prepare the ClusterD host
 
-Run all commands in Bash on the **ClusterD host**. System `root` or `sudo` execution is required for installation; it is separate from the Web login account.
+Run all terminal commands on the **ClusterD host**. Installation requires system `root` or `sudo` access.
 
 | Check | Requirement |
 | --- | --- |
-| Operating system | These examples use Ubuntu 22.04, x86_64, with functioning systemd |
-| Basic tools | Bash, system `python3`, `sha256sum`, `tar`, `gzip`, coreutils, and an OpenSSH client; online downloads also need `curl` and CA certificates |
-| Disk space | Allow for the archive, extracted package, installed resources, temporary workspace, and upgrade backups; archive size alone is insufficient |
-| Target access | The ClusterD host can SSH to target nodes over a private network or configured jump host; target SSH services are running |
-| Web access | Allow TCP `18093` through the firewall or security group only from a trusted operations network |
-| Docker | Docker is not required to install ClusterD itself |
+| System | These examples use Ubuntu 22.04, x86_64, with functioning systemd |
+| Basic tools | Bash, system `python3`, `sha256sum`, `tar`, `gzip`, coreutils, and an OpenSSH client; downloads need `curl` and CA certificates |
+| Disk | Allow for the archive, extracted contents, installed resources, and temporary workspace; archive size alone is insufficient |
+| Web network | Allow access to TCP `18093` on the ClusterD host from the installer's trusted operations network |
+| Node network | The ClusterD host can SSH to target nodes over a private network or configured jump host; target SSH services are running |
+| AGIOne target nodes | Prepare resources, storage, and networking using [Deployment Requirements](../agione-deployment-requirements) |
 
-The embedded Python in a full package is installed **after** initial package verification. It cannot replace system `python3` for that first check. Prepare basic tools in advance on an air-gapped host.
+Installing ClusterD itself does not require Docker or `/opt/agione-install`.
 
-On a connected Ubuntu host, install missing tools when needed:
+::: warning A full package still needs system Python
+The package's embedded Python is installed after package verification. It cannot replace system `python3` for the initial check. Prepare basic tools in advance on an air-gapped host.
+:::
+
+On a connected Ubuntu host, install missing tools:
 
 ```bash
 sudo apt-get update
 sudo apt-get install -y python3 openssh-client ca-certificates curl tar gzip coreutils
 ```
 
-### 2.2 Check before installing again
+### 2.2 Check the host environment
 
 ```bash
 uname -m
 python3 --version
-df -h /opt /var/lib /var/backups
-sudo systemctl --no-pager --full status agione-clusterd
+systemctl --version
+df -h /opt /var/lib /var/log
 ```
 
-`uname -m` should print `x86_64`. A missing `agione-clusterd` unit is expected on a new host. If ClusterD already exists, follow [6. Upgrade ClusterD](#_6-upgrade-clusterd) instead of treating the host as a new installation.
+Confirm that the architecture is `x86_64`, Python and systemd are available, and the relevant disks have sufficient space. A light package requires Python 3.10 or later.
+
+Sections 1-5 assume a new environment. If ClusterD services or cluster records already exist, confirm the host and intended operation first. To update the version, follow section 6 instead of overwriting an installation or deleting data.
 
 ## 3. Download, Verify, and Extract
 
 ### 3.1 Download to the ClusterD host
 
-Enter a root Bash shell and keep using the same terminal. `/opt/clusterd-packages` stores delivery packages; it is not the ClusterD runtime directory.
+Enter root Bash and keep using the same terminal for subsequent steps. `/opt/clusterd-packages` stores packages; it is not the program's runtime directory.
 
 ```bash
 sudo -i
@@ -109,7 +117,7 @@ mkdir -p /opt/clusterd-packages
 cd /opt/clusterd-packages
 ```
 
-Replace the URL, filename, and SHA-256 below with the actual delivery values. SHA-256 is a 64-character hexadecimal string, not a download URL.
+Replace the following three values with the actual delivery details. SHA-256 is a 64-character hexadecimal string, not a download URL.
 
 ```bash
 CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL>"
@@ -119,15 +127,17 @@ CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
 curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
 ```
 
-For an air-gapped host, transfer the package to this directory using delivery media or `scp`, then set the actual filename and trusted SHA-256. Skip `curl`.
+For an air-gapped host, transfer the package to `/opt/clusterd-packages` using delivery media or `scp`, set the filename and trusted checksum above, and skip the `curl` command.
 
-### 3.2 Verify the outer archive
+### 3.2 Verify the downloaded archive
+
+This checks that the file was not damaged during download or transfer. **It uses SHA-256, not MD5.**
 
 ```bash
 printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -
 ```
 
-Continue only when the output is `<package-filename>: OK`. If it reports `FAILED`, an invalid checksum format, or a missing file, stop and confirm the version and checksum. Download the package again if necessary. SHA-256 verifies contents; the checksum itself must come from a trusted delivery channel.
+Continue only when the output is `<package-filename>: OK`. For `FAILED`, a format error, or a missing file, check the filename, version, and delivery checksum first. Download again if needed. Do not skip a failed check.
 
 ### 3.3 Extract and verify package contents
 
@@ -138,13 +148,13 @@ cd "/opt/clusterd-packages/$CLUSTERD_PACKAGE_DIR"
 bash verify.sh
 ```
 
-`verify.sh` checks the package manifests, `SHA256SUMS`, and resources. **The entire command must exit successfully.** This check does not replace outer archive verification before extraction.
+`verify.sh` checks the package manifests, `SHA256SUMS`, and resources. The entire command must exit successfully. This does not replace archive verification in the previous step.
 
 ::: warning Keep the extracted directory unchanged
-Do not add personal configuration, installation logs, or uploaded files to the extracted directory, or modify its contents. Verification checks the file set, and added or modified files can block installation. Write logs to `/var/log`; installed configuration belongs in `/etc/agione-clusterd`.
+Do not add configuration, logs, or uploaded files to the extracted directory, or modify its contents. Doing so can fail package verification. Store installation logs in `/var/log`; installed configuration belongs in `/etc/agione-clusterd`.
 :::
 
-## 4. Install ClusterD
+## 4. Install and Open ClusterD
 
 ### 4.1 Run installation
 
@@ -160,13 +170,11 @@ else
 fi
 ```
 
-The script verifies the package, installs the program and runtime resources, generates configuration and systemd units, and starts the service. Successful completion prints `agione-clusterd-install-ok`. On failure, inspect the log before proceeding to first login.
+The script verifies the package, installs the program and runtime resources, generates configuration, enables startup at boot, and starts the service. Successful completion prints **`agione-clusterd-install-ok`**.
 
-A full package reads multiple GB of resources. Installation and verification can take time without continuous output. Do not start another installation or move or delete the extracted directory while the command is running.
+The command saves complete output to `/var/log/agione-clusterd-install.log` and displays a summary when finished. A full package reads multiple GB of resources and can take time. Wait for the command to finish; do not start a duplicate installation or move the extracted directory. On failure, inspect the log before continuing.
 
-To check the package and planned paths first, run `bash install.sh install --dry-run`. `release-dry-run-ok` means the check passed, **not that ClusterD or AGIOne is installed**.
-
-### 4.2 Check the result
+### 4.2 Check the service and Web interface
 
 ```bash
 systemctl is-active agione-clusterd
@@ -175,114 +183,75 @@ curl --fail --silent --show-error --output /dev/null \
   --write-out 'HTTP %{http_code}\n' http://127.0.0.1:18093/
 ```
 
-Expected results are `active` and `HTTP 200`. Then open the following URL in your computer's browser:
+After seeing **`active`** and **`HTTP 200`**, open this URL in your computer's browser:
 
 ```text
 http://<ClusterD-host-IP>:18093/
 ```
 
-If local access works but the browser cannot connect, check the firewall, security group, and routing for `18093`. Do not disable the entire firewall.
+Replace `<ClusterD-host-IP>` with the actual IP. If local checks pass but the browser cannot connect, check the firewall, security group, and routing for TCP `18093`. Do not disable the entire firewall.
 
-### 4.3 Key directories
+### 4.3 Create an account
 
-| Default path | Purpose |
+1. On first access to a new ClusterD installation, open Create Account.
+2. Enter a username and password. Use a unique, strong password of at least 8 characters.
+3. Account creation opens ClusterD. Use this account to sign in on later visits; you do not need to create it again.
+
+The ClusterD login account, target-node SSH accounts, and AGIOne login account serve different purposes. Record them separately and do not use them interchangeably.
+
+## 5. Deploy AGIOne Through the Web Interface
+
+### 5.1 Select the deployment mode
+
+Open the operation wizard, or choose Create My Cluster in My Cluster, then select the mode that matches your delivery:
+
+| Mode | Confirm before starting |
 | --- | --- |
-| `/opt/agione-clusterd` | Program, execution engine, and fixed installation resources |
-| `/opt/agione-python` | Python runtime installed from the full package |
-| `/etc/agione-clusterd/config.yaml` | Listen address, data directory, and resource policies |
-| `/etc/agione-clusterd/env` | Service environment variables; may contain sensitive information |
-| `/var/lib/agione-clusterd` | Database, key, cluster and task records, and resource cache |
-| `/var/log/agione-clusterd-install.log` | Installation log |
+| Offline installation | With a full package, the page should show that local resources are ready; no repeat download of bundled resources is needed. Additional categorized offline imports require the matching manifest and bundle |
+| Online installation | All required resource versions are ready, and the ClusterD host and target maintenance node can reach the resource URLs. The current package includes public HTTPS read configuration; cloud storage AK/SK is not required |
 
-To change the Web port, edit `addr` in `/etc/agione-clusterd/config.yaml`, then run `systemctl restart agione-clusterd`. `AGIONE_CLUSTERD_ADDR`, if set in `env`, overrides YAML. Update the firewall, security group, and browser URL as well.
+### 5.2 Configure and start deployment
 
-## 5. Deploy Your Cluster with a Regular Account
+1. **Enter cluster and node details.** Specify the cluster name, services, node IPs, SSH addresses, ports, usernames, and authentication details. Nodes without public access need a reachable private network or a configured jump host.
+2. **Confirm storage and networking.** Enter storage, access addresses, and the HTTP/HTTPS plan for your environment. HTTPS requires a valid certificate matching the access domain; allowing port `443` alone does not configure it.
+3. **Run precheck.** Resolve every blocker shown on the page or in task logs, and review warnings before installing. Fix connection failures and insufficient disk space instead of bypassing them.
+4. **Start installation and wait.** View task logs without submitting the same installation twice. Once finished, check node, service, and health status in My Cluster.
+5. **Open AGIOne and verify access.** Use the **Web access URL** in the details, retrieve and securely store the provided login credentials, then sign in to AGIOne and verify actual business access.
 
-### 5.1 Create your first account
+### 5.3 Installation completion checklist
 
-1. Open ClusterD from a trusted operations network. First access with a new data directory shows the account creation page.
-2. Enter your own username and password. Use a unique, strong password of at least 8 characters.
-3. After account creation, you enter the interface. Use that account to sign in on later visits; registration is not repeated after each restart.
+- [ ] ClusterD is `active`, and the installer can open its Web interface and sign in.
+- [ ] The AGIOne deployment task succeeded, and nodes, middleware, and business services are ready.
+- [ ] AGIOne opens through the Web access URL shown in the details.
+- [ ] The account provided after deployment can sign in to AGIOne, and business access has been verified.
 
-If the login page or existing clusters appear immediately, check whether the host reuses an existing data directory. Do not delete the database to reopen registration.
-
-The ClusterD Web account, target-node SSH accounts, and AGIOne business login accounts are separate. Do not use them interchangeably.
-
-### 5.2 Start from the operation wizard
-
-A regular account uses My Cluster to view and operate the cluster it created. Currently, one non-retired AGIOne cluster can be created per account in the same project.
-
-1. Open the operation wizard, or choose Create My Cluster in My Cluster.
-2. Select the installation mode. For offline deployment from a full package, confirm that local resources are ready. For a light package, first confirm online availability or import matching offline resources.
-3. Enter the cluster name, service selection, and target nodes, including node IPs, SSH connection addresses, ports, usernames, and authentication details. Nodes without public access need reachable private networking or a configured jump host; connectivity is not established automatically.
-4. Confirm storage and network planning. HTTPS requires a valid certificate matching the access domain; allowing `443` alone does not configure HTTPS.
-5. Run precheck. Resolve every blocker and review warnings before installation. Do not bypass insufficient disk space, connection failures, or existing-environment residue.
-6. Open task logs and wait for deployment to finish. Check nodes, services, and health in My Cluster.
-7. Open the **Web access URL** shown in the details, retrieve and securely store the cluster login credentials offered on the page, and verify AGIOne login and actual business access.
-
-::: tip Online and offline resources
-New delivery packages use preconfigured public HTTPS access for online resources; customers do not need cloud storage AK/SK. Before online deployment, confirm that all required releases on the page are ready and that the target maintenance node can reach their URLs. A running ClusterD service does not prove online resources are ready.
-
-Offline installation from a full package does not require downloading the same bundled resources again. Additional categorized offline imports must include both the matching manifest and bundle.
-:::
-
-**Completion criteria:** a successful task is not enough. Confirm node and service readiness, Web access, and business login. HTTP 200 from the ClusterD home page proves only that ClusterD itself is reachable.
+**HTTP 200 from the ClusterD home page only means the installation Web interface is reachable. It does not mean AGIOne deployment is complete.** Use the checklist above to confirm completion.
 
 ## 6. Upgrade ClusterD
 
-::: warning This upgrades ClusterD, not the running AGIOne deployment
-An upgrade updates the ClusterD program, Web interface, and execution engine, and restarts ClusterD. A full package also includes a resource snapshot, but does not automatically update business services in running clusters.
+::: tip Confirm what is being upgraded
+This updates the ClusterD program, Web interface, and execution engine, and restarts ClusterD. **It does not automatically upgrade AGIOne business services already deployed.** The upgrade retains configuration, accounts, and cluster and task records; account creation is not required again.
 :::
 
-### 6.1 Prepare and back up
+### 6.1 Prepare the new package
 
-1. Obtain and verify the new package using sections 1-3. Extract into a new version directory without overwriting the old extracted directory.
-2. Use a maintenance window. Wait for deployment, precheck, update, and other tasks to finish; no tasks may remain `queued` or `running`.
-3. Confirm actual installation and data paths. The following examples use defaults; adjust custom configuration, `data_dir`, and installation paths to match the host.
+1. Check the Web interface for queued or running tasks. Wait for them to finish before upgrading.
+2. Obtain and verify the new package using sections 1 and 3. Extract it into a new version directory without overwriting the previous extracted directory.
+3. The commands below use this guide's default installation paths. If the original installation used custom arguments, retain those paths for upgrade and verification. Do not switch to an empty data directory.
 
-```bash
-sudo systemctl cat agione-clusterd
-sudo awk '/^data_dir:/ {print}' /etc/agione-clusterd/config.yaml
-df -h /var/backups
-```
+### 6.2 Check and run upgrade
 
-Enter root Bash, stop the service and housekeeping, then back up. Copying only an active SQLite `.db` file can omit WAL data:
+Open root Bash on the ClusterD host and enter the **new version's** extracted directory. Replace `XXX` with the actual new version; use the matching directory name for a light package.
 
 ```bash
 sudo -i
 bash
 set -e
-if systemctl cat agione-clusterd-housekeeping.timer >/dev/null 2>&1; then
-  systemctl stop agione-clusterd-housekeeping.timer
-fi
-if systemctl cat agione-clusterd-housekeeping.service >/dev/null 2>&1; then
-  systemctl stop agione-clusterd-housekeeping.service
-fi
-systemctl stop agione-clusterd
-
-CLUSTERD_BACKUP_ROOT="/var/backups/agione-clusterd-$(date +%Y%m%dT%H%M%S)"
-install -d -m 0700 "$CLUSTERD_BACKUP_ROOT"
-cp -a /etc/agione-clusterd "$CLUSTERD_BACKUP_ROOT/config" && \
-cp -a /var/lib/agione-clusterd "$CLUSTERD_BACKUP_ROOT/data"
-test -s "$CLUSTERD_BACKUP_ROOT/data/agione-clusterd.db"
-test -s "$CLUSTERD_BACKUP_ROOT/data/secret.key"
-printf 'Backup: %s\n' "$CLUSTERD_BACKUP_ROOT"
-```
-
-If an older installation has no housekeeping unit, only that unit's absence may be skipped. Confirm that ClusterD and any actual housekeeping process are stopped and that both copy commands succeed. Back up the database and `secret.key` together. Backups contain sensitive information; restrict access and store them securely. Caches can be large, so reserve sufficient space and keep backups outside directories slated for removal.
-
-`set -e` stops the current Bash shell on a failed command, preventing upgrade after a failed backup. If you postpone the upgrade, confirm that the original configuration and data are unchanged, then restart `agione-clusterd` and any previously enabled housekeeping timer to restore normal operation.
-
-### 6.2 Run upgrade
-
-Use root Bash in the **new version's** extracted directory. Replace `XXX` with the verified new version; use the matching directory for a light package. Keep the original installation arguments for custom paths.
-
-```bash
 cd /opt/clusterd-packages/agione-clusterd-full-release-XXX-linux-x86_64
 bash install.sh upgrade --dry-run
 ```
 
-After the check passes, run:
+`release-dry-run-ok` means the check passed; no upgrade has run yet. Continue in the same terminal:
 
 ```bash
 CLUSTERD_UPGRADE_LOG=/var/log/agione-clusterd-upgrade.log
@@ -294,50 +263,41 @@ else
 fi
 ```
 
-Successful completion prints `agione-clusterd-upgrade-ok`. Upgrade preserves configuration, accounts, database, key, and customer state. New service catalog defaults may be provided in `.upgrade.new` files for comparison; do not overwrite existing configuration blindly.
+Successful completion prints **`agione-clusterd-upgrade-ok`**. The Web interface may be briefly unavailable; wait for the command to finish without starting another upgrade. On failure, inspect `/var/log/agione-clusterd-upgrade.log` first. Do not delete data and reinstall.
 
 ### 6.3 Verify the upgrade
 
-Repeat the service and HTTP checks in section 4.2. Sign in with your existing account and confirm that your cluster and task records remain. For default installation paths, also compare the new package with the installed program:
-
 ```bash
-sha256sum bin/agione-clusterd /opt/agione-clusterd/bin/agione-clusterd
-CLUSTERD_RUNNING_PID="$(systemctl show agione-clusterd --property MainPID --value)"
-test "$CLUSTERD_RUNNING_PID" -gt 0 && \
-sha256sum "/proc/$CLUSTERD_RUNNING_PID/exe"
+systemctl is-active agione-clusterd
+curl --fail --silent --show-error --output /dev/null \
+  --write-out 'HTTP %{http_code}\n' http://127.0.0.1:18093/
 ```
 
-All three binary hashes should match. This prevents mistaking a replaced file for an updated running process. On failure, retain logs and backups and assess database compatibility before planning recovery. The installer's previous files are not a complete one-click rollback.
+Confirm `active` and `HTTP 200`, then refresh the Web interface, sign in with your existing account, and check that cluster and task records remain available. Use the actual port in the check if the Web port was changed.
+
+The installer may create `.upgrade.new` configuration files for comparing new defaults. Do not overwrite the active configuration directly.
 
 ## 7. Uninstall ClusterD
 
-The current `install.sh` provides only `install` and `upgrade`; **there is no `uninstall` subcommand**. Follow this section for removal instead of using an installation or upgrade command to erase data.
+The current installer has no `uninstall` subcommand. Follow these steps to remove the local service and program. **To pause it temporarily, run `sudo systemctl stop agione-clusterd`; no file deletion is needed.**
 
-### 7.1 Decide what to remove
-
-| Goal | Action |
-| --- | --- |
-| Pause the Web and task service | Run `sudo systemctl stop agione-clusterd`; keep program and data |
-| Remove the service from the ClusterD host | Back up, stop, and remove ClusterD-owned files as described below |
-| Also remove AGIOne target-node environments | First complete the corresponding remote cleanup for your cluster in the Web interface, confirm success, then uninstall ClusterD |
-
-::: danger Uninstallation boundaries
-Uninstalling ClusterD does not automatically stop or clean up remote AGIOne, Kubernetes, or persistent data. Deleting only ClusterD records does not uninstall remote services either.
-
-Deleting `/var/lib/agione-clusterd` removes accounts, cluster records, task evidence, resource caches, and `secret.key`. Do not run deletion commands before completing backup or while tasks are active.
+::: warning Removal scope
+Removing ClusterD makes its Web interface and task service unavailable. It does not automatically delete deployed AGIOne, Kubernetes, or business data. To remove the AGIOne environment as well, first complete the corresponding cluster environment cleanup in ClusterD and verify the result, then uninstall ClusterD.
 :::
 
-### 7.2 Back up and confirm paths
+### 7.1 Confirm before removal
 
-Use section 6.1 to check actual paths, stop services, and take a consistent backup. Confirm that directories to be removed are not mount points or symbolic links and are not used by other services.
+1. Confirm that no tasks are queued or running and that this ClusterD instance is no longer needed to operate existing clusters.
+2. The commands below apply only to default installation paths. For a custom installation, inspect `sudo systemctl cat agione-clusterd` and the actual configuration first; do not copy deletion commands unchanged.
+3. Confirm that directories to be removed are not mount points or symbolic links and are not shared with other services.
 
-The following commands apply **only to an installation using all default paths**. In particular, confirm that `/opt/agione-python` and `/etc/kubemore` are not shared with other deployment tools or services. If shared, remove only ClusterD-exclusive files, not the shared directories. Do not copy these commands unchanged for a custom installation.
+### 7.2 Remove the service and program, retaining configuration and data
 
-### 7.3 Remove service units and owned files
-
-Continue in root Bash. Handle housekeeping units only when present; investigate other failures before proceeding.
+Run in root Bash on the ClusterD host. Missing housekeeping units in older versions are skipped.
 
 ```bash
+sudo -i
+bash
 set -e
 if systemctl cat agione-clusterd-housekeeping.timer >/dev/null 2>&1; then
   systemctl disable --now agione-clusterd-housekeeping.timer
@@ -351,42 +311,59 @@ rm -f /etc/systemd/system/agione-clusterd.service \
   /etc/systemd/system/agione-clusterd-housekeeping.service \
   /etc/systemd/system/agione-clusterd-housekeeping.timer
 systemctl daemon-reload
+rm -rf /opt/agione-clusterd
 ```
 
-Confirm again that the backup is readable, services are stopped, and these are unshared default installation paths before permanent deletion:
+This step retains:
+
+| Path | Retained contents |
+| --- | --- |
+| `/etc/agione-clusterd` | Existing configuration |
+| `/var/lib/agione-clusterd` | Accounts, cluster and task records, resource caches, and runtime data |
+| `/var/log/agione-clusterd-*.log` | Installation and upgrade logs |
+
+`/opt/agione-python` and `/etc/kubemore` are also retained to avoid affecting other tools that share them. Clean these separately only after confirming they are exclusive to ClusterD and no longer needed.
+
+### 7.3 Permanently erase local configuration and data (optional)
+
+**Skip this section to remove the program while retaining records.** Continue only when accounts, cluster and task records, and resource caches are no longer needed.
+
+::: danger This cannot be undone
+The following permanently deletes ClusterD configuration and data at the default paths. A later installation uses new configuration; previous accounts and records will not return automatically. Do not delete `/var/lib/agione`, `/var/lib/rancher/k3s`, `/etc/rancher/k3s`, or Docker/containerd data directories.
+:::
+
+After section 7.2, run in the same root Bash. Deletion requires typing `DELETE-CLUSTERD`:
 
 ```bash
-rm -rf /opt/agione-clusterd /etc/agione-clusterd /var/lib/agione-clusterd
-rm -rf /opt/agione-python /etc/kubemore
+read -r -p "Type DELETE-CLUSTERD to permanently remove local data: " CLUSTERD_CONFIRM
+if [ "$CLUSTERD_CONFIRM" = "DELETE-CLUSTERD" ]; then
+  rm -rf /etc/agione-clusterd /var/lib/agione-clusterd
+else
+  printf '%s\n' "Cancelled; local data kept."
+fi
 ```
-
-Keep installation logs and backups for audit or recovery. Do not delete `/var/lib/agione`, `/var/lib/rancher/k3s`, `/etc/rancher/k3s`, or Docker/containerd data directories. Do not clear the global systemd journal to uninstall ClusterD.
 
 ### 7.4 Verify removal
 
 ```bash
-systemctl list-unit-files | grep -F agione-clusterd || true
+systemctl list-unit-files agione-clusterd.service \
+  agione-clusterd-housekeeping.service agione-clusterd-housekeeping.timer --no-pager
 test ! -e /opt/agione-clusterd
-test ! -e /etc/agione-clusterd
-test ! -e /var/lib/agione-clusterd
 ss -ltnp | grep ':18093' || true
 ```
 
-Expected results: ClusterD units are removed, exclusive installation directories are absent, and ClusterD no longer listens on `18093`. Determine remote AGIOne removal from cleanup-task results and actual node state, not from an unreachable ClusterD page.
-
-For reinstallation, use a new trusted package and explicitly decide whether to restore old data. Restore the database and `secret.key` as a pair; do not combine an old key with an empty database or restore old resource URLs without reviewing the configuration.
+Confirm that ClusterD units are removed, the program directory is absent, and ClusterD no longer listens on `18093`. Check the actual port if customized. Determine remote AGIOne cleanup from its cleanup task and target-node state, not from an unreachable ClusterD page.
 
 ## 8. Troubleshooting
 
 | Symptom | First check |
 | --- | --- |
-| `python3 is required` | System Python needed for initial package verification |
-| Outer or internal verification fails | Package version, trusted SHA-256, and missing or modified files; obtain a trusted package again instead of editing checksum manifests |
-| No continuous installation output | Independent log, process state, and disk; do not start a duplicate installation |
-| Service does not start | `sudo journalctl -u agione-clusterd -n 100 --no-pager`; check configuration, paths, and port conflicts |
-| Local HTTP 200 but browser cannot connect | Listen address, `18093` firewall rules, security groups, and routing |
-| Online installation is unavailable | Required resource releases and DNS, HTTPS, and outbound access from ClusterD / the target maintenance node |
-| Target-node precheck fails | Open the latest task log in My Cluster and resolve specific SSH, resource, port, or old-environment blockers |
-| Data appears missing after upgrade | Actual `data_dir` and environment overrides; do not delete the database or generate a replacement key first |
+| `python3 is required` | Install system Python; embedded Python cannot replace the initial verification tool |
+| Archive or package verification fails | Check the version, trusted SHA-256, and missing or modified files; do not edit checksum manifests to bypass verification |
+| No continuous terminal output during installation | Complete logs are saved in `/var/log/agione-clusterd-install.log`; check process and disk state without starting another installation |
+| ClusterD service does not start | Run `sudo journalctl -u agione-clusterd -n 100 --no-pager`; check configuration, paths, and port conflicts |
+| Local HTTP 200 but browser cannot connect | Check the listen address, TCP `18093` firewall rules, security groups, and routing |
+| Online resources are unavailable | Check required resource versions and DNS, HTTPS, and outbound connectivity from the ClusterD host and target maintenance node |
+| Target-node precheck fails | Open the task log and resolve the reported SSH, resource, or port issues |
 
-Record the version, task ID, failure stage, and redacted logs when troubleshooting. Do not publish `env`, SSH passwords, cluster login credentials, or `secret.key`.
+Record the package version, task ID, failure stage, and redacted logs when troubleshooting. Do not publish SSH passwords, login credentials, or configuration files containing sensitive information.

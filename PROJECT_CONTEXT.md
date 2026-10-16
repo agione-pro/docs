@@ -2558,3 +2558,72 @@ npm run docs:build
 - 配置示例虽然已用颜色提示风险，仍包含示例 IP、账号、密码、Token 和域名结构；发布前应继续确认这些值均为脱敏占位符，并避免读者复制到生产环境。
 - 当前 Profile 三段门禁和文档构建均通过，但大 chunk 警告仍需在性能敏感发布前评估代码分割与初始加载影响。
 - 当前唯一未跟踪文件仍为 `PROJECT_CONTEXT.md`；本轮未提交、未推送、未回滚任何用户改动。
+
+## 2026-10-13 日终自动化复核
+
+### 今日设计决策
+
+- 以下按今日已提交文档归纳，不代表本轮重新制定产品规则。ClusterD 主机承载安装网页和任务服务，AGIOne 目标节点承载 Kubernetes、中间件和业务服务；安装 ClusterD 不等于完成 AGIOne 部署。
+- 当前指南限定 Linux x86_64、Ubuntu 22.04 示例及 `install.sh` + systemd 交付方式，默认网页端口为 `18093`；不沿用旧 `start.sh` / `8080` 流程，不将 ARM、CentOS、macOS 纳入已核对范围。
+- 区分全量包与轻量包，下载后先核对可信渠道提供的外层 SHA-256，再解压执行 `verify.sh`；全量包内置 Python 不能替代首次校验所需的系统 Python，校验与安装日志不得写入解压目录。
+- 区分主机 root / sudo 权限、ClusterD 普通网页账号、目标节点 SSH 账号与 AGIOne 业务账号；通过预检、节点与服务就绪、Web 访问和业务登录共同判断部署完成，不能只凭 ClusterD 首页 HTTP 200。
+- 升级仅更新 ClusterD，不自动升级远端 AGIOne；维护前等待活动任务结束、停止服务及清理单元，成对备份数据库与 `secret.key`。卸载无 `uninstall` 子命令，须确认独占路径；卸载 ClusterD 不等于清理远端集群。
+
+### 今日代码 / 文档更新
+
+- 当前分支：`my-doc-change`。按 `Asia/Shanghai` 的 2026-10-13 00:00 至 2026-10-14 00:00 查询，当前分支可达历史有 1 个提交：`4886d1ba`（17:32:24，`fix`）。
+- 该提交共修改 7 个文件，增加 3360 行、无删除；其中 `PROJECT_CONTEXT.md` 首次入库占 2560 行，实际部署文档及导航共 6 个文件、增加 800 行，不能将所有新增行都视为今日新写的业务内容。
+- 新增中英文指南：`docs/installation/clusterd/index.md`、`docs/zh-CN/installation/clusterd/index.md`，各 392 行，覆盖安装包获取、主机准备、校验安装、普通账号首次部署、升级备份、卸载与排障。
+- 更新中英文侧边栏：`docs/.vitepress/theme/sidebar/en.ts`、`docs/.vitepress/theme/sidebar/zh.ts`，增加 ClusterD 分组和指南入口。
+- 更新中英文安装索引：`docs/installation/index.md`、`docs/zh-CN/installation/index.md`，增加对应指南链接。
+- 本轮开始时 `git status --short` 无输出，未暂存与暂存 diff 均为空；此前未跟踪的上下文文件已由上述提交纳入版本管理。本轮仅追加本文件，保留所有历史记录，不提交、不推送、不回滚。
+
+### 本轮复核命令与结果
+
+- 已读取项目 `AGENTS.md`、`README.md`、`GUIDE.md`，检查现有上下文结构及今日提交的文档和导航。
+- `git status --short`：本轮修改前工作区干净。`git branch --show-current`：`my-doc-change`。
+- `git log --since='2026-10-13 00:00:00 +0800' --until='2026-10-14 00:00:00 +0800' --date=iso-strict --format='%h %cI %s' --stat`：上述 1 个提交。
+- `git diff --stat`、`git diff --cached --stat`：修改前均无输出。`git diff --check`、`git diff --cached --check`、`git diff --check 4886d1ba^ 4886d1ba`：均通过，退出码 `0`。
+- `npm run docs:build`：通过，实际退出码 `0`，总耗时 13.19 秒；包含 `npm run check:docs-profile`、VitePress 客户端 / 服务端构建与页面渲染、`npm run check:docs-profile:dist`，源文件及产物 public Profile 门禁均通过。完整 stdout / stderr 日志：`/tmp/agione-pro-docs-build-20261013-1791884618755.log`。
+- 记录追加后再次执行 `npm run check:docs-profile`（0.35 秒）和 `npm run docs:build`（14.49 秒），均通过，实际退出码 `0`；完整日志：`/tmp/agione-pro-post-update-checks-20261013-1791884854168.log`。最终核对确认原有 2560 行内容逐字保留、当天标题唯一，修改范围仅本文件。
+- 使用 VitePress `createMarkdownRenderer` 解析两份新增指南：16 个 Bash 代码块逐项一致，逐块 `bash -n` 均通过；仅检查语法，未执行文档中的安装、升级或删除命令。辅助检查最初直接导入独立 `markdown-it` 失败，改用已安装的 VitePress API 后通过，未安装或修改依赖。
+- 两份构建页面存在且含正确标题：`docs/.vitepress/dist/installation/clusterd/index.html`（192654 字节）、`docs/.vitepress/dist/zh-CN/installation/clusterd/index.html`（190561 字节）。
+- 构建仍有大于 500 kB 的 chunk 警告，不影响本次构建成功。
+
+### 后续风险与关注
+
+- ClusterD 下载地址仍为“待提供”，URL、版本与可信外层 SHA-256 使用占位符；交付方提供实际值前不能按示例直接下载安装，不能替换成旧下载地址。
+- 本轮验证范围为文档、命令语法和静态产物，未在 Linux 主机执行真实安装 / 升级 / 卸载，也未核验当前在线页面、普通账号集群数量限制、资源就绪或备份恢复行为；发布前需与实际交付版本核对。
+- 卸载示例包含永久删除命令；使用前必须核实实际 `data_dir`、安装路径、共享 Python / kubemore 目录、活动任务及备份可恢复性，不能据网页不可访问判断远端 AGIOne 已卸载。
+- 大 chunk 警告仍存在，性能敏感发布前需评估初始加载影响。本轮完成后仅 `PROJECT_CONTEXT.md` 留有未提交修改，不自动处理该修改。
+
+## 2026-10-15 日终自动化复核
+
+### 今日设计决策
+
+- 按 `Asia/Shanghai` 当天 00:00 起查询，当前分支无新增提交；除既有上下文记录外，没有代码或文档未提交变更，未发现可据以记录的新设计决策。
+
+### 今日代码 / 文档更新
+
+- 无新增变更（不含本轮例行上下文追加）。当前分支为 `my-doc-change`，最新提交仍为 `4886d1ba`（2026-10-13 17:32:24，`fix`）。
+- 本轮开始时唯一未提交文件为 `PROJECT_CONTEXT.md`，相对 HEAD 增加 38 行；具体 diff 是既有 2026-10-13 复核记录，不计为今日新增业务内容。暂存区为空，未发现其他文件变更。
+- 本轮仅在本文件末尾追加 2026-10-15 记录，保留原有历史及未提交内容；不补写未采集日期，不提交、不推送、不回滚。
+
+### 本轮复核命令与结果
+
+- 已读取项目 `AGENTS.md`、`README.md`、`GUIDE.md` 和现有上下文，按当前 Git 状态生成记录。
+- `git status --short`：仅 ` M PROJECT_CONTEXT.md`。`git branch --show-current`：`my-doc-change`。
+- `git log --since='2026-10-15 00:00:00 +0800' --until='2026-10-16 00:00:00 +0800' --date=iso-strict --format='%h %cI %s' --stat`：无输出，当前分支当天无新增提交。
+- `git diff --stat`：修改前为本文件增加 38 行；已查看具体 diff 确认是 10 月 13 日记录。`git diff --cached --stat`：无输出。
+- `git diff --check`、`git diff --cached --check`：修改前均通过，退出码 `0`。
+- `npm run check:docs-profile`：通过，实际退出码 `0`，耗时 0.38 秒。
+- `npm run docs:build`：通过，实际退出码 `0`，总耗时 21.35 秒；public Profile 源文件检查、VitePress 客户端 / 服务端构建及页面渲染、public Profile 产物检查均通过。完整 stdout / stderr 日志：`/tmp/agione-pro-docs-checks-20261015-1792056647695.log`。
+- 已检查中英文首页及 ClusterD 指南共 4 份 HTML 产物，均存在、非空且包含 HTML 页面结构。构建仍有大于 500 kB 的 chunk 警告，无新增失败。
+- 追加后复核 `git diff --check`；按本轮开始时文件的字节数与 SHA-256 核对，原有 2598 行（含未提交的 10 月 13 日记录）逐字保留，10 月 15 日标题唯一，修改范围仍只有本文件。
+
+### 后续风险与关注
+
+- 中英文 ClusterD 指南仍明确下载地址“待提供”；交付 URL、版本及可信外层 SHA-256 尚需交付方提供，风险与上一轮一致。
+- 静态文档检查不能证明 Linux 安装、升级、卸载、在线权限或备份恢复已实际验证；本轮未执行这些操作。
+- 大 chunk 警告与上一轮一致，性能敏感发布前仍需评估初始加载影响。
+- 本文件的 10 月 13 日记录仍未提交，本轮追加也仅保留在本地工作区；历史内容及其他用户改动不自动处理。

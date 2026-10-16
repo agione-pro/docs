@@ -20,4 +20,4 @@ next: true
 | [(AGIOne) 节点纳管-快速安装指南](./quick-install-for-managing-compute-nodes)          | 纳管算力节点的 Kubernetes 集群、组件和验证流程              |
 | [(AGIOne) 运营版部署后配置](./post-deployment/operation-edition)                    | 运营版新部署上线前的业务配置、直达入口和验收检查模板              |
 | [(AGIOne) 企业自用版部署后配置](./post-deployment/enterprise-internal-edition)        | 企业内部自用场景的新部署初始化、配置确认和上线验收模板            |
-| [ClusterD 安装、升级与卸载](./clusterd/) | 安装包获取、校验、普通账号首次使用、升级备份与卸载流程 |
+| [ClusterD 安装、升级与卸载](./clusterd/) | 全新环境安装、账户创建、AGIOne 部署验证，以及 ClusterD 升级与卸载 |
