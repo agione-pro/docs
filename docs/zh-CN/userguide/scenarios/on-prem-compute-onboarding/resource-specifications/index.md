@@ -64,5 +64,4 @@
 
 ## 操作手册
 
-- [规格指标](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/spec-metrics/)
 - [资源规格](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/)

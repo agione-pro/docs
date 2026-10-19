@@ -543,7 +543,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                     { text: '地域/可用区', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/' },
                     { text: '集群管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/' },
                     { text: '加速卡管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/accelerators/' },
-                    { text: '规格指标', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/spec-metrics/' },
                     { text: '资源规格', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/' },
                     { text: '镜像管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/images/' },
                     { text: '镜像组件', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/image-services/' },
