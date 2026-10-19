@@ -28,7 +28,7 @@
 #### Recommended Operation Order
 
 1. Confirm the accelerator vendors, models, memory, and Kubernetes resource keys actually present in the cluster.
-2. Prepare the corresponding AI accelerator metric in `Resource Pools > Specification Metrics`.
+2. Prepare the corresponding AI accelerator metric in the `Specification Metrics` list of the `Specification group navigation` panel on `Resource Pools > Resource Specs`.
 3. Enter `On-Prem > Resource Pools > Accelerators` to create a model, edit an existing one, or reuse an existing model with **"New from this"**.
 4. Associate each accelerator model with the correct specification metric.
 5. Reference the metric in resource specifications and verify scheduling, monitoring, and template recommendations with a test job.
@@ -42,7 +42,7 @@ Confirm that the task involves accelerator vendors, architectures, series, model
 1. The current account has operator permissions and can enter `On-Prem > Resource Pools > Accelerators`.
 2. The target accelerator vendor, model, architecture, series, VRAM capacity, and compute capability have been confirmed.
 3. Kubernetes resource key, selector-key, or monitoring identification fields have been confirmed to match actual cluster-reported information.
-4. If the model needs to be managed for job scheduling, the corresponding metric has been prepared in `Resource Pools > Specification Metrics`.
+4. If the model needs to be managed for job scheduling, the corresponding metric has been prepared in the `Specification Metrics` list on `Resource Pools > Resource Specs`.
 5. Before editing or deleting a model, confirm which resource specifications, cluster specifications, and scheduling configuration reference it.
 
 ## Page Description
@@ -314,7 +314,7 @@ The current page is normal, but a downstream page cannot select or associate the
 
 ## Next Steps
 
-1. Go to `Resource Pools > Specification Metrics` to maintain or confirm the corresponding metric.
+1. Go to `Resource Pools > Resource Specs` to maintain or confirm the corresponding metric in its `Specification group navigation` panel.
 2. Go to `Resource Pools > Resource Specifications` to create a specification that includes this accelerator.
 3. Verify that this model can be selected correctly in an inference template or test job.
 4. Return to the Accelerators list and confirm that status statistics, vendor filters, and model card information are as expected.
