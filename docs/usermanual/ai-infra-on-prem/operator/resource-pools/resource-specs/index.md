@@ -25,7 +25,7 @@
 
 #### Recommended Operation Order
 
-Confirm prerequisites for Specification name, CPU, memory, accelerator, accelerator quantity, specification metrics, associated clusters, and enabled status, follow Main Operations, run Result Validation, and continue to the next page.
+Confirm prerequisites for specification metrics, the specification ID, the configuration entries and their units, the credits price, and the status, follow Main Operations, run Result Validation, and continue to the next page.
 
 #### First-Time User Notes
 
@@ -33,29 +33,46 @@ Confirm that the task involves Configuration, status, and relationships on Resou
 
 ## Prerequisites
 
-1. The current account has operator permissions and can access `AI Infra > On-Prem > Resource Pools > Resource Specifications`.
+1. The current account has operator permissions and can access `AI Infra(On-Prem) > Resource Pools > Resource Specs`.
 2. Specification metrics have been configured, and CPU, memory, and accelerator metrics are available.
 3. If the specification includes accelerators, accelerator model, k8s-key, selector-key, and resources actually reported by cluster nodes have been confirmed.
 4. Specification naming, resource tiers, applicable job types, and later cluster association scope have been planned.
 
 ## Page Description
 
-Use this page to manage specification IDs, CPU, memory, accelerators, accelerator count, specification metrics, associated clusters, and enabled state.
+Use this page to maintain specification IDs and their resource configuration entries, the price in credits, the enabled state, and the specification metrics that group the list.
 
 ![Resource Specs](./images/manual-resource-specs.png)
 
-The page displays specification ID, status, CPU, memory, accelerator type, and quantity. It supports filtering by GPU vendor.
-
-The following figure shows the resource specification list. Cards show CPU, memory, and accelerator quantity.
+The list groups specifications by specification metric, and each group header shows the metric name together with the number of specifications it contains. Each row contains `Spec ID`, `Resource Configuration`, `Pricing (credits)`, `Status`, and `Actions`. CPU, memory, and accelerator entries appear as chips inside the `Resource Configuration` column, and the actual price and the guidance price share the `Pricing (credits)` column as two lines. Use the search box to look up specifications by specification ID or metric name, then click `Search` or `Reset`.
 
 ## Main Operations
 
-### View Resource Specifications
+### Manage Specification Metrics
 
-1. Go to `Resource Pools > Resource Flavors`.
-2. Filter by name, resource type, accelerator, status, or update time.
-3. Open details and check CPU, memory, accelerators, storage, and applicable scenarios.
-4. If no record is returned, reset filters. For a mismatch, check metric and accelerator associations.
+The `Specification group navigation` panel stays on the left of the page under the `Specification Metrics` heading. Because the list groups specifications by these metrics, a metric is a prerequisite object of a specification.
+
+#### Applicable Scenarios
+
+Add or change a specification metric when a specification must reference a new accelerator or another resource item, or when an existing metric needs a new name, unit, k8s-key, or selector-key.
+
+#### Steps
+
+1. Go to `AI Infra(On-Prem) > Resource Pools > Resource Specs` and look at the `Specification Metrics` list in the `Specification group navigation` panel, which is split into `Basic Metrics Only`, accelerator metrics, and the items under the `Metrics below have no specifications` divider.
+2. Click **"Add specification metric"** to open the metric dialog.
+3. Choose `AI accelerator metric` or `Other metric` in the `Metric type` segmented control. For an accelerator metric, the read-only `Monitoring metric` card below shows its source.
+4. Fill in `Metric name` (1-30 characters), `Unit`, `k8s-key`, and `selector-key`. The `k8s-key` and `selector-key` options come from resources actually reported by cluster nodes.
+5. Click **"Confirm"** to submit.
+
+#### Result Validation
+
+- The new metric appears in the `Specification Metrics` panel and is available as a `Category` option in the `Configuration` table of the `Add New Specification` dialog.
+- A metric that no specification uses yet is listed under the `Metrics below have no specifications` divider.
+
+#### Notes
+
+- Each item in the panel offers `Edit` and `Disable` in its menu. Confirm the impact on specifications and jobs before disabling a metric that is already in use.
+- Once a specification uses the metric, changing its name, unit, k8s-key, or selector-key affects the scheduling basis of those specifications.
 
 ### Add Resource Specification
 
@@ -65,18 +82,98 @@ Add a specification when resource tiers are required for training, inference, de
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Resource Specifications`.
-2. Click **"Add"** or the actual add entry on the page.
-3. Fill in the specification ID. Use an ID that reflects CPU, memory, accelerator model, card count, and applicable scenario.
-4. Select CPU, memory, accelerator, and other specification metrics, and fill in the corresponding quantities.
-5. If the specification includes accelerators, verify that the accelerator metric, k8s-key, and selector-key are consistent with resources actually reported by the cluster.
-6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the resource combination, naming convention, and later cluster association impact.
+1. Go to `AI Infra(On-Prem) > Resource Pools > Resource Specs`.
+2. Click **"Add"**, which opens the `Add New Specification` dialog.
+3. Fill in `Specification ID`. Use an ID that reflects the resource tier and the applicable scenario.
+4. Maintain the resource entries as rows of the `Configuration` table (`Category`, `Configuration size`, `Unit`, and `Actions`). The dialog starts with a `cpu` row and a `memory` row; click **"Add"** to append a row, and remove a row from its `Actions` cell.
+5. The `Category` options come from the metrics listed in the `Specification Metrics` panel, so an accelerator option is available only after that metric exists and is enabled.
+6. Before clicking the final **"Confirm"**, verify the resource combination and the naming convention again.
 
-The following figure shows the Add Resource Specification dialog. Clarify the CPU, memory, and accelerator combination during creation.
+The following figure shows the `Add New Specification` dialog. Clarify the CPU, memory, and accelerator combination during creation.
 
 ![Add Resource Specification](./images/add-new-specification.png)
 
-### Import or Export Resource Specifications
+#### Result Validation
+
+- After a successful submit, the specification appears in the list under the group of the metric used by its accelerator row, and its `Resource Configuration` cell shows the `cpu`, `memory`, and accelerator entries as chips.
+- The `Pricing (credits)` column shows the actual price and the guidance price as two lines. A specification whose pricing has not been set is counted as unpriced and shows `--` on the actual price line.
+- The new specification becomes a `Category`-driven option set only through its metrics; the `Specification Metrics` panel is where that dependency is resolved.
+
+#### Notes
+
+- The dialog has no pricing fields. A specification price comes from the metric target prices multiplied by the configured quantities, so maintain it through `Assisted pricing` or `Adjust prices`.
+- An accelerator can be selected only after its metric exists and is enabled in the `Specification Metrics` panel.
+- Editing an existing specification is a separate entry: choose `Edit` in the `Actions` menu of the row.
+
+### Edit Resource Specification
+
+#### Applicable Scenarios
+
+Edit a specification when its CPU, memory, or accelerator rows must change. `Specification ID` is read-only, so a specification that needs a different ID must be added again instead.
+
+#### Steps
+
+1. Choose `Edit` in the `Actions` menu of the target row to open the `Edit Specification` dialog.
+2. `Specification ID` is shown read-only and cannot be changed.
+3. Change only the `Configuration` table: add or remove rows, and adjust `Configuration size` and `Unit`. The `Category` options come from the same `Specification Metrics` panel as in the add dialog.
+4. Click **"Confirm"** to submit, or **"Cancel"** to discard.
+
+#### Result Validation
+
+- After a successful submit, the `Resource Configuration` chips of that row reflect the edited configuration, and the group the specification belongs to follows the metrics it now uses.
+
+#### Notes
+
+- When a different ID is required, use `Clone` in the `Actions` menu to derive a new specification from an existing one, then adjust its configuration. What the `Clone` entry opens is not covered here; refer to what the page actually shows.
+- Changing a specification changes the resource tier that users select when they create online IDEs, runtime instances, training jobs, or model services. Confirm the business window first.
+
+### Set Metric Target Pricing
+
+`Assisted pricing` sets the unit price of a **specification metric** in credits per hour, not the total price of one specification. The price of a specification is derived from metric prices multiplied by the configured quantities.
+
+#### Applicable Scenarios
+
+Use `Assisted pricing` when you need to move the pricing baseline of a resource type, or when a newly added metric still has no target unit price.
+
+#### Steps
+
+1. Go to `AI Infra(On-Prem) > Resource Pools > Resource Specs` and click **"Assisted pricing"** on the page header to open the `Set metric target pricing` dialog.
+2. The dialog lists every metric with the columns `Metric type`, `Unit`, and `credits/hour`, and provides a box to search metric types.
+3. Edit the target unit price row by row, then click **"Preview"** to review the impact, or **"Cancel"** to discard it.
+
+#### Result Validation
+
+- The `credits/hour` value of the metric reflects the new target price after you submit it.
+- Specifications that use the metric show the recalculated price in the `Pricing (credits)` column.
+
+#### Notes
+
+- A metric price change propagates to every specification that uses the metric. Confirm the affected specifications before you submit.
+
+### Adjust Specification Prices
+
+`Adjust prices` is an **inline editing mode inside the list, not a dialog**. Changes take effect only after you click **"Save"**.
+
+#### Applicable Scenarios
+
+Use `Adjust prices` when you need to change the actual price of specifications in bulk, or when you want to adopt the guidance price for one or all rows.
+
+#### Steps
+
+1. Click **"Adjust prices"** on the page header. The list enters editing mode and the banner shows `Scope <N> specs` and `Changed rows <N> specs`.
+2. Edit the actual price row by row, click **"Apply guidance price"** on one row, or click **"Apply all guidance prices"** on the banner for every row.
+3. Click **"Save"** to submit. **"Save"** stays disabled while nothing has changed; click **"Cancel"** to leave editing mode without writing anything.
+
+#### Result Validation
+
+- After editing mode closes, the actual price line of the `Pricing (credits)` column shows the new value and the banner disappears.
+
+#### Notes
+
+- Nothing is written until **"Save"** succeeds, so an accidental entry never reaches the price.
+- Confirm the guidance price source before applying it in bulk to every specification.
+
+### Import or Export Resource Specs
 
 #### Applicable Scenarios
 
@@ -84,16 +181,16 @@ Use the **"Import/Export"** menu to batch-maintain resource specifications, or t
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Resource Specifications`.
-2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
-3. For import, upload the file as required by the page and verify specification ID, resource metrics, quantities, accelerator model, and applicable scenario.
-4. For export, confirm the filter scope, then generate and download the resource specification list as prompted by the page.
-5. Before importing, verify that an incorrect definition used by cluster associations or jobs will not be overwritten. Save export files in a controlled directory.
+1. Go to `AI Infra(On-Prem) > Resource Pools > Resource Specs`.
+2. Click **"Import/Export"** on the page header and choose **"Import"** or **"Export"**.
+3. For import, the `Import Configuration Data` drawer asks you to select a ZIP package exported from the backend and run a precheck before anything is written. The drawer footer only offers **"Cancel"**.
+4. For export, the `Export Configuration Package` drawer lists modules under `Select Modules` (**"Select All"** and **"Clear"** are provided), and its footer shows how many modules are selected before you click **"Export"**.
+5. Before importing, verify that the package does not overwrite a specification already used by cluster associations or jobs; store exported packages in a controlled directory.
 
 #### Result Validation
 
-- After import, the Resource Specifications list shows the added or updated combinations.
-- The records in the export file match the current filter scope.
+- After import, the Resource Specs list shows the added or updated combinations.
+- The exported package contains the modules you selected, and its module list matches what you chose in the drawer.
 - Cluster specification association or job creation can correctly identify the imported specifications.
 
 #### Notes
@@ -101,24 +198,18 @@ Use the **"Import/Export"** menu to batch-maintain resource specifications, or t
 - Specification ID, metric quantities, and accelerator model must match actual cluster capacity; otherwise specification matching or scheduling may fail.
 - Import may update fields on a specification with the same identifier. Check cluster associations, job dependencies, and file scope first.
 
-#### Operation Screenshots
-
-![Resource Specs operation interface](./images/manual-add-resource-spec.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Specification ID | Yes | Dropdown / enum | `Example value` | Specification name selected when users create online IDEs, runtime instances, training jobs, or model services. Use an ID that reflects CPU, memory, accelerator model, card count, and applicable scenario. |
-| CPU | Conditionally required | Number / capacity | `16 vCPU` | CPU metric and quantity included in the specification. Match the CPU resources required by the job, and avoid oversized or undersized settings. |
-| Memory | Conditionally required | Number / capacity | `128 GiB` | Memory metric and capacity included in the specification. Keep memory units consistent to avoid display and scheduling definition mismatch. |
-| Accelerator | No | Dropdown / enum | `1 x A100` | AI accelerator type or metric included in the specification. Keep it consistent with maintained accelerators and specification metrics. |
-| Accelerator Quantity | No | Number / capacity | `1 x A100` | Number of accelerator cards included in the specification. Match resources actually reported by cluster nodes and schedulable capacity. |
-| Specification Metric | Yes | Number / capacity | `Example value` | CPU, memory, accelerator, and other metrics referenced by the resource specification. k8s-key, selector-key, and unit should already be calibrated. |
-| Associated Cluster | Conditionally required | Dropdown / enum | `cluster-a` | Cluster scope where the specification is available. Verify cluster region, availability zone, and actual resource capacity before association. |
-| Enabled Status | No | Status | `Enabled` | Controls whether the specification can be selected by later flows. Complete association and test validation before opening it to users. |
+| Specification ID | Yes | Dropdown / enum | `Example value` | Specification name selected when users create online IDEs, runtime instances, training jobs, or model services. Use an ID that reflects CPU, memory, accelerator model, card count, and applicable scenario. The value can only consist of lowercase letters, numbers, dots (.) and hyphens (-), and must start and end with lowercase letters or numbers. |
+| Configuration Category | Yes | Dropdown / enum | `cpu` | One resource entry of the `Configuration` table. Options come from the metrics in the `Specification Metrics` panel, so the metric must exist and be enabled first. |
+| Configuration Size | Yes | Number / capacity | `16` | Quantity of that entry. Match the resources required by the job and the capacity actually reported by cluster nodes. |
+| Unit | Yes | Dropdown / enum | `core` | Unit shown for the entry, such as `core`, `GiB`, or the unit defined by the metric. Keep units consistent to avoid display and scheduling mismatch. |
+| Specification Metric | System-generated | Grouping item | `<METRIC_NAME>` | The metric the list is grouped by, maintained in the `Specification Metrics` panel. Its k8s-key, selector-key, and unit must match resources actually reported by cluster nodes. |
+| Resource Configuration | System-generated | Chip group | `cpu 16 · memory 32GiB` | List column that aggregates all configuration entries of the specification. Accelerator types are not separate columns. |
+| Pricing (credits) | No | Number / price | `<PRICE>` | List column that holds the actual price and the guidance price as two lines. Unpriced specifications are counted in the summary line and are not shown on the user side. |
+| Status | System-generated | Status | Refer to the page | Whether the specification is usable on this page. Complete resource configuration and pricing before opening it to users. |
 | Actions | No | Action entry | `Edit` | Supports add, edit, create from this, enable, disable, delete, and other operations. Confirm impact scope and replacement options before high-risk actions. |
 
 ## Pitfalls
@@ -126,7 +217,7 @@ The image shows fields and the confirmation area after opening the operation ent
 - Adding a specification affects resource packages available when users create online IDEs, runtime instances, training jobs, or model services.
 - Oversized specifications may increase queue time; undersized specifications may cause insufficient resources after task startup.
 - Incorrect specification metrics, k8s-key, or selector-key may make the specification unavailable or cause scheduling failures.
-- `Save`, `Submit`, and `OK` are high-risk final actions.
+- `Confirm` (Add New Specification and specification-metric dialogs) and `Save` (Adjust prices editing mode) are high-risk final actions.
 - Do not record real cluster IDs, resource pool IDs, node labels, internal resource key mappings, tenant information, accounts, keys, tokens, or internal test parameters.
 
 ### Configuration Rules and Impact
@@ -162,8 +253,8 @@ The resource specification import completes, but the specification cannot be fou
 
 **Solution:**
 
-1. Check state, specification ID, and update time in Resource Specifications.
-2. Check metrics, keys, and model in Specification Metrics and Accelerators.
+1. Check state, specification ID, and update time in Resource Specs.
+2. Check the metric, k8s-key, selector-key, and accelerator model in the `Specification Metrics` panel of the Resource Specs page, and in `Accelerators`.
 3. Reset filters, reopen cluster details, and verify the visibility scope.
 
 #### The Operation Entry on Resource Specs Is Unavailable
@@ -243,11 +334,11 @@ The current page is normal, but a downstream page cannot select or associate Con
 - Once opened to users, resource specifications directly affect creation choices for model instances, online IDEs, runtime instances, and training jobs.
 - Before modifying specification ID, resource quantity, or enabled/disabled status, confirm associated clusters, templates, tenant quotas, and running instances.
 - Large specifications may increase queue time, while small specifications may cause insufficient resources after task startup. Calibrate with monitoring and failure cases.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
+- `Confirm` (Add New Specification and specification-metric dialogs) and `Save` (Adjust prices editing mode) are high-risk final actions. Confirm the scope and impact before executing one.
 - Do not record real cluster IDs, resource pool IDs, node labels, internal resource key mappings, tenant information, accounts, keys, tokens, or internal test parameters.
 
 ## Next Steps
 
-1. Go to `AI Infra > On-Prem > Resource Pools > Cluster Management` and associate specifications with the target cluster.
+1. Go to `On-Prem > Resource Pools > Clusters` and associate specifications with the target cluster.
 2. Submit a test job, online IDE, or model service to verify specification scheduling results.
 3. Return to the Resource Specifications list and confirm that enabled status, filter results, and associations are as expected.

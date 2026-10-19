@@ -67,7 +67,7 @@ Create a block storage component when a new Ceph RBD or compatible block storage
 2. Click **"Register component"** to open the **"New Block Storage - Block Storage"** page.
 3. Fill in `Block Storage Type`, `Cluster Name`, `Mon Node`, `FSID`, `Storage Pool`, `Admin Key`, `Over-provision Ratio`, `Tenant Quota Limit`, `Physical Threshold`, `Logical Threshold`, `Snapshot Limit per Vol`, and `Description` according to the page fields.
 4. If the page provides `Test Connection`, run the read-only connectivity check first and confirm the returned result.
-5. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify Mon Node, FSID, Storage Pool, Admin Key, thresholds, and capacity impact again.
+5. Before clicking the final **"Submit"**, verify Mon Node, FSID, Storage Pool, Admin Key, thresholds, and capacity impact again.
 
 The following figure shows the New Block Storage page, used to fill in block storage connection parameters.
 
@@ -104,7 +104,7 @@ The image shows fields and the confirmation area after opening the operation ent
 - Storage Pool and CSI configuration must match the target cluster CSI capability. Otherwise, volumes may be created but fail to mount.
 - Before expanding a block volume, confirm that the underlying storage, file system, and workload all support online expansion.
 - Before unmounting or deleting a block volume, confirm that the instance has stopped writing to avoid file system corruption or data loss.
-- `Save`, `Submit`, and `OK` are high-risk final actions.
+- `Submit` (the Create Block Storage Component form) is a high-risk final action.
 - Do not record real Mon Node values, FSID, Storage Pool names, Admin Key, Secret, kubeconfig, cluster IDs, resource pool IDs, accounts, keys, tokens, or internal test parameters.
 
 ## Result Validation
@@ -213,7 +213,7 @@ The current page is normal, but a downstream page cannot select or associate Con
 - Creating a block storage component may affect workload PVC creation, volume mounting, capacity display, and resource scheduling.
 - keyring, Ceph user keys, Secret, and kubeconfig are sensitive materials.
 - Before deleting a block storage component, confirm that no running instances, PVCs, PVs, or business data depend on it.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
+- `Submit` (the Create Block Storage Component form) is a high-risk final action. Confirm the scope and impact before executing it.
 - Do not record real Mon Node values, FSID, Storage Pool names, Admin Key, Secret, kubeconfig, cluster IDs, resource pool IDs, accounts, keys, tokens, or internal test parameters.
 
 ## Next Steps

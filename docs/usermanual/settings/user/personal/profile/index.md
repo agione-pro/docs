@@ -64,7 +64,7 @@ Profile is the identity card for the signed-in account. Use it to confirm who yo
 | Tenant Name | System generated | Text | Sanitized value | Identifies the current tenant. |
 | Tenant ID | System generated / Copyable | Text | Sanitized value | Identifies the tenant. Treat the copied value as sensitive data. |
 | Business Identity | System generated | Tag | `Provider` | Shows the current tenant business identity. |
-| Display Name | System generated / Editable | Text | Sanitized value | Shows the user display name. |
+| Display name | System generated / Editable | Text | Sanitized value | Shows the user display name. |
 | Username | System generated / Copyable | Text | Sanitized value | Identifies the current user account. |
 | User ID | System generated / Copyable | Text | Sanitized value | Identifies the current user. Treat the copied value as sensitive data. |
 | Phone | System generated / Editable | Text | Sanitized value | Shows the configured phone number. |

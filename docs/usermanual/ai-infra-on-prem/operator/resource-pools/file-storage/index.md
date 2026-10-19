@@ -73,7 +73,7 @@ The following figure shows the file storage page.
 4. In `Cluster Connection Information`, provide connection configuration through `Paste Config`, `Upload File`, or `Manual Input`, and confirm that the configuration content has been sanitized.
 5. If the page provides `Test Connection`, verify connectivity from target cluster nodes to the file storage service first.
 6. In `Cluster Configuration`, fill in `Description`, and continue checking cluster connection information, capacity thresholds, and description according to the actual page.
-7. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the cluster connection information, capacity thresholds, and capacity impact again.
+7. Before clicking the final **"Submit"**, verify the cluster connection information, capacity thresholds, and capacity impact again.
 
 The following figure shows the New File Storage page, used to fill in basic policy, cluster connection information, and cluster configuration.
 
@@ -106,7 +106,7 @@ The image shows fields and the confirmation area after opening the operation ent
 - Incorrect service address, shared path, export permission, UID/GID, or read/write policy may cause mount failure, write failure, or unintended cross-tenant access.
 - Incorrect capacity thresholds or overcommit ratio may block file volume creation too early, or make displayed capacity inconsistent with actual resources.
 - Verify the file storage service address and mount path from target nodes, not only from the platform management side.
-- `Save`, `Submit`, and `OK` are high-risk final actions.
+- `Submit` (the Create File Storage Component form) is a high-risk final action. `Test Connection` only probes connectivity and is not a final action.
 - Do not write real NFS addresses, internal paths, accounts, secrets, tokens, kubeconfig, cluster IDs, resource pool IDs, tenant directories, or internal test parameters.
 
 ## Result Validation

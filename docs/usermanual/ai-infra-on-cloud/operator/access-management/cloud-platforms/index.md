@@ -71,7 +71,7 @@ The image shows the Add Cloud Platform dialog, where you choose the platform typ
 
 ![Edit Cloud Platform](./images/manual-maintain-cloud-platform.png)
 
-The image shows the Edit Cloud Platform dialog for private cloud platforms, where you can maintain the platform identifier, multilingual display names, platform URL, and logo.
+The image shows the Edit Cloud Platform dialog for private cloud platforms, where you can maintain the platform identifier, multilingual display names, platform link address, and logo.
 
 ### Delete Cloud Platform
 

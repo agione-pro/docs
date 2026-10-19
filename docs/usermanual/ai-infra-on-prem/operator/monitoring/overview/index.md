@@ -131,7 +131,7 @@ The page opens, but charts or cards appear empty or show all zeros.
 
 1. Check underlying Prometheus / monitoring agent service status.
 2. Confirm the logged-in role has On-Prem monitoring operator permissions.
-3. Go to Cluster Management to confirm the cluster is in a healthy managed state.
+3. Go to Clusters to confirm the cluster is in a healthy managed state.
 
 #### Overview Data Is Not Updating
 

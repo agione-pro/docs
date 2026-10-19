@@ -48,7 +48,7 @@ Page screenshots:
 
 ![Access account list](./images/access-accounts-list.png)
 
-The image shows Access account list. Verify the target object, current state, fields, and actions.
+The image shows the account list on the Access Management page: cloud-platform filter tabs at the top (All and each vendor), a name search box with **"Search"** and **"Reset"** buttons, and account cards showing name, cloud platform, public/private type, and creation time with **"Edit"** and more-action entries; the **"Add Cloud Account"** button is at the top right.
 
 ## Main Operations
 
@@ -67,7 +67,7 @@ The image shows Access account list. Verify the target object, current state, fi
 
 ![Add access account](./images/add-cloud-account.png)
 
-The image shows Add access account. Verify the target object, current state, fields, and actions.
+The image shows the **"Add Cloud Account"** dialog with four required fields: account name, cloud platform selector, Access Key ID, and Access Key Secret, with **"Cancel"** and **"Confirm"** buttons at the bottom; the credential fields are shown empty and real values must be entered through a secure channel.
 
 ## Parameter Reference
 
