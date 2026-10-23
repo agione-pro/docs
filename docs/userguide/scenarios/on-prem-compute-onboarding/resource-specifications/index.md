@@ -64,5 +64,4 @@ Do not assume that a single pod can request all four cards when they are distrib
 
 ## User Manual
 
-- [Specification Metrics](/usermanual/ai-infra-on-prem/operator/resource-pools/spec-metrics/)
 - [Resource Specifications](/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/)

@@ -76,7 +76,7 @@ The following figure shows the framework configuration page.
 6. Maintain extra parameters, environment variables, and placeholder references as required by the page.
 7. Configure service port, port exposure policy, port tag, and health check.
 8. Configure the creation success message to describe access methods and follow-up operations, without real credentials or internal addresses.
-9. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify image, startup commands, ports, authentication policy, and region availability.
+9. Before clicking the final **"Save"**, verify image, startup commands, ports, authentication policy, and region availability.
 
 The following figure shows the add framework page, used to configure basic information, runtime settings, port policy, and creation message.
 
@@ -206,7 +206,7 @@ The image shows fields and the confirmation area after opening the operation ent
 | Health Check | Conditionally required | Address / path | `/health` | Path or command used to determine whether the framework service starts successfully. Match the actual service path, port, and startup delay. |
 | Creation Success Message | No | Port / number | `Example value` | Message shown to users after the task cluster is created. Markdown and placeholders are supported. It can include access methods and follow-up operations, but not real credentials or internal endpoints. |
 | Parameter Placeholder | No | Configuration text | `${modelName}` | Variable used in startup commands, extra parameters, or creation success messages. Use platform-supported placeholder names and avoid unsupported variables. |
-| Actions | System-generated | Action entry | `Edit` | Add, edit, save, submit, OK, and similar page operations. `Save`, `Submit`, and `OK` are high-risk final actions. |
+| Actions | System-generated | Action entry | `Edit` | Add, edit, save, and similar page operations. `Save` (the framework add and edit dialogs) is a high-risk final action. |
 
 #### Port Exposure Policy and Port Tags
 
@@ -255,7 +255,7 @@ Startup commands, extra parameters, and creation success messages can use placeh
 - Inconsistent image region, image registry permissions, or target cluster network may cause image pull failures.
 - A non-authenticated port exposure policy may expand the real service exposure scope. Do not select it for external or cross-tenant access.
 - Environment variables, extra parameters, and creation success messages must not contain real tokens, AK/SK, private keys, passwords, or internal endpoints.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
+- `Save` (Add Framework or Version and Edit Framework Version dialogs) is a high-risk final action. Confirm the scope and impact before executing it.
 
 ## Result Validation
 
@@ -283,7 +283,7 @@ The framework import completes, but the framework version is missing from an inf
 **Solution:**
 
 1. Open framework details and verify version, image, region, ports, and state.
-2. Check dependencies on Image Management, Regions & Zones, and Inference Templates.
+2. Check dependencies on Regions & Zones and Inference Templates.
 3. Correct identifiers or visibility according to page requirements before importing again.
 
 #### An Instance Fails After Framework Version Editing
@@ -301,7 +301,7 @@ The framework saves successfully, but a new instance cannot start or its health 
 **Solution:**
 
 1. Verify image, startup command, port, and health check in framework details.
-2. Check image availability and network reachability in Image Management and Regions & Zones.
+2. Check image availability and network reachability in Regions & Zones.
 3. Under the approved change process, restore the verified version and repeat startup validation.
 
 #### Framework Version Deletion Fails

@@ -365,7 +365,7 @@ host-mode 会在同步 bundle 前确认所有目标节点至少具备 `sha256sum
 ### 4.4 执行安装
 
 ::: warning 使用 `/root/agione-install.yml` 前，先打开配置字段说明
-如果使用配置文件安装，请不要从空白 YAML 开始猜字段。先打开[安装配置文件字段说明](https://docs-preview.agione.cc/zh-CN/installation/agione-install-config-reference.html)，根据部署场景复制 2.1、2.2 或 2.3 的最小配置，再替换节点 IP、SSH 凭据、中间件地址、密码和域名等占位值。
+如果使用配置文件安装，请不要从空白 YAML 开始猜字段。先打开[安装配置文件字段说明](/zh-CN/installation/agione-install-config-reference)，根据部署场景复制 2.1、2.2 或 2.3 的最小配置，再替换节点 IP、SSH 凭据、中间件地址、密码和域名等占位值。
 
 配置文件准备好后，先用同一份文件执行 `doctor` 预检，再执行下面的 `quick` 安装命令。
 :::

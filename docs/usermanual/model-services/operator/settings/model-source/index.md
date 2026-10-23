@@ -280,7 +280,7 @@ The template can select the Model Source, but a downstream validation call fails
 
 1. Model Source setup ends when you select the source in the template or publishing flow.
 2. Use the error shown in the downstream call flow to continue troubleshooting.
-3. See [Publish and Call a Model](../../../end-to-end/publish-and-call-model/) for the call procedure.
+3. See [Publish Models](/userguide/scenarios/publish-model/) for the call procedure.
 
 #### Deletion Does Not Complete
 
@@ -327,5 +327,5 @@ Use the [Model Templates](../model-templates/) manual for the next page.
 4. Continue without a Region only after the template owner confirms that this flow supports it.
 5. If the flow is not approved, return to Model Sources and add a complete Region configuration.
 
-After the template and publishing steps, follow [Publish and Call a Model](../../../end-to-end/publish-and-call-model/) for call validation.
+After the template and publishing steps, follow [Publish Models](/userguide/scenarios/publish-model/) for call validation.
 Call validation is outside the Model Sources page. Use the response or error shown by that flow.

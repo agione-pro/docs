@@ -48,7 +48,7 @@ Page screenshots:
 
 ![Access Overview page](./images/manual-access-overview.png)
 
-The image shows Access Overview page. Verify the target object, current state, fields, and actions.
+The image shows the three areas of the Access Overview page: the access foundation cards at the top (counts and names of connected cloud platforms, resource pools, and accounts), the operations resource list in the middle (runtime images, inference frameworks, model-library models, and policies with their counts, prerequisites, support notes, and entries), and the authorization status at the bottom (tenant-cloud platform authorization statistics and the business-resource pool authorization card).
 
 ## Main Operations
 
@@ -61,7 +61,7 @@ The image shows Access Overview page. Verify the target object, current state, f
 
 ![Access Overview details](./images/access-overview-list.png)
 
-The image shows Access Overview details. Verify the target object, current state, fields, and actions.
+The image shows the same page in full view: each row of the operations resource list ends with an **"Open"** entry, the authorization status area provides a **"Manage Authorization"** entry, and total, authorized, and unauthorized tenant counts are listed in the left card.
 
 ### Open Resource Management Pages
 

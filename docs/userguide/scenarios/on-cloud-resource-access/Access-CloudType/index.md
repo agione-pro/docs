@@ -31,9 +31,9 @@ The required public- or private-cloud platform is available for later account ac
 
 3. Select **Public Cloud** or **Private Cloud**.
 4. Configure the platform:
-   - Enter or select the **Provider Identifier**. Public clouds use a select; private clouds use text.
+   - Enter or select the **Provider identifier**. Public clouds use a select; private clouds use text.
    - Maintain the localized **Display Name** on the English and Simplified Chinese tabs.
-   - For a private cloud, enter the platform **URL**.
+   - For a private cloud, enter the **Link Address**.
    - Upload a **Logo**.
 5. Review the information and select **Confirm**, or **Cancel** to discard it.
 
@@ -44,9 +44,9 @@ The required public- or private-cloud platform is available for later account ac
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
 | Cloud Platform Type | Two-option tab | `Public Cloud` / `Private Cloud` | Required; identifies the platform type |
-| Provider Identifier | Select / Text | `aliyun` / `{{DOCS_CLOUD_PLATFORM_EN}}` | Required; uniquely identifies the platform |
+| Provider identifier | Select / Text | `aliyun` / `{{DOCS_CLOUD_PLATFORM_EN}}` | Required; uniquely identifies the platform |
 | Display Name | Localized text | `Alibaba Cloud / 阿里云` | Required; maintain English and Simplified Chinese values |
-| URL | URL | `http://test.metis.opr/infrahub/op/access/platform` | Required only for private clouds |
+| Link Address | URL | `https://<platform-host>:<port>` | Required only for private clouds |
 | Logo | Image | `Alibaba Cloud / AWS / {{DOCS_CLOUD_PLATFORM_EN}}` | Optional; platform icon. Huawei Cloud access is not currently supported. |
 
 ## Completion Checklist

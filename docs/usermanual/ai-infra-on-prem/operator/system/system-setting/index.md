@@ -43,7 +43,7 @@ Use this page to review system configuration names, values, descriptions, states
 
 Go to `AI Infra > On-Prem > System > System Setting`. The page displays system-level configuration items. The list is used to view configuration item names, configuration values, descriptions, status, and possible action entries.
 
-If the page provides buttons such as `Edit`, `Save`, `Submit`, or `OK`, open only to review fields and do not perform the final action.
+If the page provides buttons such as `Edit` or `Save`, open only to review fields and do not perform the final action.
 
 ## Main Operations
 
@@ -69,7 +69,7 @@ If the page provides buttons such as `Edit`, `Save`, `Submit`, or `OK`, open onl
 3. Review configuration item name, configuration value, description, status, or action entry.
 4. If the page provides view-only buttons such as search, filter, refresh, expand, or details, use them to narrow the review scope.
 5. If the page provides `Edit` or a similar maintenance entry, open it only to review fields and do not fill in real configuration values.
-6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, stop and verify change approval, impact scope, and rollback plan again.
+6. Before clicking the final **"Save"**, stop and verify change approval, impact scope, and rollback plan again.
 
 ##### User Service Access
 
@@ -190,7 +190,7 @@ Edit a system setting when an editable configuration must change and change appr
 ## Pitfalls
 
 - System settings may affect global platform behavior. Confirm the impact scope before making changes.
-- `Save`, `Submit`, and `OK` are high-risk final actions and are final actions; confirm the scope and impact before executing them.
+- `Save` (inline edit under Edit System Setting) is a high-risk final action; confirm the change approval, impact scope, and rollback plan before executing it.
 - Incorrect feature availability, billing policy, disaster recovery, scheduling, or resource governance settings may affect user access, job scheduling, billing results, and recovery capability.
 - Do not write real configuration values, tokens, AK/SK, internal endpoints, tenant information, accounts, secrets, or test parameters.
 - If a configuration item involves authentication, networking, billing, scheduling, or resource governance, confirm it through the internal change process before modifying it.
