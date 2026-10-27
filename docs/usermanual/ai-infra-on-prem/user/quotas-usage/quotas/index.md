@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider and Model Consumer |
-| Navigation Path | AI Infra(On-Prem) > Quotas & Usage > Quotas |
+| Navigation Path | On-Prem > Quotas & Usage > Quotas |
 | Page Route | `/powerone/quota-usage/quota` |
 | Managed Object | Configuration, status, and relationships on Quotas |
 
@@ -23,7 +23,11 @@ My quota is like a personal resource balance sheet. It shows how many instances 
 
 #### Recommended Operation Order
 
-Confirm prerequisites for AI card, CPU, memory, online IDE, and runtime instance quotas, follow Main Operations, run Result Validation, and continue to the next page.
+1. Go to `Quotas & Usage > Quotas`.
+2. In `Quota Usage Overview`, check `Total` and `Used` for `AI Accelerator`, `CPU`, and `Memory`.
+3. In `Accelerator Models`, check `Spec Quota` by `Model`.
+4. In `Resource Occupancy`, check the occupation of `Runtime Instances` and `Online IDE`, and click the `>` at the right end of a card for details.
+5. When the quota is insufficient, release idle instances or contact the operator for an adjustment.
 
 #### First-Time User Notes
 
@@ -37,72 +41,164 @@ Confirm that the task involves Configuration, status, and relationships on Quota
 
 ## Page Description
 
-Use this page to review accelerator, CPU, memory, online IDE, and runtime-instance quotas.
+Use this page to review AI Accelerator, CPU, and Memory quota and occupation, and the resource occupation of runtime instances and online IDEs.
 
-![Quotas](./images/quotas-list.png)
-
-The page displays Total, Unused, and Used by resource type, and separately displays resource occupation for runtime instances and online IDEs. In the screenshot, GPU, CPU, and Memory are Unlimited or 0 Used.
+The page contains five panels from top to bottom: `AI Accelerator Occupancy Mix`, `Daily Peak Card Usage`, `Resource Occupancy`, `Quota Usage Overview`, and `Accelerator Models`.
 
 #### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
-| AI card | Displays total, unused, and used amount of AI accelerators. |
-| CPU | Displays total CPU quota and used vCPU. |
-| Memory | Displays total memory quota and used GiB. |
-| Runtime Instance | Displays runtime instance occupation. |
-| Online IDE | Displays online IDE occupation. |
-| View Resource Usage | Views resource occupation details for the corresponding type. |
+| `AI Accelerator Occupancy Mix` | Shows the occupied accelerator models as a donut chart, with the model and card count in the legend and a `Top Models` line at the bottom. |
+| `Daily Peak Card Usage` | Shows the daily peak card usage for `Last 7 Days` as an area line chart, with `Today Peak` at the top-right. |
+| `Resource Occupancy` | Shows the `Runtime Instances` and `Online IDE` cards side by side, each with `AI Accelerator`, `CPU`, and `Memory` occupation. |
+| `Quota Usage Overview` | Shows `Total`, `Used`, `Available`, and `Usage Rate` for each `Resource` row. |
+| `Accelerator Models` | Shows `Total`, `Used`, and `Available` under `Spec Quota` for each `Model` row. |
+| `>` | Located at the right end of a `Resource Occupancy` card, used to open the occupation details of that type. |
 
 ## Main Operations
 
 ### View Resource Quotas
 
-1. Go to `Quotas and Usage > Resource Quotas`.
-2. Filter by project, region, resource type, or status.
-3. Check total, used, and remaining quota and limits.
-4. If no record is returned, reset filters and check project and region. Redact quota information before sharing.
+#### Applicable Scenario
 
-### Identify Quota Risk and Open a Request
+Use this operation to check how much AI Accelerator, CPU, or Memory quota is still available, or to verify the specification quota by model.
 
-1. Sort by utilization to locate resources near or over the limit.
-2. Open details and check associated instances and recent usage.
-3. If an increase is required, open the quota-request process and prepare business justification.
-4. Before submitting a request or adjusting quota, verify the amount and impact and execute the action only after approval.
+#### Procedure
+
+1. Go to `On-Prem > Quotas & Usage > Quotas`.
+
+The following figure shows the overall page layout.
+
+![Quotas](./images/quotas-list.png)
+
+2. In `Quota Usage Overview`, check `Total`, `Used`, `Available`, and `Usage Rate` for each `Resource` row.
+3. For a resource row without an upper limit, `Total` and `Available` show `Unlimited`, and `Usage Rate` shows `∞ Unlimited`.
+4. In `Accelerator Models`, check `Total`, `Used`, and `Available` under `Spec Quota` for each `Model` row.
+
+#### Result Validation
+
+- The `Resource` column in `Quota Usage Overview` contains `AI Accelerator`, `CPU`, and `Memory`, measured in `AI card(s)`, `vCPU`, and `GiB`.
+- The column headers in `Accelerator Models` are `Model` and `Spec Quota`.
+- The `Total`, `Used`, and `Available` values in one row correspond to each other.
+
+#### Notes
+
+- A quota is an upper limit and is not equivalent to real-time idle resources in the underlying cluster.
+- Redact quota values before sharing them.
+
+### View the AI Accelerator Occupancy Mix
+
+#### Applicable Scenario
+
+Use this operation to confirm which models make up the accelerators currently occupied.
+
+#### Procedure
+
+1. Go to `On-Prem > Quotas & Usage > Quotas`.
+2. In `AI Accelerator Occupancy Mix`, view the donut chart and the legend on its right.
+3. Check the model name and card count in the legend, and the `Top Models` line at the bottom of the panel.
+
+#### Result Validation
+
+- The model and card count in the legend match the `Model` row and `Used` value in `Accelerator Models`.
+- The card count is measured in `AI card(s)`.
+
+#### Notes
+
+- This panel reflects only the AI accelerator occupancy mix, not CPU or Memory.
+- A model name is a grouped label shown by the platform, not a specific hardware identifier in the cluster.
+
+### View Daily Peak Card Usage
+
+#### Applicable Scenario
+
+Use this operation to judge whether card usage has been rising or falling recently.
+
+#### Procedure
+
+1. Go to `On-Prem > Quotas & Usage > Quotas`.
+2. In `Daily Peak Card Usage`, view the area line chart for the `Last 7 Days` sub-title.
+3. Check `Today Peak` at the top-right of the panel, and the `Today Peak` and `Peak Range` lines at the bottom.
+
+#### Result Validation
+
+- The horizontal axis is labeled by date, and the vertical axis is the card count scale.
+- The `Today Peak` value at the top-right matches the `Today Peak` value at the bottom.
+
+#### Notes
+
+- The peak is aggregated per day, which differs from the `Used` value in `Quota Usage Overview`.
+- The values change over time. Record the viewing time when quoting them.
 
 ### View Resource Occupation
 
 #### Applicable Scenario
 
-When creation fails with insufficient quota, or when you need to confirm which instances occupy resources, view resource occupation details.
-
-#### Pre-Operation Check
-
-1. The target resource type, such as GPU, CPU, or Memory, has been confirmed.
-2. Whether to view runtime instance or online IDE occupation has been confirmed.
+When creation fails with insufficient quota, or when you need to confirm which type of workload occupies resources, view resource occupation details.
 
 #### Procedure
 
-1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Resource Quotas`.
-2. Find the `Runtime Instance` or `Online IDE` area.
-3. Click **"View Resource Usage"**.
-4. View resource occupation items in the dialog.
-5. After locating the occupying instance, go to the corresponding instance list for handling.
+1. Go to `On-Prem > Quotas & Usage > Quotas`.
+2. In `Resource Occupancy`, view the `Runtime Instances` and `Online IDE` cards shown side by side.
+3. Check the occupation count under each card name, and the `AI Accelerator`, `CPU`, and `Memory` blocks inside the card.
+4. Click the `>` at the right end of a card to open the details drawer on the right side of the same page, without navigating away.
+5. Type a keyword in the search box at the top of the drawer and click `Search` to filter the details, or click `Reset` to restore them.
 
-The following figure shows the resource occupation details dialog, used to view instance-level resource usage.
+The following figure shows the resource occupation details drawer, used to view instance-level resource usage.
 
 ![Resource usage details](./images/resource-usage-dialog.png)
+
+6. Check the detail table column by column: the occupied resource item, its state, and the CPU, accelerator and memory usage.
+7. After locating the occupying instance, go to the corresponding instance list for handling; the detail rows themselves are not clickable.
+
+#### Result Validation
+
+- The `AI Accelerator` occupation in `Resource Occupancy` corresponds to the `Used` value in `Quota Usage Overview`.
+- `Runtime Instances` and `Online IDE` are counted separately and are not merged.
+
+#### Notes
+
+- If the occupation details are empty but `Used` is not 0, a statistical delay may exist.
+- When the detail table is empty it shows `No Data`, and the pager shows `0 items` and `10 / page`.
+- Quota reclamation may have a short delay after instances are released.
+
+### Identify Quota Risk and Open a Request
+
+#### Applicable Scenario
+
+Use this operation to judge which resource is near its limit, or to prepare the justification for an increase.
+
+#### Procedure
+
+1. Go to `On-Prem > Quotas & Usage > Quotas`.
+2. In `Quota Usage Overview`, locate the resource rows with a high `Usage Rate`.
+3. A resource row whose `Usage Rate` shows `∞ Unlimited` has no upper limit and is not judged by usage rate.
+4. In `Accelerator Models`, confirm which model the risk is concentrated on.
+5. If an increase is required, contact the operator to adjust the quota and prepare the business justification.
+
+#### Result Validation
+
+- A resource row with an upper limit shows `Total`, `Used`, `Available`, and a percentage `Usage Rate` together.
+- After an adjustment, open the page again and verify the result against `Total` and `Available` in `Quota Usage Overview`.
+
+#### Notes
+
+- Before requesting an adjustment, verify the amount and impact and execute the action only after approval.
+- A usage rate reflects quota consumption only and does not guarantee that the cluster can create resources.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Resource Type | Yes | Enum | `GPU` | View credits for CPU, GPU/NPU, memory, storage, instance count, and other resources. |
-| Total Quota | System-generated | Number / capacity | `4 cards` | Resource upper limit available to the current account or tenant. |
-| Used Quota | System-generated | Number / capacity | `2 cards` | Quota already occupied by running resources. |
-| Remaining Quota | System-generated | Number / capacity | `2 cards` | Quota still available for resource creation. |
-| Region | Conditionally required | Drop-down | `Central China Zone 1` | Limits the region or resource pool to which the quota belongs. |
-| Update Time | System-generated | Date time | `2026-07-06 10:00` | Determines whether quota data has refreshed in time. |
+| `Resource` | System-generated | Enum | `AI Accelerator` | Resource category counted in the quota overview. |
+| `Total` | System-generated | Number / capacity | `5 AI card(s)` | Upper limit currently available. Shows `Unlimited` when no limit is set. |
+| `Used` | System-generated | Number / capacity | `1 AI card(s)` | Quota already consumed by current occupation. |
+| `Available` | System-generated | Number / capacity | `4 AI card(s)` | Quota still available for resource creation. Shows `Unlimited` when no limit is set. |
+| `Usage Rate` | System-generated | Percentage | `20%` | Ratio of Used to Total. Shows `∞ Unlimited` when no limit is set. |
+| `Model` | System-generated | Text | `Other Models` | Grouped model label shown by the platform. |
+| `Spec Quota` | System-generated | Group | `Total` / `Used` / `Available` | The three quota values shown per model. |
+| Drawer search box | Optional | Text input | `ide` | Filters the resource occupation details, used with the `Search` and `Reset` buttons. |
 
 ## Pitfalls
 
@@ -119,7 +215,7 @@ The following figure shows the resource occupation details dialog, used to view 
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page entry | Quotas opens with filters or statistics | Check menu permission, current business identity, and tenant scope |
+| Page entry | Quotas opens with the quota and occupation panels | Check menu permission, current business identity, and tenant scope |
 | Data scope | Lists or statistics match the selected time, region, and object | Reset filters and verify time boundaries, time zone, and aggregation scope |
 | Data update | Update time or latest record matches the expected cycle | Check whether the source job, metering, or quota record has been generated |
 | Cross-check | Configuration, status, and relationships on Quotas matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
