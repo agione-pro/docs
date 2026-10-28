@@ -74,7 +74,7 @@ The following image covers the full visible range of this group, so each configu
 
 #### Notes
 
-- `Reset key` is a write action and appears disabled in this capture set. Its confirmation dialog and result message are not collected (see U-03), so do not click it during a read-only review.
+- `Reset key` is a write action and appears disabled in this capture set. Its confirmation dialog and result message are not collected, so do not click it during a read-only review.
 - Gateway addresses, signing keys, and internal endpoints must not be written into documentation, screenshots, tickets, or chats.
 
 ### Review Job Scheduling And Resource Governance Configuration
@@ -102,7 +102,7 @@ Use the `Job scheduling and resource governance` group to confirm which job type
 #### Notes
 
 - Scheduling thresholds, resource precheck, and queued job types directly affect whether a job can be scheduled. Confirm the impact scope and rollback plan before changing them.
-- The full option set behind the pencil icon, such as other job types that can be queued, is not evidenced by the captures (see U-07).
+- The full option set behind the pencil icon, such as other job types that can be queued, is not evidenced by the captures.
 
 ### Review Job Runtime And Storage Configuration
 
@@ -155,7 +155,7 @@ Use the `Template framework start commands` group to confirm the default start c
 #### Notes
 
 - This command template directly determines how a new job starts. A change affects every later job that uses the version, so run it through the change process.
-- The full framework tab set, the meaning of the number behind a tab, and the version hierarchy are not fully captured (see U-09).
+- The full framework tab set, the meaning of the number behind a tab, and the version hierarchy are not fully captured.
 
 ### Review VRAM Calculation Configuration
 
@@ -367,7 +367,7 @@ Follow this section when a change is approved, impact-assessed, and rollback-rea
 
 1. Confirm that the current environment, account, and target group match the change target.
 2. Confirm that change approval is in place and that the impact on scheduling, storage, billing, monitoring, or feature availability is assessed.
-3. Confirm the form of the edit entry: the captures evidence only the pencil icon at the end of a value row. The `Edit` and `Save` button wording is not captured (see U-01 and U-02).
+3. Confirm the form of the edit entry: the captures evidence only the pencil icon at the end of a value row. The `Edit` and `Save` button wording is not captured.
 
 #### Steps
 
