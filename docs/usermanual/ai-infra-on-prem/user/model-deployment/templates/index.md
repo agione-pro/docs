@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation Path | AI Infra(On-Prem) > Model Deployment > Templates |
+| Navigation Path | On-Prem > Model Deployment > Templates |
 | Page Route | `/powerone/quickstart/inference-template` |
 | Managed Object | Configuration, status, and relationships on Templates |
 
@@ -59,39 +59,151 @@ The page displays model library, accelerators, business parameters, recommended 
 
 ### View Deployment Templates
 
-1. Go to `Model Deployment > Deployment Templates`.
-2. Filter by template name, model, framework, status, or update time.
-3. Open details and check model version, image, resource flavor, ports, storage, and replica configuration.
-4. If no record is returned, reset filters. For an unavailable template, check dependent assets and quota.
+#### Applicable Scenarios
+
+- Use this entry to find a deployable model and confirm which accelerators can run it before you start a deployment.
+
+#### Steps
+
+1. Go to `Model Deployment > Templates`.
+2. In `Model Library`, narrow the list with the author tabs, the `Search model / author / tag / accelerator` box, the sort option `Default`, or `Clear Filters`.
+3. Check each model card for the model name, parameter size, author, context length, the `Capabilities` tags, and the `Deployable` state. After you pick a card, the wizard replaces the `Model Library` list with the `Selected model: qwen3.5-0.8b 0.8B Text Generation` summary bar, so no outlined card stays on this screen.
+4. In `Accelerators`, narrow the list with the vendor tabs, then use `Expand All` or `Collapse All` to read the card groups.
+5. Check each accelerator group for the card model, memory size, the `Managed` or `Unmanaged` state, the supported precisions, and the `Peak ... TFLOPS` value.
+6. In the wizard, check the model version, the resource flavor, and the replica count. The image, port and storage fields are not shown on this screen; they belong to the custom deployment flow (`Inference Framework` with `All images`, `Exposed Ports`, `Storage Mounts`).
+
+#### Result Validation
+
+- The model list returns the target model with the `Deployable` state, and the accelerator panel returns at least one card group.
+- If the list is empty, clear the filters and check which author tab is selected.
+
+#### Notes
+
+- An `Unmanaged` accelerator may not be directly deployable.
+- The counts next to `Model Library` and `Accelerators` are the records visible to the current account, not the platform total.
 
 ### Review Deployment Parameters and Cost
 
-1. After selecting a template, review region, cluster, flavor, replicas, and estimated resource usage.
-2. Compare capacity, availability, and quota with business requirements.
-3. If parameters are incompatible, correct them according to the page message without bypassing limits.
-4. Before the final deployment action, confirm resource and cost impact and execute the deployment only after approval.
+#### Applicable Scenarios
 
-### Deploy Template
+- Use this entry after a model is selected, to confirm the business parameters and compare the recommended specifications before you commit resources.
 
-#### Pre-Operation Check
+#### Steps
 
-1. Confirm that the current account has access to `AI Infra > On-Prem > Model Deployment > Templates`.
-2. Confirm that the target tenant and region have been selected correctly if the page provides global selectors.
+1. Check the `Selected model:` line, which repeats the model name, parameter size, and capability such as `Text Generation`.
+2. In `Business Parameters`, review each numbered parameter in turn: `1/7 Inference framework`, `2/7 Accelerator`, `3/7 Acceptance concurrency`, `4/7 Acceptance context (K)`, `5/7 Weight artifact format`, `6/7 KV cache dtype`, and `7/7 Planning headroom (%)`.
+3. Select the option that matches your workload. Each parameter row shows the resolved value next to its `Custom` entry, such as `Custom V100` and `Custom bf16`.
+4. In `Recommended Specifications`, switch between `Single Instance` and `Cluster`, and compare the available count under each tab, such as `1 available` and `0 available`. The `Multi-instance` tab is not shown on this screen.
+5. Read the `Pros` and `Notes` line for the selected tab, such as `Independent instances, automatic count` and `Each instance must fit the full model`, then compare `Actual Accelerators`, `Physical VRAM per instance`, and `Average Usage` across the candidate cards. On the captured screen that label renders as `Physical VRA…` inside its own metric box.
 
-#### Procedure
-
-1. Go to `AI Infrastructure > On-Prem > Model Deployment > Templates`.
-2. View deployable models in `Model Library`.
-3. Select the target model and review `Accelerators`, `Business Parameters`, and `Recommended Specifications`.
-4. Review model capability, context, startup, or runtime parameters in `Business Parameters`.
+The following screen shows the business parameters and the recommended specifications side by side.
 
 ![Business parameters](./images/business-parameters.png)
 
-5. Enter `Deployment Settings` and review instance name, region, specification, and startup parameters.
+6. Confirm the resource and cost impact before the final deployment action, and deploy only after approval.
+
+#### Result Validation
+
+- The right-hand list refreshes after you change a left-hand parameter, as stated by `Specification plans refresh as left-side parameters change`.
+- At least one specification card is selectable, and the chosen card is marked `Selected · Recommended`.
+
+#### Notes
+
+- When every tab shows zero available specifications, first check accelerator adaptation, resource specifications, quota, and region; if the wizard has just opened, re-check the counts after the list settles, because a zero count during loading is not a stable result.
+- A specification that fits the model may still exceed the quota of the current tenant; the page does not reserve resources until you submit.
+
+### Deploy Template
+
+#### Applicable Scenarios
+
+- Use this entry to turn the selected model, business parameters, and specification into a running model instance.
+
+#### Pre-Operation Check
+
+1. Confirm that the current account has access to `Model Deployment > Templates`.
+2. The top bar provides no global tenant or region selector; the switcher only toggles between `On-Cloud` and `On-Prem`. Confirm the region inside the deployment form, where it is a required field.
+
+#### Steps
+
+1. On the selected-model bar, check the summary chips `Framework Transformers 5.2.0-wanmore-r4`, `Plan V100 · 1 cards`, `Concurrency 1`, `Context 2K`, and `Precision BF16`.
+2. In `Deployment Settings`, check the specification card for `CPU 12 Core`, `MEMORY 24 GiB`, `AI ACCELERATOR 1 * V100`, and the `STATUS` value such as `Available`. The `Switch Specification` button is not shown on this screen.
+3. Check the `Total Resources` panel for the aggregated `CPU`, `MEMORY`, `AI ACCELERATOR`, `SPECIFICATION`, and `Instances:` values, such as `1 cards` and `nv-v100-32g-g1c12m24g`.
+4. In `Deployment Location`, set `Region`, such as `wuhan`, check its state, and set `Project` when the deployment needs one; the default value is `No project specified`. The `Availability Zone` field is not shown on this screen; it appears in the custom deployment flow under `Region and Zone`.
+5. In `Service Info`, check the required `Name` field, and expand `Startup Parameters` only when the inherited values do not fit your case; that section reads `Parameters used for model deployment. Most scenarios do not need changes.`
+6. Check the `Preview` panel for `Estimated VRAM required per instance`, `Framework`, `Precision / KV`, `Overall target / theoretical max concurrency`, `Actual Accelerators`, `Quantity`, `Context Length`, `VRAM Usage Ratio (single instance)`, `Model Weights`, `KV Cache`, `Framework/VL/Runtime Overhead`, `Total VRAM Usage`, and `Effective Capacity Usage`.
+7. Read the per-instance statement `Weight, KV Cache, framework overhead and utilization above are all per instance.`, then the summary line below it, such as `Per instance: required 5 GB / physical VRAM 32 GB; effective capacity after reserving 15%: 27.2 GB.`
+8. Read the footer hint `Confirm deployment settings and submit the quick build task`, then click `Submit`. Use `Previous` or `Back to Previous Step` to revise an earlier choice.
+
+The following screen shows the deployment settings and the preview of the same submission.
 
 ![Deployment settings](./images/deployment-settings.png)
 
-6. Review final configuration in `Preview`.
+
+#### Result Validation
+
+- The `STATUS` value on the selected specification card shows `Available` before you submit.
+- After submission, the instance appears on the Instances page and its configuration matches the `Preview` panel.
+
+#### Notes
+
+- Template parameters are maintained by operators. Do not modify startup parameters casually, because incorrect parameters may cause model service startup failure.
+- The `Name` field is prefilled from the model name. Replace the generated default with a name that follows your own convention.
+
+### Create a Custom Model Instance (Model and Version)
+
+#### Applicable Scenarios
+
+- Use this entry when the model you need is not in the list, or when you want to deploy a public model with your own parameters.
+
+#### Steps
+
+1. Open the custom deployment entry `Custom Deploy`.
+2. On the `Create Custom Model Instance` page, read the subtitle `Deploy a public model with custom parameters.`.
+3. In `Model Library`, narrow the list with the author tabs and the `Search model / author / tag / accelerator` box.
+4. Check the model card for the model name, parameter size, author, context length, the `Capabilities` tags such as `Tool Calling` and `Reasoning`, and the `Deployable` state. A selected card is outlined and its title is highlighted.
+5. If no model fits, use the banner `Can't find the right model? Deploy your own model` to switch to your own model.
+6. In `Model Versions`, check the `Selected Model` line, narrow the list with `Search versions, parameter sizes, or frameworks`, and select a version card by its precision tag, parameter size, and framework label.
+
+The following screen shows the model library and the model versions of this step.
+
+![Create a custom model instance](./images/create-custom-instance.png)
+
+#### Result Validation
+
+- The `Selected Model` line in the right column shows the model you picked in the left column.
+- The version card you selected shows the `Deployable` state.
+
+#### Notes
+
+- At the captured window width the framework label on a version card is already cut off inside its own box, which reads `Transformers:5.2.0-war` for the full name `Transformers:5.2.0-wanmore-r4`, and no ellipsis glyph is drawn at its right edge.
+- The counts next to `Model Library` and `Model Versions` are the records visible to the current account.
+
+### Create a Custom Model Instance (Configuration and Submission)
+
+#### Applicable Scenarios
+
+- Use this entry after the model and version are selected, to finish the deployment configuration and create the instance.
+
+#### Steps
+
+1. In `Deployment Plan`, choose `Single Instance` or the cluster plan; in the cluster plan, check `Main Node Count` and `Worker Count`.
+2. In `Inference Framework`, filter the image list with `All images` and the vendor tabs, then select a framework card.
+3. In the `Specification` table, compare the columns including `Price` and select one row.
+4. In `Region and Zone`, select the region and confirm that its state is `Normal`.
+5. In `Storage Mounts`, `Exposed Ports`, `Environment Variables`, and `Start Command`, review the inherited values before you create the instance.
+6. Read the command generated in `Start Command`, then click `Confirm and Create`.
+
+The section names above are taken verbatim from the English screen of this step.
+
+#### Result Validation
+
+- The selected framework card and the selected specification row stay highlighted before you submit.
+- After creation, the new instance appears on the Instances page.
+
+#### Notes
+
+- In the captured screen the `Price` cell shows `--`; this does not mean every specification has an empty price.
+- The page shows the mounted-storage summary as `0 paths`; in the captured screen the right end of that value is covered by a floating widget outside the application, which is a capture limit, not a product defect.
 
 ## Parameter Quick Reference
 
@@ -111,10 +223,7 @@ The page displays model library, accelerators, business parameters, recommended 
 
 - If an accelerator shows `Unadapted` or `Unmanaged`, it may not be directly deployable.
 - When recommended specifications are empty, first check accelerator adaptation, resource specifications, quota, and region.
-- Template parameters are maintained by operators. Do not modify startup parameters casually, because incorrect parameters may cause model service startup failure.
-- `Submit`, `OK`, and `Confirm` are high-risk final actions.
-- Deploying through a template may create real model instances, occupy resources, and generate usage.
-- Do not write real tenant names, region names, model IDs, resource IDs, internal image addresses, endpoints, startup parameters, logs, or test data in the document.
+- `Submit` and `Confirm and Create` are the high-risk final actions on this page's screens, and neither was executed while capturing them. `Confirm` appears only in the dialog that clears incompatible downstream settings when you switch a configuration, so it is not a deployment action.
 
 ## Result Validation
 
@@ -227,4 +336,3 @@ The current page is normal, but a downstream page cannot select or associate Con
 
 1. Go to [Instances](../instances/) to view model instance status.
 2. Go to [Usage](../../quotas-usage/usage/) or [Quotas](../../quotas-usage/quotas/) to review quota and usage changes.
-3. Go to [Monitoring Overview](../../monitoring/overview/) to monitor runtime status after deployment.

@@ -102,7 +102,7 @@ For example, if you use ModelScope, search for the target model on ModelScope an
 ### 3.1 Select the model and template
 
 1. Sign in with an End User account.
-2. Open `AI Infrastructure > On-Prem > Model Deployment > Templates`. In versions that expose the template entry on the On-Prem landing page, use that equivalent entry. Earlier versions can show `My Models > Start`; this entry also opens the available deployment templates.
+2. Open `On-Prem > Model Deployment > Templates`. In versions that expose the template entry on the On-Prem landing page, use that equivalent entry. Earlier versions can show `My Models > Start`; this entry also opens the available deployment templates.
 3. Search for the target model and select it to open the configuration page.
 
 ![Select the target model from the available templates](../../usermanual/ai-infra-on-prem/user/model-deployment/templates/images/templates-list.png)
@@ -135,7 +135,7 @@ Starting an instance can take several minutes. A DeepSeek-R1 14B instance can ta
 
 ### 4.1 Select the private model type and start publishing
 
-1. Keep using the End User account and open `AI Infrastructure > On-Prem > Model Deployment > Instances`.
+1. Keep using the End User account and open `On-Prem > Model Deployment > Instances`.
 2. Confirm that the target instance is `Running` and that its service port is available, then open the instance actions from the model-instance list or `My Deployments` and click `Publish`.
 3. In `Choose where to publish`, select `Private` and click `Publish to Private`.
 4. Confirm that the publishing source is the instance created in the previous stage.

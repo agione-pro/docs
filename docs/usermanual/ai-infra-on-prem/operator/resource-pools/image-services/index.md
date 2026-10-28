@@ -5,9 +5,9 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Resource Pools > Image Services |
+| Navigation Path | On-Prem > Resource Pools > Image Services |
 | Page Route | `/powerone/resourcepool/images` |
-| Managed Object | Configuration, status, and relationships on Image Services |
+| Managed Object | Provider type, credentials, repository endpoint or region, public and tenant-private namespaces, component name and description, health state, quota, and the image groups and tags inside each component |
 
 #### Beginner Explanation
 
@@ -23,11 +23,11 @@ Image Services is like the image repository access card of the platform. It tell
 
 #### Recommended Operation Order
 
-Confirm prerequisites for Service type, image, name, Endpoint (Public URL), Internal IP Address, Username, Password, Description, and Actions, follow Main Operations, run Result Validation, and continue to the next page.
+Confirm prerequisites for the provider type, the credentials, the Harbor endpoint or cloud region, the public and tenant-private namespace, the component name, and the description, follow Main Operations, run Result Validation, and continue to the next page.
 
 #### First-Time User Notes
 
-Confirm that the task involves Configuration, status, and relationships on Image Services, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
+Confirm that the task involves the provider type, the credentials, the repository endpoint or region, the namespaces, the component name and description, the health state, the quota, or a component's image groups and tags, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -38,109 +38,190 @@ Confirm that the task involves Configuration, status, and relationships on Image
 
 ## Page Description
 
-Use this page to manage image-service type, image, name, public endpoint, internal IP address, account information, description, and available actions.
+Use this page to manage connected image components: their provider type, credentials, repository endpoint or region, public and tenant-private namespace, component name and description, health state, and quota.
 
 ![Image Services](./images/manual-image-services.png)
 
-The page displays connected image components, status, access address, project count, sync status, and associated regions.
-
-The following figure shows the image services list, where component status, Endpoint, sync status, and operation entrypoints can be viewed.
+Components are shown as cards. Each card shows its health state, `Repositories N items`, `Enabled public image tags N items`, and the bound regions, with a bare timestamp in the lower-right corner; the region line reads `No bound regions` while nothing is bound, and either counter shows `0 items` when empty. A Harbor card shows the registry address with `Copy registry address`, while a cloud card shows the account or Access Key line with a `Copy` action. Filter with the `All` / `Harbor` / `Huawei Cloud SWR` / `AWS ECR` / `Alibaba Cloud ACR Enterprise` tabs, type a component name, endpoint, region, or description into the search box whose placeholder is `Search by component name, endpoint, region or description...`, then click the search icon. The page header offers `Register`, and each card footer carries four icon-only entries whose labels appear on hover.
 
 ## Main Operations
-
-### View Image Services
-
-1. Open the corresponding resource-pool component page and filter by name, cluster, status, or update time.
-2. Open details and check redacted Endpoint information, capabilities, associated clusters, capacity, and health.
-3. If no record is returned, reset filters and check cluster status. Do not copy credentials, internal addresses, or complete configuration.
-4. For abnormal health, inspect connectivity and events before registering another component.
 
 ### Register Image Component
 
 #### Applicable Scenarios
 
-Register an image component when a new Harbor, Docker Registry, or compatible image repository needs to be connected and used by specified regions, clusters, or user-side image services.
+Register an image component when a self-hosted Harbor registry or a cloud container registry needs to be connected so that the resource pool can pull and store images through it.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Image Services`.
-2. Click **"Register component"**.
-3. Fill in `Service Type`, `Image`, `Name`, `Endpoint (Public URL)`, `Internal IP Address`, `Username`, `Password`, and `Description` according to the page fields.
-4. If the page provides `Test Connection`, run the read-only connectivity check first and confirm the returned result.
-5. Before submission, confirm that the repository address is reachable from both the platform side and target clusters, and that robot credentials or access accounts have minimum required permissions.
-6. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify Endpoint, internal IP address, credential source, and component usage scope again.
+1. Go to `On-Prem > Resource Pools > Image Services` and click **"Register"** to open the `Register image component` dialog.
+2. Under `Image service (Provider) *`, choose the provider card: `Harbor`, `Huawei Cloud SWR`, `AWS ECR`, or `Alibaba Cloud ACR Enterprise`. Providers that are not available are shown as disabled cards. Each provider lists the permission codes its account needs, with `Copy All` and `Expand permissions`.
+3. In `Security and credentials`, fill in the credential pair of the chosen provider: `Username *` and `Password *` for Harbor, or `Access Key *` and `Secret Key *` for Huawei Cloud SWR and AWS ECR. `Show password or Secret Key` reveals the value.
+4. Fill in the address or the region: a Harbor component takes `Endpoint (Public URL) *`, while SWR and ECR components take `Cloud region *`, whose options are returned by `Load regions` after the credentials are complete.
+5. Set the storage usage and the name: `Public image Project / Namespace *`, `Tenant-private image Project / Namespace *`, `Component name *`, and `Description`. The dialog states that public and private only describe the storage usage on the platform side and do not change cloud visibility.
+6. Click the final **"Account preflight"** to submit. Before that, verify the provider, the endpoint or region, the credential source, and both namespace values again.
 
-The following figure shows the Register Image Component form, used to fill in image service connection information and sync configuration.
+The following figure shows the `Register image component` dialog. The credential fields and the address or region field change with the provider you choose.
 
 ![Register Image Component](./images/register-component.png)
 
-### Set Default Image Service Quota
-
-#### Applicable Scenarios
-
-Use **"Set Default Quota"** when an image service needs a default resource quota for tenants without an individual quota.
-
-#### Steps
-
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Image Services` and locate the target image service.
-2. Use the page entry **"Set Default Quota"**.
-3. Verify the service, quota fields, and scope shown by the page, then fill in or adjust the allowed quota.
-4. Before the final confirmation, verify that the default quota will not exceed service capacity or affect current tenant use unexpectedly.
-
 #### Result Validation
 
-- Image service details or quota information shows the new default quota.
-- Tenants without an individual quota use the new default quota for calculation or restriction.
-- Tenants with an individual quota keep their dedicated configuration.
+- After a successful submit, the component appears as a card on the `Image Services` page, showing its health state, `Repositories N items`, `Enabled public image tags N items`, and the bound regions.
+- What the card shows depends on the provider you chose: a Harbor card shows the registry address with `Copy registry address`, while a cloud card shows the account or Access Key line with a `Copy` action.
+- The preflight result is what drives the health state. Refer to what the page actually shows for the exact wording of the preflight outcome.
 
 #### Notes
 
-- A default quota affects multiple tenants or objects without dedicated settings. Confirm capacity and business scope first.
+- The register dialog footer offers `Cancel` and `Account preflight`, and `Account preflight` is the action that submits the registration — this dialog has no separate save step.
+- The account you enter must already hold the action codes the provider card lists; use `Copy All` or `Expand permissions` in the dialog to check them before you submit.
+- `Public image Project / Namespace` and `Tenant-private image Project / Namespace` are separate assignments, and on the edit dialog the two selectors exclude each other's choice.
+- Choosing `Alibaba Cloud ACR Enterprise` is shown as a disabled provider card, so a component cannot be registered with it at present.
+
+### Edit Image Component
+
+#### Applicable Scenarios
+
+Edit an image component when its name, description, credentials, or namespace assignment must change.
+
+#### Steps
+
+1. Click **"Edit"** on the target component card to open the `Edit image component` dialog.
+2. `Basic configuration` keeps the current provider selected in `Image service (Provider) *`, and an unsupported provider stays a disabled card with a lock icon. The banner below the cards states which RBAC action codes the account needs, with `9 in total`, `Copy All`, and a collapse control.
+3. In `Security and credentials`, `Username *` and `Password *` both carry the placeholder `Leave blank while editing to keep the existing credential`: leave them empty to keep the stored credential, or fill both in to replace it.
+4. In `Harbor registry address`, review `Endpoint (Public URL) *`, then adjust `Public image Project / Namespace *` or `Tenant-private image Project / Namespace *`; `Load` re-reads the namespace list from the registry. The two selectors exclude each other's choice, so a namespace can only be moved, never left unassigned. The note under them states that public and private describe the storage usage on the platform side only and do not change cloud visibility.
+5. Update `Component name` — the label renders its required mark before the name, as `* Component name` — and `Description`.
+6. Click the final **"Account preflight"** to submit.
+
+The following figure shows the `Edit image component` dialog in its Harbor form; the credential fields and the address or region field change with the provider you choose.
+
+![Edit Image Component](./images/edit-component.png)
+
+#### Result Validation
+
+- The card shows the new component name and description, and the health state reflects the preflight result.
+
+#### Notes
+
+- Editing does not change image data in the cloud repository; it only changes the platform-side assignment.
+- Confirm the credential source before replacing it, because a failed preflight leaves the component unusable.
+
+### Manage Image Component Quota
+
+Quota has a single entry: **"Quota management"** on the component card opens the `Component quota management` dialog, which separates the two scopes into the `Default quota` and `Tenant quota` tabs.
+
+#### Applicable Scenarios
+
+Use `Default quota` to set the baseline for every tenant that has no dedicated quota, and `Tenant quota` to loosen or tighten the limit for one specific tenant.
+
+#### Steps
+
+1. Go to `On-Prem > Resource Pools > Image Services` and click **"Quota management"** on the target component card.
+2. On the `Default quota` tab, check or adjust `Default maximum image groups per tenant *` and `Default maximum image tags per tenant *`. Ticking `No quantity limit` disables the matching input and leaves that dimension unlimited; a number still visible in a disabled input is a placeholder, not the effective value.
+3. Switch to the `Tenant quota` tab. Its header shows the `Current baseline: ...` line — when the default quota is unlimited it reads `Current baseline: Unlimited image groups · Unlimited image tags` — and a `Configure default quota` link that jumps back to the `Default quota` tab.
+4. In the `Add` block, choose `Target tenant *`, then fill in `Max image groups *` and `Max image tags *`; ticking `Unlimited` beside either field disables that input and leaves the dimension unlimited. Click **"Add"** to submit the new row.
+5. To change an existing row, click `Edit` in its `Actions` cell: the block becomes `Edit tenant quota`, the header offers `Cancel Edit / Switch to Add`, and the footer button becomes `Save`. To drop a tenant back to the baseline, click `Remove`.
+6. The `Default quota` tab and the tenant edit block submit with **"Save"**; the tenant add block submits with **"Add"**. Besides these buttons, the dialog offers only the close control in the header.
+
+The figure shows the `Tenant quota` tab in its add state, with the baseline line and the two `Unlimited` checks visible.
+
+![Tenant Quota](./images/quota-tenant.png)
+
+#### Result Validation
+
+- The `Default quota` tab shows the new baseline, and the `Tenant quota` tab lists the tenant under `Tenant name` with its `Image group limit`, `Image tag limit`, and `Updated at`; the `Actions` cell offers `Edit` and `Remove`.
+- A tenant without a dedicated row follows the baseline. Once every dedicated row is gone, the tab shows the empty state `No special quotas configured. All tenants currently follow the default baseline quota.`, which is the visible signal that all tenants are back on the baseline.
+
+#### Notes
+
+- A default quota affects every tenant without a dedicated setting. Confirm capacity and business scope first.
+- Lowering a quota may affect image use that is already in progress. Confirm the business window first.
 - Do not write real registry addresses, accounts, passwords, or access keys in quota descriptions or screenshots.
 
-### Set Tenant Image Service Quota
+### Health Check
+
+**"Health check"** is not a read-only check. It runs the same preflight as registration and creates and deletes temporary objects while doing so.
 
 #### Applicable Scenarios
 
-Use **"Set Tenant Quota"** when a specified tenant needs an image service quota different from the default.
+Run a health check after credentials rotate, after a permission change on the provider side, or when a component reports an unexpected pull failure.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Image Services` and locate the target image service.
-2. Click **"Set Tenant Quota"** and select the target tenant.
-3. Verify tenant, image service, and quota fields, then enter the tenant quota.
-4. Before the final confirmation, verify that the tenant scope and quota will not affect other tenants.
+1. Click **"Health check"** on the target component card to open the health check dialog. The run starts immediately.
+2. The dialog executes the preflight steps in sequence and marks each one as it completes. While the run is in progress, the dialog provides an entry to stop it.
+3. Wait for the run to finish; the final steps clean up the temporary objects the earlier steps created.
+4. The dialog is titled `Image component health check` and states that the system runs the same account preflight used during registration and updates the component health state from its result; the flow counts nine steps (`03 / 9 Flow progress`), and the captured step names are `Create temporary Project / Namespace` (actual call `Harbor CreateProject`), `List Project / Namespace` (actual call `Harbor ListProjects`), and `Push fixed OCI image`, which uploads a fixed OCI Config, Layer, and Manifest to a temporary repository such as `permission-probe`.
+5. While the run is in progress the footer button reads **"Close"**; on the Chinese interface the same button carries its own label.
+
+The figure shows the health check dialog mid-run with the step timeline.
+
+![Health Check](./images/health-check.png)
 
 #### Result Validation
 
-- Tenant quota details show the target tenant and new quota value.
-- Image use by the target tenant follows the new limit; other tenants follow their own or default quota.
-- Overall image service capacity is not incorrectly over-allocated.
+- Every step reports a pass, and the health state of the card is refreshed from the preflight result.
+- During the run the dialog header shows the progress counter (for example `03 / 9 Flow progress`), which is the visible signal of how far the preflight has reached.
 
 #### Notes
 
-- Verify tenant name and scope before selection so the quota is not applied to the wrong tenant.
-- Lowering a quota may affect image synchronization, upload, or use in progress. Confirm the business window first.
+- The run creates and deletes repositories, namespaces, and tags in the target registry. Do not trigger it repeatedly against a production registry.
+- Stopping the run does not roll back objects that were already created. Check the registry side if you need to confirm leftovers.
 
-### Remove Image Service
+### Manage Image Groups and Tags
+
+Opening a component card from the list enters the drill-down view: the left panel holds the image group tree with the `Public images (N)` / `Private (N)` segments, and the right side shows the tag table, configuration entry, and batch actions for the selected image.
 
 #### Applicable Scenarios
 
-Remove an image service when it is no longer needed and no region, job, template, or image-management record depends on it.
+Inspect the live state of image groups and tags inside a component, maintain the image configuration of a tag, push images with the upload guide, or clean up tags that are no longer used.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Image Services` and locate the target service.
-2. Click **"Delete"** for the target service.
-3. Read the confirmation prompt and verify service name, Endpoint, region bindings, quota settings, and downstream dependencies.
-4. After confirming replacement service, migration handling, and impact scope, click the confirmation button to remove it.
-5. Refresh the list and check downstream choices on Regions & Zones and Image Management.
+1. Open the target component card from the list to enter the drill-down view; the back arrow at the top left returns to the component list.
+2. In the left `Image groups` panel, switch between `Public images (N)` and `Private (N)` and filter with `Search names...`; click `+` to open the `Create Image group` dialog, fill in `* Image groups`, and submit with **"Confirm"** after the three validation rules (length must be between 1 and 128 characters; cannot start or end with '.', '_' or '-', and separators cannot be consecutive; only lowercase letters, digits, '.', '_' and '-' are allowed, no spaces).
+3. Selecting an image shows its tag table on the right (`Tag` / `OS / Architecture` / `Size` / `Digest` / `Push time` / `Pull command` / `Actions`), each row marked `Not enabled` or `Enabled`; ticking rows reveals a batch bar offering **"Clone config"**, **"Overwrite config"**, **"Enable"**, and **"Disable"**.
+4. The row action icon offers `Configure` and `Delete tag`. `Configure` opens the `Image Configuration` panel: `Configuration Version` with its enable switch, the `Application scenes not configured` notice, `Basic Information`, `Supported Specifications`, `Service Open`, `Environment Variables`, `Start Command`, `Extra Parameters` (`Need RDMA Network`), and `Task Log Files`; from the read-only state click **"Edit"** to enter the edit state (`+ Associate Specification` / `+ Add Port` / `+ Add Variable` / `+ Add Log File`) and submit with **"Save"**.
+5. **"Sync"** pulls the latest image groups and tags from the registry; **"Upload guide"** opens the three-step guide — `1. Log in to the registry` (with **"Generate temporary login command"**), `2. Tag the local image`, and `3. Push the image to the component registry` — closed with **"Close"**.
+6. Deleting a tag raises a confirmation that names the image and the tag and states that its image configuration is deleted as well; click **"OK"** to execute.
+
+The figure shows the drill-down view with the tag table and an open row action menu.
+
+![Image Groups and Tags](./images/image-records.png)
 
 #### Result Validation
 
-- The target image service is removed from the service list.
+- A newly pushed row appears in the tag table and both its `Push time` and the image header `Update time` refresh; the state `Enabled` means the image configuration of that tag is enabled.
+- After deletion the row and its image configuration disappear together; after **"Sync"**, image groups newly present in the registry appear in the left tree.
+
+#### Notes
+
+- Deleting a tag **also deletes its image configuration** (stated verbatim in the confirmation); user-side create pages that relied on that version no longer offer it.
+- The docker commands in the upload guide contain the component registry address; masks and doc examples must desensitize it.
+
+### Remove Image Component
+
+#### Applicable Scenarios
+
+Remove an image component when it is no longer needed and no region, job, template, or image-management record depends on it.
+
+#### Steps
+
+1. Go to `On-Prem > Resource Pools > Image Services` and locate the target service.
+2. Click **"Delete"** for the target service.
+3. The confirmation dialog titled `Warning` names the component and states the scope: it removes the image component together with its image groups/images, versions, runtime configurations, and quota records from the platform, while the actual images in the registry are not deleted. Verify the component name, Endpoint, region bindings, and downstream dependencies against that text.
+4. After confirming the replacement component, migration handling, and impact scope, click **"OK"** to remove it; `Cancel` closes the dialog without changes.
+5. Refresh the list and check downstream choices on Regions & Zones.
+
+The confirmation dialog states the deletion scope before anything is removed:
+
+![Delete Confirmation](./images/delete-confirm.png)
+
+#### Result Validation
+
+- The target image component is removed from the component list.
 - Region bindings and new image synchronization or upload entries no longer reference the service.
-- Other services, tenant quotas, and existing image records are not unintentionally removed.
+- Other components, their tenant quotas, and existing image records are not removed. Only the deleted component's own quota records go with it.
 
 #### Notes
 
@@ -151,22 +232,23 @@ Remove an image service when it is no longer needed and no region, job, template
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Service Type | Yes | Dropdown / enum | `Image` | Service type of the current component. On the Image Services page, this usually displays `Image`. |
-| Image | Yes | Dropdown / enum | `<BASE_URL>/<PROJECT>/<IMAGE>:<TAG>` | Service type value when registering an image component. Keep it consistent with the actual page option. |
-| Name | Yes | Text | `Example Name` | Display name of the image service. Use a name that reflects repository purpose, region, or environment. |
-| Endpoint (Public URL) | Yes | Address / path | `<BASE_URL>` | Public entry used by the platform or user side to access the image repository. Use placeholders only in documentation. Do not record real addresses. |
-| Internal IP Address | Conditionally required | IP address | `<PRIVATE_IP>` | Internal address used by clusters or the platform to access the image repository. Keep it consistent with real network, DNS, and container runtime configuration. |
-| Username | Conditionally required | Address / path | `<USERNAME>` | Image repository access account. Fill it only in system forms. Do not write it in documents, screenshots, or tickets. |
-| Password | Conditionally required | Credential / sensitive text | `<PERSONAL_KEY>` | Image repository access password. Sensitive credential. Do not write it in documents, screenshots, or tickets. |
-| Description | No | Multi-line text | `Example description` | Component purpose, boundary, or maintenance notes. Record non-sensitive notes only. |
-| Actions | System-generated | Action entry | `Edit` | Register component, Test Connection, Cancel, Confirm, edit, delete, and similar entries. `Confirm` and `Delete` are high-risk actions. |
+| Image service (Provider) | Yes | Card selection | `Harbor` | `Harbor`, `Huawei Cloud SWR`, `AWS ECR`, or `Alibaba Cloud ACR Enterprise`. Unavailable providers appear as disabled cards. |
+| Username / Password | Conditionally required | Credential / sensitive text | `<USERNAME>` | Harbor only. Enter them only in the system form. Do not copy them into shared documents, screenshots, or tickets. |
+| Access Key / Secret Key | Conditionally required | Credential / sensitive text | `<ACCESS_KEY_ID>` | Huawei Cloud SWR and AWS ECR only. Sensitive credentials. Do not copy them into shared documents, screenshots, or tickets. |
+| Endpoint (Public URL) | Conditionally required | Address / path | `<BASE_URL>` | Harbor only. The registry address the platform uses. Enter the real value in the system form. When sharing outside the console, use placeholders and do not publish real addresses. |
+| Cloud region | Conditionally required | Dropdown / enum | `<REGION_ID>` | Huawei Cloud SWR and AWS ECR only. Options are returned by `Load regions` after the credentials are complete. |
+| Public image Project / Namespace | Yes | Dropdown / enum | `<PUBLIC_NAMESPACE>` | Namespace that stores platform-side public images. |
+| Tenant-private image Project / Namespace | Yes | Dropdown / enum | `<PRIVATE_NAMESPACE>` | Namespace that stores tenant images. The two namespace selectors exclude each other's choice. |
+| Component name | Yes | Text | `<COMPONENT_NAME>` | Display name of the image component. Use a name that reflects repository purpose, region, or environment. |
+| Description | No | Multi-line text | `<description>` | Component purpose, boundary, or maintenance notes. Record non-sensitive notes only. |
+| Actions | System-generated | Action entry | `Edit` | The card offers `Quota management`, `Health check`, `Edit`, and `Delete`, and opening the card enters the drill-down view. The register and edit dialogs offer `Cancel` and `Account preflight`. `Account preflight` and `Health check` write to the provider; `Delete` removes the platform-side record only and leaves registry images untouched; all three are high-risk actions. |
 
 ## Pitfalls
 
 - Registering an image component affects image pull capability for regions, clusters, jobs, online IDEs, and model instances.
 - Incorrect repository address, certificate chain, Robot credentials, or Image Pull Secret may cause `ImagePullBackOff`.
 - Binding the image component to the wrong region may cause user-side image projects to be invisible or jobs to fail image pull.
-- `Save`, `Submit`, and `OK` are high-risk final actions.
+- `Account preflight` (register and edit dialogs), `Add` (tenant quota add block), and `Save` (default quota tab and tenant quota edit block) are high-risk final actions; in `Manage Image Groups and Tags`, `Confirm` (create image group), `Save` (image configuration edit state), `OK` (delete tag confirmation), and `Overwrite config` (batch bar) are high-risk final actions as well.
 - Do not record real repository addresses, Robot passwords, Image Pull Secret, tokens, AK/SK, internal addresses, cluster IDs, resource pool IDs, or internal test parameters.
 
 ## Result Validation
@@ -174,7 +256,7 @@ Remove an image service when it is no longer needed and no region, job, template
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | Image Services opens with the target operation entry | Check Operator permission and whether the menu is available |
-| Object record | Configuration, status, and relationships on Image Services is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| Object record | The target component card, its quota dialog, or its image groups and tags are visible in the list or the drill-down view | Reset filters and verify name, ownership, and creation result |
 | State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
@@ -202,7 +284,7 @@ The save succeeds, but a related tenant still shows the old image quota.
 
 **Symptom:**
 
-The target tenant is not available after opening **"Set Tenant Quota"**.
+The target tenant is not available on the `Tenant quota` tab after opening **"Quota management"**.
 
 **Possible Causes:**
 
@@ -230,7 +312,7 @@ The removal fails or the page reports that associated objects still exist.
 
 **Solution:**
 
-1. Check relationships on Regions & Zones, Image Management, and quota configuration.
+1. Check relationships on Regions & Zones and quota configuration.
 2. Check service task state and update time.
 3. Remove dependencies or complete migration, then retry according to approval.
 
@@ -243,32 +325,32 @@ The create, register, or maintain entry is hidden or disabled.
 **Possible Causes:**
 
 - Role permission is insufficient.
-- the page is read-only.
-- dependencies are not ready.
+- The page is read-only.
+- Dependencies are not ready.
 
 **Solution:**
 
-1. Check Operator permission
-2. read the page message
-3. complete dependency configuration first.
+1. Check Operator permission.
+2. Read the page message.
+3. Complete dependency configuration first.
 
 #### A Downstream Page Cannot Use Image Services
 
 **Symptom:**
 
-The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Image Services.
+The current page is normal, but a downstream page cannot select the image component, its namespace assignment, or the quota applied to the target tenant.
 
 **Possible Causes:**
 
 - Visibility differs.
-- the object is disabled.
-- downstream cache is stale.
+- The object is disabled.
+- Downstream cache is stale.
 
 **Solution:**
 
-1. Check enabled state and ownership
-2. verify role visibility
-3. refresh and select again.
+1. Check enabled state and ownership.
+2. Verify role visibility.
+3. Refresh and select again.
 
 ## Notes
 
@@ -277,12 +359,12 @@ The current page is normal, but a downstream page cannot select or associate Con
 - Incorrect repository address, certificate chain, Robot credentials, or Image Pull Secret may cause `ImagePullBackOff`.
 - Binding the image component to the wrong region may cause user-side image projects to be invisible or jobs to fail image pull.
 - Long-term use of the `latest` tag in production templates is not recommended. Use explicit version tags instead.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
+- `Account preflight` (register and edit dialogs), `Add` (tenant quota add block), and `Save` (default quota tab and tenant quota edit block) are high-risk final actions; in `Manage Image Groups and Tags`, `Confirm` (create image group), `Save` (image configuration edit state), `OK` (delete tag confirmation), and `Overwrite config` (batch bar) are high-risk final actions as well. Confirm the scope and impact before executing one.
 - Do not record real repository addresses, Robot passwords, Image Pull Secret, tokens, AK/SK, internal addresses, cluster IDs, resource pool IDs, or internal test parameters.
 
 ## Next Steps
 
-1. Go to [Regions / Availability Zones](../regions-zones/) to bind or verify the image component.
-2. Guide users to create projects and push images in [Image Services](../../../user/extensions/images/).
-3. Go to Image Management or user-side Image Services to confirm that projects, images, and tags are visible.
+1. Go to [Regions & Zones](../regions-zones/) to bind or verify the image component.
+2. Guide users to create image groups and push images in [Images](../../../user/extensions/images/).
+3. Go to the user-side Images page (`Extensions > Images`) to confirm that projects, images, and tags are visible.
 4. Use a test job, online IDE, or model instance to verify image pull and startup.

@@ -23,11 +23,11 @@ Define the NPU model once with the correct vendor, model identifier, memory, and
 
 1. Filter by the target NPU vendor.
 2. Find the actual model and verify its family, memory, and adaptation state.
-3. If it is missing, create the accelerator and enter the Kubernetes resource name.
-4. Associate the model with the metric used by the cluster device plugin.
-5. Save and verify the expected managed state.
-
-6. Before using the model in specifications or inference templates, confirm that its vendor, model identifier, memory, and resource key match the values reported by the cluster device plug-in.
+3. If it is missing, click **New Accelerator** and enter the hardware information and the Kubernetes resource name.
+4. If a similar model already exists and only a few fields differ (for example the same series with different memory), hover over that model card and use **"New from this"** to pre-fill the dialog, then edit only the differing fields. See the user manual section **New From This Accelerator**.
+5. Associate the model with the metric used by the cluster device plugin.
+6. Save and verify the expected managed state.
+7. Before using the model in specifications or inference templates, confirm that its vendor, model identifier, memory, and resource key match the values reported by the cluster device plug-in.
 
 ![Accelerator management](./images/accelerators-list.png)
 
@@ -57,4 +57,4 @@ Define the NPU model once with the correct vendor, model identifier, memory, and
 
 ## User Manual
 
-[Accelerator Management](/usermanual/ai-infra-on-prem/operator/resource-pools/accelerators/)
+[Accelerators](/usermanual/ai-infra-on-prem/operator/resource-pools/accelerators/)

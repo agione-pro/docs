@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider and Model Consumer |
-| Navigation Path | AI Infra(On-Prem) > Quotas & Usage > Usage |
+| Navigation Path | On-Prem > Quotas & Usage > Usage |
 | Page Route | `/powerone/quota-usage/usage` |
 | Managed Object | Configuration, status, and relationships on Usage |
 
@@ -18,12 +18,17 @@ My usage is like a personal resource consumption record, used to view how much c
 | Term | Description |
 | --- | --- |
 | Quota | Resource upper limit available to a tenant. Common dimensions include GPU, CPU, memory, and specifications. |
-| Specification | Resource package that a job can request, such as CPU, memory, GPU model, and card count. |
-| Consumption Details | Specific resource consumption records under a specification. |
+| Specification | Resource flavor identifier shown in the `Flavor` column of usage details, such as `nv-v100-32g-g1c12m24g`. |
+| Usage Details | Resource metering records listed row by row on the `Usage Details` tab. |
+| Detail Download | Dialog entrypoint that exports metering data from the `Usage Details` tab. |
 
 #### Recommended Operation Order
 
-Confirm prerequisites for Resource specification usage, quota occupation, and consumption details, follow Main Operations, run Result Validation, and continue to the next page.
+1. Go to `On-Prem > Quotas & Usage > Usage`.
+2. On the `Resource Usage` tab, set the filters and click `Search`.
+3. Switch to the `Usage Details` tab and check the `Query Results` band and the detail columns.
+4. Click `Detail Download` to export the current filter scope for records or external review.
+5. Locate abnormal records row by row by `Resource Name`, `Flavor`, and `Batch Number`.
 
 #### First-Time User Notes
 
@@ -37,78 +42,131 @@ Confirm that the task involves Configuration, status, and relationships on Usage
 
 ## Page Description
 
-Use this page to review resource-specification usage, quota occupancy, and consumption details.
+Use this page to review resource usage by billing period, region, resource name, resource type, and project, and to check or export individual metering records.
 
-![Usage](./images/usage-list.png)
+![Resource Usage](./images/usage-resource-tab.png)
 
-The page displays resource specifications, quotas, and operation entrypoints in a table. The screenshot shows multiple specifications with Unlimited credits and provides `Consumption Details`.
+The page provides `Resource Usage` and `Usage Details` tabs. In the screenshot the `Resource Usage` tab is selected, the filter area shows `Billing Period`, `Region`, `Resource Name`, `Resource type`, and `Project` with `Expand`, `Search`, and `Reset`, and the list area shows `No matching resource usage records` when nothing matches.
 
 #### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
-| Search Area | Filters resource specifications by conditions. |
-| Resource Specification | Specification name. |
-| Quota | Quota limit for this specification. |
-| Consumption Details | Opens consumption details for this specification. |
-| Pagination Area | View by page when there are many usage records. |
+| Tab Area | Switches between `Resource Usage` and `Usage Details`. |
+| Filter Area | Queries by `Billing Period`, `Region`, `Resource Name`, `Resource type`, and `Project`; `Expand` adds more conditions. |
+| Query Results Band | Shows `Related Resources`, `Duration`, `credits Amount`, and `Quota Spend`. |
+| Detail List | Shows resource type, flavor, time range, metered amount, and quota spend row by row. |
+| Detail Download | Opens the export dialog to choose the data type and filters before exporting metering data. |
 
 ## Main Operations
 
 ### View Resource Usage
 
-1. Go to `Quotas and Usage > Resource Usage`.
-2. Select a time range and filter by project, region, resource type, or instance.
-3. Check usage, unit, consumption direction, and refresh time.
-4. If no record is returned, check the time zone and reset filters. Redact usage and project data before sharing.
+#### Applicable Scenarios
 
-### Investigate Abnormal Consumption Details
+- When you need to review resource usage by billing period, region, resource name, resource type, or project.
+- When you need to confirm whether the current filter scope returns any usage records.
 
-1. Click an abnormal total or target detail while keeping the same time range.
-2. Compare instance lifecycle, metering details, and top-up records.
-3. Determine whether the anomaly results from continuous runtime, flavor changes, delayed metering, or quota adjustment.
-4. Do not start or stop real resources to test consumption anomalies.
+#### Steps
 
-### View Consumption Details
+1. Go to `On-Prem > Quotas & Usage > Usage` and stay on the `Resource Usage` tab.
+2. Select a `Billing Period` and set `Region`, `Resource Name`, `Resource type`, and `Project` as needed.
+3. Click `Search` to load the result.
+4. Click `Expand` for more conditions, or `Reset` to restore the defaults.
 
-#### Applicable Scenario
+#### Result Validation
 
-When you need to confirm which instances or tasks caused resource consumption for a specification, view consumption details.
+- The list area shows usage results when records match, or `No matching resource usage records` when none match.
+- After the query, confirm the filter values still match the conditions you submitted.
 
-#### Pre-Operation Check
+#### Notes
 
-1. The target resource specification has been located.
-2. Filters are confirmed not to exclude target records.
+- When no record is returned, check the `Billing Period` and `Project` scope first, then decide whether to switch to the `Usage Details` tab.
+- Usage data may contain business resource names. Redact it before external communication.
 
-#### Procedure
+### Query Usage Details
 
-1. Go to `AI Infrastructure > On-Prem > Quota & Usage > Resource Usage`.
-2. Find the target specification.
-3. Click **"Consumption Details"** in that row.
-4. View consumption records in the details dialog or drawer.
-5. Continue troubleshooting by instance name, time, and resource type.
+#### Applicable Scenarios
 
-The following figure shows the page state after opening the consumption details entrypoint, which can be used to view specification usage sources.
+- Switch to the `Usage Details` tab when you need record-by-record metering data for a period.
+- When you need to tell whether consumption comes from `Flavor quota` or `credits`.
 
-![Consumption details](./images/consumption-details.png)
+#### Steps
+
+1. Click the `Usage Details` tab at the top of the page.
+2. Set `Billing Period`, `Region`, `Resource type`, `Resource Name`, and `Project`, then click `Search`.
+3. Read `Related Resources`, `Duration`, `credits Amount`, and `Quota Spend` in the `Query Results` band.
+4. Scroll the list sideways to check `Metered Amount`, `Quota Spend`, `Region`, `Zone`, and `Batch Number`.
+
+The figure below shows the results band and the left columns of the list.
+
+![Usage details list](./images/usage-details-list.png)
+
+The next figure shows the right columns of the same list.
+
+![Usage details right columns](./images/usage-details-columns.png)
+
+#### Result Validation
+
+- The column headers are `Resource type`, `Resource Name`, `Resource ID`, `Flavor`, `Resource Items`, `Start Time`, `End Time`, `Duration`, `Line Type`, `Billing Method`, `Metered Amount`, `Quota Spend`, `Region`, `Zone`, and `Batch Number`.
+- `Line Type` shows `Usage`, and `Billing Method` shows `Flavor quota` or `credits`.
+- The band is titled `Query Results`, and its values correspond to the records matched by the current filters.
+
+#### Notes
+
+- A column that shows `--` has no value for that row, which is not by itself a metering error.
+- The specification and card-count markers in `Resource Items` differ by resource type; align the caliber before cross-type comparison.
+- Each row covers a time interval; use the `Duration` column for the per-row length.
+
+### Download Usage Details
+
+#### Applicable Scenarios
+
+- When you need to export metering data within the current filter scope for archiving or external review.
+- When you need data in either the `Detail Data` or `Summary data` form.
+
+#### Steps
+
+1. Finish the filters on the `Usage Details` tab and click `Search`.
+2. Click `Detail Download` on the right of the results band.
+3. Under `Export settings`, choose `Detail Data` or `Summary data` as the `Data Type`.
+4. Set `Time Range`, `Billing Period`, and `Resource type` as needed.
+5. Under `Resource filters`, set `Region`, `Project`, `Resource Name`, `Resource ID`, and `Batch Number` as needed.
+6. Click `Export` to start, or click `Cancel` or the top-right × to discard this export.
+
+The figure below shows the dialog groups, fields, and buttons.
+
+![Detail Download](./images/usage-detail-download.png)
+
+#### Result Validation
+
+- The dialog is titled `Detail Download`, and its subtitle explains that the export content and filters are chosen before downloading metering data.
+- The dialog contains the `Export settings` and `Resource filters` groups, with the fields listed in the steps above.
+- After `Cancel` or ×, the dialog closes and the tab and filters stay unchanged.
+
+#### Notes
+
+- The dialog fields are identical for `Detail Data` and `Summary data`; only the exported data form differs.
+- Exported files contain business resource names and resource IDs. Redact them before external delivery.
+- The export scope follows the filters inside the dialog, so confirm them separately from the page list filters.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Time Range | Yes | Date range | `Last 7 days` | Limits the usage query window. |
-| Resource Type | Conditionally required | Enum | `GPU` | Views usage by compute, storage, or instance category. |
-| Resource Name | No | Text | `train-job-001` | Locates the specific resource that generated usage. |
-| Accumulated Usage | System-generated | Number / duration | `48 card-hours` | Resource usage within the selected range. |
-| Consumed Credits | System-generated | Number | `1440 Credits` | Consumed credits converted according to platform rules. |
-| Statistics Update Time | System-generated | Date time | `2026-07-06 10:00` | Determines whether usage data has completed synchronization. |
+| Billing Period | No | Date | `2026-10` | Narrows usage and metering records to one billing period. |
+| Resource Name | No | Text | `dev-ide-qwen` | Locates the resource that generated the usage. |
+| Resource Type | No | Enum | `Online IDE` | The `Resource type` column shows values such as `Online IDE`, `Runtime Instances`, and `Object Storage`. |
+| Duration | System-generated | Duration | `1.00 h` | Metered duration of a single detail row. |
+| credits Amount | System-generated | Number | `4,027.35 credits` | credits amount of the current query shown in the results band. |
+| Quota Spend | System-generated | Duration | `193.47 h` | Quota spend reading of the current query shown in the results band. |
 
 ## Pitfalls
 
 - If details are empty, this specification may currently have no consumption records.
 - Statistical data may be delayed and is not suitable as a replacement for real-time instance status.
 
-### Configuration Rules and Impact
+#### Configuration Rules and Impact
 
 - Resource usage is used for statistics and reconciliation and does not directly create or release resources.
 - Unlimited means there is no fixed upper limit, but underlying resources and scheduling conditions still apply.

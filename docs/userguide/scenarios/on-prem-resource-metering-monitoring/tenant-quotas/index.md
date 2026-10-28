@@ -16,7 +16,7 @@ The tenant can request approved NPU plans without reserving more than its share 
 ## Entry
 
 - **Role:** Operator
-- **Menu:** AI Infrastructure > On-Prem > Quotas & Metering > Tenant Quotas
+- **Menu:** On-Prem > Quotas & Metering > Tenant Quotas
 - **Route:** `/powerone/quota-metric/tenant`
 
 ## Steps
@@ -57,4 +57,4 @@ The tenant can request approved NPU plans without reserving more than its share 
 
 ## User Manual
 
-For operator-side verification, use [Metering Details](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) and [Monthly Usage](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/).
+For operator-side verification, use [Monthly Usage](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/) and its `Usage Details` tab.

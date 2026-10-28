@@ -5,9 +5,9 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Templates > Frames |
+| Navigation Path | On-Prem > Templates > Frames |
 | Page Route | `/powerone/fast-build-v2/frameworks` |
-| Managed Object | Configuration, status, and relationships on Frames |
+| Managed Object | Frameworks, framework versions, state, image, node commands, extra parameters, built-in environment variables, and service ports |
 
 #### Beginner Explanation
 
@@ -20,10 +20,12 @@ Framework configuration is like a standard startup manual for model services. It
 | Framework Configuration | A reusable deployment environment template composed of core parameters such as container images, startup commands, network policies, and environment variables. |
 | Framework Name | Name of the underlying inference framework or engine. Use the official framework name where possible, such as `VLLM`, `TensorRT`, or `Triton Inference Server`. |
 | Version Name | Version identifier of the framework configuration, used for iteration tracking or compatibility management. It can align with the underlying framework version or use an internal scenario name. |
+| Version Status | The lifecycle state a framework version carries. It is chosen on the add form, defaults to `Draft`, and shows as the badge in the detail header. |
+| Quantization Config Match | The read-only block that resolves weight quantization and KV Cache quantization for the selected framework and version from `VRAM Config`. Unmatched entries show `Not configured`. |
 
 #### Recommended Operation Order
 
-Confirm prerequisites for Framework name, version name, image, main node startup command, worker node startup command, extra parameters, environment variables, port exposure policy, port tags, and creation success message, follow Main Operations, run Result Validation, and continue to the next page.
+Confirm prerequisites for Framework name, version name, image, main node startup command, worker node startup command, extra parameters, environment variables, port exposure policy and port tags, follow Main Operations, run Result Validation, and continue to the next page.
 
 #### First-Time User Notes
 
@@ -33,160 +35,158 @@ Confirm that the task involves Configuration, status, and relationships on Frame
 
 1. The framework image has been prepared and can be pulled by the target region and target cluster.
 2. The supported model types, quantization methods, ports, main node startup command, and worker node startup command have been clarified.
-3. Extra parameters, environment variables, port exposure policy, port tags, and creation success message have been planned.
+3. Extra parameters, environment variables, port exposure policy and port tags have been planned.
 4. Startup commands, environment variables, extra parameters, and message text have been confirmed not to expose real keys, tokens, AK/SK, private keys, or internal download addresses.
 5. The current account has template management permissions.
+6. The framework quantization configuration of the target framework and version has been maintained on `VRAM Config`, otherwise the matched block shows `Not configured`.
 
 ## Page Description
 
-Use this page to manage framework names, versions, images, primary and worker startup commands, extended parameters, environment variables, and port policies.
+This page maintains framework versions in a master-detail layout: the left panel lists frameworks as cards, and selecting a version fills the detail area on the right.
 
 ![Frames](./images/manual-frames.png)
 
-The page displays the framework configuration list and supports maintaining framework basic information, image versions, startup commands, and configuration parameters.
+The panel is titled `Framework Versions`. Its header carries the add entry as a `+` icon button, the search box below shows the placeholder `Framework`, and `Search` runs the filter. Each framework card shows an abbreviation avatar with an upload marker, the framework name, and a version count; expanding a card lists its versions with the version string, an update timestamp, and a state dot, and the selected version is highlighted.
 
-The following figure shows the framework configuration page.
+The detail header shows `<FRAMEWORK> : <VERSION>`, the version state badge, the line `Updated: <YYYY-MM-DD HH:MM>`, and the `Edit` and `Delete` buttons at the top right.
+
+Below the header the detail area reads, in order, `Quantization Config Matched`, `Weight Quantization`, `KV Cache Quantization`, `Container Runtime` with its `Image` row, `Main Node Command`, and `Worker Node Command`. Each command box shows the hint `Type $ to use placeholders`.
+
+The matched block reports `Source: VRAM Calculation - Framework Quantization Config.`, so the quantization fields are consumed here instead of being maintained on this page, and an entry without a match shows `Not configured`. Two icon buttons without text labels sit at the top right of the page, and a floating help button sits at the bottom right.
 
 ## Main Operations
 
-### View Framework Configuration
+### Add Framework Version
 
-1. Open the corresponding template-configuration page and filter by name, version, status, or update time.
-2. Open details and check associated models, frameworks, images, resource requirements, and current version.
-3. If no record is returned, reset filters. For incompatibility, first check dependencies.
-4. Redact internal images, storage locations, and startup configuration before sharing.
+#### Applicable Scenarios
 
-### Add Framework or Version
+Use this entry to register the first version of a framework, or to add another version whose image, commands, parameters, or ports differ from the existing ones.
 
-#### Pre-Operation Check
+#### Steps
 
-1. The container image, base dependencies, and image region required by the framework have been confirmed.
-2. The main node startup command, worker node startup command, and single-node startup method have been confirmed.
-3. The service port, port exposure policy, port tags, and access authentication method have been confirmed.
-4. Extra parameters, environment variables, and placeholders have been sanitized.
-5. The model types, inference protocols, and resource specifications supported by the framework have been confirmed.
+1. Go to `On-Prem > Templates > Frames`.
+2. Click the `+` icon button in the `Framework Versions` panel header to open the add form in the content area.
+3. In the form header, choose the framework in the `Framework` selector and the version in the `Version` selector; the two are separated by `:`.
+4. In `Container Runtime`, set the `Image` row by choosing the repository in `Select image` and the tag in the `Version` selector next to it.
+5. Check `Quantization Config Match`: after the framework and version are set, the page fills the weight quantization and KV Cache quantization entries and the matched base commands from `VRAM Config`.
+6. Confirm `Main Node Command` and `Worker Node Command` once `Waiting to Match Base Commands` resolves, and type `$` in a command box to insert placeholders.
+7. Add runtime inputs in `Extra Parameters` (`+ Add Parameter`) and `Built-in Environment Variables` (`+ Add Variable`) when the framework needs them.
+8. Configure exposure in `Service Access` with `+ Add Port`, then click `Save`; `Cancel` leaves the form without saving.
 
-#### Procedure
+The form below opens inside the content area, with `Cancel` and `Save` in its header and the match, command, parameter, and port blocks stacked underneath.
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration`.
-2. Click **"Add"**, **"Add Framework"**, or the actual add entry on the page.
-3. In the basic information area, fill in framework name, version name, description, and supported scenarios.
-4. Select or fill in the framework image, and confirm image region, target cluster, and image registry pull permissions.
-5. Configure main node startup command and worker node startup command, and confirm that commands run as foreground processes.
-6. Maintain extra parameters, environment variables, and placeholder references as required by the page.
-7. Configure service port, port exposure policy, port tag, and health check.
-8. Configure the creation success message to describe access methods and follow-up operations, without real credentials or internal addresses.
-9. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify image, startup commands, ports, authentication policy, and region availability.
+![Add framework version](./images/add-framework.png)
 
-The following figure shows the add framework page, used to configure basic information, runtime settings, port policy, and creation message.
+#### Result Validation
 
-![Add framework](./images/add-framework.png)
+- The framework card in `Framework Versions` increases its version count and the new version row appears with a state dot.
+- Selecting the version fills the detail header with `<FRAMEWORK> : <VERSION>`, its state badge, and the `Updated:` time.
+- The read-only areas resolve the chosen image, the matched quantization configuration, and both node commands.
+
+#### Notes
+
+- `Save` is a high-risk final action; verify framework, version, image, commands, and ports before clicking it.
+- Do not write real tokens, AK/SK, private keys, passwords, or internal endpoints into commands, extra parameters, or environment variables.
 
 ### Import or Export Frameworks
 
 #### Applicable Scenarios
 
-Use the **"Import/Export"** menu to batch-maintain framework configurations, or to export framework definitions for audit, reconciliation, and controlled migration.
+Batch-maintain framework definitions, export the current scope for audit or reconciliation, or move a definition set between controlled environments.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration`.
-2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
-3. For import, upload the file as required by the page and verify framework, version, image, startup commands, port policy, and parameter configuration.
-4. For export, confirm the framework or version filter scope, then generate and download the framework configuration as prompted by the page.
-5. Before importing, verify that image, region, port, and model dependencies are available in the target environment. Save export files in a controlled directory.
+1. Go to `On-Prem > Templates > Frames`.
+2. Open the import or export icon buttons at the top right of the page.
+3. For import, upload the file as the page requires and verify framework, version, image, commands, and port configuration.
+4. For export, confirm the framework or version filter scope, then generate and download the file as prompted.
+5. Before importing, verify that the image, port, and model dependencies exist in the target environment, and keep export files in a controlled directory.
 
 #### Result Validation
 
-- After import, the Framework Configuration list shows the added or updated framework version.
-- The framework scope in the export file matches the current filter conditions.
-- Inference templates or deployment pages can correctly resolve the imported framework version and port configuration.
+- The framework list shows the added or updated version and its version count.
+- The framework scope in the export file matches the filter applied before the export.
+- Inference templates and deployment pages resolve the imported version and port configuration.
 
 #### Notes
 
-- Startup commands, images, and port settings must match the runtime environment. Verify foreground startup, health checks, and access policy before importing.
-- Import may update fields on a framework version with the same identifier. Check referenced templates and instances first.
+- Commands, images, and port settings must match the runtime environment; verify foreground startup and access policy before importing.
+- Import can update fields on a framework version with the same identifier; check referenced templates and instances first.
 
 ### Edit Framework Version
 
 #### Applicable Scenarios
 
-Edit a framework version when its image, startup parameters, ports, or description need to change.
+Adjust the image, node commands, parameters, environment variables, or ports of an existing framework version.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration` and locate the target framework version.
-2. Click **"Edit"** in the target row and verify the framework and version identifiers.
-3. Update the editable configuration provided by the page, with special attention to image, startup commands, ports, and access policy.
-4. Before clicking the final **"Save"** or **"OK"**, verify the impact on referenced templates and running instances.
-5. Return to the list and verify the updated version information and state.
+1. Go to `On-Prem > Templates > Frames` and select the target version in the `Framework Versions` panel.
+2. Click `Edit` at the top right of the detail header, then verify the framework and version identifiers.
+3. Update the editable fields in the form, with special attention to the image, both node commands, and the access policy.
+4. Before clicking `Save`, verify the impact on referenced templates and running instances.
+5. Return to the detail area and verify the updated fields and the `Updated:` time.
 
 #### Result Validation
 
-- The framework list shows the updated version configuration and update time.
-- Inference templates can read the updated framework configuration.
-- Ports, health checks, and startup parameters still match the runtime environment.
+- The detail header shows the updated state badge and `Updated:` time.
+- The read-only areas resolve the new image, commands, and matched quantization configuration.
+- Inference templates read the edited version without a new missing-configuration error.
 
 #### Notes
 
-- Changing a startup command, image, or port may prevent new instances from starting. Arrange compatibility checks and rollback handling first.
-- Do not write real credentials or internal addresses in environment variables, extra parameters, or creation messages.
+- Changing a command, image, or port can prevent new instances from starting; arrange compatibility checks and rollback handling first.
+- `Save` on the edit form is a high-risk final action, and a version referenced by templates or instances must be migrated before it is removed.
 
 ### Delete Framework Version
 
 #### Applicable Scenarios
 
-Delete a framework version when it is no longer used and no inference template, instance, or job depends on it.
+Remove a framework version that is no longer used and that no inference template, instance, or job depends on.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration` and locate the target framework version.
-2. Click **"Delete"** in the target row.
-3. Read the confirmation prompt and verify framework, version, image, port, and downstream references.
-4. After confirming a replacement version and impact scope, click the confirmation button to delete it.
-5. Refresh the list and check framework choices on inference templates and deployment pages.
+1. Go to `On-Prem > Templates > Frames` and select the target version in the `Framework Versions` panel.
+2. Click `Delete` at the top right of the detail header; the button uses the destructive red style.
+3. Read the confirmation prompt and verify framework, version, image, ports, and downstream references.
+4. After confirming the replacement version and impact scope, click the confirmation button to delete it.
+5. Refresh the panel and check the framework scope offered by inference templates and deployment pages.
 
 #### Result Validation
 
-- The target framework version is removed from the framework configuration list.
+- The version row is removed and the framework card decreases its version count accordingly.
 - Downstream templates and new instance configuration no longer offer that version.
-- Other framework versions, images, and running instances are not unintentionally removed.
+- Other framework versions, images, and running instances are not removed.
 
 #### Notes
 
-- Deleting a framework version configuration does not necessarily delete the image in the registry. Handle dependencies and retention separately.
-- Do not directly delete a version referenced by templates or instances. Migrate or remove the reference first.
+- Deleting a version does not delete the image in the registry; handle dependencies and retention separately.
+- `Delete` is a high-risk final action, so never remove a referenced version before its templates or instances are migrated.
 
 ### Maintain Framework Ports
 
 #### Applicable Scenarios
 
-Maintain framework ports when a service port, exposure policy, or port tag must change, or when a port is no longer needed.
+Add, change, or remove the ports a framework version exposes when its service access changes.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Framework Configuration`, locate the target version, and click **"Edit"**.
-2. In the port configuration area, verify service port, exposure policy, port tag, and health check.
-3. When a port is no longer used, click its **"Delete Port"** entry and verify the port number and impact scope.
-4. Before clicking the final **"Save"** or **"OK"**, verify that templates, instances, and access entries will not become invalid.
-5. Return to framework details and verify the port list and access policy.
+1. Go to `On-Prem > Templates > Frames`, select the target version, and click `Edit` in the detail header.
+2. In `Service Access`, review the current entries; an area without configuration shows `No port policy configured`.
+3. Click `+ Add Port` to add a port entry, or update the entry that no longer matches the running service.
+4. Before clicking `Save`, verify that templates, instances, and access entries will not become invalid.
+5. Return to the detail area and verify the port list and access policy.
 
 #### Result Validation
 
-- Framework details show the updated port, exposure policy, and tag.
+- The detail area lists the updated ports under `Service Access`.
 - Health checks and later access entries use the correct port.
-- Templates or instances depending on the port do not show a new missing-configuration error.
+- Templates or instances that depend on the port show no new missing configuration.
 
 #### Notes
 
-- Deleting or changing a port affects service probing, routing, and access. Confirm migration handling for existing instances and callers first.
-- Unsigned or direct port policies expand exposure. Use them only within a clearly controlled network boundary.
-
-#### Operation Screenshots
-
-![Frames operation interface](./images/manual-add-frame.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
+- Changing or removing a port affects service probing, routing, and access; confirm migration handling for existing instances and callers first.
+- Unauthenticated or direct forwarding policies expand the exposure scope; use them only inside a clearly controlled network boundary.
 
 ## Parameter Quick Reference
 
@@ -194,19 +194,21 @@ The image shows fields and the confirmation area after opening the operation ent
 | --- | --- | --- | --- | --- |
 | Framework Name | Yes | Text | `vLLM` | Name of the underlying inference framework or engine. Use the official framework name where possible for easier identification and technical integration. |
 | Version Name | Yes | Text | `v0.8.0` | Version identifier of the framework configuration, used for iteration tracking or compatibility management. Align it with the underlying framework version or use a stable internal scenario name. |
-| Image | Yes | Text | `<BASE_URL>/<PROJECT>/<IMAGE>:<TAG>` | Container image required to run inference tasks. Use placeholders in documentation. Do not write real image registry addresses. |
+| Version Status | Yes | Selection | `Draft` | State the framework version carries. The add form opens on `Draft`, and the detail header shows it as a badge. |
+| Weight Quantization | No | Read-only | `Not configured` | Weight quantization method resolved by `Quantization Config Match`. The value is maintained on `VRAM Config`, not edited on this page. |
+| KV Cache Quantization | No | Read-only | `Not configured` | KV Cache quantization method resolved by the same match block. Unmatched entries show `Not configured`. |
+| Image | Yes | Text | `<BASE_URL>/<PROJECT>/<IMAGE>:<TAG>` | Container image required to run inference tasks. Enter the real image address in the system form. When sharing outside the console, use placeholders and do not publish real registry addresses. |
 | Image Region | Conditionally required | Text | `wuhan` | Region where the image is hosted or can be pulled. Keep it consistent with target region, cluster network, and registry permissions. |
-| Main Node Startup Command | Yes | Configuration text | `Example value` | Startup command for the main node in the task cluster. In single-node tasks, this is used directly as the node startup command. The command must run as a foreground process to avoid immediate container exit. |
+| Main Node Startup Command | Yes | Configuration text | `<config>` | Startup command for the main node in the task cluster. In single-node tasks, this is used directly as the node startup command. The command must run as a foreground process to avoid immediate container exit. |
 | Worker Node Startup Command | Required for distributed scenarios | Configuration text | `python worker.py` | Startup command for Worker nodes, used in distributed inference. Keep it consistent with main-node communication, scheduling topology, and framework version. |
 | Extra Parameters | No | Configuration text | `--max-model-len 8192` | Parameters used to dynamically supplement or adjust startup commands. They can be injected into commands through placeholders. Do not write real tokens, AK/SK, private keys, passwords, or internal addresses. |
 | Environment Variables | No | Configuration text | `ENV=prod` | Preset environment variables injected when the container starts. Use only non-sensitive variables. Use platform credentials or Secret mechanisms for sensitive values. |
 | Service Port | Yes | Port / number | `8000` | Listening port used for platform probing, routing, or service exposure. Must match the actual listening port of the framework. |
-| Port Exposure Policy | Conditionally required | Port / number | `Example value` | Default exposure method and access authentication mechanism for the port. Do not select a non-authenticated policy for external or cross-tenant access. |
+| Port Exposure Policy | Conditionally required | Port / number | `<option>` | Default exposure method and access authentication mechanism for the port. Do not select a non-authenticated policy for external or cross-tenant access. |
 | Port Tag | No | Port / number | `OpenAI API Port` | Used to identify port protocol type or purpose. System predefined tags can generate corresponding access help documents. |
 | Health Check | Conditionally required | Address / path | `/health` | Path or command used to determine whether the framework service starts successfully. Match the actual service path, port, and startup delay. |
-| Creation Success Message | No | Port / number | `Example value` | Message shown to users after the task cluster is created. Markdown and placeholders are supported. It can include access methods and follow-up operations, but not real credentials or internal endpoints. |
-| Parameter Placeholder | No | Configuration text | `${modelName}` | Variable used in startup commands, extra parameters, or creation success messages. Use platform-supported placeholder names and avoid unsupported variables. |
-| Actions | System-generated | Action entry | `Edit` | Add, edit, save, submit, OK, and similar page operations. `Save`, `Submit`, and `OK` are high-risk final actions. |
+| Parameter Placeholder | No | Configuration text | `${modelName}` | Variable used in startup commands and extra parameters. Use platform-supported placeholder names and avoid unsupported variables. |
+| Actions | System-generated | Action entry | `Edit` | Add, edit, save, and similar page operations. `Save` (on the framework add and edit forms) is a high-risk final action. |
 
 #### Port Exposure Policy and Port Tags
 
@@ -222,7 +224,7 @@ The image shows fields and the confirmation area after opening the operation ent
 
 #### Parameter Placeholder Description
 
-Startup commands, extra parameters, and creation success messages can use placeholders. When a job is created, the platform replaces placeholders with actual task cluster parameters.
+Startup commands and extra parameters can use placeholders, and each command box shows the hint `Type $ to use placeholders`. When a job is created, the platform replaces placeholders with actual task cluster parameters.
 
 | Placeholder | Description |
 | --- | --- |
@@ -254,8 +256,8 @@ Startup commands, extra parameters, and creation success messages can use placeh
 - The image must include framework dependencies, model loading dependencies, and required system libraries.
 - Inconsistent image region, image registry permissions, or target cluster network may cause image pull failures.
 - A non-authenticated port exposure policy may expand the real service exposure scope. Do not select it for external or cross-tenant access.
-- Environment variables, extra parameters, and creation success messages must not contain real tokens, AK/SK, private keys, passwords, or internal endpoints.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
+- Environment variables and extra parameters must not contain real tokens, AK/SK, private keys, passwords, or internal endpoints.
+- `Save` (on the Add Framework Version and Edit Framework Version forms) is a high-risk final action. Confirm the scope and impact before executing it.
 
 ## Result Validation
 
@@ -263,7 +265,7 @@ Startup commands, extra parameters, and creation success messages can use placeh
 | --- | --- | --- |
 | Page entry | Frames opens with the target operation entry | Check Operator permission and whether the menu is available |
 | Object record | Configuration, status, and relationships on Frames is visible in the list or details | Reset filters and verify name, ownership, and creation result |
-| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
+| State result | The state badge in the detail header matches the state after creation or change | Check operation feedback, dependency state, and the `Updated:` time |
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 
 ## FAQ
@@ -283,7 +285,7 @@ The framework import completes, but the framework version is missing from an inf
 **Solution:**
 
 1. Open framework details and verify version, image, region, ports, and state.
-2. Check dependencies on Image Management, Regions & Zones, and Inference Templates.
+2. Check dependencies on Regions & Zones and Inference Templates.
 3. Correct identifiers or visibility according to page requirements before importing again.
 
 #### An Instance Fails After Framework Version Editing
@@ -301,7 +303,7 @@ The framework saves successfully, but a new instance cannot start or its health 
 **Solution:**
 
 1. Verify image, startup command, port, and health check in framework details.
-2. Check image availability and network reachability in Image Management and Regions & Zones.
+2. Check image availability and network reachability in Regions & Zones.
 3. Under the approved change process, restore the verified version and repeat startup validation.
 
 #### Framework Version Deletion Fails
@@ -360,7 +362,7 @@ The page opens, but the expected Configuration, status, and relationships on Fra
 
 ## Notes
 
-- Do not write keys in environment variable examples, extra parameters, creation success messages, or screenshots.
+- Do not write keys in environment variable examples, extra parameters, or screenshots.
 - Before changing framework image, port exposure policy, or startup command, confirm the impact scope of templates and instances that use this framework.
 - Images are related to regions. After adding a region or migrating images, revalidate framework availability.
 

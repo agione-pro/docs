@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Resource Pools > File Storage |
+| Navigation Path | On-Prem > Resource Pools > File Storage |
 | Page Route | `/powerone/resourcepool/file` |
 | Managed Object | Configuration, status, and relationships on File Storage |
 
@@ -45,16 +45,7 @@ Use this page to manage file-storage names, tenant limits, overcommit ratios, ca
 
 The page displays connected file storage components, status, service address, shared path, capacity, and associated regions or clusters.
 
-The following figure shows the file storage page.
-
 ## Main Operations
-
-### View File Storage Components
-
-1. Open the corresponding resource-pool component page and filter by name, cluster, status, or update time.
-2. Open details and check redacted Endpoint information, capabilities, associated clusters, capacity, and health.
-3. If no record is returned, reset filters and check cluster status. Do not copy credentials, internal addresses, or complete configuration.
-4. For abnormal health, inspect connectivity and events before registering another component.
 
 ### Create File Storage Component
 
@@ -65,39 +56,33 @@ The following figure shows the file storage page.
 3. The mount path does not conflict with container system directories or application directories.
 4. Tenant isolation method, directory naming rules, capacity limit, and overcommit policy have been confirmed.
 
-#### Procedure
+#### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > File Storage`.
+1. Go to `On-Prem > Resource Pools > File Storage`.
 2. Click **"Register component"** to open the **"New File Storage - File Storage"** page.
 3. Fill in `Name`, `Tenant Quota`, `Overcommit Ratio`, `Phy. Threshold`, and `Log. Threshold` according to the page fields.
 4. In `Cluster Connection Information`, provide connection configuration through `Paste Config`, `Upload File`, or `Manual Input`, and confirm that the configuration content has been sanitized.
 5. If the page provides `Test Connection`, verify connectivity from target cluster nodes to the file storage service first.
 6. In `Cluster Configuration`, fill in `Description`, and continue checking cluster connection information, capacity thresholds, and description according to the actual page.
-7. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify the cluster connection information, capacity thresholds, and capacity impact again.
+7. Before clicking the final **"Submit"**, verify the cluster connection information, capacity thresholds, and capacity impact again.
 
 The following figure shows the New File Storage page, used to fill in basic policy, cluster connection information, and cluster configuration.
 
 ![New File Storage](./images/new-file-storage.png)
 
-#### Operation Screenshots
-
-![File Storage operation interface](./images/manual-register-file-storage.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Name | Yes | File / configuration text | `Example Name` | File storage component name. Use a name that reflects environment, purpose, or capacity boundary. |
+| Name | Yes | File / configuration text | `<name>` | File storage component name. Use a name that reflects environment, purpose, or capacity boundary. |
 | Tenant Quota | Yes | Number / capacity | `10 TiB` | Whether tenant capacity usage is limited. Keep it consistent with tenant capacity policies. |
 | Overcommit Ratio | Yes | File / configuration text | `1.5` | Overcommit ratio between logical and physical file storage capacity. Fill it carefully according to capacity planning. |
-| Phy. Threshold | Yes | Number / capacity | `Example value` | Physical capacity alarm or limit threshold. Do not exceed the real capacity safety boundary. |
-| Log. Threshold | Yes | Number / capacity | `Example value` | Logical capacity alarm or limit threshold after overcommit. Verify it together with the overcommit ratio. |
-| Paste Config | Conditionally required | File / configuration text | `Example value` | Enter cluster connection information by pasting kubeconfig content. Do not write real kubeconfig in documentation. |
+| Phy. Threshold | Yes | Number / capacity | `<number>` | Physical capacity alarm or limit threshold. Do not exceed the real capacity safety boundary. |
+| Log. Threshold | Yes | Number / capacity | `<number>` | Logical capacity alarm or limit threshold after overcommit. Verify it together with the overcommit ratio. |
+| Paste Config | Conditionally required | File / configuration text | `<config>` | Enter cluster connection information by pasting kubeconfig content. Keep the real kubeconfig in the system form; do not copy it into shared material. |
 | Upload File | Conditionally required | File / configuration text | `Controlled configuration file` | Enter cluster connection information by uploading a file. Upload only authorized configuration files from controlled environments. |
-| Manual Input | Conditionally required | Text | `Example value` | Enter cluster connection information manually. Do not write real internal addresses, accounts, or secrets. |
-| Description | No | Multi-line text | `Example description` | Component purpose, boundary, or maintenance notes. Record non-sensitive notes only. |
+| Manual Input | Conditionally required | Text | `<config>` | Enter cluster connection information manually. Do not write real internal addresses, accounts, or secrets. |
+| Description | No | Multi-line text | `<description>` | Component purpose, boundary, or maintenance notes. Record non-sensitive notes only. |
 | Actions | System-generated | Action entry | `Edit` | Test Connection, Submit, Search, Reset, and similar entries. `Submit` submits real configuration. Confirm the scope and impact before executing the final action. |
 
 ## Pitfalls
@@ -106,7 +91,7 @@ The image shows fields and the confirmation area after opening the operation ent
 - Incorrect service address, shared path, export permission, UID/GID, or read/write policy may cause mount failure, write failure, or unintended cross-tenant access.
 - Incorrect capacity thresholds or overcommit ratio may block file volume creation too early, or make displayed capacity inconsistent with actual resources.
 - Verify the file storage service address and mount path from target nodes, not only from the platform management side.
-- `Save`, `Submit`, and `OK` are high-risk final actions.
+- `Submit` (the Create File Storage Component form) is a high-risk final action. `Test Connection` only probes connectivity and is not a final action.
 - Do not write real NFS addresses, internal paths, accounts, secrets, tokens, kubeconfig, cluster IDs, resource pool IDs, tenant directories, or internal test parameters.
 
 ## Result Validation

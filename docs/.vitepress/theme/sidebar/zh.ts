@@ -543,9 +543,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                     { text: '地域/可用区', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/' },
                     { text: '集群管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/' },
                     { text: '加速卡管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/accelerators/' },
-                    { text: '规格指标', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/spec-metrics/' },
                     { text: '资源规格', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/' },
-                    { text: '镜像管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/images/' },
                     { text: '镜像组件', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/image-services/' },
                     { text: '对象存储组件', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/object-storage/' },
                     { text: '块存储组件', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/block-storage/' },
@@ -568,7 +566,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: '用量限制', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/usage-limits/' },
                     { text: '月度计量', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/' },
-                    { text: '计量明细', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/' },
                   ],
                 },
                 {
@@ -634,18 +631,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: '资源用量', link: '/zh-CN/usermanual/ai-infra-on-prem/user/quotas-usage/usage/' },
                     { text: '资源配额', link: '/zh-CN/usermanual/ai-infra-on-prem/user/quotas-usage/quotas/' },
-                    { text: '充值记录', link: '/zh-CN/usermanual/ai-infra-on-prem/user/quotas-usage/top-up-records/' },
-                  ],
-                },
-                {
-                  text: '监控',
-                  collapsed: false,
-                  items: [
-                    { text: '统计概览', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/overview/' },
-                    { text: '集群统计', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/clusters/' },
-                    { text: '节点统计', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/nodes/' },
-                    { text: '设备监控', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/devices/' },
-                    { text: '作业监控', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/jobs/' },
                   ],
                 },
               ],
@@ -841,7 +826,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                 { text: 'Claude Code Plugin', link: '/zh-CN/practices/technical/claude-code-plugin/' },
                 { text: 'Cline', link: '/zh-CN/practices/technical/cline/' },
                 { text: 'Codex', link: '/zh-CN/practices/technical/codex/' },
-                { text: 'Codex Desktop(CC Switch)', link: '/zh/practices/technical/codex-desktop/' },
+                { text: 'Codex Desktop(CC Switch)', link: '/practices/technical/codex-desktop/' },
                 { text: 'Crush', link: '/zh-CN/practices/technical/crush/' },
                 { text: 'Cursor', link: '/zh-CN/practices/technical/cursor/' },
                 { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },

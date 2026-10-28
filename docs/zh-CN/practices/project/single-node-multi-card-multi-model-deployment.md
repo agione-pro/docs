@@ -29,7 +29,7 @@
 | --- | --- | --- |
 | 纳管 Kubernetes 集群和节点 | 集群管理、集群节点、设备监控 | [集群管理](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/) |
 | 定义可选算力套餐 | 规格指标、资源规格、集群关联规格 | [资源规格](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/) |
-| 控制租户可用资源 | 租户额度、配额与计量 | [计量明细](/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) |
+| 控制租户可用资源 | 租户额度、配额与计量 | [月度计量](/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/) |
 | 封装标准模型部署方式 | 推理模板、模型配置、框架、镜像、显存配置 | [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/) |
 | 部署并检查模型服务 | 模型实例、实例状态、日志、访问排障 | [模型实例](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | 查看资源健康和容量 | 统计概览、集群监控、节点监控、设备监控、作业监控 | [统计概览](/zh-CN/usermanual/ai-infra-on-prem/operator/monitoring/overview/) |
@@ -284,7 +284,7 @@ AGIOne 不直接把整台多卡服务器暴露给某个用户使用，而是由�
 
 - [集群管理](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/)
 - [资源规格](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/)
-- [计量明细](/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)
+- [月度计量](/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)
 - [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
 - [模型实例](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
 - [多算力池异构推理调度最佳实践](./multi-compute-pool-heterogeneous-inference-scheduling)

@@ -604,9 +604,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                     { text: "Regions & Zones", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/" },
                     { text: "Clusters", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/" },
                     { text: "Accelerators", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/accelerators/" },
-                    { text: "Spec Metrics", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/spec-metrics/" },
                     { text: "Resource Specs", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/" },
-                    { text: "Images", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/images/" },
                     { text: "Image Services", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/image-services/" },
                     { text: "Object Storage", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/object-storage/" },
                     { text: "Block Storage", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/block-storage/" },
@@ -629,7 +627,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "Usage Limits", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/usage-limits/" },
                     { text: "Monthly Usage", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/" },
-                    { text: "Metering Details", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/" },
                   ],
                 },
                 {
@@ -695,18 +692,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "Usage", link: "/usermanual/ai-infra-on-prem/user/quotas-usage/usage/" },
                     { text: "Quotas", link: "/usermanual/ai-infra-on-prem/user/quotas-usage/quotas/" },
-                    { text: "Top-up Records", link: "/usermanual/ai-infra-on-prem/user/quotas-usage/top-up-records/" },
-                  ],
-                },
-                {
-                  text: "Monitoring",
-                  collapsed: false,
-                  items: [
-                    { text: "Overview", link: "/usermanual/ai-infra-on-prem/user/monitoring/overview/" },
-                    { text: "Clusters", link: "/usermanual/ai-infra-on-prem/user/monitoring/clusters/" },
-                    { text: "Nodes", link: "/usermanual/ai-infra-on-prem/user/monitoring/nodes/" },
-                    { text: "Devices", link: "/usermanual/ai-infra-on-prem/user/monitoring/devices/" },
-                    { text: "Jobs", link: "/usermanual/ai-infra-on-prem/user/monitoring/jobs/" },
                   ],
                 },
               ],

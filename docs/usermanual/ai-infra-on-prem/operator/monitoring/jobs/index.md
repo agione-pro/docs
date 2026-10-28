@@ -5,8 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Monitoring > Jobs |
-| Page Route | `/powerone/monitor/work` |
+| Navigation Path | On-Prem > Monitoring > Jobs |
 | Managed Object | Configuration, status, and relationships on Jobs |
 
 #### Beginner Explanation
@@ -44,31 +43,134 @@ Use this page to inspect model instances, online IDEs, runtime instances, traini
 
 Job monitoring is used to view job queueing, running status, failure causes, and resource occupation. Operators can use it to analyze insufficient resources, image pull failures, startup exceptions, or long-running tasks.
 
-The following figure shows the job monitoring page.
-
 ## Main Operations
 
-### Filter and View Job Monitoring
+### View the Job Monitoring Overview
 
-1. Go to `AI Infrastructure > On-Prem > Monitoring > Job Monitoring`.
-2. Confirm the region and resource pool in the upper-right corner, and filter by job status, tenant/user, cluster, resource type, or time range.
-3. View the job list and overall running status, and verify job ID, job name, job type, job status, tenant/user, cluster, and resource occupation.
-4. Review queue duration, runtime duration, GPU/accelerator occupation, failure information, and event entrypoints to identify long queueing, startup failures, insufficient resources, or abnormal occupation.
+#### Applicable Scenarios
 
-![View job monitoring](./images/job-monitoring.png)
+- Confirm at a glance how many jobs the platform holds and how they split across the five job statuses.
+- Identify which node carries running jobs before opening another monitoring page.
+
+#### Steps
+
+1. Go to `On-Prem > Monitoring > Jobs`.
+2. In the region selector below the page title, confirm the region and its status badge, for example `wuhan` with `Normal`.
+3. Read `Job Info` for the `Total Jobs` figure at the centre of the ring and for the count and percentage of `Running`, `Completed`, `Failed`, `Paused`, and `Terminated` in the legend below it.
+4. Read `Node Utilization` for each node row, which shows the accelerator, `CPU`, and `Memory` amounts and the `Running Jobs: N` value at the right end.
+5. Read `Customer Ranking` for the ranked rows and the job count at the right end of each bar.
+
+The page groups five cards: `Job Info`, `Customer Ranking`, `Node Utilization`, `Job Status Statistics`, and `Today's Job Statistics`.
+
+![Job monitoring overview](./images/job-monitoring.png)
+
+#### Result Validation
+
+- The five status counts add up to the `Total Jobs` figure at the centre of the ring.
+- When `Total Jobs` is greater than 0, the five status percentages add up to `100.00%`.
+- The `Running Jobs: N` values across the node rows add up to the `Running` count in `Job Info`.
+
+#### Notes
+
+- The node rows carry internal addresses. The stored screenshot is masked in place, and documentation never transcribes the real value.
+
+### Filter Customer Ranking by Job Status
+
+#### Applicable Scenarios
+
+- Locate which customers hold the jobs of one specific status.
+- Confirm that a status really has no ranked row before treating it as an empty result.
+
+#### Steps
+
+1. In the `Customer Ranking` card, select one of the six status controls `All`, `Running`, `Completed`, `Failed`, `Paused`, or `Terminated`. The default selection is `All`.
+2. Read each ranked row: the rank badge on the left, the customer name, the progress bar, and the job count at the right end, for example `1 Jobs`.
+3. Compare that count against the same status row in the `Job Info` legend.
+
+`Customer Ranking` places the six status controls above the ranked rows.
+
+#### Result Validation
+
+- The selected status control is visually distinguished from the other five.
+- The job count on a ranked row equals the count shown for the same status in the `Job Info` legend.
+- With `All` selected, the job counts of the ranked rows add up to `Total Jobs`.
+
+#### Notes
+
+- The customer name is displayed truncated with an ellipsis inside the card, and the stored screenshot is masked in place; documentation never transcribes it.
+
+### Read the Job Status Trend
+
+#### Applicable Scenarios
+
+- Judge whether job volume rises or falls across a period instead of reading a single instant status.
+- Locate the date on which a status first appears in the curve.
+
+#### Steps
+
+1. In the `Job Status Statistics` card, select one of the three quick ranges `This Month`, `This Week`, or `Today`. The default selection is `This Month`.
+2. Or set an explicit window in the two date pickers on the right, for example `2026-10-01` to `2026-10-31`.
+3. Read the curve against the x-axis dates and the y-axis unit `Jobs`, and identify the five series in the legend below the chart: `Running`, `Completed`, `Abnormal`, `Paused`, and `Terminated`.
+4. Compare the value at a given date against the same-status count in `Job Info` for the same window.
+
+#### Result Validation
+
+- The x-axis spans exactly the window shown in the two date pickers.
+- The selected quick range is visually distinguished from the other two.
+- Dates with no job keep the series on the baseline, and dates with jobs lift it.
+
+#### Notes
+
+- The trend legend names its third series `Abnormal`, while the `Job Info` ring names its third entry `Failed`. Both strings are transcribed from this page exactly as displayed.
+- Hover the pointer over a day on the curve to expand that day's per-series values, for example all five series read `0` on `2026-10-11`.
+
+### Read Today's Job Statistics by Instance Type
+
+#### Applicable Scenarios
+
+- Split the job volume of the current day by instance type instead of reading one combined total.
+- Confirm whether a job count belongs to an online development environment or to a runtime instance.
+
+#### Steps
+
+1. In the `Today's Job Statistics` card, read the two column headers at the top: `Online IDE` and `Runtime Instances`.
+2. Read the five status rows from top to bottom: `Running`, `Completed`, `Failed`, `Paused`, and `Terminated`.
+3. Take the value cell where a status row meets an instance-type column as the count of that status for that instance type on the current day.
+
+#### Result Validation
+
+- The `Running` values of the `Online IDE` and `Runtime Instances` columns add up to the `Running` count in `Job Info`.
+- Each of the five status rows carries one value cell under each of the two columns.
+- The card title `Today's Job Statistics` scopes these values to the current day, not to the window selected in `Job Status Statistics`.
+
+#### Notes
+
+- The card shows no total row and no percentage column in the captured screens.
 
 ### Investigate Abnormal Job Metrics
 
-1. When jobs show batch queueing, stalled running status, or sudden failure spikes, note the abnormal job IDs and cluster.
-2. Keeping the same time range, check `Cluster Statistics` and `Node Statistics` to verify if cluster-wide compute resources are exhausted.
-3. Access job details and instance logs to investigate image pull timeouts, startup command errors, storage mount failures, or OOM crashes.
-4. If deadlock jobs must be canceled or rescheduled, follow standard platform operational procedures rather than force-killing workloads without authorization.
+#### Applicable Scenarios
 
-#### Key Focus
+- Jobs queue in batches, stall while running, or fail in a sudden spike.
+- An abnormal job must be attributed to resources, images, storage, or the node it landed on.
 
-- Whether failed and queued jobs increase abnormally.
-- Whether long-running jobs occupy critical resources.
-- Whether job tenant, specification, image, and cluster match expectations.
+#### Steps
+
+1. Note the abnormal date in `Job Status Statistics` and the affected status in the legend below the chart.
+2. Check `Node Utilization` for the accelerator, `CPU`, and `Memory` amounts and the `Running Jobs: N` value of each node, to see whether the load concentrates on one node.
+3. Keeping the same time range, check `Clusters` and `Nodes` to verify whether cluster-wide compute resources are exhausted.
+4. Access job details and instance logs to investigate image pull timeouts, startup command errors, storage mount failures, or OOM crashes.
+
+#### Result Validation
+
+- Failed and queued job counts show no abnormal increase.
+- No long-running job holds critical resources beyond business expectations.
+- Each affected job matches the expected tenant, specification, image, and cluster.
+
+#### Notes
+
+- Job queueing is not necessarily a platform fault. Check resources, quota, and scheduling conditions first.
+- If deadlock jobs must be canceled or rescheduled, follow standard platform operational procedures rather than force-killing workloads without authorization.
 
 ## Parameter Quick Reference
 
@@ -76,7 +178,7 @@ The following figure shows the job monitoring page.
 | --- | --- | --- | --- | --- |
 | Job ID | Yes | Text | `job-20260706-001` | Locates a single job or task instance. |
 | Job Name | Conditionally required | Text | `inference-job` | Helps locate a job by business name. |
-| Job Type | Conditionally required | Enum | `Runtime Instance` | Distinguishes model instances, online IDEs, runtime instances, training tasks, or historical jobs. |
+| Job Type | Conditionally required | Enum | `Runtime Instances` | Distinguishes model instances, online IDEs, runtime instances, training tasks, or historical jobs. |
 | Job Status | System-generated | Status | `Running` | Shows whether the job is queued, running, succeeded, or failed. |
 | Tenant / User | Conditionally required | Text | `tenant-a` | Used to locate job ownership by tenant or user. |
 | Cluster | Conditionally required | Text | `cluster-prod-a` | Locates the cluster where the job is running or queued. |
@@ -96,10 +198,8 @@ The following figure shows the job monitoring page.
 - Job monitoring may have collection latency. Do not judge faults based only on a single instant status.
 - Job exceptions should be investigated together with events, logs, image pull, startup command, storage mount, node status, and device status.
 - Long-running or high-resource jobs are not necessarily abnormal. Judge together with business expectations, tenant quotas, and model specifications.
-- Do not write real job IDs, instance names, image addresses, data paths, log contents, tenant information, node names, cluster IDs, resource pool IDs, internal metric keys, or test data in the document.
-- `Terminate`, `Restart`, and `Delete` are high-risk actions. Confirm the scope and impact before executing the final action.
 
-### Configuration Rules and Impact
+#### Configuration Rules and Impact
 
 - **For queueing, check resources and scheduling conditions first**: Queueing is not necessarily a platform fault. It may be caused by specification, labels, quotas, or cluster capacity limits.
 - **Use events with failure information**: Error codes and events can distinguish image, storage, startup command, permission, and insufficient resource issues.

@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Templates > Models |
+| Navigation Path | On-Prem > Templates > Models |
 | Page Route | `/powerone/fast-build-v2/models` |
 | Managed Object | Configuration, status, and relationships on Models |
 
@@ -42,125 +42,137 @@ Use this page to manage meta-models, model versions, model sources, quantization
 
 ![Models](./images/manual-models.png)
 
-The page displays configurations by model author, model category, and model series, and supports maintaining public or private models.
-
-The following figure shows the model configuration page.
+The left panel groups models by `Model author` with a per-author count, the `Model / author / series` box filters the list, the main area offers the `Public models` and `Private models` tabs, and the columns are `MODEL TEMPLATE`, `SERIES`, `SCENARIO`, `MODEL TYPE`, `TOKEN LIMIT`, `CATEGORY`, `VERSION`, and `MODEL DOWNLOAD`, followed by an icon-only action column that holds the trash icon. The `MODEL DOWNLOAD` column shows `No linked clusters`, `All completed`, or `Completed N`. The icon button at the top right opens the `Import` / `Export` menu, and `Add model` sits to its right.
 
 ## Main Operations
 
-### View Model Configuration
-
-1. Open the corresponding template-configuration page and filter by name, version, status, or update time.
-2. Open details and check associated models, frameworks, images, resource requirements, and current version.
-3. If no record is returned, reset filters. For incompatibility, first check dependencies.
-4. Redact internal images, storage locations, and startup configuration before sharing.
-
 ### Add Model
 
-#### Pre-Operation Check
+#### Applicable Scenarios
 
-1. Model file path, format, permissions, and source credentials have been confirmed.
-2. The model matches the runtime framework, precision, context length, and resource specification.
-3. Environment variables, startup parameters, and mount paths do not contain real keys.
-4. If the model comes from an external repository, authorization scope and network connectivity have been confirmed.
+Use the **"Add model"** entry at the top right of the page to create a model template that inference templates can reference. The wizard runs in three steps: `Select Meta Model`, `Configure model information`, and `Configure model version information`.
 
-#### Procedure
+#### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Model Configuration`.
-2. Click **"Add Model"** or the actual add entry on the page.
+1. Go to `On-Prem > Templates > Models` and confirm on the `Public models` or `Private models` tab that the target model is not configured yet.
+2. Click **"Add model"** at the top right to open the three-step wizard titled `New Model`.
+3. In Step 1 `Select Meta Model`, narrow the candidates with the `Model author` list or the `Search model name / UID / series` box (with **"Search"** and **"Refresh"**), check the card tags such as `Multimodal`, `Text`, `Speech`, `Image`, and `Video` together with the `Context`, `Input`, and `Output` values, and click **"Next"**.
 
-The following figure shows the base model selection page, used to select model author, model series, and the base model entry.
+Step 1 is shown below: the left panel groups meta-models by author with a per-author count, and the card grid on the right lists candidates with their capability tags.
 
-![Select base model](./images/select-meta-model.png)
+![New Model step 1: Select Meta Model](./images/select-meta-model.png)
 
-3. In the base model or basic information area, select model author, model series, model type, scenario, and token limits.
+4. In Step 2 `Configure model information`, select `Public models` (`Visible to all tenants`) or `Private models` (`Visible only to linked tenants`) under `Category`, fill in the required `Model parameters` field (placeholder `Enter model parameters, such as 7B, 13B, or 1.5T. Supports K/M/B/G/T.`), and click **"Next"**.
 
-The following figure shows model information configuration, used to maintain model type, scenario, token limits, and basic description.
+Step 2 is shown below: it provides only the `Category` and `Basic Configuration` blocks, and `Model parameters` is the only required field.
 
-![Configure model information](./images/configure-model-information.png)
+![New Model step 2: Configure model information](./images/configure-model-information.png)
 
-4. In the version information area, fill in model source, version, quantization method, model path, or repository identifier.
+5. In Step 3 `Configure model version information`, maintain versions on the `Version 1` tab in the `Version Configuration` block, and click **"+ Add Version"** when one model needs more versions.
+6. In the `Version Details` block, select the required `Quantization` value, confirm `Model source` (`ModelScope` in the captured screen), and fill in `Remote repository ID` (placeholder `vendor/model-repo`) and `Remote repository authentication` (placeholder `token`) as the selected source requires.
+7. Click **"+ Create Tag"** in the `Tags` block to maintain model classification, and click **"+ Select linked clusters"** in the `Linked Clusters` block to define where model files can be downloaded and deployed.
+8. Check the conclusion in the `Status` block, then click **"Submit"**.
 
-The following figure shows model version information configuration, used to maintain model source, version, quantization method, and path information.
+Step 3 is shown below: the three `Version Details` columns cover quantization, model source and repository information, and the `Status` conclusion, followed by the `Tags` and `Linked Clusters` blocks.
 
-![Configure model version information](./images/configure-model-version-information.png)
+![New Model step 3: Configure model version information](./images/configure-model-version-information.png)
 
-5. Configure parameter source, environment variables, startup parameters, mount path, or model source credential as required by the page.
-6. In the association configuration area, select tags, visibility scope, associated clusters, or available template scope.
+#### Result Validation
 
-In Step 6, use the following page to create or select tags for model classification and filtering.
+- After submission the list shows the model under `MODEL TEMPLATE`, and `CATEGORY` matches the `Public models` or `Private models` choice made in Step 2.
+- The `VERSION` column shows the quantization selected in Step 3, such as `bf16`, `gguf_q4_k_m`, or `aqlm_2bit`.
+- The `MODEL DOWNLOAD` column shows `No linked clusters`, `All completed`, or `Completed N` to indicate download progress on linked clusters.
 
-![Create tag](./images/create-tag.png)
+#### Notes
 
-Then use the associated cluster page to confirm where model files are accessible and deployment is allowed.
-
-![Select associated clusters](./images/select-linked-clusters.png)
-
-7. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify model path, credential reference, cluster accessibility, and visibility scope.
+- `Quantization` is required and supports only letters, numbers, underscores, hyphens, and dots; `Model parameters` supports K/M/B/G/T suffixes.
+- When `Status` shows `Unavailable` with `There are linked clusters whose model files have not been downloaded.`, the page also shows the `Can save first` notice: the status does not block saving, so you can submit now and make the model effective for users after the download completes and a cluster is enabled.
+- `Remote repository authentication` holds a credential reference only. Do not put real tokens, AK/SK, accounts, or passwords in documents, screenshots, or tickets.
 
 ### Import or Export Models
 
 #### Applicable Scenarios
 
-Use the **"Import/Export"** menu to batch-maintain model configurations, or to export model definitions for audit, reconciliation, and controlled migration.
+Use the icon button in the top right of the page, which opens the `Import` / `Export` menu, to move model configuration between environments or to archive the configuration maintained on this page.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Model Configuration`.
-2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
-3. For import, upload the file as required by the page and verify base model, model version, model source, quantization method, tags, cluster associations, and visibility scope.
-4. For export, confirm the model type or author filter scope, then generate and download the model configuration as prompted by the page.
-5. Before importing, verify that base model, model source, and cluster dependencies are available in the target environment. Save export files in a controlled directory.
+1. Go to `On-Prem > Templates > Models` and click the icon button to the left of `Add model` in the page header to open the menu that lists `Import` and `Export`.
+
+The page header menu is shown below: `Import` opens the import dialog and `Export` opens the export dialog.
+
+![Import or export menu](./images/import-export-menu.png)
+
+2. Import: click `Import` to open the dialog titled `Import Configuration Data`, then select the ZIP package exported from the backend in the `Read File` area. The area reads `Select a backend-exported ZIP package and run precheck`, so the page runs a precheck after a file is chosen.
+3. Click `Cancel` at the bottom of the dialog, or the close icon at the top right, to discard the import. The dialog state after a file is selected and the precheck result are not shown in the screenshots for this page; follow the on-page message.
+
+The import dialog is shown below: before a file is chosen it offers only the `Read File` area and a single `Cancel` button.
+
+![Import Configuration Data](./images/import-configuration-data.png)
+
+4. Export: click `Export` to open the dialog titled `Export Configuration Package`, and use **"Select All"** or **"Clear"** in the `Select Modules` area, or tick the module cards one by one.
+5. Expand the `Templates` group (marked `Current page group`, `3 modules`) and select `Models` (module key `model`, card labelled `Includes cascade details`), together with `Framework Configurations` (`frameworkVersion`) and `Inference Templates` (`inferenceTemplate`) when needed; the collapsed groups `Resource Pools` (`3 modules`) and `VRAM Config` (`5 modules`) are also selectable.
+6. Confirm that the footer count matches the intended modules (for example `Models · 1 modules selected`), then click **"Export"** to generate the package; click **"Close"** to discard this export.
+
+The export dialog is shown below: `Models` is ticked and labelled `Includes cascade details`, and the footer count sits next to the **"Export"** button.
+
+![Export Configuration Package](./images/export-configuration-package.png)
 
 #### Result Validation
 
-- After import, the Model Configuration list shows the added or updated model and state.
-- The model scope in the export file matches the current filter conditions.
-- Source, tags, and cluster associations in model details can be resolved correctly.
+- Before exporting, confirm the footer count matches the ticked modules; the `Includes cascade details` label on the `Models` card means the export carries the cascade details of that module.
+- On the import side, follow the dialog message: the `Read File` area states that the file is a backend-exported ZIP package and that a precheck runs first.
+- When configuration moves between environments, `Import` and `Export` are used as a pair, so confirm the model sources, clusters, and other dependencies are ready in the target environment before importing.
 
 #### Notes
 
-- Model import may update fields on an object with the same identifier. Verify version, source, cluster scope, and downstream template dependencies first.
-- Model paths, registry addresses, and source credentials are sensitive. Redact and store both import and export files under control.
+- `Export` is the final action of the export dialog and `Close` produces no package; before a file is chosen the import dialog offers only `Cancel`.
+- A configuration package can carry model identifiers and source information, so confirm the target environment before importing and avoid writing configuration into the wrong environment.
+- The export dialog lists several module groups; the export belongs to this page only when `Models` is the module you tick.
 
 ### Delete Model
 
 #### Applicable Scenarios
 
-Delete a model when its platform configuration is no longer needed and no inference template, publish flow, or running instance depends on it.
+Delete a model from the action column at the end of its row when a model template must no longer be offered to downstream inference templates or to the user side.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Model Configuration` and locate the target model.
-2. Click **"Delete"** in the target model row.
-3. Read the confirmation prompt and verify model name, version, source, cluster associations, and downstream templates.
-4. After confirming replacement configuration and impact scope, click the confirmation button to delete the model.
-5. Refresh the list and check inference templates, publish flows, and model selection pages.
+1. Go to the `Models` list and locate the target model on the `Public models` or `Private models` tab, using the `Model author` panel or the `Model / author / series` search box.
+2. Click the trash icon in the action column of that row to open a confirmation box titled `Warning`, whose body reads `Delete model "<model identifier>"?` (the angle brackets stand for the full identifier of that row, shown here as a placeholder).
+3. Click **"OK"** to delete, or click **"Cancel"** to discard this deletion.
+
+The delete confirmation is shown below: the body echoes only the target model identifier, and `OK` (`确定` in the Chinese screen) is the final action.
+
+![Delete model confirmation](./images/delete-model-confirm.png)
 
 #### Result Validation
 
-- The target model is removed from the Model Configuration list.
-- New downstream templates or publish flows no longer offer the model.
-- Base models, model sources, other versions, and unrelated models are not unintentionally removed.
+- After confirmation the row disappears from the `MODEL TEMPLATE` list; check whether the per-author counts in the left `Model author` panel (such as `All authors 5`) follow.
+- Confirm the model is no longer selectable in the model picker of downstream inference templates; if it still appears, troubleshoot with the FAQ entry "The Model Is Still Selectable After Deletion".
 
 #### Notes
 
-- Deleting a model configuration does not necessarily delete model files or registry data. Handle retention separately according to storage policy.
-- Do not delete a model with running instances, published templates, or job dependencies. Configure and migrate to a replacement first.
+- The confirmation box echoes the model identifier only and shows no cascade impact, so check downstream templates and running instances before deleting.
+- The confirmation box does not state whether deletion is reversible; export a ZIP configuration package first when the configuration must be kept.
+- `OK` is a high-risk final action on this page. Check that the identifier in the dialog matches the target row before clicking it.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model Name | Yes | Dropdown / enum | `Qwen3-8B` | Model name displayed by the platform and referenced by templates. Use a maintainable model name instead of temporary test naming. |
-| Model Author | Conditionally required | Dropdown / enum | `Example Tenant` | Author, tenant, or source provider of the model. Keep it consistent with page filters, model series, and authorization source. |
-| Model Series | Conditionally required | Dropdown / enum | `Example value` | Model family or base model series. Helps inference templates filter models by series. |
-| Model Type | Conditionally required | Dropdown / enum | `Large language model` | Model capability type or business category. Keep it consistent with inference frameworks, template type, and user-side selection scope. |
-| Scenario | Conditionally required | Dropdown / enum | `Example value` | Business scenario where the model applies. Do not mix test, training, or inference scenarios. |
-| Token Limit | Conditionally required | Number / capacity | `8192` | Context length, input/output token limit, or KV Cache-related limit. Keep it consistent with model capability, VRAM estimation, and template parameters. |
-| Model Source | Yes | Address / path | `Object Storage` | Model file source, repository source, or object storage source. Confirm authorization and network reachability for external sources. |
-| Version | Yes | Dropdown / enum | `v0.8.0` | Model version or weight version record. Keep versions traceable. Do not use ambiguous `latest` for long-term configuration. |
-| Quantization Method | Conditionally required | Dropdown / enum | `FP16` | Model weight quantization or precision method. Keep it consistent with runtime framework and VRAM estimation configuration. |
+| Model Name | Yes | Dropdown / enum | `Qwen3-14b` | Model name displayed by the platform and referenced by templates; it comes from the meta-model selected in Step 1. Use a maintainable model name instead of temporary test naming. |
+| Model Author | Conditionally required | Dropdown / enum | `Qwen` | Author or source provider of the model; the `Model author` panel on the left groups models and shows a per-author count. Keep it consistent with page filters, model series, and authorization source. |
+| Model Series | Conditionally required | Dropdown / enum | `Qwen3.5` | Model family or base model series, shown in the `SERIES` column. Helps inference templates filter models by series. |
+| Model Type | Conditionally required | Dropdown / enum | `Text / LLM` | Model capability type or business category, shown in the `MODEL TYPE` column. Keep it consistent with inference frameworks, template type, and user-side selection scope. |
+| Scenario | Conditionally required | Dropdown / enum | `Text generation` | Business scenario where the model applies, shown in the `SCENARIO` column. Do not mix test, training, or inference scenarios. |
+| Token Limit | Conditionally required | Number / capacity | `Max context 262K` | Context length, input/output token limit, or KV Cache-related limit. The `TOKEN LIMIT` column shows max context, max input, and max output on separate lines, or `Token Not configured` when it is empty. Keep it consistent with model capability, VRAM estimation, and template parameters. |
+| Model Parameters | Yes | Text | `7B` | The only required field in the `Basic Configuration` block of Step 2; the placeholder supports K/M/B/G/T suffixes. Keep it consistent with VRAM estimation and selectable downstream specifications. |
+| Model Source | Yes | Dropdown / enum | `ModelScope` | Model file source in the `Version Details` block of Step 3; visible candidates include `HuggingFace`, `ModelScope`, and `Local`. Confirm authorization and network reachability for external sources. |
+| Remote Repository ID | Conditionally required | Text | `vendor/model-repo` | Unique remote repository identifier in the `Version Details` block of Step 3. `vendor/model-repo` is the page placeholder. Confirm that the source repository matches the target model. |
+| Remote Repository Authentication | Conditionally required | Credential / sensitive text | `token` | Credential reference required to access the remote repository. `token` is the page placeholder. Reference credential objects only; do not write real credentials in documents. |
+| Version | Yes | Dropdown / enum | `Version 1` | Maintained as a `Version N` tab in the `Version Configuration` block of Step 3; click **"+ Add Version"** to add one. The `VERSION` column shows the quantization of that version. Keep versions traceable. |
+| Quantization | Yes | Dropdown / enum | `bf16` | Required field in the `Version Details` block of Step 3. Visible values look like `bf16`, `gguf_q4_k_m`, and `aqlm_2bit`; the option list follows the page. Keep it consistent with the runtime framework and VRAM estimation configuration. |
 | Model Path | Yes | Address / path | `s3://example-bucket/model` | Path, repository identifier, or object storage location where the framework loads model files. Do not write real keys, tokens, accounts, passwords, or internal addresses. |
 | Parameter Source | Conditionally required | Number / capacity | `Template default` | Whether parameters come from model configuration, template defaults, or user input. Prevent template defaults from overriding model-specific parameters. |
 | Environment Variables | No | Configuration text | `ENV=prod` | Variables passed into the container runtime environment. Use only non-sensitive variables. Use credential references for sensitive values. |
@@ -169,7 +181,9 @@ Delete a model when its platform configuration is no longer needed and no infere
 | Associated Cluster | Conditionally required | File / configuration text | `cluster-a` | Cluster scope where model files are accessible or deployable. Confirm network and storage accessibility for target clusters before submission. |
 | Tags | No | Text | `llm` | Tags used for filtering, classification, or template matching. Keep tag meanings stable and avoid temporary tags. |
 | Visibility Scope | Conditionally required | Dropdown / enum | `Tenant A` | Model visibility boundary for templates, tenants, or user-side pages. Incorrect visibility affects user-side selectable models. |
-| Actions | System-generated | Action entry | `Edit` | Add, edit, save, submit, OK, and similar page operations. `Save`, `Submit`, and `OK` are high-risk final actions. |
+| Actions | System-generated | Action entry | `Add model` | Page operations such as `Add model` and the `Import` / `Export` menu in the page header, the delete icon in the row action column, `Submit` in the wizard, `Cancel` in the import dialog, `Export` and `Close` in the export dialog, and `OK` (`确定` in the Chinese screen) in the delete confirmation box. `Submit`, `Export`, and `OK` are high-risk final actions. |
+
+The `Model Name`, `Model Path`, `Parameter Source`, `Environment Variables`, `Startup Parameters`, `Model Source Credential`, and `Visibility Scope` rows do not appear in the three wizard screens for adding a model. Their field form and values follow the page and are not shown in the screenshots for this page.
 
 ## Pitfalls
 
@@ -177,7 +191,7 @@ Delete a model when its platform configuration is no longer needed and no infere
 - Do not write real keys, tokens, AK/SK, accounts, passwords, or internal addresses in environment variables, startup parameters, or model paths.
 - Incorrect associated clusters or visibility scope can affect model selection in inference templates and user-side visibility.
 - Clarify the parameter source to prevent template default values from overriding model-specific parameters.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
+- `Submit`, `Export`, and the `OK` button of the delete confirmation box (`确定` in the Chinese screen) are the final actions on this page. Verify the version, model source, tags, linked clusters, and target model identifier before executing them.
 
 ## Result Validation
 
@@ -289,6 +303,6 @@ A record exists after submission, but its state is unexpected.
 
 ## Next Steps
 
-1. Go to [Framework Configuration](../frames/) to maintain frameworks available for the model.
+1. Go to [Frames](../frames/) to maintain frameworks available for the model.
 2. Go to [Inference Templates](../inference-templates/) to establish relationships among model, framework, specification, and parameters.
-3. Go to [VRAM Estimation Configuration](../vram-config/) to calibrate KV Token, quantization, and dynamic expressions.
+3. Go to [VRAM Config](../vram-config/) to calibrate KV Token, quantization, and dynamic expressions.

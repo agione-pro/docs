@@ -29,7 +29,7 @@ This scenario guides users through creating an On-Prem development or training e
 ## Procedure
 
 1. Prepare object or file storage and confirm that data and output paths are accessible. See [Object Storage](../../../usermanual/ai-infra-on-prem/user/storage/object-storage/) and [File Storage](../../../usermanual/ai-infra-on-prem/user/storage/file-storage/).
-2. Prepare or select a versioned runtime image that the target region can pull. See [Image Service](../../../usermanual/ai-infra-on-prem/user/extensions/images/).
+2. Prepare or select a versioned runtime image that the target region can pull. See [Images](../../../usermanual/ai-infra-on-prem/user/extensions/images/).
 3. Open [Development Environments](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/), create an online IDE, select the image and resource specification, mount the persistent workspace, and confirm that the IDE opens normally.
 
 ![Create an online IDE with a persistent workspace](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/images/create-ide.png)
@@ -39,7 +39,7 @@ This scenario guides users through creating an On-Prem development or training e
 ![Create a training runtime instance](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/images/create-runtime-instance.png)
 
 5. Preserve images, models, and outputs in controlled storage so later workloads can reuse them.
-6. Review [Job Monitoring](../../../usermanual/ai-infra-on-prem/user/monitoring/jobs/) and [Resource Usage](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/), then stop idle instances.
+6. Review [Resource Usage](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/), then stop idle instances.
 
 ## Asset Guidance
 

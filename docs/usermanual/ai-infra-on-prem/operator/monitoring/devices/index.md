@@ -5,8 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Monitoring > Devices |
-| Page Route | `/powerone/monitor/device` |
+| Navigation Path | On-Prem > Monitoring > Devices |
 | Managed Object | Configuration, status, and relationships on Devices |
 
 #### Beginner Explanation
@@ -38,37 +37,95 @@ Confirm that the task involves Configuration, status, and relationships on Devic
 
 ## Page Description
 
-Use this page to inspect GPU and NPU utilization, device memory, temperature, and health state.
+Use this page to view monitoring trends for a selected region, cluster, and node, and to switch metric dimensions with the tabs above the charts.
 
 ![Devices](./images/manual-monitoring-devices.png)
 
 Device monitoring is used to view GPU/NPU utilization, VRAM, temperature, and health status. Operators can use it to determine whether accelerators are offline, overheating, out of VRAM, or occupied by a single task for a long time.
 
-The following figure shows the device monitoring page.
-
 ## Main Operations
 
-### Filter and View Device Monitoring
+### Filter and View Common Metrics
 
-1. Go to `AI Infrastructure > On-Prem > Monitoring > Device Monitoring`.
-2. Confirm the region and resource pool in the upper-right corner, and filter by cluster, node, device type, device status, or time range.
-3. View the device list and overall running status, and verify device ID, device type, node, cluster, region/AZ, and device status.
-4. Review accelerator usage, VRAM usage, temperature, health status, bound jobs, and exception information to identify unavailable devices, insufficient VRAM, or hardware exceptions.
+#### Applicable Scenarios
+
+- You need the resource trend of one cluster and one node before judging any accelerator problem.
+- You need to tell a host CPU, memory, or disk bottleneck apart from an accelerator-card issue.
+
+#### Steps
+
+1. Go to `On-Prem > Monitoring > Devices`.
+2. In the card at the top of the page, confirm the region selector shows the target region and its status (`wuhan` with a green `Normal` marker in this capture).
+3. Set `Cluster Name` to the target cluster (`cluster-test` in this capture).
+4. Set `Node Name` to the target node.
+5. Keep the `Common` tab selected, then set the time range (`2026-10-23 10:19` to `2026-10-23 10:29` in this capture), the sampling interval (`30 s`), and the metric scope drop-down on the right.
+6. Click `Sort by remaining capacity` when you need to rank nodes by the capacity that is still free.
+
+The charts below are drawn for the selected cluster, node, and time range.
 
 ![View device monitoring](./images/device-monitoring.png)
 
+#### Result Validation
+
+- The `Common` tab renders five charts: `CPU Usage (%)`, `Disk Available`, `Disk Usage (%)`, `Disk Total`, and `Memory Usage (%)`.
+- The legend under each chart repeats that chart's title, and the x-axis stays inside the selected time range.
+- Switching `Cluster Name` or `Node Name` changes the plotted series instead of leaving the charts unchanged.
+
+#### Notes
+
+- The `Common` tab screen exposes cluster and node filters only, so device-scoped questions go to the accelerator tab.
+- `Disk Available` and `Disk Total` plot raw byte values on the vertical axis in this capture. Confirm the unit before comparing them with other monitoring pages.
+- The metric scope drop-down label is truncated on screen.
+
+### Switch Monitoring Dimension Tabs
+
+#### Applicable Scenarios
+
+- The metric you need is not among the five charts on the current tab.
+- You need to separate a host-resource problem from an accelerator-card or network problem.
+
+#### Steps
+
+1. Use the tab row above the charts. This capture shows three tabs from left to right: `Common` (selected), `AI Accelerator`, and `Srlov`.
+2. Click `AI Accelerator` to move from host resources to accelerator-card metrics.
+3. Click `Srlov` to switch to the remaining dimension; the tab label is not clearly legible in the English UI.
+4. On a non-default tab, read what the tab actually renders before quoting any field name.
+
+#### Result Validation
+
+- The selected tab is highlighted, and the chart area below it changes accordingly.
+- The time range, sampling interval, and metric scope drop-downs stay visible after switching tabs.
+
+#### Notes
+
+- Do not copy accelerator field names such as device model or memory usage into a conclusion unless they are visible on your screen; the captures used for this page cover the `Common` tab only.
+- Tab names are written exactly as the interface renders them, including the third tab's label.
+
 ### Investigate Abnormal Device Metrics
 
-1. When an accelerator is offline, overheated, running out of VRAM, or throwing driver errors, note the device ID and node.
-2. Keeping the same time range, navigate to `Job Monitoring` to confirm if a large model training or high-concurrency inference job is occupying the card.
-3. Switch to `Node Statistics` to check the host node load, network, and driver service health.
-4. If a hardware failure or PCIe bus error is verified, coordinate with hardware engineers for isolation and maintenance rather than force-killing workloads without review.
+#### Applicable Scenarios
 
-#### Key Focus
+- An accelerator is reported offline, overheated, short of memory, or blocked by a driver error.
+- One job keeps a card busy while cluster-level watermarks still look normal.
 
-- Whether devices are identified and continuously reported.
-- Whether VRAM and utilization are close to limits.
-- Whether temperature, error counts, or health status are abnormal.
+#### Steps
+
+1. On the `Common` tab, note the affected `Node Name` and the chart that shows the anomaly, then keep the same time range.
+2. Switch to `AI Accelerator` on this page to confirm the accelerator dimension of the same node.
+3. In the left `Monitoring` group, open `Jobs` to check whether a large model training or high-concurrency inference job occupies the card.
+4. Open `Nodes` in the same group to check the host node load, network, and driver service health.
+5. If a hardware failure or a missing card is confirmed, coordinate with hardware engineers for isolation and maintenance instead of force-killing workloads without review.
+
+#### Result Validation
+
+- The node identified on this page appears in `Jobs` and `Nodes` under the same time range.
+- `Devices` stays selected in the left `Monitoring` group, whose entries are `Overview`, `Clusters`, `Nodes`, `Devices`, and `Jobs`.
+
+#### Notes
+
+- Whether a device is identified and reported continuously decides how far the charts can be trusted.
+- Memory and utilization are read together; a single instant metric is not enough to declare a hardware fault.
+- Temperature, error counts, and health status belong to the accelerator dimension.
 
 ## Parameter Quick Reference
 
@@ -76,28 +133,26 @@ The following figure shows the device monitoring page.
 | --- | --- | --- | --- | --- |
 | Device ID | System-generated | Text | `GPU-0` | Distinguishes multiple devices on the same node. |
 | Device Type | Yes | Text | `NVIDIA A800` | Shows GPU/NPU or other accelerator type and model. |
-| Node | Conditionally required | Text | `node-gpu-01` | Locates the node where the device resides. |
-| Cluster | Conditionally required | Text | `cluster-prod-a` | Locates the cluster to which the device belongs. |
-| Region / AZ | Conditionally required | Drop-down | `Wuhan / AZ A` | Limits the resource location to which the device belongs. |
+| Node Name | Conditionally required | Drop-down | `<node name>` | Selects the node whose metrics are plotted. |
+| Cluster Name | Conditionally required | Drop-down | `cluster-test` | Selects the cluster to which the node belongs. |
+| Region | Conditionally required | Drop-down | `wuhan` | Limits the reporting scope of the whole page, shown together with the region status. |
 | Device Status | System-generated | Status | `Normal` | Shows whether the device is available, alerted, or offline. |
 | Accelerator Usage | System-generated | Percentage | `92%` | Determines whether compute units are under high load. |
 | VRAM Usage | System-generated | Percentage / Capacity | `62 GB / 80 GB` | Determines whether a model or job occupies all VRAM. |
 | Temperature | System-generated | Number | `71°C` | Helps judge cooling and hardware health. |
 | Health Status | System-generated | Status | `Normal` | Shows whether the device is available, alerted, or offline. |
 | Bound Job | System-generated | Text / Number | `Running job` | Shows jobs currently associated with or occupying the device. |
-| Time Range | Conditionally required | Date range | `Last 1 hour` | Controls the query window for statistic cards, trend charts, and list data. |
+| Time Range | Conditionally required | Date range | `2026-10-23 10:19` - `2026-10-23 10:29` | Controls the query window of the trend charts. |
 
 ## Pitfalls
 
-- Full VRAM does not necessarily mean compute is fully loaded. Judge together with utilization.
+- Full VRAM does not necessarily mean compute is fully loaded, and a high VRAM watermark is not by itself a device fault. Judge both together with utilization and the jobs bound to the device.
 - Temperature exceptions should be escalated to operations promptly for hardware and cooling checks.
 - When devices are invisible, check drivers, plugins, and node status first.
 - Device monitoring may have collection latency. Do not judge hardware faults based only on a single instant metric.
 - Device exceptions should be investigated together with node status, job status, scheduling events, device plugins, and node logs.
-- High VRAM watermark does not necessarily mean a device fault. Judge together with bound jobs and model specifications.
-- Do not write real device IDs, node names, node IPs, cluster IDs, resource pool IDs, tenant information, internal metric keys, or test data in the document.
 
-### Configuration Rules and Impact
+#### Configuration Rules and Impact
 
 - **VRAM watermark directly affects model startup**: When VRAM is insufficient, instance creation may fail even if total cluster resources look sufficient.
 - **View temperature and health together**: High temperature, missing cards, or driver exceptions can all cause job failures.

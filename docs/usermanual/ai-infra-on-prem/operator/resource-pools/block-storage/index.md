@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Resource Pools > Block Storage |
+| Navigation Path | On-Prem > Resource Pools > Block Storage |
 | Page Route | `/powerone/resourcepool/block` |
 | Managed Object | Configuration, status, and relationships on Block Storage |
 
@@ -44,16 +44,7 @@ Use this page to manage block-storage type, cluster, monitor nodes, FSID, storag
 
 The page displays connected block storage components, status, capacity, connection information summary, and associated regions.
 
-The following figure shows the block storage component list, where component status, capacity, and connection information summary can be viewed.
-
 ## Main Operations
-
-### View Block Storage Components
-
-1. Open the corresponding resource-pool component page and filter by name, cluster, status, or update time.
-2. Open details and check redacted Endpoint information, capabilities, associated clusters, capacity, and health.
-3. If no record is returned, reset filters and check cluster status. Do not copy credentials, internal addresses, or complete configuration.
-4. For abnormal health, inspect connectivity and events before registering another component.
 
 ### Create Block Storage Component
 
@@ -63,21 +54,15 @@ Create a block storage component when a new Ceph RBD or compatible block storage
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Resource Pools > Block Storage`.
+1. Go to `On-Prem > Resource Pools > Block Storage`.
 2. Click **"Register component"** to open the **"New Block Storage - Block Storage"** page.
 3. Fill in `Block Storage Type`, `Cluster Name`, `Mon Node`, `FSID`, `Storage Pool`, `Admin Key`, `Over-provision Ratio`, `Tenant Quota Limit`, `Physical Threshold`, `Logical Threshold`, `Snapshot Limit per Vol`, and `Description` according to the page fields.
 4. If the page provides `Test Connection`, run the read-only connectivity check first and confirm the returned result.
-5. Before clicking the final **"Save"**, **"Submit"**, or **"OK"**, verify Mon Node, FSID, Storage Pool, Admin Key, thresholds, and capacity impact again.
+5. Before clicking the final **"Submit"**, verify Mon Node, FSID, Storage Pool, Admin Key, thresholds, and capacity impact again.
 
 The following figure shows the New Block Storage page, used to fill in block storage connection parameters.
 
 ![New Block Storage](./images/new-block-storage.png)
-
-#### Operation Screenshots
-
-![Block Storage operation interface](./images/manual-register-block-storage.png)
-
-The image shows fields and the confirmation area after opening the operation entry. Verify required fields, ownership, and impact before submission.
 
 ## Parameter Quick Reference
 
@@ -85,16 +70,16 @@ The image shows fields and the confirmation area after opening the operation ent
 | --- | --- | --- | --- | --- |
 | Block Storage Type | Yes | Dropdown / enum | `Ceph RBD` | Block storage backend type. Select according to actual page-supported types. |
 | Cluster Name | Yes | Text | `cluster-a` | Storage cluster name to connect. Keep it consistent with the real storage cluster. |
-| Mon Node | Yes | Address / path | `<mon-host>:6789` | Ceph Monitor node address list. Use placeholders only in documentation. Do not record real addresses. |
+| Mon Node | Yes | Address / path | `<mon-host>:6789` | Ceph Monitor node address list. Enter the real value in the system form. When sharing outside the console, use placeholders and do not publish real addresses. |
 | FSID | Yes | Identifier / text | `<fsid>` | Unique identifier of the Ceph cluster. Keep it consistent with the target storage cluster. |
 | Storage Pool | Yes | Text | `rbd-pool` | Storage pool that hosts block volumes. Confirm capacity, quota, and permissions. |
-| Admin Key | Yes | Credential / sensitive text | `<PERSONAL_KEY>` | Admin key content or credential material. Fill it only in system forms. Do not write it in documents, screenshots, or tickets. |
-| Over-provision Ratio | Yes | Number / capacity | `Example value` | Overcommit ratio between logical and physical capacity. Fill it carefully according to capacity planning. |
+| Admin Key | Yes | Credential / sensitive text | `<PERSONAL_KEY>` | Admin key content or credential material. Enter it only in the system form. Do not copy it into shared documents, screenshots, or tickets. |
+| Over-provision Ratio | Yes | Number / capacity | `<number>` | Overcommit ratio between logical and physical capacity. Fill it carefully according to capacity planning. |
 | Tenant Quota Limit | Yes | Number / capacity | `10 TiB` | Capacity limit available to tenants. Keep it consistent with tenant capacity policies. |
 | Physical Threshold | Yes | Number / capacity | `80%` | Physical capacity alarm or limit threshold. Do not exceed the real capacity safety boundary. |
 | Logical Threshold | Yes | Number / capacity | `90%` | Logical capacity alarm or limit threshold. Verify it together with the over-provision ratio. |
 | Snapshot Limit per Vol | Yes | Number / capacity | `16` | Number of snapshots retained per volume. Configure according to capacity and backup policy. |
-| Description | No | Multi-line text | `Example description` | Component purpose, boundary, or maintenance notes. Record non-sensitive notes only. |
+| Description | No | Multi-line text | `<description>` | Component purpose, boundary, or maintenance notes. Record non-sensitive notes only. |
 | Actions | System-generated | Action entry | `Edit` | Register component, Test Connection, Submit, Search, Reset, and similar entries. `Submit` submits real configuration. Confirm the scope and impact before executing the final action. |
 
 ## Pitfalls
@@ -104,7 +89,7 @@ The image shows fields and the confirmation area after opening the operation ent
 - Storage Pool and CSI configuration must match the target cluster CSI capability. Otherwise, volumes may be created but fail to mount.
 - Before expanding a block volume, confirm that the underlying storage, file system, and workload all support online expansion.
 - Before unmounting or deleting a block volume, confirm that the instance has stopped writing to avoid file system corruption or data loss.
-- `Save`, `Submit`, and `OK` are high-risk final actions.
+- `Submit` (the Create Block Storage Component form) is a high-risk final action.
 - Do not record real Mon Node values, FSID, Storage Pool names, Admin Key, Secret, kubeconfig, cluster IDs, resource pool IDs, accounts, keys, tokens, or internal test parameters.
 
 ## Result Validation
@@ -213,7 +198,7 @@ The current page is normal, but a downstream page cannot select or associate Con
 - Creating a block storage component may affect workload PVC creation, volume mounting, capacity display, and resource scheduling.
 - keyring, Ceph user keys, Secret, and kubeconfig are sensitive materials.
 - Before deleting a block storage component, confirm that no running instances, PVCs, PVs, or business data depend on it.
-- `Save`, `Submit`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
+- `Submit` (the Create Block Storage Component form) is a high-risk final action. Confirm the scope and impact before executing it.
 - Do not record real Mon Node values, FSID, Storage Pool names, Admin Key, Secret, kubeconfig, cluster IDs, resource pool IDs, accounts, keys, tokens, or internal test parameters.
 
 ## Next Steps

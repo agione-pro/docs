@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation Path | AI Infra(On-Prem) > Templates > Inference Templates |
+| Navigation Path | On-Prem > Templates > Inference Templates |
 | Page Route | `/powerone/fast-build-v2/inference-templates` |
 | Managed Object | Configuration, status, and relationships on Inference Templates |
 
@@ -42,54 +42,87 @@ Use this page to manage inference templates, model and framework scopes, recomme
 
 ![Inference Templates](./images/manual-inference-templates.png)
 
-The page displays the inference template list, including template name, status, model scope, framework scope, update time, and operation entrypoints.
-
-The following figure shows the inference templates page.
+The list shows one card per template, with the model name, the author, a context chip such as `262K`, the `Capabilities` chips, the accelerator chip, and the `Deployable` or `Undeployable` state at the right end. The page header provides author filter chips, a `Search model / author / tag / accelerator` box, a `Default` sort control, a `Clear filters` button, the import/export icon, and the `Create Inference Template` button. The `Updated` time is shown on the details page rather than in the list.
 
 ## Main Operations
 
-### View Inference Templates
-
-1. Open the corresponding template-configuration page and filter by name, version, status, or update time.
-2. Open details and check associated models, frameworks, images, resource requirements, and current version.
-3. If no record is returned, reset filters. For incompatibility, first check dependencies.
-4. Redact internal images, storage locations, and startup configuration before sharing.
-
 ### Create Inference Template
 
-#### Pre-Operation Check
+#### Applicable Scenarios
 
-1. Available frameworks, runtime images, and model configurations have been prepared.
-2. Resource specifications, deployment mode, and visibility scope adapted by the template have been confirmed.
-3. Default parameters have been confirmed not to expose internal paths, credentials, or test endpoints.
-4. Which user deployment entrypoints are affected by template changes has been clarified.
+Use **"Create Inference Template"** when a model version must be offered as a deployable inference service through a specific framework version. One model version can be linked to different framework versions, but the same combination cannot be created twice.
 
-#### Procedure
+#### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Inference Templates`.
-2. In the top right, click **"Create Inference Template"**.
-3. In the **Model** dropdown, select the target model (e.g., DeepSeek-R1-Distill-Qwen-7B).
-4. In the **Model Version** dropdown, select a version that does not have an inference template created yet.
-5. In the **Framework Version** dropdown, select an adapted inference framework version (e.g., vLLM · v0.13.0).
-6. In **Template Name**, verify or customize the template name (defaults to the model name).
-7. Confirm the model and framework dependencies, then click **"Save"** to finish creation.
+1. Go to `On-Prem > Templates > Inference Templates`.
+2. In the top right, click **"+ Create Inference Template"**. The dialog subtitle reads `Select a model version and a framework version to create an inference template.`
+3. In the `Model configuration` group, select the target model in `Model`, for example `qwen3.5-0.8b`.
+4. In the same group, select a version in `* Model Version`. It is the only required field in the dialog and stays unavailable until a model is selected.
+5. Read the hint under the group: `A model version can use different framework versions. The same combination cannot be created twice.`
+6. In the `Template configuration` group, select an adapted inference framework in `Framework Version`, for example `vLLM:v0.21.0`. The example is taken from the `Framework Relations` tabs on the details page, not from the dialog itself.
+7. In `Template Name`, verify or customize the name. The `Use model name by default` hint means the name is filled from the model automatically.
+8. Click **"Save"** to submit, or click **"Cancel"** and `×` to leave without creating a template. `Save` stays disabled while the required selection is incomplete.
 
-#### Operation Screenshot
+The following figure shows the `Create Inference Template` dialog in its empty state: `Model` and `* Model Version` are grouped under `Model configuration`, and `Framework Version` and `Template Name` under `Template configuration`.
 
 ![Create inference template](./images/manual-create-inference-template.png)
 
-The image shows the Create Inference Template dialog. Select model, model version, and framework version, then confirm the template name. After saving, it serves as the standard deployment template for that model version.
+#### Result Validation
+
+- The template appears in the Inference Templates list, and its row shows `Deployable` or `Undeployable`.
+- Opening the template shows the combination as a tab under `Framework Relations`, and the tab carries its own state, for example `Available`.
+- `Model Version Switch` shows the model version, the framework relation count, and the overall state, for example `3 framework relations` and `All available`.
+
+#### Notes
+
+- Prepare the model configuration, framework, and runtime image before you create a template; a template does not resolve a missing dependency.
+- Do not expose internal image addresses, storage locations, startup configuration, or credentials in template parameters.
+- **"Save"** in this dialog is a high-risk final action. Verify the model, model version, and framework version combination before clicking it.
+- The same model version and framework version combination cannot be created twice, as the hint line in the dialog states.
+
+### Manage Framework Relations
+
+#### Applicable Scenarios
+
+Use the details page of a template to maintain which framework versions a model version can run on, and to check the runtime image, extra parameters, and bound accelerators of each relation.
+
+#### Steps
+
+1. On the Inference Templates list, click the expander icon at the right end of the target row to open the details page.
+2. Check the `Model Summary` card, which shows the model name, tags such as `Public models` and `All available`, and the `Updated` time.
+3. In `Model Version Switch`, select the target model version, for example `bf16`.
+4. In `Framework Relations`, switch between the framework version tabs to review each relation.
+5. Click `+` at the right end of the tab bar to add a framework relation.
+6. On the opened tab, click `Edit` to change the relation or `Delete` to remove it. The state control beside the framework version name shows the current relation state, for example `Available`.
+7. Review `Runtime image` under `LINKED FRAMEWORK INFO`, the entries under `TEMPLATE EXTRA PARAMETERS` where an empty relation shows `No extra parameters`, and the vendor and accelerator cards under `BOUND ACCELERATORS`.
+8. To change the linked factor form, use the pencil icon on the `Linked VRAM Factor Form` card.
+
+The following figure shows the details page of a template: `Model Summary`, `Linked VRAM Factor Form`, `Model Version Switch`, and `Framework Relations` together with its `LINKED FRAMEWORK INFO`, `TEMPLATE EXTRA PARAMETERS`, and `BOUND ACCELERATORS` blocks.
+
+![Inference template details](./images/inference-template-detail.png)
+
+#### Result Validation
+
+- The tab bar matches the framework versions you maintain, and each tab shows its own state.
+- `Runtime image` under `LINKED FRAMEWORK INFO` corresponds to the framework version that is currently selected.
+- `BOUND ACCELERATORS` lists the accelerator models the relation can run on, with a managed count such as `1 Managed`.
+
+#### Notes
+
+- `Delete` removes the deployment option that the relation provides for this model version. Confirm the downstream impact before deleting it.
+- A runtime image must be pullable by the target cluster. Do not write internal registry addresses into the template.
+- The dialogs opened by `+`, `Edit`, `Delete`, and the pencil icon are not covered by the screenshots on this page, so their fields are not described here.
 
 ### Import or Export Inference Templates
 
 #### Applicable Scenarios
 
-Use the **"Import/Export"** menu to batch-maintain inference templates, or to export template configurations for audit, reconciliation, and controlled migration.
+Use the import/export entry to batch-maintain inference templates, or to export template configurations for audit, reconciliation, and controlled migration.
 
 #### Steps
 
-1. Go to `AI Infrastructure > On-Prem > Templates > Inference Templates`.
-2. Click **"Import/Export"** and choose **"Import"** or **"Export"** according to the business purpose.
+1. Go to `On-Prem > Templates > Inference Templates`.
+2. Click the import/export icon in the top right, then choose to import or export according to the business purpose.
 3. For import, upload the file as required by the page and verify template, model, framework, resource specification, factor form, and visibility scope.
 4. For export, confirm the template filter scope, then generate and download the template configuration as prompted by the page.
 5. Before importing, verify that dependencies are available in the target environment. Save export files in a controlled directory.
@@ -104,34 +137,33 @@ Use the **"Import/Export"** menu to batch-maintain inference templates, or to ex
 
 - Template import depends on model, framework, image, and specification objects. Do not submit it when dependencies are missing in the target environment.
 - Import may update a template with the same identifier. Verify release scope, default parameter values, and downstream deployment impact first.
-
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Template Name | Yes | Text | `llm-inference-template` | Template name users see when creating inference services. Use a maintainable name instead of temporary test naming. |
-| Description | No | Multi-line text | `Example description` | Template purpose, adapted model, and usage boundary. Write non-sensitive notes only. Do not include internal addresses or test parameters. |
+| Description | No | Multi-line text | `<description>` | Template purpose, adapted model, and usage boundary. Write non-sensitive notes only. Do not include internal addresses or test parameters. |
 | Applicable Scenario | Conditionally required | Dropdown / enum | `Model inference` | Business scenario or model service type for the template. Keep it consistent with model type, framework capability, and user entry. |
-| Publication Scope | Conditionally required | Dropdown / enum | `Example value` | Scope where the template is published to the user side. Confirm affected tenants, regions, and entries before publishing. |
+| Publication Scope | Conditionally required | Dropdown / enum | `<option>` | Scope where the template is published to the user side. Confirm affected tenants, regions, and entries before publishing. |
 | Visibility Scope | Yes | Dropdown / enum | `Tenant A` | Controls which users or tenants can use the template. Incorrect scope may make the template invisible or visible to non-target tenants. |
-| Model | Conditionally required | Dropdown / enum | `A100-SXM4-80GB` | Model or model set applicable to the template. Dependent objects must be available and match the framework. |
-| Model Version | Conditionally required | Dropdown / enum | `v0.8.0` | Model version referenced by the template. Keep it consistent with model path, quantization method, and VRAM estimation rules. |
+| Model | Conditionally required | Dropdown / enum | `Qwen3.5-0.8B` | Model or model set applicable to the template. Dependent objects must be available and match the framework. |
+| Model Version | Conditionally required | Dropdown / enum | `bf16` | Model version referenced by the template. Keep it consistent with model path, quantization method, and VRAM estimation rules. |
 | Model Source | Conditionally required | Address / path | `Object Storage` | Model file source, repository source, or object storage source. Do not write real model repository addresses, endpoints, or internal paths. |
-| Framework | Yes | Number / capacity | `vLLM` | Runtime framework configuration called by the template. The framework must support the selected model type and runtime mode. |
-| Framework Version | Conditionally required | Text | `v0.8.0` | Framework version referenced by the template. Confirm impact on existing templates and instances before modification. |
+| Framework | Yes | Text | `vLLM` | Runtime framework configuration called by the template. The framework must support the selected model type and runtime mode. |
+| Framework Version | Conditionally required | Text | `v0.21.0` | Framework version referenced by the template. Confirm impact on existing templates and instances before modification. |
 | Runtime Image | Conditionally required | Text | `<BASE_URL>/<PROJECT>/<IMAGE>:<TAG>` | Container image used by the framework runtime. Confirm image region, registry permissions, and target cluster pull access. |
 | Resource Specification | Yes | Number / capacity | `gpu-a100-1card` | Default recommended or selectable compute specification for the template. Match model VRAM, concurrency, context length, and deployment mode. |
 | Deployment Mode | Yes | Dropdown / enum | `Single instance` | Determines service replicas, scaling, and scheduling mode. Keep it consistent with framework startup commands and resource specifications. |
 | VRAM Estimation Rule | Conditionally required | Number / capacity | `80` | VRAM rule used to recommend or validate specifications. Keep it consistent with model parameter count, quantization method, and context length. |
 | Service Port | Conditionally required | Port / number | `8000` | Actual listening or exposed port of the model service. Must match the actual framework listening port. |
-| Port Exposure Policy | Conditionally required | Port / number | `Example value` | Port exposure method and authentication mechanism. Incorrect configuration may expand service exposure scope. |
+| Port Exposure Policy | Conditionally required | Port / number | `<option>` | Port exposure method and authentication mechanism. Incorrect configuration may expand service exposure scope. |
 | Port Tag | No | Port / number | `OpenAI API Port` | Identifies port protocol type or purpose. Keep it consistent with OpenAI API, Ollama API, or custom protocol. |
 | Health Check | Conditionally required | Address / path | `/health` | Path or command used to determine whether the service starts successfully. Match the actual service path, port, and startup delay. |
 | Factor Form | Conditionally required | Configuration text | `Context length` | Parameter form that users fill in when creating instances. Verify fields, default values, and validation rules one by one. |
 | Default Parameters | No | Dropdown / enum | `--max-model-len 8192` | Model or runtime parameters prefilled when creating services. Do not write real tokens, AK/SK, private keys, endpoints, or test values. |
 | Dynamic Expression | Conditionally required | Dropdown / enum | `${gpuCount} >= 1` | Dynamically calculates fields or visibility based on model, framework, specification, or user input. Expression errors can cause missing fields or abnormal startup commands. |
 | Trigger Condition | Conditionally required | Dropdown / enum | `Model type = LLM` | Controls fields displayed under specific models, frameworks, or options. Validate with actual model, framework, and specification combinations. |
-| Actions | System-generated | Action entry | `Edit` | Add, save, submit, publish, OK, and similar page operations. `Save`, `Submit`, `Publish`, and `OK` are high-risk final actions. |
+| Actions | System-generated | Action entry | `Edit` | Create, save, edit, and delete operations on this page. `Save` (the template create dialog) is a high-risk final action. |
 
 ## Pitfalls
 
@@ -141,7 +173,7 @@ Use the **"Import/Export"** menu to batch-maintain inference templates, or to ex
 - Incorrect default parameters, dynamic expressions, or trigger conditions can cause missing user form fields, wrong parameters, or abnormal startup commands.
 - Incorrect port exposure policy may expand the service exposure scope.
 - Do not write real tokens, AK/SK, private keys, endpoints, internal addresses, model repository addresses, tenant IDs, cluster IDs, or test parameters.
-- `Save`, `Submit`, `Publish`, and `OK` are high-risk final actions. Confirm the scope and impact before executing the final action.
+- `Save` in the Create Inference Template dialog is a high-risk final action. Confirm the model, model version, and framework version combination before executing it.
 
 ## Result Validation
 
@@ -249,7 +281,7 @@ The current page is normal, but a downstream page cannot select or associate Con
 - Template parameters must not contain real tokens, keys, or internal addresses.
 - Before publishing a template, confirm that dependent models, frameworks, images, specifications, and storage are all available.
 - Before modifying a published template, confirm the impact on user-side instance creation, template visibility scope, and active deployment entries.
-- Before save, submit, publish, or confirm actions, verify the scope and impact and execute them only after approval.
+- Before you save a template or edit a framework relation, verify the scope and impact and execute the action only after approval.
 
 ## Next Steps
 

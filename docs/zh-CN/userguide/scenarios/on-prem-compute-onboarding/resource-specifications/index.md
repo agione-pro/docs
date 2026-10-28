@@ -16,7 +16,7 @@
 ## 功能入口
 
 - **角色**：运营管理员
-- **菜单**：AI基础设施 > On-Prem > 资源池 > 规格指标 / 资源规格
+- **菜单**：On-Prem > 资源池 > 规格指标 / 资源规格
 - **路由**：`/powerone/resourcepool/flavor/type`、`/powerone/resourcepool/flavor/list`
 
 ## 操作步骤
@@ -64,5 +64,4 @@
 
 ## 操作手册
 
-- [规格指标](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/spec-metrics/)
 - [资源规格](/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/)

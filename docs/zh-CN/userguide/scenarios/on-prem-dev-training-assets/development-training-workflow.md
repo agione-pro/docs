@@ -39,7 +39,7 @@ next: true
 ![创建训练运行实例](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/images/create-runtime-instance.png)
 
 5. 将镜像、模型和结果保存到受控存储，确保后续任务可以复用。
-6. 查看[作业监控](../../../usermanual/ai-infra-on-prem/user/monitoring/jobs/)和[资源用量](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/)，停止不再使用的实例。
+6. 查看[资源用量](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/)，停止不再使用的实例。
 
 ## 资产沉淀建议
 

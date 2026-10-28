@@ -5,13 +5,13 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation Path | AI Infra(On-Prem) > Model Deployment > Instances |
+| Navigation Path | On-Prem > Model Deployment > Instances |
 | Page Route | `/powerone/quickstart/model-service` |
-| Managed Object | Configuration, status, and relationships on Instances |
+| Managed Object | Model-service instances and their deployment configuration |
 
 #### Beginner Explanation
 
-Model instances can be understood as model services that have already been ordered and started. Deployment templates are responsible for creation, while the Model Instances page is responsible for checking whether creation succeeded, whether the instance is still running, and whether further troubleshooting is needed.
+A model instance runs a deployed model service. Create it from a deployment template or use Custom Deploy on this page, then inspect its card, publish its inference service, or delete it when no longer needed.
 
 #### Terms
 
@@ -23,81 +23,343 @@ Model instances can be understood as model services that have already been order
 
 #### Recommended Operation Order
 
-Confirm prerequisites for Model service instances created through deployment templates, follow Main Operations, run Result Validation, and continue to the next page.
+1. Go to `On-Prem > Model Deployment > Instances`.
+2. To create an instance, use a deployment template or follow Create Custom Model Instance.
+3. For an existing instance, check its card, then use the details tabs for configuration, ports, storage, or diagnosis.
+4. Before continuing to private-model registration, check the API smoke-test result.
+5. Before deletion, confirm service impact and save any required data.
 
 #### First-Time User Notes
 
-Confirm that the task involves Configuration, status, and relationships on Instances, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
+Prepare the model version, framework image, specification, and region before custom deployment. For an existing instance, use its card to identify the model, resources, status, and available actions.
 
 ## Prerequisites
 
-1. At least one model instance has been created, or you are preparing to view the current empty-list state.
-2. The current account has permission to view model instances.
-3. For troubleshooting, you can enter instance details, logs, or monitoring pages.
+1. The current account has permission for the intended instance operation.
+2. For custom deployment, the model version, framework image, specification, and region are available.
+3. For publishing or deletion, confirm the target instance and the impact on service users.
 
 ## Page Description
 
-Use this page to manage model-service instances created from deployment templates.
+Use this page to view model-service instance cards and to start custom deployment, publishing, or deletion from the list.
 
 ![Instances](./images/instances-list.png)
 
-The page provides instance type, status, search, and reset entrypoints. In the current environment screenshot, the list is empty, indicating that the tenant has no model service instances under the current conditions.
+The card shows a region chip, an `Inference service ready` status chip, the instance name, elapsed runtime, `Model` with its precision tag, `Inference Framework` with its version, `Total Resources`, and CPU / memory / GPU allocations. Its service entry shows `Port: 8000`, `OpenAI Compatible · Chat Completions`, and `API`, `OpenAI API Port`, and `Inference Engine Port` chips, plus `Publish` and a `…` menu.
 
 #### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
-| Instance Type Filter | Narrows the scope by All, Single Instance, Multi-instance, Cluster, and other types. |
-| Status Filter | Views instances by all statuses or a specific runtime status. |
-| Search Area | Enter conditions and Click **"Search"** to locate the target instance. |
-| List Area | Displays model instances and their status. When no data exists, it displays No model services. |
-| Pagination Area | View by page when there are many instances. |
+| Instance Type Filter | Switch between `All`, `Single Instance`, and `Cluster`. |
+| Region and Status Filters | The `All` region dropdown and the `All Statuses` dropdown narrow the list. |
+| Search Area | Enter a keyword in `Search by instance name`, then use the search icon button; the refresh icon button reloads the list. |
+| List Area | Displays instance cards and their status. |
+| Details Tabs | Basic Info, Task Info, Open Ports, Storage Mounts, Logs, Monitoring, and Console. |
 
 ## Main Operations
 
-### Filter and View Model Instances
+### Create Custom Model Instance
 
-1. Go to `AI Infrastructure > On-Prem > Model Deployment > Instances`.
-2. Filter target instances using `Instance Type`, `Status`, or search keywords, then click **"Search"**.
-3. In the list, review instance name, type, running status, model, specification, region, and creation time.
-4. Click **"Details"** on the target instance to check model version, resource flavor, instance status, Endpoint, and associated events.
+#### Applicable Scenarios
 
-### Troubleshoot and Handle Abnormal Status
+Create a model-service instance directly from the model library when you need to choose its deployment plan, framework image, resources, and runtime configuration.
 
-1. In instance details, review resource utilization, invocation status, events, and recent error logs.
-2. Keep the same time range and compare cluster, node, and device monitoring to locate the affected layer (e.g., resource shortage or OOM).
-3. If starting, stopping, restarting, scaling, or deleting instances is required, verify impact on online workloads and obtain authorization before proceeding.
+#### Pre-Operation Check
+
+- The selected model version shows the `Deployable` badge.
+- The intended region shows `Normal` in `Region and Zone`.
+
+#### Steps
+
+1. Go to `On-Prem > Model Deployment > Instances` and click **Custom Deploy**.
+2. In `Model Library`, search with `Search model / author / tag / accelerator` and select a model marked `Deployable`.
+3. In `Model Versions`, search with `Search versions, parameter sizes, or frameworks` and choose a version.
+
+The model library shows capabilities such as Tool Calling and Reasoning; the right panel lists versions of the selected model.
+
+![Choose a model and version](./images/custom-model-selection.png)
+
+4. Choose `Single Instance` or `Cluster` under `Deployment Plan`; the shown form uses Single Instance.
+5. Select an `Inference Framework` image and a `Specification` row, checking CPU, memory, and accelerator allocations. The image filter shows `All images 2`.
+6. Confirm the region under `Region and Zone` and configure `Storage Mounts` when needed.
+7. Check `Exposed Ports`, including the `Model service API port` designation and `API inference protocol`.
+8. Review `Environment Variables` and `Start Command`; the shown form has `3 built-in · 0 custom` variables.
+
+The form includes storage, ports, variables, and the start command. Built-in variables include `BASE_URL_PREFIX`, `APP_ROOT_PORT_0`, and `APP_ROOT_PATH_0`.
+
+![Custom deployment configuration](./images/custom-deployment-settings.png)
+
+9. Check the configuration and resource impact, then click **Confirm and Create**.
+
+#### Result Validation
+
+- After submission, check the list for the instance and its status.
+- If the instance appears, compare the model, framework, and resource summary on its card with the intended deployment.
+
+#### Notes
+
+
+### View Basic Info and Task Configuration
+
+#### Applicable Scenarios
+
+Check an instance's model attributes, deployment information, resource allocation, and runtime configuration before investigating a service issue.
+
+#### Steps
+
+1. In the target instance's details, select `Basic Info`.
+2. Read `Model attributes`: scenario, model type, function/tool calling, reasoning mode, token limits, input/output modalities, architecture, attention, parameters, context window, and quantization.
+3. In `Task instance`, check Deployment Name, Project, Created At, Updated At, Runtime, and Resource Config.
+
+Basic Info separates model attributes from task-instance information and the CPU, memory, storage, and accelerator allocation.
+
+![Instance Basic Info](./images/instance-basic-info.png)
+
+4. Select `Task Info` and check Image, Start Time, End Time, Project, Runtime, and Spec ID under Basic Configuration.
+
+The task configuration shows the selected image, time fields, project association, runtime, and resource specification.
+
+![Task configuration fields](./images/instance-task-info.png)
+
+#### Result Validation
+
+- Check that the task-instance information belongs to the intended deployment and compare its resource allocation with the intended specification.
+- Read Created At separately from Runtime; the former is a timestamp and the latter is elapsed time.
+
+#### Notes
+
+- Model-attribute labels describe metadata; they do not independently prove that the deployed service supports a capability.
+- Read the header precision tag and the Quantization field separately rather than assuming their displayed values are interchangeable.
+
+### Manage Open Ports
+
+#### Applicable Scenarios
+
+Review a model instance's port mappings or adjust a mapping's open policy, tags, and permitted source networks.
+
+#### Steps
+
+1. In the instance details, select `Open Ports` and read Access Status, Port, Access Policy, Port Tags, and Action.
+
+The port table shows a Normal row and a Model service API port badge with its protocol.
+
+![Instance open ports](./images/instance-open-ports.png)
+
+2. Click **Add Port Mapping** to open Add Port and enter an integer Container Port from 1 to 65535.
+3. Choose an Open Policy: `Web Access (Recommended)`, `API Auth Access (Recommended)`, `Web/API Compatible Access (Unsigned)`, or `Direct Port Forwarding (Unsigned)`.
+4. Set Port Tags when needed. For source restrictions, use **Add Whitelist** to add the intended CIDR ranges; check the settings before **Confirm**.
+
+The Add Port dialog contains the container port, policy cards, port tags, whitelist, Cancel, and Confirm.
+
+![Add an instance port mapping](./images/instance-add-port.png)
+
+5. For an existing row, use its pencil icon to open Edit Port, check the policy, tags, and whitelist, then confirm only after reviewing access impact.
+
+Edit Port shows the existing port value; the pictured Container Port field is disabled.
+
+![Edit an instance port mapping](./images/instance-edit-port.png)
+
+6. Click the **View API access info** icon on a port row to open the **API Access** popover. It shows the service **Endpoint** and the required **Request Header** (`Authorization: Bearer <token>`), plus a footer hint to add that header to your request.
+
+The endpoint and token values are masked in the screenshot; do not copy them into documentation.
+
+![API access information popover](./images/instance-api-access.png)
+
+#### Result Validation
+
+- After confirmation, compare the mapping row and policy with the intended settings.
+
+#### Notes
+
+- The whitelist hint states that leaving it empty allows all sources; adding CIDR ranges restricts access to those ranges. Check exposure before confirmation.
+- The API Access popover lists the endpoint and Bearer token; both are masked in the screenshot above. Do not copy endpoint or authorization values into documentation.
+
+### Configure the Inference Service
+
+#### Applicable Scenarios
+
+Choose which exposed port is the model-service API port and check its API inference protocol before publishing.
+
+#### Steps
+
+1. On `Open Ports`, click **Configure inference service**.
+2. Select `Model service API port` and check `API inference protocol`.
+
+The dialog shows port 8000 and OpenAI Compatible · Chat Completions, with Cancel and Confirm actions.
+
+![Configure the instance inference service](./images/instance-inference-service.png)
+
+3. Check the intended port and protocol before **Confirm**; use **Cancel** to leave without confirming.
+
+#### Result Validation
+
+- Compare the designated API-port badge and protocol on the port row with the intended configuration.
+
+#### Notes
+
+- This dialog configures the instance's inference-service port and protocol; it is not the publish dialog's Edit Request Configuration panel.
+
+### Manage Storage Mounts
+
+#### Applicable Scenarios
+
+Review storage attached to the instance or locate the entry for adding a mount for code, data, or output directories.
+
+#### Steps
+
+1. In the instance details, select `Storage Mounts`.
+2. Read Container Path, Open Policy, External Storage, Storage Type, Capacity, and Action; the empty state is `No storage mounts`.
+
+The Storage Mounts tab shows the empty table and the Add Mount entry.
+
+![Instance storage mounts](./images/instance-storage-mounts.png)
+
+3. If a mount is needed, use **Add Mount**.
+
+#### Result Validation
+
+- An empty table displays No storage mounts.
+
+#### Notes
+
+- Confirm the intended persistent path before relying on it for output.
+
+### View Logs, Monitoring, and Console
+
+#### Applicable Scenarios
+
+Inspect logs and resource charts or locate the web terminal when investigating a model-service instance.
+
+#### Steps
+
+1. Select `Logs` and review Log source, Line limit, Filter log lines, Case-sensitive, Before & after, and Time range.
+
+The log controls show Container log, the Connected status, and time-range choices Any time, 15m, 1h, 6h, 1d, and Custom.
+
+![Instance log controls](./images/instance-logs.png)
+
+2. Select `Monitoring`. The sub-tabs are `Common`, `AI Accelerator`, and `SrIov`; inspect the selected time range, sampling interval, and Real-time Resource Consumption charts.
+
+The Common panel shows CPU Utilization(%), Disk Available, Disk Utilization(%), Disk Total, and Memory Utilization(%).
+
+![Instance monitoring](./images/instance-monitoring.png)
+
+3. Select `Console` to locate `Terminal 1` and **Open in new tab**.
+
+The console header provides a terminal tab and the new-tab entry.
+
+![Instance console entry](./images/instance-console.png)
+
+#### Result Validation
+
+- Logs shows a connection state and line count; Monitoring shows the common CPU, disk, and memory charts; Console shows Terminal 1.
+- Static charts do not establish service health.
+
+#### Notes
+
+- Check commands and their impact before using the terminal; redact credentials and sensitive environment information before sharing logs or terminal output.
+- These instructions start from the instance details page.
+
+### Publish Model
+
+#### Applicable Scenarios
+
+Publish an instance's inference service as a private model by checking API connectivity and continuing to model registration.
+
+#### Pre-Operation Check
+
+- The card shows `Inference service ready`, and `Selected service port` in the publish dialog shows `Normal`.
+- The smoke test sends a real request; confirm authorization and request impact before proceeding.
+
+#### Steps
+
+1. On the target card, open the `…` menu and choose **Publish Model**.
+
+The card menu provides Publish Model and Delete.
+
+![Instance card menu](./images/instances-menu.png)
+
+2. In `Select publish type`, review `Private Model` and `Public Model`. Use **Publish as Private Model** for the private-model path.
+
+The public-model card provides a Contact Us entry.
+
+![Select a publish type](./images/publish-type.png)
+
+3. In the smoke-test dialog, check `Selected service port` and `Inference Request Protocol` with the `Using inference service configuration` badge.
+4. Check the `API Connectivity Smoke Test` result. Continue only after **API smoke test passed**, then click **Jump to Publish**.
+
+The success message and Jump to Publish entry identify the point at which you can continue to registration.
+
+![API smoke test passed and publish entry](./images/publish-smoke-test.png)
+
+5. On `My Models` with the `Private` tag, check the registration page before proceeding. The wizard headings are `Basic Information`, `Billing Configuration`, and `Rate Limit Configuration`.
+
+The landing page starts at Basic Information; the transition does not establish that the model has been published.
+
+![Private model registration landing page](./images/publish-private-model.png)
+
+#### Result Validation
+
+- The smoke-test success message confirms the test result, not completion of model publishing.
+
+#### Notes
+
+- Do not share request credentials, internal addresses, or raw smoke-test output.
+- A visible Public Model option or Contact Us entry does not establish completion of a public-model publishing workflow.
+
+### Delete Model Instance
+
+#### Applicable Scenarios
+
+Decommission an instance that is no longer needed after checking its service impact.
+
+#### Steps
+
+1. Confirm the target instance and business impact, and save any required data before proceeding.
+2. Open the target card's `…` menu and click **Delete**.
+3. Read any on-screen prompt carefully before the final action.
+
+#### Result Validation
+
+- Clicking the menu entry alone does not prove successful deletion.
+
+#### Notes
+
+- Deletion may interrupt service; confirm business impact before operating.
+- `Stop` and `Restart` are not documented as executable actions here.
 
 ## Parameter Quick Reference
 
 | Field Name | Description |
 | --- | --- |
-| Instance Name | Name of the model service instance. |
-| Instance Type | Instance form, such as single instance, multi-instance, or cluster instance. |
-| Status | Current runtime or lifecycle status of the instance. |
-| Model | Model associated with the instance. |
-| Specification | Resource specification used by the instance. |
-| Region | Region or resource pool where the instance runs. |
-| Created At | Time when the instance was created. |
-| Search Condition | Filter or keyword used to narrow the instance list. |
-| Actions | Available row actions, such as viewing details or lifecycle operations. |
+| Instance Name | Model-service instance name shown on the card. |
+| Instance Type | List tabs: `All`, `Single Instance`, and `Cluster`; the form offers Single Instance and Cluster deployment plans. |
+| Status | Card status, such as `Inference service ready`. |
+| Model | The deployed model and its precision tag. |
+| Inference Framework | The framework and version shown on the card. |
+| Specification | CPU, memory, and accelerator allocations selected for deployment. |
+| Region | The instance's region, shown on the card and selected in the creation form. |
+| Runtime | Elapsed runtime shown on the card; do not substitute it for creation time. |
+| Created At | Creation timestamp under Task instance in Basic Info; separate from Runtime. |
+| Updated At | Update timestamp under Task instance in Basic Info. |
+| Service Entry | Port and protocol chips, plus the Publish entry. |
+| Actions | `Publish Model` and `Delete` in the card's `…` menu. |
 
 ## Pitfalls
 
-- The instance list may have refresh delay. A newly created instance may not appear immediately.
-- An empty list does not necessarily mean there are no instances. Check filters, tenant, region, and permissions first.
-- `Stop`, `Restart`, and `Delete` are high-risk actions.
-
-- Do not write real instance IDs, instance names, tenant information, regions, nodes, endpoints, logs, error details, or test data in the document.
+- If an instance is missing, check filters and region first.
+- A passed API smoke test and a jump to My Models do not mean publishing is complete.
+- Do not infer `Stop` and `Restart` behavior from other resource pages.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page entry | Instances opens with the target operation entry | Check Operator permission and whether the menu is available |
-| Object record | Configuration, status, and relationships on Instances is visible in the list or details | Reset filters and verify name, ownership, and creation result |
-| State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
-| Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
+| Page entry | The list and required action are available | Check the current account's permissions and the page message |
+| Instance card | The expected instance is visible with its model and resource summary | Reset filters and check the instance name and region |
+| API smoke test | The dialog shows `API smoke test passed` | Check the service port, protocol, and test feedback without sharing credentials |
+| Publish handoff | My Models opens with the Private tag | Check the transition to the publishing flow. |
 
 ## FAQ
 
@@ -105,101 +367,90 @@ The page provides instance type, status, search, and reset entrypoints. In the c
 
 **Symptom:**
 
-The page opens, but the expected Configuration, status, and relationships on Instances is missing.
+The expected model-service instance card is missing.
 
 **Possible Causes:**
 
-- Filters remain active.
-- the object belongs to another scope.
-- a prerequisite is incomplete.
+Active filters or the selected region may exclude the instance.
 
 **Solution:**
 
-1. Reset filters
-2. verify region or tenant ownership
-3. confirm prerequisite state.
+1. Reset the status and name filters.
+2. Check the region and instance-type tab.
+3. Search for the instance name and check the creation message if available.
 
 #### The Operation Entry on Instances Is Unavailable
 
 **Symptom:**
 
-The create, register, or maintain entry is hidden or disabled.
+Custom Deploy or the required card action is unavailable.
 
 **Possible Causes:**
 
-- Role permission is insufficient.
-- the page is read-only.
-- dependencies are not ready.
+Account permissions or instance state may not meet the action's requirements.
 
 **Solution:**
 
-1. Check Operator permission
-2. read the page message
-3. complete dependency configuration first.
+1. Check the page message and instance state.
+2. Confirm that the current account has permission for the intended action.
+3. Contact an administrator if permissions need adjustment.
 
 #### A Required Field on Instances Has No Options
 
 **Symptom:**
 
-The form opens, but a selection list is empty.
+No model version, framework image, or specification can be selected during custom deployment.
 
 **Possible Causes:**
 
-- Candidates are disabled.
-- ownership differs.
-- the current account cannot see them.
+Search conditions or the available deployment configuration may limit the options.
 
 **Solution:**
 
-1. Check candidate state
-2. verify ownership
-3. confirm visibility and refresh the form.
+1. Clear the relevant model or version search condition.
+2. Check the selected model, version, and region.
+3. Ask an administrator to check the required deployment resources.
 
-#### Instances Has an Abnormal State After the Operation
+#### Instance Status Is Unexpected
 
 **Symptom:**
 
-A record exists after submission, but its state is unexpected.
+The card shows an unexpected state after an operation.
 
 **Possible Causes:**
 
-- Connectivity or validation failed.
-- a dependency is abnormal.
-- processing is incomplete.
+Processing or runtime dependencies may need investigation; the state alone does not establish the cause.
 
 **Solution:**
 
-1. Check feedback and update time
-2. inspect related objects
-3. troubleshoot the processing stage.
+1. Record the instance name, card state, and operation feedback.
+2. Check Task Info, Logs, and Monitoring for relevant runtime information; do not infer a cause from the status alone.
+3. Share only relevant, sanitized diagnostic information when requesting help.
 
-#### A Downstream Page Cannot Use Instances
+#### Publishing Is Not Complete After the Jump
 
 **Symptom:**
 
-The current page is normal, but a downstream page cannot select or associate Configuration, status, and relationships on Instances.
+The smoke test passed and My Models opened, but registration is not complete.
 
 **Possible Causes:**
 
-- Visibility differs.
-- the object is disabled.
-- downstream cache is stale.
+Jump to Publish opens registration rather than proving completed publication.
 
 **Solution:**
 
-1. Check enabled state and ownership
-2. verify role visibility
-3. refresh and select again.
+1. Check that the landing page is My Models with the Private tag.
+2. Confirm the remaining registration requirements before continuing.
+3. Verify the final result separately; do not report the smoke test as publishing success.
 
 ## Notes
 
-- During troubleshooting, do not expose internal access credentials or API keys in screenshots.
-- Before providing external service, confirm access control, instance specification, and runtime cycle.
-- `Stop`, `Restart`, and `Delete` may interrupt service, release resources, or remove instance records. Confirm business impact before operating.
-- Use the list and detail pages as the primary basis for instance status. Overview pages only provide entrypoints and summaries.
+- Do not store or share credentials, API keys, or sensitive environment information in documents, repositories, or screenshots.
+- Confirm request impact before smoke tests and business impact before deletion.
+- Read each instance tab on its own terms; request-protocol settings in the publish dialog and in Open Ports are separate configuration areas.
 
 ## Next Steps
 
-1. View instance details and logs.
-2. Confirm service access address and invocation method.
-3. Track runtime cost in `Resource Usage`.
+1. For custom deployment, check the instance card and operation feedback.
+2. For publishing, continue registration only after confirming the smoke-test result.
+3. Use Basic Info, Task Info, Logs, and Monitoring when diagnosing the instance.

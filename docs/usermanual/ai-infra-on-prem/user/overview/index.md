@@ -5,7 +5,7 @@
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider and Model Consumer |
-| Navigation Path | AI Infra(On-Prem) > Overview |
+| Navigation Path | On-Prem > Overview |
 | Page Route | `/powerone/overview` |
 | Managed Object | Configuration, status, and relationships on Overview |
 
@@ -23,7 +23,11 @@ The overview page can be understood as the homepage of the On-Prem user console:
 
 #### Recommended Operation Order
 
-Confirm prerequisites for Deployment templates, accelerator resources, quick entrypoints, specification quotas, and resource usage trends, follow Main Operations, run Result Validation, and continue to the next page.
+1. Go to `On-Prem > Overview`.
+2. Check `Deployment Templates` to confirm whether a deployable model exists.
+3. Check `Accelerator Vendors` to confirm the accelerator types the current resource pool supports.
+4. Use the `Online IDE` or `Runtime Instances` card to enter the creation flow.
+5. Check `Specification Quota`, `Consumption Trend`, and the resource usage panels to confirm whether the resources a job needs are available.
 
 #### First-Time User Notes
 
@@ -41,31 +45,171 @@ Use this page to review deployment templates, accelerator resources, quick entri
 
 ![Overview](./images/overview-list.png)
 
-The upper area displays deployable templates and accelerator vendors; the middle area provides quick entrypoints for Online IDE and Runtime Instance; the lower area displays specification quota, consumption trends, and resource usage. The screenshot shows the left user menu, deployment template area, accelerator area, and quick entrypoints.
+The upper area displays deployment templates and accelerator vendors; the middle area provides two quick entry cards for Online IDE and Runtime Instances; the lower area displays the specification quota table, the consumption trend chart, and the resource usage panels. The image below is a full-height capture of the page content area and does not include the fixed left menu.
 
 #### Page Areas
 
 | Field/Area | Description |
 | --- | --- |
 | Deployment Templates | Displays deployable models and deployment entrypoints. The deployment button is usually unavailable before a model is selected. |
-| Accelerator Vendors | Displays accelerator models and adaptation status by vendors such as NVIDIA, Huawei, AMD, and Intel. |
-| Quick Guide | Provides creation entrypoints for Online IDE and Runtime Instance. |
-| Specification Quota | Displays specification-level quotas and used amount. |
-| Consumption Trend | Displays consumption trend for the current cycle. If there is no job consumption, it is empty. |
+| Accelerator Vendors | Displays accelerator models and adaptation status per vendor. This capture shows `Huawei` and `NVIDIA`; the Chinese capture shows `NVIDIA` only, and the earlier capture also showed `AMD` and `Intel` (see OV-05). |
+| Quick Entry Cards | The two cards titled `Online IDE` and `Runtime Instances` each provide a `Create Job` entrypoint. The page itself shows no `Quick Guide` heading (see OV-07). |
+| Specification Quota | Displays the specification-level `Specification`, `Quota`, and `Used` columns. |
+| Consumption Trend | Displays the consumption trend for the current cycle, with the `This Month` and `This Week` switch and a date range. If there is no job consumption, it shows an empty state. |
+| Resource Usage | Displays the `AI Accelerator`, `CPU`, `Memory`, `Online IDE`, and `Runtime Instances` panels with their total and used values. |
 
 ## Main Operations
 
-### View Deployable Resources
+This section is organized by page area. Each area documents the functional actions only, and each image follows the steps it supports.
 
-1. Open the On-Prem overview page and confirm the region and project scope in the upper-right corner.
-2. In deployment templates and accelerator vendor sections, review adapted hardware models, VRAM, and availability status.
-3. Check specification quotas and resource consumption trends to verify whether sufficient compute allowance remains.
+### View Deployable Models
+
+#### Applicable Scenarios
+
+Use the `Deployment Templates` area to confirm which models the current tenant can deploy and to reach the deployment entry.
+
+#### Steps
+
+1. Go to `On-Prem > Overview`.
+2. In the `Model Vendors` list, check the vendor row and its counters, for example the `qwen` row shows `1 deployable · 1 cards` and `1 models`.
+3. Expand a vendor row to read the model rows. A model row gives the parameter tags and the status, for example `qwen3.5-0.8b` with `0.8B`, `qwen`, `262K`, and the status `Deployable`.
+4. Filter the list with the `Search model / author / tag` field, and restore the full list with `Clear Filters`.
+5. Click the `>` at the end of a model row to leave the overview and open the detail view of that model (the target page is outside this capture set, see OV-08). While no model is selected, the area title line shows `Select a specific model before deployment` and `Deploy` stays unclickable.
+
+The image below is a close-up of the `Deployment Templates` area, so the vendor counters, model tags, status text, and deployment entry above can be aligned one by one.
+
+![Deployment Templates area: the Model Vendors list and the Deploy entry](./images/deployment-templates.png)
+
+#### Result Validation
+
+- The vendor row, the model rows, and the status text are all visible, and a deployable model reads `Deployable`.
+- After a keyword is typed in `Search model / author / tag`, the `Model Vendors` counter changes, and `Clear Filters` restores the full list.
+
+#### Notes
+
+- `Deploy` appears disabled in this capture because no model is selected. The sibling Chinese capture shows the selected state, where the area title line names the chosen model and the button becomes clickable; the English wording of that label is not captured (see OV-02, OV-09).
+- The vendor and model counts and the model list come from what the operator opened for this tenant, and neither the Model Provider nor the Model Consumer can change them on this page.
+- The `Expand remaining 13 models` row in the earlier capture does not exist in this capture set (this sample has 1 model in total), so do not write it from the old image.
+
+### Review Accelerator Vendors
+
+#### Applicable Scenarios
+
+Use the `Accelerator Vendors` area to confirm which accelerator types the current resource pool has adapted and whether a card model is managed.
+
+#### Steps
+
+1. Read the adapted count at the right of the `Accelerator Vendors` title, for example `2 adapted accelerator types`.
+2. In each vendor row, read the two counters, for example the `Huawei` row shows `1 managed` and `0 unmanaged`.
+3. Expand a vendor row to read the card rows. A card row gives the model, memory, and management status, for example `Ascend 910B` with `64GB` and `Managed`, followed by the precision list `BF16 · INT8 · FP16` and the peak throughput `Peak 640 TFLOPS`.
+
+#### Result Validation
+
+- The adapted count and the vendor row counters are visible together, and each vendor arrow matches the collapsed or expanded state of that row.
+- The model, memory, and management status of a card row are readable within one row, with the precision list and peak throughput below it.
+
+#### Notes
+
+- A collapsed vendor row (for example `NVIDIA` showing `1 managed` and `0 unmanaged`) gives counters only, and the card details appear after it is expanded.
+- Whether a card row offers an entry to its detail page is not confirmed in this capture set (see OV-03), so this section does not write that entry.
+- The earlier capture contains the `AMD` and `Intel` vendor rows, which are not visible in this capture set (see OV-05); the page area table records this as a version difference instead of deleting the row.
+
+### Create Jobs from the Quick Entry Cards
+
+#### Applicable Scenarios
+
+Use the two quick entry cards in the middle of the page to start the creation flow of an interactive development environment or a runtime instance directly from the overview page.
+
+#### Steps
+
+1. Confirm the two cards in the middle of the page: the blue `Online IDE` card and the green `Runtime Instances` card, each with one description paragraph and one `Create Job` button.
+2. Click `Create Job` inside the `Online IDE` card to enter the creation flow of an online development environment.
+3. Click `Create Job` inside the `Runtime Instances` card to enter the creation flow of a runtime instance.
+
+#### Result Validation
+
+- Both cards and their `Create Job` buttons are visible together, and the card titles match the `Online IDE` and `Runtime Instances` items of the left user menu word for word.
+- After the click, the page leaves the overview; the overview page itself shows no creation result.
+
+#### Notes
+
+- The target form fields, required marks, and submit messages of both creation flows are outside this capture set (see OV-04), so this section does not write them.
+- The cards are entrypoints only, and they do not replace the pages under `Model Deployment > Instances` or `Dev Resources`.
+- Whether creation succeeds also depends on the quota and the remaining resources, so check the `Specification Quota` table and the usage panels on this page first.
+
+### Review Specification Quota and Consumption Trend
+
+#### Applicable Scenarios
+
+Use the `Specification Quota` table and the `Consumption Trend` chart in the lower half of the page to confirm the upper limit and used amount of each specification and the consumption curve of the current cycle.
+
+#### Steps
+
+1. Read the three columns of the `Specification Quota` table: `Specification`, `Quota`, and `Used`.
+2. Check the form of the quota value: no upper limit shows `Unlimited`, and a limited quota shows a number, for example `6` and `4`.
+3. Check the form of the used value: no consumption record shows `--`, and a record with consumption shows a duration, for example `8h 20m 51s`.
+4. Switch `This Month` and `This Week` at the right of `Consumption Trend`, and check the date range, for example `2026-09-01` - `2026-10-23`; the vertical axis unit is `Units`, and the legend is given by specification name, for example `nv-v100-32g-g1c12m24g`.
+
+The image below covers the specification quota and consumption trend band, so the three quota columns, the cycle switch, and the specification legend can be aligned one by one.
+
+![Specification Quota table and Consumption Trend chart: cycle switch, date range, and specification legend](./images/overview-usage.png)
+
+#### Result Validation
+
+- After switching `This Month` and `This Week`, the date range follows the selected cycle, and each legend name maps to a specification row of the `Specification Quota` table.
+- The value forms of the `Quota` and `Used` columns stay consistent within one screen, and one column never mixes numbers with durations.
+
+#### Notes
+
+- This capture shows a curve, while the bottom `Units` chart shows `No resource consumption data`; the empty-state wording of `Consumption Trend` itself is not captured (see OV-11). An empty trend does not mean the quota is 0, so verify it in `Quotas & Usage > Usage`.
+- This capture set shows no region or project selector in the upper-right corner, so whether the statistics scope can be switched by region is not confirmed (see OV-01).
+
+### Review Resource Usage Panels
+
+#### Applicable Scenarios
+
+Use the resource usage panels in the lower half of the page to confirm the total and used amount of accelerators, CPU, memory, and the two job types.
+
+#### Steps
+
+1. In the `AI Accelerator` panel, check the usage value at the center of the ring, the `Total Usage` label, and the title line `Total AI Accelerators: 5`.
+2. In the detail table of the same panel, read the four columns `Resource Name`, `Total`, `Unused`, and `Used`, for example the `other_gpus` row shows `5 AI card(s)`, `5 AI card(s)`, and `0 AI card(s)`.
+3. In the `CPU` panel, check that `Total` reads `Unlimited` and `Used` reads `0vCPU`.
+4. In the `Memory` panel, check that `Total` reads `Unlimited` and `Used` reads `0GiB`.
+5. In the `Online IDE` and `Runtime Instances` panels, check `Running Jobs / Total` in each, which reads `0 / 0` in this capture set; the bottom of the panel area shows `No resource consumption data`.
+
+#### Result Validation
+
+- The titles and values of all five panels are visible together, and the card unit of the `AI Accelerator` detail table is consistently `AI card(s)`.
+- The ring value, the detail table, and the panel title give the same total for one resource, and the same resource never shows two different totals in different places.
+
+#### Notes
+
+- The earlier capture titles this panel `AI card` with `Total AI cards: Unlimited`, while this capture shows `AI Accelerator` with `Total AI Accelerators: 5`. This is a version difference, and the text follows this capture.
+- The panels give summary values only; the detail of a single card or a single job must be verified in the pages under `Monitoring`.
 
 ### Troubleshoot Quota or Resource Anomalies
 
-1. If available quota is insufficient or a target specification cannot be deployed, record the flavor model and region.
-2. Go to `Quotas & Usage > Quota Usage` to verify allocated quotas and consumption records for the current tenant or project.
-3. If quota is sufficient but deploying an instance still fails scheduling, check monitoring and availability zone status to verify whether physical cards are fully occupied.
+#### Applicable Scenarios
+
+When the deployment entry is unavailable, a target specification cannot be requested, or an instance fails scheduling after creation, locate the cause on this page first: a quota shortage or a resource shortage.
+
+#### Steps
+
+1. Return to the `Specification Quota` table, record the target specification row with its `Quota` and `Used` values, and record the vendor and card model.
+2. Go to `Quotas & Usage > Usage` to verify the allocated quota and the consumption records of the current tenant or project.
+3. If the quota is sufficient but the instance still fails scheduling, check `Monitoring > Overview`, `Clusters`, `Nodes`, and `Devices` to verify whether the physical cards are fully occupied; the availability-zone entry and its values are outside this capture set (see OV-06).
+
+#### Result Validation
+
+- The target specification row is locatable in the `Specification Quota` table, and its quota and used values map to the records in `Quotas & Usage > Usage`.
+- The accelerator usage value on the overview page and the device statistics under `Monitoring` show no directional contradiction within the same time range.
+
+#### Notes
+
+- A sufficient quota does not mean the cluster definitely has idle resources. When creation fails, also check the availability zone and the specification.
+- Overview data may have statistical delays. For troubleshooting, verify again on the instance detail, monitoring, or quota pages instead of concluding from the summary on this page.
+- This page provides no quota adjustment entry. Quota changes are completed by the operator on the Operator side.
 
 ## Parameter Quick Reference
 
@@ -195,6 +339,6 @@ The summary differs from the total of individual records.
 
 ## Next Steps
 
-1. Go to `Model Deployment > Deployment Templates` to create a model instance.
-2. Go to `Development Resources > Online IDE` to create an interactive development environment.
-3. Go to `Quota & Usage > Resource Quotas` to view resource limits.
+1. Go to `Model Deployment > Templates` to create a model instance.
+2. Go to `Dev Resources > Online IDE` to create an interactive development environment.
+3. Go to `Quotas & Usage > Quotas` to view resource limits.
