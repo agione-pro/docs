@@ -8,6 +8,17 @@ This section collects reusable AGIOne practices for technical integration and pr
 
 AI coding platform integration practices and operation guidance. See [Technical Practices - AI Coding Integration](./technical/).
 
+## Protocol Compatibility
+
+### `protocol-compatibility/`
+
+Protocol-compatible proxy services and integration specifications. See [Protocol Compatibility](./protocol-compatibility/).
+
+| Protocol / Platform | Description |
+| --- | --- |
+| [Doubao Compatible Proxy API](./protocol-compatibility/doubao/) | Proxy service providing Doubao-compatible video generation tasks and Volcengine Ark-style asset management interfaces |
+
+
 ## Project Practices
 
 Project-level implementation cases and delivery experience. See [Project Practices](./project/).

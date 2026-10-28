@@ -64,6 +64,8 @@ Register a storage component when a new MinIO, S3-compatible storage, or another
 5. Fill in `Source name *` and `Description`, then click the final **"Account preflight"** to submit. This dialog contains no quota fields; bucket count, capacity, and pricing are configured on the card afterwards.
 6. Before submitting, verify the provider, the endpoint or region, the Access Key, and the source name again.
 
+The following figure shows the Register Storage Component form, used to configure object storage access method and connection parameters.
+
 ![Register Storage Component](./images/object-storage-register.png)
 
 #### Result Validation
@@ -205,9 +207,9 @@ Delete a source when it is no longer used, when it must be retired, or when anot
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Provider type | Yes | Card selection | `Compatible S3` | `Compatible S3`, `AWS S3`, `Alibaba Cloud OSS`, or `Huawei Cloud OBS`. The choice decides whether the dialog asks for an endpoint or a region. |
-| Access Key | Yes | Credential / sensitive text | `<ACCESS_KEY_ID>` | Access key for object storage. Enter it only in the system form. Do not copy it into shared documents, screenshots, or tickets. |
-| Secret Key | Yes | Credential / sensitive text | `<ACCESS_KEY_SECRET>` | Secret key for object storage. Sensitive credential. Do not copy it into shared documents, screenshots, or tickets. |
-| Endpoint | Conditionally required | Address / path | `<BASE_URL>` | Used by `Compatible S3` only. Do not publish real endpoint values outside the console. |
+| Access Key | Yes | Credential / sensitive text | `<ACCESS_KEY_ID>` | Access key for object storage. Enter it only in the system form. Do not record it in this document, in shared documents, or in screenshots. |
+| Secret Key | Yes | Credential / sensitive text | `<ACCESS_KEY_SECRET>` | Secret key for object storage. Sensitive credential. Do not record it in this document, in shared documents, or in screenshots. |
+| Endpoint | Conditionally required | Address / path | `<BASE_URL>` | Used by `Compatible S3` only. Use placeholders only in documentation; do not record real endpoint values. |
 | Provider region | Conditionally required | Dropdown / enum | `<REGION_ID>` | Replaces the `Endpoint *` field for `AWS S3`, `Alibaba Cloud OSS`, and `Huawei Cloud OBS`. Options are returned after the credentials are complete. |
 | Source name | Yes | Text | `<SOURCE_NAME>` | Display name of the object storage source. Use a name that reflects storage type, environment, or region. |
 | Description | No | Multi-line text | `<description>` | Component purpose, boundary, or maintenance notes. Record non-sensitive notes only. |

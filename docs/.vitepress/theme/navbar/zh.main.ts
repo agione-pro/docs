@@ -12,6 +12,7 @@ export const zhNavbar = [
         text: '最佳实践',
         items: [
           { text: '技术实践', link: '/zh-CN/practices/technical/' },
+          { text: '协议兼容', link: '/zh-CN/practices/protocol-compatibility/' },
           { text: '项目实践', link: '/zh-CN/practices/project/' },
           { text: '监控矩阵', link: '/zh-CN/practices/monitor-matrix/' },
         ]

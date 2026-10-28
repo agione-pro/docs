@@ -12,6 +12,7 @@ export const enNavbar = [
         text: "Best Practices",
         items: [
           { text: "Technical Practices", link: "/practices/technical/" },
+          { text: "Protocol Compatibility", link: "/practices/protocol-compatibility/" },
           { text: "Project Practices", link: "/practices/project/" },
           { text: "Monitor Matrix", link: "/practices/monitor-matrix/" },
         ]

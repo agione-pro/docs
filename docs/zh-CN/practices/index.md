@@ -8,6 +8,17 @@
 
 AI 编码平台接入实践与操作指引。详见 [技术实践 - AI 编码集成](./technical/)。
 
+## 协议兼容
+
+### `protocol-compatibility/`
+
+协议兼容代理服务与集成规范。详见 [协议兼容](./protocol-compatibility/)。
+
+| 协议 / 平台 | 说明 |
+|------|------|
+| [Doubao（豆包）协议兼容代理 API](./protocol-compatibility/doubao/) | 提供兼容豆包视频生成任务与火山方舟（Ark）形态资产管理接口的代理服务 |
+
+
 ## 项目实践
 
 项目级落地案例与交付经验总结。详见 [项目实践](./project/)。

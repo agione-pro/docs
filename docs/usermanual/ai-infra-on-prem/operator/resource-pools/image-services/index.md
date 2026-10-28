@@ -233,8 +233,8 @@ The confirmation dialog states the deletion scope before anything is removed:
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Image service (Provider) | Yes | Card selection | `Harbor` | `Harbor`, `Huawei Cloud SWR`, `AWS ECR`, or `Alibaba Cloud ACR Enterprise`. Unavailable providers appear as disabled cards. |
-| Username / Password | Conditionally required | Credential / sensitive text | `<USERNAME>` | Harbor only. Enter them only in the system form. Do not copy them into shared documents, screenshots, or tickets. |
-| Access Key / Secret Key | Conditionally required | Credential / sensitive text | `<ACCESS_KEY_ID>` | Huawei Cloud SWR and AWS ECR only. Sensitive credentials. Do not copy them into shared documents, screenshots, or tickets. |
+| Username / Password | Conditionally required | Credential / sensitive text | `<USERNAME>` | Harbor only. Enter them only in the system form. Do not record them in this document, in shared documents, or in screenshots. |
+| Access Key / Secret Key | Conditionally required | Credential / sensitive text | `<ACCESS_KEY_ID>` | Huawei Cloud SWR and AWS ECR only. Sensitive credentials. Do not record them in this document, in shared documents, or in screenshots. |
 | Endpoint (Public URL) | Conditionally required | Address / path | `<BASE_URL>` | Harbor only. The registry address the platform uses. Enter the real value in the system form. When sharing outside the console, use placeholders and do not publish real addresses. |
 | Cloud region | Conditionally required | Dropdown / enum | `<REGION_ID>` | Huawei Cloud SWR and AWS ECR only. Options are returned by `Load regions` after the credentials are complete. |
 | Public image Project / Namespace | Yes | Dropdown / enum | `<PUBLIC_NAMESPACE>` | Namespace that stores platform-side public images. |

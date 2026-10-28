@@ -356,7 +356,7 @@ The **Node Resources** dimension sets per-node, per-resource ratios; node addres
 | Ingestion Mode | Yes | Choice (Step 1) | `KubeConfig Quick Import` / `Manual Connection Setup` | How connection info is provided. Quick Import parses a pasted/uploaded kubeconfig; Manual sets the fields by hand. |
 | Server Address | Yes | URL (Step 2) | `https://<api-host>:<port>` | Kubernetes API access entry. Must be reachable from the platform side. Do not record real addresses. |
 | Cluster Name | Yes | Text (Step 2) | `cluster-a` | Kubernetes cluster / page identification name (1–63 characters). |
-| Authentication Certificate | Yes | Sensitive text (Step 2) | `certificate-authority-data` | CA certificate that verifies the server. Sensitive; do not copy it into shared documents or screenshots. |
+| Authentication Certificate | Yes | Sensitive text (Step 2) | `certificate-authority-data` | CA certificate that verifies the server. Sensitive; never record it in documents, shared documents, or screenshots. |
 | Username | Yes | Text (Step 2) | `cluster-user` | Authentication user name (1–63 characters). |
 | Authentication Type | Yes | Segmented control (Step 2) | `Certificate` | One of `Certificate` / `Username Password` / `Identity Token` / `Program`. |
 | Client Certificate / Client Key | Conditionally required | Sensitive text (Step 2) | `client-certificate-data` / `client-key-data` | Client credentials for certificate-based authentication. Sensitive. |

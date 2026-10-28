@@ -886,7 +886,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                 { text: "Claude Code Plugin", link: "/practices/technical/claude-code-plugin/" },
                 { text: "Cline", link: "/practices/technical/cline/" },
                 { text: "Codex", link: "/practices/technical/codex/" },
-                { text: 'Codex Desktop(CC Switch)', link: '/practices/technical/codex-desktop/' },
+                { text: 'Codex Desktop (CC Switch)', link: '/practices/technical/codex-desktop/' },
             { text: "Crush", link: "/practices/technical/crush/" },
                 { text: "Cursor", link: "/practices/technical/cursor/" },
                 { text: "Dify", link: "/practices/technical/dify/" },
@@ -899,6 +899,13 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ]
             },
           ]
+        },
+        {
+          text: "Protocol Compatibility",
+          collapsed: false,
+          items: [
+            { text: "Doubao Compatible Proxy API", link: "/practices/protocol-compatibility/doubao/" },
+          ],
         },
         {
           text: "Project Practices",

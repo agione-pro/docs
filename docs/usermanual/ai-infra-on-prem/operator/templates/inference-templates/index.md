@@ -163,7 +163,7 @@ Use the import/export entry to batch-maintain inference templates, or to export 
 | Default Parameters | No | Dropdown / enum | `--max-model-len 8192` | Model or runtime parameters prefilled when creating services. Do not write real tokens, AK/SK, private keys, endpoints, or test values. |
 | Dynamic Expression | Conditionally required | Dropdown / enum | `${gpuCount} >= 1` | Dynamically calculates fields or visibility based on model, framework, specification, or user input. Expression errors can cause missing fields or abnormal startup commands. |
 | Trigger Condition | Conditionally required | Dropdown / enum | `Model type = LLM` | Controls fields displayed under specific models, frameworks, or options. Validate with actual model, framework, and specification combinations. |
-| Actions | System-generated | Action entry | `Edit` | Create, save, edit, and delete operations on this page. `Save` (the template create dialog) is a high-risk final action. |
+| Actions | System-generated | Action entry | `Edit` | Create, save, publish, edit, and delete operations on this page. `Save` (the template create dialog) and `Publish` are high-risk final actions. |
 
 ## Pitfalls
 
@@ -173,7 +173,7 @@ Use the import/export entry to batch-maintain inference templates, or to export 
 - Incorrect default parameters, dynamic expressions, or trigger conditions can cause missing user form fields, wrong parameters, or abnormal startup commands.
 - Incorrect port exposure policy may expand the service exposure scope.
 - Do not write real tokens, AK/SK, private keys, endpoints, internal addresses, model repository addresses, tenant IDs, cluster IDs, or test parameters.
-- `Save` in the Create Inference Template dialog is a high-risk final action. Confirm the model, model version, and framework version combination before executing it.
+- `Save` (Create Inference Template dialog) and `Publish` are high-risk final actions. Confirm the model, model version, and framework version combination before executing `Save`, and confirm the publish scope before executing `Publish`.
 
 ## Result Validation
 

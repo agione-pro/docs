@@ -450,7 +450,7 @@ Use `Refresh` in the top-right corner to reload the configuration when someone e
 ## Pitfalls
 
 - System settings may affect global platform behavior. Confirm the impact scope before making changes.
-- The pencil icon at the end of a value row is the write entry. Field validation after entering edit mode and the final submit action are not captured (see U-01 and U-02), so stop at review during read-only learning.
+- `Save` (inline edit under Edit System Setting) is a high-risk final action; confirm the change approval, impact scope, and rollback plan before executing it. During read-only learning, stop at field review.
 - Incorrect feature availability, billing policy, disaster recovery, scheduling, or resource governance settings may affect user access, job scheduling, billing results, and recovery capability.
 - Do not write real configuration values, tokens, AK/SK, internal endpoints, tenant information, accounts, secrets, or test parameters.
 - If a configuration item involves authentication, networking, billing, scheduling, or resource governance, confirm it through the internal change process before modifying it.

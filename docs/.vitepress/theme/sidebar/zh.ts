@@ -826,7 +826,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                 { text: 'Claude Code Plugin', link: '/zh-CN/practices/technical/claude-code-plugin/' },
                 { text: 'Cline', link: '/zh-CN/practices/technical/cline/' },
                 { text: 'Codex', link: '/zh-CN/practices/technical/codex/' },
-                { text: 'Codex Desktop(CC Switch)', link: '/practices/technical/codex-desktop/' },
+                { text: 'Codex Desktop (CC Switch)', link: '/zh-CN/practices/technical/codex-desktop/' },
                 { text: 'Crush', link: '/zh-CN/practices/technical/crush/' },
                 { text: 'Cursor', link: '/zh-CN/practices/technical/cursor/' },
                 { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },
@@ -838,6 +838,13 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                 { text: 'Roo Code', link: '/zh-CN/practices/technical/roo-code/' },
               ],
             },
+          ],
+        },
+        {
+          text: '协议兼容',
+          collapsed: false,
+          items: [
+            { text: '豆包协议兼容 API', link: '/zh-CN/practices/protocol-compatibility/doubao/' },
           ],
         },
         {
