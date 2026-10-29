@@ -373,7 +373,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '元模型', link: '/zh-CN/usermanual/model-services/operator/settings/meta-models/' },
-                    { text: '模型来源', link: '/zh-CN/usermanual/model-services/operator/settings/model-source/' },
+                    { text: '模型源', link: '/zh-CN/usermanual/model-services/operator/settings/model-source/' },
                     { text: '模板', link: '/zh-CN/usermanual/model-services/operator/settings/model-templates/' },
                     { text: '标签', link: '/zh-CN/usermanual/model-services/operator/settings/tags/' },
                   ]

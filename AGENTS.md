@@ -9,6 +9,11 @@ Before modifying any file in this repository, read:
 1. `README.md` for the current repository structure, commands, and content rules.
 2. `GUIDE.md` for VitePress maintenance, navigation, configuration, deployment, and user-guide scenario conventions.
 
+Before creating, replacing, or cropping any screenshot, read `SCREENSHOT_GUIDE.md`.
+It defines the fixed viewport, bilingual capture, drawer handling, post-processing,
+verification checklist, and known pitfalls. Screenshots produced by any other method
+must still satisfy that guide.
+
 Before modifying either user-manual tree, also read
 `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md` completely:
 
@@ -39,6 +44,8 @@ screenshots, masking, and acceptance requirements. If a general example in
 15. Do not duplicate screenshots within the same document. Never stack new and old screenshots of the same screen side-by-side (e.g., `manual-*.png` next to `*-list.png`). Do not use `::: details` containers to append duplicate screenshots.
 16. Do not reuse full-page overview or list screenshots across multiple action subsections (such as delete, edit, or adjust). If a dedicated dialog/drawer screenshot is unavailable, provide clear written steps without repeating the overview image.
 17. Avoid repetitive boilerplate captions (e.g., "上图展示...。重点核对目标对象、当前状态、字段和操作入口。"). Captions must explain specific fields, inputs, or critical actions shown in the image.
+18. Every statement in `踩坑提示 / Pitfalls`, `结果校验 / Result Validation`, and `常见问题 / FAQ` must trace to evidence: a verbatim UI string, a screenshot taken from the current product, a recorded interaction, or another page in this repository.
+19. Do not write causes, outcomes, error messages, or recovery steps that were not observed. When a behavior has not been verified, omit it instead of describing what it probably does. "It usually works like this" is not evidence.
 
 ## Navigation And Content
 
@@ -62,11 +69,13 @@ After editing:
 1. Check Chinese and English page correspondence.
 2. Check modified image references, file existence, and filename casing.
 3. Confirm screenshots use the light theme, serve the adjacent operation, and contain no duplicate or stacked images.
-4. Confirm sensitive values follow the masking rules in `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md`.
-5. Run `npm run check:docs-images`.
-6. Run `npm run check:docs-profile`.
-7. Run `npm run docs:build`.
-8. Review the final Git diff and exclude unrelated files from the change.
+4. Confirm each screenshot is in the language of the page that embeds it: Chinese pages use the Chinese UI, English pages use the English UI. A Chinese screenshot inside an English page is a defect.
+5. Confirm sensitive values follow the masking rules in `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md`.
+6. Confirm the screenshot requirements in `SCREENSHOT_GUIDE.md`: fixed viewport, left menu kept, top navigation cropped, dialogs and drawers not truncated.
+7. Run `npm run check:docs-images`.
+8. Run `npm run check:docs-profile`.
+9. Run `npm run docs:build`.
+10. Review the final Git diff and exclude unrelated files from the change.
 
 Do not report the task as complete if a required check fails. If a check cannot
 run because of the environment, state exactly what was not verified and why.
