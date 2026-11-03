@@ -54,7 +54,7 @@ The page contains a model area, an action area, and an input area:
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `Mock MiniMax Speech T2A` | Current audio model |
 | Text | Yes | Multi-line text | `Welcome to AGIOne` | Text to convert to speech |

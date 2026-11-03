@@ -36,8 +36,17 @@ Columns are `Name / Description`, `Model source`, `Status`, `Active bindings`, `
 1. Click **Access Credential** to open the three-step wizard.
 2. In `1 Select Model Source`, choose the model source.
 3. Click **Next**, then choose the active Endpoint in `2 Select Endpoints & Workspace`.
-4. In `3 Credential information & API Key`, enter the credential details and API key.
-5. Verify the model source, Endpoint, and credential name before submitting.
+4. In `2 Select Endpoints & Workspace`, select the target Endpoint. The page shows `Selected N of M endpoints`, region, fixed URL, protocols, and service address. Fill `Workspace` when the Endpoint requires a workspace parameter.
+5. Click **Next**, then in `3 Credential information & API Key` fill `Name`, `API Key`, and the optional `Description`.
+6. Click **Save and connect**; verify the model source, Endpoint, name, and API key before submitting.
+
+![Select endpoints and workspace](./images/credentials-step2.png)
+
+**Figure note**: `2 Select Endpoints & Workspace` shows `Selected 1 of 2 endpoints`; the China Endpoint is labeled `China`, `china`, `Fixed URL`, and lists protocols such as `openai/chat_completions` plus the service address. Endpoints with `{workspace}` require a `Workspace`.
+
+![Enter credential information](./images/credentials-step3.png)
+
+**Figure note**: `3 Credential information & API Key` provides required `Name` and `API Key` fields plus an optional `Description`; the footer buttons are **Back** and **Save and connect**.
 
 ### 4.2 View credential details
 
@@ -52,6 +61,13 @@ Columns are `Name / Description`, `Model source`, `Status`, `Active bindings`, `
 2. In `Edit Credential metadata`, change `Credential display name` or `Description`.
 3. Click **Save metadata**; use **Close** to leave without saving.
 
+### 4.4 Rotate or disable a credential
+
+1. Open the row's more-actions menu; it contains `Endpoint`, `Models`, `Audit`, `Rotate`, and `Disable`.
+2. Choose `Rotate`, then verify the model source, `Rev.`, active Endpoint bindings, and current linked models in `Rotate API Key`.
+3. Enter the `New API Key` and click **Confirm Rotation**; use **Close** to leave without rotating.
+4. To disable, choose `Disable` and confirm the impact scope first.
+
 ### 4.4 Filter credentials
 
 1. Enter a credential name or description in the search box.
@@ -60,7 +76,7 @@ Columns are `Name / Description`, `Model source`, `Status`, `Active bindings`, `
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Credential display name | Yes | Text, 1–128 chars | `test66744` | Must be unique within the tenant and model source after trimming |
 | Description | No | Text | `Text chat test credential` | Identifies the credential purpose |

@@ -64,7 +64,7 @@ Model providers can click **Publish Model** in the upper right. Publishing scope
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Search | No | Text | `GPT-6.1` | Search by model name, author, series, or source |
 | Input / Output Capability | No | Multi-select | `Text`, `Image` | Filter by supported modality |

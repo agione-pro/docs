@@ -52,7 +52,7 @@ The page shows the `Model Earnings` title and two tabs, `Overview` and `Earning 
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing cycle | Yes | Selector | `2026-11` | Billing period |
 | Date | No | Date range | `2026-11-01` to `2026-11-03` | Statistics date range |
@@ -69,7 +69,7 @@ The page shows the `Model Earnings` title and two tabs, `Overview` and `Earning 
 ## 6. Pitfalls
 
 - KPI cards show both the current value and `Compared to Last Period`; confirm the billing cycle and date range before reading trends.
-- With no revenue data in the test environment, metrics show `0` or `0.00` and charts are empty; this does not mean the page is unavailable.
+- When the current scope has no revenue data, metrics show `0` or `0.00` and charts are empty; this does not mean the page is unavailable.
 - `Model Earnings` and `Model Usage` are separate menu pages with different scopes; do not mix their figures.
 
 ## 7. Result Validation

@@ -1,6 +1,8 @@
-# Models
+# My Calls - Models
 
-> This page appears as **Models** in the left menu; the page title is **My Calls - Models**.
+> This page appears as **Models** in the left menu.
+
+> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
 
 ## 1. Feature Overview
 
@@ -39,7 +41,7 @@ The first column is `Requested Model`; the remaining columns are `Requests`, `Sh
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |

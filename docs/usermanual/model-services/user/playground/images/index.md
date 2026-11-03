@@ -60,7 +60,7 @@ The page contains a model area, a parameter area, and an input area:
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `qwen-image-3.0` | Current image model |
 | Provider | System | Text | `Alibaba` | Provider of the current model |

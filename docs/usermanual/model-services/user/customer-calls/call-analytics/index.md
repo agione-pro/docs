@@ -1,6 +1,8 @@
-# Call Analytics
+# Customer Calls (Monitoring) - Call Analytics
 
-> This page appears as **Call Analytics** in the left menu; the page title is **Customer Calls - Call Analytics**.
+> The system menu currently shows both customer-call groups as **Customer Calls**; this manual labels this group **Customer Calls (Monitoring)**. The left-menu item is **Call Analytics**.
+
+> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
 
 ## 1. Feature Overview
 
@@ -25,7 +27,9 @@ The title is `Customer Calls - Call Analytics`, with two tabs: `Models` and `Cus
 
 The top of the filter area provides a month and date range; below are `All Model type`, `Model name`, `Model ID`, **Search**, and **Reset**.
 
-In `Models`, columns are `Model name`, `Model type`, `Customer name`, `Successful calls`, `Failed calls`, `Rate limit triggers`, `Usage`, and `Actions`. Without data, the table shows `No Data` and `Total 0` with pagination.
+In `Models`, columns are `Model name`, `Model type`, `Customer name`, `Successful calls`, `Failed calls`, `Rate limit triggers`, `Usage`, and `Actions`.
+
+In `Customers`, columns are `Customer name`, `Models`, `Successful calls`, `Failed calls`, `Rate limit triggers`, and `Actions`. Without data, both tabs show `No Data` and `Total 0` with pagination.
 
 ![Customer Calls analytics](./images/customer-calls-analytics.png)
 
@@ -52,13 +56,15 @@ In `Models`, columns are `Model name`, `Model type`, `Customer name`, `Successfu
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month / date range | Yes | Selector / date range | `2026-11`; `2026-11-01` to `2026-11-03` | Statistics period |
 | Model type | No | Selector | `All Model type` | Filter by model type |
 | Model name | No | Text | `GPT-6.1 Sol` | Filter by model name |
 | Model ID | No | Text | `openai/gpt-6.1-sol` | Filter by model ID |
 | Model name (column) | System | Text | `GPT-6.1 Sol` | Model in the list |
+| Customer name (column) | System | Text | `Customer A` | Customer in the Customers tab |
+| Models (column) | System | Number | `1` | Number of models called by the customer |
 | Model type (column) | System | Tag | `Text` | Model category |
 | Customer name | System | Text | `Customer A` | Calling customer |
 | Successful calls | System | Number | `0` | Successful calls |

@@ -205,3 +205,18 @@ python scripts/render-shot.py shoot \
 
 输出目录会同时得到 `.png` 与同名 `.json`（记录 url、选择器、视口、耗时、校验结果），
 `.json` 是配图可追溯的依据，归档时与图片一起保留。
+
+---
+
+## 10. 命名规范
+
+用户手册配图统一使用：
+
+```text
+{页面用途}-{内容}.png
+```
+
+- 使用小写英文和连字符，不使用 `manual-`、`-public`、`-zh`、`-en` 等历史/语言后缀；语言由所在目录区分。
+- 页面用途与页面目录一致，例如 `models-market.png`、`credentials-list.png`、`my-calls-overview.png`。
+- 同一页面多个状态用内容后缀区分，例如 `publish-basic.png`、`publish-billing.png`、`publish-rate-limit.png`。
+- 删除或替换配图前，先全局检索文件名；确认无引用后再删除，避免留下孤儿图。

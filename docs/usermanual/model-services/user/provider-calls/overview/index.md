@@ -1,6 +1,8 @@
-# Overview
+# Customer Calls (Provider) - Overview
 
-> This page appears as **Overview** in the second **Customer Calls** group; the page title is **Customer Calls - Overview**.
+> This page appears as **Overview** in the **Customer Calls (Provider)** group.
+
+> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
 
 ## 1. Feature Overview
 
@@ -34,7 +36,7 @@ The title is `Customer Calls - Overview`, marked `Updated hourly`. The page cont
 
 ![Customer Calls overview (publisher)](./images/provider-calls-overview.png)
 
-**Figure note**: Filters include month, `By Date`, `Model`, `Customer`, **Expand**, and `Name or ID`; KPI cards show `Total Requests`, `Peak RPM`, `Peak TPM`, `Avg TTFT`, `Avg TPOT`, `Avg E2E`, `Total Tokens`, and `Client Source Coverage`; below are `Top Customers`, `Call Sources`, and `Model Usage & Distribution`.
+**Figure note**: Filters include month, model, and customer; KPI cards show requests, failures/limits, peaks, latency, tokens, and source coverage; below are customers, sources, and model distribution.
 
 ## 4. Main Operations
 
@@ -61,7 +63,7 @@ The title is `Customer Calls - Overview`, marked `Updated hourly`. The page cont
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |

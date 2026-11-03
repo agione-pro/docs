@@ -1,6 +1,8 @@
-# Call Logs
+# Customer Calls (Monitoring) - Call Logs
 
-> This page appears as **Call Logs** in the left menu; the page title is **Customer Calls - Call Logs**.
+> The system menu currently shows both customer-call groups as **Customer Calls**; this manual labels this group **Customer Calls (Monitoring)**. The left-menu item is **Call Logs**.
+
+> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
 
 ## 1. Feature Overview
 
@@ -49,7 +51,7 @@ Columns are `Call time`, `Model & Platform Route`, `Customer`, `Usage`, `Status 
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month / date range | Yes | Selector / date range | `2026-11`; `2026-11-01` to `2026-11-03` | Statistics period |
 | Model type | No | Selector | `All Model type` | Filter by model type |

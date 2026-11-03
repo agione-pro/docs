@@ -460,7 +460,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ]
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {
@@ -509,7 +509,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   ]
                 },
                 {
-                  text: "Customer Calls",
+                  text: "Customer Calls (Monitoring)",
                   collapsed: false,
                   items: [
                     { text: "Overview", link: "/usermanual/model-services/user/customer-calls/overview/" },
@@ -518,7 +518,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   ]
                 },
                 {
-                  text: "Customer Calls",
+                  text: "Customer Calls (Provider)",
                   collapsed: false,
                   items: [
                     { text: "Overview", link: "/usermanual/model-services/user/provider-calls/overview/" },
@@ -754,7 +754,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {
@@ -847,7 +847,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {

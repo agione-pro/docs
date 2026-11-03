@@ -1,6 +1,8 @@
-# Overview
+# Customer Calls (Monitoring) - Overview
 
-> This page appears as **Overview** in the left menu; the page title is **Customer Calls - Overview**.
+> The system menu currently shows both customer-call groups as **Customer Calls**; this manual labels this group **Customer Calls (Monitoring)**. The left-menu item is **Overview**.
+
+> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
 
 ## 1. Feature Overview
 
@@ -58,7 +60,7 @@ The title is `Customer Calls - Overview`, with two tabs: `Customer Analytics` an
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Time range | Yes | Date range | `2026-11-01` to `2026-11-03` | Statistics period |
 | Customers | System | Number | `0` | Customers that made calls |

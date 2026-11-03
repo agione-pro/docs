@@ -1,6 +1,8 @@
-# Overview
+# My Calls - Overview
 
-> This page appears as **Overview** in the left menu; the page title is **My Calls - Overview**.
+> This page appears as **Overview** in the left menu.
+
+> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
 
 ## 1. Feature Overview
 
@@ -12,6 +14,15 @@
 | Managed objects | Your call volume, token consumption, success rate, latency, call composition, and member/project rankings |
 
 **New to this page**: Overview is the dashboard for your own calls. Select a month and filters, read volume, tokens, success rate, and latency, then use trends and rankings to see where calls concentrate.
+
+### 1.1 Statistics Scope Comparison
+
+| Entry | Applies to | Scope | Route prefix |
+| --- | --- | --- | --- |
+| Platform Call Analytics | Operator | Platform-wide calls and model source coverage | `/modelone/model-observation/operator/*` |
+| My Calls | Model Provider & User | Current account plus attributable members, projects, sources, and models | `/modelone/model-observation/eu/*` |
+| Customer Calls (Monitoring) | Model Provider & User | Customer-dimension call monitoring | `/modelone/monitoring/monitor/*` |
+| Customer Calls (Provider) | Model Provider | Publisher-side customer calls | `/modelone/model-observation/provider/*` |
 
 ## 2. Prerequisites
 
@@ -32,7 +43,18 @@ The title is `My Calls - Overview`, marked `Updated hourly`. The page is organiz
 
 ![My Calls overview](./images/my-calls-overview.png)
 
-**Figure note**: Filters include month, `By Date`, `Model`, `Client Source`, and **Expand**; KPI cards show `Total Requests`, `Input Tokens`, `Cached Tokens`, `Output Tokens`, `Peak RPM`, `Peak TPM`, `Success Rate`, `Failed Calls`, `Rate-limited Calls`, `Avg TTFT`, `Avg TPOT`, and `Avg E2E`; below are `Call & Token Trend` and `Call Composition & Sources`.
+**Figure note**: Filters include month, `By Date`, `Model`, and `Client Source`; KPI cards show requests, tokens, success rate, failures/limits, and average latency; below are trends and composition.
+
+### 3.1 Choose a Dimension
+
+| Question | Page |
+| --- | --- |
+| Are volume, success rate, latency, and trends normal? | [Overview](./) |
+| Which member is calling and how much? | [Members](../members/) |
+| Which project is calling and how much? | [Projects](../projects/) |
+| Which application or source is calling? | [Client Sources](../client-sources/) |
+| Which models are called? | [Models](../models/) |
+| What happened in a single call? | [Call Logs](../call-logs/) |
 
 ## 4. Main Operations
 
@@ -59,7 +81,7 @@ The title is `My Calls - Overview`, marked `Updated hourly`. The page is organiz
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11 (All Month)` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -118,6 +140,26 @@ The title is `My Calls - Overview`, marked `Updated hourly`. The page is organiz
 - The page shows calls within your account scope, not platform-wide traffic.
 - Volume, token, and latency metrics change with filters; fix the scope before comparing.
 - Do not screenshot or share member names, project names, or call details.
+
+### 9.1 Glossary
+
+| Term | Description |
+| --- | --- |
+| Platform Call Analytics | Operator-side platform-wide calls and model source coverage |
+| My Calls | Calls for the current account and attributable members, projects, sources, and models |
+| Customer Calls (Monitoring) | Customer-dimension call monitoring group |
+| Customer Calls (Provider) | Publisher-side customer calls and revenue context |
+| Personal Key | A key whose calls are attributable to a specific member |
+| Project Key | A project key whose calls are not attributed to a member |
+| TTFT | Time to first token |
+| TPOT | Average time per output token |
+| E2E | End-to-end latency |
+| RPM / TPM | Requests per minute / tokens per minute |
+| Meta Model | Base definition of model capability, type, and protocol |
+| Model Source | Upstream service source with Endpoints beneath it |
+| Endpoint | Access point under a model source, including Base URL and protocols |
+| BYOK | Bring Your Own Key; connect an existing Endpoint with your own key |
+| Aggregate Model | Multiple published models exposed behind one Model ID |
 
 ## 10. Next Steps
 

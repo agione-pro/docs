@@ -1,6 +1,8 @@
-# Call Logs
+# My Calls - Call Logs
 
-> This page appears as **Call Logs** in the left menu; the page title is **My Calls - Call Logs**.
+> This page appears as **Call Logs** in the left menu.
+
+> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
 
 ## 1. Feature Overview
 
@@ -60,7 +62,7 @@ The title is `My Calls - Call Logs`. The page contains:
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |

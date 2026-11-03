@@ -448,7 +448,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   ]
                 },
                 {
-                  text: '客户调用',
+                  text: '客户调用（监控）',
                   collapsed: false,
                   items: [
                     { text: '概览', link: '/zh-CN/usermanual/model-services/user/customer-calls/overview/' },
@@ -457,7 +457,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   ]
                 },
                 {
-                  text: '客户调用',
+                  text: '客户调用（模型提供方）',
                   collapsed: false,
                   items: [
                     { text: '概览', link: '/zh-CN/usermanual/model-services/user/provider-calls/overview/' },

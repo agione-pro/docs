@@ -60,7 +60,7 @@ The page contains a model area, a parameter area, and an input area:
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `wan3.0-video` | Current video model |
 | Provider | System | Text | `Alibaba` | Provider of the current model |

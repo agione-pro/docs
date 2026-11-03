@@ -56,7 +56,7 @@ The page contains a model area, a welcome area, and an input area:
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `GLM-5.2` | Model or aggregate model used for the conversation |
 | Model tag | System | Tag | `Aggregate` | Model type or composition |

@@ -25,11 +25,11 @@ The page has three tabs: `Overview`, `My Published`, and `My Aggregate`.
 
 - `01 AGIOne Deployed`: explains on-prem nodes, cloud nodes, model service, and deploy-to-list. Two cards are provided: `On-Prem` and `On-Cloud`. Both currently show `Environment not configured.` and provide **Contact Us**.
 - `02 BYOK (Bring Your Own Key)`: explains connecting an existing endpoint and provides `Private Model` and `Public Model` publish entries.
-- `03 Multiple Models.One Model ID.`: explains aggregate routing and provides `Private Model` and `Public Model` aggregate entries.
+- `03 Multiple Models. One Model ID.`: explains aggregate routing and provides `Private Model` and `Public Model` aggregate entries.
 
 ![My Models overview](./images/my-models-overview.png)
 
-**Figure note**: Tabs are `Overview`, `My Published`, and `My Aggregate`; `01 AGIOne Deployed` shows `On-Prem` and `On-Cloud`, both marked `Environment not configured.`; `02 BYOK` and `03 Multiple Models.One Model ID.` provide private and public entries.
+**Figure note**: Three tabs sit at the top; the deployment area shows On-Prem/On-Cloud (environment not configured), and the BYOK and aggregate areas provide private and public entries.
 
 ### 3.1 My Published
 
@@ -54,7 +54,7 @@ The page has three tabs: `Overview`, `My Published`, and `My Aggregate`.
 
 ![Publish model basic information](./images/publish-basic.png)
 
-**Figure note**: The wizard shows `1 Basic Information`, `2 Billing Configuration`, and `3 Rate Limit Configuration`. The basic step contains `Meta Model`, `Model Source`, `Endpoint`, `Request URL`, `Credential`, `Upstream model name`, input/output modalities, token limits, protocol selection, and `Access Mode`.
+**Figure note**: The wizard shows `1 Basic Information`, `2 Billing Configuration`, and `3 Rate Limit Configuration`. The visible area contains `Meta Model`, `Model Source`, `Endpoint`, `Request URL`, `Credential`, `Upstream model name`, input/output modalities, advanced capabilities, token limits, and protocol selection; `Access Mode` sits lower in the basic-information area.
 
 ### 4.2 Create an aggregate model
 
@@ -71,7 +71,7 @@ The page has three tabs: `Overview`, `My Published`, and `My Aggregate`.
 
 ## 5. Parameter Quick Reference
 
-| Field | Required | Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Publish type | Yes | Card | `Private Model` / `Public Model` | Determines visibility and call scope |
 | Meta Model | Yes | Selector | `GPT-6.1 Sol` | Capability and protocol definition |
