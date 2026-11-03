@@ -26,6 +26,32 @@ Two rules are non-negotiable:
   value calibrated on a 2x image (112 px) on a 1x image — that crops exactly twice
   the intended height.
 
+Ready-made tooling: `scripts/render-shot.py` implements this guide end to end.
+Prefer it over ad-hoc Playwright scripts.
+
+| Subcommand | What it does |
+| --- | --- |
+| `login` | Log in once and store the browser session state for reuse. |
+| `shoot --recipe <name>` | Batch-render a documented page recipe, bilingual, with post-processing. |
+| `capture` | One-off grab of any dialog / drawer / page from the command line — no recipe code needed. |
+| `audit --dir docs` | Scan every PNG for the three composition defects below. |
+
+```bash
+# grab a dialog (auto element capture + transparent rounded corners + width guard)
+python scripts/render-shot.py capture \
+  --url "/user/user-space/team-members" --name "add-member" \
+  --mode element --selector ".el-dialog" --click "button:has-text('Add Member')" \
+  --lang en --state .auth/state.json --out docs/usermanual/settings/operator/members-roles/members/images
+
+# run the composition audit before finishing any screenshot task
+python scripts/render-shot.py audit --dir docs
+```
+
+`audit` flags three classes of defect: dialog shots mis-captured as 1920-wide full
+pages (mask + background baked in), first rows sliced by an over-aggressive top crop,
+and element captures without transparent rounded corners. Full command reference in
+`SCREENSHOT_GUIDE.md` section 9.
+
 Before modifying either user-manual tree, also read
 `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md` completely:
 
