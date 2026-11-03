@@ -29,13 +29,19 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 BASE = "http://test.metis.opr"
 W = 1920
 H_PAGE = 1080
 H_LIST = 1220
 DPR = 2
+
+# 产品级顶部导航条的选择器。高度不写死：每页截图前从 DOM 实测，
+# 再按 DPR 换算成设备像素。历史上曾把 2x 图的 112px 直接用在 1x 图上，
+# 多裁了一倍高度，导致侧边栏首行与弹框顶部被削平。
+NAV_SEL = ".header-bar"
+NAV_FALLBACK = 56   # 仅当页面没有导航条且实测失败时兜底，命中会打警告
 
 STABLE_CSS = """
 *, *::before, *::after {
@@ -87,16 +93,44 @@ def verify(path, min_kb=8, min_var=25):
 
 # ----------------------------------------------------------------- 后处理
 
-def postprocess(path: Path, mode: str):
-    """mode: page=整页(裁顶部导航+底部) / other=仅降采样"""
+def rounded_mask(size, radius, inset=1, ss=4):
+    """生成圆角矩形蒙版：边缘超采样后降采样，避免锯齿。
+
+    inset: 向内收缩的像素数。元素截图取景框常比元素视觉边界高半个设备像素，
+           边缘会带一条遮罩灰边，向内收 1px 即可削掉。
+    """
+    w, h = size
+    m = Image.new("L", (w * ss, h * ss), 0)
+    d = ImageDraw.Draw(m)
+    d.rounded_rectangle(
+        [inset * ss, inset * ss, w * ss - inset * ss - 1, h * ss - inset * ss - 1],
+        radius=max(0, (radius - inset)) * ss, fill=255)
+    return m.resize((w, h), Image.LANCZOS)
+
+
+def postprocess(path: Path, crop_top_css=None, trim_bottom=False, round_radius=None):
+    """后处理：裁顶部 -> 裁底部 -> 降采样到 1x -> 按元素圆角裁形。
+
+    crop_top_css:  顶部要裁掉的 CSS 像素数，由调用方实测传入。
+                   传 None 时退回按行亮度自动探测（历史行为，仅兜底用）。
+    trim_bottom:   是否按亮度裁掉底部多余空白，仅整页图需要。
+    round_radius:  元素圆角半径（CSS px）。传值则把直角取景框修成真圆角，
+                   圆角外的像素置为透明，页面白底/暗底下都不会露出灰边。
+    """
     im = Image.open(path).convert("RGB")
-    if mode == "page":
+    if crop_top_css is None:
         top = 0
         for y in range(0, 400):
             if row_avg(im, y, 0, im.width) > 200:
                 top = y
                 break
-        bottom = im.height
+    else:
+        # 关键：截图是 DPR 倍图，CSS 像素必须先乘 DPR 才是要裁的像素数
+        top = int(round(crop_top_css * DPR))
+    top = max(0, min(top, im.height - 1))
+
+    bottom = im.height
+    if trim_bottom:
         for y in range(im.height - 15, top + 200, -1):
             if 228 <= row_avg(im, y, int(im.width * 0.12), int(im.width * 0.98)) <= 248:
                 bottom = y + 1
@@ -106,9 +140,15 @@ def postprocess(path: Path, mode: str):
                 if row_avg(im, y, int(im.width * 0.12), int(im.width * 0.98)) < 252:
                     bottom = min(im.height, y + 16)
                     break
-        im = im.crop((0, top, im.width, bottom))
+
+    im = im.crop((0, top, im.width, bottom))
     # 全部输出统一降采样到 1x（截图固定 DPR=2）
     im = im.resize((im.width // 2, im.height // 2), Image.LANCZOS)
+
+    if round_radius:
+        mask = rounded_mask(im.size, round_radius)
+        im = im.convert("RGBA")
+        im.putalpha(mask)
     im.save(path)
     return im.size
 
@@ -122,6 +162,7 @@ class Shotter:
         self.out = out
         self.t = LANG_TEXT[lang]
         self.results = []
+        self.nav_h = None          # 顶部导航条高度（CSS px），每页实测
 
     def set_viewport(self, w, h):
         self.page.set_viewport_size({"width": w, "height": h})
@@ -154,6 +195,21 @@ class Shotter:
         self.page.wait_for_timeout(1800)
         self.dismiss_floating()
 
+    def measure_nav(self):
+        """从 DOM 实测顶部导航条高度，作为裁顶依据。不写死数字。"""
+        h = self.page.evaluate("""(sel) => {
+          const el = document.querySelector(sel);
+          if (!el) return null;
+          const r = el.getBoundingClientRect();
+          return Math.round(r.height);
+        }""", NAV_SEL)
+        if not h:
+            log(f"警告：未找到 {NAV_SEL}，暂时按 {NAV_FALLBACK}px 兜底")
+            h = NAV_FALLBACK
+        self.nav_h = h
+        log(f"顶部导航条高度实测：{h} CSS px（{h * DPR} 设备像素）")
+        return h
+
     def goto(self, url, expect=None):
         p = self.page
         p.goto(url, wait_until="domcontentloaded")
@@ -169,22 +225,49 @@ class Shotter:
             p.get_by_text(expect, exact=False).first.wait_for(state="visible")
         self.dismiss_floating()
         p.wait_for_timeout(400)
+        self.measure_nav()
 
     def save(self, name, mode="clip", clip=None, selector=None, post="other"):
         p = self.page
         path = self.out / f"{name}.png"
+        radius = 0
         if selector:
             p.locator(selector).first.screenshot(path=str(path), animations="disabled",
                                                  caret="hide", type="png")
+            # 读元素圆角，后处理时把直角取景框修成真圆角
+            radius = p.evaluate("""(sel) => {
+              const el = document.querySelector(sel);
+              if (!el) return 0;
+              const r = getComputedStyle(el).borderTopLeftRadius || '0px';
+              return Math.round(parseFloat(r)) || 0;
+            }""", selector)
+            # 守卫：元素截图宽度不可能等于视口宽度。一旦相等，说明选择器命中的是
+            # 遮罩/全屏容器，截出来就是"弹框 + 半透明背景"，必须直接失败。
+            shot_w = Image.open(path).width            # 设备像素
+            vp_w = p.viewport_size["width"] * DPR      # 视口宽度，同样换算成设备像素
+            if shot_w >= vp_w * 0.95:
+                path.unlink(missing_ok=True)
+                raise RuntimeError(
+                    f"{name}: 元素截图宽 {shot_w}px，已达视口宽 {vp_w}px 的 95% 以上，"
+                    f"选择器 {selector!r} 很可能命中的是遮罩层而不是目标元素")
         elif clip:
             p.screenshot(path=str(path), clip=clip, animations="disabled", caret="hide", type="png")
         else:
             p.screenshot(path=str(path), animations="disabled", caret="hide", type="png")
-        size = postprocess(path, "page" if post == "page" else "other")
+
+        if post == "page":
+            size = postprocess(path, crop_top_css=self.nav_h, trim_bottom=True)
+            expect_h = p.viewport_size["height"] - (self.nav_h or 0)
+            if abs(size[1] - expect_h) > 3:
+                log(f"警告：{name} 输出高 {size[1]}，与 视口高-导航高={expect_h} 不符，请复核裁切")
+        else:
+            size = postprocess(path, crop_top_css=0, trim_bottom=False, round_radius=radius)
+
         info = verify(path)
         meta = {"file": path.name, "lang": self.lang, "url": p.url, "mode": mode,
                 "viewport": [p.viewport_size["width"], p.viewport_size["height"]],
-                "dpr": DPR, "ts": datetime.now().isoformat(timespec="seconds"),
+                "dpr": DPR, "nav_h": self.nav_h,
+                "ts": datetime.now().isoformat(timespec="seconds"),
                 "check": info}
         if selector:
             meta["selector"] = selector
@@ -286,7 +369,27 @@ def recipe_model_source(s: Shotter):
     s.save("model-source-details-public", mode="clip", clip=box)
 
 
-RECIPES = {"model-source": recipe_model_source}
+def recipe_members(s: Shotter):
+    """Settings > Members & Roles > Members（弹框只截弹框）"""
+    label = "Add Member" if s.lang == "en" else "添加成员"
+    s.set_viewport(W, H_PAGE)
+    s.goto(BASE + "/user/user-space/team-members", expect=label)
+
+    s.page.locator("button", has_text=label).first.click()
+    s.page.locator(".el-dialog").first.wait_for(state="visible")
+    s.page.wait_for_timeout(900)
+    # 元素截图：只拍弹框本体，遮罩与整页背景天然不会进入画面。
+    # 宽度守卫会拦住"命中的是遮罩层"这类误用。
+    s.save("add-member", mode="element", selector=".el-dialog")
+
+    s.page.keyboard.press("Escape")
+    s.page.wait_for_timeout(500)
+
+
+RECIPES = {
+    "model-source": recipe_model_source,
+    "members": recipe_members,
+}
 
 
 # ----------------------------------------------------------------- 子命令

@@ -14,6 +14,18 @@ It defines the fixed viewport, bilingual capture, drawer handling, post-processi
 verification checklist, and known pitfalls. Screenshots produced by any other method
 must still satisfy that guide.
 
+Two rules are non-negotiable:
+
+- **Dialogs, drawers, and single cards are captured as elements.** Never take a
+  full-page screenshot and crop it down: the modal mask (`rgba(0,0,0,.5)`) and the
+  page behind it get baked into the image, and any crop line slices the dialog top
+  and the sidebar's first row.
+- **The top-navigation crop height is measured from the DOM at capture time**
+  (`getComputedStyle`/`getBoundingClientRect` on `.header-bar`, currently 56 CSS px),
+  then multiplied by the device pixel ratio. Never hard-code it, and never reuse a
+  value calibrated on a 2x image (112 px) on a 1x image — that crops exactly twice
+  the intended height.
+
 Before modifying either user-manual tree, also read
 `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md` completely:
 
@@ -71,7 +83,7 @@ After editing:
 3. Confirm screenshots use the light theme, serve the adjacent operation, and contain no duplicate or stacked images.
 4. Confirm each screenshot is in the language of the page that embeds it: Chinese pages use the Chinese UI, English pages use the English UI. A Chinese screenshot inside an English page is a defect.
 5. Confirm sensitive values follow the masking rules in `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md`.
-6. Confirm the screenshot requirements in `SCREENSHOT_GUIDE.md`: fixed viewport, left menu kept, top navigation cropped, dialogs and drawers not truncated.
+6. Confirm the screenshot requirements in `SCREENSHOT_GUIDE.md`: fixed viewport, left menu kept, top navigation cropped with the DOM-measured height, dialogs and drawers **captured as elements** (image width equals the element, never the viewport), and element captures saved with **transparent rounded corners** so no mask grey shows along the image edge.
 7. Run `npm run check:docs-images`.
 8. Run `npm run check:docs-profile`.
 9. Run `npm run docs:build`.
