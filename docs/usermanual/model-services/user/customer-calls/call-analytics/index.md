@@ -1,206 +1,107 @@
 # Call Analytics
 
-## Feature Overview
+> This page appears as **Call Analytics** in the left menu; the page title is **Customer Calls - Call Analytics**.
+
+## 1. Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider |
-| Navigation Path | Model Services > Customer Calls > Call Analytics |
-| Page Route | `/modelone/monitoring/monitor/list/user` |
-| Managed Objects | Customer list, model list, successful calls, failed calls, and rate-limit triggers |
+| Applies to | Model Provider & User |
+| Navigation | **Model Services** > **Customer Calls** > **Call Analytics** |
+| Route | `/modelone/monitoring/monitor/list` |
+| Managed objects | Successful, failed, and rate-limited calls by model or customer |
 
-#### Beginner Explanation
+**New to this page**: Call Analytics groups customer traffic by model list or customer list. Choose the list type, filter by model type, name, or customer, then verify successful, failed, and rate-limited calls.
 
-Customer Call Analytics works like operational details split by customer and model. Customers shows how many models each customer uses, while Models shows call performance by model.
+## 2. Prerequisites
 
-#### Terminology
+1. Your account can open **Customer Calls > Call Analytics**.
+2. Customer calls exist in the current period.
+3. The list type and filters are confirmed.
 
-| Term | Description |
-| --- | --- |
-| Customers | Aggregates model count and call indicators by customer. |
-| Models | Shows customer call analytics by model. |
-| Models Used | The number of models called by a customer in the selected scope. |
-| View Details | Opens additional analytics for a target customer or model. |
+## 3. Page Description
 
-#### Recommended Operation Order
+The title is `Customer Calls - Call Analytics`, with two tabs: `Models` and `Customers`.
 
-Locate the customer and review models used in Customers, switch to Models to compare model performance, and then open details for an abnormal object.
+The top of the filter area provides a month and date range; below are `All Model type`, `Model name`, `Model ID`, **Search**, and **Reset**.
 
-#### Beginner Checklist
+In `Models`, columns are `Model name`, `Model type`, `Customer name`, `Successful calls`, `Failed calls`, `Rate limit triggers`, `Usage`, and `Actions`. Without data, the table shows `No Data` and `Total 0` with pagination.
 
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| A customer reports an issue | Locate the customer in Customers first | Review every model immediately |
-| Model performance is abnormal | Compare indicators in Models | Review customer totals only |
-| A query returns no result | Reset filters and expand the period | Add more filters |
-| Preparing to share analytics | Redact customer names and business identifiers | Share raw lists externally |
+![Customer Calls analytics](./images/customer-calls-analytics.png)
 
-## Prerequisites
+**Figure note**: The page provides `Models` and `Customers` tabs; filters include `All Model type`, `Model name`, and `Model ID`; columns are `Model name`, `Model type`, `Customer name`, `Successful calls`, `Failed calls`, `Rate limit triggers`, `Usage`, and `Actions`.
 
-1. The current account has access to the `Call Analytics` page.
-2. The month, date range, model, customer, or model type to view has been clarified.
-3. The page shows only the customer names, model names, call volume, and usage fields that your account can access.
+## 4. Main Operations
 
-## Page Description
+### 4.1 Choose the list type
 
-The page uses Customers and Models to show success, failure, rate limits, and usage. Query criteria and details entries depend on the active tab.
+1. Click the `Models` or `Customers` tab.
+2. The headers and grouping change with the tab.
 
-Page screenshots:
+### 4.2 Filter records
 
-![Customer Calls customer list](./images/manual-customer-list-public.png)
+1. Choose a model type in `All Model type`.
+2. Enter a model name or model ID.
+3. Click **Search** or **Reset**.
 
-The "Customers" tab displays aggregated statistics for customers invoking models during the selected period, including model counts, success/failure/rate-limit metrics, and detail links.
+### 4.3 Read statistics
 
-## Main Operations
+1. Check `Successful calls`, `Failed calls`, and `Rate limit triggers` per row.
+2. Read `Usage` for call or token summary.
+3. Use `Actions` to open the record.
 
-### View Customer Call List
+## 5. Parameter Quick Reference
 
-1. Go to `Model Services > Customer Calls > Call Analytics`, which defaults to the `Customers` tab.
-2. Filter records by customer name or model name, and specify the accounting month or date range.
-3. Click **"Search"** to review the number of models used, successful calls, failed calls, and rate-limit triggers.
-4. Click **"View Details"** in the action column for a specific customer to inspect detailed usage; click **"Reset"** if filters need clearing.
-
-### View Model Call List
-
-1. Click the **"Models"** tab at the top of the Call Analytics page.
-2. Filter target models by model name or model type.
-3. Click **"Search"** to compare call volume, success rates, and rate-limiting across different models.
-4. Click inline "View Details" to analyze the customer breakdown for a specific model.
-
-![View model call list](./images/manual-model-list-public.png)
-
-The "Models" tab displays total call volume, customer reach, and success rate trends for each model.
-
-## Parameter Reference
-
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Month | Yes | Month selector | `2026-07` | Controls the statistical month for call analytics. |
-| Date Range | Yes | Date range | `2026-07-01 to 2026-07-17` | Controls the query time range for list data. |
-| Analytics Tab | Yes | Tab | `Models` / `Customers` | Switches between the model list and customer list. |
-| Model Name | No | Input | `Example Model` | Filters the model list or customer list by model name. |
-| Model Type | No | Selector | `Text` / `Image` | Filters statistics by model capability type. |
-| Model ID | No | Input | `<MODEL_ID>` | Filters by model ID on the Models tab. |
-| Customer Name | No | Input / text | `Example Customer` | Filters statistics by customer name on the Customers tab. |
-| Models | System-generated | Number | `2` | Shows the number of models used by a customer on the Customers tab. |
-| Successful Calls | System-generated | Number | `40` | Number of successful calls within the selected range. |
-| Failed Calls | System-generated | Number | `2` | Number of failed calls within the selected range. |
-| Rate Limit Triggers | System-generated | Number | `1` | Number of rate-limit triggers within the selected range. |
-| Usage | System-generated | Text / tag | `1,280 Tokens` | Shows token, quota, or other call usage information. |
-| Actions | No | Action entry | `View Details` / `View Log` | Opens analytics details or jumps to call logs. |
+| Month / date range | Yes | Selector / date range | `2026-11`; `2026-11-01` to `2026-11-03` | Statistics period |
+| Model type | No | Selector | `All Model type` | Filter by model type |
+| Model name | No | Text | `GPT-6.1 Sol` | Filter by model name |
+| Model ID | No | Text | `openai/gpt-6.1-sol` | Filter by model ID |
+| Model name (column) | System | Text | `GPT-6.1 Sol` | Model in the list |
+| Model type (column) | System | Tag | `Text` | Model category |
+| Customer name | System | Text | `Customer A` | Calling customer |
+| Successful calls | System | Number | `0` | Successful calls |
+| Failed calls | System | Number | `0` | Failed calls |
+| Rate limit triggers | System | Number | `0` | Times limits were triggered |
+| Usage | System | Text | — | Call or token summary |
 
-## Pitfalls
+## 6. Pitfalls
 
-- Call analytics is for trends and distributions. It does not replace per-request error details in call logs.
-- When switching customer, model, or time granularity, chart scope changes. Keep filters visible in screenshots.
-- Peaks, failure rate, and average latency should be checked together with model version and Endpoint status.
+- Headers and dimensions differ between `Models` and `Customers`; do not check old columns after switching.
+- When the scope has no data, the table shows `No Data` and `Total 0`.
+- Model name and model ID are separate search fields; model ID is more precise.
 
-## Result Validation
+## 7. Result Validation
 
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page is accessible | The `Customer Calls - Call Analytics` page opens, and `Customer Calls > Call Analytics` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Model list displays | The `Models` tab shows model name, model type, customer name, successful calls, failed calls, rate limit triggers, and action entries. | Adjust the month, date range, or model filters and retry. |
-| Customer list displays | The `Customers` tab shows customer name, models, successful calls, failed calls, rate limit triggers, and action entries. | Adjust the date range, customer name, or model name and retry. |
-| Filter controls can be selected | After switching month, date range, model, customer, or model type, list data changes accordingly. | Check whether filters are too narrow, and click **"Reset"** if needed. |
-| Search / Reset works | `Search` displays matching data, and `Reset` clears filters. | Check network status, page API responses, and account permissions. |
-| List data is consistent | Successful calls, failed calls, rate limit triggers, and usage in the list are consistent with details or logs. | Open `View Details` or `View Log` for cross-checking. |
+| Check | What you can see |
+| --- | --- |
+| Tabs switch | `Models` and `Customers` switch normally |
+| Filters applied | Rows follow model type, name, or ID |
+| Metrics complete | Each row shows successful, failed, and rate-limited calls |
+| Pagination | Total count and page size are shown |
 
-## FAQ
+## 8. FAQ
 
-#### Customer List Is Empty
+#### The table is empty
 
-**Symptom:**
+**Symptom**: `No Data` and `Total 0` are shown.
 
-The Customers tab shows an empty state and no customer row.
+**Resolution**: Confirm customer calls exist in the period and clear model type, name, and ID filters.
 
-**Possible Causes:**
+#### Search results differ from expectations
 
-- The date range contains no customer call.
-- The customer-name or another filter is too narrow.
+**Symptom**: Searching by model name returns no target record.
 
-**Resolution:**
+**Resolution**: Use the model ID for an exact search or relax the model type filter.
 
-1. Click **"Reset"** to clear the filters.
-2. Select a date range that contains a known call and search again.
-3. Search Customer Call Logs with the same range. Contact the administrator if the log exists but the list remains empty.
+## 9. Notes
 
-#### Model List Is Empty
+- The page contains customer names and call data; do not share screenshots externally.
+- Results follow the current filters; fix the scope before comparing.
 
-**Symptom:**
+## 10. Next Steps
 
-The Models tab shows an empty state and no model row.
-
-**Possible Causes:**
-
-- The date range contains no customer call to the target model.
-- The model name, model type, or Model ID filter is too narrow.
-
-**Resolution:**
-
-1. Clear model filters and expand the date range.
-2. Search again by Model ID.
-3. Confirm the record in Customer Call Logs. If the list remains empty, send the administrator the redacted filters.
-
-#### Customer and Model Totals Differ
-
-**Symptom:**
-
-The tabs show different totals or row counts.
-
-**Possible Causes:**
-
-- One customer calls several models, or several customers call one model.
-- The tabs use different filters.
-
-**Resolution:**
-
-1. Use the same date, model type, and other filters.
-2. Compare call totals. Do not compare customer-row and model-row counts directly.
-3. If call totals still differ, send the filters and a redacted screenshot to the administrator.
-
-#### Results Do Not Match the Filters
-
-**Symptom:**
-
-The list contains a record outside the target date, customer, or model.
-
-**Possible Causes:**
-
-- The filters were not submitted or an old filter remains active.
-- The Customers and Models tabs use different filters.
-
-**Resolution:**
-
-1. Click **"Reset"**.
-2. Set the date and target filters one at a time, and click **"Search"**.
-3. If a mismatched record remains, record the tab and filters and contact the administrator.
-
-#### Analytics Details Does Not Open
-
-**Symptom:**
-
-Nothing opens after you click **"View Details"** for a customer or model.
-
-**Possible Causes:**
-
-- The current account lacks detail permission.
-- The target record is outside the current filters.
-
-**Resolution:**
-
-1. Clear the filters and locate the row again.
-2. Refresh the page and open the details again.
-3. If it still fails, ask the administrator to verify Model Provider permissions and provide the page route.
-
-## Notes
-
-- Customer names, model names, call volume, costs, Keys, request content, and business identifiers are sensitive operational information.
-- Before external communication or screenshots, redact customer names, Keys, request content, cost details, and internal test parameters.
-- Call analytics is aggregated data. Use call logs when troubleshooting a single request.
-
-## Next Steps
-
-1. Click **"View Details"** to view statistics for the target model or customer.
-2. Click **"View Log"** or go to `Customer Calls > Call Logs` to locate a single request.
-3. Return to `Customer Calls > Overview` to view trends, consumption statistics, and TOP rankings.
+- Review totals and Top 5 in [Overview](../overview/).
+- Review individual calls in [Call Logs](../call-logs/).
+- Review revenue in [Model Earnings](../../usage-earnings/model-earnings/).

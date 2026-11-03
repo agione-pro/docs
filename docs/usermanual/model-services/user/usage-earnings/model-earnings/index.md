@@ -1,211 +1,108 @@
 # Model Earnings
 
-## Feature Overview
+## 1. Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider |
-| Navigation Path | Model Services > Usage and Earnings > Model Earnings |
-| Page Route | `/modelone/accounting/useage/overview/model` |
-| Managed Objects | Earnings overview, earnings trends, model distribution, and earning details |
+| Applies to | Model Provider |
+| Navigation | **Model Services** > **Usage & Earnings** > **Model Earnings** |
+| Route | `/modelone/accounting/useage/overview/model` |
+| Managed objects | Model earnings, tenants, models, income tokens, and earned credits |
 
-#### Beginner Explanation
+**New to this page**: Model Earnings is the revenue dashboard for publishers. Select a billing cycle, read tenant and model counts plus income tokens and credits, then use trends and rankings to find revenue sources.
 
-Model Earnings works like a earnings ledger for model activity. Use the overview for totals and trends, and use details to reconcile records by time, user, or model.
+## 2. Prerequisites
 
-#### Terminology
+1. Your account can open **Usage & Earnings > Model Earnings**.
+2. Published models have customer calls or billing records.
+3. The billing cycle and date range are confirmed.
 
-| Term | Description |
-| --- | --- |
-| Overview | Summarizes earnings indicators and trends for the selected time range. |
-| Earning Details | Shows individual earnings records by time and business object. |
-| Statistics Period | Determines the time range and aggregation scope for overview and details. |
-| Model Distribution | Shows each model's share of total earnings. |
+## 3. Page Description
 
-#### Recommended Operation Order
+The page shows the `Model Earnings` title and two tabs, `Overview` and `Earning Details`; below the tabs, `Model Earnings` and `Model Usage` provide quick switching, and the left menu also lists both.
 
-Review totals, trends, and model distribution in Overview, and then query records in Earning Details. Use the same statistics period in both tabs during reconciliation.
+`Overview` contains:
 
-#### Beginner Checklist
+- Filters: `Billing cycle` and `Date`.
+- KPI cards: `Number of Tenants`, `Number of Models`, `Income Tokens`, and `Credits Earned`; each card shows `Compared to Last Period`.
+- Charts: `Model Revenue Trend`, `Proportion of Model Revenue` (`Total`), `Tenant Activity`, `Tenant Credit Consumption Ranking (Top 10)`, `Trend of Model Call Frequency`, and `Distribution of Model Call Times`.
 
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| No data | Expand the statistics period first | Conclude that there is no earnings |
-| Overview and details differ | Align time range and filters | Mix different scopes |
-| Preparing reconciliation | Record the period and filters | Keep screenshot values only |
-| Sharing data | Redact users and business identifiers first | Share raw details externally |
+![Model earnings overview](./images/earnings-overview.png)
 
-## Prerequisites
+**Figure note**: The page provides `Overview` and `Earning Details` tabs; KPI cards show `Number of Tenants`, `Number of Models`, `Income Tokens`, and `Credits Earned`, each with `Compared to Last Period`; the chart area includes `Model Revenue Trend`, `Proportion of Model Revenue`, `Tenant Activity`, and `Tenant Credit Consumption Ranking (Top 10)`.
 
-1. The current account has access to the `Model Earnings` page.
-2. The target model has generated statistical calls or earning records.
-3. The billing cycle, date range, user, model, or model type to view has been confirmed.
-4. Earning amount, username, tenant ranking, and settlement status are sensitive information and must be redacted before screenshots or export.
+## 4. Main Operations
 
-::: warning High-Risk Operation Boundary
-Use this page to view and reconcile the earnings overview and details. Settlement, account adjustment, and sensitive-data export are not performed here. Redact user, tenant, amount, and business identifiers before sharing data.
-:::
+### 4.1 Read the earnings overview
 
-## Page Description
+1. Open **Usage & Earnings > Model Earnings**; `Overview` is selected by default.
+2. Choose `Billing cycle` and `Date`.
+3. Read `Number of Tenants`, `Number of Models`, `Income Tokens`, `Credits Earned`, and their `Compared to Last Period` values.
+4. Review revenue trends, revenue share, and tenant consumption rankings.
 
-The page contains Overview and Earning Details. The overview shows aggregate indicators and trends, while details provide a queryable record list.
+### 4.2 Open earning details
 
-Page screenshots:
+1. Click the `Earning Details` tab.
+2. Review the details for the selected billing cycle and date.
 
-![Model Earnings overview](./images/manual-earnings-overview-public.png)
+### 4.3 Switch to usage details
 
-The "Overview" tab displays earnings summary metrics, call volume trends, and model revenue distribution charts within the selected period.
+1. In the left `Usage & Earnings` group, click `Model Usage`.
+2. Or continue from the usage overview after switching.
 
-## Main Operations
+## 5. Parameter Quick Reference
 
-### View Model Earnings Overview
-
-1. Go to `Model Services > Usage and Earnings > Model Earnings`, which defaults to the `Overview` tab.
-2. Select an accounting month and date range to verify total earnings, call volume, and active model count.
-3. Inspect earnings trend charts and model breakdown percentages to analyze revenue contributions.
-4. If no data appears, adjust the time span or verify that published models have received customer invocations.
-
-### Query Model Earnings Details
-
-1. Click the **"Earning Details"** tab at the top of the page.
-2. Set the date range and filter by user name, model name, or model type as needed.
-3. Click **"Search"** to verify record time, calling user, model name, billing rules, and earnings amount.
-4. Click inline "Billing Rule" links to view fee breakdown details; redact user names and identifiers before sharing.
-
-![Query earnings details](./images/manual-earning-details-public.png)
-
-The "Earning Details" list displays earnings generated per model call, corresponding users, billing rule details, and token usage.
-
-## Parameter Reference
-
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Billing cycle | Yes | Month selector | `2026-07` | Month that the earnings statistics and settlement belong to. |
-| Date | No | Date range | `2026-07-01 to 2026-07-17` | Limits the statistical time range for overview charts. |
-| Username | No | Input | `Example User` | Filters earning details by calling user. |
-| Model name | No | Input | `Example Model` | Filters earning details by model. |
-| Model type | No | Dropdown | `Text` | Filters earning details by model capability type. |
-| Revenue Amount | System-generated | Number | `Credits` | Earnings amount or Credit value displayed on the page. |
-| Call Volume | System-generated | Number | `Tokens` | Metered usage, such as input tokens, output tokens, or cached input tokens. |
-| Billing Type | System-generated | Tag | `Token` | Billing method used by the earning record. |
-| Billing rules | System-generated | Text / details entry | `Redacted billing rule` | Shows the pricing rule matched by the current earning record and opens the rule details entry. |
-| Billing rule details | System-generated | Popover / details | `Redacted rule details` | Shows total charged, pricing breakdown, matched conditions, usage consumed, cost summary, free quota, and total cost. |
-| Settlement Status | System-generated | Status | `Posted` / `Carryover` | Whether the amount has been posted or remains as carryover. |
-| Time Range | No | Date / month | `2026-07-01 to 2026-07-17` | Controls the overview or detail statistical period. |
-| Model Consumer | System-generated | Text | User or tenant name | User or tenant that generated the earning. |
-| Actions | No | Row entry | `View details · 3 details` | View billing rule details matched by the earning record. |
+| Billing cycle | Yes | Selector | `2026-11` | Billing period |
+| Date | No | Date range | `2026-11-01` to `2026-11-03` | Statistics date range |
+| Number of Tenants | System | Number | `0` | Tenants that generated revenue |
+| Number of Models | System | Number | `0` | Models that generated revenue |
+| Income Tokens | System | Number | `0` | Billed token total |
+| Credits Earned | System | Amount | `0.00` | Earned credits |
+| Compared to Last Period | System | Percentage | `0%` | Change versus the previous period |
+| Model Revenue Trend | System | Chart | — | Revenue over time |
+| Proportion of Model Revenue | System | Chart | — | Revenue share by model |
+| Tenant Activity | System | Chart | — | Tenant activity |
+| Tenant Credit Consumption Ranking (Top 10) | System | Ranking | — | Tenants with the highest credit consumption |
 
-## Pitfalls
+## 6. Pitfalls
 
-- Model earnings are not credited in real time. They may be affected by the billing cycle, settlement status, and earnings rules.
-- Customer, model, and time views use different scopes. Do not add them together without checking the metric definition.
-- If revenue looks abnormal, verify model usage and call logs first, then ask operations to confirm settlement rules.
+- KPI cards show both the current value and `Compared to Last Period`; confirm the billing cycle and date range before reading trends.
+- With no revenue data in the test environment, metrics show `0` or `0.00` and charts are empty; this does not mean the page is unavailable.
+- `Model Earnings` and `Model Usage` are separate menu pages with different scopes; do not mix their figures.
 
-## Result Validation
+## 7. Result Validation
 
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page is accessible | The `Model Earnings` page opens, and `Overview` and `Earning Details` tabs are visible. | Check account permissions, navigation path, and page loading status. |
-| Earnings overview displays | Number of Tenants, Number of Models, Income Tokens, Credits Earned, and charts are visible. | Switch Billing cycle or Date and retry. Confirm whether the current period has earning data. |
-| Filter controls can be selected | Billing cycle, Date, Username, Model name, and Model type can be entered or selected. | Check filter format, or click **"Reset"** and query again. |
-| Earning list loads | The details list shows Usage time, Model, Username, Metered usage, Free quota, Billing mode, Billing rules, and credits. | Confirm whether the billing cycle contains earning records, or broaden filters. |
-| Billing rule details can be viewed | After clicking `View details · 3 details`, total charged, pricing breakdown, matched conditions, usage consumed, and cost summary are visible. | Compare model usage and call logs to confirm statistical delay or billing-rule differences. |
+| Check | What you can see |
+| --- | --- |
+| Tabs switch | `Overview` and `Earning Details` switch normally |
+| Period applied | KPI cards and charts follow `Billing cycle` and `Date` |
+| Metrics complete | `Number of Tenants`, `Number of Models`, `Income Tokens`, `Credits Earned` are shown |
+| Charts complete | Revenue trend, revenue share, tenant activity, and Top 10 ranking are shown |
 
-## FAQ
+## 8. FAQ
 
-#### Model Earnings Data Is Empty
+#### All metrics are 0
 
-**Symptom:**
+**Symptom**: Tenant count, model count, and revenue are `0`.
 
-No earnings data appears for the selected period.
+**Resolution**: Confirm the current billing cycle has customer calls and billing records, or switch to a cycle with data.
 
-**Possible Causes:**
+#### Charts are empty
 
-- No relevant record exists in the period.
-- The filters are too narrow.
+**Symptom**: Trend and share charts show no data.
 
-**Resolution:**
+**Resolution**: Check the billing cycle, date range, and model scope; widen the date range if the current scope has no data.
 
-1. Click **"Reset"** to clear the filters.
-2. Select a billing cycle and date range that contain a known customer call.
-3. Check **"Customer Calls > Call Logs"** with the same range. Contact the billing administrator if the log exists but Model Earnings remains empty.
+## 9. Notes
 
-#### Overview and Details Differ
+- Revenue is aggregated by billing cycle; align periods before comparing.
+- The page shows summaries and trends, not reconciliation; use the billing and settlement pages for reconciliation.
+- Do not screenshot or share customer names, amounts, or contract information.
 
-**Symptom:**
+## 10. Next Steps
 
-The overview total differs from the sum of details.
-
-**Possible Causes:**
-
-- The tabs use different time ranges.
-- Detail filters are still active.
-
-**Resolution:**
-
-1. Align the statistics period.
-2. Reset detail filters and calculate again.
-3. If the totals still differ, send the billing cycle, date range, and Model ID to the billing administrator.
-
-#### Target Model Has No Record
-
-**Symptom:**
-
-No earnings record appears for the target model.
-
-**Possible Causes:**
-
-- Model name or time criteria do not match.
-- The current account does not include the record in its visible published-model scope.
-
-**Resolution:**
-
-1. Query the model and expand the period.
-2. Check **"Customer Calls"** for the same Model ID.
-3. If customer calls exist but Model Earnings has no record, send the redacted details to the billing administrator.
-
-#### Data Update Time Is Abnormal
-
-**Symptom:**
-
-A customer call appears in Call Logs but has no related Model Earnings record.
-
-**Possible Causes:**
-
-- Model Earnings and Customer Calls use different billing cycles or date ranges.
-- The target call belongs to a different model or billing scope.
-
-**Resolution:**
-
-1. Use the same billing cycle, date range, and Model ID.
-2. Record the redacted request ID from Customer Call Logs.
-3. If Model Earnings still has no record, send the filters and request ID to the billing administrator.
-
-#### Reconciliation Has a Difference
-
-**Symptom:**
-
-Page earnings differs from an external record.
-
-**Possible Causes:**
-
-- Billing units or time boundaries differ.
-- Model or customer scopes differ.
-
-**Resolution:**
-
-1. Fix time, model, and billing unit.
-2. Reconcile record by record from details.
-3. If the difference remains, send the redacted details and reconciliation rules to the billing administrator.
-
-## Notes
-
-- Do not write real accounts, pricing policies, internal test parameters, or sensitive data in the document.
-- Before screenshots or export, confirm that usernames, tenant names, earning amounts, and Credit details are redacted.
-- Settlement, account adjustment, and sensitive data export are outside the scope of this document.
-
-## Next Steps
-
-1. Cross-check with model usage, call analytics, and call logs.
-2. Use redacted earning details for reconciliation.
-3. Optimize model operations based on revenue trends, model-type proportion, and tenant consumption ranking.
+- Check token consumption and deductions in [Model Usage](../model-usage/).
+- Review customer traffic in [Customer Calls](../../customer-calls/overview/).
+- Adjust model pricing or billing in [My Models](../../studio/my-models/).

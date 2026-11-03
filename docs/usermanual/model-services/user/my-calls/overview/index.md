@@ -1,197 +1,127 @@
 # Overview
 
-## Feature Overview
+> This page appears as **Overview** in the left menu; the page title is **My Calls - Overview**.
+
+## 1. Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider, Model Consumer |
-| Navigation Path | Model Services > My Calls > Overview |
-| Page Route | `/modelone/monitoring/calls/overview/model` |
-| Managed Objects | Personal call indicators, call trends, model rankings, and log entry |
+| Applies to | Model Provider & User |
+| Navigation | **Model Services** > **My Calls** > **Overview** |
+| Route | `/modelone/model-observation/eu/overview` |
+| Managed objects | Your call volume, token consumption, success rate, latency, call composition, and member/project rankings |
 
-#### Beginner Explanation
+**New to this page**: Overview is the dashboard for your own calls. Select a month and filters, read volume, tokens, success rate, and latency, then use trends and rankings to see where calls concentrate.
 
-Overview works like a personal call dashboard. Review total, successful, and failed calls and usage trends, and then open logs from an abnormal model to locate individual requests.
+## 2. Prerequisites
 
-#### Terminology
+1. Your account can open **My Calls > Overview**.
+2. Calls exist in the current period; without data, metrics show `--` or `0`.
+3. The month, model, and client source filters are confirmed.
 
-| Term | Description |
-| --- | --- |
-| Total Calls | The number of calls made in the selected period. |
-| Failed Calls | Calls that did not complete successfully. |
-| Rate Limit Trigger | The number of calls restricted by rate-limit policies. |
-| Call Trend | Changes in calls, success, failure, or usage over time. |
+## 3. Page Description
 
-#### Recommended Operation Order
+The title is `My Calls - Overview`, marked `Updated hourly`. The page is organized into filters, KPI cards, a trend area, and composition/ranking areas:
 
-Select a time range and review aggregate indicators, compare trends and model rankings, and use the log entry to investigate anomalies.
+- Filters: month `2026-11 (All Month)`, `By Date`, `Model` (`Name or ID`), `Client Source` (`All`), and **Expand**.
+- KPI cards: `Total Requests`, `Input Tokens`, `Cached Tokens`, `Output Tokens`, `Peak RPM`, `Peak TPM`, `Success Rate`, `Failed Calls`, `Rate-limited Calls`, `Avg TTFT`, `Avg TPOT`, and `Avg E2E`.
+- Trend: `Call & Token Trend`, switchable between `Requests`, `Tokens`, and `Outcomes`.
+- Composition: `Call Composition & Sources`, switchable between `Composition` and `Ranking`; shows `Personal Key`, `Project Key`, `Key Attribution Coverage`, `App Coverage`, and `Call Source Distribution (App)`.
+- Models: `Model Contributions`, with **View All Models**.
+- Ranking: `Member & Project Usage Ranking`, switchable between `Member Top 10` and `Project Top 10`.
 
-#### Beginner Checklist
+![My Calls overview](./images/my-calls-overview.png)
 
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| No overview data | Expand the time range | Conclude immediately that calls were not recorded |
-| Success rate drops | Compare failure and rate-limit trends | Review total calls only |
-| A model is abnormal | Open logs for individual requests | Infer the cause from charts alone |
-| Preparing to share an image | Redact business identifiers and sensitive information | Share the original image |
+**Figure note**: Filters include month, `By Date`, `Model`, `Client Source`, and **Expand**; KPI cards show `Total Requests`, `Input Tokens`, `Cached Tokens`, `Output Tokens`, `Peak RPM`, `Peak TPM`, `Success Rate`, `Failed Calls`, `Rate-limited Calls`, `Avg TTFT`, `Avg TPOT`, and `Avg E2E`; below are `Call & Token Trend` and `Call Composition & Sources`.
 
-## Prerequisites
+## 4. Main Operations
 
-1. The current account has access to the `Overview` page.
-2. The current account has call records in the statistical period, or the time range to view has been confirmed.
-3. Before viewing or screenshots, confirm whether model names, Key names, fees, and business identifiers need to be redacted.
+### 4.1 Set the statistics scope
 
-::: warning Sensitive Information Boundary
-The call overview may show fees, call volume, model names, Key names, token consumption, and abnormal trends. Follow your tenant's data-access policy when you view or share this data. Redact accounts, Keys, request content, fees, and business identifiers.
-:::
+1. Select a month, such as `2026-11 (All Month)`.
+2. Use `By Date` to change the aggregation granularity.
+3. Enter a `Name or ID` in `Model` and choose a `Client Source`.
+4. Click **Expand** to view extended filters.
 
-## Page Description
+### 4.2 Read metrics
 
-The page shows call totals, trends, and model rankings for the current account and provides an entry to call logs. Changing the time range updates indicators and charts.
+1. Read `Total Requests` and the succeeded count below it.
+2. Read `Input Tokens`, `Cached Tokens`, `Output Tokens`, `Peak RPM`, and `Peak TPM`.
+3. Read `Success Rate`, `Failed Calls`, and `Rate-limited Calls`.
+4. Read `Avg TTFT`, `Avg TPOT`, and `Avg E2E`.
 
-Page screenshots:
+### 4.3 Locate anomalies and sources
 
-![My Calls overview](./images/overview-list-public.png)
+1. Use **View Failed** and **View Limited** under the corresponding cards.
+2. Use **View Slow TTFT**, **View Slow TPOT**, and **View Slow E2E**.
+3. In `Call Composition & Sources`, compare `Personal Key` and `Project Key` shares.
+4. Use **View All Client Sources**, **View All Models**, and **View All Members** to drill down.
 
-Focus on the time range, aggregate indicators, trend chart, and model list.
+## 5. Parameter Quick Reference
 
-## Main Operations
-
-### View Call Trends and Open Logs
-
-1. Go to `Model Services > My Calls > Overview`.
-2. Select a time range and model type, and verify total, successful, failed, and rate-limited calls and usage.
-3. Compare trends and the model list to locate an abnormal model.
-4. Click **"View Logs"** for the target model to continue in call logs.
-
-![View call trends](./images/manual-call-trends-public.png)
-
-The image shows call totals, trends, and the model list. Open logs from the target model when an anomaly is found.
-
-## Parameter Reference
-
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Billing Cycle | Yes | Month selector | `2026-07` | Sets the billing cycle for Overview. |
-| Date Range | Yes | Date range | `2026-07-01 to 2026-07-31` | Sets the time range for metric cards and charts. |
-| Model Type | No | Selector | `Text` | Narrows statistics by model type. |
-| Total Calls | System-generated | Number | `0` | Total calls in the selected range. |
-| Successful Calls | System-generated | Number | `0` | Successful calls in the selected range. |
-| Failed Calls | System-generated | Number | `0` | Failed calls in the selected range. |
-| Rate Limit Triggers | System-generated | Number | `0` | Rate-limit triggers in the selected range. |
-| Total Consumed Tokens | System-generated | Number | `0 Tokens` | Total token consumption in the selected range. |
+| Month | Yes | Selector | `2026-11 (All Month)` | Statistics month |
+| By Date | No | Toggle | On | Aggregation granularity |
+| Model | No | Text | `Name or ID` | Filter by model |
+| Client Source | No | Selector | `All` | Filter by client source |
+| Total Requests | System | Number | `--` | Total calls in scope |
+| Input Tokens | System | Number | `--` | Total input tokens |
+| Cached Tokens | System | Number | `--` | Cached tokens and share of input |
+| Output Tokens | System | Number | `--` | Total output tokens |
+| Peak RPM | System | Number | `0` | Peak requests per minute |
+| Peak TPM | System | Number | `--` | Peak tokens per minute |
+| Success Rate | System | Percentage | `--` | Share of successful calls |
+| Failed Calls | System | Number | `--` | Failed calls and share |
+| Rate-limited Calls | System | Number | `--` | Rate-limited calls and share |
+| Avg TTFT | System | Duration | `--` | Average time to first token |
+| Avg TPOT | System | Duration | `--` | Average time per output token |
+| Avg E2E | System | Duration | `--` | Average end-to-end latency |
+| Personal Key | System | Share | `0.0%` | Calls attributable to members |
+| Project Key | System | Share | `0.0%` | Project key calls, not attributed to members |
+| Key Attribution Coverage | System | Percentage | `--` | Share of attributable key calls |
+| App Coverage | System | Percentage | `--` | Share of identified client sources |
 
-## Pitfalls
+## 6. Pitfalls
 
-- My Calls Overview shows only the current account's visible scope, not tenant-wide or customer-wide totals.
-- When balance, Credits, or call count looks abnormal, check call logs, model usage, and billing pages together.
-- Align model and time range before comparing data, otherwise different model versions may be mixed.
+- `Updated hourly` means data refreshes hourly; new calls may not appear immediately.
+- `Personal Key` calls are attributable to members; `Project Key` calls are not. Member rankings cover only the attributable part.
+- When filters are too narrow, `Member & Project Usage Ranking` shows `No Ranking Data in Current Scope`.
+- A `--` metric means there is no calculable data in scope, not that calls failed.
 
-## Result Validation
+## 7. Result Validation
 
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page opens | The sidebar highlights `My Calls > Overview`, and the overview cards appear. | Check account permissions, navigation path, and page loading status. |
-| Overview metrics are visible | The cards show Total Calls, Successful calls, Failed calls, Rate limit triggers, and Total Consumed Tokens. | Expand the time range or confirm whether the current account has call records. |
-| Trend charts are visible | The page shows Call Trend, Consumption Statistics, Model Type Statistics, and Model Call Distribution. | Refresh the page, or switch the billing cycle and date range and retry. |
-| Filters can be selected | The Billing Cycle, Date Range, and Model Type controls accept a selection. | Reload the page. If the controls still do not respond, ask the administrator to verify page permission. |
-| Data matches filters | Metric cards and charts show data for the selected billing cycle, date range, and model type. | Use the same filters in Call Analytics and Call Logs for comparison. |
+| Check | What you can see |
+| --- | --- |
+| Filters applied | KPI cards and charts follow month, model, and source |
+| Trend switchable | `Requests`, `Tokens`, and `Outcomes` switch |
+| Composition switchable | `Composition` and `Ranking` switch |
+| Ranking switchable | `Member Top 10` and `Project Top 10` switch |
+| Drill-down entries | `View Failed`, `View Limited`, `View Slow TTFT`, `View Slow TPOT`, `View Slow E2E` are visible |
 
-## FAQ
+## 8. FAQ
 
-#### Overview Shows No Data
+#### All metrics show `--`
 
-**Symptom:**
+**Symptom**: Volume, token, and latency metrics are all `--`.
 
-The metric cards, trend chart, and model list all show an empty state.
+**Resolution**: Confirm calls exist in the current month and filter scope; wait for the next hourly refresh for new calls.
 
-**Possible Causes:**
+#### Ranking area is empty
 
-- The selected time range contains no call record.
-- A model-type or other filter excludes the target record.
+**Symptom**: Member or project ranking shows `No Ranking Data in Current Scope`.
 
-**Resolution:**
+**Resolution**: Widen the period or clear model and source filters, then retry.
 
-1. Click **"Reset"** to clear the filters.
-2. Select a date range that contains a known call, and click **"Search"**.
-3. Search **"Call Logs"** with the same time range and model. If the log exists but Overview remains empty, send the administrator the redacted time range and Model ID.
+## 9. Notes
 
-#### Success Rate Drops
+- The page shows calls within your account scope, not platform-wide traffic.
+- Volume, token, and latency metrics change with filters; fix the scope before comparing.
+- Do not screenshot or share member names, project names, or call details.
 
-**Symptom:**
+## 10. Next Steps
 
-Successful calls decrease, or failed calls increase in the same time range.
-
-**Possible Causes:**
-
-- Requests to one model or provider fail repeatedly.
-- The Personal Key, Model ID, or request parameters do not meet the call requirements.
-
-**Resolution:**
-
-1. Keep the same time range and model type in Overview.
-2. Open **"Call Analytics"** and locate the model with more failures.
-3. Open **"Call Logs"** and review the error. If the same error continues, send a redacted request ID to the Model Provider or administrator.
-
-#### Rate-Limit Triggers Increase
-
-**Symptom:**
-
-The rate-limit count is greater than zero or continues to increase in the trend chart.
-
-**Possible Causes:**
-
-- Request frequency or concurrency exceeds the current model limit.
-- Many calls occur in a short period.
-
-**Resolution:**
-
-1. Use **"Call Analytics"** to identify the model and time range.
-2. Use **"Call Logs"** to confirm the status and request times.
-3. Reduce request frequency or concurrency and check again. Contact the Model Provider if rate limiting continues.
-
-#### Trend and List Totals Differ
-
-**Symptom:**
-
-The trend total differs from the list or metric-card total.
-
-**Possible Causes:**
-
-- The areas use different dates, billing cycles, or model types.
-- The comparison includes different time boundaries.
-
-**Resolution:**
-
-1. Use the same billing cycle, date range, and model type.
-2. Click **"Search"** to reload all areas.
-3. Summarize **"Call Logs"** with the same filters. If the difference remains, send the filters and a redacted screenshot to the administrator.
-
-#### Call Logs Does Not Open
-
-**Symptom:**
-
-The page does not change after you click the log entry, or an access message appears.
-
-**Possible Causes:**
-
-- The current role does not have Call Logs permission.
-- The browser contains an outdated page state.
-
-**Resolution:**
-
-1. Open **"Call Logs"** from the left navigation.
-2. Refresh the page and select the time range again.
-3. If the page still does not open, ask the administrator to verify Model Consumer permissions and provide the page route.
-
-## Notes
-
-- Do not write real accounts, Keys, request content, fee details, or internal test parameters in the document.
-- Overview statistics may have delays. Use Call Logs for single-request troubleshooting.
-- Use only redacted aggregate information for external communication.
-
-## Next Steps
-
-1. Go to `Call Analytics` for more detailed trend and dimension analysis.
-2. Go to `Call Logs` to view single requests, error codes, and request status.
-3. Adjust call strategy based on failed records, rate-limit triggers, and token peaks.
+- Review calls by member in [Members](../members/).
+- Review calls by project in [Projects](../projects/).
+- Review source distribution in [Client Sources](../client-sources/).
+- Review individual calls in [Call Logs](../call-logs/).

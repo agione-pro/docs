@@ -1,216 +1,110 @@
-# Text Playground
+# Text
 
-::: info Document Information
-Version: v1.0
-Updated: 2026-08-31
-:::
-
-## Feature Overview
+## 1. Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider, Model Consumer |
-| Navigation Path | Model Services > Playground > Text |
-| Page Route | `/modelone/exploration/chat` |
-| Managed Objects | Text models, prompts, generation parameters, and responses |
+| Applies to | Model Provider & User |
+| Navigation | **Model Services** > **Playground** > **Text** |
+| Route | `/modelone/exploration/chat` |
+| Managed objects | Selected model or aggregate model, conversation input, and comparison results |
 
-#### Beginner Explanation
+**New to this page**: Text is the online trial entry for catalog models. Choose a model, ask a question, and read the response; turn on **Model Compare** when you need side-by-side results.
 
-The Text playground is a place to try a text model. Select a text model and provider from the selector, enter the input, adjust parameters, and review the result or error message before integration.
+## 2. Prerequisites
 
-#### Terminology
+1. Your account can open **Playground > Text**.
+2. The account has available credits or a free quota for the model.
+3. The target model, context limit, and billing method are confirmed.
 
-| Term | Description |
-| --- | --- |
-| Model Instance | The model and provider combination used by the playground. |
-| Prompt | Instructions that describe the task, input, and expected output. |
-| Generation Parameters | Settings that control length, randomness, size, or other generation behavior. |
-| Personal Key | A personal credential used for calls. Documentation uses `<PERSONAL_KEY>`. |
+## 3. Page Description
 
-#### Recommended Operation Order
+The page contains a model area, a welcome area, and an input area:
 
-For a first trial, select a text model, verify the provider and Personal Key, configure the input and parameters, and then submit and review the result. Change only a few parameters at a time so that results remain comparable.
+- Model area: current model name, tags, and provider, such as `GLM-5.2`, `Aggregate`, and `星云智算人工智能科技有限公司`; **Model Compare** is on the right.
+- Welcome area: shows `What would you like to explore?` on first entry.
+- Input area: a multi-line box with `Please enter your question, Shift+Enter for a new line`; the footer reads `AI-generated content may be inaccurate and does not represent our views.`.
+- Reset: **Reset all** clears the current configuration.
 
-#### Beginner Checklist
+![Text playground](./images/text-playground.png)
 
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| Unsure which text model to use | Compare status and capabilities in the selector | Submit with the default model immediately |
-| Preparing input | Remove credentials, customer data, and production data | Paste raw sensitive content |
-| Preparing parameter changes | Change only a few parameters at a time | Change every parameter together |
-| Generation fails | Review the page error and call logs first | Submit repeatedly |
+**Figure note**: The current model is `GLM-5.2` with the `Aggregate` tag; the input prompt is `Please enter your question, Shift+Enter for a new line`, and **Model Compare** is available on the right.
 
-## Prerequisites
+## 4. Main Operations
 
-1. The current account has access to the text Playground page.
-2. The target model is authorized for the current account to try.
-3. The Prompt does not contain real keys, customer privacy, or production business data.
+### 4.1 Select a model
 
-::: warning Call and Billing Risk
-Clicking Send creates a real model call and may consume credits, generate call logs, or create billing records. Before submission, verify the model, Personal Key, prompt, parameters, and expected usage.
-:::
+1. Click the model area to open the model list.
+2. Select a model or aggregate model and verify its tag and provider.
 
-## Page Description
+### 4.2 Start a conversation
 
-This page is used to try text models. The current page exposes a model selector, `Copy Model ID`, `Model Compare`, `More settings`, a Personal Key selector, and the Prompt input. Focus on selecting the model and provider, entering a Prompt, adjusting Protocol, Temperature, Top-P, N, Stream, and other parameters, and observing the input area, response area, history, and error messages.
+1. Enter a question in the input box.
+2. Use `Shift+Enter` for a new line, or submit.
+3. Read the response in the output area.
 
-Page screenshots:
+### 4.3 Compare models
 
-![Text page](./images/text-list-public.png)
+1. Click **Model Compare**.
+2. Select the models to compare.
+3. Submit the same input and compare the responses.
 
-Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
+### 4.4 Reset the session
 
-## Main Operations
+1. Click **Reset all**.
+2. Confirm the model selection and input are cleared.
 
-### Select Text Model
+## 5. Parameter Quick Reference
 
-1. Go to `Model Services > Playground > Text`.
-2. In the model selector at the top of the page, choose the text model and provider to try.
-3. Fill in the Prompt input box with a question, context, or other input content.
-4. Select `More settings` and view or adjust `Protocol`, `Temperature`, `Top-P`, `N`, `Stream`, and other parameters as needed.
-5. Before clicking the send button, verify the input content, model, provider, key, and parameters.
-6. Before clicking **"Send"**, verify the model, Personal Key, input, parameters, and expected usage. The request creates a call record and can consume credits.
-
-![Select text model](./images/manual-select-text-model-public.png)
-
-The image shows the model selector. Compare provider capability, price, performance, and status.
-
-![text model selection reference](./images/select-model-public.png)
-
-This image provides an additional view of model selection and instance information.
-
-### Configure and Generate Text Content
-
-1. Confirm that the current model, provider, and Personal Key are correct.
-2. Enter a prompt and adjust Protocol, Temperature, Top-P, N, and Stream as needed. Confirm that the input contains no credentials, customer data, or production data, and then click **"Send"**.
-3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
-4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
-
-![Configure text generation](./images/manual-configure-text-public.png)
-
-The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
-
-## Parameter Reference
-
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model | Yes | Dropdown | `Example Text Model` | Text model currently being tried. The initial selection can vary by account. |
-| Provider | Yes | Dropdown | `Example Provider` | Provider instance of the current model. |
-| Prompt | Yes | Multiline text | `Summarize this text` | Prompt, question, or context input to the model. |
-| Protocol | No | Dropdown | `openai/chat_completions` | Protocol used by the current call. |
-| Temperature | No | Number / Slider | `0.7` | Controls output randomness. Higher values are more divergent. |
-| Top-P | No | Number / Slider | `0.8` | Controls candidate token sampling range. |
-| N | No | Number / Stepper | `1` | Controls the number of candidate responses returned by one request. |
-| Stream | No | Toggle | `On` | Controls whether output is returned as a stream. |
-| Response | No | Text area | Model response content | Displays generated content, error messages, or status information. |
+| Model | Yes | Selector | `GLM-5.2` | Model or aggregate model used for the conversation |
+| Model tag | System | Tag | `Aggregate` | Model type or composition |
+| Provider | System | Text | `星云智算人工智能科技有限公司` | Provider of the current model |
+| Input | Yes | Multi-line text | `Hello` | Prompt submitted to the model |
+| Model Compare | No | Button | — | Opens multi-model comparison |
 
-## Pitfalls
+## 6. Pitfalls
 
-- Do not set both Temperature and Top-P too high.
-- If Max Tokens is too small, answers may be truncated. If it is too large, costs may increase.
-- Do not enter real keys or customer privacy in Prompts.
-- Sending a prompt creates call records and may consume credits or generate billing records. Verify expected usage and billing scope before submission.
+- Verify the model tag before submitting; an `Aggregate` model routes across multiple backends, so responses may come from different nodes.
+- `Shift+Enter` inserts a new line, it does not submit.
+- Playground calls create usage records and consume tokens; long conversations cost more.
 
-## Result Validation
+## 7. Result Validation
 
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page is accessible | The `Text` page opens, and the left Playground menu, top model selector, `Model Compare`, and `More settings` controls are visible. | Check account permissions, navigation path, and page loading status. |
-| Model selector loads | The model selector can be opened and shows model list, provider instances, and status information. | Refresh the page and retry, or confirm whether the target model is visible to the current account. |
-| Input and parameter areas are visible | Prompt input box, `More settings`, Protocol, Temperature, Top-P, N, Stream, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
-| History or response area is visible | The page shows conversation history, response content, an error message, or an empty state. | If there is no history, confirm that the input area remains visible. |
-| Real call returns a response | When a call is explicitly allowed, the page returns a text response related to the Prompt. | Shorten the Prompt, lower parameters, and check error messages or call logs. |
+| Check | What you can see |
+| --- | --- |
+| Model selected | The top shows the target model, tag, and provider |
+| Input accepted | The input box shows the prompt and accepts multiple lines |
+| Response returned | The output area shows generated content |
+| Disclaimer | The footer shows `AI-generated content may be inaccurate and does not represent our views.` |
 
-## FAQ
+## 8. FAQ
 
-#### Target Model Is Missing
+#### No response after submitting
 
-**Symptom:**
+**Symptom**: The output area stays empty.
 
-The target model does not appear in the selector.
+**Resolution**:
 
-**Possible Causes:**
+1. Confirm the model status and account quota.
+2. Check that the input is not empty and does not exceed the context limit.
+3. Select the model again and retry.
 
-- The model is not authorized for the account.
-- Its status or modality does not match the page.
+#### The target model is missing
 
-**Resolution:**
+**Symptom**: The model list does not contain the target model.
 
-1. Verify visibility and model status.
-2. Confirm input and output capabilities in Models.
+**Resolution**: Confirm the model is published and visible to your tenant, or check its scope in [Models](../../discover/models/).
 
-#### Submit Is Unavailable
+## 9. Notes
 
-**Symptom:**
+- Do not enter keys, customer privacy, or unmasked business data.
+- Playground calls are billed at the model price; long or frequent calls consume quota quickly.
+- Model output is for reference only; review important conclusions manually.
 
-The request cannot be submitted after input is entered.
+## 10. Next Steps
 
-**Possible Causes:**
-
-- No model or Personal Key is selected.
-- Required input or parameters are incomplete.
-
-**Resolution:**
-
-1. Select the model and Personal Key again.
-2. Complete the required fields marked on the page.
-
-#### Generation Fails or Times Out
-
-**Symptom:**
-
-The request fails or remains pending.
-
-**Possible Causes:**
-
-- The model service is busy or rate-limited.
-- Input or parameters exceed model limits.
-
-**Resolution:**
-
-1. Review the page error and call logs.
-2. Shorten input or restore default parameters and retry.
-
-#### Result Does Not Meet Expectations
-
-**Symptom:**
-
-The result does not meet content, format, or quality requirements.
-
-**Possible Causes:**
-
-- The prompt lacks constraints.
-- Too many parameters changed together.
-
-**Resolution:**
-
-1. Add goals, format, and prohibited content.
-2. Restore baseline settings and compare one change at a time.
-
-#### Usage or Cost Is Unexpected
-
-**Symptom:**
-
-One trial creates more usage than expected.
-
-**Possible Causes:**
-
-- Output size or generation count is too large.
-- The same task was submitted repeatedly.
-
-**Resolution:**
-
-1. Check generation settings and call logs.
-2. Stop repeated submissions and confirm billing scope.
-
-## Notes
-
-- Do not enter keys, access Tokens, or customer privacy in Prompts.
-- Redact request IDs and sensitive output content before screenshots.
-- When comparing parameters, adjust only a small number of variables at a time.
-
-## Next Steps
-
-1. Save effective Prompt and parameter combinations.
-2. When troubleshooting is needed, use request ID to view call logs.
-3. Before production integration, organize API parameters and output format requirements.
+- Review calls and tokens in [My Calls](../../my-calls/overview/).
+- Check deductions in [Model Usage](../../usage-earnings/model-usage/).
+- For application integration, open **Quick Start** in [Models](../../discover/models/).

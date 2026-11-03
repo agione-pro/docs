@@ -1,211 +1,113 @@
 # Images
 
-## Feature Overview
+## 1. Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider, Model Consumer |
-| Navigation Path | Model Services > Playground > Images |
-| Page Route | `/modelone/exploration/image` |
-| Managed Objects | Image models, prompts, size, generation parameters, and image results |
+| Applies to | Model Provider & User |
+| Navigation | **Model Services** > **Playground** > **Images** |
+| Route | `/modelone/exploration/image` |
+| Managed objects | Image model, size, image count, and generation tasks |
 
-#### Beginner Explanation
+**New to this page**: Images turns a text prompt into pictures. Choose an image model, set size and count, enter a description, and review results in **Task query**.
 
-The Images playground is a place to try an image model. Select an image model and provider from the selector, enter the input, adjust parameters, and review the result or error message before integration.
+## 2. Prerequisites
 
-#### Terminology
+1. Your account can open **Playground > Images**.
+2. The account has available credits or a free quota for the model.
+3. The billing unit and image-count limit are confirmed.
 
-| Term | Description |
-| --- | --- |
-| Model Instance | The model and provider combination used by the playground. |
-| Prompt | Instructions that describe the task, input, and expected output. |
-| Generation Parameters | Settings that control length, randomness, size, or other generation behavior. |
-| Personal Key | A personal credential used for calls. Documentation uses `<PERSONAL_KEY>`. |
+## 3. Page Description
 
-#### Recommended Operation Order
+The page contains a model area, a parameter area, and an input area:
 
-For a first trial, select an image model, verify the provider and Personal Key, configure the input and parameters, and then submit and review the result. Change only a few parameters at a time so that results remain comparable.
+- Model area: current model `qwen-image-3.0` and provider `Alibaba`; **Task query** and **Model Compare** are on the right.
+- Parameters: `Size` (currently `No documented default`) and `Images` (currently `4`).
+- Input: multi-line box with `Describe the image you want to generate, Shift+Enter for new line`.
+- Reset: **Reset all** restores model and parameter defaults.
 
-#### Beginner Checklist
+![Image playground](./images/image-playground.png)
 
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| Unsure which image model to use | Compare status and capabilities in the selector | Submit with the default model immediately |
-| Preparing input | Remove credentials, customer data, and production data | Paste raw sensitive content |
-| Preparing parameter changes | Change only a few parameters at a time | Change every parameter together |
-| Generation fails | Review the page error and call logs first | Submit repeatedly |
+**Figure note**: The current model is `qwen-image-3.0` from `Alibaba`; parameters show `Size` and `Images 4`, with **Task query** and **Model Compare** at the top.
 
-## Prerequisites
+## 4. Main Operations
 
-1. The current account has access to the image Playground page.
-2. The target image model is authorized for the current account to try.
-3. Prompts and reference materials do not contain real keys, customer privacy, unauthorized materials, or sensitive content.
+### 4.1 Select an image model
 
-::: warning Call, Billing, and Content Risk
-Clicking Generate creates a real model call and may consume credits, generate call logs, or create billing records. Before submission, verify the model, parameters, expected usage, and copyright and compliance boundaries for prompts and assets.
-:::
+1. Click the model area and select an image model.
+2. Verify the provider and model status.
 
-## Page Description
+### 4.2 Set generation parameters
 
-The page contains image model selection, an input area, parameters, Personal Key selection, and a result area. Submission creates a real call and may create usage or billing records.
+1. Open `Size` and choose a supported size; keep `No documented default` to let the model decide.
+2. Set the number of images in `Images`.
 
-Page screenshots:
+### 4.3 Generate images
 
-![Images page](./images/images-list-public.png)
+1. Enter a description in the input box.
+2. Use `Shift+Enter` for new lines, then submit.
+3. Review the generated images in the result area.
 
-Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
+### 4.4 Query past tasks
 
-## Main Operations
+1. Click **Task query**.
+2. Locate previous generation tasks in the list.
 
-### Select Image Model
+### 4.5 Compare models
 
-1. Go to `Model Services > Playground > Images`.
-2. Click the current model name or **"Select Model"** to open the selector.
-3. Locate the target model and compare provider, context, price, latency, throughput, success rate, and status.
-4. Select a listed instance and return to the playground. Confirm that the model and provider shown at the top are correct.
+1. Click **Model Compare**.
+2. Select image models and generate from the same description.
 
-![Select image model](./images/manual-select-images-model-public.png)
+## 5. Parameter Quick Reference
 
-The image shows the model selector. Compare provider capability, price, performance, and status.
-
-![image model selection reference](./images/select-model-public.png)
-
-This image provides an additional view of model selection and instance information.
-
-### Configure and Generate Image Content
-
-1. Confirm that the current model, provider, and Personal Key are correct.
-2. Describe the image and set Size, output count, sequential generation, watermark, and Seed as needed. Confirm that the content and assets meet usage requirements, and then click **"Generate"**.
-3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
-4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
-
-![Configure image generation](./images/manual-configure-images-public.png)
-
-The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
-
-## Parameter Reference
-
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model | Yes | Dropdown | `Example Image Model` | Image model currently being tried. |
-| Provider | Yes | Dropdown | `Example Provider` | Provider instance of the current model. |
-| Prompt | Yes | Multiline text | `Generate a product poster` | Describes the image content and style to generate. |
-| Size | No | Option | `2K` | Controls the generated image size or quality tier. |
-| Number of Images | No | Number | `1` | Controls the number of images generated by one request. |
-| Thinking mode | No | Toggle | `On` | Controls whether thinking mode is enabled. |
-| Protocol | No | Dropdown | `openai/images` | Protocol used by the current image generation call. |
-| Enable sequential | No | Toggle | `Off` | Controls whether sequential generation capability is enabled. |
-| Watermark | No | Toggle | `Off` | Controls whether a watermark is added. |
-| Seed | No | Number | `0` | Random seed used to influence or reproduce generation results. |
-| Generated Result | No | Image area | Generated image | Displays generated images, error messages, or an empty state. |
+| Model | Yes | Selector | `qwen-image-3.0` | Current image model |
+| Provider | System | Text | `Alibaba` | Provider of the current model |
+| Size | No | Dropdown | `No documented default` | Output size; default is decided by the API |
+| Images | Yes | Number | `4` | Number of images per request |
+| Prompt | Yes | Multi-line text | `An orange cat on a windowsill` | Description used to generate the image |
 
-## Pitfalls
+## 6. Pitfalls
 
-- Do not enter real keys, customer privacy, or unauthorized material descriptions in prompts.
-- Larger image size and image count usually increase latency and cost.
-- Generated images may involve copyright, portrait rights, trademarks, or compliance boundaries. Confirm authorization before formal use.
-- Clicking Generate creates a real call. Verify the model, parameters, asset authorization, and expected cost before submission.
+- When `Size` shows `No documented default`, the actual size is decided by the model API and can differ between models.
+- More images multiply generation time and cost; verify the count before submitting.
+- Image models are billed per image or request, not by text tokens.
 
-## Result Validation
+## 7. Result Validation
 
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page is accessible | The `Images` page opens, and the left Playground menu and top model selector are visible. | Check account permissions, navigation path, and page loading status. |
-| Model selector loads | The model selector can be opened and shows model list, provider instances, and status information. | Refresh the page and retry, or confirm whether the target model is visible to the current account. |
-| Input and parameter areas are visible | Prompt input box, Size, image count, Thinking mode, Protocol, Watermark, Seed, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
-| Result area is visible | The page shows a generated result, an error message, or an empty state. | If there is no generation record, confirm that the input and parameter areas remain visible. |
-| Real generation returns a result | When generation is explicitly allowed, the page returns generated images or clear error messages. | Adjust the prompt, lower image size or image count, and check error messages or call logs. |
+| Check | What you can see |
+| --- | --- |
+| Model selected | The top shows the model name and provider |
+| Parameters set | `Size` and `Images` show current values |
+| Task submitted | A task or images appear in the result area |
+| History available | **Task query** opens the task list |
 
-## FAQ
+## 8. FAQ
 
-#### Target Model Is Missing
+#### Results differ from the description
 
-**Symptom:**
+**Symptom**: The generated image misses key elements.
 
-The target model does not appear in the selector.
+**Resolution**:
 
-**Possible Causes:**
+1. Add subject, scene, style, and composition details to the prompt.
+2. Compare results with another image model.
 
-- The model is not authorized for the account.
-- Its status or modality does not match the page.
+#### Past tasks are missing
 
-**Resolution:**
+**Symptom**: **Task query** does not show the latest task.
 
-1. Verify visibility and model status.
-2. Confirm input and output capabilities in Models.
+**Resolution**: Confirm the task finished and check the current model and time range.
 
-#### Submit Is Unavailable
+## 9. Notes
 
-**Symptom:**
+- Do not generate infringing, illegal, or privacy-invasive content.
+- Generation is billed by the model; confirm quota before batch generation.
+- Output is for reference; verify copyright and compliance before commercial use.
 
-The request cannot be submitted after input is entered.
+## 10. Next Steps
 
-**Possible Causes:**
-
-- No model or Personal Key is selected.
-- Required input or parameters are incomplete.
-
-**Resolution:**
-
-1. Select the model and Personal Key again.
-2. Complete the required input and parameter fields marked on the page.
-
-#### Generation Fails or Times Out
-
-**Symptom:**
-
-The request fails or remains pending.
-
-**Possible Causes:**
-
-- The model service is busy or rate-limited.
-- Input or parameters exceed model limits.
-
-**Resolution:**
-
-1. Review the page error and call logs.
-2. Shorten input or restore default parameters and retry.
-
-#### Result Does Not Meet Expectations
-
-**Symptom:**
-
-The result does not meet content, format, or quality requirements.
-
-**Possible Causes:**
-
-- The prompt lacks constraints.
-- Too many parameters changed together.
-
-**Resolution:**
-
-1. Add goals, format, and prohibited content.
-2. Restore baseline settings and compare one change at a time.
-
-#### Usage or Cost Is Unexpected
-
-**Symptom:**
-
-One trial creates more usage than expected.
-
-**Possible Causes:**
-
-- Output size or generation count is too large.
-- The same task was submitted repeatedly.
-
-**Resolution:**
-
-1. Check generation settings and call logs.
-2. Stop repeated submissions and confirm billing scope.
-
-## Notes
-
-- Do not upload or describe sensitive content such as IDs, contracts, medical records, or faces.
-- Generated images may involve copyright, portrait rights, trademarks, and compliance boundaries.
-- Before screenshots, confirm that prompts, images, and output content can be public.
-
-## Next Steps
-
-1. Save reusable prompts and parameter combinations.
-2. When troubleshooting is needed, use model name, time, and error messages to view call logs.
-3. Before using generated images formally, confirm copyright, compliance, and public distribution scope.
+- Review image call volume in [My Calls](../../my-calls/overview/).
+- Check deductions in [Model Usage](../../usage-earnings/model-usage/).
+- Compare image models in [Models](../../discover/models/).

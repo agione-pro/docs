@@ -1,214 +1,113 @@
 # Video
 
-## Feature Overview
+## 1. Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider, Model Consumer |
-| Navigation Path | Model Services > Playground > Video |
-| Page Route | `/modelone/exploration/video` |
-| Managed Objects | Video models, prompts, reference assets, generation parameters, and job results |
+| Applies to | Model Provider & User |
+| Navigation | **Model Services** > **Playground** > **Video** |
+| Route | `/modelone/exploration/video` |
+| Managed objects | Video model, resolution, ratio, and generation tasks |
 
-#### Beginner Explanation
+**New to this page**: Video turns a text prompt into a short video. Choose a video model and resolution, enter a scene description, and track the task in **Task query**.
 
-The Video playground is a place to try a video model. Select a video model and provider from the selector, enter the input, adjust parameters, and review the result or error message before integration.
+## 2. Prerequisites
 
-#### Terminology
+1. Your account can open **Playground > Video**.
+2. The account has available credits or a free quota for the model.
+3. Duration, resolution, and billing unit are confirmed.
 
-| Term | Description |
-| --- | --- |
-| Model Instance | The model and provider combination used by the playground. |
-| Prompt | Instructions that describe the task, input, and expected output. |
-| Generation Parameters | Settings that control length, randomness, size, or other generation behavior. |
-| Personal Key | A personal credential used for calls. Documentation uses `<PERSONAL_KEY>`. |
+## 3. Page Description
 
-#### Recommended Operation Order
+The page contains a model area, a parameter area, and an input area:
 
-For a first trial, select a video model, verify the provider and Personal Key, configure the input and parameters, and then submit and review the result. Change only a few parameters at a time so that results remain comparable.
+- Model area: current model `wan3.0-video` and provider `Alibaba`; **Task query** and **Model Compare** are on the right.
+- Parameters: `Resolution` (currently `480P`) and `Ratio` (currently `5`).
+- Input: multi-line box with `Please enter your question, Shift+Enter for a new line`.
+- Reset: **Reset all** restores model and parameter defaults.
 
-#### Beginner Checklist
+![Video playground](./images/video-playground.png)
 
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| Unsure which video model to use | Compare status and capabilities in the selector | Submit with the default model immediately |
-| Preparing input | Remove credentials, customer data, and production data | Paste raw sensitive content |
-| Preparing parameter changes | Change only a few parameters at a time | Change every parameter together |
-| Generation fails | Review the page error and call logs first | Submit repeatedly |
+**Figure note**: The current model is `wan3.0-video` from `Alibaba`; parameters show `Resolution 480P` and `Ratio 5`, with **Task query** and **Model Compare** at the top.
 
-## Prerequisites
+## 4. Main Operations
 
-1. The current account has access to the video Playground page.
-2. The target video model is authorized for the current account to try.
-3. Prompts, reference images, and video materials do not contain real keys, customer privacy, unauthorized materials, or sensitive content.
-4. Resolution, aspect ratio, duration, and advanced parameters have been confirmed to be within the target model support range.
+### 4.1 Select a video model
 
-::: warning Call, Billing, Async Task, and Content Risk
-Clicking Generate creates a real model call and may consume credits or create call logs, billing records, and asynchronous tasks. Before submission, verify the model, parameters, asset authorization, expected cost, and queue time.
-:::
+1. Click the model area and select a video model.
+2. Verify the provider and supported input types.
 
-## Page Description
+### 4.2 Set generation parameters
 
-The page contains video model selection, an input area, parameters, Personal Key selection, and a result area. Submission creates a real call and may create usage or billing records.
+1. Choose a `Resolution`.
+2. Choose a `Ratio`.
 
-Page screenshots:
+### 4.3 Generate a video
 
-![Video page](./images/video-list-public.png)
+1. Enter a scene description.
+2. Use `Shift+Enter` for new lines, then submit.
+3. Check the task status in the result area.
 
-Focus on the model, input area, parameter entry, and submit button. Verify the input again before submission.
+### 4.4 Query tasks
 
-## Main Operations
+1. Click **Task query**.
+2. Locate the current or previous tasks in the list.
 
-### Select Video Model
+### 4.5 Compare models
 
-1. Go to `Model Services > Playground > Video`.
-2. Click the current model name or **"Select Model"** to open the selector.
-3. Locate the target model and compare provider, context, price, latency, throughput, success rate, and status.
-4. Select a listed instance and return to the playground. Confirm that the model and provider shown at the top are correct.
+1. Click **Model Compare**.
+2. Select video models and generate from the same description.
 
-![Select video model](./images/manual-select-video-model-public.png)
+## 5. Parameter Quick Reference
 
-The image shows the model selector. Compare provider capability, price, performance, and status.
-
-![video model selection reference](./images/select-model-public.png)
-
-This image provides an additional view of model selection and instance information.
-
-### Configure and Generate Video Content
-
-1. Confirm that the current model, provider, and Personal Key are correct.
-2. Describe the video, upload reference assets when required, and set duration, aspect ratio, and generation parameters. Confirm asset authorization and cost, and then click **"Generate"**.
-3. After submission, review the result, latency, usage, and error message. For a failure, check model status, quota, parameters, and rate limits first.
-4. When recording an issue, retain only a redacted request identifier, model name, and time. Do not copy real credentials or complete sensitive input.
-
-![Configure video generation](./images/manual-configure-video-public.png)
-
-The image shows the input and parameter area. Verify the model, input, Personal Key, and generation settings before submission.
-
-## Parameter Reference
-
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model | Yes | Dropdown | `Example Video Model` | Video model currently being tried. |
-| Provider | Yes | Dropdown | `Example Provider` | Provider instance of the current model. |
-| Prompt | Yes | Multiline text | `Generate a product showcase video` | Describes the video content, action, and style to generate. |
-| Reference Image | Conditionally required | Image upload | `reference.png` | Used for image-to-video, reference-to-video, or video editing scenarios. |
-| Resolution | No | Option | `1080P` | Controls the generated video resolution. |
-| Aspect Ratio | No | Option | `--` | Controls the generated video aspect ratio. |
-| Duration | No | Number / Option | `0` | Controls the generated video duration. |
-| Protocol | No | Dropdown | `openai/video` | Protocol used by the current video generation call. |
-| Negative Prompt | No | Text | `blurry, shaky` | Describes content that should not appear in the video. |
-| Audio Setting | No | Dropdown | `auto` | Controls audio generation or retention strategy. |
-| Prompt Extend | No | Toggle | `On` | Controls whether prompt extension is enabled. |
-| Watermark | No | Toggle | `Off` | Controls whether a watermark is added. |
-| Generated Result | No | Video / Task area | Generated video or task progress | Displays generated videos, task progress, error messages, or an empty state. |
+| Model | Yes | Selector | `wan3.0-video` | Current video model |
+| Provider | System | Text | `Alibaba` | Provider of the current model |
+| Resolution | Yes | Dropdown | `480P` | Output resolution |
+| Ratio | Yes | Dropdown | `5` | Aspect ratio option |
+| Prompt | Yes | Multi-line text | `Seaside sunset, slow push-in` | Scene description |
 
-## Pitfalls
+## 6. Pitfalls
 
-- Do not upload or describe videos or reference images containing customer privacy, faces, license plates, contracts, medical records, or unauthorized materials.
-- Video generation usually takes longer. Higher resolution, longer duration, and more complex reference materials increase cost and failure probability.
-- Generated videos may involve copyright, portrait rights, trademarks, and compliance boundaries. Confirm authorization before formal use.
-- Video generation may create asynchronous or queued tasks. Check existing task status before submitting again.
+- Video generation usually takes longer than text or images; use **Task query** to track progress.
+- Resolution and ratio affect generation time and price.
+- A video model may support only specific input types; check the modality on the model details page.
 
-## Result Validation
+## 7. Result Validation
 
-| Check Item | Success Signal | If Abnormal |
-| --- | --- | --- |
-| Page is accessible | The `Video` page opens, and the left Playground menu and top model selector are visible. | Check account permissions, navigation path, and page loading status. |
-| Model selector loads | The model selector can be opened and shows model list, provider instances, and status information. | Refresh the page and retry, or confirm whether the target model is visible to the current account. |
-| Input and parameter areas are visible | Reference image entry, prompt input box, Resolution, Ratio, Duration, Negative Prompt, Audio Setting, Prompt Extend, and other fields are visible. | Check whether the page has fully loaded. If needed, switch models and view again. |
-| Result area is visible | The page shows generated results, task progress, an error message, or an empty state. | If there is no generation record, confirm that the input and parameter areas remain visible. |
-| Real generation returns a result | When generation is explicitly allowed, the page returns a generated video, task progress, or clear error message. | Adjust the prompt, lower resolution, or shorten duration, and check error messages or call logs. |
+| Check | What you can see |
+| --- | --- |
+| Model selected | The top shows the model name and provider |
+| Parameters set | `Resolution` and `Ratio` show current values |
+| Task created | A task appears in the result area or **Task query** |
+| Task traceable | **Task query** opens the task list |
 
-## FAQ
+## 8. FAQ
 
-#### Target Model Is Missing
+#### No result for a long time
 
-**Symptom:**
+**Symptom**: The video does not appear after submission.
 
-The target model does not appear in the selector.
+**Resolution**:
 
-**Possible Causes:**
+1. Open **Task query** and check the task status.
+2. Verify that the resolution, ratio, and model support the current parameters.
 
-- The model is not authorized for the account.
-- Its status or modality does not match the page.
+#### The model rejects the input
 
-**Resolution:**
+**Symptom**: The task cannot be submitted or reports unsupported parameters.
 
-1. Verify visibility and model status.
-2. Confirm input and output capabilities in Models.
+**Resolution**: Check the supported input/output modalities in [Models](../../discover/models/) and switch models if needed.
 
-#### Submit Is Unavailable
+## 9. Notes
 
-**Symptom:**
+- Do not generate infringing, illegal, or privacy-invasive content.
+- Video is billed by duration, resolution, or seconds; confirm quota before batch generation.
+- Verify copyright and compliance before commercial use.
 
-The request cannot be submitted after input is entered.
+## 10. Next Steps
 
-**Possible Causes:**
-
-- No model or Personal Key is selected.
-- Required input or parameters are incomplete.
-
-**Resolution:**
-
-1. Select the model and Personal Key again.
-2. Complete the required input and parameter fields marked on the page.
-
-#### Generation Fails or Times Out
-
-**Symptom:**
-
-The request fails or remains pending.
-
-**Possible Causes:**
-
-- The model service is busy or rate-limited.
-- Input or parameters exceed model limits.
-
-**Resolution:**
-
-1. Review the page error and call logs.
-2. Shorten input or restore default parameters and retry.
-
-#### Result Does Not Meet Expectations
-
-**Symptom:**
-
-The result does not meet content, format, or quality requirements.
-
-**Possible Causes:**
-
-- The prompt lacks constraints.
-- Too many parameters changed together.
-
-**Resolution:**
-
-1. Add goals, format, and prohibited content.
-2. Restore baseline settings and compare one change at a time.
-
-#### Usage or Cost Is Unexpected
-
-**Symptom:**
-
-One trial creates more usage than expected.
-
-**Possible Causes:**
-
-- Output size or generation count is too large.
-- The same task was submitted repeatedly.
-
-**Resolution:**
-
-1. Check generation settings and call logs.
-2. Stop repeated submissions and confirm billing scope.
-
-## Notes
-
-- Do not upload or describe videos containing customer privacy, faces, license plates, contracts, medical records, or unauthorized materials.
-- Long videos and high-resolution generation significantly increase latency, cost, and failure probability.
-- Before screenshots, confirm that prompts, materials, and generated content can be public.
-
-## Next Steps
-
-1. Save reusable prompts and parameter combinations.
-2. When troubleshooting is needed, use model name, time, and error messages to view call logs.
-3. Before using generated videos formally, confirm copyright, portrait rights, compliance, and public distribution scope.
+- Review video call volume in [My Calls](../../my-calls/overview/).
+- Check deductions in [Model Usage](../../usage-earnings/model-usage/).
+- Compare video models in [Models](../../discover/models/).
