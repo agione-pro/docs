@@ -50,7 +50,7 @@ next: true
 - [On-Prem 模型](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/)
 - [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
 - [我的模型](/zh-CN/usermanual/model-services/user/studio/my-models/)
-- [我的部署](/zh-CN/usermanual/model-services/user/studio/my-deployments/)
+- [模型实例](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
 
 ## 文档索引
 

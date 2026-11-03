@@ -50,7 +50,7 @@ This scenario guides users through the end-to-end process of downloading new ope
 - [On-Prem Models](/usermanual/ai-infra-on-prem/operator/templates/models/)
 - [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
 - [My Models](/usermanual/model-services/user/studio/my-models/)
-- [My Deployments](/usermanual/model-services/user/studio/my-deployments/)
+- [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
 
 ## Document Index
 
