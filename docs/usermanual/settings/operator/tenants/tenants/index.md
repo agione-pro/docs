@@ -34,6 +34,8 @@ The tenant list uses the tenant `Name` for display and search. Before opening an
 
 ![Tenants](./images/tenants-list.png)
 
+The tenant list shows the tenant, business identity, administrator, status, and tags. Filter by business identity or tag before opening details.
+
 | Area | Description |
 | --- | --- |
 | Business Identity | Filters by identities such as EU or Provider. |
@@ -69,19 +71,17 @@ The tenant list uses the tenant `Name` for display and search. Before opening an
 
 ### Manage Tenant Tags
 
-1. Open `Settings > Tenants & Settings > Tenants`.
-2. Locate the target Tenants and click **"Manage Tags"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > Tenants & Settings > Tenants`.
+2. Locate the target tenant in the list and click `Manage Tags`.
+3. Select, add, or remove tags in the tag panel.
+4. Confirm that tags affect filtering and business grouping, then save and verify the result in the list.
 
 ### Manage Tenant Roles
 
-1. Open `Settings > Tenants & Settings > Tenants`.
-2. Locate the target Tenants and click **"Manage Roles"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > Tenants & Settings > Tenants`.
+2. Locate the target tenant in the list and click `Manage Roles`.
+3. Assign or remove roles using the options provided and confirm the affected member scope.
+4. After saving, return to the tenant list and verify the role count and member permissions.
 
 ## Parameter Quick Reference
 
@@ -164,34 +164,6 @@ The tenant was not created, is disabled, or is outside the current operator acco
 **Resolution:**
 
 Clear the tenant name, status, and region filters. Confirm the tenant creation record and status. If the tenant is still missing, ask a platform administrator to check tenant authorization.
-
-#### How should the Tenants page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Tenants page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

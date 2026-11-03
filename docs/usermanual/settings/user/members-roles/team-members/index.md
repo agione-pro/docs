@@ -44,39 +44,31 @@ The page shows member usernames, names, contact information, role labels, status
 
 ### View Members
 
-1. Go to `Settings > Members and Roles > Members`.
-2. Filter by name, username, email, role, or status.
-3. Open member details and check roles, projects, status, and update time.
-4. If no record is returned, reset filters and check the tenant context. Personal information must be redacted before sharing.
-
-### Invite a Member
-
 1. Go to `Settings > Members & Roles > Members`.
-2. Use `Username` or `Contact number` to locate the member.
-3. Use the identity badge and username together to confirm the member.
-4. Check the assigned role and status separately from the identity badge.
-5. Copyable member values use the same copy icon and success feedback as `Profile`.
-
-The following screenshot shows Members. Accounts and contact information are hidden.
+2. Use the search box for username, name, phone number, or email, and filter by `All Members`, `No Tags`, or tag categories.
+3. Review username, display name, contact information, roles, member tags, status, and creation time.
+4. If the list is empty, confirm the current tenant and filters. Redact personal information before sharing.
 
 ![Members list](./images/team-members-list.png)
 
-6. Select `Add Member` to open the form.
-7. Enter username, name, phone number, email, password, and confirm password.
-8. Select a role and status.
-9. Confirm the member's identity and permissions before selecting `Confirm`.
+The member list supports search by username, name, phone, or email and filtering by tag category. If it is empty, confirm the tenant and filters.
 
-The following screenshot shows the Add Member form.
+### Add a Member
+
+1. Click `Add Member` in the upper-right corner.
+2. Enter `Username`, `Display name`, `Email`, `Contact phone`, `Password`, and `Confirm password`.
+3. Select a `Role` and `Status`.
+4. Before clicking `Confirm`, verify the member identity, role permissions, and enabled status. Use `Cancel` for read-only inspection.
 
 ![Add Member](./images/create-member.png)
 
+The Add Member form contains username, display name, email, phone, password, confirm password, role, and status. Saving creates a real account.
+
 ### Edit a Member
 
-1. Open `Settings > Members & Roles > Members`.
-2. Locate the target Members and click **"Edit"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Locate the target member in the list and click `Edit`.
+2. Review or change the display name, email, phone number, roles, and status. The username is usually read-only.
+3. Save, return to the list, and verify the roles, status, and update time.
 
 ## Parameter Quick Reference
 
@@ -152,34 +144,6 @@ The current account is not a member administrator, the target member is the tena
 
 Verify member-management permission and the target member's role. Owner or administrator changes must follow the tenant process and be performed by an account with higher permission.
 
-#### How should the Members page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Members page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Adding a member grants tenant access. Confirm the person's identity first.
@@ -190,3 +154,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 1. Verify member role permissions on Roles.
 2. Set member quota on Member Quotas.
 3. Review the add-member record in Operation Logs.
+
+Related pages: [Roles](../roles/)、[Member Quotas](../member-quotas/)

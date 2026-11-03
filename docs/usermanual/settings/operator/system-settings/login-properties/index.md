@@ -46,15 +46,21 @@ The following screenshot shows login properties.
 
 ![Login Properties](./images/login-properties-list.png)
 
+Login Properties has tabs for Login Security, Registration Settings, Registration Codes, Account Recovery, and Google Login. Confirm affected sign-in methods before changing them.
+
 ## Main Operations
 
 ### View Login Security Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
-2. Click or locate `Login Security`.
-3. Review password policy, login restrictions, session validity, MFA, or security verification settings.
+2. Click `Login Security`.
+3. Review `Email Code Login`: verification-code validity and maximum error attempts.
+4. Review `Password Login Lockout`: enabled status, maximum error attempts, error counting window, and lock duration.
+5. Review `Code Sending Rate Limit`: limits by IP or recipient per minute, hour, and day; 0 disables that dimension.
 
 ![Login Security Configuration](./images/login-security.png)
+
+Login Security includes email-code validity, password lockout, maximum errors, counting window, lock duration, and code-sending rate limits.
 
 ### Edit Registration Settings
 
@@ -70,29 +76,42 @@ The following screenshot shows login properties.
 
 ![Registration Settings](./images/registration-properties.png)
 
+Registration Settings shows registration entrances, notes, default roles, the platform source catalog, and external system integration. Default roles must belong to the DEFAULT application.
+
 ### Edit Registration Verification Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
-2. Locate `Registration Verification Code`.
-3. Review verification code type, sending method, validity period, rate limits, and enabled status.
+2. Click `Registration Codes`.
+3. Review `Registration Code Verification`: registration email-code validity, registration SMS-code validity, and maximum error attempts.
+4. Review `Code Sending Rate Limit`: email and SMS limits per minute, hour, and day; 0 disables that dimension.
 
 ![Registration Verification Code Configuration](./images/registration-codes.png)
+
+Registration Codes shows email/SMS code validity, maximum errors, and email/SMS rate limits per minute, hour, and day.
 
 ### Edit Account Recovery Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
-2. Locate `Account Recovery`.
-3. Review email, phone, verification code, identity verification, and recovery flow settings.
+2. Click `Account Recovery`.
+3. Review `Account Recovery Security`: recovery email-code validity, recovery token validity, and maximum recovery-code errors.
+4. Review `Code Sending Rate Limit`: email and SMS limits per minute, hour, and day; 0 disables that dimension.
+5. Confirm the affected account scope and rollback method before changing it.
 
 ![Account Recovery Configuration](./images/account-recovery.png)
+
+Account Recovery shows recovery email-code validity, recovery token validity, maximum errors, and email/SMS rate limits.
 
 ### Edit Google Sign-in Settings
 
 1. Go to `Settings > System Settings > Login Properties`.
-2. Locate `Google Login`.
-3. Review Client ID, callback URL, enabled status, and login entry settings.
+2. Click `Google Login`.
+3. Review `Google Login Public Configuration`: enabled status, Web client ID, redirect_uri, allowed client ID list, allowed issuer list, and Workspace hosted domain.
+4. Expand `Advanced Endpoints and Timeouts` to review endpoint settings, then check Google OAuth keys below.
+5. After changes, use a test account to verify the complete sign-in flow.
 
 ![Google Login Configuration](./images/google-login.png)
+
+Google Login shows enabled status, Web client ID, redirect_uri, allowed client IDs, allowed issuers, Workspace hosted domain, and advanced endpoints.
 
 ## Parameter Quick Reference
 
@@ -173,34 +192,6 @@ The current account lacks system-settings permission, the configuration is manag
 **Resolution:**
 
 Verify system-settings permission and the current environment. Confirm whether an identity provider maintains the configuration. If it is still missing, ask a platform administrator to check configuration synchronization.
-
-#### How should the Login Properties page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Login Properties page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

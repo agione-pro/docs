@@ -46,8 +46,8 @@ Read the page from the role-name filter to the result list, then use the Edit, A
 
 1. Go to `Settings > Members & Roles > Roles`.
 2. To narrow the list, enter a name in `Role name` and click **"Search"**. Click **"Reset"** to restore the list.
-3. Read the role name, role code, role description, and creation time in the table. Check whether **"Edit"**, **"Authorize"**, and **"Delete"** are shown in the Actions column.
-4. The current page provides list-level information and action entries, but no separate role-details entry. Open **"Authorize"** when you need to review permission details.
+3. Read the role name, role code, role description, and creation time in the table. Check whether **"Edit"**, **"Configure Permissions"**, and **"Delete"** are shown in the Actions column.
+4. The current page provides list-level information and action entries, but no separate role-details entry. Open **"Configure Permissions"** when you need to review permission details.
 
 **Result validation:** The list shows the target role, its name, code, description, and creation time are readable, and the result matches the filter.
 
@@ -90,19 +90,19 @@ The screenshot shows the Edit Role form. Check the role name, description, and *
 
 **FAQ:** If Edit is hidden or Save fails, check that the role belongs to the current tenant, the current account has management permission, and the name meets the length and content limits.
 
-### Authorize a Role
+### Configure Permissions
 
-1. Go to `Settings > Members & Roles > Roles` and click **"Authorize"** for the target role.
+1. Go to `Settings > Members & Roles > Roles` and click **"Configure Permissions"** for the target role.
 2. Confirm the role name in the authorization-page title, then review the selected-permission total and associated-service counts.
 3. Select `Model Services`, `On-Prem`, `On-Cloud`, `Billing`, or `Settings`, then use Menu navigation to locate the target page.
 4. Adjust Page access, Available actions, and Data access as required. Use **"Shortcuts"** or **"Pills"** to change the display mode.
 5. Click **"Preview and save"**, review the permission changes and affected scope, and complete the authorization update according to the page prompt.
 
-![Authorize a Role](./images/manual-settings-user-roles-authorize-20260902.png)
+![Configure Permissions](./images/manual-settings-user-roles-authorize-20260902.png)
 
 The screenshot shows the authorization workbench, service counts, menu navigation, and permission columns. Selected totals and service counts vary with the role configuration.
 
-**Result validation:** After returning to the Roles list, members using this role can see the expected pages. Reopening **"Authorize"** shows the expected selected permissions and service counts.
+**Result validation:** After returning to the Roles list, members using this role can see the expected pages. Reopening **"Configure Permissions"** shows the expected selected permissions and service counts.
 
 **Note:** Authorization changes the menus and actions available to members. Before clearing page access, confirm that the change does not remove a required management entry.
 
@@ -237,3 +237,5 @@ Review role assignments on Members and follow the page prompt for any dependency
 
 1. Assign the confirmed role to target members on Members and verify their effective permissions.
 2. Use Member Quotas to limit resource usage and, when needed, use Operation Logs to review role changes.
+
+Related pages: [Members](../team-members/)、[Operation Logs](../../activity-notifications/operation-logs/)

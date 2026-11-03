@@ -6,7 +6,7 @@
 | --- | --- |
 | Applicable Role | Model Consumer |
 | Navigation path | Settings > Personal > My Keys |
-| Page route | Enter through the visible menu; do not paste a hidden route. |
+| Page route | `/user/user-space/my-keys/model` |
 | Managed objects | Model API Keys, System API AK/SK Pairs, status, expiration, and applicable quota settings |
 
 #### Beginner Explanation
@@ -30,9 +30,13 @@ Use a separate credential for each application or workload. Give it a clear name
 
 ## Page Description
 
+The page defaults to the `Model API Keys` tab; `System API AK/SK Pairs` is another tab on the same page.
+
 On the visible personal page, the Model API tab provides the member-quota summary, `Available` / `All` scope buttons, a `Status` filter, and the credential table. The table shows Key name / description, prefix, status, expiration, used / limit, created time, and row actions. The `System API AK/SK Pairs` tab uses the same filters but omits the member-quota summary and the `Used / limit` column.
 
 ![My Keys list](./images/my-keys-list.png)
+
+The Model API Keys list includes the member quota summary and shows Key name/description, prefix, status, expiration, used/limit, and actions.
 
 | Area | Description |
 | --- | --- |
@@ -63,6 +67,8 @@ On the visible personal page, the Model API tab provides the member-quota summar
 
 ![Create Model API Key](./images/create-key.png)
 
+The create dialog contains expiration, Key name, description, reset cycle, limit, and alert threshold. The complete secret is shown only once.
+
 ### Open the System API Key Creation Dialog
 
 1. Select `System API AK/SK Pairs`.
@@ -72,6 +78,8 @@ On the visible personal page, the Model API tab provides the member-quota summar
 5. Click **"Cancel"**. Do not click the final `Create` button during documentation review.
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
+
+The create dialog contains expiration, Key name, and description. It does not include the Model API quota, reset cycle, or alert-threshold fields.
 
 ### Submit a Quota Request
 
@@ -87,6 +95,8 @@ On the visible personal page, the Model API tab provides the member-quota summar
 4. Stop before `Save Limit` unless an authorized change has been explicitly approved.
 
 ![Key quota](./images/key-quota.png)
+
+The Key quota dialog contains reset cycle, monthly reset date, limit switch, cycle limit, and alert threshold. Confirm consistency with member or project quota policy.
 
 ## Parameter Quick Reference
 
@@ -145,34 +155,6 @@ On the visible personal page, the Model API tab provides the member-quota summar
 
 **Resolution:** The action may depend on role, tenant policy, Key state, or the selected credential type. Use the visible menu and current row state as the source of truth.
 
-#### How should the My Keys page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the My Keys page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Never expose a complete Key, AK/SK pair, token, or private key in documentation, screenshots, or chat.
@@ -182,3 +164,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. Return to Settings > Personal > My Keys and verify the status and update time.
 2. If a related object must be processed, open the next business entry shown on the page.
+
+Related pages: [Projects](../projects/)、[Quota Approvals](../../members-roles/quota-requests/)、[Profile](../profile/)

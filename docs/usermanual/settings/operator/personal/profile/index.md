@@ -4,168 +4,183 @@
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Account |
+| Applicable Role | Operator |
 | Navigation path | Settings > Personal > Profile |
 | Page route | `/user/user-space/profile` |
-| Managed objects | User information, password status, security information, phone number, and email address |
+| Managed objects | Tenant information, user settings, contact details, password status, identity roles, and language preference |
 
 #### Beginner Explanation
 
-Profile is the identity card for a platform administrator. Use it to confirm the administrator's identity source, sign-in method, security status, and auditable information. It is not a user-side tenant profile.
+Profile is the identity card for a platform administrator. It shows the administrator's tenant, sign-in identity, contact details, role scope, and interface language. It is not a user-side tenant profile.
 
 #### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Operator account | An administrator identity that can access the operator console.; Confirm its management scope before a change. |
-| Identity source | Indicates whether an account was created locally or synchronized from an identity provider.; Check the source first when a field cannot be edited. |
-| Sign-in method | Password, single sign-on, or another authentication method.; Compare it with Login Properties during troubleshooting. |
-| Security information | MFA, password status, recent sign-in, and other security indicators.; Do not expose complete account information during troubleshooting. |
+| Tenant | The business and billing entity that owns the account.; The page shows the tenant name, tenant ID, business identity, and creation time. |
+| Display name | The administrator name shown on the page.; Use `Edit` next to it to change it. |
+| Username | The sign-in identifier.; It is usually read-only; use the account-management process for changes. |
+| Identity source | The local or unified identity source that owns the account.; Check it when a field cannot be edited. |
+| Preferences | The interface language used by the current account.; The selection is saved to the account. |
 
 ## Prerequisites
 
 1. The current account is signed in.
-2. You have opened `Personal > Profile`.
-3. Before sharing page information, you have checked whether it contains contact details or account identifiers.
+2. You have opened `Settings > Personal > Profile`.
+3. Before changing contact details or the password, you have confirmed the current account and impact.
 
 ## Page Description
 
-The page displays the current account's identity, contact, security, and permission information. Use it to confirm the active account before administrative actions.
+The page shows the current account in four areas: Tenant, User Settings, My Identity and Roles, and Preferences.
 
 ![Profile](./images/profile-list.png)
 
+Profile is grouped into Tenant, User Settings, My Identity and Roles, and Preferences. Phone, email, and password are changed through their own entries.
+
 | Area | Description |
 | --- | --- |
-| User Information | Shows the account name, account identifier, and other basic information. |
-| Account Password | Shows password status and related information. |
-| Security | Shows the phone number, email address, and other security contact information. |
+| Tenant | Shows the tenant name, tenant ID, business identity, and creation time. |
+| User Settings | Shows the avatar, display name, username, user ID, phone number, email address, and password status. |
+| My Identity and Roles | Shows the organization identity and assigned roles. |
+| Preferences | Sets the interface language for the current account. |
+
+User Settings provides `Change Avatar`, `Edit` next to the display name, `Edit` next to the phone number, `Change Email`, `Change Password`, and `Forgot the old password? Reset via email verification`.
 
 ## Main Operations
 
 ### View Account Information
 
 1. Go to `Settings > Personal > Profile`.
-2. Check the username, display name, email, tenant, and roles.
-3. Confirm that sensitive fields are redacted and the account status is normal. If information is missing, refresh and check permissions.
-4. Hide email, contact details, and internal identifiers before screenshots or sharing.
+2. Review the tenant name, tenant ID, business identity, and creation time.
+3. Review the display name, username, user ID, phone number, email address, and password status.
+4. In My Identity and Roles, confirm that the organization identity and assigned roles match the current responsibility.
+5. Hide email addresses, phone numbers, and user IDs before taking or sharing screenshots.
 
-### Edit Account Profile
+### Change the Display Name
 
-1. After an approved edit, reopen the profile.
-2. Check that the display name, avatar, or other editable fields changed and that protected fields such as username and tenant did not.
-3. If the change is not applied, check required fields, format, the save message, and cache refresh.
-4. Do not put passwords, Tokens, keys, or internal sensitive information in profile fields.
+1. In User Settings, locate the display name.
+2. Click `Edit` next to the display name.
 
 ![Edit personal details](./images/edit-personal-details.png)
 
-The dialog shows the editable personal-detail fields. Verify the values before saving, or click `Cancel` when only reviewing the page.
+The edit dialog allows changes to the display name and other editable fields. Protected fields such as username and user ID remain read-only.
+3. Enter the new display name in the window, confirm the impact, and save.
+4. Return to Profile and verify the new display name. If it does not change, refresh the page or sign in again.
+
+### Change the Phone Number
+
+1. In User Settings, locate the phone number.
+2. Click `Edit` next to the phone number.
+3. Complete verification, enter the new phone number, and save.
+4. Return to Profile and verify the displayed phone number.
+
+### Change the Email Address
+
+1. In User Settings, locate the email address.
+2. Click `Change Email`.
+3. Complete email verification and submit the new address.
+4. Return to Profile and verify the email address. If it does not change, check the verification email and account status.
+
+### Change the Password
+
+1. In User Settings, locate the password status.
+2. Click `Change Password`.
+3. Enter the current password and the new password, then submit.
+4. If you do not know the old password, use `Forgot the old password? Reset via email verification`.
+5. Sign in again with the new password to confirm it works.
+
+### Change the Interface Language
+
+1. Open the Preferences area.
+2. Select the target language in `Language Settings`.
+3. Confirm that the console, sign-in page, and promotional pages use the selected language.
+4. The selection is saved to the current account and does not change other accounts.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Display name | Yes | Text | `Example Admin` | The account display name shown on the page. |
-| Phone | No | Text | `188****8888` | Used for contact, notifications, or security verification. |
-| Email | System displayed | Text | `user@example.com` | The email address bound to the current account. |
-| User ID | System displayed | Text | `Example user ID` | The system identifier of the current account. |
-| Password | System displayed | Password | `******` | Shows password status or password change entry. |
-| Actions | System generated | Button | `Edit personal details` | Opens the editable personal details dialog. |
+| Display name | Yes | Text | `Example Admin` | The name shown on the page; use `Edit` to change it. |
+| Username | System-generated | Text | `operator` | The sign-in identifier; usually read-only. |
+| User ID | System-generated | Text | `Example User ID` | The system identifier of the account. |
+| Phone number | No | Text | `188****8888` | Used for contact, notifications, or security verification. |
+| Email address | System-generated | Text | `user@example.com` | The bound email address; use `Change Email` to update it. |
+| Password | System-generated | Password | `******` | Shows password status; use `Change Password` to update it. |
+| Language Settings | Yes | Enum | `English` | The interface language used by the current account. |
 
 ## Pitfalls
 
-- `Confirm` is the final submit action. For learning or screenshots, only view fields and use `Cancel` to exit.
-- Editing personal details can affect account display name, contact information, notification delivery, and later audit identification.
-- Do not write real phone numbers, emails, user IDs, account names, customer names, or internal test data in documentation.
+- Operator account fields may be synchronized from a unified identity source. A read-only field does not necessarily mean the page is broken.
+- When troubleshooting sign-in, check Login Properties, the identity source, and account status together.
+- Do not expose administrator email addresses, phone numbers, user IDs, sign-in IP addresses, or security details in screenshots.
+- `Edit`, `Change Email`, and `Change Password` change real account information. Confirm the impact before using them.
+- After changing the email address or password, complete the verification step; the old value may remain active until verification succeeds.
+- Do not write real phone numbers, email addresses, user IDs, account names, customer names, or internal test data into documentation.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page access | The `Personal > Profile` page opens and data loads normally. | Check role permissions and refresh the page. |
-| Profile details | Display name, phone, email, user ID, and password area are visible. | Refresh the page or confirm account permissions. |
-| Edit dialog | Clicking `Edit personal details` opens the same-name dialog. | Check whether profile editing is allowed for the current account. |
-| Cancel exit | Clicking `Cancel` closes the dialog without submitting changes. | Refresh the page and verify the displayed values again. |
+| Information display | Tenant, User Settings, identity roles, and Preferences are visible. | Refresh the page or sign in again. |
+| Account identity | The displayed account matches the current operator. | Sign out and confirm the signed-in account. |
+| Display name change | The new display name appears after saving. | Check required fields, format, and the save message. |
+| Email change | The new email address appears after verification. | Check the verification email, code, and account status. |
+| Password change | The new password can be used to sign in. | Check the old password, password rules, and verification flow. |
+| Language change | The console, sign-in page, and promotional pages use the target language. | Refresh the page; if it still does not change, sign in again. |
 
 ## FAQ
 
-#### Security contact information is incorrect
+#### The security contact information is incorrect
 
 **Symptom:**
 
-The phone number or email address differs from the expected value.
+The displayed phone number or email address differs from the expected value.
 
 **Possible cause:**
 
-The account profile was not updated, or the signed-in account is not the intended account.
+The account profile was not updated, verification was not completed, or the signed-in account is not the target account.
 
 **Resolution:**
 
-Confirm the signed-in account, then update security contact information through the approved account-management process.
+Confirm the signed-in account, then use `Edit` next to the phone number, `Change Email`, or the email verification flow to update it.
 
-#### Why is some operator account information missing?
+#### Why is some operator profile information missing?
 
 **Symptom:**
 
-Security information, the sign-in method, or contact details are absent.
+The operator Profile page lacks security information, sign-in details, or contact information.
 
 **Possible cause:**
 
-The account is synchronized from an identity provider, sensitive fields are hidden by permission, or account initialization is incomplete.
+Operator profile data is synchronized from a unified identity source, sensitive fields are hidden by permission, or the account profile has not been initialized.
 
 **Resolution:**
 
-Confirm the account source and synchronization status. Complete editable fields through the platform account process. Ask a platform administrator to investigate missing sensitive fields.
+Confirm the account source and synchronization status. Complete editable fields through the platform account process. Ask a platform administrator to check missing sensitive fields.
 
-#### Why cannot the operator profile be edited?
+#### Why can't I edit some operator profile fields?
 
 **Symptom:**
 
-The profile is visible, but contact information, security information, or the sign-in method cannot be changed.
+The operator profile is visible, but the contact details, username, or identity roles cannot be changed.
 
 **Possible cause:**
 
-The account is managed by an identity provider, sensitive changes require administrator approval, or the sign-in method does not support self-service changes.
+The operator account is managed by a unified identity source, sensitive fields require administrator approval, or the current sign-in method does not support self-service changes.
 
 **Resolution:**
 
-Request the change through the platform account process. Maintain identity-provider fields in the identity platform, then sign in again to confirm synchronization.
-
-#### How should the Profile page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Profile page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
+Follow the platform account-management process. Maintain identity-source fields in the unified identity platform, then sign in again to confirm synchronization.
 
 ## Notes
 
-- Profile may contain phone numbers, email addresses, and account identifiers.
-- Do not send screenshots containing complete account information through external communication channels.
-- `Confirm` is the final submit action. For learning or screenshots, only open the dialog to view fields and use `Cancel` to exit.
-- Do not write real phone numbers, emails, user IDs, account names, customer names, or internal test data in documentation, screenshots, tickets, or examples.
+- Profile information may contain phone numbers, email addresses, and user IDs.
+- Do not send full profile screenshots to external communication channels.
+- `Edit`, `Change Email`, and `Change Password` change real account information. Confirm the impact before using them.
+- Usernames, user IDs, and identity roles are usually managed by the identity source; do not repeatedly attempt to change them here.
+- Do not write real phone numbers, email addresses, user IDs, account names, customer names, or internal test data into documentation.
 
 ## Next Steps
 
-1. To manage personal credentials, go to [My Keys](../my-keys/).
-2. To manage operator members, go to [Members](../../members-roles/members/).
+1. To manage personal Keys, go to [My Keys](../my-keys/).
+2. To manage members, go to [Members](../../members-roles/members/).

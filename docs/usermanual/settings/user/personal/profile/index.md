@@ -43,6 +43,8 @@ Profile is the identity card for the signed-in account. Use it to confirm who yo
 
 ![Profile details](./images/profile-detail.png)
 
+The personal profile shows display name, username, user ID, phone, email, and password status. Confirm the current account before changing contact details.
+
 1. Go to `Settings > Personal > Profile`.
 2. Confirm the tenant name, tenant ID, and business identity.
 3. Review the display name, username, user ID, phone, email, and password status.
@@ -131,34 +133,6 @@ An enterprise identity provider synchronizes the profile, sensitive fields do no
 
 Change basic information in the enterprise identity provider. Request security-field changes through the account-management process, then sign in again to verify synchronization.
 
-#### How should the Profile page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Profile page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Do not retain complete accounts, email addresses, phone numbers, IDs, or passwords in documentation or screenshots.
@@ -167,3 +141,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. Return to Dashboard to review quota and shortcuts.
 2. Open My Keys to manage calling credentials.
+
+Related pages: [My Keys](../my-keys/)、[Members](../../members-roles/team-members/)

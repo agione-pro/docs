@@ -34,6 +34,8 @@ The current Operator page exposes the `System API AK/SK Pairs` tab only. It does
 
 ![System API AK/SK pairs](./images/system-api-pairs-list.png)
 
+The System API AK/SK list shows Key name/description, prefix, status, expiration, and actions. The complete secret is shown only at creation.
+
 | Area | Description |
 | --- | --- |
 | Top button | `Create Key` opens the System API AK/SK Pair creation dialog. |
@@ -60,6 +62,8 @@ The current Operator page exposes the `System API AK/SK Pairs` tab only. It does
 4. During documentation review or screenshot capture, click **"Cancel"**. Do not create a real credential.
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
+
+The create dialog contains expiration, Key name, and description. The complete secret is shown only at creation.
 
 ## Parameter Quick Reference
 
@@ -104,34 +108,6 @@ The pair may belong to another account or tenant, may be unavailable in the curr
 #### What should be checked before creation or rotation?
 
 Confirm the caller, purpose, expiration window, secure storage path, and replacement plan. Never record the complete AK/SK pair in documentation or screenshots.
-
-#### How should the My Keys page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the My Keys page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

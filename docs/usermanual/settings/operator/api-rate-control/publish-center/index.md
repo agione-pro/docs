@@ -41,31 +41,30 @@ The page lists configuration versions, target nodes, publishing progress, and re
 
 ![Publish Center](./images/publish-center-list.png)
 
+The publish record list shows version, status, node count, publisher, publish time, and message. The message column contains the publish reason.
+
 ## Main Operations
 
 ### View Publish Records
 
-1. Go to `Settings > API Rate Control > Publish Center` and filter by version, status, publisher, or time.
-2. Check the version, rule count, target nodes, publish time, and status.
-3. If no record is returned, reset filters. For a long-running status, refresh once and inspect Node Cache.
-4. Publish records affect online traffic governance. Hide internal nodes and rule information before screenshots or sharing.
+1. Go to `Settings > API Rate Control > Publish Center`.
+2. Filter by node ID, start time, and end time, then click `Search`. Click `Reset` to clear the conditions.
+3. Review the version, status, node count, publisher, publish time, and message.
+4. The message column shows the publish reason or broadcast information. Hide internal nodes and rule details before screenshots or sharing.
 
 ### View Publish Version Details
 
-1. Click **"Details"** or the difference entry for the target version.
-2. Compare added, modified, and deleted rules and target nodes.
-3. Compare Publish Center status with node cache versions. If they differ, record the difference without republishing.
-4. Do not publish, roll back, or force synchronization during read-only validation.
-
-Use this operation to query publish records. Do not add publish, rollback, or cancel operations here because they are high-risk final actions.
+1. Review the target version row in the publish record list.
+2. Check the status, node count, publisher, and publish time, and read the publish reason in the message column.
+3. For further comparison, use the version and rule count in Node Cache to determine consistency.
+4. If the list does not show a separate details entry, do not assume one exists; follow the actual page actions.
 
 ### Refresh Publish Records
 
-1. Open `Settings > API Rate Control > Publish Center`.
-2. Locate the target Publish Center and click **"Refresh Records"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > API Rate Control > Publish Center`.
+2. Click `Refresh Records`.
+3. Verify whether the latest publish version or status change appears.
+4. If it still does not update, check Node Cache and Operation Logs. Do not republish repeatedly.
 
 ## Parameter Quick Reference
 
@@ -136,34 +135,6 @@ The current account lacks publish permission, the task status does not allow the
 **Resolution:**
 
 Confirm the task and approval status. Verify the impact scope before publishing or rollback, and let an administrator with publish permission perform the action.
-
-#### How should the Publish Center page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Publish Center page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

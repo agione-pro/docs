@@ -1,4 +1,8 @@
-# Platform Settings
+# Platform Configuration
+
+> This page covers top-up mode and credit-request settings. Online payment channel configuration (Stripe / Alipay) is out of scope for this version.
+
+> The menu label is “Platform Settings”; the page title is “Platform Configuration”.
 
 ## Feature Overview
 
@@ -32,18 +36,23 @@ Platform Settings is the global parameter panel. It controls basic platform beha
 
 The Platform Settings page groups global configuration by business impact.
 
-![Platform Settings](./images/platform-settings-list.png)
+![Platform Configuration](./images/platform-settings-list.png)
+
+The left side lists 10 platform configuration areas. The menu label is Platform Settings; the page title is Platform Configuration.
 
 | Configuration Area | Main Responsibility | Typical Impact to Verify |
 | --- | --- | --- |
 | General Settings | Maintains shared platform parameters and default display settings. | Platform-wide defaults and common presentation. |
+| Upload Storage | Maintains the object or local storage, object prefix, and credentials used for image and video uploads. | Upload, preview, and file access URLs. |
 | Provider Relationship | Maintains provider relationships, enabled status, and settlement ownership. | Provider visibility, business ownership, and settlement relationships. |
 | Currency Settings | Maintains available currencies, display rules, precision, and conversion-related settings. | Amount display, recharge, billing, and settlement. |
 | Payment Channels | Maintains payment providers, credentials, callbacks, and connectivity. | Recharge, payment callbacks, and settlement. |
 | Account & Settlement | Maintains account, settlement cycle, recharge, and Credits-related parameters. | Account balance, Credits calculation, billing, and settlement. |
 | Email Settings | Maintains mail service, sender, notification, and verification-email settings. | Login verification and notification delivery. |
+| Language Settings | Maintains the languages and default language shared by the sign-in page, console, and notifications. | Language display in the console, sign-in page, and notifications. |
 | UI Configuration | Maintains login-page, platform identity, theme, and display settings. | User-visible interface and branding. |
-| Refresh / Edit | Reloads the page or opens the selected configuration for maintenance. | Whether the displayed value is current and whether the account has write permission. |
+| Platform Maintenance Notifications | Lets an authorized operator manually send pre-maintenance or update-completed notifications. | Target tenants, recipient roles, and notification delivery. |
+| Area Actions | Reloads the page or opens the selected configuration for maintenance. | Whether the displayed value is current and whether the account has write permission. |
 
 Use the configuration-area name and its **"Edit"** entry to locate the intended setting before making a change.
 
@@ -69,6 +78,18 @@ If the task is only to learn the page or capture screenshots, stop after viewing
 
 ![General Configuration](./images/general-settings.png)
 
+General Configuration shows product name, support email, and automatic review defaults. Changes affect global display and review behavior.
+
+### Edit Upload Storage
+
+1. Go to `Settings > System Settings > Platform Settings`.
+2. Click **"Upload Storage"**.
+3. Review the object-storage switch, object prefix (environment isolation), Endpoint, Region, Bucket name, and credential status.
+
+![Upload Storage](./images/upload-storage.png)
+4. If a specific S3-compatible service needs compatibility settings, expand `Advanced Configuration` and review the additional parameters.
+5. Before saving, confirm the credential source, object prefix, and access URL. Do not write Endpoint, Bucket, Access Key, or Secret Key values into documentation, tickets, or screenshots.
+
 ### Edit Provider Relationship
 
 1. Go to `Settings > System Settings > Platform Settings`.
@@ -76,6 +97,8 @@ If the task is only to learn the page or capture screenshots, stop after viewing
 3. Review provider relationships, enabled status, and settlement ownership settings.
 
 ![Provider Relationship Configuration](./images/provider-relationship.png)
+
+Provider Relationship shows providers, relationships, enabled status, and settlement ownership. Confirm business ownership before changing it.
 
 ### Edit Currency Settings
 
@@ -85,40 +108,17 @@ If the task is only to learn the page or capture screenshots, stop after viewing
 
 ![Currency Settings](./images/currency-settings.png)
 
-### Edit Payment Channels
+Currency Settings shows the default currency, display rules, precision, and conversion parameters. Confirm the impact on recharge, billing, and settlement.
+
+### View Payment Channel Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
-2. Click **"Payment Channel"**.
-3. Review payment channel list, enabled status, and available maintenance entries.
+2. Click **"Payment Channels"**.
+3. Review the current top-up and payment mode: account credit request or online payment.
 
-![Payment Channel Configuration](./images/payment-channel.png)
-
-4. In the Stripe area, click **"Setup Help"** to review required fields and integration guidance.
-
-![Stripe Setup Help](./images/stripe-setup-help.png)
-
-5. Click Stripe `Edit`, and use placeholders to fill in or verify `<API_KEY>`, `<API_KEY>`, `<API_KEY>`, and related fields.
-
-![Stripe Edit](./images/stripe-edit.png)
-
-6. Before clicking `Test Connection` for Stripe, confirm that no real transaction or production callback will be triggered.
-
-![Stripe Test Connection](./images/stripe-connection-test.png)
-
-7. In the Alipay area, click **"Setup Help"** to review application, private key, and public key requirements.
-
-![Alipay Setup Help](./images/alipay-setup-help.png)
-
-8. Click Alipay `Edit`, and use placeholders to fill in or verify `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<API_KEY>`, and related fields.
-
-![Alipay Edit](./images/alipay-edit.png)
-
-9. Before clicking `Test Connection` for Alipay, confirm that no real payment or production callback will be triggered.
-
-![Alipay Test Connection](./images/alipay-connection-test.png)
-
-10. Before clicking `Save`, verify credential source, permission scope, callback address, settlement impact, and rollback plan.
-11. For learning or screenshots only, view setup help, edit pages, and test connection entries without submitting real payment channel configuration.
+![Payment Channels](./images/payment-channel.png)
+4. Online payment is not enabled in the current test environment. The page only shows the top-up mode and credit-request settings; Stripe and Alipay channels are not displayed.
+5. This version of the documentation does not cover Stripe or Alipay channel configuration. If coverage is required, collect evidence in an environment with online payment enabled; do not reuse old screenshots or the old flow.
 
 ### Edit Account and Settlement Settings
 
@@ -128,6 +128,8 @@ If the task is only to learn the page or capture screenshots, stop after viewing
 
 ![Account and Settlement Configuration](./images/account-settlement.png)
 
+Account and Settlement shows account, settlement cycle, recharge, and Credits parameters. Confirm the impact on billing and settlement.
+
 ### Edit Email Settings
 
 1. Go to `Settings > System Settings > Platform Settings`.
@@ -135,6 +137,20 @@ If the task is only to learn the page or capture screenshots, stop after viewing
 3. Review mail service, sender configuration, notification templates, or verification email settings.
 
 ![Email Settings](./images/email-settings.png)
+
+Email Settings shows the mail service, sender, notification templates, and verification email parameters. Verify login codes and notification delivery after changes.
+
+### Edit Language Settings
+
+1. Go to `Settings > System Settings > Platform Settings`.
+2. Click **"Language Settings"**.
+3. Review `Available Languages` and `System Default Language`; the available languages currently include English, Chinese, and Español.
+4. Before changing them, confirm the languages required by the sign-in page, console, and notifications.
+5. After saving, verify language display on the sign-in page, console, and notification pages.
+
+![Language Settings](./images/language-settings.png)
+
+Language Settings shows available languages (English/Chinese/Español) and the system default language. Saving affects the sign-in page, console, and notifications.
 
 ### Edit UI Settings
 
@@ -144,19 +160,61 @@ If the task is only to learn the page or capture screenshots, stop after viewing
 
 ![UI Configuration](./images/ui-configuration.png)
 
+UI Configuration shows login-page, platform identity, theme, and display settings. Verify the user-visible interface and branding after changes.
+
+### Edit Platform Maintenance Notifications
+
+1. Go to `Settings > System Settings > Platform Settings`.
+2. Click **"Platform Maintenance Notifications"**.
+3. Check whether the current account has send permission. Without permission, the form is view-only and cannot be sent.
+4. With permission, select the notification type (pre-maintenance or update-completed), and enter the platform access URL, business cutoff time, maintenance window, and expected impact.
+5. Select the target tenants (all valid tenants or specified tenants) and recipient roles (tenant administrators only, or administrators and all valid members).
+6. Review the notification content and recipient scope before sending. The cutoff time only controls entry into notification acceptance; it does not guarantee final email or in-app delivery.
+
+![Platform Maintenance Notifications](./images/platform-maintenance.png)
+
+Platform Maintenance Notifications shows type, access URL, business cutoff, maintenance window, expected impact, target tenants, and recipient roles. Without send permission, the form is view-only.
+
 ## Parameter Quick Reference
+
+### Basic Configuration Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Configuration Category | System displayed | Text | `General Configuration` | The configuration group in platform settings. |
-| Configuration Item | System displayed | Text | `Default Currency` | The system parameter to view or maintain. |
-| Default Value | System displayed | Text | `USD` | The default or system-provided value of the configuration item. |
-| Current Value | System displayed / Editable | Text | `USD` | The currently effective configuration value. |
-| Enabled Status | System displayed / Editable | Enum | `Enabled` | Indicates whether the configuration item or capability is enabled. |
-| Test Connection | Operation button | Button | `Test Connection` | Verifies connectivity for email, payment, or external service configuration. |
-| Save | Operation button | Button | `Save` | Saves the current configuration change. |
-| Reset | Operation button | Button | `Reset` | Restores the configuration to the default value or last saved state. |
-| Actions | System generated | Button / link | `Edit / Enable / Disable` | Provides configuration view or maintenance entries. |
+| Configuration category | System-generated | Text | General Settings | Configuration group in Platform Settings. |
+| Configuration item | System-generated | Text | Default currency | System parameter to view or maintain. |
+| Default value | System-generated | Text | CNY | Default or preset value. |
+| Current value | System-generated / Editable | Text | CNY | Currently effective value. |
+| Enabled status | System-generated / Editable | Enum | Enabled | Whether the item or capability is enabled. |
+| Test connection | Action button | Button | Test Connection | Verifies email, payment, or external-service connectivity. |
+| Save | Action button | Button | Save | Saves the current configuration change. |
+| Reset | Action button | Button | Reset | Restores defaults or the last saved state. |
+| Actions | System-generated | Button | Edit / Enable / Disable | Provides configuration maintenance entries. |
+
+### Upload Storage and Language Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Object storage switch | No | Switch | Enabled | Controls whether uploads use object storage. |
+| Object prefix (environment isolation) | Conditional | Text | Hidden | Environment-isolation prefix in object storage. |
+| Endpoint | Conditional | Text | Hidden | S3-compatible service address. |
+| Region | Conditional | Text | Hidden | Object-storage region. |
+| Bucket name | Conditional | Text | Hidden | Bucket used for uploads. |
+| Storage credentials | Conditional | Text | Configured | Access Key and Secret Key configuration status. |
+| Available languages | Yes | Multi-select | English, Chinese, Español | Languages for sign-in, console, and notifications. |
+| System default language | Yes | Enum | Chinese | Default language for new users and the interface. |
+
+### Platform Maintenance Notification Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Notification type | Yes | Enum | Pre-maintenance notification | Type of platform maintenance notification. |
+| Platform access URL | Yes | Text | https://example.com | Platform URL provided to tenants. |
+| Business cutoff time | Yes | Date time | 2026-10-30 19:03 | Cutoff for entering notification acceptance. |
+| Maintenance window | Yes | Date-time range | 2026-10-30 20:00–22:00 | Planned maintenance start and end. |
+| Expected impact | Yes | Multi-line text | No customer action required | Impact described in the notification. |
+| Target tenants | Yes | Single select | All valid tenants | Tenant scope for the notification. |
+| Recipient roles | Yes | Single select | Tenant administrators only | Role scope of recipients. |
 
 ## Pitfalls
 
@@ -222,34 +280,6 @@ The current account lacks write permission, the setting is version-locked, or ap
 **Resolution:**
 
 Verify system-administrator permission and the setting description. Complete the required approval, then ask an authorized administrator to save the change.
-
-#### How should the Platform Settings page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Platform Settings page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

@@ -130,34 +130,6 @@ The current account lacks audit-export permission, the record is outside the vie
 
 Verify audit permission and the log retention range. Before sending logs outside the tenant, request export permission and follow desensitization requirements.
 
-#### How should the Operation Logs page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Operation Logs page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Exported CSV files may contain users, IP addresses, and audit information. Handle them according to tenant data-security requirements.
@@ -167,3 +139,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. Retain audit records for critical operations.
 2. Compare member, role, and quota pages to identify the source of a change.
+
+Related pages: [Profile](../../personal/profile/)、[Members](../../members-roles/team-members/)

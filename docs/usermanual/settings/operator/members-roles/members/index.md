@@ -34,6 +34,8 @@ The page provides member filters, a member list, and row actions for adding memb
 
 ![Members](./images/members-list.png)
 
+The member list shows username, display name, contact details, roles, member tags, and status. Adding a member creates a real account.
+
 | Area | Description |
 | --- | --- |
 | Username | Filters members by username. |
@@ -67,11 +69,11 @@ The page provides member filters, a member list, and row actions for adding memb
 
 ### Edit a Member
 
-1. Open `Settings > Members & Roles > Members`.
-2. Locate the target Members and click **"Edit"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > Members & Roles > Members`.
+2. Locate the target member in the list and click `Edit`.
+3. Review or change the display name, email, phone number, roles, and status as provided. The username is usually read-only.
+4. Before clicking `Confirm`, verify the member identity, role permissions, and enabled status.
+5. Return to the list and verify the display name, roles, status, and update time.
 
 ![Edit User](./images/edit-member.png)
 
@@ -154,34 +156,6 @@ The current account is not in the platform administration tenant, the members be
 **Resolution:**
 
 Confirm that you are using the operator entry and verify the platform tenant and administrator role. Ask a super administrator to grant operator-member access when required.
-
-#### How should the Members page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Members page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

@@ -45,14 +45,16 @@ The page provides API, node, and audit-log views for tracing rate-control decisi
 
 ![Observability Audit](./images/observability-audit-list.png)
 
+The Minute Metrics tab shows time buckets, rules, APIs, requests, blocked requests, over-limit statistics, and nodes. Switch tabs for blocked and audit logs.
+
 ## Main Operations
 
 ### View Observability Metrics
 
 1. Go to `Settings > API Rate Control > Observability Audit` and select a time range.
-2. Filter by rule, node, request result, block reason, or request ID.
-3. Check request volume, blocked requests, matched rules, and status distribution. If no data is shown, check the time zone, node, and filter scope.
-4. Observability data may contain call identifiers and business paths and must be redacted before export or screenshots.
+2. Filter by rule ID/name, API Path, node ID, or time range.
+3. Switch between `Minute Metrics`, `Blocked Logs`, and `Audit Logs`, and review the time bucket, rule, API, requests, blocked requests, over-limit statistics, and node.
+4. If no data appears, check the time zone, node, and filter scope. Observability data may contain call identifiers and business paths; redact it before export or screenshots.
 
 ### View Block Event Details
 
@@ -65,19 +67,19 @@ Use this operation to query observability and audit data. Do not add create, pub
 
 ### Export Observability Data
 
-1. Open `Settings > API Rate Control > Observability Audit`.
-2. Locate the target Observability Audit and click **"Export"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > API Rate Control > Observability Audit`.
+2. Select the `Minute Metrics`, `Blocked Logs`, or `Audit Logs` tab and set the time range.
+3. Click `Export Metrics`, `Export Blocks`, or `Export Audit` as appropriate.
+4. Confirm the export scope and format in the prompt, and verify the recipient before exporting.
+5. Export files may contain call identifiers, paths, and node information. Redact them before sharing.
 
 ### Clean Observability Data
 
-1. Open `Settings > API Rate Control > Observability Audit`.
-2. Locate the target Observability Audit and click **"Clean"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > API Rate Control > Observability Audit`.
+2. Click `Clean`.
+3. Review the time range, data type, and impact. Cleaned data cannot be recovered.
+4. Do not clean data without explicit authorization.
+5. After cleaning, refresh the page and verify the affected data range.
 
 ## Parameter Quick Reference
 
@@ -148,34 +150,6 @@ No request triggered a rate-control rule in the selected time range, requests by
 **Resolution:**
 
 Expand the time range and confirm the request path. Check rule publishing and gateway access. If records remain empty, compare reporting status in Node Cache.
-
-#### How should the Observability Audit page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Observability Audit page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 
