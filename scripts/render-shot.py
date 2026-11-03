@@ -10,11 +10,12 @@
 
 示例：
     python scripts/render-shot.py login \
-      --url "http://test.metis.opr/modelone/model-source" \
-      --user operator --until ".main-box" --state .auth/state.json
+      --url "http://<your-host>/user/login" \
+      --user <your-user> --until ".main-box" --state .auth/state.json
 
     python scripts/render-shot.py shoot \
-      --recipe model-source --lang en --state .auth/state.json --out /tmp/shots/en
+      --recipe members --lang en --base-url "http://<your-host>" \
+      --state .auth/state.json --out /tmp/shots/en
 
 设计约定（详见 SCREENSHOT_GUIDE.md）：
     * 固定视口 1920 宽、deviceScaleFactor=2
@@ -22,6 +23,8 @@
     * 切换语言后必须清浮层
     * 抽屉按内容高度设置视口，并按 rect 精确裁剪
     * 后处理：裁顶部导航 -> 裁底部 -> 降采样到 1x
+
+环境：BASE 只是默认值，用 --base-url 指向你自己的环境（本地 / 测试 / 演示均可）。
 """
 import argparse
 import json
@@ -31,7 +34,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-BASE = "http://test.metis.opr"
+BASE = ""   # 目标环境地址，由 --base-url 传入；各人环境不同（本地/测试/演示），不写死
 W = 1920
 H_PAGE = 1080
 H_LIST = 1220
@@ -420,7 +423,13 @@ def cmd_login(args):
 
 
 def cmd_shoot(args):
+    global BASE
     from playwright.sync_api import sync_playwright
+
+    if not args.base_url:
+        sys.exit("错误：必须用 --base-url 指定目标环境地址（各人环境不同，工具不预设）")
+    BASE = args.base_url.rstrip("/")
+    log(f"使用环境：{BASE}")
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -448,7 +457,14 @@ def cmd_shoot(args):
 
 def cmd_capture(args):
     """通用单图抓取：支持指定页面与元素选择器直接抓取弹框、抽屉或整页，无需硬编码配方。"""
+    global BASE
     from playwright.sync_api import sync_playwright
+
+    if args.base_url:
+        BASE = args.base_url.rstrip("/")
+        log(f"使用环境：{BASE}")
+    elif not args.url.startswith("http"):
+        sys.exit("错误：相对路径需要配合 --base-url 使用（各人环境不同，工具不预设）")
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -594,12 +610,14 @@ def main():
     p_shoot = sub.add_parser("shoot", help="按配方批量渲染截图")
     p_shoot.add_argument("--recipe", required=True, choices=sorted(RECIPES))
     p_shoot.add_argument("--lang", required=True, choices=["zh", "en"])
+    p_shoot.add_argument("--base-url", default="", help="目标环境地址（必填，各人环境不同，工具不预设）")
     p_shoot.add_argument("--state", required=True)
     p_shoot.add_argument("--out", required=True)
     p_shoot.set_defaults(func=cmd_shoot)
 
     p_cap = sub.add_parser("capture", help="通用单图抓取（弹框/抽屉/整页）")
     p_cap.add_argument("--url", required=True, help="页面相对或绝对地址")
+    p_cap.add_argument("--base-url", default="", help="目标环境地址（相对路径时必填，各人环境不同，工具不预设）")
     p_cap.add_argument("--name", required=True, help="保存的文件名（无需 .png）")
     p_cap.add_argument("--mode", required=True, choices=["element", "drawer", "page", "clip"],
                        help="抓取模式：element=弹框/单卡片(自动透明圆角), drawer=抽屉(自适应高度), page=整页(实测裁顶)")

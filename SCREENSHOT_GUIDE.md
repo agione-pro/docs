@@ -32,16 +32,20 @@ python -m pip install playwright pillow
 
 浏览器不需要额外下载，脚本会优先复用系统 Edge（`channel=msedge`），找不到再退到 Chrome。
 
+各人环境不同（本地 / 测试 / 演示均可），脚本用 `--base-url` 指向你的环境，
+不要把某个具体环境地址写死进脚本。
+
 登录态只需保存一次：
 
 ```bash
 python scripts/render-shot.py login \
-  --url "http://test.metis.opr/modelone/model-source" \
-  --user operator \
+  --url "http://<your-host>/user/login" \
+  --user <your-user> \
   --until ".main-box" \
   --state .auth/state.json
 ```
 
+- `--url` 填你环境的登录页；`--user` 填你的账号。
 - `--until` 填**登录成功后才出现**的元素，用 CSS 选择器，不要用中文文本（见第 7 节坑位 1）。
 - 登录态会过期（一般几天），过期后重跑这一条。
 - `.auth/` 含 token，**不得提交**，不要复制到任务交付物里。
@@ -243,6 +247,7 @@ npm run docs:build
 python scripts/render-shot.py shoot \
   --recipe model-source \
   --lang en \
+  --base-url "http://<your-host>" \
   --state .auth/state.json \
   --out /tmp/shots/en
 ```
@@ -257,6 +262,7 @@ python scripts/render-shot.py shoot \
 ```bash
 # 1) 弹框截图（自动点开、元素截图、透明圆角、宽度安全校验）
 python scripts/render-shot.py capture \
+  --base-url "http://<your-host>" \
   --url "/user/user-space/team-members" \
   --name "add-member" \
   --mode element \
@@ -268,6 +274,7 @@ python scripts/render-shot.py capture \
 
 # 2) 抽屉截图（自动撑开视口自适应内容高度、精确裁剪）
 python scripts/render-shot.py capture \
+  --base-url "http://<your-host>" \
   --url "/modelone/model-source/1/edit" \
   --name "add-endpoint" \
   --mode drawer \
@@ -279,6 +286,7 @@ python scripts/render-shot.py capture \
 
 # 3) 整页截图（DOM 实测导航高裁顶、清理底部白边）
 python scripts/render-shot.py capture \
+  --base-url "http://<your-host>" \
   --url "/user/user-space/team-members" \
   --name "members-list" \
   --mode page \

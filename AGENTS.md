@@ -29,6 +29,16 @@ Two rules are non-negotiable:
 Ready-made tooling: `scripts/render-shot.py` implements this guide end to end.
 Prefer it over ad-hoc Playwright scripts.
 
+One-time setup (Python 3.10+):
+
+```bash
+python -m pip install playwright pillow
+```
+
+No extra browser download is needed — the script reuses the system Edge
+(`channel="msedge"`) and falls back to Chrome. Point it at your own environment with
+`--base-url` (local, test, or demo); the default host is only a placeholder.
+
 | Subcommand | What it does |
 | --- | --- |
 | `login` | Log in once and store the browser session state for reuse. |
@@ -39,6 +49,7 @@ Prefer it over ad-hoc Playwright scripts.
 ```bash
 # grab a dialog (auto element capture + transparent rounded corners + width guard)
 python scripts/render-shot.py capture \
+  --base-url "http://<your-host>" \
   --url "/user/user-space/team-members" --name "add-member" \
   --mode element --selector ".el-dialog" --click "button:has-text('Add Member')" \
   --lang en --state .auth/state.json --out docs/usermanual/settings/operator/members-roles/members/images
