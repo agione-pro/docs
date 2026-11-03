@@ -373,16 +373,9 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '元模型', link: '/zh-CN/usermanual/model-services/operator/settings/meta-models/' },
-                    { text: '模型源', link: '/zh-CN/usermanual/model-services/operator/settings/model-source/' },
                     { text: '模板', link: '/zh-CN/usermanual/model-services/operator/settings/model-templates/' },
                     { text: '标签', link: '/zh-CN/usermanual/model-services/operator/settings/tags/' },
-                  ]
-                },
-                {
-                  text: '发布',
-                  collapsed: false,
-                  items: [
-                    { text: '应用列表', link: '/zh-CN/usermanual/model-services/operator/publishing/apps/' },
+                    { text: '模型源', link: '/zh-CN/usermanual/model-services/operator/settings/model-source/' },
                   ]
                 },
                 {
@@ -390,7 +383,17 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '模型审核', link: '/zh-CN/usermanual/model-services/operator/approvals/model-reviews/' },
-                    { text: '应用审核', link: '/zh-CN/usermanual/model-services/operator/approvals/app-reviews/' },
+                  ]
+                },
+                {
+                  text: '平台调用统计',
+                  collapsed: false,
+                  items: [
+                    { text: '概览', link: '/zh-CN/usermanual/model-services/operator/platform-calls/overview/' },
+                    { text: '模型来源', link: '/zh-CN/usermanual/model-services/operator/platform-calls/model-sources/' },
+                    { text: 'Meta 模型', link: '/zh-CN/usermanual/model-services/operator/platform-calls/meta-models/' },
+                    { text: '客户', link: '/zh-CN/usermanual/model-services/operator/platform-calls/customers/' },
+                    { text: '调用来源', link: '/zh-CN/usermanual/model-services/operator/platform-calls/call-sources/' },
                   ]
                 },
               ]
@@ -732,6 +735,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '租户', link: '/zh-CN/usermanual/settings/operator/tenants/tenants/' },
+                    { text: '租户设置', link: '/zh-CN/usermanual/settings/operator/tenants/tenant-settings/' },
                   ],
                 },
                 {
@@ -739,6 +743,9 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '操作日志', link: '/zh-CN/usermanual/settings/operator/activity-notifications/operation-logs/' },
+                    { text: '通知偏好', link: '/zh-CN/usermanual/settings/operator/activity-notifications/notification-settings/' },
+                    { text: '联系人', link: '/zh-CN/usermanual/settings/operator/activity-notifications/contacts/' },
+                    { text: '我的通知', link: '/zh-CN/usermanual/settings/operator/activity-notifications/inbox/' },
                   ],
                 },
                 {
@@ -747,13 +754,15 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: '平台设置', link: '/zh-CN/usermanual/settings/operator/system-settings/platform-settings/' },
                     { text: '登录配置', link: '/zh-CN/usermanual/settings/operator/system-settings/login-properties/' },
+                    { text: '通知审计', link: '/zh-CN/usermanual/settings/operator/system-settings/notification-center/' },
+                    { text: '通知治理', link: '/zh-CN/usermanual/settings/operator/system-settings/notification-config/' },
                   ],
                 },
                 {
                   text: 'API 流控',
                   collapsed: false,
                   items: [
-                    { text: '概览', link: '/zh-CN/usermanual/settings/operator/api-rate-control/overview/' },
+                    { text: 'Overview', link: '/zh-CN/usermanual/settings/operator/api-rate-control/overview/' },
                     { text: '规则管理', link: '/zh-CN/usermanual/settings/operator/api-rate-control/rule-management/' },
                     { text: '观测审计', link: '/zh-CN/usermanual/settings/operator/api-rate-control/observability-audit/' },
                     { text: '节点缓存', link: '/zh-CN/usermanual/settings/operator/api-rate-control/node-cache/' },
@@ -771,6 +780,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '概览', link: '/zh-CN/usermanual/settings/user/personal/dashboard/' },
+                    { text: '我的额度', link: '/zh-CN/usermanual/settings/user/personal/my-quota/' },
                     { text: '项目', link: '/zh-CN/usermanual/settings/user/personal/projects/' },
                     { text: '我的 Keys', link: '/zh-CN/usermanual/settings/user/personal/my-keys/' },
                     { text: '账号信息', link: '/zh-CN/usermanual/settings/user/personal/profile/' },
@@ -783,15 +793,15 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                     { text: '成员', link: '/zh-CN/usermanual/settings/user/members-roles/team-members/' },
                     { text: '角色', link: '/zh-CN/usermanual/settings/user/members-roles/roles/' },
                     { text: '成员额度', link: '/zh-CN/usermanual/settings/user/members-roles/member-quotas/' },
-                    { text: '额度申请', link: '/zh-CN/usermanual/settings/user/members-roles/quota-requests/' },
+                    { text: '额度审批', link: '/zh-CN/usermanual/settings/user/members-roles/quota-requests/' },
                   ],
                 },
                 {
                   text: '租户&设置',
                   collapsed: false,
                   items: [
+                    { text: '用量审计', link: '/zh-CN/usermanual/settings/user/organizations/usage-log/' },
                     { text: '租户设置', link: '/zh-CN/usermanual/settings/user/organizations/org-settings/' },
-                    { text: '额度使用日志', link: '/zh-CN/usermanual/settings/user/organizations/usage-log/' },
                   ],
                 },
                 {

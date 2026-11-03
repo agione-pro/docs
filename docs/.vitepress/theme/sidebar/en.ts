@@ -434,16 +434,9 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Meta Models", link: "/usermanual/model-services/operator/settings/meta-models/" },
-                    { text: "Model Sources", link: "/usermanual/model-services/operator/settings/model-source/" },
                     { text: "Model Templates", link: "/usermanual/model-services/operator/settings/model-templates/" },
                     { text: "Tags", link: "/usermanual/model-services/operator/settings/tags/" },
-                  ]
-                },
-                {
-                  text: "Publishing",
-                  collapsed: false,
-                  items: [
-                    { text: "Apps", link: "/usermanual/model-services/operator/publishing/apps/" },
+                    { text: "Model Sources", link: "/usermanual/model-services/operator/settings/model-source/" },
                   ]
                 },
                 {
@@ -451,7 +444,17 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Model Reviews", link: "/usermanual/model-services/operator/approvals/model-reviews/" },
-                    { text: "App Reviews", link: "/usermanual/model-services/operator/approvals/app-reviews/" },
+                  ]
+                },
+                {
+                  text: "Platform Call Analytics",
+                  collapsed: false,
+                  items: [
+                    { text: "Overview", link: "/usermanual/model-services/operator/platform-calls/overview/" },
+                    { text: "Model Sources", link: "/usermanual/model-services/operator/platform-calls/model-sources/" },
+                    { text: "Meta Models", link: "/usermanual/model-services/operator/platform-calls/meta-models/" },
+                    { text: "Customers", link: "/usermanual/model-services/operator/platform-calls/customers/" },
+                    { text: "Client Sources", link: "/usermanual/model-services/operator/platform-calls/call-sources/" },
                   ]
                 },
               ]
@@ -793,6 +796,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Tenants", link: "/usermanual/settings/operator/tenants/tenants/" },
+                    { text: "Tenant Settings", link: "/usermanual/settings/operator/tenants/tenant-settings/" },
                   ],
                 },
                 {
@@ -800,6 +804,9 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Operation Logs", link: "/usermanual/settings/operator/activity-notifications/operation-logs/" },
+                    { text: "Notification Preferences", link: "/usermanual/settings/operator/activity-notifications/notification-settings/" },
+                    { text: "Contacts", link: "/usermanual/settings/operator/activity-notifications/contacts/" },
+                    { text: "My Notifications", link: "/usermanual/settings/operator/activity-notifications/inbox/" },
                   ],
                 },
                 {
@@ -808,6 +815,8 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "Platform Settings", link: "/usermanual/settings/operator/system-settings/platform-settings/" },
                     { text: "Login Properties", link: "/usermanual/settings/operator/system-settings/login-properties/" },
+                    { text: "Notification Audit", link: "/usermanual/settings/operator/system-settings/notification-center/" },
+                    { text: "Notification Governance", link: "/usermanual/settings/operator/system-settings/notification-config/" },
                   ],
                 },
                 {
@@ -832,6 +841,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Dashboard", link: "/usermanual/settings/user/personal/dashboard/" },
+                    { text: "My Quota", link: "/usermanual/settings/user/personal/my-quota/" },
                     { text: "Projects", link: "/usermanual/settings/user/personal/projects/" },
                     { text: "My Keys", link: "/usermanual/settings/user/personal/my-keys/" },
                     { text: "Profile", link: "/usermanual/settings/user/personal/profile/" },
@@ -844,15 +854,15 @@ export const enSidebar: DefaultTheme.Sidebar = {
                     { text: "Members", link: "/usermanual/settings/user/members-roles/team-members/" },
                     { text: "Roles", link: "/usermanual/settings/user/members-roles/roles/" },
                     { text: "Member Quotas", link: "/usermanual/settings/user/members-roles/member-quotas/" },
-                    { text: "Quota Requests", link: "/usermanual/settings/user/members-roles/quota-requests/" },
+                    { text: "Quota Approvals", link: "/usermanual/settings/user/members-roles/quota-requests/" },
                   ],
                 },
                 {
                   text: "Tenants",
                   collapsed: false,
                   items: [
-                    { text: "Tenant Settings", link: "/usermanual/settings/user/organizations/org-settings/" },
                     { text: "Usage Log", link: "/usermanual/settings/user/organizations/usage-log/" },
+                    { text: "Tenant Settings", link: "/usermanual/settings/user/organizations/org-settings/" },
                   ],
                 },
                 {
