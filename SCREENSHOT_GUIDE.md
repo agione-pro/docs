@@ -249,3 +249,54 @@ python scripts/render-shot.py shoot \
 
 输出目录会同时得到 `.png` 与同名 `.json`（记录 url、选择器、视口、耗时、校验结果），
 `.json` 是配图可追溯的依据，归档时与图片一起保留。
+
+### 9.2 通用单图抓取（无需编写配方）
+
+如果只需截单张弹框、抽屉或页面，无需新写 recipe 函数，直接调用 `capture`：
+
+```bash
+# 1) 弹框截图（自动点开、元素截图、透明圆角、宽度安全校验）
+python scripts/render-shot.py capture \
+  --url "/user/user-space/team-members" \
+  --name "add-member" \
+  --mode element \
+  --selector ".el-dialog" \
+  --click "button:has-text('Add Member')" \
+  --lang en \
+  --state .auth/state.json \
+  --out docs/usermanual/settings/operator/members-roles/members/images
+
+# 2) 抽屉截图（自动撑开视口自适应内容高度、精确裁剪）
+python scripts/render-shot.py capture \
+  --url "/modelone/model-source/1/edit" \
+  --name "add-endpoint" \
+  --mode drawer \
+  --selector ".model-source-endpoint-editor-drawer" \
+  --click "button:has-text('Add Endpoint')" \
+  --lang en \
+  --state .auth/state.json \
+  --out /tmp/shots
+
+# 3) 整页截图（DOM 实测导航高裁顶、清理底部白边）
+python scripts/render-shot.py capture \
+  --url "/user/user-space/team-members" \
+  --name "members-list" \
+  --mode page \
+  --lang en \
+  --state .auth/state.json \
+  --out /tmp/shots
+```
+
+### 9.3 构图规范体检（保障命令）
+
+提交前或排查存量图片问题时，运行体检命令：
+
+```bash
+python scripts/render-shot.py audit --dir docs
+```
+
+会自动检测三类严重构图违规：
+1. **弹框误用整页截图**：操作类弹框图片宽度为 1920，包含整页背景和遮罩。
+2. **首行削平（多裁）**：1920 宽度截图首行被削平，丢失菜单分组或标题。
+3. **缺少透明圆角**：弹框元素截图未做透明圆角处理，四周残留灰色方块或杂边。
+

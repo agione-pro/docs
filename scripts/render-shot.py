@@ -446,8 +446,140 @@ def cmd_shoot(args):
     print("all shots OK", flush=True)
 
 
+def cmd_capture(args):
+    """通用单图抓取：支持指定页面与元素选择器直接抓取弹框、抽屉或整页，无需硬编码配方。"""
+    from playwright.sync_api import sync_playwright
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(channel="msedge", headless=True,
+                                     args=["--disable-blink-features=AutomationControlled"])
+        ctx = browser.new_context(viewport={"width": W, "height": args.viewport_h},
+                                  device_scale_factor=DPR,
+                                  locale="zh-CN" if args.lang == "zh" else "en-US",
+                                  storage_state=args.state, ignore_https_errors=True)
+        page = ctx.new_page()
+        page.set_default_timeout(args.timeout * 1000)
+        shotter = Shotter(page, args.lang, out)
+
+        url = args.url if args.url.startswith("http") else (BASE + args.url)
+        shotter.goto(url, expect=args.expect)
+
+        if args.click:
+            page.locator(args.click).first.click()
+            page.wait_for_timeout(args.wait_after_click)
+            shotter.dismiss_floating()
+
+        if args.wait:
+            page.locator(args.wait).first.wait_for(state="visible", timeout=args.timeout * 1000)
+            page.wait_for_timeout(400)
+
+        if args.mode == "page":
+            shotter.save(args.name, mode="page", post="page")
+        elif args.mode == "element":
+            if not args.selector:
+                raise ValueError("mode=element 需要指定 --selector")
+            page.locator(args.selector).first.wait_for(state="visible", timeout=args.timeout * 1000)
+            page.wait_for_timeout(300)
+            shotter.save(args.name, mode="element", selector=args.selector)
+        elif args.mode == "drawer":
+            if not args.selector:
+                raise ValueError("mode=drawer 需要指定 --selector")
+            page.locator(args.selector).first.wait_for(state="visible", timeout=args.timeout * 1000)
+            box = shotter.fit_drawer(args.selector)
+            shotter.save(args.name, mode="clip", clip=box)
+        elif args.mode == "clip":
+            if not args.selector:
+                raise ValueError("mode=clip 需要指定 --selector 用于计算边界")
+            box = shotter.rect(args.selector)
+            shotter.save(args.name, mode="clip", clip=box)
+
+        browser.close()
+    log(f"单图抓取完成：{out / (args.name + '.png')}")
+
+
+def cmd_audit(args):
+    """构图规范体检：扫描指定目录下所有文档配图，发现弹框误用整页、顶部削平、缺少透明圆角等问题。"""
+    import statistics
+    target_dir = Path(args.dir)
+    if not target_dir.exists():
+        print(f"目标目录不存在: {target_dir}")
+        sys.exit(1)
+
+    print(f"[render-shot audit] 开始扫描目录: {target_dir} 下所有 PNG 图片...")
+    images = [p for p in target_dir.rglob("*.png") if ".vitepress" not in str(p)]
+    total = len(images)
+    print(f"共发现 {total} 张图片，正在逐一检查构图规范...")
+
+    issues = {
+        "cut_top": [],
+        "dialog_fullpage": [],
+        "missing_rounded": [],
+    }
+
+    dialog_keywords = ["add-", "create-", "edit-", "dialog", "modal", "adjust-", "request-", "new-"]
+
+    for p in images:
+        try:
+            im = Image.open(p)
+        except Exception:
+            continue
+
+        w, h = im.size
+        name = p.stem.lower()
+
+        # 1. 检查是否为弹框全屏截图 (宽度 1920 但文件名带有弹框动作)
+        if w == 1920 and any(k in name for k in dialog_keywords) and not name.endswith("-list") and not name.endswith("overview"):
+            issues["dialog_fullpage"].append((p, w, h, "弹框/创建页面疑似误用 1920 整页截图，包含灰底遮罩"))
+
+        # 2. 检查 1920 宽度截图的首行是否被削平
+        if w == 1920 and h <= 855:
+            g = im.convert("L")
+            px = g.load()
+            row = [px[x, 0] for x in range(0, w, 4)]
+            med = statistics.median(row)
+            big = sum(1 for v in row if abs(v - med) > 25) / len(row)
+            if big > 0.03:
+                issues["cut_top"].append((p, w, h, f"首行包含 {big*100:.1f}% 异常内容像素，疑似裁顶超量 (h={h})"))
+
+        # 3. 检查非 1920 局部图是否缺失透明圆角 (针对弹框)
+        if w < 1920 and any(k in name for k in dialog_keywords):
+            if im.mode != "RGBA":
+                issues["missing_rounded"].append((p, w, h, f"弹框元素截图非 RGBA 模式 ({im.mode})，无法支持透明圆角"))
+            else:
+                a = im.split()[-1]
+                corner_alpha = [a.getpixel(xy) for xy in ((0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1))]
+                if any(v > 50 for v in corner_alpha):
+                    issues["missing_rounded"].append((p, w, h, f"弹框四角未完全透明 (alpha={corner_alpha})，可能存在直角灰色残留"))
+
+    print("\n========== 构图规范体检报告 ==========")
+    print(f"扫描有效图片: {total} 张")
+    print(f"1. 弹框误用整页截图 (DIALOG_FULLPAGE): {len(issues['dialog_fullpage'])} 张")
+    print(f"2. 首行疑似多裁削平 (CUT_TOP):         {len(issues['cut_top'])} 张")
+    print(f"3. 弹框四角缺少透明圆角 (NOT_ROUNDED): {len(issues['missing_rounded'])} 张")
+
+    if issues["dialog_fullpage"]:
+        print("\n--- 弹框误用整页截图清单 (前 15 项) ---")
+        for p, w, h, reason in issues["dialog_fullpage"][:15]:
+            print(f"  {p} ({w}x{h}) -> {reason}")
+
+    if issues["cut_top"]:
+        print("\n--- 首行疑似多裁削平清单 (前 15 项) ---")
+        for p, w, h, reason in issues["cut_top"][:15]:
+            print(f"  {p} ({w}x{h}) -> {reason}")
+
+    if issues["missing_rounded"]:
+        print("\n--- 弹框四角缺少透明圆角清单 ---")
+        for p, w, h, reason in issues["missing_rounded"][:15]:
+            print(f"  {p} ({w}x{h}) -> {reason}")
+
+    total_problems = len(issues["dialog_fullpage"]) + len(issues["cut_top"]) + len(issues["missing_rounded"])
+    print(f"\n审计完成，共发现 {total_problems} 处构图优化项。")
+
+
 def main():
-    ap = argparse.ArgumentParser(description="文档配图渲染截图")
+    ap = argparse.ArgumentParser(description="文档配图渲染截图工具")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     p_login = sub.add_parser("login", help="登录并保存登录态")
@@ -459,15 +591,37 @@ def main():
     p_login.add_argument("--timeout", type=int, default=60)
     p_login.set_defaults(func=cmd_login)
 
-    p_shoot = sub.add_parser("shoot", help="按配方渲染截图")
+    p_shoot = sub.add_parser("shoot", help="按配方批量渲染截图")
     p_shoot.add_argument("--recipe", required=True, choices=sorted(RECIPES))
     p_shoot.add_argument("--lang", required=True, choices=["zh", "en"])
     p_shoot.add_argument("--state", required=True)
     p_shoot.add_argument("--out", required=True)
     p_shoot.set_defaults(func=cmd_shoot)
 
+    p_cap = sub.add_parser("capture", help="通用单图抓取（弹框/抽屉/整页）")
+    p_cap.add_argument("--url", required=True, help="页面相对或绝对地址")
+    p_cap.add_argument("--name", required=True, help="保存的文件名（无需 .png）")
+    p_cap.add_argument("--mode", required=True, choices=["element", "drawer", "page", "clip"],
+                       help="抓取模式：element=弹框/单卡片(自动透明圆角), drawer=抽屉(自适应高度), page=整页(实测裁顶)")
+    p_cap.add_argument("--selector", default=".el-dialog", help="目标元素选择器 (element/drawer/clip 模式必填)")
+    p_cap.add_argument("--click", default="", help="截图前先点击的按钮选择器 (如打开弹框)")
+    p_cap.add_argument("--wait", default="", help="截图前等待出现的元素选择器")
+    p_cap.add_argument("--wait-after-click", type=int, default=800, help="点击后等待毫秒数")
+    p_cap.add_argument("--expect", default="", help="页面加载后期望包含的文本")
+    p_cap.add_argument("--lang", required=True, choices=["zh", "en"], help="界面语言")
+    p_cap.add_argument("--state", required=True, help="登录态 storage_state JSON 路径")
+    p_cap.add_argument("--out", required=True, help="输出目录")
+    p_cap.add_argument("--viewport-h", type=int, default=H_PAGE, help="视口高度 (默认 1080)")
+    p_cap.add_argument("--timeout", type=int, default=45, help="超时秒数")
+    p_cap.set_defaults(func=cmd_capture)
+
+    p_audit = sub.add_parser("audit", help="扫描文档目录体检图片构图规范")
+    p_audit.add_argument("--dir", default="docs", help="待扫描目录，默认 docs")
+    p_audit.set_defaults(func=cmd_audit)
+
     args = ap.parse_args()
     args.func(args)
+
 
 
 if __name__ == "__main__":
