@@ -1,8 +1,8 @@
 # Overview
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-29
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-07-29
 | Managed objects | Account balance, consumption trends, top-up entry, alert threshold, and recent transactions |
 
 `Account Overview` summarizes the current account, including account balance, estimated available days, seven-day consumption, month-to-date spending, month-to-date top-ups, monthly estimate, last top-up, billing support, alert threshold, consumption analysis, top three cost sources, and recent transactions. Use it to assess account status before opening Transactions, Top-up Orders, Monthly Bill, or Quota Governance for details.
-
 
 #### Beginner Explanation
 
@@ -174,7 +173,6 @@ The overview shows only a subset of records; the full history is in Transactions
 **Solution:**
 
 Click **"View All"** or open `Transactions`, then filter again by time range and transaction type.
-
 
 #### Account Overview Does Not Update After Refresh
 

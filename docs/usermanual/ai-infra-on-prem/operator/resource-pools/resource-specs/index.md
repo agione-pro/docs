@@ -1,5 +1,10 @@
 # Resource Specs
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -15,8 +20,7 @@
 - **Specification metric** is a resource item in the package. CPU, memory, or accelerator metrics must exist before they can be combined into specifications.
 - **Associated cluster** determines where the specification is available. After creation, the specification still needs to match actual cluster capacity.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Specification ID | Resource package name displayed on the user side or job creation page. |

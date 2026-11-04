@@ -1,5 +1,10 @@
 # Frames
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Framework configuration is like a standard startup manual for model services. It defines which container image to use, which commands the main node and worker nodes run, which ports are exposed, which environment variables are injected, and what message is shown to users after creation succeeds. When users deploy a model through an inference template, the platform assembles the runtime environment from this configuration.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Framework Configuration | A reusable deployment environment template composed of core parameters such as container images, startup commands, network policies, and environment variables. |

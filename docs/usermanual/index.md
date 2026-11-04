@@ -1,8 +1,8 @@
 # User Manual
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-21
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Manual Overview
@@ -78,7 +78,6 @@ The manual is organized into five modules in the left sidebar:
 - Do not choose an entry only by menu name. Confirm your role, target object, and permission scope first.
 - For cross-module tasks, start from the related User Guide scenario. Use User Manual feature pages for page-level fields and procedures.
 - For cost, credential, deployment, deletion, publishing, or authorization operations, confirm impact scope before final confirmation.
-
 
 ## Result Validation
 

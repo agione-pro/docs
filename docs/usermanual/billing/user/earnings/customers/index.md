@@ -1,8 +1,8 @@
 # Customers
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Customer revenue, billing cycle, customer tags, current-cycle revenue, revenue proportion, join time, latest revenue, and details entry |
 
 `Customers` is used to view Provider revenue by customer. The page focuses on billing cycle, keyword and tag filters, customer statistic cards, current-cycle revenue, revenue proportion, customer join time, latest revenue in the billing cycle, and the details entry. Providers can use it to locate key customers and verify customer-level revenue details.
-
 
 #### Beginner Explanation
 
@@ -171,7 +170,6 @@ Tags affect customer filtering, operations classification, and follow-up.
 **How to handle:**
 
 Confirm tag meaning and customer scope before editing. If no change is required, close the dialog without saving.
-
 
 #### Customers Does Not Update After Refresh
 

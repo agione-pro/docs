@@ -1,5 +1,10 @@
 # Block Storage
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Block Storage is like the independent disk supplier for instances. It connects Ceph RBD or compatible block device capabilities to the platform. When users create instances that require persistent volumes, the platform applies and mounts block volumes according to the storage pool, capacity thresholds, and CSI configuration maintained here.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Ceph | A distributed storage system that can provide object, block, and file capabilities. |

@@ -1,8 +1,9 @@
 # My Calls - Overview
 
-> This page appears as **Overview** in the left menu.
-
-> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -100,7 +101,7 @@ The figure shows filters include month, `By Date`, `Model`, and `Client Source`;
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11 (All Month)` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -132,7 +133,7 @@ The figure shows filters include month, `By Date`, `Model`, and `Client Source`;
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filters applied | Metric cards and trend charts recalculate immediately based on selected month, model, or client source. | If data does not update, click outside the dropdown to remove focus or click the refresh button. |
 | Trend switching | Seamlessly switches between `Requests`, `Tokens`, and `Outcomes` line/bar views. | Refresh the page to reload chart components and inspect the browser console for rendering errors. |

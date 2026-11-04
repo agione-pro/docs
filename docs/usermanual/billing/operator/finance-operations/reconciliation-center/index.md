@@ -1,8 +1,8 @@
 # Reconciliation Center
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-10
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-07-10
 | Managed objects | Bilateral ledger check, compensation queue, revenue detail rebuild, unmatched transfer, and missing revenue detail |
 
 `Reconciliation Center` is used to inspect billing-operation exceptions, including bilateral ledger checks, compensation queues, revenue detail rebuilds, unmatched transfers, and missing revenue details. Operators select a billing cycle, refresh inspection results, and then continue verification in Financial Accounts, Settlement List, or Account Adjustment when exceptions appear.
-
 
 #### Beginner Explanation
 

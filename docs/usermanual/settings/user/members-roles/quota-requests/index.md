@@ -1,6 +1,9 @@
 # Quota Approvals
 
-> The left menu and page title use `Quota Approvals`; the Dashboard quick-action button is `Quota Requests`.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 

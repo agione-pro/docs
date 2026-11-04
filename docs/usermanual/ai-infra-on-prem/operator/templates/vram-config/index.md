@@ -1,5 +1,10 @@
 # VRAM Config
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 VRAM configuration is like a capacity estimator before deployment. It estimates required VRAM from model size, precision, context length, and KV Token, avoiding the discovery that the service cannot fit only after startup.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | VRAM | Accelerator memory used to store model weights, KV Cache, and intermediate computation. |

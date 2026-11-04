@@ -1,11 +1,8 @@
 # App Reviews
 
-> The current Operator account does not show this page in the left menu. If your account cannot see it, contact the platform administrator to confirm permissions.
-
-
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-31
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -102,9 +99,8 @@ The figure shows the application review drawer with Review Info, Application Tes
 4. Select the conclusion shown by the page, confirm the impact scope, and submit only after the selected records are correct.
 5. Refresh the list and verify every selected record in its corresponding status tab. If any record remains pending, review that record individually.
 
-## Parameter Reference
-
-| Field | Required | Field type | Example | Description |
+## Parameter Quick Reference
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Application name | System-displayed | Text | `sample-app` | Name of the app under review. |
 | Category | System-displayed | Tag | `Text Generation` | Category assigned to the app. |

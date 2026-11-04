@@ -1,5 +1,10 @@
 # Clusters
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -21,8 +26,7 @@ An On-Prem Resource Pool is like a local compute management system:
 
 The core purpose of cluster registration is to bring a real Kubernetes cluster into platform scheduling, monitoring, and resource management.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Kubernetes | A container orchestration system used to manage compute nodes, containers, service discovery, and job scheduling. |
@@ -73,19 +77,13 @@ The Clusters page uses a two-pane layout: the left **Cluster Index** lists clust
 | Detail header operations | The selected cluster's detail header provides an **Edit** button and an **Available** toggle switch; cluster-level enable/disable is done through this switch. |
 | Detail tabs | The detail pane switches between top tabs **Overview**, **Nodes**, **Jobs**, and **Configuration (Specs · Storage)**. |
 
-> Note: The current page does not expose a separate availability-zone list filter, a node-count search, or a grid/list view switch. If your environment shows these, treat the live page as authoritative.
-
 #### Cluster Details
 
 Cluster details are shown in the right pane through top tabs. **Overview** shows resource rings (CPU, AI Accelerator, Memory, Disk) and a **Basic Information** section (Cluster CIDR, Service CIDR, User Service External Access Endpoint, User Service Allocatable Cluster Port Range, Monitoring Port, User Service Forward Proxy Address, Blocked Container CIDRs, Supported Architecture, RDMA Support). **Configuration** contains sub-tabs **Associated Specifications**, **Model Repository**, **Shared Storage**, and **Cluster Schedulable Resource Limits**. Use this area first when troubleshooting cluster status, resource capacity, specification availability, or storage mounting.
 
-> Basic Information values may include internal addresses and network plans. Keep only redacted content in documents, screenshots, and tickets.
-
 #### Cluster Nodes
 
 The **Nodes** tab lists the cluster's nodes and a node detail view. Node details include node name, node age, status, role (master/worker), Kubernetes node status, **Node Labels**, and **Node Conditions**.
-
-> Whether node taints and monitoring charts are shown depends on the page; treat the live page as authoritative.
 
 ## Main Operations
 
@@ -383,8 +381,6 @@ The **Node Resources** dimension sets per-node, per-resource ratios; node addres
 | Cluster Schedulable Resource Ratio | Optional | Percentage, per dimension (Cluster Limits) | `100%` | Five dimension tabs: **System Default** / **Cluster Overall** / **Cluster Resources** / **Node Overall** / **Node Resources**. **0% is a valid limit**; a blank field inherits the parent rule. **System Default** thresholds are system-wide and read-only at cluster level. |
 | Model Repository | Conditional | Storage card (Model Repository sub-tab) | — | One built-in model repository per cluster; **Edit Model Repository** replaces its values, and the dialog's final action is **Save Changes** (**Cancel** discards). |
 | Final Actions | System-generated | Button | `Submit` / `Confirm` / `Confirm Association` / `Save Changes` / `Save Configuration` / `Cancel Editing` / **Available** toggle | Registration ends in **Submit**; Edit Cluster and Add Shared Storage in **Confirm**; specification association in **Confirm Association**; the model repository in **Save Changes**; cluster limits in **Save Configuration** (**Cancel Editing** discards); disable/enable uses the **Available** toggle. Each is a real write action. |
-
-> The registration wizard does not surface a JupyterLab address or a separate Context Name field; treat the live page as authoritative. A free-text **Description** does exist in the **Edit Cluster** dialog (see the row above).
 
 ## Pitfalls
 

@@ -1,8 +1,8 @@
 # Top-up Orders
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Customer top-up orders, payment channel, credited credits, order status, and customer balance changes |
 
 `Customer Top-up Orders` is used to view the customer top-up order list, top-up amount, credited credits, payment channel, order status, created time, completed time, and details entry. Operators use this page to verify customer balance changes and troubleshoot top-up issues.
-
 
 #### Beginner Explanation
 
@@ -196,7 +195,6 @@ The customer balance does not change after the order shows Succeeded.
 1. Wait briefly and refresh the page.
 2. Open `Finance Operations > Financial Accounts` and check the posted transaction.
 3. Check the business unit status and contact the platform administrator if necessary.
-
 
 #### Customer Top-up Orders Does Not Update After Refresh
 

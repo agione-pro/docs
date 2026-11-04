@@ -1,8 +1,8 @@
 # Today Tasks
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Billing cycle, settlement tasks, platform accounts, alert items, and downstream cards |
 
 `Today Tasks` is the finance operations workbench for viewing the current billing cycle settled amount, settlement progress, platform account status, alert items, and downstream processing entries.
-
 
 #### Beginner Explanation
 
@@ -168,7 +167,6 @@ The image shows the page entry or current state for this operation. Verify the p
 1. Open the related details page and review exception type and status.
 2. Confirm whether settlement, compensation, rebuild, or adjustment is required.
 3. After handling completes, return to Today Tasks and refresh the data.
-
 
 #### A Completed Task Appears Again
 

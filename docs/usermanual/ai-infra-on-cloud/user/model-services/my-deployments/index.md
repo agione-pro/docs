@@ -1,5 +1,10 @@
 # My Deployments
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 My Deployments is the task center for model services. Check status and events after creation, and publish only after the service is ready.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Deployment State | The current stage from creation to ready or failed. |
@@ -97,8 +101,7 @@ The image shows the target publication area selection dialog, allowing models to
 
 The image shows the Publish Model form, automatically populating the deployment prediction URL while configuring the API key, billing, and rate-limiting rules.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Name | No | Input | `demo-deployment` | Filters records by deployment name. Use sanitized examples only. |

@@ -1,5 +1,10 @@
 # Settings Overview
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 Settings covers accounts, members and roles, tenants, notifications, system configuration, and API rate control. Operators and users see different menus and page scopes. Confirm the current role before opening a page.
 
 ## Applicable Roles

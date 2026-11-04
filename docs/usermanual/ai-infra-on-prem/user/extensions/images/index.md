@@ -1,5 +1,10 @@
 # Images
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -15,8 +20,7 @@ The `Applicable Role` and `Page Route` values above do not appear in any of the 
 
 An image is the runtime environment of a job: the operating system, framework, Python packages, startup scripts, and dependencies. This page organizes images at two levels. A card in the `Image groups` panel is a namespace, a repository row under it is one image, and the table on the right lists the tags of that image.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Image | Container runtime environment. |

@@ -1,11 +1,8 @@
 # Apps
 
-> The current Operator account does not show this page in the left menu. If your account cannot see it, contact the platform administrator to confirm permissions.
-
-
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -78,9 +75,8 @@ The figure shows the Apps publication management page, displaying published app 
 2. Click **"Edit Tag"** to adjust the application's category or business tags in the dialog.
 3. Save changes and refresh the page to verify updated positions and tags in the list and client portal.
 
-## Parameter Reference
-
-| Field | Required | Field type | Example | Description |
+## Parameter Quick Reference
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | App Name | System-displayed | Text | `Example App` | App name displayed in the app list. |
 | Tag | System-displayed | Tag | `Agents & Interaction` | App category or display tag. |

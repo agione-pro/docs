@@ -1,5 +1,10 @@
 # System Setting
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -12,8 +17,7 @@
 
 System Setting is the workspace for Configuration, status, and relationships on System Setting. Confirm the object, state, and dependencies before an operation, and then use Result Validation to confirm downstream availability.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Configuration Item | A system-level parameter or switch provided by the platform. |

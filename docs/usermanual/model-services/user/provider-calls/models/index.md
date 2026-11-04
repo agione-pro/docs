@@ -1,8 +1,9 @@
 # Customer Calls (Provider) - Models
 
-> This page appears as **Models** in the **Customer Calls (Provider)** group.
-
-> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -58,7 +59,7 @@ The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -80,7 +81,7 @@ The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filter synchronization | Switching months or specifying a customer synchronously refreshes rows, requests, and share percentages | If the table becomes empty, click reset to clear filters and verify customer calls exist for published models in the period |
 | Metric accuracy | Model rows accurately display requests, share, success rate, and total tokens | If success rate is low, check Failed / Rate Limited counts and drill down to call logs to verify backend model instance health |

@@ -1,8 +1,8 @@
 # License
 
 ::: info Document Information
-Version: v1.1
-Updated: 2026-09-03
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview

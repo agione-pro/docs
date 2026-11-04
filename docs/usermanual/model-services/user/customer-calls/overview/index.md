@@ -1,8 +1,9 @@
 # Customer Calls (Monitoring) - Overview
 
-> The system menu currently shows both customer-call groups as **Customer Calls**; this manual labels this group **Customer Calls (Monitoring)**. The left-menu item is **Overview**.
-
-> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -76,7 +77,7 @@ The figure shows the page provides `Customer Analytics` and `Model Analytics` ta
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Time range | Yes | Date range | `2026-11-01` to `2026-11-03` | Statistics period |
 | Customers | System | Number | `0` | Customers that made calls |
@@ -101,7 +102,7 @@ The figure shows the page provides `Customer Analytics` and `Model Analytics` ta
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Seamless tab switching | Clicking between Customer Analytics and Model Analytics tabs swiftly reloads charts and metric cards with intact structure | If switching stalls or errors, refresh the page and verify monitoring permissions for the current account |
 | Metric card display | KPI cards fully display customer count, total calls, success/failure counts, and token consumption metrics | If all numbers show 0, verify whether active calls occurred in the time window or widen the date range |

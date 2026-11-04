@@ -1,5 +1,10 @@
 # Usage
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 My usage is like a personal resource consumption record, used to view how much compute, storage, and service resources were used over a period of time.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Quota | Resource upper limit available to a tenant. Common dimensions include GPU, CPU, memory, and specifications. |

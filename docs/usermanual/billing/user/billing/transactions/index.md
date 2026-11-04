@@ -1,8 +1,8 @@
 # Transactions
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Income records, expense records, transaction context, and business transaction numbers |
 
 The `Transactions` page is titled `Income & Expense Details` in the UI and is used to query billing records for the current account. Filter by transaction type, income/expense direction, and time range, then review transaction number, occurrence time, transaction type, context, credit change, post-change credits, business transaction number, remarks, and details.
-
 
 #### Beginner Explanation
 
@@ -166,7 +165,6 @@ The billing cycle, time range, transaction type, or statistical scope differs be
 **Solution:**
 
 Align the billing cycle and time range, refresh Monthly Bill, and group the comparison by transaction type when needed.
-
 
 #### Transactions Does Not Update After Refresh
 

@@ -1,5 +1,10 @@
 # Audio
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -70,7 +75,7 @@ The figure shows the top provides **Select Model**, **Task query**, and **Model 
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `Mock MiniMax Speech T2A` | Current audio model |
 | Text | Yes | Multi-line text | `Welcome to AGIOne` | Text to convert to speech |
@@ -85,7 +90,7 @@ The figure shows the top provides **Select Model**, **Task query**, and **Model 
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Audio model selected | The top area accurately displays the model name (e.g., `Mock MiniMax Speech T2A`) and provider info | If the list is empty, open [Models](../../discover/models/) to verify authorization for speech synthesis models |
 | Script submission | Clicking submit shows "Task created", keeps the input box active, and queues background rendering | If character limits are exceeded, divide long scripts by punctuation and submit in segments |

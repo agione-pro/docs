@@ -1,5 +1,10 @@
 # Runtime Images
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Runtime Images defines the runtime package for model services. It tells frameworks where an image is located and which platforms and pools can use it; incorrect configuration causes pull or startup failures.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Image Location | A reference in an image registry. Documentation uses placeholders only. |
@@ -79,8 +83,7 @@ The image shows the Edit Runtime Image dialog, where you can update the reposito
 2. Verify platform, architecture, pool scope, and update time.
 3. If information differs, verify it in Edit instead of adding a duplicate.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud Platform | Yes | Tab/Single select | `Alibaba Cloud` | Selects the cloud platform to which the image belongs or on which it can be used. |

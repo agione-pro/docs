@@ -1,6 +1,9 @@
-# Platform Calls - Customers
+# Customers
 
-> This page is labeled **Customers** in the left menu. The page heading is **Platform Calls - Customers**.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -54,7 +57,7 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Required | Month picker | `2026-11 (All Month)` | Statistics month |
 | By Date | Optional | Toggle | `By Date` | Time granularity |
@@ -75,7 +78,7 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page loaded | The heading `Platform Calls - Customers`, `Updated hourly`, and filters are visible | Refresh the page or check whether the operator account has customer call analytics permissions |
 | Table structure | Headers include `Customer`, `Requests`, `Share`, `Success Rate`, `Failed`, `Rate Limited`, `Total Tokens`, `Avg TTFT`, `Avg TPOT`, `Avg E2E`, and `Actions` | If throughput metrics are missing, verify whether called models support streaming output metrics |

@@ -1,5 +1,10 @@
 # Quotas
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 My quota is like a personal resource balance sheet. It shows how many instances can still be created and how much compute and storage can still be used.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Quota | Resource upper limit available to a tenant. Common dimensions include GPU, CPU, memory, and specifications. |

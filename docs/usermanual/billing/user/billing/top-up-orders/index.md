@@ -1,8 +1,8 @@
 # Top-up Orders
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Top-up orders, credit sources, top-up amounts, credited amounts, and order states |
 
 `Top-up Orders` displays top-up records initiated by or associated with the current account, including order number, credit source, top-up amount, credited amount, order state, completion time, creation time, and details. Locate a top-up by order number, state, or credit source to confirm whether processing completed.
-
 
 #### Beginner Explanation
 
@@ -166,7 +165,6 @@ Posting is delayed or the current account, billing cycle, and transaction scope 
 **Solution:**
 
 Refresh Account Overview, then open `Transactions` and check for the income record. Contact the operator if the records remain inconsistent.
-
 
 #### Top-up Orders Does Not Update After Refresh
 

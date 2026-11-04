@@ -1,8 +1,8 @@
 # Financial Accounts
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-10
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-07-10
 | Managed objects | Platform clearing account, platform revenue account, account balance, transactions, and transaction details |
 
 `Financial Accounts` is used to review platform clearing accounts, platform revenue accounts, balances, income, expense, available amount, and transactions. Billing operators use this page to confirm whether funds are in the expected account and continue to settlement, monthly overview, or reconciliation pages when amounts differ.
-
 
 #### Beginner Explanation
 
@@ -204,7 +203,6 @@ Review total income, expenditure, and current balance in the Platform Revenue Ac
 **Possible cause:** No new transaction exists in the current billing period, account synchronization is delayed, or an upstream clearing, settlement, or reconciliation task failed.
 
 **Resolution:** Check the last update time and recent transactions. Confirm that the upstream transaction completed. If it completed but the account did not change, open Reconciliation Center and check for unmatched transactions or failed tasks.
-
 
 #### Account Details Entry Is Unavailable
 

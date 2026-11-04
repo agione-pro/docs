@@ -1,8 +1,8 @@
 # Monthly Overview
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Billing cycle, tenant settlement status, monthly revenue mix, and pending tasks |
 
 `Monthly Overview` is used to review monthly billing cycles, tenant settlement status, monthly gross flow, payable amounts, platform retained fee, revenue mix, and pending settlement tasks. Operators use this page to decide whether settlement statements can be generated or whether exceptions need follow-up first.
-
 
 #### Beginner Explanation
 
@@ -173,7 +172,6 @@ The image shows the page entry or current state for this operation. Verify the p
 1. Use the same billing period and status filters on both pages.
 2. Click **"Refresh"** in Monthly Overview.
 3. If the difference remains, open Reconciliation Center and check background tasks or exceptions.
-
 
 #### When Is Monthly Overview Ready for Settlement?
 

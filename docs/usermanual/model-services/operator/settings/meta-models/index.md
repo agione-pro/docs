@@ -1,6 +1,9 @@
 # Meta Models
 
-> This page is labeled **Meta Models** in the left menu. The main heading changes with the selected model author, for example **DeepSeek**.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -96,7 +99,7 @@ Imported and exported files may contain protocol and capability configuration. K
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Author | Carried in | Drop-down / read-only | `DeepSeek` | Author that owns the meta model |
 | Name | Required | Text | `DeepSeek-V4-Pro` | Name shown in the list and model cards |
@@ -122,7 +125,7 @@ Imported and exported files may contain protocol and capability configuration. K
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Author context switch | Clicking an author on the left immediately updates the right-hand title and meta model table. | If unresponsive, check network connectivity or re-click the target author item. |
 | Meta model created | Submitting the wizard redirects to the table; searching the name displays the new row with `Enable` status. | If missing, verify whether another author was selected or if required wizard fields were skipped. |

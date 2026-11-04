@@ -1,5 +1,10 @@
 # Models
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -80,7 +85,7 @@ Model providers can click **"Publish Model"** in the upper right. Publishing sco
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Search | No | Text | `GPT-6.1` | Search by model name, author, series, or source |
 | Input / Output Capability | No | Multi-select | `Text`, `Image` | Filter by supported modality |
@@ -106,7 +111,7 @@ Model providers can click **"Publish Model"** in the upper right. Publishing sco
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filters applied | Model card counts and top capability counters update synchronously after selecting filters or typing a query | Click **"Reset"** to clear conflicting filters and check whether published models exist under the chosen criteria |
 | Details match | Clicking a model card opens the details page with identical model title and model ID | If a 404 or permission error occurs, verify whether your tenant account has visibility permissions for the model |

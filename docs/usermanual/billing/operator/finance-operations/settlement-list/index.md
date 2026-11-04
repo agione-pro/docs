@@ -1,8 +1,8 @@
 # Settlement List
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Settlement statements, tenants, billing cycles, settlement status, payable amount, and posting confirmation |
 
 `Settlement List` is used to search, generate, and track tenant settlement statements. Billing operators can filter settlement statements by billing cycle, status, and tenant, open details to verify amount, status, and posting confirmation, and start the settlement generation flow from this page.
-
 
 #### Beginner Explanation
 

@@ -1,5 +1,10 @@
 # Tenant-Cloud Auth
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Tenant-Cloud Auth grants a tenant access to a cloud platform. Authorized tenants can become eligible to see platform resources; removing authorization withdraws that scope.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Single-Tenant Authorization | Grants the selected cloud platform to one tenant. |
@@ -83,8 +87,7 @@ The image shows the Edit Tenant-Cloud Authorization dialog, where you can verify
 
 The image shows the secondary confirmation dialog for deleting a tenant-cloud authorization, which revokes the tenant's access permissions to the specified cloud platform.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Tenant Name | No | Text | `Sample Tenant` | Filters authorization records by tenant name. Do not enter a real customer name in examples. |

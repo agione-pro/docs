@@ -1,5 +1,10 @@
 # Clusters
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -12,8 +17,7 @@
 
 Cluster statistics are like health check reports for each equipment room. They compare capacity, health status, and resource watermarks across clusters to determine whether an issue is a local cluster problem or global resource shortage.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Cluster Capacity | Total CPU, memory, GPU/NPU, and other resources the cluster can provide. |
@@ -136,7 +140,6 @@ Use this when cluster resource utilization shows high watermarks or abnormal sta
 | Node Status | System-generated | Status | `Normal / Abnormal` | Shows the count distribution of normal and abnormal nodes. |
 | Total Jobs | System-generated | Number | `1` | Shows the number of jobs in the cluster. |
 | Job Status | System-generated | Status | `Running / Completed / Failed / Paused / Terminated` | Shows the count distribution of jobs across states. |
-
 
 ## Pitfalls
 

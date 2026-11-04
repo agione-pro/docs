@@ -1,8 +1,9 @@
 # My Calls - Members
 
-> This page appears as **Members** in the left menu.
-
-> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -58,7 +59,7 @@ The figure shows filters are month, `By Date`, `Model`, `Client Source`, and `Na
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -80,7 +81,7 @@ The figure shows filters are month, `By Date`, `Model`, `Client Source`, and `Na
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Member rows displayed | All members with attributable calls in the month are listed in the table, sorted by requests descending | If the table shows `No Data Available`, verify whether members used personal User Keys or shared Project Keys |
 | Metrics precision | Request counts, share percentages, success rates, and token totals show concrete numbers | If success rate is low, inspect failed calls to diagnose key permission expirations or billing locks |

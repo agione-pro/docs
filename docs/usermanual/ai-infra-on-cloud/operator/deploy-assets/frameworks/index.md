@@ -1,5 +1,10 @@
 # Frameworks
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Frameworks defines how a model service runs. A framework version combines the runtime image, startup method, and support scope for use by model-library records.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Inference Framework | The runtime framework that hosts model inference. |
@@ -83,8 +87,7 @@ The image shows the Add Framework form, containing configurations for cloud acco
 
 The image shows the confirmation dialog for publishing a framework version, making it available for reference in model configurations.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud Platform | Yes | Tab/Single select | `Alibaba Cloud` | Selects the cloud platform to which the framework belongs. |

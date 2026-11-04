@@ -1,5 +1,10 @@
 # Nodes
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 | Item | Content |
 | --- | --- |
@@ -11,8 +16,7 @@
 
 Node statistics are like a server inspection checklist. They show the disk, memory, CPU, and AI accelerator watermarks of each node, together with job and Pod counts, helping determine which machine an issue lands on.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Node Status | Whether a node is `Normal` or `Abnormal`. |

@@ -1,8 +1,8 @@
 # Account Adjustment
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-10
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-07-10
 | Managed objects | Billing records, adjustment impact assessment, and adjustment records |
 
 `Account Adjustment` is used to find billing records that require manual correction, evaluate adjustment impact, and review submitted adjustment records. The page warns that submitted adjustments may generate real fund flows and are usually irreversible, so approval, reason, and impact scope must be confirmed before submission.
-
 
 #### Beginner Explanation
 
@@ -199,7 +198,6 @@ The adjustment record does not appear after processing completes.
 1. Clear the filters and refresh the page.
 2. Confirm that approval and submission have completed.
 3. If the record is still missing, ask an administrator to check permissions and background processing status.
-
 
 #### Account Adjustment Entry Is Unavailable
 

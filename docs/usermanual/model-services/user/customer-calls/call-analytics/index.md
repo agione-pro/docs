@@ -1,8 +1,9 @@
 # Customer Calls (Monitoring) - Call Analytics
 
-> The system menu currently shows both customer-call groups as **Customer Calls**; this manual labels this group **Customer Calls (Monitoring)**. The left-menu item is **Call Analytics**.
-
-> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -74,7 +75,7 @@ The figure shows the page provides `Models` and `Customers` tabs; filters includ
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month / date range | Yes | Selector / date range | `2026-11`; `2026-11-01` to `2026-11-03` | Statistics period |
 | Model type | No | Selector | `All Model type` | Filter by model type |
@@ -98,7 +99,7 @@ The figure shows the page provides `Models` and `Customers` tabs; filters includ
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Tab switching | Freely switches between `Models` and `Customers`, with table headers adjusting accordingly. | If the table does not refresh, re-click the target tab or refresh the browser. |
 | Filters applied | Entering a model name or ID and clicking **"Search"** redraws the table with matching rows. | If no records match, check case sensitivity or click **"Reset"** to clear type restrictions. |

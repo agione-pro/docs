@@ -1,8 +1,8 @@
 # Quota Governance
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-23
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-07-23
 | Managed objects | Project quotas, member quotas, billing-cycle usage, and risk action queue |
 
 `Quota Governance` displays quota usage, available balance, and risk state by project and member in the current billing cycle. Use it to identify projects or members approaching their quota limit and adjust usage plans before business is affected.
-
 
 #### Beginner Explanation
 
@@ -167,7 +166,6 @@ Data refresh is delayed or the action did not cover every affected object.
 **Solution:**
 
 Refresh the page and review the current billing cycle again. If the risk remains, open the related project or member details.
-
 
 #### Quota Governance Does Not Update After Refresh
 

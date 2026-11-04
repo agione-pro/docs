@@ -1,5 +1,10 @@
 # Access Overview
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Access Overview is a dashboard for cloud access readiness. It combines platforms, pools, accounts, deployment assets, and both authorization types so that missing prerequisites are visible.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Access Foundation | A summary of connected cloud platforms, resource pools, and accounts. |
@@ -75,8 +79,7 @@ The image shows the same page in full view: each row of the operations resource 
 2. Click **"Manage Authorization"** to open the responsible page.
 3. After authorization, return and confirm that counts and status are synchronized.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Connected clouds | System-generated | Number / list | Displayed on page | Shows the number and names of connected cloud platforms. |

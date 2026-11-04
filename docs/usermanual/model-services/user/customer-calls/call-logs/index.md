@@ -1,8 +1,9 @@
 # Customer Calls (Monitoring) - Call Logs
 
-> The system menu currently shows both customer-call groups as **Customer Calls**; this manual labels this group **Customer Calls (Monitoring)**. The left-menu item is **Call Logs**.
-
-> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -66,7 +67,7 @@ The figure shows filters include `All Model type`, `All Call status`, a `Model n
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month / date range | Yes | Selector / date range | `2026-11`; `2026-11-01` to `2026-11-03` | Statistics period |
 | Model type | No | Selector | `All Model type` | Filter by model type |
@@ -86,7 +87,7 @@ The figure shows filters include `All Model type`, `All Call status`, a `Model n
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filter precision | Switching model type or call status and clicking Search immediately narrows records to matched calls | If records do not refresh, verify that the **"Search"** button was clicked |
 | Record integrity | Each row clearly shows call timestamp, platform route ID, customer name, token usage, and status | If the customer column is blank or corrupted, check whether API client tokens correctly bind tenant identities |

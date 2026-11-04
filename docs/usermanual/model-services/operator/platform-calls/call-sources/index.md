@@ -1,6 +1,9 @@
-# Platform Calls - Client Sources
+# Client Sources
 
-> This page is labeled **Client Sources** in the left menu. The page heading is **Platform Calls - Call Sources**.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -55,7 +58,7 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Required | Month picker | `2026-11 (All Month)` | Statistics month |
 | By Date | Optional | Toggle | `By Date` | Time granularity |
@@ -76,7 +79,7 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page loaded | The heading `Platform Calls - Call Sources`, `Updated hourly`, and filters are visible | Refresh the page or check whether the operator account has call analytics permissions |
 | Table structure | Headers include `Client Source`, `Requests`, `Share`, `Success Rate`, `Failed`, `Rate Limited`, `Total Tokens`, `Avg TTFT`, `Avg E2E`, and `Actions` | If table columns are missing or misaligned, clear browser cache and reopen |

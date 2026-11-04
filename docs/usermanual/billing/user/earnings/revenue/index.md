@@ -1,8 +1,8 @@
 # Revenue
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Revenue overview, revenue account balance, account activity, billing cycle analysis, settlements, and customer revenue |
 
 `Revenue` is used to view Provider revenue overview, revenue account balance, current month estimate, billing cycle analysis, revenue account activity, settlements, and customer revenue details. Provider accounts can use this page to understand revenue trends, verify revenue account activity, and reconcile revenue with monthly settlements and customer details.
-
 
 #### Beginner Explanation
 
@@ -145,7 +144,6 @@ No activity record appears after switching to `Revenue Account Activity`.
 **How to check:**
 
 Return to Revenue Overview to check settlement history, then open monthly settlements to verify whether the corresponding billing cycle has been settled.
-
 
 #### Revenue Does Not Update After Refresh
 

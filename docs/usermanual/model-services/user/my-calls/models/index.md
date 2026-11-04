@@ -1,8 +1,9 @@
 # My Calls - Models
 
-> This page appears as **Models** in the left menu.
-
-> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -58,7 +59,7 @@ The figure shows filters are month, `By Date`, `Model`, `Client Source`, **Expan
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -80,7 +81,7 @@ The figure shows filters are month, `By Date`, `Model`, `Client Source`, **Expan
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Model rows complete | All models called during the period are listed in the table, sorted by request volume descending | If the table shows `No Data Available`, verify whether calls occurred and clear other filter inputs |
 | Metrics precision | Request counts, share percentages, success rates, and total tokens display concrete values | If success rate is `--` or low, inspect failed and rate-limited calls to diagnose endpoint issues |

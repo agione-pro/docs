@@ -1,8 +1,8 @@
 # Customer Overview
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-29
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-07-29
 | Managed objects | Customer records, customer tags, account balances, consumption, and revenue information |
 
 `Customer Overview` is used to view EU and Provider customer records, tags, account balances, consumption, and revenue-related information. Operators can use this page to locate customers, verify customer identity, and continue with downstream billing checks.
-
 
 #### Beginner Explanation
 
@@ -202,7 +201,6 @@ The new tag does not take effect after you enter a name and save it.
 1. Shorten the tag name and use a stable, recognizable name.
 2. Check the current number of tags and remove an unnecessary tag before retrying.
 3. Rename the tag and create it again.
-
 
 #### Customer Overview Does Not Update After Refresh
 

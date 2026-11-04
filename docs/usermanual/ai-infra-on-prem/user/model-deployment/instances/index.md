@@ -1,5 +1,10 @@
 # Instances
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 A model instance runs a deployed model service. Create it from a deployment template or use Custom Deploy on this page, then inspect its card, publish its inference service, or delete it when no longer needed.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Instance | A runtime object created by the platform and scheduled to a cluster, such as a model service, online IDE, or runtime instance. |
@@ -98,7 +102,6 @@ The form includes storage, ports, variables, and the start command. Built-in var
 - If the instance appears, compare the model, framework, and resource summary on its card with the intended deployment.
 
 #### Notes
-
 
 ### View Basic Info and Task Configuration
 

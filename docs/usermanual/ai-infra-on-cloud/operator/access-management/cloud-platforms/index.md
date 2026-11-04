@@ -1,5 +1,10 @@
 # Cloud Platforms
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Cloud Platforms registers the cloud providers that can be used. Add the platform type and record before accounts, pools, and authorization can reference it.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Public Cloud | A cloud platform provided by an external cloud provider. |
@@ -79,8 +83,7 @@ The image shows the Edit Cloud Platform dialog for private cloud platforms, wher
 2. Click **"Delete"** and verify the target in the confirmation message.
 3. Confirm deletion and refresh the list. If deletion fails, remove the dependencies identified by the page.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud Platform Name | No | Text / search condition | `Huawei Cloud` | Cloud platform name used for list display and search. |

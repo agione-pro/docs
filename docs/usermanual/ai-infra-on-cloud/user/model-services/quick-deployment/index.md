@@ -1,5 +1,10 @@
 # Quick Deployment
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Quick Deployment is a deployment wizard. Select a deployable model, review recommended regions and flavors, and create the deployment after confirming resources, cost, and authorization.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Deployable Scope | Models and regions available under current authorization and resources. |
@@ -79,8 +83,7 @@ The image shows the Smart Deployment Recommendation page, supporting deployment 
 
 The image shows the Publish Deployment task creation dialog, where you select the target cloud account, specify the deployment task name, and provide an optional description before launching deployment.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Current Scope | No | Status tag | `Sample Cloud / Sample Region` | Displays the currently selected deployable cloud platform and region. |

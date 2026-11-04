@@ -1,6 +1,9 @@
 # Model Templates
 
-> This page is labeled **Model Templates** in the left menu. The main heading changes with the selected model source, for example **Alibaba-intl**.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -79,7 +82,7 @@ The figure shows Step 1 shows the `Select Author` cards and `Provider Informatio
 
 ### Filters
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Source | Required | Left list selection | `Alibaba-intl` | Determines the right-hand template list |
 | Author | Optional | Drop-down | `DeepSeek` | Filters by model author |
@@ -89,7 +92,7 @@ The figure shows Step 1 shows the `Select Author` cards and `Provider Informatio
 
 ### Add template - step 1
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Author | Required | Card selection | `deepseek · DeepSeek` | Author the template belongs to |
 | Provider | Required | Drop-down | `Alibaba-intl` | Model source provider |
@@ -106,7 +109,7 @@ Fields in steps 2 and 3 follow what the page displays. After selecting a meta mo
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Correct model source | The heading on the right matches the highlighted source on the left | Check scroll position in the left source list and click the target model source again |
 | Wizard position | The step bar shows `1 Model Provider / Author`, `2 Meta Model`, and `3 Preview` | If unable to proceed to next step, check whether all required items (author, provider, region) are selected |

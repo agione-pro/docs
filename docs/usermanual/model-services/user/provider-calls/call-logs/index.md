@@ -1,8 +1,9 @@
 # Customer Calls (Provider) - Call Logs
 
-> This page appears as **Call Logs** in the **Customer Calls (Provider)** group.
-
-> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -78,7 +79,7 @@ The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -104,7 +105,7 @@ The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filters applied | Changing month, model, or customer dynamically refreshes table records and top percentile metrics | If the table is empty, click reset to clear filters and verify whether customer calls occurred in the month |
 | Percentile cards populated | Metric cards display millisecond (ms) or second (s) P99/P95 latencies | If `--` appears, the sample count in the filtered range is insufficient to compute statistical percentiles |

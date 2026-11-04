@@ -1,5 +1,10 @@
 # Accelerators
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -17,8 +22,7 @@
 - **Managed** means the platform can include this model in resource specifications and job scheduling.
 - **Not adapted** models can be maintained as hardware information first, but cannot be opened as stable scheduling capability directly.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Accelerator Vendor | Accelerator manufacturer, such as NVIDIA, Huawei, AMD, or Intel. |

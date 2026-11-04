@@ -1,8 +1,9 @@
 # Customer Calls (Provider) - Overview
 
-> This page appears as **Overview** in the **Customer Calls (Provider)** group.
-
-> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -80,7 +81,7 @@ The figure shows filters include month, model, and customer; KPI cards show requ
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -107,7 +108,7 @@ The figure shows filters include month, model, and customer; KPI cards show requ
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filter synchronization | Switching months or selecting a model/customer redraws all KPI cards and charts in unison | If cards turn blank, click reset to clear filters and check whether external calls occurred |
 | Peak & latency metrics | Peak RPM/TPM display integer numbers, and Avg TTFT/TPOT/E2E show millisecond or second durations | If `--` appears, the sample count in scope is insufficient; wait for hourly aggregation or widen the date range |

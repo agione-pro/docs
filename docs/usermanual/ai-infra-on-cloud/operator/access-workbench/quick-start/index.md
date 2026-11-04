@@ -1,5 +1,10 @@
 # Quick Access
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Quick Access is a five-step checklist. It does not replace configuration pages; it shows current progress and the next responsible page.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Access Status | The overall state of the access workflow. |
@@ -70,8 +74,7 @@ The image shows the Quick Start onboarding workflow page, detailing the overall 
 2. Click **"View Access Overview"**.
 3. Continue with deployment-asset and authorization checks.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Page title | System-generated | Text | `Quick Start` | Page title displayed for Quick Access. |

@@ -1,5 +1,10 @@
 # My Models
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -91,7 +96,7 @@ The figure shows the wizard shows `1 Basic Information`, `2 Billing Configuratio
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Publish type | Yes | Card | `Private Model` / `Public Model` | Determines visibility and call scope |
 | Meta Model | Yes | Selector | `GPT-6.1 Sol` | Capability and protocol definition |
@@ -126,7 +131,7 @@ The figure shows the wizard shows `1 Basic Information`, `2 Billing Configuratio
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Publish record | The target model appears in `My Published` with type, billing mode, status, and update time. | If missing, verify that search filters are cleared, or check if the model is pending approval. |
 | Aggregate record | The aggregate model appears in `My Aggregate` with normal status. | Refresh the page; if not generated, check child model dependencies and routing policies. |

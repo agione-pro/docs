@@ -1,8 +1,8 @@
 # Business Units
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Business units, payment channels, top-up amount limits, initial balance, overdraft limit, and status |
 
 `Business Units` is used to configure business units, payment channels, single top-up amount ranges, initial balance, overdraft limit, and enabled or disabled status. These settings affect the customer top-up flow, available payment channels, and balance rules.
-
 
 #### Beginner Explanation
 
@@ -149,7 +148,6 @@ The displayed balance, consumption, settlement status, monthly bill, or License 
 #### Save fails
 
 Check the selected billing cycle, customer or project scope, status filters, and related asynchronous task records. Compare the result with transaction details, settlement records, and operation logs before repeating any high-risk billing action.
-
 
 #### Business Units Does Not Update After Refresh
 

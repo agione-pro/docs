@@ -1,5 +1,10 @@
 # Access Accounts
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Access Accounts is the Model Provider entry for cloud accounts. After an account is added, the platform can discover authorized resources for Quick Deployment.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Access Account | A Model Provider account used to access cloud resources. |
@@ -69,8 +73,7 @@ The image shows the account list on the Access Management page: cloud-platform f
 
 The image shows the **"Add Cloud Account"** dialog with four required fields: account name, cloud platform selector, Access Key ID, and Access Key Secret, with **"Cancel"** and **"Confirm"** buttons at the bottom; the credential fields are shown empty and real values must be entered through a secure channel.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud platform tabs | No | Tabs | `All` | Filters the account list by cloud platform. |

@@ -1,5 +1,10 @@
 # Video
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -76,7 +81,7 @@ The figure shows the current model is `wan3.0-video` from `Alibaba`; parameters 
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `wan3.0-video` | Current video model |
 | Provider | System | Text | `Alibaba` | Provider of the current model |
@@ -92,7 +97,7 @@ The figure shows the current model is `wan3.0-video` from `Alibaba`; parameters 
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Video model selected | The top bar accurately displays the model name (e.g., `wan3.0-video`) and provider info | If missing, open [Models](../../discover/models/) to check whether the tenant has active video model authorization |
 | Parameters configured | Resolution and Ratio dropdowns show concrete values, and the script input box is active | If unsupported parameter errors occur, verify whether the model supports the chosen resolution tier |

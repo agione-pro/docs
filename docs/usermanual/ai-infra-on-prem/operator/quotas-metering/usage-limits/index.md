@@ -1,5 +1,10 @@
 # Usage Limits
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -12,8 +17,7 @@
 
 Usage limits are like a resource boundary sheet for a tenant. Resource specifications define how much resource a single instance or job uses, and usage limits define how much resource a tenant can use in total and whether specific specifications carry a quota. Quotas have two scopes: the default scope applies to tenants without an individual setting, and the selected-tenant scope applies only to the tenants chosen inside the dialog.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Resource Limits | Limits tenant usage by resource category, such as CPU, memory, and accelerator. |

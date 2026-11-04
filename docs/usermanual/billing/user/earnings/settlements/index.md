@@ -1,8 +1,8 @@
 # Settlements
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Monthly settlement statements, billing cycles, settlement status, amount to settle, actual received amount, rounding adjustment, and received time |
 
 `Settlements` is used to view Provider monthly settlement statements by billing cycle. The page focuses on settlement status, amount to settle, actual received amount, rounding adjustment, received time, and the details entry. Providers can use it to verify monthly settlement results and reconcile them with Revenue Overview and Revenue Account Activity.
-
 
 #### Beginner Explanation
 
@@ -160,7 +159,6 @@ The current billing-cycle status does not meet transfer conditions, or the accou
 **How to handle:**
 
 Check settlement statement status and account permissions. Do not bypass page prompts when conditions are not met.
-
 
 #### Settlements Does Not Update After Refresh
 

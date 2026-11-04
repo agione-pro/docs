@@ -1,5 +1,10 @@
 # Templates
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Templates can be understood as an ordering page for model services. The user first selects a model, then checks the available accelerator and recommended specification, fills in deployment settings when needed, and finally reviews the preview before creating a model instance.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Template | A deployable solution maintained by operators that combines model, framework, image, specification, startup parameters, and visibility rules. |
@@ -137,7 +141,6 @@ The following screen shows the business parameters and the recommended specifica
 The following screen shows the deployment settings and the preview of the same submission.
 
 ![Deployment settings](./images/deployment-settings.png)
-
 
 #### Result Validation
 

@@ -1,5 +1,10 @@
 # Model Earnings
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -68,7 +73,7 @@ The figure shows the page provides `Overview` and `Earning Details` tabs; KPI ca
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing cycle | Yes | Selector | `2026-11` | Billing period |
 | Date | No | Date range | `2026-11-01` to `2026-11-03` | Statistics date range |
@@ -90,7 +95,7 @@ The figure shows the page provides `Overview` and `Earning Details` tabs; KPI ca
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Period synchronization | Switching billing cycles or date ranges synchronously refreshes all four KPI cards, revenue trends, and ranking charts | If data disappears, click reset or switch to a historical month with active billed calls |
 | Period-over-period calculation | "Compared to Last Period" displays exact positive/negative percentages or flat markers | If there is no previous baseline period, `--` is normally displayed |

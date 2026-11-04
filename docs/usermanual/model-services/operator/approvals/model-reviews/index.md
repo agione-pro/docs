@@ -1,6 +1,9 @@
 # Model Reviews
 
-> This page is labeled **Model Reviews** in the left menu.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -81,7 +84,7 @@ The figure shows the drawer shows `Review Information`, `Basic Information`, `In
 
 ### List fields
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model name | System-maintained | Text | `DeepSeek-V4-Pro` | Pending model name; the identifier appears below |
 | Model visibility | System-maintained | Tag | `Public / All tenants` | Visibility after publishing |
@@ -95,7 +98,7 @@ The figure shows the drawer shows `Review Information`, `Basic Information`, `In
 
 ### Review drawer fields
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Customer name | System | Text | `AGIOneSystem` | Customer in Review Information |
 | Submit time | System | Date time | `Oct 27, 2026 15:20:00` | Submit time in Review Information |
@@ -125,7 +128,7 @@ The figure shows the drawer shows `Review Information`, `Basic Information`, `In
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Record is pending | `Review status` shows `Pending Review` and `Review time` shows `--` | If the status shows Approved or Rejected, another reviewer has already processed it; refresh the list to see current state |
 | Review drawer opened | The drawer title shows the model name and sections such as `Review Information` and `Basic Information` appear | If the drawer fails to slide out, verify network connectivity and click **"Review"** again |

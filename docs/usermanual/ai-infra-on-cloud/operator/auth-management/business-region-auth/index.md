@@ -1,5 +1,10 @@
 # Business-Region Auth
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Business-Region Auth defines the regions available to a business type. Even with tenant-cloud authorization, deployment remains limited to regions authorized here.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Business Type | A business scenario that needs cloud resources. |
@@ -69,8 +73,7 @@ The image shows the Business-Region Authorization list page, displaying the numb
 
 The image shows the Authorize Regions dialog, displaying a tree hierarchy of regions by cloud platform to select the specific regional resource pools authorized for the current business.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Business Type | Yes | Text/Group | `INFERENCE_JOB` | Business scenario whose region authorization is being configured. |

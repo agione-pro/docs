@@ -1,8 +1,9 @@
 # Platform Configuration
 
-> This page covers top-up mode and credit-request settings. Online payment channel configuration (Stripe / Alipay) is out of scope for this version.
-
-> The menu label is “Platform Settings”; the page title is “Platform Configuration”.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 

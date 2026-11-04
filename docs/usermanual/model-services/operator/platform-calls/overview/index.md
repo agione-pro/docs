@@ -1,6 +1,9 @@
-# Platform Calls - Overview
+# Overview
 
-> This page is labeled **Overview** in the left menu. The page heading is **Platform Calls - Overview**.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -78,7 +81,7 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ### Filters
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Required | Month picker | `2026-11 (All Month)` | Statistics month |
 | By Date | Optional | Toggle | `By Date` | Time granularity |
@@ -109,7 +112,7 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page loaded | Title displays `Platform Calls - Overview`, `Updated hourly` is marked, and filter controls render normally. | If blank, check Operator Admin permissions and refresh the browser. |
 | Filter linkage | Changing month or specifying a model/source updates KPI cards, charts, and tables synchronously. | If unrefreshed, ensure you pressed Enter or clicked the refresh button. |

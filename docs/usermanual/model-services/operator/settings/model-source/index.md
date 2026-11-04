@@ -1,6 +1,9 @@
 # Model Sources
 
-> This page is labeled **Model Sources** in the left menu. The main heading is **Model Source Directory**.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -103,7 +106,7 @@ Use the search box or the `Status` and `Modality` filters to narrow the list. Th
 
 ### Model Source level
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Source Code | Required | Text | `aliyun` | Unique identifier used by the list and search |
 | Simplified Chinese name | Required | Text, up to 128 characters | `阿里巴巴-中国` | Name shown in the Chinese interface |
@@ -113,7 +116,7 @@ Use the search box or the `Status` and `Modality` filters to narrow the list. Th
 
 ### Endpoint level
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Endpoint Display Name | Required | Multilingual text, up to 128 characters | `China` | Shown as the card title |
 | Region Tag | Optional | Text | `china` | Shown at the right of the card title |
@@ -132,7 +135,7 @@ Use the search box or the `Status` and `Modality` filters to narrow the list. Th
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Source created | Dialog submission succeeds and redirects to the config page; returning to the list shows the new code. | If creation fails, check whether the Code is globally unique and all three language names are filled. |
 | Endpoint bound | Table row displays `N endpoints`; clicking Details shows the newly added regional access point. | If the count did not increase, check if **"Save Endpoint"** was clicked in the drawer. |

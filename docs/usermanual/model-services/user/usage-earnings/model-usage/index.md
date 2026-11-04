@@ -1,5 +1,10 @@
 # Model Usage
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -68,7 +73,7 @@ The figure shows the page provides `Overview` and `Usage Details` tabs; KPI card
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing cycle | Yes | Selector | `2026-11` | Billing period |
 | Date | No | Date range | `2026-11-01` to `2026-11-03` | Statistics date range |
@@ -89,7 +94,7 @@ The figure shows the page provides `Overview` and `Usage Details` tabs; KPI card
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Period synchronization | Switching billing cycles or date ranges smoothly reloads KPI numbers and the four charts without flicker | If data disappears, click reset or switch to a historical month with billed calls |
 | Period-over-period calculation | "Compared to Last Period" displays exact positive/negative percentages or flat markers | If there is no previous baseline period, `--` is normally displayed |

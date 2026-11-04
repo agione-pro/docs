@@ -1,5 +1,10 @@
 # Images
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -76,7 +81,7 @@ The figure shows the current model is `qwen-image-3.0` from `Alibaba`; parameter
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `qwen-image-3.0` | Current image model |
 | Provider | System | Text | `Alibaba` | Provider of the current model |
@@ -92,7 +97,7 @@ The figure shows the current model is `qwen-image-3.0` from `Alibaba`; parameter
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Model selected | The top bar accurately displays the model ID (e.g., `qwen-image-3.0`) and full provider name | If the dropdown is empty, open [Models](../../discover/models/) to check model authorization and availability |
 | Parameter adjustments | Selecting a new size or image count immediately updates the values displayed in the settings panel | If a size exceeds supported dimensions, the interface automatically falls back to the recommended default |

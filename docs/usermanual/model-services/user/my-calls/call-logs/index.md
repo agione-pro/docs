@@ -1,8 +1,9 @@
 # My Calls - Call Logs
 
-> This page appears as **Call Logs** in the left menu.
-
-> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -78,7 +79,7 @@ The figure shows the page shows `Performance Distribution & Extremes` with `E2E 
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -104,7 +105,7 @@ The figure shows the page shows `Performance Distribution & Extremes` with `E2E 
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filters applied | Changing month, model, or source dynamically refreshes the table records and top percentile metrics | If the table is empty, click reset to clear filters and verify whether calls were generated in the selected month |
 | Percentile cards populated | Metric cards display millisecond (ms) or second (s) P99/P95 latencies | If `--` appears, the sample count in the filtered range is insufficient to compute statistical percentiles |

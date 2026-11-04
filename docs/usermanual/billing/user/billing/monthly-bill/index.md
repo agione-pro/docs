@@ -1,8 +1,8 @@
 # Monthly Bill
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
@@ -15,7 +15,6 @@ Updated: 2026-08-27
 | Managed objects | Billing-cycle trends, cycle summaries, billing events, and grouped bills |
 
 `Monthly Bill` shows consumption trends and billing summaries for the current account by billing cycle. Select a cycle to review consumption, top-ups, net change, and billing events, then break down cost sources by model, AI Infra, project, or member.
-
 
 #### Beginner Explanation
 
@@ -163,7 +162,6 @@ The dimension may have more recent workloads or high-cost calls, training, or de
 **Solution:**
 
 Record the sanitized dimension name and billing cycle, then review Transactions for the same time range and compare with business usage records when needed.
-
 
 #### Monthly Bill Does Not Update After Refresh
 

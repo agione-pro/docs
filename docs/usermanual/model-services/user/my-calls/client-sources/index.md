@@ -1,8 +1,9 @@
 # My Calls - Client Sources
 
-> This page appears as **Client Sources** in the left menu.
-
-> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -58,7 +59,7 @@ The figure shows filters are month, `By Date`, `Model`, **Expand**, and `Name or
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
@@ -79,7 +80,7 @@ The figure shows filters are month, `By Date`, `Model`, **Expand**, and `Name or
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filter synchronization | Switching months or specifying models immediately updates the rows and metrics displayed in the table | If the table becomes empty, click reset to clear filters and check whether calls occurred in the period |
 | Metrics precision | When requests exceed 0, share, success rate, and total tokens display concrete values | If success rate is `--` or 0%, inspect failed and rate-limited counts to diagnose client authentication errors |

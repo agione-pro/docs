@@ -1,5 +1,10 @@
 # Object Storage
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -16,8 +21,7 @@
 - **Endpoint** is the access entrypoint. The platform, clusters, or jobs need to access object storage through it.
 - **AK/SK** are access credentials and sensitive information. They should not appear in screenshots, documentation, or tickets.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | MinIO | A common S3-compatible object storage implementation. |

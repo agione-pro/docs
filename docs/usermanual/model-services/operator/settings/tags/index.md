@@ -1,6 +1,9 @@
 # Tags
 
-> This page is labeled **Tags** in the left menu.
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
@@ -83,7 +86,7 @@ The figure shows the dialog contains `Code`, multilingual `Tag Content`, and `No
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Code | Required | Text | `text-generation` | Unique code of the tag or category |
 | Tag Content | Required | Multilingual text | `Text Generation` | Name users see in lists and filters |
@@ -103,7 +106,7 @@ The figure shows the dialog contains `Code`, multilingual `Tag Content`, and `No
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | New tag created | Search by `Name`; the row appears and `Status` shows `Available` | If the record does not appear, switch to the `All` tab and ensure no trailing spaces exist in search input |
 | Subtag level correct | Expand the parent category; the new subtag appears indented below it | If improperly nested, click row **"Edit"** or re-add from the correct parent category |

@@ -1,5 +1,10 @@
 # Monthly Usage
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -12,8 +17,7 @@
 
 Monthly usage is like a monthly resource bill summary. It aggregates scattered compute, storage, and instance consumption into billing period, tenant, and resource type dimensions, and then lists the consumption as hourly metering records.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Billing Period | Month to which the metering data belongs, and also a page filter. |

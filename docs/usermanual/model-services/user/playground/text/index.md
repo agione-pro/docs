@@ -1,5 +1,10 @@
 # Text
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -72,7 +77,7 @@ The figure shows the current model is `GLM-5.2` with the `Aggregate` tag; the in
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `GLM-5.2` | Model or aggregate model used for the conversation |
 | Model tag | System | Tag | `Aggregate` | Model type or composition |
@@ -88,7 +93,7 @@ The figure shows the current model is `GLM-5.2` with the `Aggregate` tag; the in
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Model selected | The top bar accurately displays the target model name, aggregate tag, and full provider name | If the dropdown is missing the model, check [Models](../../discover/models/) to confirm publication and tenant visibility |
 | Message submitted | Pressing Enter or clicking send clears the input box and creates a user question bubble | If sending fails, check network connectivity or verify account quota and balance |

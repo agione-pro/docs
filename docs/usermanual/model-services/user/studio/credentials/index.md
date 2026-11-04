@@ -1,5 +1,10 @@
 # My Credentials
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -94,7 +99,7 @@ The figure shows `3 Credential information & API Key` provides required `Name` a
 
 ## Parameter Quick Reference
 
-| Field | Required | Field type | Example | Description |
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Credential display name | Yes | Text, 1–128 chars | `test66744` | Must be unique within the tenant and model source after trimming |
 | Description | No | Text | `Text chat test credential` | Identifies the credential purpose |
@@ -118,7 +123,7 @@ The figure shows `3 Credential information & API Key` provides required `Name` a
 
 ## Result Validation
 
-| Check Item | Success Signal | Handling on Failure |
+| Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Credential created | A new credential row appears in the table with status `Enabled`. | If missing, verify that filters are not excluding the status, or check the creation error message. |
 | Endpoint binding | `Active bindings` displays the correct number of bound Endpoints. | If 0, open row more actions, select `Endpoint`, and review network call configurations. |
