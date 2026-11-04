@@ -133,7 +133,7 @@ After completing the steps above, verify that the end-to-end workflow is in a re
 | --- | --- | --- |
 | ModelScope weight download fails or times out | Cluster outbound network connectivity, Model ID spelling, cluster storage capacity, and download logs | [On-Prem Models](/usermanual/ai-infra-on-prem/operator/templates/models/#faq) |
 | Inference template cannot be set to Available | Linked VRAM factor table, framework compatibility, accelerator specification association | [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/#faq) |
-| Model instance launch fails or stays in CrashLoop | Node NPU memory availability, concurrency/context configuration, driver and image version | [My Deployments](/usermanual/model-services/user/studio/my-deployments/#faq) |
+| Model instance launch fails or stays in CrashLoop | Node NPU memory availability, concurrency/context configuration, driver and image version | [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/#faq) |
 | Protocol test (Test) fails during publishing | Instance health status, service port exposure, protocol path, and model compatibility | [Model Reviews](/usermanual/model-services/operator/approvals/model-reviews/#faq) |
 | No response from cURL or Playground | API Key validity, account balance/quota, rate limit settings, and network firewall policies | [Model Market](/usermanual/model-services/user/discover/models/#faq) |
 
@@ -142,4 +142,4 @@ After completing the steps above, verify that the end-to-end workflow is in a re
 - [On-Prem Models](/usermanual/ai-infra-on-prem/operator/templates/models/)
 - [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
 - [My Models](/usermanual/model-services/user/studio/my-models/)
-- [My Deployments](/usermanual/model-services/user/studio/my-deployments/)
+- [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/)

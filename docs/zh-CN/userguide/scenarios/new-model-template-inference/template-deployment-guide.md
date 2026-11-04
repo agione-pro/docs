@@ -133,7 +133,7 @@
 | --- | --- | --- |
 | ModelScope 权重下载缓慢或失败 | 集群节点出网连通性、Model ID 拼写、目标集群存储容量及下载日志 | [On-Prem 模型管理](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/#常见问题) |
 | 推理模板无法置为 Available | 显存测算表关联、框架版本兼容性、加速卡规格绑定状态 | [推理模板配置](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/#常见问题) |
-| 模型实例启动超时或报错 Crash | 目标节点 NPU 卡显存余量、并发与上下文配置、驱动与容器镜像版本 | [我的部署运维](/zh-CN/usermanual/model-services/user/studio/my-deployments/#常见问题) |
+| 模型实例启动超时或报错 Crash | 目标节点 NPU 卡显存余量、并发与上下文配置、驱动与容器镜像版本 | [模型实例运维](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/#常见问题) |
 | 发布协议测试 (Test) 失败 | 实例健康状态、服务端口暴露、协议路径及所选模型是否支持该协议 | [模型审核与发布](/zh-CN/usermanual/model-services/operator/approvals/model-reviews/#常见问题) |
 | cURL 或 Playground 无响应 | API Key 有效性、账户余额/配额、限流配置与网络防火墙策略 | [模型广场体验与调用](/zh-CN/usermanual/model-services/user/discover/models/#常见问题) |
 
@@ -142,4 +142,4 @@
 - [On-Prem 模型](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/)
 - [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
 - [我的模型](/zh-CN/usermanual/model-services/user/studio/my-models/)
-- [我的部署](/zh-CN/usermanual/model-services/user/studio/my-deployments/)
+- [模型实例](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/)

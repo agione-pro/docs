@@ -460,7 +460,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ]
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {
@@ -485,7 +485,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "My Models", link: "/usermanual/model-services/user/studio/my-models/" },
-                    { text: "My Deployments", link: "/usermanual/model-services/user/studio/my-deployments/" },
+                    { text: "My Credentials", link: "/usermanual/model-services/user/studio/credentials/" },
                   ]
                 },
                 {
@@ -501,17 +501,31 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Overview", link: "/usermanual/model-services/user/my-calls/overview/" },
-                    { text: "Call Analytics", link: "/usermanual/model-services/user/my-calls/call-analytics/" },
+                    { text: "Members", link: "/usermanual/model-services/user/my-calls/members/" },
+                    { text: "Projects", link: "/usermanual/model-services/user/my-calls/projects/" },
+                    { text: "Client Sources", link: "/usermanual/model-services/user/my-calls/client-sources/" },
+                    { text: "Models", link: "/usermanual/model-services/user/my-calls/models/" },
                     { text: "Call Logs", link: "/usermanual/model-services/user/my-calls/call-logs/" },
                   ]
                 },
                 {
-                  text: "Customer Calls",
+                  text: "Customer Calls (Monitoring)",
                   collapsed: false,
                   items: [
                     { text: "Overview", link: "/usermanual/model-services/user/customer-calls/overview/" },
                     { text: "Call Analytics", link: "/usermanual/model-services/user/customer-calls/call-analytics/" },
                     { text: "Call Logs", link: "/usermanual/model-services/user/customer-calls/call-logs/" },
+                  ]
+                },
+                {
+                  text: "Customer Calls (Provider)",
+                  collapsed: false,
+                  items: [
+                    { text: "Overview", link: "/usermanual/model-services/user/provider-calls/overview/" },
+                    { text: "Models", link: "/usermanual/model-services/user/provider-calls/models/" },
+                    { text: "Customers", link: "/usermanual/model-services/user/provider-calls/customers/" },
+                    { text: "Client Sources", link: "/usermanual/model-services/user/provider-calls/client-sources/" },
+                    { text: "Call Logs", link: "/usermanual/model-services/user/provider-calls/call-logs/" },
                   ]
                 },
               ]
@@ -740,7 +754,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {
@@ -833,7 +847,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {

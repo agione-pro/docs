@@ -226,6 +226,6 @@ Record the following without including secrets:
 - [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
 - [Deployment Templates](/usermanual/ai-infra-on-prem/user/model-deployment/templates/)
 - [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
-- [My Deployments](/usermanual/model-services/user/studio/my-deployments/)
+- [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
 - [My Models](/usermanual/model-services/user/studio/my-models/)
 - [Model Experience and API Calling](/userguide/scenarios/model-experience-api-calling/)

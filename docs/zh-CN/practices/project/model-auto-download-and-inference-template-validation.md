@@ -226,6 +226,6 @@ curl -X POST "${AGIONE_BASE_URL}/v1/chat/completions" \
 - [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
 - [部署模板](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/templates/)
 - [模型实例](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
-- [我的部署](/zh-CN/usermanual/model-services/user/studio/my-deployments/)
+- [模型实例](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
 - [我的模型](/zh-CN/usermanual/model-services/user/studio/my-models/)
 - [模型的体验与调用](/zh-CN/userguide/scenarios/model-experience-api-calling/)

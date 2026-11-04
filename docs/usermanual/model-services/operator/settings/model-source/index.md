@@ -1,315 +1,191 @@
 # Model Sources
 
-::: info Document Information
-Version: v2.0
-Updated: 2026-10-29
-:::
+> This page is labeled **Model Sources** in the left menu. The main heading is **Model Source Directory**.
 
 ## Feature Overview
 
-| <span style="white-space:nowrap">Item</span> | Content |
+| Item | Content |
 | --- | --- |
-| <span style="white-space:nowrap">Applicable role</span> | Operator Admin |
-| <span style="white-space:nowrap">Navigation path</span> | **Model Services** > **Settings** > **Model Sources** |
-| <span style="white-space:nowrap">Page route</span> | List `/modelone/model-source`; configuration page `/modelone/model-source/{source ID}/edit` |
-| <span style="white-space:nowrap">Managed objects</span> | **Model Source** (unique code, multilingual display names), **Endpoints** (region tag, Base URL, console URL, documentation URL), protocol configuration |
+| Applicable role | Operator Admin |
+| Navigation path | **Model Services** > **Settings** > **Model Sources** |
+| Page route | List `/modelone/model-source`; configuration page `/modelone/model-source/{source ID}/edit` |
+| Managed objects | **Model Source** (unique code and multilingual names), **Endpoint** (region tag, Base URL, console URL, documentation URL), and protocols |
 
 #### Beginner Explanation
 
-A Model Source answers one question: **where does the platform call the upstream model service?**
+A model source answers where the platform calls an upstream model service. One source maps to one upstream provider, such as AGIOne, Alibaba, or DeepSeek. The source itself holds no call address; addresses live on its **Endpoints**. A meta model describes what the model can do; a model source describes where the service is called and which protocols it uses.
 
-One Model Source maps to one upstream provider, such as AGIOne, Alibaba Cloud, or DeepSeek. The source itself holds no call address. Addresses live on the **Endpoints** underneath it, and one source can have several Endpoints for different regions or access points. Each Endpoint carries **protocols** that describe the call styles and modalities it supports.
-
-Short comparison: a Meta-model describes what a model can do; a Model Source describes where the service is called and which protocols it uses.
-
-#### Glossary
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Model Source | A record of an upstream model service, holding a code, multilingual display names, and a set of Endpoints. |
-| Model Source Code | The identifier of a Model Source, entered on creation and read-only afterwards. It identifies one Model Source; it is not a separate object. |
-| Endpoint | One access point under a Model Source, with its own region tag and Base URL. |
-| Region tag | The region identifier of an Endpoint, such as `china`, `global`, or `cn-east`. |
-| Official Endpoint | Marks whether the access point is operated by the model provider. |
-| Base URL | The root address of the upstream service. Protocol paths are appended to it. |
-| `{workspace}` | A workspace placeholder in the Base URL. The gateway replaces it with the bound workspace identifier. |
-| Protocol configuration | The API protocols an Endpoint supports, such as `openai/chat_completions` or `anthropic/messages`. |
-| Modality | The content type of a protocol: text, image, video, audio, embedding, rerank, or multimodal. |
-
-#### Beginner Quick Reference
-
-| Case | Do First | Avoid |
-| --- | --- | --- |
-| First connection to an upstream service | Create the Model Source, then add its first Endpoint | Assuming the source is usable right after creation |
-| One upstream with several regions | Add several Endpoints under one source, each with its own region tag and Base URL | Creating one source per region |
-| The upstream needs a different host per tenant | Use the `{workspace}` placeholder in the Base URL | Hard-coding one tenant host in the Base URL |
-| Only reviewing the configuration | Use **"Details"** for a read-only view | Opening **"Configure"** and saving by accident |
-| Cannot find a source | Confirm you are on **Model Services** > **Settings** > **Model Sources** | Confusing it with **Platform Call Statistics** > **Model Sources** |
+| Model Source Code | The globally unique internal English code identifying the upstream vendor source (e.g., `aliyun`, `openai`), non-duplicable. |
+| Endpoint | A physical network access point under a model source, containing the Base URL, region tag, and protocol mappings. |
+| Official Endpoint | A flag indicating whether the access point is operated and hosted directly by the model vendor. |
+| {workspace} | A dynamic routing placeholder supported in Base URLs, automatically replaced at runtime by the gateway with the target workspace ID. |
 
 ## Prerequisites
 
-1. Confirm the current account can maintain Model Sources (Operator Admin).
-2. Get the region tag, Base URL, console URL, documentation URL, and protocol list from the upstream service owner.
-3. Confirm network, certificate, and allowlist requirements.
+1. The current account can view and maintain **Settings > Model Sources**.
+2. The region tag, Base URL, console URL, documentation URL, and protocol list are available from the upstream service owner.
+3. Network, certificate, and allowlist requirements are confirmed.
 
 ## Page Description
 
-The page is a two-level structure: a directory and a configuration page.
+The top area contains statistic cards and filters; the model source table sits below:
 
-| Page State | Responsibility | Leave the State After |
-| --- | --- | --- |
-| Model Source Directory | Read totals, search and filter sources, open configuration or details. | The target row is confirmed. |
-| Create Model Source dialog | Enter only the code and the three display names. | All names are filled and the code is unused. |
-| Configuration page | Maintain the source name; add, edit, copy, or delete Endpoints and protocols. | Name changes are saved with **"Save Model Source"**; Endpoint changes with **"Save Endpoint"**. |
-| Add Endpoint drawer | Enter region tag, Base URL, console URL, documentation URL, and protocols. | Required values and protocols are verified. |
-| Details drawer | Read-only view of the source, Endpoints, and protocol configuration. | Saved values are confirmed. |
+- Statistic cards: `Total model sources`, `Enabled`, `Disabled`.
+- Search box: `Search source name, code, Endpoint name, or Base URL`.
+- Filter groups: `Status` (`All statuses`, `Enabled`, `Disabled`) and `Modality` (`All modalities`, `Text`, `Image`, `Video`, `Audio`, `Embedding`, `Rerank`, `Multimodal`).
+- Table columns: `MODEL SOURCE NAME`, `CODE`, `ENDPOINT AND BASE URL`, `PROTOCOL CAPABILITIES`, `STATUS`, `ACTIONS`.
+- Row actions: **Configure** and **Details**; the list has no delete entry.
 
-Model Source Directory:
+![Model source list](./images/model-sources-list.png)
 
-![Model Source list](./images/model-source-list-public.png)
+The figure shows the cards show `Total model sources 22`, `Enabled 19`, and `Disabled 3`. Each row shows the endpoint count, code, endpoint name and Base URL, protocol tags, and status; the action column offers `Configure` and `Details`.
 
-The header offers **"Create Model Source"**; below it sit three statistic cards and the filter area, and the table lists `Model Source Name`, `CODE`, `ENDPOINT AND BASE URL`, `Protocol Capability`, `Status`, and `Actions`. The action column offers only **"Configure"** and **"Details"**; the list has no delete entry.
+| Area | Description |
+| --- | --- |
+| Top Metric Cards | Aggregates platform-wide total model sources, enabled sources, and disabled sources. |
+| Search & Filters | Supports queries by name, code, endpoint, or URL, plus filtering by status and modality. |
+| Directory Table | Lists model source multilingual names, codes, endpoint counts, Base URLs, and supported protocols. |
+| Row Actions | Provides **Configure** for Endpoint management and **Details** for read-only inspection. |
 
-### A Similarly Named Page Elsewhere
+### A similarly named statistics page
 
-The left menu also has an entry named "Model Sources" under **Platform Call Statistics**, routed at `/modelone/model-observation/operator/sources`. That is a **call statistics page** for reading traffic by source. You cannot create or edit a Model Source there.
+**Platform Call Analytics > Model Sources** is a statistics page (`/modelone/model-observation/operator/sources`). It shows call data by source and cannot create or edit a model source. Use **Settings > Model Sources** for configuration.
 
 ## Main Operations
 
-<!-- main-operation-title-exceptions: Create,Configure,Filter,Edit -->
+### Create a model source
 
-### Create a Model Source
+1. Go to **"Model Services"** > **"Settings"** > **"Model Sources"**.
+2. Click **"Create Model Source"** at the top right to open the `Create Model Source` dialog.
+3. Enter the unique identifier in `Model Source Code`, for example `unified_model_source`. The field is required.
+4. Enter the Chinese name on the `简体中文` tab under `Model Source Display Name`; the counter shows `0 / 128` characters.
+5. Switch to the `English` and `Español` tabs and enter a name for each language. All three tabs carry a `*` required mark.
+6. Click **"Create and Configure Endpoints"** to open the configuration page, or **"Cancel"** / the `×` to close.
 
-#### Applicable Scenarios
+![Create Model Source](./images/model-sources-add.png)
 
-- Connect an upstream model service for the first time and register it in the directory.
-- A source was disabled and you need a new source record.
+The figure shows the dialog contains only `Model Source Code` and `Model Source Display Name`. All three language tabs are required; the primary button reads `Create and Configure Endpoints`, not a confirm label.
 
-#### Steps
-
-1. Go to **Model Services** > **Settings** > **Model Sources**.
-2. Click **"Create Model Source"** at the top right to open the **"Create Model Source"** dialog.
-3. Enter the unique identifier in `Model Source Code`, for example `unified_model_source`. The field is required and cannot be changed later.
-4. Enter the Chinese name on the **"简体中文"** tab under `Model Source Display Name`. The limit is 128 characters.
-5. Switch to the **"English"** and **"Español"** tabs and enter a name for each language. All three tabs carry a required mark.
-6. Click **"Create and Configure Endpoints"**. This button takes you straight to the configuration page of the new source.
-7. To close without creating, click **"Cancel"** or the **"×"** at the top right.
-
-The dialog has only `Model Source Code` and `Model Source Display Name`. The primary button reads **"Create and Configure Endpoints"**, not a confirm label.
-
-![Create Model Source](./images/model-source-add-public.png)
-
-#### Notes
-
-- The dialog contains only `Model Source Code` and `Model Source Display Name`; both carry a required mark.
-- The page states that the backend enables the source after the first Endpoint is saved, not at creation time.
-- A Model Source holds no call address. The address belongs to an Endpoint.
-
-### Configure a Model Source Endpoint
-
-#### Applicable Scenarios
-
-- Register a call address and its protocol capabilities so model templates can select the source.
-- Add more Endpoints when one source needs several regions or access addresses.
-
-#### Steps
+### Configure an Endpoint
 
 1. Click **"Configure"** on the target row to open the configuration page.
-2. Click **"Add Endpoint"** in the `Endpoint Management` section to open the `ENDPOINT CONFIGURATION` drawer.
-3. Enter `Endpoint Display Name` under `Endpoint Information`, and switch the **"简体中文"**, **"English"**, and **"Español"** tabs as needed.
+2. Click **"Add Endpoint"** under `Endpoint Management` to open the `ENDPOINT CONFIGURATION` drawer.
+3. Enter `Endpoint Display Name` under `Endpoint Information`, and switch the `简体中文`, `English`, and `Español` tabs as needed.
 4. Enter a region tag in `Region Tag`, for example `china`, `global`, or `cn-east`.
 5. Turn on the **"Official Endpoint"** switch when the address is operated by the model provider.
-6. Enter the required `Base URL` under `Connection URLs`. Click **"Insert {workspace}"** when calls need dynamic workspace routing.
-7. Enter `Console URL` and `Documentation URL` when they apply. Empty values display as `--` on the card.
-8. Click **"Select and Add Protocols"** under `Protocol Configuration` and select the protocols this Endpoint supports.
+6. Enter the required `Base URL` under `Connection URLs`. Click **"Insert {workspace}"** for dynamic workspace routing.
+7. Enter `Console URL` and `Documentation URL` when they apply; empty values display as `--` on the card.
+8. Click **"Select and Add Protocols"** under `Protocol Configuration` and select the protocols the Endpoint supports.
 9. Click **"Save Endpoint"**. To discard the input, click **"Cancel"** or **"Exit Editor"**.
 
-The drawer has three sections: `Endpoint Information`, `Connection URLs`, and `Protocol Configuration`. `Base URL` is the only required field, and the **"Insert {workspace}"** button sits to its right.
+The drawer has three sections: `Endpoint Information`, `Connection URLs`, and `Protocol Configuration`. `Base URL` is the only required field.
 
-![Add Endpoint](./images/model-source-add-endpoint-public.png)
+### Filter model sources
 
-#### Result Validation
+1. Enter a source name, code, Endpoint name, or Base URL in the search box and click the search icon.
+2. In `Status`, select `All statuses`, `Enabled`, or `Disabled`.
+3. In `Modality`, select `All modalities`, `Text`, `Image`, `Video`, `Audio`, `Embedding`, `Rerank`, or `Multimodal`.
 
-- Each card uses the Endpoint display name as its title, with the region tag at the right of the title row.
-- `Base URL` appears as a link; empty `Console URL` and `Documentation URL` display as `--`.
-- The number after `Protocol Configuration` matches the number of listed protocols, with modality totals below, such as `text 3` and `image 3`.
-- The summary line above the cards reads that the backend enables the source after the first Endpoint is saved.
+Use the search box or the `Status` and `Modality` filters to narrow the list. The cards show `Total model sources`, `Enabled`, and `Disabled`; read them separately from the filtered rows.
 
-#### Notes
+### View details and edit
 
-- Each Endpoint card provides `Details`, `Edit`, `Copy`, and `Delete`.
-- The page states that Endpoints save independently and can be added, edited, copied, or deleted down to zero. Saving happens at the Endpoint level, separate from the Model Source level.
-- Request headers and other call parameters are configured per protocol, not in this drawer.
-- The gateway replaces `{workspace}` with the bound workspace identifier when it makes a call.
-
-### Filter Model Sources
-
-#### Applicable Scenarios
-
-- The directory holds many sources and you need to narrow by status or modality.
-- You need to identify which source owns a specific Base URL.
-
-#### Steps
-
-1. Go to **Model Services** > **Settings** > **Model Sources**.
-2. Enter a source name, code, Endpoint name, or Base URL in the search box and click the search icon.
-3. In the `Status` group, select `All statuses`, `Enabled`, or `Disabled`.
-4. In the `Modality` group, select `All modalities`, `Text`, `Image`, `Video`, `Audio`, `Embedding`, `Rerank`, or `Multimodal`.
-
-Three statistic cards show totals for all sources, enabled sources, and disabled sources. The status and modality filter groups sit below them.
-
-![Model Source filters](./images/model-source-filter-public.png)
-
-#### Result Validation
-
-- The name cell shows `N Endpoints`; rows with more than one Endpoint also offer **"View all N Endpoints"**.
-- The `Protocol Capability` column shows protocol chips with modality marks. Asynchronous protocols carry an `Async` tag, an empty configuration reads "No protocols configured", and extra protocols collapse into **"View all N protocols"**.
-- The footer shows the total count and pagination controls.
-
-#### Notes
-
-- Search and filters combine. Clear the search box and click the search icon again to reset it.
-- The cards count the whole directory, not the current filter result.
-
-### View Model Source Details
-
-#### Applicable Scenarios
-
-- Confirm the code, Endpoint count, and protocol configuration without entering edit mode.
-- Verify the target record before maintenance or share the configuration with a reviewer.
-
-#### Steps
-
-1. Click **"Details"** on the target row.
-2. The drawer subtitle reads "Read-only view of the Model Source, Endpoints, and protocol configuration".
-3. Check the status badge, `Model Source Code`, and `Endpoint Count` under `Model Source Basic Information`.
-4. Review each card under `Endpoint Management`, such as `Endpoint #1` and `Endpoint #2`.
-5. Each card shows the region name, region tag, Base URL, and `Protocol Configuration` count. Click **"Expand"** to see the protocol count per modality.
-6. Click **"Go to Edit"** when a change is needed, or **"Close"** to leave.
-
-The drawer footer holds only **"Close"** and **"Go to Edit"**. No save action exists.
-
-![View Model Source Details](./images/model-source-details-public.png)
-
-#### Result Validation
-
-- The Base URL is not editable inside the drawer.
-- `Endpoint Count` matches the number next to `Endpoint Management`.
-- Card numbers are sequential, and `Endpoint #N` follows the saved order.
-
-#### Notes
-
-- Details are read-only. Editing still happens on the configuration page, and source-level and Endpoint-level changes are saved separately.
-- Before sharing a screenshot, check whether the Base URL exposes an internal address or tenant information.
-
-### Edit a Model Source
-
-#### Applicable Scenarios
-
-- Change the display name used in each language.
-- Maintain the Endpoints and protocols under the source.
-
-#### Steps
-
-1. Click **"Configure"** on the target row.
-2. Check the read-only `Model Source Code` under `Model Source Basic Information`. It keeps its value; a **"Copy Code"** button sits next to it.
-3. Switch language tabs under `Model Source Display Name` and edit the names.
-4. To maintain addresses, add or modify Endpoints as described in "Configure a Model Source Endpoint".
-5. Click **"Save Model Source"** to submit the name changes.
-6. Click **"Back to Directory"** and confirm the new value in the list.
-
-The header shows the source name and status badge. **"Back to Directory"** and **"Save Model Source"** sit at the top right.
-
-![Edit a Model Source](./images/model-source-edit-public.png)
-
-#### Notes
-
-- `Model Source Code` is read-only and copyable on the configuration page. No edit entry exists.
-- The header holds two separate buttons, **"Back to Directory"** and **"Save Model Source"**; Endpoints have their own **"Save Endpoint"**.
+1. Click **"Details"** on the target row to open the read-only `Model Source Basic Information` and `Endpoint Management` drawer.
+2. Check `Model Source Code`, `Endpoint Count`, region, Base URL, and the `Protocol Configuration` count.
+3. Click **"Go to Edit"** to change the record, or **"Close"** to leave.
+4. The configuration page header provides **"Back to Directory"** and **"Save Model Source"**; each Endpoint has its own **"Save Endpoint"**.
 
 ## Parameter Quick Reference
 
-Model Source and Endpoint are two configuration levels. Their field requirements are listed separately.
+### Model Source level
 
-### Model Source Level
-
-| Field | Form Requirement | Field Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model Source Code | Required, read-only after creation | Text | `aliyun` | Unique identifier used by the list and search. |
-| Simplified Chinese name | Required | Text, up to 128 characters | `阿里巴巴-中国` | Name shown in the Chinese interface. |
-| English name | Required | Text, up to 128 characters | `Alibaba Cloud` | Name shown in the English interface. |
-| Spanish name | Required | Text, up to 128 characters | `Alibaba Cloud` | Name shown in the Spanish interface. |
-| Status | System-maintained | Enumeration | `Enabled` | Shown in the list and header; no direct input in any form. |
+| Model Source Code | Required | Text | `aliyun` | Unique identifier used by the list and search |
+| Simplified Chinese name | Required | Text, up to 128 characters | `阿里巴巴-中国` | Name shown in the Chinese interface |
+| English name | Required | Text, up to 128 characters | `Alibaba Cloud` | Name shown in the English interface |
+| Spanish name | Required | Text, up to 128 characters | `Alibaba Cloud` | Name shown in the Spanish interface |
+| Status | System-maintained | Enumeration | `Enabled` | Shown in the list and header; no direct input |
 
-### Endpoint Level
+### Endpoint level
 
-| Field | Form Requirement | Field Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Endpoint Display Name | Required | Multilingual text, up to 128 characters | `China` | Shown as the card title. |
-| Region Tag | Optional | Text | `china` | Shown at the right of the card title to identify the access region. |
-| Official Endpoint | Optional | Switch | Off | Marks whether the access point is operated by the model provider. |
-| Base URL | Required | URL | `https://dashscope.aliyuncs.com` | Call root address; may contain the `{workspace}` placeholder. |
-| Console URL | Optional | URL | `https://dashscope.console.aliyun.com` | Upstream console entry; empty values display as `--`. |
-| Documentation URL | Optional | URL | `https://help.aliyun.com/...` | Upstream documentation entry; empty values display as `--`. |
-| Protocol Configuration | Optional | Multi-select list | `openai/chat_completions` | Protocols this Endpoint supports; empty values display "No protocols configured". |
+| Endpoint Display Name | Required | Multilingual text, up to 128 characters | `China` | Shown as the card title |
+| Region Tag | Optional | Text | `china` | Shown at the right of the card title |
+| Official Endpoint | Optional | Switch | Off | Marks an access point operated by the model provider |
+| Base URL | Required | URL | `https://dashscope.aliyuncs.com` | Call root address; may contain `{workspace}` |
+| Console URL | Optional | URL | `https://dashscope.console.aliyun.com` | Upstream console entry; empty shows `--` |
+| Documentation URL | Optional | URL | `https://help.aliyun.com/...` | Upstream documentation entry; empty shows `--` |
+| Protocol Configuration | Optional | Multi-select list | `openai/chat_completions` | Protocols supported by the Endpoint; empty shows `No protocols configured` |
 
 ## Pitfalls
 
 - A Model Source does not carry a call address by itself. The page states that the backend enables the source after the first Endpoint is saved; addresses belong to Endpoints.
-- Model Source level and Endpoint level are two separate saves: **"Save Model Source"** in the header, **"Save Endpoint"** inside the Endpoint drawer.
-- When the host varies by workspace, use the **"Insert {workspace}"** button next to `Base URL`. The page states the gateway replaces the placeholder with the bound workspace identifier at runtime.
+- Model Source level and Endpoint level are two separate saves: **Save Model Source** in the header, **Save Endpoint** in the Endpoint drawer.
+- When the host varies by workspace, use **Insert {workspace}** next to `Base URL`. The page states the gateway replaces the placeholder with the bound workspace identifier at runtime.
+- The list action column holds only **Configure** and **Details**. There is no entry for deleting the whole model source.
 
 ## Result Validation
 
-| Check | What the interface shows |
-| --- | --- |
-| Source identifier | The `CODE` column and the `Model Source Code` field in the details drawer show the same value |
-| Endpoint count | `N endpoints` under the name in the list matches `Endpoint Count` in the details drawer |
-| Protocol capability | The protocol chips in the list correspond to the number after `Protocol Configuration` on the card |
-| Read-only details | The drawer footer holds only **"Close"** and **"Go to Edit"**, and `Base URL` is not editable |
+| Check Item | Success Signal | Handling on Failure |
+| --- | --- | --- |
+| Source created | Dialog submission succeeds and redirects to the config page; returning to the list shows the new code. | If creation fails, check whether the Code is globally unique and all three language names are filled. |
+| Endpoint bound | Table row displays `N endpoints`; clicking Details shows the newly added regional access point. | If the count did not increase, check if **"Save Endpoint"** was clicked in the drawer. |
+| Protocol mapping | Protocol badges displayed in the list match the exact protocols selected in the configuration drawer. | Open the details drawer to review protocols; click **"Go to Edit"** if reselection is needed. |
+| Status updated | After saving the first valid Endpoint, the source status automatically transitions to `Enabled`. | Ensure the Endpoint Base URL is valid and at least one native protocol is bound. |
+| Filter & search | Entering a Code or Endpoint keyword accurately filters and redraws matching model source records. | If no results appear, check keyword spelling or reset status and modality filters to `All`. |
 
 ## FAQ
 
-#### There is no entry for deleting a Model Source
+#### There is no entry for deleting a model source
 
 **Symptom:**
 
-Neither the list nor the configuration page offers a button to delete the whole source.
+Neither the list nor the configuration page offers a button or menu item to delete the entire model source.
 
-**Entries visible in the interface:**
+**Possible Causes:**
 
-- The list action column holds only **"Configure"** and **"Details"**.
-- The configuration page header holds only **"Back to Directory"** and **"Save Model Source"**.
-- The delete action appears at the bottom of each Endpoint card (`Details`, `Edit`, `Copy`, `Delete`).
+To prevent accidental deletions that would cascade into published model failures and business outages, the platform restricts source-level physical deletion.
 
 **Resolution:**
 
-The current interface provides Endpoint-level deletion only, with no entry for deleting a Model Source.
+1. To decommission obsolete endpoints, delete individual cards within the Endpoint Management section of the configuration page.
+2. To stop using the source, disable or delete all of its underlying Endpoints.
 
-#### You landed on the statistics page instead
+#### You landed on the statistics page
 
 **Symptom:**
 
-The "Model Sources" entry from the left menu shows only call statistics and no create button.
+Clicking “Model Sources” under Platform Call Analytics shows only call telemetry and charts with no creation or configuration buttons.
 
-**Cause:**
+**Possible Causes:**
 
-- You opened **Platform Call Statistics** > **Model Sources** at `/modelone/model-observation/operator/sources`.
+You navigated to the monitoring audit page **Platform Call Analytics > Model Sources** (`/modelone/model-observation/operator/sources`).
 
 **Resolution:**
 
-1. Return to **Model Services** > **Settings** > **Model Sources**.
-2. That menu routes to `/modelone/model-source`.
+1. Check your current menu path; that page is solely dedicated to call volume and metrics auditing.
+2. Use the left navigation to return to **Model Services** > **Settings** > **Model Sources** (`/modelone/model-source`) to perform configurations.
 
 ## Notes
 
-- A Model Source Code cannot be changed after creation. Plan the naming with room to grow.
+- The Model Source Code is used by the list and search. Plan the naming with room to grow.
 - All three language names carry a required mark.
 - Maintain authentication details per protocol. Never put them in the Base URL or in documentation screenshots.
 - The details drawer is read-only. All changes happen on the configuration page.
 
 ## Next Steps
 
-Once the source is configured, the next step is to reference it in a model template. Field definitions and steps for that page belong to the [Model Templates](../model-templates/) manual and are not repeated here.
+1. Bind the model source and its Endpoints into preset templates, see [Model Templates](../model-templates/).
+2. Verify capability standards and protocol specifications for the baseline in [Meta Models](../meta-models/).
+3. Monitor tenant call volumes and latency metrics for this source in [Model Sources](../../platform-calls/model-sources/).
 
-After a model is published from the template, run a call validation as described in [Publish a Model](/userguide/scenarios/publish-model/). Call validation is not part of the Model Sources page.
+Related pages:
+- [Model Templates](../model-templates/)
+- [Meta Models](../meta-models/)
+- [Model Sources](../../platform-calls/model-sources/)

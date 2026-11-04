@@ -424,7 +424,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '我的模型', link: '/zh-CN/usermanual/model-services/user/studio/my-models/' },
-                    { text: '我的部署', link: '/zh-CN/usermanual/model-services/user/studio/my-deployments/' },
+                    { text: '我的凭证', link: '/zh-CN/usermanual/model-services/user/studio/credentials/' },
                   ]
                 },
                 {
@@ -440,17 +440,31 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '概览', link: '/zh-CN/usermanual/model-services/user/my-calls/overview/' },
-                    { text: '调用统计', link: '/zh-CN/usermanual/model-services/user/my-calls/call-analytics/' },
+                    { text: '成员', link: '/zh-CN/usermanual/model-services/user/my-calls/members/' },
+                    { text: '项目', link: '/zh-CN/usermanual/model-services/user/my-calls/projects/' },
+                    { text: '调用来源', link: '/zh-CN/usermanual/model-services/user/my-calls/client-sources/' },
+                    { text: '模型', link: '/zh-CN/usermanual/model-services/user/my-calls/models/' },
                     { text: '调用日志', link: '/zh-CN/usermanual/model-services/user/my-calls/call-logs/' },
                   ]
                 },
                 {
-                  text: '客户调用',
+                  text: '客户调用（监控）',
                   collapsed: false,
                   items: [
                     { text: '概览', link: '/zh-CN/usermanual/model-services/user/customer-calls/overview/' },
                     { text: '调用统计', link: '/zh-CN/usermanual/model-services/user/customer-calls/call-analytics/' },
                     { text: '调用日志', link: '/zh-CN/usermanual/model-services/user/customer-calls/call-logs/' },
+                  ]
+                },
+                {
+                  text: '客户调用（模型提供方）',
+                  collapsed: false,
+                  items: [
+                    { text: '概览', link: '/zh-CN/usermanual/model-services/user/provider-calls/overview/' },
+                    { text: '模型', link: '/zh-CN/usermanual/model-services/user/provider-calls/models/' },
+                    { text: '客户', link: '/zh-CN/usermanual/model-services/user/provider-calls/customers/' },
+                    { text: '调用来源', link: '/zh-CN/usermanual/model-services/user/provider-calls/client-sources/' },
+                    { text: '调用日志', link: '/zh-CN/usermanual/model-services/user/provider-calls/call-logs/' },
                   ]
                 },
               ]

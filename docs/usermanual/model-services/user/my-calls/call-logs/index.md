@@ -1,210 +1,157 @@
-# Call Logs
+# My Calls - Call Logs
+
+> This page appears as **Call Logs** in the left menu.
+
+> Statistics scope: the month selector defines the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the selector.
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider, Model Consumer |
-| Navigation Path | Model Services > My Calls > Call Logs |
-| Page Route | `/modelone/monitoring/calls/log/model` |
-| Managed Objects | Personal model-call records, Model ID, attribution, results, usage, latency, and details |
+| Applies to | Model Provider & User |
+| Navigation | **Model Services** > **My Calls** > **Call Logs** |
+| Route | `/modelone/model-observation/eu/calls` |
+| Managed objects | Individual calls, caller, client source, status, and latency |
 
-#### Beginner Explanation
+**New to this page**: Call Logs is the record of individual calls. Check performance distribution and extremes first, filter or sort by outcome, then verify the model, source, tokens, and latency of each call in the table.
 
-Call Logs works like an itemized record of model requests. Locate a record by model, Model ID, status, and time, and use attribution to distinguish the member, project, and Key scope associated with the call.
-
-#### Terminology
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Call Time | The time when the request was made and recorded. |
-| Model ID | The platform model identifier used by the request. Use it to distinguish models with similar display names. |
-| Attribution | The member, project, and Key scope to which the call is attributed. |
-| Call Result | The success or failure state of one call. |
-| First Token Time | The time for a text model to return its first token. |
-| Call Details | Model, status, usage, latency, and error summary for one call. |
-
-#### Recommended Operation Order
-
-Set time and model criteria, query logs, verify result, usage, and latency, and then open details for the target record.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| Cannot find a record | Check time range and time zone first | Repeat a model-name query only |
-| A call failed | Open details for the error summary | Repeat the call immediately |
-| Latency is abnormal | Compare adjacent records for the model | Review one latency value only |
-| Preparing to share details | Remove requests, responses, and credentials | Copy complete details |
+| Call Logs | Comprehensive audit stream recording the end-to-end lifecycle of every individual API call initiated by members and apps. |
+| E2E P99 | The 99th percentile of end-to-end request duration, reflecting worst-case round-trip latency for long-tail calls. |
+| TTFT P99 | The 99th percentile of time to first token across streaming responses, measuring cold start and scheduling overhead. |
+| TPOT P95 | The 95th percentile of time per output token, measuring stable token throughput and decoding speed during streaming. |
 
 ## Prerequisites
 
-1. The current account has access to the `Call Logs` page.
-2. The time range, model, model type, or call status to view has been clarified.
-3. Use only redacted log information for troubleshooting.
+1. Your account can open **My Calls > Call Logs**.
+2. Calls exist in the current period.
+3. The month, model, and client source filters are confirmed.
 
 ## Page Description
 
-The page shows model-call records for the current account. Query by model name, Model ID, type, status, and time range. The list and details show Model ID and Attribution separately from the model display name.
+The title is `My Calls - Call Logs`. The page contains:
 
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| Top time & filter bar | Month selector, By Date granularity toggle, Model/Client Source dropdowns, and Name/ID search box |
+| Performance & extremes cards | Aggregates E2E P99, TTFT P99, and TPOT P95 metrics, with See More links for extreme latency cases |
+| Result category & sort toolbar | Filters by All, Failed, Platform Rate Limited, Timed Out, Other Rejected, with customizable ascending/descending order |
+| Call records audit table | Displays call timestamp, model & route, caller attribution, client source, token usage, status, and latency timeline |
 
-![My Call Logs](./images/call-logs-list-public.png)
+- Filters: month, `By Date`, `Model`, `Client Source`, **Expand**, and a `Name or ID` search box.
+- `Performance Distribution & Extremes`: shows `E2E P99`, `TTFT P99`, and `TPOT P95`, with **See More**.
+- `Performance & Extremes`: entries for P99/P95 sorting, minimum latency, and longest call.
+- Category and sorting: `Result Category` (`All`, `Failed`, `Platform Rate Limited`, `Timed Out`, `Other Rejected`) and `Sort By` (default `Call Time (Newest First)`).
+- Table: `Call Time`, `Model & Platform Route`, `Caller`, `Client Source`, `Usage`, `Status & E2E`, `Actions`.
 
-Focus on query criteria, call result, usage, latency, and the details entry.
+![My Calls call logs](./images/my-calls-call-logs.png)
+
+The figure shows the page shows `Performance Distribution & Extremes` with `E2E P99`, `TTFT P99`, and `TPOT P95`; `Result Category` provides `All`, `Failed`, `Platform Rate Limited`, `Timed Out`, and `Other Rejected`; columns are `Call Time`, `Model & Platform Route`, `Caller`, `Client Source`, `Usage`, `Status & E2E`, and `Actions`.
 
 ## Main Operations
 
-### Query Call Logs
+### Filter calls
 
-1. Go to `Model Services > My Calls > Call Logs`.
-2. Set a time range, enter a model name or model ID, and select model type and call status if needed.
-3. Click **"Search"** and verify call time, model name, Model ID, Attribution, result, and usage. Click **"Reset"** if the criteria are incorrect.
+1. Select a month.
+2. Use `By Date` to change granularity.
+3. Limit scope with `Model` and `Client Source`.
+4. Search by `Name or ID`.
 
-### View Call Details
+### Review performance
 
-1. Click **"Details"** for the target record.
-2. Verify model name, Model ID, Attribution, call time, result, usage, latency, and error summary.
-3. For troubleshooting, retain only a redacted request identifier and error summary. Do not copy complete requests, responses, or credentials.
+1. Read `E2E P99`, `TTFT P99`, and `TPOT P95` under `Performance Distribution & Extremes`.
+2. Click **"See More"** to expand `Performance & Extremes` sorting entries.
 
-![View call details](./images/manual-call-log-details-public.png)
+### Filter and sort by outcome
 
-Inspect the call details panel to verify the model identifier, request duration, token consumption, and error response details.
+1. Choose `All`, `Failed`, `Platform Rate Limited`, `Timed Out`, or `Other Rejected` in `Result Category`.
+2. Choose a rule in `Sort By`; the default is `Call Time (Newest First)`.
 
-## Parameter Reference
+### Inspect a call
 
-| Field Name | Required | Field Type | Example | Description |
+1. Locate the target record in the table.
+2. Check `Model & Platform Route`, `Caller`, `Client Source`, `Usage`, and `Status & E2E`.
+3. Use `Actions` to open the record details.
+
+## Parameter Quick Reference
+
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Month | Yes | Month selector | `2026-07` | Controls the statistical month for call logs. |
-| Date Range | Yes | Date range | `2026-07-01 to 2026-07-17` | Controls the query time range for call logs. |
-| Model | No | Input | `Example Model` | Filters call logs by model name. |
-| Model ID | No | Input | `<MODEL_ID>` | Filters call logs by the exact platform model identifier. |
-| Model Type | No | Selector | `Text` / `Video` | Filters call logs by model capability type. |
-| Call Status | No | Selector | `Success` / `Failed` / `Rate Limited` | Filters logs by call processing result. |
-| Minimum Input Tokens | No | Number input | `0` | Sets the lower input-token boundary for the query. |
-| Maximum Input Tokens | No | Number input | `1000` | Sets the upper input-token boundary for the query. |
-| Call Time | System-generated | Time | `2026-07-17 14:30` | Shows when a single call occurred. |
-| Attribution | System-generated | Text | `Member / Project / Key scope` | Shows the ownership scope to which the call is attributed. |
-| Usage | System-generated | Text / tag | `Input 100 / Output 40 Tokens` | Shows token, free quota, or multimodal input/output usage. |
-| Time Consumed | System-generated | Time | `1.2 s` | Shows the total time consumed by a single call. |
-| First Token Time | System-generated | Time | `0.3 s` | Shows the time before the first token is returned. |
-| Failure Type | System-generated | Text | `Authentication` | Shows the issue category for a failed request. |
-| Error Message | System-generated | Text | `Redacted error message` | Shows the error summary for a failed request. Redact it before screenshots or external communication. |
-| Actions | No | Action entry | `Details` | Opens single-call log details. |
+| Month | Yes | Selector | `2026-11` | Statistics month |
+| By Date | No | Toggle | On | Aggregation granularity |
+| Model | No | Text | `Name or ID` | Filter by model |
+| Client Source | No | Selector | `All` | Filter by source |
+| E2E P99 / TTFT P99 | System | Duration | `--` | End-to-end and first-token latency P99 |
+| TPOT P95 | System | Duration | `-- ms` | Time per output token P95 |
+| Result Category | No | Single select | `All` | Filter by call result |
+| Sort By | No | Dropdown | `Call Time (Newest First)` | Control record order |
+| Call Time | System | Time | `2026-11-03 10:00:00` | When the call occurred |
+| Model & Platform Route | System | Text | `openai/gpt-6.1-sol` | Requested model and route |
+| Caller | System | Text | Member or project | Call attribution |
+| Client Source | System | Text | App name | Call source |
+| Usage | System | Number | Input/output tokens | Token usage of the call |
+| Status & E2E | System | Status | `Succeeded`, `Failed` | Result and latency |
 
 ## Pitfalls
 
-- API Key, Token, Prompt, response content, and complete Endpoint may contain sensitive data. Record only sanitized snippets.
-- For 429, check rate limits and quota first. For 401, check credentials and permissions. For 5xx, check model service and upstream status.
-- Before retrying, verify request parameters, model version, and input size to avoid repeated invalid calls.
+- `Performance Distribution & Extremes` shows `--` when there is no data; it does not mean latency is zero.
+- `Result Category` filters records only and does not change the month.
+- `Caller` and `Client Source` are different dimensions: member/project versus application source.
+- The table is sorted by `Call Time (Newest First)` by default; verify the order after changing `Sort By`.
 
 ## Result Validation
 
-| Check Item | Success Signal | If Abnormal |
+| Check Item | Success Signal | Handling on Failure |
 | --- | --- | --- |
-| Page is accessible | The `My Calls - Call Logs` page opens, and `My Calls > Call Logs` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Call log list loads | The list shows columns such as call time, model name, Model ID, Attribution, model type, call result, and usage. | Refresh the page or retry after adjusting the month and date range. |
-| Filter controls can be selected | After filtering by month, date range, model, model type, or call status, the list refreshes. | Check whether filters are too narrow, and click **"Reset"** if needed. |
-| Search / Reset works | `Search` displays matching logs, and `Reset` clears the filters. | Check network status, page API responses, and account permissions. |
-| Log details can be opened | Clicking `Details` opens more information about a single call. | Confirm that the record is still within the log retention period. |
-| Field information is consistent | Model ID, Attribution, call status, time consumed, usage, failure type, and error message are consistent with the details page. | Reopen details or expand the time range for cross-checking. |
+| Filters applied | Changing month, model, or source dynamically refreshes the table records and top percentile metrics | If the table is empty, click reset to clear filters and verify whether calls were generated in the selected month |
+| Percentile cards populated | Metric cards display millisecond (ms) or second (s) P99/P95 latencies | If `--` appears, the sample count in the filtered range is insufficient to compute statistical percentiles |
+| Category filtering | Selecting `Failed` or `Platform Rate Limited` isolates and displays only records matching that abnormal status | If no records appear, no incidents of that category occurred in the current scope |
+| Details drawer accessible | Clicking the action button opens a drawer revealing request headers, response payload metadata, and phase timings | If details cannot be opened, verify that your account has audit inspection permissions |
+| Sorting rules applied | Changing sort order re-indexes the table immediately according to duration, timestamp, or token usage | Confirm whether table column headers have locked default sorting active |
 
 ## FAQ
 
-#### Target Log Is Missing
+#### Call logs are empty
 
-**Symptom:**
+**Symptom:** The table displays `No Data Available`, and top performance metrics all show `--`.
 
-The target request does not appear after you search by time or model.
-
-**Possible Causes:**
-
-- The time range, model, or status filter excludes the request.
-- Another account or Personal Key created the request.
+**Possible Causes:** No model calls were made in the selected month; or active filter parameters are overly restrictive.
 
 **Resolution:**
 
-1. Click **"Reset"** and select the request date.
-2. Narrow the list by Model ID and call status.
-3. Verify the account that made the call. If the record is still missing, send the administrator the redacted request time and Model ID.
+1. Switch to a month with confirmed production or testing traffic.
+2. Clear model, source, and search inputs, and set the result category back to `All`.
+3. Open [My Calls Overview](../overview/) to verify the baseline call volume for the period.
 
-#### Call Status Is Failed
+#### Performance metrics show `--`
 
-**Symptom:**
+**Symptom:** The table displays several calls, but E2E P99, TTFT P99, and TPOT P95 cards remain `--`.
 
-The target log shows a failed result or an error.
-
-**Possible Causes:**
-
-- The Personal Key is invalid or lacks call permission.
-- The Model ID, request body, or model parameters are incorrect.
-- The quota is insufficient or the target model returns an error.
+**Possible Causes:** The statistical algorithm requires a minimum sample threshold (e.g., dozens of requests) to compute percentiles; or hourly aggregation has not finished.
 
 **Resolution:**
 
-1. Open **"Details"** and record the redacted error.
-2. Verify the Personal Key, Model ID, request format, and quota.
-3. Call again after correction. Contact the Model Provider or administrator if the same error continues.
-
-#### Call Latency Increases
-
-**Symptom:**
-
-Total latency or first-token latency is much higher than for similar requests.
-
-**Possible Causes:**
-
-- The input is longer or the output limit is higher.
-- The model or provider responds slowly during the selected period.
-
-**Resolution:**
-
-1. Compare requests with the same Model ID and a similar input size.
-2. Review total latency and first-token latency separately.
-3. If latency remains high, send the Model Provider the time range and redacted request IDs.
-
-#### Token Usage Is Higher Than Expected
-
-**Symptom:**
-
-Input or output token usage is much higher than expected.
-
-**Possible Causes:**
-
-- The request contains a long message history or attachments.
-- The output limit or generation parameters are too high.
-
-**Resolution:**
-
-1. Review input and output tokens in Details.
-2. Shorten the input or reduce the output limit, and call again.
-3. If similar requests still differ, send redacted request IDs to the administrator for metering review.
-
-#### Log Details Contains Sensitive Data
-
-**Symptom:**
-
-Details shows credentials, a full Endpoint, customer input, or response content.
-
-**Possible Causes:**
-
-- The call itself contains sensitive data.
-- A screenshot or support ticket was not redacted.
-
-**Resolution:**
-
-1. Stop copying or sharing the content.
-2. Mask the Personal Key, authentication header, request body, response body, and full Endpoint.
-3. If a credential was exposed, contact the administrator or security owner immediately and rotate it.
+1. Expand the date range or clear granular model filters.
+2. Hourly aggregation jobs run periodically; wait for the next hourly update cycle and refresh.
 
 ## Notes
 
-- Do not expose complete requests, response bodies, Keys, accounts, or cost details in documentation, screenshots, or tickets.
-- Call log data may be removed after the configured retention period. Confirm the time range first during troubleshooting.
-- Error messages are only used for troubleshooting and must be redacted before public communication.
+- Logs contain member, project, and source information; do not share screenshots externally.
+- Record only the necessary fields during troubleshooting to avoid exposing request content.
+- Statistics refresh hourly; new calls may be delayed.
 
 ## Next Steps
 
-1. Adjust request parameters or calling methods based on the failure type and error message.
-2. To troubleshoot a single request, open `Details` and view redacted log information.
-3. To determine whether the issue is a batch anomaly, go back to `My Calls > Call Analytics` and view aggregated data.
+1. Examine high-level volume trends, success rates, and model shares in the overview dashboard.
+2. Switch to member or project views to identify top consumers or abnormal token consumption.
+3. If rate-limiting or failure spikes appear, inspect routing limits or contact model providers to evaluate capacity expansion.
+
+Related pages:
+- [My Calls Overview](../overview/)
+- [Calls by Member](../members/)
+- [Calls by Project](../projects/)
+- [Calls by Model](../models/)
+- [Calls by Client Source](../client-sources/)

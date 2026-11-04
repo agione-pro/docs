@@ -1,211 +1,139 @@
-# Call Logs
+# Customer Calls (Monitoring) - Call Logs
+
+> The system menu currently shows both customer-call groups as **Customer Calls**; this manual labels this group **Customer Calls (Monitoring)**. The left-menu item is **Call Logs**.
+
+> Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider |
-| Navigation Path | Model Services > Customer Calls > Call Logs |
-| Page Route | `/modelone/monitoring/monitor/log/model` |
-| Managed Objects | Customer model-call records, Model ID, attribution, customer account, results, usage, and failed records |
+| Applies to | Model Provider & User |
+| Navigation | **Model Services** > **Customer Calls** > **Call Logs** |
+| Route | `/modelone/monitoring/monitor/log` |
+| Managed objects | Individual customer calls, customer, usage, and execution status |
 
-#### Beginner Explanation
+**New to this page**: Customer Calls logs list each customer request. Filter by model type and call status, then verify the customer, token usage, and latency in the table.
 
-Customer Call Logs works like a troubleshooting register for customer requests. Locate records by time, model, Model ID, and status. Use Customer Name for the customer account or tenant dimension, and use Attribution for the member, project, and Key scope inside that customer.
-
-#### Terminology
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Model ID | The platform model identifier used by the customer request. |
-| Customer Name | The customer account or tenant associated with a model call. |
-| Attribution | The member, project, and Key scope to which the customer call is attributed. |
-| Call Result | The success or failure state of one customer call. |
-| Usage | Token, count, or other consumption information for one call. |
-| First Token Time | The time for a text model to return its first token. |
-
-#### Recommended Operation Order
-
-Set a time range and query customer call logs, locate failed records, and use customer, model, error, and latency information to assess impact.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| A customer reports a failure | Check time and model first | Infer from customer name alone |
-| Many records failed | Locate by status and compare time distribution | Repeat calls one by one |
-| Cannot find a record | Reset filters and check time zone | Keep narrowing the scope |
-| Preparing to share logs | Redact customer, request, and credential data | Share complete details externally |
+| Customer Call Logs (Monitoring) | Inbound API request execution stream recorded for consumer or operations auditing, tracking individual call timing and execution states. |
+| Platform Route | The internal dispatch forwarding path where the gateway routes standardized model requests (e.g., `openai/gpt-6.1-sol`) to backend physical model instances. |
+| Usage | Breakdown of token consumption for an individual call (including input Prompt Tokens and output Completion Tokens). |
+| Status & E2E | Final execution outcome (success, failure, or rate limited) alongside precise millisecond end-to-end network latency. |
 
 ## Prerequisites
 
-1. The current account has access to the `Call Logs` page.
-2. The month, date range, model, model type, or call status to view has been clarified.
-3. Troubleshooting materials must not contain complete customer requests, response bodies, Keys, accounts, or cost details.
+1. Your account can open **Customer Calls > Call Logs**.
+2. Customer call records exist in the current period.
+3. Model type and call status filters are confirmed.
 
 ## Page Description
 
-The page shows customer model-call records. Query by model name, Model ID, type, status, and time range. The list separates Model ID, Attribution, and Customer Name so that model identity, internal ownership scope, and customer account are not confused.
+The title is `Customer Calls - Call Logs`, with a `Model Logs` tab.
 
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| Top period & multi-filter bar | Month selector, date range picker, model type/status dropdowns, model name search box, and Search/Reset buttons |
+| Detailed single-call log table | Displays call timestamp, model & platform route, calling customer, token usage, execution status, and E2E latency |
+| Pagination & item counter bar | Displays total filtered log records (e.g., "Total 0"), page size selector, and pagination jump controls |
+| Action & details drawer trigger | Provides buttons to open an inspection drawer showing sanitized request headers, payloads, and error traces |
 
-![Customer Call Logs](./images/call-logs-list-public.png)
+- The top of the filter area provides a month and date range; below are `All Model type`, `All Call status`, a model name search box, **Search**, **Reset**, and **Expand**.
+- Columns are `Call time`, `Model & Platform Route`, `Customer`, `Usage`, `Status & E2E`, and `Actions`. Without data, the table shows `No Data` and `Total 0` with pagination.
 
-Focus on time range, model criteria, customer name, call result, and details.
+![Customer Calls logs](./images/customer-calls-logs.png)
+
+The figure shows filters include `All Model type`, `All Call status`, a `Model name` box with the hint `e.g. qwen/happyhorse-1.1-i2v/70233`, and **Expand**; columns are `Call time`, `Model & Platform Route`, `Customer`, `Usage`, `Status & E2E`, and `Actions`.
 
 ## Main Operations
 
-### Query Customer Call Logs
+### Filter records
 
-1. Go to `Model Services > Customer Calls > Call Logs`.
-2. Set a time range, enter a model name or model ID, and select model type and call status if needed.
-3. Click **"Search"** and verify call time, model name, Model ID, Attribution, Customer Name, result, and usage.
-4. Click **"Reset"** if the criteria are incorrect. Redact customer and business identifiers before sharing results.
+1. Choose a model type in `All Model type`.
+2. Choose a status in `All Call status`.
+3. Enter a model name or route ID.
+4. Click **"Search"** or **"Reset"**.
 
-### Locate Failed Call Records
+### Review a record
 
-1. Select a failed state in Call Status.
-2. Click **"Search"** and compare Customer Name, Model ID, Attribution, and time across failed records.
-3. Open **"Details"** for the target record and verify Model ID and Attribution before retaining only a redacted error summary. Do not copy complete requests, responses, or credentials.
+1. Locate the target call in the table.
+2. Check `Call time`, `Model & Platform Route`, and `Customer`.
+3. Review `Usage` and `Status & E2E`.
+4. Use `Actions` to open details.
 
-![Locate failed call records](./images/manual-failed-call-filter-public.png)
+## Parameter Quick Reference
 
-Review log entries filtered by failed status, focusing on the associated customer, model identifier, and specific error summary.
-
-## Parameter Reference
-
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Month | Yes | Month selector | `2026-07` | Controls the statistical month for call logs. |
-| Date Range | Yes | Date range | `2026-07-01 to 2026-07-17` | Controls the query time range for call logs. |
-| Model | No | Input | `Example Model` | Filters call logs by model name. |
-| Model ID | No | Input | `<MODEL_ID>` | Filters customer call logs by the exact platform model identifier. |
-| Model Type | No | Selector | `Text` | Filters call logs by model capability type. |
-| Call Status | No | Selector | `All` / `Success` / `Failed` / `Rate Limited` | Filters logs by call processing result. |
-| Minimum Input Tokens | No | Number input | `0` | Sets the lower input-token boundary for the query. |
-| Maximum Input Tokens | No | Number input | `1000` | Sets the upper input-token boundary for the query. |
-| Call Time | System-generated | Time | `2026-07-17 14:30` | Shows when a single customer call occurred. |
-| Attribution | System-generated | Text | `Member / Project / Key scope` | Shows the member, project, and Key scope associated with the call. |
-| Customer Name | System-generated | Text | `Example Customer` | Shows the customer account or tenant that initiated the call; it is separate from Attribution. |
-| Usage | System-generated | Text / tag | `Input 100 / Output 40 Tokens` | Shows input tokens, output tokens, cached input tokens, context size, or free usage information. |
-| Time Consumed | System-generated | Time | `1.2 s` | Shows the total time consumed by a single call. |
-| First Token Time | System-generated | Time | `0.3 s` | Shows the time before the first token is returned. |
-| Failure Type | System-generated | Text | `Authentication` | Shows the issue category for a failed request. |
-| Error Message | System-generated | Text | `Redacted error message` | Shows the error summary for a failed request. Redact it before screenshots or external communication. |
-| Actions | No | Action entry | `Details` | Opens single customer call log details. |
+| Month / date range | Yes | Selector / date range | `2026-11`; `2026-11-01` to `2026-11-03` | Statistics period |
+| Model type | No | Selector | `All Model type` | Filter by model type |
+| Call status | No | Selector | `All Call status` | Filter by execution status |
+| Model name | No | Text | `qwen/happyhorse-1.1-i2v/70233` | Filter by model name or route |
+| Call time | System | Time | `2026-11-03 10:00:00` | When the call occurred |
+| Model & Platform Route | System | Text | `openai/gpt-6.1-sol` | Requested model and route |
+| Customer | System | Text | `Customer A` | Calling customer |
+| Usage | System | Number | Input/output tokens | Token usage of the call |
+| Status & E2E | System | Status | `Succeeded`, `Failed` | Result and latency |
 
 ## Pitfalls
 
-- Request IDs, customer identifiers, and error messages in call logs must be sanitized before sharing.
-- 401, 429, and 5xx point to different troubleshooting paths. Do not treat every failure as the same issue.
-- Log retention may be limited. Confirm the time range and keep desensitized clues early.
+- `All Call status` filters status only; model type still applies.
+- When the scope has no records, the table shows `No Data` and `Total 0`.
+- The model search box accepts route IDs such as `qwen/happyhorse-1.1-i2v/70233`; use that format for precision.
 
 ## Result Validation
 
-| Check Item | Success Signal | If Abnormal |
+| Check Item | Success Signal | Handling on Failure |
 | --- | --- | --- |
-| Page is accessible | The `Customer Calls - Call Logs` page opens, and `Customer Calls > Call Logs` is highlighted in the sidebar. | Check account permissions, navigation path, and page loading status. |
-| Log list loads | The list shows columns such as call time, model name, Model ID, Attribution, Customer Name, model type, call result, and usage. | Refresh the page or retry after adjusting the month and date range. |
-| Filter controls can be selected | After filtering by month, date range, model, model type, or call status, the list refreshes. | Check whether filters are too narrow, and click **"Reset"** if needed. |
-| Search / Reset works | `Search` displays matching logs, and `Reset` clears the filters. | Check network status, page API responses, and account permissions. |
-| Log details can be opened | Clicking `Details` opens more information about a single customer call. | Confirm that the record is still within the log retention period. |
-| Field information is consistent | Model ID, Attribution, Customer Name, call status, usage, failure type, and error message are consistent with the details page. | Reopen details or expand the time range for cross-checking. |
+| Filter precision | Switching model type or call status and clicking Search immediately narrows records to matched calls | If records do not refresh, verify that the **"Search"** button was clicked |
+| Record integrity | Each row clearly shows call timestamp, platform route ID, customer name, token usage, and status | If the customer column is blank or corrupted, check whether API client tokens correctly bind tenant identities |
+| Latency visibility | Status column displays success/failure badges accompanied by precise millisecond end-to-end duration | If latency is abnormally large, check backend model instance network latency or customer long-context prompt load |
+| Route search | Entering a full route ID (e.g., `qwen/happyhorse-1.1-i2v/70233`) and clicking Search accurately hits target calls | If no records match, try searching with model short names or strip extraneous spaces |
+| Details drawer inspection | Clicking the details button in the Actions column successfully pops out the single-call request headers, body, and error stack drawer | Verify the current account possesses permissions to inspect sanitized call logs |
 
 ## FAQ
 
-#### Customer Call Log Is Missing
+#### Call logs are empty
 
-**Symptom:**
+**Symptom:** The table displays `No Data` and the footer shows `Total 0`.
 
-The target record does not appear after a search by model or time.
-
-**Possible Causes:**
-
-- The filters exclude the target call.
-- The current account cannot view the customer record.
+**Possible Causes:** No calls were initiated within the selected period, or composite filters (model type, status, model name) are too restrictive.
 
 **Resolution:**
 
-1. Click **"Reset"** and select the call date.
-2. Filter by Model ID and status one at a time, and then compare Customer Name and Attribution in the returned records.
-3. If the record remains missing, ask the administrator to verify Model Provider permissions and provide the redacted call time.
+1. Click **"Reset"** to restore all filter dropdowns to their default state.
+2. Check the top month and date range and switch to dates with known call volume.
+3. Verify that the requested model belongs to the active platform catalog.
 
-#### Failed-Status Filter Shows No Record
+#### A call cannot be found
 
-**Symptom:**
+**Symptom:** A customer reports a failed request, but searching by model name returns no records.
 
-The list is empty after you select the failed status.
-
-**Possible Causes:**
-
-- The selected range contains no failed request.
-- A model, customer, or date filter excludes failed records.
+**Possible Causes:** The request was blocked by the global API gateway before reaching the model routing layer (e.g., invalid API key), or case sensitivity in the search query prevented a match.
 
 **Resolution:**
 
-1. Keep the failed status and clear other filters.
-2. Expand the date range and search again.
-3. If Overview shows failures but the log remains empty, send the administrator the same filters and a redacted screenshot.
-
-#### One Customer Has Many Failures
-
-**Symptom:**
-
-One customer has several failed logs in a short period.
-
-**Possible Causes:**
-
-- The customer uses an invalid credential, Model ID, or request format.
-- The target model returns repeated upstream errors.
-
-**Resolution:**
-
-1. Keep the same time range and Model ID.
-2. Open several failed records and compare Customer Name, Attribution, and error type.
-3. Send the redacted error to the customer. Contact the Model Provider if the upstream error continues.
-
-#### Customer Call Latency Increases
-
-**Symptom:**
-
-Total latency or first-token latency increases for the same model.
-
-**Possible Causes:**
-
-- The customer request has a longer input or higher output limit.
-- The model or provider responds slowly during the selected period.
-
-**Resolution:**
-
-1. Compare calls with the same customer, Model ID, and a similar input size.
-2. Review total latency and first-token latency separately.
-3. If latency remains high, send the Model Provider the time range and redacted request IDs.
-
-#### Customer Log Contains Sensitive Data
-
-**Symptom:**
-
-Details shows a customer credential, full Endpoint, input, or response content.
-
-**Possible Causes:**
-
-- The call itself contains sensitive data.
-- A screenshot or support ticket was not redacted.
-
-**Resolution:**
-
-1. Stop copying or sharing the details.
-2. Mask the customer name, Personal Key, request header, request body, response, and full Endpoint.
-3. If a credential was exposed, contact the administrator or security owner immediately and rotate it.
+1. Copy and paste the exact model route identifier from the customer's request payload into the search box.
+2. Switch Call Status to `All Call status` to avoid hiding failures under a `Success` filter.
+3. Confirm whether the request reached the gateway routing layer.
 
 ## Notes
 
-- Do not expose complete customer requests, response bodies, Keys, accounts, or cost details in documentation, screenshots, or tickets.
-- Customer logs are for troubleshooting and do not replace revenue settlement or billing details.
-- Error messages are only used for troubleshooting and must be redacted before public communication.
+- Logs contain customer names and call data; do not share screenshots externally.
+- Record only necessary fields during troubleshooting to avoid exposing request content and keys.
 
 ## Next Steps
 
-1. Click **"Details"** to view redacted details for the target customer call.
-2. Go to `Customer Calls > Call Analytics` to determine whether a batch anomaly exists.
-3. Return to `Customer Calls > Overview` to view trend changes by customer or model.
+1. For failed or throttled calls, inspect the Actions drawer to check exact HTTP status codes and gateway rejection reasons.
+2. Return to [Overview](../overview/) to observe macro traffic patterns and Top 5 customer distributions.
+3. Check billed token settlement for successful calls in [Model Earnings](../../usage-earnings/model-earnings/).
+
+Related pages:
+- [Customer Calls Overview](../overview/)
+- [Customer Calls - Call Analytics](../call-analytics/)
+- [Customer Calls (Provider) Logs](../../provider-calls/call-logs/)
+- [Model Usage](../../usage-earnings/model-usage/)
+- [Model Earnings](../../usage-earnings/model-earnings/)
