@@ -4,7 +4,7 @@
 
 > Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
 
-## 1. Feature Overview
+## Feature Overview
 
 | Item | Content |
 | --- | --- |
@@ -15,23 +15,40 @@
 
 **New to this page**: Models answers "which models are customers calling". Select a month and customer, then compare models by volume, success rate, and latency.
 
-## 2. Prerequisites
+#### Terms Quick Reference
+
+| Term | Description |
+| --- | --- |
+| Requested Model Identifier | The explicit model routing identifier specified by external customers in API request bodies or request URLs (e.g., `openai/gpt-6.1-sol`). |
+| Call Share | The percentage of requests for a specific model relative to total customer calls across all models published by your organization. |
+| Cached Tokens | Input tokens that hit model context prompt cache, eliminating full recomputation overhead. |
+| Avg TTFT | Average Time to First Token from when the customer request is received until the initial token is generated. |
+
+## Prerequisites
 
 1. Your account has the publisher-side **Customer Calls > Models** permission.
 2. Customer calls exist in the current period.
 3. The month, model, and customer filters are confirmed.
 
-## 3. Page Description
+## Page Description
 
-The title is `Customer Calls - Models`, marked `Updated hourly`. Filters include month, `By Date`, `Model`, `Customer` (`All`), **Expand**, and a `Name or ID` search box.
+The title is `Customer Calls - Models`, marked `Updated hourly`.
 
-The first column is `Requested Model`; the remaining columns are `Requests`, `Share`, `Success Rate`, `Failed`, `Rate Limited`, `Total Tokens`, `Avg TTFT`, `Avg TPOT`, `Avg E2E`, and `Actions`. Without data, the table shows `No Data Available`.
+| Area | Description |
+| --- | --- |
+| Top time & customer filter bar | Month selector, By Date toggle, Model/Customer dropdown filters, Expand button, and Name/ID search box |
+| Update interval badge | Displays "Updated hourly" indicating statistical metrics are quasi-realtime aggregated hourly results |
+| Models summary table | Presents requested model ID, requests, share, success rate, failed/rate-limited counts, total tokens, and TTFT/TPOT/E2E latency |
+| Actions & audit drill-down column | Provides direct navigation to inspect detailed single-call records associated with each model |
+
+- Filters include month, `By Date`, `Model`, `Customer` (`All`), **Expand**, and a `Name or ID` search box.
+- The first column is `Requested Model`; the remaining columns are `Requests`, `Share`, `Success Rate`, `Failed`, `Rate Limited`, `Total Tokens`, `Avg TTFT`, `Avg TPOT`, `Avg E2E`, and `Actions`. Without data, the table shows `No Data Available`.
 
 ![Customer Calls models](./images/provider-calls-models.png)
 
-**Figure note**: Filters include month, `By Date`, `Model`, `Customer`, **Expand**, and `Name or ID`; the first column is `Requested Model`, followed by `Requests`, `Share`, `Success Rate`, `Failed`, `Rate Limited`, `Total Tokens`, `Avg TTFT`, `Avg TPOT`, `Avg E2E`, and `Actions`.
+The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand**, and `Name or ID`; the first column is `Requested Model`, followed by `Requests`, `Share`, `Success Rate`, `Failed`, `Rate Limited`, `Total Tokens`, `Avg TTFT`, `Avg TPOT`, `Avg E2E`, and `Actions`.
 
-## 4. Main Operations
+## Main Operations
 
 1. Select a month.
 2. Use `By Date` to change granularity.
@@ -39,7 +56,7 @@ The first column is `Requested Model`; the remaining columns are `Requests`, `Sh
 4. Search by model name or ID.
 5. Compare volume, share, success rate, and latency.
 
-## 5. Parameter Quick Reference
+## Parameter Quick Reference
 
 | Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -55,42 +72,61 @@ The first column is `Requested Model`; the remaining columns are `Requests`, `Sh
 | Total Tokens | System | Number | `0` | Model token total |
 | Avg TTFT / TPOT / E2E | System | Duration | `--` | Model average latency |
 
-## 6. Pitfalls
+## Pitfalls
 
 - This is the publisher view; the other **Customer Calls** group has a different scope.
 - `Requested Model` may differ from the display name in an application; use the ID for verification.
 - `No Data Available` does not mean the model is unavailable.
 
-## 7. Result Validation
+## Result Validation
 
-| Check | What you can see |
-| --- | --- |
-| Filters applied | Rows follow month, model, and customer |
-| Metrics complete | Each row shows requests, share, success rate, and tokens |
-| Latency shown | Avg TTFT, TPOT, and E2E are visible |
-| Empty state | `No Data Available` when no data exists |
+| Check Item | Success Signal | Handling on Failure |
+| --- | --- | --- |
+| Filter synchronization | Switching months or specifying a customer synchronously refreshes rows, requests, and share percentages | If the table becomes empty, click reset to clear filters and verify customer calls exist for published models in the period |
+| Metric accuracy | Model rows accurately display requests, share, success rate, and total tokens | If success rate is low, check Failed / Rate Limited counts and drill down to call logs to verify backend model instance health |
+| Latency indicators | Average TTFT, TPOT, and E2E duration values are clearly displayed | If `--` is shown, sample volume is insufficient or calls are non-streaming preventing TPOT calculation |
+| Model search | Entering a model name or route identifier in the search box filters the table in real time | Clear extra characters from the search input and retry |
+| Cross-dimensional drill-down | Clicking the details button in the Actions column navigates to [Call Logs](../call-logs/) with pre-applied model filters | Verify the current account has cross-customer audit permissions for model providers |
 
-## 8. FAQ
+## FAQ
 
 #### The model list is empty
 
-**Symptom**: The table shows `No Data Available`.
+**Symptom:** Switching to the current month shows `No Data Available` in the table.
 
-**Resolution**: Confirm customer calls exist in the month and clear model and customer filters.
+**Possible Causes:** No customer requests were directed at models published by your organization in the period, or the filtered customer made no calls.
+
+**Resolution:**
+
+1. Switch to a statistical month with active customer business traffic.
+2. Clear customer dropdown filters to view aggregated calls across all customers.
+3. Check whether model access and publishing status are online and healthy.
 
 #### Totals differ from Overview
 
-**Symptom**: The model total is lower than the Overview total.
+**Symptom:** The sum of model requests is lower than the total requests shown in [Overview](../overview/).
 
-**Resolution**: Overview includes calls without a recognized model ID; this page covers identified models only.
+**Possible Causes:** Overview accounts for all inbound requests (including invalid requests blocked at the gateway before matching a valid model identifier), whereas this page aggregates valid resolved model routes only.
 
-## 9. Notes
+**Resolution:**
+
+1. Rely on Overview for overall gateway load and traffic pressure assessment.
+2. Use this page to analyze customer adoption, inference capacity load, and revenue allocation per model.
+
+## Notes
 
 - Model IDs and customer data are sensitive; do not share screenshots externally.
 - Statistics refresh hourly; new calls may be delayed.
 
-## 10. Next Steps
+## Next Steps
 
-- Review calls by customer in [Customers](../customers/).
-- Review source distribution in [Client Sources](../client-sources/).
-- Review individual calls in [Call Logs](../call-logs/).
+1. Drill down into [Call Logs](../call-logs/) to inspect single-call inference timings and network roundtrip details for error-prone or slow models.
+2. Switch to [Customers](../customers/) to analyze the distribution of enterprise customers invoking this model.
+3. Check actual settlement earnings and consumption share for each model in [Model Earnings](../../usage-earnings/model-earnings/).
+
+Related pages:
+- [Customer Calls Overview](../overview/)
+- [Customer Calls Logs](../call-logs/)
+- [Customer Calls - Customers](../customers/)
+- [Customer Calls - Client Sources](../client-sources/)
+- [Model Earnings](../../usage-earnings/model-earnings/)

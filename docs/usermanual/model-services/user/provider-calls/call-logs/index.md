@@ -4,7 +4,7 @@
 
 > Statistics scope: the month and date range define the period; `By Date` switches the aggregation to daily, and the date range is the start and end shown in the control.
 
-## 1. Feature Overview
+## Feature Overview
 
 | Item | Content |
 | --- | --- |
@@ -15,15 +15,31 @@
 
 **New to this page**: This log lists each customer request from the publisher perspective. Check performance distribution first, filter or sort by outcome, then verify the customer, source, tokens, and latency of each call.
 
-## 2. Prerequisites
+#### Terms Quick Reference
+
+| Term | Description |
+| --- | --- |
+| Customer Call Logs | Detailed inbound audit stream from the model provider's perspective, capturing full-lifecycle execution snapshots for every client call. |
+| Platform Rate Limited | Calls rejected with HTTP 429 when a customer's request frequency exceeds the assigned concurrency quota or rate limit rules. |
+| TTFT P99 | The 99th percentile of time to first token for streaming calls, reflecting queuing latency and instance cold-start performance. |
+| TPOT P95 | The 95th percentile of time per output token during streaming generation, measuring the GPU compute cluster's throughput stability. |
+
+## Prerequisites
 
 1. Your account has the publisher-side **Customer Calls > Call Logs** permission.
 2. Customer call records exist in the current period.
 3. The month, model, and customer filters are confirmed.
 
-## 3. Page Description
+## Page Description
 
 The title is `Customer Calls - Call Logs`. The page contains:
+
+| Area | Description |
+| --- | --- |
+| Top time & customer filter bar | Month selector, By Date granularity toggle, Model/Customer dropdowns, Expand button, and Name/ID search box |
+| Performance percentiles & extremes cards | Displays E2E P99, TTFT P99, and TPOT P95 latencies, with See More links for extreme latency cases |
+| Result category & sort toolbar | Filters by All, Failed, Platform Rate Limited, Timed Out, Other Rejected, with customizable ascending/descending order |
+| Customer call records audit table | Displays call timestamp, model & route, customer name, client source, token usage, status, and latency timeline |
 
 - Filters: month, `By Date`, `Model`, `Customer` (`All`), **Expand**, and a `Name or ID` search box.
 - `Performance Distribution & Extremes`: shows `E2E P99`, `TTFT P99`, and `TPOT P95`, with **See More**.
@@ -33,34 +49,34 @@ The title is `Customer Calls - Call Logs`. The page contains:
 
 ![Customer Calls logs (publisher)](./images/provider-calls-logs.png)
 
-**Figure note**: Filters include month, `By Date`, `Model`, `Customer`, **Expand**, and `Name or ID`; the page shows `Performance Distribution & Extremes`; `Result Category` provides `All`, `Failed`, `Platform Rate Limited`, `Timed Out`, and `Other Rejected`; columns are `Call Time`, `Model & Platform Route`, `Customer`, `Client Source`, `Usage`, `Status & E2E`, and `Actions`.
+The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand**, and `Name or ID`; the page shows `Performance Distribution & Extremes`; `Result Category` provides `All`, `Failed`, `Platform Rate Limited`, `Timed Out`, and `Other Rejected`; columns are `Call Time`, `Model & Platform Route`, `Customer`, `Client Source`, `Usage`, `Status & E2E`, and `Actions`.
 
-## 4. Main Operations
+## Main Operations
 
-### 4.1 Filter records
+### Filter records
 
 1. Select a month.
 2. Use `By Date` to change granularity.
 3. Limit scope with `Model` and `Customer`.
 4. Search by `Name or ID`.
 
-### 4.2 Review performance
+### Review performance
 
 1. Read `E2E P99`, `TTFT P99`, and `TPOT P95`.
-2. Click **See More** to expand `Performance & Extremes` sorting entries.
+2. Click **"See More"** to expand `Performance & Extremes` sorting entries.
 
-### 4.3 Filter and sort by outcome
+### Filter and sort by outcome
 
 1. Choose a value in `Result Category`.
 2. Choose a rule in `Sort By`; the default is `Call Time (Newest First)`.
 
-### 4.4 Inspect a call
+### Inspect a call
 
 1. Locate the target record.
 2. Check `Model & Platform Route`, `Customer`, `Client Source`, `Usage`, and `Status & E2E`.
 3. Use `Actions` to open details.
 
-## 5. Parameter Quick Reference
+## Parameter Quick Reference
 
 | Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -79,45 +95,63 @@ The title is `Customer Calls - Call Logs`. The page contains:
 | Usage | System | Number | Input/output tokens | Token usage of the call |
 | Status & E2E | System | Status | `Succeeded`, `Failed` | Result and latency |
 
-## 6. Pitfalls
+## Pitfalls
 
 - This is the publisher view; the other **Customer Calls** group has a different scope.
 - `Performance Distribution & Extremes` shows `--` without data; it does not mean latency is zero.
 - `Result Category` filters records only and does not change the month or customer scope.
 - `Customer` and `Client Source` are different dimensions.
 
-## 7. Result Validation
+## Result Validation
 
-| Check | What you can see |
-| --- | --- |
-| Filters applied | Records follow month, model, and customer |
-| Performance metrics | `E2E P99`, `TTFT P99`, `TPOT P95` are shown |
-| Category applied | Selecting an outcome narrows records |
-| Sort applied | Table order follows `Sort By` |
-| Empty state | `No Data Available` when no records exist |
+| Check Item | Success Signal | Handling on Failure |
+| --- | --- | --- |
+| Filters applied | Changing month, model, or customer dynamically refreshes table records and top percentile metrics | If the table is empty, click reset to clear filters and verify whether customer calls occurred in the month |
+| Percentile cards populated | Metric cards display millisecond (ms) or second (s) P99/P95 latencies | If `--` appears, the sample count in the filtered range is insufficient to compute statistical percentiles |
+| Abnormal category filtering | Selecting `Platform Rate Limited` or `Failed` isolates and displays only records matching that abnormal status | If no records appear, no incidents of that category occurred in the current scope |
+| Details drawer accessible | Clicking the action button opens a drawer revealing request headers, client IP, response status codes, and phase timings | If details cannot be opened, verify that your account has provider-level audit inspection permissions |
+| Sorting rules applied | Changing sort order re-indexes the table immediately according to duration, timestamp, or token usage | Confirm whether table column headers have locked default sorting active |
 
-## 8. FAQ
+## FAQ
 
 #### Call logs are empty
 
-**Symptom**: The table shows `No Data Available`.
+**Symptom:** The table displays `No Data Available`, and top performance metrics all show `--`.
 
-**Resolution**: Confirm customer calls exist in the month and clear model, customer, and category filters.
+**Possible Causes:** No customer calls were made in the selected month; or active filter parameters are overly restrictive.
+
+**Resolution:**
+
+1. Switch to a month with confirmed external customer traffic.
+2. Clear model, customer, and search inputs, and set the result category back to `All`.
+3. Open [Customer Calls Overview](../overview/) to verify the baseline customer request volume.
 
 #### Performance metrics show `--`
 
-**Symptom**: `E2E P99`, `TTFT P99`, and `TPOT P95` are all `--`.
+**Symptom:** The table displays several customer calls, but E2E P99, TTFT P99, and TPOT P95 cards remain `--`.
 
-**Resolution**: There are not enough samples in scope; widen the period or clear filters.
+**Possible Causes:** The statistical algorithm requires a minimum sample threshold (e.g., dozens of requests) to compute percentiles; or hourly aggregation has not finished.
 
-## 9. Notes
+**Resolution:**
+
+1. Expand the date range or clear granular model filters.
+2. Hourly aggregation jobs run periodically; wait for the next hourly update cycle and refresh.
+
+## Notes
 
 - Logs contain customer names and call data; do not share screenshots externally.
 - Record only necessary fields during troubleshooting to avoid exposing request content and keys.
 - Statistics refresh hourly; new calls may be delayed.
 
-## 10. Next Steps
+## Next Steps
 
-- Review totals in [Overview](../overview/).
-- Aggregate by [Models](../models/), [Customers](../customers/), or [Client Sources](../client-sources/).
-- Review revenue in [Model Earnings](../../usage-earnings/model-earnings/).
+1. Examine high-level volume trends and active customer distributions in the overview dashboard.
+2. Switch to customer or model views to identify enterprise accounts generating abnormal volume.
+3. Cross-reference token usage in the Model Earnings module to verify monthly settlement revenue.
+
+Related pages:
+- [Customer Calls Overview](../overview/)
+- [Customer Calls - Customers](../customers/)
+- [Customer Calls - Models](../models/)
+- [Customer Calls - Client Sources](../client-sources/)
+- [Model Earnings](../../usage-earnings/model-earnings/)

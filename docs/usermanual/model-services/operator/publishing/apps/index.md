@@ -1,5 +1,8 @@
 # Apps
 
+> The current Operator account does not show this page in the left menu. If your account cannot see it, contact the platform administrator to confirm permissions.
+
+
 ::: info Document Information
 Version: v1.0
 Updated: 2026-08-27
@@ -40,11 +43,18 @@ Apps packages model capabilities into a customer-facing entry point. Operator Ad
 
 This page manages app publishing records, including app name, bound model, visibility scope, publishing status, call entry, and review information. Operator Admins should confirm that app display information, model permissions, and customer visibility scope match.
 
+| Area | Description |
+| --- | --- |
+| Top Search Bar | Contains keyword search input, expand filter button, and app counter/sorting controls |
+| Expanded Filter Panel | Expands category multi-select, billing status, and author filters |
+| Application Card Grid | Displays app cover cards, category tags, authors, billing status, and view/favorite counts |
+| Card Action Controls | Provides Pin To Top, Edit Tag, and Details navigation at the top right and bottom of cards |
+
 Page screenshot:
 
 ![App publishing list](./images/apps-list-public.png)
 
-The image shows the Apps publication management page, displaying published app cards, category tags, maintainers, billing status, and usage metrics, along with search, filters, pin, and tag editing actions.
+The figure shows the Apps publication management page, displaying published app cards, category tags, maintainers, billing status, and usage metrics, along with search, filters, pin, and tag editing actions.
 
 ## Main Operations
 
@@ -70,7 +80,7 @@ The image shows the Apps publication management page, displaying published app c
 
 ## Parameter Reference
 
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | App Name | System-displayed | Text | `Example App` | App name displayed in the app list. |
 | Tag | System-displayed | Tag | `Agents & Interaction` | App category or display tag. |
@@ -196,6 +206,11 @@ The target card does not show **"Pin To Top"** or **"Edit Tag"**, or the card st
 
 ## Next Steps
 
-1. View app call logs.
-2. Analyze customer call trends.
-3. Adjust model or visibility scope based on customer feedback.
+1. Review application call logs to inspect real invocation volume and response latencies.
+2. Analyze customer call trends and model billing consumption to evaluate listing effectiveness.
+3. Collect consumer feedback to adjust bound models or visibility scopes as needed.
+
+Related pages:
+- [App Reviews](../../approvals/app-reviews/)
+- [Call Analytics](../../../user/customer-calls/call-analytics/)
+- [My Models](../../../user/studio/my-models/)

@@ -1,6 +1,6 @@
 # My Models
 
-## 1. Feature Overview
+## Feature Overview
 
 | Item | Content |
 | --- | --- |
@@ -9,15 +9,26 @@
 | Routes | Overview `/modelone/model/my/overview`; publish form `/modelone/model/create?isPublic=0` |
 | Managed objects | Published models, aggregate models, deployment entries, and publish configuration |
 
-**New to this page**: My Models is the publisher workspace. `Overview` explains deployment, BYOK integration, and aggregation; `My Published` manages directly published models; `My Aggregate` manages models combined behind one Model ID.
+#### Beginner Explanation
 
-## 2. Prerequisites
+My Models is the workspace for model providers. `Overview` explains deployment, BYOK integration, and aggregation; `My Published` manages directly published models; `My Aggregate` manages models combined behind one Model ID.
+
+#### Terms Quick Reference
+
+| Term | Description |
+| --- | --- |
+| Meta Model | The foundational capability and protocol standard used as the baseline for publishing upstream models. |
+| Endpoint | The physical network access point under a model source, bound to a request URL and credential. |
+| Access Mode | Access control mode, including globally available (`Global`) and tenant-authorized (`Authorized`). |
+| Aggregate Model | A service architecture combining multiple underlying models behind a unified Model ID via routing policies. |
+
+## Prerequisites
 
 1. Your account has access to **Studio > My Models**.
 2. The meta model, model source, Endpoint, request URL, and credential are confirmed.
 3. Billing, price, rate limits, and publication scope are confirmed before publishing.
 
-## 3. Page Description
+## Page Description
 
 The page has three tabs: `Overview`, `My Published`, and `My Aggregate`.
 
@@ -29,47 +40,56 @@ The page has three tabs: `Overview`, `My Published`, and `My Aggregate`.
 
 ![My Models overview](./images/my-models-overview.png)
 
-**Figure note**: Three tabs sit at the top; the deployment area shows On-Prem/On-Cloud (environment not configured), and the BYOK and aggregate areas provide private and public entries.
+The figure shows three tabs sit at the top; the deployment area shows On-Prem/On-Cloud (environment not configured), and the BYOK and aggregate areas provide private and public entries.
 
-### 3.1 My Published
+| Area | Description |
+| --- | --- |
+| Top Tabs | Switches among the `Overview`, `My Published`, and `My Aggregate` views. |
+| 01 AGIOne Deployed | Displays on-prem and on-cloud deployment cards with configuration status and contact entry. |
+| 02 BYOK | Provides publish entries for onboarding existing physical endpoints as private or public models. |
+| 03 Aggregate Model | Provides configuration entries for aggregating multiple published models under a single Model ID. |
+| My Published List | Manages directly published model instances, supporting search, detail view, and version editing. |
+| My Aggregate List | Manages aggregated routing instances, supporting type filtering, search, and topology expansion. |
+
+### My Published
 
 `My Published` lists directly published models. Columns are `Model name`, `Model type`, `Billing mode`, `Billing rules`, `Status`, `Effective version`, `Pending version`, `Updated at`, and `Actions`. The toolbar provides **Publish Model**, search, and **Reset**; row actions provide **View details** and **Edit**.
 
-### 3.2 My Aggregate
+### My Aggregate
 
 `My Aggregate` uses the same columns and provides **Create Aggregate Model**, `Public Model` / `Private Model` filters, an `All Model type` filter, search, **Reset**, and **Expand**.
 
-## 4. Main Operations
+## Main Operations
 
-### 4.1 Publish a model
+### Publish a model
 
-1. Open **My Models** and switch to `My Published`, or start from the `02 BYOK` area on `Overview`.
-2. Click **Publish Model** and choose `Private Model` or `Public Model` in the `Select publish type` dialog.
-3. Click **Publish as Private Model** or **Publish as Public Model** to open the three-step form.
+1. Open **"My Models"** and switch to `My Published`, or start from the `02 BYOK` area on `Overview`.
+2. Click **"Publish Model"** and choose `Private Model` or `Public Model` in the `Select publish type` dialog.
+3. Click **"Publish as Private Model"** or **"Publish as Public Model"** to open the three-step form.
 4. In `Step 1 Basic Information`, select the meta model, model source, and Endpoint, and fill in the request URL, credential, upstream model name, and input/output modalities.
 5. Optionally enable `Function/Tool Support` and `Thinking Mode`, and set the maximum context, input, and output tokens.
 6. Select at least one protocol under `Official Native Protocol & Default Advanced Parameters`, and test connectivity first.
 7. Fill in the custom tag (up to 20 characters), review the model name preview, and choose the publication method and `Access Mode`.
-8. Click **Next** to open `Step 2 Billing Configuration`, then complete `Step 3 Rate Limit Configuration` and submit.
+8. Click **"Next"** to open `Step 2 Billing Configuration`, then complete `Step 3 Rate Limit Configuration` and submit.
 
 ![Publish model basic information](./images/publish-basic.png)
 
-**Figure note**: The wizard shows `1 Basic Information`, `2 Billing Configuration`, and `3 Rate Limit Configuration`. The visible area contains `Meta Model`, `Model Source`, `Endpoint`, `Request URL`, `Credential`, `Upstream model name`, input/output modalities, advanced capabilities, token limits, and protocol selection; `Access Mode` sits lower in the basic-information area.
+The figure shows the wizard shows `1 Basic Information`, `2 Billing Configuration`, and `3 Rate Limit Configuration`. The visible area contains `Meta Model`, `Model Source`, `Endpoint`, `Request URL`, `Credential`, `Upstream model name`, input/output modalities, advanced capabilities, token limits, and protocol selection; `Access Mode` sits lower in the basic-information area.
 
-### 4.2 Create an aggregate model
+### Create an aggregate model
 
-1. Switch to `My Aggregate` and click **Create Aggregate Model**.
+1. Switch to `My Aggregate` and click **"Create Aggregate Model"**.
 2. Choose `Private Model` or `Public Model`.
 3. Select published models, then configure routing, billing, and rate limits.
 4. After submission, verify the record and status in `My Aggregate`.
 
-### 4.3 View and edit a published model
+### View and edit a published model
 
-1. Use search or **Reset** in `My Published` to locate a model.
-2. Click **View details** to check billing rules, versions, and status.
-3. Click **Edit** to change the configuration.
+1. Use search or **"Reset"** in `My Published` to locate a model.
+2. Click **"View details"** to check billing rules, versions, and status.
+3. Click **"Edit"** to change the configuration.
 
-## 5. Parameter Quick Reference
+## Parameter Quick Reference
 
 | Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -97,56 +117,81 @@ The page has three tabs: `Overview`, `My Published`, and `My Aggregate`.
 | Status | System | Tag | `Listed`, `Delisting scheduled`, `Delisted` | Current model status |
 | Effective version / Pending version | System | Version tag | `Rev.1` | Current and pending revisions |
 
-## 6. Pitfalls
+## Pitfalls
 
 - The first step requires a protocol connectivity test. Until it passes, the page shows `Please test the protocol connectivity first`.
 - `Access Mode` `Global` allows all tenants and users without extra authorization; `Authorized` keeps the model visible in the marketplace but requires tenant-level authorization.
 - `My Published` shows both `Effective version` and `Pending version`; rows with `Delisting scheduled` remain in the list.
 - The custom tag is limited to 20 characters and affects display only, not model capability.
 
-## 7. Result Validation
+## Result Validation
 
-| Check | What you can see |
-| --- | --- |
-| Publish record | The model appears in `My Published` with type, billing mode, status, and update time |
-| Aggregate record | The aggregate model appears in `My Aggregate` |
-| Version status | `Effective version` and `Pending version` show revision numbers and review results |
-| Wizard progress | The form advances from `Step 1 Basic Information` to `Step 2 Billing Configuration` and `Step 3 Rate Limit Configuration` |
+| Check Item | Success Signal | Handling on Failure |
+| --- | --- | --- |
+| Publish record | The target model appears in `My Published` with type, billing mode, status, and update time. | If missing, verify that search filters are cleared, or check if the model is pending approval. |
+| Aggregate record | The aggregate model appears in `My Aggregate` with normal status. | Refresh the page; if not generated, check child model dependencies and routing policies. |
+| Version status | `Effective version` and `Pending version` show revision numbers (e.g., Rev.1) and review badges. | If versions do not update, confirm whether the edit submission succeeded or is pending review. |
+| Wizard progress | The form advances smoothly from Step 1 Basic Information to Step 2 Billing and Step 3 Rate Limits. | If stuck on Step 1, verify protocol connectivity testing passed and all required fields are filled. |
 
-## 8. FAQ
+## FAQ
 
 #### The publish form cannot continue
 
-**Symptom**: Clicking **Next** in `Step 1 Basic Information` does not open billing configuration.
+**Symptom:**
 
-**Resolution**:
+Clicking **Next** in `Step 1 Basic Information` does not advance to billing configuration.
 
-1. Check the meta model, model source, Endpoint, request URL, credential, and upstream model name.
-2. Confirm at least one protocol is selected and connectivity testing has passed.
+**Possible Causes:**
+
+Protocol connectivity test has not been executed or failed, required fields (Meta Model, Model Source, Endpoint, Request URL, Credential) are missing, or upstream network connectivity is unreachable.
+
+**Resolution:**
+
+1. Check that Meta Model, Model Source, Endpoint, Request URL, Credential, and upstream model name are all filled in.
+2. Ensure at least one native protocol is selected and test connectivity until it passes.
 
 #### The published model is missing
 
-**Symptom**: The record is not in `My Published`.
+**Symptom:**
 
-**Resolution**:
+The published model cannot be found in the `My Published` list after submission.
 
-1. Confirm the `My Published` tab and clear search conditions.
-2. Check whether the submission succeeded and whether the model is still under review.
+**Possible Causes:**
+
+Previous search or filter criteria are active, the model is still in review/pending status, or the submission failed.
+
+**Resolution:**
+
+1. Confirm you are on the `My Published` tab and click **"Reset"** to clear search conditions.
+2. Check the publish approval ticket to see whether it is under review or rejected.
 
 #### The deployment cards cannot be used
 
-**Symptom**: `On-Prem` or `On-Cloud` shows `Environment not configured.`
+**Symptom:**
 
-**Resolution**: These cards currently provide **Contact Us** only; enter the deployment flow after the environment is configured.
+`On-Prem` or `On-Cloud` displays `Environment not configured.` and direct deployment cannot be triggered.
 
-## 9. Notes
+**Possible Causes:**
+
+The tenant has not provisioned computing node environments or bound underlying compute clusters.
+
+**Resolution:**
+
+Click **"Contact Us"** on the card to submit a computing resource application, and proceed after the administrator configures the environment.
+
+## Notes
 
 - Publishing and editing affect customer calls and billing; confirm the impact first.
 - Credentials and request URLs are sensitive; never write them into documents, screenshots, or external chat tools.
 - Price, billing method, and rate limits directly affect real call cost; verify them before submission.
 
-## 10. Next Steps
+## Next Steps
 
-- Review revenue in [Model Earnings](../../usage-earnings/model-earnings/).
-- Review customer traffic in [Customer Calls](../../customer-calls/overview/).
-- Manage upstream credentials and Endpoint bindings in [My Credentials](../../studio/credentials/).
+1. Verify call revenue and billing reconciliation after publication in [Model Earnings](../../usage-earnings/model-earnings/).
+2. Monitor external customer call traffic and health in [Customer Calls](../../customer-calls/overview/).
+3. Maintain upstream credentials and Endpoint mappings in [My Credentials](../../studio/credentials/).
+
+Related pages:
+- [Model Earnings](../../usage-earnings/model-earnings/)
+- [Customer Calls](../../customer-calls/overview/)
+- [My Credentials](../../studio/credentials/)

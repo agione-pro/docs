@@ -1,6 +1,6 @@
 # Audio
 
-## 1. Feature Overview
+## Feature Overview
 
 | Item | Content |
 | --- | --- |
@@ -11,15 +11,31 @@
 
 **New to this page**: Audio converts text into speech. Choose an audio model, enter the text to read, and review the generated audio in **Task query**.
 
-## 2. Prerequisites
+#### Terms Quick Reference
+
+| Term | Description |
+| --- | --- |
+| Text-to-Speech (TTS) | AI speech synthesis technology converting input plain text into realistic, natural human speech. |
+| Task Query | Asynchronous audio rendering queue dashboard tracking speech task IDs, durations, statuses, and playback/download URLs. |
+| Voice & Speed | Preset vocal characteristics (e.g., male, female, news anchor, emotional audiobook) and playback speed adjustments supported by the model. |
+| Character Billing | Audio models typically bill based on valid input character count or generated audio seconds, differing from LLM token billing. |
+
+## Prerequisites
 
 1. Your account can open **Playground > Audio**.
 2. The account has available credits or a free quota for the model.
 3. The input limit and billing unit of the audio model are confirmed.
 
-## 3. Page Description
+## Page Description
 
 The page contains a model area, an action area, and an input area:
+
+| Area | Description |
+| --- | --- |
+| Top model & action bar | Provides model selector dropdown, Task query entry, and Model Compare button |
+| Central text input console | Multi-line text box for input scripts, supporting Shift+Enter line breaks and character counts |
+| Audio playback & result area | Asynchronously renders audio player controls (waveform, play/pause, speed) with WAV/MP3 export support |
+| Footer disclaimer | Displays AI-generated synthesis compliance notices and fraud prevention statements |
 
 - Model area: **Select Model** opens the model list.
 - Actions: **Task query** opens past tasks; **Model Compare** opens comparison.
@@ -27,32 +43,32 @@ The page contains a model area, an action area, and an input area:
 
 ![Audio playground](./images/audio-playground.png)
 
-**Figure note**: The top provides **Select Model**, **Task query**, and **Model Compare**; the input prompt is `Please enter your question, Shift+Enter for a new line`, with the disclaimer `AI-generated content may be inaccurate and does not represent our views.`.
+The figure shows the top provides **Select Model**, **Task query**, and **Model Compare**; the input prompt is `Please enter your question, Shift+Enter for a new line`, with the disclaimer `AI-generated content may be inaccurate and does not represent our views.`.
 
-## 4. Main Operations
+## Main Operations
 
-### 4.1 Select an audio model
+### Select an audio model
 
-1. Click **Select Model**.
+1. Click **"Select Model"**.
 2. Choose an audio model and verify its provider.
 
-### 4.2 Generate audio
+### Generate audio
 
 1. Enter the text to read.
 2. Use `Shift+Enter` for new lines, then submit.
 3. Review the generated audio in the result area.
 
-### 4.3 Query tasks
+### Query tasks
 
-1. Click **Task query**.
+1. Click **"Task query"**.
 2. Locate the current or previous tasks.
 
-### 4.4 Compare models
+### Compare models
 
-1. Click **Model Compare**.
+1. Click **"Model Compare"**.
 2. Select audio models and generate from the same text.
 
-## 5. Parameter Quick Reference
+## Parameter Quick Reference
 
 | Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -61,46 +77,64 @@ The page contains a model area, an action area, and an input area:
 | Task query | No | Button | — | View previous generation tasks |
 | Model Compare | No | Button | — | Open multi-model comparison |
 
-## 6. Pitfalls
+## Pitfalls
 
 - Audio models differ in text length and voice support; test long text in segments.
 - Billing may be per character, second, or request; confirm the unit before submitting.
 - Output depends on model capability; listen to important announcements before publishing.
 
-## 7. Result Validation
+## Result Validation
 
-| Check | What you can see |
-| --- | --- |
-| Model selected | The model area shows the current model |
-| Text accepted | The input box accepts multiple lines |
-| Task created | A task or audio appears in the result area |
-| History available | **Task query** opens the task list |
+| Check Item | Success Signal | Handling on Failure |
+| --- | --- | --- |
+| Audio model selected | The top area accurately displays the model name (e.g., `Mock MiniMax Speech T2A`) and provider info | If the list is empty, open [Models](../../discover/models/) to verify authorization for speech synthesis models |
+| Script submission | Clicking submit shows "Task created", keeps the input box active, and queues background rendering | If character limits are exceeded, divide long scripts by punctuation and submit in segments |
+| Player playback normal | An audio player renders in the result area; playback is clear without stuttering or robotic artifacts | If synthesis fails, open **Task query** to review detailed error codes (such as content moderation rejection) |
+| Task list history | Clicking **"Task query"** loads historical audio tasks including duration and creation timestamps | Verify that the correct tenant environment and query time range are selected |
+| Model Compare audition | Opening **"Model Compare"** synthesizes parallel audio from multiple models with side-by-side players | Confirm that all selected models have active compute resources allocated |
 
-## 8. FAQ
+## FAQ
 
 #### No audio model is available
 
-**Symptom**: The model list is empty or lacks the target model.
+**Symptom:** Clicking **"Select Model"** displays an empty list or the target model is missing.
 
-**Resolution**: Confirm the model is published and visible to your tenant, or check audio models in [Models](../../discover/models/).
+**Possible Causes:** The tenant lacks visibility or access permissions for the model; the model has not passed operator review; or no audio inference instances are online.
+
+**Resolution:**
+
+1. Navigate to [Models](../../discover/models/) and filter by "Speech" to confirm model status and release state.
+2. Verify tenant account permissions and project quota assignments.
+3. Contact the platform administrator or model provider to verify release status.
 
 #### Generation fails
 
-**Symptom**: The task status is abnormal after submission.
+**Symptom:** Submitting text results in a generation failure notice or abnormal task termination in the result area.
 
-**Resolution**:
+**Possible Causes:** Text length exceeds the model's maximum character limit; content contains restricted terms triggering safety filters; or credit balance is insufficient.
 
-1. Check whether the text is empty or exceeds the model limit.
-2. Check the task status in **Task query** and retry.
+**Resolution:**
 
-## 9. Notes
+1. Check character count and keep scripts under 500 characters per batch.
+2. Review input text for policy-violating or sensitive terms.
+3. Open **Task query** to inspect the root cause, and verify account balance in the billing console.
+
+## Notes
 
 - Do not enter other people's private or unauthorized text.
 - Audio generation is billed by the model; confirm quota before batch conversion.
 - Verify copyright and compliance before commercial use.
 
-## 10. Next Steps
+## Next Steps
 
-- Review audio call volume in [My Calls](../../my-calls/overview/).
-- Check deductions in [Model Usage](../../usage-earnings/model-usage/).
-- Compare audio models in [Models](../../discover/models/).
+1. Verify character-based or duration-based deduction logs in call logs and usage reports.
+2. Once audition quality is verified, copy Quick Start API snippets to integrate into voice assistants or notification services.
+3. Explore the text chat or image generation playgrounds for other multimodal AI capabilities.
+
+Related pages:
+- [Models Marketplace](../../discover/models/)
+- [Text Playground](../text/)
+- [Image Playground](../images/)
+- [Video Playground](../video/)
+- [Model Usage](../../usage-earnings/model-usage/)
+- [My Calls Overview](../../my-calls/overview/)

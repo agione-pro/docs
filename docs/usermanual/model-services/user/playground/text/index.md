@@ -1,6 +1,6 @@
 # Text
 
-## 1. Feature Overview
+## Feature Overview
 
 | Item | Content |
 | --- | --- |
@@ -11,15 +11,31 @@
 
 **New to this page**: Text is the online trial entry for catalog models. Choose a model, ask a question, and read the response; turn on **Model Compare** when you need side-by-side results.
 
-## 2. Prerequisites
+#### Terms Quick Reference
+
+| Term | Description |
+| --- | --- |
+| Text Chat | The built-in interactive conversation console that simulates client requests to large language models with real-time streaming output. |
+| Aggregate Model | A virtual model dynamically routed by the platform layer across multiple infrastructure backends or providers to optimize throughput and uptime. |
+| Model Compare | Parallel evaluation feature sending identical prompts simultaneously to two or more models to benchmark quality, latency, and preferences. |
+| Context Limit | The maximum combined token threshold that a model can process across input (prompt) and output (completion) in a single turn. |
+
+## Prerequisites
 
 1. Your account can open **Playground > Text**.
 2. The account has available credits or a free quota for the model.
 3. The target model, context limit, and billing method are confirmed.
 
-## 3. Page Description
+## Page Description
 
 The page contains a model area, a welcome area, and an input area:
+
+| Area | Description |
+| --- | --- |
+| Top model & config bar | Displays selected model name, provider, capability tags, model dropdown selector, and Model Compare button |
+| Central chat stream | Presents welcome greeting, multi-turn Q&A bubble history, with streaming Markdown and text rendering |
+| Bottom input console | Multi-line text input box, Shift+Enter line-break hint, send button, and Reset all action |
+| Footer disclaimer | AI-generated content accuracy disclaimer advising manual verification of critical answers |
 
 - Model area: current model name, tags, and provider, such as `GLM-5.2`, `Aggregate`, and `星云智算人工智能科技有限公司`; **Model Compare** is on the right.
 - Welcome area: shows `What would you like to explore?` on first entry.
@@ -28,33 +44,33 @@ The page contains a model area, a welcome area, and an input area:
 
 ![Text playground](./images/text-playground.png)
 
-**Figure note**: The current model is `GLM-5.2` with the `Aggregate` tag; the input prompt is `Please enter your question, Shift+Enter for a new line`, and **Model Compare** is available on the right.
+The figure shows the current model is `GLM-5.2` with the `Aggregate` tag; the input prompt is `Please enter your question, Shift+Enter for a new line`, and **Model Compare** is available on the right.
 
-## 4. Main Operations
+## Main Operations
 
-### 4.1 Select a model
+### Select a model
 
 1. Click the model area to open the model list.
 2. Select a model or aggregate model and verify its tag and provider.
 
-### 4.2 Start a conversation
+### Start a conversation
 
 1. Enter a question in the input box.
 2. Use `Shift+Enter` for a new line, or submit.
 3. Read the response in the output area.
 
-### 4.3 Compare models
+### Compare models
 
-1. Click **Model Compare**.
+1. Click **"Model Compare"**.
 2. Select the models to compare.
 3. Submit the same input and compare the responses.
 
-### 4.4 Reset the session
+### Reset the session
 
-1. Click **Reset all**.
+1. Click **"Reset all"**.
 2. Confirm the model selection and input are cleared.
 
-## 5. Parameter Quick Reference
+## Parameter Quick Reference
 
 | Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -64,47 +80,63 @@ The page contains a model area, a welcome area, and an input area:
 | Input | Yes | Multi-line text | `Hello` | Prompt submitted to the model |
 | Model Compare | No | Button | — | Opens multi-model comparison |
 
-## 6. Pitfalls
+## Pitfalls
 
 - Verify the model tag before submitting; an `Aggregate` model routes across multiple backends, so responses may come from different nodes.
 - `Shift+Enter` inserts a new line, it does not submit.
 - Playground calls create usage records and consume tokens; long conversations cost more.
 
-## 7. Result Validation
+## Result Validation
 
-| Check | What you can see |
-| --- | --- |
-| Model selected | The top shows the target model, tag, and provider |
-| Input accepted | The input box shows the prompt and accepts multiple lines |
-| Response returned | The output area shows generated content |
-| Disclaimer | The footer shows `AI-generated content may be inaccurate and does not represent our views.` |
+| Check Item | Success Signal | Handling on Failure |
+| --- | --- | --- |
+| Model selected | The top bar accurately displays the target model name, aggregate tag, and full provider name | If the dropdown is missing the model, check [Models](../../discover/models/) to confirm publication and tenant visibility |
+| Message submitted | Pressing Enter or clicking send clears the input box and creates a user question bubble | If sending fails, check network connectivity or verify account quota and balance |
+| Streaming response | The dialogue area renders generated tokens progressively with a moving cursor until completion | If latency exceeds dozens of seconds or cuts off, check context length limits or provider status |
+| Model Compare active | When enabled, side-by-side columns display simultaneous model responses for comparative benchmarking | If a column fails to load, verify that each selected model instance is operational |
+| Reset all executed | Clicking **"Reset all"** immediately clears dialogue history and restores the initial welcome screen | Refresh the browser tab to re-establish a clean session context |
 
-## 8. FAQ
+## FAQ
 
 #### No response after submitting
 
-**Symptom**: The output area stays empty.
+**Symptom:** The dialogue area remains blank or indicates generation failure after submitting a prompt.
 
-**Resolution**:
+**Possible Causes:** Account quota is exhausted; the backend provider instance is overloaded or temporarily offline; or prompt length exceeds the context limit.
 
-1. Confirm the model status and account quota.
-2. Check that the input is not empty and does not exceed the context limit.
-3. Select the model again and retry.
+**Resolution:**
+
+1. Check account balance and credit status to ensure the tenant is not locked.
+2. Shorten the prompt or clear long conversation history before retrying.
+3. Switch to another available model or retry later.
 
 #### The target model is missing
 
-**Symptom**: The model list does not contain the target model.
+**Symptom:** The model selection dropdown does not contain the desired model.
 
-**Resolution**: Confirm the model is published and visible to your tenant, or check its scope in [Models](../../discover/models/).
+**Possible Causes:** The model has not been approved and released; it is restricted to private tenant scopes; or the model belongs to a non-chat modality (e.g., image or video).
 
-## 9. Notes
+**Resolution:**
+
+1. Open [Models](../../discover/models/) and filter by modality to verify whether the model supports text generation.
+2. Confirm current tenant account permissions and role assignments.
+3. Contact the platform administrator or model provider to verify visibility grants.
+
+## Notes
 
 - Do not enter keys, customer privacy, or unmasked business data.
 - Playground calls are billed at the model price; long or frequent calls consume quota quickly.
 - Model output is for reference only; review important conclusions manually.
 
-## 10. Next Steps
+## Next Steps
 
-- Review calls and tokens in [My Calls](../../my-calls/overview/).
-- Check deductions in [Model Usage](../../usage-earnings/model-usage/).
-- For application integration, open **Quick Start** in [Models](../../discover/models/).
+1. Check token consumption breakdowns and latency percentiles in call logs and reports.
+2. Copy Quick Start integration code into your client applications once benchmark results meet expectations.
+3. Navigate to other modality playgrounds to explore image, audio, or video capabilities.
+
+Related pages:
+- [Models Marketplace](../../discover/models/)
+- [My Calls Overview](../../my-calls/overview/)
+- [Image Playground](../images/)
+- [Audio Playground](../audio/)
+- [Video Playground](../video/)

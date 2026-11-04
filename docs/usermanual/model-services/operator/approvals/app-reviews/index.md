@@ -1,5 +1,8 @@
 # App Reviews
 
+> The current Operator account does not show this page in the left menu. If your account cannot see it, contact the platform administrator to confirm permissions.
+
+
 ::: info Document Information
 Version: v1.0
 Updated: 2026-08-31
@@ -18,7 +21,7 @@ Updated: 2026-08-31
 
 App Reviews is the checkpoint before an app is shown to its intended Model Consumers. The Operator Admin checks what the app does, which models it uses, where it can be seen, and whether the submitted information is complete before making a decision.
 
-#### Glossary
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
@@ -50,11 +53,18 @@ App Reviews is the checkpoint before an app is shown to its intended Model Consu
 
 This page lists app review records by status and provides filters for the app name and category. The list shows the app name, category, customer affiliation, version, review status, submission time, review time, and the actions shown for the current account.
 
+| Area | Description |
+| --- | --- |
+| Status Tabs | Switch between All, Pending Review, Approved, and Rejected stages |
+| Top Filter Bar | Provides app name search, category dropdown, Search, and Reset buttons |
+| Batch Action Bar | Allows batch review after selecting multiple records |
+| Review Table | Displays app name, category, customer, version, review status, timestamps, and action buttons |
+
 Page screenshot:
 
 ![App review list](./images/app-reviews-list-public.png)
 
-The image shows the main App Reviews list page, supporting status filtering (All, Pending Review, Approved, Rejected), app name/category search, and access to batch or single review actions.
+The figure shows the main App Reviews list page, supporting status filtering (All, Pending Review, Approved, Rejected), app name/category search, and access to batch or single review actions.
 
 ## Main Operations
 
@@ -82,7 +92,7 @@ The image shows the main App Reviews list page, supporting status filtering (All
 
 ![Review an app](./images/application-review-public.png)
 
-The image shows the application review drawer with Review Info, Application Test, and App Details tabs, along with the Reject and Approve actions at the bottom.
+The figure shows the application review drawer with Review Info, Application Test, and App Details tabs, along with the Reject and Approve actions at the bottom.
 
 ### Batch Review Apps
 
@@ -94,7 +104,7 @@ The image shows the application review drawer with Review Info, Application Test
 
 ## Parameter Reference
 
-| Field Name | Required | Field Type | Example | Description |
+| Field | Required | Field type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Application name | System-displayed | Text | `sample-app` | Name of the app under review. |
 | Category | System-displayed | Tag | `Text Generation` | Category assigned to the app. |
@@ -246,3 +256,7 @@ Some selected records remain pending after batch review.
 1. Check the app publication page and confirm the approved version and visibility scope.
 2. Ask the Model Consumer to verify that the app entry and bound model are shown as expected.
 3. Review call logs and customer feedback after publication.
+
+Related pages:
+- [Model Reviews](../model-reviews/)
+- [Apps](../../publishing/apps/)
