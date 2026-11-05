@@ -1,4 +1,4 @@
-# Platform Configuration
+# Platform Settings
 
 ::: info Document Information
 Version: v2.0

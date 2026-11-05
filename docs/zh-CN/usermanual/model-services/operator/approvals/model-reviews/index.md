@@ -200,4 +200,3 @@
 - [模型源](../../settings/model-source/)
 - [元模型](../../settings/meta-models/)
 - [模板](../../settings/model-templates/)
-- [应用审核](../app-reviews/)

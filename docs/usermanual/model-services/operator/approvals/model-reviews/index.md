@@ -200,4 +200,3 @@ Related pages:
 - [Model Sources](../../settings/model-source/)
 - [Meta Models](../../settings/meta-models/)
 - [Model Templates](../../settings/model-templates/)
-- [App Reviews](../app-reviews/)

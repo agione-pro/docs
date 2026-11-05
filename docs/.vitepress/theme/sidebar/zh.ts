@@ -424,6 +424,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '我的模型', link: '/zh-CN/usermanual/model-services/user/studio/my-models/' },
+                    { text: '我的部署', link: '/zh-CN/usermanual/model-services/user/studio/my-deployments/' },
                     { text: '我的凭证', link: '/zh-CN/usermanual/model-services/user/studio/credentials/' },
                   ]
                 },

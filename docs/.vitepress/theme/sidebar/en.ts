@@ -485,6 +485,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "My Models", link: "/usermanual/model-services/user/studio/my-models/" },
+                    { text: "My Deployments", link: "/usermanual/model-services/user/studio/my-deployments/" },
                     { text: "My Credentials", link: "/usermanual/model-services/user/studio/credentials/" },
                   ]
                 },
