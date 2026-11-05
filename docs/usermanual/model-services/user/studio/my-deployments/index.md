@@ -55,25 +55,22 @@ Click the tabs at the top of the page:
 ### 3. Redirect to Underlying Subsystems for Management
 
 As an aggregation dashboard, core lifecycle operations seamlessly link to the underlying compute subsystem:
-- **View and Manage Instances**: Click an instance name or action button in the list to automatically navigate to the instance console in **Heterogeneous GPU Management** (`/powerone/quickstart/model-service`) or **Multi-Platform Scheduling** (`/infrahub/user/model/deployment`), where you can start, stop, delete, inspect logs, and monitor metrics.
+- **View and Manage Instances**: Click an instance name or action button in the list to automatically navigate to the instance console in **On-Prem** (`/powerone/quickstart/model-service`) or **On-Cloud** (`/infrahub/user/model/deployment`), where you can start, stop, delete, inspect logs, and monitor metrics.
 - **Create New Deployments**: Click **Go to Quick Deployment** at the top right or **Custom Deploy** on the right of the filter toolbar to jump directly to the deployment wizard in the respective compute subsystem and finalize setup.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Go to Quick Deployment | No | Action Button | Click button | Located at the top right, redirects to the quick deployment wizard in the underlying compute subsystem |
-| Compute Environment Tab | Yes | Tab | On-Prem / On-Cloud | Toggles between local cluster instances and cloud-scheduled instances |
-| Region Selection | No | Dropdown | All | Filters deployment instances by specific region or availability zone |
-| Instance Type | No | Radio Group | All / Single Instance / Cluster | Filters records by single-card or multi-card distributed cluster mode |
-| Status Filter | No | Dropdown | All Statuses | Filters records by operational lifecycle status |
-| Search by instance name | No | Text Input | qwen2.5 | Filters instances matching the entered keyword |
-| Custom Deploy | No | Action Button | Click button | Located on the right of the filter toolbar, redirects to the respective compute subsystem for custom deployment |
+| Region | No | Dropdown | All | Filters model instances deployed in a specific region or availability zone |
+| Topology | No | Segmented Radio | All | Options include All, Single Instance, and Cluster to filter different deployment architectures |
+| Status | No | Dropdown | All Statuses | Options include All Statuses and specific lifecycle states to filter instances |
+| Search by instance name | No | Text Input | qwen2.5 | Enter instance name keywords for precise filtering |
 
 ## Pitfalls
 
-- Clicking an instance or deployment button redirects your browser to the On-Prem (PowerOne) or On-Cloud (InfraHub) subsystem; this is intended cross-subsystem navigation behavior rather than an error.
-- If a target service is not found under the On-Prem tab, check whether it was deployed in the On-Cloud environment and switch tabs accordingly.
+- Clicking an instance or deployment button redirects your browser to the corresponding On-Prem or On-Cloud subsystem; this is standard cross-subsystem navigation behavior rather than an error.
+- If a target service is not found in the current compute environment tab, check whether it was deployed in the other environment and toggle between the On-Prem and On-Cloud tabs.
 
 ## Result Validation
 
