@@ -9,7 +9,7 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | End User, Provider |
+| Applicable Role | User |
 | Navigation path | Model Services > Studio > My Deployments |
 | Page route | `/modelone/my-deployments/models` |
 | Managed objects | Unified overview and fast cross-subsystem navigation entries for deployed model instances across compute environments (On-Prem Heterogeneous GPU Management and On-Cloud Multi-Platform Scheduling) |
@@ -47,25 +47,28 @@ Click the tabs at the top of the page:
 
 ### 2. Filter and Search Instances
 
+- Select a target compute region in the Region dropdown (defaults to All).
 - Select **All**, **Single Instance**, or **Cluster** in the type bar to filter corresponding deployment topologies.
 - Filter by status in the dropdown menu to display Running, Stopped, or Abnormal instances.
-- Enter an instance name in the search box and click **Search** for exact keyword matching.
+- Enter an instance name in the search box, click the search icon button for exact keyword matching, or click reset to clear inputs and restore full view.
 
 ### 3. Redirect to Underlying Subsystems for Management
 
 As an aggregation dashboard, core lifecycle operations seamlessly link to the underlying compute subsystem:
 - **View and Manage Instances**: Click an instance name or action button in the list to automatically navigate to the instance console in **Heterogeneous GPU Management** (`/powerone/quickstart/model-service`) or **Multi-Platform Scheduling** (`/infrahub/user/model/deployment`), where you can start, stop, delete, inspect logs, and monitor metrics.
-- **Create New Deployments**: Click **Go to Quick Deployment** or **Custom Deploy** at the top right to jump directly to the deployment wizard in the respective compute subsystem and finalize setup.
+- **Create New Deployments**: Click **Go to Quick Deployment** at the top right or **Custom Deploy** on the right of the filter toolbar to jump directly to the deployment wizard in the respective compute subsystem and finalize setup.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Go to Quick Deployment | No | Action Button | Click button | Redirects to the quick deployment wizard in the underlying compute subsystem |
+| Go to Quick Deployment | No | Action Button | Click button | Located at the top right, redirects to the quick deployment wizard in the underlying compute subsystem |
 | Compute Environment Tab | Yes | Tab | On-Prem / On-Cloud | Toggles between local cluster instances and cloud-scheduled instances |
+| Region Selection | No | Dropdown | All | Filters deployment instances by specific region or availability zone |
 | Instance Type | No | Radio Group | All / Single Instance / Cluster | Filters records by single-card or multi-card distributed cluster mode |
-| Search by instance name | No | Text Input | qwen2.5 | Filters instances matching the entered keyword |
 | Status Filter | No | Dropdown | All Statuses | Filters records by operational lifecycle status |
+| Search by instance name | No | Text Input | qwen2.5 | Filters instances matching the entered keyword |
+| Custom Deploy | No | Action Button | Click button | Located on the right of the filter toolbar, redirects to the respective compute subsystem for custom deployment |
 
 ## Pitfalls
 
