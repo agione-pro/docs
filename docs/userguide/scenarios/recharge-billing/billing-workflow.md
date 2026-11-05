@@ -41,7 +41,9 @@ This scenario helps users distinguish account top-ups, resource quota, resource 
 
 1. Open [Billing Overview](../../../usermanual/billing/user/billing/overview/) and confirm available balance, billing cycle, and alerts. Then review **Top-Up Orders** and check payment state and credited amount.
 
-![Confirm account state in Billing Overview](../../../usermanual/billing/user/billing/overview/images/overview-list.png)
+![Locate Overview and related Billing pages](../../../usermanual/billing/user/billing/overview/images/account-navigation.png)
+
+The figure shows navigation entries only; open Overview to check the actual account balance and alerts.
 
 2. Open [Transactions](../../../usermanual/billing/user/billing/transactions/) and explain increases, deductions, or adjustments for the same account and time range.
 
@@ -58,7 +60,9 @@ This scenario helps users distinguish account top-ups, resource quota, resource 
 5. For models, compare call logs, model usage, and model revenue.
 6. Open [Monthly Bill](../../../usermanual/billing/user/billing/monthly-bill/) and reconcile currency, billing unit, price, transactions, and summarized deductions in the same cycle.
 
-![Review the monthly-bill summary](../../../usermanual/billing/user/billing/monthly-bill/images/monthly-bill-list.png)
+![Monthly-bill empty statistics area](../../../usermanual/billing/user/billing/monthly-bill/images/monthly-bill-empty.png)
+
+The figure shows the no-statistics area for a selected historical cycle. It is not a zero-value summary or a view of the full trend.
 
 7. If operator assistance is required, provide tenant, billing cycle, object ID, and redacted evidence. Operators continue with [Billing-Cycle Reconciliation and Settlement](../billing-cycle-reconciliation-settlement/).
 

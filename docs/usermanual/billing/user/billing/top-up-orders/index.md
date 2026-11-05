@@ -1,217 +1,152 @@
 # Top-up Orders
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-05
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model caller |
-| Navigation path | Billing > User Billing > Top-up Orders |
+| Applicable Role | Accounts with access to the `Billing` menu group |
+| Navigation path | Billing > Top-up Orders |
 | Page route | `/billing/my/top-ups/orders` |
-| Managed objects | Top-up orders, credit sources, top-up amounts, credited amounts, and order states |
+| Managed objects | The current account's top-up orders, sources, original-currency payments, credits added, and order statuses |
 
-`Top-up Orders` displays top-up records initiated by or associated with the current account, including order number, credit source, top-up amount, credited amount, order state, completion time, creation time, and details. Locate a top-up by order number, state, or credit source to confirm whether processing completed.
+Top-up Orders locates records by order number, top-up order status, top-up source, and time range. Check payment amounts, credits added, and processing status separately.
 
 #### Beginner Explanation
 
-A top-up order works like a receipt. It shows which top-up was submitted, whether it was credited, and where to troubleshoot a failure. If the balance did not change, first confirm that the order succeeded, then check whether the credited amount produced an income transaction.
+A top-up order works like a receipt: payment amounts and account credits are separate columns, so a number in Credits added does not by itself establish completion.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling Tip |
-| --- | --- | --- |
-| Top-up Order Number | Order identifier created after a user initiates a top-up. | Use a sanitized number for exact search. |
-| Credit Source | Funding source or payment channel for the top-up. | Reconcile it with Transactions. |
-| Top-up Amount | Amount the user requested to add. | Distinguish it from the payment result and credited amount. |
-| Credited Amount | Credits or amount added after the top-up completes. | Synchronization may still be delayed after success. |
-| Order State | Processing, completed, failed, or canceled state. | Open details for an abnormal state. |
+| Term | Description |
+| --- | --- |
+| Order no. | The top-up order identifier, distinct from payment and billing transaction numbers. |
+| Top-up source | The source displayed for an order, also available as a filter. |
+| Payment amount | The original-currency payment amount; read it with its currency. |
+| Credits added | The credits displayed for an order, not independent proof of posting. |
+| Status | The processing status, displayed separately from the credits figure. |
+| Invoice | A creation entry that can appear for eligible orders; availability depends on the entry shown in the row. |
 
 ## Prerequisites
 
-1. The current account has permission to view user-side billing.
-2. Open `My Billing > Top-up Orders`.
-3. Prepare an order number, order state, or credit source before searching.
-4. Before retrying, refunding, or handling an exception, confirm the order state and payment result.
-
-::: warning High-risk Operation Boundary
-Top-ups, refunds, repayment, and order exports may affect real funds or expose sensitive information. This page explains query and view boundaries only; it does not guide real submission.
-:::
+1. The current account can open `Billing > Top-up Orders` in the Billing subsystem.
+2. Prepare the order number or filter scope to query.
+3. Check status, amount units, and times together rather than reading only the credits figure.
 
 ## Page Description
 
-The page contains filters and an order list. Filter by `Top-up Order Number`, `Top-up Order State`, or `Credit Source`, then use `Search`, `Reset`, or `Expand`. The table shows order number, credit source, top-up amount, credited amount, state, completion time, creation time, and `Details`.
-
-The following screenshot shows Top-up Orders. Sanitize order numbers and amounts before sharing it.
-
-![Top-up Orders](./images/top-up-orders-list.png)
+In the Billing subsystem, the left-menu group is `Billing`. The page has four filters: order number, top-up order status, top-up source, and time range. The order input displays `Enter order no.`. The list has eight columns and a row-level `Details` entry.
 
 | Area | Description |
 | --- | --- |
-| Top-up Order Number | Searches for an exact order number. |
-| Order State | Filters by top-up processing state. |
-| Credit Source | Filters by payment channel or credit source. |
-| Search | Queries the order list with current filters. |
-| Reset | Clears filters and restores the default list. |
-| Expand | Shows additional filters. |
-| Order List | Displays order number, source, amounts, state, completion time, creation time, and operation. |
-| Details | Opens top-up order details. |
+| Order number input | Enter a query value in `Enter order no.` and press Enter. |
+| Top-up order status | Filters by processing status. |
+| Top-up source | Filters by top-up source. |
+| Time range | Restricts the query using start and end dates. |
+| Order list | Order no., Top-up source, Payment amount, Credits added, Status, Completed at, Created at, Actions. |
+| Row-level details | Use `Details` in the target record's Actions column. |
+| Conditional Invoice entry | An Invoice creation entry can appear for eligible orders, not every order; use the entry actually shown in that row. |
+| Horizontal scrolling and empty result | Scroll horizontally to view time columns and Actions; an empty result displays `No Data` and `Total 0`. |
+
+![Top-up Orders empty result](./images/top-up-orders-list.png)
+
+The figure shows an empty Top-up Orders result after entering `documentation-example`; the time columns may not all be visible at once. Scroll horizontally to view them and the final Actions column.
 
 ## Main Operations
 
-### Reconcile a Top-up Order with Account Transactions
-
-1. Open the target order details and record a redacted order number, status, and completion time.
-2. Open Transactions and locate the corresponding posting in the same time range.
-3. The order status, posted amount direction, and transaction time should be mutually traceable.
-4. If they differ, check payment status and refresh time. Do not create another top-up or supplemental order.
-
 ### Query Top-up Orders
 
-1. Go to `Billing > User Billing > Top-up Orders`.
-2. Enter `Top-up Order Number` or select an order state and credit source.
-3. Click **"Search"**.
-4. Review top-up amount, credited amount, and state in the order list.
-5. Click **"Reset"** to clear filters when needed.
-6. Before exporting orders, verify the filters, data scope, and recipient permission.
+1. Open `Billing > Top-up Orders` in the Billing subsystem.
+2. To query by order number, enter a value in `Enter order no.` and press Enter; the example uses the placeholder `documentation-example`.
+3. Select `Top-up order status` and `Top-up source` as needed.
+4. Set a time range as needed and review the list after the conditions update.
+5. Read matching orders; if `No Data` appears, check all four filters and change them directly for another scope.
 
-### View Order Details
+### View the Target Order
 
-1. Go to `Billing > User Billing > Top-up Orders`.
-2. Click **"Details"** in the target row.
-3. Review order state, credit source, amounts, credited information, creation time, and completion time.
-4. If the order failed or was canceled, keep a sanitized order number and contact the operator.
-5. Hide real order numbers, payment transaction numbers, accounts, emails, amounts, and payment evidence in external communication.
+1. Locate the target `Order no.` and read `Top-up source`, `Payment amount`, `Credits added`, and `Status`.
+2. Scroll horizontally to check `Completed at`, `Created at`, and the final `Actions` column.
+3. Use that row's `Details` entry and follow the information actually displayed on the page that opens.
+
+### Check Orders Against Billing Records
+
+1. Read the original-currency `Payment amount`, `Credits added`, and `Status` separately; do not compare the two amounts as if they shared a unit.
+2. Check completion and creation times, keeping order numbers distinct from payment and billing transaction numbers.
+3. Open [Transactions](../transactions/) and view records for the relevant dates; a number in Credits added alone does not prove posting.
+4. Open [Account Overview](../overview/) for the current balance; read order records and the current balance separately.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Top-up Order Number | No | Text | Sanitized order number | Locates an individual top-up order. |
-| Top-up Order State | No | Enum | `Canceled`, `Failed` | Filters orders by processing state. |
-| Credit Source | No | Enum | Sanitized source | Displays or filters the top-up source. |
-| Search | No | Button | `Search` | Refreshes the list using current filters. |
-| Reset | No | Button | `Reset` | Clears filters. |
-| Expand | No | Button | `Expand` | Shows more filters. |
-| Top-up Amount | System-generated | Amount | Sanitized amount | Payment amount requested by the user. |
-| Credited Amount | System-generated | Credits / amount | Sanitized amount | Credits added after top-up completion. |
-| State | System-generated | Enum | `Completed` | Top-up order processing state. |
-| Completion Time | System-generated | Time | Sanitized time | Time when the order completed or ended. |
-| Creation Time | System-generated | Time | Sanitized time | Time when the order was created. |
-| Details | No | Entry | `Details` | Opens top-up order details. |
+| Order number (filter) | No | Text input | `documentation-example` | The input displays `Enter order no.`; press Enter after entering a value. |
+| Top-up order status | No | Select | — | Filters processing status using the options actually displayed. |
+| Top-up source (filter) | No | Select | — | Filters by top-up source. |
+| Time range | No | Date range | — | Sets the query's start and end dates. |
+| Order no. | Not applicable | List column | — | Order identifier, distinct from payment and billing transaction numbers. |
+| Top-up source | Not applicable | List column | — | Source displayed for the order. |
+| Payment amount | Not applicable | Original-currency amount column | `0` | Read with the row's currency, not directly as credits. |
+| Credits added | Not applicable | Credits column | `0` | Check alongside Status; the figure alone does not prove posting. |
+| Status | Not applicable | Status column | — | Read the status actually displayed in the row. |
+| Completed at | Not applicable | Time column | — | Read the completion time or placeholder displayed in the row. |
+| Created at | Not applicable | Time column | — | Creation time of the order. |
+| Actions / Details | No | Row-level entry | `Details` | Opens the corresponding top-up order. |
+| Invoice creation | No | Conditional row-level entry | — | Provided for some order rows; availability depends on the entry displayed in that row. |
 
 ## Pitfalls
 
-- A successful top-up does not guarantee that Credits appear immediately; balance and transaction synchronization may be delayed.
-- Order number, payment transaction number, and billing transaction number are different objects. Do not mix them during troubleshooting.
-- Do not retry immediately after an order fails or is canceled; first confirm whether funds were deducted.
-- Different credit sources can have different posting times and reconciliation rules.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
-- Sanitize screenshots, exports, tickets, and comments.
+- `Payment amount` is in the original currency, while `Credits added` is in credits. Do not compare the numbers without their units.
+- A number in `Credits added` does not establish that the order has posted; check `Status` and related billing records as well.
+- Horizontal scrolling changes which columns are visible together. Time or action columns outside the viewport are not missing columns.
+- Invoice creation is conditional. Its absence from another row does not establish that all orders lack this capability.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page loading | Filters and the top-up order list are displayed. | Refresh the page or check user-side billing permission. |
-| Filtering | Order number, state, and credit source locate target orders. | Click **"Reset"** and filter again. |
-| List fields | Order number, source, amounts, state, and time fields are visible. | Adjust filters and retry. |
-| Detail entry | Row-level `Details` opens order information. | Check permission or page loading state. |
-| Funding actions controlled | Retry, refund, and order export are performed only by authorized users for the confirmed scope. | If an unintended action occurs, record the time and scope and notify the owner for review. |
+| Query conditions | Order number, top-up order status, top-up source, and time range match the intended query. | Change the relevant condition directly; press Enter after entering an order number. |
+| Empty result | The `documentation-example` placeholder example displays `No Data` and `Total 0`. | Check the input and other filters; do not generalize the example to other orders. |
+| List structure | Eight headings include original-currency payments, credits, status, and two time columns. | Scroll horizontally to check columns outside the current viewport. |
+| Row-level entries | Records have a `Details` entry in Actions; Invoice availability depends on the actual row. | Confirm the target record and Actions column instead of applying another row's entries to it. |
 
 ## FAQ
 
-#### A Top-up Order Cannot Be Found
+#### Why Does the Example Value Return No Orders?
 
-**Symptom:**
+**Symptom:** Entering `documentation-example` and pressing Enter displays `No Data`.
 
-The list is empty after entering an order number.
+**Possible Causes:** The query for this placeholder has no results; the page retains its order headings and `Total 0`.
 
-**Possible Causes:**
+**Resolution:** Use a different input for an order within your authorized scope and check status, source, and time-range filters.
 
-The order number is incorrect, too many filters are active, or the current account does not own the order.
+#### Why Is the Credits Figure Not Proof of Posting?
 
-**Solution:**
+**Symptom:** A row has a `Credits added` figure, but posting still needs to be confirmed.
 
-Clear filters and query again, verify the order number, and contact the operator with a sanitized number if the order is still missing.
+**Possible Causes:** The page displays `Credits added` and `Status` separately, and credits use a different unit from the original-currency payment.
 
-#### The Order Failed or Was Canceled
+**Resolution:** Read status, units, and times together, then check related records in Transactions rather than relying only on Credits added.
 
-**Symptom:**
+#### Why Are Time Columns or Details Not Visible?
 
-The order state is Failed or Canceled.
+**Symptom:** The current table viewport does not show both time columns or the final Actions column together.
 
-**Possible Causes:**
+**Possible Causes:** The table scrolls horizontally, leaving some columns outside the current viewport.
 
-Payment did not complete, the payment channel returned an error, the order timed out, or it was canceled.
+**Resolution:** Scroll horizontally to `Completed at`, `Created at`, and `Actions`; use `Details` when the target record is present.
 
-**Solution:**
-
-First confirm whether funds were deducted. Do not resubmit the same order. If funds were deducted but the order is abnormal, contact the operator.
-
-#### Top-up Succeeded but the Balance Did Not Change
-
-**Symptom:**
-
-The order appears completed, but Account Overview did not change.
-
-**Possible Causes:**
-
-Posting is delayed or the current account, billing cycle, and transaction scope are inconsistent.
-
-**Solution:**
-
-Refresh Account Overview, then open `Transactions` and check for the income record. Contact the operator if the records remain inconsistent.
-
-#### Top-up Orders Does Not Update After Refresh
-
-**Symptom:**
-
-The amount, count, or status in Top-up Orders remains unchanged after the related process finishes.
-
-**Possible causes:**
-
-- The billing cycle, tenant, customer, or business scope does not match the processed object.
-- An upstream statistics, posting, or settlement task is still running.
-- The current account can view only part of the data scope.
-
-**How to handle:**
-
-1. Recheck the billing cycle and object scope in Top-up Orders.
-2. Refresh the page, reopen the target record, and verify the update time.
-3. Cross-check the upstream status in Account Overview and Transactions.
-4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
-
-#### What Must Be Checked Before Sharing Top-up Orders Information?
-
-**Symptom:**
-
-Top-up Orders results must be shared in a screenshot, ticket, or report.
-
-**Possible causes:**
-
-- Order numbers, amounts, payment channels, statuses, and accounts may be sensitive billing information.
-- The sharing scope may exceed the recipient's business permission.
-- A full screenshot may include account, environment, or unrelated information.
-
-**How to handle:**
-
-1. Keep only fields, statuses, and time ranges required for troubleshooting.
-2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
-3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
-4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
-- Order number, payment source, amounts, and credited information are sensitive billing data and must be sanitized in screenshots and communication.
-- Do not initiate another top-up before confirming the payment result.
-- Refunds, repayment, order export, and abnormal posting must follow the platform process and be handled by an authorized user.
-- Before retrying, refunding, or exporting, verify the target order, account permission, amount, and impact scope.
+- Do not publish real customer information, account emails, order numbers, payment evidence, or private billing amounts. Use `0` or placeholders in public examples and empty results in figures.
+- Querying records, opening details, or seeing a conditional Invoice entry does not authorize another payment, cancellation, refund, or other funds operation.
+- Keep amount units and statuses distinct when investigating discrepancies. An empty result does not establish payment failure, synchronization delay, or where funds went.
 
 ## Next Steps
 
-1. To verify the credited transaction, open [Transactions](../transactions/).
-2. To review the balance change, open [Account Overview](../overview/).
-3. For monthly reconciliation, open [Monthly Bill](../monthly-bill/).
+1. To check income and expense records, open [Transactions](../transactions/).
+2. To review the current balance, open [Account Overview](../overview/).
+3. To check a billing-cycle summary, open [Monthly Bill](../monthly-bill/).

@@ -1,8 +1,8 @@
 # Monthly Overview
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-05
 :::
 
 ## Feature Overview
@@ -12,192 +12,130 @@ Updated: 2026-11-04
 | Applicable Role | Operations administrator |
 | Navigation path | Billing > Finance Operations > Monthly Overview |
 | Page route | `/billing/admin/provider-settlements/monthly-overview` |
-| Managed objects | Billing cycle, tenant settlement status, monthly revenue mix, and pending tasks |
+| Managed objects | Billing-cycle tenant settlement statistics, amount summaries, statistical revenue mix, and task list |
 
-`Monthly Overview` is used to review monthly billing cycles, tenant settlement status, monthly gross flow, payable amounts, platform retained fee, revenue mix, and pending settlement tasks. Operators use this page to decide whether settlement statements can be generated or whether exceptions need follow-up first.
+`Monthly Overview` lets you select a billing cycle and refresh statistics to review tenant settlement states, Gross billing, Tenant payable total, Platform retained fee, statistical revenue mix, and pending tasks, then open settlement generation.
 
 #### Beginner Explanation
 
-Monthly Overview is like the billing-cycle monthly report. Select a billing cycle first, then check how many tenants are settled, how many still need follow-up, and how platform revenue is composed. If To generate or To advance is not zero, continue with settlement list or reconciliation pages before final actions.
+Monthly Overview is like a billing-cycle monthly report: select a month and click Refresh, read counts, amounts, and tasks, and then choose where to check details.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Billing Cycle | The month or settlement period used for billing, revenue, and reconciliation. | Keep the cycle consistent across Monthly Overview, Settlement List, and Financial Accounts. |
-| Tenant settlement status | Settlement progress for tenants in the selected billing cycle. | Check Pending Tenants and Failed before generating statements. |
-| Revenue Mix | Platform retained fee, self-operated revenue, and total statistical revenue. | Treat it as a summary and reconcile abnormal amounts with details. |
-| Task List | To generate, To advance, and Long unresolved task counts. | Use it to decide the next downstream page. |
-| Generate Settlement | Button for generating settlement statements for eligible tenants. | Use only after confirming billing cycle, tenant scope, and exceptions. |
+| Term | Description |
+| --- | --- |
+| Billing Cycle | The month used for this page's statistics; click Refresh after changing it. |
+| Tenant settlement statistics | The four cards: Total Tenants, Settled, Tenants in pipeline, and Failed. |
+| Selected billing cycle statistical revenue mix | ModelOne statistical retained fee, PowerOne self-operated AI Infra, and Statistical revenue total. |
+| Selected Billing Cycle Task List | Counts and corresponding messages for To generate, To advance, and Long unresolved. |
 
 ## Prerequisites
 
 1. The current account can access `Finance Operations > Monthly Overview`.
-2. The target billing cycle and operation scope have been confirmed.
-3. If `Generate Settlement` may be used, the tenant scope, failed tasks, reconciliation status, and approval basis have been prepared.
+2. Identify the settlement month to query.
+3. Before continuing to settlement generation, confirm the target billing cycle, tenants, and billing data scope, and prepare the required operation basis.
 
 ## Page Description
 
-The page includes billing-cycle selection, refresh and settlement generation entries, billing-cycle statistic cards, revenue mix, and task lists.
+The Chinese content title is `月结总览`. The English menu is `Monthly Overview`, while the main content title is `Billing Cycle Settlement Overview`.
+
+![Monthly Overview empty billing-cycle statistics](./images/monthly-overview-list.png)
+
+The figure shows the empty result after selecting billing cycle 2025-01 and clicking Refresh: all four statistic cards, amounts, and task counts are 0, with corresponding empty-state messages in the task list.
 
 | Area | Description |
 | --- | --- |
-| Billing Cycle | Select the monthly billing cycle to review. |
-| Refresh | Reload statistics for the selected billing cycle. |
-| Generate Settlement | Generate settlement statements for eligible tenants. |
-| Tenant Total | Number of tenants included in the selected billing cycle. |
-| Settled | Number of tenants already settled. |
-| Pending Tenants | Tenants that still require follow-up. |
-| Failed | Failed settlement generation or processing count. |
-| Revenue Mix | Platform retained fee, self-operated revenue, and total statistical revenue. |
-| Task List | To generate, To advance, and long unresolved tasks. |
-
-The following screenshot shows monthly overview list.
-
-![Monthly Overview list](./images/monthly-overview-list.png)
+| Billing Cycle and Refresh | Select or enter a month, then click Refresh to load its statistics; changing the month alone does not load the corresponding statistics. |
+| Generate Settlement | Opens the settlement generation page; does not indicate generation or receipt of funds. |
+| Four statistic cards | Displays Total Tenants, Settled, Tenants in pipeline, and Failed counts. |
+| Amount summary and states | Displays Gross billing, Tenant payable total, Platform retained fee, and counts for Generated, Posting check, Settled, and Failed. |
+| Selected billing cycle statistical revenue mix | Displays the Updated time, ModelOne statistical retained fee, PowerOne self-operated AI Infra, and Statistical revenue total. |
+| Selected Billing Cycle Task List | Displays To generate, To advance, and Long unresolved. Empty results show “No tenants pending generation”, “No settlements to advance”, and “Nothing needs repair”, respectively. |
 
 ## Main Operations
 
-### View Monthly Close Scope
+### Select a Billing Cycle and Read Statistics
 
 1. Go to `Billing > Finance Operations > Monthly Overview`.
-2. Select the target billing period and filter by provider, settlement status, or anomaly type.
-3. Check pending settlement count, amount due, anomaly count, and data refresh time.
-4. If no data is shown, check the billing period and settlement job status. Redact amounts before screenshots or exports.
+2. Select or enter the target month in `Billing Cycle`, for example `2025-01`.
+3. Click **"Refresh"** to load statistics for that month; do not read the old statistics immediately after changing the input alone.
+4. Read the four statistic cards: `Total Tenants`, `Settled`, `Tenants in pipeline`, and `Failed`.
+5. Check `Gross billing`, `Tenant payable total`, and `Platform retained fee`, then read the `Generated`, `Posting check`, `Settled`, and `Failed` counts.
+6. Review the revenue mix update time, `ModelOne statistical retained fee`, `PowerOne self-operated AI Infra`, and `Statistical revenue total`. All amounts use `credits`.
+7. Read `To generate`, `To advance`, and `Long unresolved` counts and messages in the task list. In the empty-result example, all three are `0` with their respective empty-state messages.
 
-Use the following operations to work with monthly overview records and related status. Complete view-only checks before opening dialogs that may create, save, submit, activate, transfer, settle, publish, or delete data.
+### Open Settlement Generation
 
-![Monthly Overview - View Monthly Close Scope](./images/manual-billing-monthly-overview-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
-
-### View Monthly Overview
-
-1. Go to `Billing > Finance Operations > Monthly Overview`.
-2. Select the target month in `Billing Cycle` and confirm the billing-cycle scope.
-3. Click **"Refresh"** and wait for statistics and task lists to update.
-4. Review billing-cycle statistic cards, especially `Tenant Total`, `Settled`, `Pending Tenants`, and `Failed`.
-5. Review the revenue mix area, including `Platform Retained Fee`, `Self-operated Revenue`, and total statistical revenue.
-6. Review task counts such as `To generate`, `To advance`, and `Long unresolved`.
-
-### Generate Settlement
-
-1. Confirm that `Billing Cycle` is correct.
-2. Review the To Generate count in the task list.
-3. Click **"Generate Settlement"**.
-4. Open [Settlement List](../settlement-list/) to view the generated settlement page.
+1. Confirm that the target billing cycle is selected and **"Refresh"** has been clicked.
+2. Check the four statistic cards, amount summary, and task list to identify the scope to continue processing.
+3. Click **"Generate Settlement"** to open the settlement generation page.
+4. Continue with the four-step generation flow in [Settlement List](../settlement-list/). This page's button only opens the entry; it does not indicate successful generation, completed settlement, or receipt of funds.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Billing Cycle | Yes | Month / billing period | `2026-07` | Switches the monthly settlement cycle being reviewed. |
-| Tenant Total | System-generated | Number | `0` | Number of tenants included in the selected billing cycle. |
-| Settled | System-generated | Number | `0` | Number of tenants already settled. |
-| Pending Tenants | System-generated | Number | `0` | Tenants that still require operator follow-up. |
-| Failed | System-generated | Number | `0` | Failed settlement generation or processing count. |
-| Gross Flow | System-generated | Amount | `0.00 credits` | Gross monthly flow counted in the selected billing cycle. |
-| Payable to Tenants | System-generated | Amount | `0.00 credits` | Total amount payable to tenants or providers in the selected billing cycle. |
-| Platform Retained Fee | System-generated | Amount | `0.00 credits` | Platform retained fee in the selected billing cycle. |
-| Self-operated Revenue | System-generated | Amount | `0.00 credits` | Revenue from platform self-operated business in the selected billing cycle. |
-| Total Statistical Revenue | System-generated | Amount | `0.00 credits` | Total revenue statistics from retained fee, self-operated revenue, and related sources. |
-| To generate | System-generated | Number | `0` | Tasks that have not generated settlement statements yet. |
-| To advance | System-generated | Number | `0` | Generated or in-progress tasks that require follow-up. |
-| Long unresolved | System-generated | Number | `0` | Tasks or exceptions that have not been resolved for a long time. |
-| Generate Settlement | Operation entry | Button | Generate Settlement | Generates settlement statements for eligible tenants in the selected billing cycle. |
+| Billing Cycle | Yes | Month | `2025-01` | Set the query month, then click Refresh. |
+| Refresh | Operation entry | Button | Refresh | Loads statistics for the selected billing cycle. |
+| Total Tenants | Displayed by system | Number | `0` | Tenants included in the selected billing-cycle statistics. |
+| Settled | Displayed by system | Number | `0` | Settled tenants in the four statistic cards. |
+| Tenants in pipeline | Displayed by system | Number | `0` | Tenants pending processing in the selected billing cycle. |
+| Failed | Displayed by system | Number | `0` | Failed count in the four statistic cards. |
+| Gross billing | Displayed by system | Amount | `0.00 credits` | Total customer consumption for the selected billing cycle. |
+| Tenant payable total | Displayed by system | Amount | `0.00 credits` | Total amount payable to tenants for the selected billing cycle. |
+| Platform retained fee | Displayed by system | Amount | `0.00 credits` | Platform retained fee in the amount summary. |
+| Generated / Posting check / Settled / Failed | Displayed by system | Number | `0` | Corresponding settlement state counts below the amount summary; read separately from tenant statistic cards. |
+| ModelOne statistical retained fee | Displayed by system | Amount | `0.00 credits` | The ModelOne item in the selected billing cycle statistical revenue mix. |
+| PowerOne self-operated AI Infra | Displayed by system | Amount | `0.00 credits` | The PowerOne self-operated AI Infra item in the selected billing cycle statistical revenue mix. |
+| Statistical revenue total | Displayed by system | Amount | `0.00 credits` | Total in the selected billing cycle statistical revenue mix. |
+| To generate | Displayed by system | Number | `0` | Tenants pending generation in the task list; empty state: “No tenants pending generation”. |
+| To advance | Displayed by system | Number | `0` | Settlements to advance in the task list; empty state: “No settlements to advance”. |
+| Long unresolved | Displayed by system | Number | `0` | Long-unresolved count in the task list; empty state: “Nothing needs repair”. |
+| Generate Settlement | Operation entry | Button | Generate Settlement | Opens the settlement generation page; see Settlement List for subsequent steps. |
 
 ## Pitfalls
 
-- Do not rely on one amount field alone for financial confirmation; cross-check transactions, bills, settlement statements, and reconciliation results.
-- Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
-- Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
-- `Generate Settlement` affects the real billing-cycle settlement flow.
-- Before clicking `Generate Settlement`, confirm the billing cycle, tenant scope, To generate count, failed tasks, and reconciliation status.
-- Do not click generation repeatedly. If it fails, check Settlement List or Reconciliation Center before retrying.
+- Changing `Billing Cycle` alone does not load its statistics; click `Refresh` afterward.
+- The four tenant statistic cards and the settlement state counts below the amount summary are separate areas; do not treat them as one set of counts.
+- `ModelOne statistical retained fee` belongs to the revenue mix; distinguish it from `Platform retained fee` in the amount summary by their respective labels.
+- `Generate Settlement` only opens the generation flow. It is not a success message or proof of receipt of funds.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Billing-period switch | The statistic cards and task list update after the billing period changes. | Select the billing period again and refresh. |
-| Page refresh | The loading state clears after you click Refresh. | Check the network, permissions, and background task status. |
-| Settlement generation | Settlement List shows a record or status change for the selected billing period. | Open Settlement List and check the generation result. |
+| Billing-cycle loading | The month has been confirmed and Refresh clicked before reading statistics | Recheck the month and click Refresh |
+| Empty result | In the 2025-01 example, all four statistic cards and amounts are 0, with three task-list empty-state messages | Check the cycle and whether Refresh was clicked; do not interpret an empty state as generation failure |
+| Statistical scope | Tenant statistics, amounts, revenue mix, and task list have been read separately | Recheck area names and field labels |
+| Generation entry | Generate Settlement opens the generation page | Continue checking the entry through Settlement List; opening the page does not mean generation is complete |
 
 ## FAQ
 
-#### The To Generate Count Is Not Zero
+#### Why Do Statistics Not Change When the Billing-Cycle Input Changes?
 
-**Symptom:** The task list still shows items to generate.
+**Symptom:** The billing-cycle input has changed, but statistics are not yet the target month's result.
 
-**Possible causes:** Some tenants do not yet have settlement statements, billing data aggregation is incomplete, or a preceding reconciliation exception exists.
+**Possible Causes:** This page requires Refresh to load the selected billing cycle's statistics; changing the month alone does not trigger the corresponding statistics load.
 
-**Resolution:**
+**Resolution:** Check Billing Cycle, click Refresh, and then read the statistic cards, amounts, and task list.
 
-1. Confirm that the selected billing period is correct.
-2. Check the billing-period statistics before selecting `Generate Settlement`.
-3. After generation, open Settlement List and track settlement status.
+#### Why Does the Task List Show No Pending Items?
 
-#### The Revenue Mix Is Unexpected
+**Symptom:** Task counts are 0, with “No tenants pending generation”, “No settlements to advance”, and “Nothing needs repair”.
 
-**Symptom:** Platform retained fees, self-operated revenue, or total statistical revenue differs from expectations.
+**Possible Causes:** These are empty-result messages for the selected billing-cycle task list; the 2025-01 empty-result example shows this state.
 
-**Possible causes:** The billing period is incorrect, aggregation is incomplete, or adjustments and reconciliation exceptions affect the statistics.
+**Resolution:** Confirm the selected month and that Refresh was clicked, then read the result for that cycle. Do not treat an empty state as evidence of generation failure or completed receipt of funds.
 
-**Resolution:**
-
-1. Check the billing period.
-2. Open Financial Accounts and review account transactions and trends.
-3. Open Reconciliation Center and check for exceptions.
-
-#### Generate Settlement Is Unavailable
-
-**Symptom:** `Generate Settlement` cannot be selected or does not proceed.
-
-**Possible causes:** Statistics are incomplete, the current account lacks permission, or exceptions and pending tasks block the billing period.
-
-**Resolution:**
-
-1. Confirm whether billing-period statistics are complete.
-2. Check pending and failed counts in the task list.
-3. If permission is missing, ask the platform administrator for finance-operations permission.
-
-#### Task Counts Do Not Match Settlement List
-
-**Symptom:** To Generate, To Advance, or Long Unresolved counts differ from filtered results in Settlement List.
-
-**Possible causes:** The pages use different billing periods or statuses, Monthly Overview is delayed, or Settlement List updated before the overview refreshed.
-
-**Resolution:**
-
-1. Use the same billing period and status filters on both pages.
-2. Click **"Refresh"** in Monthly Overview.
-3. If the difference remains, open Reconciliation Center and check background tasks or exceptions.
-
-#### When Is Monthly Overview Ready for Settlement?
-
-**Symptom:**
-
-Monthly Overview shows data, but it is unclear whether settlement generation can continue.
-
-**Possible causes:**
-
-- Billing-cycle statistics are not complete.
-- Today Tasks or Reconciliation Center still has blocking exceptions.
-
-**How to handle:**
-
-1. Confirm the target billing cycle, update time, and statistics status.
-2. Check high-priority items in Today Tasks.
-3. Refresh Reconciliation Center and confirm that no blocking exception remains.
-4. Enter settlement generation only after all checks pass.
 ## Notes
 
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Do not record real billing-cycle amounts, tenants, tenants, customer names, settlement statement numbers, internal transaction numbers, or approval information in the manual, screenshots, notes, or tickets.
+- Confirm billing cycle, tenant scope, and amounts before continuing to settlement generation, and retain the required operation basis.
+- Do not infer receipt of funds from overview amounts alone; check settlement details and account transactions.
+- Follow data access and confidentiality requirements when sharing billing information. Do not put customer data or credentials in public materials.
 
 ## Next Steps
 
-1. Review related billing records, transactions, settlement statements, and account balance changes.
-2. Keep only desensitized page paths, timestamps, status values, and screenshots when escalating.
-3. Continue with the related reconciliation, settlement, top-up, or adjustment flow after the result is confirmed.
+1. Open [Settlement List](../settlement-list/) to continue the four-step generation flow or check settlement records.
+2. Open [Financial Accounts](../financial-accounts/) to check platform accounts and transactions.
+3. Open [Reconciliation Center](../reconciliation-center/) for billing reconciliation information.
+4. Open [Today Tasks](../today-tasks/) to return to the daily settlement and account summary.

@@ -23,17 +23,21 @@ Use this task to explain provider revenue sources and confirm a monthly settleme
 
 Open [Revenue Overview](../../../usermanual/billing/user/earnings/revenue/) and confirm the revenue-account balance, current-month estimate, next-settlement notice, and billing-cycle trend.
 
-![Review the balance and billing-cycle trend in Revenue Overview](../../../usermanual/billing/user/earnings/revenue/images/overview-list.png)
+![Historical billing-cycle analysis and daily revenue](../../../usermanual/billing/user/earnings/revenue/images/revenue-analysis.png)
+
+The figure shows the analysis area for a historical billing cycle, not the live account balance; check account totals separately on the page.
 
 ### 2. Explain Revenue Sources
 
 Select the target billing cycle and review the top customers and top models. Then open [Customers](../../../usermanual/billing/user/earnings/customers/), filter by customer or tag, and open details to reconcile the revenue contribution.
 
-![Reconcile revenue contribution by customer](../../../usermanual/billing/user/earnings/customers/images/customers-list.png)
+![Customer revenue query result table](../../../usermanual/billing/user/earnings/customers/images/customers-table.png)
+
+The figure shows an empty keyword-query table. It does not show customer identities, summary cards, or detail results.
 
 ### 3. Reconcile Monthly Settlements
 
-Open [Monthly Settlements](../../../usermanual/billing/user/earnings/settlements/), search by status and billing cycle, and compare expected settlement, actual receipt, rounding adjustment, receipt time, and processing status.
+Open [Monthly Settlements](../../../usermanual/billing/user/earnings/settlements/), filter by status and billing cycle, and compare settlement amount, posted amount, precision adjustment, settled time, and processing status.
 
 ![Review monthly settlements](../../../usermanual/billing/user/earnings/settlements/images/settlements-list.png)
 

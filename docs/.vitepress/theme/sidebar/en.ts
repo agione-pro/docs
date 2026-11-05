@@ -731,9 +731,10 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Customer Billing",
                   collapsed: false,
                   items: [
-                    { text: "Business Units", link: "/usermanual/billing/operator/customer-billing/business-units/" },
                     { text: "Customer Overview", link: "/usermanual/billing/operator/customer-billing/customer-overview/" },
                     { text: "Top-up Orders", link: "/usermanual/billing/operator/customer-billing/top-up-orders/" },
+                    { text: "Top-up Approvals", link: "/usermanual/billing/operator/customer-billing/top-up-approvals/" },
+                    { text: "Business Units", link: "/usermanual/billing/operator/customer-billing/business-units/" },
                   ],
                 },
                 {
@@ -767,6 +768,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                     { text: "Transactions", link: "/usermanual/billing/user/billing/transactions/" },
                     { text: "Top-up Orders", link: "/usermanual/billing/user/billing/top-up-orders/" },
                     { text: "Monthly Bill", link: "/usermanual/billing/user/billing/monthly-bill/" },
+                    { text: "Top-up Requests", link: "/usermanual/billing/user/billing/top-up-requests/" },
                   ],
                 },
               ],

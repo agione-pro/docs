@@ -1,217 +1,138 @@
 # Transactions
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-05
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model caller |
-| Navigation path | Billing > User Billing > Transactions |
+| Applicable Role | Accounts with access to the `Billing` menu group |
+| Navigation path | Billing > Transactions |
 | Page route | `/billing/my/account/transactions/records` |
-| Managed objects | Income records, expense records, transaction context, and business transaction numbers |
+| Managed objects | The current account's transactions, consumption sources, balance changes, and business references |
 
-The `Transactions` page is titled `Income & Expense Details` in the UI and is used to query billing records for the current account. Filter by transaction type, income/expense direction, and time range, then review transaction number, occurrence time, transaction type, context, credit change, post-change credits, business transaction number, remarks, and details.
+Transactions queries billing records by transaction type, direction, and date range. Use it to check each record's change amount, balance after the change, and related business information.
 
 #### Beginner Explanation
 
-Transactions is the account's receipt list. Every balance increase or decrease should have a corresponding record here. When troubleshooting a balance, do not rely only on Account Overview; use Transactions to filter by time, direction, and transaction type.
+Transactions works like a list of account receipts: establish the query scope, then read each change and reference number rather than treating filtered results as a complete balance history.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling Tip |
-| --- | --- | --- |
-| Income/Expense Type | Indicates whether the record increases or decreases the balance. | Check direction before transaction type. |
-| Transaction Type | Business category such as transfer, consumption, refund, or adjustment. | Use it to narrow the search. |
-| Credit Change | Credits added or deducted by this record. | Review it with Post-change Credits. |
-| Business Transaction Number | Number of the related business transaction. | It is not the payment transaction number. |
-| Post-change Credits | Account Credits after this transaction. | Use it to explain a balance change. |
+| Term | Description |
+| --- | --- |
+| Direction | The income or expense direction, displayed separately from transaction type. |
+| Transaction type | The business category of a record, also available as a filter. |
+| Consumption source | The consumption source displayed in the list. |
+| Change | The amount change associated with an individual record. |
+| Balance after | The account balance after that transaction, not a project or member quota. |
+| Business ref. | The related business reference, displayed separately from the transaction number. |
 
 ## Prerequisites
 
-1. The current account has permission to view user-side billing.
-2. Open `My Billing > Transactions`.
-3. Confirm the time range to query.
-4. Use sanitized transaction numbers in external communication.
+1. The current account can open `Billing > Transactions` in the Billing subsystem.
+2. Determine the date range and whether to restrict transaction type or direction.
+3. View individual records only within the account and business scope you are authorized to access.
 
 ## Page Description
 
-The page contains filters and a transaction list. Filter by `Transaction Type`, `Income/Expense Type`, and time range, then use `Search` or `Reset`. The table shows transaction number, occurrence time, direction, type, context, credit change, post-change credits, business transaction number, remarks, and operation.
+In the Billing subsystem, the left-menu group is `Billing`. The menu item is `Transactions`, while the content title is `Transaction Details`. The corresponding Chinese labels are `流水明细` and `收支明细`.
 
-The following screenshot shows Transactions. Sanitize transaction numbers, times, context, and amounts before sharing it.
-
-![Transactions](./images/transactions-list.png)
+The page has only three filters: transaction type, direction, and date range. Changing a filter automatically queries the list. The table has ten columns, with `View details` as the row-level entry.
 
 | Area | Description |
 | --- | --- |
-| Transaction Type | Filters records by business transaction type. |
-| Income/Expense Type | Filters records by income or expense direction. |
-| Time Range | Filters by occurrence time. |
-| Search | Queries the list using current filters. |
-| Reset | Clears filters and restores the default list. |
-| Transaction List | Displays transaction number, occurrence time, direction, type, context, credit change, post-change credits, business transaction number, remarks, and operation. |
-| Details | Opens more information for one transaction. |
+| Transaction type filter | Displays `All Transaction type` when no type is restricted. |
+| Direction filter | Displays `All Direction` when no direction is restricted. |
+| Date range | Uses start and end dates to restrict the query. |
+| Transaction list | Transaction no., Transaction time, Direction, Transaction type, Consumption source, Change, Balance after, Business ref., Remarks, Actions. |
+| Row-level entry | Use `View details` in Actions when a record is present. |
+| Empty result and pagination | An empty result displays `No Data` and `Total 0`; pagination browses query results. |
+
+![Transactions empty result](./images/transactions-list.png)
+
+The figure shows Transaction Details with the date range set to `2025-01-01` through `2025-01-31`, including the three filters, headings within the current horizontal viewport, `No Data`, and `Total 0`; the Remarks heading is obscured by the fixed Actions column and requires horizontal scrolling on the page to view. Individual transaction details are not shown.
 
 ## Main Operations
 
-### Reconcile a Balance Change
-
-1. Select a transaction and record quota before, direction, change amount, and quota after.
-2. Compare adjacent transactions for balance continuity and check for top-ups, refunds, or adjustments.
-3. When ordered correctly, one transaction's quota after should equal the next transaction's quota before. If not, check sorting and delayed posting.
-4. If it cannot be explained, escalate with a redacted transaction number and time range. Do not create a top-up or adjustment directly.
-
 ### Query Transactions
 
-1. Go to `Billing > User Billing > Transactions`.
-2. Select **"Transaction Type"** in the filter area.
-3. Select **"Income/Expense Type"**.
-4. Select a time range when needed.
-5. Click **"Search"**.
-6. Click **"Reset"** to clear filters before a new query.
-7. Before exporting transactions, verify the filters, data scope, and recipient permission.
+1. Open `Billing > Transactions` in the Billing subsystem and confirm the content title is `Transaction Details`.
+2. Select a transaction type as needed; use `All Transaction type` to include all types.
+3. Select a direction as needed; use `All Direction` to leave the direction unrestricted.
+4. Set the start and end dates and wait for the list to update automatically with the current filters.
+5. Read the matching records or the `No Data` state; change filters directly when another scope is needed.
 
-### View an Individual Transaction
+### Check an Individual Transaction
 
-1. Go to `Billing > User Billing > Transactions`.
-2. Locate the target row.
-3. Check transaction number, occurrence time, income/expense type, transaction type, and context.
-4. Review credit change, post-change credits, business transaction number, and remarks.
-5. Click row-level `Details` when it is available.
-6. Hide real transaction numbers, business transaction numbers, accounts, amounts, and business context in external communication.
+1. Locate the target record and check `Transaction no.` and `Transaction time`.
+2. Read `Direction`, `Transaction type`, and `Consumption source` as separate attributes.
+3. Check `Change` and `Balance after` separately; do not interpret the balance as a quota.
+4. Review `Business ref.` and scroll the table horizontally to view `Remarks`, keeping the business reference distinct from the transaction number.
+5. Use that row's `View details` entry when more information is needed; follow the content actually displayed on the page that opens.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Transaction Type | No | Enum | `Transfer` | Filters by business transaction type. |
-| Income/Expense Type | No | Enum | `Income` | Filters income or expense records. |
-| Time Range | No | Date range | Sanitized time range | Limits transaction occurrence time. |
-| Search | No | Button | `Search` | Refreshes the list using current filters. |
-| Reset | No | Button | `Reset` | Clears filters. |
-| Transaction Number | System-generated | Text | Sanitized transaction number | Unique identifier for one transaction record. |
-| Occurrence Time | System-generated | Time | Sanitized time | Time when the transaction occurred. |
-| Income/Expense Type | System-generated | Table column | `Income` | Direction of the transaction. |
-| Transaction Type | System-generated | Table column | `Consumption` | Business category of the transaction. |
-| Context | System-generated | Text | Sanitized context | Related business context. |
-| Credit Change | System-generated | Credits | Sanitized amount | Credits added or deducted by the transaction. |
-| Post-change Credits | System-generated | Credits | Sanitized amount | Account Credits after the transaction. |
-| Business Transaction Number | System-generated | Text | Sanitized number | Number of the related business transaction. |
-| Remarks | System-generated | Text | Sanitized remarks | Additional transaction information. |
-| Details | No | Entry | `Details` | Opens more information for one transaction. |
+| Transaction type (filter) | No | Select | `All Transaction type` | Restricts the business category and automatically queries the list. |
+| Direction (filter) | No | Select | `All Direction` | Restricts transaction direction and automatically queries the list. |
+| Date range | No | Date range | `2025-01-01` through `2025-01-31` | Restricts the query to start and end dates. |
+| Transaction no. | Not applicable | List column | — | Identifier of an individual transaction. |
+| Transaction time | Not applicable | Time column | — | Occurrence time displayed for the record. |
+| Direction | Not applicable | List column | — | Income or expense direction of the record. |
+| Transaction type | Not applicable | List column | — | Business category of the record. |
+| Consumption source | Not applicable | List column | — | Consumption source displayed for the record. |
+| Change | Not applicable | Amount column | `0` | Amount change for the record; the example is not an actual transaction. |
+| Balance after | Not applicable | Balance column | `0` | Account balance after the transaction, not a quota. |
+| Business ref. | Not applicable | List column | — | Reference number for the related business transaction. |
+| Remarks | Not applicable | List column | — | Additional information displayed for the record. |
+| Actions / View details | No | Row-level entry | `View details` | Opens the corresponding individual record. |
 
 ## Pitfalls
 
-- A business transaction number is not a payment transaction number and may not be a top-up order number.
-- One transaction explains one credit change; use Monthly Bill for monthly totals.
-- Income, expense, refund, and reversal directions are easy to confuse. Check transaction type before interpreting the amount.
-- If a transaction is missing, widen the time range before concluding that data was lost.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
-- Sanitize screenshots, exports, tickets, and comments.
+- `Change` and `Balance after` are different fields; an amount change is not a remaining quota.
+- Filters and pagination limit the list. Adjacent visible rows need not form a continuous balance chain and cannot establish a balance anomaly on that basis.
+- `No Data` describes the current query result, not other dates or filter scopes.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page loading | Filters and the transaction list are displayed. | Refresh the page or check user-side billing permission. |
-| Filtering | Transaction type, direction, and time range locate target records. | Click **"Reset"** and filter again. |
-| List fields | Transaction number, time, direction, type, amount, and business transaction number are visible. | Widen the time range or clear filters. |
-| Detail entry | Row-level `Details` opens the individual transaction. | Check permission or contact the operator with a sanitized transaction number. |
-| Transaction export controlled | Transactions are exported only by authorized users for the confirmed scope. | If an unintended export occurs, record the time and scope and notify the owner for review. |
+| Page identity | The menu item is `Transactions` and the content title is `Transaction Details`. | Follow the navigation path; a different title does not require another entry. |
+| Query scope | Transaction type, direction, and date controls show the intended conditions. | Change the relevant condition directly and review the result. |
+| List structure | All ten headings can be checked on the page with horizontal scrolling; an empty result shows `No Data` and `Total 0`. | Scroll horizontally to view Remarks and check the headings and current filters; an empty result does not mean fields are missing. |
+| Row-level entry | A record's Actions column displays `View details`. | Distinguish an empty list from a result containing records before interpreting detail availability. |
 
 ## FAQ
 
-#### A Target Transaction Cannot Be Found
+#### Why Does the Content Title Differ from the Menu?
 
-**Symptom:**
+**Symptom:** Opening `Transactions` displays the content title `Transaction Details`.
 
-No target record appears after filtering by transaction type, direction, or time range.
+**Possible Causes:** The page uses different menu and content labels; the Chinese equivalents are `流水明细` and `收支明细`.
 
-**Possible Causes:**
+**Resolution:** Locate the page by its menu and route, then query records in Transaction Details rather than looking for a separate page with the same title.
 
-The time range is too narrow, filters do not match, or the related transaction has not posted yet.
+#### Why Does the List Show No Data?
 
-**Solution:**
+**Symptom:** The list displays `No Data` and pagination shows `Total 0`.
 
-Clear filters, widen the time range, and contact the operator with a sanitized order number or business record if the transaction is still missing.
+**Possible Causes:** There are no matching records for the current transaction type, direction, and date range; the figure uses `2025-01-01` through `2025-01-31`.
 
-#### Transaction Direction Differs from Expectations
+**Resolution:** Check all three filters and change them directly to view another scope. Do not interpret an empty result as an account-wide absence of transactions.
 
-**Symptom:**
-
-A record is shown as income or expense, but the direction looks wrong.
-
-**Possible Causes:**
-
-Transaction type, refund, reversal, transfer, or adjustment can change the direction.
-
-**Solution:**
-
-Review transaction type and context, then compare the business transaction number with Monthly Bill and Account Overview.
-
-#### Transaction Totals Differ from Monthly Bill
-
-**Symptom:**
-
-The sum of filtered transactions differs from the Monthly Bill summary.
-
-**Possible Causes:**
-
-The billing cycle, time range, transaction type, or statistical scope differs between pages.
-
-**Solution:**
-
-Align the billing cycle and time range, refresh Monthly Bill, and group the comparison by transaction type when needed.
-
-#### Transactions Does Not Update After Refresh
-
-**Symptom:**
-
-The amount, count, or status in Transactions remains unchanged after the related process finishes.
-
-**Possible causes:**
-
-- The billing cycle, tenant, customer, or business scope does not match the processed object.
-- An upstream statistics, posting, or settlement task is still running.
-- The current account can view only part of the data scope.
-
-**How to handle:**
-
-1. Recheck the billing cycle and object scope in Transactions.
-2. Refresh the page, reopen the target record, and verify the update time.
-3. Cross-check the upstream status in Account Overview and Monthly Bill.
-4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
-
-#### What Must Be Checked Before Sharing Transactions Information?
-
-**Symptom:**
-
-Transactions results must be shared in a screenshot, ticket, or report.
-
-**Possible causes:**
-
-- Transaction numbers, amounts, transaction types, accounts, and related records may be sensitive billing information.
-- The sharing scope may exceed the recipient's business permission.
-- A full screenshot may include account, environment, or unrelated information.
-
-**How to handle:**
-
-1. Keep only fields, statuses, and time ranges required for troubleshooting.
-2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
-3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
-4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
-- Transaction numbers, business transaction numbers, context, and amounts are sensitive billing information and must be sanitized before sharing.
-- Do not use one transaction to explain an entire month; compare it with Monthly Bill.
-- When an anomaly is found, record the filters and a sanitized transaction identifier before contacting the operator.
-- Before exporting transactions, verify the filters, data scope, and recipient permission, and redact transaction numbers, accounts, and amounts.
+- Do not publish real customer information, account emails, private billing amounts, transaction numbers, business references, or credentials. Use `0` or placeholders in public examples and empty results in figures.
+- Use this page to query and check records, not to infer a final monthly settlement from one record or the sum of filtered results.
+- When reporting a discrepancy to authorized personnel, describe the filters and differing fields without attaching real billing data to public tickets, comments, or reports.
 
 ## Next Steps
 
-1. To verify a top-up transaction, open [Top-up Orders](../top-up-orders/).
-2. To reconcile the monthly summary, open [Monthly Bill](../monthly-bill/).
-3. To review balance status, open [Account Overview](../overview/).
+1. To check top-up records, open [Top-up Orders](../top-up-orders/).
+2. To check a billing-cycle summary, open [Monthly Bill](../monthly-bill/).
+3. To review the current balance, open [Account Overview](../overview/).

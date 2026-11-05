@@ -670,9 +670,10 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '客户账务',
                   collapsed: false,
                   items: [
-                    { text: '业务线', link: '/zh-CN/usermanual/billing/operator/customer-billing/business-units/' },
                     { text: '客户概览', link: '/zh-CN/usermanual/billing/operator/customer-billing/customer-overview/' },
                     { text: '客户充值单', link: '/zh-CN/usermanual/billing/operator/customer-billing/top-up-orders/' },
+                    { text: '充值审批', link: '/zh-CN/usermanual/billing/operator/customer-billing/top-up-approvals/' },
+                    { text: '业务线', link: '/zh-CN/usermanual/billing/operator/customer-billing/business-units/' },
                   ],
                 },
                 {
@@ -706,6 +707,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                     { text: '流水明细', link: '/zh-CN/usermanual/billing/user/billing/transactions/' },
                     { text: '充值订单', link: '/zh-CN/usermanual/billing/user/billing/top-up-orders/' },
                     { text: '月度账单', link: '/zh-CN/usermanual/billing/user/billing/monthly-bill/' },
+                    { text: '充值申请', link: '/zh-CN/usermanual/billing/user/billing/top-up-requests/' },
                   ],
                 },
               ],

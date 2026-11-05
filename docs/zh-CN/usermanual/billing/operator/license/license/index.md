@@ -1,8 +1,8 @@
 # License
 
 ::: info 文档信息
-版本：v2.0
-更新日期：2026-11-04
+版本：v2.1
+更新日期：2026-11-05
 :::
 
 ## 功能概述
@@ -11,149 +11,205 @@
 | --- | --- |
 | 适用角色 | 运营管理员 |
 | 导航路径 | 账务 > License > License |
-| Managed Objects 路由 | `/user/usercenter/license/managed-objects` |
-| Platform License 路由 | `/user/usercenter/license/platform-license` |
-| 管理范围 | 平台订阅状态与授权版本；Managed Objects 额度、用量、有效期、激活和导入记录 |
+| 页面路由 | `/user/usercenter/license/managed-objects`（默认）；Platform License 区域为 `/user/usercenter/license/platform-license` |
+| 管理对象 | Platform License 订阅状态与授权版本；Managed Objects 的 SKU 额度、用量、有效期和导入记录 |
 
-`License 管理` 分为 `Platform License` 和 `Managed Objects` 两个独立区域。Platform License 管理平台订阅期限和授权版本；Managed Objects 管理 AI 基础设施、私有模型和公共模型的 License 授权，包括额度、有效期、注册码、激活和导入记录。
+`License 管理` 分为 `Platform License` 与 `Managed Objects` 两个页签。顶部 `License 概览` 汇总两个区域的当前状态和系统缩略显示的注册码；下方按页签查看平台订阅或纳管对象的授权。
 
 #### 新手理解
 
-可以把 Platform License 理解为平台级订阅，把 Managed Objects 理解为 AGIOne 纳管对象的授权。先看顶部总览状态，再进入对应区域。粘贴或提交 License 前，必须确认目标环境、注册码、License 来源和授权范围。
+Platform License 决定平台订阅能用到什么时候；Managed Objects 决定每类纳管对象还能增加多少容量。两者互不替代，先看概览状态，再进入对应页签。
 
 #### 术语速查
 
-| 术语 | 含义 |
+| 术语 | 说明 |
 | --- | --- |
-| Platform License | 平台订阅期限、续期、恢复和已配置授权版本。 |
-| Managed Objects | AGIOne 纳管对象按 SKU 计算的额度、用量、有效期和导入记录。 |
-| 注册码 | 当前部署生成的识别码，用于获取与该部署匹配的 License。 |
-| 激活码 / License 内容 | 每个非空逻辑行粘贴一条，或从支持的文件中导入的授权内容。 |
-| 逻辑行 | 编辑器按非空行识别 License，每个非空行视为一条 License。 |
-| 整批校验 | 系统预校验整批内容；任意一条无效时，整批均不发布。 |
+| Platform License | 平台订阅有效期、续期、恢复和已配置授权版本，不包含 SKU 额度。 |
+| Managed Objects | 对 AI 基础设施、私有模型和公共模型等纳管对象的 SKU 授权。 |
+| SKU | Managed Objects 下的授权分类，当前包含 AI Infra、Private Model 和 Public Model。 |
+| 注册码 | 当前部署的标识，用于获取匹配的 License；页面默认以缩略形式显示。 |
+| 导入记录 | 每次 License 导入形成的记录，包含额度、生效时间、到期时间和生效状态。 |
 
 ## 前提条件
 
 1. 当前账号可以进入 `账务 > License > License`。
-2. 当前页面属于目标环境和目标部署。
-3. 激活前已获得内部审批，并确认 License 来源可信。
-4. 浏览器会话有效。
-
-::: warning 安全与操作边界
-完整注册码、激活码和 License 内容属于敏感凭据。截图只对凭据值本身应用像素马赛克，字段名称、控件、状态、额度、日期、记录 ID 和其他 Demo 业务数据保持可读。系统已经用圆点缩略显示的注册码不需要再次打码。打开页面、页签和激活弹窗属于只读核查；**“提交并激活”** 和 **“激活”** 会改变当前部署状态，必须另行确认后执行。
-:::
+2. 已确认当前页面属于目标环境和目标部署。
+3. 激活前已取得内部审批，并确认 License 来源可信。
+4. 浏览器会话有效。只读核对不需要激活码；激活需要对应授权。
 
 ## 页面说明
 
-页面顶部同时显示 Platform License、Managed Objects 的总览状态和当前部署注册码。总览下方的两个大卡片用于切换 Platform License 与 Managed Objects 区域。
+页面自上而下包含：
 
-![License 管理](./images/manual-billing-license-page.png)
+![License 概览](./images/license-overview.png)
 
-上图展示 Managed Objects 区域。重点核对当前选中卡片、License 分类、额度状态、有效期和导入记录区域。
+图示为页面上部：上方切换页签、订阅状态与到期时间；中部概览显示 Platform License 与 Managed Objects 状态及系统缩略显示的注册码。
+
+| 区域 | 说明 |
+| --- | --- |
+| License 概览 | 显示 Platform License 与 Managed Objects 的状态，以及系统缩略显示的注册码。 |
+| 区域页签 | `Platform License` 与 `Managed Objects`，切换后分别展示订阅授权和 SKU 授权。 |
+| Platform License 区域 | 显示订阅状态、到期时间、下一份 License 生效时间、激活编辑器、批量规则和授权版本表。 |
+| Managed Objects 区域 | 显示 AI Infra、Private Model、Public Model 三个 SKU 页签；每个 SKU 有额度卡片和 License 导入记录。 |
+| SKU 额度卡片 | 显示 SKU 编码与说明、总配额与已用、剩余、最近到期、占用构成和额度不足时的限制说明。 |
+| License 导入记录 | 按记录展示记录 ID、额度、生效时间、到期时间、状态和当前生效标记。 |
+| 激活窗口 | 点击 `激活 License` 打开，包含激活码输入、注册码、文件导入和最终激活按钮。 |
+
+`Platform License` 区域同时提供逻辑行输入和文件导入。编辑器规则为：每个非空行识别为一条 License，可混合不同 SKU；最多 100 条，单条不超过 64 KiB，文件不超过 1 MiB。提交时先校验整批内容，任意一条无效则整批都不发布。
+
+![Platform License 区域](./images/license-platform.png)
+
+图示为 Platform License 区域：上方切换页签、订阅状态与到期时间，中部为激活编辑器和批量校验提示，下方为授权版本表。
+
+`Managed Objects` 区域以 AI Infra、Private Model、Public Model 三个 SKU 页签组织。每个 SKU 卡片显示总配额与已用、剩余、最近到期及占用构成；额度用尽时会阻止该 SKU 对应的新增操作，具体限制以卡片说明为准。卡片下方的导入记录按记录 ID 展示额度、生效时间、到期时间、状态和当前生效标记。
+
+![Managed Objects 区域](./images/license-managed-objects.png)
+
+图示为 Managed Objects 的 AI Infra License 分类：上方为三个 SKU 页签，中部为额度与占用卡片，下方为 License 导入记录及其记录字段。
 
 ## 主要操作
 
-### 核对总览状态并选择区域
+### 核对概览并切换授权区域
 
 1. 进入 `账务 > License > License`。
-2. 在顶部总览中核对 Platform License 和 Managed Objects 状态。
-3. 确认注册码属于目标部署，不要将其复制到公开材料。
-4. 点击 `Platform License` 查看平台订阅，或点击 `Managed Objects` 查看 SKU 授权。
-5. 状态可能过期时先点击 **“刷新状态”**，不要通过重复提交 License 强制刷新。
+2. 在 `License 概览` 中核对 Platform License 与 Managed Objects 的当前状态。
+3. 确认注册码属于目标部署；页面只显示缩略值，不要将其复制到公开材料。
+4. 点击 `Platform License` 或 `Managed Objects` 页签，进入对应授权区域。
+5. 状态需要更新时点击 `刷新状态`；不要通过重复提交 License 强制刷新。
 
-### 查看 Platform License
+### 查看 Platform License 与授权版本
 
-1. 点击 `Platform License` 卡片。
-2. 核对订阅状态、到期信息和已配置授权版本。
-3. 在 `激活 License` 编辑器中，每个非空逻辑行粘贴一条 License，或选择 `.lic`、`.license`、`.txt` 文件。
-4. 普通阅读使用 `自动换行`，核对原始行结构时使用 `不换行`。
-5. 遵守编辑器限制：最多 100 条、单条最多 64 KiB、导入文件最多 1 MiB。
-6. 同一批次可混合不同 SKU。页面会预校验整批内容；任意一条无效时，整批均不发布。
-7. 只读核查应停在 **“提交并激活”** 前。
+1. 选择 `Platform License` 页签。
+2. 核对 `订阅状态`、`到期时间` 和 `下一份 License 生效时间`。
+3. 在 `激活 License` 编辑器中按行粘贴 License，或通过 `选择 .lic / .license / .txt 文件` 导入。
+4. 使用 `自动换行` 或 `不换行` 调整显示；该设置只影响显示，不改变 License 内容。
+5. 核对批量规则：最多 100 条、单条不超过 64 KiB、文件不超过 1 MiB。
+6. 阅读整批校验提示；只读核查应停在 `提交并激活` 前。
+7. 在 `Platform License 授权版本` 表中核对 ID、生效时间、到期时间、状态和当前生效标记。
 
-![Platform License](./images/license-list.png)
+### 查看 Managed Objects 与导入记录
 
-上图展示 Platform License 状态、批量编辑器、换行控制、文件导入入口、数量与大小限制，以及整批校验提示。
+1. 选择 `Managed Objects` 页签。
+2. 在 `AI Infra License`、`Private Model License`、`Public Model License` 之间切换目标 SKU。
+3. 核对 SKU 编码、说明、状态、总配额与已用、剩余、最近到期和占用构成。
+4. 阅读额度不足时的限制说明，确认该 SKU 的新增操作是否会被阻止。
+5. 在 `License 导入记录` 中按记录 ID 核对额度、生效时间、到期时间、状态和当前生效标记。
+6. 需要进一步核对时，使用卡片提供的 `查看详情` 或 `查看构成` 入口。
 
-### 查看 Managed Objects
+### 只读核对激活窗口
 
-1. 点击 `Managed Objects` 卡片。
-2. 选择 `AI Infra License`、`Private Model License` 或 `Public Model License`。
-3. 核对状态、总额度与已用额度、剩余额度、最近到期时间和容量条。
-4. 页面提供入口时，通过 `查看详情` 核对授权范围，通过 `查看构成` 核对额度来源。
-5. 在 `License 导入记录` 中核对记录 ID、额度、生效时间、到期时间、状态和当前生效标记。
-6. 记录 ID、额度、日期和状态用于说明页面时应保持可读；只保护完整 License、注册码、激活码、Key、Secret 或 Token 值。
-
-### 打开 Managed Objects 激活窗口
-
-1. 在目标 Managed Objects 分类中点击 **“激活 License”**。
-2. 在 `获取并激活 License` 中选择 `我已有激活码`；`我要购买` 属于购买入口，不在只读核查范围内。
-3. 在逻辑行编辑器中粘贴一条或多条 License。每个非空行识别为一条 License，可混合不同 SKU。
-4. 也可以导入包含多条 License 的 `.lic`、`.license` 或 `.txt` 文件。
-5. 核对页面显示的注册码属于目标部署。
-6. 使用 `自动换行` 或 `不换行` 检查输入，并停在最终 **“激活”** 动作前。
-
-![获取并激活 License](./images/get-activate-license.png)
-
-上图展示 Managed Objects 激活窗口。完整注册码值已使用值级像素马赛克保护；字段名称、输入框边界、操作控件、说明文字和普通 Demo 数据保持可见。只读核查过程中没有输入 License 内容。
+1. 在目标 SKU 或导入记录区域点击 `激活 License`。
+2. 窗口标题为 `获取并激活 License`；选择 `我已有激活码`。
+3. `我要购买` 属于购买入口，不在只读核对范围内。
+4. 核对窗口显示的注册码属于目标部署；完整注册码不进入文档配图或公开材料。
+5. 激活码编辑区支持单行或多行粘贴，也支持 `.lic`、`.license`、`.txt` 文件导入。
+6. 未输入内容时 `激活` 按钮为禁用状态；只读核对不输入激活码，也不点击 `激活`。
+7. 完成后点击 `关闭` 退出窗口。
 
 ## 参数速查表
 
-| 字段或控件 | 是否必填 | 类型 | 说明 |
-| --- | --- | --- | --- |
-| Platform License | 否 | 区域选择 | 进入平台订阅状态、授权版本和批量激活区域。 |
-| Managed Objects | 否 | 区域选择 | 进入 SKU 额度、用量、有效期、激活和导入记录区域。 |
-| 注册码 | 系统生成 | 敏感文本 | 标识当前部署，必须与 License 来源匹配。 |
-| 逻辑行 | 粘贴时必填 | 多行编辑器 | 每个非空行按一条 License 内容处理。 |
-| 自动换行 / 不换行 | 否 | 显示控制 | 仅改变编辑器显示，不改变 License 内容。 |
-| License 文件 | 否 | 文件导入 | 支持 `.lic`、`.license`、`.txt`，单文件最大 1 MiB。 |
-| 批次限制 | 系统限制 | 数量与大小 | 最多 100 条，每条最大 64 KiB。 |
-| 提交并激活 | 最终动作 | 按钮 | 发布通过校验的 Platform License 批次并改变部署状态。 |
-| 激活 | 最终动作 | 按钮 | 激活 Managed Objects License 并改变部署状态。 |
+| 字段名称 | 是否必填 | 字段类型 | 示例 | 说明 |
+| --- | --- | --- | --- | --- |
+| Platform License 页签 | 否 | 区域切换 | `Platform License` | 查看平台订阅和授权版本。 |
+| Managed Objects 页签 | 否 | 区域切换 | `Managed Objects` | 查看 SKU 额度和导入记录。 |
+| 注册码 | 系统生成 | 敏感文本 | 系统缩略显示 | 标识当前部署；页面默认不显示完整值。 |
+| 刷新状态 | 否 | 按钮 | `刷新状态` | 重新读取当前授权状态。 |
+| 订阅状态 | 系统生成 | 状态 | `有效` | Platform License 当前是否可用。 |
+| 到期时间 | 系统生成 | 时间 | `2027-01-29 00:00:00` | 当前 Platform License 的到期时间。 |
+| 下一份 License 生效时间 | 系统生成 | 时间 | `--` | 已配置的下一份 Platform License 生效时间。 |
+| 逻辑行号 | 粘贴时必填 | 多行编辑器 | `1` | 每个非空行按一条 License 处理。 |
+| 自动换行 / 不换行 | 否 | 显示控制 | `自动换行` | 只改变显示方式，不改变 License 内容。 |
+| License 文件 | 否 | 文件导入 | `.lic` / `.license` / `.txt` | 导入包含多条 License 的文件。 |
+| 批量数量上限 | 系统限制 | 数量 | `100` | 单批最多 100 条 License。 |
+| 单条大小上限 | 系统限制 | 大小 | `64 KiB` | 每条 License 的最大内容大小。 |
+| 文件大小上限 | 系统限制 | 大小 | `1 MiB` | 导入文件的最大大小。 |
+| 提交并激活 | 最终动作 | 按钮 | `提交并激活` | 会改变部署授权状态，只读核查不执行。 |
+| SKU 页签 | 否 | 分类切换 | `AI Infra License` | 切换 AI 基础设施、私有模型或公共模型授权。 |
+| SKU 编码 | 系统生成 | 文本 | `LIC-INFRA` | 当前 SKU 的授权编码。 |
+| 总配额与已用 | 系统生成 | 数量 | `4 / 510 份` | 当前 SKU 的总额度及已使用数量。 |
+| 剩余 | 系统生成 | 数量 | `506 份` | 当前 SKU 剩余可用额度。 |
+| 最近到期 | 系统生成 | 时间 | `2027-01-27` | 当前 SKU 最近一份授权的到期时间。 |
+| 占用构成 | 系统生成 | 统计 | `GPU 卡 0` / `云实例 4` | 按对象类型展示额度占用。 |
+| 查看详情 / 查看构成 | 否 | 按钮 | `查看详情` | 打开当前 SKU 的详情或额度构成。 |
+| 记录 ID | 系统生成 | 标识 | `记录 ID` | 导入记录的唯一标识，不是 License 内容本身。 |
+| 额度 | 系统生成 | 数量 | `1,000` | 该条导入记录对应的额度。 |
+| 生效时间 / 到期时间 | 系统生成 | 时间 | `2026-06-08` | 该条记录的生效和到期日期。 |
+| 状态 / 当前生效 | 系统生成 | 状态 | `正常` / `是` | 该条记录的状态与是否当前生效。 |
+| 激活 | 最终动作 | 按钮 | `激活` | 会改变部署授权状态；未输入内容时禁用。 |
 
 ## 踩坑提示
 
-- Platform License 与 Managed Objects 是不同授权维度，一个区域正常不能证明另一个区域正常。
-- 注册码和 License 内容属于部署级敏感凭据。未经 License 支持人员明确确认，不要跨环境复用。
+- Platform License 与 Managed Objects 是不同授权维度；一个区域正常不能证明另一个区域也正常。
+- 注册码和激活码属于部署级敏感信息；不要在截图、工单或公开材料中暴露完整值。
 - `自动换行` 和 `不换行` 只改变显示，不会合并或拆分 License。
-- 空行会被忽略，但每个非空逻辑行都按一条 License 处理。不要给原始内容增加空格或错误换行。
-- 批量激活采用整批预校验：一条无效会阻止整批发布。
-- 授权额度不等于账务余额；余额或结算问题需要到对应账务页面核对。
-- `订阅管理`、`我要购买`、`提交并激活` 和 `激活` 可能进入购买或改变状态，不在只读核查中执行。
+- 批量激活采用整批预校验：任意一条无效都会阻止整批发布。
+- 授权额度不等于账务余额；资金与结算问题需要到账务页面核对。
+- 导入记录中的记录 ID 用于定位记录，不能当作 License 内容或激活码使用。
 
 ## 结果校验
 
 | 检查项 | 成功表现 | 异常时处理 |
 | --- | --- | --- |
-| 页面可进入 | `License 管理` 正常打开，左侧 `License > License` 菜单高亮。 | 确认角色权限和页面加载状态。 |
-| 两个区域可见 | 页面可见 `Platform License` 和 `Managed Objects` 卡片。 | 刷新页面并确认当前部署已加载。 |
-| Platform License 状态可见 | 订阅状态、到期信息和授权版本正常显示。 | 点击 **“刷新状态”**，记录可见状态和错误信息；仅移除其中包含的凭据值。 |
-| Managed Objects 状态可见 | License 分类、额度、有效期和导入记录正常显示。 | 切换分类并核对 License 状态和到期时间。 |
-| 批量规则可见 | 编辑器、换行控件、支持的文件类型、大小限制和整批校验提示均可见。 | 确认已选择 Platform License 区域并重新加载页面。 |
-| 激活窗口可打开 | 注册码、逻辑行编辑器、文件导入和最终动作可见。 | 确认 Managed Objects 权限和目标分类状态。 |
+| 页面可进入 | `License 管理` 正常打开，`账务 > License > License` 菜单高亮。 | 核对账号权限和页面加载状态。 |
+| 概览状态 | `License 概览` 显示 Platform License 与 Managed Objects 状态。 | 点击 `刷新状态` 后重新核对；不要重复提交 License。 |
+| Platform 区域 | 订阅状态、到期时间和授权版本表可核对。 | 确认已选择 Platform License 页签，再核对状态和时间。 |
+| Managed Objects 区域 | 三个 SKU 页签可切换，额度卡片和导入记录可见。 | 核对当前 SKU 页签和记录范围。 |
+| 批量规则 | 逻辑行编辑器、换行控件、文件类型和大小限制可见。 | 确认已进入 Platform License 页签并重新加载页面。 |
+| 激活窗口 | 标题为 `获取并激活 License`，可切换激活码与购买页签。 | 核对当前 SKU 和账号权限；不输入激活码，不点击激活。 |
 
 ## 常见问题
 
-#### Platform License 有效但 Managed Objects 不可用
+#### 为什么激活按钮是禁用状态？
 
-平台订阅与 Managed Objects 授权相互独立。进入 `Managed Objects`，核对目标 License 分类、额度、有效期和导入记录，并向管理员提供不包含完整凭据值的可见状态信息。
+**问题现象：**
 
-#### License 批次无法提交
+打开 `获取并激活 License` 窗口后，`激活` 按钮不可点击。
 
-确认批次不超过 100 个非空条目、每条不超过 64 KiB、导入文件不超过 1 MiB，并且所有条目均有效。整批校验采用原子规则，一条无效会阻止整批发布。
+**可能原因：**
 
-#### 激活状态没有刷新
+当前编辑区没有可提交的激活码内容；窗口在未输入时保持按钮禁用。
 
-先点击 **“刷新状态”**，再检查对应导入记录。在确认当前部署、注册码和上次结果前，不要重复提交同一 License。
+**处理方式：**
+
+只读核对到此为止；需要实际激活时，先取得授权并粘贴或导入有效 License，再按窗口提示继续。不要在未确认来源和审批时尝试激活。
+
+#### Platform License 正常但 Managed Objects 额度不足怎么办？
+
+**问题现象：**
+
+Platform License 显示有效，但某个 SKU 的剩余额度接近或已经用尽。
+
+**可能原因：**
+
+两类授权分开计算：平台订阅状态不包含 SKU 额度，额度由导入记录中的授权数量决定。
+
+**处理方式：**
+
+进入对应 SKU 核对总配额、已用、剩余和导入记录；根据卡片说明确认哪些新增操作会被阻止，再决定是否补充 License。
+
+#### 导入记录中的状态和当前生效有什么不同？
+
+**问题现象：**
+
+同一条记录可能显示 `已到期` 或 `正常`，同时又显示当前生效为 `是` 或 `否`。
+
+**可能原因：**
+
+状态描述该条记录的有效性，当前生效标记描述它是否正在为当前 SKU 提供额度。
+
+**处理方式：**
+
+同时核对额度、生效时间、到期时间、状态和当前生效；不要只看其中一列判断授权是否可用。
 
 ## 注意事项
 
-- Demo 核查已打开 Platform License 区域和 Managed Objects 激活窗口，但未执行 `提交并激活` 或 `激活`。
-- 当前页面没有已确认的删除流程，不要在文档中编造删除操作。
-- 提交 License 问题时，可以提供页面路由、状态和错误信息，但必须移除完整注册码、激活码、License、Key、Secret 或 Token 值。
+- 完整注册码、激活码和 License 内容属于敏感信息，不写入文档、截图、工单或公开材料。
+- `提交并激活` 和 `激活` 会改变当前部署状态，必须另行确认后执行；只读核查停在最终动作前。
+- 不要在未确认环境、部署和来源时跨环境复用 License。
+- 无法确认的状态或额度差异，保留页面原状并交由授权管理员处理，不通过重复提交试错。
 
 ## 后续操作
 
-1. Platform License 异常时，联系平台管理员核对订阅期限和授权版本。
-2. Managed Objects 异常时，核对目标 SKU、额度、有效期和导入记录。
-3. 只有在环境、部署、注册码、License 来源和审批全部确认后才能执行激活。
+1. 核对平台账户资金时，进入 [财务账户](../../finance-operations/financial-accounts/)。
+2. 核对结算单时，进入 [结算单列表](../../finance-operations/settlement-list/)。
+3. 需要定位当前账期任务时，返回 [今日任务](../../finance-operations/today-tasks/)。

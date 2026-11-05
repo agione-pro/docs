@@ -1,218 +1,158 @@
 # Quota Governance
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-05
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model caller |
-| Navigation path | Billing > User Billing > Quota Governance |
+| Applicable Role | Model providers & users with billing-view permission; quota configuration also requires the corresponding management permission. |
+| Navigation path | Billing > Quota Governance |
 | Page route | `/billing/my/quota-governance` |
-| Managed objects | Project quotas, member quotas, billing-cycle usage, and risk action queue |
+| Managed objects | Billing-cycle usage, member and project quotas, usage breakdown, risk categories, and settings entries. |
 
-`Quota Governance` displays quota usage, available balance, and risk state by project and member in the current billing cycle. Use it to identify projects or members approaching their quota limit and adjust usage plans before business is affected.
+Quota Governance displays quota usage and risks by member and project and provides the corresponding settings entries.
 
 #### Beginner Explanation
 
-Quota Governance is the usage dashboard for billing. Account balance shows how many Credits remain, while Quota Governance shows which projects or members use the quota, whether they are close to the limit, and which risks need attention first.
+This page is a usage dashboard for a shared wallet: members and projects have quota rules, but actual spending remains limited by the total account balance.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling Tip |
-| --- | --- | --- |
-| Billing-cycle Quota | Quota limit available in the current billing cycle. | Confirm the cycle before troubleshooting. |
-| Usage Percentage | Used quota divided by the quota limit. | Prioritize items close to the limit. |
-| Risk Queue | Overage, near-limit, or pending items that require attention. | Handle them by business impact. |
-| Action | Recommended handling for a risk item. | Confirm permission before changing a rule. |
-| Available Quota | Quota still available in the current dimension. | Do not treat it as the account balance. |
+| Term | Description |
+| --- | --- |
+| Shared balance pool | Allocated quotas may exceed the balance, while actual usage remains capped by the total account balance. |
+| Balance used | The part of used quota identified as deducting from the account balance. |
+| Quota only | Quota usage shown separately from Balance used; it is not equivalent to an actual balance deduction. |
+| Current quota period | The period for the current quota rule; check it separately from the selected billing cycle. |
+| Not assessed | A risk category, not equivalent to No current risk. |
 
 ## Prerequisites
 
-1. The current account has permission to view user-side billing.
-2. Open `My Billing > Quota Governance`.
-3. Confirm the current billing-cycle range.
-4. To change quota rules, the account must have the corresponding management permission.
-
-::: warning High-risk Operation Boundary
-Quota adjustments, per-project reset, project defaults, or alert-threshold changes can affect the real available quota of projects and members. This page explains viewing and confirmation only; it does not guide final submission.
-:::
+1. Use an account with billing-view permission and open `Billing > Quota Governance`.
+2. Check the selected cycle, date range, and any billing-cycle usage update message.
+3. Before entering Member quota settings or Project defaults, confirm the corresponding management permission and affected objects.
 
 ## Page Description
 
-The page contains `Billing-cycle Quota Usage`, `Current Quota Status`, and `Risk & Action Queue`. Current Quota Status switches between `Project` and `Member` and provides `Reset by Project`, `Project Defaults`, and row-level `View` entries.
+The page states: “Shared balance pool mode: total quotas allocated to projects and members may exceed the account balance; actual usage is capped by total account balance, and usage pauses when balance is depleted.”
 
-The following screenshot shows Quota Governance. Sanitize project, member, quota, and usage data before sharing it.
+![Billing-cycle usage summary](./images/quota-summary.png)
 
-![Quota Governance](./images/quota-governance-list.png)
+The figure shows a zero-usage portion of the billing-cycle summary, including the shared balance pool notice, cycle range, Refresh cycle usage, and the Balance used and Quota only breakdown for members and projects; member and project cards are not included.
 
 | Area | Description |
 | --- | --- |
-| Billing-cycle Quota Usage | Displays quota usage by project and member in the current cycle. |
-| Current Quota Status | Displays current cycle, used/limit, handling method, available quota, and state by project or member. |
-| Project | Switches to the project dimension. |
-| Member | Switches to the member dimension. |
-| Reset by Project | Entry for resetting or adjusting quota policy by project. |
-| Project Defaults | Entry for default project-quota rules. |
-| Risk & Action Queue | Displays quota risks and recommended actions. |
-| View | Opens project or member quota details. |
+| Credits exchange rate | Shows the USD-to-credits exchange rate; use the current value on the page. |
+| Quota used in billing cycle | Shows the selected cycle and date range; an update message includes the number of days needing an update and offers `Refresh cycle usage`. |
+| Quota used by members | Shows member-level used quota, split into `Balance used` and `Quota only`. |
+| Quota used by projects | Shows project-level used quota, split into `Balance used` and `Quota only`. |
+| Quota usage details | Defaults to members first; use the `Member` and `Project` buttons to switch dimensions and read object details rather than looking for traditional project-table columns. |
+| Member quota settings and Project defaults | The member view shows `Member quota settings`; the project view shows `Project defaults`. |
+| Risk categories | `All`, `Critical`, `Warning`, `Configuration`, `No current risk`, and `Not assessed`, with their counts. |
+| Period information | `Monthly reset on day 1` describes the schedule; `Current quota period` and the next reset time are displayed information, not a one-click reset operation. |
+
+Where object details display used quota, limits, percentages, remaining quota, or a stop-on-exhaustion policy, read them for the corresponding object and period. These values and policies are not the account balance or top-up records.
 
 ## Main Operations
 
-### View Project Quotas
+### Review Billing-cycle Usage and Its Breakdown
 
-1. Go to `Billing > User Billing > Quota Governance`.
-2. Select **"Project"** in `Current Quota Status`.
-3. Review project, current cycle, used/limit, handling method, available quota, state, and operation.
-4. Click row-level `View` to open project details when needed.
-5. Before resetting a project or changing defaults, verify the target project, account permission, and impact scope.
+1. Open Quota Governance and check the month and date range under `Quota used in billing cycle`.
+2. Read any update message indicating N days of billing-cycle usage need updating; use `Refresh cycle usage` as needed, then check the actual usage and message displayed. Do not assume the values must change.
+3. Review `Quota used by members` and `Quota used by projects`, checking `Balance used` and `Quota only` separately.
+4. Apply the shared balance pool notice when assessing funding limits; open [Overview](../overview/) to check the available balance.
 
-### View Member Quotas
+### Switch Member and Project Details
 
-1. Go to `Billing > User Billing > Quota Governance`.
-2. Select **"Member"** in `Current Quota Status`.
-3. Review the current cycle, used/limit, handling method, available quota, and state for each member.
-4. For members close to the limit, adjust workload plans according to business use.
-5. Hide real member emails, project names, quota limits, and consumption details in external communication.
+1. Start with the default `Member` view in `Quota usage details`.
+2. Check risk categories and counts, distinguishing `Critical`, `Warning`, `Configuration`, `No current risk`, and `Not assessed`.
+3. Click `Project` to view the project dimension; click `Member` to return.
+4. Check the current quota period and next reset time by object; where used/limit values, percentages, remaining quota, or handling policies are displayed, read them for that object. Do not treat the schedule as a manual reset button.
 
-### Review Risks and Actions
+### Enter Quota Settings with the Required Permission
 
-1. Go to `Billing > User Billing > Quota Governance`.
-2. Review `Risk & Action Queue` at the bottom of the page.
-3. Prioritize items close to the limit, over quota, or blocking continued use.
-4. Before changing a quota rule, confirm the scope, affected objects, and approval basis.
-5. Before submitting a quota adjustment, verify the target project or member, requested amount, and impact scope.
+1. For member configuration, click `Member quota settings` in the member view to open tenant settings at `/user/user-space/settings?tab=member`. Configuration changes require the corresponding permission.
+2. For default project rules, switch to `Project` and click `Project defaults`.
+3. This entry navigates to tenant settings at `/user/user-space/settings?tab=project`. Read the notice that new projects inherit these defaults and existing projects can override them individually within the project.
+4. Check the defaults and their scope for new and existing projects as needed; only authorized users should proceed on the target settings page after confirming the impact.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Billing-cycle Quota Usage | System-generated | Metric | Sanitized amount | Displays quota use in the current cycle. |
-| Current Quota Status | System-generated | Area | `Project` | Displays project- or member-level quota state. |
-| Project | No | Tab / table column | Sanitized project | Switches to or displays project quota. |
-| Member | No | Tab / table column | Sanitized email | Switches to or displays member quota. |
-| Current Cycle | System-generated | Time range | Sanitized cycle | Current quota-statistics cycle. |
-| Used / Limit | System-generated | Number | Sanitized quota | Used quota and quota limit. |
-| Handling Method | System-generated | Text | `Block new workloads` | Handling rule when the quota is near or above the limit. |
-| Available Quota | System-generated | Number | Sanitized quota | Remaining quota in the current dimension. |
-| State | System-generated | Enum | `Normal`, `At risk` | Current quota state. |
-| View | No | Entry | `View` | Opens project or member quota details. |
-| Reset by Project | No | High-risk entry | `Reset by Project` | May change project quota policy; confirm impact before submitting. |
-| Project Defaults | No | High-risk entry | `Project Defaults` | May change default project-quota rules. |
-| Risk & Action Queue | System-generated | List | Sanitized risk item | Displays risks and recommended actions. |
+| Credits exchange rate | Not applicable | Ratio display | [Exchange rate] | The USD-to-credits rate currently shown on the page. |
+| Quota used in billing cycle | Not applicable | Cycle summary | 0 | Read with the selected month and date range. |
+| Billing-cycle usage update message | Not applicable | Message | [N days need updating] | Indicates billing-cycle usage awaiting an update. |
+| Refresh cycle usage | No | Button | Refresh cycle usage | Check the actual display afterward; values are not guaranteed to change. |
+| Quota used by members | Not applicable | Credits metric | 0 | Member-level summary. |
+| Quota used by projects | Not applicable | Credits metric | 0 | Project-level summary. |
+| Balance used | Not applicable | Credits breakdown | 0 | Shown separately in both dimensions. |
+| Quota only | Not applicable | Credits breakdown | 0 | Shown separately from Balance used. |
+| Member, Project | No | Switch buttons | Member | Members appear first by default, followed by projects. |
+| Risk categories | Not applicable | Categories and counts | No current risk | All, Critical, Warning, Configuration, No current risk, Not assessed. |
+| Monthly reset on day 1 | Not applicable | Schedule description | Monthly reset on day 1 | Not a manual reset operation. |
+| Current quota period | Not applicable | Date range | [Period start and end] | Quota period for the current object. |
+| Next reset time | Not applicable | Time display | [Next reset time] | Displays the next scheduled reset. |
+| Used quota, limit, percentage, and remaining quota | Not applicable | Object usage | 0 | Where displayed, check by object and period; not equivalent to the account balance. |
+| Handling policy | Not applicable | Policy display | [Current policy] | Where a stop-on-exhaustion or other policy is shown, follow the actual text for that object. |
+| Member quota settings | No | Navigation entry | Member quota settings | Opens the member section of tenant settings; configuration changes require the corresponding permission. |
+| Project defaults | No | Navigation entry | Project defaults | Navigates to default project rules in tenant settings. |
 
 ## Pitfalls
 
-- Project and member dimensions are different statistical views; do not add their values together.
-- Quota Governance displays limits and levels; it does not mean a top-up, deduction, or settlement occurred.
-- Risk items may remain briefly after handling. Return to the current cycle and refresh.
-- Confirm affected objects before changing quota rules so running workloads or team members are not disrupted.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
-- Sanitize screenshots, exports, tickets, and comments.
+- Total quotas allocated to members and projects may exceed the current balance without increasing available funding; usage pauses when the balance is depleted.
+- Members and projects are two statistical views; do not add their usage figures together as total spending.
+- Quota only is shown separately from Balance used; do not interpret all used quota as balance deductions.
+- The monthly reset schedule, current period, and next reset time do not constitute a manual reset workflow.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page loading | Billing-cycle usage, current quota status, and risk queue are displayed. | Refresh the page or check user-side billing permission. |
-| Dimension switching | `Project` and `Member` views can be selected. | Check page permission and loading state. |
-| List fields | Current cycle, used/limit, handling method, available quota, and state are visible. | Ask the operator to confirm quota rules. |
-| Detail entry | Row-level `View` opens project or member details. | Check account permission or page loading state. |
-| Quota changes controlled | Project resets, default changes, and quota adjustments are performed only by authorized users for the confirmed scope. | If an unintended action occurs, record the time and scope and notify the owner for review. |
+| Billing-cycle scope | The selected month and cycle date range can be checked. | Recheck the month and range; do not mix billing cycles. |
+| Usage breakdown | Members and projects each show Balance used and Quota only separately. | Read both dimensions and their breakdown separately; do not add them together. |
+| Dimension switching | Member and Project buttons correspond to different object views and settings entries. | Check the selected dimension before locating the corresponding entry. |
+| Period and risk | The current period, next reset time, and risk categories can be checked separately. | Do not equate Not assessed with No current risk or treat schedule text as a button. |
+| Project defaults destination | Tenant settings opens the default project rules and displays the inheritance and override notice. | Do not change configuration before checking the target scope. |
 
 ## FAQ
 
-#### A Project Is Close to Its Quota Limit
+#### Why Can Allocated Quotas Exceed the Balance?
 
-**Symptom:**
+**Symptom:** Total project and member quotas may exceed the account balance.
 
-The project view shows usage close to or at the quota limit.
+**Possible Causes:** The page explicitly uses a shared balance pool, with actual usage capped by the total account balance.
 
-**Possible Causes:**
+**Resolution:** Check both the account balance and object quotas; do not treat total allocated quotas as available funding. Usage pauses when the balance is depleted.
 
-Recent project workload increased or the quota limit is below current business demand.
+#### Why Is Used Quota Different from Balance Used?
 
-**Solution:**
+**Symptom:** The used-quota summary and Balance used are different items.
 
-Review the project's consumption sources, pause nonessential workloads, and contact the operator through the approved process if the quota must be adjusted.
+**Possible Causes:** The page splits used quota into Balance used and Quota only.
 
-#### Member and Project Quotas Look Inconsistent
+**Resolution:** Check the breakdown separately in member and project views; continue to Transactions for actual funding changes.
 
-**Symptom:**
+#### Do Project Defaults Affect Only New Projects?
 
-Quota levels differ between member and project views.
+**Symptom:** You need to determine the relationship between defaults and existing projects.
 
-**Possible Causes:**
+**Possible Causes:** The target settings page states that new projects inherit these defaults and existing projects can override them individually within the project.
 
-The views aggregate different objects: one by project and the other by member.
+**Resolution:** Distinguish default rules from project-level overrides and check the applicable scope against the actual project settings.
 
-**Solution:**
-
-Confirm the current dimension and evaluate its used/limit values. Do not add the values from both views together.
-
-#### A Risk Item Does Not Clear Automatically
-
-**Symptom:**
-
-The risk queue still shows an item after it was handled.
-
-**Possible Causes:**
-
-Data refresh is delayed or the action did not cover every affected object.
-
-**Solution:**
-
-Refresh the page and review the current billing cycle again. If the risk remains, open the related project or member details.
-
-#### Quota Governance Does Not Update After Refresh
-
-**Symptom:**
-
-The amount, count, or status in Quota Governance remains unchanged after the related process finishes.
-
-**Possible causes:**
-
-- The billing cycle, tenant, customer, or business scope does not match the processed object.
-- An upstream statistics, posting, or settlement task is still running.
-- The current account can view only part of the data scope.
-
-**How to handle:**
-
-1. Recheck the billing cycle and object scope in Quota Governance.
-2. Refresh the page, reopen the target record, and verify the update time.
-3. Cross-check the upstream status in Account Overview and member quotas.
-4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
-
-#### What Must Be Checked Before Sharing Quota Governance Information?
-
-**Symptom:**
-
-Quota Governance results must be shared in a screenshot, ticket, or report.
-
-**Possible causes:**
-
-- Project names, members, quotas, usage rates, and risk statuses may be sensitive billing information.
-- The sharing scope may exceed the recipient's business permission.
-- A full screenshot may include account, environment, or unrelated information.
-
-**How to handle:**
-
-1. Keep only fields, statuses, and time ranges required for troubleshooting.
-2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
-3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
-4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
-- Quota Governance is for risk assessment and is not a top-up or deduction page.
-- Before changing a quota rule, confirm the affected scope, billing cycle, and business priority.
-- Do not expose complete member, project, quota-limit, or consumption details in communication.
-- Before resetting projects, changing defaults, or adjusting quotas, verify the target, account permission, and impact scope.
+- Viewing billing does not grant member or project configuration permission; entering settings and changing rules require the corresponding authorization.
+- Before changing defaults, confirm inheritance for new projects and overrides for existing projects. Opening settings does not mean settings have been saved.
+- Do not disclose real members, emails, project names, quota values, or consumption details when sharing results, and do not include credentials.
 
 ## Next Steps
 
-1. To review cost sources, open [Transactions](../transactions/).
-2. To review account balance, open [Account Overview](../overview/).
-3. To review monthly quota impact, open [Monthly Bill](../monthly-bill/).
+1. For funding changes, open [Transactions](../transactions/).
+2. For the total account balance, open [Overview](../overview/).
+3. For monthly cost reconciliation, open [Monthly Bill](../monthly-bill/).
