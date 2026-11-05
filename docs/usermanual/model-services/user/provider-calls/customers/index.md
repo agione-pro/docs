@@ -1,4 +1,4 @@
-# Customer Calls (Provider) - Customers
+# Customers
 
 ::: info Document Information
 Version: v2.0
@@ -10,7 +10,7 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applies to | Model Provider |
-| Navigation | **Model Services** > **Customer Calls** (second group) > **Customers** |
+| Navigation | **Model Services** > **Customer Calls** > **Customers** |
 | Route | `/modelone/model-observation/provider/customers` |
 | Managed objects | Call count, share, success rate, tokens, and latency aggregated by customer |
 

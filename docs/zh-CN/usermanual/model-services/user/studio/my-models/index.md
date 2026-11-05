@@ -193,10 +193,10 @@
 ## 后续操作
 
 1. 核对模型上架后的调用收益与账单，进入 [模型收益](../../usage-earnings/model-earnings/)。
-2. 监控外部客户对已发布模型的调用流量与健康度，进入 [客户调用](../../customer-calls/overview/)。
+2. 监控外部客户对已发布模型的调用流量与健康度，进入 [客户调用](../../provider-calls/overview/)。
 3. 维护上游服务凭证与物理 Endpoint 关联，进入 [我的凭证](../../studio/credentials/)。
 
 相关页面：
 - [模型收益](../../usage-earnings/model-earnings/)
-- [客户调用](../../customer-calls/overview/)
+- [客户调用](../../provider-calls/overview/)
 - [我的凭证](../../studio/credentials/)

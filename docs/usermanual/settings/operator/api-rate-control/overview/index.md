@@ -1,4 +1,4 @@
-# Global API Rate Control
+# Overview
 
 ::: info Document Information
 Version: v2.0

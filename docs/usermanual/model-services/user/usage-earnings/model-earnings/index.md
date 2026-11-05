@@ -137,11 +137,11 @@ The figure shows the page provides `Overview` and `Earning Details` tabs; KPI ca
 ## Next Steps
 
 1. Check your own internal token consumption and balance deductions in [Model Usage](../model-usage/).
-2. Analyze customer traffic sources and growth curves for high-earning models in [Customer Calls (Provider) Overview](../../provider-calls/overview/).
+2. Analyze customer traffic sources and growth curves for high-earning models in [Customer Calls Overview](../../provider-calls/overview/).
 3. Adjust pricing tiers or concurrency rate limits for high-demand models in [My Models](../../studio/my-models/).
 
 Related pages:
 - [Model Usage](../model-usage/)
-- [Customer Calls (Provider) Overview](../../provider-calls/overview/)
-- [Customer Calls Overview](../../customer-calls/overview/)
+- [Customer Calls Overview](../../provider-calls/overview/)
+- [Customer Calls Overview](../../provider-calls/overview/)
 - [My Models](../../studio/my-models/)

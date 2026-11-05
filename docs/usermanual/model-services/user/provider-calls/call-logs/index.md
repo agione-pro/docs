@@ -1,4 +1,4 @@
-# Customer Calls (Provider) - Call Logs
+# Call Logs
 
 ::: info Document Information
 Version: v2.0
@@ -10,7 +10,7 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applies to | Model Provider |
-| Navigation | **Model Services** > **Customer Calls** (second group) > **Call Logs** |
+| Navigation | **Model Services** > **Customer Calls** > **Call Logs** |
 | Route | `/modelone/model-observation/provider/calls` |
 | Managed objects | Individual customer calls, customer, client source, status, and latency |
 

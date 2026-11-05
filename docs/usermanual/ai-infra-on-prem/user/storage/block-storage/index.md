@@ -10,7 +10,7 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation Path | AI Infra(On-Prem) > Storage > Block Storage |
+| Navigation Path | On-Prem > Storage > Block Storage |
 | Page Route | `/powerone/storage-service/block` |
 | Managed Object | Configuration, status, and relationships on Block Storage |
 

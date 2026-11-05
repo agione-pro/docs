@@ -1,4 +1,4 @@
-# My Calls - Overview
+# Overview
 
 ::: info Document Information
 Version: v2.0
@@ -33,8 +33,7 @@ Overview is the dashboard for your own calls. Select a month and filters, read v
 | --- | --- | --- | --- |
 | Platform Call Analytics | Operator | Platform-wide calls and model source coverage | `/modelone/model-observation/operator/*` |
 | My Calls | Model Provider & User | Current account plus attributable members, projects, sources, and models | `/modelone/model-observation/eu/*` |
-| Customer Calls (Monitoring) | Model Provider & User | Customer-dimension call monitoring | `/modelone/monitoring/monitor/*` |
-| Customer Calls (Provider) | Model Provider | Publisher-side customer calls | `/modelone/model-observation/provider/*` |
+| Customer Calls | Model Provider | Publisher-side customer calls | `/modelone/model-observation/provider/*` |
 
 ## Prerequisites
 

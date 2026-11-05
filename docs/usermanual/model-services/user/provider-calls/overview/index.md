@@ -1,4 +1,4 @@
-# Customer Calls (Provider) - Overview
+# Overview
 
 ::: info Document Information
 Version: v2.0
@@ -10,7 +10,7 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applies to | Model Provider |
-| Navigation | **Model Services** > **Customer Calls** (second group) > **Overview** |
+| Navigation | **Model Services** > **Customer Calls** > **Overview** |
 | Route | `/modelone/model-observation/provider/overview` |
 | Managed objects | Publisher-side customer requests, tokens, latency, top customers, client sources, and model distribution |
 
@@ -33,7 +33,7 @@ Updated: 2026-11-04
 
 ## Page Description
 
-The left menu contains two **Customer Calls** groups. This page is in the second group with the `/modelone/model-observation/provider` route prefix; the other group uses `/modelone/monitoring/monitor`.
+This page provides model providers with call metrics and service quality data for models published under the current account.
 
 The title is `Customer Calls - Overview`, marked `Updated hourly`.
 

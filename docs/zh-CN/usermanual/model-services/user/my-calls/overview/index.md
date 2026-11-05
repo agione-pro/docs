@@ -1,4 +1,4 @@
-# 我的调用 - 概览
+# 概览
 
 ::: info 文档信息
 版本：v2.0
@@ -33,8 +33,7 @@
 | --- | --- | --- | --- |
 | 平台调用统计 | 运营管理员 | 全平台调用与模型源覆盖 | `/modelone/model-observation/operator/*` |
 | 我的调用 | 模型提供方&用户 | 当前账号及可归因成员、项目、来源和模型 | `/modelone/model-observation/eu/*` |
-| 客户调用（监控） | 模型提供方&用户 | 按客户维度监控客户调用 | `/modelone/monitoring/monitor/*` |
-| 客户调用（模型提供方） | 模型提供方 | 发布方视角的客户调用 | `/modelone/model-observation/provider/*` |
+| 客户调用 | 模型提供方 | 发布方视角的客户调用 | `/modelone/model-observation/provider/*` |
 
 ## 前提条件
 

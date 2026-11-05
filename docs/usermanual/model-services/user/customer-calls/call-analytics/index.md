@@ -1,4 +1,4 @@
-# Customer Calls (Monitoring) - Call Analytics
+# Call Analytics
 
 ::: info Document Information
 Version: v2.0

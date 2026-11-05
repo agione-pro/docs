@@ -1,4 +1,4 @@
-# My Calls - Projects
+# Projects
 
 ::: info Document Information
 Version: v2.0

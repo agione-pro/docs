@@ -509,16 +509,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   ]
                 },
                 {
-                  text: "Customer Calls (Monitoring)",
-                  collapsed: false,
-                  items: [
-                    { text: "Overview", link: "/usermanual/model-services/user/customer-calls/overview/" },
-                    { text: "Call Analytics", link: "/usermanual/model-services/user/customer-calls/call-analytics/" },
-                    { text: "Call Logs", link: "/usermanual/model-services/user/customer-calls/call-logs/" },
-                  ]
-                },
-                {
-                  text: "Customer Calls (Provider)",
+                  text: "Customer Calls",
                   collapsed: false,
                   items: [
                     { text: "Overview", link: "/usermanual/model-services/user/provider-calls/overview/" },
@@ -884,6 +875,9 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Operation Logs", link: "/usermanual/settings/user/activity-notifications/operation-logs/" },
+                    { text: "Notification Preferences", link: "/usermanual/settings/user/activity-notifications/notification-settings/" },
+                    { text: "Contacts", link: "/usermanual/settings/user/activity-notifications/contacts/" },
+                    { text: "My Notifications", link: "/usermanual/settings/user/activity-notifications/inbox/" },
                   ],
                 },
               ],

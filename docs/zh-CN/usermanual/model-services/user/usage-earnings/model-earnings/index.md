@@ -142,6 +142,6 @@
 
 相关页面：
 - [用量明细](../model-usage/)
-- [客户调用（模型提供方）概览](../../provider-calls/overview/)
-- [客户调用概览](../../customer-calls/overview/)
+- [客户调用概览](../../provider-calls/overview/)
+- [客户调用概览](../../provider-calls/overview/)
 - [我的模型](../../studio/my-models/)

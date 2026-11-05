@@ -448,16 +448,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   ]
                 },
                 {
-                  text: '客户调用（监控）',
-                  collapsed: false,
-                  items: [
-                    { text: '概览', link: '/zh-CN/usermanual/model-services/user/customer-calls/overview/' },
-                    { text: '调用统计', link: '/zh-CN/usermanual/model-services/user/customer-calls/call-analytics/' },
-                    { text: '调用日志', link: '/zh-CN/usermanual/model-services/user/customer-calls/call-logs/' },
-                  ]
-                },
-                {
-                  text: '客户调用（模型提供方）',
+                  text: '客户调用',
                   collapsed: false,
                   items: [
                     { text: '概览', link: '/zh-CN/usermanual/model-services/user/provider-calls/overview/' },
@@ -823,6 +814,9 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '操作日志', link: '/zh-CN/usermanual/settings/user/activity-notifications/operation-logs/' },
+                    { text: '通知偏好', link: '/zh-CN/usermanual/settings/user/activity-notifications/notification-settings/' },
+                    { text: '联系人', link: '/zh-CN/usermanual/settings/user/activity-notifications/contacts/' },
+                    { text: '我的通知', link: '/zh-CN/usermanual/settings/user/activity-notifications/inbox/' },
                   ],
                 },
               ],

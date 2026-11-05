@@ -1,4 +1,4 @@
-# Customer Calls (Provider) - Client Sources
+# Client Sources
 
 ::: info Document Information
 Version: v2.0
@@ -10,7 +10,7 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applies to | Model Provider |
-| Navigation | **Model Services** > **Customer Calls** (second group) > **Client Sources** |
+| Navigation | **Model Services** > **Customer Calls** > **Client Sources** |
 | Route | `/modelone/model-observation/provider/apps` |
 | Managed objects | Customer call count, share, success rate, tokens, and latency aggregated by client source |
 

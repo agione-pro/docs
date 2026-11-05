@@ -1,4 +1,4 @@
-# Customer Calls (Monitoring) - Overview
+# Overview
 
 ::: info Document Information
 Version: v2.0
@@ -149,6 +149,6 @@ The figure shows the page provides `Customer Analytics` and `Model Analytics` ta
 Related pages:
 - [Customer Calls - Call Analytics](../call-analytics/)
 - [Customer Calls - Call Logs](../call-logs/)
-- [Customer Calls (Provider) - Overview](../../provider-calls/overview/)
+- [Customer Calls - Overview](../../provider-calls/overview/)
 - [Model Usage](../../usage-earnings/model-usage/)
 - [Model Earnings](../../usage-earnings/model-earnings/)

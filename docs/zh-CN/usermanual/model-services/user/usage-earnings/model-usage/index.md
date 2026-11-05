@@ -142,5 +142,5 @@
 相关页面：
 - [模型收益](../model-earnings/)
 - [我的调用概览](../../my-calls/overview/)
-- [客户调用概览](../../customer-calls/overview/)
+- [客户调用概览](../../provider-calls/overview/)
 - [我的模型](../../studio/my-models/)

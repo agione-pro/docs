@@ -1,4 +1,4 @@
-# Customer Calls (Monitoring) - Call Logs
+# Call Logs
 
 ::: info Document Information
 Version: v2.0
@@ -135,6 +135,6 @@ The figure shows filters include `All Model type`, `All Call status`, a `Model n
 Related pages:
 - [Customer Calls Overview](../overview/)
 - [Customer Calls - Call Analytics](../call-analytics/)
-- [Customer Calls (Provider) Logs](../../provider-calls/call-logs/)
+- [Customer Calls Logs](../../provider-calls/call-logs/)
 - [Model Usage](../../usage-earnings/model-usage/)
 - [Model Earnings](../../usage-earnings/model-earnings/)

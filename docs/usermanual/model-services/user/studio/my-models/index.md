@@ -193,10 +193,10 @@ Click **"Contact Us"** on the card to submit a computing resource application, a
 ## Next Steps
 
 1. Verify call revenue and billing reconciliation after publication in [Model Earnings](../../usage-earnings/model-earnings/).
-2. Monitor external customer call traffic and health in [Customer Calls](../../customer-calls/overview/).
+2. Monitor external customer call traffic and health in [Customer Calls](../../provider-calls/overview/).
 3. Maintain upstream credentials and Endpoint mappings in [My Credentials](../../studio/credentials/).
 
 Related pages:
 - [Model Earnings](../../usage-earnings/model-earnings/)
-- [Customer Calls](../../customer-calls/overview/)
+- [Customer Calls](../../provider-calls/overview/)
 - [My Credentials](../../studio/credentials/)

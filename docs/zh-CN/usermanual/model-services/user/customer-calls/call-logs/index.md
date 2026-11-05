@@ -1,4 +1,4 @@
-# 客户调用（监控） - 调用日志
+# 调用日志
 
 ::: info 文档信息
 版本：v2.0
@@ -135,6 +135,6 @@
 相关页面：
 - [客户调用概览](../overview/)
 - [客户调用 - 调用统计](../call-analytics/)
-- [客户调用（模型提供方）日志](../../provider-calls/call-logs/)
+- [客户调用日志](../../provider-calls/call-logs/)
 - [模型用量](../../usage-earnings/model-usage/)
 - [模型收益](../../usage-earnings/model-earnings/)

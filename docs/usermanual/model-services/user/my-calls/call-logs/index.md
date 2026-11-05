@@ -1,4 +1,4 @@
-# My Calls - Call Logs
+# Call Logs
 
 ::: info Document Information
 Version: v2.0

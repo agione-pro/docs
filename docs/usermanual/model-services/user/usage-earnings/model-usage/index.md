@@ -142,5 +142,5 @@ The figure shows the page provides `Overview` and `Usage Details` tabs; KPI card
 Related pages:
 - [Model Earnings](../model-earnings/)
 - [My Calls Overview](../../my-calls/overview/)
-- [Customer Calls Overview](../../customer-calls/overview/)
+- [Customer Calls Overview](../../provider-calls/overview/)
 - [My Models](../../studio/my-models/)
