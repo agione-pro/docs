@@ -8,7 +8,7 @@ This guide explains how to configure AGIOne through **Custom model API**, fetch 
 2. Visit [AGIOne](https://agione.pro/), then register and sign in.
 3. Select a model in the model marketplace. Open its API or quick-start page to obtain the **Base URL**, **API Key**, and complete **Model ID**. Check which API protocols the model supports.
 
-> The screenshots supplied for this guide show a test environment. Provider names, endpoint addresses, and model entries are examples, not production configuration. Use the connection details from your own AGIOne platform, not the test endpoint or Mock models shown there.
+> These screenshots show example settings for the AGIOne global platform. Provider names and model entries are for reference. Use the connection details from your own AGIOne platform; the screenshots do not verify model responses or tool calls.
 
 ## Configure the Model Provider
 
@@ -26,7 +26,7 @@ Select **Custom model API** in the add-provider area.
 | --- | --- |
 | Provider ID | A unique identifier, such as `agione`. Start with a lowercase letter, followed by lowercase letters, digits, or dashes. Do not reuse an existing provider ID |
 | Display name | A name of your choice, such as `AGIOne` |
-| Base URL | Copy the base endpoint for the selected protocol from the AGIOne API page. Use the actual value shown for either the public platform or a dedicated deployment, not the test address in the supplied screenshot |
+| Base URL | Copy the base endpoint for the selected protocol from the AGIOne API page. The screenshot example is `https://agione.pro/hyperone/xapi/api`; use the actual value shown on the API page for either the public platform or a dedicated deployment |
 | API protocol | The supplied example selects `OpenAI Responses`. Before using it, confirm that both the model and endpoint support Responses. For other models, select the protocol specified on their API page |
 | API key | Enter the AGIOne API Key. If the page labels it `Authentication TOKEN`, obtain it there |
 
@@ -42,7 +42,7 @@ The protocol menu also supports `OpenAI Chat Completions` and `Anthropic Message
 
 ![Check the required models in Choose models, then click Update list](./images/deepseek-harness-select-models.png)
 
-For coding, select a model on your platform that supports text conversations and the tool calls you need. Do not copy the image, video, or Mock model choices from the test example.
+The example shows DeepSeek models checked in the list. For coding, select a model on your platform that supports text conversations and the tool calls you need. Copy the complete Model ID from the API page, not a truncated screenshot field. Do not select an image or video model for a text coding task.
 
 If the endpoint returns no models, click **+ Add model**. Enter the complete Model ID copied from AGIOne and set a display name. A custom model API requires at least one model.
 
@@ -51,7 +51,7 @@ If the endpoint returns no models, click **+ Add model**. Enter the complete Mod
 1. Review the Model IDs and display names in the catalog.
 2. Check the Base URL, API protocol, and API key.
 3. Click **Create provider** in the lower-right corner.
-4. Return to the provider list and confirm that the new **AGIOne** entry appears.
+4. Return to the provider list and confirm that an entry with your chosen display name appears, such as **AGIOne** or `agione-pro`.
 
 ![Review the model catalog and click Create provider](./images/deepseek-harness-create-provider.png)
 
@@ -72,6 +72,6 @@ A normal model response and a matching AGIOne call record confirm connectivity f
 - **Empty model catalog**: Fetch the available models or add a complete Model ID manually. Keep at least one model.
 - **Model listed but conversation not working**: Compare the Base URL, API protocol, API key, and Model ID with the AGIOne API page, then inspect the matching call logs.
 
-> Screenshot status: This page uses the user-supplied English UI originals. The plugin settings entry retains its Chinese label in these captures. The supplied originals have not been recaptured to standardize the window size or remove the model-picker backdrop.
+> Screenshot status: This page uses the user-supplied English UI originals. The sidebar masking is retained from the supplied originals. Provider IDs and display names are illustrative; use your own consistent values. The supplied originals have not been recaptured to standardize the window size or remove the model-picker backdrop.
 
 *Evidence: User-supplied English UI screenshots; field labels and protocol options were also checked against the local DeepSeek Harness 0.2.2-rc.1 UI implementation. No live API integration result is recorded here; the response-test steps guide readers through validating their own configuration.*
