@@ -850,6 +850,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                 { text: 'Codex Desktop (CC Switch)', link: '/zh-CN/practices/technical/codex-desktop/' },
                 { text: 'Crush', link: '/zh-CN/practices/technical/crush/' },
                 { text: 'Cursor', link: '/zh-CN/practices/technical/cursor/' },
+                { text: 'DeepSeek Harness', link: '/zh-CN/practices/technical/deepseek-harness/' },
                 { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },
                 { text: 'Kilo Code', link: '/zh-CN/practices/technical/kilo-code/' },
                 { text: 'n8n', link: '/zh-CN/practices/technical/n8n/' },

@@ -14,6 +14,7 @@
 | [Codex Desktop (CC Switch)](./codex-desktop/) | 使用 CC Switch 配置 Codex Desktop 接入 AGIOne 模型 |
 | [Crush](./crush/) | 安装 Crush 并使用 AGIOne 作为模型提供商 |
 | [Cursor](./cursor/) | 安装 Cursor 并使用 AGIOne 作为模型提供商 |
+| [DeepSeek Harness](./deepseek-harness/) | 在 DeepSeek Harness 中添加 AGIOne 作为模型提供商 |
 | [Dify](./dify/) | 将 AGIOne 集成到 Dify 平台 |
 | [Kilo Code](./kilo-code/) | 将 AGIOne 集成到 Kilo Code |
 | [n8n](./n8n/) | 将 AGIOne 集成到 n8n 工作流平台 |

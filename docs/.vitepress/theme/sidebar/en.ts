@@ -910,6 +910,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                 { text: 'Codex Desktop (CC Switch)', link: '/practices/technical/codex-desktop/' },
             { text: "Crush", link: "/practices/technical/crush/" },
                 { text: "Cursor", link: "/practices/technical/cursor/" },
+                { text: "DeepSeek Harness", link: "/practices/technical/deepseek-harness/" },
                 { text: "Dify", link: "/practices/technical/dify/" },
                 { text: "Kilo Code", link: "/practices/technical/kilo-code/" },
                 { text: "n8n", link: "/practices/technical/n8n/" },

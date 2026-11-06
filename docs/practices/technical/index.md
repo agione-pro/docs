@@ -14,6 +14,7 @@ This section provides integration guides for various AI coding tools and platfor
 | [Codex Desktop (CC Switch)](./codex-desktop/) | Configure Codex Desktop with CC Switch and AGIOne |
 | [Crush](./crush/) | Install Crush and use AGIOne as the model provider |
 | [Cursor](./cursor/) | Install Cursor and use AGIOne as the model provider |
+| [DeepSeek Harness](./deepseek-harness/) | Add AGIOne as a model provider in DeepSeek Harness |
 | [Dify](./dify/) | Integrate AGIOne with Dify platform |
 | [Kilo Code](./kilo-code/) | Integrate AGIOne with Kilo Code |
 | [n8n](./n8n/) | Integrate AGIOne with n8n workflow platform |
