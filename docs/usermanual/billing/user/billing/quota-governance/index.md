@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model providers & users with billing-view permission; quota configuration also requires the corresponding management permission. |
+| Applicable Role | Model Provider & User |
 | Navigation path | Billing > Quota Governance |
 | Page route | `/billing/my/quota-governance` |
 | Managed objects | Billing-cycle usage, member and project quotas, usage breakdown, risk categories, and settings entries. |

@@ -1,4 +1,4 @@
-# Revenue Overview
+# Revenue
 
 ::: info Document Information
 Version: v2.1
@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model provider |
+| Applicable Role | Model Provider |
 | Navigation path | Billing > Earnings > Revenue |
 | Page route | `/billing/provider/revenue` |
 | Managed objects | Revenue account balance, current calendar-month estimate, billing cycle analysis, and account activity |

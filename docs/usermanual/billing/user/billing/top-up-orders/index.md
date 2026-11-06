@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Accounts with access to the `Billing` menu group |
+| Applicable Role | Model Provider & User |
 | Navigation path | Billing > Top-up Orders |
 | Page route | `/billing/my/top-ups/orders` |
 | Managed objects | The current account's top-up orders, sources, original-currency payments, credits added, and order statuses |

@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation Path | Billing > License > License |
-| Page Route | `/user/usercenter/license/managed-objects` (default); the Platform License area uses `/user/usercenter/license/platform-license` |
-| Managed areas | Platform License subscription status and authorized versions; Managed Objects SKU quota, usage, validity, and import records |
+| Navigation path | Billing > License > License |
+| Page route | `/user/usercenter/license/managed-objects` (default); the Platform License area uses `/user/usercenter/license/platform-license` |
+| Managed objects | Platform License subscription status and authorized versions; Managed Objects SKU quota, usage, validity, and import records |
 
 `License Management` has two tabs: `Platform License` and `Managed Objects`. The top `License Overview` summarizes the current state of both areas and shows a shortened system registration code; the tab below shows either the platform subscription or the managed-object authorization.
 

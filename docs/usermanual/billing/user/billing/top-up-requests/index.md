@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model providers or users with Top-up Requests visible in the sidebar |
+| Applicable Role | Model Provider & User |
 | Navigation path | Billing > Top-up Requests |
 | Page route | `/billing/my/top-ups/requests` |
 | Managed objects | Account credit requests and review information visible to the current account |

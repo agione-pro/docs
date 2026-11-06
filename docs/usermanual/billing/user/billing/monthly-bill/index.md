@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Accounts with access to the `Billing` menu group |
+| Applicable Role | Model Provider & User |
 | Navigation path | Billing > Monthly Bill |
 | Page route | `/billing/my/account/transactions/monthly-summary` |
 | Managed objects | Cross-month billing-cycle spend trends, the selected cycle's summary, deduction records, and consumption distributions |

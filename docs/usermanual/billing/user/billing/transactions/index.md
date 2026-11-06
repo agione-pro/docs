@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Accounts with access to the `Billing` menu group |
+| Applicable Role | Model Provider & User |
 | Navigation path | Billing > Transactions |
 | Page route | `/billing/my/account/transactions/records` |
 | Managed objects | The current account's transactions, consumption sources, balance changes, and business references |

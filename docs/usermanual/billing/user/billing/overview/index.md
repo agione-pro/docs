@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model providers & users with billing-view permission; configuration changes also require the corresponding management permission. |
+| Applicable Role | Model Provider & User |
 | Navigation path | Billing > Overview |
 | Page route | `/billing/my/account` |
 | Managed objects | Account balance, spending trends, alert threshold, recent transactions, and billing entries. |

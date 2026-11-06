@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model provider |
+| Applicable Role | Model Provider |
 | Navigation path | Billing > Earnings > Customers |
 | Page route | `/billing/provider/customers` |
 | Managed objects | Customer identities, customer tags, and customer revenue information for the selected billing period |

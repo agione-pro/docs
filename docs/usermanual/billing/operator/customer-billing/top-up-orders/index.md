@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operations personnel with access to Top-up Orders |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Customer Billing > Top-up Orders |
 | Page route | `/billing/customers/top-ups/orders` |
 | Managed objects | Customer top-up orders, order scope, top-up source, payment amount, credits added, and status |

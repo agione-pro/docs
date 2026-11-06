@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model provider |
+| Applicable Role | Model Provider |
 | Navigation path | Billing > Earnings > Settlements |
 | Page route | `/billing/provider/settlements` |
 | Managed objects | Billing-cycle settlement records, settlement amount, posted amount, precision adjustment, and current-cycle estimated details |

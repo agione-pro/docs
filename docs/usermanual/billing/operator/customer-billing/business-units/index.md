@@ -9,7 +9,7 @@ Updated: 2026-11-05
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operations personnel with access to this page and the relevant business-line management permissions |
+| Applicable Role | Operations administrator |
 | Navigation path | Billing > Customer Billing > Business Units |
 | Page route | `/billing/customers/business-units` |
 | Managed objects | Business lines, payment channels, per-transaction top-up limits, initial balance, and maximum overdraft amount |
