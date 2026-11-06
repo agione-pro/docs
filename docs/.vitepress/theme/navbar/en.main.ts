@@ -12,9 +12,20 @@ export const enNavbar = [
         text: "Best Practices",
         items: [
           { text: "Technical Practices", link: "/practices/technical/" },
-          { text: "Protocol Compatibility", link: "/practices/protocol-compatibility/" },
           { text: "Project Practices", link: "/practices/project/" },
-          { text: "Monitor Matrix", link: "/practices/monitor-matrix/" },
+        ]
+      },
+      {
+        text: "API Reference",
+        items: [
+          { text: "Protocol Compatibility", link: "/api/protocol-compatibility/" },
+          { text: "OpenAPI", link: "/api/openapi/" },
+        ]
+      },
+      {
+        text: "Operations Center",
+        items: [
+          { text: "Monitor Matrix", link: "/operations/monitor-matrix/" },
         ]
       },
       // { text: "Tools", link: "/tools/" },

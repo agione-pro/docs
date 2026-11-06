@@ -896,10 +896,11 @@ export const enSidebar: DefaultTheme.Sidebar = {
       items: [
         {
           text: "Technical Practices",
+          link: "/practices/technical/",
           collapsed: false,
           items: [
             {
-              text: "AI Coding Integration",
+              text: "AI Coding Tool Integration",
               collapsed: false,
               items: [
                 { text: "Cherry Studio", link: "/practices/technical/cherry-studio/" },
@@ -908,43 +909,71 @@ export const enSidebar: DefaultTheme.Sidebar = {
                 { text: "Cline", link: "/practices/technical/cline/" },
                 { text: "Codex", link: "/practices/technical/codex/" },
                 { text: 'Codex Desktop (CC Switch)', link: '/practices/technical/codex-desktop/' },
-            { text: "Crush", link: "/practices/technical/crush/" },
+                { text: "Crush", link: "/practices/technical/crush/" },
                 { text: "Cursor", link: "/practices/technical/cursor/" },
                 { text: "DeepSeek Harness", link: "/practices/technical/deepseek-harness/" },
-                { text: "Dify", link: "/practices/technical/dify/" },
                 { text: "Kilo Code", link: "/practices/technical/kilo-code/" },
+                { text: "Open Code", link: "/practices/technical/open-code/" },
+                { text: "Roo Code", link: "/practices/technical/roo-code/" },
+              ]
+            },
+            {
+              text: "AI Applications and Workflows",
+              collapsed: false,
+              items: [
+                { text: "Dify", link: "/practices/technical/dify/" },
                 { text: "n8n", link: "/practices/technical/n8n/" },
                 { text: "Open WebUI", link: "/practices/technical/open-webui/" },
                 { text: "OpenClaw", link: "/practices/technical/openclaw/" },
-                { text: "Open Code", link: "/practices/technical/open-code/" },
-                { text: "Roo Code", link: "/practices/technical/roo-code/" },
               ]
             },
           ]
         },
         {
-          text: "Protocol Compatibility",
-          collapsed: false,
-          items: [
-            { text: "Doubao Compatible Proxy API", link: "/practices/protocol-compatibility/doubao/" },
-          ],
-        },
-        {
           text: "Project Practices",
+          link: "/practices/project/",
           collapsed: false,
           items: [
             { text: "Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice", link: "/practices/project/multi-compute-pool-heterogeneous-inference-scheduling" },
             { text: "Single-Node Multi-Card Multi-Model Deployment Best Practice", link: "/practices/project/single-node-multi-card-multi-model-deployment" },
             { text: "Model Auto-Download and Inference Template Validation Best Practice", link: "/practices/project/model-auto-download-and-inference-template-validation" }
           ]
+        }
+      ]
+    }
+  ],
+  "/api/": [
+    {
+      text: "API Reference",
+      items: [
+        {
+          text: "Protocol Compatibility",
+          collapsed: false,
+          items: [
+            { text: "Doubao Compatible Proxy API", link: "/api/protocol-compatibility/doubao/" },
+          ],
         },
+        {
+          text: "OpenAPI",
+          collapsed: false,
+          items: [
+            { text: "Overview", link: "/api/openapi/" },
+          ],
+        },
+      ],
+    },
+  ],
+  "/operations/": [
+    {
+      text: "Operations Center",
+      items: [
         {
           text: "Monitor Matrix",
           collapsed: false,
           items: [
             {
               text: "Metis InfluxDB Data Dictionary",
-              link: "/practices/monitor-matrix/metis-influxdb-data-dictionary"
+              link: "/operations/monitor-matrix/metis-influxdb-data-dictionary"
             }
           ]
         }

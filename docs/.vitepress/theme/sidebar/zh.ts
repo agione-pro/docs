@@ -836,10 +836,11 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       items: [
         {
           text: '技术实践',
+          link: '/zh-CN/practices/technical/',
           collapsed: false,
           items: [
             {
-              text: 'AI 编码集成',
+              text: 'AI 编码工具接入',
               collapsed: false,
               items: [
                 { text: 'Cherry Studio', link: '/zh-CN/practices/technical/cherry-studio/' },
@@ -851,26 +852,26 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                 { text: 'Crush', link: '/zh-CN/practices/technical/crush/' },
                 { text: 'Cursor', link: '/zh-CN/practices/technical/cursor/' },
                 { text: 'DeepSeek Harness', link: '/zh-CN/practices/technical/deepseek-harness/' },
-                { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },
                 { text: 'Kilo Code', link: '/zh-CN/practices/technical/kilo-code/' },
-                { text: 'n8n', link: '/zh-CN/practices/technical/n8n/' },
-                { text: 'Open WebUI', link: '/zh-CN/practices/technical/open-webui/' },
                 { text: 'OpenClaw', link: '/zh-CN/practices/technical/openclaw/' },
                 { text: 'Open Code', link: '/zh-CN/practices/technical/open-code/' },
                 { text: 'Roo Code', link: '/zh-CN/practices/technical/roo-code/' },
               ],
             },
-          ],
-        },
-        {
-          text: '协议兼容',
-          collapsed: false,
-          items: [
-            { text: '豆包协议兼容 API', link: '/zh-CN/practices/protocol-compatibility/doubao/' },
+            {
+              text: 'AI 应用与工作流',
+              collapsed: false,
+              items: [
+                { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },
+                { text: 'n8n', link: '/zh-CN/practices/technical/n8n/' },
+                { text: 'Open WebUI', link: '/zh-CN/practices/technical/open-webui/' },
+              ],
+            },
           ],
         },
         {
           text: '项目实践',
+          link: '/zh-CN/practices/project/',
           collapsed: false,
           items: [
             {
@@ -887,13 +888,42 @@ export const zhSidebar: DefaultTheme.Sidebar = {
             },
           ],
         },
+      ],
+    },
+  ],
+  '/zh-CN/api/': [
+    {
+      text: 'API 参考',
+      link: '/zh-CN/api/',
+      items: [
+        {
+          text: '协议兼容',
+          collapsed: false,
+          items: [
+            { text: '豆包协议兼容 API', link: '/zh-CN/api/protocol-compatibility/doubao/' },
+          ],
+        },
+        {
+          text: 'OpenAPI',
+          collapsed: false,
+          items: [
+            { text: '概述', link: '/zh-CN/api/openapi/' },
+          ],
+        },
+      ],
+    },
+  ],
+  '/zh-CN/operations/': [
+    {
+      text: '运维中心',
+      items: [
         {
           text: '监控矩阵',
           collapsed: false,
           items: [
             {
               text: 'Metis InfluxDB 数据字典',
-              link: '/zh-CN/practices/monitor-matrix/metis-influxdb-data-dictionary',
+              link: '/zh-CN/operations/monitor-matrix/metis-influxdb-data-dictionary',
             },
           ],
         },

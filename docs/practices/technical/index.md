@@ -1,8 +1,10 @@
 # Technical Practices
 
-This section provides integration guides for various AI coding tools and platforms with AGIOne.
+This section provides integration guides for adding AGIOne as a model provider across AI coding tools and AI application platforms.
 
-## AI Coding Integration
+## AI Coding Tool Integration
+
+Configure AGIOne as a model provider in mainstream AI coding tools, covering IDE extensions, command-line tools, and desktop clients.
 
 | Tool | Description |
 |------|-------------|
@@ -15,10 +17,17 @@ This section provides integration guides for various AI coding tools and platfor
 | [Crush](./crush/) | Install Crush and use AGIOne as the model provider |
 | [Cursor](./cursor/) | Install Cursor and use AGIOne as the model provider |
 | [DeepSeek Harness](./deepseek-harness/) | Add AGIOne as a model provider in DeepSeek Harness |
-| [Dify](./dify/) | Integrate AGIOne with Dify platform |
 | [Kilo Code](./kilo-code/) | Integrate AGIOne with Kilo Code |
-| [n8n](./n8n/) | Integrate AGIOne with n8n workflow platform |
-| [Open WebUI](./open-webui/) | Integrate AGIOne with Open WebUI |
-| [OpenClaw](./openclaw/) | Integrate AGIOne with OpenClaw |
 | [Open Code](./open-code/) | Integrate AGIOne with Open Code |
 | [Roo Code](./roo-code/) | Integrate AGIOne with Roo Code |
+
+## AI Applications and Workflows
+
+Call AGIOne models from application orchestration and workflow platforms to complete specific automation tasks.
+
+| Platform | Description |
+|------|-------------|
+| [Dify](./dify/) | Build a scheduled weather retrieval workflow with Dify |
+| [n8n](./n8n/) | Build a scheduled weather email workflow with n8n |
+| [Open WebUI](./open-webui/) | Create model conversations with Open WebUI |
+| [OpenClaw](./openclaw/) | Integrate AGIOne with OpenClaw |
