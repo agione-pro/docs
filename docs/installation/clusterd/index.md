@@ -6,7 +6,7 @@ For a first installation, read sections 1-5. To update an existing ClusterD inst
 
 | Item | Description |
 | --- | --- |
-| Environment | Linux x86_64 hosts; examples use Ubuntu 22.04, and installation steps assume a new environment |
+| Environment | Linux x86_64 or ARM64 hosts; examples use Ubuntu 22.04, and installation steps assume a new environment |
 | Installation entry | `install.sh` in the extracted package directory |
 | Default Web URL | `http://<ClusterD-host-IP>:18093/` |
 | Goal | Access ClusterD, then deploy AGIOne through its Web interface and verify login |
@@ -17,7 +17,7 @@ The **ClusterD host** provides the installation Web interface and task service. 
 They can share a machine, but plan disk space, ports, and resources together. **After installing ClusterD, select target nodes in the Web interface to start deploying AGIOne.**
 :::
 
-This guide applies to delivery packages using `install.sh` and systemd. ARM, CentOS, and macOS are outside the verified installation scope of this guide; do not apply these instructions unchanged.
+This guide applies to x86_64 and ARM64 delivery packages using `install.sh` and systemd. CentOS and macOS are outside the verified installation scope; do not apply these instructions unchanged. Source updates do not add capabilities to older packages. Use a new delivery package containing the required functionality.
 
 ## Workflow Timeline
 
@@ -37,30 +37,51 @@ This guide applies to delivery packages using `install.sh` and systemd. ARM, Cen
 | --- | --- |
 | Full package | Includes the ClusterD program, execution engine, Python, and offline deployment resources |
 | Light package | Includes the program and execution engine, but not offline deployment resources or embedded Python installation files |
+| Host / target architecture | The host architecture determines which ClusterD package to download; the target architecture determines the AGIOne nodes and resources selected in the Web interface |
 | SHA-256 | A file checksum used to check that the package is intact and matches the delivered file |
 | systemd | Linux service management; the installer uses it to start ClusterD and enable it at boot |
 | SSH | The remote connection ClusterD uses to access target nodes and run installation tasks |
 | Precheck | Checks node connectivity, resources, ports, and other requirements before deployment |
+| Core node | A node running the cluster control plane and foundation services; the first core node is the default log archive node |
+| NAS / NFS | NAS is network-shared storage; log sharing in this guide uses NFS, not SMB/CIFS |
 | Web access URL | The AGIOne Web entry provided on the page after deployment |
 
 ## 1. Obtain the Release Package
 
-**ClusterD download URL: to be provided.**
+**ClusterD downloads (Linux x86_64):**
 
-::: warning Obtain the actual download URL first
-Ask your delivery contact for the package URL and the archive's SHA-256 checksum. Replace `<CLUSTERD_PACKAGE_URL>`, `XXX`, and `<TRUSTED_OUTER_ARCHIVE_SHA256>` below with actual values before running the commands.
+- **Full package, recommended for offline delivery:** [Download full package (2026.11.06-r1)](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.06-r1-linux-x86_64.tar.gz)
+- **Light package:** [Download light package (2026.11.06-master-ed5bc56)](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.06-master-ed5bc56-linux-x86_64.tar.gz)
+
+Both links are for x86_64 hosts only. For an ARM64 host, obtain the matching package from your delivery contact; do not simply change the architecture name in a URL.
+
+::: warning Check the filename and trusted checksum after downloading
+Before running the commands in section 3, replace `<CLUSTERD_PACKAGE_URL>` with the selected download URL and `XXX` with the complete version in that package's filename. Obtain the archive's trusted SHA-256 from your delivery contact and replace `<TRUSTED_OUTER_ARCHIVE_SHA256>`. These two packages have different version strings; use the actual downloaded file as the reference, and replace all placeholders before running the commands.
 :::
 
 ### 1.1 Choose a package
 
 | Package | Example filename | When to choose it |
 | --- | --- | --- |
-| Full package, recommended for offline delivery | `agione-clusterd-full-release-XXX-linux-x86_64.tar.gz` | Includes offline resources; select offline AGIOne deployment after installation |
-| Light package | `agione-clusterd-release-XXX-linux-x86_64.tar.gz` | Host needs Python 3.10 or later; deployment requires online resources or matching offline resources imported beforehand |
+| Full package, recommended for offline delivery | `agione-clusterd-full-release-XXX-linux-<arch>.tar.gz` | Includes offline resources matching the package architecture; select offline AGIOne deployment after installation |
+| Light package | `agione-clusterd-release-XXX-linux-<arch>.tar.gz` | Host needs Python 3.10 or later; deployment requires online resources or matching offline resources imported beforehand |
 
 The following steps use a full package. For a light package, substitute its URL and filename; the installation command is the same.
 
-**Before starting, confirm the release version, Linux x86_64 architecture, and trusted SHA-256 supplied by the delivery contact.** Do not use a checksum calculated from the file you just downloaded as the trusted delivery checksum.
+**Before starting, confirm the release version, ClusterD host architecture, and trusted SHA-256 supplied by the delivery contact.** Do not use a checksum calculated from the file you just downloaded as the trusted delivery checksum.
+
+### 1.2 Choose the host architecture
+
+Run `uname -m` on the host where ClusterD will be installed. Replace `<arch>` in the filename using this table:
+
+| `uname -m` output | Package architecture `<arch>` | Full package example |
+| --- | --- | --- |
+| `x86_64` or `amd64` | `x86_64` | `agione-clusterd-full-release-XXX-linux-x86_64.tar.gz` |
+| `aarch64` or `arm64` | `arm64` | `agione-clusterd-full-release-XXX-linux-arm64.tar.gz` |
+
+**The package must match the ClusterD host, not the AGIOne target nodes.** For example, ClusterD on an ARM64 host can deploy x86_64 AGIOne, and vice versa, provided target-architecture resources are available. Nodes within one AGIOne cluster must use the same architecture.
+
+A full package contains one set of offline resources matching its architecture by default. For cross-architecture deployment, use online resources for the target architecture or import its complete, verified offline resources first. Renaming files or reusing images and binaries for another architecture does not work.
 
 ## 2. Prepare for Installation
 
@@ -70,7 +91,7 @@ Run all terminal commands on the **ClusterD host**. Installation requires system
 
 | Check | Requirement |
 | --- | --- |
-| System | These examples use Ubuntu 22.04, x86_64, with functioning systemd |
+| System | Ubuntu 22.04, x86_64 or ARM64, with functioning systemd |
 | Basic tools | Bash, system `python3`, `sha256sum`, `tar`, `gzip`, coreutils, and an OpenSSH client; downloads need `curl` and CA certificates |
 | Disk | Allow for the archive, extracted contents, installed resources, and temporary workspace; archive size alone is insufficient |
 | Web network | Allow access to TCP `18093` on the ClusterD host from the installer's trusted operations network |
@@ -99,7 +120,7 @@ systemctl --version
 df -h /opt /var/lib /var/log
 ```
 
-Confirm that the architecture is `x86_64`, Python and systemd are available, and the relevant disks have sufficient space. A light package requires Python 3.10 or later.
+Use section 1.2 to confirm that the architecture matches the package, Python and systemd are available, and the relevant disks have sufficient space. A light package requires Python 3.10 or later.
 
 Sections 1-5 assume a new environment. If ClusterD services or cluster records already exist, confirm the host and intended operation first. To update the version, follow section 6 instead of overwriting an installation or deleting data.
 
@@ -117,11 +138,17 @@ mkdir -p /opt/clusterd-packages
 cd /opt/clusterd-packages
 ```
 
-Replace the following three values with the actual delivery details. SHA-256 is a 64-character hexadecimal string, not a download URL.
+The following detects the ClusterD host architecture automatically. Replace the URL, `XXX` in the filename, and SHA-256 with the actual delivery details; also change the filename prefix for a light package. SHA-256 is a 64-character hexadecimal string, not a download URL.
 
 ```bash
+case "$(uname -m)" in
+  x86_64|amd64) CLUSTERD_HOST_ARCH="x86_64" ;;
+  aarch64|arm64) CLUSTERD_HOST_ARCH="arm64" ;;
+  *) printf '%s\n' "Unsupported host architecture." >&2; exit 1 ;;
+esac
+
 CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL>"
-CLUSTERD_PACKAGE_NAME="agione-clusterd-full-release-XXX-linux-x86_64.tar.gz"
+CLUSTERD_PACKAGE_NAME="agione-clusterd-full-release-XXX-linux-${CLUSTERD_HOST_ARCH}.tar.gz"
 CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
 
 curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
@@ -203,27 +230,51 @@ The ClusterD login account, target-node SSH accounts, and AGIOne login account s
 
 ### 5.1 Select the deployment mode
 
-Open the operation wizard, or choose Create My Cluster in My Cluster, then select the mode that matches your delivery:
+Open the operation wizard, or choose Create My Cluster in My Cluster. First confirm that the **AGIOne target architecture** matches the target nodes, then select the delivery mode:
 
 | Mode | Confirm before starting |
 | --- | --- |
-| Offline installation | With a full package, the page should show that local resources are ready; no repeat download of bundled resources is needed. Additional categorized offline imports require the matching manifest and bundle |
-| Online installation | All required resource versions are ready, and the ClusterD host and target maintenance node can reach the resource URLs. The current package includes public HTTPS read configuration; cloud storage AK/SK is not required |
+| Offline installation | Local resources for the selected target architecture must be ready. A same-architecture full package needs no repeat download of bundled resources. Cross-architecture or additional categorized offline imports require complete, matching manifests and bundles |
+| Online installation | The universal runtime, public-services package, and AGIOne-image package for the selected target architecture are ready, and the ClusterD host and target maintenance node can reach the resource URLs. The current package includes public HTTPS read configuration; cloud storage AK/SK is not required |
 
 ### 5.2 Configure and start deployment
 
 1. **Enter cluster and node details.** Specify the cluster name, services, node IPs, SSH addresses, ports, usernames, and authentication details. Nodes without public access need a reachable private network or a configured jump host.
-2. **Confirm storage and networking.** Enter storage, access addresses, and the HTTP/HTTPS plan for your environment. HTTPS requires a valid certificate matching the access domain; allowing port `443` alone does not configure it.
-3. **Run precheck.** Resolve every blocker shown on the page or in task logs, and review warnings before installing. Fix connection failures and insufficient disk space instead of bypassing them.
-4. **Start installation and wait.** View task logs without submitting the same installation twice. Once finished, check node, service, and health status in My Cluster.
-5. **Open AGIOne and verify access.** Use the **Web access URL** in the details, retrieve and securely store the provided login credentials, then sign in to AGIOne and verify actual business access.
+2. **Confirm the storage mode.** The default reuses existing filesystems at `/var/lib/agione/local-path` without formatting disks, but shares a failure domain with the system disk. Dedicated data disks are recommended for production. This mode requires a separate empty disk on each node and explicit initialization approval; initialization erases the selected disk, so never select a disk containing business data.
+3. **Confirm networking and console access.** Fill in the network plan and choose the console access protocol and ports shown below. Deployment generates a default HTTPS certificate; no certificate upload is required for the first installation. If using your own domain, configure a matching certificate for that entry. Allow the ports actually configured.
+4. **Confirm the runtime log policy.** Keep structured JSON logging enabled by default where possible. See section 5.3 for local and NAS settings.
+5. **Run precheck.** Resolve every blocker shown on the page or in task logs, and review warnings before installing. Fix connection failures, insufficient disk space, and missing target-architecture resources instead of bypassing them.
+6. **Start installation and wait.** View task logs without submitting the same installation twice. Once finished, check node, service, and health status in My Cluster.
+7. **Open AGIOne and verify access.** Use the **Web access URL** in the details, retrieve and securely store the provided login credentials, then sign in to AGIOne and verify actual business access.
 
-### 5.3 Installation completion checklist
+| Console access protocol | Default ports | Notes |
+| --- | --- | --- |
+| HTTPS (default) | `18090` | Encrypted access; verify the URL and certificate, and follow your organization's trust procedure for the default certificate |
+| HTTP | `18091` | Requires explicit acknowledgement of plaintext risks; use only on trusted isolated networks |
+| HTTP + HTTPS | HTTP `18091`, HTTPS `18090` | Separate listeners; prefer HTTPS. HTTP does not automatically redirect to HTTPS |
+
+These are **AGIOne console** ports, not ClusterD's `18093`. Allow only enabled ports, avoiding conflicts with SSH, reserved Kubernetes ports, and the configured NodePort range. Use the final access URL shown in the details.
+
+### 5.3 Configure runtime logs
+
+The runtime log policy enables structured JSON logging collected by Fluent Bit by default. You do not need to provision NAS just to install AGIOne.
+
+| Scenario | What to enter | Log location and requirements |
+| --- | --- | --- |
+| No NAS; use local logs first | Keep automatic selection and leave both NAS fields blank, or specify a local archive node | Defaults to `/var/lib/agione/logs/agione-runtime.jsonl` on the first core node, not the ClusterD host. Local archiving is not highly available storage |
+| Archive logs to NAS | Fill in both the NAS server and NAS export directory | Uses NFS and stores `agione-runtime.jsonl` in the export. The archive node needs `nfs-common/mount.nfs`, connectivity, and write access to the export. Prepare the NFS client in advance for offline environments |
+
+SMB/CIFS is not supported for this NAS option. The container mount path is a container-side path; do not manually create the same mount point on every host. A partial NAS configuration, failed mount, or unwritable export blocks deployment. **There is no automatic fallback to local logging.**
+
+Structured business logs default to 7-day retention, a 64 MiB active file, and up to 32 rotated archives. Older logs are removed when capacity or time limits are reached; a full 7 days is not guaranteed. Reserve additional space for logs and temporary files.
+
+### 5.4 Installation completion checklist
 
 - [ ] ClusterD is `active`, and the installer can open its Web interface and sign in.
 - [ ] The AGIOne deployment task succeeded, and nodes, middleware, and business services are ready.
 - [ ] AGIOne opens through the Web access URL shown in the details.
 - [ ] The account provided after deployment can sign in to AGIOne, and business access has been verified.
+- [ ] Both listeners have been verified for dual-protocol access; when logging is enabled, actual writes are visible on the selected archive node or NAS.
 
 **HTTP 200 from the ClusterD home page only means the installation Web interface is reachable. It does not mean AGIOne deployment is complete.** Use the checklist above to confirm completion.
 
@@ -236,12 +287,12 @@ This updates the ClusterD program, Web interface, and execution engine, and rest
 ### 6.1 Prepare the new package
 
 1. Check the Web interface for queued or running tasks. Wait for them to finish before upgrading.
-2. Obtain and verify the new package using sections 1 and 3. Extract it into a new version directory without overwriting the previous extracted directory.
+2. Obtain and verify a new package matching the ClusterD host architecture using sections 1 and 3. Extract it into a new version directory without overwriting the previous one. Use a matching full package when offline resources are needed; a light package adds no offline resources.
 3. The commands below use this guide's default installation paths. If the original installation used custom arguments, retain those paths for upgrade and verification. Do not switch to an empty data directory.
 
 ### 6.2 Check and run upgrade
 
-Open root Bash on the ClusterD host and enter the **new version's** extracted directory. Replace `XXX` with the actual new version; use the matching directory name for a light package.
+Open root Bash on the ClusterD host and enter the **new version's** extracted directory. This example uses an x86_64 full package. Replace `XXX` with the actual new version; on ARM64, change `x86_64` in the directory name to `arm64`. Use the matching directory name for a light package.
 
 ```bash
 sudo -i
@@ -365,5 +416,8 @@ Confirm that ClusterD units are removed, the program directory is absent, and Cl
 | Local HTTP 200 but browser cannot connect | Check the listen address, TCP `18093` firewall rules, security groups, and routing |
 | Online resources are unavailable | Check required resource versions and DNS, HTTPS, and outbound connectivity from the ClusterD host and target maintenance node |
 | Target-node precheck fails | Open the task log and resolve the reported SSH, resource, or port issues |
+| Package architecture mismatch or missing target resources | Select the package for the ClusterD host, and Web resources for the AGIOne target architecture. Verify complete online releases or offline imports |
+| AGIOne uses an unexpected access port | Check the console access protocol and enabled ports. `18093` is ClusterD; AGIOne defaults to HTTPS on `18090` |
+| Log NAS check fails | Check that both NAS fields are filled in, and verify the NFS client, connectivity, and export write access. It does not automatically switch to local archiving |
 
 Record the package version, task ID, failure stage, and redacted logs when troubleshooting. Do not publish SSH passwords, login credentials, or configuration files containing sensitive information.
