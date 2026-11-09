@@ -66,18 +66,18 @@
   <rect x="185" y="590" width="290" height="90" class="node" stroke="#16a34a"/>
   <text x="330" y="616" text-anchor="middle" class="box-title">Mgmt-1</text>
   <text x="330" y="639" text-anchor="middle" class="label">CPU / RAM sized by workload</text>
-  <text x="330" y="660" text-anchor="middle" class="small">100G + 400G · Core / DB / middleware</text>
+  <text x="330" y="660" text-anchor="middle" class="small">System >= 200G + NAS >= 2 TB</text>
   <rect x="185" y="705" width="290" height="90" class="node" stroke="#16a34a"/>
   <text x="330" y="731" text-anchor="middle" class="box-title">Mgmt-2</text>
   <text x="330" y="754" text-anchor="middle" class="label">CPU / RAM sized by workload</text>
-  <text x="330" y="775" text-anchor="middle" class="small">100G + 400G · Core / DB / middleware</text>
+  <text x="330" y="775" text-anchor="middle" class="small">System >= 200G + NAS >= 2 TB</text>
   <rect x="185" y="820" width="290" height="90" class="node" stroke="#16a34a"/>
   <text x="330" y="846" text-anchor="middle" class="box-title">Mgmt-3</text>
   <text x="330" y="869" text-anchor="middle" class="label">CPU / RAM sized by workload</text>
-  <text x="330" y="890" text-anchor="middle" class="small">100G + 400G · Core / DB / middleware</text>
+  <text x="330" y="890" text-anchor="middle" class="small">System >= 200G + NAS >= 2 TB</text>
   <path d="M330 680 L330 705" class="line"/>
   <path d="M330 795 L330 820" class="line"/>
-  <text x="348" y="697" class="small">K8s cluster network / heartbeat</text>
+  <text x="348" y="697" class="small">Same LAN · inter-node >= 1000 Mbps</text>
 
   <path d="M285 474 L130 474 L130 635 L185 635" class="line"/>
   <path d="M285 474 L120 474 L120 750 L185 750" class="line"/>
@@ -91,7 +91,7 @@
 
   <rect x="90" y="965" width="235" height="78" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
   <text x="207" y="997" text-anchor="middle" class="box-title" style="fill:#9a3412">Managed Shared Storage</text>
-  <text x="207" y="1021" text-anchor="middle" class="small">&gt;= 1024 GB · block storage</text>
+  <text x="207" y="1021" text-anchor="middle" class="small">&gt;= 2 TB · NAS shared storage</text>
   <path d="M250 910 L230 965" class="line"/>
   <path d="M330 910 L280 965" class="line"/>
 
@@ -107,7 +107,7 @@
   <rect x="880" y="560" width="160" height="125" class="node" stroke="#f97316"/>
   <text x="960" y="586" text-anchor="middle" class="box-title">Worker A1</text>
   <text x="960" y="610" text-anchor="middle" class="small">8C / 16G reserved</text>
-  <text x="960" y="631" text-anchor="middle" class="small">200G + system disk</text>
+  <text x="960" y="631" text-anchor="middle" class="small">System >= 200G + data >= 2 TB</text>
   <text x="960" y="652" text-anchor="middle" class="label">GPU + RDMA</text>
   <rect x="880" y="730" width="160" height="72" class="node" stroke="#f97316"/>
   <text x="960" y="758" text-anchor="middle" class="box-title">Worker A2</text>
@@ -126,7 +126,7 @@
   <rect x="1120" y="560" width="160" height="125" class="node" stroke="#f97316"/>
   <text x="1200" y="586" text-anchor="middle" class="box-title">Worker B1</text>
   <text x="1200" y="610" text-anchor="middle" class="small">8C / 16G reserved</text>
-  <text x="1200" y="631" text-anchor="middle" class="small">200G + system disk</text>
+  <text x="1200" y="631" text-anchor="middle" class="small">System >= 200G + data >= 2 TB</text>
   <text x="1200" y="652" text-anchor="middle" class="label">GPU</text>
   <rect x="1120" y="730" width="160" height="72" class="node" stroke="#f97316"/>
   <text x="1200" y="758" text-anchor="middle" class="box-title">Worker B2</text>
@@ -139,7 +139,7 @@
   <rect x="1350" y="560" width="160" height="125" class="node" stroke="#f97316"/>
   <text x="1430" y="586" text-anchor="middle" class="box-title">Worker C1</text>
   <text x="1430" y="610" text-anchor="middle" class="small">8C / 16G reserved</text>
-  <text x="1430" y="631" text-anchor="middle" class="small">200G + system disk</text>
+  <text x="1430" y="631" text-anchor="middle" class="small">System >= 200G + data >= 2 TB</text>
   <text x="1430" y="652" text-anchor="middle" class="label">NPU + RDMA</text>
   <rect x="1350" y="730" width="160" height="72" class="node" stroke="#f97316"/>
   <text x="1430" y="758" text-anchor="middle" class="box-title">Worker C2</text>

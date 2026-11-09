@@ -1,5 +1,10 @@
 # Policies
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Policies defines traffic rules for model deployment. It connects a model to primary and backup targets and uses health probes to determine routing.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Application Scenario | A scheduling objective such as cost priority, high availability, or low latency. |
@@ -91,8 +95,7 @@ The image shows "Add Policy - Step 3: Define Health Probe Rules", configuring pr
 2. Verify application scenario, associated model, state, and update time.
 3. Open details and verify that topology and health probes match deployment targets.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Name | Yes | Text | `policy-cost-priority-demo` | Policy display name. Use sanitized examples or non-sensitive business-readable names. |

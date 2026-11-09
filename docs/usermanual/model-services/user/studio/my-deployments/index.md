@@ -1,227 +1,98 @@
 # My Deployments
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider |
-| Navigation Path | Model Services > Studio > My Deployments |
-| Page Route | `/modelone/my-deployments/models` |
-| Managed Objects | On-Cloud deployments, On-Prem deployments, deployment status, and publishing entry |
+| Applicable Role | User |
+| Navigation path | Model Services > Studio > My Deployments |
+| Page route | `/modelone/my-deployments/models` |
+| Managed objects | Unified overview and fast cross-subsystem navigation entries for deployed model instances across compute environments (On-Prem Heterogeneous GPU Management and On-Cloud Multi-Platform Scheduling) |
 
 #### Beginner Explanation
 
-My Deployments works like a model deployment register. On-Cloud shows cloud deployments and On-Prem shows deployments in self-managed environments. Confirm the deployment type before reviewing status, resources, and call information.
+My Deployments serves as a unified dashboard for model instances under Model Services. Users can view all model deployments across On-Prem and On-Cloud compute environments in one centralized view without repeatedly toggling top-level navigation. This page primarily offers search capabilities and direct cross-subsystem links. Clicking a specific instance or quick deployment button redirects to the underlying infrastructure subsystem to perform detailed creation and lifecycle management.
 
-#### Terminology
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| On-Cloud | A deployment that runs on cloud-platform resources. |
-| On-Prem | A deployment that runs in self-managed physical or virtual infrastructure. |
-| Deployment Status | The current creation, running, failed, or stopped state of a deployment. |
-| Call Information | The URL, protocol, and authentication requirements used after deployment. |
-
-#### Recommended Operation Order
-
-Open the relevant On-Cloud or On-Prem tab, locate the deployment, and review its details. To publish a new model, use the publishing entry and confirm the region before continuing.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| Unsure where a deployment runs | Check both deployment tabs | Query one tab repeatedly |
-| Deployment status is abnormal | Review details and status information | Redeploy immediately |
-| Preparing to record call information | Use URL and credential placeholders | Put real credentials in documentation |
-| Preparing to publish a model | Confirm region and resources first | Submit publication immediately |
+| On-Prem Deployment | A model instance running on locally managed heterogeneous accelerator clusters; click to jump to the On-Prem subsystem for management. |
+| On-Cloud Deployment | A model service scheduled and deployed on external cloud or multi-architecture compute platforms; click to jump to the On-Cloud subsystem for management. |
 
 ## Prerequisites
 
-1. The current account has permission to view `Studio > My Deployments`.
-2. At least one deployment record is listed on the page.
-3. The target deployment meets the conditions for displaying the publish entry, and `Publish` is visible in the more actions menu.
-4. Before publishing, the publish region, visibility scope, billing configuration, and call configuration risks have been confirmed.
-5. Before publication, confirm the deployment region, resources, model source, visibility, billing, and rate limits.
-
-::: warning High-Risk Operation Boundary
-Publishing a model affects model visibility, call methods, billing, and user access. Before submission, verify the publishing region, business scope, resources, model source, billing, and rate limits.
-:::
+- Successfully logged into the AGIOne platform with permissions to view model deployments.
+- When creating a new deployment through redirection, ensure the tenant has available compute quota or a healthy account balance.
 
 ## Page Description
 
-The page separates deployment locations into On-Cloud and On-Prem. Lists show models, regions, status, and actions. The publishing entry starts a new model publication flow.
+The page includes a top environment tab switcher, a filter and search toolbar, and a central deployment instance list.
 
-Page screenshots:
-
-![My Deployments list](./images/manual-on-cloud-deployments-public.png)
-
-The "My Deployments" page defaults to the On-Cloud model deployments list, displaying deployment name, associated model, cloud platform, running status, and management actions.
+![My Deployments Overview](./images/my-deployments-overview.png)
+The figure shows the My Deployments list interface, including On-Prem and On-Cloud tab switching, deployment mode filtering, and cross-subsystem jump entries.
 
 ## Main Operations
 
-### View On-Cloud Deployments
+### 1. Switch Compute Environments to View Deployments
 
-1. Go to `Model Services > Studio > My Deployments`, which defaults to the `On-Cloud` tab.
-2. Filter cloud deployment instances by deployment name, model, or status.
-3. Verify deployment name, model type, cloud platform provider, deployment region, and current running status.
-4. In the action column, start, stop, view details, or initiate model publishing.
+Click the tabs at the top of the page:
+- Click **On-Prem**: View model services deployed on locally managed heterogeneous compute clusters.
+- Click **On-Cloud**: View model services hosted on external public clouds or third-party platforms via multi-platform scheduling.
 
-### View On-Prem Deployments
+### 2. Filter and Search Instances
 
-1. Click the **"On-Prem"** tab on the My Deployments page.
-2. The list displays model instances deployed on local private resource pools.
-3. Verify compute nodes, GPU card counts, container health status, and service endpoint addresses for target deployments.
-4. Manage the lifecycle or publish ready instances using the action column.
+- Select a target compute region in the Region dropdown (defaults to All).
+- Select **All**, **Single Instance**, or **Cluster** in the type bar to filter corresponding deployment topologies.
+- Filter by status in the dropdown menu to display Running, Stopped, or Abnormal instances.
+- Enter an instance name in the search box, click the search icon button for exact keyword matching, or click reset to clear inputs and restore full view.
 
-![View On-Prem deployments](./images/manual-on-prem-deployments-public.png)
+### 3. Redirect to Underlying Subsystems for Management
 
-Switch to the On-Prem tab to inspect local model deployments on private resource pools, including GPU quota and service readiness status.
+As an aggregation dashboard, core lifecycle operations seamlessly link to the underlying compute subsystem:
+- **View and Manage Instances**: Click an instance name or action button in the list to automatically navigate to the instance console in **On-Prem** (`/powerone/quickstart/model-service`) or **On-Cloud** (`/infrahub/user/model/deployment`), where you can start, stop, delete, inspect logs, and monitor metrics.
+- **Create New Deployments**: Click **Go to Quick Deployment** at the top right or **Custom Deploy** on the right of the filter toolbar to jump directly to the deployment wizard in the respective compute subsystem and finalize setup.
 
-### Publish a Model
-
-1. Click **"Publish"** in the action menu of a target running deployment card.
-2. In the dialog, select the publishing region (Private or Public Region) to determine visibility.
-3. Complete the service details, API key, billing mode, and rate limits, then submit.
-4. Return to `My Models > My Published` to verify the published model service status.
-
-![Publish Model entry](./images/publish-public.png)
-
-Click "Publish" in the deployment action menu to start the model publication workflow.
-
-![Choose where to publish](./images/choose-where-to-publish-public.png)
-
-Select whether to publish the model to the tenant's Private Region or the platform's Public Region.
-
-![Publish Model page](./images/publish-model-public.png)
-
-Verify the auto-filled service endpoint URL, enter access credentials, configure billing and rate limits, and submit.
-
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Deployment Name | Yes | Text | `Example Deployment` | Identifies the target deployment record. |
-| Model Name | Yes | Text | `Example Model` | Model associated with the target deployment. |
-| Deployment Status | Yes | Status tag | `Running` | Indicates whether the deployment may show a publish entry or meet later publishing conditions. |
-| Region | Yes | Text | `China (Shanghai)` | Region where the target deployment is running. Verify it against the publish region and business scope before publishing. |
-| Resource Specification | Yes | Text | `NVIDIA A10 x 1` | Shows GPU, CPU, memory, and other resource specifications used by the deployment. |
-| Publish Entry | Yes | More actions | `Publish` | Entry from the target deployment to the publish region selection flow. |
-| Publish Region | Yes | Card selection | `Private` / `Public` | Determines the publish target and visibility scope after the redirect. |
-| Redirect Target | Yes | Page redirect | `My Models > Publish Model` | Target page after a publish region is selected. |
-| Publish Scope | Conditionally required | Page configuration | `Private` / `Public` | Confirms the model visibility scope on the publish model page. |
-| Billing Configuration | Conditionally required | Step configuration | `Token` / `Free` | Confirms pricing, free quota, or billing method on the publish model page. |
-| Call Configuration | Conditionally required | Step configuration | `<BASE_URL><ENDPOINT_PATH>` | Confirms request URL, API Key, model source ID, rate limits, and other call-related settings. |
-| Actions | No | Row buttons / more menu | `Start` / `Stop` / `Details` / `Publish` | Page entries for viewing, controlling, or entering the publish flow. |
+| Region | No | Dropdown | All | Filters model instances deployed in a specific region or availability zone |
+| Topology | No | Segmented Radio | All | Options include All, Single Instance, and Cluster to filter different deployment architectures |
+| Status | No | Dropdown | All Statuses | Options include All Statuses and specific lifecycle states to filter instances |
+| Search by instance name | No | Text Input | qwen2.5 | Enter instance name keywords for precise filtering |
 
 ## Pitfalls
 
-- My Deployments shows deployment status. It does not mean the model has been published to the marketplace.
-- When deployment is abnormal, check Resource Pool, Runtime Image, model asset, and startup logs before submitting again.
-- Deleting, stopping, or restarting a deployment may affect Model Consumers. Confirm traffic and rollback path first.
+- Clicking an instance or deployment button redirects your browser to the corresponding On-Prem or On-Cloud subsystem; this is standard cross-subsystem navigation behavior rather than an error.
+- If a target service is not found in the current compute environment tab, check whether it was deployed in the other environment and toggle between the On-Prem and On-Cloud tabs.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | The `My Deployments` page opens, and the `On-Prem` and `On-Cloud` tabs are visible. | Check account permissions, navigation path, and page loading status. |
-| Deployment list loads | The target deployment card shows deployment name, model name, status, region, and resource specification. | Click **"Search"** or `Reset` and retry. Check filters and deployment permissions if needed. |
-| Target deployment status is visible | The target deployment status is shown as the real page status, such as `Running`. | Confirm whether the deployment task is complete, or open `Details` to view deployment status. |
-| Publish entry is visible | Eligible deployments show `Publish` in the more actions menu. | Check deployment status, account permissions, and row actions. |
-| Publish region can be selected | The `Publish Model` dialog opens and shows `Private`, `Public`, and the corresponding publish buttons. | Close the dialog and retry, or check whether the account has permission for the selected publish region. |
-| Redirect target is correct | After selecting a publish region, the page opens the `Publish Model` page under `Model Services > Studio > My Models`. | Check publish region permissions, page route, and browser redirect status. |
-| Publish fields are visible | The page shows `Basic Information`, `Billing Configuration`, `Rate Limit Configuration`, and their key fields. | Go back and select the publish region again, or refresh the publish model page. |
+| Tab Switching | The clicked tab is highlighted and the list refreshes corresponding data | Refresh the page to reload the instance list |
+| Cross-System Navigation | Clicking an instance or deployment button redirects the URL to the target subsystem console | Check network connectivity or permissions |
+| Keyword Search | The list only displays instances matching the search keyword | Clear the input field and click Reset to restore all records |
 
 ## FAQ
 
-#### Deployment List Is Empty
-
-**Symptom:**
-
-The target deployment is missing from On-Cloud or On-Prem.
-
-**Possible Causes:**
-
-- The wrong tab is open.
-- Filters or visibility do not match.
-
-**Resolution:**
-
-1. Check both deployment tabs.
-2. Reset filters and verify permission.
-
-#### Deployment Details Do Not Open
-
-**Symptom:**
-
-Opening a deployment returns no details or an error.
-
-**Possible Causes:**
-
-- The record is still being created.
-- The record expired or permission is missing.
-
-**Resolution:**
-
-1. Refresh the list and verify status.
-2. Confirm the record exists and the account can view it.
-
-#### Deployment Status Does Not Change
-
-**Symptom:**
-
-Status remains in creating or processing.
-
-**Possible Causes:**
-
-- Resources are not ready.
-- The deployment task encountered an error.
-
-**Resolution:**
-
-1. Review stages and errors in details.
-2. Ask an authorized operator to inspect the task.
-
-#### Call Information Is Unavailable
-
-**Symptom:**
-
-No call information is listed after deployment.
-
-**Possible Causes:**
-
-- The service is not ready.
-- Call permission or network scope is not configured.
-
-**Resolution:**
-
-1. Verify deployment health.
-2. Check authorization and network access.
-
-#### Model Publication Fails
-
-**Symptom:**
-
-No deployment record is created after submission.
-
-**Possible Causes:**
-
-- Resource, source, or billing configuration is incomplete.
-- The name is duplicated or the region is incorrect.
-
-**Resolution:**
-
-1. Correct fields indicated by the page.
-2. Verify name and region before resubmission.
+**Symptom:** Why does clicking an action button navigate away from Model Services?
+**Possible Causes:** This page functions as a unified aggregation view; actual compute instances are hosted within specific underlying compute subsystems.
+**Resolution:** This is standard platform behavior. Follow the instructions in the destination subsystem to manage the instance, then click **Model Services** in the top navigation bar at any time to return.
 
 ## Notes
 
-- Publishing a model affects model visibility, call methods, billing configuration, and user access.
-- Selecting the wrong publish region may publish the model to the wrong site, region, or business scope.
-- `发布 / Publish`, `提交 / Submit`, and `保存 / Save` are high-risk final actions.
-- Do not write real accounts, secrets, tokens, AK/SK, Endpoints, API Keys, customer names, pricing strategies, cloud resource IDs, or internal test parameters.
+- This page does not support directly modifying low-level resource configurations such as VRAM or container specifications; all infrastructure-level adjustments must be made in the redirected subsystem.
+- After an instance is deleted or stopped, a synchronization delay of a few seconds may occur on this dashboard; the real-time status in the underlying subsystem prevails.
 
 ## Next Steps
 
-1. Return to `My Models` to view the publish model configuration progress.
-2. Verify the model visibility, billing configuration, and call configuration for the selected publish region.
-3. If a real publish action has been performed, open model details or the call page to confirm status and access control.
+- Explore local heterogeneous compute deployments: See [Heterogeneous GPU Management - Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/).
+- Explore cloud compute scheduling: See [Multi-Platform Scheduling - My Deployments](/usermanual/ai-infra-on-cloud/user/model-services/my-deployments/).
+- Request or manage API credentials: See [My Credentials](/usermanual/model-services/user/studio/credentials/).

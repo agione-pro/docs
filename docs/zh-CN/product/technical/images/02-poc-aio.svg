@@ -19,7 +19,7 @@
   <rect width="1000" height="500" fill="url(#bg2)"/>
 
   <text x="500" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#1A1025">PoC 部署架构 · All in One</text>
-  <text x="500" y="58" text-anchor="middle" font-size="12" fill="#71717A">单节点 · 8C / 24G / 200G · 仅用于概念验证与功能演示</text>
+  <text x="500" y="58" text-anchor="middle" font-size="12" fill="#71717A">单节点 · 16C / 24G / 200G · 仅用于概念验证与功能演示</text>
 
   <!-- User -->
   <g transform="translate(80, 220)">
@@ -42,7 +42,7 @@
     <rect x="0" y="0" width="6" height="300" rx="3" fill="#5F4ECF"/>
 
     <text x="20" y="28" font-size="13" font-weight="700" fill="#4A3EB0" letter-spacing="1.2">ALL IN ONE NODE</text>
-    <text x="20" y="46" font-size="11" fill="#4A3EB0">8 vCPU · 24 GB RAM · 200 GB Disk</text>
+    <text x="20" y="46" font-size="11" fill="#4A3EB0">16 vCPU · 24 GB RAM · 200 GB Disk</text>
 
     <!-- Business service top -->
     <g transform="translate(40, 70)">

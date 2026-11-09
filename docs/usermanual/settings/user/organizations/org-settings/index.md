@@ -1,5 +1,10 @@
 # Tenant Settings
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -55,6 +60,8 @@ Tenant Settings is the tenant default-rule panel. It defines the initial policy 
 The following screenshot shows the balance-alert tab.
 
 ![Tenant Settings](./images/org-settings.png)
+
+Tenant Settings shows Credit alerts, project defaults, member quota defaults, model visibility, and quota request settings. New objects inherit saved defaults.
 
 3. Open `Project Defaults` and configure the reset cycle, alert threshold, and limit policy for new projects.
 
@@ -153,34 +160,6 @@ The current account lacks Tenant Settings permission, an upstream platform manag
 
 Verify Tenant Settings permission and configuration source. Ask the platform operator to change managed configuration, or wait until approval finishes.
 
-#### How should the Tenant Settings page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Tenant Settings page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Saving settings affects later tenant-management flows. Confirm each value first.
@@ -191,3 +170,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 1. Create a new project to verify Project Defaults.
 2. Add a new member to verify Member Quota Defaults.
 3. Review Quota Requests to verify request rules.
+
+Related pages: [Member Quotas](../../members-roles/member-quotas/)、[Quota Approvals](../../members-roles/quota-requests/)、[Usage Log](../usage-log/)

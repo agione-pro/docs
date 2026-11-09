@@ -1,11 +1,16 @@
 # Block Storage
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation Path | AI Infra(On-Prem) > Storage > Block Storage |
+| Navigation Path | On-Prem > Storage > Block Storage |
 | Page Route | `/powerone/storage-service/block` |
 | Managed Object | Configuration, status, and relationships on Block Storage |
 
@@ -13,8 +18,7 @@
 
 Block storage is like attaching an independent disk to an instance. It is suitable for tasks that require persistent writes, independent volumes, or block device semantics. It is not a shared directory. Before multiple instances read and write simultaneously, confirm whether the platform supports the corresponding mount mode.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Volume | Persistent block device that can be mounted by an instance. |

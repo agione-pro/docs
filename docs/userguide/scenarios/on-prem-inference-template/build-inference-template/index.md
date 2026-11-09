@@ -16,7 +16,7 @@ The template exposes a compatible framework, model, runtime configuration, and o
 ## Entry
 
 - **Role:** Operator
-- **Menu:** AI Infrastructure > On-Prem > Templates > Inference Templates
+- **Menu:** On-Prem > Templates > Inference Templates
 - **Route:** `/powerone/fast-build-v2/inference-templates`
 
 ## Steps

@@ -1,284 +1,166 @@
 # Tags
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
-| Navigation Path | Model Services > Settings > Tags |
-| Page Route | `/modelone/settings/tags` |
-| Managed Objects | Tag categories, child tags, display hierarchy, and status |
+| Applicable role | Operator Admin |
+| Navigation path | **Model Services** > **Settings** > **Tags** |
+| Page route | `/modelone/settings/tags` |
+| Managed objects | Tag categories, subtags, multilingual names, notes, status, and hierarchy |
 
-#### Beginner Explanation
+**Beginner explanation**: Tags are the category shelves of the model marketplace. Create a top-level category first, then add subtags under it. Categories group related capabilities; subtags name the specific capability or scene that users filter by.
 
-Tags work like shelf labels in the model marketplace. They tell users which capability, scenario, or industry a model is suitable for. The operator organizes tag categories and child tags first, so providers and operators can later place models in the right discovery path.
-
-#### Glossary
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Tag | User-visible classification for model capability, scenario, or industry |
-| Tag category | Top-level node in the tag tree that organizes related child tags |
-| Child tag | Specific tag under a category, used for model filtering and display |
-| Tag status | Status shown for the tag in binding and filter controls |
-| Binding relationship | Reference relationship between a tag and a model, app, or display entry |
-
-#### Recommended Operation Sequence
-
-When organizing tags for the first time, add tag categories first, then add child tags under each category. After saving, query the tags and confirm the name, hierarchy, and status. For daily changes, edit tags or enable and disable tags first; delete tags only after confirming that no binding relationship remains. This separates "which category the tag belongs to" from "what the tag is called," reducing marketplace filter confusion.
-
-#### Beginner Quick Choice
-
-| Scenario | Do First | Do Not Directly Do |
-| --- | --- | --- |
-| Build the model filter system for the first time | Add tag categories | Create many flat tags without categories |
-| Add a filter option for a capability | Add a child tag, then query the tag hierarchy | Mix capability, industry, and recommendation tags in one category |
-| Tag name or notes are inaccurate | Edit the tag and check both language names | Change only one language version |
-| A tag should temporarily stop being bound | Disable the tag and check marketplace filters | Delete a tag that is still referenced by models |
+| Tag Category | A top-level parent node in the tag taxonomy used for broad grouping (e.g., Speech & Audio, Language & Text). |
+| Subtag | A secondary capability or scenario node mounted under a category, directly bound to model cards and explore filters. |
+| Tag Code | A globally unique string identifier across the platform used for underlying indexing, API filtering, and i18n mapping. |
+| Multilingual Names | Display text maintained separately in English and Simplified Chinese, adapting to system locale switching. |
 
 ## Prerequisites
 
-1. The current account has `Tags` configuration permission.
-2. Tag categories, child tag naming rules, display hierarchy, and status policy have been confirmed.
-3. Before adding a tag, check whether synonymous, duplicate, or overly narrow tags already exist.
-4. Before editing, disabling, or deleting a tag, assess the impact on model bindings, marketplace filters, and listed model display.
+1. The current account can view and maintain **Settings > Tags**.
+2. The category hierarchy, code convention, and English/Chinese names are confirmed.
+3. The tag will not be reused for unrelated capabilities or industries.
 
 ## Page Description
 
-This page maintains the tag tree for Model Services, including tag categories, child tags, creation time, status, and row actions. Operators can add tags from the top of the page, query tags by status or name, and edit, add child tags, disable, or delete a specific row.
+The top area contains the filter row and **Add Tag**. The table below uses a tree structure:
 
-Page screenshot:
+- Status tabs: `All`, `Available`, `Unavailable`.
+- Search box: `Name`, followed by **Search** and **Reset**.
+- Table columns: `Category name`, `Created at`, `Status`, `Actions`.
+- Top-level categories have an expand arrow. Row actions include **Edit**, **Add Subtag**, and **...**.
 
-![Tag list](./images/tags-list-public.png)
+| Area | Description |
+| --- | --- |
+| Status Tabs | Switch across All, Available, and Unavailable tabs to filter active or retired tag nodes |
+| Action & Filter Bar | Includes Name keyword input, Search and Reset buttons, and the Add Tag button at the top right |
+| Tag Hierarchy Table | Displays top-level categories and subtags with name, created time, status, and row action buttons |
+| Edit Dialog Modal | Opened upon clicking Add or Edit, supporting code input, multilingual name tabs, and notes |
 
-The image shows the Tags management page, displaying a hierarchical tree of tag categories and child tags, with top-level status and name search, and row-level edit, add child, disable, and delete actions on the right.
+![Tag list](./images/tags-list.png)
+
+The figure shows `Category name` shows categories such as “Language & Text” and “Speech & Audio” with their subtags. `Status` shows `Available`; the action column offers `Edit`, `Add Subtag`, and more actions.
 
 ## Main Operations
 
-<!-- main-operation-title-exceptions: Edit,Delete -->
+### Filter tags
 
-The operations below follow a beginner-friendly order: create tag categories first, then add child tags. Query and edit are used for daily checks. Enable, disable, and delete affect marketplace filters, so confirm binding relationships first.
+1. Switch between `All`, `Available`, and `Unavailable`.
+2. Enter a tag name or keyword in `Name`.
+3. Click **"Search"** to query, or **"Reset"** to clear the conditions.
+4. Use the expand arrow next to a category to view its subtags.
 
-### Add a Tag Category
+### Add a tag
 
-1. Go to `Model Services > Settings > Tags`.
-2. Click **"Add Tag"** in the upper-right corner to open the `Add Tag` dialog.
-3. Enter a `Code` to uniquely identify the tag category. Use stable lowercase English hyphen-separated naming, such as `language-text`.
-4. Maintain `English` and `Simplified Chinese` `Name` fields in the `Tag Name` section.
-5. Enter `Notes` as needed to describe the capability scope or usage boundary of the category.
-6. Click **"Confirm"** to save. After saving, return to the list and confirm that the new category appears in the `Category Name` column.
+1. Click **"Add Tag"** at the top right to open the `Add Tag` dialog.
+2. Fill in the unique `Code`.
+3. Under `Tag Content`, switch between the `English` and `Chinese` tabs and fill in `Name`.
+4. Fill in `Notes` when needed.
+5. Click **"Confirm"** to save, or **"Cancel"** / the `×` at the top right to close.
 
-![Add a Tag Category](./images/add-tag-public.png)
+![Add Tag](./images/tags-add.png)
 
-The screenshot shows the `Add Tag` dialog. Check `Code`, multilingual `Name`, and `Notes`; these values affect list display and model filtering.
+The figure shows the dialog contains `Code`, multilingual `Tag Content`, and `Notes`. `Name` carries a `*` required mark; both the `English` and `Chinese` tabs are marked as required. The example shows English as the language currently being edited.
 
-### Add a Child Tag
+### Add a subtag
 
-1. Go to `Model Services > Settings > Tags`.
-2. Locate the target parent category in the `Category Name` column.
-3. Click **"Add"** in the target category row to open the child-tag dialog.
-4. Enter the child-tag `Code`, then maintain `English` and `Simplified Chinese` `Name` fields.
-5. In `Notes`, explain the model capability or scenario suitable for this child tag.
-6. Click **"Confirm"** to save. After saving, expand the parent category and confirm that the child tag appears under the correct level.
+1. Click **"Add Subtag"** on the target top-level category.
+2. Fill in the subtag `Code`, `Name`, and `Notes` in the dialog.
+3. Click **"Confirm"**, then expand the parent category to check the new level.
 
-![Add a Child Tag](./images/add-child-tag-public.png)
+### Edit and more actions
 
-The screenshot shows the `Add Tag` dialog opened from a parent category row. `Parent` is filled automatically; before saving, check the parent, code, and multilingual names.
+- Click **"Edit"** in a row to change the code, name, or notes.
+- Click **...** to open **"Disable"** and **"Delete"**.
+- Before disabling or deleting, confirm whether models or filter entries still use the tag.
 
-### Query Tags
-
-1. Go to `Model Services > Settings > Tags`.
-2. Select `All`, `Available`, or `Unavailable` in the status switcher.
-3. Enter a tag name or keyword in the `Name` field.
-4. Click **"Search"** to query results. Click **"Reset"** when you need to clear conditions and start again.
-5. Expand the target category and check tag name, creation time, status, hierarchy, and the actions shown for the current account.
-6. If the target tag is missing, switch back to `All`, clear the name condition, and confirm whether the English and Chinese names are consistent.
-
-### Edit a Tag
-
-1. Locate the target tag or tag category in the list.
-2. Click **"Edit"** in the target row to open the edit dialog.
-3. Check `Code`, `English` and `Chinese` `Name`, and `Notes`. If `Code` is read-only, follow the page state.
-4. Change only the name or notes that need to be updated, and confirm that the new name will not conflict with sibling tags.
-5. Click **"Confirm"** to save. After saving, refresh or query the target tag again and confirm that the list name and status remain correct.
-
-![Edit a Tag](./images/edit-tag-public.png)
-
-The screenshot shows the `Edit Tag` dialog. The parent and existing values are populated automatically; confirm that the correct child tag is open, then check the code and multilingual names.
-
-### Enable or Disable a Tag
-
-1. Locate the target tag in the list.
-2. Before clicking **"Disable"** or **"Enable"**, confirm whether the tag is used by models, apps, or marketplace filter entries.
-3. If the tag is still a primary filter entry for online models, do not disable it directly. Prepare a replacement tag or adjust model bindings first.
-4. Read the page prompt and confirm that the target tag is correct before completing the status change.
-5. After the operation succeeds, switch to `Available` or `Unavailable` and confirm that the target tag appears in the expected list.
-6. If the status does not change, check account permission, binding relationships, filter conditions, and page refresh state. Avoid repeated clicks.
-
-### Delete a Tag
-
-1. Locate the target tag in the list and confirm its name, hierarchy, and status.
-2. Click **"Delete"** in the target row and read the delete confirmation prompt.
-3. If the tag is referenced by models, apps, or marketplace entries, migrate the bindings or disable the tag first. Do not delete it directly.
-4. If you are deleting a parent category, confirm that it has no child tags that still need to remain.
-5. After confirming deletion, refresh the list and query with `All` status and the name condition to confirm that the target tag no longer appears.
-6. If the delete button is grayed out or deletion fails, follow the page prompt and check child tags, binding relationships, account permission, and current status.
-
-![Delete a Tag](./images/delete-tag-public.png)
-
-The screenshot shows the delete confirmation for a child tag. Before clicking **"OK"**, check the tag name in the prompt; after deletion, the tag is removed from its parent category.
-
-## Parameter Reference
+## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Code | Yes | Text / read-only text | `text-generation` | Unique identifier of a tag or tag category; after saving, it usually should not be changed |
-| Tag Content | Yes | Multilingual text | `Text Generation` | User-visible tag name shown in the list, marketplace, and filter entries |
-| Name | Yes | Text | `Text Generation` | Name maintained under the current language tab |
-| Notes | No | Text | `For text generation models` | Describes tag purpose, scope, or operational boundary |
-| Parent Category | Depends on operation | Tag hierarchy | `Language & Text` | Confirms the parent when adding a child tag |
-| Status | System-generated / operation changed | Enum | `Available` | Status shown for the tag in binding and filter controls |
-| Display Hierarchy | System display | Tree structure | `Language & Text > Text Generation` | Determines where the tag appears in the list and filter system |
+| Code | Required | Text | `text-generation` | Unique code of the tag or category |
+| Tag Content | Required | Multilingual text | `Text Generation` | Name users see in lists and filters |
+| Name (English tab) | Required | Text | `Text Generation` | Name shown in the English interface |
+| Name (Chinese tab) | Required | Text | `文本生成` | Name shown in the Chinese interface |
+| Notes | Optional | Text | `For text generation models` | Purpose or boundary of the tag |
+| Status | System-maintained | Enumeration | `Available` / `Unavailable` | Value shown in the `Status` column |
+| Created at | System-maintained | Date time | `Jul 17, 2025 15:00:00` | Creation time of the tag |
+| Hierarchy | System-maintained | Tree | `Language & Text > Text Generation` | Category and subtag relationship |
 
 ## Pitfalls
 
-- Do not mix tag categories and child tags. Categories organize the tree, while child tags provide more specific filter options.
-- Maintain both English and Chinese names; otherwise, the English and Chinese sites can show filters with different meanings.
-- Before disabling a tag, check model bindings and marketplace filter entries so Model Consumers do not suddenly lose a common discovery path.
-- Handle child tags before deleting a parent category, or useful child tags may be affected together.
-- Do not use internal project codenames, customer abbreviations, or temporary campaign names as general model tags.
+- Categories and subtags are different levels: a category groups related entries, while a subtag is the specific filter item.
+- Both the `English` and `Chinese` name tabs carry a required mark. Check both after switching languages.
+- The `All`, `Available`, and `Unavailable` tabs change the result set. If a new tag is missing, switch back to `All` first.
+- Before deleting a parent category, expand it and confirm that no required subtags remain.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| The new tag category is visible in the list | The new category appears in `Category name` with `Available` status | Clear the name condition and switch to `All`; check whether the code is duplicated or the save failed |
-| The child tag appears under the correct parent | After expanding the parent category, the new child tag is visible | Confirm whether **"Add"** was clicked on the correct parent row; edit or add again if needed |
-| Query conditions can locate the target tag | After entering a name and clicking **"Search"**, the list keeps matching entries only | Switch to `All`, then check the English name, Chinese name, keyword, and letter case |
-| The list display updates after editing | The target row name or notes are saved, and hierarchy remains unchanged | Reopen the edit dialog and check fields; confirm whether only the current language name was changed |
-| Status changes after enabling or disabling | The target tag appears in the corresponding `Available` or `Unavailable` list | Check account permission, binding relationships, and page refresh state; wait for sync and query again |
-| The tag disappears from the list after deletion | The target tag cannot be found with `All` status and name query | Check whether another same-name tag was deleted, or whether the target still has child tags or bindings |
-| Marketplace filters match expectations | Model Consumers can filter the correct models by the new tag | Check whether models are bound to the tag, listed, and visible to the Model Consumer |
+| New tag created | Search by `Name`; the row appears and `Status` shows `Available` | If the record does not appear, switch to the `All` tab and ensure no trailing spaces exist in search input |
+| Subtag level correct | Expand the parent category; the new subtag appears indented below it | If improperly nested, click row **"Edit"** or re-add from the correct parent category |
+| Multilingual names saved | Reopen the edit dialog; both `English` and `Chinese` tabs contain a name | Ensure names are filled in both language tabs before saving; empty tabs fail required validation |
+| Status filter works | Switch to `Available` or `Unavailable`; only matching tags remain | Click **"Reset"** to clear conflicting filters and refresh the page to confirm status changes |
 
 ## FAQ
 
-#### Tag Filter Result Is Empty
+#### The new tag is not visible in the list
 
 **Symptom:**
 
-A model Model Consumer clicks a tag, but no models are displayed.
+After saving, the newly added tag or subtag does not appear on the current list page.
 
 **Possible Causes:**
 
-- No listed models are bound to this tag.
-- The tag status is unavailable.
-- Model visibility scope does not include the current Model Consumer.
+The view is currently filtered by the `Unavailable` tab, or the new subtag is placed under a collapsed parent category.
 
-**Handling:**
+**Resolution:**
 
-1. Return to the Tags page and confirm that the tag status is `Available`.
-2. Check tag binding in model editing or publishing configuration.
-3. Check model listing status and visibility scope.
+1. Switch to the `All` status tab.
+2. Click **"Reset"** to clear any keyword in the search box.
+3. Locate the target parent category and click the left arrow to expand its subtags.
 
-#### New Child Tag Is Missing Under the Parent Category
+#### The English and Chinese names differ
 
 **Symptom:**
 
-After adding a child tag, expanding the target category does not show the new record.
+The tag name appears as code, placeholder, or contradictory meaning when switching between English and Chinese.
 
 **Possible Causes:**
 
-- The wrong parent category was selected or clicked during saving.
-- Current name filters hide the new child tag.
-- A duplicate code caused the save to fail.
+During creation or editing, only one language tab was maintained, leaving the other tab unaligned or default.
 
-**Handling:**
+**Resolution:**
 
-1. Click **"Reset"** to clear query conditions.
-2. Expand possible parent categories and confirm the child tag location.
-3. If it is still missing, check whether the code already exists before adding it again.
-
-#### Marketplace Display Does Not Change After Editing a Tag
-
-**Symptom:**
-
-The tag name has been changed, but the marketplace filter area still shows the old name.
-
-**Possible Causes:**
-
-- Only one language version was changed.
-- Marketplace index or page cache has not refreshed.
-- The marketplace uses model binding data, and the tag has not synced back to model bindings.
-
-**Handling:**
-
-1. Reopen the edit dialog and check both `English` and `Chinese` names.
-2. Refresh the marketplace page and check filters again.
-3. Check model bindings and confirm that target models are still bound to this tag.
-
-#### Disabled Tag Can Still Be Filtered
-
-**Symptom:**
-
-The tag has been disabled, but it still appears in the marketplace or model editing page.
-
-**Possible Causes:**
-
-- Page cache or index sync is delayed.
-- Existing model bindings are still displayed.
-- A same-name tag, not the target tag, remains in `Available` status.
-
-**Handling:**
-
-1. On the Tags page, switch to `Unavailable` and confirm the target tag status.
-2. Check whether another tag with `Available` status has the same name.
-3. After synchronization, recheck the marketplace and model editing page.
-
-#### Delete Button Is Grayed Out or Deletion Fails
-
-**Symptom:**
-
-After clicking **"Delete"**, the button is grayed out, the page reports failure, or the tag remains in the list.
-
-**Possible Causes:**
-
-- The tag still has child tags.
-- The tag is still referenced by models, apps, or marketplace entries.
-- The current account does not have deletion permission.
-
-**Handling:**
-
-1. Expand the tag hierarchy and confirm whether child tags exist.
-2. Migrate or remove bindings on models and apps.
-3. Delete again after confirming no references remain; if it still fails, check account permission.
-
-#### English and Chinese Tag Names Are Inconsistent
-
-**Symptom:**
-
-The Chinese site and English site show tag names with different meanings.
-
-**Possible Causes:**
-
-- Only the current language name was maintained during add or edit.
-- Translation does not match the business boundary of the tag category.
-- Multiple synonymous tags are maintained separately.
-
-**Handling:**
-
-1. Open the tag edit dialog and check both `English` and `Chinese` names.
-2. Standardize the translation according to the same business meaning.
-3. For duplicate tags, migrate bindings first, then disable or delete extra entries.
+1. Locate the tag row in the table and click **"Edit"**.
+2. Switch between the `English` and `Chinese` tabs to inspect both localized names.
+3. Align both names to the same business meaning and click **"Confirm"** to save.
 
 ## Notes
 
-- Tags affect marketplace filters, model display, and the Model Consumer discovery path. Confirm the impact scope before making changes.
-- Tag names should be understandable to users. Avoid internal project codenames, temporary campaign terms, or abbreviations only the operations team understands.
-- For tags involving customer names, industry-specific meanings, or restricted models, confirm display boundaries and visibility scope first.
-- Before bulk tag cleanup, export the existing tag and binding relationship list to avoid deleting tags that are still in use.
+- Tags affect the model marketplace and filter results. Confirm the impact scope before changing them.
+- Codes, names, and notes should be understandable to users; avoid internal project codes or temporary campaign names.
+- Before deleting or disabling a tag, confirm that no model or filter entry still uses it.
 
 ## Next Steps
 
-1. Bind target tags in model editing, model publishing, or app configuration.
-2. Go to the marketplace or playground and validate whether tag filtering returns the expected models.
-3. Periodically clean up duplicate, low-usage, or overly narrow tags, and update naming rules at the same time.
+1. Associate the configured tags with new capabilities in Meta Models.
+2. Verify default tag categories in Model Templates to ensure proper listing conventions.
+3. Open the user-facing Model Explorer to test tag filtering behavior and tree responsiveness.
+
+Related pages:
+- [Meta Models](../meta-models/)
+- [Model Templates](../model-templates/)
+- [Model Sources](../model-source/)
+- [My Models](../../../user/studio/my-models/)

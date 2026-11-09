@@ -1,5 +1,10 @@
 # Cloud Accounts
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Cloud Accounts registers the credentials used to access cloud resources. After credentials are saved, the platform can discover pools and support authorization and deployment. Real values belong only in secure fields.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Cloud Account | An identity used to access resources on a cloud platform. |
@@ -75,8 +79,7 @@ The image shows the Add Cloud Account dialog. Specify the account name, target c
 2. Click **"Delete"** from more actions and verify the confirmation message.
 3. Refresh after deletion. If it fails, migrate the dependencies identified by the page.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud Account Name | No | Text / search condition | Displayed on page | Account name used for list filtering. |

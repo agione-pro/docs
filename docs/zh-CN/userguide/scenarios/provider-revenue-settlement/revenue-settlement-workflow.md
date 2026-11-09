@@ -23,17 +23,21 @@ next: true
 
 进入[收益总览](../../../usermanual/billing/user/earnings/revenue/)，确认收益账户余额、当前自然月预估、下次结算提示和账期趋势。
 
-![收益总览中的余额和账期趋势](../../../usermanual/billing/user/earnings/revenue/images/overview-list.png)
+![历史账期分析与日收益](../../../usermanual/billing/user/earnings/revenue/images/revenue-analysis.png)
+
+图示为历史账期分析区域，不包含实时账户余额；账户汇总需在页面中单独核对。
 
 ### 2. 解释收益来源
 
 选择目标账期，查看 Top 客户和 Top 模型；再进入[客户总览](../../../usermanual/billing/user/earnings/customers/)，按客户或标签筛选并打开详情核对收益贡献。
 
-![按客户核对收益贡献](../../../usermanual/billing/user/earnings/customers/images/customers-list.png)
+![客户收益查询结果表格](../../../usermanual/billing/user/earnings/customers/images/customers-table.png)
+
+图示为关键字查询后的空结果表格，不展示客户身份、汇总卡或详情结果。
 
 ### 3. 核对月度结算单
 
-进入[月度结算单](../../../usermanual/billing/user/earnings/settlements/)，按状态和账期搜索，核对应结算、实际到账、抹零、到账时间和处理状态。
+进入[月度结算单](../../../usermanual/billing/user/earnings/settlements/)，按状态和账期筛选，核对结算金额、入账金额、精度调差、到账时间和处理状态。
 
 ![月度结算单列表](../../../usermanual/billing/user/earnings/settlements/images/settlements-list.png)
 

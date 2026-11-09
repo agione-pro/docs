@@ -90,8 +90,8 @@
         <line x1="14" y1="56" x2="166" y2="56" stroke="#F2EEF8" stroke-width="1"/>
         <text x="14" y="74" font-size="10.5" fill="#3F3F46">CPU: 8 vCPU</text>
         <text x="14" y="90" font-size="10.5" fill="#3F3F46">RAM: 16 GiB</text>
-        <text x="14" y="106" font-size="10.5" fill="#3F3F46">系统盘: 100 GiB</text>
-        <text x="14" y="122" font-size="10.5" fill="#3F3F46">数据盘: 400 GiB</text>
+        <text x="14" y="106" font-size="10.5" fill="#3F3F46">磁盘: ≥ 200 GiB</text>
+        <text x="14" y="122" font-size="10.5" fill="#3F3F46">按业务规模扩展</text>
       </g>
 
       <g transform="translate(230, 56)">
@@ -105,8 +105,8 @@
         <line x1="14" y1="56" x2="166" y2="56" stroke="#F2EEF8" stroke-width="1"/>
         <text x="14" y="74" font-size="10.5" fill="#3F3F46">CPU: 8 vCPU</text>
         <text x="14" y="90" font-size="10.5" fill="#3F3F46">RAM: 16 GiB</text>
-        <text x="14" y="106" font-size="10.5" fill="#3F3F46">系统盘: 100 GiB</text>
-        <text x="14" y="122" font-size="10.5" fill="#3F3F46">数据盘: 400 GiB</text>
+        <text x="14" y="106" font-size="10.5" fill="#3F3F46">磁盘: ≥ 200 GiB</text>
+        <text x="14" y="122" font-size="10.5" fill="#3F3F46">按业务规模扩展</text>
       </g>
 
       <g transform="translate(430, 56)">
@@ -140,8 +140,8 @@
           <ellipse cx="14" cy="14" rx="14" ry="4" fill="none" stroke="#FFFFFF" stroke-width="0.8"/>
         </g>
         <text x="50" y="22" font-size="12" font-weight="700" fill="#8A5E38">RDS</text>
-        <text x="50" y="36" font-size="10" fill="#8A5E38">主从, ≥3 节点</text>
-        <text x="50" y="50" font-size="10" fill="#8A5E38">4C/16G/100G</text>
+        <text x="50" y="36" font-size="10" fill="#8A5E38">按兼容矩阵</text>
+        <text x="50" y="50" font-size="10" fill="#8A5E38">已验证形态</text>
       </g>
 
       <g transform="translate(170, 50)">

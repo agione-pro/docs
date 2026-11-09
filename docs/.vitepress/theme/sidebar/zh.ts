@@ -61,6 +61,13 @@ export const zhSidebar: DefaultTheme.Sidebar = {
             { text: '企业自用版部署后配置', link: '/zh-CN/installation/post-deployment/enterprise-internal-edition' },
           ],
         },
+        {
+          text: 'ClusterD',
+          collapsed: false,
+          items: [
+            { text: '安装、升级与卸载', link: '/zh-CN/installation/clusterd/' },
+          ],
+        },
       ],
     },
   ],
@@ -366,16 +373,9 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '元模型', link: '/zh-CN/usermanual/model-services/operator/settings/meta-models/' },
-                    { text: '模型来源', link: '/zh-CN/usermanual/model-services/operator/settings/model-source/' },
                     { text: '模板', link: '/zh-CN/usermanual/model-services/operator/settings/model-templates/' },
                     { text: '标签', link: '/zh-CN/usermanual/model-services/operator/settings/tags/' },
-                  ]
-                },
-                {
-                  text: '发布',
-                  collapsed: false,
-                  items: [
-                    { text: '应用列表', link: '/zh-CN/usermanual/model-services/operator/publishing/apps/' },
+                    { text: '模型源', link: '/zh-CN/usermanual/model-services/operator/settings/model-source/' },
                   ]
                 },
                 {
@@ -383,7 +383,17 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '模型审核', link: '/zh-CN/usermanual/model-services/operator/approvals/model-reviews/' },
-                    { text: '应用审核', link: '/zh-CN/usermanual/model-services/operator/approvals/app-reviews/' },
+                  ]
+                },
+                {
+                  text: '平台调用统计',
+                  collapsed: false,
+                  items: [
+                    { text: '概览', link: '/zh-CN/usermanual/model-services/operator/platform-calls/overview/' },
+                    { text: '模型来源', link: '/zh-CN/usermanual/model-services/operator/platform-calls/model-sources/' },
+                    { text: 'Meta 模型', link: '/zh-CN/usermanual/model-services/operator/platform-calls/meta-models/' },
+                    { text: '客户', link: '/zh-CN/usermanual/model-services/operator/platform-calls/customers/' },
+                    { text: '调用来源', link: '/zh-CN/usermanual/model-services/operator/platform-calls/call-sources/' },
                   ]
                 },
               ]
@@ -415,6 +425,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: '我的模型', link: '/zh-CN/usermanual/model-services/user/studio/my-models/' },
                     { text: '我的部署', link: '/zh-CN/usermanual/model-services/user/studio/my-deployments/' },
+                    { text: '我的凭证', link: '/zh-CN/usermanual/model-services/user/studio/credentials/' },
                   ]
                 },
                 {
@@ -430,7 +441,10 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '概览', link: '/zh-CN/usermanual/model-services/user/my-calls/overview/' },
-                    { text: '调用统计', link: '/zh-CN/usermanual/model-services/user/my-calls/call-analytics/' },
+                    { text: '成员', link: '/zh-CN/usermanual/model-services/user/my-calls/members/' },
+                    { text: '项目', link: '/zh-CN/usermanual/model-services/user/my-calls/projects/' },
+                    { text: '调用来源', link: '/zh-CN/usermanual/model-services/user/my-calls/client-sources/' },
+                    { text: '模型', link: '/zh-CN/usermanual/model-services/user/my-calls/models/' },
                     { text: '调用日志', link: '/zh-CN/usermanual/model-services/user/my-calls/call-logs/' },
                   ]
                 },
@@ -438,9 +452,11 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '客户调用',
                   collapsed: false,
                   items: [
-                    { text: '概览', link: '/zh-CN/usermanual/model-services/user/customer-calls/overview/' },
-                    { text: '调用统计', link: '/zh-CN/usermanual/model-services/user/customer-calls/call-analytics/' },
-                    { text: '调用日志', link: '/zh-CN/usermanual/model-services/user/customer-calls/call-logs/' },
+                    { text: '概览', link: '/zh-CN/usermanual/model-services/user/provider-calls/overview/' },
+                    { text: '模型', link: '/zh-CN/usermanual/model-services/user/provider-calls/models/' },
+                    { text: '客户', link: '/zh-CN/usermanual/model-services/user/provider-calls/customers/' },
+                    { text: '调用来源', link: '/zh-CN/usermanual/model-services/user/provider-calls/client-sources/' },
+                    { text: '调用日志', link: '/zh-CN/usermanual/model-services/user/provider-calls/call-logs/' },
                   ]
                 },
               ]
@@ -536,9 +552,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                     { text: '地域/可用区', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/' },
                     { text: '集群管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/' },
                     { text: '加速卡管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/accelerators/' },
-                    { text: '规格指标', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/spec-metrics/' },
                     { text: '资源规格', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/' },
-                    { text: '镜像管理', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/images/' },
                     { text: '镜像组件', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/image-services/' },
                     { text: '对象存储组件', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/object-storage/' },
                     { text: '块存储组件', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/resource-pools/block-storage/' },
@@ -561,7 +575,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: '用量限制', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/usage-limits/' },
                     { text: '月度计量', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/' },
-                    { text: '计量明细', link: '/zh-CN/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/' },
                   ],
                 },
                 {
@@ -627,18 +640,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: '资源用量', link: '/zh-CN/usermanual/ai-infra-on-prem/user/quotas-usage/usage/' },
                     { text: '资源配额', link: '/zh-CN/usermanual/ai-infra-on-prem/user/quotas-usage/quotas/' },
-                    { text: '充值记录', link: '/zh-CN/usermanual/ai-infra-on-prem/user/quotas-usage/top-up-records/' },
-                  ],
-                },
-                {
-                  text: '监控',
-                  collapsed: false,
-                  items: [
-                    { text: '统计概览', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/overview/' },
-                    { text: '集群统计', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/clusters/' },
-                    { text: '节点统计', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/nodes/' },
-                    { text: '设备监控', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/devices/' },
-                    { text: '作业监控', link: '/zh-CN/usermanual/ai-infra-on-prem/user/monitoring/jobs/' },
                   ],
                 },
               ],
@@ -669,9 +670,10 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   text: '客户账务',
                   collapsed: false,
                   items: [
-                    { text: '业务线', link: '/zh-CN/usermanual/billing/operator/customer-billing/business-units/' },
                     { text: '客户概览', link: '/zh-CN/usermanual/billing/operator/customer-billing/customer-overview/' },
                     { text: '客户充值单', link: '/zh-CN/usermanual/billing/operator/customer-billing/top-up-orders/' },
+                    { text: '充值审批', link: '/zh-CN/usermanual/billing/operator/customer-billing/top-up-approvals/' },
+                    { text: '业务线', link: '/zh-CN/usermanual/billing/operator/customer-billing/business-units/' },
                   ],
                 },
                 {
@@ -705,6 +707,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                     { text: '流水明细', link: '/zh-CN/usermanual/billing/user/billing/transactions/' },
                     { text: '充值订单', link: '/zh-CN/usermanual/billing/user/billing/top-up-orders/' },
                     { text: '月度账单', link: '/zh-CN/usermanual/billing/user/billing/monthly-bill/' },
+                    { text: '充值申请', link: '/zh-CN/usermanual/billing/user/billing/top-up-requests/' },
                   ],
                 },
               ],
@@ -740,6 +743,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '租户', link: '/zh-CN/usermanual/settings/operator/tenants/tenants/' },
+                    { text: '租户设置', link: '/zh-CN/usermanual/settings/operator/tenants/tenant-settings/' },
                   ],
                 },
                 {
@@ -747,6 +751,9 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '操作日志', link: '/zh-CN/usermanual/settings/operator/activity-notifications/operation-logs/' },
+                    { text: '通知偏好', link: '/zh-CN/usermanual/settings/operator/activity-notifications/notification-settings/' },
+                    { text: '联系人', link: '/zh-CN/usermanual/settings/operator/activity-notifications/contacts/' },
+                    { text: '我的通知', link: '/zh-CN/usermanual/settings/operator/activity-notifications/inbox/' },
                   ],
                 },
                 {
@@ -755,13 +762,15 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: '平台设置', link: '/zh-CN/usermanual/settings/operator/system-settings/platform-settings/' },
                     { text: '登录配置', link: '/zh-CN/usermanual/settings/operator/system-settings/login-properties/' },
+                    { text: '通知审计', link: '/zh-CN/usermanual/settings/operator/system-settings/notification-center/' },
+                    { text: '通知治理', link: '/zh-CN/usermanual/settings/operator/system-settings/notification-config/' },
                   ],
                 },
                 {
                   text: 'API 流控',
                   collapsed: false,
                   items: [
-                    { text: '概览', link: '/zh-CN/usermanual/settings/operator/api-rate-control/overview/' },
+                    { text: 'Overview', link: '/zh-CN/usermanual/settings/operator/api-rate-control/overview/' },
                     { text: '规则管理', link: '/zh-CN/usermanual/settings/operator/api-rate-control/rule-management/' },
                     { text: '观测审计', link: '/zh-CN/usermanual/settings/operator/api-rate-control/observability-audit/' },
                     { text: '节点缓存', link: '/zh-CN/usermanual/settings/operator/api-rate-control/node-cache/' },
@@ -779,6 +788,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '概览', link: '/zh-CN/usermanual/settings/user/personal/dashboard/' },
+                    { text: '我的额度', link: '/zh-CN/usermanual/settings/user/personal/my-quota/' },
                     { text: '项目', link: '/zh-CN/usermanual/settings/user/personal/projects/' },
                     { text: '我的 Keys', link: '/zh-CN/usermanual/settings/user/personal/my-keys/' },
                     { text: '账号信息', link: '/zh-CN/usermanual/settings/user/personal/profile/' },
@@ -791,15 +801,15 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                     { text: '成员', link: '/zh-CN/usermanual/settings/user/members-roles/team-members/' },
                     { text: '角色', link: '/zh-CN/usermanual/settings/user/members-roles/roles/' },
                     { text: '成员额度', link: '/zh-CN/usermanual/settings/user/members-roles/member-quotas/' },
-                    { text: '额度申请', link: '/zh-CN/usermanual/settings/user/members-roles/quota-requests/' },
+                    { text: '额度审批', link: '/zh-CN/usermanual/settings/user/members-roles/quota-requests/' },
                   ],
                 },
                 {
                   text: '租户&设置',
                   collapsed: false,
                   items: [
+                    { text: '用量审计', link: '/zh-CN/usermanual/settings/user/organizations/usage-log/' },
                     { text: '租户设置', link: '/zh-CN/usermanual/settings/user/organizations/org-settings/' },
-                    { text: '额度使用日志', link: '/zh-CN/usermanual/settings/user/organizations/usage-log/' },
                   ],
                 },
                 {
@@ -807,6 +817,9 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: '操作日志', link: '/zh-CN/usermanual/settings/user/activity-notifications/operation-logs/' },
+                    { text: '通知偏好', link: '/zh-CN/usermanual/settings/user/activity-notifications/notification-settings/' },
+                    { text: '联系人', link: '/zh-CN/usermanual/settings/user/activity-notifications/contacts/' },
+                    { text: '我的通知', link: '/zh-CN/usermanual/settings/user/activity-notifications/inbox/' },
                   ],
                 },
               ],
@@ -823,10 +836,11 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       items: [
         {
           text: '技术实践',
+          link: '/zh-CN/practices/technical/',
           collapsed: false,
           items: [
             {
-              text: 'AI 编码集成',
+              text: 'AI 编码工具接入',
               collapsed: false,
               items: [
                 { text: 'Cherry Studio', link: '/zh-CN/practices/technical/cherry-studio/' },
@@ -834,21 +848,30 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                 { text: 'Claude Code Plugin', link: '/zh-CN/practices/technical/claude-code-plugin/' },
                 { text: 'Cline', link: '/zh-CN/practices/technical/cline/' },
                 { text: 'Codex', link: '/zh-CN/practices/technical/codex/' },
+                { text: 'Codex Desktop (CC Switch)', link: '/zh-CN/practices/technical/codex-desktop/' },
                 { text: 'Crush', link: '/zh-CN/practices/technical/crush/' },
                 { text: 'Cursor', link: '/zh-CN/practices/technical/cursor/' },
-                { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },
+                { text: 'DeepSeek Harness', link: '/zh-CN/practices/technical/deepseek-harness/' },
                 { text: 'Kilo Code', link: '/zh-CN/practices/technical/kilo-code/' },
+                { text: 'Open Code', link: '/zh-CN/practices/technical/open-code/' },
+                { text: 'Roo Code', link: '/zh-CN/practices/technical/roo-code/' },
+              ],
+            },
+            {
+              text: 'AI 应用与工作流',
+              collapsed: false,
+              items: [
+                { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },
                 { text: 'n8n', link: '/zh-CN/practices/technical/n8n/' },
                 { text: 'Open WebUI', link: '/zh-CN/practices/technical/open-webui/' },
                 { text: 'OpenClaw', link: '/zh-CN/practices/technical/openclaw/' },
-                { text: 'Open Code', link: '/zh-CN/practices/technical/open-code/' },
-                { text: 'Roo Code', link: '/zh-CN/practices/technical/roo-code/' },
               ],
             },
           ],
         },
         {
           text: '项目实践',
+          link: '/zh-CN/practices/project/',
           collapsed: false,
           items: [
             {
@@ -865,13 +888,42 @@ export const zhSidebar: DefaultTheme.Sidebar = {
             },
           ],
         },
+      ],
+    },
+  ],
+  '/zh-CN/api/': [
+    {
+      text: 'API 参考',
+      link: '/zh-CN/api/',
+      items: [
+        {
+          text: '协议兼容',
+          collapsed: false,
+          items: [
+            { text: '豆包协议兼容 API', link: '/zh-CN/api/protocol-compatibility/doubao/' },
+          ],
+        },
+        {
+          text: 'OpenAPI',
+          collapsed: false,
+          items: [
+            { text: '概述', link: '/zh-CN/api/openapi/' },
+          ],
+        },
+      ],
+    },
+  ],
+  '/zh-CN/operations/': [
+    {
+      text: '运维中心',
+      items: [
         {
           text: '监控矩阵',
           collapsed: false,
           items: [
             {
               text: 'Metis InfluxDB 数据字典',
-              link: '/zh-CN/practices/monitor-matrix/metis-influxdb-data-dictionary',
+              link: '/zh-CN/operations/monitor-matrix/metis-influxdb-data-dictionary',
             },
           ],
         },

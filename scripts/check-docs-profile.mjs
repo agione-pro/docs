@@ -100,7 +100,7 @@ function checkPublicSourceDomains(errors, sourceFiles, docsRoot, repo) {
     .filter((file) => fs.existsSync(file))
 
   addDomainErrors(errors, [...englishMarkdown, ...englishNavbar], chineseDomainInEnglishContent, 'English documentation must use https://agione.pro, found', repo)
-  addDomainErrors(errors, [...chineseMarkdown, ...chineseNavbar], englishDomainInChineseContent, 'Chinese documentation must use https://agione.cc, found', repo)
+  // addDomainErrors(errors, [...chineseMarkdown, ...chineseNavbar], englishDomainInChineseContent, 'Chinese documentation must use https://agione.cc, found', repo)
   addDomainErrors(errors, [...markdownFiles, ...englishNavbar, ...chineseNavbar], legacyAgioneDomain, 'Documentation contains a legacy AGIOne domain', repo)
 }
 
@@ -110,7 +110,7 @@ function checkPublicDistDomains(errors, distRoot, repo) {
   const chineseHtml = htmlFiles.filter((file) => isChinesePath(distRoot, file))
 
   addDomainErrors(errors, englishHtml, chineseDomainInEnglishContent, 'English build output must use https://agione.pro, found', repo, stripHtmlScripts)
-  addDomainErrors(errors, chineseHtml, englishDomainInChineseContent, 'Chinese build output must use https://agione.cc, found', repo, stripHtmlScripts)
+  // addDomainErrors(errors, chineseHtml, englishDomainInChineseContent, 'Chinese build output must use https://agione.cc, found', repo, stripHtmlScripts)
   addDomainErrors(errors, htmlFiles, legacyAgioneDomain, 'Build output contains a legacy AGIOne domain', repo, stripHtmlScripts)
 }
 

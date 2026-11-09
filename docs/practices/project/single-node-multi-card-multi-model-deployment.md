@@ -29,7 +29,7 @@ This practice primarily belongs to `AI Infra On-Prem`. It is separate from the m
 | --- | --- | --- |
 | Onboard Kubernetes clusters and nodes | Clusters, cluster nodes, and device monitoring | [Clusters](/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/) |
 | Define selectable compute packages | Spec metrics, resource specs, and cluster-spec association | [Resource Specs](/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/) |
-| Control resources available to a tenant | Tenant credits, quotas, and metering | [Metering Details](/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) |
+| Control resources available to a tenant | Tenant credits, quotas, and metering | [Monthly Usage](/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/) |
 | Standardize model deployment | Inference templates, model configuration, frameworks, images, resource specs, and VRAM configuration | [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/) |
 | Deploy and inspect model services | Model instances, instance status, logs, and access troubleshooting | [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | Monitor resource health and capacity | Overview, cluster, node, device, and job monitoring | [Monitoring Overview](/usermanual/ai-infra-on-prem/operator/monitoring/overview/) |
@@ -284,7 +284,7 @@ For standard models, the Operator captures deployment experience in inference te
 
 - [Clusters](/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/)
 - [Resource Specs](/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/)
-- [Metering Details](/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)
+- [Monthly Usage](/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)
 - [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
 - [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
 - [Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice](./multi-compute-pool-heterogeneous-inference-scheduling)

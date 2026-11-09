@@ -16,22 +16,22 @@ The cluster is available, all four NPU cards are discovered on the expected node
 ## Entry
 
 - **Role:** Operator
-- **Menu:** AI Infrastructure > On-Prem > Resource Pools > Cluster Management
+- **Menu:** On-Prem > Resource Pools > Clusters
 - **Route:** `/powerone/resourcepool/cluster`
 
 ## Steps
 
 1. Confirm that the target region and availability zone exist.
-2. Register the cluster with kubeconfig, API server, authentication, and network data.
+2. Register the cluster through the four-step wizard: ingestion mode, control-plane connection and credentials, network planning and service access, then region, zone, and the auto-generated registration name.
 3. Wait until the cluster becomes available.
 4. Open cluster details and verify that all accelerator nodes are Ready.
 5. Verify that the reported target NPU count is four, with no missing or duplicate devices.
 
-6. Open **Cluster Details** and review the cluster's region, availability zone, status, associated specifications, and storage configuration.
-7. Open **Cluster Nodes** and confirm node state, device visibility, and resource reporting for every node that hosts an accelerator.
-8. If a cluster is disabled, do not select it for new resource creation until it is enabled and its nodes return to the expected state.
+6. Select the cluster and review its **Overview** and **Configuration** tabs for region, availability zone, state, associated specifications, and storage.
+7. Open the **Nodes** tab and confirm node state, device visibility, and resource reporting for every node that hosts an accelerator.
+8. If a cluster is toggled to unavailable via the **Available** switch, do not select it for new resource creation until it is enabled again and its nodes return to the expected state.
 
-![Cluster management](./images/clusters-list.png)
+![Cluster management](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/clusters/images/manual-clusters.png)
 
 ## How to Verify All Four NPU Cards
 
@@ -41,7 +41,7 @@ The cluster is available, all four NPU cards are discovered on the expected node
 | Node state | Every node hosting an NPU is Ready |
 | Device total | Four NPU cards |
 | Allocatable count | Matches actual usage after subtracting running workloads |
-| Resource key | Matches Accelerator Management and specification metrics |
+| Resource key | Matches the Accelerators page and specification metrics |
 
 ## Completion Checklist
 
@@ -59,11 +59,11 @@ The cluster is available, all four NPU cards are discovered on the expected node
 | --- | --- |
 | Cluster registration fails | Endpoint, network, registration data, agent state, and time synchronization |
 | Fewer than four cards appear | Node health, driver, device plug-in, accelerator mapping, and hardware visibility |
-| Cluster Details has no expected data | Cluster state, selected region/zone, permission scope, synchronization time, and whether the cluster has finished onboarding |
-| Cluster Nodes is empty | Cluster availability, node registration, node permission scope, and synchronization or collection status |
+| The detail pane has no expected data | Cluster state, selected region/zone, permission scope, synchronization time, and whether the cluster has finished onboarding |
+| The Nodes tab is empty | Cluster availability, node registration, node permission scope, and synchronization or collection status |
 | A disabled cluster is still selectable | Refresh the page, recheck cluster state and downstream associations, and do not submit a workload until the selectable scope is corrected |
 | Workloads cannot access cluster storage after a change | Cluster storage association, region/zone binding, storage component health, and workload mount configuration |
 
 ## User Manual
 
-[Cluster Management](/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/)
+[Clusters](/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/)

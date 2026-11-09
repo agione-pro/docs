@@ -28,9 +28,7 @@ next: true
 
 ### 2. 同步或上传运行镜像
 
-进入[镜像管理](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/)，同步仓库或上传镜像条目。使用包含框架、版本、硬件环境和用途的稳定标签，生产环境不要只使用 `latest`。
-
-![在镜像管理中确认运行镜像可见](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/images/manual-images.png)
+同步仓库或上传镜像条目。使用包含框架、版本、硬件环境和用途的稳定标签，生产环境不要只使用 `latest`。
 
 ### 3. 按工作负载选择存储组件
 

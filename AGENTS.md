@@ -9,6 +9,60 @@ Before modifying any file in this repository, read:
 1. `README.md` for the current repository structure, commands, and content rules.
 2. `GUIDE.md` for VitePress maintenance, navigation, configuration, deployment, and user-guide scenario conventions.
 
+Before creating, replacing, or cropping any screenshot, read `SCREENSHOT_GUIDE.md`.
+It defines the fixed viewport, bilingual capture, drawer handling, post-processing,
+verification checklist, and known pitfalls. Screenshots produced by any other method
+must still satisfy that guide.
+
+Two rules are non-negotiable:
+
+- **Dialogs, drawers, and single cards are captured as elements.** Never take a
+  full-page screenshot and crop it down: the modal mask (`rgba(0,0,0,.5)`) and the
+  page behind it get baked into the image, and any crop line slices the dialog top
+  and the sidebar's first row.
+- **The top-navigation crop height is measured from the DOM at capture time**
+  (`getComputedStyle`/`getBoundingClientRect` on `.header-bar`, currently 56 CSS px),
+  then multiplied by the device pixel ratio. Never hard-code it, and never reuse a
+  value calibrated on a 2x image (112 px) on a 1x image — that crops exactly twice
+  the intended height.
+
+Ready-made tooling: `scripts/render-shot.py` implements this guide end to end.
+Prefer it over ad-hoc Playwright scripts.
+
+One-time setup (Python 3.10+):
+
+```bash
+python -m pip install playwright pillow
+```
+
+No extra browser download is needed — the script reuses the system Edge
+(`channel="msedge"`) and falls back to Chrome. Point it at your own environment with
+`--base-url` (local, test, or demo); the default host is only a placeholder.
+
+| Subcommand | What it does |
+| --- | --- |
+| `login` | Log in once and store the browser session state for reuse. |
+| `shoot --recipe <name>` | Batch-render a documented page recipe, bilingual, with post-processing. |
+| `capture` | One-off grab of any dialog / drawer / page from the command line — no recipe code needed. |
+| `audit --dir docs` | Scan every PNG for the three composition defects below. |
+
+```bash
+# grab a dialog (auto element capture + transparent rounded corners + width guard)
+python scripts/render-shot.py capture \
+  --base-url "http://<your-host>" \
+  --url "/user/user-space/team-members" --name "add-member" \
+  --mode element --selector ".el-dialog" --click "button:has-text('Add Member')" \
+  --lang en --state .auth/state.json --out docs/usermanual/settings/operator/members-roles/members/images
+
+# run the composition audit before finishing any screenshot task
+python scripts/render-shot.py audit --dir docs
+```
+
+`audit` flags three classes of defect: dialog shots mis-captured as 1920-wide full
+pages (mask + background baked in), first rows sliced by an over-aggressive top crop,
+and element captures without transparent rounded corners. Full command reference in
+`SCREENSHOT_GUIDE.md` section 9.
+
 Before modifying either user-manual tree, also read
 `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md` completely:
 
@@ -39,6 +93,8 @@ screenshots, masking, and acceptance requirements. If a general example in
 15. Do not duplicate screenshots within the same document. Never stack new and old screenshots of the same screen side-by-side (e.g., `manual-*.png` next to `*-list.png`). Do not use `::: details` containers to append duplicate screenshots.
 16. Do not reuse full-page overview or list screenshots across multiple action subsections (such as delete, edit, or adjust). If a dedicated dialog/drawer screenshot is unavailable, provide clear written steps without repeating the overview image.
 17. Avoid repetitive boilerplate captions (e.g., "上图展示...。重点核对目标对象、当前状态、字段和操作入口。"). Captions must explain specific fields, inputs, or critical actions shown in the image.
+18. Every statement in `踩坑提示 / Pitfalls`, `结果校验 / Result Validation`, and `常见问题 / FAQ` must trace to evidence: a verbatim UI string, a screenshot taken from the current product, a recorded interaction, or another page in this repository.
+19. Do not write causes, outcomes, error messages, or recovery steps that were not observed. When a behavior has not been verified, omit it instead of describing what it probably does. "It usually works like this" is not evidence.
 
 ## Navigation And Content
 
@@ -62,11 +118,13 @@ After editing:
 1. Check Chinese and English page correspondence.
 2. Check modified image references, file existence, and filename casing.
 3. Confirm screenshots use the light theme, serve the adjacent operation, and contain no duplicate or stacked images.
-4. Confirm sensitive values follow the masking rules in `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md`.
-5. Run `npm run check:docs-images`.
-6. Run `npm run check:docs-profile`.
-7. Run `npm run docs:build`.
-8. Review the final Git diff and exclude unrelated files from the change.
+4. Confirm each screenshot is in the language of the page that embeds it: Chinese pages use the Chinese UI, English pages use the English UI. A Chinese screenshot inside an English page is a defect.
+5. Confirm sensitive values follow the masking rules in `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md`.
+6. Confirm the screenshot requirements in `SCREENSHOT_GUIDE.md`: fixed viewport, left menu kept, top navigation cropped with the DOM-measured height, dialogs and drawers **captured as elements** (image width equals the element, never the viewport), and element captures saved with **transparent rounded corners** so no mask grey shows along the image edge.
+7. Run `npm run check:docs-images`.
+8. Run `npm run check:docs-profile`.
+9. Run `npm run docs:build`.
+10. Review the final Git diff and exclude unrelated files from the change.
 
 Do not report the task as complete if a required check fails. If a check cannot
 run because of the environment, state exactly what was not verified and why.

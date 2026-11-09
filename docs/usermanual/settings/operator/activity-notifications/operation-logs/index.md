@@ -1,5 +1,10 @@
 # Operation Logs
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -34,11 +39,13 @@ The page provides filters, an operation-log list, and record details for tracing
 
 ![Operation Logs](./images/operation-logs-list.png)
 
+The Operation Logs list shows time, user, product module, action summary, and details. Narrow the time range and confirm the recipient before exporting.
+
 | Area | Description |
 | --- | --- |
 | Start Time / End Time | Sets the query time range. |
 | Search / Reset | Runs a query or clears the filters. |
-| Export CSV | Exports logs in the current query scope. |
+| Export Logs | Exports logs in the current query scope. |
 | Log table | Shows the time, user, action, method, IP address, processing time, and result. |
 
 ## Main Operations
@@ -59,11 +66,11 @@ The page provides filters, an operation-log list, and record details for tracing
 
 ### Export Operation Logs
 
-1. Open `Settings > Activity & Notifications > Operation Logs`.
-2. Locate the target Operation Logs and click **"Export CSV"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > Activity & Notifications > Operation Logs`.
+2. Set the user, product module, and date range, then click `Search` to narrow the scope.
+3. Click `Export Logs`.
+4. Confirm the export scope and recipient in the prompt. Export files may contain accounts, IP addresses, and business objects.
+5. Redact the file before export and do not share complete logs with unauthorized people.
 
 ## Parameter Quick Reference
 
@@ -87,7 +94,7 @@ The page provides filters, an operation-log list, and record details for tracing
 - UI entries can differ by role and tenant scope; verify the current account context before troubleshooting.
 - Never copy complete Keys, AK/SK, tokens, or secrets into documentation, tickets, or screenshots.
 - Operation logs may contain sensitive audit information such as accounts, IP addresses, API paths, and operation results.
-- `Export CSV` exports real log data and is a high-risk action.
+- `Export Logs` exports real log data and is a high-risk action.
 - Before exporting, narrow the time range and confirm the recipient.
 - Do not write real accounts, IP addresses, API paths, customer names, tenant IDs, or internal error details in documentation.
 
@@ -120,7 +127,7 @@ Expand the time range and search again. If the record is still missing, verify t
 
 **Symptom:**
 
-The page provides an `Export CSV` entry.
+The page provides an `Export Logs` entry.
 
 **Possible cause:**
 
@@ -144,39 +151,11 @@ The time range is incorrect, the action occurred in a user-side tenant, or the c
 
 Expand the time range and confirm where the action occurred. Filter again by tenant, operator, and target object. If the record is still absent, check the audit collection and retention policies.
 
-#### How should the Operation Logs page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Operation Logs page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Operation logs may contain user identities, IP addresses, and API paths. Do not distribute them without authorization.
 - Narrow the time range before export to avoid including unrelated data.
-- `Export CSV` exports real log data and is a high-risk action.
+- `Export Logs` exports real log data and is a high-risk action.
 - Before exporting, confirm the time range, desensitization requirements, and recipient.
 - Do not write real accounts, IP addresses, API paths, customer names, tenant IDs, or internal error details in documentation.
 

@@ -29,8 +29,8 @@ next: true
 
 | 现象 | 首要入口 | 参考手册 |
 | --- | --- | --- |
-| 模型 API 调用失败或响应异常 | 我的调用 / 客户调用日志 | [调用日志](../../../usermanual/model-services/user/my-calls/call-logs/)、[客户调用日志](../../../usermanual/model-services/user/customer-calls/call-logs/) |
-| 调用成功率、时延或 Token 异常 | 调用分析 | [我的调用分析](../../../usermanual/model-services/user/my-calls/call-analytics/)、[客户调用分析](../../../usermanual/model-services/user/customer-calls/call-analytics/) |
+| 模型 API 调用失败或响应异常 | 我的调用 / 客户调用日志 | [调用日志](../../../usermanual/model-services/user/my-calls/call-logs/)、[客户调用日志](../../../usermanual/model-services/user/provider-calls/call-logs/) |
+| 调用成功率、时延或 Token 异常 | 调用分析 | [我的调用概览](../../../usermanual/model-services/user/my-calls/overview/)、[客户调用概览](../../../usermanual/model-services/user/provider-calls/overview/) |
 | 云上部署失败或不可访问 | 我的部署详情、事件和监控 | [我的部署](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/) |
 | 异构卡纳管作业排队或失败 | 作业监控、实例事件和日志 | [作业监控](../../../usermanual/ai-infra-on-prem/operator/monitoring/jobs/)、[模型实例](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | 节点或加速卡异常 | 节点统计、设备监控 | [节点统计](../../../usermanual/ai-infra-on-prem/operator/monitoring/nodes/)、[设备监控](../../../usermanual/ai-infra-on-prem/operator/monitoring/devices/) |

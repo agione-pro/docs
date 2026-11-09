@@ -28,9 +28,7 @@ Open [Image Services](../../../usermanual/ai-infra-on-prem/operator/resource-poo
 
 ### 2. Synchronize or Upload Runtime Images
 
-Open [Image Management](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/) and synchronize the registry or upload an image record. Use stable labels that identify framework, version, hardware environment, and purpose. Do not rely only on `latest` in production.
-
-![Confirm that the runtime image is visible in Image Management](../../../usermanual/ai-infra-on-prem/operator/resource-pools/images/images/manual-images.png)
+Synchronize the registry or upload an image record. Use stable labels that identify framework, version, hardware environment, and purpose. Do not rely only on `latest` in production.
 
 ### 3. Select Storage for the Workload
 

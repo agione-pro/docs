@@ -1,11 +1,16 @@
 # Overview
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > API Rate Control > API Rate Control Overview |
+| Navigation path | Settings > API Rate Control > Overview |
 | Page route | `/user/system/rate-control/overview` |
 | Managed objects | Global request volume, blocked requests, over-limit statistics, enabled rules, and node status |
 
@@ -33,7 +38,9 @@ The Overview page is the traffic dashboard. Start here to determine whether requ
 
 The page summarizes API rate-control status, rule coverage, node state, publishing state, and observability entries.
 
-![API Rate Control Overview](./images/overview-list.png)
+![Global API Rate Control](./images/overview-list.png)
+
+The overview shows request volume, blocked requests, block rate, enabled rules, and rule rankings. The selected time range defines the statistics scope.
 
 | Area | Description |
 | --- | --- |
@@ -139,34 +146,6 @@ The current account lacks API rate-control permissions, the component is disable
 **Resolution:**
 
 Verify the module permission and component status. Wait for the refresh to finish, and make rule changes from Rule Management.
-
-#### How should the Overview page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Overview page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

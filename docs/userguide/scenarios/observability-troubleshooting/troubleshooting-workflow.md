@@ -29,8 +29,8 @@ This scenario helps operators, providers, and callers decide whether a problem b
 
 | Symptom | First Entry | Manual |
 | --- | --- | --- |
-| Model API call fails or response is abnormal | My Calls or Customer Call Logs | [Call Logs](../../../usermanual/model-services/user/my-calls/call-logs/), [Customer Call Logs](../../../usermanual/model-services/user/customer-calls/call-logs/) |
-| Success rate, latency, or token use is abnormal | Call Analytics | [My Call Analytics](../../../usermanual/model-services/user/my-calls/call-analytics/), [Customer Analytics](../../../usermanual/model-services/user/customer-calls/call-analytics/) |
+| Model API call fails or response is abnormal | My Calls or Customer Call Logs | [Call Logs](../../../usermanual/model-services/user/my-calls/call-logs/), [Customer Call Logs](../../../usermanual/model-services/user/provider-calls/call-logs/) |
+| Success rate, latency, or token use is abnormal | Call Analytics | [My Call Overview](../../../usermanual/model-services/user/my-calls/overview/), [Customer Overview](../../../usermanual/model-services/user/provider-calls/overview/) |
 | Cloud deployment fails or is unreachable | Deployment details, events, and monitoring | [My Deployments](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/) |
 | On-Prem job is pending or failed | Job monitoring, instance events, and logs | [Job Monitoring](../../../usermanual/ai-infra-on-prem/operator/monitoring/jobs/), [Instances](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | Node or accelerator is abnormal | Node Statistics and Device Monitoring | [Node Statistics](../../../usermanual/ai-infra-on-prem/operator/monitoring/nodes/), [Device Monitoring](../../../usermanual/ai-infra-on-prem/operator/monitoring/devices/) |

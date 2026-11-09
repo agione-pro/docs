@@ -1,8 +1,8 @@
 # User Manual
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-21
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Manual Overview
@@ -35,7 +35,7 @@ The manual is organized into five modules in the left sidebar:
 | AI Infra On-Cloud | Cloud Resource Operators, End Users | Cloud platforms, cloud accounts, resource pools, tenant authorization, business-region authorization, deployment assets, scheduling policies, quick deployment | [Operator: Access Overview](./ai-infra-on-cloud/operator/access-workbench/access-overview/), [User: Quick Deployment](./ai-infra-on-cloud/user/model-services/quick-deployment/) |
 | AI Infra On-Prem | Resource Pool Operators, End Users | Regions, availability zones, clusters, accelerators, specifications, images, storage, templates, quotas, metering, monitoring | [Operator: Regions & Zones](./ai-infra-on-prem/operator/resource-pools/regions-zones/), [User: Overview](./ai-infra-on-prem/user/overview/) |
 | Billing | End Users, Platform Operators, Billing Operators, License Managers | User billing, customer billing, finance operations, top-up orders, monthly bills, settlements, adjustments, License | [Operator: Today Tasks](./billing/operator/finance-operations/today-tasks/), [Provider & End User: Account Overview](./billing/user/billing/overview/) |
-| Settings | End Users, Platform Operators, System Maintainers, Security Roles | Personal Keys, account information, projects, team members, roles, tenant settings, operation logs, system configuration, API rate control | [Operator: Members](./settings/operator/members-roles/members/), [Provider & End User: Dashboard](./settings/user/personal/dashboard/) |
+| Settings | End Users, Platform Operators, System Maintainers, Security Roles | Personal Keys, account information, projects, team members, roles, tenant settings, operation logs, system configuration, API rate control | [Settings Overview](./settings/), [Operator: Members](./settings/operator/members-roles/members/), [Provider & End User: Dashboard](./settings/user/personal/dashboard/) |
 
 ## Core Terms
 
@@ -78,7 +78,6 @@ The manual is organized into five modules in the left sidebar:
 - Do not choose an entry only by menu name. Confirm your role, target object, and permission scope first.
 - For cross-module tasks, start from the related User Guide scenario. Use User Manual feature pages for page-level fields and procedures.
 - For cost, credential, deployment, deletion, publishing, or authorization operations, confirm impact scope before final confirmation.
-
 
 ## Result Validation
 

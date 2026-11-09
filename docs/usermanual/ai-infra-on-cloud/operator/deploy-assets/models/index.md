@@ -1,5 +1,10 @@
 # Models
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Models is the catalog of deployable model assets. Each record combines meta-model capability, cloud deployment targets, compute plans, and output configuration for policies and Quick Deployment.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Meta-model | A base definition of model capability, modality, and protocol. |
@@ -111,8 +115,7 @@ The image shows configuring the deployment target's output parameters and commun
 
 The image shows "Add Model - Step 3: Confirm Configuration / Publish Version", performing final verification of multi-cloud deployment targets and parameters before submitting.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Name | Yes | Text | `Sample Model` | Model name displayed in the Models list and details. |

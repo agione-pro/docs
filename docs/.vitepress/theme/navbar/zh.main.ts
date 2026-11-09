@@ -13,7 +13,19 @@ export const zhNavbar = [
         items: [
           { text: '技术实践', link: '/zh-CN/practices/technical/' },
           { text: '项目实践', link: '/zh-CN/practices/project/' },
-          { text: '监控矩阵', link: '/zh-CN/practices/monitor-matrix/' },
+        ]
+      },
+      {
+        text: 'API 参考',
+        items: [
+          { text: '协议兼容', link: '/zh-CN/api/protocol-compatibility/' },
+          { text: 'OpenAPI', link: '/zh-CN/api/openapi/' },
+        ]
+      },
+      {
+        text: '运维中心',
+        items: [
+          { text: '监控矩阵', link: '/zh-CN/operations/monitor-matrix/' },
         ]
       },
       {

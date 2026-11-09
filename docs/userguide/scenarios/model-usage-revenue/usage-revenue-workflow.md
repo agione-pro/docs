@@ -32,7 +32,7 @@ This scenario helps callers reconcile model consumption and providers reconcile 
 | --- | --- | --- | --- |
 | Caller | Review personal call overview and logs | [My Calls Overview](../../../usermanual/model-services/user/my-calls/overview/), [Call Logs](../../../usermanual/model-services/user/my-calls/call-logs/) | Model ID, Attribution, state, and time can be located |
 | Caller | Review model usage | [Model Usage](../../../usermanual/model-services/user/usage-earnings/model-usage/) | Model ID, Attribution, tokens, requests, or duration match logs |
-| Provider | Review customer overview, logs, and analytics | [Customer Overview](../../../usermanual/model-services/user/customer-calls/overview/), [Customer Call Logs](../../../usermanual/model-services/user/customer-calls/call-logs/), [Customer Analytics](../../../usermanual/model-services/user/customer-calls/call-analytics/) | Customer Name and Attribution are separately traceable |
+| Provider | Review customer overview, logs, and models | [Customer Overview](../../../usermanual/model-services/user/provider-calls/overview/), [Customer Call Logs](../../../usermanual/model-services/user/provider-calls/call-logs/), [Customer Models](../../../usermanual/model-services/user/provider-calls/models/) | Customer Name and Attribution are separately traceable |
 | Provider | Review model earnings | [Model Earnings](../../../usermanual/model-services/user/usage-earnings/model-earnings/) | Earnings map to valid usage and pricing |
 | Both | Compare billing mode and currency | [My Models](../../../usermanual/model-services/user/studio/my-models/) and the platform currency settings page | Unit, price, and period are consistent |
 

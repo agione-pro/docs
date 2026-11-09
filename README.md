@@ -1,7 +1,7 @@
 # AGIOne Documentation
 
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20.19.0-brightgreen)](https://nodejs.org/)
-[![VitePress](https://img.shields.io/badge/VitePress-2.0.0--alpha.17-5c73e7)](https://vitepress.dev/)
+[![VitePress](https://img.shields.io/badge/VitePress-1.6.4-5c73e7)](https://vitepress.dev/)
 
 This repository contains the AGIOne product documentation site, built with VitePress.
 

@@ -1,5 +1,10 @@
 # Roles
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -7,7 +12,7 @@
 | Applicable Role | Operator |
 | Navigation path | Settings > Members & Roles > Roles |
 | Page route | `/user/user-space/roles` |
-| Managed objects | Role names, role identifiers, permission scopes, and creation times |
+| Managed objects | Role names, role codes, descriptions, associated tenant count, assigned account count, and functional permissions |
 
 #### Beginner Explanation
 
@@ -18,74 +23,74 @@ Operator roles are platform-console permission templates. They define which syst
 | Term | Description |
 | --- | --- |
 | Platform role | A set of operator-administration permissions.; Separate roles by responsibility. |
-| Permission | A menu, button, or API-level control item.; Confirm the impact before changing it. |
-| Built-in role | A system-provided role that usually cannot be deleted.; View it or use it as a reference. |
-| Member assignment | The operator members assigned to a role.; Remove assignments before deleting the role. |
+| Role code | A stable identifier for the role.; Changing it after it is referenced can affect permission identification and auditing. |
+| Configure Permissions | Select the services, menus, and actions available to a role.; Changes affect the scope visible to members. |
+| Associated tenants | Tenants and member accounts that actually hold the role.; Review them before deletion. |
+| Features & Permissions | The tab that shows the role's current functional scope and permission details. |
 
 ## Prerequisites
 
 1. The current account has permission to manage roles.
-2. You have opened `Members & Roles > Roles`.
-3. Before authorizing or deleting a role, you have confirmed which members will be affected.
+2. You have opened `Settings > Members & Roles > Roles`.
+3. Before configuring permissions or deleting a role, you have confirmed the affected members and tenants.
 
 ## Page Description
 
-The page provides the role list and role actions for creating, editing, authorizing, and removing permission templates.
+The left side is the role list, and the right side shows the selected role details.
 
 ![Roles](./images/roles-list.png)
 
+The role list and details show the role code, associated tenant count, assigned account count, and the View Role/Configure Permissions/Edit/Delete entries.
+
 | Area | Description |
 | --- | --- |
-| Role Name | Filters roles by name. |
+| Role list | Search by role name or code; shows the custom role count. |
 | Add Role | Opens the role creation flow. |
-| Role table | Shows role name, identifier, description, creation time, and actions. |
+| Role details | Shows the role name, role code, associated tenant count, assigned account count, and creation time. |
+| Action buttons | `View Role`, `Configure Permissions`, `Edit`, and `Delete`. |
+| Tabs | `Associated Tenants` shows tenants and member accounts that hold the role; `Features & Permissions` shows the permission scope. |
 
 ## Main Operations
 
 ### View Roles
 
-1. Go to `Settings > Members and Roles > Roles`.
-2. Filter by role name, status, or update time.
-3. Open details and check menu, button, and API permissions and assigned members.
-4. If no record is returned, reset filters. For unexpected permissions, check whether the member has multiple roles.
+1. Go to `Settings > Members & Roles > Roles`.
+2. Search the left list by role name or code, then select the target role.
+3. Review the role name, role code, associated tenant count, assigned account count, and creation time on the right.
+4. Switch between `Associated Tenants` and `Features & Permissions` to confirm the role's actual usage and permission boundary.
 
 ### Add a Role
 
-1. Go to `Settings > Members & Roles > Roles`.
-2. Click **"Add Role"** in the upper-right corner of the page.
-3. In the `Add Role` dialog, review the role creation fields.
+1. Click **"Add Role"** in the upper-right corner.
+2. In the role creation form, enter `Role name`, the required `Role code`, and an optional `Role description`.
 
 ![Add Role](./images/add-role.png)
 
-4. Fill in `Role name`.
-5. Fill in the required `Role code`. Use a stable, readable, lowercase English code that is easy to audit.
-6. Fill in `Role description` according to the intended role usage.
-7. Before clicking the final `Confirm`, verify that the role name, role code, and later authorization scope follow the least-privilege principle.
-8. For learning or screenshots only, view the fields and click **"Cancel"** to close the dialog without submitting real role configuration.
+The Add Role form contains role name, role code, role description, and initial permissions. Confirm the least-privilege scope before creating.
+3. Before clicking `Confirm`, verify that the name, code, and intended permission scope follow the least-privilege principle.
+4. For learning or screenshots only, review the fields and click `Cancel` without submitting a real role configuration.
 
 ### Edit a Role
 
-1. Open `Settings > Members & Roles > Roles`.
-2. Locate the target Roles and click **"Edit"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Select the target role in the left list.
+2. Click **"Edit"** in the details area.
+3. Change the role name or description where allowed, then save after confirming the impact.
+4. Return to the role details and verify the name, description, and creation time.
 
-### Authorize a Role
+### Configure Permissions
 
-1. Open `Settings > Members & Roles > Roles`.
-2. Locate the target Roles and click **"Authorize"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Select the target role in the left list.
+2. Click **"Configure Permissions"** in the details area.
+3. Select permissions from the services, menus, and actions provided on the page, and confirm the selected permission count and impact.
+4. Review the permission changes before saving. For read-only inspection, use `Cancel` and do not submit changes.
+5. After saving, return to the role details and verify the result in the `Features & Permissions` tab.
 
 ### Delete a Role
 
-1. Open `Settings > Members & Roles > Roles`.
-2. Locate the target Roles and click **"Delete"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Use the `Associated Tenants` tab to confirm that no member or tenant still uses the role.
+2. Click **"Delete"** in the details area.
+3. In the confirmation dialog, verify the role name and impact, then delete it.
+4. Confirm that the role disappears from the left list and that member menus and actions behave as expected.
 
 ## Parameter Quick Reference
 
@@ -93,19 +98,19 @@ The page provides the role list and role actions for creating, editing, authoriz
 | --- | --- | --- | --- | --- |
 | Role name | Yes | Text | `Audit Admin` | The display name of the operator role. |
 | Role code | Yes | Text | `audit_admin` | The unique role identifier. Use a stable, readable code that is easy to audit. |
-| Role description | No | Text | `View audit logs and basic operator information` | Describes the role purpose and authorization boundary. |
-| Permission items | Yes | Multi-select | `View Operation Logs` | Controls menus and operations available to the role. |
-| Member count | No | Number | `3` | Shows how many members are bound to the role. |
-| Role status | No | Enum | `Enabled` | Controls whether the role can continue to be assigned. |
-| Actions | System generated | Button / link | `Edit / Authorize / Delete` | Provides role maintenance entry points. |
+| Role description | No | Text | `View audit logs and basic operator information` | Describes the role purpose and permission boundary. |
+| Permission items | Yes | Multi-select | `View Operation Logs` | Controls the services, menus, and actions available to the role. |
+| Associated tenant count | System-generated | Number | `0` | Shows how many tenants hold the role. |
+| Assigned account count | System-generated | Number | `0` | Shows how many accounts are assigned the role. |
+| Actions | System-generated | Button | `View Role / Configure Permissions / Edit / Delete` | Provides role maintenance entry points. |
 
 ## Pitfalls
 
-- Do not change roles, members, login policies, Keys, or API rate-control rules without confirming the affected users and systems.
-- UI entries can differ by role and tenant scope; verify the current account context before troubleshooting.
-- Never copy complete Keys, AK/SK, tokens, or secrets into documentation, tickets, or screenshots.
-- Adding a role creates a new platform permission template. Later authorization and member binding can affect platform management permissions.
-- `Confirm` is the final submit action. For learning or screenshots, only view fields and use `Cancel` to exit.
+- Do not change a high-privilege role directly. Create or copy a low-risk role first to validate the permission scope.
+- Before deleting a role, confirm that no member or tenant still uses it; use the `Associated Tenants` tab as the reference.
+- Permission changes affect platform-level entry points. Record the reason and approval basis.
+- Adding a role creates a new platform permission template. Later permission configuration and member binding can affect platform administration.
+- `Confirm` is the final submit action. For learning or screenshots, only view the fields and use `Cancel`.
 - Once `Role code` is referenced, later changes may affect permission identification, auditing, and automation configuration.
 - Do not write real internal role codes, accounts, member IDs, customer names, or internal test data.
 
@@ -113,11 +118,11 @@ The page provides the role list and role actions for creating, editing, authoriz
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Role filter | The list refreshes by role name. | Check that the name is correct. |
-| Authorization entry | The target role can open its authorization page. | Check the current account's role-management permission. |
-| Delete entry | Delete is displayed according to permission. | Confirm that no critical member depends on the role before deletion. |
-| Add dialog | Clicking `Add Role` opens the same-name dialog. | Check whether the current account has role creation permission. |
-| Cancel exit | Clicking `Cancel` closes the dialog without submitting role configuration. | Refresh the page and confirm no test role was added. |
+| Role search | The left list refreshes by role name or code. | Check that the name or code is correct. |
+| Role details | The right side shows the role name, code, associated tenant count, and creation time. | Reselect the role; if still empty, check role-management permission. |
+| Add role | Clicking `Add Role` opens the creation form. | Check whether the current account can create roles. |
+| Configure permissions | The target role opens the permission configuration page. | Check the current account's role-management permission. |
+| Delete entry | Delete is displayed according to permission. | Confirm that no member or tenant depends on the role before deletion. |
 
 ## FAQ
 
@@ -133,21 +138,21 @@ The role assigned to the member does not include the required menu or action per
 
 **Resolution:**
 
-Review the permission scope for the role, then confirm that the member is assigned to the correct role.
+Open the role's `Configure Permissions` entry to review the permission scope, then confirm that the member is assigned to the correct role.
 
 #### Can a role be deleted directly?
 
 **Symptom:**
 
-The role list provides a Delete action.
+The role details provide a Delete action.
 
 **Possible cause:**
 
-The role may still be assigned to members, and deleting it can remove their access.
+The role may still be assigned to members or tenants, and deleting it can remove their access.
 
 **Resolution:**
 
-Check the members assigned to the role, then follow the tenant permission-change process.
+Use the `Associated Tenants` tab to confirm the role usage scope, then follow the permission-change process.
 
 #### Why is the operator role list empty?
 
@@ -163,41 +168,13 @@ The current account lacks operator role-management permission, the roles belong 
 
 Confirm that you are using operator-side Settings and verify the role-management permission. Ask a super administrator to check abnormal built-in roles.
 
-#### How should the Roles page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Roles page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
-- Authorization changes affect menu visibility and button availability.
-- Before deleting a role, confirm that no critical member depends on it.
-- `Confirm` is the final submit action. Before adding a role, verify the role name, role code, and later authorization scope.
+- Permission configuration changes affect menu visibility and button availability.
+- Before deleting a role, confirm that no critical member or tenant depends on it.
+- `Confirm` is the final submit action. Before adding a role, verify the role name, role code, and intended permission scope.
 - Once `Role code` is referenced, later changes may affect permission identification, auditing, and automation configuration.
-- For learning or screenshots only, open the dialog to view fields and use `Cancel` to exit.
+- For learning or screenshots only, open the form to view fields and use `Cancel`.
 - Do not write real internal role codes, accounts, member IDs, customer names, or internal test data.
 
 ## Next Steps

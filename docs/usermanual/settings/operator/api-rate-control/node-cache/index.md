@@ -1,5 +1,10 @@
 # Node Cache
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -39,6 +44,8 @@ The page lists rate-control nodes and cache state so that Operators can verify s
 | Node table | Displays node, status, rule version, rule count, counter cache, identity cache, refresh time, and message. |
 
 ![Node Cache](./images/node-cache-list.png)
+
+The Node Cache list shows nodes, rule versions, rule counts, and cache status. Compare versions before refreshing when they differ.
 
 ## Main Operations
 
@@ -135,34 +142,6 @@ The current account has view-only permission, the node is offline, or cache clea
 **Resolution:**
 
 Confirm rate-control operation permissions and node online status. Record the impact scope before cleanup and let an authorized administrator perform the action.
-
-#### How should the Node Cache page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Node Cache page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

@@ -1,8 +1,8 @@
 # Reconciliation Center
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-10
+Version: v2.1
+Updated: 2026-11-05
 :::
 
 ## Feature Overview
@@ -12,209 +12,158 @@ Updated: 2026-07-10
 | Applicable Role | Operations administrator |
 | Navigation path | Billing > Finance Operations > Reconciliation Center |
 | Page route | `/billing/admin/reconciliation` |
-| Managed objects | Bilateral ledger check, compensation queue, revenue detail rebuild, unmatched transfer, and missing revenue detail |
+| Managed objects | Bilateral ledger checks, rounding reconciliation, compensation queue, and revenue detail rebuild |
 
-`Reconciliation Center` is used to inspect billing-operation exceptions, including bilateral ledger checks, compensation queues, revenue detail rebuilds, unmatched transfers, and missing revenue details. Operators select a billing cycle, refresh inspection results, and then continue verification in Financial Accounts, Settlement List, or Account Adjustment when exceptions appear.
-
+Four tabs provide ledger checks, rounding categories, pending compensation flows, and the revenue detail rebuild entry.
 
 #### Beginner Explanation
 
-Reconciliation Center is the billing health-check page. It helps operators find records that may be unmatched, incomplete, or waiting for retry. It does not complete settlement by itself and should not be used as the only basis for financial adjustment.
+Reconciliation Center is a billing health-check desk: each tab checks different issues, so an empty result in one category cannot stand in for all checks.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Bilateral Ledger Check | Checks whether fund-related ledgers can be matched on both sides. | If abnormal, verify related transactions in Financial Accounts. |
-| Compensation Queue | Queue of billing tasks waiting for retry, compensation, or manual handling. | Review failure reason before any retry. |
-| Revenue Detail Rebuild | Rebuilds missing revenue details. | Confirm billing cycle and impact scope before real submission. |
-| Unmatched Transfer | Transfer record without a matched counterpart. | Verify account transactions and business records. |
-| Missing Revenue Detail | Consumption or settlement evidence exists, but revenue detail is missing. | Refresh after rebuild and compare with settlement records. |
-
-#### Reconciliation Object Quick Reference
-
-| Object | Beginner view | Where to check next |
-| --- | --- | --- |
-| Bilateral Ledger Check | Checks whether fund ledgers can be paired. | Financial Accounts, Settlement List |
-| Compensation Queue | Shows tasks needing retry, compensation, or manual handling. | Compensation queue details, Account Adjustment |
-| Revenue Detail Rebuild | Rebuilds missing revenue details. | Revenue details, Settlement List |
-| Unmatched Transfer | Transfer record cannot be matched yet. | Financial account transactions, business records |
-| Missing Revenue Detail | Consumption or settlement evidence exists, but revenue detail is missing. | Revenue detail rebuild, Settlement List |
-
-#### Where to Look First
-
-| Symptom | Check first | Next step |
-| --- | --- | --- |
-| Unmatched transfer exists | Bilateral Ledger Check results | Go to Financial Accounts to verify transactions. |
-| Missing revenue detail exists | Revenue Detail Rebuild results | Go to Settlement List to verify billing cycle. |
-| Compensation queue is backlogged | Queue status and failure reason | Decide whether retry or manual handling is needed. |
-| Amount differs from expectation | Billing cycle, tenant, and fund direction | Go to Settlement List or Account Adjustment. |
+| Term | Description |
+| --- | --- |
+| Bilateral Ledger Check | Inspects unpaired transfers and missing revenue details across the full settlement-intent history. |
+| Rounding Reconciliation | Shows five ModelOne rounding check categories with counts and amounts. |
+| Compensation Queue | Shows pending compensation flows. |
+| Revenue Detail Rebuild | Provides a scan limit and a rebuild action, with results displayed separately. |
+| Source billing cycle window | The source cycle window identified by rounding reconciliation results. |
 
 ## Prerequisites
 
-1. The current account can access `Finance Operations > Reconciliation Center`.
-2. The billing cycle to inspect has been confirmed.
-3. Related settlement statements, financial account transactions, or business records are available for comparison.
-4. Before rebuild or compensation, the impact scope and running tasks of the same type have been confirmed.
-5. Manual adjustment follows the platform approval or finance handling process.
+1. The current account can access `Billing > Finance Operations > Reconciliation Center`.
+2. Identify the check category and billing cycle, with related account transactions or settlement statements available for comparison.
+3. Before running a revenue detail rebuild, confirm authorization, scan scope, and scan limit; read-only inspection does not require running a rebuild.
 
 ## Page Description
 
-The page includes billing-cycle selection, refresh, inspection entries, and exception lists. Operators select a billing cycle and refresh results first, then review unmatched transfers, missing revenue details, and compensation queue status.
+The menu is named `Reconciliation Center`, while the content heading is `Ledger Inspection Center`. `Billing Cycle` and `Refresh` appear at the top, followed by four button tabs in order.
 
 | Area | Description |
 | --- | --- |
-| Billing Cycle | Select the billing period to inspect. |
-| Refresh | Reload inspection results for the selected billing cycle. |
-| Bilateral Ledger Check | Checks matching status for fund-related ledgers. |
-| Compensation Queue | Shows tasks requiring compensation, retry, or manual handling. |
-| Revenue Detail Rebuild | Checks and rebuilds missing revenue details. |
-| Unmatched Transfer | Shows transfer records without a matched counterpart. |
-| Missing Revenue Detail | Shows records missing revenue details. |
+| Bilateral Ledger Check | Displays “Unpaired transfers and missing revenue details scan the full settlement-intent history and are not queried when this page opens.” |
+| Rounding Reconciliation | Shows “ModelOne Rounding Reconciliation”, source cycle window, checked time, and five categories with counts and six-decimal credits amounts. |
+| Compensation Queue | Shows “Pending Compensation Flows”; the empty state is “No pending compensation items”. |
+| Revenue Detail Rebuild | Shows “Rebuild Revenue Details”, Scan limit, Run rebuild, and Current rebuild result; the empty state is “No rebuild result yet”. |
 
-Page screenshot:
+The five rounding checks have the following meanings, as described on the page:
 
-![Reconciliation Center](./images/manual-billing-reconciliation-center-page.png)
-
-The image shows the page entry or current state for this operation. Verify the page title, target record, and visible actions.
+| Area | Description |
+| --- | --- |
+| Pending rounding postings | Usage rounding amounts that have not yet produced customer ledger entries and Provider adjustment details. |
+| Incomplete attribution | Rounding records missing customer, Provider, model or billing-cycle context. These require data repair before posting. |
+| Closed-cycle adjustments pending | Rounding amounts from already settled source billing cycles that still need adjustment posting. |
+| Revenue summary mismatch | Provider rounding detail totals do not match the daily revenue summary. |
+| Posting amount mismatch | Raw rounding amounts, two-decimal ledger entries, carry-forward values and Provider details do not reconcile. |
 
 ## Main Operations
 
-Use the following operations to view reconciliation results and exception areas. Before retry, compensation, adjustment, confirmation, or rebuild, verify the exception scope, operation permission, and downstream impact.
-
-### View Reconciliation Results
-
-1. Go to `Billing > Finance Operations > Reconciliation Center`.
-2. Select the target `Billing Cycle`.
-3. Click **"Refresh"**.
-4. Review result update time or exception count changes.
-5. Check unmatched transfers, missing revenue details, and compensation queue status.
-6. Continue in Financial Accounts, Settlement List, or Account Adjustment according to the exception type.
-
 ### View Bilateral Ledger Check
 
-1. Go to `Billing > Finance Operations > Reconciliation Center`.
-2. Select the target `Billing Cycle`.
-3. Click **"Refresh"** and wait for reconciliation results to update.
-4. Review the `Bilateral Ledger Check` area, especially unmatched transfers, fund direction, transaction object, business context, and reference information.
-5. If unmatched records or amount differences exist, continue verification in Financial Accounts, Settlement List, or transactions.
+1. Go to `Billing > Finance Operations > Reconciliation Center` and click `Bilateral Ledger Check`.
+2. Read the full-history scan notice; results are not queried automatically when the page opens, so the absence of an initial result table does not mean there are no exceptions.
+3. Check the billing cycle at the top, but do not interpret it as restricting unpaired-transfer and missing-revenue-detail scans to that cycle.
+4. When query results are available, review unpaired transfers and missing revenue details separately; use Financial Accounts and Settlement List for further inspection, without treating a tab switch as a completed query.
 
-![Bilateral ledger check](./images/bilateral-ledger-check-list.png)
+![Bilateral ledger check notice](./images/bilateral-ledger-check-list.png)
+
+The figure shows the full-history scan notice on Bilateral Ledger Check, stating that opening the page no longer queries results automatically; this view provides no exception-query conclusion.
+
+### View Rounding Reconciliation
+
+1. Click `Rounding Reconciliation` and check `Billing Cycle` at the top; use `Refresh` when you need to reload.
+2. Read `Source billing cycle window` and `Checked at` under `ModelOne Rounding Reconciliation`.
+3. Inspect counts and amounts separately for Pending rounding postings, Incomplete attribution, Closed-cycle adjustments pending, Revenue summary mismatch, and Posting amount mismatch.
+4. If a category displays `No issues in this category`, record a conclusion only for that category and displayed scope; retain six-decimal credits precision rather than equating it with two-decimal transaction amounts.
+
+![Rounding reconciliation categories](./images/rounding-reconciliation-list.png)
+
+The figure shows the upper part of ModelOne Rounding Reconciliation with the first four checks, their counts, six-decimal credits amounts, and “No issues in this category”, with the source cycle window and checked time above. The fifth check, `Posting amount mismatch`, is farther down the page; scroll down to review it rather than checking only the four categories visible here.
 
 ### View Compensation Queue
 
-1. Go to `Billing > Finance Operations > Reconciliation Center`.
-2. Select the target `Billing Cycle`.
-3. Click **"Refresh"** and confirm that compensation queue status has updated.
-4. Review the `Compensation Queue` area, especially task status, failure reason, retry count, related transaction, related settlement statement, and processing time.
-5. If pending, retrying, or failed items exist, first confirm whether unmatched transfers or missing revenue details exist in the same billing cycle.
+1. Click `Compensation Queue`.
+2. Review `Pending Compensation Flows` and the total count; use pagination when multiple pages are available.
+3. If `No pending compensation items` appears, record the current queue's empty state without extending it to bilateral or rounding checks.
 
-![Compensation queue](./images/compensation-queue-list.png)
+![Empty compensation queue](./images/compensation-queue-list.png)
 
-### View Revenue Detail Rebuild
+The figure shows “Pending Compensation Flows” with “No pending compensation items” and pagination, not failure reasons, retry counts, or successful processing results.
 
-1. Go to `Billing > Finance Operations > Reconciliation Center`.
-2. Select the target `Billing Cycle`.
-3. Review the `Revenue Detail Rebuild` area and confirm whether missing revenue details exist.
-4. Verify tenant, billing cycle, business source, related transaction, and exception reason for missing records.
-5. If rebuild is required, first confirm that Monthly Overview, Settlement List, and Financial Account transactions use a consistent scope.
+### View the Revenue Detail Rebuild Entry and Results
 
-![Revenue detail rebuild](./images/revenue-detail-rebuild-list.png)
+1. Click `Revenue Detail Rebuild`.
+2. Inspect `Scan limit`; the numeric input defaults to `100`.
+3. Locate `Run rebuild`; do not click it when only viewing parameters and results. Confirm authorization and scan scope before any required execution.
+4. Review `Current rebuild result`; `No rebuild result yet` does not establish whether historical revenue details are complete.
+5. If result records exist, inspect their completion time, scan limit, scanned, generated, and skipped counts for that run; read these fields only when results exist, without treating an empty state as rebuild success.
+
+![Revenue detail rebuild empty state](./images/revenue-detail-rebuild-list.png)
+
+The figure shows the default scan limit of 100, Run rebuild, and the “No rebuild result yet” state under Current rebuild result; it does not indicate that a rebuild was run.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Billing Cycle | Yes | Month / billing period | `2026-07` | Selects the billing period to inspect. |
-| Refresh | No | Button | `Refresh` | Reloads reconciliation results for the current billing cycle. |
-| Bilateral Ledger Check | No | Operation entry | Bilateral Ledger Check | Checks whether fund-related ledgers can be matched. |
-| Compensation Queue | No | Operation entry | Compensation Queue | Shows queue items requiring compensation, retry, or manual handling. |
-| Revenue Detail Rebuild | No | Operation entry | Revenue Detail Rebuild | Checks or rebuilds missing revenue details. |
-| Unmatched Transfer | System-generated | Exception list | `3 unmatched transfers` | Shows transfer records without a matched counterpart. |
-| Missing Revenue Detail | System-generated | Exception list | `2 missing revenue details` | Shows records missing revenue details. |
-| Task Status | System-generated | Status | Pending / Retrying / Failed | Shows current status of compensation or rebuild tasks. |
-| Failure Reason | System-generated | Text | Example failure reason | Shows why a task failed or an inspection is abnormal. |
-| Retry Count | System-generated | Number | `3` | Shows retry count of compensation or rebuild tasks. |
-| Related Transaction | System-generated | Text | Desensitized transaction number | Locates the related transaction. |
-| Related Settlement Statement | System-generated | Text | Desensitized settlement statement number | Locates the related settlement statement. |
-| Inspection Result | System-generated | Result status | Completed / Exceptions Found | Shows the result generated from the billing period and inspection action. |
-| Actions | System-generated | Operation entry | View / Open | Provides view, jump, or follow-up entries. |
+| Billing Cycle | Select as needed | Month | 2026-11 | Top-level cycle selection; it does not restrict the full settlement-intent scope of bilateral checks. |
+| Refresh | As needed | Button | Refresh | Top-level refresh entry; count changes are not a prerequisite for success. |
+| Bilateral Ledger Check / Rounding Reconciliation / Compensation Queue / Revenue Detail Rebuild | Select as needed | Button tabs | Rounding Reconciliation | Switch between four task views. |
+| Source billing cycle window | Read-only | Cycle window | 2026-11 | Source scope identified in rounding results. |
+| Checked at | Read-only | Date and time | As displayed | Check time of rounding results. |
+| Five rounding category counts | Read-only | Integer | 0 | Each category displays a separate count. |
+| Five rounding category amounts | Read-only | Amount | 0.000000 credits | Six decimals; do not conflate with two-decimal transactions. |
+| Pending Compensation Flows | Read-only | Queue | 0 items | Displays its empty state when no pending items are present. |
+| Scan limit | Confirm before execution | Numeric input | 100 | Defaults to 100; do not infer undisplayed minimum or maximum values. |
+| Run rebuild | Requires authorization | Button | Run rebuild | Executes a rebuild, not a read-only query. |
+| Current rebuild result | Read-only | Result area | No rebuild result yet | When results exist, inspect completion time, scan limit, and scanned, generated, and skipped counts. |
 
 ## Pitfalls
 
-- Do not rely on one amount field alone for financial confirmation; cross-check transactions, bills, settlement statements, and reconciliation results.
-- Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
-- Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
-- Bilateral Ledger Check is used to find exceptions. It does not prove that funds have been confirmed.
-- Retry, compensation, adjustment, and confirmation actions in Compensation Queue are high-risk operations.
-- Revenue Detail Rebuild may affect billing-cycle statistics, settlement statement amount, and revenue detail scope.
-- Do not record real account IDs, tenant names, customer names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys.
+- The bilateral check notice explicitly says results are not queried automatically; an initial view without a table is not evidence of no exceptions.
+- Unpaired transfers and missing revenue details scan the full settlement-intent history; do not treat the top-level billing cycle as the entire scope of these two checks.
+- Six-decimal rounding credits and two-decimal ledger entries use different precision; the Posting amount mismatch description also includes carry-forward values and Provider details.
+- “No issues in this category”, “No pending compensation items”, and “No rebuild result yet” belong to separate areas and are not interchangeable conclusions.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Billing period | The page shows data for the target billing period. | Select the billing period again and refresh. |
-| Inspection refresh | The exception-list update time or count changes. | Check permissions, the network, and background task status. |
-| Unmatched transfers | No one-sided transaction exception remains in the current billing period. | Open Financial Accounts and check related transactions. |
-| Missing revenue details | The missing-revenue-details list is empty. | Rebuild revenue details and refresh again. |
-| Compensation queue | No pending or failed item remains in the queue. | Review the failure reason and follow the handling process. |
+| Check entries | All four tab names and their corresponding content can be inspected. | Confirm the selected tab and keep conclusions separate. |
+| Bilateral scope | The full-history scan and no-automatic-query notice is visible. | Do not conclude there are no exceptions without query results. |
+| Rounding results | Source window, checked time, and five category counts, amounts, or empty states can be checked. | Record the specific category and scope, then compare transactions and settlement statements. |
+| Compensation queue | Pending Compensation Flows shows records or “No pending compensation items”. | Do not infer other check results from the queue's empty state. |
+| Rebuild results | “No rebuild result yet” can be distinguished from actual result records. | Inspect scan statistics when results exist; do not claim execution success when none exist. |
 
 ## FAQ
 
-#### Unmatched Transfers Are Listed
+#### Does the Absence of an Initial Bilateral Result Table Mean There Are No Exceptions?
 
-**Symptom:** The Unmatched Transfers area contains exception records.
+**Symptom:** Bilateral Ledger Check displays a notice but no exception result table on opening.
 
-**Possible cause:** Only one side of a fund transaction exists, the related business record has not synchronized, or clearing is delayed.
+**Possible Causes:** The page explicitly states: “Unpaired transfers and missing revenue details scan the full settlement-intent history and are not queried when this page opens.”
 
-**Resolution:** Record the billing period, tenant, and sanitized transaction clue. Check the transaction in [Financial Accounts](../financial-accounts/), then confirm settlement status in [Settlement List](../settlement-list/). Use Account Adjustment only after approval if manual correction is necessary.
+**Resolution:** Distinguish the initial view from actual query results; do not conclude there are no exceptions or treat cycle selection as a restriction on the full-history checks.
 
-#### Missing Revenue Details Are Listed
+#### Does “No rebuild result yet” Mean Revenue Details Are Complete?
 
-**Symptom:** The Missing Revenue Details area contains records.
+**Symptom:** Current rebuild result displays “No rebuild result yet”.
 
-**Possible cause:** Consumption exists but revenue details have not been generated, upstream synchronization is delayed, or a rebuild task is pending or failed.
+**Possible Causes:** The message describes the current rebuild result area, not a completeness check of all revenue details.
 
-**Resolution:** Confirm the billing period and tenant, run Revenue Detail Rebuild, and refresh. If records remain, compare Financial Accounts and Settlement List.
-
-#### The Result Does Not Change After Refresh
-
-**Symptom:** Counts, update time, or status do not change after `Refresh`.
-
-**Possible cause:** No new data exists, the inspection task is still running, or the current account cannot view the target scope.
-
-**Resolution:** Confirm the billing period, wait for the background task, and refresh again. If the result remains unchanged, check permissions, tenant scope, and task status.
-
-#### Pending Items Remain in the Compensation Queue
-
-**Symptom:** Pending, Retrying, or Failed items remain for a long time.
-
-**Possible cause:** Required upstream transactions, settlement statements, or revenue details are not ready, retries failed, or manual confirmation is required.
-
-**Resolution:** Review queue details and failure reasons. Check for unmatched transfers or missing revenue details in the same billing period. Submit a handling or adjustment request through the approved process when manual intervention is required.
-
-#### Revenue Details Are Still Missing After Rebuild
-
-**Symptom:** Missing revenue details remain after rebuild and refresh.
-
-**Possible cause:** The rebuild is still processing, target billing data is incomplete, or consumption and revenue definitions do not match.
-
-**Resolution:** Wait for completion and refresh again. Check the billing period, tenant, and business records. Continue in Settlement List, Financial Accounts, and Account Adjustment if the list cannot be cleared.
+**Resolution:** Record only that the result area is empty; confirm authorization, scope, and scan limit before any required rebuild, without substituting the empty state for execution results.
 
 ## Notes
 
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Reconciliation results are investigation entries, not final financial conclusions.
-- Rebuild or compensation must be preceded by billing-cycle and impact-scope confirmation.
-- Do not record real account IDs, tenant names, customer names, billing-cycle amounts, transaction numbers, internal transaction numbers, approval information, accounts, tokens, or keys in the manual, screenshots, notes, or tickets.
+- Inspection results locate records for verification; they are not the sole basis for directly changing financial data.
+- `Run rebuild` is an execution entry; reading this page or switching tabs does not grant execution authorization.
+- Empty states in all five rounding categories do not establish that all platform billing is exception-free; evaluate bilateral checks and the compensation queue separately.
+- Do not publish real billing amounts, account identifiers, customer data, or credentials.
 
 ## Next Steps
 
-| Exception Type | Next Page | Goal |
-| --- | --- | --- |
-| Unmatched transfer | [Financial Accounts](../financial-accounts/) | Check account transactions and fund direction. |
-| Settlement amount difference | [Settlement List](../settlement-list/) | Check settlement status and amount. |
-| Manual correction required | [Account Adjustment](../account-adjustment/) | Submit or process an approved adjustment. |
-| Billing-period summary exception | [Monthly Overview](../monthly-overview/) | Check the billing-period summary and statistical definition. |
+1. Open [Financial Accounts](../financial-accounts/) to inspect fund direction and account transactions.
+2. Open [Settlement List](../settlement-list/) to check settlement status and amounts.
+3. Open [Monthly Overview](../monthly-overview/) to review billing-cycle totals.
+4. When manual correction is required, follow the approval process and refer to [Account Adjustment](../account-adjustment/), rather than acting solely on an inspection empty state.

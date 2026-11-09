@@ -22,9 +22,9 @@ Map tenant credits, monthly usage, and metering details to actual instances or w
 
 ![Review monthly usage by tenant and billing cycle](./images/monthly-usage-list-browser.png)
 
-3. Open [Metering Details](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/) and trace totals by instance, workload, and time range.
+3. Switch to the `Usage Details` tab and trace totals by instance, workload, and time range.
 
-![Trace summarized usage to metering details](./images/metering-details-list-browser.png)
+![Trace summarized usage to the Usage Details tab](./images/metering-details-list-browser.png)
 
 4. Compare runtime and specification in device, node, and workload monitoring. Confirm that end time, card count, and metering unit agree.
 

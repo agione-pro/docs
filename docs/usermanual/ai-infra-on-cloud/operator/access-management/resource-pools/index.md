@@ -1,5 +1,10 @@
 # Resource Pools
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -13,8 +18,7 @@
 
 Resource Pools controls whether cloud regions are available. Enabled pools can enter authorization and scheduling scopes; disabling affects deployment choices.
 
-#### Terminology
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Resource Pool | An available resource scope organized by cloud platform and region. |
@@ -69,8 +73,7 @@ The image shows the Resource Pools management page, with connected cloud platfor
 
 The image shows the secondary confirmation dialog when enabling or disabling a regional resource pool, where you must confirm the target region before proceeding.
 
-## Parameter Reference
-
+## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud Platform | Yes | List item | `Alibaba Cloud` | Cloud platform that owns the resource pools. |

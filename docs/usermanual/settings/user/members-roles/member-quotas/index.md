@@ -1,5 +1,10 @@
 # Member Quotas
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -88,13 +93,15 @@ The following screenshot shows the member quota limit dialog.
 
 ![Member Quota Limit](./images/member-quota-limit.png)
 
-### Set Member Quota Limits
+The member quota limit dialog contains the reset cycle, limit switch, cycle limit, and model allowlist. Confirm the affected member scope before saving.
 
-1. Open `Settings > Members & Roles > Member Quotas`.
-2. Locate the target Member Quotas and click **"Limit"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+### Set Member Quota Defaults
+
+1. Go to `Settings > Members & Roles > Member Quotas`.
+2. Click the `Member Quota Defaults` entry at the top.
+3. Review the default quota, reset cycle, alert threshold, and applicable model scope.
+4. Confirm the affected member scope before saving. Defaults apply to new members; existing members can be adjusted individually.
+5. During read-only validation, do not save default changes.
 
 ## Parameter Quick Reference
 
@@ -168,34 +175,6 @@ The current account lacks quota-administrator permission, the member status does
 
 Confirm the member status and quota-management permission. Submit the required quota request first, then return to Member Quotas after approval.
 
-#### How should the Member Quotas page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Member Quotas page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Adjusting quota affects a member's calling ability. Confirm the member and amount first.
@@ -206,3 +185,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 1. Review member requests on Quota Requests.
 2. Adjust default quota for new members in Tenant Settings.
 3. Verify quota adjustments in Operation Logs.
+
+Related pages: [Quota Approvals](../quota-requests/)、[Members](../team-members/)

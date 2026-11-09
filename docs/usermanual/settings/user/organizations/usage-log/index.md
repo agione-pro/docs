@@ -1,5 +1,10 @@
 # Usage Log
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
@@ -45,6 +50,8 @@ The table contains:
 | Actions | `Detail` opens read-only event information. |
 
 ![Usage Log list](./images/usage-log-list.png)
+
+The usage audit list shows time, member, model, usage, and status. Filters define the aggregation scope.
 
 ## Main Operations
 
@@ -130,34 +137,6 @@ Synchronization or cache is delayed, the action was not submitted, or a differen
 
 Check the success message, object identifier, and update time. Refresh the list and reopen details. Review Operation Logs when needed.
 
-#### How should the Usage Log page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Usage Log page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - This page was added to the End User Settings menu in the Demo verification.
@@ -167,3 +146,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. Return to Settings > Tenants > Usage Log and verify the status and update time.
 2. If a related object must be processed, open the next business entry shown on the page.
+
+Related pages: [Tenant Settings](../org-settings/)、[Member Quotas](../../members-roles/member-quotas/)

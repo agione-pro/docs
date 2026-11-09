@@ -1,261 +1,202 @@
 # Model Reviews
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-31
+Version: v2.0
+Updated: 2026-11-04
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Operator Admin |
-| Navigation path | Model Services > Approvals > Model Reviews |
+| Applicable role | Operator Admin |
+| Navigation path | **Model Services** > **Approvals** > **Model Reviews** |
 | Page route | `/modelone/audit/model` |
-| Managed objects | Model review records, model source configuration, model parameters, visibility scope, and review comments |
+| Managed objects | Pending model records, model visibility, model type, customer, version, review status, submit time, and review time |
 
-#### Beginner Explanation
+**Beginner explanation**: Model review is the checkpoint before a model becomes visible or callable. The operator checks the model source, capabilities, modalities, token limits, protocols, and billing information in the review drawer, then chooses Approve or Reject.
 
-Model Reviews is the checkpoint before a model is listed for discovery or calling. The Operator Admin checks the model source, capability settings, usage boundary, billing and rate-limit settings, and visibility scope before making a decision.
-
-#### Glossary
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Model review record | A record created when a model publication or change enters the review process. |
-| Model source | The configured upstream source and region used by the published model. |
-| Model parameter configuration | The model's input/output modalities, Token limits, protocols, and capability settings. |
-| Visibility scope | The customers or tenants that can see the model after publication. |
-| Review comment | The explanation recorded with an approval, rejection, or request for supplementary information. |
-
-#### Recommended Operation Sequence
-
-1. Locate the target record with the review status, visibility, customer, model name, and model type controls.
-2. Open **"Details"** to compare the model profile and parameter configuration with the review criteria.
-3. Open **"Review"**, record a clear conclusion, and then verify the resulting status.
-
-#### Beginner Quick Choice
-
-- To locate a record, use **"Search"** and **"Reset"**.
-- To inspect a record without changing it, use **"Details"**.
-- To make a decision for one record, use **"Review"**.
-- To process several eligible records together, use **"Batch Review"** after checking the selected count.
+| Pending Model | A model version submitted by a provider or tenant for listing or update, awaiting operator review. |
+| Model Visibility | The audience scope permitted after approval and publishing, such as public (all tenants) or private to specific customers. |
+| Upstream Model | The vendor model identifier targeted by the model source, used for underlying API routing and authentication. |
+| Billing Configuration | The token or per-request pricing, cache discount rates, and billing modes verified in the review drawer. |
 
 ## Prerequisites
 
-1. The current account has permission to review models.
-2. The submitted model has a model name, source, source ID, region, model type, visibility scope, protocol, input/output modalities, Token limits, billing settings, and rate-limit settings.
-3. Before making a decision, the reviewer has confirmed the model's authorization scope, usage boundary, expected cost impact, and publication effect.
+1. The current account can view and process **Approvals > Model Reviews**.
+2. Pending records exist. The list contains at least one record in `Pending Review`.
+3. The model source, visibility, version, and capability configuration are confirmed before review.
 
 ## Page Description
 
-This page lists model review records by review status and model visibility. The filters include customer, model name, and model type; the list shows the model name, visibility, type, customer, version, free quota, status, submission time, review time, and the actions shown for the current account.
+The top area contains filters; the review table sits below:
 
-Page screenshot:
+- Filters: `Model name`, a `Pending Review` status drop-down, two `All` drop-downs, and `Select customer`.
+- Actions: **Search**, **Reset**, and **Batch Review**.
+- Table columns: `Model name`, `Model visibility`, `Model type`, `Customer name`, `Version`, `Review status`, `Submit time`, `Review time`, `Actions`.
+- The action column currently offers **Review**; there is no separate **Details** button.
 
-![Model review list](./images/model-reviews-list-public.png)
+| Area | Description |
+| --- | --- |
+| Top Filter Bar | Provides model name, review status drop-down, visibility, model type, customer filters, Search, Reset, and Batch Review |
+| Model Review Table | Displays model name and identifier, visibility, type, customer, version, review status, submit/review times, and actions |
+| Review Detail Drawer | Slides out from the right on clicking Review, showing review info, basic info, modalities, capabilities, token limits, and billing |
+| Bottom Action Bar | Provides Cancel, Reject, and Approve in the drawer, or Cancel, Reject, and Approve Selected in batch mode |
 
-The image shows the Model Reviews list page, supporting status and visibility (All, Public, Private) filtering, multi-dimensional search by customer and model type, and access to individual and batch review actions.
+![Model review list](./images/model-reviews-list.png)
+
+The figure shows the list shows two `Pending Review` records of `DeepSeek-V4-Pro`, Rev.1 and Rev.2. `Model visibility` is `Public / All tenants`, `Customer name` is `AGIOneSystem`, `Review time` shows `--`, and the action column shows `Review`.
 
 ## Main Operations
 
-### Query Model Reviews
+### Filter review records
 
-1. Go to `Model Services > Approvals > Model Reviews`.
-2. Select a review status: `All`, `Pending Review`, `Approved`, or `Rejected`; then select a model visibility: `All Models`, `Public`, or `Private`.
-3. Select a customer when needed, enter a model name or choose a model type, and click **"Search"**.
-4. Check the model name, visibility, model type, customer, version, free quota, status, submission time, and review time. If no result is returned, click **"Reset"** and apply one condition at a time.
+1. Enter a name keyword in `Model name`.
+2. Choose a status such as `Pending Review`.
+3. Select visibility, model type, or customer as needed.
+4. Click **"Search"** to query, or **"Reset"** to clear the conditions.
+5. The footer shows `Total N` and pagination controls.
 
-### Query Model Review Details
+### Review a single record
 
-1. Locate the target record and click **"Details"** to open the model detail panel.
-2. Check the model name, model source, region, model source ID, model attribute, billing mode, status, release channel, free quota, and creation time.
-3. Expand `Model Parameter Configuration` and review input/output modalities, Token limits, advanced capability settings, protocol information, and usage boundaries.
-4. Compare the detail version with the list version. For read-only inspection, close the panel without submitting a review decision.
+1. Click **"Review"** on the target row; the review drawer opens on the right.
+2. The drawer title shows the model name, for example `DeepSeek-V4-Pro`. `Review Information` shows the customer, submit time, and `Pending Review` status.
+3. Under `Basic Information`, check the model source, upstream model name, Endpoint, release channel, model attribute, model type, version, model ID, billing mode, creation time, and rate limit configuration.
+4. Check `Input / Output modalities`, `Advanced capability configuration`, `Token Limit`, `Official Native Protocols and Default Advanced Parameters`, and `Billing Configuration`.
+5. The footer provides **"Cancel"**, **"Reject"**, and **"Approve"**. Confirm the model and version before choosing.
 
-![Model review details](./images/model-details-public.png)
+![Model review detail](./images/model-reviews-detail.png)
 
-The image shows the Model Details drawer, displaying basic information and expanded Model Parameter Configuration to verify Token limits, modalities, and protocols.
+The figure shows the drawer shows `Review Information`, `Basic Information`, `Input / Output modalities`, `Advanced capability configuration`, and `Token Limit`. In the example, `Release Channel` is `Public`, `Billing mode` is `Token`, and the footer buttons are `Cancel`, `Reject`, and `Approve`.
 
-### Review a Model
+### Batch review
 
-1. Locate a record with the appropriate review status and click **"Review"**.
-2. Check the model profile and `Model Parameter Configuration`. Confirm that the source, protocol, modalities, Token limits, billing, rate limit, usage boundary, and visibility scope are consistent.
-3. Choose **"Approve"** only when the model is authorized, technically usable, and ready for publication. Choose **"Reject"** when a required condition is not met.
-4. Before the final confirmation, verify the target model, version, review comment, and impact scope. When rejecting, write the missing or incorrect item in the review comment.
-5. After submission, return to the list and confirm that the record has moved to the expected status tab.
+1. Select the records to process together.
+2. Click **"Batch Review"**; the batch action area appears.
+3. The batch area provides **"Cancel"**, **"Reject"**, and **"Approve Selected"**.
+4. Before submitting, check the selected count, model names, versions, and visibility.
 
-![Review a model](./images/model-review-public.png)
+## Parameter Quick Reference
 
-The image shows the single model review drawer, where you verify parameters and boundaries before clicking Approve or Reject with audit comments.
-
-### Batch Review Models
-
-1. Filter the list to records that are eligible for the same conclusion.
-2. Select the target rows and confirm the selected count, model names, versions, and visibility scopes.
-3. Click **"Batch Review"** and check the records, current statuses, and review comment in the batch panel.
-4. Select the conclusion shown by the page, confirm the impact scope, and submit only after the selected records are correct.
-5. Refresh the list and verify every selected record in its corresponding status tab. If any record remains pending, review that record individually.
-
-![Batch review models](./images/model-batch-review-public.png)
-
-The image shows the Batch Review dialog, allowing you to apply approval or rejection decisions and comments across selected model records simultaneously.
-
-## Parameter Reference
+### List fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Model name | System-displayed | Text | `sample-model:version-1` | Name of the model under review. |
-| Model source | System-displayed | Text | `source-a` | Configured upstream model source. |
-| Region | System-displayed | Text | `region-a` | Region associated with the model source. |
-| Model source ID | System-displayed | Text | `model-id-a` | Source-side model identifier used by the publication configuration. |
-| Model visibility | System-displayed | Enum | `Public` / `Private` | Visibility scope of the model. |
-| Model type | System-displayed | Tag | `Text` / `Multimodal` | Capability type shown in the review list. |
-| Version | System-displayed | Text | `1.0.0` | Version submitted for the current review. |
-| Free quota | System-displayed | Enum | `Enabled` / `Disabled` | Whether free quota is enabled for the model. |
-| Review status | System-displayed | Enum | `Pending Review` / `Approved` / `Rejected` | Current lifecycle status of the review record. |
-| Submit time | System-displayed | DateTime | `2026-08-01 09:00:00` | Time when the model entered the review process. |
-| Review time | System-displayed | DateTime | `2026-08-01 09:10:00` | Time when a review decision was recorded; empty or `--` before review. |
-| Review comment | Conditionally required | Multiline text | `Please add the usage boundary.` | Explanation for a rejection or supplementary-information request. |
-| Actions | Displayed by permission | Button | `Details` / `Review` | Entry for read-only inspection or review processing. |
+| Model name | System-maintained | Text | `DeepSeek-V4-Pro` | Pending model name; the identifier appears below |
+| Model visibility | System-maintained | Tag | `Public / All tenants` | Visibility after publishing |
+| Model type | System-maintained | Tag | `Text` | Model capability type |
+| Customer name | System-maintained | Text | `AGIOneSystem` | Customer that submitted the record |
+| Version | System-maintained | Text | `Rev.1` | Version submitted for review |
+| Review status | System-maintained | Enumeration | `Pending Review` | Current review status |
+| Submit time | System-maintained | Date time | `Oct 27, 2026 15:20:00` | Submission time |
+| Review time | System-maintained | Date time | `--` | Shows `--` before review |
+| Actions | Permission-based | Button | `Review` | Opens the review drawer |
+
+### Review drawer fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Customer name | System | Text | `AGIOneSystem` | Customer in Review Information |
+| Submit time | System | Date time | `Oct 27, 2026 15:20:00` | Submit time in Review Information |
+| Model Source | System | Text | `Alibaba` | Upstream model source |
+| Upstream model name | System | Text | `deepseek-v4-pro` | Model name on the source side |
+| Endpoint | System | Text | `China` | Source endpoint |
+| Release Channel | System | Tag | `Public` | Current release channel |
+| Model Attribute | System | Text | `Non-Aggregate Model` | Model attribute |
+| Model type | System | Tag | `Text` | Model capability type |
+| Version | System | Text | `Rev.1` | Review version |
+| Model ID | System | Text | `deepseek/deepseek-v4-pro/029e8` | Unique model identifier |
+| Billing mode | System | Tag | `Token` | Current billing mode |
+| Created at | System | Date time | `Oct 27, 2026 14:49:20` | Model creation time |
+| Rate Limit Configuration | System | Text | `--` | Current rate limit configuration |
+| Input / Output | System | Tag | `Text` | Input and output modalities |
+| Advanced capability configuration | System | Tag | `Function/Tool Support`, `Thinking Mode` | Enabled advanced capabilities |
+| Token Limit | System | Number | `Maximum Context Length 1000 K` | Context, input, and output limits |
+| Official Native Protocols and Default Advanced Parameters | System | Protocol list | `OpenAI-ChatCompletions` | Supported protocols |
+| Billing Configuration | System | Number | `Input 1152.00 credits/M tokens` | Input, output, and cache prices |
 
 ## Pitfalls
 
-- A model name alone is not enough for approval; source, protocol, modalities, Token limits, billing, and usage boundary must also be reviewable.
-- Do not treat a model source ID as a credential. Never paste real keys, complete request headers, or private call content into a review comment.
-- Public visibility exposes the model to a wider audience; confirm the authorization scope and publication impact before approval.
-- Token limits or modalities that do not match the source capability can cause failed calls or incorrect model filtering.
-- Batch review can apply one conclusion to several records; verify the selected count, versions, and visibility scopes before submitting.
+- The action column currently offers only **Review**, with no separate **Details** button. Open the review drawer to inspect the configuration.
+- `Review time` shows `--` when the record has not been reviewed; processed records show a review time.
+- Batch review applies to the selected records. Check the selected count, model names, versions, and visibility before submitting.
+- `Model ID`, `Billing Configuration`, and `Token Limit` are key fields for identifying the current version. Do not judge by the model name alone.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| The Model Reviews page opens | The page route loads and the Model Reviews title, filters, and table are visible. | Check the current account's model-review permission, the sidebar entry, and whether the route was loaded in the correct site language. |
-| The expected status and visibility records are shown | The selected status and visibility controls display records matching both conditions. | Click **"Reset"**, select one status and visibility value again, and confirm that the request has not already been processed. |
-| Customer, model name, and model type filters work | **"Search"** returns records matching the selected customer and entered or selected model conditions. | Clear the filters, search by model name only, and then reapply customer and model type to identify the condition that excludes the record. |
-| Model review details open | **"Details"** opens the model profile and parameter configuration without changing the list status. | Check whether the record has been processed or removed, refresh the list, and confirm that the account can view the record. |
-| A review decision is recorded | The record appears under `Approved` or `Rejected`, with review time and, when required, a review comment. | Reopen the record to check the decision form, required comment, and permission; do not resubmit until the original status is clear. |
-| Batch review is complete | Every selected record moves to the expected status and the selected count is cleared after refresh. | Compare the selected rows with the status results and process any remaining pending record individually. |
+| Record is pending | `Review status` shows `Pending Review` and `Review time` shows `--` | If the status shows Approved or Rejected, another reviewer has already processed it; refresh the list to see current state |
+| Review drawer opened | The drawer title shows the model name and sections such as `Review Information` and `Basic Information` appear | If the drawer fails to slide out, verify network connectivity and click **"Review"** again |
+| Single-record actions | The drawer footer shows `Cancel`, `Reject`, and `Approve` buttons | Ensure your account has operator review write permissions; unauthorized accounts may see buttons disabled or missing |
+| Batch actions | After clicking `Batch Review`, `Cancel`, `Reject`, and `Approve Selected` appear | Check whether at least one row checkbox is selected in the list before clicking batch actions |
+| List total and paging | The footer shows `Total N` and pagination controls allow switching pages | Click **"Reset"** to clear filters and ensure no hidden filtering rules are applied |
 
 ## FAQ
 
-#### No Model Review Record Is Returned
+#### There is no Details button in the list
 
 **Symptom:**
 
-The list is empty after selecting a status, visibility, customer, or model type.
+You want to inspect model configurations, but only `Review` is visible in the action column with no separate details button.
 
 **Possible Causes:**
 
-- The selected status and visibility combination excludes the record.
-- The model name or model type does not match the submitted record.
-- The record has already been processed or the account cannot view it.
+The platform intentionally unifies read-only configuration verification and approval actions into a single review drawer.
 
-**Handling:**
+**Resolution:**
 
-1. Click **"Reset"** and select `All` and `All Models`.
-2. Search by model name only, then add customer and model type filters.
-3. If the record is still missing, confirm its submission status and review permission.
+Click **"Review"** in the action column to open the right drawer. Inspect the parameters, and click **"Cancel"** at the bottom to close the drawer without altering the record status.
 
-#### Model Review Details Are Incomplete
+#### The list is empty after filtering
 
 **Symptom:**
 
-The detail panel does not show the expected source or parameter information.
+After selecting a model name, status, visibility, or customer, no records remain in the table.
 
 **Possible Causes:**
 
-- The record is still loading.
-- The publication request omitted required model information.
-- Another reviewer changed the record while it was open.
+Multiple filter conditions are combined using logical AND, resulting in excessive filtering, or target records were processed by other reviewers.
 
-**Handling:**
+**Resolution:**
 
-1. Close the panel and reopen it from the refreshed list.
-2. Expand `Model Parameter Configuration` and check each visible section.
-3. Ask the Model Provider to supplement the missing source, protocol, or capability information.
+1. Click **"Reset"** to clear all conditions.
+2. Keep only `Pending Review` status first, then add the model name, visibility, or customer one at a time.
+3. Confirm with the submitter that the model was successfully submitted for approval.
 
-#### Review Materials Are Insufficient
+#### Single review or batch review?
 
 **Symptom:**
 
-The review record lacks source authorization, protocol information, test evidence, or usage boundaries.
+When facing numerous pending records, it is unclear whether to process records individually or in batch.
 
 **Possible Causes:**
 
-- The Model Provider submitted only basic identification fields.
-- The source authorization scope is unclear.
-- Connectivity or representative-call validation was not completed.
+Batch review applies uniform decisions and does not permit per-model price adjustments or custom token override verifications.
 
-**Handling:**
+**Resolution:**
 
-1. Reject or return the request according to the page workflow.
-2. List each missing authorization, protocol, test, or usage-boundary item in the review comment.
-3. Review the new submission after the missing information is added.
-
-#### The Model Is Not Visible After Approval
-
-**Symptom:**
-
-The model is approved, but the intended Model Consumer cannot find it in the model marketplace.
-
-**Possible Causes:**
-
-- Publication has not completed.
-- The visibility scope or release channel excludes the Model Consumer.
-- Publication synchronization is delayed.
-
-**Handling:**
-
-1. Check the model publication status and release channel.
-2. Compare the Model Consumer's tenant with the model visibility scope.
-3. Refresh the publication state and validate again after synchronization.
-
-#### The Model Cannot Be Called After Approval
-
-**Symptom:**
-
-The model is approved and visible, but the Model Consumer receives a call failure.
-
-**Possible Causes:**
-
-- The model source is unavailable or the protocol path is inconsistent.
-- Billing or rate-limit configuration is incomplete.
-- The Model Consumer lacks the required visibility or call permission.
-
-**Handling:**
-
-1. Check the model source status and protocol configuration.
-2. Check billing mode, free quota, and rate-limit configuration.
-3. Review call logs and Model Consumer permissions to separate access errors from source errors.
-
-#### Batch Review Does Not Process Every Selected Model
-
-**Symptom:**
-
-Some selected records remain pending after batch review.
-
-**Possible Causes:**
-
-- The records do not share the same eligible status or visibility condition.
-- A selected record was changed by another reviewer.
-- The batch action rejected a record because required information was missing.
-
-**Handling:**
-
-1. Refresh the list and compare the selected records with their current statuses.
-2. Open the remaining record with **"Review"** and read its validation message.
-3. Process the record individually after correcting or documenting the missing item.
+- Use **"Review"** on a row when you need to inspect individual versions, prices, or capability configurations.
+- Use **"Batch Review"** when multiple records share identical vendor sources and pre-verified rules; verify the count before submitting.
 
 ## Notes
 
-- Review source authorization, capability parameters, publication scope, billing, and rate limits as one decision set.
-- Review comments should identify an actionable missing item without including private data or real credentials.
-- Approval does not replace publication and representative-call validation.
+- Before approving, confirm the model source, visibility, version, billing mode, and token limits; do not rely on the name alone.
+- Public visibility expands the audience. Confirm the authorization scope before approving.
+- Batch review processes several records at once. Check the selected items before submitting.
+- Do not include real credentials, complete request headers, or sensitive customer data in review comments or screenshots.
 
 ## Next Steps
 
-1. Check the model publication page and confirm the approved version and visibility scope.
-2. Validate that the Model Consumer can discover the model and use the expected protocol.
-3. Track call logs, billing results, and user feedback after publication.
+1. Verify upstream endpoints, protocol setups, and connectivity in Model Sources.
+2. Verify capability tags, token limits, and supported native protocols in Meta Models.
+3. Check the published status and tenant visibility in Model Publishing after approval.
+
+Related pages:
+- [Model Sources](../../settings/model-source/)
+- [Meta Models](../../settings/meta-models/)
+- [Model Templates](../../settings/model-templates/)

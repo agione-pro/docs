@@ -41,7 +41,9 @@ next: true
 
 1. 进入[账务概览](../../../usermanual/billing/user/billing/overview/)，先确认可用额度、账期和预警信息，再查看**充值订单**，核对发生时间、支付状态和到账额度。
 
-![从账务概览确认账户状态](../../../usermanual/billing/user/billing/overview/images/overview-list.png)
+![定位账户概览及相关账务页面](../../../usermanual/billing/user/billing/overview/images/account-navigation.png)
+
+图示仅展示导航入口；实际账户余额和预警需进入账户概览核对。
 
 2. 进入[交易流水](../../../usermanual/billing/user/billing/transactions/)，按相同账号和时间范围解释余额增加、扣减或调整。
 
@@ -58,11 +60,13 @@ next: true
 5. 对模型调用，对照调用日志、模型用量和模型收益。
 6. 进入[月度账单](../../../usermanual/billing/user/billing/monthly-bill/)，在同一账期核对币种、计费单位、价格、交易和汇总扣减。
 
-![核对月度账单汇总](../../../usermanual/billing/user/billing/monthly-bill/images/monthly-bill-list.png)
+![月度账单无统计结果区域](../../../usermanual/billing/user/billing/monthly-bill/images/monthly-bill-empty.png)
+
+图示为所选历史账期的无统计结果区域，不是零值汇总，也不展示完整消费趋势。
 
 7. 需要运营方协助时，提供租户、账期、对象编号和脱敏证据；运营侧按[账期对账与结算](../billing-cycle-reconciliation-settlement/)继续核对。
 
-运营方可继续查看：[计量明细](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)和[月度用量](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)。
+运营方可继续查看：[月度用量](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)及其 `计量明细` 页签。
 
 ## 完成检查
 

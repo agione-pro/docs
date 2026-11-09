@@ -16,7 +16,7 @@
 ## 功能入口
 
 - **角色**：运营管理员
-- **菜单**：AI基础设施 > On-Prem > 配额&计量 > 租户配额
+- **菜单**：On-Prem > 配额&计量 > 租户配额
 - **路由**：`/powerone/quota-metric/tenant`
 
 ## 操作步骤
@@ -57,4 +57,4 @@
 
 ## 操作手册
 
-运营侧核对可继续查看[计量明细](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/)和[月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)。
+运营侧核对可继续查看[月度用量](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)及其 `计量明细` 页签。

@@ -1,11 +1,16 @@
 # File Storage
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation Path | AI Infra(On-Prem) > Storage > File Storage |
+| Navigation Path | On-Prem > Storage > File Storage |
 | Page Route | `/powerone/storage-service/file` |
 | Managed Object | Configuration, status, and relationships on File Storage |
 
@@ -13,8 +18,7 @@
 
 File storage is like a team shared folder, suitable for multiple instances or jobs to read the same data, model files, or output directories. It emphasizes directory and file semantics, which are different from the independent disk semantics of block storage.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Shared Directory | File system directory accessible by multiple instances or jobs. |

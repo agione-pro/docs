@@ -86,14 +86,14 @@ The current installer supports only the Alibaba Cloud and Huawei Cloud managed-m
 
 ### 4.1 Resource Requirements
 
-| Item | Minimum Requirement |
-|---|---|
-| Number of nodes | 1 |
-| CPU | >= 8 cores |
-| Memory | >= 24 GB |
-| Disk | >= 200 GB |
-| Network | Internet access required |
-| Operating system | Linux (Ubuntu 22.04 / CentOS 7+ recommended) |
+| Item | Minimum Requirement                         |
+|---|---------------------------------------------|
+| Number of nodes | 1                                           |
+| CPU | >= 16 cores                                 |
+| Memory | >= 24 GB                                    |
+| Disk | >= 200 GB                                   |
+| Network | Internet access required                    |
+| Operating system | Linux (Ubuntu 22.04 recommended) |
 
 ### 4.2 Architecture Diagram
 
@@ -419,7 +419,7 @@ chmod +x ./agione
 
 | Deployment Mode | Minimum Nodes | Minimum Per-Node Specification | Total Resource Reference |
 |---|---|--------------------------------|---|
-| PoC All in One | 1 | 8C / 24G / 200G                | 8C / 24G / 200G |
+| PoC All in One | 1 | 16C / 24G / 200G               | 16C / 24G / 200G |
 | Public Cloud (business nodes) | 2 | 8C / 16G / 200G                | 16C / 32G / 1 TB+ |
 | Private Cloud IDC | 4 | 8C / 16G / 200G                | 32C / 64G / 800G+ |
 

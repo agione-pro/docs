@@ -1,287 +1,202 @@
 # My Models
 
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Provider |
-| Navigation Path | Model Services > Studio > My Models |
-| Page Route | `/modelone/model/my/overview` |
-| Managed Objects | Published models, aggregate models, publishing entry, and aggregate-model creation entry |
+| Applies to | Model Provider |
+| Navigation | **Model Services** > **Studio** > **My Models** |
+| Routes | Overview `/modelone/model/my/overview`; publish form `/modelone/model/create?isPublic=0` |
+| Managed objects | Published models, aggregate models, deployment entries, and publish configuration |
 
 #### Beginner Explanation
 
-My Models is the Model Provider workspace. My Published manages directly published models, My Aggregate manages models composed from multiple sources, and the overview entries start new publishing or aggregation flows.
+My Models is the workspace for model providers. `Overview` explains deployment, BYOK integration, and aggregation; `My Published` manages directly published models; `My Aggregate` manages models combined behind one Model ID.
 
-#### Terminology
+#### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| My Published | Models published directly by the current Model Provider. |
-| My Aggregate | Models composed from multiple listed models by a routing strategy. |
-| Private Region | A scope visible and callable only to members of the publishing tenant. |
-| Public Region | A scope that can provide models to platform tenants or selected tenants. |
-
-#### Recommended Operation Order
-
-For a first publication, open the publishing entry, confirm the region, and complete basic information, billing, and rate limits. Verify the status in My Published afterward. Before creating an aggregate model, confirm that all candidate models are listed.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| Preparing to publish | Confirm Private or Public Region | Skip visibility review |
-| Preparing an aggregate model | Verify candidate model status | Select models whose status does not permit aggregation |
-| No record after publication | Check tab, status, and filters | Submit publication repeatedly |
-| Preparing to change a listed model | Assess customer and call impact | Delist or overwrite key settings directly |
+| Meta Model | The foundational capability and protocol standard used as the baseline for publishing upstream models. |
+| Endpoint | The physical network access point under a model source, bound to a request URL and credential. |
+| Access Mode | Access control mode, including globally available (`Global`) and tenant-authorized (`Authorized`). |
+| Aggregate Model | A service architecture combining multiple underlying models behind a unified Model ID via routing policies. |
 
 ## Prerequisites
 
-1. The current account has access to the `My Models` page. A Model Provider sees `Start`. A Model Consumer sees `Contact Us` for protected entries.
-2. Before publishing a model, the meta model, model source, request URL, authentication information, protocol, and billing plan are prepared.
-3. Before creating an aggregate model, at least two compatible published models are listed for aggregation.
-4. Before publishing, saving, creating, delisting, or deleting, confirm the impact scope, customer visibility, billing changes, and recovery plan.
-
-::: warning High-Risk Operation Boundary
-`Publish`, `Submit`, `Save`, `Create`, `Delist`, and `Delete`, and changes to billing, free quota, visibility, call configuration, or routing strategy affect model services, customer calls, and billing. Verify affected objects, approval requirements, and the recovery plan before execution.
-:::
+1. Your account has access to **Studio > My Models**.
+2. The meta model, model source, Endpoint, request URL, and credential are confirmed.
+3. Billing, price, rate limits, and publication scope are confirmed before publishing.
 
 ## Page Description
 
-The page combines two record lists with two multi-step creation flows. Select the tab or entry according to the task:
+The page has three tabs: `Overview`, `My Published`, and `My Aggregate`.
 
-| Tab / Entry | Use It To | Completion Signal |
-| --- | --- | --- |
-| Overview | Start model publishing or aggregate-model creation. | The intended publishing-destination dialog opens. |
-| My Published | Locate directly published models and review their region, status, and actions. | The target record and current publishing state are visible. |
-| My Aggregate | Locate aggregate models and review their region, status, and actions. | The target aggregate model and current state are visible. |
-| Publish Model | Complete destination, basic information, billing, and rate-limit stages. | The submission result is shown and the record can be checked in My Published. |
-| Create Aggregate Model | Complete destination, candidate-model, routing, and billing stages. | The submission result is shown and the record can be checked in My Aggregate. |
+`Overview` is organized into three publication paths:
 
-Page screenshots:
+- `01 AGIOne Deployed`: explains on-prem nodes, cloud nodes, model service, and deploy-to-list. Two cards are provided: `On-Prem` and `On-Cloud`. Both currently show `Environment not configured.` and provide **Contact Us**.
+- `02 BYOK (Bring Your Own Key)`: explains connecting an existing endpoint and provides `Private Model` and `Public Model` publish entries.
+- `03 Multiple Models. One Model ID.`: explains aggregate routing and provides `Private Model` and `Public Model` aggregate entries.
 
-![My Published list](./images/manual-my-published-public.png)
+![My Models overview](./images/my-models-overview.png)
 
-The "My Published" list displays model instances directly published by the current tenant, along with publication region, operational status, and management actions.
+The figure shows three tabs sit at the top; the deployment area shows On-Prem/On-Cloud (environment not configured), and the BYOK and aggregate areas provide private and public entries.
+
+| Area | Description |
+| --- | --- |
+| Top Tabs | Switches among the `Overview`, `My Published`, and `My Aggregate` views. |
+| 01 AGIOne Deployed | Displays on-prem and on-cloud deployment cards with configuration status and contact entry. |
+| 02 BYOK | Provides publish entries for onboarding existing physical endpoints as private or public models. |
+| 03 Aggregate Model | Provides configuration entries for aggregating multiple published models under a single Model ID. |
+| My Published List | Manages directly published model instances, supporting search, detail view, and version editing. |
+| My Aggregate List | Manages aggregated routing instances, supporting type filtering, search, and topology expansion. |
+
+### My Published
+
+`My Published` lists directly published models. Columns are `Model name`, `Model type`, `Billing mode`, `Billing rules`, `Status`, `Effective version`, `Pending version`, `Updated at`, and `Actions`. The toolbar provides **Publish Model**, search, and **Reset**; row actions provide **View details** and **Edit**.
+
+### My Aggregate
+
+`My Aggregate` uses the same columns and provides **Create Aggregate Model**, `Public Model` / `Private Model` filters, an `All Model type` filter, search, **Reset**, and **Expand**.
 
 ## Main Operations
 
-### View Directly Published Models
+### Publish a model
 
-1. Go to `Model Services > Studio > My Models`, which defaults to the `My Published` tab.
-2. Filter published model records by model name, publication region (Private/Public), or status.
-3. Verify the model name, version, source, billing mode, and publication status in the list.
-4. In the action column, perform management actions such as edit, disable, publish/unpublish, or delete.
+1. Open **"My Models"** and switch to `My Published`, or start from the `02 BYOK` area on `Overview`.
+2. Click **"Publish Model"** and choose `Private Model` or `Public Model` in the `Select publish type` dialog.
+3. Click **"Publish as Private Model"** or **"Publish as Public Model"** to open the three-step form.
+4. In `Step 1 Basic Information`, select the meta model, model source, and Endpoint, and fill in the request URL, credential, upstream model name, and input/output modalities.
+5. Optionally enable `Function/Tool Support` and `Thinking Mode`, and set the maximum context, input, and output tokens.
+6. Select at least one protocol under `Official Native Protocol & Default Advanced Parameters`, and test connectivity first.
+7. Fill in the custom tag (up to 20 characters), review the model name preview, and choose the publication method and `Access Mode`.
+8. Click **"Next"** to open `Step 2 Billing Configuration`, then complete `Step 3 Rate Limit Configuration` and submit.
 
-### View Aggregate Models
+![Publish model basic information](./images/publish-basic.png)
 
-1. Click the **"My Aggregate"** tab at the top of the My Models page.
-2. The list displays all configured aggregate models, including model name, routing mode, candidate models, and current status.
-3. Verify candidate model health status, traffic split weights, and active routing policies.
-4. Switching tabs only changes the viewed record type; use the action column to edit or delete aggregate models.
+The figure shows the wizard shows `1 Basic Information`, `2 Billing Configuration`, and `3 Rate Limit Configuration`. The visible area contains `Meta Model`, `Model Source`, `Endpoint`, `Request URL`, `Credential`, `Upstream model name`, input/output modalities, advanced capabilities, token limits, and protocol selection; `Access Mode` sits lower in the basic-information area.
 
-![View My Aggregate](./images/manual-my-aggregate-public.png)
+### Create an aggregate model
 
-The "My Aggregate" list displays configured aggregate models, candidate model groups, routing policies, and current availability status.
+1. Switch to `My Aggregate` and click **"Create Aggregate Model"**.
+2. Choose `Private Model` or `Public Model`.
+3. Select published models, then configure routing, billing, and rate limits.
+4. After submission, verify the record and status in `My Aggregate`.
 
-### Publish a Model
+### View and edit a published model
 
-Complete the flow in four checkpoints: publishing destination, basic information, billing configuration, and rate-limit configuration.
-
-1. Open the model publishing entry from My Models Overview.
-2. Select Private Region or Public Region and confirm the intended visibility.
-3. Complete basic information, model source, billing, and rate limits. Use `<BASE_URL>`, `<ENDPOINT_PATH>`, and `<PERSONAL_KEY>` for example URLs and credentials.
-4. Before submission, verify price, rate limits, authorization scope, and model status. Check the result in **"My Published"** afterward.
-
-![Open the model publishing entry](./images/manual-publish-model-entry-public.png)
-
-Select the "Publish Model" action on the overview card to launch the publishing wizard.
-
-![Choose where to publish](./images/my-published-choose-where-to-publish-add-public.png)
-
-Select whether to publish to the tenant's Private Region or the platform's Public Region based on intended audience.
-
-![Enter publishing details](./images/my-published-basic-information-add-public.png)
-
-Configure the meta-model, model source, service endpoint URL, and upstream access credentials.
-
-![Configure model billing](./images/my-published-billing-configuration-add-public.png)
-
-Set the model billing method, input/output unit prices, and free quota policies.
-
-![Configure model rate limits](./images/my-published-rate-limit-configuration-add-public.png)
-
-Configure request frequency and concurrency rate-limiting thresholds at the organization, tenant, or global level.
-
-### Create an Aggregate Model
-
-Complete the flow in four checkpoints: publishing destination, candidate-model and basic information, routing strategy, and billing configuration.
-
-1. Open the aggregate-model entry from My Models Overview.
-2. Select Private Region or Public Region and confirm the target customer scope.
-3. Enter basic information, select listed candidate models, and configure routing, billing, and rate limits.
-4. Before submission, verify candidate-model status and strategy. Check the result in **"My Aggregate"** afterward.
-
-![Open the aggregate-model entry](./images/manual-create-aggregate-entry-public.png)
-
-Click "Create Aggregate Model" on the overview card to enter the aggregate model wizard.
-
-![Choose aggregate-model region](./images/my-aggregate-choose-where-to-publish-add-public.png)
-
-Select the publication region and authorized customer scope for the aggregate model.
-
-![Enter aggregate-model details](./images/my-aggregate-basic-information-add-public.png)
-
-Set the aggregate model identifier, add candidate models, and configure traffic routing rules.
-
-![Configure aggregate-model billing](./images/my-aggregate-billing-configuration-add-public.png)
-
-Configure the unified external calling price and billing method for the aggregate model.
+1. Use search or **"Reset"** in `My Published` to locate a model.
+2. Click **"View details"** to check billing rules, versions, and status.
+3. Click **"Edit"** to change the configuration.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Publishing destination | Yes | Card selection | `Private` / `Public` | Determines the catalog and call scope after publishing. |
-| Meta Model | Required for publishing | Dropdown | `Example Meta Model` | Defines model capability, protocol, and base type. |
-| Model Source | Required for publishing | Dropdown | `Example Source` | Model request source or provider connection source. |
-| Request URL | Required for publishing | Input | `<BASE_URL><ENDPOINT_PATH>` | Model service access URL. Do not write real internal URLs in the document. |
-| API Key | Conditionally required | Secret input | `Bearer <API_KEY>` | Authenticates model source requests and is not shown after saving. |
-| Model Source ID | Conditionally required | Input | `example-model-id` | Model identifier sent to the upstream provider. |
-| Model Type | Yes | Radio / tag | `Text` | Model capability type, such as Text, Image, Speech, Video, Embedding, or Reranking. |
-| Protocol | Yes | Toggle / tag | `OpenAI-ChatCompletions` | Call protocol supported by the model. |
-| Access Mode | Yes | Radio card | `Global` / `Authorized` | Controls whether calls require authorization. |
-| Publication method | Yes | Radio | `Immediate Release` / `Timed Release` | Controls when publishing takes effect. |
-| Billing type | Yes | Selector | `Token` | Sets the model call billing method. |
-| Price Entry | No | Selector / toggle | `Input / Output` | Sets the pricing configuration entry or how pricing takes effect. |
-| Input Price | Conditionally required | Number | `0.1 Credits` | Sets the billing price for input Tokens, characters, or requests. |
-| Output Price | Conditionally required | Number | `0.2 Credits` | Sets the billing price for output Tokens, characters, or results. |
-| Cache Price | No | Number | `0.05 Credits` | Sets the price for cache hits or cache-related calls. |
-| Web Search | No | Toggle / selector | `On` / `Off` | Sets whether the model supports Web Search and related billing capabilities. |
-| Free Quota | No | Number | `100 Credits` | Sets the quota that users can use for free. |
-| Aggregate Model | Required for aggregation | Model selection | `Example Source:Example Model` | Published model included in the aggregate model. |
-| Enable | No | Toggle | `On` | Includes or excludes the model from routing. |
-| Minimum Success Rate | Yes | Number input | `95` | Sets the minimum success-rate requirement for the model row. |
-| Maximum Concurrency | Yes | Number input | `10` | Sets the maximum concurrent calls for the model row. |
-| Context Length | No | Number input | `8,192 Tokens` | Shows or sets the context-length boundary for the model row. |
-| Price Weight | Yes | Number input | `1-100` | Sets a unitless routing weight. It is not a billing amount. |
-| Custom or Suggested Tag | No | Text / tag | `#Low Latency` | Describes an advantage and updates the model-name preview. |
-| Model Name Preview | System generated | Preview | `Example Aggregate Model` | Previews the aggregate model name in list and provider-card layouts. |
-| Route Strategy | Required for aggregation | Radio | `Price First` | Selects one of the five routing strategies shown on the page. |
-| Status | No | Tag | `Published` / `Delisted` | Current publishing status of the model. |
-| Actions | No | Row buttons | `Authorize` / `Edit` / `Delist` / `Delete` | View or manage a model record. |
+| Publish type | Yes | Card | `Private Model` / `Public Model` | Determines visibility and call scope |
+| Meta Model | Yes | Selector | `GPT-6.1 Sol` | Capability and protocol definition |
+| Model Source | Yes | Selector | `AGIOne` | Upstream service source |
+| Endpoint | Yes | Selector | `China` | Access point under the model source |
+| Request URL | Yes | Text | `<BASE_URL><ENDPOINT_PATH>` | Upstream call address |
+| Credential | Yes | Selector | `example-credential` | Upstream credential; **New Credential** creates one |
+| Upstream model name | Yes | Text | `openai/gpt-6.1-sol` | Model ID sent upstream |
+| Input/Output Modalities | Yes | Checkbox | `Text`, `Image` | Supported input and output types |
+| Function/Tool Support | No | Toggle | Enabled | Enables tool calling |
+| Thinking Mode | No | Toggle | Enabled | Enables advanced reasoning |
+| Maximum Context / Input / Output Tokens | No | Number | `1050K` | Token limits |
+| Official Native Protocol | Yes | Multi-select | `OpenAI-ChatCompletions` | At least one protocol is required |
+| Custom Tag | No | Text, max 20 chars | `#High Speed` | Differentiates models under the same meta model |
+| Publication method | Yes | Single select | `Immediate Release` | Controls when the model goes live |
+| Access Mode | Yes | Single select | `Global` / `Authorized` | Controls tenant authorization |
+| Billing type | Yes | Selector | `Token` | Billing method |
+| Pricing Dimension | Yes | Selector | `Input / Output` | Price matrix dimension |
+| Enable Rate Limiting | Yes | Toggle | `Enabled` / `Not enabled` | Controls rate-limit configuration |
+| Model name | System | Text | `GPT-6.1 Sol` | Display name in lists and provider cards |
+| Model type | System | Tag | `Text`, `Multimodal` | Model modality |
+| Billing mode | System | Tag | `Token`, `Per second` | Current billing method |
+| Status | System | Tag | `Listed`, `Delisting scheduled`, `Delisted` | Current model status |
+| Effective version / Pending version | System | Version tag | `Rev.1` | Current and pending revisions |
 
 ## Pitfalls
 
-- My Models is a publishing workspace. A record on this page does not prove that Model Consumers can select or invoke the model. Check its review and deployment status.
-- Before changing model source, template, Endpoint, or billing configuration, confirm whether existing Model Consumers are affected.
-- Review materials must not expose real keys, internal addresses, customer data, or complete test requests.
+- The first step requires a protocol connectivity test. Until it passes, the page shows `Please test the protocol connectivity first`.
+- `Access Mode` `Global` allows all tenants and users without extra authorization; `Authorized` keeps the model visible in the marketplace but requires tenant-level authorization.
+- `My Published` shows both `Effective version` and `Pending version`; rows with `Delisting scheduled` remain in the list.
+- The custom tag is limited to 20 characters and affects display only, not model capability.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page opens | The page shows the `Overview`, `My Published`, and `My Aggregate` tabs. | Check account permissions, navigation path, and page loading status. |
-| Model list loads | `My Published` or `My Aggregate` shows model records, status, version, and operation entries. | Click **"Search"** or `Reset` and retry. Check permissions and filters if needed. |
-| Publishing destination | `Publish Model` opens the destination dialog and allows the intended Private or Public Region to be selected. | Check publishing permission and whether the required region is available. |
-| Publish flow | The Basic Information, Billing Configuration, and Rate Limit Configuration stages are visible and retain the intended values. | Return to the previous stage, verify required fields, and reselect the publishing destination when needed. |
-| Published result | The page shows the submission result and My Published displays the expected record and status. | Do not submit repeatedly; check the page message, active tab, filters, and review status. |
-| Aggregate destination | `Create Aggregate Model` opens the destination dialog and shows compatible candidate models after the region is selected. | Confirm that compatible published models are listed and visible in the selected region. |
-| Aggregate flow | Model Selection, row controls, tags, name preview, Route Strategy, Access Mode, and Billing Configuration are visible and retain the intended values. | Check whether selected models meet the same meta model requirement and return to the relevant stage. |
-| Aggregate result | The page shows the submission result and My Aggregate displays the expected record and status. | Do not submit repeatedly; check candidate-model status, the active tab, filters, and the page message. |
+| Publish record | The target model appears in `My Published` with type, billing mode, status, and update time. | If missing, verify that search filters are cleared, or check if the model is pending approval. |
+| Aggregate record | The aggregate model appears in `My Aggregate` with normal status. | Refresh the page; if not generated, check child model dependencies and routing policies. |
+| Version status | `Effective version` and `Pending version` show revision numbers (e.g., Rev.1) and review badges. | If versions do not update, confirm whether the edit submission succeeded or is pending review. |
+| Wizard progress | The form advances smoothly from Step 1 Basic Information to Step 2 Billing and Step 3 Rate Limits. | If stuck on Step 1, verify protocol connectivity testing passed and all required fields are filled. |
 
 ## FAQ
 
-#### Target Model Is Missing from the List
+#### The publish form cannot continue
 
 **Symptom:**
 
-A published or aggregate model does not appear.
+Clicking **Next** in `Step 1 Basic Information` does not advance to billing configuration.
 
 **Possible Causes:**
 
-- The active tab or filters are incorrect.
-- Submission failed or status is still updating.
+Protocol connectivity test has not been executed or failed, required fields (Meta Model, Model Source, Endpoint, Request URL, Credential) are missing, or upstream network connectivity is unreachable.
 
 **Resolution:**
 
-1. Open the relevant tab and reset filters.
-2. Verify submission result and model status.
+1. Check that Meta Model, Model Source, Endpoint, Request URL, Credential, and upstream model name are all filled in.
+2. Ensure at least one native protocol is selected and test connectivity until it passes.
 
-#### Publishing Entry Cannot Continue
+#### The published model is missing
 
 **Symptom:**
 
-The publishing flow does not proceed.
+The published model cannot be found in the `My Published` list after submission.
 
 **Possible Causes:**
 
-- The account lacks publishing permission.
-- The required region or prerequisite configuration is missing.
+Previous search or filter criteria are active, the model is still in review/pending status, or the submission failed.
 
 **Resolution:**
 
-1. Verify that the account has Model Provider permissions.
-2. Confirm region, model source, and prerequisites.
+1. Confirm you are on the `My Published` tab and click **"Reset"** to clear search conditions.
+2. Check the publish approval ticket to see whether it is under review or rejected.
 
-#### Public Publication Is Blocked
+#### The deployment cards cannot be used
 
 **Symptom:**
 
-Publication cannot continue after Public Region is selected.
+`On-Prem` or `On-Cloud` displays `Environment not configured.` and direct deployment cannot be triggered.
 
 **Possible Causes:**
 
-- Identity or authorization conditions are unmet.
-- Model information or review conditions are incomplete.
+The tenant has not provisioned computing node environments or bound underlying compute clusters.
 
 **Resolution:**
 
-1. Verify identity and authorization scope.
-2. Complete model information and submit again.
-
-#### No Candidate Model Is Listed
-
-**Symptom:**
-
-No candidate can be selected for an aggregate model.
-
-**Possible Causes:**
-
-- Candidates are not listed or visible.
-- Model type or region does not match.
-
-**Resolution:**
-
-1. Verify candidate status and visibility.
-2. Align model type and publishing region.
-
-#### Published Model Is Not Visible
-
-**Symptom:**
-
-My Published has a record but Models does not.
-
-**Possible Causes:**
-
-- The model is under review or not listed.
-- Visibility does not include the current account.
-
-**Resolution:**
-
-1. Verify publishing status and region.
-2. Validate visibility with an account in the target scope.
+Click **"Contact Us"** on the card to submit a computing resource application, and proceed after the administrator configures the environment.
 
 ## Notes
 
-- Do not write real accounts, passwords, access parameters, API Keys, tokens, AK/SK, or private keys in the document.
-- Before screenshots or export, confirm that the page does not contain real secrets, unredacted request headers, internal Endpoints, or sensitive business data.
-- Publishing models and creating aggregate models affect model visibility, customer calls, and billing. Complete an impact assessment before submission.
-- Pricing, billing type, Web Search, and free quota affect real call costs, billing statistics, and user quota. The document only describes the configuration flow and does not record real pricing strategies.
+- Publishing and editing affect customer calls and billing; confirm the impact first.
+- Credentials and request URLs are sensitive; never write them into documents, screenshots, or external chat tools.
+- Price, billing method, and rate limits directly affect real call cost; verify them before submission.
 
 ## Next Steps
 
-1. After publishing, view model status, review records, and effective version.
-2. Go to **"Models"** or **"Playground"** to verify model name, capability, pricing, and visibility.
-3. Track call quality and billing results through call logs, usage details, and model earnings.
-4. After an aggregate model is live, continue monitoring success rate, latency, cost, and routing hits.
+1. Verify call revenue and billing reconciliation after publication in [Model Earnings](../../usage-earnings/model-earnings/).
+2. Monitor external customer call traffic and health in [Customer Calls](../../provider-calls/overview/).
+3. Maintain upstream credentials and Endpoint mappings in [My Credentials](../../studio/credentials/).
+
+Related pages:
+- [Model Earnings](../../usage-earnings/model-earnings/)
+- [Customer Calls](../../provider-calls/overview/)
+- [My Credentials](../../studio/credentials/)

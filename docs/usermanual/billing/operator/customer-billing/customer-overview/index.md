@@ -1,8 +1,8 @@
 # Customer Overview
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-29
+Version: v2.1
+Updated: 2026-11-05
 :::
 
 ## Feature Overview
@@ -12,244 +12,192 @@ Updated: 2026-07-29
 | Applicable Role | Operations administrator |
 | Navigation path | Billing > Customer Billing > Customer Overview |
 | Page route | `/billing/customers/overview` |
-| Managed objects | Customer records, customer tags, account balances, consumption, and revenue information |
+| Managed objects | Customer identities, tags, consumption accounts, and revenue accounts |
 
-`Customer Overview` is used to view EU and Provider customer records, tags, account balances, consumption, and revenue-related information. Operators can use this page to locate customers, verify customer identity, and continue with downstream billing checks.
-
+`Customer Overview` locates customers by business identity, keyword, and tags, displays balances and consumption, and provides Details, Grant Credit, and Recall Credit entries.
 
 #### Beginner Explanation
 
-Customer Overview works like an operator-side CRM list for billing. It brings customer tenants, administrators, tags, balances, consumption, and Provider-related revenue information into one place.
+Customer Overview works like a customer billing index: End User consumption appears in a table, while Provider cards separate consumption and revenue accounts.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling tip |
-| --- | --- | --- |
-| Customer Account | An account object that records customer tenant, administrator, and balance information. | Confirm customer identity before troubleshooting. |
-| Business Identity | The customer business category used for billing and customer overview filtering. | Keep the selected identity consistent when comparing records. |
-| EU | End User customer identity. | Use it to review consumption and balance information. |
-| Provider | Provider customer identity. | Use it to review Provider-related revenue or consumption information. |
-| Tags | Labels used to classify customers. | Confirm the impact scope before adding or changing tags. |
+| Term | Description |
+| --- | --- |
+| End User | The end-user business identity, with a customer consumption table. |
+| Provider | The service-provider business identity, with consumption and revenue account cards. |
+| Credits | The unit used to display balances, consumption, and revenue. |
+| Built-in tags | Tags provided and locked by the platform; Provider and Operator share the same set. |
+| Custom tags | Tags private to the current Operator. |
 
 ## Prerequisites
 
-1. The current account can access `Customer Billing > Customer Overview`.
-2. At least one customer tenant has been created before the list can show data.
-3. The browser is logged in with an operator account and the session has not expired.
+1. Sign in with an operator account that can access `Customer Billing > Customer Overview`.
+2. Confirm the business identity before querying; confirm the target customer and business reason before granting or recalling credit.
 
 ## Page Description
 
-The top of the page shows the update time for monthly consumption and provides a refresh button. `Manage Tags` at the top right opens the tag management dialog.
-
-The summary area contains four KPI cards: `Customer base`, `Credits pool`, `This month spend`, and `Balance risk`. These cards provide a quick cross-customer signal and do not replace row-level verification.
-
-The filter area contains:
-
-- `Business Identity`: Select a customer type, usually `EU` or `Provider`.
-- `Keyword`: Search by tenant `Name`, tenant ID, administrator account, or other visible customer identity fields.
-- `Tags`: Select one or more built-in or custom tags. A customer that matches any selected tag is included.
-
-Multiple selected tags use OR matching: a customer matching any selected tag is included. Tenant, administrator, and Tenant ID values shown in the list can be copied for follow-up checks; copy only sanitized values into tickets or documentation.
-
-The customer table contains:
-
-| Field | Description |
+| Area | Description |
 | --- | --- |
-| Tenant Information | Customer tenant name and Tenant ID; visible identity values support copy interaction. |
-| Administrator Information | Customer administrator account and email address; visible identity values support copy interaction. |
+| Page header | Displays the `MTD spend updated:` time and provides `Refresh` and `Manage Tags`. |
+| Filters | `Business identity` uses an `End User` / `Provider` segmented control. The keyword placeholder is `Enter a keyword`. `Filter by tag` supports multiple selections; matching any selected tag includes the customer (OR). |
+| Summary | Four cards cover customer scale, funds, consumption, and balance risk. Read them separately from the customer results below. |
+| End User results | A table displays customer identities, tags, balances, and consumption. |
+| Provider results | Customer cards display consumption accounts, revenue accounts, and creation time rather than using the End User table layout. |
+
+The four summary card names and visible metrics are listed below. An empty keyword-query table does not establish that summary values are 0.
+
+| Area | Description |
+| --- | --- |
+| Total customer base | Total customers, End User / Provider counts, and customers active in consumption this month. |
+| Credits pool | Credits funds, last month spend, and estimated days supported at this month's daily average. |
+| This month spend | This month's consumption, daily average, and comparison with last month's daily average. |
+| Balance risk | Count of customers below the 3-day runway and estimated days remaining. |
+
+The End User table uses the following column names.
+
+| Area | Description |
+| --- | --- |
+| Tenant | Customer tenant identity. |
+| Admin | Customer administrator identity. |
 | Tags | Tags applied to the customer. |
-| Available Balance | Credits remaining in the customer account. |
-| Previous-Month Spending | Credits consumed in the previous calendar month. |
-| Current-Month Spending | Credits consumed in the current calendar month. |
-| Account Opening Time | Time when the customer tenant was created. |
-| Actions | Row actions, including `Details`, `Adjust`, and an overflow menu when permitted. |
+| Available balance | Credits currently available to the customer. |
+| Lifetime spend | Cumulative Credits consumed by the customer. |
+| Last month spend | Credits consumed by the customer last month. |
+| This month spend | Credits consumed by the customer this month. |
+| Created at | Customer account creation time. |
+| Actions | Entries include `Details`, `Grant Credit`, and `Recall Credit`; an `Actions` entry is also available. |
 
-The tenant `Name` is the customer display identity. Confirm it before you open a row action. The following screenshot shows the current list with masked customer data.
+![End User keyword-query result table](./images/customer-overview-table.png)
 
-![Customer Overview](./images/customer-overview-list.png)
+The figure shows an empty End User keyword-query result table with tenant, administrator, tags, balance, consumption, creation time, and action columns; it does not include summary cards or Provider cards.
+
+Provider cards separate `Consumption Account` and `Revenue Account`. The former contains `Available balance`, `This month spend`, and `Last month spend`; the latter contains `Revenue balance`, `Current pending revenue`, and `Last month revenue`. Cards also display `Created at` and provide `Details`, `Grant Credit`, `Recall Credit`, and `Actions` entries.
 
 ## Main Operations
 
-Use the following operations to view EU and Provider customer overview records and manage tags. Complete view-only checks before any export, tag change, save, or submit action.
-
-### View Customer Overview - EU
+### Query End User Customers
 
 1. Go to `Billing > Customer Billing > Customer Overview`.
-2. Select **"EU"** in `Business Identity`.
-3. Enter tenant `Name`, customer ID, administrator email, tags, or other filters as needed.
-4. Click **"Search"** and review the EU customer list.
-5. Verify tenant `Name`, administrator, business identity, tags, account balance, consumption, and last update time.
+2. Select `End User` in the `Business identity` segmented control.
+3. Enter a query in `Enter a keyword` and select tags as needed; multiple tags use OR matching.
+4. Review the result table and verify the target customer's tenant, administrator, tags, available balance, and consumption fields.
+5. To view customer information, verify the target customer first, then use that row's `Details` entry.
 
-### View Customer Overview - Provider
+### View Provider Customers
 
-1. Go to `Billing > Customer Billing > Customer Overview`.
-2. Select **"Provider"** in `Business Identity`.
-3. Enter tenant `Name`, customer ID, administrator email, tags, or other filters as needed.
-4. Click **"Search"** and review the Provider customer list.
-5. Verify tenant `Name`, administrator, business identity, tags, account balance, revenue or consumption-related information, and last update time.
+1. Select `Provider` in the `Business identity` segmented control.
+2. Enter a keyword and select tags as needed to locate the target customer card.
+3. Check `Available balance`, `This month spend`, and `Last month spend` under `Consumption Account`.
+4. Separately check `Revenue balance`, `Current pending revenue`, and `Last month revenue` under `Revenue Account`, along with the card's `Created at` value.
 
-### Manage Tags
+### Review Tag Management
 
-1. Click **"Manage Tags"** at the top of the page.
-2. Review the built-in tags. These tags are locked by the platform and cannot be edited.
-3. In the custom tag area, enter a new tag name and click **"Create Tag"**.
-4. Click **"Close"** to exit the dialog.
+1. Click `Manage Tags` to open `Tag Management`.
+2. Review the `PLATFORM BUILT-IN` tags: `VIP`, `High Potential`, `Trial`, `Follow-up`, and `Churn Risk`, each marked `Built-in · Locked`.
+3. Review `CUSTOM TAGS`. The illustrated state reads `No custom tags yet. Create one below.` The area provides `New tag name`, color choices, and a `Create tag` entry; names are limited to 16 characters.
+4. Click `Close` or the top-right close button to exit the dialog.
 
-Before managing tags, verify the target customer scope and account permission. Do not record real customer tagging policies or internal operation notes in manuals, tickets, or comments.
+![Tag Management dialog](./images/customer-tags.png)
 
-### Review an Account Adjustment
+The figure shows the Tag Management dialog with five locked built-in tags, an empty custom-tag area, and the new tag name input, color choices, Create tag, and Close entries.
 
-1. Locate the target customer by tenant `Name`.
-2. Open the row actions and select **"Adjust Limit"**.
-3. Confirm the target tenant `Name`, customer account, and account type.
-4. Select the limit mode and enter a non-empty `Adjust Limit` value.
-5. Review the prefilled `Remarks`. Replace it with the actual business reason when necessary.
-6. Keep `Remarks` non-empty. An empty reason prevents submission.
-7. For page validation only, click **"Cancel"**. Opening the dialog does not complete an adjustment.
+### Grant Credit
 
-![Adjust Limit dialog](./images/customer-adjustment-dialog.png)
+1. Locate and verify the target customer, then click `Grant Credit`.
+2. Check that the prefilled, read-only customer identity matches the target customer.
+3. Fill in `Grant Amount` and `Reason`; both have required markers.
+4. Recheck the customer, amount, and reason; click `Confirm` when you intend to submit.
+5. To abandon the operation, click `Cancel` or the top-right close button.
+
+### Recall Credit
+
+1. Locate and verify the target customer, then click `Recall Credit`.
+2. Check that the prefilled, read-only customer identity matches the target customer.
+3. Fill in `Recall Amount` and `Reason`; both have required markers. The form also provides a `Recall all` button.
+4. Recheck the customer, amount, and reason; click `Confirm` when you intend to submit.
+5. To abandon the operation, click `Cancel` or the top-right close button.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Business Identity | No | Enum | `EU` | Filters customers by business identity. |
-| EU | System enum | Enum value | `EU` | End User customer view for consumption and balance information. |
-| Provider | System enum | Enum value | `Provider` | Provider customer view for revenue or consumption-related information. |
-| Tenant Name | No | Text | `Example tenant` | Locates a customer by the tenant `Name` shown in the list. |
-| Customer ID | No | Text | `customer-xxxx` | Locates a customer by unique customer identifier. Use placeholders only in documentation. |
-| Administrator Email | No | Text | `user@example.com` | Locates a customer by administrator email. Desensitize it in screenshots or tickets. |
-| Tags | No | Multi-select | `VIP` | Filters customers by selected tags. |
-| Account Balance | System generated | Credits | `10,000 Credits` | Current remaining customer account balance. |
-| Consumption | System generated | Credits | `2,500 Credits` | Consumption amount for the selected customer scope. |
-| Revenue Information | System generated | Credits | `1,000 Credits` | Provider revenue or settlement-related information. |
-| Last Update Time | System generated | Time | `2026-07-10 12:00:00` | Latest update time of customer overview data. |
-| Search | No | Button | `Search` | Refreshes the customer list by current filters. |
-| Reset | No | Button | `Reset` | Clears filters and restores the default list. |
-| Actions | System generated | Button / link | `Details` | Provides row-level entries for viewing or follow-up checks. |
-| Adjust Limit | Yes for adjustment | Number | Sanitized amount | Sets the required adjustment amount in the dialog. |
-| Remarks | Yes for adjustment | Multiline text | `Adjust Limit` | Records the business reason. The field is prefilled but must remain non-empty. |
+| Business identity | Select for query | Segmented selection | `End User` | Select `End User` or `Provider`. |
+| Enter a keyword | No | Text | `<query>` | Locates customers within the selected business identity using the entered keyword. |
+| Filter by tag | No | Multi-select | `VIP` | Matching any selected tag includes the customer (OR). |
+| Tenant | Read-only | Identity information | `<tenant>` | Customer tenant in the End User table. |
+| Admin | Read-only | Identity information | `<administrator>` | Administrator in the End User table. |
+| Tags | Read-only | Tag set | `VIP` | Each customer can have up to 5 tags. |
+| Available balance | Read-only | Credits | `0` | Available balance in the End User table or Provider consumption account. |
+| Lifetime spend | Read-only | Credits | `0` | Cumulative consumption in the End User table. |
+| Last month spend | Read-only | Credits | `0` | Last month's consumption in the End User table or Provider consumption account. |
+| This month spend | Read-only | Credits | `0` | This month's consumption in the End User table or Provider consumption account. |
+| Created at | Read-only | Time | `<creation time>` | Shown in the End User table and Provider cards. |
+| Revenue balance | Read-only | Credits | `0` | Provider revenue account balance. |
+| Current pending revenue | Read-only | Credits | `0` | Provider revenue pending settlement this month. |
+| Last month revenue | Read-only | Credits | `0` | Provider revenue from last month. |
+| New tag name | Enter when creating | Text | `<tag name>` | Up to 16 characters; custom tags are private to the current Operator. |
+| Color choices | Not marked required | Color options | `<color>` | Color choices provided in the custom-tag area. |
+| Customer identity | Read-only | Prefilled information | `<customer identity>` | Identifies the target customer in the grant and recall forms. |
+| Grant Amount | Yes | Number | `<amount>` | Required field in the Grant Credit form. |
+| Recall Amount | Yes | Number | `<amount>` | Required field in the Recall Credit form. |
+| Reason | Yes | Multiline text | `<business reason>` | Required in both credit forms. |
+| Recall all | No | Button | `Recall all` | A separate entry provided in the Recall Credit form. |
 
 ## Pitfalls
 
-- Do not rely on one amount field alone for financial confirmation; cross-check transactions, bills, settlement statements, and reconciliation results.
-- Do not repeat high-risk billing operations when the first attempt fails; check status and error details first.
-- Remove sensitive customer, bank, contract, token, Key, or internal processing information before sharing screenshots or tickets.
-- Customer name, administrator email, customer ID, account balance, consumption amount, and revenue amount are sensitive. Desensitize screenshots, exports, tickets, and comments.
-- Before exporting customer data, verify the filter scope and recipient permission, and redact customer identity, accounts, and amounts.
-- Opening `Adjust Limit` does not change the account. The change occurs only after the final confirmation.
-- An empty adjustment reason prevents submission. Review the prefilled remark before confirmation.
+- Multiple tags use OR matching; customers do not need to have every selected tag.
+- End User uses a table, while Provider uses account cards. Do not compare both identities using the same table columns.
+- `No Data` after a keyword query means the current query has no results, not that the platform has no customers or that summary amounts or counts are 0.
+- The limit of 5 tags per customer concerns an individual customer's tags, not the total size of the tag library.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Filters | The list refreshes according to the selected filters. | Clear the filters and search again. |
-| Customer details | Selecting `Details` opens customer detailed information. | Check customer permissions and the details entry point. |
-| Tag visibility | The Manage Tags dialog shows built-in tags and existing custom tags. | Check tag-management permissions. |
+| Identity and layout | End User displays a table; Provider displays consumption and revenue account cards | Check the selected business identity. |
+| Query scope | Results can be checked against the current keyword and selected tags; an empty result displays `No Data` | Check the current keyword and selected tags first; do not treat empty results as the platform customer count. |
+| Tag Management | The dialog displays five built-in tags with locked markers and the current custom-tag content | Check the built-in and custom-tag areas separately. |
+| Credit forms | The grant form shows required `Grant Amount` and `Reason`; the recall form shows required `Recall Amount` and `Reason` | Check the form entry and read-only customer identity; cancel or close if not proceeding. |
 
 ## FAQ
 
-#### The Customer List Is Empty
+#### Why Does an Empty Query Table Not Mean the Platform Has No Customers?
 
 **Symptom:**
 
-No customers appear after you open the page.
+The End User table displays `No Data` after entering a keyword.
 
-**Possible causes:**
+**Possible Causes:**
 
-- No customer account has been opened.
-- The current account cannot view the selected business identity.
-- The filters are too narrow.
+The current keyword query has no matches; the table displays query results rather than the total customer base.
 
 **Resolution:**
 
-1. Clear the filters and refresh the page.
-2. Switch the business identity or account to confirm permissions.
-3. If no customer exists, check the account-opening flow in the related module.
+Check the current keyword, business identity, and selected tags, and read the summary cards separately from customer results.
 
-#### Tag Management Does Not Open
+#### Why Does the Provider View Not Have the End User Table Columns?
 
 **Symptom:**
 
-Selecting `Manage Tags` does not open the dialog.
+After selecting Provider, customer information appears as cards instead of a table.
 
-**Possible causes:**
+**Possible Causes:**
 
-- The current account lacks tag-management permission.
-- The browser blocked the dialog.
+The Provider view uses a card layout divided into `Consumption Account` and `Revenue Account`.
 
 **Resolution:**
 
-1. Refresh the page and select **"Manage Tags"** again.
-2. Check whether the browser blocks dialogs or scripts.
-3. Contact the platform administrator to confirm account permissions.
+Check consumption and revenue fields separately in the cards rather than expecting the End User table columns.
 
-#### A Custom Tag Cannot Be Saved
-
-**Symptom:**
-
-The new tag does not take effect after you enter a name and save it.
-
-**Possible causes:**
-
-- The tag name exceeds 16 characters.
-- The customer already has five tags, which is the limit.
-- The name duplicates a built-in tag.
-
-**Resolution:**
-
-1. Shorten the tag name and use a stable, recognizable name.
-2. Check the current number of tags and remove an unnecessary tag before retrying.
-3. Rename the tag and create it again.
-
-
-#### Customer Overview Does Not Update After Refresh
-
-**Symptom:**
-
-The amount, count, or status in Customer Overview remains unchanged after the related process finishes.
-
-**Possible causes:**
-
-- The billing cycle, tenant, customer, or business scope does not match the processed object.
-- An upstream statistics, posting, or settlement task is still running.
-- The current account can view only part of the data scope.
-
-**How to handle:**
-
-1. Recheck the billing cycle and object scope in Customer Overview.
-2. Refresh the page, reopen the target record, and verify the update time.
-3. Cross-check the upstream status in Customer Top-up Orders and Business Units.
-4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
-
-#### What Must Be Checked Before Sharing Customer Overview Information?
-
-**Symptom:**
-
-Customer Overview results must be shared in a screenshot, ticket, or report.
-
-**Possible causes:**
-
-- Customer names, administrators, tags, amounts, and accounts may be sensitive billing information.
-- The sharing scope may exceed the recipient's business permission.
-- A full screenshot may include account, environment, or unrelated information.
-
-**How to handle:**
-
-1. Keep only fields, statuses, and time ranges required for troubleshooting.
-2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
-3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
-4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
-- Billing amounts, settlements, balances, and customer information are sensitive. Desensitize them before sharing.
-- Keep page routes, API fields, Key, AK/SK, License, and other product terms in their UI form.
-- Keep credentials, private operational details, and sensitive customer data out of the manual.
-- Do not record real customer names, tenant names, customer IDs, emails, phone numbers, account balances, consumption amounts, revenue amounts, order numbers, Token, or Key.
-- Before exporting customer data, verify the filter scope and recipient permission, and redact customer identity, accounts, and amounts.
+- Granting and recalling credit concern customer credit handling. Recheck the customer, amount, and reason before using the `Confirm` submission entry; opening a form or seeing required markers does not establish completion.
+- `Recall all` and `Confirm` are different buttons in the recall form; do not treat them as interchangeable.
+- Built-in tags are provided and locked by the platform, with the same set shared by Provider and Operator. Custom tags are private to the current Operator.
+- Share only necessary verification information; do not disclose real customer identities, accounts, emails, financial amounts, or credentials.
 
 ## Next Steps
 
-- Open [Customer Top-up Orders](../top-up-orders/) to handle top-up tasks.
-- Open [Business Units](../business-units/) to maintain customer business-unit configuration.
+- See [Top-up Orders](../top-up-orders/) to check top-up orders.
+- See [Business Units](../business-units/) to review customer business-unit configuration.

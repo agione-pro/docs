@@ -1,11 +1,16 @@
-# Quota Requests
+# Quota Approvals
+
+::: info Document Information
+Version: v2.0
+Updated: 2026-11-04
+:::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Members & Roles > Quota Requests |
+| Navigation path | Settings > Members & Roles > Quota Approvals |
 | Page route | `/user/user-space/quota-requests` |
 | Managed objects | Quota requests, request records, adjustment records, status, and request reasons |
 
@@ -72,6 +77,8 @@ The following screenshot shows the Quota Requests list.
 The following screenshot shows the Request Quota dialog.
 
 ![Request Quota](./images/request-quota.png)
+
+The request dialog shows granted, used, and remaining quota, plus the requested amount, quick-fill options, and reason. Only one request can be pending at a time.
 
 ## Parameter Quick Reference
 
@@ -145,34 +152,6 @@ The current account lacks request or approval permission, an existing request is
 
 Check for pending records, then verify the current role and request status. An authorized approver must perform approval actions.
 
-#### How should the Quota Requests page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Quota Requests page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Do not include customer-sensitive data, Keys, tokens, or passwords in the request reason.
@@ -182,3 +161,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. After approval, return to Overview or Member Quotas to verify the quota.
 2. Review request actions in Operation Logs.
+
+Related pages: [Member Quotas](../member-quotas/)、[My Quota](../../personal/my-quota/)

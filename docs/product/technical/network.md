@@ -83,7 +83,7 @@ Each independent regional compute pool is deployed as an independent logical uni
 | Item | Minimum Requirement | Description |
 | --- | --- | --- |
 | Node count | 1 | A single node hosts application services, databases, and middleware |
-| CPU | >= 8 cores | Used for proof of concept, feature demo, and internal testing |
+| CPU | >= 16 cores | Used for proof of concept, feature demo, and internal testing |
 | Memory | >= 24 GB | Services are co-located on a single node, so memory must cover both application and middleware workloads |
 | Disk | >= 200 GB | Used for applications, images, logs, and base data |
 | Network | Internet or offline delivery path | Must be able to obtain all required images, dependencies, and runtime assets |
@@ -108,12 +108,12 @@ Each independent regional compute pool is deployed as an independent logical uni
 
 | Component | Purpose | CPU | Memory | Disk | Node Count | Network Requirements |
 | --- | --- | --- | --- | --- | --- | --- |
-| RDS (relational database) | Stores AGIOne platform master data | >= 4 vCPU | >= 16 GiB | >= 100 GiB | >= 3 | Same VPC as management nodes |
+| RDS (relational database) | Stores AGIOne platform master data | >= 4 vCPU | >= 16 GiB | >= 100 GiB | Follow the verified product shape | Same VPC as management nodes |
 | Nacos | Service registration and discovery | Basic spec | - | - | 1 | Same VPC as management nodes |
 | Redis | Cache data | Basic spec | - | - | 1 | Same VPC as management nodes |
 | Kafka | Core service message bus | Cluster node spec | - | >= 100 GiB | >= 3 | Same VPC as management nodes |
 | Object storage | Stores images and other static assets | - | - | - | - | Access through AK/SK; VPC Endpoint preferred |
-| ELB | AGIOne API load balancing | - | - | >= 100 GiB | 1 | Same VPC internally; public access available, bandwidth >= 100 Mbps |
+| ELB | AGIOne API load balancing | - | - | - | 1 | Same VPC internally; public access available, bandwidth >= 100 Mbps |
 
 #### 5.2.3 Capacity and Scaling Reference
 
@@ -150,6 +150,8 @@ Each independent regional compute pool is deployed as an independent logical uni
 | Kubernetes control plane | 1 node is acceptable when the compute pool has < 3 nodes; 3 nodes are recommended when it has >= 3 nodes | 3 control-plane nodes provide etcd multi-replica storage and high availability |
 | Compute nodes | Planned according to GPU / NPU resource pools | Drivers, container runtimes such as containerd, and device plugins must be installed and validated in advance |
 | Near-edge image service | Recommended for each regional compute pool | Can reuse already onboarded node resources; low-latency connectivity with compute nodes is recommended |
+| Storage | At least 2 TB NAS; optional S3-compatible object storage > 2 TB | Stores shared data, model assets, logs, or other cross-node access content |
+| Node network | Management network in the same LAN; inter-node bandwidth >= 1000 Mbps | Keeps the control plane, image pulls, and training / inference traffic stable |
 | Image network | >= 1 Gbps recommended | Improves pull speed for large model images |
 | Ports opened to the platform | `6443`, `32761-32765` | Used by the platform management layer for scheduling, monitoring, and model / IDE calls |
 
@@ -157,8 +159,8 @@ Each independent regional compute pool is deployed as an independent logical uni
 
 | Deployment Mode | Minimum Nodes | Minimum Per-Node Specification | Total Resource Reference |
 | --- | --- | --- | --- |
-| PoC All in One | 1 | 8C / 24G / 200G | 8C / 24G / 200G |
-| Public Cloud SaaS (application nodes) | 2 | 8C / 16G / 200G | 16C / 32G / 400G+, plus managed databases and middleware |
+| PoC All in One | 1 | 16C / 24G / 200G | 16C / 24G / 200G |
+| Public Cloud SaaS (application nodes) | 2 | 8C / 16G / 200G | 16C / 32G / 1 TB+, plus managed databases and middleware |
 | Private Cloud / IDC | 4 | 8C / 16G / 200G | 32C / 64G / 800G+ |
 
 ## 6. VPC / Subnet Planning

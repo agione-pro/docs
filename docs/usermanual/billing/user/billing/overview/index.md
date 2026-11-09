@@ -1,228 +1,152 @@
 # Overview
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-07-29
+Version: v2.1
+Updated: 2026-11-05
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model caller |
-| Navigation path | Billing > User Billing > Account Overview |
+| Applicable Role | Model Provider & User |
+| Navigation path | Billing > Overview |
 | Page route | `/billing/my/account` |
-| Managed objects | Account balance, consumption trends, top-up entry, alert threshold, and recent transactions |
+| Managed objects | Account balance, spending trends, alert threshold, recent transactions, and billing entries. |
 
-`Account Overview` summarizes the current account, including account balance, estimated available days, seven-day consumption, month-to-date spending, month-to-date top-ups, monthly estimate, last top-up, billing support, alert threshold, consumption analysis, top three cost sources, and recent transactions. Use it to assess account status before opening Transactions, Top-up Orders, Monthly Bill, or Quota Governance for details.
-
+Account Overview summarizes the current account's balance and spending. Open detailed records for reconciliation.
 
 #### Beginner Explanation
 
-Account Overview is the billing home page. It first shows the current balance and estimated available days, then recent consumption, monthly changes, major cost sources, and recent transactions. If the balance, trend, or recent records look wrong, continue in `Transactions`, `Top-up Orders`, or `Monthly Bill`.
+This page is a billing dashboard: the balance is available funding, trends and estimates are reference readings, and individual income and expense records belong in the details.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling Tip |
-| --- | --- | --- |
-| Account Balance | Credits currently available to the account. | Compare it with the post-change balance in Transactions. |
-| Estimated Available Days | Remaining usage time estimated from recent consumption. | Use it as a trend only, not a guarantee. |
-| Monthly Estimate | Estimated monthly consumption based on the current rate. | It can change before the billing cycle ends. |
-| Top 3 Cost Sources | Sources with the highest current consumption. | Open Transactions when a source is unusually high. |
-| Alert Threshold | Balance level used to trigger a reminder. | Confirm the team's consumption pattern before changing it. |
-| Recent Transactions | A subset of recent account changes. | Use Transactions for complete reconciliation. |
+| Term | Description |
+| --- | --- |
+| Account balance | Credits currently available to the account. |
+| Estimated days remaining | Available time estimated from recent spending, not a guaranteed duration. |
+| MTD EST. | Estimated monthly spending, not the final bill. |
+| Alert Threshold | Balance-reminder configuration, with the current setting and an edit entry. |
+| Recent transactions | A subset of recent billing records, not the complete history. |
 
 ## Prerequisites
 
-1. The current account has permission to view user-side billing.
-2. Open `My Billing > Account Overview`.
-3. Before checking balance, trends, or recent transactions, wait for the page to finish loading.
-
-::: warning High-risk Operation Boundary
-Top-ups, alert-threshold changes, and billing-data exports can affect an account or expose sensitive information. Verify the target account, account permission, and impact scope before proceeding.
-:::
+1. Use an account with billing-view permission and open `Billing > Overview`.
+2. Verify the current account and last-update information.
+3. Before changing a threshold or initiating a top-up, confirm the corresponding permission and target account.
 
 ## Page Description
 
-`Account Overview` opens the current overview directly. There is no legacy or modern view switch. Use `Transactions`, `Top-up Orders`, `Monthly Bill`, and `Quota Governance` for detailed follow-up. Sanitize amounts, account information, and contact details before sharing the screenshot.
+![Billing navigation](./images/account-navigation.png)
 
-![Account Overview](./images/overview-list.png)
+The figure shows the left-side Billing menu, locating Overview, Quota Governance, Transactions, Top-up Orders, Monthly Bill, and Top-up Requests; account metrics are not included.
 
 | Area | Description |
 | --- | --- |
-| Account Balance | Displays the current available balance. |
-| Estimated Available Days | Estimates how many days the balance can support from the seven-day consumption rate. |
-| Last 7 Days Consumption | Displays recent consumption. |
-| Month-to-date Spending | Displays Credits consumed in the current calendar month. |
-| Month-to-date Top-ups | Displays Credits topped up in the current calendar month. |
-| Monthly Estimate | Estimates this month's consumption at the current rate. |
-| Last Top-up | Displays the most recent top-up information. |
-| Billing Support | Provides the billing-support entry. |
-| Alert Threshold | Displays the balance reminder threshold and its edit entry. |
-| Consumption Analysis | Compares month-to-date consumption with the same period last month. |
-| Top 3 Cost Sources | Displays major consumption sources. |
-| Recent Transactions | Displays recent account changes and `View All`. |
-| Transactions | Opens the Transactions page. |
-| Top-up Orders | Opens the Top-up Orders page. |
+| Last updated and Refresh current cycle | Shows update information and the `Refresh current cycle` button. |
+| ACCOUNT BALANCE and estimated days | Shows the balance and estimated days at the top; without recent spending, the message is “No spend in the last 7 days, so days remaining cannot be estimated”. |
+| LAST 7-DAY SPEND | Shows recent spending and the comparison with last week. |
+| MTD SPENT, MTD TOP-UP, MTD EST. | Shows month-to-date spending, top-ups, and estimated monthly spending respectively. |
+| LAST TOP-UP and Billing support | Shows the latest top-up and billing-support contact information as provided on the current page. |
+| Alert Threshold | May currently display `No limit`; `Edit` opens the form. |
+| Spend rate | Shows Daily, Peak Spend, Low, and recent comparisons. |
+| MTD vs same period last month | Compares MTD, Last MTD, Last mo. total, and MoM. |
+| Income & Expense Analysis | Switch between `By Service`, `By Attribution`, and service categories including `Models` and `AI Infra`. |
+| Top Spending Sources and recent transactions | Identifies spending sources and recent account changes; use details for complete records. |
+| Transactions, Top-up Orders, Top Up | Separate entries for transaction details, top-up orders, and initiating a top-up. |
 
 ## Main Operations
 
-### Review Account Overview
+### Review Balance and Spend Summaries
 
-1. Go to `Billing > User Billing > Account Overview`.
-2. Review `Account Balance` and `Estimated Available Days` to assess whether the balance is sufficient.
-3. Review `Last 7 Days Consumption`, `Month-to-date Spending`, `Month-to-date Top-ups`, and `Monthly Estimate`.
-4. Review `Consumption Analysis` and `Top 3 Cost Sources` for abnormal sources.
-5. Before submitting a top-up or alert-threshold change, verify the target account, amount or threshold, and impact scope.
+1. Open Account Overview, check the last-update information, and click `Refresh current cycle` as needed.
+2. Review the balance, estimated days, and last-seven-day spend; an unavailable estimate does not mean zero days remain.
+3. Compare `MTD SPENT`, `MTD TOP-UP`, `MTD EST.`, and `LAST TOP-UP`.
+4. Scroll to `Spend rate` and `MTD vs same period last month`, then switch `By Service`, `By Attribution`, and service categories in `Income & Expense Analysis` as needed.
 
-### Review Recent Transactions
+### Review or Edit the Alert Threshold
 
-1. Go to `Billing > User Billing > Account Overview`.
-2. Review recent account changes in `Recent Transactions`.
-3. Check transaction time, type, amount direction, and description.
-4. If the subset cannot explain the balance change, click **"View All"** or open `Transactions`.
-5. Hide real amounts, accounts, order numbers, transaction numbers, and business context in external communication.
+1. Check the current setting under `Alert Threshold`, such as `No limit`.
+2. With the corresponding permission and a need to change it, click `Edit` to open `Edit Alert Threshold`.
+3. Fill in the required `Alert Threshold` field and check the target account and input before continuing.
+4. Click `Cancel` to leave without submitting; click `Confirm` only when submission is needed and permission and content have been checked.
 
-### Open Top-up Orders
+![Edit Alert Threshold](./images/alert-threshold.png)
 
-1. Go to `Billing > User Billing > Account Overview`.
-2. Click **"Top-up Orders"**.
-3. Locate an order by order number, status, or credit source.
-4. Check top-up status, credited amount, creation time, and completion time.
-5. Before initiating a top-up or exporting orders, verify the target account, data scope, and account permission.
+The figure shows the Edit Alert Threshold dialog with a gray `0` visible in the required Alert Threshold input, plus Cancel and Confirm buttons; the pictured `0` does not establish a placeholder, the current configured value, or the meaning of saving an empty value.
+
+### Review Recent Transactions and Choose a Follow-up Entry
+
+1. Check the time, type, amount direction, and description in recent transactions.
+2. For complete reconciliation, use `View all →` or `Transactions` and continue with [Transactions](../transactions/).
+3. To verify top-up orders, use `Top-up Orders` and continue with [Top-up Orders](../top-up-orders/).
+4. To initiate a top-up, use the separate `Top Up` entry; for a request, open [Top-up Requests](../top-up-requests/) from the left menu. Do not treat a top-up and a request as the same operation.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Account Balance | System-generated | Credits | Sanitized amount | Current available balance. |
-| Estimated Available Days | System-generated | Number | Sanitized days | Estimated from the seven-day consumption rate. |
-| Last 7 Days Consumption | System-generated | Credits | Sanitized amount | Accumulated consumption in the last seven days. |
-| Month-to-date Spending | System-generated | Credits | Sanitized amount | Credits consumed in the current calendar month. |
-| Month-to-date Top-ups | System-generated | Credits | Sanitized amount | Credits topped up in the current calendar month. |
-| Monthly Estimate | System-generated | Credits | Sanitized amount | Monthly estimate based on the current consumption rate. |
-| Last Top-up | System-generated | Information area | Sanitized amount | Displays the latest top-up information. |
-| Billing Support | System-generated | Entry | Sanitized contact | Opens billing support. |
-| Alert Threshold | Editable | Number | Sanitized threshold | Balance level that triggers a reminder. |
-| Consumption Analysis | System-generated | Chart / metric | Sanitized ratio | Displays consumption trend and comparison. |
-| Top 3 Cost Sources | System-generated | Ranking | Sanitized source | Displays major consumption sources. |
-| Recent Transactions | System-generated | List | Sanitized transaction | Displays recent account changes. |
-| Transactions | No | Entry | `Transactions` | Opens the Transactions page. |
-| Top-up Orders | No | Entry | `Top-up Orders` | Opens the Top-up Orders page. |
-| Top Up | No | High-risk entry | `Top Up` | May initiate a real top-up flow; this manual only defines the boundary. |
-| Edit | No | High-risk entry | `Edit` | May change the alert threshold; confirm impact before saving. |
+| ACCOUNT BALANCE | Not applicable | Credits metric | 0 | Current available account balance. |
+| Estimated days | Not applicable | Estimate or message | Estimated days unavailable | Cannot be estimated without spending in the last 7 days. |
+| LAST 7-DAY SPEND | Not applicable | Credits metric | 0 | Spending over the last 7 days. |
+| MTD SPENT | Not applicable | Credits metric | 0 | Month-to-date spending. |
+| MTD TOP-UP | Not applicable | Credits metric | 0 | Month-to-date top-ups. |
+| MTD EST. | Not applicable | Credits estimate | 0 | Estimated monthly spending, not the final bill. |
+| LAST TOP-UP | Not applicable | Information area | [Latest top-up information] | Amount and time of the latest top-up. |
+| Billing support | Not applicable | Contact information | [Support contact] | Use the support information on the current page. |
+| Alert Threshold | Yes | Text input | [Threshold] | The form displays a required marker; do not assume that submitting an empty editor means No limit. |
+| Spend rate | Not applicable | Metric group | 0 | Daily, Peak Spend, Low, and recent comparisons. |
+| MTD vs same period last month | Not applicable | Comparison metrics | 0 | MTD, Last MTD, Last mo. total, and MoM. |
+| Income & Expense Analysis | Not applicable | Analysis view | By Service | By Service, By Attribution, and categories including Models and AI Infra. |
+| Recent transactions | Not applicable | Record area | [Transaction record] | Partial recent records; use Transactions for complete reconciliation. |
+| Transactions | No | Entry | Transactions | Opens transaction details. |
+| Top-up Orders | No | Entry | Top-up Orders | Opens top-up orders. |
+| Top Up | No | Entry | Top Up | Separate top-up entry, not the same as Top-up Requests. |
 
 ## Pitfalls
 
-- Estimated available days are based on recent consumption and can drop quickly after a large workload starts.
-- Account Overview shows summaries and only some recent transactions; it does not replace Transactions.
-- Monthly Estimate is not a final bill. Top-ups, refunds, and consumption can change it before the cycle ends.
-- Confirm the team's consumption pattern before changing the alert threshold; an unsuitable threshold can delay action.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
-- Sanitize screenshots, exports, tickets, and comments.
+- An unavailable estimate does not mean zero days remain; read the accompanying no-spend message for the last 7 days.
+- MTD EST. and estimated days are estimates, not a final bill or a guaranteed duration of service.
+- Recent transactions show only some records; a single credit-gift record cannot establish complete balance continuity.
+- `No limit` is the displayed current setting; it does not establish what submitting an empty input would mean.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page loading | Balance, consumption metrics, recent transactions, and shortcuts are displayed. | Refresh the page or check user-side billing permission. |
-| Metric visibility | Seven-day consumption, month-to-date spending, top-ups, and monthly estimate are visible. | Wait for loading to finish and refresh. |
-| Entry availability | `Transactions`, `Top-up Orders`, and `View All` open their target pages. | Check menu permission or re-enter the page. |
-| Recent transaction review | Recent transactions show time, type, amount direction, and description. | Open Transactions and use the target time range. |
-| Account changes controlled | Top-ups, alert-threshold changes, and exports are performed only by authorized users for the confirmed scope. | If an unintended action occurs, record the time and scope and notify the owner for review. |
+| Account scope | The current account, update information, and balance can be checked. | Recheck the account and update information; do not compare different accounts. |
+| Spend summaries | Last-seven-day spend, MTD spending, top-ups, and estimate are separately visible. | Distinguish recent, month-to-date, and estimated figures, then consult details. |
+| Threshold editor | Edit opens a dialog containing Alert Threshold, Cancel, and Confirm. | Do not confirm submission before checking the form and input. |
+| Reconciliation scope | Recent records are distinguished from the complete transaction scope. | Continue in Transactions and Monthly Bill. |
 
 ## FAQ
 
-#### Account Balance Is Empty or Abnormal
+#### Why Are Estimated Days Unavailable?
 
-**Symptom:**
+**Symptom:** The page displays “Estimated days unavailable”.
 
-The balance is missing or differs from the expected value.
+**Possible Causes:** The page states “No spend in the last 7 days, so days remaining cannot be estimated”.
 
-**Possible Causes:**
+**Resolution:** Review the balance and last-seven-day spend together; do not interpret the message as zero days remaining.
 
-The account lacks billing permission, page data has not finished loading, or the balance is being compared under a different billing scope.
+#### Why Are Recent Transactions Insufficient to Explain a Balance Change?
 
-**Solution:**
+**Symptom:** The subset of recent transactions is insufficient for balance reconciliation.
 
-Refresh current-cycle data, confirm account and menu permissions, then open `Transactions` to review recent income and expense records.
+**Possible Causes:** Account Overview is a summary page, and recent transactions are not the complete history.
 
-#### Estimated Available Days Do Not Match Expectations
+**Resolution:** Use Transactions or View all to check the complete records and Monthly Bill as needed.
 
-**Symptom:**
-
-Estimated available days are too low, too high, or zero.
-
-**Possible Causes:**
-
-The seven-day consumption rate changed significantly or there is not enough stable recent usage data.
-
-**Solution:**
-
-Review seven-day consumption, month-to-date spending, and the monthly estimate together. Do not rely on estimated days alone.
-
-#### Recent Transactions Cannot Explain the Balance Change
-
-**Symptom:**
-
-The Recent Transactions area does not explain the balance change.
-
-**Possible Causes:**
-
-The overview shows only a subset of records; the full history is in Transactions.
-
-**Solution:**
-
-Click **"View All"** or open `Transactions`, then filter again by time range and transaction type.
-
-
-#### Account Overview Does Not Update After Refresh
-
-**Symptom:**
-
-The amount, count, or status in Account Overview remains unchanged after the related process finishes.
-
-**Possible causes:**
-
-- The billing cycle, tenant, customer, or business scope does not match the processed object.
-- An upstream statistics, posting, or settlement task is still running.
-- The current account can view only part of the data scope.
-
-**How to handle:**
-
-1. Recheck the billing cycle and object scope in Account Overview.
-2. Refresh the page, reopen the target record, and verify the update time.
-3. Cross-check the upstream status in Transactions and Top-up Orders.
-4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
-
-#### What Must Be Checked Before Sharing Account Overview Information?
-
-**Symptom:**
-
-Account Overview results must be shared in a screenshot, ticket, or report.
-
-**Possible causes:**
-
-- Balances, estimated available days, accounts, and recent transactions may be sensitive billing information.
-- The sharing scope may exceed the recipient's business permission.
-- A full screenshot may include account, environment, or unrelated information.
-
-**How to handle:**
-
-1. Keep only fields, statuses, and time ranges required for troubleshooting.
-2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
-3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
-4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
-- Do not paste complete account, email, order number, transaction number, or balance screenshots into external channels.
-- Account Overview is a summary entry; use Transactions and Monthly Bill for final reconciliation.
-- Confirm permission and approval before a top-up, refund, deduction, threshold change, or data export.
-- Before submitting a top-up, saving an alert threshold, or exporting data, verify the target account, permission, and impact scope.
+- View permission is not configuration permission; only users with the corresponding permission should change a threshold or perform a top-up.
+- Check the input before confirming a threshold; do not assume minimum, maximum, or empty-value semantics.
+- Share only necessary reconciliation information, without real accounts, emails, contacts, billing amounts, project or member information, or credentials.
 
 ## Next Steps
 
-1. For an individual balance change, open [Transactions](../transactions/).
-2. To verify top-up status, open [Top-up Orders](../top-up-orders/).
+1. For individual balance changes, open [Transactions](../transactions/).
+2. For top-up status, open [Top-up Orders](../top-up-orders/); for requests, open [Top-up Requests](../top-up-requests/).
 3. For monthly reconciliation, open [Monthly Bill](../monthly-bill/).
-4. To assess quota risk, open [Quota Governance](../quota-governance/).
+4. For member and project usage, open [Quota Governance](../quota-governance/).

@@ -1,216 +1,163 @@
 # Monthly Bill
 
 ::: info Document Information
-Version: v1.0
-Updated: 2026-08-27
+Version: v2.1
+Updated: 2026-11-05
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Role | Model caller |
-| Navigation path | Billing > User Billing > Monthly Bill |
+| Applicable Role | Model Provider & User |
+| Navigation path | Billing > Monthly Bill |
 | Page route | `/billing/my/account/transactions/monthly-summary` |
-| Managed objects | Billing-cycle trends, cycle summaries, billing events, and grouped bills |
+| Managed objects | Cross-month billing-cycle spend trends, the selected cycle's summary, deduction records, and consumption distributions |
 
-`Monthly Bill` shows consumption trends and billing summaries for the current account by billing cycle. Select a cycle to review consumption, top-ups, net change, and billing events, then break down cost sources by model, AI Infra, project, or member.
-
+Monthly Bill selects a billing cycle, summarizes spend and top-ups, and groups distributions by consumed service or cost attribution. Use the billing-cycle transaction entries to continue checking records.
 
 #### Beginner Explanation
 
-Monthly Bill works like a credit-card statement. It summarizes consumption, top-ups, and net changes for a billing cycle instead of showing only one transaction. Confirm the billing cycle first, then break down the result by model, AI Infra, project, or member.
+Monthly Bill works like a monthly account summary: the trend compares multiple cycles, while the content below concerns the selected cycle. No statistics does not mean the entire month's amount is zero.
 
 #### Terms Quick Reference
 
-| Term | Meaning | Handling Tip |
-| --- | --- | --- |
-| Monthly Bill | Monthly billing-reconciliation page. | Use it for billing-cycle-level checks. |
-| Current-cycle consumption | Accumulated consumption in the selected cycle. | Compare it with Transactions under the same time range. |
-| Net change | Credit change after top-ups, consumption, and adjustments. | Do not interpret it as consumption alone. |
-| Grouping view | Bill breakdown by model, AI Infra, project, or member. | Use it to locate cost sources. |
-| Billing event | Number of events that generated charges or credit changes. | Open Transactions when the event count is abnormal. |
+| Term | Description |
+| --- | --- |
+| Billing cycle | The month being viewed; the current month and preceding 12 months are selectable. |
+| Billing Cycle Spend Trend | A bar chart spanning billing cycles, not a daily trend within one month. |
+| BILLING CYCLE SPEND | The selected cycle's consumption summary in credits. |
+| NET CHANGE | The selected cycle's net balance change, displayed separately from spend and top-ups. |
+| DEDUCTION RECORDS | The deduction-record count displayed separately in the summary. |
+| Grouping view | Select consumed service or cost attribution first, then a dimension within that group. |
 
 ## Prerequisites
 
-1. The current account has permission to view user-side billing.
-2. Open `My Billing > Monthly Bill`.
-3. Confirm the billing cycle to reconcile.
-4. To explain an individual difference, use `Transactions` to inspect the source record.
+1. The current account can open `Billing > Monthly Bill` in the Billing subsystem.
+2. Identify the billing cycle to check, distinguishing the current cycle from historical months.
+3. Use [Transactions](../transactions/) to continue checking individual source records when needed.
 
 ## Page Description
 
-The page provides a billing-cycle selector and `Refresh Data`, then displays the consumption trend, current-cycle notice, current-cycle consumption, top-ups, net change, and billing events. Use `By Model`, `By AI Infra`, `By Project`, or `By Member` to switch the statistical view.
+In the Billing subsystem, the left-menu group is `Billing`. The page provides `Billing cycle`, while the `Refresh data` entry is shown according to the current data state. `Billing Cycle Spend Trend` is a cross-month bar chart with the instruction `Click a bar to view that billing cycle's bill.`
 
-The following screenshot shows Monthly Bill. Amounts and trend values in shared screenshots must be sanitized.
-
-![Monthly Bill](./images/monthly-bill-list.png)
+The current-cycle notice states that the bill is still accumulating and final settlement items will be generated on the 1st of the following month. This describes the billing cycle; it is not a result confirming generation or settlement has completed.
 
 | Area | Description |
 | --- | --- |
-| Billing Cycle | Selects the monthly billing cycle to view. |
-| Refresh Data | Reloads statistics for the selected cycle. |
-| Consumption Trend | Displays consumption during the selected cycle. |
-| Current-cycle Consumption | Displays accumulated consumption in the current cycle. |
-| Top-ups | Displays top-ups in the current cycle. |
-| Net Change | Displays the balance change after top-ups, consumption, and adjustments. |
-| Billing Events | Displays the number of billing-related events in the current cycle. |
-| Grouping View | Switches among `By Model`, `By AI Infra`, `By Project`, and `By Member`. |
-| Detail List | Displays cost sources and summaries for the selected dimension. |
+| Billing cycle | Selects the current month or one of the preceding 12 months. |
+| Refresh data and update status | Shows a refresh entry or update time according to the current state; `Calculating data` means statistics are not yet ready. |
+| Billing Cycle Spend Trend | Displays spend across billing cycles in credits; click a bar as instructed to view its cycle. |
+| Current-cycle notice | Describes ongoing accumulation and the generation date for final settlement items. |
+| Cycle summary | BILLING CYCLE SPEND, TOP-UP, NET CHANGE, DEDUCTION RECORDS. |
+| Transaction entries | `Transactions` and `View Billing Cycle Transactions` continue the record check. |
+| By Consumed Service | First-level group containing `Model` and `AI Infra`. |
+| By Cost Attribution | First-level group containing `Project` and `Member`. |
+| Distribution area | Displays the current grouping view; its empty state is `No distribution data`. |
+| Statistics empty state | Displays `No statistics yet` when the selected cycle has no statistics; do not reinterpret it as an amount of `0`. |
+
+![Monthly Bill statistics empty state](./images/monthly-bill-empty.png)
+
+The figure shows only the `No statistics yet` empty component in the lower statistics area of Monthly Bill.
 
 ## Main Operations
 
-### Change the Billing Period and Reconcile a Monthly Bill
+### Select a Billing Cycle and Read the Summary
 
-1. Go to `Billing > My Billing > Monthly Bill`.
-2. Select the target billing period and filter by project, business type, or billing status.
-3. Check opening, consumption, top-up, adjustment, and closing amount directions.
-4. If no data is shown, check the billing period and bill-generation status. Redact bill amounts and business information before sharing.
+1. Open `Billing > Monthly Bill` in the Billing subsystem.
+2. Select the target month in `Billing cycle`; the current month and preceding 12 months are available.
+3. Read the page's update status and use `Refresh data` when that entry is shown. `Calculating data` indicates that statistics are still being calculated; do not fill in missing summary values as amounts of `0`.
+4. Review the cross-month `Billing Cycle Spend Trend`; follow `Click a bar to view that billing cycle's bill.` and check the cycle selection after choosing a bar.
+5. When a summary is present, read `BILLING CYCLE SPEND`, `TOP-UP`, `NET CHANGE`, and `DEDUCTION RECORDS` separately. Treat `No statistics yet` as an empty state, not an entire month's amount of `0`.
 
-### View a Monthly Bill
+### View Distributions Through Two-Level Groups
 
-1. Go to `Billing > User Billing > Monthly Bill`.
-2. Select the target month in `Billing Cycle`.
-3. Click **"Refresh Data"** to update statistics for the cycle.
-4. Review `Consumption Trend`, `Current-cycle Consumption`, `Top-ups`, `Net Change`, and `Billing Events`.
-5. Before exporting a bill, verify the billing period, data scope, and recipient permission.
+1. Confirm the selected cycle matches the month being checked.
+2. Select the first-level `By Consumed Service` group, then `Model` or `AI Infra` within it.
+3. Read the distribution for the selected consumed-service dimension; treat `No distribution data` as the current view's empty state.
+4. Select the first-level `By Cost Attribution` group, then `Project` or `Member` within it.
+5. Read the updated distribution area; an empty state means the current view has no distribution to display, not that the dimension is absent from the system.
 
-### Reconcile Consumption by Dimension
+### Continue Checking Billing-Cycle Transactions
 
-1. Go to `Billing > User Billing > Monthly Bill`.
-2. Confirm that `Billing Cycle` matches the month being reconciled.
-3. Select **"By Model"**, `By AI Infra`, `By Project`, or `By Member` in the detail area.
-4. Review the consumption summary and detail list for that dimension.
-5. For a high or abnormal cost source, open `Transactions` and use the same billing cycle.
-6. In external communication, record only sanitized dimension names, time ranges, and symptoms.
+1. On a page with a cycle summary, locate `Transactions` or `View Billing Cycle Transactions`.
+2. Use the entry to continue viewing records, or open [Transactions](../transactions/).
+3. On the transaction page, check date range, transaction type, and direction rather than presuming the entry has set every filter for you.
 
 ## Parameter Quick Reference
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Billing Cycle | Yes | Month | `2026-07` | Selects the monthly bill to view. |
-| Refresh Data | No | Button | `Refresh Data` | Reloads statistics for the selected cycle. |
-| Consumption Trend | System-generated | Chart | Sanitized trend | Displays consumption in the selected cycle. |
-| Current-cycle Consumption | System-generated | Credits | Sanitized amount | Accumulated consumption in the selected cycle. |
-| Top-ups | System-generated | Credits | Sanitized amount | Top-up summary for the selected cycle. |
-| Net Change | System-generated | Credits | Sanitized amount | Net balance change in the selected cycle. |
-| Billing Events | System-generated | Number | Sanitized count | Billing-related events in the selected cycle. |
-| By Model | No | Grouping view | `By Model` | Breaks the bill down by model. |
-| By AI Infra | No | Grouping view | `By AI Infra` | Breaks the bill down by AI Infra resource. |
-| By Project | No | Grouping view | `By Project` | Breaks the bill down by project. |
-| By Member | No | Grouping view | `By Member` | Breaks the bill down by member. |
-| Detail List | System-generated | Table | Sanitized details | Displays cost sources for the selected dimension. |
+| Billing cycle | Yes | Month selector | `2025-11` | Selects the current month or one of the preceding 12 months; confirm the selector's range. |
+| Refresh data | No | Button | `Refresh data` | Refreshes the selected cycle when the entry is shown; interpret the result using the displayed update status. |
+| Billing Cycle Spend Trend | Not applicable | Cross-cycle chart | — | Uses credits; follow the instruction to click a bar for its billing cycle. |
+| Current-cycle notice | Not applicable | Notice text | — | States that the cycle is accumulating and final settlement items will be generated on the 1st of the following month. |
+| BILLING CYCLE SPEND | Not applicable | Credits summary | `0` | The selected cycle's spend; the example is not an actual bill. |
+| TOP-UP | Not applicable | Credits summary | `0` | The selected cycle's top-up figure. |
+| NET CHANGE | Not applicable | Credits summary | `0` | The selected cycle's net balance change, not the spend amount. |
+| DEDUCTION RECORDS | Not applicable | Count summary | `0` | Deduction-record count displayed for the selected cycle. |
+| Transactions | No | Transaction entry | `Transactions` | Continues the check of records related to the selected cycle. |
+| View Billing Cycle Transactions | No | Transaction entry | `View Billing Cycle Transactions` | Opens records for further review; check filters after entering. |
+| By Consumed Service | No | First-level group | `By Consumed Service` | Provides Model and AI Infra dimensions. |
+| Model | No | In-group dimension | `Model` | Belongs to By Consumed Service. |
+| AI Infra | No | In-group dimension | `AI Infra` | Belongs to By Consumed Service. |
+| By Cost Attribution | No | First-level group | `By Cost Attribution` | Provides Project and Member dimensions. |
+| Project | No | In-group dimension | `Project` | Belongs to By Cost Attribution. |
+| Member | No | In-group dimension | `Member` | Belongs to By Cost Attribution. |
+| Distribution area | Not applicable | Statistics area | `No distribution data` | Displays the current grouping view's distribution or an empty state when there is nothing to display. |
+| Statistics empty state | Not applicable | Empty-result notice | `No statistics yet` | The selected cycle has no statistics; this does not establish a zero amount. |
 
 ## Pitfalls
 
-- Monthly Bill and real-time transactions may have a synchronization delay. Do not treat an open billing cycle as final.
-- Grouping views are different breakdowns of the same data; do not add their totals together.
-- Net change includes top-ups, consumption, and adjustments and cannot be explained by consumption alone.
-- When Monthly Bill shows an anomaly, open Transactions and use the same billing cycle.
-- Do not record real accounts, emails, order numbers, transaction numbers, amounts, customer names, tenant names, Tokens, or Keys.
-- Sanitize screenshots, exports, tickets, and comments.
+- The cross-cycle trend and selected-cycle statistics are different areas. Do not read the monthly bars as daily consumption within one month.
+- The accumulation notice does not confirm final settlement. Refreshing data should not be interpreted as generating settlement items.
+- The `2025-11` example displays `No statistics yet`, not an entire month's amount of `0`; this empty state also does not establish an absence of historical trend data.
+- `No distribution data` describes the current distribution area, not the absence of Model, AI Infra, Project, or Member dimensions.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page loading | Billing cycle, consumption trend, summary metrics, and detail list are displayed. | Refresh the page or check user-side billing permission. |
-| Cycle switching | Selecting a billing cycle displays its data. | Select the cycle again and click **"Refresh Data"**. |
-| Summary visibility | Consumption, top-ups, net change, and billing events are visible. | Wait for loading to finish and refresh. |
-| Dimension switching | Model, AI Infra, project, and member views can be selected. | Check permission or page loading state. |
-| Bill export controlled | Bills are exported only by authorized users for the confirmed billing period and scope. | If an unintended export occurs, record the time and scope and notify the owner for review. |
+| Cycle scope | The selector shows the intended month and offers the current month plus the preceding 12 months. | Recheck the cycle and use `Refresh data` as needed when the page provides that entry. |
+| Cross-cycle trend | `Billing Cycle Spend Trend` and its click-a-bar instruction are displayed. | Locate the bar using the instruction, then check the cycle; do not interpret it as a daily trend. |
+| Summary or empty state | Statistics show four summary metrics when available, or `No statistics yet` otherwise. | Distinguish numeric values from missing statistics; do not replace the empty state with `0`. |
+| Group hierarchy | By Consumed Service contains Model and AI Infra; By Cost Attribution contains Project and Member. | Check the first-level group before its dimension and current empty state. |
+| Transaction entries | A summary view contains `Transactions` and `View Billing Cycle Transactions`. | Distinguish the empty statistics state from the summary area; Transactions is also accessible from the menu. |
 
 ## FAQ
 
-#### The Current-cycle Bill Is Still Accumulating
+#### Why Does the Page Say the Bill Is Still Accumulating?
 
-**Symptom:**
+**Symptom:** The page states that the current-cycle bill is accumulating and final settlement items will be generated on the 1st of the following month.
 
-The page says that the current-cycle bill is still accumulating and final settlement items will be generated next month.
+**Possible Causes:** This is the current-cycle notice describing accumulation and the generation date for final settlement items.
 
-**Possible Causes:**
+**Resolution:** Read the summary as current-cycle information. Neither the notice itself nor a refresh proves that settlement has completed.
 
-The billing cycle has not ended, so new consumption, top-ups, or billing events can still change the bill.
+#### Does No Statistics Mean the Entire Month's Spend Is Zero?
 
-**Solution:**
+**Symptom:** The selected cycle's statistics area displays `No statistics yet`.
 
-Treat current-cycle data as an interim reference. Perform final reconciliation after the cycle ends and the data has been refreshed.
+**Possible Causes:** This is an empty statistics state, not a spend amount of `0`; the cross-cycle trend is a separate display area.
 
-#### Monthly Bill and Transactions Show Different Amounts
+**Resolution:** Check the cycle first, then use `Refresh data` or Transactions for further review. Do not replace missing statistics with a zero-amount conclusion.
 
-**Symptom:**
+#### Why Are There No Four Parallel Grouping Entries?
 
-The Monthly Bill summary differs from the filtered Transactions result.
+**Symptom:** The page first shows `By Consumed Service` and `By Cost Attribution`, rather than four parallel Model, AI Infra, Project, and Member entries.
 
-**Possible Causes:**
+**Possible Causes:** Grouping has two levels: Model and AI Infra belong to consumed service; Project and Member belong to cost attribution.
 
-The billing cycle, time range, transaction type, or grouping dimension is different.
+**Resolution:** Select the first-level group and then its dimension. Read `No distribution data` as the current view's empty state when it appears.
 
-**Solution:**
-
-Align the billing cycle and time range, filter Transactions by income/expense direction and transaction type, then return to Monthly Bill and refresh.
-
-#### Consumption Is High in One Dimension
-
-**Symptom:**
-
-One model, AI Infra resource, project, or member shows unusually high consumption.
-
-**Possible Causes:**
-
-The dimension may have more recent workloads or high-cost calls, training, or deployments.
-
-**Solution:**
-
-Record the sanitized dimension name and billing cycle, then review Transactions for the same time range and compare with business usage records when needed.
-
-
-#### Monthly Bill Does Not Update After Refresh
-
-**Symptom:**
-
-The amount, count, or status in Monthly Bill remains unchanged after the related process finishes.
-
-**Possible causes:**
-
-- The billing cycle, tenant, customer, or business scope does not match the processed object.
-- An upstream statistics, posting, or settlement task is still running.
-- The current account can view only part of the data scope.
-
-**How to handle:**
-
-1. Recheck the billing cycle and object scope in Monthly Bill.
-2. Refresh the page, reopen the target record, and verify the update time.
-3. Cross-check the upstream status in Transactions and Account Overview.
-4. If the value still does not update, provide authorized personnel with the desensitized billing cycle, object identifier, status, and update time.
-
-#### What Must Be Checked Before Sharing Monthly Bill Information?
-
-**Symptom:**
-
-Monthly Bill results must be shared in a screenshot, ticket, or report.
-
-**Possible causes:**
-
-- Billing cycles, consumption amounts, model or resource usage, and accounts may be sensitive billing information.
-- The sharing scope may exceed the recipient's business permission.
-- A full screenshot may include account, environment, or unrelated information.
-
-**How to handle:**
-
-1. Keep only fields, statuses, and time ranges required for troubleshooting.
-2. Use the specified light-gray opaque small-pixel mosaic only on sensitive text and values.
-3. Confirm that the screenshot does not contain top-menu account data, environment information, real credentials, or internal addresses.
-4. Share with the minimum required audience and record the desensitized scope.
 ## Notes
 
-- Current-cycle data can change before the cycle ends and is not the final monthly-settlement result.
-- Sanitize amounts, accounts, order numbers, and transaction numbers when discussing bill differences externally.
-- Monthly Bill is for summary reconciliation; use Transactions to explain an individual source.
-- Before exporting a bill, verify the billing period, data scope, and recipient permission, and redact amounts and details.
+- Do not publish real customer information, account emails, private billing amounts, or historical trend values. Use `0` or placeholders in public examples and empty results in figures.
+- Read spend, top-ups, net change, and deduction records separately. Do not infer amount formulas, settlement outcomes, or business causes of high costs from empty states.
+- Monthly Bill supports billing-cycle summary checks. Continue to Transactions for individual records; the current-cycle summary is not final settlement evidence.
 
 ## Next Steps
 
-1. To trace an individual source, open [Transactions](../transactions/).
+1. To trace individual records, open [Transactions](../transactions/).
 2. To review the current balance, open [Account Overview](../overview/).
-3. To review quota risk, open [Quota Governance](../quota-governance/).
+3. To review quota usage, open [Quota Governance](../quota-governance/).
