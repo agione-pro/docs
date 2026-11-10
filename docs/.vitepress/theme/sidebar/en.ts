@@ -371,14 +371,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Application Publishing & Approval",
-              collapsed: true,
-              items: [
-                { text: "Scenario Overview", link: "/userguide/scenarios/application-publishing-approval/" },
-                { text: "Application Publishing and Approval Workflow", link: "/userguide/scenarios/application-publishing-approval/application-review-workflow" },
-              ],
-            },
-            {
               text: "On-Prem Runtime Images & Storage",
               collapsed: true,
               items: [

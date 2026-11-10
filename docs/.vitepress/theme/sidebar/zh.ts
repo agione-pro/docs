@@ -130,7 +130,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/publish-model-preconfiguration/' },
                 { text: '模型发布：预配置说明', link: '/zh-CN/userguide/scenarios/publish-model-preconfiguration/model-publishing-preconfiguration' },
                 { text: '元模型', link: '/zh-CN/userguide/scenarios/publish-model-preconfiguration/Meta-models/' },
-                { text: '模型来源', link: '/zh-CN/userguide/scenarios/publish-model-preconfiguration/Model-Source/' },
+                { text: '模型源', link: '/zh-CN/userguide/scenarios/publish-model-preconfiguration/Model-Source/' },
                 { text: '模型模板', link: '/zh-CN/userguide/scenarios/publish-model-preconfiguration/Model-Templates/' },
               ],
             },
@@ -306,14 +306,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               items: [
                 { text: '场景概览', link: '/zh-CN/userguide/scenarios/member-quota-application-allocation/' },
                 { text: '成员额度申请与分配流程', link: '/zh-CN/userguide/scenarios/member-quota-application-allocation/quota-workflow' },
-              ],
-            },
-            {
-              text: '应用发布与审核',
-              collapsed: true,
-              items: [
-                { text: '场景概览', link: '/zh-CN/userguide/scenarios/application-publishing-approval/' },
-                { text: '应用发布与审核流程', link: '/zh-CN/userguide/scenarios/application-publishing-approval/application-review-workflow' },
               ],
             },
             {
