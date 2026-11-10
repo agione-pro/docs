@@ -1016,6 +1016,18 @@ export const enSidebar: DefaultTheme.Sidebar = {
       ]
     }
   ],
+  "/others/upgrade/": [
+    {
+      text: "Upgrade Notes",
+      collapsed: false,
+      items: [
+        {
+          text: "Model Business Upgrade (2026-11-02)",
+          link: "/others/upgrade/model-business-upgrade-2026-11/",
+        },
+      ],
+    }
+  ],
   "/others/release-notes/": [
     {
       text: "Release Notes",
