@@ -25,33 +25,21 @@ Only approved cloud regions are enabled as resource pools and can be selected by
 ### Enable or Disable Regions
 
 1. From the platform home page, select **Resource Pools**.
-2. Search the currently supported cloud providers in the left panel. The list shows how many regions have been synchronized for each provider. Select a target provider, such as Alibaba Cloud or AWS. Huawei Cloud access is not currently supported.
+2. Search the currently supported cloud providers in the left panel. The list shows how many regions have been synchronized for each provider. Select a target provider, such as Alibaba Cloud or AWS.
 3. Review the region cards for the selected provider.
 4. Use the switch on each region card to enable or disable that region for business use.
 
-![Verify enabled resource pools](./images/resource-pools-list.png)
+![Verify enabled resource pools](./images/resource-pools-resource-pools.png)
 
-### Edit the Region Display Name
+### Verify the Region and Saved State
 
-1. Open **Resource Pools** and select the target cloud provider.
-2. Locate the region whose name needs maintenance.
-3. Select the edit icon on the region card.
-4. Maintain the localized **Display Name** on the English and Simplified Chinese tabs.
-5. Select **Confirm** to save the change, or **Cancel** to discard it.
+Before enabling or disabling a pool, assess tenant grants, business grants, scheduling policies, and existing deployments. After toggling the switch, review the region and action in the confirmation prompt, confirm the change, and refresh. Verify the scope again on authorization and deployment pages. Use **Enabled Only** when narrowing the list.
 
-![Edit the resource-pool display name](./images/edit-name.png)
-
-#### Parameter Reference
-
-| Field | Type | Example | Description |
-| --- | --- | --- | --- |
-| Cloud Provider | Select | `Alibaba Cloud / AWS` | Required; provider whose resource pools are managed |
-| Region Switch | Switch | `On / Off` | Enables or disables the selected region |
-| Display Name | Localized text | `China (Beijing) / 北京` | Required; maintain English and Simplified Chinese values |
+The current manual documents viewing and enabling/disabling pools, not a required region-renaming flow. If a name is incorrect, have the resource owner verify the cloud region and platform record before using an action actually offered by the page.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

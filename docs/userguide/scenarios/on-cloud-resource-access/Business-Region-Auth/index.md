@@ -25,16 +25,20 @@ Each business type, such as inference deployment, can schedule only to its appro
 ### Authorize Regions
 
 1. From the platform home page, select **Authorization Management > Business-Region Authorization**.
-2. Expand a business type to review cards showing the number of authorized regions for each currently supported cloud platform, such as AWS, Alibaba Cloud, or {{DOCS_CLOUD_PLATFORM_EN}}. Huawei Cloud access is not currently supported.
+2. Expand a business type to review cards showing the number of authorized regions for each currently supported cloud platform, such as AWS, Alibaba Cloud, or {{DOCS_CLOUD_PLATFORM_EN}}.
 3. Select **+ Authorize Regions** for the business type to open the authorization dialog.
 
-![Review business-region authorization](./images/business-region-auth-list.png)
+![Review business-region authorization](./images/business-region-auth-business-region-auth.png)
+
+The image shows the authorization list before its business type is expanded. It locates **Authorize Regions**, not a saved authorization result.
 
 4. Confirm the current business type shown in the information bar.
-5. In the platform-region tree, select only the regions approved for the business. Unselected regions remain unauthorized.
-6. Select **Confirm** to save the authorization, or **Cancel** to discard it.
+5. In the dialog, select the cloud platform and check only the resource pools approved for the business. Unchecked pools remain unauthorized.
+6. Select **Done** to save the authorization, or close the dialog without saving.
 
-![Select authorized regions](./images/auth-regions.png)
+![Select authorized regions](./images/business-region-auth-authorize-resource-pools.png)
+
+The figure shows the resource-pool selection dialog with per-cloud selected counts and a searchable pool list. It does not prove a successful save or effective downstream access; after saving, verify the list and deployment entry.
 
 > This authorization assigns regions to a specific business scenario. A tenant can use only regions covered by both tenant-cloud and business-region authorization.
 
@@ -48,7 +52,7 @@ Each business type, such as inference deployment, can schedule only to its appro
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

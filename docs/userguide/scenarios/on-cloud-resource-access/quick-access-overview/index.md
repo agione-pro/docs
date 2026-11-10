@@ -13,22 +13,25 @@ Understand the on-cloud access sequence before configuring individual items and 
 - Identify the cloud platform, accounts, regions, business types, and tenants to onboard.
 - Prepare minimum-privilege account materials and network connectivity.
 
+
+> Check availability first. If Quick Access only displays an unavailable-feature notice, do not make it a prerequisite: use Access Overview and the actual configuration pages below. Overview counts and grants do not prove successful credential validation or a working deployment.
+
 ## Steps
 
 1. Open [Quick Access](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/quick-start/) and review the dependency order for platforms, accounts, resource pools, and authorization.
 
-![Review configuration order in Quick Access](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/quick-start/images/quick-start-list.png)
+![Review configuration order in Quick Access](./images/quick-start-quick-access.png)
 
 2. Open [Access Overview](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) and review onboarded platforms, valid accounts, available resource pools, and authorization exceptions.
 
-![Review global state in Access Overview](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/images/access-overview-list.png)
+![Review global state in Access Overview](./images/access-overview-list.png)
 
 3. Follow missing-item entries to Cloud Platforms, Cloud Accounts, Resource Pools, Business-Region Authorization, or Tenant-Cloud Authorization.
 4. After configuration, refresh Access Overview and confirm that exception counts and target-object states update.
 
 ## Completion Checklist
 
-> **Purpose:** These checks confirm that on-cloud access dependencies form a complete path. Individual records may exist while the overall path remains unusable.
+Check the full access path, not just the existence of individual records.
 
 | Check | Pass Criteria |
 | --- | --- |

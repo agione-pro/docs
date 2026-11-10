@@ -5,67 +5,56 @@ next: true
 
 # Scenario Overview - On-Prem New Model Template Preparation & Deployment
 
-This scenario guides users through the end-to-end process of downloading new open-source models from ModelScope, configuring Ascend 910B NPU inference templates with vLLM VRAM factors, and having model providers deploy, publish, and test the model using Playground and cURL.
+This scenario connects local model files, inference templates, instance deployment, and service registration. Choose hardware and frameworks according to actual compatibility rather than copying one Ascend 910B or vLLM example.
 
 ## Applicable Roles
 
-- Platform Operator (Model download and inference template creation)
-- Model Provider (Instance deployment, model publishing, and calling validation)
+- Operator: model versions, framework relations, and inference templates.
+- Model Provider: deploy from a ready template, register the service, and verify calls.
+
+The operator supplies the model version, framework relation, adapted accelerator, and deployable template. The provider checks the specification before creating the instance and, after registration, hands the model identifier, protocol, and authorized scope to the intended user.
 
 ## Goals
 
-- Configure ModelScope model weight download and bind to target On-Prem clusters.
-- Create an inference template with Ascend 910B accelerator and vLLM VRAM parameters, setting it to Available.
-- Deploy a model instance using the template as a provider and verify Running state and ports.
-- Publish the model with protocol testing, custom tags, and billing/rate-limit configuration.
-- Validate model responses via Playground chat and terminal cURL commands.
+- Verify model versions and file state on linked clusters.
+- Align model, framework, image, accelerator, and VRAM (accelerator memory) factor dependencies; factors are parameters used to estimate memory needs.
+- Bring the inference service to readiness, pass its test, register a private model, and verify authorized calls.
 
 ## Scenario Flow
 
-**Main path:** Operator prepares model and template (ModelScope download → Ascend 910B template) → Provider deploys instance (select template & flavor → running) → Publish model (protocol test → billing & rate limit) → Call validation (Playground → cURL)
-
 | Stage | Key Result |
 | --- | --- |
-| 1. Prepare Model Weights | Configure ModelScope source and Model ID in On-Prem, enabling auto-activation after download |
-| 2. Build Inference Template | Associate model version, vLLM VRAM table, and Ascend 910B card, setting status to Available |
-| 3. Create Model Instance | Provider configures concurrency and context length, launching instance into Running status |
-| 4. Publish Model Service | Pass OpenAI protocol test, set tag, free billing, rate limit, and submit for publishing |
-| 5. Validate E2E Calling | Chat in Playground and run shell cURL commands for streaming response verification |
+| Prepare model | File source, version, and cluster download state are checked. |
+| Prepare template | Framework relations are correct and a deployable option is visible to the user. |
+| Deploy instance | Parameters match the specification and the service is ready. |
+| Register service | The smoke test (a minimal connectivity check) passes, followed by private-model registration and state checks. |
+| Verify calls | The intended account receives valid output and locates the log. |
 
 ## Before You Start
 
-- An Ascend 910B cluster onboarded with both Operator and Provider role accounts available.
-- Network connectivity from the cluster to the ModelScope repository.
-- Identified Model ID (e.g., DeepSeek-R1-Distill-Qwen-7B) and required concurrency/context parameters.
-- A provider-side account with permission to create an instance, and a publication scope (public or private) approved for the scenario.
+- Clusters, accelerators, images, specifications, quota, and account permissions are ready.
+- Confirm model license, version, and workload requirements; obtain authorization for resource creation and real-request tests.
 
 ## Recommended Reading Order
 
-1. Review this scenario overview to understand operator and provider division of responsibilities.
-2. Follow the [New Model Template Preparation & Deployment Guide](./template-deployment-guide) for the step-by-step 23-step procedure.
-3. Reference [On-Prem Inference Template Building](../on-prem-inference-template/) and [On-Prem Model Deployment & Status Check](../on-prem-model-deployment-status/) for deeper configuration details.
-
-## User Manual References
-
-- [On-Prem Models](/usermanual/ai-infra-on-prem/operator/templates/models/)
-- [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
-- [My Models](/usermanual/model-services/user/studio/my-models/)
-- [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
+1. When a deployable template exists, start with Scenario A in the [Complete Guide](./template-deployment-guide).
+2. For a new model version, the operator completes Scenario B before handing the template to the provider.
+3. For individual checks, use [Inference Template Building](../on-prem-inference-template/) and [Deployment Status Check](../on-prem-model-deployment-status/).
 
 ## Document Index
 
 | Document | Description |
 | --- | --- |
-| [New Model Template Preparation & Deployment Guide](./template-deployment-guide) | Full 23-step walkthrough covering ModelScope download, Ascend 910B template creation, deployment, publishing, and cURL execution |
+| [New Model Template Preparation and Deployment Guide](./template-deployment-guide) | Role-based preparation or deployment from an existing template, private registration, and call verification. |
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable.
-
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Target model is downloaded and enabled in On-Prem Models. |
-| 2 | Inference template is created with Ascend 910B card and vLLM VRAM factor in Available status. |
-| 3 | Model instance is created by provider, reaching Running status with service port available. |
-| 4 | Model is publicly published with protocol testing passed. |
-| 5 | Playground chat responds properly and cURL command returns streaming output. |
+| Template ready | Model files and framework dependencies are confirmed and the user-side template is deployable. |
+| Instance ready | Resources match the preview and service port and protocol are checked. |
+| Publication and calls | Registration and revision state are confirmed; an authorized account succeeds and locates the log. |
+
+## Troubleshooting
+
+Use the [Complete Guide's troubleshooting entries](./template-deployment-guide#troubleshooting) to separate model files, template, instance, and smoke-test failures. A passing test is not completed publication.

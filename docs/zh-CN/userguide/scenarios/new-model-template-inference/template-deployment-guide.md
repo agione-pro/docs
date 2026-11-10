@@ -1,145 +1,85 @@
 # 新模型模板准备与端到端部署调用指引
 
-::: tip 环境与参数说明
-本指引使用当前环境页面中的菜单、字段和状态名称。模型 ID、模型提供方实例 ID、服务端口和可选发布范围可能因环境而异，请以当前页面显示的值为准。
-:::
+本任务串联 On-Prem（本地算力纳管）的模型文件、推理模板、模型实例和模型服务登记。已有可部署模板时从场景 A 开始；需要引入新模型版本时，先由运营管理员执行场景 B，再交给提供方执行场景 A。
 
-根据实际业务诉求，本场景提供以下两条操作链路：
+## 适用角色
 
-- **场景 A：使用已有模板启动并调用模型（模型提供方）**：当运营管理员已完成算力模板准备时，模型提供方可直接使用已就绪的模板创建模型实例，并完成发布、Playground 对话体验与 API 调用测试。
-- **场景 B：端到端准备新模板并部署调用（运营管理员 + 模型提供方）**：当需要引入新开源模型时，由运营管理员完成模型权重下载与昇腾 910B 推理模板制作，再由模型提供方基于新模板完成实例部署与调用验证。
+- 运营管理员：模型配置、框架与推理模板准备。
+- 模型提供方：选择部署模板、创建实例、登记服务与受控调用验证。
 
-## 场景 A：使用已有模板启动并调用模型
+运营管理员交付模型版本、框架关联和适配卡型；提供方接手后先核对模板与规格，再创建实例。服务登记完成后，提供方向目标用户交付模型标识、协议和授权范围，不交接共享明文密钥。
 
-### 1. 使用模板创建模型实例（模型提供方）
+## 开始前准备
 
-使用模型提供方账号登录，进入 `模型服务 > 我的模型 (My Models)` 页面，点击目标模型卡片上的 **Start**，使用模板创建模型实例。
+- 目标集群、加速卡、框架镜像和资源规格已就绪，租户具备所需地域配额。
+- 已确认模型授权、版本、量化方式、仓库信息以及业务并发和上下文需求。昇腾 910B 与 vLLM 只是可选适配组合，不作为所有环境的固定值。
+- 创建实例、登记发布和连通性测试前确认资源、费用与调用授权。测试会发起真实请求。API 是应用程序接口；冒烟检测仅作最小连通性检查，不代替发布完成和授权调用验证。
+- 不将仓库凭据、实例 Endpoint（服务接入地址）或请求令牌复制到共享材料。
 
-![在 My Models 页面启动模型实例](./images/01-my-models-start-instance.png)
+## 场景 A：使用已有模板部署与调用（模型提供方）
 
-搜索要部署的模型并进入配置页面。设置此模型实例的并发数和上下文长度，右侧会自动更新可支持的规格，选择推荐的规格。
+### 1. 从部署模板创建实例
 
-![配置模型并发数与上下文长度并选择推荐规格](./images/02-configure-instance-parameters.png)
+1. 进入 **On-Prem > 模型部署 > 部署模板**，搜索并选择状态为 **可部署** 的目标模型，不从模型服务的我的模型页面寻找 Start 按钮。
+2. 核对加速卡、业务参数与推荐规格。按实际负载确认并发、上下文、精度和预留，不照搬其他硬件的数值。
+3. 在部署设置中核对资源总量、地域、项目与实例名称；预览确认后点击 **提交**。
+4. 进入 **On-Prem > 模型部署 > 模型实例**，按名称和地域找到实例，核对模型、框架、资源与状态，待 **推理服务已就绪** 后继续。
 
-确认配置无误后，点击 **Submit** 提交部署。
+![部署设置与预览](./images/templates-deployment-settings.png)
 
-![确认模型实例配置并提交](./images/03-confirm-submit-instance.png)
+图示为部署模板的设置与预览示例，包含资源、部署位置和服务信息；示例规格不代表当前账号必定可用。
 
-提交后模型实例进入启动流程。可以点击 **Search** 刷新模型实例状态。等待模型变为 **Running** 状态且服务端口可用。此过程可能需要几分钟。
+详细部署参数见[部署模板](../../../usermanual/ai-infra-on-prem/user/model-deployment/templates/)，实例状态和服务端口见[模型实例](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/)。
 
-![模型实例处于 Running 状态且服务端口可用](./images/04-instance-running-status.png)
+### 2. 检测连通性并进入私有模型登记
 
-### 2. 使用已创建的实例发布模型（模型提供方）
+1. 在目标实例卡片的 **…** 菜单选择 **发布模型**，核对发布对象和 **所选服务端口**。
+2. 使用 **发布为私有模型** 进入检测；公共模型卡片提供 **联系我们**，不能将其视为可直接完成公有发布的证明。
+3. 核对使用的推理服务端口和协议，取得请求授权后执行冒烟检测。只在出现 **API 冒烟检测通过** 后点击 **跳转发布**。
+4. 在带私有标签的 **我的模型** 登记页继续完成基本信息、计费和限流；跳转成功或检测通过，都不等于发布完成。
+5. 返回发布列表核对状态和版本，需要审核时按[模型发布审批](../model-publishing-approval/)交接。
 
-模型实例状态变为可用后，点击 **Publish** 开始发布模型。
+### 3. 使用目标账号验证调用
 
-![点击 Publish 发布模型实例](./images/05-publish-model-action.png)
+1. 进入 **模型及AI服务 > 发现 > 模型市场**，在授权范围搜索模型并核对供应方。
+2. 从供应方卡片进入 **Playground（体验中心）** 验证相应模态的输出，或进入 **Quick Start（快速开始）** 核对调用地址、协议与模型路由标识。
+3. 按当前接入示例执行受控请求，检查有效输出，再在 **我的调用 > 调用日志** 定位对应时间和模型的记录。具体步骤见[模型的体验与调用](../model-experience-api-calling/)。
 
-选择已批准的 **Public** 或 **Private** 范围进入发布页面。至少启用一种 API 协议（例如 OpenAI-ChatCompletions），然后点击 **Test** 确认模型连通性可用。
+## 场景 B：准备新模型版本与推理模板（运营管理员）
 
-![启用 API 协议并完成协议测试](./images/06-publish-protocol-test.png)
+### 1. 维护模型文件与关联集群
 
-还可以根据环境要求将 **Custom Tag** 设置为测试标签（如 `testing`）。
+1. 进入 **On-Prem > 模板 > 模型配置**，确认目标模型是否已存在；新建时点击 **添加模型**，依次完成选择元模型、配置模型信息和配置模型版本信息。
+2. 配置模型类别和参数量，在版本信息中核对量化方式、**模型来源**（模型文件来源，如 ModelScope、HuggingFace 或 Local）及远程仓库信息；该字段不是模型服务子系统的 **设置 > 模型源**。
+3. 选择关联集群，核对状态后提交；回到列表检查 **模型下载** 的进度和目标版本。先保存并不证明文件已经下载完成或对用户侧可用。
 
-![配置模型自定义标签 Custom Tag](./images/07-publish-custom-tag.png)
+![模型版本信息](./images/models-configure-model-version-information.png)
 
-下一步配置计费选项。受控测试场景下可设置为 **Free**（免费）。
+图示为模型版本配置，量化方式、模型文件来源和关联集群需要结合目标环境填写。不要将另一模型仓库标识作为默认值。
 
-![配置模型计费选项](./images/08-publish-billing-options.png)
+### 2. 维护推理模板与框架关联
 
-进入 Rate Limit 页面。受控测试只有在当前环境策略允许时才可以不启用限流。页面要求审批时提交审批；如果不需要审批，则直接核对发布后的状态。
-
-![配置限流策略并提交发布申请](./images/09-publish-rate-limit-submit.png)
-
-### 3. 调用模型进行测试（模型提供方）
-
-点击进入 `模型服务 > 发现 > 模型 (Models)`，搜索已发布的模型。
-
-![在模型市场中搜索已发布的模型](./images/10-model-store-search.png)
-
-找到在模型提供方页面发布的模型，点击 **Playground**，在新的浏览器标签页中打开在线 Chat 界面。
-
-![从模型详情页点击 Playground 进入体验中心](./images/11-displayground-chat-entry.png)
-
-在对话框中输入提示词，验证模型输出流式响应。
-
-![在 Playground 中输入提示词测试对话](./images/12-playground-chat-test.png)
-
-也可以使用 cURL 命令行进行接口测试，点击 **Quick start** 查看详细接入信息。
-
-![打开 Quick Start 面板查看 API 调用信息](./images/13-quick-start-api-drawer.png)
-
-复制预生成的 cURL 示例命令。
-
-![复制 cURL 调用命令](./images/14-copy-curl-command.png)
-
-将命令粘贴到终端环境执行，验证模型生成的文本输出。
-
-![在终端中执行 cURL 命令并验证输出](./images/15-terminal-curl-execution.png)
-
-## 场景 B：准备新的模型模板（运营管理员）
-
-### 1. 确保模型已下载（运营管理员）
-
-使用运营管理员账号登录，从 `AI-Infra > On-prem > 模板配置 > 模型管理` 进入模型列表。搜索所需模型（例如 `DeepSeek-R1-Distill-Qwen-7B`）。如果列表中尚未创建该模型，可点击 **Add Model** 预先创建。
-
-![运营管理员在 On-Prem 模型库中搜索目标模型](./images/16-operator-onprem-models-search.png)
-
-找到目标模型后，点击进入详情，向下滚动至 **Select linked clusters**。由于新模型尚未下载到当前集群，需点击目标版本对应的 **Edit** 按钮。
-
-![查看模型详情并编辑关联集群版本](./images/17-model-details-linked-clusters.png)
-
-将模型来源从 Local 更改为 ModelScope 或 HuggingFace（当前环境建议选择 ModelScope 以确保网络顺畅）。填写目标模型的 Model ID，系统将使用它自动下载权重文件。
-
-![将模型来源切换为 ModelScope 并填写 Model ID](./images/18-edit-version-modelscope-source.png)
-
-打开 ModelScope 官方社区，搜索模型并复制 Model ID，然后填入平台中。
-
-![在 ModelScope 社区获取模型 Model ID](./images/19-modelscope-website-model-id.png)
-
-点击 **Save** 后系统开始自动下载模型。此时可以勾选 **Enable after download**，模型下载完成后将自动置为启用状态。
-
-![设置下载完成后自动启用模型](./images/20-enable-after-download.png)
-
-### 2. 创建推理模板（运营管理员）
-
-进入 `AI-Infra > On-prem > 模板配置 > 推理模板 (Inference Templates)` 页面，点击 **New Inference Template**，选择关联的模型与版本，指定推理框架，并输入模板名称。
-
-![创建新的模型推理模板并选择版本与框架](./images/21-create-inference-template.png)
-
-在 **Linked VRAM Factor** 表单中点击 **Edit**，选择与模型架构匹配的显存系数表（如 `Common Model Inference VRAM param table for vLLM`）。
-
-向下滚动到 **Framework Relations** 部分，点击 **Edit**，勾选绑定的算力卡规格（例如 Ascend 910B），确认后保存。
-
-![关联 vLLM 显存参数表并绑定昇腾 910B 卡型规格](./images/22-vram-factor-and-card-relations.png)
-
-如需针对特定业务进一步优化推理吞吐或延迟，可在 Extra parameters 中按专业支持指引补充参数；常规测试保持默认即可。确认无误后，将模板状态变更为 **Available**。
-
-![将推理模板状态置为 Available](./images/23-available-inference-template.png)
-
-推理模板置为 Available 后，模型提供方即可参考“场景 A”中的步骤完成模型部署与服务发布。
+1. 进入 **On-Prem > 模板 > 推理模板**，点击 **创建推理模板**，选择模型、模型版本、框架版本并核对名称，再保存。
+2. 打开模板详情，分别检查 **模型版本切换**、**框架关联**、运行镜像和绑定加速卡；需要时维护 **关联显存计算因子表单**（用于配置显存估算参数的表单）。
+3. 核对每条框架关联的状态和列表的 **可部署 / 不可部署** 结论。不能把某个框架关联的 **可用** 等同于整个模板已可部署。
+4. 确认依赖与可见范围后，将模型版本、框架和规格信息交给提供方，按场景 A 检查用户侧是否可选择和部署。
 
 ## 完成检查
 
-完成上述步骤后，按以下标准确认整个流程已闭环：
-
-1. **模板就绪**：在 **Inference Templates** 列表中，新建的推理模板状态显示为 **Available**，关联的模型版本与加速卡规格正确。
-2. **实例运行正常**：在 **My Deployments** 中，基于新模板创建的模型实例处于 **Running** 状态，服务端口正常暴露。
-3. **API 与调用验证**：在模型列表通过 **Playground** 成功进行对话交互，或通过 `cURL` 发送请求能收到预期的模型推理结果。
+| 检查项 | 通过标准 |
+| --- | --- |
+| 模型文件 | 模型版本与来源正确，目标关联集群文件状态已核对。 |
+| 模板 | 目标模型/框架组合、镜像、加速卡与因子表单一致，用户侧可部署。 |
+| 实例 | 实例卡片与预览配置一致，推理服务已就绪且端口与协议正确。 |
+| 登记 | 冒烟检测通过后完成登记，发布状态和版本已复核。 |
+| 调用 | 目标授权账号获得有效输出，调用日志可定位。 |
 
 ## 常见失败分支
 
-| 现象 | 优先检查 | 继续排查手册入口 |
-| --- | --- | --- |
-| ModelScope 权重下载缓慢或失败 | 集群节点出网连通性、Model ID 拼写、目标集群存储容量及下载日志 | [On-Prem 模型管理](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/#常见问题) |
-| 推理模板无法置为 Available | 显存测算表关联、框架版本兼容性、加速卡规格绑定状态 | [推理模板配置](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/#常见问题) |
-| 模型实例启动超时或报错 Crash | 目标节点 NPU 卡显存余量、并发与上下文配置、驱动与容器镜像版本 | [模型实例运维](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/#常见问题) |
-| 发布协议测试 (Test) 失败 | 实例健康状态、服务端口暴露、协议路径及所选模型是否支持该协议 | [模型审核与发布](/zh-CN/usermanual/model-services/operator/approvals/model-reviews/#常见问题) |
-| cURL 或 Playground 无响应 | API Key 有效性、账户余额/配额、限流配置与网络防火墙策略 | [模型广场体验与调用](/zh-CN/usermanual/model-services/user/discover/models/#常见问题) |
-
-## 操作手册参考
-
-- [On-Prem 模型](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/models/)
-- [推理模板](/zh-CN/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
-- [我的模型](/zh-CN/usermanual/model-services/user/studio/my-models/)
-- [模型实例](/zh-CN/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
+| 现象 | 优先检查与继续入口 |
+| --- | --- |
+| 模型文件未就绪 | 核对版本来源、仓库信息与关联集群下载状态，见[模型配置](../../../usermanual/ai-infra-on-prem/operator/templates/models/#常见问题)。 |
+| 模板不可部署 | 核对模型版本、框架关联、镜像、加速卡与依赖，见[推理模板](../../../usermanual/ai-infra-on-prem/operator/templates/inference-templates/#常见问题)。 |
+| 规格不可选或实例找不到 | 核对地域、配额、名称与筛选，见[部署模板](../../../usermanual/ai-infra-on-prem/user/model-deployment/templates/)与[模型实例](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/)。 |
+| 发布检测不通过 | 核对服务就绪状态、端口和协议，见[模型实例发布流程](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/#发布模型)。 |
+| 登记后无法调用 | 先检查发布状态、版本和访问范围，再按[调用指南](../model-experience-api-calling/)排查。 |

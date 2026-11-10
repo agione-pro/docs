@@ -1,60 +1,19 @@
 ---
 prev: false
-next: true
+next: false
+guideStatus: retired
 ---
 
-# Publish and Approve Apps
+# Application Publishing and Approval (Retired Workflow)
 
-Use this task to review application publishing information, process approval, and validate customer visibility.
+::: warning Do not follow the former procedure
+The current user manual has removed Apps and Application Reviews. This page no longer provides application publishing, approval, or customer-visibility validation steps. Its URL remains only to explain the changed scope of the former workflow.
+:::
 
-## Applicable Roles
+## What to Do Now
 
-- Platform Operators, application publishing administrators, and application reviewers
+1. Do not use historical screenshots to locate application publishing or review controls.
+2. If your task is model-service publication, use [Publish Models](../publish-model/); for model requests, use [Model Publishing Approval](../model-publishing-approval/). Neither is a substitute application-review procedure.
+3. If you specifically need application publishing and review, confirm current-version support with the product owner before proceeding. Do not use the old workflow as an acceptance criterion.
 
-## Before You Start
-
-- Confirm permission to manage or review application publishing.
-- Prepare the application description, bound model, calling entry point, parameter mapping, and customer scope.
-- Confirm that the bound model is available and the target customers are authorized.
-
-## Procedure
-
-### 1. Review Application Publishing Information
-
-Open Apps, filter by app name or publication state, and open the details. Review the bound model, calling entry point, parameter mapping, customer scope, and publication description.
-
-![Locate a publication record in Apps](./images/apps-list-public.png)
-
-### 2. Process Application Approval
-
-Open Application Reviews and filter by state, application name, applicant, or submission time. Review the description, bound model, entry point, and customer scope, then approve, reject, or request more information and enter specific comments.
-
-![Locate a request in Application Reviews](./images/app-reviews-list-public.png)
-
-### 3. Validate Publication State and Customer Visibility
-
-After approval, return to Apps and confirm the publication state. Then use the target customer's perspective to verify that the app is visible and that its calling entry point is correct. Customers outside the configured scope must not see it.
-
-### 4. Validate a Call and Track Problems
-
-Run one controlled call and confirm the bound model, parameter mapping, and customer quota. If the call fails, correlate the model state, call logs, error code, and quota.
-
-## Completion Checklist
-
-> **Purpose:** These checks confirm that the application approval produced the intended publication boundary and a working customer path. Resolve failed checks before announcing the application as available.
-
-| Check | Pass Criteria |
-| --- | --- |
-| Publishing information | Application, model, entry point, parameters, and customer scope are correct. |
-| Approval record | State, comments, reviewer, and time are complete. |
-| Visibility | Intended customers can see the application; other customers cannot. |
-| Call validation | The application call succeeds or the failure cause is identified. |
-
-## Troubleshooting
-
-| Symptom | Check First |
-| --- | --- |
-| Customer cannot see the published application | Publication state, customer scope, bound-model state, and synchronization time |
-| Approval cannot be completed | Required materials, calling entry point, model state, and reviewer permission |
-| Application remains invisible after approval | Application publication state and customer authorization scope |
-| Application call fails | Model state, parameter mapping, customer quota, and call logs |
+[Return to the legacy scenario notice](./) or [choose another scenario](../../scenarios).

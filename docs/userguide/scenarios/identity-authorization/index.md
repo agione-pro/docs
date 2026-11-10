@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Identity Authorization
 
-This scenario uses tenants, members, and roles to define which menus, actions, and business resources a user may access.
+This scenario uses tenants, members, and roles to define which menus, actions, and business resources a user may access. A tenant is an isolated business and data scope; a role is a permission set assigned to members. Identical menu names do not imply identical access across tenants or roles.
 
 ## Applicable Roles
 
@@ -55,7 +55,7 @@ Representative role screenshot:
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |

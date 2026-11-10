@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Observability and Troubleshooting
 
-This scenario investigates throughput, latency, failure, queuing, and resource issues from model, tenant, and infrastructure views.
+This scenario investigates throughput, latency, failure, queuing, and resource issues from model, tenant, and infrastructure views. Throughput is work handled per unit time; latency is request processing time. Read both against the same object and the available measurement scope.
 
 ## Applicable Roles
 
@@ -48,7 +48,7 @@ This scenario investigates throughput, latency, failure, queuing, and resource i
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |

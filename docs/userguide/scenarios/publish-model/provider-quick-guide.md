@@ -1,136 +1,63 @@
 # Publish Public Models
 
-This guide explains how model providers publish a model to the public marketplace, including sign-in, model information, protocol testing, billing, rate limits, and approval submission.
+This guide publishes an existing upstream service through BYOK (Bring Your Own Key). Compute deployment is not a deployment-method choice inside this publishing wizard; prepare deployed services through [Model Deployment and Status Check](../on-prem-model-deployment-status/) first.
 
 ## Target Outcome
 
-The model passes protocol testing, is submitted to the correct publication scope, and can be located after approval.
+Pass protocol connectivity testing, configure billing and rate limits, and verify the published revision and intended users' access.
 
 ## Applicable Roles
 
-- Model Provider
-- Platform Operator when approval is required
+- Model Provider; an Operator processes review when required.
 
 ## Before You Start
 
-- Confirm that the Platform Operator has prepared the required meta-model, source, template, tags, and currency.
-- Prepare the model identifier, endpoint, credential, protocol, billing decision, rate limits, and harmless test data.
+- Your account can open **Model Services > Studio > My Models**.
+- Confirm the meta model (capability profile), model source (upstream source), Endpoint (access point under the source), request URL, credential, and upstream model name.
+- Confirm publication scope, billing, and limits, and prepare non-sensitive test input. Testing and subsequent calls can consume credits; verify price and authorization first.
 
-## 1. Sign In To {{DOCS_PRODUCT_NAME_EN}}
+## 1. Open the Publishing Entry
 
-1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in page at `{{DOCS_LOGIN_URL_EN}}`.
-2. Select **"Password"** sign-in.
-3. Enter your **"Username or email"** and **"Password"**.
-4. Tick **"I agree to the Privacy Policy and Terms of Service"**.
-5. Click **"Sign In"**.
+1. Sign in to {{DOCS_PRODUCT_NAME_EN}}, open **Studio > My Models**, and switch to **My Published**.
+2. Click **Publish Model**, choose **Public Model** in **Select publish type**, then click **Publish as Public Model**.
+3. Alternatively, start from the public entry under **Overview > BYOK**. A deployment card showing **Environment not configured.** does not provide a direct deployment action.
 
-![Sign in to {{DOCS_PRODUCT_NAME_EN}}](./images/beginner-login-page-en.png)
+## 2. Configure Basic Information and Test Connectivity
 
-## 2. Open The Model Publishing Page
+1. In **Step 1 Basic Information**, select the meta model, model source, and Endpoint; fill the request URL, credential, and **Upstream model name**. Check input/output modalities.
+2. Configure Function/Tool Support, Thinking Mode, and token limits only for verified model capabilities.
+3. Select at least one protocol under **Official Native Protocol & Default Advanced Parameters**, and complete connectivity testing before proceeding.
+4. Review the custom tag, model name preview, publication method, and **Access Mode**. **Global** needs no additional tenant authorization; **Authorized** requires tenant authorization even when the model is visible in the marketplace.
 
-1. After signing in, open **"Model Services"**.
-2. In the left menu, go to **"Studio" > "My Models"**.
-3. Click **"Publish Model"**.
-4. In the dialog, choose a deployment method:
-   - **On-Prem / On-Cloud** for a model deployed on compute managed through {{DOCS_PRODUCT_NAME_EN}}.
-   - **BYOK (Bring Your Own Key)** for an existing third-party or self-hosted model API.
-5. Choose **Private** for internal use or **Public** for the public marketplace.
-6. Click **Start**.
+![Publish model basic information](./images/my-models-publish-basic.png)
 
-![My Models entry](./images/my-models-overview-en.png)
+The figure shows a private text-model example, used only to explain shared fields such as meta model, source, Endpoint, request URL, credential, upstream model name, and protocols. It does not demonstrate the public-model publication flow or result. Access Mode is below the area shown; verify publication type and access control on the current public publishing page.
 
-### 2.1 Choose Platform-Hosted Deployment or BYOK
+## 3. Complete Billing, Rate Limits, and Publication Checks
 
-| Deployment Method | Use When | Confirm Before Publishing |
-| --- | --- | --- |
-| On-Prem / On-Cloud | {{DOCS_BRAND_PREFIX_EN}}-managed compute will host the model | Model asset, resource pool, inference template, or cloud deployment prerequisites are ready |
-| BYOK (Bring Your Own Key) | An external or self-hosted model API should use {{DOCS_PRODUCT_NAME_EN}} experience, billing, and governance | Endpoint, provider model ID, headers, key, protocol, and response format are ready |
-
-Select the publication area and deployment method before clicking Start. Enter a BYOK credential only on the platform configuration page; never expose it in documentation, screenshots, or tickets.
-
-![Choose the publication area and deployment method](../../../usermanual/model-services/user/studio/my-models/images/my-published-choose-where-to-publish-add-public.png)
-
-## 3. Fill In Basic Information
-
-1. In **Select Model Type**, choose the model type and subtype that match the upstream service.
-2. Check the basic-information area and confirm that the visible capability fields match that type.
-
-![Review basic model information](./images/publish-basic-info-en.png)
-
-3. In **Model Source/Meta Model Information**, select the real provider, region, and target meta-model.
-4. For BYOK, enter the model service URL, provider key, and exact provider-side model ID. For platform-hosted deployment, select the prepared model asset and deployment source.
-
-![Fill in model source information](./images/publish-source-protocol-en.png)
-
-## 4. Test The Protocol
-
-1. Find **Official Native Protocol & Default Advanced Parameters**.
-2. Select the protocol you want to use, such as **OpenAI-ChatCompletions**, and expand its card.
-3. Confirm the endpoint path and required input parameters.
-4. Select **Start Testing** and wait until the result shows **Test Pass**.
-
-![Confirm that the protocol test passed](./images/publish-protocol-test-pass-en.png)
-
-5. Enter an easy-to-recognize custom tag, confirm the final display name, and select **Next**.
-
-## 5. Configure Billing
-
-1. Go to **"Billing Configuration"**.
-2. If the model is free to use, select **"Free"**.
-3. If the model should be paid, select **"Paid"** and fill in the price fields shown on the page.
-4. Click **"Next"**.
-
-![Configure billing](./images/publish-billing-free-en.png)
-
-## 6. Configure Rate Limits And Submit
-
-1. Go to **"Rate Limit Configuration"**.
-2. Choose whether to enable rate limiting.
-3. If rate limiting is enabled, fill in:
-   - **"RPM"**: maximum requests per minute.
-   - **"TPM"**: maximum tokens per minute.
-4. If you do not want to submit yet, click **"Save Only"**.
-5. If everything is ready, click **"Submit for Audit"**.
-6. Wait for approval. The model is not fully published until the audit is approved.
-
-![Configure rate limits](./images/publish-rate-limit-en.png)
-
-## 7. Check The Model In The Marketplace
-
-1. In the left menu, go to **"Discover" > "Models"**.
-2. If you published a public model, use **"All Models"**.
-3. If you published a private model, use **"Private Models"**.
-4. Search by the final display name, such as **"Qwen3.5-27b highspeed"**.
-5. Find your model in the list.
-6. Click **"View"** to open the detail page and confirm the model information.
-
-![Check the model in the marketplace](./images/model-market-verify-published-model-en.png)
-
-## Remember These 2 Things
-
-- **Do not share your API Key or put it in public documents.**
-- **The protocol test must pass before you continue.**
+1. Click **Next** to complete **Step 2 Billing Configuration**. Check the billing method, unit, and price.
+2. Complete **Step 3 Rate Limit Configuration**, confirm whether limits are enabled, and submit through the page.
+3. Return to **My Published** and check the target record's status, **Effective version**, and **Pending version**. Hand the target model, submitted revision, and publication scope to the operator and use [Model Publishing Approval](../model-publishing-approval/) when review is required; submission alone does not establish that the model is listed.
+4. With the intended user's account, open **Discover > Models**, click the model name, and check the provider card's price, route ID, and access. Use **Playground** or **Quick Start** to verify a controlled call.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
-
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Protocol testing passes with the final model identifier and endpoint. |
-| 2 | Billing, free quota, and rate limits match the intended offer. |
-| 3 | The model is saved or submitted and its status can be located in My Models. |
-| 4 | After approval, the intended audience can find and call the model. |
+| Protocol | Connectivity testing passes for the intended model and protocol. |
+| Publication record | My Published shows the target revision and expected status. |
+| Cost and access | Price, billing unit, limits, and Access Mode have been reviewed. |
+| User verification | The authorized audience can find the model and complete a controlled call. |
 
 ## Troubleshooting
 
-| Symptom | Check First |
+| Symptom | Check First and Continue |
 | --- | --- |
-| Required template or source is missing | Operator preconfiguration, region, model type, and account scope |
-| Protocol test fails | Endpoint, credential, model identifier, headers, request body, and network access |
-| Model is not visible after submission | Review status, publication time, public/private scope, and marketplace filters |
+| Basic information cannot proceed | Check required fields and protocol testing in [My Models](../../../usermanual/model-services/user/studio/my-models/#faq). |
+| Publication record is missing | Confirm My Published, reset search, and check review status. |
+| Visible model cannot be called | Verify Access Mode, tenant authorization, and provider selection in [Models](../../../usermanual/model-services/user/discover/models/). |
 
 ## User Manual
 
 - [My Models](../../../usermanual/model-services/user/studio/my-models/)
-- [My Models](../../../usermanual/model-services/user/studio/my-models/)
+- [Models](../../../usermanual/model-services/user/discover/models/)

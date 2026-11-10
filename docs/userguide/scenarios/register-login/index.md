@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Register and Login
 
-This scenario covers account registration, password login, email-code login, and password recovery before users enter an {{DOCS_PRODUCT_NAME_EN}} subsystem.
+This scenario covers account registration, password login, email-code login, and password recovery before users enter an {{DOCS_PRODUCT_NAME_EN}} subsystem. An email verification code is time-limited identity-verification information, not a long-term password. Available sign-in methods depend on current platform settings.
 
 ## Applicable Roles
 
@@ -48,7 +48,7 @@ This scenario covers account registration, password login, email-code login, and
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |

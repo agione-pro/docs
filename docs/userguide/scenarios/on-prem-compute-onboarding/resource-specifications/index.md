@@ -2,7 +2,9 @@
 
 ## Target Outcome
 
-Users can request clear one-card, two-card, and four-card NPU plans, each mapped to the correct scheduler resource key.
+Users can request NPU tiers that match actual needs and capacity, each mapped to the correct scheduler resource key.
+
+A resource specification is the resource bundle requested by a workload. k8s-key identifies the resource, while selector-key identifies the node label used for matching; they are not interchangeable.
 
 ## Applicable Roles
 
@@ -16,25 +18,29 @@ Users can request clear one-card, two-card, and four-card NPU plans, each mapped
 ## Entry
 
 - **Role:** Operator
-- **Menu:** On-Prem > Resource Pools > Specification Metrics / Resource Specifications
-- **Routes:** `/powerone/resourcepool/flavor/type`, `/powerone/resourcepool/flavor/list`
+- **Menu:** On-Prem > Resource Pools > Resource Specs (metrics are maintained in the left specification group panel)
+- **Routes:** `/powerone/resourcepool/flavor/list`
 
 ## Steps
 
-1. In **Specification Metrics**, verify that the NPU metric k8s-key matches the device-plugin resource key and add selector keys when scheduling must target a model or node group.
+1. Open **Resource Specs** and use the left **Specification group navigation > Specification Metrics** panel. If the accelerator metric is missing, select **Add specification metric**, choose **AI Accelerator Metrics**, verify the name, unit, k8s-key, and selector-key against node reporting, and submit.
 
-![Verify specification metrics](./images/spec-metrics-list.png)
+![Verify specification metrics](./images/resource-specs-add-specification-metric.png)
 
-2. In **Resource Specifications**, create one-card, two-card, and four-card plans.
-3. Configure CPU, memory, NPU count, and storage requirements, then associate each plan with the target cluster.
+2. In **Resource Specifications**, create the card-count tiers required by the approved workload; all one-/two-/four-card plans are not mandatory.
+3. Use the round plus button at the end of the search row, enter the specification ID, and maintain CPU, memory, and accelerator rows with quantities and units in **Configuration**. Pricing is maintained through **Assisted pricing / Adjust prices**, not the create dialog. After creation, verify association in the cluster’s **Configuration > Associated Specifications**.
 
-![Verify resource specifications](./images/resource-specs-list.png)
+![Specification Metrics panel and Resource Specs table](./images/resource-specs-resource-specs.png)
 
-4. Validate the one-card plan with a test workload before testing the two-card and four-card plans.
+The image shows the Resource Specs page: specification metrics in the left group-navigation panel, the specification/resource/pricing/status table on the right, and the round plus button at the search-row end. It is not evidence of a successful creation or scheduled test workload.
+
+4. Validate the base configuration with an approved small test plan, then test the target tiers actually required and supported by capacity.
 
 5. Before exposing a specification to users, confirm that its enabled state, associated cluster, region/availability-zone scope, and tenant quota allow the intended downstream template or workload to select it.
 
 ## Recommended Four-Card Plan
+
+**Worked example:** This section retains a four-NPU example. Use these tiers only when the model, capacity, and scheduling topology support them; other environments use their actual device inventory and workload requirements.
 
 | Flavor | NPU Count | Typical Use |
 | --- | ---: | --- |
@@ -42,17 +48,17 @@ Users can request clear one-card, two-card, and four-card NPU plans, each mapped
 | `npu-2` | 2 | Two-card parallel inference |
 | `npu-4` | 4 | A workload that exclusively uses all cards |
 
-Do not assume that a single pod can request all four cards when they are distributed across nodes.
+Do not assume that a single pod (the smallest container scheduling unit) can request all four cards when they are distributed across nodes.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | All three flavors are selectable. |
+| 1 | The planned specifications approved for this workload are selectable. |
 | 2 | Resource keys match node reporting. |
-| 3 | One-card validation passes before two-card and four-card validation. |
+| 3 | The base configuration and required target specification are validated without creating unrelated resource tiers. |
 
 ## Troubleshooting
 

@@ -2,7 +2,9 @@
 
 ## Target Outcome
 
-All four NPU cards have traceable health and utilization, and each abnormal signal can be linked to a node and workload.
+Check target NPU health and utilization against the actual hardware inventory and correlate abnormalities using node and instance records.
+
+NPU means neural processing unit. Device utilization describes runtime load, not the card count requested by a workload or its tenant quota.
 
 ## Applicable Roles
 
@@ -22,23 +24,29 @@ All four NPU cards have traceable health and utilization, and each abnormal sign
 
 ## Steps
 
-1. In **Device Monitoring**, verify that all four NPU cards are visible and compare utilization, memory, temperature, and health for each card.
+1. Open **Devices** and select the region, cluster, and node. The default **Common** tab shows host metrics; switch to **AI Accelerator** for device metrics. Verify only devices and fields actually returned rather than assuming the default tab lists every target card in the inventory.
 
-![Check individual NPU devices](./images/devices.png)
+![Devices Common tab with host-metric trends](./images/devices-device-monitoring.png)
+
+The **Common** tab shows CPU, disk, and memory trends for the selected cluster, node, and time range. It does not show NPU device metrics or prove that all accelerators have been recognized.
 
 2. In **Node Monitoring**, verify that accelerator nodes are Ready and not resource constrained.
 
-![Check accelerator nodes](./images/nodes.png)
+![Check accelerator nodes](./images/nodes-node-statistics.png)
 
-3. In **Workload Monitoring**, locate the deployment or training job using each card.
+3. In **Workload Monitoring**, review job-status totals and node utilization, then use deployment or runtime-instance details to confirm the task and resource allocation. Do not infer a per-card allocation map directly from the aggregate dashboard.
 
-![Locate workloads using the cards](./images/jobs.png)
+![Aggregate job status and node-utilization dashboard](./images/jobs-job-monitoring.png)
+
+The image contains job and node aggregates, not a one-to-one map between physical NPU cards and individual workloads.
 
 4. Correlate an abnormal device with its node and workload before choosing a hardware, driver, quota, or application fix.
 
-Use the same region, availability-zone, object, and time-range scope on all three pages. If the pages show different totals, clear filters and restore them one at a time before treating the difference as a fault.
+Align region, cluster, node, and observation time. Devices provides a time range, but the Nodes manual does not show a time-range control, so do not require a nonexistent filter. Start with status totals and node utilization in Jobs, then inspect the individual instance. Aggregate charts alone do not prove a mapping from a physical card to a specific job.
 
 ## Four-NPU Inspection Table
+
+**Worked example:** This section retains a four-NPU example. Use these tiers only when the model, capacity, and scheduling topology support them; other environments use their actual device inventory and workload requirements.
 
 | Check | Expected Result |
 | --- | --- |
@@ -50,12 +58,12 @@ Use the same region, availability-zone, object, and time-range scope on all thre
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Every device maps to a node and occupying workload. |
-| 2 | Requested card count, device usage, and tenant quota agree. |
+| 1 | The device’s node is recorded and instance or job details confirm resource allocations; aggregate charts do not replace per-instance evidence. |
+| 2 | Allocated cards match the request and tenant usage stays within its resource limit; the limit need not equal current usage. |
 | 3 | A single unhealthy card can be isolated without treating the entire cluster as unavailable. |
 
 ## Troubleshooting

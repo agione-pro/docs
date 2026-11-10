@@ -32,18 +32,22 @@ next: true
 | --- | --- | --- | --- |
 | 1 | 确认租户、用户、角色和菜单的关系 | [用户、租户与角色设计逻辑](../../../product/identity-access-model) | 权限边界和角色选择已明确 |
 | 2 | 对照默认角色能力选择角色 | [角色对比总览](../../../product/role-comparison) | 角色与岗位职责匹配 |
-| 3 | 在租户设置和团队成员中确认成员归属 | [租户设置](../../../usermanual/settings/user/organizations/org-settings/)、[团队成员](../../../usermanual/settings/user/members-roles/team-members/) | 成员状态正常且租户关系正确 |
+| 3 | 在租户设置和成员中确认成员归属 | [租户设置](../../../usermanual/settings/user/organizations/org-settings/)、[成员](../../../usermanual/settings/user/members-roles/team-members/) | 成员状态正常且租户关系正确 |
 | 4 | 在角色中选择内置角色，必要时创建最小权限角色 | [角色管理](../../../usermanual/settings/user/members-roles/roles/) | 角色只包含必要权限 |
 | 5 | 使用验证账号重新登录，检查菜单、按钮和资源范围 | [角色](../../../usermanual/settings/operator/members-roles/roles/) | 允许项可用，禁止项不可见或不可操作 |
 | 6 | 在操作日志中核对权限变更和验证结果 | [操作日志](../../../usermanual/settings/user/activity-notifications/operation-logs/) | 变更时间、操作人和对象可追溯 |
 
-步骤 3-5 需要在**角色管理**中核对角色记录和权限范围，再使用验证账号重新登录。
+先区分执行范围：步骤 3–4 的租户侧成员和角色由该租户内具备管理权限的账号处理；平台运营角色使用[运营侧角色手册](../../../usermanual/settings/operator/members-roles/roles/)核对。两侧菜单路径可能相同，但表单和授权对象不同，不能混用。步骤 5 切换到实际被授权的验证账号检查结果，不要求普通成员进入运营角色管理。
 
-![在角色管理中核对角色和成员数量](../../../usermanual/settings/user/members-roles/roles/images/manual-settings-user-roles-live-20260902.png)
+在对应范围的**角色**页面核对角色记录和权限范围，再使用验证账号重新登录。管理员将目标租户、已分配角色及允许/禁止项清单交给验证人员；验证人员用目标账号核对后，返回可见菜单、可执行操作和未通过项，由原管理人员复查，不让验证人员自行扩大权限。
+
+![角色列表与已加载的成员记录](./images/roles-list.png)
+
+图示左侧为内置和自定义角色，右侧为所选角色的信息、成员数量与成员表；先确认记录或明确空态已显示，再核对权限范围。
 
 ## 完成检查
 
-> **用途：** 以下检查是当前功能任务的退出条件，用于判断操作结果是否可观察、可复核，以及是否可以继续当前场景的下一步。它不是操作步骤的重复；任一项不满足时，请按下方“常见失败分支”继续排查。
+核对下表；任一项未满足时，先按“常见失败分支”排查。
 
 | 检查项 | 通过标准 |
 | --- | --- |

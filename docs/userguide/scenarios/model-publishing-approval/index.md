@@ -5,17 +5,19 @@ next: true
 
 # Scenario Overview - Model Publishing Approval
 
-This scenario shows operators how to review a provider's model publication request, including model data, protocol, billing, throttling, and scope.
+This scenario shows operators how to review a provider's model publication request, including model data, protocol, billing, throttling, and scope. Protocols define request/response formats; rate limits control call frequency or usage caps, so they require separate checks.
 
 ## Applicable Roles
 
 - Platform Operator
 - Provider waiting for the review result
 
+The provider hands over the target model, submitted revision, and publication scope. After processing that revision, the operator hands back the review status and verification basis. The provider checks the effective version, and the intended user verifies access.
+
 ## Goals
 
 - Trace every review item to the publication configuration.
-- Record a clear approval or rejection reason.
+- Confirm the review object, revision, and decision.
 - Preserve the intended model visibility after approval.
 
 ## Scenario Flow
@@ -26,7 +28,7 @@ This scenario shows operators how to review a provider's model publication reque
 | --- | --- |
 | 1. Locate the request | The target model, provider, and pending version are identified |
 | 2. Review settings | Model information, protocol test, billing, rate limits, and scope are compliant |
-| 3. Process review | Approval or rejection and specific comments are saved |
+| 3. Process review | Review status and time are checked again after approval or rejection |
 | 4. Verify results | The provider sees the result and an approved model has the intended visibility |
 
 ## Before You Start
@@ -39,7 +41,7 @@ This scenario shows operators how to review a provider's model publication reque
 1. Locate the request
 2. Review model and protocol data
 3. Review billing, throttling, and scope
-4. Approve or provide an actionable rejection reason
+4. Confirm the revision, then approve or reject; hand over additional material through the agreed channel
 
 ## Document Index
 
@@ -49,10 +51,10 @@ This scenario shows operators how to review a provider's model publication reque
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | The approval or rejection result and specific review comments are saved. |
-| 2 | The Model Provider sees the status and comments in My Models. |
-| 3 | An approved model has the intended visibility; a rejected model stays out of the target marketplace and can be corrected and resubmitted. |
+| 1 | A new query confirms review status and time after processing. |
+| 2 | The provider checks publication status, effective version, and pending version in My Models. |
+| 3 | The intended audience verifies published model visibility and call authorization; an unpublished revision is not handed over as available. |

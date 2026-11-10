@@ -12,43 +12,28 @@ The target cloud environment can pull the image, and inference-framework configu
 
 ## Before You Start
 
-- Confirm the full repository address, controlled version tag, and supported framework types.
+- Confirm the full repository address, controlled version tag (the image version label), and supported framework types.
 - Confirm that the target cloud environment has network access and pull permission for the image repository.
 
 ## Procedure
 
 ### Add an Image
 
-1. Go to **Deploy Assets > Runtime Images**.
-2. Select **Add Image**.
+1. Open **On-Cloud > Deploy Assets > Runtime Images** and review existing records for the target cloud platform and region.
 
-![Review runtime images](./images/runtime-images-list.png)
+![Runtime Images](./images/runtime-images-runtime-images.png)
 
-3. Complete the form:
-   - **Image Name**: maintain Simplified Chinese and English values separately.
-   - **Image Repository Address**: enter the complete repository path, such as `registry.example.com/ai/vllm`.
-   - **Image Tag**: enter a controlled version tag, such as `0.9.1-modelgallery`.
-   - **Framework Type**: select at least one compatible type, such as `vllm`, `tgi`, `sglang`, `ollama`, `asr`, `tts`, `sdk-stable-diffusion`, or `comfyui`.
-   - **Built In**: select whether the image is provided as a platform built-in image.
-   - **Description**: maintain optional localized usage descriptions.
-4. Select **Save**. Select **Cancel** to discard the form.
+2. Select **Add Runtime Image**, choose the cloud platform, region, and public/private type, and enter the name, complete registry path, and description. Verify the applicable architecture and pool scope on the form.
+3. Use an explicit version in the complete path, such as `registry.example.com/ai/runtime:example-tag`; this example is not a real pullable image.
+4. Select **Confirm**, verify the record and scope, and check that the image can be selected by the framework version.
 
-![Add a runtime image](./images/add-image.png)
+![Add Runtime Image](./images/runtime-images-add-runtime-image.png)
 
-#### Parameters
-
-| Field | Type | Example | Description |
-| --- | --- | --- | --- |
-| Image Name | Text | `vllm` in both language tabs | Required; maintain each language independently |
-| Image Repository Address | Text | `registry.example.com/ai/vllm` | Required; complete image-repository path |
-| Image Tag | Text | `0.9.1-modelgallery` | Required; controlled image-version tag |
-| Framework Type | Multi-select | `vllm`, `tgi`, `sglang` | Required; select at least one compatible type |
-| Built In | Radio | `Yes` / `No` | Required; identifies whether the platform provides the image |
-| Description | Text | `vllm 0.9.1 modelgallery` | Optional localized description |
+If the entry only shows an unavailable-feature notice, stop this configuration step rather than treating registration as an available capability. Ask the operator to confirm the required image source. See the linked manual for complete fields and editing.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for this task. If any check fails, follow the troubleshooting section before continuing.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

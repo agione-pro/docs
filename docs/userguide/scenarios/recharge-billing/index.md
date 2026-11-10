@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Recharge and Billing
 
-This scenario distinguishes account top-ups, billing balance, resource quotas, resource usage, and model billing, then uses account overview, transactions, and monthly bills to explain balance changes and consumption.
+This scenario distinguishes account top-ups, billing balance, resource quotas, resource usage, and model billing, then uses account overview, transactions, and monthly bills to explain balance changes and consumption. Account credits describe spendable allowance; resource quota describes the permitted amount of a resource. Sufficient credits do not establish sufficient resource quota.
 
 ## Applicable Roles
 
@@ -29,9 +29,11 @@ This scenario distinguishes account top-ups, billing balance, resource quotas, r
 | 3. Confirm quota and usage | Resource or model usage has explicit limits and traceable details |
 | 4. Reconcile bills | Balance, usage, price, transactions, and monthly bill agree |
 
-Top-up record screenshot:
+Use the [workflow](./billing-workflow) and [Top-Up Orders manual](../../../usermanual/billing/user/billing/top-up-orders/) for query controls and posting checks.
 
-![Top-up records](./images/top-up-records.png)
+![Empty top-up-order query](./images/top-up-orders-list.png)
+
+The figure shows an empty result for an example order number, not a failed top-up or proof that the entire account has no orders.
 
 ## Before You Start
 
@@ -59,7 +61,7 @@ Top-up record screenshot:
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |

@@ -5,7 +5,11 @@ next: true
 
 # Scenario Overview - On-Prem Model Deployment and Status Check
 
-This scenario shows how to create a model instance from an inference template and determine success from the instance, workload, node, and device views. For four NPU cards, it verifies that the deployment actually receives the requested card count.
+This scenario shows how to create a model instance from an inference template and determine success from the instance, workload, node, and device views. Verify that the deployment receives the card count actually requested, rather than inferring allocation from a template name.
+
+A resource specification describes the planned resource request. Check instance and task information for the actual allocation; a template or instance name is not an allocation result.
+
+**Example scope:** The linked guides retain a four-NPU example. Use the actual hardware inventory, compatibility, and approved workload to determine model, count, and resource tiers; four cards or all one-/two-/four-card plans are not prerequisites for every environment.
 
 ## Applicable Roles
 
@@ -13,10 +17,13 @@ This scenario shows how to create a model instance from an inference template an
 - End User
 - Operator assisting with troubleshooting
 
+
+**Role handoff:** Model Providers and End Users manage only instances within their permissions. For cluster or device problems, hand the instance identifier, region, occurrence time, and relevant events to the Platform Operator without sharing real secrets or complete sensitive requests.
+
 ## Goals
 
 - Create a model instance from an NPU template.
-- Interpret creating, running, queued, failed, and stopped states.
+- Interpret creating, running, failed, and stopped states shown by the instance and task views.
 - Verify the allocated NPU count.
 
 ## Scenario Flow
@@ -50,10 +57,10 @@ This scenario shows how to create a model instance from an inference template an
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |
 | 1 | The model instance is running. |
-| 2 | The workload uses the card count selected by the template. |
+| 2 | The workload uses the card count in the resource specification selected at deployment time. |
 | 3 | Health checks and the service endpoint work. |

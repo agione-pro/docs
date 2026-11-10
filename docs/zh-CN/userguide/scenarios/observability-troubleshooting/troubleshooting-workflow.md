@@ -5,7 +5,7 @@ next: true
 
 # 可观测与问题排查
 
-本场景指导运营方、模型提供方和调用方先判断问题属于调用、模型服务、云上部署、异构卡纳管资源还是计量，再进入对应日志和监控页面，避免在错误子系统中反复搜索。
+本场景指导运营方、模型提供方和调用方先判断问题属于调用、模型服务、云上部署、异构卡纳管资源还是计量，再进入对应日志和监控页面，避免在错误子系统中反复搜索。API 是应用程序接口；用量中的 Token 是模型计量单位，认证 token 或 Key 是访问凭据，不能混作同一类信息。
 
 ## 适用角色
 
@@ -25,12 +25,14 @@ next: true
 3. 区分“不可见、创建失败、运行失败、调用失败、性能下降、用量异常”。
 4. 不在工单或群聊中发送完整 Prompt、响应、Token、密钥或内部 接口地址。
 
+**角色交接：** 调用方提供发生时间、对象或请求标识、可见错误和脱敏现象；模型提供方先核对自己权限范围内的服务与调用记录。涉及平台、集群或节点时，再交给有权限的运营人员；处理后由原调用方按相同条件复测，不共享密钥或完整请求、响应。
+
 ## 问题分流
 
 | 现象 | 首要入口 | 参考手册 |
 | --- | --- | --- |
 | 模型 API 调用失败或响应异常 | 我的调用 / 客户调用日志 | [调用日志](../../../usermanual/model-services/user/my-calls/call-logs/)、[客户调用日志](../../../usermanual/model-services/user/provider-calls/call-logs/) |
-| 调用成功率、时延或 Token 异常 | 调用分析 | [我的调用概览](../../../usermanual/model-services/user/my-calls/overview/)、[客户调用概览](../../../usermanual/model-services/user/provider-calls/overview/) |
+| 调用成功率、时延或 Token 异常 | 我的调用 > 概览 / 客户调用 > 概览 | [我的调用概览](../../../usermanual/model-services/user/my-calls/overview/)、[客户调用概览](../../../usermanual/model-services/user/provider-calls/overview/) |
 | 云上部署失败或不可访问 | 我的部署详情、事件和监控 | [我的部署](../../../usermanual/ai-infra-on-cloud/user/model-services/my-deployments/) |
 | 异构卡纳管作业排队或失败 | 作业监控、实例事件和日志 | [作业监控](../../../usermanual/ai-infra-on-prem/operator/monitoring/jobs/)、[模型实例](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/) |
 | 节点或加速卡异常 | 节点统计、设备监控 | [节点统计](../../../usermanual/ai-infra-on-prem/operator/monitoring/nodes/)、[设备监控](../../../usermanual/ai-infra-on-prem/operator/monitoring/devices/) |
@@ -45,13 +47,15 @@ next: true
 5. 对资源问题同时核对作业状态、节点容量和设备健康。
 6. 对用量问题先核对真实运行记录，再核对计量明细和账期汇总。
 
-判断故障层级时，使用 **异构卡纳管监控概览**在同一时间范围内对比集群、节点、设备和作业信号。
+判断故障层级时，从[On-Prem 统计概览](../../../usermanual/ai-infra-on-prem/operator/monitoring/overview/)读取所选地域的当前卡片，再进入专项监控。节点统计没有时间范围控件，记录观察时点，并统一地域、集群和对象；只有实际提供时间筛选的日志或趋势页面才设置相同时间范围，不能把当前快照当作故障发生时的历史结果。
 
-![在同一时间范围内对比监控信号](./images/monitoring-overview.png)
+![读取地域当前监控概览](./images/overview-monitoring-overview.png)
+
+图示为所选地域当前的集群状态、节点状态、作业分布和资源水位汇总。这是地域当前快照，不是故障发生时的历史结果。
 
 ## 完成检查
 
-> **用途：** 以下检查是当前功能任务的退出条件，用于判断操作结果是否可观察、可复核，以及是否可以继续当前场景的下一步。它不是操作步骤的重复；任一项不满足时，请按下方“常见失败分支”继续排查。
+核对下表；任一项未满足时，先按“常见失败分支”排查。
 
 | 检查项 | 通过标准 |
 | --- | --- |

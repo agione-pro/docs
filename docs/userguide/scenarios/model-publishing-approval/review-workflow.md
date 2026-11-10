@@ -5,58 +5,46 @@ next: true
 
 # Model Publishing Approval
 
-This scenario guides operators through reviewing a model publishing request and verifying the decision, publication scope, and resulting visibility.
+This task checks the provider's submitted model revision and processes it through the operator's review drawer.
 
 ## Applicable Roles
 
-- Platform Operator processing model reviews
-- Model Provider tracking the review result
+- Operator Admin; the Model Provider assists with revision and publication-status verification.
 
-## Target Outcome
-
-- The reviewer identifies the model, provider, publication area, and version.
-- Model information, protocol connectivity, billing, rate limits, and visibility are checked.
-- Approval or rejection includes a clear, traceable reason.
-- An approved model is visible, testable, or callable within the intended scope.
+The provider supplies the model identifier, submitted revision, visibility, and configuration evidence. The operator reviews that object and hands the processing status and any request for additional material back to the provider. Real credentials are not part of the shared handoff.
 
 ## Before You Start
 
-1. The account has Model Services model review permission.
-2. Publication, billing, rate-limit, and content governance rules are clear.
-3. Connectivity testing is complete and review material contains no real credentials.
+1. Permission to view and process **Model Services > Approvals > Model Reviews**.
+2. A pending record exists and its model, customer, revision, and visibility are confirmed.
+3. Publication settings are available as review evidence; shared materials contain no real credentials.
 
 ## Procedure
 
-| Step | Action | Manual | Completion Signal |
-| --- | --- | --- | --- |
-| 1 | Open `Approvals > Model Reviews` and filter pending requests | [Model Reviews](../../../usermanual/model-services/operator/approvals/model-reviews/) | The target request is pending |
-| 2 | Check model, provider, source, and publication area | [Model Reviews](../../../usermanual/model-services/operator/approvals/model-reviews/) | Basic information matches the request |
-| 3 | Check protocol test, modalities, tokens, billing, and rate limits | [Model Reviews](../../../usermanual/model-services/operator/approvals/model-reviews/) | Critical configuration is complete and compliant |
-| 4 | Approve or reject with a specific reason | [Model Reviews](../../../usermanual/model-services/operator/approvals/model-reviews/) | Status and review comment are saved |
-| 5 | Check status with the Provider Account | [My Models](../../../usermanual/model-services/user/studio/my-models/) | The provider sees the result and reason |
-| 6 | Verify visibility for an approved public model | [Model Marketplace](../../../usermanual/model-services/user/discover/models/) | Intended users can find the model |
+1. Open **Approvals > Model Reviews**, filter by model name, pending status, visibility, type, or customer, then click **Search**. Read submission time and revision from the table rather than assuming they are filter controls.
+2. Check customer, revision, submission time, and visibility on the target row. Click **Review** to open the right-hand drawer; there is no separate **Details** button.
+3. Review source, upstream model name, Endpoint (service access point), Model ID (platform model identifier), release channel, revision, billing, and rate limits, followed by modalities, capabilities, token limits (text-processing unit limits), and protocols.
 
-At the start of review, use the **Model Reviews** list to locate the request by provider, version, scope, submission time, and status.
+![Model review detail](./images/model-reviews-detail.png)
 
-![Locate the request in Model Reviews](./images/model-reviews-list.png)
+The figure shows the review drawer with Cancel, Reject, and Approve at the bottom. Opening it to inspect settings does not itself submit a decision.
+
+4. Confirm the object and revision, then choose **Approve** or **Reject** according to business authorization. Use **Cancel** to leave without processing. Do not assume a mandatory comment form or automatic provider-visible comments; hand over requests for additional material through the agreed collaboration channel.
+5. Query again to verify review status and time. The provider checks status and revisions in [My Models](../../../usermanual/model-services/user/studio/my-models/); after approval, an intended user's account verifies visibility and call authorization in [Models](../../../usermanual/model-services/user/discover/models/).
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
-
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Request, version, provider, and publication scope are correct. |
-| 2 | Protocol, billing, and rate-limit settings have verification evidence. |
-| 3 | Status, comment, reviewer, and time are traceable. |
-| 4 | A rejection tells the provider exactly what to change and retest. |
-| 5 | An approved model is visible only in the intended scope. |
+| Review object | Model ID, customer, revision, and intended visibility match. |
+| Evidence | Modalities, protocols, billing, and rate limits have been checked. |
+| Decision | A new query verifies review status and review time. |
+| Publication | The provider checks the revision and authorized users verify visibility and calls. |
 
 ## Troubleshooting
 
-| Symptom | Check First |
+| Symptom | Check First and Continue |
 | --- | --- |
-| Request is missing | Status filter, provider, submission time, and permission |
-| Approval cannot be submitted | Required settings, protocol test, publication area, and review permission |
-| Approved model is not visible | Publication time, model state, publication area, and user visibility |
-| Provider cannot act on rejection | Whether the review comment names the field, rule, and validation method |
+| Record is missing | Reset filters, keep pending status, then add conditions one at a time; see [Model Reviews](../../../usermanual/model-services/operator/approvals/model-reviews/#faq). |
+| No Details button | Use the row's Review action; Cancel after inspection when no decision is needed. |
+| Published model is invisible or inaccessible | Verify revision, publication method, and Access Mode (access control mode) in [My Models](../../../usermanual/model-services/user/studio/my-models/) and [Models](../../../usermanual/model-services/user/discover/models/). |

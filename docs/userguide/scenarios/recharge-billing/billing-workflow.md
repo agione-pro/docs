@@ -5,7 +5,7 @@ next: true
 
 # Recharge & Billing
 
-This scenario helps users distinguish account top-ups, resource quota, resource usage, and model billing and select the correct view for checking whether credits arrived, whether capacity is usable, and why deductions occurred.
+This scenario helps users distinguish account top-ups, resource quota, resource usage, and model billing and select the correct view for checking whether credits arrived, whether capacity is usable, and why deductions occurred. Credits are the platform account's accounting units; resource quota is a resource-usage ceiling. A model token measures processed text and is not a sign-in token.
 
 ## Applicable Roles
 
@@ -13,7 +13,7 @@ This scenario helps users distinguish account top-ups, resource quota, resource 
 - Model Provider reviewing model usage and revenue
 - Platform Operator reconciling quota, credits, metering, and billing periods
 
-## Four Concepts
+## Related Concepts
 
 | Concept | Question | Entry |
 | --- | --- | --- |
@@ -39,38 +39,42 @@ This scenario helps users distinguish account top-ups, resource quota, resource 
 
 ## Procedure
 
-1. Open [Billing Overview](../../../usermanual/billing/user/billing/overview/) and confirm available balance, billing cycle, and alerts. Then review **Top-Up Orders** and check payment state and credited amount.
+1. Open [Billing Overview](../../../usermanual/billing/user/billing/overview/) and check the update time. Use Refresh Current Cycle as needed, then read balance, month-to-date spending, top-ups, and alerts separately. In **Top-Up Orders**, query by order number, status, posting source, and date range. Original-currency amounts, credited credits, and order status have different meanings; the credited column alone is not proof of posting.
 
-![Locate Overview and related Billing pages](../../../usermanual/billing/user/billing/overview/images/account-navigation.png)
+![Locate Overview and related Billing pages](./images/overview-account-navigation.png)
 
 The figure shows navigation entries only; open Overview to check the actual account balance and alerts.
 
+For an account-credit request, use [Top-Up Requests](../../../usermanual/billing/user/billing/top-up-requests/) only if this menu is enabled in the deployment. This is neither a payment order nor a member-quota request in Settings. Submitting it is not approval. Operators can use [Top-Up Approvals](../../../usermanual/billing/operator/customer-billing/top-up-approvals/) to reconcile the customer, applicant, amount, status, and approval information.
+
 2. Open [Transactions](../../../usermanual/billing/user/billing/transactions/) and explain increases, deductions, or adjustments for the same account and time range.
 
-![Reconcile transactions for the selected time range](../../../usermanual/billing/user/billing/transactions/images/transactions-list.png)
+![Reconcile transactions for the selected time range](./images/transactions-list.png)
 
 3. Review **Resource Quotas** or [Quota Governance](../../../usermanual/billing/user/billing/quota-governance/) and confirm that limits and remaining values cover the target workload.
 
-![Confirm available resource quotas](./images/resource-quotas.png)
+![Confirm available resource quotas](./images/quotas-list.png)
 
 4. For On-Prem resources, compare instance state with **Resource Usage** and operator metering details.
 
-![Trace resource usage](./images/resource-usage.png)
+![Resource usage query empty state](./images/usage-resource-tab.png)
+
+The figure shows the Resource Usage filters and “No matching resource usage records” for the current query. It does not establish that actual consumption for an instance or job has already been reconciled.
 
 5. For models, compare call logs, model usage, and model revenue.
 6. Open [Monthly Bill](../../../usermanual/billing/user/billing/monthly-bill/) and reconcile currency, billing unit, price, transactions, and summarized deductions in the same cycle.
 
-![Monthly-bill empty statistics area](../../../usermanual/billing/user/billing/monthly-bill/images/monthly-bill-empty.png)
+![Monthly-bill empty statistics area](./images/monthly-bill-empty.png)
 
 The figure shows the no-statistics area for a selected historical cycle. It is not a zero-value summary or a view of the full trend.
 
-7. If operator assistance is required, provide tenant, billing cycle, object ID, and redacted evidence. Operators continue with [Billing-Cycle Reconciliation and Settlement](../billing-cycle-reconciliation-settlement/).
+7. If operator assistance is required, the user or provider assembles the tenant, cycle, object ID, expected-versus-actual difference, and redacted evidence. Hand these to operations staff with the relevant viewing permission to continue with [Billing-Cycle Reconciliation and Settlement](../billing-cycle-reconciliation-settlement/). After receiving their findings, the user verifies the result from their own account pages, without entering operator financial pages.
 
 Operator references: [Monthly Usage](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/) and its `Usage Details` tab.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

@@ -27,16 +27,16 @@ Connect an operator-managed cloud account used to discover and deploy regional r
 1. From the platform home page, select **Access Management > Cloud Accounts**.
 2. Select **Add Cloud Account** in the upper-right corner.
 
-![Review cloud accounts](./images/cloud-accounts-list.png)
+![Review cloud accounts](./images/cloud-accounts-cloud-accounts.png)
 
 3. Configure the account:
    - Enter an **Account Name**.
-   - Select a currently supported cloud platform, such as Alibaba Cloud or AWS. Huawei Cloud access is not currently supported.
+   - Select a currently supported cloud platform, such as Alibaba Cloud or AWS.
    - Enter the **Access Key ID**.
    - Enter the **Access Key Secret** through the protected field.
 4. Review the information and select **Confirm**, or **Cancel** to discard it.
 
-![Add a cloud account](./images/add-account.png)
+![Add a cloud account](./images/cloud-accounts-add-cloud-account.png)
 
 #### Parameter Reference
 
@@ -44,12 +44,12 @@ Connect an operator-managed cloud account used to discover and deploy regional r
 | --- | --- | --- | --- |
 | Account Name | Text | `aliyun-wh-dev` | Required; a user-defined account identifier |
 | Cloud Platform | Select | `Alibaba Cloud` | Required; the supported target cloud platform |
-| Access Key ID | Text | `LTAI5tM8xHnXoLuBW...` | Required; the cloud credential ID |
-| Access Key Secret | Password | `flsBCIDPLksdaNh05J...` | Required; the cloud credential secret |
+| Access Key ID | Text | `<ACCESS_KEY_ID>` | Required; the cloud credential ID |
+| Access Key Secret | Password | `<ACCESS_KEY_SECRET>` | Required; the cloud credential secret |
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |
