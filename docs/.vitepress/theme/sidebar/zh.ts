@@ -954,6 +954,18 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       ],
     },
   ],
+  '/zh-CN/others/upgrade/': [
+    {
+      text: '升级说明',
+      collapsed: false,
+      items: [
+        {
+          text: '模型业务升级（2026-11-02）',
+          link: '/zh-CN/others/upgrade/model-business-upgrade-2026-11/',
+        },
+      ],
+    },
+  ],
   '/zh-CN/others/release-notes/': [
     {
       text: '版本发布说明',
