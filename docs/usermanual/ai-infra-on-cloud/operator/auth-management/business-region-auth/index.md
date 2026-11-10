@@ -65,13 +65,13 @@ The image shows the Business-Region Authorization list page, displaying the numb
 ### Authorize Resource Pools
 
 1. Click **"Authorize Regions"** on the target business row.
-2. Expand the region tree by cloud platform and select or clear target regions.
-3. Verify the current business and region scope, then click **"Confirm"**.
+2. In the dialog, select the cloud platform, then search for resource pools or check the pools approved for the business. Use **Selected only** to review the current scope.
+3. Verify the current business and the number of selected pools, then select **"Done"**.
 4. Verify the result in Quick Deployment or Access Overview.
 
 ![Authorize resource pools](./images/manual-authorize-resource-pools.png)
 
-The image shows the Authorize Regions dialog, displaying a tree hierarchy of regions by cloud platform to select the specific regional resource pools authorized for the current business.
+The image shows the Configure available business resource pools dialog: the current business, per-cloud selected counts, a searchable resource-pool list with checkboxes, and the footer summary of pools after save.
 
 ## Parameter Quick Reference
 | Field Name | Required | Field Type | Example | Description |
@@ -84,8 +84,8 @@ The image shows the Authorize Regions dialog, displaying a tree hierarchy of reg
 | Authorize Regions | No | Button | `Authorize Regions` | Opens the region authorization dialog. |
 | Export | No | Button | `Export` | Exports authorization data and may contain sensitive operational information. |
 | Import | No | Button | `Import` | Imports authorization data in bulk and may change multiple authorization configurations. |
-| Cancel | No | Button | `Cancel` | Closes the dialog without saving the current configuration. |
-| Confirm | Yes | Button | `Confirm` | Submits the region authorization configuration. Review carefully before clicking. |
+| Reset | No | Button | `Reset` | Restores the dialog selection to the last saved scope. |
+| Done | Yes | Button | `Done` | Submits the resource-pool authorization. Review the selected count before clicking. |
 
 ## Pitfalls
 

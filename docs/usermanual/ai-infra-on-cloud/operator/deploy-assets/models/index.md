@@ -64,7 +64,7 @@ The image shows the Models management page, displaying managed meta-model cards,
 
 ![Model details](./images/manual-model-details.png)
 
-The image shows the Model Details drawer, displaying basic meta-model information, configured cloud deployment targets, compute plans, inference framework versions, and health probe states.
+The image shows the model detail page on the Deployment Configuration tab: the selected deployment point, cloud model, linked framework and specification, and the output configuration entry.
 
 ### Add Model
 
