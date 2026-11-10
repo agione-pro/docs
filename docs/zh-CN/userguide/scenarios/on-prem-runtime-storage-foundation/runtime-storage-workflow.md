@@ -26,9 +26,9 @@ next: true
 
 ![检查镜像组件及其同步状态](../../../usermanual/ai-infra-on-prem/operator/resource-pools/image-services/images/manual-image-services.png)
 
-### 2. 同步或上传运行镜像
+### 2. 同步与管理运行镜像
 
-同步仓库或上传镜像条目。使用包含框架、版本、硬件环境和用途的稳定标签，生产环境不要只使用 `latest`。
+在已注册的镜像组件（如 Harbor）中触发镜像仓库与 Tag 同步，或将镜像推送到仓库指定 Namespace。使用包含框架、版本、硬件环境和用途的稳定标签，生产环境不要只使用 `latest`。
 
 ### 3. 按工作负载选择存储组件
 

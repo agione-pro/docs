@@ -16,19 +16,19 @@
 ## 功能入口
 
 - **角色**：运营管理员
-- **菜单**：On-Prem > 资源池 > 规格指标 / 资源规格
-- **路由**：`/powerone/resourcepool/flavor/type`、`/powerone/resourcepool/flavor/list`
+- **菜单**：On-Prem > 资源池 > 资源规格
+- **路由**：`/powerone/resourcepool/flavor/list`
 
 ## 操作步骤
 
-1. 进入**规格指标**，确认 NPU 指标的 k8s-key 与设备插件上报的资源 key 一致；需要定向调度时，再补充型号或节点组选择器。
+1. 进入**资源规格**页面（`On-Prem > 资源池 > 资源规格`），在左侧**规格组导航**（规格指标）中，确认或新增 NPU 指标，确保其 k8s-key 与设备插件上报的资源 key 一致；需要定向调度时，再补充型号或节点组选择器。
 
-![核对规格指标](./images/spec-metrics-list.png)
+![新增规格指标](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/images/add-specification-metric.png)
 
-2. 进入**资源规格**，分别创建 1 卡、2 卡和 4 卡规格。
+2. 在右侧规格列表中点击新增，分别创建 1 卡、2 卡和 4 卡规格。
 3. 配置 CPU、内存、NPU 数量和存储要求，并把规格关联到目标集群。
 
-![核对资源规格](./images/resource-specs-list.png)
+![核对资源规格](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/images/manual-resource-specs.png)
 
 4. 先用测试作业验证 1 卡规格，再验证 2 卡和 4 卡规格。
 

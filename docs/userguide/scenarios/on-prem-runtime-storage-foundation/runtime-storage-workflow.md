@@ -26,9 +26,9 @@ Open [Image Services](../../../usermanual/ai-infra-on-prem/operator/resource-poo
 
 ![Review image services and synchronization state](../../../usermanual/ai-infra-on-prem/operator/resource-pools/image-services/images/manual-image-services.png)
 
-### 2. Synchronize or Upload Runtime Images
+### 2. Synchronize and Manage Runtime Images
 
-Synchronize the registry or upload an image record. Use stable labels that identify framework, version, hardware environment, and purpose. Do not rely only on `latest` in production.
+Trigger image repository and tag synchronization from the registered image service (such as Harbor), or push images to the designated namespace in the registry. Use stable tags that identify framework, version, hardware environment, and purpose, and do not rely only on `latest` in production.
 
 ### 3. Select Storage for the Workload
 

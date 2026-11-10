@@ -16,19 +16,19 @@ Users can request clear one-card, two-card, and four-card NPU plans, each mapped
 ## Entry
 
 - **Role:** Operator
-- **Menu:** On-Prem > Resource Pools > Specification Metrics / Resource Specifications
-- **Routes:** `/powerone/resourcepool/flavor/type`, `/powerone/resourcepool/flavor/list`
+- **Menu:** On-Prem > Resource Pools > Resource Specs
+- **Routes:** `/powerone/resourcepool/flavor/list`
 
 ## Steps
 
-1. In **Specification Metrics**, verify that the NPU metric k8s-key matches the device-plugin resource key and add selector keys when scheduling must target a model or node group.
+1. In the **Flavor Group Navigation** (Specification Metrics) panel on the left of the **Resource Specs** page, verify or create the NPU metric, ensuring that its k8s-key matches the device-plugin resource key and adding selector keys when scheduling must target a model or node group.
 
-![Verify specification metrics](./images/spec-metrics-list.png)
+![Add specification metric](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/images/add-specification-metric.png)
 
-2. In **Resource Specifications**, create one-card, two-card, and four-card plans.
+2. In the specification list on the right, click the create button to configure one-card, two-card, and four-card plans.
 3. Configure CPU, memory, NPU count, and storage requirements, then associate each plan with the target cluster.
 
-![Verify resource specifications](./images/resource-specs-list.png)
+![Verify resource specifications](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/images/manual-resource-specs.png)
 
 4. Validate the one-card plan with a test workload before testing the two-card and four-card plans.
 
