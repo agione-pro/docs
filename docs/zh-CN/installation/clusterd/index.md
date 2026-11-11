@@ -50,13 +50,24 @@
 
 **ClusterD 下载地址（Linux x86_64）：**
 
-- **全量包，推荐用于离线交付：**[下载全量包（2026.11.06-r1）](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.06-r1-linux-x86_64.tar.gz)
-- **轻量包：**[下载轻量包（2026.11.06-master-ed5bc56）](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.06-master-ed5bc56-linux-x86_64.tar.gz)
+- **全量离线包，推荐用于离线交付：**[下载全量包（2026.11.10-r2）](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.10-r2-linux-x86_64.tar.gz)；[下载 SHA-256 校验文件](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.10-r2-linux-x86_64.tar.gz.sha256)
+
+校验全量包时，请使用上方校验文件中的 SHA-256 值。
+
+- **轻量包：**[下载轻量包（2026.11.09-r1）](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.09-r1-linux-x86_64.tar.gz)；[下载 SHA-256 校验文件](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.09-r1-linux-x86_64.tar.gz.sha256)
+
+轻量包 SHA-256：
+
+```text
+56ccd2ff12b372ca6a2cb7c5324ca33ea8c9764903d7dd3b0c50da3168bb7c03
+```
+
+本页全量包版本为 `2026.11.10-r2`；轻量包在对应版本发布前仍为 `2026.11.09-r1`。
 
 以上两个链接仅适用于 x86_64 主机。ARM64 主机请向交付方取得对应安装包，不要直接修改链接中的架构名称。
 
 ::: warning 下载后核对文件名和校验值
-执行第 3 节命令前，将 `<CLUSTERD_PACKAGE_URL>` 替换为所选下载链接，`XXX` 替换为该包文件名中的完整版本号，并向交付方取得该压缩包的可信 SHA-256 校验值，替换 `<TRUSTED_OUTER_ARCHIVE_SHA256>`。两个安装包的版本号不同，请以实际下载的文件为准，不能直接复制占位命令执行。
+执行第 3 节命令前，将 `<CLUSTERD_PACKAGE_URL>` 替换为所选安装包链接，`XXX` 替换为所选安装包版本（全量包为 `2026.11.10-r2`，轻量包为 `2026.11.09-r1`），再将 `<TRUSTED_OUTER_ARCHIVE_SHA256>` 替换为对应校验文件中的值。全量包和轻量包的校验值不能混用。使用其他版本或 ARM64 包时，请向交付方取得配套地址和校验值，不要套用本页的 x86_64 校验值。
 :::
 
 ### 1.1 选择安装包
@@ -68,7 +79,7 @@
 
 后续以全量包为例。使用轻量包时，替换对应的下载地址和文件名，安装命令相同。
 
-**开始前确认：安装包版本、ClusterD 主机架构，以及交付方提供的可信 SHA-256 校验值。**不要把自己对刚下载文件计算出的摘要当作交付校验值。
+**开始前确认：安装包版本、ClusterD 主机架构，以及对应的可信 SHA-256 校验值。**请使用所选安装包对应的校验文件；其他版本或架构需取得配套校验文件。不要把自己对刚下载文件计算出的摘要当作交付校验值。
 
 ### 1.2 选择主机对应的架构
 
@@ -159,6 +170,8 @@ curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
 ### 3.2 校验下载的压缩包
 
 这一步用于确认文件下载或传输后没有损坏，**使用 SHA-256，不是 MD5**。
+
+当前下载的 `.sha256` 文件包含发布服务器上的 `/root/dist/` 路径，不是安装主机的本地路径。请使用第 1 节所链接校验文件中的对应 SHA-256 值，按下面命令校验实际下载的本地文件；不要直接对原校验文件执行 `sha256sum -c`。
 
 ```bash
 printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -
