@@ -1,4 +1,4 @@
-# OpenAPI
+# Model API (OpenAPI)
 
 ::: info Document Information
 Version: v1.0

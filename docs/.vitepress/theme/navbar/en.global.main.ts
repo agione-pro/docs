@@ -19,7 +19,8 @@ export const enNavbar = [
         text: "API Reference",
         items: [
           { text: "Protocol Compatibility", link: "/api/protocol-compatibility/" },
-          { text: "OpenAPI", link: "/api/openapi/" },
+          { text: "System API", link: "/api/system-api/" },
+          { text: "Model API (OpenAPI)", link: "/api/openapi/" },
         ]
       },
       {

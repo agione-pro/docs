@@ -42,3 +42,21 @@ html[lang="en"] .VPHomeHero .tagline {
   white-space: nowrap;
 }
 
+/* ============================================================
+   方案 B：API 页面专属宽屏布局（对标火山 OpenAPI 与多列表格展示）
+   ============================================================ */
+.Layout.api-page {
+  --vp-layout-max-width: 1680px;
+}
+
+@media (min-width: 960px) {
+  .Layout.api-page .VPDoc.has-aside .content-container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .Layout.api-page .VPDoc.has-aside .content-container {
+    max-width: 1100px;
+  }
+}

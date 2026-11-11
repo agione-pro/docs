@@ -954,7 +954,16 @@ export const enSidebar: DefaultTheme.Sidebar = {
           ],
         },
         {
-          text: "OpenAPI",
+          text: "System API",
+          collapsed: false,
+          items: [
+            { text: "Overview", link: "/api/system-api/" },
+            { text: "Authentication and signing", link: "/api/system-api/authentication" },
+            { text: "Get caller roles", link: "/api/system-api/endpoints" },
+          ],
+        },
+        {
+          text: "Model API (OpenAPI)",
           collapsed: false,
           items: [
             { text: "Overview", link: "/api/openapi/" },

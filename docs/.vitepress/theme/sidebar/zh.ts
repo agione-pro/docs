@@ -904,7 +904,16 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           ],
         },
         {
-          text: 'OpenAPI',
+          text: '系统 API',
+          collapsed: false,
+          items: [
+            { text: '概述', link: '/zh-CN/api/system-api/' },
+            { text: '认证与签名', link: '/zh-CN/api/system-api/authentication' },
+            { text: '查询当前身份角色', link: '/zh-CN/api/system-api/endpoints' },
+          ],
+        },
+        {
+          text: '模型 API（OpenAPI）',
           collapsed: false,
           items: [
             { text: '概述', link: '/zh-CN/api/openapi/' },
