@@ -5,7 +5,7 @@ next: true
 
 # 充值 & 计费
 
-本场景帮助用户区分账户充值、资源配额、资源用量和模型计费，并按正确入口核对“是否到账、是否可用、消耗多少、为什么扣减”。
+本场景帮助用户区分账户充值、资源配额、资源用量和模型计费，并按正确入口核对“是否到账、是否可用、消耗多少、为什么扣减”。credits 是平台账户的记账额度单位，资源配额是资源使用上限；文中的 Token 是模型处理文本的计量单位，不是登录令牌。
 
 ## 适用角色
 
@@ -13,15 +13,15 @@ next: true
 - 查看模型用量和收益的模型提供方
 - 核对额度、计量和账期的平台运营方
 
-## 先区分四个概念
+## 先区分相关概念
 
 | 概念 | 回答的问题 | 参考入口 |
 | --- | --- | --- |
 | 充值订单 | 账户是否获得了新的可消费额度 | [充值订单](../../../usermanual/billing/user/billing/top-up-orders/) |
-| 交易流水 | 余额为什么增加或扣减 | [交易流水](../../../usermanual/billing/user/billing/transactions/) |
+| 交易流水 | 余额为什么增加或扣减 | [流水明细](../../../usermanual/billing/user/billing/transactions/) |
 | 资源配额 | 当前租户最多可申请多少算力或存储 | [资源配额](../../../usermanual/ai-infra-on-prem/user/quotas-usage/quotas/) |
 | 资源用量 | 实例或作业实际用了多少资源 | [资源用量](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/) |
-| 模型用量与收益 | 模型调用产生多少 Token、次数、时长、消费或收益 | [模型用量](../../../usermanual/model-services/user/usage-earnings/model-usage/)、[模型收益](../../../usermanual/model-services/user/usage-earnings/model-earnings/) |
+| 模型用量与收益 | 模型调用产生多少 Token、次数、时长、消费或收益 | [用量明细](../../../usermanual/model-services/user/usage-earnings/model-usage/)、[模型收益](../../../usermanual/model-services/user/usage-earnings/model-earnings/) |
 | 月度账单 | 同一账期的汇总消费是否可以复核 | [月度账单](../../../usermanual/billing/user/billing/monthly-bill/) |
 
 ## 场景目标
@@ -39,38 +39,42 @@ next: true
 
 ## 操作流程
 
-1. 进入[账务概览](../../../usermanual/billing/user/billing/overview/)，先确认可用额度、账期和预警信息，再查看**充值订单**，核对发生时间、支付状态和到账额度。
+1. 进入[账户概览](../../../usermanual/billing/user/billing/overview/)，核对最近更新时间，按需点击“刷新本账期”，分别查看余额、本月已支出、本月已充值和预警信息。再查看**充值订单**，按订单号、状态、入账来源及时间范围查询；原币充值金额、到账 credits 和订单状态需要分开阅读，不能仅凭到账列判断已入账。
 
-![定位账户概览及相关账务页面](../../../usermanual/billing/user/billing/overview/images/account-navigation.png)
+![定位账户概览及相关账务页面](./images/overview-account-navigation.png)
 
 图示仅展示导航入口；实际账户余额和预警需进入账户概览核对。
 
-2. 进入[交易流水](../../../usermanual/billing/user/billing/transactions/)，按相同账号和时间范围解释余额增加、扣减或调整。
+需要办理账户额度申请时，使用[充值申请](../../../usermanual/billing/user/billing/top-up-requests/)；这是账户 credits 申请，不是支付订单，也不是设置中的成员额度申请。仅当当前部署开放该菜单时使用，提交不等于审批通过。运营人员可在[充值审批](../../../usermanual/billing/operator/customer-billing/top-up-approvals/)核对客户与申请人、额度、状态及审批信息。
 
-![按时间范围核对交易流水](../../../usermanual/billing/user/billing/transactions/images/transactions-list.png)
+2. 进入[流水明细](../../../usermanual/billing/user/billing/transactions/)，按相同账号和时间范围解释余额增加、扣减或调整。
+
+![按时间范围核对交易流水](./images/transactions-list.png)
 
 3. 查看**资源配额**或[额度治理](../../../usermanual/billing/user/billing/quota-governance/)，确认上限和剩余值能够覆盖目标任务。
 
-![核对可用资源配额](./images/resource-quotas.png)
+![核对可用资源配额](./images/quotas-list.png)
 
 4. 对异构卡纳管资源，对照实例状态、**资源用量**和运营侧计量明细。
 
-![追踪资源用量](./images/resource-usage.png)
+![资源用量查询空态](./images/usage-resource-tab.png)
+
+图示为资源用量页签的筛选区和“暂无匹配的资源用量记录”空态，只说明当前查询范围；不能据此证明某个实例或作业的实际消耗已经核对完成。
 
 5. 对模型调用，对照调用日志、模型用量和模型收益。
 6. 进入[月度账单](../../../usermanual/billing/user/billing/monthly-bill/)，在同一账期核对币种、计费单位、价格、交易和汇总扣减。
 
-![月度账单无统计结果区域](../../../usermanual/billing/user/billing/monthly-bill/images/monthly-bill-empty.png)
+![月度账单无统计结果区域](./images/monthly-bill-empty.png)
 
 图示为所选历史账期的无统计结果区域，不是零值汇总，也不展示完整消费趋势。
 
-7. 需要运营方协助时，提供租户、账期、对象编号和脱敏证据；运营侧按[账期对账与结算](../billing-cycle-reconciliation-settlement/)继续核对。
+7. 需要运营方协助时，由用户或模型提供方整理租户、账期、对象编号、预期与实际差异及脱敏证据；交给具备相应查看权限的运营人员，按[账期对账与结算](../billing-cycle-reconciliation-settlement/)继续核对。运营人员返回核查结论后，用户再从自己的账户页面复核，不需要进入运营账务页面。
 
-运营方可继续查看：[月度用量](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)及其 `计量明细` 页签。
+运营方可继续查看：[月度计量](../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/)及其 `计量明细` 页签。
 
 ## 完成检查
 
-> **用途：** 以下检查是当前功能任务的退出条件，用于判断操作结果是否可观察、可复核，以及是否可以继续当前场景的下一步。它不是操作步骤的重复；任一项不满足时，请按下方“常见失败分支”继续排查。
+核对下表；任一项未满足时，先按“常见失败分支”排查。
 
 | 检查项 | 通过标准 |
 | --- | --- |

@@ -24,17 +24,17 @@
 
 1. 进入地域 / 可用区页面，先核对现有地域、可用区及启用状态，避免重复创建。
 
-![核对地域与可用区列表](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/manual-regions-zones.png)
+![核对地域与可用区列表](./images/regions-zones-regions-zones.png)
 
-2. 点击地域列表底部的 **新增地域**，填写地域 ID、选择 `公共地域` / `专属地域` 可见性策略、在各语言页签维护显示名称，并绑定必选的镜像服务（Harbor），确认状态为可用于后续资源接入。
+2. 点击地域列表底部的 **新增地域**，进入七步创建向导：地域信息、可用区、接入集群、用户服务网络验证、加速卡、规格与指标、初始化集群配置。在第1步填写地域 ID、可见性策略和多语言显示名称，绑定必选镜像组件；按需绑定对象存储。核对第1步后点击 **创建地域并继续配置** 进入第2步；后续步骤需完成前一步后继续，不把保存地域基础信息当成整个接入已完成。
 
-![创建地域](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/add-region.png)
+![创建地域](./images/regions-zones-add-region.png)
 
 3. 需要为地域配置数据 Gateway 入口时，选中目标地域，在 `关联组件` 区域点击镜像组件卡片上的 **配置数据 Gateway 入口**。填写 `镜像 Gateway 地址` 和 `对象存储 Gateway 地址`（可填域名、`IP:端口` 或带协议的地址；未填协议时默认使用 `HTTPS`），点击 **保存**。弹窗中的 **前往系统设置管理全部 Gateway** 链接会打开 `On-Prem > 系统 > 系统设置`，用于集中管理全部 Gateway。
 
 4. 选中目标地域后，在可用区区块点击 **新增可用区**；`地域` 字段自动带入且只读，填写可用区 ID 和各语言页签的显示名称。
 
-![创建可用区](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/add-availability-zone.png)
+![创建可用区](./images/regions-zones-add-availability-zone.png)
 
 5. 返回列表，确认地域和可用区均可见、状态正常，并记录后续集群注册时应选择的可用区。新建后尚无集群的可用区会显示 `异常` 状态并提示 `当前资源下没有可用集群`；展开该可用区，使用展开区右侧的 `关联集群` 虚线占位卡片即可进入对应地域/可用区的集群注册向导。
 
@@ -44,7 +44,7 @@
 
 ## 完成检查
 
-> **用途：** 以下检查用于确认资源边界已经可供集群接入使用。任一项不满足时，不应继续注册集群。
+资源边界未通过下表检查前，不继续注册集群。
 
 | 检查项 | 通过标准 |
 | --- | --- |

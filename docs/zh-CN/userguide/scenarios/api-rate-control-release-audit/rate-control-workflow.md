@@ -5,7 +5,7 @@ next: true
 
 # 发布并审计 API 流控规则
 
-本任务用于安全发布一版 API 流控规则，并验证节点生效情况和业务影响。
+本任务用于安全发布一版 API 流控规则，并验证节点生效情况和业务影响。API 是应用程序接口，API Pattern 是接口路径的匹配模式。
 
 ## 适用角色
 
@@ -17,35 +17,37 @@ next: true
 2. 明确统计模式或拦截模式、阈值、观察窗口和回退条件。
 3. 确认发布权限、审批要求和目标节点范围。
 
+**角色交接：** 业务负责人提供目标接口、正常流量基线和观察要求；具有规则配置、发布权限且已获业务授权的人员执行操作，再将目标版本与节点范围交给有查看权限的核对人员。核对人员返回命中、拦截与业务影响，未确认前不扩大规则范围。
+
 ## 操作流程
 
 ### 1. 记录流量基线
 
 进入[API 流控概览](../../../usermanual/settings/operator/api-rate-control/overview/)，选择覆盖正常和峰值的时间范围，记录请求量、拦截请求、统计超限和 Top 规则。不要只根据总请求量判断规则是否合理。
 
-![记录 API 请求和拦截基线](../../../usermanual/settings/operator/api-rate-control/overview/images/overview-list.png)
+![记录 API 请求和拦截基线](./images/overview-list.png)
 
 ### 2. 创建或复核规则
 
 进入[规则管理](../../../usermanual/settings/operator/api-rate-control/rule-management/)，核对 API Pattern、计数范围、模式、额度、窗口和优先级。新规则宜先使用统计或小范围观察方式验证，确认不会误匹配其他 API 后再扩大范围。
 
-![复核规则范围、阈值和发布状态](../../../usermanual/settings/operator/api-rate-control/rule-management/images/rule-management-list.png)
+![复核规则范围、阈值和发布状态](./images/rule-management-list.png)
 
 ### 3. 发布并核对节点版本
 
-按审批要求发布目标规则版本，然后进入[发布中心](../../../usermanual/settings/operator/api-rate-control/publish-center/)核对版本、状态、节点数、发布人和消息；再进入[节点缓存](../../../usermanual/settings/operator/api-rate-control/node-cache/)确认目标节点加载了相同版本。存在失败节点时先定位原因，不要反复全量发布。
+在 **规则管理** 中核对目标规则和版本，确认业务授权及全量发布的影响后，点击 **发布全部规则版本** 并核对确认提示。保存或复制规则不等于发布。完成获准发布后，进入[发布中心](../../../usermanual/settings/operator/api-rate-control/publish-center/)核对版本、状态、节点数、发布人和消息；再进入[节点缓存](../../../usermanual/settings/operator/api-rate-control/node-cache/)确认目标节点加载了相同版本。存在失败节点时先定位原因，不要反复全量发布。
 
-![核对规则版本发布记录](../../../usermanual/settings/operator/api-rate-control/publish-center/images/publish-center-list.png)
+![核对规则版本发布记录](./images/publish-center-list.png)
 
 ### 4. 观察命中和审计明细
 
 回到概览查看请求和拦截趋势，再进入[观测审计](../../../usermanual/settings/operator/api-rate-control/observability-audit/)，按相同 API、节点和时间范围核对分钟统计、拦截日志和审计日志。发现误拦截或异常增长时，按预案调整或回退规则。
 
-![按 API、节点和时间范围核对审计明细](../../../usermanual/settings/operator/api-rate-control/observability-audit/images/observability-audit-list.png)
+![按 API、节点和时间范围核对审计明细](./images/observability-audit-list.png)
 
 ## 完成检查
 
-> **用途：** 以下检查确认发布动作已经转化为可观察、可解释的节点行为。任一项失败时，应先停止扩大规则范围。
+节点行为与下表检查未符合预期时，先停止扩大规则范围。
 
 | 检查项 | 通过标准 |
 | --- | --- |

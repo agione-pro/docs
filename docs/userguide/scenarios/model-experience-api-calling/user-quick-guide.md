@@ -1,357 +1,90 @@
 # {{DOCS_PRODUCT_NAME_EN}} User Guide for End Users
 
-This guide is written for first-time {{DOCS_PRODUCT_NAME_EN}} users. It walks you through the full basic workflow: signing in, claiming free quota, trying a model in the web playground, and calling the model with curl. Usernames, passwords, and API keys are shown as placeholders only.
+This guide connects sign-in, provider selection, Playground (the online testing console), application programming interface (API) integration, and call-log verification. Replace key and model placeholders with values authorized for the current account; no example model is guaranteed to remain available.
 
 ## Applicable Roles
 
-- End User trying and calling a model
-- Model Provider reviewing the resulting customer call records
+- End Users trying and calling models; providers may inspect customer calls within their own permissions.
 
+Confirm the model/provider, protocol, price, and visibility with the provider or model details page before calling. Callers use their own authorized keys. Share request times and model identifiers for investigation, not real keys in shared material.
 
-## 1. Before You Start
+## Before You Start
 
-Prepare the following information before using {{DOCS_PRODUCT_NAME_EN}}.
+- Sign in to {{DOCS_PRODUCT_NAME_EN}} at {{DOCS_LOGIN_URL_EN}} with access to the target model.
+- Verify account credit, the selected provider's price and billing unit, call authorization, and personal key (the account's call-authentication credential). Free-quota claiming is not a universal step for every model.
+- Prepare non-sensitive test input. Playground and API requests can both consume credits; confirm cost and authorization first.
 
-| Item         | Example or Description                        |
-| ------------ | --------------------------------------------- |
-| Platform URL | `{{DOCS_PLATFORM_URL_EN}}`                    |
-| Username     | `{USERNAME}`                                  |
-| Password     | `{PASSWORD}`                                  |
-| Model API Key | `{API_KEY}`, copied from the Quick Start page |
+## 1. Discover a Model and Choose a Provider
 
-This guide uses Qwen3.5-27b as an example. Model availability and provider-instance identifiers can vary by environment.
+1. Open **Model Services > Discover > Models**, search by model, author, family, or source, and narrow the list by capabilities, billing, or other available filters.
+2. Click the target model name and review its identifier, context, protocols, and input/output modalities.
+3. On **Providers**, compare the specific instances' prices, capabilities, and route identifiers (the model value that targets a specific provider instance). Providers for the same meta model need not share pricing or access rights.
+4. Use the intended provider's **Playground** or **Quick Start**. Copy its route identifier rather than guessing from the display name.
 
-| Item             | Value                                                          |
-| ---------------- | -------------------------------------------------------------- |
-| Model Name       | Qwen3.5-27b                                                    |
-| Model Identifier | `{MODEL_IDENTIFIER}`                                           |
-| Protocol         | `openai/chat_completions`                                      |
-| API Endpoint     | `{{DOCS_API_ENDPOINT_EN}}` |
+![Models catalog](./images/models-market.png)
 
-> Provider-instance call identifiers can vary by environment, provider, or region. Copy the identifier shown in the current environment from the selected provider card or `Quick Start` before calling.
+The figure shows model search, capability categories, and the catalog. Models and counts change with publication and filtering; do not rely on a fixed list position.
 
-## 2. Sign In to {{DOCS_PRODUCT_NAME_EN}}
+## 2. Try It Online
 
-### 2.1 Open the Sign-In Page
+1. For text, open **Playground > Text**, select a model, and check its provider and tags.
+2. Enter a short test prompt, use **Shift+Enter** for a new line, and send it to inspect the response. Image-input support does not imply image-generation support.
 
-Enter the following address in your browser:
+![Text playground](./images/text-playground.png)
 
-```text
-{{DOCS_LOGIN_URL_EN}}
-```
+The figure shows the model selector, chat input, and Model Compare entry. Check the selected model and provider before sending.
 
-You will see the {{DOCS_PRODUCT_NAME_EN}} sign-in page.
+3. Choose a different entry for other generation tasks:
 
-![Sign-in page](./images/01-login-page.png)
-
-### 2.2 Fill In the Sign-In Form
-
-Fill in the form in the following order.
-
-| Step | Action                                     | Value                         |
-| ---- | ------------------------------------------ | ----------------------------- |
-| 1    | Enter your username in `Username or email` | `{USERNAME}`                  |
-| 2    | Enter your password in `Password`          | `{PASSWORD}`                  |
-| 3    | Select the agreement checkbox              | Check it                      |
-| 4    | Click `Sign in`                            | Wait for the platform to open |
-
-If a privacy policy or service terms dialog appears, click `Agree`.
-
-### 2.3 Confirm That Sign-In Succeeded
-
-After signing in successfully, you should see a user avatar or initial in the upper-right corner. The left-side menu should show entries such as `Discover`, `Playground`, `Studio`, `Usage & Earnings`, and `My Calls`.
-
-## 3. Open the Model List
-
-### 3.1 Open Model Services
-
-After signing in, open:
-
-```text
-{{DOCS_MODEL_STORE_URL_EN}}
-```
-
-You can also navigate through the page menu:
-
-```text
-Model Services > Discover > Models
-```
-
-### 3.2 Find Qwen3.5-27b
-
-Search for `Qwen3.5-27b` in the model list. The list is sorted by `Newest`, so use the search box instead of relying on the model's position in the current list. After you find it, click `View` on the model row.
-
-![Qwen3.5-27b in the model list](./images/02-model-list-qwen35.png)
-
-## 4. Claim Free Quota
-
-The free quota entry is on the provider card in the model detail page, next to the `Playground` button.
-
-### 4.1 Open the Model Detail Page
-
-After opening the `Qwen3.5-27b` detail page, confirm that you can see the following information.
-
-| Check Item | Expected Value |
-| --- | --- |
-| Model Name | `Qwen3.5-27b` |
-| Model ID | `qwen/qwen3.5-27b` |
-| Provider Card Call Identifier | `{MODEL_IDENTIFIER}` |
-| Quota Button | `Claim Free Quota` |
-| Trial Entry | `Playground` |
-
-![Free quota entry on the model detail page](./images/03-model-detail-claim-quota.png)
-
-### 4.2 Click to Claim
-
-On the provider card, click:
-
-```text
-Claim Free Quota
-```
-
-After the quota is claimed successfully, the page shows a success message and the button changes to:
-
-```text
-Claimed
-```
-
-![Free quota claimed successfully](./images/04-quota-claimed.png)
-
-### 4.3 Confirm That the Quota Was Claimed
-
-Any of the following signs means the quota has been claimed successfully.
-
-| Success Sign | Description |
-| --- | --- |
-| The page shows `Successfully claimed` | The platform has completed the claim |
-| The button changes to `Claimed` | The current account has already claimed the free quota for this model |
-| The model detail page still shows `Claimed` after reopening it | The claim status has been saved |
-
-## 5. Try the Model in the Web Playground
-
-The web playground is the easiest way to try a model. You do not need to write code.
-
-### 5.1 Open Playground from the Detail Page
-
-On the `Qwen3.5-27b` model detail page, click the following button on the provider card:
-
-```text
-Playground
-```
-
-You can also open it from the left-side menu:
-
-```text
-Playground > Text
-```
-
-If you open it from the left-side menu, select the target model manually. If you open it from the model detail page, the current model is usually preselected.
-
-![Text playground page](./images/06-playground-text.png)
-
-### 5.2 Send a Test Message
-
-After entering the text playground page, follow these steps.
-
-| Step | Action | Recommended Value |
+| Task | Menu and Procedure | Validate |
 | --- | --- | --- |
-| 1 | Confirm `Model Sub-Type` | `LLM` |
-| 2 | Confirm or select the model | The provider model for Qwen3.5-27b |
-| 3 | Confirm `Protocol` | `openai/chat_completions` |
-| 4 | Adjust parameters if needed | Beginners can keep the default values |
-| 5 | Enter a question in the input box at the bottom | `Introduce {{DOCS_PRODUCT_NAME_EN}} in one sentence.` |
-| 6 | Click the send button | Wait for the model response |
+| Generate images | [Images](../../../usermanual/model-services/user/playground/images/): select model, size, and image count, then enter a description | Result, count, and billing unit |
+| Generate video | [Video](../../../usermanual/model-services/user/playground/video/): select model, resolution, and ratio, enter a scene description, and use Task query | Task and final video; this is not a video-upload frame-analysis flow |
+| Generate speech | [Audio](../../../usermanual/model-services/user/playground/audio/): choose a model and enter the text to read | Audio output and listening check; recording recognition is not assumed |
 
-If the generated response appears in the chat area, the playground call has succeeded.
+## 3. Call the API
 
-### 5.3 Select the Playground That Matches the Model Modality
-
-The model's capabilities and input/output modalities determine which playground to use. Do not validate image, video, or audio models with text-model parameters.
-
-| Modality | Menu Path | Validate |
-| --- | --- | --- |
-| Text / chat | `Playground > Text` | Prompt, Temperature, Top-P, Max Tokens, response, and latency |
-| Image / multimodal | `Playground > Images` | Authorized image, prompt, size, count, output image, and request ID |
-| Video | `Playground > Video` | Authorized short video, frame sampling, duration, result, and asynchronous latency |
-| Speech / audio | `Playground > Audio` | Audio format, sample rate, language, voice, and text or audio output |
-
-For an image model, choose an available image or multimodal model, upload sanitized and authorized material, set the prompt and size, and send the request.
-
-![Select an image playground model](../../../usermanual/model-services/user/playground/images/images/select-model-public.png)
-
-For a video model, first use a short sanitized sample to validate frame sampling, output format, and asynchronous results before increasing input size.
-
-![Configure video playground parameters](../../../usermanual/model-services/user/playground/video/images/video-list-public.png)
-
-For an audio model, confirm input format, language, and output type. Do not upload original recordings that contain customer privacy.
-
-![Select an audio playground model](../../../usermanual/model-services/user/playground/audio/images/select-model-public.png)
-
-## 6. Call the Model with curl
-
-Use curl when you want to call the model from a command line, script, or backend service.
-
-### 6.1 Open the Quick Start Page
-
-Go back to the model detail page and click:
-
-```text
-Quick Start
-```
-
-On the Quick Start page, you can find the following information.
-
-| Information | Purpose |
-| --- | --- |
-| Model ID Call Identifier | The provider-specific value used in the `model` field |
-| Base URL | The API service base address |
-| Path | The protocol path appended to the base URL |
-| Full URL | The complete curl request URL |
-| Model API Key | The authentication key selected in the `AUTHENTICATION` section |
-| Curl Example | A ready-to-use reference command |
-
-The API key in the screenshot is redacted. In actual use, copy your own API key from the page.
-
-![Quick Start curl example](./images/05-quick-start-curl-redacted.png)
-
-### 6.2 Copy the API Key
-
-Find `Model API Keys` in the `AUTHENTICATION` section, select an authorized key, then click `Copy`.
-
-Please note:
-
-| Note | Description |
-| --- | --- |
-| Do not share your API key with others | The API key can be used to call models under your account |
-| Do not commit it to public documents or code repositories | Store it as an environment variable when possible |
-| This guide uses `{API_KEY}` | Replace it with your real key when calling the API |
-
-### 6.3 curl Example
-
-Replace `{API_KEY}` and `{MODEL_IDENTIFIER}` with values copied from the current environment, then run the command in your terminal.
+1. Return to the selected provider card and click **Quick Start**. Confirm its route identifier, full URL, protocol, and authentication instructions.
+2. Use a key authorized for your account. Keep real values out of shared documents, screenshots, and repositories.
+3. For a model supporting OpenAI Chat Completions, use the following example after confirming the current endpoint. curl is a command-line HTTP request tool. This body applies only to the corresponding chat-completions protocol; use the current Quick Start format for other modalities.
 
 ```bash
 curl -X POST "{{DOCS_API_ENDPOINT_EN}}" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {API_KEY}" \
-  -d '{
-    "stream": true,
-    "model": "{MODEL_IDENTIFIER}",
-    "messages": [
-      {
-        "role": "user",
-        "content": "Hello"
-      }
-    ]
-  }'
+  -d '{"stream":true,"model":"{MODEL_IDENTIFIER}","messages":[{"role":"user","content":"Hello"}]}'
 ```
 
-### 6.4 Confirm That the API Call Succeeded
+4. Replace placeholders with current Quick Start values and inspect valid output from the intended model. The absence of an error message alone does not establish successful generation.
+5. For client integration examples, see [{{DOCS_PRODUCT_NAME_EN}} Best Practices]({{DOCS_OPENCODE_URL_EN}}).
 
-When the call succeeds, your terminal returns generated model output. Common signs of success include:
+## 4. Verify Call Records
 
-| Check Item | Success Sign |
-| --- | --- |
-| Response content | The response includes generated text |
-| Model field | The response includes the current environment's model identifier |
-| No authentication error | No `Unauthorized` or `Invalid API key` error appears |
-| No quota error | No insufficient quota message appears |
-
-## 6.5 Quick Practice
-
-Go to [{{DOCS_PRODUCT_NAME_EN}} Best Practices]({{DOCS_OPENCODE_URL_EN}}).
-
-## 7. View Your Call Records
-
-To confirm whether the model was actually called, check the call logs.
-
-### 7.1 Open Call Logs
-
-Open the following menu from the left side:
-
-```text
-My Calls > Call Logs
-```
-
-### 7.2 Filter Call Records
-
-| Step | Action |
-| --- | --- |
-| 1 | Select the call time range |
-| 2 | Enter the model name or model ID |
-| 3 | Select the call status, such as success or failure |
-| 4 | Click `Search` |
-| 5 | Check the call time, model, status, token usage, and latency in the list |
-| 6 | To view more information, click `Details` on the target row |
-
-## 8. FAQ
-
-### 8.1 What Should I Do If Sign-In Fails?
-
-| Possible Cause                  | What to Do                            |
-| ------------------------------- | ------------------------------------- |
-| Incorrect username or password  | Confirm `{USERNAME}` and `{PASSWORD}` |
-| Agreement checkbox not selected | Select the checkbox and sign in again |
-| Agreement dialog not confirmed  | Click `Agree`                         |
-
-### 8.2 What Should I Do If I Cannot Find Qwen3.5-27b?
-
-| What to Do | Description |
-| --- | --- |
-| Search for `Qwen3.5-27b` in the model list | Use the search box to locate it quickly |
-| Make sure you are viewing `All Models` | Avoid filtering to private models only |
-| Change sorting or page through the list | The model may not be visible in the first screen |
-
-### 8.3 What Should I Do If the Claim Button Cannot Be Clicked?
-
-| Page Status | Description |
-| --- | --- |
-| The button shows `Claimed` | The current account has already claimed it |
-| `Claim Free Quota` is missing | The model may not support free quota, or your account may not have permission |
-| Nothing happens after clicking | Refresh the page and try again, or confirm that you are still signed in |
-
-### 8.4 What Should I Do If the curl Call Fails?
-
-| Error Symptom          | What to Check                                                                                     |
-| ---------------------- | -------------------------------------------------------------------------------------------------- |
-| Authentication failure | Check whether the API key is complete and whether the header is `Authorization: Bearer {API_KEY}` |
-| Model not found        | Check whether `model` matches the provider card call identifier copied from the current environment |
-| Incorrect request URL  | Check whether the URL is `{{DOCS_API_ENDPOINT_EN}}`           |
-| Invalid JSON           | Check quotation marks, commas, and braces                                                         |
-| Insufficient quota     | Confirm that free quota has been claimed, or check your account quota                             |
-
-## 9. Quick Reference
-
-| Feature                 | Entry                                                      |
-| ----------------------- | ---------------------------------------------------------- |
-| Sign in                 | `{{DOCS_LOGIN_URL_EN}}`                        |
-| Model list              | `{{DOCS_MODEL_STORE_URL_EN}}`              |
-| Qwen3.5-27b detail page | `Model Services > Discover > Models > Qwen3.5-27b > View`  |
-| Claim free quota        | Qwen3.5-27b detail page provider card > `Claim Free Quota` |
-| Web playground          | Qwen3.5-27b detail page provider card > `Playground`       |
-| API instructions        | Qwen3.5-27b detail page > `Quick Start`                    |
-| Call logs               | `My Calls > Call Logs`                                     |
+1. Open **My Calls > Call Logs**, select the month, use **By Date** when needed, and narrow by Model, Client Source, or **Name or ID**.
+2. Set **Result Category** to All or the relevant failure category and locate the request by call time.
+3. Check **Model & Platform Route**, **Caller**, **Client Source**, **Usage**, and **Status & E2E**. Caller attribution and Client Source are different dimensions.
+4. Use Actions to inspect the individual call. Providers check customer calls using their own permissions and matching time ranges; this is not a prerequisite for an end user to complete the task.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
-
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Sign-in succeeds and the intended model can be found. |
-| 2 | Free quota or other authorized quota is available. |
-| 3 | A playground request and an API request both return valid responses. |
-| 4 | The API call appears in Call Logs with the expected model and status. |
+| Model and access | The model and provider are identified, with price and call authorization confirmed. |
+| Playground | The matching modality returns a result that can be inspected. |
+| API request | The intended protocol, route ID, and authorized key return valid output. |
+| Logs | A record with matching time, model, and state can be located. |
 
 ## Troubleshooting
 
-| Symptom | Check First |
+| Symptom | Check First and Continue |
 | --- | --- |
-| The intended model cannot be found | Model publication state, public/private scope, account authorization, and marketplace filters |
-| Playground works but the API request fails | Personal Key, endpoint, request headers, protocol, model identifier, and rate limit |
-| The request succeeds but no call log appears | Account and project scope, time range, model filter, and processing delay |
+| Model is missing | Clear filters and check All/Private scope and tenant visibility in [Models](../../../usermanual/model-services/user/discover/models/#faq). |
+| Playground and API behave differently | Align provider, route, protocol, price, and key; do not mix different instances. |
+| API authentication fails | Check the current Quick Start endpoint, authentication format, and account authorization. Never post keys in public tickets. |
+| Logs are empty | Check month, model, source, name/ID, and result category in [Call Logs](../../../usermanual/model-services/user/my-calls/call-logs/#faq). |
 
 ## User Manual
 
 - [Models](../../../usermanual/model-services/user/discover/models/)
 - [My Calls Overview](../../../usermanual/model-services/user/my-calls/overview/)
+- [Call Logs](../../../usermanual/model-services/user/my-calls/call-logs/)

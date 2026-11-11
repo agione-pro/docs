@@ -7,77 +7,48 @@ next: true
 
 ## Target Outcome
 
-Provider endpoints, regions, documentation URLs, and authentication-header templates are reusable without storing a real API key.
+Maintain an upstream source and its Endpoints (service access points) so publishers can select the correct address and protocols. The source itself does not hold a call address; the Base URL is the call root address and belongs to an Endpoint.
 
 ## Applicable Roles
 
-- Platform Operator
+- Operator Admin
 
 ## Before You Start
 
-- Confirm the provider Base URL, supported regions, API-key page, and API documentation.
-- Use placeholders in authentication-header templates and never enter a real credential.
+- Permission to maintain **Model Services > Settings > Model Sources**.
+- Obtain the upstream Base URL, region tag, console/documentation URLs, and protocol list. Never put real authentication values in shared materials.
 
 ## Procedure
 
-1. From the platform home page, select **Model Sources** in the left navigation.
-2. Select **Add** in the upper-right corner.
+1. Open **Settings > Model Sources**, not **Platform Call Analytics > Model Sources**, which only displays call data.
+2. Click **Create Model Source**, enter a unique **Model Source Code** (identifying the upstream source, not a specific model route), and complete display names on all three language tabs: 简体中文, English, and Español.
+3. Click **Create and Configure Endpoints** to open the configuration page.
 
-![Review the model-source list](./images/model-source-list.png)
+![Create Model Source](./images/model-source-model-sources-add.png)
 
-3. Under **Basic Information**:
-   - Maintain the localized model-source name on the English and Chinese tabs, such as Alibaba and 阿里巴巴.
-   - Enter a stable **Model Source Identifier**, such as `alibaba-china`.
+The figure shows the creation dialog with Code and multilingual display names only. Call addresses are configured on Endpoints afterwards.
 
-![Configure model-source basic information](./images/basic-information.png)
-
-1. Under **Region Information**, add one row for each supported region:
-   - Enter the region identifier, such as `china`.
-   - Maintain localized English and Chinese region names.
-   - Enter the provider **Base URL**.
-   - Enter the official **API Key URL**.
-   - Enter the official **API Documentation URL**.
-   - Use **Delete** to remove a region or **+ Add Region** to add another.
-
-![Configure regional endpoints](./images/region-information.png)
-
-1. Under **Request Headers**, keep the default `Authorization: Bearer <key>` template or add required custom headers. Use placeholders only.
-
-![Configure request-header templates](./images/headers-configuration.png)
-
-2. Review the configuration and select **Confirm**, or **Cancel** to discard it.
-
-### Parameter Reference
-
-| Field | Type | Example | Description |
-| --- | --- | --- | --- |
-| Name | Localized text | `Alibaba / 阿里巴巴` | Required; maintain English and Chinese values |
-| Model Source Identifier | Text | `alibaba-china` | Required; stable source identifier |
-| Region Identifier | Text | `china` | Required; stable regional-node identifier |
-| Region Name | Localized text | `China / 中国` | Required; maintain English and Chinese values |
-| Base URL | URL | `https://dashscope.aliyuncs.com` | Required; model-service base URL |
-| API Key URL | URL | `https://bailian.console.aliyun.com` | Optional; official page for obtaining API keys |
-| API Documentation URL | URL | `https://bailian.console.aliyun.com/cn-bei` | Optional; official model-service documentation |
-| Authentication Header Name | Text | `Authorization` | Optional; authentication-header key |
-| Authentication Value | Text | `Bearer <key>` | Optional; placeholder template, never a real key |
+4. Under **Endpoint Management**, click **Add Endpoint**. Enter the display name, region tag, and Base URL; maintain the official-endpoint flag and console/documentation URLs as needed.
+5. Select the protocols actually supported by the Endpoint, then click **Save Endpoint**.
+6. Review the source-level information and use **Save Model Source** in the header for source-level changes. These saves belong to different levels and do not replace each other.
+7. Return to the list or open **Details** to check Code, Endpoint count, region, Base URL, and protocols; continue to [Model Templates](../Model-Templates/) to assemble presets.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
-
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Name, unique identifier, region, and Base URL are accurate. |
-| 2 | Request headers use placeholders and do not store a real API key. |
-| 3 | Model templates can select the source and region. |
+| Source | The unique Code and three language names are correct; the record is in the list. |
+| Endpoint | Details show the intended access point, Base URL, and protocols. |
+| Downstream reference | The template's provider and region match the intended source. |
 
 ## Troubleshooting
 
-| Symptom | Check First |
+| Symptom | Check First and Continue |
 | --- | --- |
-| Connectivity testing fails | Base URL, region, network route, header template, and provider state |
-| Templates cannot use the source | Source status, unique identifier, region, and provider mapping |
+| No creation entry | Ensure this is not the statistics page; see [Model Sources](../../../../usermanual/model-services/operator/settings/model-source/). |
+| Creation cannot complete | Check Code uniqueness and all three language names. |
+| Address is missing or count is unchanged | Complete Endpoint configuration and click Save Endpoint; see [Model Sources FAQ](../../../../usermanual/model-services/operator/settings/model-source/#faq). |
 
 ## User Manual
 
-[Review complete fields and common issues for Model Sources](/usermanual/model-services/operator/settings/model-source/)
+[Model Sources: complete fields and separate save actions](../../../../usermanual/model-services/operator/settings/model-source/)

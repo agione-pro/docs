@@ -4,6 +4,8 @@
 
 Map tenant credits, monthly usage, and metering details to actual instances or workloads for the same tenant and billing cycle.
 
+Credits are platform accounting units, while specification-quota consumption is measured in hours. Reconcile them separately rather than adding the two measures.
+
 ## Applicable Roles
 
 - Platform Operator
@@ -16,23 +18,25 @@ Map tenant credits, monthly usage, and metering details to actual instances or w
 
 ## Steps
 
-1. Open the quota, credit, or usage governance page provided by the current UI, and review opening, allocated, used, and remaining amounts where available.
+1. Open [Usage Limits](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/usage-limits/), select the region and tenant, and expand resource limits and specification quota. Use the read-only recharge/consumption drawers to trace quota sources and use. Resource limits are quantities; specification quota is hours.
 
 2. Open [Monthly Usage](../../../../usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/), select the same tenant and billing cycle, and review resource type, specification, and summarized usage.
 
-![Review monthly usage by tenant and billing cycle](./images/monthly-usage-list-browser.png)
+![Metering-record layout with Usage Details selected](./images/monthly-usage-monthly-usage.png)
 
-3. Switch to the `Usage Details` tab and trace totals by instance, workload, and time range.
+The image actually highlights **Usage Details**. It illustrates the record and summary layout, not a selected **Monthly Metering** view or a completed query for the current task. Verify the active tab and filters on the live page.
 
-![Trace summarized usage to the Usage Details tab](./images/metering-details-list-browser.png)
+3. First check related resources, duration, credits amount, and quota spend in the Monthly Usage summary. One resource can produce many hourly rows; count distinct resource IDs rather than rows. For further tracing, open **Usage Details** and use the filters actually provided.
+
+![Trace summarized usage to the Usage Details tab](./images/monthly-usage-columns.png)
 
 4. Compare runtime and specification in device, node, and workload monitoring. Confirm that end time, card count, and metering unit agree.
 
-5. When an offline reconciliation is required, use **Detail Download** from the same filter scope. Keep the exported file under access control and record the selected tenant, region or availability zone, resource type, and time range with the evidence.
+5. For an approved offline reconciliation, use **Detail Download** with the same filters. Do not select **Generate Usage** during read-only review, because it rewrites metering data. Keep the exported file under access control and record the selected tenant, region or availability zone, resource type, and time range with the evidence.
 
 ## Completion Checklist
 
-> **Purpose:** These checks explain why credits changed and which workloads form the monthly total. Do not stop after viewing only a summary number.
+Trace credit changes and monthly totals to workloads, not just summary figures.
 
 | Check | Pass Criteria |
 | --- | --- |

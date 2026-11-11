@@ -7,15 +7,20 @@ next: true
 
 This scenario helps operators configure the image registry, runtime images, and block, file, or object storage after onboarding a local cluster, creating a reusable foundation for online IDEs, training jobs, and inference services.
 
+An image registry stores container runtime environments, while storage components provide backend data access. Component registration, image-content upload, and instance mounting are separate steps.
+
 ## Applicable Roles
 
 - Platform Operators, on-prem compute administrators, and storage administrators
+
+
+**Role handoff:** Operators and image/storage administrators prepare components and available capabilities, then hand the region, controlled image version, and storage scope to deployment users. User-side image groups and push validation are handled by users with the corresponding permissions; credentials are not shared handoff material.
 
 ## Scenario Goals
 
 - Make the image service reachable from the platform and target cluster and keep synchronization healthy.
 - Give runtime images explicit versions, hardware environments, and purpose labels.
-- Connect block, file, and object storage to the correct region according to workload needs.
+- Connect storage capabilities that are actually available. Verify image and object-storage bindings in region configuration and check availability before using block/file storage.
 - Validate that a test workload can pull the image and create, mount, or access storage.
 
 ## Scenario Flow
@@ -40,7 +45,7 @@ This scenario helps operators configure the image registry, runtime images, and 
 
 1. Register the image service and validate synchronization.
 2. Synchronize or upload runtime images with explicit version tags.
-3. Select block, file, or object storage according to workload needs.
+3. Select available storage for the workload. Keep the block/file storage documentation, but do not make unavailable entries an executable prerequisite.
 4. Bind the region and run an end-to-end test workload.
 
 ## Document Index
@@ -57,7 +62,7 @@ This scenario helps operators configure the image registry, runtime images, and 
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. They confirm that the target cluster can actually use the runtime environment and data storage, rather than merely showing configuration records in lists.
+Verify that the target cluster can actually use the configured runtime and storage.
 
 | Check | Pass Criteria |
 | --- | --- |

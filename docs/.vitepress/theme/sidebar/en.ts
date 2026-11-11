@@ -371,14 +371,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Application Publishing & Approval",
-              collapsed: true,
-              items: [
-                { text: "Scenario Overview", link: "/userguide/scenarios/application-publishing-approval/" },
-                { text: "Application Publishing and Approval Workflow", link: "/userguide/scenarios/application-publishing-approval/application-review-workflow" },
-              ],
-            },
-            {
               text: "On-Prem Runtime Images & Storage",
               collapsed: true,
               items: [
@@ -1023,6 +1015,18 @@ export const enSidebar: DefaultTheme.Sidebar = {
           { text: "Inference", link: "/others/faq/inference" },
           { text: "Ops & Security", link: "/others/faq/ops" },
       ]
+    }
+  ],
+  "/others/upgrade/": [
+    {
+      text: "Upgrade Notes",
+      collapsed: false,
+      items: [
+        {
+          text: "Model Business Upgrade (2026-11-02)",
+          link: "/others/upgrade/model-business-upgrade-2026-11/",
+        },
+      ],
     }
   ],
   "/others/release-notes/": [

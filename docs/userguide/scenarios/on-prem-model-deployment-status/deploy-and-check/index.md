@@ -4,6 +4,8 @@
 
 The instance reaches Running, events and logs remain clean, and a controlled request validates the selected NPU plan.
 
+NPU means neural processing unit. A resource specification describes the requested resource bundle; verify the actual card count in instance and task information.
+
 ## Applicable Roles
 
 - End User
@@ -12,7 +14,7 @@ The instance reaches Running, events and logs remain clean, and a controlled req
 
 ## Before You Start
 
-- Confirm template availability, tenant quota, storage, and the intended one-card or four-card plan.
+- Confirm template availability, tenant quota, storage, and a deployment plan with the card count actually required.
 - Prepare a harmless test request and record the instance name.
 
 ## Entry
@@ -23,13 +25,15 @@ The instance reaches Running, events and logs remain clean, and a controlled req
 
 ## Steps
 
-1. Select a published NPU inference template.
-2. Select a one-card, two-card, or four-card flavor and enter instance parameters.
-3. Submit and locate the instance on the Model Instances page.
+1. Open **On-Prem > Model Deployment > Templates**, select a **Deployable** model, and verify its version and managed NPU models.
+2. In **Business Parameters**, confirm framework, accelerator, concurrency, context, weight format, and KV cache precision. Compare **Single Instance/Cluster** recommendations and verify card count and physical memory.
+3. Confirm name, region, specification, and replicas in deployment settings, review cost and impact, and perform the final deployment action. Do not look for image, port, and storage fields specific to Custom Deploy in this template wizard. After submission, locate the record in **Instances**.
 4. If creation stalls, inspect workload events, image pulls, and scheduling results.
 5. When running, verify the endpoint, health status, and actual NPU allocation.
 
-![Model instances](./images/model-instances.png)
+![Example model-instance card and service entry](./images/instances-list.png)
+
+The example card is marked **Health check passed** and shows the model, framework, CPU/memory, one NVIDIA V100, and service-port information. It is not proof of a successful target NPU deployment. Verify the actual accelerator model, card count, events, and call result for the instance created for this task.
 
 ## Status Guide
 
@@ -42,13 +46,15 @@ The instance reaches Running, events and logs remain clean, and a controlled req
 
 ## Four-NPU Validation Focus
 
+**Worked example:** This section retains a four-NPU example. Use these tiers only when the model, capacity, and scheduling topology support them; other environments use their actual device inventory and workload requirements.
+
 - A four-card instance must actually occupy four cards; do not rely on the template name alone.
 - If the four-card specification cannot be scheduled, validate one card first, then two cards, and finally four cards.
 - A sufficient cluster-wide card total does not guarantee that one scheduling topology can satisfy a four-card request.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

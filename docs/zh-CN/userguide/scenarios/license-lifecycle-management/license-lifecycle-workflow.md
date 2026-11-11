@@ -5,7 +5,9 @@ next: true
 
 # 检查和维护 License 生命周期
 
-本任务用于分别确认 Platform License 与 Managed Objects 状态，准备有效的 License 批次，并建立订阅、有效期、额度和导入记录巡检。
+本任务用于分别确认 Platform License 与 Managed Objects 状态，准备有效的 License 批次，并建立订阅、有效期、额度和导入记录巡检。License 是使用授权；Platform License 对应平台订阅，Managed Objects 对应纳管容量，SKU 是纳管授权的类别。
+
+资源运营人员提供当前规模与续期或扩容需求，License 管理人员核对目标部署及授权范围；需要激活时，交给具备权限且已获批准的操作人员。完成后交回两类授权的状态、有效期、额度及待处理事项，供资源运营人员复核，不传递激活码等敏感材料。
 
 ## 适用角色
 
@@ -24,7 +26,7 @@ next: true
 
 从 `账务 > License > License` 进入[License 管理](../../../usermanual/billing/operator/license/license/)，先查看顶部总览，分别核对 Platform License 和 Managed Objects，并确认当前页面及注册码属于目标环境和目标部署。
 
-![License 概览与授权状态](../../../usermanual/billing/operator/license/license/images/license-overview.png)
+![License 概览与授权状态](./images/license-overview.png)
 
 ### 2. 选择区域并准备 License
 
@@ -44,7 +46,7 @@ next: true
 
 ## 完成检查
 
-> **用途：** 以下检查确认 License 不仅被激活，而且在正确环境提供了可解释、可持续的授权容量。
+分别核对目标部署的授权有效性、容量和持续使用计划。
 
 | 检查项 | 通过标准 |
 | --- | --- |

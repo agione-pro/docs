@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Member Quota Request and Allocation
 
-This scenario helps provider administrators request, adjust, and limit quota according to member needs while reconciling member, project, and key constraints.
+This scenario helps provider administrators request, adjust, and limit quota according to member needs while reconciling member, project, and key constraints. A key is a credential used by a calling program. Member quota here is measured in account credits, not in a number of compute cards.
 
 ## Applicable Roles
 
@@ -20,7 +20,7 @@ This scenario helps provider administrators request, adjust, and limit quota acc
 
 ## Scenario Flow
 
-**Main path:** Locate member -> Submit quota request -> Track status -> Adjust member quota -> Set limits -> Validate calls
+**Main path:** Locate member -> Submit quota request -> Track status and verify quota -> Adjust only if needed and authorized -> Review limits -> Validate calls
 
 | Stage | Key Result |
 | --- | --- |
@@ -39,7 +39,7 @@ This scenario helps provider administrators request, adjust, and limit quota acc
 
 1. Review the member's quota and existing usage.
 2. Submit and track the quota request.
-3. Adjust member quota and limits after approval.
+3. After approval, verify member quota and adjustment records first. Change quota or limits only when a separate adjustment is still required and authorized; do not add the same amount twice.
 4. Validate with the member account or key.
 
 ## Document Index
@@ -50,7 +50,7 @@ This scenario helps provider administrators request, adjust, and limit quota acc
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to confirm that the approved quota reached the intended member and remains consistent with project and key limits.
+Verify that the approved amount reached the intended member and agrees with project and key limits.
 
 | Check | Pass Criteria |
 | --- | --- |

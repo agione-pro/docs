@@ -1,145 +1,85 @@
 # New Model Template Preparation and Deployment Guide
 
-::: tip Environment and Parameter Notes
-This guide uses the current environment's page labels and status values. Model IDs, provider instance IDs, ports, and available publication options vary by environment; use the values shown on the current page.
-:::
+This task connects On-Prem (on-premises compute management) model files, inference templates, instances, and service registration. Start with Scenario A when a deployable template exists. Otherwise the operator completes Scenario B before handing the prepared template to the provider for Scenario A.
 
-Depending on your requirements, choose between the following two procedures:
+## Applicable Roles
 
-- **Scenario A: Deploy and Call with an Existing Template (Model Provider)**: When the operator has already prepared the compute template, the model provider can directly use the template to create a model instance, publish it, test dialogue in Playground, and verify API access.
-- **Scenario B: Prepare a New Template End-to-End (Operator + Provider)**: When introducing a new open-source model, the operator downloads the model weights from ModelScope, configures the Ascend 910B inference template, and then the provider deploys and verifies the instance.
+- Operator: model configuration, frameworks, and inference templates.
+- Model Provider: template selection, instance creation, registration, and controlled call verification.
 
-## Scenario A: Deploy and Call with an Existing Template
+The operator supplies model versions, framework relations, and adapted accelerators. The provider checks the template and specification before creating an instance. After registration, hand the model identifier, protocol, and scope to the intended user, not shared plaintext keys.
 
-### 1. Create a Model Instance with a Template (Provider)
+## Before You Start
 
-Log in with a provider account, navigate to `Model Services > Studio > My Models`, and click **Start** on the target model card to create an instance using a template.
+- Prepare target clusters, accelerators, framework images, resource specifications, and tenant quota in the intended region.
+- Confirm model license, version, quantization, repository information, concurrency, and context needs. Ascend 910B and vLLM are optional adaptation choices, not fixed settings for every environment.
+- Confirm resource, cost, and call authorization before creating an instance, publishing, or testing connectivity. Tests send real requests. API means application programming interface; a smoke test is a minimal connectivity check, not completed publication or authorized-call validation.
+- Keep repository credentials, instance Endpoints (service access addresses), and request tokens out of shared material.
 
-![Start model instance from My Models](./images/01-my-models-start-instance.png)
+## Scenario A: Deploy and Call with an Existing Template (Provider)
 
-Search for the model you want to deploy to open its configuration page. Set concurrency and context length for this instance; the right-hand panel automatically recalculates supported flavors. Select the recommended flavor.
+### 1. Create an Instance from Templates
 
-![Configure concurrency, context length, and select recommended flavor](./images/02-configure-instance-parameters.png)
+1. Open **On-Prem > Model Deployment > Templates**, search for the target model, and select a **Deployable** model. Do not look for a Start button in Model Services > My Models.
+2. Check accelerators, business parameters, and recommended specifications. Use actual concurrency, context, precision, and headroom requirements rather than copying another hardware example.
+3. Check total resources, region, project, and instance name in Deployment Settings; review the preview and click **Submit**.
+4. Open **On-Prem > Model Deployment > Instances**, locate the instance by name and region, compare its model, framework, and resources, and continue after **Inference service ready**.
 
-Review the configuration and click **Submit**.
+![Deployment settings and preview](./images/templates-deployment-settings.png)
 
-![Confirm model instance configuration and submit](./images/03-confirm-submit-instance.png)
+The figure shows an example of resources, deployment location, and service information. The example specification is not guaranteed to be available to the current account.
 
-The model instance enters initialization. Click **Search** to refresh instance status. Wait until the instance reaches **Running** status and the service port becomes available. This may take several minutes.
+See [Templates](../../../usermanual/ai-infra-on-prem/user/model-deployment/templates/) for deployment parameters and [Instances](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/) for state and service ports.
 
-![Model instance running with service port available](./images/04-instance-running-status.png)
+### 2. Check Connectivity and Register a Private Model
 
-### 2. Publish the Model with the Created Instance (Provider)
+1. On the target instance card, open **… > Publish Model**, then confirm the target service and **Selected service port**.
+2. Use **Publish as Private Model** for this flow. The Public Model card provides **Contact Us**; it does not establish a completed public-publication path.
+3. Check the inference-service port and protocol, obtain request authorization, and run the smoke test. Continue with **Jump to Publish** only after **API smoke test passed**.
+4. On **My Models** with the Private tag, complete Basic Information, Billing Configuration, and Rate Limit Configuration. Passing the test or landing on this page does not complete publication.
+5. Return to the publication list to check status and revision; hand over to [Model Publishing Approval](../model-publishing-approval/) when review is required.
 
-Once the model instance is available, click **Publish** to start model release.
+### 3. Verify Calls with the Intended Account
 
-![Click Publish to release model instance](./images/05-publish-model-action.png)
+1. Open **Model Services > Discover > Models**, locate the model within its authorized scope, and verify the provider.
+2. Use the provider's **Playground** to inspect output for the intended modality, or **Quick Start** to confirm URL, protocol, and route identifier.
+3. Execute a controlled request using the current integration example, inspect valid output, then locate the time and model in **My Calls > Call Logs**. See [Model Experience and API Calling](../model-experience-api-calling/).
 
-Select the approved **Public** or **Private** publication scope. Enable at least one API protocol (such as OpenAI-ChatCompletions), then click **Test** to verify model connectivity.
+## Scenario B: Prepare Model Versions and Templates (Operator)
 
-![Enable API protocol and run protocol test](./images/06-publish-protocol-test.png)
+### 1. Maintain Files and Linked Clusters
 
-You can also set **Custom Tag** to a testing tag (such as `testing`).
+1. Open **On-Prem > Templates > Models** and check whether the model exists. To create it, click **Add model** and complete Select Meta Model, Configure model information, and Configure model version information.
+2. Set category and parameter count. Under version information, verify quantization, **Model source** (file source such as ModelScope, HuggingFace, or Local), and repository information. This field is not Model Services > Settings > Model Sources.
+3. Select linked clusters, review state, and submit. Return to the list to check **Model Download** and version. Saving first does not establish that files are downloaded or usable by tenants.
 
-![Configure model Custom Tag](./images/07-publish-custom-tag.png)
+![Model version information](./images/models-configure-model-version-information.png)
 
-Configure billing options. For controlled testing, select **Free**.
+The figure shows version configuration. Quantization, file source, and linked clusters must match the target environment; another model's repository ID is not a default.
 
-![Configure model billing options](./images/08-publish-billing-options.png)
+### 2. Maintain Inference Templates and Framework Relations
 
-Proceed to the Rate Limit page. Disable rate limiting only if permitted by your environment's governance policy. Submit for approval if required; otherwise verify the published status directly.
+1. Open **On-Prem > Templates > Inference Templates**, click **Create Inference Template**, choose model, version, and framework version, check the name, and save.
+2. Open details and separately inspect **Model Version Switch**, **Framework Relations**, runtime image, and bound accelerators; maintain the **Linked VRAM Factor Form** (parameters for estimating accelerator memory) when needed.
+3. Check each relation's state and the list's **Deployable / Undeployable** conclusion. A framework relation marked **Available** does not alone prove the entire template is deployable.
+4. After checking dependencies and visibility, hand model-version, framework, and specification information to the provider and verify user-side selection and deployment through Scenario A.
 
-![Configure rate limit and submit publication](./images/09-publish-rate-limit-submit.png)
+## Completion Checklist
 
-### 3. Call the Model for Verification (Provider)
-
-Navigate to `Model Services > Discover > Models` and search for the published model.
-
-![Search published model in Models market](./images/10-model-store-search.png)
-
-Locate the model published by your provider account and click **Playground** to open the chat interface in a new browser tab.
-
-![Enter Playground chat from model details](./images/11-displayground-chat-entry.png)
-
-Enter prompts in the dialog box and verify that the model returns streaming outputs.
-
-![Test chat prompt and response in Playground](./images/12-playground-chat-test.png)
-
-You can also test with cURL. Click **Quick start** to view API connection details.
-
-![Open Quick Start drawer to review API invocation](./images/13-quick-start-api-drawer.png)
-
-Copy the pre-generated cURL command.
-
-![Copy cURL command from Quick Start](./images/14-copy-curl-command.png)
-
-Paste the command into your shell environment and run it to verify inference output.
-
-![Execute cURL in terminal and verify model output](./images/15-terminal-curl-execution.png)
-
-## Scenario B: Prepare a New Model Template (Operator)
-
-### 1. Ensure the Model is Downloaded (Operator)
-
-Log in with an operator account and go to `AI-Infra > On-prem > Templates > Models`. Search for the target model (for example, `DeepSeek-R1-Distill-Qwen-7B`). If the model is not listed, click **Add Model** to create it first.
-
-![Search target model in On-Prem Models](./images/16-operator-onprem-models-search.png)
-
-Click the model to open details, then scroll down to **Select linked clusters**. Click **Edit** for the target version.
-
-![View model details and edit linked cluster version](./images/17-model-details-linked-clusters.png)
-
-Change the model source from Local to ModelScope or HuggingFace (ModelScope is recommended in environments with external network restrictions). Enter the Model ID required to download model weights.
-
-![Switch model source to ModelScope and enter Model ID](./images/18-edit-version-modelscope-source.png)
-
-Open the ModelScope community website, locate the model, copy its Model ID, and paste it into the platform.
-
-![Obtain Model ID from ModelScope community](./images/19-modelscope-website-model-id.png)
-
-Click **Save** to start automatic download. You can also click **Enable after download** so the model activates automatically once downloaded.
-
-![Enable model automatically after download finishes](./images/20-enable-after-download.png)
-
-### 2. Create an Inference Template (Operator)
-
-Go to `AI-Infra > On-prem > Templates > Inference Templates` and click **New Inference Template**. Select the model and version, specify the framework, and enter a template name.
-
-![Create new inference template and bind model version and framework](./images/21-create-inference-template.png)
-
-In the **Linked VRAM Factor** section, click **Edit** and select the VRAM calculation table that matches the model architecture (such as `Common Model Inference VRAM param table for vLLM`).
-
-Scroll down to **Framework Relations**, click **Edit**, select the target accelerator card specification (such as Ascend 910B), and save.
-
-![Link vLLM VRAM factor table and bind Ascend 910B accelerator flavor](./images/22-vram-factor-and-card-relations.png)
-
-Configure Extra parameters if specialized performance tuning is needed; keep defaults for standard validation. Change the template status to **Available**.
-
-![Set inference template status to Available](./images/23-available-inference-template.png)
-
-Once the template is Available, the model provider can proceed with instance creation and publishing as described in Scenario A.
-
-## Completion Check
-
-After completing the steps above, verify that the end-to-end workflow is in a ready state:
-
-1. **Template Ready**: In the **Inference Templates** list, the new template displays an **Available** status with the correct model version and accelerator associations.
-2. **Instance Running**: In **My Deployments**, the model instance created from the template shows a **Running** status with an active service port.
-3. **API and Invocation Verified**: The published model responds successfully to chat prompts in **Playground** or returns expected inference outputs via `cURL`.
+| Check | Pass Criteria |
+| --- | --- |
+| Files | Version, file source, and target cluster download state have been checked. |
+| Template | Model/framework combination, image, accelerators, and factor form agree, and the user-side template is deployable. |
+| Instance | The card matches the preview; inference service is ready with the correct port and protocol. |
+| Registration | Registration is completed after the smoke test; publication status and revision are checked. |
+| Call | The authorized account receives valid output and can locate the call log. |
 
 ## Troubleshooting
 
-| Symptom | Check First | Manual Reference |
-| --- | --- | --- |
-| ModelScope weight download fails or times out | Cluster outbound network connectivity, Model ID spelling, cluster storage capacity, and download logs | [On-Prem Models](/usermanual/ai-infra-on-prem/operator/templates/models/#faq) |
-| Inference template cannot be set to Available | Linked VRAM factor table, framework compatibility, accelerator specification association | [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/#faq) |
-| Model instance launch fails or stays in CrashLoop | Node NPU memory availability, concurrency/context configuration, driver and image version | [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/#faq) |
-| Protocol test (Test) fails during publishing | Instance health status, service port exposure, protocol path, and model compatibility | [Model Reviews](/usermanual/model-services/operator/approvals/model-reviews/#faq) |
-| No response from cURL or Playground | API Key validity, account balance/quota, rate limit settings, and network firewall policies | [Model Market](/usermanual/model-services/user/discover/models/#faq) |
-
-## User Manual References
-
-- [On-Prem Models](/usermanual/ai-infra-on-prem/operator/templates/models/)
-- [Inference Templates](/usermanual/ai-infra-on-prem/operator/templates/inference-templates/)
-- [My Models](/usermanual/model-services/user/studio/my-models/)
-- [Model Instances](/usermanual/ai-infra-on-prem/user/model-deployment/instances/)
+| Symptom | Check First and Continue |
+| --- | --- |
+| Model files are not ready | Check version source, repository, and linked cluster download state in [Models](../../../usermanual/ai-infra-on-prem/operator/templates/models/#faq). |
+| Template is undeployable | Check model version, framework relation, image, accelerators, and dependencies in [Inference Templates](../../../usermanual/ai-infra-on-prem/operator/templates/inference-templates/#faq). |
+| No specification or instance | Verify region, quota, name, and filters in [Templates](../../../usermanual/ai-infra-on-prem/user/model-deployment/templates/) and [Instances](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/). |
+| Publication smoke test fails | Verify readiness, port, and protocol in [Instance Publication](../../../usermanual/ai-infra-on-prem/user/model-deployment/instances/#publish-model). |
+| Registered service cannot be called | Verify publication status, revision, and access scope, then follow the [Calling Guide](../model-experience-api-calling/). |

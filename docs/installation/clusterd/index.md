@@ -50,13 +50,24 @@ This guide applies to x86_64 and ARM64 delivery packages using `install.sh` and 
 
 **ClusterD downloads (Linux x86_64):**
 
-- **Full package, recommended for offline delivery:** [Download full package (2026.11.06-r1)](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.06-r1-linux-x86_64.tar.gz)
-- **Light package:** [Download light package (2026.11.06-master-ed5bc56)](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.06-master-ed5bc56-linux-x86_64.tar.gz)
+- **Full offline package, recommended for offline delivery:** [Download full package (2026.11.10-r2)](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.10-r2-linux-x86_64.tar.gz); [Download SHA-256 checksum file](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.10-r2-linux-x86_64.tar.gz.sha256)
+
+Use the SHA-256 value from the checksum file linked above when verifying the downloaded full package.
+
+- **Light package:** [Download light package (2026.11.09-r1)](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.09-r1-linux-x86_64.tar.gz); [Download SHA-256 checksum file](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.09-r1-linux-x86_64.tar.gz.sha256)
+
+Light package SHA-256:
+
+```text
+56ccd2ff12b372ca6a2cb7c5324ca33ea8c9764903d7dd3b0c50da3168bb7c03
+```
+
+The full package listed here is release `2026.11.10-r2`. The light package remains `2026.11.09-r1` until its matching release is published.
 
 Both links are for x86_64 hosts only. For an ARM64 host, obtain the matching package from your delivery contact; do not simply change the architecture name in a URL.
 
 ::: warning Check the filename and trusted checksum after downloading
-Before running the commands in section 3, replace `<CLUSTERD_PACKAGE_URL>` with the selected download URL and `XXX` with the complete version in that package's filename. Obtain the archive's trusted SHA-256 from your delivery contact and replace `<TRUSTED_OUTER_ARCHIVE_SHA256>`. These two packages have different version strings; use the actual downloaded file as the reference, and replace all placeholders before running the commands.
+Before running the commands in section 3, replace `<CLUSTERD_PACKAGE_URL>` with the selected package URL, `XXX` with the selected package version (`2026.11.10-r2` for the full package or `2026.11.09-r1` for the light package), and `<TRUSTED_OUTER_ARCHIVE_SHA256>` with the matching value from its checksum file. Full and light package checksums are not interchangeable. For another version or an ARM64 package, obtain its matching URL and checksum from your delivery contact; do not use the x86_64 checksums on this page.
 :::
 
 ### 1.1 Choose a package
@@ -68,7 +79,7 @@ Before running the commands in section 3, replace `<CLUSTERD_PACKAGE_URL>` with 
 
 The following steps use a full package. For a light package, substitute its URL and filename; the installation command is the same.
 
-**Before starting, confirm the release version, ClusterD host architecture, and trusted SHA-256 supplied by the delivery contact.** Do not use a checksum calculated from the file you just downloaded as the trusted delivery checksum.
+**Before starting, confirm the release version, ClusterD host architecture, and matching trusted SHA-256.** Use the checksum file linked for the selected package; obtain a matching checksum file for other versions or architectures. Do not use a checksum calculated from the file you just downloaded as the trusted delivery checksum.
 
 ### 1.2 Choose the host architecture
 
@@ -159,6 +170,8 @@ For an air-gapped host, transfer the package to `/opt/clusterd-packages` using d
 ### 3.2 Verify the downloaded archive
 
 This checks that the file was not damaged during download or transfer. **It uses SHA-256, not MD5.**
+
+The current downloadable `.sha256` files contain the release server's `/root/dist/` paths, not local paths on the installation host. Use the matching SHA-256 value from the checksum file linked in section 1 and the command below to verify the actual local file; do not pass the original checksum file directly to `sha256sum -c`.
 
 ```bash
 printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -

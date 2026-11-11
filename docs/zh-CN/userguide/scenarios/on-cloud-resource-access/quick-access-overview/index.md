@@ -13,22 +13,25 @@
 - 已明确需要接入的云平台、账号、地域、业务类型和租户。
 - 已准备最小权限的账号材料及网络连通条件。
 
+
+> 先确认入口是否已开放：若快速接入仅显示未开放提示，不将它作为配置前提，直接从接入总览及下列实际配置页核对。总览提供接入数量和授权状态，不代表账号认证或真实部署已经验证通过。
+
 ## 操作步骤
 
 1. 进入[快速接入](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/quick-start/)，按页面顺序确认云平台、云账号、资源池和授权依赖。
 
-![从快速接入确认配置顺序](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/quick-start/images/quick-start-list.png)
+![从快速接入确认配置顺序](./images/quick-start-quick-access.png)
 
 2. 进入[接入总览](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/)，核对已接入平台、有效账号、可用资源池和授权异常。
 
-![从接入总览检查全局状态](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/images/access-overview-list.png)
+![从接入总览检查全局状态](./images/access-overview-list.png)
 
 3. 根据缺失项进入云平台、云账号、资源池、业务地域授权或租户云授权任务。
 4. 配置完成后返回接入总览刷新，确认异常数量和目标对象状态更新。
 
 ## 完成检查
 
-> **用途：** 以下检查用于确认多云接入依赖已经形成闭环，避免各页面记录存在但整体仍不可用。
+核对完整接入链路，而不只确认各页面已有记录。
 
 | 检查项 | 通过标准 |
 | --- | --- |

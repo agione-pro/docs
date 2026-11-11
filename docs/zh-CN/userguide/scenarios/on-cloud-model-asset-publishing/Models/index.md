@@ -21,32 +21,31 @@
 
 1. 进入平台首页，点击左侧导航栏的 **"部署资产 > 模型库"** 菜单，进入模型库页面。
 2. 点击页面右上角的 **"添加模型"** 按钮，进入添加模型流程（3 步）。
-![模型库](./images/models.png)
-3. **Step 1：元模型 / 上架版本**：
+![模型库](./images/models-models.png)
+3. **Step 1：选择元模型**：
    - **"元模型筛选"**：在筛选器（全部作者 / 全部类型 / 关键字搜索）中定位目标元模型，已选元模型会作为标签展示在筛选器下方，可点击标签删除。
    - **"元模型选择"**：在元模型列表中单选目标元模型（如 `Qwen3-8b`），右侧展示元模型详情，包括模态、当前已开放的能力元数据、Token 限制、兼容协议、模型系列、作者、子类型和描述。
-   - **"上架版本"**：填写 **"版本"**（如 `1.0.0`）与 **"版本描述"**（富文本）。
    - 点击 **"下一步"**。
-![元模型/上架版本](./images/step-1-meta-model.png)
+![选择元模型与核对能力约束](./images/models-meta-model.png)
 4. **Step 2：部署配置**：
    - **"云侧部署点"**：左侧管理部署点（每个部署点绑定一个云平台 + 地域），可点击 **"+ 添加部署点"** 新增。
-![添加云侧部署点](./images/step-2-add-cloud-deployment-point.png)
+![添加云侧部署点](./images/models-add-deployment-point.png)
    - **"云上模型"**：点击 **"指认云上模型"** 按钮，配置元模型与云账号下的云上模型（如 `aliyun-wh-dev` / `Qwen3-8B`），点击 **"保存"**。
-![指认云上模型](./images/step-2-assign-cloud-model.png)
-   - **"算力配置"**：点击 **"选择算力方案"** 按钮，单选目标模型框架（如 `Qwen3-8B` / vllm / v1.0 / `eas-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai-eas/vllmv:0.9.1-modelgallery`）与部署规格（如 `ecs.gn6i-c4g1.xlarge` / NVIDIA T4 x 1 / 4 核 / 15GB / CNY12.78/Hour），点击 **"保存"**。
-![选择算力方案](./images/step-2-select-compute-plan.png)
+![指认云上模型](./images/models-assign-cloud-model.png)
+   - **"算力配置"**：点击 **"选择算力方案"** 按钮，单选目标模型框架（如 `Qwen3-8B` / vllm / v1.0 / `eas-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai-eas/vllmv:0.9.1-modelgallery`）与部署规格（按当前页面的加速卡、CPU、内存、规格与费用选择），点击 **"保存"**。
+![选择算力方案](./images/models-select-compute-plan.png)
    - **"输出配置"**：点击 **"添加输出配置"** 按钮，配置请求 URL（部署后自动生成，模板 `{request_url}`）、请求方法（如 `POST`）、请求头（Content-Type: application/json / Authorization: Bearer {api_key}）、请求参数（max_tokens: 1024 / messages: [{"role":"user","content":"hello"}]）与多语言代码样例（curl / python / java / go / nodejs / php / ruby），点击 **"保存"**。
-![添加输出配置](./images/step-2-add-output-configuration.png)
+![添加输出配置](./images/models-add-output-configuration.png)
    - 点击 **"下一步"**。
-5. **Step 3：确认配置**：核对模板整体配置信息（元模型信息 / 能力与接入约束 / 元模型资料 / 部署配置：云上模型 + 算力配置 + 输出配置），确认无误后点击 **"提交"** 完成模型添加；如需修改，点击 **"上一步"** 返回对应步骤。
+5. **Step 3：确认配置**：核对模板整体配置信息（元模型信息 / 能力与接入约束 / 元模型资料 / 部署配置：云上模型 + 算力配置 + 输出配置），确认无误后点击 **"提交"** 完成模型添加；如需修改，点击 **"上一步"** 返回对应步骤。在最终提交前，按当前表单实际显示的配置阶段核对或填写上架版本与描述；第一步配图仅展示元模型选择，不含版本输入区。
 ![确认配置](./images/step-3-confirm-configuration.png)
 
-#### 参数说明 - 元模型/上架版本（Step 1）
+#### 参数说明 - 元模型与上架版本（按实际阶段填写）
 
 | 字段名称 | 字段类型 | 示例 | 说明 |
 |----------|----------|------|------|
 | 元模型 | 单选 | `Qwen3-8b`（唯一标识 `qwen/qwen3-8b`） | 必填，选择基础元模型 |
-| 上架版本 - 版本 | 文本 | `1.0.0` | 必填，模型上架版本号 |
+| 上架版本 - 版本 | 文本 | `1.0.0` | 在页面实际展示的上架版本配置阶段填写，不固定限定为第一步 |
 | 上架版本 - 版本描述 | 富文本 | — | 选填，说明该版本更新内容 |
 
 #### 参数说明 - 部署配置（Step 2）
@@ -57,17 +56,17 @@
 | 云账号 | 下拉选择 | `aliyun-wh-dev` | 必填，模型部署使用的云账号 |
 | 云上模型 | 下拉选择 | `Qwen3-8B` | 必填，指认到云账号下的云上模型 |
 | 模型框架 | 单选 | `Qwen3-8B` / vllm / v1.0 / `eas-registry-vpc.cn-shanghai.cr.aliyuncs.com/pai-eas/vllmv:0.9.1-modelgallery` | 必填，模型框架与运行时版本 |
-| 部署规格 | 单选 | `ecs.gn6i-c4g1.xlarge` / NVIDIA T4 x 1 / 4 核 / 15GB / CNY12.78/Hour | 必填，GPU 型号 / 数量 / CPU 核数 / 内存 |
+| 部署规格 | 单选 | `ecs.gn6i-c4g1.xlarge` / NVIDIA T4 x 1 / 4 核 / 15GB / 以页面当前估算为准 | 必填，GPU 型号 / 数量 / CPU 核数 / 内存 |
 | 请求 URL | URL | `{request_url}`（部署后生成） | 必填，模型调用端点 |
 | 请求方法 | 下拉选择 | `POST` | 必填，HTTP 请求方法 |
-| 请求头 - Content-Type | 文本 | `application/json` | 必填，请求内容类型 |
-| 请求头 - Authorization | 文本 | `Bearer {api_key}` | 必填，访问凭证 |
-| 请求参数 - max_tokens | 数值 | `1024` | 必填，最大生成 Token 数 |
-| 请求参数 - messages | 数组 | `[{"role":"user","content":"hello"}]` | 必填，对话消息内容 |
+| 请求头 - Content-Type | 文本 | `application/json` | 按协议填写，请求内容类型 |
+| 请求头 - Authorization | 文本 | `Bearer {api_key}` | 按协议填写，访问凭证 |
+| 请求参数 - max_tokens | 数值 | `1024` | 按模型协议填写，最大生成 Token 数 |
+| 请求参数 - messages | 数组 | `[{"role":"user","content":"hello"}]` | 按模型协议填写，对话消息内容 |
 
 ## 完成检查
 
-> **用途：** 以下检查是当前功能任务的退出条件，用于判断操作结果是否可观察、可复核，以及是否可以继续当前场景的下一步。它不是操作步骤的重复；任一项不满足时，请按下方“常见失败分支”继续排查。
+核对下表；任一项未满足时，先按“常见失败分支”排查。
 
 | 检查项 | 通过标准 |
 | --- | --- |

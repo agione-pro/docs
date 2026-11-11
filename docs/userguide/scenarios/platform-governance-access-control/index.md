@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Platform Governance and Access Control
 
-This cross-scenario overview combines identity permissions, resource authorization, model visibility, projects and keys, member quotas, API rate control, and License into one governance path. Complete configuration in the linked scenarios.
+This cross-scenario overview combines identity permissions, resource authorization, model visibility, projects and keys, member quotas, API rate control, and License into one governance path. Complete configuration in the linked scenarios. API means application programming interface, a key is a calling credential, and a License authorizes platform or managed-resource use.
 
 ## Applicable Roles
 
@@ -54,7 +54,7 @@ This cross-scenario overview combines identity permissions, resource authorizati
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |

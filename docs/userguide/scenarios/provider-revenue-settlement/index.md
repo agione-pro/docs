@@ -14,7 +14,7 @@ This scenario helps providers start from the revenue overview, explain revenue b
 ## Scenario Goals
 
 - Relate revenue trends to customers, models, and billing cycles.
-- Reconcile expected settlement, actual receipt, and transfer status.
+- Separate unposted estimates from historical settlements and reconcile settlement, receipt, and transfer states by their respective scopes.
 - Verify the billing cycle, amount, and destination account before transferring a balance.
 
 ## Scenario Flow
@@ -49,7 +49,7 @@ This scenario helps providers start from the revenue overview, explain revenue b
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to confirm that the revenue source and monthly settlement can be explained and reviewed before transferring funds or closing the cycle.
+Reconcile sources, settlement, and transfers before moving funds or closing the cycle.
 
 | Check | Pass Criteria |
 | --- | --- |

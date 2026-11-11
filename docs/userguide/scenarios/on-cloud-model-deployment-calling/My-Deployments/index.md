@@ -13,8 +13,7 @@ The deployment reaches a healthy state, responds to a controlled request, and ca
 
 ## Applicable Roles
 
-- End User
-- Model Provider when publishing a validated deployment as a model service
+- Model Provider
 
 ## Before You Start
 
@@ -29,7 +28,7 @@ The deployment reaches a healthy state, responds to a controlled request, and ca
 
 2. Review deployment status and events until the service reaches a healthy running state. If it remains in Creating or fails, use the events to check the cloud account, quota, capacity, image, or startup command.
 3. Open monitoring, use a time range that covers the service runtime, and review resource levels and abnormal trends.
-4. Open API access, verify the request URL, method, headers, and parameter rules, then make one controlled call using redacted endpoint and authentication examples.
+4. Open API access, verify the request URL, method, headers, and parameter rules, then make a controlled request with the actual service endpoint and valid credentials in the authorized environment. Use only `<BASE_URL>`, `<ENDPOINT_PATH>`, and `<API_KEY>` in documentation and shared examples; placeholders are not callable endpoints.
 5. Start, stop, or delete the deployment according to the usage plan. Before stopping or deleting, confirm business impact, cost changes, and data-retention requirements.
 
 ### Publish a Model (Extended Operation)
@@ -38,14 +37,14 @@ The deployment reaches a healthy state, responds to a controlled request, and ca
 2. Select a publication area:
    - **Private Area**: visible only within the team or tenant.
    - **Public Area**: listed in the public catalog with independent billing and rate-limit configuration.
-3. Enter the model type, source, region, request URL placeholder, model ID, request headers, input and output modalities, token limits, currently available capabilities, and supported protocols.
-4. Add the model identifier and description, select immediate or scheduled publication, review the configuration, and submit it.
+3. In the publishing form, verify the prefilled meta-model, model source, and upstream request URL. Maintain the API key securely and verify the Model Source ID.
+4. Complete billing and rate-limit configuration, review, and submit. Verify the model in **Studio > My Models** and continue with the [publishing guide](../../publish-model/).
 
 ## Other Operations
 
 | Operation | Procedure |
 | --- | --- |
-| Switch cloud-platform tab | Select a currently supported platform or **All** to view its deployments. Huawei Cloud access is not currently supported. |
+| Switch cloud-platform tab | Select a currently supported platform or **All** to view its deployments.  |
 | Reset filters | Select **Reset** to clear name, status, and model-name filters. |
 | View deployment details | Select **Details** to review basic information, API access, monitoring, and events. |
 | Start a deployment | Select **Start** for a stopped deployment. |
@@ -55,7 +54,7 @@ The deployment reaches a healthy state, responds to a controlled request, and ca
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

@@ -16,12 +16,12 @@ This scenario guides platform administrators through setting organizational boun
 
 ## Applicable Roles
 
-- `operator`: confirms operational access requirements without taking ownership of permission metadata.
+- `operator`: confirms operational access requirements and maintains the permission scope using least privilege.
 - `provider` and `enduser`: validation accounts for the resulting access model.
 
 ## Before You Start
 
-1. Confirm the tenant, tenant, and responsibilities of the user.
+1. Confirm the user's organization, tenant, and responsibilities.
 2. Prefer built-in roles and create a custom role only when responsibilities are not covered.
 3. List required and explicitly prohibited menus, actions, and resource scopes.
 4. Prepare a validation account that does not carry production workloads.
@@ -32,18 +32,22 @@ This scenario guides platform administrators through setting organizational boun
 | --- | --- | --- | --- |
 | 1 | Understand tenant, user, role, and menu relationships | [Identity and Access Model](../../../product/identity-access-model) | Boundaries and role choice are clear |
 | 2 | Select a role from the default capability matrix | [Role Comparison](../../../product/role-comparison) | Role matches responsibilities |
-| 3 | Confirm member ownership in Tenant Settings and Team Members | [Tenant Settings](../../../usermanual/settings/user/organizations/org-settings/), [Team Members](../../../usermanual/settings/user/members-roles/team-members/) | The member is active in the correct tenant |
+| 3 | Confirm member ownership in Tenant Settings and Members | [Tenant Settings](../../../usermanual/settings/user/organizations/org-settings/), [Members](../../../usermanual/settings/user/members-roles/team-members/) | The member is active in the correct tenant |
 | 4 | Select a built-in role or create a least-privilege role | [Roles](../../../usermanual/settings/user/members-roles/roles/) | The role contains only necessary permissions |
 | 5 | Sign in with the validation account and inspect menus, actions, and resource scope | [Roles](../../../usermanual/settings/operator/members-roles/roles/) | Allowed items work and prohibited items do not |
 | 6 | Review the permission change and validation in Operation Logs | [Operation Logs](../../../usermanual/settings/user/activity-notifications/operation-logs/) | Time, operator, and target are traceable |
 
-The **Role Management** view is used in steps 3-5 to confirm the role record and its scope before signing in with the validation account.
+Choose the execution scope first. Tenant-side member and role work in steps 3–4 requires an account with management permission in that tenant. For platform operations roles, follow the [operator Roles manual](../../../usermanual/settings/operator/members-roles/roles/). The menu path may be the same, but the forms and authorization targets differ. In step 5, use the actual target account to validate its access; an ordinary member does not need to enter operator role management.
 
-![Confirm the role and member count in Roles](../../../usermanual/settings/user/members-roles/roles/images/manual-settings-user-roles-live-20260902.png)
+Review the role record and permission scope on the appropriate **Roles** page before signing in with the validation account. The administrator hands the target tenant, assigned role, and allowed/denied checklist to the validator. The validator uses the target account and returns visible menus, available actions, and failed checks for the administrator to review; validation is not permission to expand access.
+
+![Role list with loaded member records](./images/roles-list.png)
+
+The figure shows built-in/custom roles on the left and the selected role information, member count, and member table on the right. Confirm that records or a completed empty state are visible before reviewing the permission scope.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

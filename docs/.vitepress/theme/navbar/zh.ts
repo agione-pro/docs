@@ -33,6 +33,7 @@ export const zhNavbar = [
         text: '其他',
         items: [
           { text: 'FAQ', link: '/zh-CN/others/faq/' },
+          { text: '升级说明', link: '/zh-CN/others/upgrade/model-business-upgrade-2026-11/' },
           { text: '版本说明', link: '/zh-CN/others/release-notes/' },
         ]
       },

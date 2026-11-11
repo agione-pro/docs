@@ -5,11 +5,11 @@ next: true
 
 # Publish a Text or Chat Model
 
-This page highlights configuration and validation for text or chat models. See [Publish Public Models](../provider-quick-guide) for the common end-to-end flow.
+This page covers publication and verification for a text or chat model. See [Publish Public Models](../provider-quick-guide) for the shared publishing entry.
 
 ## Target Outcome
 
-The text or chat model passes protocol testing, publishes in the intended scope, and returns a valid response to a controlled prompt.
+Publish a verified text or chat service to the intended scope, pass protocol testing, and verify its publication record and call results.
 
 ## Applicable Roles
 
@@ -17,41 +17,40 @@ The text or chat model passes protocol testing, publishes in the intended scope,
 
 ## Before You Start
 
-- The operator has prepared the meta-model, model source, template, tags, and currency.
-- Upstream model ID, protocol endpoint, authentication, and defaults are known.
-- Context, input/output token limits, billing, and rate limits are defined.
+- Prepare the meta model (capability profile), model source (upstream source) and Endpoint (access point under that source), upstream model name, request URL, and credential.
+- Confirm the model's modalities (input/output data types), protocols (request/response format contracts), billing unit, and rate-limit policy.
+- Use a short non-sensitive prompt and check the response against the selected protocol.
 
-## Key Steps
+## Procedure
 
-1. Open **My Models > My Publications**, choose the public or private area, and enter the text or chat model's basic identity.
+1. Open **Model Services > Studio > My Models > My Published**, click **Publish Model**, and choose **Private Model** or **Public Model** to enter the wizard.
+2. In **Step 1 Basic Information**, select the corresponding meta model, model source, and Endpoint. Enter the request URL, credential, and **Upstream model name**; verify modalities and advanced capabilities against the actual service.
 
-![Complete text-model basic information](../images/publish-basic-info-en.png)
+![Shared publishing basic-information example](./images/my-models-publish-basic.png)
 
-2. Select the text or chat meta-model and model source, then configure the upstream model ID, request URL, and authentication headers.
+The figure shows a private text-model example explaining shared meta-model, source, Endpoint, and protocol fields. It does not demonstrate public publication or its result and is not a dedicated text or chat configuration screenshot. Access Mode is outside the area shown; check actual fields and parameters for the selected model.
 
-![Configure the model source and protocol](../images/publish-source-protocol-en.png)
-
-3. Select Chat Completions, Responses, or another compatible protocol and pass connectivity testing.
-4. Configure context, input and output token limits, advanced capabilities, and defaults.
-5. Configure token billing, tiers, cache pricing, and any free quota.
-6. Configure RPM and TPM limits, then save or submit for review.
-
-See [My Models](../../../../usermanual/model-services/user/studio/my-models/) and [My Calls Overview](../../../../usermanual/model-services/user/my-calls/overview/) for detailed operations.
+3. Select a native protocol supported by the service and test connectivity using its configuration. After testing passes, review the custom tag, publication method, and **Access Mode**.
+4. Complete **Billing Configuration** and **Rate Limit Configuration**, then submit. Check the actual service's unit and prices rather than copying examples from a different modality.
+5. Return to **My Published** to check status and revision. Use [Model Publishing Approval](../../model-publishing-approval/) when required, then follow [Model Experience and API Calling](../../model-experience-api-calling/) for controlled verification.
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
-
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Protocol tests pass for expected streaming and non-streaming behavior. |
-| 2 | Context and token limits match upstream capabilities. |
-| 3 | Billing and rate limits match the publication plan. |
-| 4 | Review state is visible and the published model is callable in its intended scope. |
+| Protocol and capability | Protocol testing passes and declared modalities match verified samples. |
+| Publication revision | The target record is present in My Published; status, effective version, and pending version are checked. |
+| Cost and scope | Billing unit, price, limits, and access match the agreement. |
+| Call result | An authorized account completes a controlled call for the intended text or chat capability and the result can be inspected. |
 
 ## Troubleshooting
 
-| Symptom | Check First |
+| Symptom | Check First and Continue |
 | --- | --- |
-| Protocol test fails | Endpoint, credential, model identifier, headers, and request body |
-| Calls fail after publication | Publication status, API key, protocol, rate limit, quota, and call logs |
+| Publishing cannot proceed | Verify meta model, Endpoint, credential, and testing in [My Models](../../../../usermanual/model-services/user/studio/my-models/#faq). |
+| Published model is missing or inaccessible | Check revision, review state, and authorization in [Models](../../../../usermanual/model-services/user/discover/models/). |
+| Output is unexpected | Compare input modality, model name, and sample against the upstream specification and selected protocol. Do not relabel capabilities to hide a failed test. |
+
+## User Manual
+
+[My Models: fields, operations, and publication-result validation](../../../../usermanual/model-services/user/studio/my-models/)

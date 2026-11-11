@@ -34,6 +34,7 @@ export const enNavbar = [
         text: "Others",
         items: [
           { text: "FAQ", link: "/others/faq/" },
+          { text: "Upgrade Notes", link: "/others/upgrade/model-business-upgrade-2026-11/" },
           { text: "Release Notes", link: "/others/release-notes/" }
         ]
       },

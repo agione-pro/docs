@@ -5,7 +5,9 @@ next: true
 
 # Provider Revenue and Settlement Reconciliation
 
-Use this task to explain provider revenue sources and confirm a monthly settlement result.
+Use this task to explain provider revenue sources and confirm a monthly settlement result. Credit is the platform account's accounting unit, not the original-currency payment amount of an order.
+
+The provider or its authorized finance viewer first reconciles its own revenue. For a discrepancy, hand the cycle, statement identifier, estimate-versus-posted scope, and discrepancy notes to platform billing staff. After receiving their findings, the provider verifies the result in its own revenue pages. Only a person with the relevant permission and authorization performs a balance transfer.
 
 ## Applicable Roles
 
@@ -21,9 +23,9 @@ Use this task to explain provider revenue sources and confirm a monthly settleme
 
 ### 1. Review Revenue Overview
 
-Open [Revenue Overview](../../../usermanual/billing/user/earnings/revenue/) and confirm the revenue-account balance, current-month estimate, next-settlement notice, and billing-cycle trend.
+Open [Revenue Overview](../../../usermanual/billing/user/earnings/revenue/) under `Billing > Earnings > Revenue`. Read the live balance, current-cycle estimate, next-settlement notice, and cycle analysis separately. Estimates are unsettled and excluded from the revenue-account balance; the next-settlement notice is only a time reminder. The analysis cycle affects daily revenue and customer/model rankings, not live balances or historical outflows.
 
-![Historical billing-cycle analysis and daily revenue](../../../usermanual/billing/user/earnings/revenue/images/revenue-analysis.png)
+![Historical billing-cycle analysis and daily revenue](./images/revenue-analysis.png)
 
 The figure shows the analysis area for a historical billing cycle, not the live account balance; check account totals separately on the page.
 
@@ -31,23 +33,23 @@ The figure shows the analysis area for a historical billing cycle, not the live 
 
 Select the target billing cycle and review the top customers and top models. Then open [Customers](../../../usermanual/billing/user/earnings/customers/), filter by customer or tag, and open details to reconcile the revenue contribution.
 
-![Customer revenue query result table](../../../usermanual/billing/user/earnings/customers/images/customers-table.png)
+![Customer revenue query result table](./images/customers-table.png)
 
-The figure shows an empty keyword-query table. It does not show customer identities, summary cards, or detail results.
+The figure shows an empty customer-results table. It does not show the query controls, customer identities, summary cards, or detail results; check the selected cycle and filters on the actual page.
 
 ### 3. Reconcile Monthly Settlements
 
-Open [Monthly Settlements](../../../usermanual/billing/user/earnings/settlements/), filter by status and billing cycle, and compare settlement amount, posted amount, precision adjustment, settled time, and processing status.
+Open [Monthly Settlements](../../../usermanual/billing/user/earnings/settlements/), filter by status and billing cycle, and compare settlement amount, posted amount, precision adjustment, settled time, and processing status. The current estimated/pending row opens a full estimate-details page: no statement has been generated or posted to the revenue account. Read historical rows by their own status; do not treat an estimate as a received amount.
 
-![Review monthly settlements](../../../usermanual/billing/user/earnings/settlements/images/settlements-list.png)
+![Review monthly settlements](./images/settlements-list.png)
 
 ### 4. Transfer the Balance
 
-Use the transfer action only when the billing cycle, amount, destination account, and settlement status all match expectations. If any value differs, cancel the operation and return to Revenue Overview, Customers, and Monthly Settlements for further reconciliation.
+Return to [Revenue Overview](../../../usermanual/billing/user/earnings/revenue/) and click **Transfer to Available** to open its form. Check the transferable balance, required transfer amount, and optional remarks; this action is not in the Monthly Settlements list. Use the final transfer confirmation only after verifying the amount and business authorization. Cancel for read-only inspection or when a discrepancy remains; do not submit merely to test availability.
 
 ## Completion Checklist
 
-> **Purpose:** These checks confirm that the current revenue task produced a reviewable source-to-settlement result. Resolve any failed check before transferring a balance.
+Do not transfer a balance until its sources and settlement results reconcile.
 
 | Check | Pass Criteria |
 | --- | --- |

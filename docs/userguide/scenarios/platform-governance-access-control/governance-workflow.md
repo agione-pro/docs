@@ -5,7 +5,7 @@ next: true
 
 # Platform Governance & Access Control
 
-This scenario combines identity permissions, resource authorization, model visibility, API credentials, rate limits, and credits into one governance path for answering who can access what, how much they can use, and how changes are traced.
+This scenario combines identity permissions, resource authorization, model visibility, API credentials, rate limits, and credits into one governance path for answering who can access what, how much they can use, and how changes are traced. API means application programming interface and a key is a calling credential. Resource quota caps available resources; account credits are a separate accounting allowance.
 
 ## Applicable Roles
 
@@ -38,6 +38,8 @@ This scenario combines identity permissions, resource authorization, model visib
 3. Define resource, call, cost or credit limits and effective time.
 4. Prepare operator, provider, and caller validation accounts.
 
+**Role handoff:** The configuration owner confirms allowed and forbidden access and the resource/credit boundaries. Authorized staff configure them, then providers and callers use their own accounts to verify visible entries and permitted actions. Reviewers return discrepancies and timestamps to the original owner; validation is not permission to expand access.
+
 ## Procedure
 
 1. Use the [Identity and Access Model](../../../product/identity-access-model) to define identity boundaries.
@@ -50,13 +52,13 @@ This scenario combines identity permissions, resource authorization, model visib
 8. Use the target account for a read-only check or controlled call.
 9. Record the reason, scope, validation result, and rollback method.
 
-When validating credential boundaries, open **Settings > Personal > My Keys** from the target account's visible menu. Confirm the credential type, status, expiration, used / limit information, and available row actions for the current account. Use `Request More Quota` only to enter **Settings > Members & Roles > Quota Requests**; submitting the request is a separate write action. The My Keys page does not prove the business owner; validate project ownership or member responsibility in the relevant **Projects** or **Team Members** page.
+When validating credential boundaries, open **Settings > Personal > My Keys** from the target account's visible menu. Confirm the credential type, status, expiration, used / limit information, and available row actions for the current account. Use `Request More Quota` only to enter **Settings > Members & Roles > Quota Approvals**; submitting the request is a separate write action. The My Keys page does not prove the business owner; validate project ownership or member responsibility in the relevant **Projects** or **Team Members** page.
 
-![Validate the current account's personal key state and limits](./images/my-keys-live.png)
+![Validate the current account's personal key state and limits](./images/my-keys-list.png)
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

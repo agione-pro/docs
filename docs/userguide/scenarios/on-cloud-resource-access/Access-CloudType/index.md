@@ -24,34 +24,20 @@ The required public- or private-cloud platform is available for later account ac
 
 ### Add a Platform
 
-1. From the platform home page, select **Cloud Platforms** in the left navigation to open cloud-platform management.
-2. Select **Add Platform** in the upper-right corner to open the dialog.
+1. Open **On-Cloud > Access Management > Cloud Platforms** and check that the platform is not already registered.
+2. Select **Add Cloud Platform**, choose **Public Cloud** or **Private Cloud**, and select the target in **Select Platform**.
 
-![Review connected cloud platforms](./images/access-cloudtype-list.png)
+![Review connected cloud platforms](./images/cloud-platforms-cloud-platforms.png)
 
-3. Select **Public Cloud** or **Private Cloud**.
-4. Configure the platform:
-   - Enter or select the **Provider identifier**. Public clouds use a select; private clouds use text.
-   - Maintain the localized **Display Name** on the English and Simplified Chinese tabs.
-   - For a private cloud, enter the **Link Address**.
-   - Upload a **Logo**.
-5. Review the information and select **Confirm**, or **Cancel** to discard it.
+3. Review the type and platform, select **Confirm**, and verify the record in the list.
 
-![Add a cloud platform](./images/add-platform.png)
+![Add a cloud platform](./images/cloud-platforms-add-cloud-platform.png)
 
-#### Parameter Reference
-
-| Field | Type | Example | Description |
-| --- | --- | --- | --- |
-| Cloud Platform Type | Two-option tab | `Public Cloud` / `Private Cloud` | Required; identifies the platform type |
-| Provider identifier | Select / Text | `aliyun` / `{{DOCS_CLOUD_PLATFORM_EN}}` | Required; uniquely identifies the platform |
-| Display Name | Localized text | `Alibaba Cloud / 阿里云` | Required; maintain English and Simplified Chinese values |
-| Link Address | URL | `https://<platform-host>:<port>` | Required only for private clouds |
-| Logo | Image | `Alibaba Cloud / AWS / {{DOCS_CLOUD_PLATFORM_EN}}` | Optional; platform icon. Huawei Cloud access is not currently supported. |
+Adding a platform selects an existing platform. Provider identifier, display name, link address, and logo belong to maintenance of an existing private-cloud record, not required fields of the add flow. To maintain them, open **Edit Cloud Platform** on the private-cloud card and follow the [user manual](../../../../usermanual/ai-infra-on-cloud/operator/access-management/cloud-platforms/).
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

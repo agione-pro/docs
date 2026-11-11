@@ -5,7 +5,9 @@ next: true
 
 # Review and Maintain the License Lifecycle
 
-Use this task to confirm Platform License and Managed Objects states independently, prepare a valid License batch, and establish subscription, validity, quota, and import-record checks.
+Use this task to confirm Platform License and Managed Objects states independently, prepare a valid License batch, and establish subscription, validity, quota, and import-record checks. A License grants usage authorization: Platform License covers the subscription, Managed Objects covers managed capacity, and an SKU identifies an authorization category.
+
+Resource operations staff provide the current scale and renewal or expansion needs. License administrators verify the deployment and authorization scope, then hand any approved activation to a person with the relevant permission. Return the two authorization states, validity, quota, and open issues for resource operations to verify; do not include activation codes or other sensitive materials in the handoff.
 
 ## Applicable Roles
 
@@ -24,7 +26,7 @@ Use this task to confirm Platform License and Managed Objects states independent
 
 Open [License Management](../../../usermanual/billing/operator/license/license/) from `Billing > License > License` and review the overview banner. Check Platform License and Managed Objects separately, and first confirm that the page and registration code belong to the target environment and deployment.
 
-![License Overview and authorization status](../../../usermanual/billing/operator/license/license/images/license-overview.png)
+![License Overview and authorization status](./images/license-overview.png)
 
 ### 2. Select the Area and Prepare the License
 
@@ -44,7 +46,7 @@ Periodically review remaining validity, remaining quota, and managed-object chan
 
 ## Completion Checklist
 
-> **Purpose:** These checks confirm that the License is not only activated, but provides explainable and sustainable capacity in the correct environment.
+Verify authorization validity, required capacity, and the ongoing usage plan on the intended deployment.
 
 | Check | Pass Criteria |
 | --- | --- |

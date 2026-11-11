@@ -24,17 +24,17 @@ Create the region and availability zone for a local cluster so that clusters, sp
 
 1. Open Regions & Zones and review existing regions, availability zones, and states before creating records.
 
-![Review regions and availability zones](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/manual-regions-zones.png)
+![Review regions and availability zones](./images/regions-zones-regions-zones.png)
 
-2. Click **Add Region** at the bottom of the region list, fill in the region ID, select the `Public Region` / `Dedicated Region` visibility policy, maintain the localized display names in each language tab, bind the required image service (Harbor), and confirm the region is available for downstream resource onboarding.
+2. Select **Add Region** to open the seven-step creation wizard: region details, availability zone, cluster connection, user-service connectivity, accelerators, specifications/metrics, and initial cluster settings. In step 1, enter the region ID, visibility policy, and localized names, bind the required image component and optional object storage. Review step 1 and select **Create region and continue setup** to enter step 2. Complete each step before continuing; region attributes alone do not complete onboarding.
 
-![Create a region](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/add-region.png)
+![Create a region](./images/regions-zones-add-region.png)
 
 3. To set the region's data Gateway endpoints, select the region and, in the `Associated Components` area, click **Configure Data Gateway Endpoints** on the image component card. Fill in `Image Gateway Endpoint` and `Object Storage Gateway Endpoint` (a domain, an `IP:port`, or an address with a protocol; `HTTPS` is used when no protocol is given) and click **Save**. The dialog's **Go to System Settings to manage all Gateways** link opens `On-Prem > System > System Setting` for central Gateway management.
 
 4. Select the target region, then click **Create AZ** in the availability-zone section. The `Region` field is prefilled and read-only; enter the availability zone ID and localized display names.
 
-![Create an availability zone](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/images/add-availability-zone.png)
+![Create an availability zone](./images/regions-zones-add-availability-zone.png)
 
 5. Return to the list, confirm that both records are visible and available, and record the availability zone to select during cluster registration. A newly created zone with no cluster yet shows the `Abnormal` state with the hint `No cluster is available under the current resource`; expand the zone and use the dashed `Associate Cluster` placeholder card on the right of the expansion area to open the cluster registration wizard for that zone.
 
@@ -44,7 +44,7 @@ Create the region and availability zone for a local cluster so that clusters, sp
 
 ## Completion Checklist
 
-> **Purpose:** Use these checks to confirm that the resource boundary is ready for cluster onboarding. Do not register the cluster while any check fails.
+Do not register the cluster until its resource boundaries pass the checks below.
 
 | Check Item | Success Criteria |
 | --- | --- |

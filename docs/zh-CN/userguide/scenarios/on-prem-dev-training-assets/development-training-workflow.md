@@ -7,6 +7,8 @@ next: true
 
 本场景指导普通用户使用异构卡纳管算力创建在线开发环境或运行实例，并把代码、数据、镜像和模型产物沉淀为可复用资产。
 
+在线 IDE（集成开发环境）用于编写和调试代码；持久化工作目录是计划跨实例生命周期保存数据的位置，不是任意容器目录。
+
 ## 适用角色
 
 - 创建开发或训练任务的平台用户
@@ -26,17 +28,19 @@ next: true
 3. 准备代码仓库、数据路径、基础镜像和输出目录。
 4. 确认数据合规、镜像来源和外部网络访问边界。
 
+普通用户从下列步骤开始前，应先取得运营管理员确认的镜像、存储、规格和配额范围；这些准备工作不由训练脚本自动完成。
+
 ## 操作流程
 
-1. 准备对象存储或文件存储，确认数据路径和结果路径可访问。参考[对象存储](../../../usermanual/ai-infra-on-prem/user/storage/object-storage/)和[文件存储](../../../usermanual/ai-infra-on-prem/user/storage/file-storage/)。
+1. 准备已开放的持久化存储，确认数据与输出位置可访问。若文件存储页面只显示未开放提示，不把共享目录创建或挂载当成可用功能；由管理员确认集群已有共享存储或对象存储的访问方式。参考[对象存储](../../../usermanual/ai-infra-on-prem/user/storage/object-storage/)和[文件存储](../../../usermanual/ai-infra-on-prem/user/storage/file-storage/)。
 2. 准备或选择带版本的运行镜像，并确认目标地域能够拉取。参考[镜像服务](../../../usermanual/ai-infra-on-prem/user/extensions/images/)。
-3. 进入[开发环境](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/)，创建在线 IDE，选择镜像和资源规格，挂载持久化工作区，并确认开发环境能够正常打开。
+3. 进入[在线IDE](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/)，点击 **新增IDE**，选择单节点或集群后点击 **填写参数**；核对地域、项目、镜像版本、运行规格和存储配置，点击 **创建** 后在实例详情确认服务入口。
 
-![创建在线 IDE 并配置持久化工作区](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/images/create-ide.png)
+![创建在线 IDE 并配置持久化工作区](./images/online-ide-create-ide.png)
 
-4. 进入[模型训练](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/)，创建训练或批处理运行实例，核对代码、数据、输出目录和启动命令，并确认作业进入运行状态且持续输出日志。
+4. 进入[运行实例](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/)，点击 **新增实例**，选择部署类型后点击 **填写参数**，核对地域、项目、镜像及版本、规格、挂载和启动命令。需采集文件日志时通过 **添加文件日志** 登记目标文件，最后点击 **创建** 并检查实际状态与日志。
 
-![创建训练运行实例](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/images/create-runtime-instance.png)
+![创建训练运行实例](./images/runtime-instances-create-runtime-instance.png)
 
 5. 将镜像、模型和结果保存到受控存储，确保后续任务可以复用。
 6. 查看[资源用量](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/)，停止不再使用的实例。
@@ -53,7 +57,7 @@ next: true
 
 ## 完成检查
 
-> **用途：** 以下检查是当前功能任务的退出条件，用于判断操作结果是否可观察、可复核，以及是否可以继续当前场景的下一步。它不是操作步骤的重复；任一项不满足时，请按下方“常见失败分支”继续排查。
+核对下表；任一项未满足时，先按“常见失败分支”排查。
 
 | 检查项 | 通过标准 |
 | --- | --- |

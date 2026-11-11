@@ -7,6 +7,8 @@ next: true
 
 This scenario guides users through creating an On-Prem development or training environment and preserving code, data, images, models, and outputs as reusable assets.
 
+An online IDE (integrated development environment) supports coding and debugging. A persistent workspace is a location intended to retain data across instance lifecycles, not an arbitrary container directory.
+
 ## Applicable Roles
 
 - End User creating development or training workloads
@@ -26,17 +28,19 @@ This scenario guides users through creating an On-Prem development or training e
 3. Prepare the code repository, data paths, base image, and output directory.
 4. Confirm data governance, image provenance, and external network boundaries.
 
+Before users start the steps below, the Platform Operator confirms the available image, storage, specification, and quota scope. A training script does not perform that preparation automatically.
+
 ## Procedure
 
-1. Prepare object or file storage and confirm that data and output paths are accessible. See [Object Storage](../../../usermanual/ai-infra-on-prem/user/storage/object-storage/) and [File Storage](../../../usermanual/ai-infra-on-prem/user/storage/file-storage/).
+1. Prepare available persistent storage and verify data and output locations. If File Storage only shows an unavailable-feature notice, do not assume shared-directory creation or mounting is available. Ask the administrator to confirm access through existing cluster shared storage or object storage. See [Object Storage](../../../usermanual/ai-infra-on-prem/user/storage/object-storage/) and [File Storage](../../../usermanual/ai-infra-on-prem/user/storage/file-storage/).
 2. Prepare or select a versioned runtime image that the target region can pull. See [Images](../../../usermanual/ai-infra-on-prem/user/extensions/images/).
-3. Open [Development Environments](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/), create an online IDE, select the image and resource specification, mount the persistent workspace, and confirm that the IDE opens normally.
+3. Open [Online IDE](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/), select **Create IDE**, choose Single Node or Cluster, then **Fill Parameters**. Verify region, project, image version, resource specification, and storage settings. Select **Create** and verify the service entry in instance details.
 
-![Create an online IDE with a persistent workspace](../../../usermanual/ai-infra-on-prem/user/dev-resources/online-ide/images/create-ide.png)
+![Create an online IDE with a persistent workspace](./images/online-ide-create-ide.png)
 
-4. Open [Model Training](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/), create a training or batch runtime instance, review code, data, output directory, and startup command, and confirm that the workload runs and emits logs.
+4. Open [Runtime Instances](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/), select **Create Instance**, choose the deployment type, and select **Fill Parameters**. Verify region, project, image/version, specification, mounts, and startup command. Register required file logs through **Add Log File**, then select **Create** and check the actual state and logs.
 
-![Create a training runtime instance](../../../usermanual/ai-infra-on-prem/user/dev-resources/runtime-instances/images/create-runtime-instance.png)
+![Create a training runtime instance](./images/runtime-instances-create-runtime-instance.png)
 
 5. Preserve images, models, and outputs in controlled storage so later workloads can reuse them.
 6. Review [Resource Usage](../../../usermanual/ai-infra-on-prem/user/quotas-usage/usage/), then stop idle instances.
@@ -53,7 +57,7 @@ This scenario guides users through creating an On-Prem development or training e
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

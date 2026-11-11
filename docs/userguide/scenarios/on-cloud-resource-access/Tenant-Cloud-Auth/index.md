@@ -25,17 +25,17 @@ The intended tenant can see the authorized cloud platform, while unrelated tenan
 ### Add Authorization
 
 1. From the platform home page, select **Authorization Management > Tenant-Cloud Authorization**.
-2. Select **Add Authorization** in the upper-right corner.
+2. Select **Add Tenant-Cloud Auth** in the upper-right corner.
 
-![Review tenant-cloud authorization](./images/tenant-cloud-auth.png)
+![Review tenant-cloud authorization](./images/tenant-cloud-auth-tenant-cloud-auth.png)
 
-3. Select one or more currently supported cloud platforms, such as Alibaba Cloud, AWS, or {{DOCS_CLOUD_PLATFORM_EN}}. Huawei Cloud access is not currently supported.
+3. Select one or more currently supported cloud platforms, such as Alibaba Cloud, AWS, or {{DOCS_CLOUD_PLATFORM_EN}}.
 4. Select the authorization scope:
    - **Single Tenant** grants access to one named tenant.
    - **All Tenants** grants access to every tenant and does not require a tenant name.
 5. Review the configuration and select **Confirm**, or **Cancel** to discard it.
 
-![Add tenant-cloud authorization](./images/add-authorization.png)
+![Add tenant-cloud authorization](./images/tenant-cloud-auth-add-tenant-cloud-auth.png)
 
 > This authorization controls platform visibility. After it is saved, a tenant can access only the cloud platforms granted to it.
 
@@ -45,11 +45,11 @@ The intended tenant can see the authorized cloud platform, while unrelated tenan
 | --- | --- | --- | --- |
 | Cloud Platform | Multi-select | `Alibaba Cloud / AWS / {{DOCS_CLOUD_PLATFORM_EN}}` | Required; one or more currently supported platforms |
 | Authorization Scope | Single select | `Single Tenant / All Tenants` | Required; determines the authorization target |
-| Tenant | Text | `tenant-a` | Required only for Single Tenant authorization |
+| Tenant | Dropdown | `tenant-a` | Required only for Single Tenant authorization |
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

@@ -64,7 +64,7 @@ The image shows the Frameworks list page, displaying framework cards, framework 
 
 ![Framework details](./images/manual-framework-details.png)
 
-The image shows the Framework Details drawer, displaying framework metadata, version list, associated runtime images, and master/worker startup command settings.
+The image shows the framework detail page: framework metadata, cloud platform and resource pool, the version-management list, and the Runtime Configuration entry.
 
 ### Add Framework
 

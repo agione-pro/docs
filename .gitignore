@@ -6,6 +6,9 @@ docs/dist/
 .opencode/
 .github/workflows/main-test.yml
 .idea/
-package-lock.json
+
+# Python 运行产物（scripts/render-shot.py 等）
+__pycache__/
+*.pyc
 
 .DS_Store

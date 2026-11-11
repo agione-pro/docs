@@ -13,7 +13,7 @@ A deployment request is created with an understood resource plan and cost estima
 
 ## Applicable Roles
 
-- End User
+- Model Provider
 
 ## Before You Start
 
@@ -29,15 +29,15 @@ A deployment request is created with an understood resource plan and cost estima
 3. In **Matching Models**, use the model, series, and scenario selects, the search box, and the sort control to find the target model.
 4. Locate the model row, such as **Qwen3-8b**, and select **Deploy Model** to open Step 2.
 
-![Select the account, region, and model](./images/step-1.png)
+![Select the account, region, and model](./images/quick-deployment-deployable-scope.png)
 
 #### Parameter Reference
 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
 | Current Scope | Label | `Alibaba Cloud / China East 2 (Shanghai)` | Displays the selected cloud-account and region combination |
-| Cloud Filter | Select | `All Clouds` | Required; filters deployable scopes by cloud provider |
-| Region Filter | Select | `All Regions` | Required; filters deployable scopes by region |
+| Cloud Filter | Select | `All Clouds` | Optional; filters deployable scopes by cloud provider |
+| Region Filter | Select | `All Regions` | Optional; filters deployable scopes by region |
 | Cloud Provider | Single-select card | `Alibaba Cloud - China East 2 (Shanghai)` | Required; selects the target cloud account and region |
 | Model Filter | Select | `All Models` | Optional; filters by model name |
 | Series Filter | Select | `All Series` | Optional; filters by model series |
@@ -59,9 +59,9 @@ A deployment request is created with an understood resource plan and cost estima
    - **Available Now** prioritizes capacity that can start immediately.
    - **GPU Count** prioritizes multi-card parallelism and scaling requirements.
 5. Review the recommended model-compute plan, including provider and region, engine, instance type, GPU, CPU and memory, capacity, and hourly, daily, monthly, and annual estimates.
-6. After verifying the engine, strategy, resource plan, and estimated cost, select **Confirm Deployment**. Track the result in **My Deployments**.
+6. Review the engine, strategy, resources, and cost, then select **Confirm Deployment** to open **Publish Deployment**; this does not yet submit a task. Select the **Cloud Account**, enter the **Task Name**, and optionally add a **Task Description**. Select **Launch Deployment** to submit, or **Back to Recommendation** without submitting. Verify the new record and state in **My Deployments**; do not repeatedly submit the same failed task.
 
-![Review the deployment plan](./images/step-2.png)
+![Review the deployment plan](./images/quick-deployment-smart-deployment-recommendation.png)
 
 #### Parameter Reference
 
@@ -73,14 +73,14 @@ A deployment request is created with an understood resource plan and cost estima
 | Model-Compute Plan | Recommendation card | `Alibaba Cloud / cn-shanghai / vLLM` | Required; calculated from account, region, engine, and strategy |
 | GPU | Label | `NVIDIA T4 x 1` | Required; GPU model and count |
 | CPU / Memory | Label | `4C / 15G` | Required; CPU and memory allocation |
-| Hourly Estimate | Number | `CNY 12.78/hour` | Required; estimated hourly cost |
-| Daily Estimate | Number | `CNY 306.72/day` | Required; estimated daily cost |
-| Monthly Estimate | Number | `CNY 9201.60/month` | Required; estimated monthly cost |
-| Annual Estimate | Number | `CNY 111952.80/year` | Required; estimated annual cost |
+| Hourly Estimate | Number | `Current page estimate` | Required; estimated hourly cost |
+| Daily Estimate | Number | `Current page estimate` | Required; estimated daily cost |
+| Monthly Estimate | Number | `Current page estimate` | Required; estimated monthly cost |
+| Annual Estimate | Number | `Current page estimate` | Required; estimated annual cost |
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |
