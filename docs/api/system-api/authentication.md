@@ -1,6 +1,6 @@
 # Authentication and signing
 
-System API endpoints authenticate requests using symmetric **AK/SK (Access Key / Secret Key)** credentials. The client sends the Access Key and a request signature computed using the Secret Key. The gateway verifies the signature and establishes the caller identity context for downstream services.
+Platform API endpoints authenticate requests using symmetric **AK/SK (Access Key / Secret Key)** credentials. The client sends the Access Key and a request signature computed using the Secret Key. The gateway verifies the signature and establishes the caller identity context for downstream services.
 
 ::: warning Security Guidelines
 - **Never Transmit the Secret Key (SK)**: The Secret Key is used strictly on the client side to compute the HMAC-SHA256 signature. **Never include it in HTTP request headers or query parameters**.
@@ -9,7 +9,7 @@ System API endpoints authenticate requests using symmetric **AK/SK (Access Key /
 
 ## Request Headers
 
-System API signed requests use the following headers. The four `x-request-*` headers are required; set the remaining headers according to the request type and your needs:
+Platform API signed requests use the following headers. The four `x-request-*` headers are required; set the remaining headers according to the request type and your needs:
 
 | Header | Type | Required | Example | Description |
 | --- | --- | --- | --- | --- |

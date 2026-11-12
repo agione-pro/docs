@@ -23,7 +23,7 @@ Use a separate credential for each application or workload. Give it a clear name
 | Term | Description |
 | --- | --- |
 | Model API Key | A credential used to call model APIs.; Use separate Keys for separate workloads. |
-| System API AK/SK Pair | A credential pair used to call system APIs.; Never place the complete pair in documentation or frontend code. |
+| System API AK/SK Pair | A credential pair used to call platform APIs.; Never place the complete pair in documentation or frontend code. |
 | Member quota | The current-cycle allowance shared by the account's Model API Keys.; Check it before diagnosing a quota failure. |
 | Key limit | A per-Key cycle limit, when the page enables it.; Keep it consistent with the project or member policy. |
 

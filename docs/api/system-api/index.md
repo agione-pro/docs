@@ -1,24 +1,62 @@
-# System API
+# Platform API
 
-System API is designed for developers who need to call the AGIOne endpoints explicitly documented in this section using a **System API AK/SK pair**. Model inference invocations use a **Model API Key** and are documented in [Model API (OpenAPI)](../openapi/). The two credential families serve different purposes and authentication mechanisms and cannot be interchanged.
+Platform API covers AGIOne platform management and queries. This section currently documents Get caller roles, a read-only query for roles held by the current credential owner.
 
-::: info Credential Family Separation
-- **System API AK/SK**: For system management and query endpoints, authenticated via HMAC-SHA256 request signatures.
-- **Model API Key**: For native model inference endpoints, authenticated via standard HTTP `Authorization: Bearer <key>` headers.
+::: info Credential Isolation & Security
+* **Platform Management Scope**: Endpoints in this section require symmetric **System API AK/SK** credentials and authenticate via locally calculated HMAC-SHA256 request signatures. See [Authentication and Signing](./authentication).
+* **Model Inference Isolation**: Model completions and chat inferences use an independent **Model API Key** with standard Bearer authentication. See [Model API (OpenAPI)](../openapi/).
 :::
+
+<div class="api-portal-grid">
+  <a href="./authentication" class="api-card">
+    <div class="api-card-header">
+      <span class="api-card-icon">🔑</span>
+      <span class="api-card-badge green">Auth Spec</span>
+    </div>
+    <div class="api-card-title">
+      Authentication & Signing
+      <span class="api-card-arrow">→</span>
+    </div>
+    <p class="api-card-desc">
+      StringToSign construction rules, lexicographical query parameter sorting, HMAC-SHA256 hashing, and header conventions.
+    </p>
+    <div class="api-card-footer">
+      <span class="api-tag">x-request-*</span>
+      <span class="api-tag">HMAC-SHA256</span>
+      <span class="api-tag">Replay Defense</span>
+    </div>
+  </a>
+
+  <a href="./endpoints" class="api-card">
+    <div class="api-card-header">
+      <span class="api-card-icon">👤</span>
+      <span class="api-card-badge brand">Core Endpoint</span>
+    </div>
+    <div class="api-card-title">
+      Get Caller Roles
+      <span class="api-card-arrow">→</span>
+    </div>
+    <p class="api-card-desc">
+      Inspect roles associated with the authenticated System API Key (supports Operator, Provider, and End User caller identities).
+    </p>
+    <div class="api-card-footer">
+      <span class="api-tag">GET</span>
+      <span class="api-tag">/admin/user/roles</span>
+      <span class="api-tag">Read-Only</span>
+    </div>
+  </a>
+</div>
 
 ## Available Endpoints
 
-The System API currently provides the following read-only endpoint:
+The Platform API exposes the following core endpoints:
 
-| Endpoint | Method | Path | Returns |
-| --- | --- | --- | --- |
-| [Get caller roles](./endpoints) | `GET` | `/hyperone/admin/user/roles` | Roles held by the authenticated identity |
+| Operation | HTTP Method | Complete Route Path | Applicable Roles | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| [Get caller roles](./endpoints) | `GET` | `/hyperone/admin/user/roles` | Operator / Provider / End User | Returns active roles assigned to the current caller identity |
 
-Operator, Provider, and End User identities can call this endpoint using their respective System API AK/SK pairs. The returned records depend on the actual roles held by the key owner. A successful call does not imply access to other administrative interfaces.
+## Quickstart Steps
 
-## Quickstart
-
-1. **Create Credentials**: In the console under **My Keys**, select **System API AK/SK Pairs** to generate a key for the caller identity. The Operator view displays only this credential type, while Provider and End User views also include Model API Keys. See the [Operator guide](../../usermanual/settings/operator/personal/my-keys/) or [User guide](../../usermanual/settings/user/personal/my-keys/). Save the returned Secret Key (SK) securely during creation; it will not be displayed again in plaintext.
-2. **Obtain the API Address**: Request the API Base URL for your target AGIOne instance from the administrator. Include the scheme, such as `https://`, but exclude the `/hyperone` root path, which is already included in each endpoint's complete path.
-3. **Sign and Request**: Follow the [Authentication and signing](./authentication) guide to calculate the HMAC-SHA256 signature and make requests. Detailed request and response specifications are described in [Get caller roles](./endpoints).
+1. **Provision Credentials**: Navigate to "Personal Settings → My Keys" in the AGIOne console and generate a "System API AK/SK Pair". Store the Secret Key (SK) securely upon creation, as it cannot be retrieved later in plain text.
+2. **Obtain Base URL**: Request the API Base URL from your instance administrator (e.g. `https://<agione-host>:<port>`, excluding `/hyperone`).
+3. **Compute Signature & Request**: Calculate the HMAC-SHA256 signature following the [Authentication and Signing Specification](./authentication) and send the signed request.

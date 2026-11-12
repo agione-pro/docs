@@ -16,13 +16,13 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-An AK/SK pair is a system API credential for controlled administrative or automation calls. Treat it as a high-sensitivity credential: define its purpose, set an appropriate expiration time, store the generated values only through the approved security process, and never place the complete pair in documentation.
+An AK/SK pair is a platform API credential for controlled administrative or automation calls. Treat it as a high-sensitivity credential: define its purpose, set an appropriate expiration time, store the generated values only through the approved security process, and never place the complete pair in documentation.
 
 #### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| System API AK/SK Pair | A system API access identifier and secret pair.; Use it only for the intended system integration. |
+| System API AK/SK Pair | A platform API access identifier and secret pair.; Use it only for the intended system integration. |
 | Prefix | The non-secret identifier shown in the list.; Use it to recognize a credential; it is not the complete secret. |
 | Expiration | The time after which the pair is no longer valid.; Replace the pair before an automation reaches this time. |
 | Status | The current availability state of the pair.; Check it before troubleshooting a failed call. |

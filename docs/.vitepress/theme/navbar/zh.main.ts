@@ -18,9 +18,9 @@ export const zhNavbar = [
       {
         text: 'API 参考',
         items: [
-          { text: '协议兼容', link: '/zh-CN/api/protocol-compatibility/' },
-          { text: '系统 API', link: '/zh-CN/api/system-api/' },
           { text: '模型 API（OpenAPI）', link: '/zh-CN/api/openapi/' },
+          { text: '平台 API', link: '/zh-CN/api/system-api/' },
+          { text: '协议兼容', link: '/zh-CN/api/protocol-compatibility/' },
         ]
       },
       {

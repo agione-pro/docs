@@ -6,12 +6,19 @@ Operator, Provider, and End User identities can call this endpoint using their r
 
 ## Endpoint Overview
 
-| Item | Description |
-| --- | --- |
-| Method | `GET` |
-| Complete path | `/hyperone/admin/user/roles` |
-| Protocols | `HTTPS` / `HTTP` |
-| Authentication | System API AK/SK signature verification (see [Authentication and signing](./authentication)) |
+<div class="api-endpoint-card">
+  <div class="api-endpoint-header">
+    <span class="api-method-badge get">GET</span>
+    <span class="api-endpoint-url">/hyperone/admin/user/roles</span>
+    <span class="api-auth-pill">🔐 System API AK/SK</span>
+  </div>
+</div>
+
+| Specification | Details |
+| :--- | :--- |
+| **Protocols** | `HTTPS` (recommended) / `HTTP` |
+| **Authentication** | HMAC-SHA256 signature using System API AK/SK (see [Authentication and signing](./authentication)) |
+| **Request Body** | None (GET requests send no body; `RequestContent` is empty string `""` in StringToSign) |
 
 ## Request Parameters
 

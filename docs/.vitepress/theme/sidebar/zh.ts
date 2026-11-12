@@ -889,14 +889,14 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       link: '/zh-CN/api/',
       items: [
         {
-          text: '协议兼容',
+          text: '模型 API（OpenAPI）',
           collapsed: false,
           items: [
-            { text: '豆包协议兼容 API', link: '/zh-CN/api/protocol-compatibility/doubao/' },
+            { text: '概述', link: '/zh-CN/api/openapi/' },
           ],
         },
         {
-          text: '系统 API',
+          text: '平台 API',
           collapsed: false,
           items: [
             { text: '概述', link: '/zh-CN/api/system-api/' },
@@ -905,10 +905,57 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           ],
         },
         {
-          text: '模型 API（OpenAPI）',
+          text: '协议兼容',
           collapsed: false,
           items: [
-            { text: '概述', link: '/zh-CN/api/openapi/' },
+            {
+              text: '火山方舟兼容 API',
+              collapsed: false,
+              items: [
+                { text: '概述', link: '/zh-CN/api/protocol-compatibility/volcengine/' },
+                { text: '认证与签名', link: '/zh-CN/api/protocol-compatibility/volcengine/authentication' },
+                { text: '私域真人人像素材资产使用指南', link: '/zh-CN/api/protocol-compatibility/volcengine/guide' },
+                {
+                  text: '真人认证',
+                  collapsed: true,
+                  items: [
+                    { text: '拉起真人认证 H5', link: '/zh-CN/api/protocol-compatibility/volcengine/verification/create-session' },
+                    { text: '获取真人 Asset Group ID', link: '/zh-CN/api/protocol-compatibility/volcengine/verification/get-result' },
+                  ],
+                },
+                {
+                  text: '素材资产组合管理',
+                  collapsed: true,
+                  items: [
+                    { text: '创建素材资产组合', link: '/zh-CN/api/protocol-compatibility/volcengine/asset-groups/create' },
+                    { text: '查询素材资产组合信息', link: '/zh-CN/api/protocol-compatibility/volcengine/asset-groups/get' },
+                    { text: '查询素材资产组合列表', link: '/zh-CN/api/protocol-compatibility/volcengine/asset-groups/list' },
+                    { text: '更新素材资产组合信息', link: '/zh-CN/api/protocol-compatibility/volcengine/asset-groups/update' },
+                    { text: '删除素材资产组合', link: '/zh-CN/api/protocol-compatibility/volcengine/asset-groups/delete' },
+                  ],
+                },
+                {
+                  text: '素材资产管理',
+                  collapsed: true,
+                  items: [
+                    { text: '创建素材资产', link: '/zh-CN/api/protocol-compatibility/volcengine/assets/create' },
+                    { text: '查询素材资产信息', link: '/zh-CN/api/protocol-compatibility/volcengine/assets/get' },
+                    { text: '查询素材资产列表', link: '/zh-CN/api/protocol-compatibility/volcengine/assets/list' },
+                    { text: '更新素材资产信息', link: '/zh-CN/api/protocol-compatibility/volcengine/assets/update' },
+                    { text: '删除素材资产', link: '/zh-CN/api/protocol-compatibility/volcengine/assets/delete' },
+                  ],
+                },
+                {
+                  text: '视频生成',
+                  collapsed: true,
+                  items: [
+                    { text: '创建视频生成任务', link: '/zh-CN/api/protocol-compatibility/volcengine/video/create-task' },
+                    { text: '查询视频生成任务', link: '/zh-CN/api/protocol-compatibility/volcengine/video/get-task' },
+                  ],
+                },
+                { text: '错误处理与排查', link: '/zh-CN/api/protocol-compatibility/volcengine/errors' },
+              ],
+            },
           ],
         },
       ],

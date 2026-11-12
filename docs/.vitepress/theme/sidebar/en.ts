@@ -937,16 +937,17 @@ export const enSidebar: DefaultTheme.Sidebar = {
   "/api/": [
     {
       text: "API Reference",
+      link: "/api/",
       items: [
         {
-          text: "Protocol Compatibility",
+          text: "Model API (OpenAPI)",
           collapsed: false,
           items: [
-            { text: "Doubao Compatible Proxy API", link: "/api/protocol-compatibility/doubao/" },
+            { text: "Overview", link: "/api/openapi/" },
           ],
         },
         {
-          text: "System API",
+          text: "Platform API",
           collapsed: false,
           items: [
             { text: "Overview", link: "/api/system-api/" },
@@ -955,10 +956,57 @@ export const enSidebar: DefaultTheme.Sidebar = {
           ],
         },
         {
-          text: "Model API (OpenAPI)",
+          text: "Protocol Compatibility",
           collapsed: false,
           items: [
-            { text: "Overview", link: "/api/openapi/" },
+            {
+              text: "Volcengine Ark Compatible API",
+              collapsed: false,
+              items: [
+                { text: "Overview", link: "/api/protocol-compatibility/volcengine/" },
+                { text: "Authentication and signing", link: "/api/protocol-compatibility/volcengine/authentication" },
+                { text: "Private portrait asset workflow", link: "/api/protocol-compatibility/volcengine/guide" },
+                {
+                  text: "Real-person verification",
+                  collapsed: true,
+                  items: [
+                    { text: "Start real-person verification H5", link: "/api/protocol-compatibility/volcengine/verification/create-session" },
+                    { text: "Get the verified person’s Asset Group ID", link: "/api/protocol-compatibility/volcengine/verification/get-result" },
+                  ],
+                },
+                {
+                  text: "Asset group management",
+                  collapsed: true,
+                  items: [
+                    { text: "Create an asset group", link: "/api/protocol-compatibility/volcengine/asset-groups/create" },
+                    { text: "Get an asset group", link: "/api/protocol-compatibility/volcengine/asset-groups/get" },
+                    { text: "List asset groups", link: "/api/protocol-compatibility/volcengine/asset-groups/list" },
+                    { text: "Update an asset group", link: "/api/protocol-compatibility/volcengine/asset-groups/update" },
+                    { text: "Delete an asset group", link: "/api/protocol-compatibility/volcengine/asset-groups/delete" },
+                  ],
+                },
+                {
+                  text: "Asset management",
+                  collapsed: true,
+                  items: [
+                    { text: "Create an asset", link: "/api/protocol-compatibility/volcengine/assets/create" },
+                    { text: "Get an asset", link: "/api/protocol-compatibility/volcengine/assets/get" },
+                    { text: "List assets", link: "/api/protocol-compatibility/volcengine/assets/list" },
+                    { text: "Update an asset", link: "/api/protocol-compatibility/volcengine/assets/update" },
+                    { text: "Delete an asset", link: "/api/protocol-compatibility/volcengine/assets/delete" },
+                  ],
+                },
+                {
+                  text: "Video generation",
+                  collapsed: true,
+                  items: [
+                    { text: "Create a video generation task", link: "/api/protocol-compatibility/volcengine/video/create-task" },
+                    { text: "Get a video generation task", link: "/api/protocol-compatibility/volcengine/video/get-task" },
+                  ],
+                },
+                { text: "Error handling and troubleshooting", link: "/api/protocol-compatibility/volcengine/errors" },
+              ],
+            },
           ],
         },
       ],

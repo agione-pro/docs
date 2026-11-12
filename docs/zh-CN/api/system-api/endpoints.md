@@ -4,14 +4,21 @@
 
 Operator、Provider 与 End User 三类身份均可使用自身的 System API AK/SK 调用该接口，返回内容取决于 Key 所有者实际持有的角色。本接口为只读接口，不授予或变更任何角色权限。
 
-## 基本信息
+## 接口端点
 
-| 项目 | 说明 |
-| --- | --- |
-| 请求方法 | `GET` |
-| 完整路径 | `/hyperone/admin/user/roles` |
-| 支持协议 | `HTTPS` / `HTTP` |
-| 鉴权方式 | System API AK/SK 签名鉴权（详见[认证与签名](./authentication)） |
+<div class="api-endpoint-card">
+  <div class="api-endpoint-header">
+    <span class="api-method-badge get">GET</span>
+    <span class="api-endpoint-url">/hyperone/admin/user/roles</span>
+    <span class="api-auth-pill">🔐 System API AK/SK</span>
+  </div>
+</div>
+
+| 配置项 | 规范要求 |
+| :--- | :--- |
+| **请求协议** | `HTTPS`（推荐）/ `HTTP` |
+| **鉴权机制** | 基于 System API AK/SK 的 HMAC-SHA256 对称签名（详见[认证与签名规范](./authentication)） |
+| **请求体** | 无（GET 请求不携带 Body，待签名串中 `RequestContent` 为空字符串 `""`） |
 
 ## 请求参数
 

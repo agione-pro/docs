@@ -43,20 +43,334 @@ html[lang="en"] .VPHomeHero .tagline {
 }
 
 /* ============================================================
-   方案 B：API 页面专属宽屏布局（对标火山 OpenAPI 与多列表格展示）
+   现代 API 开发者门户增强样式 (Modern API Portal Styles)
    ============================================================ */
+
 .Layout.api-page {
-  --vp-layout-max-width: 1680px;
+  --vp-layout-max-width: 1560px;
 }
 
 @media (min-width: 960px) {
   .Layout.api-page .VPDoc.has-aside .content-container {
-    max-width: 960px;
+    max-width: 980px;
   }
 }
 
 @media (min-width: 1440px) {
   .Layout.api-page .VPDoc.has-aside .content-container {
-    max-width: 1100px;
+    max-width: 1040px;
   }
+}
+
+/* 1. API 概览卡片网格系统 */
+.api-portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin: 20px 0 32px;
+}
+
+.api-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 22px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.api-card:hover {
+  border-color: var(--vp-c-brand-1);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.08), 0 6px 10px -4px rgba(0, 0, 0, 0.04);
+}
+
+.api-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.api-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 18px;
+  background: var(--vp-c-default-soft);
+  border: 1px solid var(--vp-c-divider);
+}
+
+.api-card-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.3px;
+}
+
+.api-card-badge.brand {
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+.dark .api-card-badge.brand {
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.14);
+}
+
+.api-card-badge.green {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+.dark .api-card-badge.green {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.14);
+}
+
+.api-card-badge.amber {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.dark .api-card-badge.amber {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.14);
+}
+
+.api-card-title {
+  margin: 0 0 6px 0 !important;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.api-card-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  color: var(--vp-c-brand-1);
+  font-weight: normal;
+}
+
+.api-card:hover .api-card-arrow {
+  transform: translateX(4px);
+}
+
+.api-card-desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--vp-c-text-2);
+  margin: 0 0 16px 0 !important;
+  flex-grow: 1;
+}
+
+.api-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.api-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--vp-c-default-soft);
+  color: var(--vp-c-text-2);
+  border: 1px solid var(--vp-c-divider);
+}
+
+/* 2. 现代端点栏 (API Endpoint Box) */
+.api-endpoint-card {
+  margin: 16px 0 20px;
+  padding: 12px 16px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.api-endpoint-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.api-method-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--vp-font-family-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.api-method-badge.post {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.dark .api-method-badge.post {
+  color: #34d399;
+}
+
+.api-method-badge.get {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+.dark .api-method-badge.get {
+  color: #60a5fa;
+}
+
+.api-method-badge.delete {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.dark .api-method-badge.delete {
+  color: #f87171;
+}
+
+.api-method-badge.put {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.dark .api-method-badge.put {
+  color: #fbbf24;
+}
+
+.api-endpoint-url {
+  font-family: var(--vp-font-family-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.api-auth-pill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 9999px;
+  background: var(--vp-c-default-soft);
+  color: var(--vp-c-text-2);
+  border: 1px solid var(--vp-c-divider);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 3. 轻量草稿与环境提示栏 (Subtle Draft / Status Banner) */
+.api-draft-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 16px 0 24px;
+  padding: 12px 16px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+}
+.api-draft-banner .icon {
+  flex-shrink: 0;
+  font-size: 16px;
+  margin-top: 1px;
+}
+
+/* 4. 步骤卡片序列 (Step Card Flow) */
+.api-steps-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 20px 0 28px;
+}
+
+.api-step-card {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 16px 18px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.api-step-card:hover {
+  border-color: var(--vp-c-brand-1);
+  transform: translateX(2px);
+}
+
+.api-step-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--vp-c-brand-1);
+}
+
+.api-step-content {
+  flex-grow: 1;
+}
+
+.api-step-title {
+  margin: 0 0 5px 0 !important;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.api-step-desc {
+  margin: 0 !important;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+
+/* 5. 交互流程图 (API Interactive Visual Flow) */
+.api-visual-flow {
+  margin: 20px 0 28px;
+  padding: 20px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
 }
