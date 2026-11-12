@@ -121,10 +121,11 @@ After editing:
 4. Confirm each screenshot is in the language of the page that embeds it: Chinese pages use the Chinese UI, English pages use the English UI. A Chinese screenshot inside an English page is a defect.
 5. Confirm sensitive values follow the masking rules in `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md`.
 6. Confirm the screenshot requirements in `SCREENSHOT_GUIDE.md`: fixed viewport, left menu kept, top navigation cropped with the DOM-measured height, dialogs and drawers **captured as elements** (image width equals the element, never the viewport), and element captures saved with **transparent rounded corners** so no mask grey shows along the image edge.
-7. Run `npm run check:docs-images`.
-8. Run `npm run check:docs-profile`.
-9. Run `npm run docs:build`.
-10. Review the final Git diff and exclude unrelated files from the change.
+7. Run `node scripts/check-manual-style.mjs` (user-manual style gate; see `USER_MANUAL_PAGE_STRUCTURE_GUIDE.md` §10.9 for the baseline mechanism).
+8. Run `npm run check:docs-images`.
+9. Run `npm run check:docs-profile`.
+10. Run `npm run docs:build`.
+11. Review the final Git diff and exclude unrelated files from the change.
 
 Do not report the task as complete if a required check fails. If a check cannot
 run because of the environment, state exactly what was not verified and why.

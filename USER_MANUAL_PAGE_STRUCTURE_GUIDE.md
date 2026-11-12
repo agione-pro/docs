@@ -300,7 +300,7 @@
    - 当前违规数 ≤ 快照 → 视为存量台账（warn，不阻断，允许按 §10.10 分批迁移）；
    - 当前违规数 > 快照 → 视为本次新增（error，退出码 1，必须修复）。
 3. 因此：**任何新写或改动的页面，只要引入一条新违规就会立即 FAIL**；修好存量的任何一条，计数下降，快照可随后收紧。收紧快照用 `node scripts/check-manual-style.mjs --dump-baseline` 生成并覆盖 JSON。
-4. 推送前校验链（在 `AGIOneDocsPro/AGENTS.md` §3 基础上追加一条）：
+4. 推送前校验链（在仓库根 [AGENTS.md](./AGENTS.md) 的 Required Workflow 基础上追加）：
 
    ```bash
    node scripts/check-manual-style.mjs
