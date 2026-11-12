@@ -1,8 +1,8 @@
 # Cloud Platforms
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -12,202 +12,143 @@ Updated: 2026-11-04
 | Applicable Roles | Operators |
 | Navigation Path | AI Infra(On-Cloud) > Access Management > Cloud Platforms |
 | Page Route | `/infrahub/op/access/platform` |
-| Managed Objects | Public and private cloud platform records and display settings |
+| Managed Objects | Public and private cloud connection profiles, usage states, and display settings |
 
 #### Beginner Explanation
 
-Cloud Platforms registers the cloud providers that can be used. Add the platform type and record before accounts, pools, and authorization can reference it.
+Cloud Platforms is like a provider directory: register platforms and distinguish those available for deployment and scheduling from those that are disabled.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
 | Public Cloud | A cloud platform provided by an external cloud provider. |
 | Private Cloud | A cloud platform maintained by an organization. |
-| Provider Identifier | The unique identifier of a private-cloud record. |
-
-#### Recommended Operation Order
-
-Review the list to avoid duplicates, add the platform, edit private-cloud display settings when needed, and check all account, pool, and authorization references before deletion.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Provider Identifier | An identifier in private-cloud display settings. |
+| Cloud Platform Usage Scope | A tab in Add Cloud Platform, separate from Basic Information. |
 
 ## Prerequisites
 
-1. The current account has the permission required for Cloud Platforms.
-2. Confirm the platform type and ownership, and verify that no duplicate record exists.
-3. Before editing or deleting, check account, pool, authorization, and deployment dependencies.
+1. The current account has access to Cloud Platforms.
+2. Confirm the platform type, ownership, and purpose, then review existing records to avoid duplicates.
+3. Before changing a platform or its usage state, check the impact on accounts, resource pools, authorization, and existing deployments.
 
 ## Page Description
 
-The page provides All, Public Cloud, and Private Cloud views, with add, import, export, edit, and delete actions.
+The menu entry is **Cloud Platforms**, while the page heading is **Cloud Platform Access**. They refer to the same page.
 
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| Type filter | All, Public Cloud, and Private Cloud. |
+| Available for Deployment and Scheduling | Available platforms and their individual usage messages. |
+| Disabled | Disabled-platform area; its description states that connection settings and authorization records are retained only in access management. |
+| Page actions | Batch Actions and Add Cloud Platform. |
+| Add dialog | Basic Information and Cloud Platform Usage Scope tabs; Basic Information contains Cloud Platform Type and Select Platform. |
 
 ![Cloud Platforms page](./images/manual-cloud-platforms.png)
 
-The image shows the main Cloud Platforms page, allowing users to view connected provider cards by public or private cloud, search platforms, and access Add, Import, and Export actions.
+The figure shows Cloud Platform Access, with Available for Deployment and Scheduling and Disabled as separate usage-state areas. Batch Actions and Add Cloud Platform are at the top right; platform-row messages identify deployment impact.
 
 ## Main Operations
 
+### View Cloud Platforms
+
+1. Open Cloud Platforms under Access Management.
+2. Select All, Public Cloud, or Private Cloud as needed.
+3. Locate the target platform in the two usage-state areas and read its row message rather than comparing counts alone.
+4. For maintenance, verify the target record before using its edit entry. Batch Actions is at the top right.
+
 ### Add Cloud Platform
 
-1. Click **"Add Cloud Platform"**.
-2. Select `Public Cloud` or `Private Cloud`.
-3. Select an existing platform in `Select Platform` and check for duplicates.
-4. Click **"Confirm"** and verify the new record in the list.
+1. Click Add Cloud Platform to open the dialog of the same name.
+2. In Basic Information, review Cloud Platform Type; Public Cloud and Private Cloud are available options.
+3. Follow the actual type-specific form and use Select Platform to specify the target. The interface says built-in options are for reference and advises selecting a platform with existing accounts and resources.
+4. The dialog also has a Cloud Platform Usage Scope tab. Review its actual configuration before submission; it is not a field within Basic Information.
+5. Use Add at the bottom when submission is intended. To inspect without submitting, click Cancel.
 
 ![Add Cloud Platform](./images/manual-add-cloud-platform.png)
 
-The image shows the Add Cloud Platform dialog, where you choose the platform type (Public Cloud/Private Cloud) and select the specific provider from the platform dropdown before confirming.
+The figure shows Basic Information in Add Cloud Platform, with required markers for Cloud Platform Type and Select Platform, plus the separate Cloud Platform Usage Scope tab. The bottom buttons are Cancel and Add, not Confirm.
 
-### Edit Cloud Platform
+### Maintain Private-Cloud Display Settings
 
-1. Click **"Edit Cloud Platform"** on the target private-cloud card.
-2. Verify the platform type and identifier, and update multilingual display names, link address, or logo as needed.
-3. Click **"Confirm"**, refresh the list, and verify the result.
+1. Locate the target private cloud and enter its edit configuration.
+2. Check Provider Identifier and review multilingual Display Name, Link Address, and Logo within the approved change scope.
+3. Confirm the target and impact before submission. After maintenance, return to the platform list and check the display name; closing a dialog alone does not establish that a change was saved.
 
 ![Edit Cloud Platform](./images/manual-maintain-cloud-platform.png)
 
-The image shows the Edit Cloud Platform dialog for private cloud platforms, where you can maintain the platform identifier, multilingual display names, platform link address, and logo.
-
-### Delete Cloud Platform
-
-1. Locate the target card and confirm that accounts, pools, or authorization do not reference it.
-2. Click **"Delete"** and verify the target in the confirmation message.
-3. Confirm deletion and refresh the list. If deletion fails, remove the dependencies identified by the page.
+The figure shows Provider Identifier, Display Name, language selection, Link Address, and Logo in private-cloud edit configuration. These are platform display settings, not cloud-account credential fields.
 
 ## Parameter Quick Reference
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Cloud Platform Name | No | Text / search condition | `Huawei Cloud` | Cloud platform name used for list display and search. |
-| Cloud Platform Type | Yes | Segmented control | `Public Cloud` | Platform category selected when adding a cloud platform. The current screenshot shows `Public Cloud` and `Private Cloud`. |
-| Select Platform | Yes | Dropdown | `Alibaba Cloud` | Specific cloud provider or cloud platform selected when adding a cloud platform. |
-| Add Cloud Platform | No | Action button | `Add Cloud Platform` | Opens the add cloud platform dialog. |
-| Search | No | Action button | `Search` | Filters the list by cloud platform name or other conditions. |
-| Reset | No | Action button | `Reset` | Clears filters and restores the default list. |
-| Import | No | Action button | `Import` | Imports cloud platform configuration and may affect real configuration. Use with caution. |
-| Export | No | Action button | `Export` | Exports cloud platform configuration or list data. Pay attention to sensitive information. |
-| Edit Cloud Platform | No | Action entry | `Edit Cloud Platform` | Opens the configuration page or dialog for an existing cloud platform. |
-| Delete | No | High-risk action | `Delete` | Before deleting a cloud platform record, confirm dependent accounts, resource pools, and authorization relationships. |
+| Platform type filter | No | Segmented control | `All` | Selects all, public, or private cloud platforms. |
+| Available for Deployment and Scheduling | — | Usage-state area | `Available for Deployment and Scheduling` | Available-platform area on the page. |
+| Disabled | — | Usage-state area | `Disabled` | Disabled-platform area on the page. |
+| Cloud Platform Type | Yes | Segmented control | `Public Cloud` | Platform type under Basic Information in the add dialog. |
+| Select Platform | Yes | Dropdown | Select an actual option | Selects a specific cloud platform. |
+| Cloud Platform Usage Scope | No | Tab | `Cloud Platform Usage Scope` | Separate configuration tab; follow its actual displayed content. |
+| Provider Identifier | Yes | Display-setting field | Sample platform identifier | Identifier in private-cloud edit configuration. |
+| Display Name | Yes | Multilingual text | Sample platform name | Language-specific platform display name. |
+| Link Address / Logo | No | Display settings | Follow the form | Platform link and icon. |
+| Batch Actions | No | Action entry | `Batch Actions` | Top-level entry; check targets and impact first. |
+| Add / Cancel | No | Buttons | `Add` / `Cancel` | Submit and exit entries in the add dialog. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: Confirm the platform type and ownership, and verify that no duplicate record exists.
-- Confirm impact before a configuration change: Before editing or deleting, check account, pool, authorization, and deployment dependencies.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- Public Cloud and Private Cloud are type filters; Available for Deployment and Scheduling and Disabled are usage-state areas, not the same classification.
+- The add dialog uses Add. Private-cloud edit configuration is a different form; do not mix its fields or button names with the add dialog.
+- Platform rows can show running-deployment messages. Read them before changing usage state rather than relying on platform totals.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Public and private cloud platform records and display settings display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Page location | Cloud Platforms is highlighted and the heading reads Cloud Platform Access | Locate the page using its menu name and route. |
+| Platform scope | Type filters, two usage-state areas, and target-row messages can be reviewed | Check the current type filter and target platform name first. |
+| Add form | Basic Information and Cloud Platform Usage Scope are visible, with Cancel and Add at the bottom | Confirm this is the add dialog rather than edit configuration. |
+| Exit blank form | Cancel returns to the platform page | Check whether the dialog closed; exiting is not adding a platform. |
 
 ## FAQ
 
-#### Target Object Is Missing in Cloud Platforms
+#### Are Public Cloud and Disabled the Same Kind of Filter?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+Both Public Cloud and Disabled appear on the page.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+The interface uses these names for a type filter and a usage-state area respectively.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: Confirm the platform type and ownership, and verify that no duplicate record exists.
-3. Confirm the current role and data scope, then locate the object again.
+Select the platform type, then check the target platform and its row message in the two usage-state areas.
 
-#### Cloud Platforms Action Is Unavailable
+#### Should I Click Confirm or Add to Add a Platform?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+The add dialog shows Add at the bottom, while edit configuration is a different form.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The current Add Cloud Platform dialog uses Cancel and Add.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### Cloud Platforms Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Cloud Platforms Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Cloud Platforms Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Follow the actual dialog buttons. Use Cancel for inspection only; review the platform and usage scope before using Add for submission.
 
 ## Notes
 
-- Before editing or deleting, check account, pool, authorization, and deployment dependencies.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- Check deployment impact before batch actions or platform usage-state changes, and keep necessary audit records.
+- Private-cloud display settings do not replace account-access or authorization configuration; maintain each object on its corresponding page.
+- Do not record real credentials, internal addresses, or customer data in documentation, tickets, or chat.
 
 ## Next Steps
 
-1. Go to Cloud Accounts to configure account access for the added cloud platform.
-2. Go to Resource Pools to create or synchronize the corresponding resource pool.
-3. Go to Tenant-Cloud Auth or Business-Region Auth to configure the available scope.
+1. Go to [Cloud Accounts](../cloud-accounts/) for account and credential configuration entries.
+2. Go to [Resource Pools](../resource-pools/) to review pool types and states under the platform.
+3. Go to [Tenant-Cloud Auth](../../auth-management/tenant-cloud-auth/) or [Business-Region Auth](../../auth-management/business-region-auth/) to review usage scope.

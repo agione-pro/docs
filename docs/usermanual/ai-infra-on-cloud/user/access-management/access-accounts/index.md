@@ -1,206 +1,151 @@
 # Access Accounts
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-11
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers |
+| Applicable Roles | User |
 | Navigation Path | AI Infra(On-Cloud) > Access Management > Access Accounts |
 | Page Route | `/infrahub/user/access/account` |
-| Managed Objects | Cloud accounts and access credentials available to Model Providers |
+| Managed Objects | Cloud accounts and credentials required to access cloud-platform resources |
 
 #### Beginner Explanation
 
-Access Accounts is the Model Provider entry for cloud accounts. After an account is added, the platform can discover authorized resources for Quick Deployment.
+Access Accounts is like a cloud-account directory: it brings account information, credential identifiers, and connectivity status together for resource discovery, model deployment, and runtime management.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
-| Access Account | A Model Provider account used to access cloud resources. |
-| Access Key ID | A credential identifier. Documentation uses `<ACCESS_KEY_ID>`. |
-| Access Key Secret | A sensitive credential. Documentation uses `<ACCESS_KEY_SECRET>`. |
-
-#### Recommended Operation Order
-
-Review existing accounts and authorization scope, add the account, wait for synchronization, and confirm platform and region availability in Quick Deployment.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Cloud Account | A cloud account used to access cloud-platform resources. |
+| Credential Identifier | A field identifying the cloud account's access credentials; the list also displays the credential type. |
+| Credential Secret | The sensitive credential field in the Add Cloud Account form. |
+| Connectivity Status | The account status displayed in the Status column; the page provides a batch refresh entry. |
 
 ## Prerequisites
 
-1. The current account has the permission required for Access Accounts.
-2. The Operator has completed cloud-platform, pool, and authorization configuration.
-3. Before adding an account, obtain least-privilege credentials through a secure channel and confirm cost boundaries.
+1. The current account has access to the Access Accounts page.
+2. Before adding an account, confirm its cloud platform, purpose, and authorization scope. Before using cloud resources afterward, check cloud-platform, resource-pool, and authorization configuration with the Operator.
+3. Obtain least-privilege credentials through a secure channel and confirm cost boundaries.
 
 ## Page Description
 
-The page lists access accounts and provides Add Cloud Account. The current Operator account does not expose this user entry, so this page is partially verified from existing page evidence and the cross-role workflow.
+The left-menu entry is **Access Accounts**, while the page heading is **Cloud Accounts**. These are the menu and page names for the same entry, not two separate pages.
 
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| Filters | A cloud-platform dropdown, an account-name fuzzy search input, and a status dropdown, with Search and Reset. |
+| Account list | Columns are Cloud Account Name, Status, Credential Identifier, Created at, and Actions. The cloud platform and public/private cloud type appear beneath the account name. |
+| Page actions | Refresh Connectivity in Batch and Add Cloud Account. |
+| Row actions | Edit and a more-actions entry (`...`). |
+| Add form | The Add Cloud Account dialog contains Account Name, Select Cloud Platform, Credential Identifier, and Credential Secret. |
 
-![Access account list](./images/access-accounts-list.png)
+![Cloud account list](./images/access-accounts-list.png)
 
-The image shows the account list on the Access Management page: cloud-platform filter tabs at the top (All and each vendor), a name search box with **"Search"** and **"Reset"** buttons, and account cards showing name, cloud platform, public/private type, and creation time with **"Edit"** and more-action entries; the **"Add Cloud Account"** button is at the top right.
+The figure shows the Cloud Accounts list, with cloud-platform, name, and status filters above the table. The sample status is Healthy; Refresh Connectivity in Batch and Add Cloud Account appear at the top right.
 
 ## Main Operations
 
-### View Access Accounts
+### View Cloud Accounts
 
-1. Open Access Accounts.
-2. Locate the target record by platform or account name.
-3. Verify platform, creation time, and availability.
+1. Select Access Accounts in the left menu to open the Cloud Accounts page.
+2. Select a cloud platform, enter an account name, or select a status as needed, then click Search. Use Reset when you need to reset the query criteria.
+3. In the target row, check the cloud account name, platform and type, status, credential identifier, and creation time.
+4. To maintain an existing account, locate its row before using Edit. The more-actions entry is to the right of Edit.
 
-### Add Access Account
+### Add Cloud Account
 
-1. Click **"Add Cloud Account"**.
-2. Enter the account name and select the cloud platform.
-3. Enter real values corresponding to `<ACCESS_KEY_ID>` and `<ACCESS_KEY_SECRET>` in secure fields.
-4. Click **"Confirm"**, wait for synchronization, and verify resource availability in Quick Deployment.
+1. Click Add Cloud Account to open the dialog of the same name.
+2. Enter Account Name and select the account's platform under Select Cloud Platform.
+3. Enter credentials according to the actual form requirements for the selected platform. The blank form uses the generic labels Credential Identifier and Credential Secret; do not assume every cloud platform uses AK/SK.
+4. Review the account name, platform, and credential purpose. Click Confirm if you intend to submit. To inspect the form without submitting, click Cancel to return to the list.
 
-![Add access account](./images/add-cloud-account.png)
+![Blank Add Cloud Account form](./images/add-cloud-account.png)
 
-The image shows the **"Add Cloud Account"** dialog with four required fields: account name, cloud platform selector, Access Key ID, and Access Key Secret, with **"Cancel"** and **"Confirm"** buttons at the bottom; the credential fields are shown empty and real values must be entered through a secure channel.
+The figure shows the blank Add Cloud Account form. Account Name, Select Cloud Platform, Credential Identifier, and Credential Secret all have required markers; Cancel and Confirm are at the bottom.
 
 ## Parameter Quick Reference
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Cloud platform tabs | No | Tabs | `All` | Filters the account list by cloud platform. |
-| Name | No | Input | `demo-cloud-account` | Searches records by account name. Use sanitized examples only in documentation. |
-| Search | No | Button | `Search` | Queries account records with the current filters. |
-| Reset | No | Button | `Reset` | Clears filters and restores the list display. |
-| Add Cloud Account | Yes | Button | `Add Cloud Account` | Opens the add cloud account dialog. |
-| Account Name | Yes | Text | `demo-cloud-account` | Display name of the cloud account in the platform. Avoid real customer, business, or internal environment information. |
-| Select Cloud Platform | Yes | Dropdown | `Sample Cloud Platform` | Selects the cloud platform to which the account belongs. |
-| Access Key ID | Yes | Text | `<ACCESS_KEY_ID>` | Cloud-side access credential identifier. Use placeholder examples only in documentation. |
-| Access Key Secret | Yes | Secret text | `<ACCESS_KEY_SECRET>` | Cloud-side access secret. Real values must not be written. |
-| Edit | No | Action entry | `Edit` | Modifies an existing cloud account configuration. Confirm the impact scope before editing. |
-| More actions | No | Action entry | `...` | Opens more action entries provided by the page. |
-| Cancel | No | Button | `Cancel` | Closes the dialog without saving the current configuration. |
-| Confirm | Yes | Button | `Confirm` | Final action that submits the new cloud account configuration. Review carefully before clicking. |
+| Cloud Platform | No | Dropdown filter | `Select Cloud Platform` | Filters by cloud platform; this is not a set of cloud-platform tabs. |
+| Name | No | Input | `demo-cloud-account` | Fuzzy search by account name. |
+| Status | No | Dropdown filter | `Select account status` | Filters by account status, corresponding to the Status column. |
+| Search | No | Button | `Search` | Query entry. |
+| Reset | No | Button | `Reset` | Entry for resetting query criteria. |
+| Cloud Account Name | — | List field | `demo-cloud-account` | The account's platform and type appear beneath its name. |
+| Status | — | Status label | `Healthy` | Connectivity status of the sample record, not an enumeration of every status. |
+| Credential Identifier | — | List field | `AccessKey ID` | Displays credential type and identifier information; this sample type does not represent every cloud platform. |
+| Created at | — | Time field | `YYYY-MM-DD HH:mm:ss` | Creation time of the account record. |
+| Refresh Connectivity in Batch | No | Action entry | `Refresh Connectivity in Batch` | Connectivity-status refresh entry at the top of the page. |
+| Add Cloud Account | No | Button | `Add Cloud Account` | Opens the Add Cloud Account form. |
+| Account Name | Yes | Input | `demo-cloud-account` | Display name of the cloud account in the platform. |
+| Select Cloud Platform | Yes | Dropdown | `Select Cloud Platform` | Selects the account's cloud platform. |
+| Credential Identifier | Yes | Input | `Sample credential identifier` | Generic credential identifier field in the blank form; follow the selected platform's actual requirements. |
+| Credential Secret | Yes | Input | `Sample credential secret` | Sensitive credential field; do not put real values in documentation. |
+| Edit | No | Row action | `Edit` | Maintenance entry for an existing account; confirm the target and impact scope first. |
+| More actions | No | Row action | `...` | To the right of Edit; refer to the actual expanded menu. |
+| Cancel | No | Button | `Cancel` | Exits the current add form. |
+| Confirm | No | Button | `Confirm` | Form submission entry; review all inputs before clicking. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The Operator has completed cloud-platform, pool, and authorization configuration.
-- Confirm impact before a configuration change: Before adding an account, obtain least-privilege credentials through a secure channel and confirm cost boundaries.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- Access Accounts in the menu and Cloud Accounts as the page heading refer to the same entry. Do not search the menu only for the page heading.
+- The sample credential type in the list is `AccessKey ID`, while the blank add form uses Credential Identifier and Credential Secret. Do not treat the sample type as fixed fields for every cloud platform.
+- Status filtering and name search are separate criteria. Check both the filter area and the Status column when reviewing a record.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Cloud accounts and access credentials available to Model Providers display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Page location | Access Accounts is highlighted in the left menu and the page heading is Cloud Accounts | Locate the page again using the menu name and page route. |
+| List information | Cloud Account Name, Status, Credential Identifier, Created at, and Actions are available for review | Check the current filters and target account name first. |
+| Add form location | Clicking Add Cloud Account opens a dialog with four required fields, Cancel, and Confirm | Verify that this is the Add Cloud Account form before entering credentials for any object. |
+| Exit blank form | Cancel returns to the account list | Check whether the list or dialog is still open; do not treat closing the form as submission. |
 
 ## FAQ
 
-#### Target Object Is Missing in Access Accounts
+#### Why Does the Menu Say Access Accounts but the Page Say Cloud Accounts?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+Access Accounts is highlighted on the left, while the page heading reads Cloud Accounts.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+The current interface uses different names for the menu entry and page heading.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The Operator has completed cloud-platform, pool, and authorization configuration.
-3. Confirm the current role and data scope, then locate the object again.
+Enter through Access Accounts and check the target account against the Cloud Accounts list fields.
 
-#### Access Accounts Action Is Unavailable
+#### Should I Enter an Access Key ID or a Credential Identifier When Adding an Account?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+The sample credential type in the list is `AccessKey ID`, but the blank add form shows Credential Identifier and Credential Secret.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The list displays the credential type of a specific record, while the blank form displays generic credential field names.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### Access Accounts Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Access Accounts Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Access Accounts Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Select the cloud platform first, then follow the fields actually displayed. Do not describe every cloud type as using AK/SK.
 
 ## Notes
 
-- Before adding an account, obtain least-privilege credentials through a secure channel and confirm cost boundaries.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- Use credentials only for authorized business operations through secure channels. Do not put real credentials in documentation, tickets, or chat records.
+- Before adding or editing an account, check least privilege, authorization scope, cost boundaries, and change impact. Keep the necessary audit records.
+- Status is information displayed on this page; review downstream resource visibility separately on the relevant page.
 
 ## Next Steps
 
-1. Return to `Quick Deployment` to confirm whether the corresponding cloud platform and region resources are visible.
-2. Go to `My Deployments` to check whether later deployment tasks can use this account.
-3. Regularly check cloud account permissions, credential validity, and resource visibility.
+1. Go to [Quick Deployment](../../model-services/quick-deployment/) to review cloud-platform, resource-pool, and model-selection entries and check the resources actually available.
+2. For existing deployment tasks, go to [My Deployments](../../model-services/my-deployments/). Adding a cloud account does not mean a deployment has been created.
+3. Regularly review cloud account permissions, credential validity, and resource visibility.

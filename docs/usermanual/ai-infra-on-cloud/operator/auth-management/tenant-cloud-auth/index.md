@@ -1,8 +1,8 @@
 # Tenant-Cloud Auth
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -12,209 +12,133 @@ Updated: 2026-11-04
 | Applicable Roles | Operators |
 | Navigation Path | AI Infra(On-Cloud) > Authorization Management > Tenant-Cloud Auth |
 | Page Route | `/infrahub/op/auth/platform-auth` |
-| Managed Objects | Usage authorization between tenants and cloud platforms |
+| Managed Objects | Cloud platform authorization scope available to tenants |
 
 #### Beginner Explanation
 
-Tenant-Cloud Auth grants a tenant access to a cloud platform. Authorized tenants can become eligible to see platform resources; removing authorization withdraws that scope.
+Tenant-Cloud Auth is like defining a tenant's cloud platform access pass: first identify the tenants affected by a batch change, then distinguish adding platforms from replacing the complete scope.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
-| Single-Tenant Authorization | Grants the selected cloud platform to one tenant. |
-| Authorize All Tenants | Grants the selected cloud platform to all tenants. |
-| Authorization Relationship | A saved availability relationship between a tenant and a cloud platform. |
-
-#### Recommended Operation Order
-
-Review existing relationships, add authorization, edit when scope changes, and check tenant deployments and business dependencies before deletion.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Tenant Scope | One or more tenants selected for this authorization. |
+| Append | The UI states: “Keep each tenant's current authorization and add the selected platforms”. |
+| Replace | The UI states: “Give every selected tenant the same final cloud platform scope”. |
+| Change Summary | The pre-submission area showing affected tenants, authorization mode, and platforms selected in this change. |
 
 ## Prerequisites
 
-1. The current account has the permission required for Tenant-Cloud Auth.
-2. The target cloud platform and tenant exist, and the authorization boundary is approved.
-3. Before changing authorization, confirm tenant deployments, business visibility, and revocation arrangements.
+1. The current account can access Tenant-Cloud Auth.
+2. The target tenants and cloud platforms exist, and the intended authorization scope is approved.
+3. Before making a change, review existing authorizations, tenant deployments, and business dependencies; confirm the impact and revocation arrangements before withdrawing scope.
 
 ## Page Description
 
-The page shows tenant names, authorized cloud platforms, and add, edit, and delete actions.
+| Area | Description |
+| --- | --- |
+| Page title | The content title is “Tenant-Cloud Platform Authorization”; its description introduces batch append and replacement. |
+| Tenant filter | Use “Search or select a tenant” to locate a tenant. |
+| Authorization list | Contains checkboxes and the Tenant Information, Account and Email, Cloud Platform Authorization, and Actions columns. |
+| Authorization entries | The page provides Authorize Tenants; record rows have Configure and Revoke entries. |
+| Authorization form | Contains Tenant Scope, Authorization Strategy, Select Cloud Platforms, and Change Summary. |
 
-Page screenshots:
+![Tenant authorization title and filter area](./images/manual-tenant-cloud-auth.png)
 
-![Tenant-Cloud Auth page](./images/manual-tenant-cloud-auth.png)
-
-The image shows the Tenant-Cloud Authorization list page, listing tenant names, tenant IDs, authorized cloud platforms, with tenant search, add authorization, and row-level edit/delete actions.
+The figure shows the Tenant-Cloud Platform Authorization title, tenant filter, and table headers; Authorize Tenants is at the upper right, and the headers distinguish tenant information, account and email, platform authorization, and actions.
 
 ## Main Operations
 
-### Add Tenant-Cloud Authorization
+### Review Existing Authorization
 
-1. Click **"Add Tenant-Cloud Auth"**.
-2. Select a cloud platform.
-3. Select `Single-Tenant Authorization` or `Authorize All Tenants`; select the target tenant for single-tenant mode.
-4. Verify the scope and click **"Confirm"**.
+1. Open Tenant-Cloud Auth under Authorization Management.
+2. Use Search or select a tenant to locate the target tenant.
+3. Review the tenant information and cloud platform scope on the target record before deciding whether to change it; do not judge the scope by platform counts alone.
 
-![Add tenant authorization](./images/manual-add-tenant-cloud-auth.png)
+### Prepare Tenant Authorization
 
-The image shows the Add Tenant-Cloud Authorization dialog, where you select the cloud platform, authorization mode (single tenant or all tenants), and pick the target tenant.
+1. Click Authorize Tenants to open the form.
+2. Under Tenant Scope, use Select one or more tenants to specify the targets.
+3. Read the Authorization Strategy descriptions and choose Append or Replace according to the approved scope. These strategies distinguish how existing authorization is handled, not whether one tenant or all tenants are targeted.
+4. Review the intended platform scope under Select Cloud Platforms.
+5. In Change Summary, review Affected tenants, Authorization mode, and Selected in this change separately. The strategy meanings above follow the UI descriptions; selections and summary values are not saved-result evidence.
+6. Use Confirm Authorization when submission is intended; for inspection only, click Cancel without submitting the configuration.
 
-### Edit Tenant-Cloud Authorization
+![Authorize Tenants form](./images/manual-add-tenant-cloud-auth.png)
 
-1. Click **"Edit"** on the target record.
-2. Verify the cloud platform, authorization mode, and tenant scope.
-3. Save and verify the updated relationship in the list.
+The figure shows the empty Authorize Tenants form: Tenant Scope supports one or more tenants, Authorization Strategy offers Append and Replace, and the lower area contains Change Summary, Cancel, and Confirm Authorization.
 
-![Edit tenant authorization](./images/manual-maintain-tenant-cloud-auth.png)
+### Locate the Configuration Entry
 
-The image shows the Edit Tenant-Cloud Authorization dialog, where you can verify or adjust the cloud platform authorization scope for the selected tenant.
+1. Locate Configure on the target tenant record and review the tenant and existing platform scope first.
+2. Follow the fields and buttons actually displayed when maintaining authorization; do not treat the earlier edit fields as the current batch authorization strategies.
 
-### Delete Tenant-Cloud Authorization
+![Tenant authorization edit view](./images/manual-maintain-tenant-cloud-auth.png)
 
-1. Confirm that the tenant no longer depends on the cloud platform.
-2. Click **"Delete"** and verify the target record.
-3. After confirmation, check the list and tenant-side visibility.
+The figure shows an earlier tenant authorization edit view with Select Cloud Platform, Select Tenant, Cancel, and Confirm; it illustrates the tenant-platform association, not the current Append or Replace strategies.
 
-![Delete tenant authorization](./images/manual-remove-tenant-cloud-auth.png)
+### Locate the Revocation Entry
 
-The image shows the secondary confirmation dialog for deleting a tenant-cloud authorization, which revokes the tenant's access permissions to the specified cloud platform.
+1. Locate Revoke on the target record and review the tenant, existing scope, and business dependencies first.
+2. Before submission, follow the object and message displayed by the current UI; do not use the earlier Delete confirmation view as the current revocation procedure.
+
+![Tenant authorization deletion confirmation view](./images/manual-remove-tenant-cloud-auth.png)
+
+The figure shows an earlier Delete confirmation view naming the target tenant and providing Cancel and Confirm; it does not establish the current Revoke confirmation flow or its execution result.
 
 ## Parameter Quick Reference
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Tenant Name | No | Text | `Sample Tenant` | Filters authorization records by tenant name. Do not enter a real customer name in examples. |
-| Tenant ID | No | Text/Number | `1000000000000000` | Filters authorization records by tenant identifier. The example value is for documentation only. |
-| Authorized Cloud Platforms | Yes | List/Multiple values | `Alibaba Cloud` | Displays or selects the cloud platform scope available to the tenant. |
-| Select Cloud Platform | Yes | Dropdown | `Alibaba Cloud` | Selects the cloud platform to authorize when adding authorization. |
-| Authorization Mode | Yes | Radio | `Authorize a Single Tenant` | Selects whether to authorize one tenant or all tenants. |
-| Select Tenant | Conditionally required | Dropdown | `Sample Tenant` | Required when `Authorize a Single Tenant` is selected. |
-| Search | No | Button | `Search` | Queries authorization records with the current filters. |
-| Reset | No | Button | `Reset` | Clears filters and restores the list display. |
-| Pagination | No | Page control | `10/page` | Opens additional list pages without modifying authorization records. |
-| Edit | No | Action entry | `Edit` | Modifies an existing authorization. Confirm the impact scope before editing. |
-| Delete | No | Action entry | `Delete` | Deletes authorization and may affect tenant resource availability. Use with caution. |
-| Cancel | No | Button | `Cancel` | Closes the dialog without saving the current configuration. |
-| Confirm | Yes | Button | `Confirm` | Submits the authorization configuration. Review carefully before clicking. |
+| Search or select a tenant | No | Search selector | Sample tenant | List lookup entry, not an authorization strategy. |
+| Tenant Information / Account and Email | — | List information | Target record | Distinguishes tenant and account information; review both to identify the target. |
+| Cloud Platform Authorization | — | List information | Target record | Shows the record's cloud platform scope. |
+| Tenant Scope | Select before submission | Multi-select | One or more tenants | Targets of this change; there is no Authorize All Tenants mode. |
+| Authorization Strategy | Review before submission | Strategy selector | `Append` | Offers Append and Replace, each with a description of its scope. |
+| Select Cloud Platforms | Select before submission | Multi-select | Approved scope | Platforms selected for this change. |
+| Change Summary | — | Read-only summary | Affected tenants / Authorization mode / Selected in this change | Reviews targets, strategy, and platform scope before submission. |
+| Configure / Revoke | No | Row action entry | `Configure` | Entries for existing authorization; identify the target first. |
+| Cancel / Confirm Authorization | No | Button | `Cancel` | Exit and submission entries for the authorization form. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The target cloud platform and tenant exist, and the authorization boundary is approved.
-- Confirm impact before a configuration change: Before changing authorization, confirm tenant deployments, business visibility, and revocation arrangements.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- Tenant Scope identifies the targets; Authorization Strategy determines how existing authorization is handled. Append and Replace do not mean one tenant versus all tenants.
+- The UI describes Append as retaining existing scope and Replace as giving selected tenants the same final scope. Read both descriptions before choosing.
+- Change Summary is a pre-submission review, not proof that authorization has been saved or applied downstream.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Usage authorization between tenants and cloud platforms display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Page location | The content title is Tenant-Cloud Platform Authorization, with Search or select a tenant and Authorize Tenants visible | Compare the menu and page route to locate the page. |
+| Form location | Tenant Scope, Authorization Strategy, Select Cloud Platforms, and Change Summary are displayed | Check that the form was opened through Authorize Tenants; do not confuse it with the earlier edit view. |
+| Pre-submission scope | Affected tenants, Authorization mode, and Selected in this change can be reviewed separately | Return to the corresponding selection area; do not submit an unconfirmed scope. |
+| Exit after inspection | Cancel closes the form and returns to the authorization page | Check whether the form has closed; do not treat exit as a completed save. |
 
 ## FAQ
 
-#### Target Object Is Missing in Tenant-Cloud Auth
+#### Do Append and Replace Select the Number of Tenants?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+The form displays Tenant Scope and two Authorization Strategy options.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+The UI separates tenant selection from handling existing authorization: Tenant Scope accepts one or more tenants, while the strategies describe appending platforms or replacing scope.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The target cloud platform and tenant exist, and the authorization boundary is approved.
-3. Confirm the current role and data scope, then locate the object again.
-
-#### Tenant-Cloud Auth Action Is Unavailable
-
-**Symptom:**
-
-An expected button, menu, or state switch is unavailable.
-
-**Possible Causes:**
-
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
-
-**Resolution:**
-
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### Tenant-Cloud Auth Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Tenant-Cloud Auth Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Tenant-Cloud Auth Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Choose the target tenants first, then read the strategy descriptions. Before submission, review Affected tenants, Authorization mode, and Selected in this change separately.
 
 ## Notes
 
-- Before changing authorization, confirm tenant deployments, business visibility, and revocation arrangements.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- Replace concerns the complete platform scope of selected tenants. Stay within the approved scope and do not mistake the current selection for additions only.
+- Review deployment and business dependencies before configuration or revocation, and retain necessary audit records and recovery arrangements.
+- Do not record real credentials, internal locations, or customer data in documentation, tickets, or chat.
 
 ## Next Steps
 
-1. Continue confirming tenant-available regions on the business-region authorization page.
-2. Check the model deployment or resource selection page from the tenant perspective.
-3. Regularly review configurations such as `Authorize All Tenants` to avoid overly broad authorization.
+1. Open [Business-Region Auth](../business-region-auth/) to review business resource pool scope; tenant-cloud authorization and business resource pool authorization are separate.
+2. Review upstream objects in [Cloud Platforms](../../access-management/cloud-platforms/) and [Resource Pools](../../access-management/resource-pools/).
+3. For deployment selection entries, see [Quick Deployment](../../../user/model-services/quick-deployment/); do not infer deployment or authorization results from this page's summary.

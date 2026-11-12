@@ -1,8 +1,8 @@
 # User Manual
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Manual Overview
@@ -32,7 +32,7 @@ The manual is organized into five modules in the left sidebar:
 | Module | Applicable Roles | Core Features | Recommended Entry |
 | --- | --- | --- | --- |
 | Model Services | Model Providers, Model Callers, Platform Operators | Meta-models, model sources, model publishing, reviews, Playground, call logs, revenue statistics | [Operator: Meta Models](./model-services/operator/settings/meta-models/), [Provider & End User: Models](./model-services/user/discover/models/) |
-| AI Infra On-Cloud | Cloud Resource Operators, End Users | Cloud platforms, cloud accounts, resource pools, tenant authorization, business-region authorization, deployment assets, scheduling policies, quick deployment | [Operator: Access Overview](./ai-infra-on-cloud/operator/access-workbench/access-overview/), [User: Quick Deployment](./ai-infra-on-cloud/user/model-services/quick-deployment/) |
+| AI Infra On-Cloud | Cloud Resource Operators, Cloud Resource Users | Cloud platforms, cloud accounts, resource pools, tenant-cloud-platform and business-resource-pool authorization, models and inference frameworks, model asset migration, quick deployment and deployment queries | [Operator: Access Overview](./ai-infra-on-cloud/operator/access-workbench/access-overview/), [Operator: Model Asset Migration](./ai-infra-on-cloud/operator/deploy-assets/asset-migration/), [User: Quick Deployment](./ai-infra-on-cloud/user/model-services/quick-deployment/), [User: Access Accounts](./ai-infra-on-cloud/user/access-management/access-accounts/) |
 | AI Infra On-Prem | Resource Pool Operators, End Users | Regions, availability zones, clusters, accelerators, specifications, images, storage, templates, quotas, metering, monitoring | [Operator: Regions & Zones](./ai-infra-on-prem/operator/resource-pools/regions-zones/), [User: Overview](./ai-infra-on-prem/user/overview/) |
 | Billing | End Users, Platform Operators, Billing Operators, License Managers | User billing, customer billing, finance operations, top-up orders, monthly bills, settlements, adjustments, License | [Operator: Today Tasks](./billing/operator/finance-operations/today-tasks/), [Provider & End User: Account Overview](./billing/user/billing/overview/) |
 | Settings | End Users, Platform Operators, System Maintainers, Security Roles | Personal Keys, account information, projects, team members, roles, tenant settings, operation logs, system configuration, API rate control | [Settings Overview](./settings/), [Operator: Members](./settings/operator/members-roles/members/), [Provider & End User: Dashboard](./settings/user/personal/dashboard/) |

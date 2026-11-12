@@ -1,8 +1,8 @@
 # 用户手册
 
 ::: info 文档信息
-版本：v2.0
-更新日期：2026-11-04
+版本：v2.1
+更新日期：2026-11-12
 :::
 
 ## 手册总览
@@ -32,7 +32,7 @@
 | 模块 | 适用角色 | 核心功能 | 推荐入口 |
 | --- | --- | --- | --- |
 | 模型及AI服务 | 模型提供方、模型调用方、平台运营 | 元模型、模型来源、模型发布、审核、体验中心、调用日志、收益统计 | [运营管理员：元模型](./model-services/operator/settings/meta-models/)、[模型提供方&用户：模型广场](./model-services/user/discover/models/) |
-| 多云调度平台 | 云资源运营、普通用户 | 云平台、云账号、资源池、租户授权、业务地域授权、部署资产、调度策略、快速部署 | [运营管理员：接入总览](./ai-infra-on-cloud/operator/access-workbench/access-overview/)、[用户：快速部署](./ai-infra-on-cloud/user/model-services/quick-deployment/) |
+| 多云调度平台 | 云资源运营、云资源使用者 | 云平台、云账号、资源池、租户云平台授权与业务资源池授权、模型与推理框架、模型资产迁移、快速部署与部署查询 | [运营管理员：接入总览](./ai-infra-on-cloud/operator/access-workbench/access-overview/)、[运营管理员：模型资产迁移](./ai-infra-on-cloud/operator/deploy-assets/asset-migration/)、[用户：快速部署](./ai-infra-on-cloud/user/model-services/quick-deployment/)、[用户：接入管理](./ai-infra-on-cloud/user/access-management/access-accounts/) |
 | 异构卡纳管 | 资源池运营、普通用户 | 地域、可用区、集群、加速卡、规格、镜像、存储、模板、配额、计量、监控 | [运营管理员：地域/可用区](./ai-infra-on-prem/operator/resource-pools/regions-zones/)、[用户：概览](./ai-infra-on-prem/user/overview/) |
 | 账务 | 普通用户、平台运营、账务运营、License 管理人员 | 用户账务、客户账务、运营财务、充值订单、月度账单、结算单、调账、License | [运营管理员：今日任务](./billing/operator/finance-operations/today-tasks/)、[模型提供方&用户：账户概览](./billing/user/billing/overview/) |
 | 设置 | 普通用户、平台运营、系统维护人员、安全人员 | 个人 Key、账号信息、项目、团队成员、角色、租户设置、操作日志、系统配置、API 流控 | [设置模块总览](./settings/)、[运营管理员：成员](./settings/operator/members-roles/members/)、[模型提供方&用户：概览](./settings/user/personal/dashboard/) |

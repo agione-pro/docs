@@ -494,6 +494,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: '模型库', link: '/zh-CN/usermanual/ai-infra-on-cloud/operator/deploy-assets/models/' },
                     { text: '推理框架', link: '/zh-CN/usermanual/ai-infra-on-cloud/operator/deploy-assets/frameworks/' },
+                    { text: '模型资产迁移', link: '/zh-CN/usermanual/ai-infra-on-cloud/operator/deploy-assets/asset-migration/' },
                     { text: '推理镜像', link: '/zh-CN/usermanual/ai-infra-on-cloud/operator/deploy-assets/runtime-images/' },
                   ]
                 },

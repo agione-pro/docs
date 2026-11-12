@@ -1,8 +1,8 @@
 # Runtime Images
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -10,210 +10,155 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Deploy Assets > Runtime Images |
+| Navigation Path | AI Infra(On-Cloud) > Deploy Assets > Frameworks > in-page Image Resources |
 | Page Route | `/infrahub/op/model/image` |
-| Managed Objects | Runtime images, image locations, platform architecture, and pool scope |
+| Managed Objects | Framework-related runtime images, registry paths, cloud platforms, and resource pool scope |
 
 #### Beginner Explanation
 
-Runtime Images defines the runtime package for model services. It tells frameworks where an image is located and which platforms and pools can use it; incorrect configuration causes pull or startup failures.
+A runtime image is like a runtime package used by a framework; open Image Resources within Frameworks to review and maintain these image records.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
-| Image Location | A reference in an image registry. Documentation uses placeholders only. |
-| Platform Architecture | The processor or runtime architecture supported by the image. |
-| Resource Pool Scope | The platforms and pools allowed to use the image. |
-
-#### Recommended Operation Order
-
-Check for an existing image, add it and confirm platform, architecture, and pool scope, edit when location or scope changes, and validate it in a framework version.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Image Resources | An in-page navigation entry within Frameworks that opens the runtime image list, not a separate sidebar item. |
+| Registry Path | A complete image reference in a registry. The input hint uses the repository address/namespace/image name:tag format. |
+| Type | The Public and Private image options in the add form, separate from Private badges beside cloud platforms. |
+| Resource Pool | The deployment-environment selector below Cloud Platform in the add form. |
 
 ## Prerequisites
 
-1. The current account has the permission required for Runtime Images.
-2. The image owner has confirmed accessibility, and platform and architecture are known.
-3. Before adding or editing, check framework versions, pool permissions, and image-pull requirements.
+1. Use an Operator account that can access Deploy Assets > Frameworks.
+2. Before adding or maintaining an image, identify its name, registry path, cloud platform, resource pool, and purpose.
+3. Before changing an existing image, review associated framework versions and usage scope; a visible form does not prove that the image can be pulled.
 
 ## Page Description
 
-The page lists runtime images and provides an add entry, including ownership, state, and actions.
+This manual retains the Runtime Images name and existing path. In the current system, open Frameworks from the sidebar, then use the in-page Image Resources entry. Framework Management and Image Resources share the Inference Frameworks page heading; the browser title for Image Resources is Runtime Images. Do not look for a separate Runtime Images item in the current system sidebar.
 
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| In-page navigation | Framework Management and Image Resources open the framework and image lists respectively. |
+| Query area | Provides image name, Cloud Platform, and Visibility filters, plus Search and Reset. |
+| Image list | Columns are Image Resource, Cloud Platform / Resource Pool, Visibility, Size, Updated At, and Actions. |
+| Action entries | Add Runtime Image is at the top; Edit and Delete are visible on current record rows. |
+| Add form | Fields are Cloud Platform, Resource Pool, Type, Name, Registry Path, and Description; Cancel and Confirm are at the bottom. |
 
-![Runtime Images page](./images/manual-runtime-images.png)
+![Image Resources navigation and query area](./images/manual-runtime-images.png)
 
-The image shows the Runtime Images list page, displaying image names, repository paths, image types, and sizes across cloud platforms and regions, with an Add Runtime Image button.
+The figure shows the Image Resources in-page navigation, name/Cloud Platform/Visibility filters, and six column headers beneath the Inference Frameworks heading; it covers only this area, contains no data rows, and does not represent an empty list.
 
 ## Main Operations
 
-### Add Runtime Image
+### Open and Query Image Resources
 
-1. Click **"Add Runtime Image"**.
-2. Enter the name, image location, and platform architecture.
-3. Select the applicable platform and pool scope.
-4. Click **"Confirm"** and verify the new record.
+1. Open Deploy Assets > Frameworks from the sidebar.
+2. Click Image Resources in the main content area. Wait for the Image Resource, Cloud Platform / Resource Pool, Visibility, Size, Updated At, and Actions headers before reading the list; do not treat the framework table still displayed during the transition as image records.
+3. Set the image name, Cloud Platform, or Visibility criteria as needed and use Search. Use Reset when you need to set the criteria again.
+4. Check the target record's image, cloud platform/resource pool, visibility, size, and update time before locating its row actions.
 
-![Add Runtime Image](./images/manual-add-runtime-image.png)
+### Open the Initial Add Runtime Image Form
 
-The image shows the Add Runtime Image dialog, configuring the cloud platform, region, image type (public/private), image name, repository path, and description.
+1. Click Add Runtime Image and check the form title.
+2. Review the currently displayed Cloud Platform and Resource Pool values; initial displayed values do not mean that an image has been added.
+3. Distinguish Public and Private in the Type area. Do not treat a Private badge beside a cloud platform as the selected image type.
+4. Review the Name, Registry Path, and Description hints. The name hint uses framework:version-environment, and the registry path hint uses a complete image reference; do not describe architecture as a required field displayed in this initial form.
+5. Cancel and Confirm are available at the bottom. Use Cancel when only reviewing the initial form. Before submitting a configuration, review the current form requirements and target object; neither a visible button nor a closed form proves that the configuration was saved.
 
-### Edit Runtime Image
+![Initial Add Runtime Image form](./images/manual-add-runtime-image.png)
 
-1. Click **"Edit"** on the target image row.
-2. Verify the image location, architecture, and pool scope.
-3. Save and verify that framework versions can still select and pull the image.
+The figure shows the initial Add Runtime Image form: Resource Pool, Name, and Registry Path have required markers; Type offers Public/Private, Description is below, and Cancel/Confirm are at the bottom. No architecture input is shown.
 
-![Edit Runtime Image](./images/manual-maintain-runtime-image.png)
+### Compare the Existing Image Maintenance Form
 
-The image shows the Edit Runtime Image dialog, where you can update the repository path and description.
+1. Current image record rows provide Edit. Before maintaining a record, identify the target image and the impact on associated frameworks.
+2. The existing Edit Image form below is a static field reference showing Cloud Platform, Region, Type, Name, Registry Path, and Description. Its Region label is not the Resource Pool label used by the current add form.
+3. If the current edit form contains these items, check the registry path and purpose against the actual fields, and follow the current submission requirements. Do not treat the reference as a current edit view or as proof that changes were saved or an image was pulled.
 
-### View Runtime Images
+![Existing image maintenance form reference](./images/manual-maintain-runtime-image.png)
 
-1. Locate the target image by name or state.
-2. Verify platform, architecture, pool scope, and update time.
-3. If information differs, verify it in Edit instead of adding a duplicate.
+The figure shows the existing Edit Image form with Cloud Platform, Region, Public/Private Type, Name, Registry Path, and Description. The separate Runtime Images sidebar item in its background belongs to that reference interface, not the current entry instructions.
+
+### Locate the Delete Entry
+
+1. Identify the target row in Image Resources and distinguish Edit from Delete.
+2. Deletion is a change operation. Review associated frameworks and usage scope before proceeding; this section identifies the row entry only and does not presume a confirmation dialog, deletion conditions, or completion result.
 
 ## Parameter Quick Reference
+
+Add fields follow the current initial form. Region is retained only as an existing maintenance-form reference and does not replace the current Resource Pool field.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Cloud Platform | Yes | Tab/Single select | `Alibaba Cloud` | Selects the cloud platform to which the image belongs or on which it can be used. |
-| Region | Yes | Dropdown | `East China-Shanghai 1` | Selects the region where the image is located or available. |
-| Type | Yes | Segmented control | `Public` | Selects public or private image. |
-| Name | Yes | Text | `framework:v1.0-runtime` | Image identifier. It is recommended to include framework, version, and environment. |
-| Registry Path | Yes | Multiline text | `<BASE_URL>/namespace/image:tag` | Complete image repository path. Use placeholders only in documentation. |
-| Description | No | Multiline text | `Sample runtime image description` | Briefly describes the core library and applicable model types. Do not write internal sensitive information. |
-| Size | No | Text | `16 GB` | Image size displayed in the list. |
-| Created at | No | Date time | `2026-07-20 10:00:00` | Image creation time displayed in the list. |
-| Search | No | Button | `Search` | Queries image records with the current filters. |
-| Reset | No | Button | `Reset` | Clears filters and restores the list display. |
-| Export | No | Button | `Export` | Exports image records and may contain sensitive operational configuration. |
-| Import | No | Button | `Import` | Imports image records in bulk and may change multiple configurations. |
-| Edit | No | Action entry | `Edit` | Modifies an existing image configuration. Confirm the impact scope before editing. |
-| Delete | No | Action entry | `Delete` | Deletes an image record and may affect later deployment selection. |
-| Cancel | No | Button | `Cancel` | Closes the dialog without saving the current configuration. |
-| Confirm | Yes | Button | `Confirm` | Submits the runtime image configuration. Review carefully before clicking. |
+| Image name / Cloud Platform / Visibility query | No | Text / Selection | Sample image / Sample cloud platform | Image Resources list filters. |
+| Cloud Platform | Follow the current form | Selection | Current options | Cloud platform selection area at the top of the add form; platform-type badges do not specify image Type. |
+| Resource Pool | Yes | Selection | Sample resource pool | Marked required in the current add form; the label is Resource Pool, not the former Region label. |
+| Type | Follow the current form | Segmented control | `Public` | Visible options are Public and Private. |
+| Name | Yes | Text | `framework:v1.0-runtime` | Marked required in the current add form; its hint recommends framework, version, and environment. |
+| Registry Path | Yes | Multiline text | `<BASE_URL>/namespace/image:tag` | Marked required in the current add form and requests a complete registry path; documentation uses a placeholder address. |
+| Description | No | Multiline text | `Sample runtime image description` | The hint asks for the image's core library and applicable model types. |
+| Image Resource / Cloud Platform / Resource Pool | — | List information | Target record | Identifies the image and environment scope; the name does not replace environment information. |
+| Visibility / Size / Updated At | — | List information | Target record | Separate columns in the current list; do not carry over the former Created at column label. |
+| Region | Follow the current edit form | Selection | Actual displayed value | Appears only in the existing maintenance-form reference, not as a current add field. |
+| Search / Reset | — | Buttons | `Search` / `Reset` | List query entries. |
+| Edit / Delete | — | Row entries | `Edit` / `Delete` | Currently visible action entries, not evidence of execution or completion. |
+| Cancel / Confirm | — | Buttons | `Cancel` / `Confirm` | Bottom entries in the current add form; submission results require a separate check. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The image owner has confirmed accessibility, and platform and architecture are known.
-- Confirm impact before a configuration change: Before adding or editing, check framework versions, pool permissions, and image-pull requirements.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- Image Resources is within Frameworks, not a separate sidebar item. The Inference Frameworks heading does not mean that Framework Management is still the current list.
+- The current list uses Updated At, not the former Created at label. The add form uses Resource Pool, not Region from the existing maintenance reference.
+- A Private badge beside a cloud platform and Private under Type occupy different areas and cannot substitute for each other.
+- The navigation and query-area figure has no data rows; do not infer that the current image list is empty.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Runtime images, image locations, platform architecture, and pool scope display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Entry location | Image Resources is opened from the main content area of Frameworks | Check the in-page entry instead of looking for a separate sidebar item. |
+| List location | Headers are Image Resource, Cloud Platform / Resource Pool, Visibility, Size, Updated At, and Actions | Wait for the transition to finish and check the headers; do not read the framework table still displayed. |
+| Initial add form | Add Runtime Image title, six fields, and Cancel/Confirm are visible | Check the actual form and distinguish Resource Pool from Region in the existing reference. |
+| Type location | Public/Private options appear in the Type area | Do not substitute a cloud platform's Private badge for these options. |
 
 ## FAQ
 
-#### Target Object Is Missing in Runtime Images
+#### Why Is There No Separate Runtime Images Sidebar Entry?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+The current sidebar provides Frameworks, while the image list has the Runtime Images browser title.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+Image Resources is an entry in the main content area of Frameworks, alongside Framework Management.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The image owner has confirmed accessibility, and platform and architecture are known.
-3. Confirm the current role and data scope, then locate the object again.
+Open Deploy Assets > Frameworks, click the in-page Image Resources entry, and confirm the location using the image list headers.
 
-#### Runtime Images Action Is Unavailable
+#### Does a Cloud Platform's Private Badge Mean Private Image Type?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+Private badges appear in the add form's cloud platform area, while Public/Private options also appear under Type.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The cloud platform type label and image Type options belong to different areas.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### Runtime Images Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Runtime Images Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Runtime Images Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Check the image option in the Type area; do not infer image Type from the platform badge.
 
 ## Notes
 
-- Before adding or editing, check framework versions, pool permissions, and image-pull requirements.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- The existing maintenance figure is a static field reference. It does not guarantee an identical current edit form or prove saving, synchronization, or framework usability.
+- Review the target object and usage scope before adding, editing, or deleting. A list record or configuration button does not prove registry connectivity, image pullability, or service startup.
+- Do not put real credentials, internal addresses, or customer data in documentation, tickets, or chat records.
 
 ## Next Steps
 
-1. Select or reference the runtime image in Frameworks.
-2. Verify whether the image can be used in compute plans when adding a model in Models.
-3. Use a test deployment to validate image pull, service startup, and health check results.
+1. Return to [Frameworks](../frameworks/) for framework management and runtime-version configuration references.
+2. Open [Resource Pools](../../access-management/resource-pools/) to review environment objects and [Models](../models/) for model and framework configuration references.
+3. For user-side deployment, see [Quick Deployment](../../../user/model-services/quick-deployment/). Image pulls, service startup, and health checks require separate verification during an actual deployment.
