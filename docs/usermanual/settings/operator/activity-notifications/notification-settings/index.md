@@ -1,8 +1,8 @@
 # Notification Preferences
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -23,7 +23,7 @@ Notification Preferences has two tabs. My Notification Preferences controls only
 | Term | Description |
 | --- | --- |
 | Personal notification preferences | The current account's email choice for each notification type. |
-| In-app notification | A platform notification.; It cannot be disabled at the personal level. |
+| In-app notification | A platform notification. It cannot be disabled at the personal level. |
 | Tenant notification settings | The channels and recipients configured for notification types in a tenant. |
 | Default recipient | The default recipient used for tenant notifications. |
 

@@ -22,11 +22,11 @@ The Overview page is the traffic dashboard. Start here to determine whether requ
 
 | Term | Description |
 | --- | --- |
-| Request volume | The number of API requests that entered the gateway or rate-control path during the selected period.; When it rises unexpectedly, confirm the business peak and time range first. |
-| Blocked requests | The number of requests blocked by rate-control rules.; When it rises, use the top-rule ranking to identify the rules being hit. |
-| Over-limit statistics | Statistics recorded after requests exceed a rule threshold.; Compare the rule threshold, tenant, and model scope. |
-| Enabled rules | The number of rate-control rules currently in effect.; If the count is unexpected, verify publication status in Rule Management. |
-| Top 5 rules | The five rules with the highest hit counts.; Investigate high-hit rules with the largest impact first. |
+| Request volume | The number of API requests that entered the gateway or rate-control path during the selected period. When it rises unexpectedly, confirm the business peak and time range first. |
+| Blocked requests | The number of requests blocked by rate-control rules. When it rises, use the top-rule ranking to identify the rules being hit. |
+| Over-limit statistics | Statistics recorded after requests exceed a rule threshold. Compare the rule threshold, tenant, and model scope. |
+| Enabled rules | The number of rate-control rules currently in effect. If the count is unexpected, verify publication status in Rule Management. |
+| Top 5 rules | The five rules with the highest hit counts. Investigate high-hit rules with the largest impact first. |
 
 ## Prerequisites
 

@@ -22,10 +22,10 @@ Projects is the project ledger for a provider account. It shows project names, b
 
 | Term | Description |
 | --- | --- |
-| Project | A business workspace for model calls, budgets, and member collaboration.; Confirm project ownership before creation or troubleshooting. |
-| Project budget | The quota or amount limit available to a project.; Reaching it can block calls. |
-| Model count | The models associated with or available to a project.; Check model authorization when it is unexpected. |
-| Member | An account that collaborates in a project.; Verify the member role for permission problems. |
+| Project | A business workspace for model calls, budgets, and member collaboration. Confirm project ownership before creation or troubleshooting. |
+| Project budget | The quota or amount limit available to a project. Reaching it can block calls. |
+| Model count | The models associated with or available to a project. Check model authorization when it is unexpected. |
+| Member | An account that collaborates in a project. Verify the member role for permission problems. |
 
 ## Prerequisites
 

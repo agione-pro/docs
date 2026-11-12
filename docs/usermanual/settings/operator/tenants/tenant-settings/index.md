@@ -22,7 +22,7 @@ Tenant Settings maintains tenant-level defaults and security boundaries. Operato
 
 | Term | Description |
 | --- | --- |
-| Tenant-level defaults | Default rules inherited by new objects.; Existing objects can override them on their own settings pages. |
+| Tenant-level defaults | Default rules inherited by new objects. Existing objects can override them on their own settings pages. |
 | IP allowlist | Rules that allow only specified IP addresses or CIDR ranges to access tenant resources. |
 | Policy version | The current version of the tenant security policy. |
 | Current source IP | The source address used to access the console. |

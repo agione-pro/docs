@@ -16,16 +16,16 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-Quota Requests is the ticket entry for member quota. It is used to submit and track requests for additional quota. Before submission, state the purpose, target member, and required amount clearly.
+Quota Requests is the ticket entry for member quota. Use it to submit and track requests for additional quota. Before submission, state the purpose, target member, and required amount clearly.
 
 #### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Quota request | A record that requests additional member or project quota.; Explain the intended use before submission. |
-| Request status | The current processing stage of a request.; Contact the approver when it does not change for a long time. |
-| Requested quota | The amount requested in this submission.; Do not request more than the business needs. |
-| Approval comment | The approver's processing note.; If rejected, revise the request according to the comment. |
+| Quota request | A record that requests additional member or project quota. Explain the intended use before submission. |
+| Request status | The current processing stage of a request. Contact the approver when it does not change for a long time. |
+| Requested quota | The amount requested in this submission. Do not request more than the business needs. |
+| Approval comment | The approver's processing note. If rejected, revise the request according to the comment. |
 
 ## Prerequisites
 

@@ -1,8 +1,8 @@
 # Video
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -14,14 +14,14 @@ Updated: 2026-11-04
 | Route | `/modelone/exploration/video` |
 | Managed objects | Video model, resolution, ratio, and generation tasks |
 
-**New to this page**: Video turns a text prompt into a short video. Choose a video model and resolution, enter a scene description, and track the task in **Task query**.
+**New to this page**: Video turns a text prompt into a short video. Choose a video model and resolution, enter a scene description, and track the task in **Task query**. Text input and `Add attachment` are available.
 
 #### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Text-to-Video | AI generation technology translating text scripts or scene descriptions into coherent sequential video frame sequences. |
-| Resolution & Ratio | Visual clarity tiers (e.g., 480P, 720P, 1080P) and framing dimensions (e.g., 16:9 landscape, 9:16 portrait). |
+| Text-to-Video | AI generation technology translating text scripts or scene descriptions into coherent video frame sequences. |
+| Resolution & Ratio | Visual clarity tiers and framing dimensions; 480P, 720P, 1080P, 16:9, and 9:16 are examples, not ranges promised for every model. Use the selected model’s visible options. |
 | Asynchronous Task Pipeline | Lifecycle queuing and background task architecture handling compute-intensive rendering that typically requires 1–5 minutes. |
 | Duration Billing | Video models generally bill based on generated video seconds, frame counts, or resolution tiers, differing from token billing. |
 
@@ -38,18 +38,20 @@ The page contains a model area, a parameter area, and an input area:
 | Area | Description |
 | --- | --- |
 | Top model & action bar | Displays selected video model name and provider, with Task query and Reset all buttons |
-| Parameter configuration panel | Provides output resolution dropdown (480P, 720P) and aspect ratio selection |
+| Parameter configuration panel | Shows the selected model’s resolution and aspect-ratio controls; a separate `Ratio 5` entry expands to a numeric control labelled `Duration`, so the labels are ambiguous |
 | Prompt script input console | Multi-line text box for camera motions, lighting, and scene details, supporting Shift+Enter line breaks |
 | Rendering & video player area | Displays queuing progress indicator, rendering countdown, and player card with full-screen and MP4 download |
 
-- Model area: current model `wan3.0-video` and provider `Alibaba`; **Task query** and **Model Compare** are on the right.
-- Parameters: `Resolution` (currently `480P`) and `Ratio` (currently `5`).
+- Screenshot example: model `wan3.0-video` and provider `Alibaba`; **Task query** and **Model Compare** are on the right.
+- Screenshot parameters: `Resolution 480P` and a control displayed as `Ratio 5`; do not interpret 5 as an aspect ratio.
 - Input: multi-line box with `Please enter your question, Shift+Enter for a new line`.
 - Reset: **Reset all** restores model and parameter defaults.
 
+For `Doubao-seedance-2-0-260128` / `VolcEngine`, the buttons show `Resolution 720p` and `Ratio 16:9`; a separate `Ratio 5` button expands to a `Duration` numeric control displaying 4–15, currently 5. The main-button and expanded labels conflict, and this range applies only to this model example.
+
 ![Video playground](./images/video-playground.png)
 
-The figure shows the current model is `wan3.0-video` from `Alibaba`; parameters show `Resolution 480P` and `Ratio 5`, with **Task query** and **Model Compare** at the top.
+The figure shows a screenshot example of `wan3.0-video` from `Alibaba`, with `Resolution 480P`, `Ratio 5`, **Task query**, and **Model Compare**. The example does not establish the current selected model or ranges for other models.
 
 ## Main Operations
 
@@ -60,8 +62,8 @@ The figure shows the current model is `wan3.0-video` from `Alibaba`; parameters 
 
 ### Set generation parameters
 
-1. Choose a `Resolution`.
-2. Choose a `Ratio`.
+1. Choose a `Resolution` from the selected model’s visible options.
+2. Check the aspect-ratio control (observed: `16:9`); the separate `Ratio 5` button expands to `Duration`, so its numeric 5 must not be treated as an aspect ratio.
 
 ### Generate a video
 
@@ -76,8 +78,9 @@ The figure shows the current model is `wan3.0-video` from `Alibaba`; parameters 
 
 ### Compare models
 
-1. Click **"Model Compare"**.
-2. Select video models and generate from the same description.
+1. Click **"Model Compare"** to open two inline model slots.
+2. Check the current model and `Change model` in the first slot; the second shows `Select a comparison model`, `Select a model to start comparing`, and `Select Model`.
+3. When finished, click `Cancel comparison` to return to the single-model view.
 
 ## Parameter Quick Reference
 
@@ -85,8 +88,9 @@ The figure shows the current model is `wan3.0-video` from `Alibaba`; parameters 
 | --- | --- | --- | --- | --- |
 | Model | Yes | Selector | `wan3.0-video` | Current video model |
 | Provider | System | Text | `Alibaba` | Provider of the current model |
-| Resolution | Yes | Dropdown | `480P` | Output resolution |
-| Ratio | Yes | Dropdown | `5` | Aspect ratio option |
+| Resolution | Yes | Dropdown | `480P` | Screenshot example; actual options depend on the selected model’s displayed controls. |
+| Ratio | Yes | Parameter control | `16:9` | Aspect ratio visible for this selected model, not a common range for every model. |
+| Ratio 5 | Numeric control visible | Expand entry / slider | `5` | The main button reads `Ratio 5`, while the expanded control is labelled `Duration`; the example model shows a numeric range of 4–15, currently 5. |
 | Prompt | Yes | Multi-line text | `Seaside sunset, slow push-in` | Scene description |
 
 ## Pitfalls

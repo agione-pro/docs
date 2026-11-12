@@ -22,10 +22,10 @@ Publish Center works like a result dashboard for API rate-control publishing. Us
 
 | Term | Description |
 | --- | --- |
-| Publish record | Execution record of a rule publish task.; Check it when troubleshooting rule effectiveness. |
-| Publish status | Status such as successful, failed, or in progress.; Check messages when failed. |
-| Target node | Node scope affected by the publish task.; Confirm whether the expected scope is covered. |
-| Failure reason | Error message for an unsuccessful publish task.; Troubleshoot together with Node Cache. |
+| Publish record | Execution record of a rule publish task. Check it when troubleshooting rule effectiveness. |
+| Publish status | Status such as successful, failed, or in progress. Check messages when failed. |
+| Target node | Node scope affected by the publish task. Confirm whether the expected scope is covered. |
+| Failure reason | Error message for an unsuccessful publish task. Troubleshoot together with Node Cache. |
 
 ## Prerequisites
 

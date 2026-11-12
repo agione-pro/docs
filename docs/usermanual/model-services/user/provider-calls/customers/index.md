@@ -23,7 +23,7 @@ Updated: 2026-11-04
 | Customer | Enterprise tenant or project entity subscribed to or authorized to invoke models published by your organization. |
 | Call Share | The percentage of requests initiated by a specific customer relative to total customer requests directed at your models during the period. |
 | Failed Calls | Requests that returned 4xx/5xx HTTP error codes due to invalid customer request parameters, authentication failures, or model execution issues. |
-| Avg E2E Latency | The average end-to-end duration from when the customer dispatches a request until the final complete response is received. |
+| Avg E2E Latency | The average end-to-end duration from when the customer dispatches a request until the complete response is received. |
 
 ## Prerequisites
 

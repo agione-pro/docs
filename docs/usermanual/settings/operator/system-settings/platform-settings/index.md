@@ -22,10 +22,10 @@ Platform Settings is the global parameter panel. It controls basic platform beha
 
 | Term | Description |
 | --- | --- |
-| Platform configuration | A system parameter that affects global behavior.; Confirm the scope before changing it. |
-| Provider relationship | Configuration that defines a relationship between the platform and a provider.; Confirm business ownership before changing it. |
-| Currency settings | Currency rules used for amount display and settlement.; Verify them before a billing change. |
-| Email settings | Configuration for notifications and verification-code delivery.; Compare it with Login Properties during troubleshooting. |
+| Platform configuration | A system parameter that affects global behavior. Confirm the scope before changing it. |
+| Provider relationship | Configuration that defines a relationship between the platform and a provider. Confirm business ownership before changing it. |
+| Currency settings | Currency rules used for amount display and settlement. Verify them before a billing change. |
+| Email settings | Configuration for notifications and verification-code delivery. Compare it with Login Properties during troubleshooting. |
 
 ## Prerequisites
 

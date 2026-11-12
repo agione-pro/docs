@@ -1,8 +1,8 @@
 # Model Sources
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -22,7 +22,7 @@ A model source answers where the platform calls an upstream model service. One s
 
 | Term | Description |
 | --- | --- |
-| Model Source Code | The globally unique internal English code identifying the upstream vendor source (e.g., `aliyun`, `openai`), non-duplicable. |
+| Model Source Code | The globally unique internal English code identifying the upstream vendor source (e.g., `aliyun`, `openai`). |
 | Endpoint | A physical network access point under a model source, containing the Base URL, region tag, and protocol mappings. |
 | Official Endpoint | A flag indicating whether the access point is operated and hosted directly by the model vendor. |
 | {workspace} | A dynamic routing placeholder supported in Base URLs, automatically replaced at runtime by the gateway with the target workspace ID. |
@@ -45,7 +45,7 @@ The top area contains statistic cards and filters; the model source table sits b
 
 ![Model source list](./images/model-sources-list.png)
 
-The figure shows the cards show `Total model sources 22`, `Enabled 19`, and `Disabled 3`. Each row shows the endpoint count, code, endpoint name and Base URL, protocol tags, and status; the action column offers `Configure` and `Details`.
+The figure shows cards with `Total model sources 22`, `Enabled 19`, and `Disabled 3`. Each row shows the endpoint count, code, endpoint name and Base URL, protocol tags, and status; the action column offers `Configure` and `Details`.
 
 | Area | Description |
 | --- | --- |
@@ -77,7 +77,7 @@ The figure shows the dialog contains only `Model Source Code` and `Model Source 
 
 1. Click **"Configure"** on the target row to open the configuration page.
 2. Click **"Add Endpoint"** under `Endpoint Management` to open the `ENDPOINT CONFIGURATION` drawer.
-3. Enter `Endpoint Display Name` under `Endpoint Information`, and switch the `简体中文`, `English`, and `Español` tabs as needed.
+3. Enter `Endpoint Display Name` under `Endpoint Information`; the `简体中文`, `English`, and `Español` tabs all carry required marks.
 4. Enter a region tag in `Region Tag`, for example `china`, `global`, or `cn-east`.
 5. Turn on the **"Official Endpoint"** switch when the address is operated by the model provider.
 6. Enter the required `Base URL` under `Connection URLs`. Click **"Insert {workspace}"** for dynamic workspace routing.
@@ -85,7 +85,7 @@ The figure shows the dialog contains only `Model Source Code` and `Model Source 
 8. Click **"Select and Add Protocols"** under `Protocol Configuration` and select the protocols the Endpoint supports.
 9. Click **"Save Endpoint"**. To discard the input, click **"Cancel"** or **"Exit Editor"**.
 
-The drawer has three sections: `Endpoint Information`, `Connection URLs`, and `Protocol Configuration`. `Base URL` is the only required field.
+The drawer has three sections: `Endpoint Information`, `Connection URLs`, and `Protocol Configuration`. All three language tabs for `Endpoint Display Name` also carry required marks.
 
 ### Filter model sources
 
@@ -118,7 +118,7 @@ Use the search box or the `Status` and `Modality` filters to narrow the list. Th
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Endpoint Display Name | Required | Multilingual text, up to 128 characters | `China` | Shown as the card title |
+| Endpoint Display Name | Marked required in the UI | Multilingual text, up to 128 characters | `China` | All three language tabs carry required marks; shown as the card title |
 | Region Tag | Optional | Text | `china` | Shown at the right of the card title |
 | Official Endpoint | Optional | Switch | Off | Marks an access point operated by the model provider |
 | Base URL | Required | URL | `https://dashscope.aliyuncs.com` | Call root address; may contain `{workspace}` |

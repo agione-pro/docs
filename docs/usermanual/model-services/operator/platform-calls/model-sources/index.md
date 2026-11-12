@@ -130,7 +130,7 @@ There is no create or edit button for model sources or endpoints on this page.
 
 **Possible Causes:**
 
-This page is an operational monitoring dashboard and does not possess infrastructure management write permissions.
+This page is for operational monitoring and has no infrastructure management write permissions.
 
 **Resolution:**
 

@@ -1,8 +1,8 @@
 # Notification Preferences
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -23,7 +23,7 @@ Notification Preferences has two tabs. My Notification Preferences controls only
 | Term | Description |
 | --- | --- |
 | Personal notification preferences | The current account's email choice for each notification type. |
-| In-app notification | A platform notification.; It cannot be disabled at the personal level. |
+| In-app notification | A platform notification. It cannot be disabled at the personal level. |
 | Tenant notification settings | The channels and recipients configured for notification types in a tenant. |
 | Default recipient | The default recipient used for tenant notifications. |
 
@@ -37,7 +37,7 @@ Notification Preferences has two tabs. My Notification Preferences controls only
 
 ![Notification Preferences](./images/notification-settings-list.png)
 
-The figure shows notification preferences. The page contains two tabs:
+The figure shows notification preferences with two tabs:
 
 | Tab | Description |
 | --- | --- |
@@ -159,4 +159,4 @@ Change an email switch and check the button again. Do not submit unrelated chang
 ## Next Steps
 
 1. To view personal notifications, go to [My Notifications](../inbox/).
-2. To view platform notification types and channels, go to [Notification Governance](../../system-settings/notification-config/).
+2. Contact an operator administrator to review platform notification types and channels.

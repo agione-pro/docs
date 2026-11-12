@@ -111,7 +111,7 @@ The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand
 | Percentile cards populated | Metric cards display millisecond (ms) or second (s) P99/P95 latencies | If `--` appears, the sample count in the filtered range is insufficient to compute statistical percentiles |
 | Abnormal category filtering | Selecting `Platform Rate Limited` or `Failed` isolates and displays only records matching that abnormal status | If no records appear, no incidents of that category occurred in the current scope |
 | Details drawer accessible | Clicking the action button opens a drawer revealing request headers, client IP, response status codes, and phase timings | If details cannot be opened, verify that your account has provider-level audit inspection permissions |
-| Sorting rules applied | Changing sort order re-indexes the table immediately according to duration, timestamp, or token usage | Confirm whether table column headers have locked default sorting active |
+| Sorting rules applied | Changing sort order immediately sorts the table by duration, timestamp, or token usage | Confirm whether table column headers have locked default sorting active |
 
 ## FAQ
 

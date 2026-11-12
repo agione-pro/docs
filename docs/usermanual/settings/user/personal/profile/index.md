@@ -22,10 +22,10 @@ Profile is the identity card for the signed-in account. Use it to confirm who yo
 
 | Term | Description |
 | --- | --- |
-| User information | Basic display information for the current account.; Desensitize it before taking a screenshot. |
-| Username | The name used to sign in to or identify an account.; Verify it during identity troubleshooting. |
-| Security information | Phone number, email address, and other security contact information.; Ask an administrator to complete it when empty. |
-| Account context | The current tenant or identity scope of the account.; Confirm it before a cross-tenant action. |
+| User information | Basic display information for the current account. Desensitize it before taking a screenshot. |
+| Username | The name used to sign in to or identify an account. Verify it during identity troubleshooting. |
+| Security information | Phone number, email address, and other security contact information. Ask an administrator to complete it when empty. |
+| Account context | The current tenant or identity scope of the account. Confirm it before a cross-tenant action. |
 
 ## Prerequisites
 

@@ -35,7 +35,7 @@
 
 ## 页面说明
 
-下图展示登录配置页面。
+
 
 ![登录配置](./images/login-properties-list.png)
 

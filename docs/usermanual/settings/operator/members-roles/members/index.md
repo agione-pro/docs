@@ -22,10 +22,10 @@ Operator members are the platform-console duty roster. They determine who can en
 
 | Term | Description |
 | --- | --- |
-| Operator member | A member with access to platform administration functions.; Assign a role based on job responsibilities. |
-| Platform role | A role that controls which operator modules a member can manage.; Do not grant more permission than required. |
-| Member status | Indicates whether a member is enabled, disabled, or pending activation.; Check status first when login fails. |
-| Management scope | The tenants or system settings visible to a member.; Confirm the scope during troubleshooting. |
+| Operator member | A member with access to platform administration functions. Assign a role based on job responsibilities. |
+| Platform role | A role that controls which operator modules a member can manage. Do not grant more permission than required. |
+| Member status | Indicates whether a member is enabled, disabled, or pending activation. Check status first when login fails. |
+| Management scope | The tenants or system settings visible to a member. Confirm the scope during troubleshooting. |
 
 ## Prerequisites
 

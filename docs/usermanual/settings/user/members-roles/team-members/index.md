@@ -22,10 +22,10 @@ Members is the tenant contact directory and permission entry. Use it to confirm 
 
 | Term | Description |
 | --- | --- |
-| Member | An account that can sign in to or collaborate in a tenant.; Confirm its status and tenant ownership first. |
-| Member status | Indicates whether a member is enabled, disabled, or pending.; Check it first when sign-in fails. |
-| Role assignment | The permission set assigned to a member.; Check it when a menu is missing. |
-| Reset Password | A management action that restores member access.; Confirm the person's identity before using it. |
+| Member | An account that can sign in to or collaborate in a tenant. Confirm its status and tenant ownership first. |
+| Member status | Indicates whether a member is enabled, disabled, or pending. Check it first when sign-in fails. |
+| Role assignment | The permission set assigned to a member. Check it when a menu is missing. |
+| Reset Password | A management action that restores member access. Confirm the person's identity before using it. |
 
 ## Prerequisites
 

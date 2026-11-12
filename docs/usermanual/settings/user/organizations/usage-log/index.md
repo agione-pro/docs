@@ -1,8 +1,8 @@
 # Usage Log
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -16,14 +16,14 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-Confirm the page object first, use the visible entry points, and verify the resulting status on the page.
+Choose the time and usage scope, query or refresh the list, and inspect the target event and its details.
 
 #### Terms Quick Reference
 
 | Term | Description |
 | --- | --- |
-| Usage Log | The object managed on the Usage Log page. |
-| Status | The current availability or activation state. |
+| Usage Log | Read-only records of quota usage events. |
+| Status | The event processing result, when shown on the current page. |
 | Action entry | A visible button, row action, or details entry. |
 
 ## Prerequisites
@@ -64,7 +64,7 @@ The usage audit list shows time, member, model, usage, and status. Filters defin
 
 ### View Quota Usage Event Details
 
-1. Click **"Details"** for the target event.
+1. Click **"Detail"** for the target event.
 2. Compare quota before, change amount, quota after, and the related object.
 3. Check for a reversal or subsequent adjustment near the same time.
 4. If the change cannot be explained, escalate with a redacted event ID and time range. Do not modify quota directly.
@@ -73,14 +73,14 @@ The usage audit list shows time, member, model, usage, and status. Filters defin
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Target object | Yes | Text | `<OBJECT_ID>` | Identifies the object managed on the Quota usage events and their read-only details page. |
-| Status | System generated | Enum | `Enabled` | Shows whether the object is available or active. |
-| Action entry | Conditional | Button / menu | `View` | Opens the view, edit, or follow-up workflow. |
-| Updated at | System generated | Date time | `2026-01-01 00:00` | Used to verify the latest synchronization or change. |
+| Time range | Query criterion | Time option | `Last 7 days` | Queries events within the selected time range. |
+| Usage scope | Query criterion | Scope option | `My usage` | Queries the usage scope visible to the current account. |
+| Action entry | Page action | Button | `Refresh`, `Detail` | Refreshes the list or opens event details. |
+| Usage | Displayed | Displayed value | As shown on the page | Used to review the target event usage, not to edit it here. |
 
 ## Pitfalls
 
-- Usage Log is an audit view; opening `Detail` does not change quota or billing state.
+- Use this audit view for read-only queries, not quota or billing changes. Available actions depend on the current account and page state.
 - A masked or abbreviated API Key is still sensitive. Do not copy it into documentation or tickets.
 - Empty results may reflect the selected time range, account scope, or a lack of usage events.
 
@@ -103,39 +103,39 @@ The target Usage Log is not shown after the page is opened.
 
 **Possible causes:**
 
-The filters are too narrow, the tenant scope does not match, or the current account cannot view the object.
+The query is limited by its time and usage scope. Check whether the target event is within the selected scope.
 
 **Resolution:**
 
-Clear the filters and search again. Confirm the current tenant and role scope. Ask an operator administrator to check access when required.
+Check the visible time and usage scope, refresh the list, and review the target event.
 
-#### Why is the Usage Log action unavailable?
+#### Which review actions are available on the current page?
 
 **Symptom:**
 
-A button is hidden, disabled, or does not respond.
+A usage event needs review; the current page shows query, refresh, and `Detail` entry points.
 
 **Possible causes:**
 
-The current account lacks permission, the object is in a state that cannot be changed, or the page has not refreshed.
+This is a usage-event query page. No edit, save, or submit controls were visible in the observed account state.
 
 **Resolution:**
 
-Check the role permission and object status, refresh the page, and follow the page message. Do not submit the same action repeatedly.
+Use the time and usage scope available to the current account, refresh the list, and inspect the event details. Do not change quota or ledger records here.
 
-#### Why does the Usage Log change not appear?
+#### How should unbilled calls be investigated?
 
 **Symptom:**
 
-The list or details page still shows the previous value after an action.
+An unbilled call, such as a rate-limit block or authentication error, needs investigation.
 
 **Possible causes:**
 
-Synchronization or cache is delayed, the action was not submitted, or a different object was opened.
+The page states that this ledger records actual quota deductions.
 
 **Resolution:**
 
-Check the success message, object identifier, and update time. Refresh the list and reopen details. Review Operation Logs when needed.
+Use the visible `Model Call Logs` entry to investigate unbilled calls. Use this page to query and review usage ledger records.
 
 ## Notes
 
@@ -144,7 +144,7 @@ Check the success message, object identifier, and update time. Refresh the list 
 
 ## Next Steps
 
-1. Return to Settings > Tenants > Usage Log and verify the status and update time.
-2. If a related object must be processed, open the next business entry shown on the page.
+1. Return to this page, verify the time and usage scope, and refresh the list.
+2. For further event review, use the currently visible `Detail` entry.
 
 Related pages: [Tenant Settings](../org-settings/)、[Member Quotas](../../members-roles/member-quotas/)

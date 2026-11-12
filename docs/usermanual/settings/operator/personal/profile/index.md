@@ -22,11 +22,11 @@ Profile is the identity card for a platform administrator. It shows the administ
 
 | Term | Description |
 | --- | --- |
-| Tenant | The business and billing entity that owns the account.; The page shows the tenant name, tenant ID, business identity, and creation time. |
-| Display name | The administrator name shown on the page.; Use `Edit` next to it to change it. |
-| Username | The sign-in identifier.; It is usually read-only; use the account-management process for changes. |
-| Identity source | The local or unified identity source that owns the account.; Check it when a field cannot be edited. |
-| Preferences | The interface language used by the current account.; The selection is saved to the account. |
+| Tenant | The business and billing entity that owns the account. The page shows the tenant name, tenant ID, business identity, and creation time. |
+| Display name | The administrator name shown on the page. Use `Edit` next to it to change it. |
+| Username | The sign-in identifier. It is usually read-only; use the account-management process for changes. |
+| Identity source | The local or unified identity source that owns the account. Check it when a field cannot be edited. |
+| Preferences | The interface language used by the current account. The selection is saved to the account. |
 
 ## Prerequisites
 

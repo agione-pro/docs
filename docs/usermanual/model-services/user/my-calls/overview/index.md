@@ -135,7 +135,7 @@ The figure shows filters include month, `By Date`, `Model`, and `Client Source`;
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Filters applied | Metric cards and trend charts recalculate immediately based on selected month, model, or client source. | If data does not update, click outside the dropdown to remove focus or click the refresh button. |
-| Trend switching | Seamlessly switches between `Requests`, `Tokens`, and `Outcomes` line/bar views. | Refresh the page to reload chart components and inspect the browser console for rendering errors. |
+| Trend switching | Switches between `Requests`, `Tokens`, and `Outcomes` line/bar views. | Refresh the page to reload chart components and inspect the browser console for rendering errors. |
 | Composition switching | Pie charts (`Composition`) and bar graphs (`Ranking`) render normally with expected attribution ratios. | If empty, verify whether invocations lacked keys and therefore could not be attributed. |
 | Ranking switching | Switches freely between `Member Top 10` and `Project Top 10`, sorted from highest to lowest usage. | If "No Ranking Data", widen the date range or clear granular filters. |
 | Drill-down links | Clicking **"View Failed"**, **"View Limited"**, or **"View Slow Calls"** opens filtered call logs properly. | Verify whether the account has log inspection permissions or whether anomalies actually occurred. |

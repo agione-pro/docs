@@ -22,10 +22,10 @@ Tenants is the platform's directory of business entities. It maintains tenants, 
 
 | Term | Description |
 | --- | --- |
-| Tenant | A business entity on the platform.; Confirm its unique identity before an action. |
-| Tenant administrator | The account responsible for tenant administration.; Verify it before contact or authorization. |
-| Tenant role | A permission set available to a tenant.; Confirm the impact before changing it. |
-| Tenant tag | A label used to classify tenants.; Use it for filtering and operations. |
+| Tenant | A business entity on the platform. Confirm its unique identity before an action. |
+| Tenant administrator | The account responsible for tenant administration. Verify it before contact or authorization. |
+| Tenant role | A permission set available to a tenant. Confirm the impact before changing it. |
+| Tenant tag | A label used to classify tenants. Use it for filtering and operations. |
 
 ## Prerequisites
 

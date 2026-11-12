@@ -22,7 +22,7 @@ Updated: 2026-11-04
 | --- | --- |
 | Customer (Tenant) | An independent enterprise, organization, or tenant entity connected to the platform initiating model calls. |
 | Call Share | The percentage of invocations made by this customer relative to total platform call volume over the period. |
-| Avg TPOT | Time Per Output Token, measuring average duration consumed per generated token during output phases. |
+| Avg TPOT | Time Per Output Token, measuring average time per generated token during output. |
 | Failed Calls | Invocations failing due to bad client parameters (4xx), invalid authentication, or upstream server errors (5xx). |
 
 ## Prerequisites
