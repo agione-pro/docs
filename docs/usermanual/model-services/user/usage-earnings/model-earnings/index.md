@@ -20,7 +20,7 @@ Updated: 2026-11-04
 
 | Term | Description |
 | --- | --- |
-| Credits Earned | Total revenue amount credited to your account according to billing rules after external tenant customers invoke your published models. |
+| Credits Earned | Total revenue credited to your account under billing rules after external tenant customers invoke your published models. |
 | Income Tokens | Total billable inference token volume (combining input Prompt Tokens and output Completion Tokens). |
 | Tenant Activity | Distribution and call frequency of paying customer tenants generating active API requests and commercial deductions during the period. |
 | Top 10 Tenant Credit Consumption | Ranking of the top 10 key enterprise customer tenants sorted in descending order of revenue contribution to your organization. |

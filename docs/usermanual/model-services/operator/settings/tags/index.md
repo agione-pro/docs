@@ -49,7 +49,7 @@ The top area contains the filter row and **Add Tag**. The table below uses a tre
 
 ![Tag list](./images/tags-list.png)
 
-The figure shows `Category name` shows categories such as “Language & Text” and “Speech & Audio” with their subtags. `Status` shows `Available`; the action column offers `Edit`, `Add Subtag`, and more actions.
+The figure shows categories in `Category name`, such as “Language & Text” and “Speech & Audio” with their subtags. `Status` shows `Available`; the action column offers `Edit`, `Add Subtag`, and more actions.
 
 ## Main Operations
 

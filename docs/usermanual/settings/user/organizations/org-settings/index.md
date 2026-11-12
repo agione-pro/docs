@@ -22,10 +22,10 @@ Tenant Settings is the tenant default-rule panel. It defines the initial policy 
 
 | Term | Description |
 | --- | --- |
-| Tenant Settings | The entry for tenant-level default configuration.; Confirm the applicable scope before changing it. |
-| Default rule | A rule inherited when a new object is created.; It does not necessarily update existing objects. |
-| Tenant context | The tenant that owns the current settings.; Confirm it before switching tenant scope. |
-| Member default policy | The initial rule applied when a new member joins.; Verify it with a new member after a change. |
+| Tenant Settings | The entry for tenant-level default configuration. Confirm the applicable scope before changing it. |
+| Default rule | A rule inherited when a new object is created. It does not necessarily update existing objects. |
+| Tenant context | The tenant that owns the current settings. Confirm it before switching tenant scope. |
+| Member default policy | The initial rule applied when a new member joins. Verify it with a new member after a change. |
 
 ## Prerequisites
 

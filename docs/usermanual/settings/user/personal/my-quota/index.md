@@ -22,10 +22,10 @@ My Quota shows the current account's personal quota, used amount, reset time, mo
 
 | Term | Description |
 | --- | --- |
-| Personal cycle quota | The quota available to the account in one cycle.; It is controlled by the member quota policy. |
-| Reset cycle | The cycle in which quota is recalculated.; The page shows the current cycle and next reset time. |
-| Model access scope | The models the account can call.; It can be all models or a specified set. |
-| Quota request | A request to increase quota.; The approval result is shown here. |
+| Personal cycle quota | The quota available to the account in one cycle. It is controlled by the member quota policy. |
+| Reset cycle | The cycle in which quota is recalculated. The page shows the current cycle and next reset time. |
+| Model access scope | The models the account can call. It can be all models or a specified set. |
+| Quota request | A request to increase quota. The approval result is shown here. |
 | Model permission request | A request to access a specific model. |
 
 ## Prerequisites

@@ -37,7 +37,7 @@ Contacts is the tenant's notification recipient list. A tenant general contact b
 
 ![Contacts](./images/contacts-list.png)
 
-The figure shows the contacts list. The page provides contact search, status filtering, contact creation, and a contact list.
+The figure shows the contacts list, with contact search, status filtering, and contact creation.
 
 | Area | Description |
 | --- | --- |

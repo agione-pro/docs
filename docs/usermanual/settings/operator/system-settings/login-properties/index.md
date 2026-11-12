@@ -22,10 +22,10 @@ Login Properties is the platform's entry gate. It controls verification codes, a
 
 | Term | Description |
 | --- | --- |
-| Sign-in policy | Rules that control how users sign in and verify their identities.; Confirm the affected scope before a change. |
-| Verification code | A code used during sign-in, registration, or account recovery.; Check email or SMS configuration when delivery fails. |
-| Account recovery | A process that helps a user restore account access.; Confirm the security policy before enabling it. |
-| Third-party sign-in | An external identity entry such as Google Login.; Test the sign-in flow after a change. |
+| Sign-in policy | Rules that control how users sign in and verify their identities. Confirm the affected scope before a change. |
+| Verification code | A code used during sign-in, registration, or account recovery. Check email or SMS configuration when delivery fails. |
+| Account recovery | A process that helps a user restore account access. Confirm the security policy before enabling it. |
+| Third-party sign-in | An external identity entry such as Google Login. Test the sign-in flow after a change. |
 
 ## Prerequisites
 
@@ -47,7 +47,7 @@ The page includes `Login security`, `Registration Settings`, `Registration Codes
 | Google Login | Shows third-party sign-in configuration. |
 | Edit | Changes the selected configuration category. |
 
-The following screenshot shows login properties.
+
 
 ![Login Properties](./images/login-properties-list.png)
 

@@ -46,12 +46,17 @@
 │       └── product/ installation/ license/ userguide/
 │           usermanual/ practices/ operations/ others/
 ├── .github/workflows/             # CI/CD 配置
-├── scripts/                       # 文档校验脚本
+├── scripts/                       # 文档校验与截图脚本
 │   ├── check-docs-profile.mjs     # 品牌占位符与 AGIOne 域名一致性检查
-│   └── check-docs-images.mjs      # 图片引用与文件名大小写检查
+│   ├── check-docs-images.mjs      # 图片引用与文件名大小写检查
+│   ├── check-manual-style.mjs     # 用户手册样式门禁（S01–S10，规则见 USER_MANUAL_PAGE_STRUCTURE_GUIDE.md §10）
+│   ├── manual-style-baseline.json # 样式门禁存量违规快照
+│   └── render-shot.py             # 浏览器渲染截图工具（规范见 SCREENSHOT_GUIDE.md）
 ├── AGENTS.md                      # 文档维护规则（协作铁律）
 ├── GUIDE.md                       # 本文件（VitePress 维护指南）
 ├── USER_MANUAL_PAGE_STRUCTURE_GUIDE.md  # 用户手册页面结构规范
+├── SCREENSHOT_GUIDE.md            # 文档配图截取规范
+├── PROJECT_CONTEXT.md             # 历史工作日志（含免责声明，不代表当前状态）
 ├── .gitignore
 ├── package.json
 └── README.md
@@ -476,7 +481,7 @@ Preview 环境需要额外配置以下变量：
 4. **静态资源**：放在 `docs/public/` 下的文件可通过 `/filename` 直接访问
 5. **文档内图片**：使用**相对路径**引用与页面同级的 `images/` 子目录，例如 `![云账号页面](./images/manual-cloud-accounts.png)`。放在 `docs/public/` 下的文件可用 `/文件名` 直接引用。VitePress 不支持 `~assets` 这类资源别名前缀，不要使用
 6. **配图截取**：所有界面配图按 `SCREENSHOT_GUIDE.md` 生成，使用 `scripts/render-shot.py`。固定 1920 视口、保留左侧菜单、裁掉顶部导航、中文页配中文图、英文页配英文图
-6. **侧边栏路径**：侧边栏的 `link` 不需要 `.md` 后缀
+7. **侧边栏路径**：侧边栏的 `link` 不需要 `.md` 后缀
 
 ## 场景文档写作规范
 

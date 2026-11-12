@@ -1,243 +1,171 @@
 # My Deployments
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-11
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Model Providers |
+| Applicable Roles | User |
 | Navigation Path | AI Infra(On-Cloud) > Model Services > My Deployments |
 | Page Route | `/infrahub/user/model/deployment` |
-| Managed Objects | Model deployments, states, events, service information, and publishing entry |
+| Managed Objects | Deployment queries, deployment cards, and model publishing entry |
 
 #### Beginner Explanation
 
-My Deployments is the task center for model services. Check status and events after creation, and publish only after the service is ready.
+My Deployments is a directory of model deployment tasks: find a record with filters, then review its card information and available actions.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
-| Deployment State | The current stage from creation to ready or failed. |
-| Event | A timeline of scheduling, pull, startup, and error information. |
-| Publishing Region | The visibility scope selected when converting a deployment into a model service. |
-
-#### Recommended Operation Order
-
-Review the deployment list, open details and events, and choose a publishing region only after the service is stable.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Resource Pool | A resource scope used to query deployments. |
+| Deployment Status | The current state shown on a deployment card; use its actual label. |
+| Publishing Area | The private or public destination selected when publishing a model. |
 
 ## Prerequisites
 
-1. The current account has the permission required for My Deployments.
-2. A Quick Deployment job exists and the current account can view it.
-3. Before starting, stopping, deleting, or publishing, confirm service impact, customer visibility, and cost.
+1. Sign in and ensure My Deployments is accessible from the On-Cloud Model Services menu.
+2. The query page does not require existing records. Card review and publishing require a target deployment you can view.
+3. Before publishing, starting, stopping, or deleting, confirm the target record, service impact, visibility, and cost boundary.
 
 ## Page Description
 
-The page lists deployments, states, and actions, with a publishing entry in more actions. The current Operator account does not expose this user entry, so this page is partially verified from existing screenshots and the cross-role workflow.
-
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| Filters | Cloud Platform, Resource Pool, Name, Status, and Model Name, plus Search and Reset. Name and Model Name support partial matching. |
+| Results | Shows matching deployments or No Data, with pagination at the bottom. |
+| Deployment cards and publishing | When records exist, review name, model, status, resources, and cost, then use available entries for details or publishing. |
 
 ![My Deployments list](./images/my-deployments-list.png)
 
-The image shows the My Deployments service list page, filtering cards by cloud platform and displaying deployment name, model version, node specifications, running state, and hourly cost estimates.
+The figure shows Cloud Platform, Resource Pool, partial name search, Status, partial model name search, Search, and Reset; the result area currently displays No Data and Total 0.
 
 ## Main Operations
 
-### View Deployment Details
+### Query Deployments
 
-1. Locate the target record in My Deployments.
-2. Open details and verify model, region, flavor, and current state.
-3. Review the event timeline for scheduling, image-pull, or startup failures.
+1. Open My Deployments and select **Cloud Platform** and **Resource Pool** as needed.
+2. Enter keywords for the deployment name or model name and select **Status** as needed.
+3. Click **Search** and review results and pagination. Use **Reset** when you need to set criteria again.
+4. If **No Data** appears, review the current criteria. An empty list provides no details, running result, or publishing result for a target deployment.
 
-### View Service Information
+### Review a Deployment Card
 
-1. Confirm that the deployment is ready.
-2. Verify service location, health state, and update time. Documentation uses only `<BASE_URL>` and `<ENDPOINT_PATH>`.
-3. Validate the service with a redacted test request and do not store real credentials in documentation.
+1. When records exist, locate the target deployment and verify its name, model, deployment mode, cloud platform, region, and status.
+2. Review GPU, CPU, memory, and hourly cost reference on the card. Example amounts are not fixed prices.
+3. Use **Details** when available. More actions includes entries for Publish, Delete, Monitoring Information, and API Call Details. An entry's presence does not mean the action has been performed.
 
-### Publish a Deployed Model
+### Open Model Publishing
 
-#### Step 1: Open the Publish Entry
+The following publishing flow applies when the target deployment exists in the list and its Publish entry is available.
 
-1. In the My Deployments list, locate the target running deployment card.
-2. Click the more actions icon (`···`) in the lower-right corner of the card and select **"Publish"** from the menu.
+1. Locate the target running deployment and verify the card name and model.
+2. Click the more actions icon (`···`) at the lower right of the card, then select **Publish**.
 
 ![Publishing entry](./images/publish.png)
 
-The image shows selecting the Publish action from the more actions menu on a deployment card.
+The figure shows a deployment card's Running label, resource specifications, hourly cost reference, and Details entry; the expanded menu includes Publish, Delete, Monitoring Information, and API Call Details.
 
-#### Step 2: Choose Publication Target Area
+### Choose a Publishing Area
 
-1. In the "Choose Where to Publish" dialog, select the target visibility area based on your intended audience:
-   - **Private Area**: Publish to the private model library, accessible and invokable only within the current organization/tenant.
-   - **Public Area**: Publish to the public model library, available for all platform users to invoke with independent pricing.
-2. Click "Publish to Private Area" or "Publish to Public Area" to proceed to the detailed configuration form.
+1. Read both destinations in the Publish Model dialog under “Choose where to publish”: **Private** publishes to the private model catalog for calls within the current organization and is not listed publicly; **Public** publishes to the public model catalog for platform users, with independent pricing.
+2. Click **Publish to Private** or **Publish to Public** according to the intended audience to open model publishing configuration.
 
-![Choose publishing region](./images/choose-where-to-publish.png)
+![Choose publishing area](./images/choose-where-to-publish.png)
 
-The image shows the target publication area selection dialog, allowing models to be published to an organization's private area or the platform's public catalog.
+The figure shows Private and Public destination cards, distinguishing organization-only calls and no public listing from the platform catalogue and independent pricing.
 
-#### Step 3: Complete Model Publishing Details and Submit
+### Review Model Publishing Information
 
-1. The system automatically populates the meta-model, model source, and upstream prediction request URL.
-2. Enter or verify the API key and Model Source ID.
-3. Complete the billing configuration and rate-limiting rules step-by-step, then click Submit.
-4. After submission, navigate to `Creative Space > My Models` to confirm that the model is published and ready for invocation.
+1. Review **Meta Model**, **Model Source**, **Request URL**, and region on Publish Model against the target deployment. Use `<BASE_URL><ENDPOINT_PATH>` for example addresses.
+2. Review **API Key** and **Model source ID** in the secure input area. Do not copy real keys into documentation, tickets, or chat records.
+3. Use **Next** to proceed through **Billing Configuration** and **Rate Limit Configuration**, complete the requirements of each stage, and only then submit.
+4. After submission, go to **Studio > My Models** to check the actual model status and visibility. Opening configuration does not mean the model is published or callable.
 
 ![Publish model page](./images/publish-model.png)
 
-The image shows the Publish Model form, automatically populating the deployment prediction URL while configuring the API key, billing, and rate-limiting rules.
+The figure shows Basic Information with Meta Model, Model Source, Request URL, API Key, and Model source ID; the top lists Billing Configuration and Rate Limit Configuration, with Cancel and Next at the bottom.
 
 ## Parameter Quick Reference
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Name | No | Input | `demo-deployment` | Filters records by deployment name. Use sanitized examples only. |
-| Status | No | Dropdown | `Running` | Filters records by deployment status. |
-| Model Name | No | Input | `demo-model` | Filters deployment records by model name. |
-| Deployment Name | No | Card field | `demo_deployment` | Deployment record display name. Avoid real business or customer information. |
-| Deployment Status | No | Status tag | `Running` | Shows whether the deployment is available. |
-| Model Name | No | Card field | `Sample Model` | Model bound to the deployment record. |
-| Deployment Mode | No | Card field | `Single Node` | Deployment mode used by the current deployment. |
-| Cloud Platform | No | Card field | `Sample Cloud Platform` | Cloud platform where the deployment is located. |
-| Region | No | Card field | `Sample Region` | Region where the deployment is located. |
-| Resource Specification | No | Card field | `Sample GPU / CPU / Memory` | Resources used by the deployment. |
-| Cost | No | Display field | `Sample cost/hour` | Deployment cost reference. Real amount details are not recorded in documentation. |
-| Publish Entry | Yes | Action entry | `Publish` | Opens the publish region selection dialog. |
-| Publish Region | Yes | Selection card | `Private` | Selects whether the model is published to Private or Public. |
-| Private | No | Publish region | `Publish to Private` | Publishes to the private model catalog for tenant-only visibility and calls. |
-| Public | No | Publish region | `Publish to Public` | Publishes to the public model catalog for end users. |
-| Redirect Target | Yes | Page redirect | `Studio > My Models > Publish Model` | Target page after selecting the publish region. |
-| Meta Model | Yes | Select | `Sample Model` | Meta model information on the publish model page. |
-| Model Source | Yes | Dropdown | `source-a` | Source of the model being published. |
-| Request URL | Yes | URL | `<BASE_URL><ENDPOINT_PATH>` | Upstream request address. Use placeholder URLs only in documentation. |
-| API Key | Yes | Secret text | `<redacted>` | API key is sensitive and must be redacted in documentation. |
-| Model source ID | Yes | Text | `demo-model-id` | Model name or identifier sent to the upstream provider. |
-| Region | No | Dropdown | `Sample Region` | Region field on the publish model page. |
+| Cloud Platform | No | Dropdown filter | `Cloud Platform` | Queries by the deployment's cloud platform. |
+| Resource Pool | No | Dropdown filter | `Resource Pool` | Queries by the deployment's resource pool. |
+| Name | No | Text filter | `demo` | Searches by partial deployment name. |
+| Status | No | Dropdown filter | `Status` | Queries by deployment status without assuming all available values. |
+| Model Name | No | Text filter | `Qwen` | Searches by partial model name. |
+| Search / Reset | No | Button | `Search` | Queries or allows criteria to be set again. |
+| Deployment Name / Status | — | Card field | `demo_deployment` | Identifies the target record and its current state. |
+| Model / Deployment Mode | — | Card field | `Single Node` | Bound model, engine version, and deployment mode. |
+| Cloud Platform / Region | — | Card field | `Sample Cloud / Sample Region` | Resource location displayed on the card. |
+| Resources / Cost | — | Card field | `Sample GPU / CPU / Memory` | Resource configuration and hourly cost reference. |
+| Publish | No | Action entry | `Publish` | Opens publishing area selection from more actions. |
+| Publishing Area | Yes | Destination card | `Private` | See the dialog for Private and Public scope. |
+| Meta Model / Model Source | Yes | Selector | `Sample Model / source-a` | Model and source in publishing basic information. |
+| Request URL | Yes | URL | `<BASE_URL><ENDPOINT_PATH>` | Review the upstream request address. |
+| API Key | Yes | Secret input | `<API_KEY>` | Use real values only in the secure input area. |
+| Model source ID | Yes | Text | `demo-model-id` | Exact model name sent to the upstream provider. |
+| Region | No | Dropdown | `Sample Region` | Region field in publishing basic information. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: A Quick Deployment job exists and the current account can view it.
-- Confirm impact before a configuration change: Before starting, stopping, deleting, or publishing, confirm service impact, customer visibility, and cost.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- The current list figure is empty. It does not prove that details, publishing, or lifecycle features are absent, nor does it prove successful deployment.
+- The destination dialog distinguishes Private from Public. Platform catalogue visibility and organization-only calls are different scopes.
+- Publish on a card opens a publishing flow; it is not a sign that the model is already published.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Model deployments, states, events, service information, and publishing entry display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Query scope | Cloud Platform, Resource Pool, Name, Status, and Model Name match the target query | Review filters, reset as needed, and query again |
+| Query results | The result area displays deployment records or explicitly displays No Data | Use actual records and pagination; do not infer why the list is empty |
+| Target deployment | When a record exists, its name, model, and status can be checked individually | Do not publish, start, stop, or delete without identifying the target |
+| Publishing destination | The dialog shows Private and Public with their descriptions | Confirm the audience before selecting the corresponding entry |
+| Publishing information | Model, source, URL, and model source ID match the target | Return to review the deployment; configuration is not a successful publishing result |
 
 ## FAQ
 
-#### Target Object Is Missing in My Deployments
+#### Does an Empty List Mean Publishing Is Unavailable?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+The result area displays No Data with no deployment card to operate on.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+The page currently shows an empty result without a target card. That message itself does not identify a specific cause or establish feature permissions.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: A Quick Deployment job exists and the current account can view it.
-3. Confirm the current role and data scope, then locate the object again.
+Review Cloud Platform, Resource Pool, Name, Status, and Model Name. Continue only after locating the target deployment, using entries actually available on its card.
 
-#### My Deployments Action Is Unavailable
+#### How Do Private and Public Differ?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+The publishing dialog offers two destinations.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The dialog distinguishes organization-only calls and no public listing from the platform catalogue and independent pricing.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### My Deployments Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### My Deployments Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a My Deployments Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Read the destination descriptions for the intended audience, confirm scope, and choose Publish to Private or Publish to Public.
 
 ## Notes
 
-- Before starting, stopping, deleting, or publishing, confirm service impact, customer visibility, and cost.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- Publishing, starting, stopping, and deleting involve services or resources. Confirm the target and impact; do not infer results from an empty list.
+- Handle real credentials only in secure input areas. Documentation examples use `<API_KEY>`, `<BASE_URL>`, and `<ENDPOINT_PATH>`.
+- Query results, card status, and publishing configuration are different stages. They do not guarantee downstream synchronization or successful calls.
 
 ## Next Steps
 
-1. Continue completing basic information, billing configuration, and rate limit configuration on the `Publish Model` page.
-2. Before publishing, confirm publish region, visibility scope, invocation method, and billing strategy again.
-3. After publishing, return to `My Models` or the model catalog to check model status and visibility.
+1. If no target deployment exists, review model and plan selection in [Quick Deployment](../quick-deployment/).
+2. When Publish Model is open, continue reviewing Basic Information, Billing Configuration, and Rate Limit Configuration in order.
+3. After publishing submission, check the target record in [My Models](../../../../model-services/user/studio/my-models/) and use its actual status.

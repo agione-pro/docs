@@ -85,7 +85,7 @@ The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand
 | --- | --- | --- |
 | Filter synchronization | Switching months or specifying a customer synchronously refreshes rows, requests, and share percentages | If the table becomes empty, click reset to clear filters and verify customer calls exist for published models in the period |
 | Metric accuracy | Model rows accurately display requests, share, success rate, and total tokens | If success rate is low, check Failed / Rate Limited counts and drill down to call logs to verify backend model instance health |
-| Latency indicators | Average TTFT, TPOT, and E2E duration values are clearly displayed | If `--` is shown, sample volume is insufficient or calls are non-streaming preventing TPOT calculation |
+| Latency indicators | Average TTFT, TPOT, and E2E duration values are displayed | If `--` is shown, sample volume is insufficient or calls are non-streaming preventing TPOT calculation |
 | Model search | Entering a model name or route identifier in the search box filters the table in real time | Clear extra characters from the search input and retry |
 | Cross-dimensional drill-down | Clicking the details button in the Actions column navigates to [Call Logs](../call-logs/) with pre-applied model filters | Verify the current account has cross-customer audit permissions for model providers |
 

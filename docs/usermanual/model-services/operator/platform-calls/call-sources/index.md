@@ -22,7 +22,7 @@ Updated: 2026-11-04
 | --- | --- |
 | Client Source | The client application, system service, or API key origin initiating model invocations. |
 | Avg TTFT | Time To First Token, measuring average latency between receiving a request and returning the first generated token. |
-| Avg E2E | End-to-End latency, covering total elapsed duration from gateway routing, queuing, to final completion. |
+| Avg E2E | End-to-End latency, covering gateway routing and queuing through final completion. |
 | Rate Limited Calls | Requests rejected by the platform gateway when concurrency or QPS exceeds configured rate limits. |
 
 ## Prerequisites

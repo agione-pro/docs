@@ -22,10 +22,10 @@ Operator operation logs are the audit trail for the platform console. Use them t
 
 | Term | Description |
 | --- | --- |
-| Operator | The account that performed a platform administration action.; Confirm the identity first during an investigation. |
-| Target object | The configuration, member, or tenant that was viewed or changed.; Compare it with the record on the affected page. |
-| Operation result | The success, failure, or partial-success status of an action.; Review the error information for failed actions. |
-| Audit scope | The log boundary visible to the current account.; Check permissions first when records are missing. |
+| Operator | The account that performed a platform administration action. Confirm the identity first during an investigation. |
+| Target object | The configuration, member, or tenant that was viewed or changed. Compare it with the record on the affected page. |
+| Operation result | The success, failure, or partial-success status of an action. Review the error information for failed actions. |
+| Audit scope | The log boundary visible to the current account. Check permissions first when records are missing. |
 
 ## Prerequisites
 

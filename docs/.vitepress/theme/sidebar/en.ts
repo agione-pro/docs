@@ -555,6 +555,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "Models", link: "/usermanual/ai-infra-on-cloud/operator/deploy-assets/models/" },
                     { text: "Frameworks", link: "/usermanual/ai-infra-on-cloud/operator/deploy-assets/frameworks/" },
+                    { text: "Model Asset Migration", link: "/usermanual/ai-infra-on-cloud/operator/deploy-assets/asset-migration/" },
                     { text: "Runtime Images", link: "/usermanual/ai-infra-on-cloud/operator/deploy-assets/runtime-images/" },
                   ]
                 },

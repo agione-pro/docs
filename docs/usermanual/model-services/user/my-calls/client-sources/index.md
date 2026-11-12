@@ -23,7 +23,7 @@ Updated: 2026-11-04
 | Client Source | Upstream client entity initiating large model API requests, such as a designated app name, SDK identifier, or business subsystem. |
 | Call Share | The percentage of requests initiated by a specific client source relative to the tenant's total model call volume during the period. |
 | Rate-Limited Calls | The count of calls rejected by gateway flow control quotas or QPS/TPM threshold limits. |
-| Avg TPOT | Average Time Per Output Token per output token, reflecting the streaming decoding smoothness perceived by individual applications. |
+| Avg TPOT | Average Time Per Output Token, reflecting the streaming decoding smoothness perceived by individual applications. |
 
 ## Prerequisites
 

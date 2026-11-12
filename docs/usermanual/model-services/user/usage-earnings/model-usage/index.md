@@ -20,7 +20,7 @@ Updated: 2026-11-04
 
 | Term | Description |
 | --- | --- |
-| Billing Cycle | The calendar month interval during which usage is aggregated and credit balances are deducted (e.g., `2026-11`). |
+| Billing Cycle | The calendar month for aggregating usage and deducting credits (e.g., `2026-11`). |
 | Total Consumption (Credits) | Cumulative platform credits or quota deducted during the statistical period for model invocation. |
 | Total Token Consumption | Sum of input Prompt Tokens and output Completion Tokens consumed by model inference during the period. |
 | Compared to Last Period | The percentage increase or decrease of the current metric compared to an identical time window in the immediately preceding period. |

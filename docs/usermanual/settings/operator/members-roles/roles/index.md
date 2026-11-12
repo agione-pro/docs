@@ -22,10 +22,10 @@ Operator roles are platform-console permission templates. They define which syst
 
 | Term | Description |
 | --- | --- |
-| Platform role | A set of operator-administration permissions.; Separate roles by responsibility. |
-| Role code | A stable identifier for the role.; Changing it after it is referenced can affect permission identification and auditing. |
-| Configure Permissions | Select the services, menus, and actions available to a role.; Changes affect the scope visible to members. |
-| Associated tenants | Tenants and member accounts that actually hold the role.; Review them before deletion. |
+| Platform role | A set of operator-administration permissions. Separate roles by responsibility. |
+| Role code | A stable identifier for the role. Changing it after it is referenced can affect permission identification and auditing. |
+| Configure Permissions | Select the services, menus, and actions available to a role. Changes affect the scope visible to members. |
+| Associated tenants | Tenants and member accounts that actually hold the role. Review them before deletion. |
 | Features & Permissions | The tab that shows the role's current functional scope and permission details. |
 
 ## Prerequisites

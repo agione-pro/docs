@@ -99,7 +99,7 @@ The screenshot shows the Edit Role form. Check the role name, description, and *
 
 ### Configure Permissions
 
-1. Go to `Settings > Members & Roles > Roles` and select a manageable custom role on the left and use its permission-configuration entry at the upper right.
+1. Go to `Settings > Members & Roles > Roles`, select a manageable custom role on the left, and use its permission-configuration entry at the upper right.
 2. Confirm the role name in the authorization-page title, then review the selected-permission total and associated-service counts.
 3. Select `Model Services`, `On-Prem`, `On-Cloud`, `Billing`, or `Settings`, then use Menu navigation to locate the target page.
 4. Adjust Page access, Available actions, and Data access as required. Use **"Shortcuts"** or **"Pills"** to change the display mode.

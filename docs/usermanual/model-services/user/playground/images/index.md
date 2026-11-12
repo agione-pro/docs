@@ -21,7 +21,7 @@ Updated: 2026-11-04
 | Term | Description |
 | --- | --- |
 | Text-to-Image | AI generation technique synthesizing static visual scenes from natural language prompt descriptions using diffusion or autoregressive architectures. |
-| Task Query | Asynchronous execution monitoring board for tracking image rendering progress, task status, and generated asset URLs. |
+| Task Query | An asynchronous task monitor for image rendering progress, task status, and generated asset URLs. |
 | Resolution / Size | Width and height specifications (e.g., 1024x1024, 768x1024) supported by model weights and GPU VRAM constraints. |
 | Batch Size (Images) | Total number of image samples generated concurrently or sequentially per request, scaling cost proportionally. |
 

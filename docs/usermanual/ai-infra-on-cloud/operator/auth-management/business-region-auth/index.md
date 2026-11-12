@@ -1,8 +1,8 @@
 # Business-Region Auth
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -12,192 +12,133 @@ Updated: 2026-11-04
 | Applicable Roles | Operators |
 | Navigation Path | AI Infra(On-Cloud) > Authorization Management > Business-Region Auth |
 | Page Route | `/infrahub/op/auth/region-auth` |
-| Managed Objects | Authorization between business types and cloud-platform regions |
+| Managed Objects | Cloud resource pool authorization scope maintained by business |
 
 #### Beginner Explanation
 
-Business-Region Auth defines the regions available to a business type. Even with tenant-cloud authorization, deployment remains limited to regions authorized here.
+Business-Region Auth is like defining a business's resource pool candidate list. The page describes this scope as an input for future deployment recommendations and HA candidate selection, separate from assigning cloud platforms to tenants.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
-| Business Type | A business scenario that needs cloud resources. |
-| Authorized Region | A cloud-platform region available to a business type. |
-| Resource Pool Scope | The set of pools visible and schedulable for the business. |
-
-#### Recommended Operation Order
-
-Confirm the business type, expand it to review current regions, open Authorize Regions to change scope, and verify the deployment page afterward.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Business | The business whose resource pool scope is configured, such as Inference Deployment. |
+| Upstream scope | The page states that only resource pools enabled on the Resource Pools page can be selected. |
+| Selected on cloud | Selected and available resource pool counts for the current cloud in the dialog. |
+| Complete scope | The selection maintained across clouds; the page describes saving the complete selected scope in one atomic update. |
 
 ## Prerequisites
 
-1. The current account has the permission required for Business-Region Auth.
-2. The business type exists, and related platforms and pools are connected and enabled.
-3. Before changing regions, check existing deployments, scheduling policies, and capacity arrangements.
+1. The current account can access Business-Region Auth.
+2. The target business exists and the related clouds and resource pools are connected. The page states that resource pools are enabled upstream first, then authorized by business.
+3. Before removing resource pools, follow the dialog prompt to review running deployments and HA policy dependencies, and confirm the intended change scope.
 
 ## Page Description
 
-The page provides an authorization entry by business type, and the dialog lists regions by cloud platform.
+The menu is Business-Region Auth, while the content title is Business Resource Pool Authorization. The page states that pools are enabled upstream before business authorization and that the saved scope is used for future deployment recommendations and HA candidate selection. These are UI descriptions, not evidence that an authorization has been saved or recommendations have been updated.
 
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| Business authorization overview | Summarizes businesses, authorized resource pools, and clouds covered. |
+| Business list | Shows authorized resource pools, cloud coverage, status, and action by business. |
+| Authorization entry | Authorize Resource Pools opens Configure available business resource pools. |
+| Page rules | Upstream scope, Save contract, and Downstream effect describe selectable sources, complete-scope submission, and subsequent use. |
+| Configuration dialog | Shows Business, Current cloud, and Selected on cloud, with per-cloud pool selection and a footer summary. |
 
-![Business-Region Auth page](./images/manual-business-region-auth.png)
+![Business resource pool authorization page](./images/manual-business-region-auth.png)
 
-The image shows the Business-Region Authorization list page, displaying the number of authorized cloud platform regions per business type, along with Import, Export, and Authorize Regions action entries.
+The figure shows the Business Resource Pool Authorization overview and business list, including authorized resource pools, cloud coverage, status, and Authorize Resource Pools; the lower area describes upstream enablement, complete-scope submission, and subsequent recommendation use.
 
 ## Main Operations
 
-### View Business-Region Authorization
+### Review Business Resource Pool Scope
 
-1. Open Business-Region Auth.
-2. Expand the target business type and review authorized regions.
-3. Compare the scope with pool state and deployment requirements.
+1. Open Business-Region Auth under Authorization Management.
+2. Review the target business, authorized resource pools, cloud coverage, and status in the business list.
+3. Read Upstream scope, Save contract, and Downstream effect below the list. Distinguish resource pool authorization from tenant-cloud authorization rather than judging scope by summary counts alone.
 
-### Authorize Resource Pools
+### Review Resource Pool Authorization Configuration
 
-1. Click **"Authorize Regions"** on the target business row.
-2. In the dialog, select the cloud platform, then search for resource pools or check the pools approved for the business. Use **Selected only** to review the current scope.
-3. Verify the current business and the number of selected pools, then select **"Done"**.
-4. Verify the result in Quick Deployment or Access Overview.
+1. Click Authorize Resource Pools for the target business to open Configure available business resource pools.
+2. Review Business, Current cloud, and Selected on cloud at the top; use the cloud list on the left to switch the resource pool list.
+3. Use Search resource pool name or ID to locate a pool, and Selected only to review selected items when needed. Select all is above the resource pool list.
+4. When a change is intended, review checked items against the approved scope and check the scope on other clouds. The page describes submitting the complete selection, not just newly added items.
+5. Review Resource pools after save, Add, and Remove in the footer. These summarize the intended scope before submission; they are not proof of a save or downstream effect.
+6. Use Done when submission is intended. Reset is a separate action, not a close button. For inspection only, use the upper-right close button to exit without saving the configuration.
 
-![Authorize resource pools](./images/manual-authorize-resource-pools.png)
+![Configure available business resource pools](./images/manual-authorize-resource-pools.png)
 
-The image shows the Configure available business resource pools dialog: the current business, per-cloud selected counts, a searchable resource-pool list with checkboxes, and the footer summary of pools after save.
+The figure shows Configure available business resource pools: Business, Current cloud, and Selected on cloud at the top, cloud switching on the left, and pool search, Selected only, Select all, and checkboxes on the right; the footer contains Resource pools after save, Add, Remove, Reset, and Done.
 
 ## Parameter Quick Reference
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Business Type | Yes | Text/Group | `INFERENCE_JOB` | Business scenario whose region authorization is being configured. |
-| Current Authorized Business | Yes | Prompt | `INFERENCE_JOB` | Indicates the business type currently being authorized in the dialog. |
-| Cloud Platform | Yes | Tree group | `Huawei Cloud` | Used to expand and select regions under the cloud platform. |
-| Authorized Regions | Yes | Multi-select | `East China-Shanghai 1` | Cloud platform regions that the current business is allowed to use. |
-| Region Count | No | Number | `2` | Number of authorized regions displayed in the list card. |
-| Authorize Regions | No | Button | `Authorize Regions` | Opens the region authorization dialog. |
-| Export | No | Button | `Export` | Exports authorization data and may contain sensitive operational information. |
-| Import | No | Button | `Import` | Imports authorization data in bulk and may change multiple authorization configurations. |
-| Reset | No | Button | `Reset` | Restores the dialog selection to the last saved scope. |
-| Done | Yes | Button | `Done` | Submits the resource-pool authorization. Review the selected count before clicking. |
+| Business | — | Read-only information | `Inference Deployment` | Business being configured, not a tenant selector. |
+| Current cloud | — | Read-only information | Current selection | Identifies the cloud for the resource pool list on the right. |
+| Selected on cloud | — | Count summary | Selected / available | Current cloud's selected scope, not the total across clouds. |
+| Cloud list | No | Switch entry | Actual cloud selection | Maintains complete scope by cloud and displays per-cloud selections. |
+| Search resource pool name or ID | No | Search field | Sample pool name or ID | Locates a resource pool. |
+| Selected only / Select all | No | Filter / selection entry | `Selected only` | Reviews selected items or makes list selections; review the current cloud first. |
+| Resource pool checkboxes | Configure within approved scope | Multi-select | Actual resource pools | Business resource pool scope; the page identifies upstream-enabled pools as the source. |
+| Resource pools after save / Add / Remove | — | Change summary | Dialog values | Reviews the complete scope and changes before submission, not a saved result. |
+| Reset | No | Button | `Reset` | Separate action entry, not an exit control. |
+| Done / Upper-right close | No | Submission / exit entry | `Done` | Done submits; use the upper-right close button for inspection only. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The business type exists, and related platforms and pools are connected and enabled.
-- Confirm impact before a configuration change: Before changing regions, check existing deployments, scheduling policies, and capacity arrangements.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- The current configuration object is a resource pool, the entry is Authorize Resource Pools, and the submission button is Done; do not use the earlier Authorize Regions or Confirm names.
+- Save contract states: “Save the complete selected scope in one atomic update.” Do not assume that previously authorized items remain included when they are unchecked.
+- Selected on cloud is specific to the current cloud. Resource pools after save is a different scope summary; the two are not the same count.
+- The dialog asks users to review running deployments and HA policy dependencies before removing pools. Pending addition labels and summary values are not save-success messages.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Authorization between business types and cloud-platform regions display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Page location | Business-Region Auth is selected in the menu and Business Resource Pool Authorization is the content title | Compare the menu and page route; the different title does not identify a different page. |
+| Configuration target | The title is Configure available business resource pools and Business matches the target | Identify the target business first; do not submit an unclear scope. |
+| Scope review | Selected on cloud and the footer's Resource pools after save, Add, and Remove can be reviewed separately | Review each cloud's selection; a single total does not replace the complete set. |
+| Exit after inspection | The upper-right close button returns to the business authorization page | Check whether the dialog has closed; do not treat exit or summary values as a completed save. |
 
 ## FAQ
 
-#### Target Object Is Missing in Business-Region Auth
+#### What Does No Resource Pools Enabled Upstream Mean?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+A cloud entry in the dialog displays “No resource pools enabled upstream”.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+Upstream scope states that only resource pools enabled on the Resource Pools page can be selected.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The business type exists, and related platforms and pools are connected and enabled.
-3. Confirm the current role and data scope, then locate the object again.
+Review the target cloud's enabled scope in [Resource Pools](../../access-management/resource-pools/). Do not interpret this message as insufficient tenant authorization or a save failure.
 
-#### Business-Region Auth Action Is Unavailable
+#### Should Submission Use Confirm or Done?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+The Configure available business resource pools dialog displays Reset and Done at the bottom.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The current resource pool configuration uses Done for submission, and the page describes submitting the complete selected scope.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### Business-Region Auth Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Business-Region Auth Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Business-Region Auth Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Follow the actual buttons. Review the business, selections across clouds, and summary before submission; use the upper-right close button for inspection only.
 
 ## Notes
 
-- Before changing regions, check existing deployments, scheduling policies, and capacity arrangements.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- Review running deployments and HA policy dependencies before removing pools, and retain necessary audit records and recovery arrangements.
+- Complete-scope submission here differs from Append in tenant authorization; do not mix the strategies or buttons from the two pages.
+- Do not record real credentials, internal locations, or customer data in documentation, tickets, or chat. Scope descriptions do not replace deployment availability checks.
 
 ## Next Steps
 
-1. Validate the deployment or resource selection flow from the business perspective.
-2. Review region selection order and fallback scope together with scheduling policies.
-3. Regularly check authorized region counts to avoid business availability being too broad or too narrow.
+1. Review the upstream enabled scope in [Resource Pools](../../access-management/resource-pools/).
+2. Review tenant platform scope separately in [Tenant-Cloud Auth](../tenant-cloud-auth/).
+3. See [Access Overview](../../access-workbench/access-overview/) and [Quick Deployment](../../../user/model-services/quick-deployment/) for subsequent entries; the current configuration summary does not establish successful recommendations or deployment.

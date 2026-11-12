@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-My Deployments serves as a unified dashboard for model instances under Model Services. Users can view all model deployments across On-Prem and On-Cloud compute environments in one centralized view without repeatedly toggling top-level navigation. This page primarily offers search capabilities and direct cross-subsystem links. Clicking a specific instance or quick deployment button redirects to the underlying infrastructure subsystem to perform detailed creation and lifecycle management.
+My Deployments is the model instance dashboard under Model Services. Users can view all deployments across On-Prem and On-Cloud environments without repeatedly switching top-level navigation. This page primarily provides search and cross-subsystem links. Clicking an instance or quick deployment button redirects to the infrastructure subsystem for creation and lifecycle management.
 
 #### Terms Quick Reference
 

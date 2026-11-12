@@ -28,7 +28,7 @@ Updated: 2026-11-04
 ## Prerequisites
 
 1. The current account can view and process **Approvals > Model Reviews**.
-2. Pending records exist. The list contains at least one record in `Pending Review`.
+2. The list contains at least one record in `Pending Review`.
 3. The model source, visibility, version, and capability configuration are confirmed before review.
 
 ## Page Description
@@ -49,7 +49,7 @@ The top area contains filters; the review table sits below:
 
 ![Model review list](./images/model-reviews-list.png)
 
-The figure shows the list shows two `Pending Review` records of `DeepSeek-V4-Pro`, Rev.1 and Rev.2. `Model visibility` is `Public / All tenants`, `Customer name` is `AGIOneSystem`, `Review time` shows `--`, and the action column shows `Review`.
+The figure shows two `Pending Review` records of `DeepSeek-V4-Pro`, Rev.1 and Rev.2. `Model visibility` is `Public / All tenants`, `Customer name` is `AGIOneSystem`, `Review time` shows `--`, and the action column shows `Review`.
 
 ## Main Operations
 
@@ -71,7 +71,7 @@ The figure shows the list shows two `Pending Review` records of `DeepSeek-V4-Pro
 
 ![Model review detail](./images/model-reviews-detail.png)
 
-The figure shows the drawer shows `Review Information`, `Basic Information`, `Input / Output modalities`, `Advanced capability configuration`, and `Token Limit`. In the example, `Release Channel` is `Public`, `Billing mode` is `Token`, and the footer buttons are `Cancel`, `Reject`, and `Approve`.
+The figure shows the drawer with `Review Information`, `Basic Information`, `Input / Output modalities`, `Advanced capability configuration`, and `Token Limit`. In the example, `Release Channel` is `Public`, `Billing mode` is `Token`, and the footer buttons are `Cancel`, `Reject`, and `Approve`.
 
 ### Batch review
 

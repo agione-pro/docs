@@ -12,7 +12,7 @@ Updated: 2026-11-04
 | Applicable role | Operator Admin |
 | Navigation path | **Model Services** > **Settings** > **Meta Models** |
 | Page route | `/modelone/settings/meta`; add page `/modelone/settings/meta/addModel` |
-| Managed objects | Meta model name, family, unique identifier, scene, status, model type, input/output modalities, advanced capabilities, token limits, and official native protocols |
+| Managed objects | Meta model name, series, unique identifier, scene, status, model type, input/output modalities, advanced capabilities, token limits, and official native protocols |
 
 #### Beginner Explanation
 
@@ -31,7 +31,7 @@ A meta model is the capability profile of a model. It states what the model can 
 
 1. The current account can view and maintain **Settings > Meta Models**.
 2. The model author already exists in the left list; select it before adding a meta model.
-3. The model name, family, unique identifier, scene, official release date, model type and sub-model, input/output modalities, token limits, and protocol information are confirmed.
+3. The model name, series, unique identifier, scene, official release date, model type and sub-model, input/output modalities, token limits, and protocol information are confirmed.
 
 ## Page Description
 
@@ -42,14 +42,14 @@ The page has two parts:
 
 ![Meta model list](./images/meta-models-list.png)
 
-The figure shows With DeepSeek selected, the table shows `Meta model name`, `Meta model type`, `Status`, `Input / Output modalities`, `Advanced capability configuration`, `Scene`, and `Actions`. The footer shows `Total 20`, `10/page`, and pagination controls.
+The figure shows the meta model list for DeepSeek. The table lists `Meta model name`, `Meta model type`, `Status`, `Input / Output modalities`, `Advanced capability configuration`, `Scene`, and `Actions`. The footer shows `Total 20`, `10/page`, and pagination controls.
 
 | Area | Description |
 | --- | --- |
-| Left Author Panel | Displays model developers/vendors; supports searching authors and switching the active context. |
+| Left Author Panel | Displays model developers/vendors; supports searching authors and switching the selected author. |
 | Top Actions & Filters | Displays selected author name, import/export, Add Meta Model, and keyword/status filters. |
 | Meta Model Table | Lists meta model name, unique identifier, type, status, modalities, and advanced capability tags. |
-| Row Action Column | Provides direct **Edit** access and a more-actions menu for details, copy, enable/disable, and deletion. |
+| Row Action Column | Provides **Edit** access and a more-actions menu for details, copy, enable/disable, and deletion. |
 
 ## Main Operations
 
@@ -62,15 +62,15 @@ The figure shows With DeepSeek selected, the table shows `Meta model name`, `Met
 ### Add a meta model
 
 1. Select the target model author and click **"Add Meta Model"**.
-2. The `Add Meta Model` wizard opens with two steps: `1 Meta Model Configuration` and `2 Meta Model Details`.
-3. In step 1, check `Model Author` under `Basic Information`, then fill `Name`, `Family`, `Unique Identifier`, `Scene`, `Status`, and `Official Release Time`.
+2. The `Add Meta Model` wizard opens with two steps: `1 Meta Model Configuration` and `2 Meta-model Details`.
+3. In step 1, check `Model Author` under `Basic Information`, then fill `Name`, `Series`, `Unique Identifier`, `Scene`, `Status`, and `Official Release Time`.
 4. Under `Description`, switch between the `English` and `Chinese` tabs and fill in `Model Description`.
 5. Continue with `Model Type and Sub-models`, `Input / Output Modalities`, `Advanced Capability Configuration`, `Token Limit`, and `Official Native Protocols and Default Advanced Parameters`.
-6. Click **"Next"** to open `Meta Model Details`, then complete the fields shown on the page. Use **"Cancel"** or the back arrow to leave the flow.
+6. Click **"Next"** to open `Meta-model Details`, then complete the fields shown on the page. Use **"Cancel"** or the back arrow to leave the flow.
 
 ![Add Meta Model - configuration](./images/meta-models-add-step1.png)
 
-The figure shows Step 1 shows `Basic Information`, `Description`, and the capability sections below. Fields marked with `*`, such as `Name`, `Family`, `Scene`, and `Official Release Time`, must be filled. `Model Author` is carried in from the entry point, shown here as DeepSeek.
+The figure shows `Basic Information`, `Description`, and the capability sections below in Step 1. Fields marked with `*`, such as `Name`, `Series`, `Scene`, and `Official Release Time`, must be filled. `Model Author` is carried in from the entry point, shown here as DeepSeek.
 
 ### Filter and read the list
 
@@ -103,7 +103,7 @@ Imported and exported files may contain protocol and capability configuration. K
 | --- | --- | --- | --- | --- |
 | Model Author | Carried in | Drop-down / read-only | `DeepSeek` | Author that owns the meta model |
 | Name | Required | Text | `DeepSeek-V4-Pro` | Name shown in the list and model cards |
-| Family | Required | Text | `DeepSeek-V4` | Family the meta model belongs to |
+| Series | Required | Text | `DeepSeek-V4` | Series the meta model belongs to |
 | Unique Identifier | Required | Text | `deepseek/deepseek-v4-pro` | Unique identifier of the meta model |
 | Scene | Required | Drop-down | `Text Generation` | Business scene of the meta model |
 | Status | Required | Drop-down | `Enable` | Value shown in the `Status` column |
@@ -119,7 +119,7 @@ Imported and exported files may contain protocol and capability configuration. K
 ## Pitfalls
 
 - The selected model author on the left determines the right-hand list. After adding a record, confirm the same author is still selected before searching for it.
-- `Name`, `Family`, `Scene`, and `Official Release Time` carry a `*` required mark. Check them before continuing.
+- `Name`, `Series`, `Scene`, and `Official Release Time` carry a `*` required mark. Check them before continuing.
 - A meta model describes what a model can do; a model source describes where the service is called. If you need a call address, open **Settings > Model Sources**, not this page.
 - Token limits and protocols must match the upstream model's real capabilities. Do not write real credentials into descriptions or protocol fields.
 
@@ -159,7 +159,7 @@ Uncertain whether to configure call addresses and gateway endpoints in Meta Mode
 
 **Possible Causes:**
 
-The two menus operate at different architectural layers: meta models define capability specifications, whereas model sources define physical routing.
+The two menus have different roles: meta models define capability specifications, whereas model sources define physical routing.
 
 **Resolution:**
 

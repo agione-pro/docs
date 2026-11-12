@@ -36,7 +36,7 @@ My Notifications is the current account's personal inbox. Use it to review accou
 
 ![My Notifications](./images/inbox-list.png)
 
-The figure shows the notifications inbox. The page provides title/type, date range, read status, and severity filters, plus business-topic buttons.
+The figure shows the notifications inbox, with title/type, date range, read status, and severity filters, plus business-topic buttons.
 
 | Area | Description |
 | --- | --- |

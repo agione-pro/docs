@@ -146,7 +146,7 @@ The overview displays aggregate platform statistics, but you need detailed volum
 
 **Possible Causes:**
 
-The overview page provides macro-level summaries by default; granular inspection requires dimension drill-down.
+The overview provides summaries by default; viewing details requires dimension drill-down.
 
 **Resolution:**
 

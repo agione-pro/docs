@@ -111,7 +111,7 @@ Two pages are named “Meta Models”; it is unclear which one to use for operat
 
 **Possible Causes:**
 
-They serve different purposes across operational monitoring and asset management.
+They serve different purposes: operational monitoring and asset management.
 
 **Resolution:**
 

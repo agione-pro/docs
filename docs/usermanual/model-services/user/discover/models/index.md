@@ -20,7 +20,7 @@ Updated: 2026-11-04
 
 | Term | Description |
 | --- | --- |
-| Models Marketplace | The centralized catalog displaying published, callable large models and AI services for tenants and developers. |
+| Models Marketplace | The catalog of published, callable large models and AI services for tenants and developers. |
 | Model Author | The original organization or open-source team developing the model, such as DeepSeek, OpenAI, Qwen, or Anthropic. |
 | Provider | The infrastructure vendor hosting physical compute, providing API endpoints, and guaranteeing service SLAs. |
 | Playground | The built-in interactive visualization console for zero-code testing across text, image, audio, and video modalities. |

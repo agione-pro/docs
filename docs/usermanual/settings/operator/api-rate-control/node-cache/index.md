@@ -22,10 +22,10 @@ Node Cache works like a synchronization status table for rate-control rules on e
 
 | Term | Description |
 | --- | --- |
-| Node cache | Rate-control rule status stored locally on a node.; Check versions after publishing. |
-| Rule version | The rule version currently loaded by a node.; Troubleshoot publishing when versions differ. |
-| Synchronization status | Whether a node has completed rule synchronization.; Check Publish Center when abnormal. |
-| Refresh | Reload node cache status.; Use it after publishing to confirm status. |
+| Node cache | Rate-control rule status stored locally on a node. Check versions after publishing. |
+| Rule version | The rule version currently loaded by a node. Troubleshoot publishing when versions differ. |
+| Synchronization status | Whether a node has completed rule synchronization. Check Publish Center when abnormal. |
+| Refresh | Reload node cache status. Use it after publishing to confirm status. |
 
 ## Prerequisites
 
@@ -63,7 +63,7 @@ The Node Cache list shows nodes, rule versions, rule counts, and cache status. C
 3. A healthy node should show the same version or synchronized status. For a mismatch, first confirm that publishing completed, then escalate to authorized personnel.
 4. Do not repeatedly publish or clear cache to test the issue because online requests may be affected.
 
-Use this operation to query node cache status. Do not add create or publish operations to this query-oriented workflow.
+Use this operation to query node cache status.
 
 ### Refresh Node Cache
 

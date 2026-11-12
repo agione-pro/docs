@@ -1,8 +1,8 @@
 # Resource Pools
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -12,193 +12,133 @@ Updated: 2026-11-04
 | Applicable Roles | Operators |
 | Navigation Path | AI Infra(On-Cloud) > Access Management > Resource Pools |
 | Page Route | `/infrahub/op/access/region` |
-| Managed Objects | Regional resource pools under cloud platforms and their enabled states |
+| Managed Objects | Public and AGIOne dedicated resource pools under cloud platforms and their enabled states |
 
 #### Beginner Explanation
 
-Resource Pools controls whether cloud regions are available. Enabled pools can enter authorization and scheduling scopes; disabling affects deployment choices.
+Resource Pools is like a resource directory grouped by cloud platform: select the pool type and platform, then check the region and enabled state.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
-| Resource Pool | An available resource scope organized by cloud platform and region. |
-| Enabled State | Whether a pool can enter authorization and scheduling workflows. |
-| Enabled Only | A filter that shows only enabled pools. |
-
-#### Recommended Operation Order
-
-Select a cloud platform and review its pools, assess authorization and deployment impact, then change the target state and verify downstream visibility.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Public resource pool | One pool category on the page, separate from AGIOne Dedicated resource pool. |
+| AGIOne Dedicated resource pool | The other pool category on the page. |
+| Enabled state | Enabled or Disabled displayed in a resource-pool row, alongside a switch. |
+| Operation audit | An entry beside the pool-type controls. |
 
 ## Prerequisites
 
-1. The current account has the permission required for Resource Pools.
-2. The target cloud platform is connected and its pool list loads correctly.
-3. Before changing state, check tenant authorization, business authorization, scheduling policies, and existing deployments.
+1. The current account has access to Resource Pools.
+2. Confirm the target platform, pool type, and region.
+3. Before changing state, check the impact on tenant authorization, business authorization, and existing deployments. Do not touch state switches for query-only work.
 
 ## Page Description
 
-The left side lists cloud platforms; the right side shows regional pools and state switches for the selected platform.
+The menu entry is **Resource Pools**, while the page heading is **Resource Pool Access**. They refer to the same page.
 
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| Overview cards | Current statistics for cloud providers, public pools, authorized customers, and running instances. |
+| Pool types | Public resource pool and AGIOne Dedicated resource pool. |
+| Audit entry | Operation audit, beside the pool-type controls. |
+| Platform groups | Platforms and current item counts on the left; selecting a platform displays its pools. |
+| Pool list | Pool names, enabled states, and switches. |
+| Status and batch actions | All, Enabled, and Disabled filters, plus Batch Actions. |
 
 ![Resource Pools page](./images/manual-resource-pools.png)
 
-The image shows the Resource Pools management page, with connected cloud platforms listed on the left and corresponding regional resource pools with enable/disable toggles on the right.
+The figure shows Resource Pool Access, with Public resource pool, AGIOne Dedicated resource pool, and Operation audit above the platform groups. Pools for the selected platform appear on the right with status filters, Batch Actions, and individual switches.
 
 ## Main Operations
 
 ### View Resource Pools
 
-1. Select the target cloud platform on the left.
-2. Use `Enabled Only` within the step when a narrower list is needed.
-3. Verify region names and enabled states.
+1. Open Resource Pools under Access Management.
+2. Select Public resource pool or AGIOne Dedicated resource pool first.
+3. Select the target platform on the left, then select All, Enabled, or Disabled as needed.
+4. Check the target pool name and state. Use current page counts rather than treating screenshot values as fixed configuration.
+5. For operation-record review, locate Operation audit. Before using Batch Actions, check the type, platform, and target scope.
 
-### Enable or Disable Resource Pool
+### Review Enable or Disable Actions
 
-1. Locate the target region and confirm its current state.
-2. Toggle the state switch and read the region and action in the confirmation message.
-3. Click **"Confirm"** and refresh the list.
-4. Verify the expected visibility on authorization and deployment pages.
+1. Locate the target region under the correct pool type and platform, then check its current state and change impact.
+2. Operate its switch only when the change is authorized. If a confirmation dialog appears, check the region name and enable or disable action word for word.
+3. Use Cancel when no change is intended. For confirmation, follow the button actually displayed in the current dialog.
+4. After an operation, review this page's state and the target objects on related authorization and deployment pages separately; closing a confirmation dialog is not a result check.
 
-![Enable or disable a resource pool](./images/manual-disable.png)
+![Disable resource pool confirmation](./images/manual-disable.png)
 
-The image shows the secondary confirmation dialog when enabling or disabling a regional resource pool, where you must confirm the target region before proceeding.
+The figure shows a regional resource-pool disable prompt containing the target region, Cancel, and OK. Check the region and intended disable action before confirming.
 
 ## Parameter Quick Reference
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Cloud Platform | Yes | List item | `Alibaba Cloud` | Cloud platform that owns the resource pools. |
-| Resource Pool Count | System-generated | Number | `26 items` | Number of resource pools under the current cloud platform. |
-| Resource Pool Name | System-generated | Text | `China (Hangzhou)` | Resource pool name displayed by region on the current page. |
-| Enabled Status | Yes | Switch | On / Off | Controls whether the resource pool can continue to be authorized, displayed, or scheduled. |
-| Show only enabled | No | Checkbox | Selected / unselected | Filters the list to show only enabled resource pools. |
-| Name Search | No | Input | Displayed on page | Searches cloud platform or resource pool related entries by name. |
-| Import | No | Action button | `Import` | Imports resource pool related configuration and may affect real configuration. Use with caution. |
-| Export | No | Action button | `Export` | Exports resource pool list or configuration data. Pay attention to sensitive information. |
-| Confirmation Prompt | System-generated | Dialog | `Are you sure you want to Disable region China (Hangzhou)?` | Secondary confirmation shown before enabling or disabling. |
-| Cancel | No | Action button | `Cancel` | Closes the confirmation dialog without applying the change. |
-| OK | No | High-risk action | `OK` | Confirms enabling or disabling the resource pool and applies a real status change. |
+| Pool type | No | Category selector | `Public resource pool` | AGIOne Dedicated resource pool is the other category; establish query scope first. |
+| Cloud platform | No | Group list | Select the target platform | Selects the platform to inspect. |
+| Resource pool count | — | Statistic | Current page value | Displayed for the selected platform and scope, not a fixed count. |
+| Resource pool name | — | List field | Check the target region | Name of the regional resource pool. |
+| Status filter | No | Segmented control | `All` | All, Enabled, and Disabled. |
+| Enabled state | — | Status and switch | `Enabled` / `Disabled` | Corresponds to the target pool; check impact before changing it. |
+| Operation audit | No | Page entry | `Operation audit` | Entry for operation review. |
+| Batch Actions | No | Action entry | `Batch Actions` | Batch-processing entry for the selected scope. |
+| Confirmation prompt | — | Dialog | Target region name | Check the region and action; do not assume every operation uses the same prompt. |
+| Cancel / OK | No | Dialog buttons | `Cancel` / `OK` | Exit and confirm entries in the pictured disable prompt; follow the actual dialog. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The target cloud platform is connected and its pool list loads correctly.
-- Confirm impact before a configuration change: Before changing state, check tenant authorization, business authorization, scheduling policies, and existing deployments.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- Pool type, platform, and enabled state are separate filtering levels. Review them together when locating a record.
+- A switch beside a region is a state-change entry, not a details entry. Do not toggle it for query-only work.
+- Platform item counts and status-filter counts correspond to the current page scope. Screenshot numbers are not fixed acceptance values.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Regional resource pools under cloud platforms and their enabled states display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Page location | Resource Pools is highlighted and the heading reads Resource Pool Access | Locate the page using its menu name and route. |
+| Type scope | The selected public or AGIOne dedicated pool category is identifiable | Check the pool-type controls first. |
+| Platform and region | The selected platform matches the target region, with pool name and state available for review | Check the platform group and current status filter. |
+| Action locations | Operation audit, Batch Actions, and individual switches can be located | Distinguish review entries from configuration changes; do not use a switch for queries. |
 
 ## FAQ
 
-#### Target Object Is Missing in Resource Pools
+#### Why Does the List Show Only Part of the Pool Inventory?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+The list displays pools for a particular platform, type, or state.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+The page provides separate pool-type, platform-group, and status controls; the list corresponds to their selected scope.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The target cloud platform is connected and its pool list loads correctly.
-3. Confirm the current role and data scope, then locate the object again.
+Check the pool type, target platform, and status filter in order, then locate the pool by name instead of comparing screenshot counts alone.
 
-#### Resource Pools Action Is Unavailable
+#### Can I Use a Pool Switch to View Details?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+A status label and switch appear beside the pool name.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The switch corresponds to the enabled state; the pictured disable prompt identifies the target region and action.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### Resource Pools Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Resource Pools Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Resource Pools Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Read the name and state for inspection. Operate a switch only for an authorized change after checking impact, and verify the target region if a prompt appears.
 
 ## Notes
 
-- Before changing state, check tenant authorization, business authorization, scheduling policies, and existing deployments.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- State and batch changes can affect real configuration. Check authorization and deployment impact first and keep necessary audit records.
+- An enabled state does not replace tenant or business authorization. Check downstream usage scope on the relevant page.
+- Do not record real credentials, internal addresses, or customer data in documentation, tickets, or chat.
 
 ## Next Steps
 
-1. Go to Tenant-Cloud Auth or Business-Region Auth to verify resource pool visibility scope.
-2. Go to Policies to confirm scheduling rules after enabling or disabling.
-3. Go to Access Overview to review resource pool status and resource checklist display.
+1. Go to [Business-Region Auth](../../auth-management/business-region-auth/) to review resource-pool usage scope.
+2. Go to [Tenant-Cloud Auth](../../auth-management/tenant-cloud-auth/) to review the tenant's cloud-platform scope.
+3. Go to [Access Overview](../../access-workbench/access-overview/) to review resource-pool status in the access chain.

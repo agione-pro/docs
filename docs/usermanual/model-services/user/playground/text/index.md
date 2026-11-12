@@ -88,7 +88,7 @@ The figure shows the current model is `GLM-5.2` with the `Aggregate` tag; the in
 ## Pitfalls
 
 - Verify the model tag before submitting; an `Aggregate` model routes across multiple backends, so responses may come from different nodes.
-- `Shift+Enter` inserts a new line, it does not submit.
+- `Shift+Enter` inserts a new line; it does not submit.
 - Playground calls create usage records and consume tokens; long conversations cost more.
 
 ## Result Validation

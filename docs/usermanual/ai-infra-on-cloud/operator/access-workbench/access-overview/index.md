@@ -1,8 +1,8 @@
 # Access Overview
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -12,200 +12,132 @@ Updated: 2026-11-04
 | Applicable Roles | Operators |
 | Navigation Path | AI Infra(On-Cloud) > Access Workbench > Access Overview |
 | Page Route | `/infrahub/op/workbanch/overview` |
-| Managed Objects | Access foundation, operational resource checklist, and authorization status |
+| Managed Objects | Readiness of cloud access, tenant access scope, runtime foundations, and model onboarding configuration |
 
 #### Beginner Explanation
 
-Access Overview is a dashboard for cloud access readiness. It combines platforms, pools, accounts, deployment assets, and both authorization types so that missing prerequisites are visible.
+Access Overview is a readiness checklist: it identifies configuration gaps in dependency order and directs you to the formal management page responsible for each configuration.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
-| Access Foundation | A summary of connected cloud platforms, resource pools, and accounts. |
-| Operational Resource Checklist | Readiness of runtime images, frameworks, models, and policies. |
-| Authorization Status | A summary of tenant-cloud and business-region authorization. |
-
-#### Recommended Operation Order
-
-Review Access Foundation, then the operational resource checklist, and finally both authorization areas. Open the responsible object page for each missing item.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Goal | The task selection at the top: Complete Model Publication, Connect Another Cloud, or Enable High Availability. |
+| Stage | One of four dependency stages: Connect Cloud Resources, Open Tenant Access, Prepare Runtime, and Complete Model Onboarding. |
+| Current fact | Existing coverage and remaining configuration gaps for each item in the stage panel. |
+| Model onboarding configuration | Meta-model association, provider deployment configuration, model source, and API configuration—not user deployment creation or API invocation. |
 
 ## Prerequisites
 
-1. The current account has the permission required for Access Overview.
-2. The current account can view Access Overview and its linked detail pages.
-3. Use the overview to assess status. Make changes on the responsible object page and return to validate.
+1. Enter Access Overview as an operator with access to the relevant formal management pages.
+2. Identify whether the task is Complete Model Publication, Connect Another Cloud, or Enable High Availability before reading the goal and stage guidance.
+3. Verify upstream dependencies: cloud access includes the platform, account, enabled resource pool, and business grant; tenant access scope and runtime foundations have their own subsequent stages.
 
 ## Page Description
 
-The upper area shows the access foundation, the middle area shows operational resources, and the lower area shows authorization status and management entries.
+This page only diagnoses and navigates; all configuration changes belong to formal management pages. Read the goal and diagnostic summary, review stages in dependency order, and use the configuration-item review entries to locate the responsible management pages.
 
-Page screenshots:
+| Area | Description |
+| --- | --- |
+| Top entries | Connect Cloud is in the upper right. Goal choices are Complete Model Publication, Connect Another Cloud, and Enable High Availability. Goals and the four stages below are separate controls. |
+| Diagnostic summary | Shows current guidance and summaries of cloud access profiles, tenant configuration, and model core configuration. Read counts with their accompanying descriptions; example counts are not fixed requirements. |
+| Connect Cloud Resources | Reviews the access chain of platform, account, enabled resource pool, and business grant. |
+| Open Tenant Access | Reviews which cloud platforms tenants can use. |
+| Prepare Runtime | Reviews readiness of inference images and framework versions. |
+| Complete Model Onboarding | Reviews meta-model, provider, source, and API configuration. This stage is selected in the figure. |
+| Stage panel | Displays Status, Configuration item, Current fact, and Action to locate gaps and review entries. |
 
-![Access Overview page](./images/manual-access-overview.png)
+![Access Overview goals, diagnostic summary, and four stages](./images/manual-access-overview.png)
 
-The image shows the three areas of the Access Overview page: the access foundation cards at the top (counts and names of connected cloud platforms, resource pools, and accounts), the operations resource list in the middle (runtime images, inference frameworks, model-library models, and policies with their counts, prerequisites, support notes, and entries), and the authorization status at the bottom (tenant-cloud platform authorization statistics and the business-resource pool authorization card).
+The figure shows goal selection, the diagnostic summary, and the four stages. Complete Model Publication is the top goal, Complete Model Onboarding is the selected stage, and Connect Cloud is a separate entry in the upper right.
 
 ## Main Operations
 
-### View Access Overview
+### Read Access Diagnostics
 
 1. Go to `AI Infra(On-Cloud) > Access Workbench > Access Overview`.
-2. Verify connected platform, pool, and account counts.
-3. Verify runtime-image, framework, model, and policy counts and prerequisites.
-4. Verify tenant and business authorization status.
+2. Check the top goal against your task and read the guidance and statistical descriptions in the diagnostic summary.
+3. Review stage names, status, and purpose in this order: Connect Cloud Resources → Open Tenant Access → Prepare Runtime → Complete Model Onboarding. Verify upstream dependencies before addressing the current gap.
+4. Locate the stage you need to review. The following example uses Complete Model Onboarding, selected in the figure.
 
-![Access Overview details](./images/access-overview-list.png)
+### Review Model Onboarding Configuration
 
-The image shows the same page in full view: each row of the operations resource list ends with an **"Open"** entry, the authorization status area provides a **"Manage Authorization"** entry, and total, authorized, and unauthorized tenant counts are listed in the left card.
+1. In the Complete Model Onboarding panel, review Meta-Model Association, Provider Deployment Configuration, Model Source, and API Configuration row by row.
+2. Read coverage and remaining gaps under Current fact; do not rely on the status icon alone.
+3. Use Review Associations, Review Cloud Config, Review Sources, or Review APIs for the relevant item. Maintain configuration in formal management pages such as [Models](../../deploy-assets/models/), not in the overview.
+4. After addressing configuration, return to the overview and review the relevant current facts again. Overview diagnostics do not replace checking configuration results on the responsible management page.
 
-### Open Resource Management Pages
+![Configuration review panel for Complete Model Onboarding](./images/access-overview-list.png)
 
-1. Locate the target item in the operational resource checklist.
-2. Click **"Open"** on the row.
-3. After processing, return to Access Overview and refresh.
-
-### Open Authorization Management Pages
-
-1. Locate the tenant or business authorization area.
-2. Click **"Manage Authorization"** to open the responsible page.
-3. After authorization, return and confirm that counts and status are synchronized.
+The figure shows the Complete Model Onboarding panel with review entries for associations, cloud configuration, sources, and APIs. The note at the bottom limits OP responsibility to model onboarding configuration; user model selection, recommendations, deployment creation, and API invocation are not OP tasks.
 
 ## Parameter Quick Reference
+
+This is a diagnostic and navigation page. The table lists readable information and action entries, not configuration form fields.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Connected clouds | System-generated | Number / list | Displayed on page | Shows the number and names of connected cloud platforms. |
-| Connected resource pools | System-generated | Number / list | Displayed on page | Shows the number and names of connected resource pools. |
-| Connected accounts | System-generated | Number / list | Displayed on page | Shows the number and names of connected accounts. |
-| Resource | System-generated | Text | `Inference images` | Resource type in the operator resource checklist. |
-| Count | System-generated | Number | Displayed on page | Number of registered or configured items under the resource type. |
-| Prerequisites | System-generated | Text | Displayed on page | Access configurations that must be completed before the resource can be used. |
-| Supports | System-generated | Text | Displayed on page | Describes the role of the resource in the inference deployment or scheduling flow. |
-| Action | No | Action entry | `Open` | Jumps to the corresponding resource management page. |
-| Total tenants | System-generated | Number | Displayed on page | Number of tenants in the current statistics scope. |
-| Granted tenants | System-generated | Number | Displayed on page | Number of tenants with cloud platform grants configured. |
-| Ungranted tenants | System-generated | Number | Displayed on page | Number of tenants without cloud platform grants configured. |
-| Authorized resource pools | System-generated | Number / tag | Displayed on page | Number and names of resource pools available to the business type. |
+| Goal | No | Task selection | `Complete Model Publication` | Top goals include Complete Model Publication, Connect Another Cloud, and Enable High Availability. |
+| Connect Cloud | No | Navigation entry | `Connect Cloud` | Cloud access entry in the upper right. |
+| Stage | No | Stage selection | `Complete Model Onboarding` | Four stages review access, authorization, runtime foundations, and model onboarding in dependency order. |
+| Status | N/A (read-only) | Status icon | As currently displayed | Shows configuration-item status; read with the current facts on that row. |
+| Configuration item | N/A (read-only) | Text | `Provider Deployment Configuration` | The item being reviewed in the Complete Model Onboarding panel. |
+| Current fact | N/A (read-only) | Text / count | As currently displayed | Shows configuration coverage and remaining gaps. |
+| Action | No | Navigation entry | `Review Cloud Config` | Provides Review Associations, Review Cloud Config, Review Sources, and Review APIs entries. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The current account can view Access Overview and its linked detail pages.
-- Confirm impact before a configuration change: Use the overview to assess status. Make changes on the responsible object page and return to validate.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- Current stage identifies the selected diagnostic stage, not completion of every configuration item. The panel still reports current facts and remaining gaps row by row.
+- Review provider deployment configuration, model source, and API configuration in the context of the cloud platform and resource pool. The API Configuration description explicitly requires the same cloud platform and resource pool; model totals alone are insufficient.
+- When the tenant summary says full scope unknown, do not interpret the configured count as authorization for every tenant.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Access foundation, operational resource checklist, and authorization status display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Page location | The title is Access Overview and its left-menu entry is highlighted | Locate the page again using the navigation path above |
+| Goals versus stages | Top goals and the four stages are separately identifiable | Refer to Page Description; do not treat a goal name as a stage name |
+| Onboarding checklist | The Complete Model Onboarding panel lists Meta-Model Association, Provider Deployment Configuration, Model Source, and API Configuration | Check the selected stage name |
+| Gap location | Each row's current facts can be matched to its review entry | Review items row by row and inspect the corresponding configuration on the formal management page |
 
 ## FAQ
 
-#### Target Object Is Missing in Access Overview
+#### Why Is There No Configuration Form in the Overview?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+The panel shows current facts and review entries rather than editable configuration fields.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+The page explicitly states that it only diagnoses and navigates; configuration belongs to formal management pages.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The current account can view Access Overview and its linked detail pages.
-3. Confirm the current role and data scope, then locate the object again.
+Use the corresponding review entry to open the management page responsible for that configuration. Do not treat overview diagnostics as a configuration operation.
 
-#### Access Overview Action Is Unavailable
+#### Why Do the Top Goal and the Stage Have Different Names?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+The top goal reads Complete Model Publication, while the stage reads Complete Model Onboarding.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The top control selects a goal; the lower controls provide four stage reviews. They serve different purposes.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### Access Overview Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Access Overview Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Access Overview Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Confirm the task goal, then locate gaps in stage order. Use the Complete Model Onboarding panel when reviewing onboarding configuration.
 
 ## Notes
 
-- Use the overview to assess status. Make changes on the responsible object page and return to validate.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- OP responsibility ends at model onboarding configuration. User model selection, recommendations, deployment creation, and API invocation belong to the user workflow and must not be listed as operator follow-up tasks on this page.
+- Counts and diagnostics reflect the current page. Figure counts are not fixed configuration requirements or proof of deployment success or API availability.
+- Before changing a formal management page, confirm the target object, upstream dependencies, and impact scope. Do not record real credentials, keys, or internal addresses in task records.
 
 ## Next Steps
 
-1. Go to the cloud platform, resource pool, or access account page to complete access configuration.
-2. Go to inference images, inference frameworks, model library models, or policies to view operator resource readiness.
-3. Go to grant management pages to check tenant and business resource pool grants.
+1. For cloud access gaps, review [Cloud Platforms](../../access-management/cloud-platforms/), [Cloud Accounts](../../access-management/cloud-accounts/), and [Resource Pools](../../access-management/resource-pools/), together with [Business-Region Auth](../../auth-management/business-region-auth/).
+2. For tenant access scope, review [Tenant-Cloud Auth](../../auth-management/tenant-cloud-auth/).
+3. For runtime foundations and model onboarding configuration, review [Frameworks](../../deploy-assets/frameworks/) and [Models](../../deploy-assets/models/), and inspect the relevant configuration on those formal pages.

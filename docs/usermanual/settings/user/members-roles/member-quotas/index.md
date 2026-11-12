@@ -22,10 +22,10 @@ Member Quotas is the team's quota allocation table. It shows each member's avail
 
 | Term | Description |
 | --- | --- |
-| Member quota | Quota allocated to a member.; Check it when a call fails. |
-| Used quota | Quota already consumed by the member.; Adjust the limit when usage approaches it. |
-| Quota limit | The maximum quota that the member can consume.; Confirm the impact before changing it. |
-| Quota request | A member's request for additional quota.; Direct the member to submit one when quota is insufficient. |
+| Member quota | Quota allocated to a member. Check it when a call fails. |
+| Used quota | Quota already consumed by the member. Adjust the limit when usage approaches it. |
+| Quota limit | The maximum quota that the member can consume. Confirm the impact before changing it. |
+| Quota request | A member's request for additional quota. Direct the member to submit one when quota is insufficient. |
 
 ## Prerequisites
 

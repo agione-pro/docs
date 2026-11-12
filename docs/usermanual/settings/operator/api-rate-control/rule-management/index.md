@@ -22,10 +22,10 @@ Rule Management is the API rate-control rule library. It defines which APIs are 
 
 | Term | Description |
 | --- | --- |
-| Rate-control rule | A rule that counts or limits API requests.; Confirm the match scope before publication. |
-| Threshold | The request limit that triggers counting or blocking.; A low threshold can block valid traffic. |
-| Statistical mode | A mode that records over-limit requests without blocking them.; Use it to observe behavior before enforcement. |
-| Publish | The action that synchronizes rules to nodes.; Check Node Cache after publication. |
+| Rate-control rule | A rule that counts or limits API requests. Confirm the match scope before publication. |
+| Threshold | The request limit that triggers counting or blocking. A low threshold can block valid traffic. |
+| Statistical mode | A mode that records over-limit requests without blocking them. Use it to observe behavior before enforcement. |
+| Publish | The action that synchronizes rules to nodes. Check Node Cache after publication. |
 
 ## Prerequisites
 

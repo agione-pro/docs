@@ -47,7 +47,7 @@ The page has two parts:
 
 ![Model template list](./images/model-templates-list.png)
 
-The figure shows With Alibaba-intl selected, the filters are `Author`, `Meta Model`, `Status`, and `Keyword`. `Total` is 0 and the list shows `No Data`.
+The figure shows the filters for Alibaba-intl: `Author`, `Meta Model`, `Status`, and `Keyword`. `Total` is 0 and the list shows `No Data`.
 
 ## Main Operations
 
@@ -70,7 +70,7 @@ The figure shows With Alibaba-intl selected, the filters are `Author`, `Meta Mod
 
 ![Add Model Template - select author](./images/model-templates-add.png)
 
-The figure shows Step 1 shows the `Select Author` cards and `Provider Information`. Each author card shows `Associated Meta Models`; `Provider Information` contains `Select Provider`, `Select Region`, and `Add Model Source`.
+The figure shows the `Select Author` cards and `Provider Information` in Step 1. Each author card shows `Associated Meta Models`; `Provider Information` contains `Select Provider`, `Select Region`, and `Add Model Source`.
 
 ### Read the template list
 

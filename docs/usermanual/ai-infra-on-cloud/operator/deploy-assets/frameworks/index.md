@@ -1,8 +1,8 @@
 # Frameworks
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -12,214 +12,158 @@ Updated: 2026-11-04
 | Applicable Roles | Operators |
 | Navigation Path | AI Infra(On-Cloud) > Deploy Assets > Frameworks |
 | Page Route | `/infrahub/op/model/framework` |
-| Managed Objects | Inference frameworks, framework versions, runtime images, and startup configuration |
+| Managed Objects | Inference frameworks, deployment environments, and framework runtime-version configuration |
 
 #### Beginner Explanation
 
-Frameworks defines how a model service runs. A framework version combines the runtime image, startup method, and support scope for use by model-library records.
+A framework is like a model's runtime instruction sheet: its identity and environment describe where it runs, while a runtime version describes the image and startup configuration.
 
 #### Terms Quick Reference
+
 | Term | Description |
 | --- | --- |
-| Inference Framework | The runtime framework that hosts model inference. |
-| Framework Version | A framework record bound to an image and startup configuration. |
-| Publish Version | Makes a maintained version available to model configuration. |
-
-#### Recommended Operation Order
-
-Review framework details and existing versions, add the framework, publish a configured version, and validate its availability in Models.
-
-#### Beginner Checklist
-
-| Scenario | Do First | Do Not Do Directly |
-| --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Target Meta Model | The adaptation target selected in the first Add Framework step. |
+| Framework Type | Runtime framework classification; the input hint includes vLLM, TGI, and SGLang. |
+| First Runtime Version | The second-step title in the add drawer, separate from Framework and Environment. |
 
 ## Prerequisites
 
-1. The current account has the permission required for Frameworks.
-2. The target runtime image is registered and framework-version startup requirements are confirmed.
-3. Before publishing a version, check model references, image accessibility, and startup parameters.
+1. Use an operator account with access to Frameworks.
+2. Prepare the target cloud platform, cloud account, resource pool, meta model, framework name, and type before adding a framework.
+3. Confirm the image, port, and startup requirements before maintaining a runtime version; check references and impact before publication.
 
 ## Page Description
 
-The page provides framework lists, details, versions, and the add entry.
+| Area | Description |
+| --- | --- |
+| Page tabs | Framework Management and Image Resources are separate tabs; this page covers Framework Management, not a combined list. |
+| Statistics | Shows counts for Frameworks, Cloud Platforms, and Framework Types. |
+| Query area | Provides framework name, cloud platform, and framework type criteria, plus Search and Reset. |
+| Framework list | Columns are Framework, Framework Type, Cloud Platform / Resource Pool, Version, Updated At, and Actions. |
+| Actions | Batch Actions and Add Framework are at the top; rows provide Publish Version and a more-actions entry. |
+| Add drawer | Step titles are Framework and Environment and First Runtime Version; the initial view shows step 1. |
 
-Page screenshots:
+![Framework list](./images/manual-frameworks.png)
 
-![Frameworks page](./images/manual-frameworks.png)
-
-The image shows the Frameworks list page, displaying framework cards, framework types, and publish status by cloud platform, along with the Add Framework button.
+The figure shows Framework Management: name, cloud platform, and framework type queries appear below the statistics, while the results separate Cloud Platform / Resource Pool from Version; the row-level Publish Version is an entry, not a published status.
 
 ## Main Operations
 
-### View Framework Details
+### Query Frameworks
 
-1. Locate the target framework and open its details.
-2. Verify the framework identifier, state, and version list.
-3. Open the target version and verify the runtime image and startup configuration.
+1. Open Frameworks under Deploy Assets and confirm Framework Management is selected.
+2. Enter a framework name, select a cloud platform, or enter a framework type as needed, then use Search; use Reset when setting criteria again.
+3. Check the target row's name, type, cloud platform/resource pool, version, and update time; statistics do not replace record-level checks.
+4. Before a change, distinguish Batch Actions from target-row actions and confirm the object and impact scope.
 
-![Framework details](./images/manual-framework-details.png)
+### Open the Initial Add Framework Configuration
 
-The image shows the framework detail page: framework metadata, cloud platform and resource pool, the version-management list, and the Runtime Configuration entry.
+1. Click Add Framework to open the Add Inference Framework drawer.
+2. In Framework and Environment, check the currently displayed Cloud Platform, Cloud Account, and Resource Pool values; displayed values do not establish submission.
+3. Check Target Meta Model, Framework Type, and Framework Name against the adaptation target, and enter Framework Description as needed. The framework-type hint includes vLLM, TGI, and SGLang.
+4. Cancel and Next Step are at the bottom; use Cancel when only inspecting the initial form. First Runtime Version is the second-step title, not an already-expanded runtime-parameter area in step 1.
 
-### Add Framework
+![Add Framework step 1](./images/manual-add-framework.png)
 
-1. Click **"Add Framework"**.
-2. Enter basic information and add a version.
-3. Select the runtime image and maintain startup and support scope.
-4. Click **"Confirm"** and open the details for validation.
+The figure shows the initial Framework and Environment configuration with seven visible fields: Cloud Platform, Cloud Account, Resource Pool, Target Meta Model, Framework Type, Framework Name, and Framework Description; Cancel and Next Step are below, while step 2 has only a title and no runtime-version form shown.
 
-![Add Framework](./images/manual-add-framework.png)
+### Compare Existing Framework Details
 
-The image shows the Add Framework form, containing configurations for cloud account, region, framework type, framework name, initial version number, and container startup commands.
+1. Locate the target framework and use its name entry to view details. The existing details view below is retained as a static field reference, not a guarantee that every record currently opens this view correctly.
+2. If normally opened details provide these areas, check Cloud Platform, Resource Pool, Latest Version, Version Count, Linked Models, and Last Updated, then examine the Version Management list.
+3. If Runtime Config is available, follow the actual opened content to check runtime parameters; the existing details figure does not establish current runtime success or health-check results.
 
-### Publish Framework Version
+![Existing framework-details reference](./images/manual-framework-details.png)
 
-1. Locate the configured version in framework details.
-2. Click **"Publish"** and verify the version, image, and scope.
-3. After publication, confirm that the version is selectable in Models.
+The figure shows existing framework details with cloud platform, resource pool, and version summary above Version Management, whose columns include Framework Version, Image, Port, Default API Suffix, Updated At, and Runtime Config; this is a static reference, not a result after adding a framework.
 
-![Publish framework version](./images/manual-publish-framework-version.png)
+### Compare Existing Runtime-Version Configuration
 
-The image shows the confirmation dialog for publishing a framework version, making it available for reference in model configurations.
+1. Current list rows provide Publish Version; confirm the target framework and change scope before maintaining a version.
+2. The existing version reference below shows Framework Version, Default API Suffix, Image, Port, and startup commands. It is not the first Add Framework step and does not establish that the current second step has been entered.
+3. If the currently opened version form contains these fields, follow its actual markers to check the version, image, port, master/worker startup commands, environment variables, and extended parameters. Use the current form's submission entry; closing a form or seeing a button does not establish successful publication.
+
+![Existing runtime-version configuration reference](./images/manual-publish-framework-version.png)
+
+The figure shows an existing runtime-version configuration drawer with version, API suffix, image, port, startup commands, and environment-variable items, plus Cancel and Publish Version below; it is not a simple confirmation prompt and does not show a post-publication result.
 
 ## Parameter Quick Reference
+
+Step-1 fields follow the current visible form. Runtime-version fields refer only to the existing version figure; they are not shown on the initial page and do not establish verification of the current second step.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Cloud Platform | Yes | Tab/Single select | `Alibaba Cloud` | Selects the cloud platform to which the framework belongs. |
-| Cloud Account | Yes | Dropdown | `Sample Cloud Account` | Selects the cloud account under the current cloud platform. |
-| Region | Yes | Dropdown | `East China-Shanghai 1` | Selects the region where the framework is available. |
-| Framework Type | Yes | Text | `LLM` | Framework type. The page example includes `LLM`. |
-| Framework Name | Yes | Text | `Sample Framework` | Framework display name in the list and model configuration. |
-| Framework Description | No | Multiline text | `Sample description` | Describes the framework purpose or compatible scenario. Do not write internal sensitive information. |
-| Framework Version | Yes | Text | `v1.0` | Framework version. |
-| Default API Suffix | No | Text | `/v1/chat/completions` | Default API path suffix for the model service. |
-| Image | Yes | Dropdown | `Sample Image` | Runtime image used by the framework. |
-| Port | Yes | Number/Text | `8000` | Port listened on by the framework service. |
-| Master Node Startup Command | Yes | Multiline text | `python3 /opt/start.py` | Startup command for the master node. Examples must be sanitized. |
-| Worker Node Startup Command | No | Multiline text | `python3 /opt/worker.py` | Startup command for worker nodes, filled in when required by the framework. |
-| Environment Variables | No | Key-value configuration | `ENV_NAME=value` | Added through `Add Environment Variable`. Do not write real secrets. |
-| Extended Parameters | No | Key-value configuration | `PARAM=value` | Added through `Add Extended Parameter`. Do not write internal sensitive parameters. |
-| Export | No | Button | `Export` | Exports framework configuration and may contain sensitive operational information. |
-| Import | No | Button | `Import` | Imports framework configuration in bulk and may change multiple records. |
-| Cancel | No | Button | `Cancel` | Closes the dialog without saving the current configuration. |
-| Confirm | Yes | Button | `Confirm` | Submits the framework configuration. Review carefully before clicking. |
+| Framework Name / Cloud Platform / Framework Type query | No | Text / Selection | Sample framework / cloud | Query items in Framework Management. |
+| Cloud Platform | Yes | Selection | Follow current options | Step-1 deployment-environment field. |
+| Cloud Account | Yes | Selection | Sample cloud account | Step-1 current cloud account, not a secret-value input. |
+| Resource Pool | Yes | Selection | Sample resource pool | Step-1 resource pool for the deployment environment, not the legacy Region field name. |
+| Target Meta Model | Yes | Search selection | Sample meta model | Step-1 adaptation target. |
+| Framework Type | Yes | Selection | `vLLM` | Step-1 runtime type; the hint also includes TGI and SGLang. |
+| Framework Name | Yes | Text | `Sample Framework` | Step-1 framework identity. |
+| Framework Description | No | Multiline text | `Sample purpose` | Step-1 purpose and scenarios; not runtime acceptance. |
+| Cancel / Next Step | — | Buttons | `Cancel` / `Next Step` | Step-1 bottom actions, not a final Confirm button. |
+| Framework Version | Follow current form | Text | `v1.0` | Version field in the existing runtime-version figure. |
+| Default API Suffix | Follow current form | Text | `/v1/chat/completions` | API path suffix in existing version configuration. |
+| Image / Port | Follow current form | Selection / Input | Sample image / `8000` | Runtime image and listening port in existing version configuration. |
+| Master Node Startup Command / Worker Node Startup Command | Follow current form | Multiline text | Follow framework requirements | Two startup-command types in existing version configuration. |
+| Environment Variables / Extended Parameters | Follow framework requirements | Key-value configuration | `ENV_NAME=value` | Configuration items in the existing version figure; do not enter real secrets. |
+| Publish Version | — | Action entry | `Publish Version` | Present in the current list and as a submit button in the existing version figure; distinguish entry from result. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The target runtime image is registered and framework-version startup requirements are confirmed.
-- Confirm impact before a configuration change: Before publishing a version, check model references, image accessibility, and startup parameters.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
-- Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
+- Cloud Platform / Resource Pool and Version are separate list columns; a framework name does not replace environment or version information.
+- The first Add Framework step has seven business fields. First Runtime Version is a second-step title, not evidence that Image, Port, or startup commands are visible in step 1.
+- The first-step bottom actions are Cancel and Next Step, not the Confirm button described for the legacy single-page form.
+- Publish Version and the existing version form establish controls that can be located, not successful publication or availability in model configuration.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Inference frameworks, framework versions, runtime images, and startup configuration display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Page location | Frameworks is highlighted and Framework Management is selected | Check the menu and tab; distinguish it from Image Resources. |
+| Framework location | The target row provides type, cloud platform/resource pool, version, and update time | Locate it again using the current criteria and target name. |
+| Initial add view | The drawer shows two step titles; step 1 has seven fields, Cancel, and Next Step | Check the active step; do not treat the existing runtime-version figure as step 1. |
+| Exit after inspection | Cancel returns to the framework list | Check whether the drawer is closed; exiting does not establish addition or publication. |
 
 ## FAQ
 
-#### Target Object Is Missing in Frameworks
+#### Why Are Image and Port Not Shown Together When Adding a Framework?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+The initial drawer shows environment and framework identity, not runtime-version fields.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+Framework and Environment is active; First Runtime Version is a separate step title.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The target runtime image is registered and framework-version startup requirements are confirmed.
-3. Confirm the current role and data scope, then locate the object again.
+Check the seven current fields and step titles first; do not treat fields in the existing runtime-version figure as missing initial-page fields.
 
-#### Frameworks Action Is Unavailable
+#### Does the Initial Add Framework Page Use Confirm or Next Step?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+The drawer shows Cancel and Next Step at the bottom.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The current add entry uses a two-step drawer, not the legacy single-page submission form.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
-
-#### Frameworks Change Does Not Reach Downstream
-
-**Symptom:**
-
-The page reports success, but a downstream page still shows the old state.
-
-**Possible Causes:**
-
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
-
-**Resolution:**
-
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Frameworks Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Frameworks Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Follow the current form buttons. Use Cancel for inspection only; neither Next Step nor closing the drawer establishes a saved or published result.
 
 ## Notes
 
-- Before publishing a version, check model references, image accessibility, and startup parameters.
-- Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- Before publishing or changing a runtime version, check model references, image, startup parameters, and impact scope, and retain the necessary audit record.
+- Existing details and version figures are static configuration references, not guarantees of current details availability, publication, model selection, or service startup success.
+- Framework descriptions are record content; user-entered validation descriptions do not establish platform deployment acceptance.
+- Do not enter real secrets, internal addresses, or customer data in documentation, tickets, or chat.
 
 ## Next Steps
 
-1. Select the framework when adding a model in the model library and validate the compute plan.
-2. Create a deployment with a test model to confirm service startup and health check results.
-3. Regularly review framework images, startup commands, and environment variables to avoid outdated configuration.
+1. See [Models](../models/) for model profiles and framework configuration references; a version shown in the framework list does not mean a model is deployed.
+2. See [Resource Pools](../../access-management/resource-pools/) and [Cloud Accounts](../../access-management/cloud-accounts/) to check deployment-environment objects.
+3. For user-side deployment, see [Quick Deployment](../../../user/model-services/quick-deployment/); verify service startup and runtime results separately in an actual deployment.

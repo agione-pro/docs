@@ -50,7 +50,7 @@ The title is `My Calls - Call Logs`. The page contains:
 
 ![My Calls call logs](./images/my-calls-call-logs.png)
 
-The figure shows the page shows `Performance Distribution & Extremes` with `E2E P99`, `TTFT P99`, and `TPOT P95`; `Result Category` provides `All`, `Failed`, `Platform Rate Limited`, `Timed Out`, and `Other Rejected`; columns are `Call Time`, `Model & Platform Route`, `Caller`, `Client Source`, `Usage`, `Status & E2E`, and `Actions`.
+The figure shows `Performance Distribution & Extremes` with `E2E P99`, `TTFT P99`, and `TPOT P95`; `Result Category` provides `All`, `Failed`, `Platform Rate Limited`, `Timed Out`, and `Other Rejected`; columns are `Call Time`, `Model & Platform Route`, `Caller`, `Client Source`, `Usage`, `Status & E2E`, and `Actions`.
 
 ## Main Operations
 

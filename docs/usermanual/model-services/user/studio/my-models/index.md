@@ -79,7 +79,7 @@ The figure shows three tabs sit at the top; the deployment area shows On-Prem/On
 
 ![Publish model basic information](./images/publish-basic.png)
 
-The figure shows the wizard shows `1 Basic Information`, `2 Billing Configuration`, and `3 Rate Limit Configuration`. The visible area contains `Meta Model`, `Model Source`, `Endpoint`, `Request URL`, `Credential`, `Upstream model name`, input/output modalities, advanced capabilities, token limits, and protocol selection; `Access Mode` sits lower in the basic-information area.
+The figure shows the wizard with `1 Basic Information`, `2 Billing Configuration`, and `3 Rate Limit Configuration`. The visible area contains `Meta Model`, `Model Source`, `Endpoint`, `Request URL`, `Credential`, `Upstream model name`, input/output modalities, advanced capabilities, token limits, and protocol selection; `Access Mode` sits lower in the basic-information area.
 
 ### Create an aggregate model
 

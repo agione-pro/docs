@@ -22,10 +22,10 @@ Operation Logs is the audit trail for Settings. It shows who performed an action
 
 | Term | Description |
 | --- | --- |
-| Operation log | Audit information that records a user action and its processing result.; Keep only desensitized clues during troubleshooting. |
-| Operator | The account that performed the action.; Confirm that the person was expected to perform it. |
-| Target object | The configuration, member, or rule that was viewed or changed.; Use it to identify the impact scope. |
-| Operation result | Success, failure, processing, or another action result.; Investigate the cause when it is not successful. |
+| Operation log | Audit information that records a user action and its processing result. Keep only desensitized clues during troubleshooting. |
+| Operator | The account that performed the action. Confirm that the person was expected to perform it. |
+| Target object | The configuration, member, or rule that was viewed or changed. Use it to identify the impact scope. |
+| Operation result | Success, failure, processing, or another action result. Investigate the cause when it is not successful. |
 
 ## Prerequisites
 
