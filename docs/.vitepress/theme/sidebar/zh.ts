@@ -46,10 +46,24 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       collapsed: false,
       items: [
         { text: '部署综述', link: '/zh-CN/installation/agione-deployment-requirements' },
-        { text: '安装前环境预检', link: '/zh-CN/installation/agione-precheck-environment-check' },
-        { text: '环境安装部署指南', link: '/zh-CN/installation/agione-quick-install' },
-        { text: '多节点环境安装部署', link: '/zh-CN/installation/agione-multi-node-install' },
-        { text: '安装配置文件字段说明', link: '/zh-CN/installation/agione-install-config-reference' },
+        {
+          text: '命令行部署 AGIOne',
+          collapsed: false,
+          items: [
+            { text: '安装前环境预检指南', link: '/zh-CN/installation/agione-precheck-environment-check' },
+            { text: '环境安装部署指南', link: '/zh-CN/installation/agione-quick-install' },
+            { text: '多节点环境安装部署文档', link: '/zh-CN/installation/agione-multi-node-install' },
+            { text: '安装配置文件字段说明', link: '/zh-CN/installation/agione-install-config-reference' },
+          ],
+        },
+        {
+          text: '图形化部署 AGIOne',
+          collapsed: false,
+          items: [
+            { text: '安装、升级与卸载', link: '/zh-CN/installation/clusterd/' },
+            { text: 'ClusterD 部署 AGIOne 最佳实践', link: '/zh-CN/installation/clusterd-agione-best-practices' },
+          ],
+        },
         { text: '节点纳管-部署配置要求', link: '/zh-CN/installation/deployment-requirements-for-managing-compute-nodes' },
         { text: '节点纳管-快速安装指南', link: '/zh-CN/installation/quick-install-for-managing-compute-nodes' },
         { text: '节点纳管-ClusterD快速安装', link: '/zh-CN/installation/quick-install-with-agione-clusterd' },
@@ -59,13 +73,6 @@ export const zhSidebar: DefaultTheme.Sidebar = {
           items: [
             { text: '运营版部署后配置', link: '/zh-CN/installation/post-deployment/operation-edition' },
             { text: '企业自用版部署后配置', link: '/zh-CN/installation/post-deployment/enterprise-internal-edition' },
-          ],
-        },
-        {
-          text: 'ClusterD',
-          collapsed: false,
-          items: [
-            { text: '安装、升级与卸载', link: '/zh-CN/installation/clusterd/' },
           ],
         },
       ],

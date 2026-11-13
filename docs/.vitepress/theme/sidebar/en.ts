@@ -83,20 +83,22 @@ export const enSidebar: DefaultTheme.Sidebar = {
           link: "/installation/agione-deployment-requirements"
         },
         {
-          text: "Pre-install Environment Check",
-          link: "/installation/agione-precheck-environment-check"
+          text: "Deploy AGIOne via CLI",
+          collapsed: false,
+          items: [
+            { text: "Pre-install Environment Check", link: "/installation/agione-precheck-environment-check" },
+            { text: "Installation & Deployment", link: "/installation/agione-quick-install" },
+            { text: "Multi-Node Installation", link: "/installation/agione-multi-node-install" },
+            { text: "Installation Configuration Reference", link: "/installation/agione-install-config-reference" },
+          ],
         },
         {
-          text: "Installation & Deployment",
-          link: "/installation/agione-quick-install"
-        },
-        {
-          text: "Multi-Node Installation",
-          link: "/installation/agione-multi-node-install"
-        },
-        {
-          text: "Installation Configuration Reference",
-          link: "/installation/agione-install-config-reference"
+          text: "Deploy AGIOne via GUI",
+          collapsed: false,
+          items: [
+            { text: "Installation, Upgrade & Uninstallation", link: "/installation/clusterd/" },
+            { text: "Best Practices for Deploying AGIOne with ClusterD", link: "/installation/clusterd-agione-best-practices" },
+          ],
         },
         {
           text: "Compute Nodes-Requirements",
@@ -122,13 +124,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
               text: "Enterprise Internal Edition",
               link: "/installation/post-deployment/enterprise-internal-edition"
             },
-          ],
-        },
-        {
-          text: "ClusterD",
-          collapsed: false,
-          items: [
-            { text: "Installation, Upgrade & Uninstallation", link: "/installation/clusterd/" },
           ],
         },
       ],
