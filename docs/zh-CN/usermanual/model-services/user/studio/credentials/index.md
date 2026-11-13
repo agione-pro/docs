@@ -1,8 +1,8 @@
 # 我的凭证
 
 ::: info 文档信息
-版本：v2.0
-更新日期：2026-11-04
+版本：v2.1
+更新日期：2026-11-12
 :::
 
 ## 功能概述
@@ -65,11 +65,11 @@
 
 ![选择接入点与工作空间](./images/credentials-step2.png)
 
-图示为`2 选择接入点与工作空间` 显示 `已选择 1 / 共 2 个接入点`；China 接入点标注 `中国`、`china`、`固定 URL`，并列出 `openai/chat_completions` 等协议和服务地址；带 `{workspace}` 的接入点需要填写 `Workspace`。
+图示为`2 选择接入点与工作空间` 显示 `已选 2 / 2 个接入点`；China 接入点标注 `中国`、`china`、`固定 URL`，并列出 `openai/chat_completions` 等协议和服务地址；带 `{workspace}` 的接入点需要填写 `Workspace`。
 
-![填写凭证信息](./images/credentials-step3.png)
+![接入点与工作空间校验示例](./images/credentials-step3.png)
 
-图示为`3 凭证信息与 API Key` 提供必填的 `名称`、`API Key` 和可选的 `描述`，底部按钮为 **"返回"**、**"保存并连接"**。
+图示为步骤 2 的工作空间校验示例：带 `{workspace}` 的接入点尚未填写 `Workspace`，页面显示必填提示。此图未展示步骤 3 的凭证信息表单。
 
 ### 查看凭证详情
 

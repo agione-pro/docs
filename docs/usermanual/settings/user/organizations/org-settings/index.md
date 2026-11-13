@@ -1,8 +1,8 @@
 # Tenant Settings
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -10,7 +10,7 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Tenants & Settings > Tenant Settings |
+| Navigation path | Settings > Tenants > Tenant Settings |
 | Page route | `/user/user-space/settings` |
 | Managed objects | Credit-balance alerts, project defaults, member quota policy, and tenant-level defaults |
 
@@ -35,53 +35,54 @@ Tenant Settings is the tenant default-rule panel. It defines the initial policy 
 
 ## Page Description
 
-| Tab | Description |
+The page has two top-level tabs: `Default Rules & Quotas` and `Security Settings`. The five configuration sections below belong to `Default Rules & Quotas` and are located through its quick navigation.
+
+| Area | Description |
 | --- | --- |
 | Credit Balance Alert | Configures an alert when tenant balance falls below a threshold. |
 | Project Defaults | Configures the reset cycle, alert threshold, and limit policy for new projects. |
 | Member Quota Defaults | Configures initial quota, reset cycle, and limit policy for new members. |
-| Quota Request Settings | Configures automatic expiration and request rules for pending requests. |
-| Bottom actions | Reset to Defaults and Save Settings |
+| Model Visibility Policy for Members | A separate configuration section in Default Rules & Quotas. |
+| Quota Request Settings | Shows Auto-expire Pending Requests After (days). |
+| Default Rules & Quotas bottom action | Save Settings |
 
 ## Main Operations
 
 ### View Tenant Settings
 
-1. Go to `Settings > Tenants and Settings > Tenant Settings`.
-2. Review organization information, quota-request settings, project defaults, and member-quota defaults.
+1. Go to `Settings > Tenants > Tenant Settings`.
+2. In `Default Rules & Quotas`, use quick navigation to review Credit Balance Alert, Project Defaults, Member Quota Defaults, Model Visibility Policy for Members, and Quota Request Settings.
 3. Record the current state and confirm that each setting applies to the current tenant.
-4. If information is missing, refresh and check administrative permission. Hide organization identifiers and quota before screenshots or sharing.
+4. If information is missing, refresh and check administrative permission.
 
 ### Edit Tenant Settings
 
-1. Go to `Tenants & Settings > Tenant Settings`.
-2. On `Credit Balance Alert`, configure the alert threshold.
-
-The following screenshot shows the balance-alert tab.
+1. Go to `Tenants > Tenant Settings` and select `Default Rules & Quotas`.
+2. Use quick navigation to locate `Credit Balance Alert` and configure the alert threshold.
 
 ![Tenant Settings](./images/org-settings.png)
 
-Tenant Settings shows Credit alerts, project defaults, member quota defaults, model visibility, and quota request settings. New objects inherit saved defaults.
+The figure shows the Credit Balance Alert section and its `Alert Threshold (credits)` field.
 
-3. Open `Project Defaults` and configure the reset cycle, alert threshold, and limit policy for new projects.
-
-The following screenshot shows Project Defaults.
+3. Use quick navigation to locate `Project Defaults` and configure the reset cycle, alert threshold, and limit policy for new projects.
 
 ![Project Defaults](./images/org-project-defaults.png)
 
-4. Open `Member Quota Defaults` and configure initial quota, reset cycle, and limit policy for new members.
+The figure shows the Project Defaults section, including `Used quota alert threshold (%)`, `Reset Cycle`, `Day of Month`, and `Limit Policy`.
 
-The following screenshot shows Member Quota Defaults.
+4. Use quick navigation to locate `Member Quota Defaults` and configure initial quota, reset cycle, and limit policy for new members.
 
 ![Member Quota Defaults](./images/org-member-quota-defaults.png)
 
-5. Open `Quota Request Settings` and configure automatic expiration for pending requests.
+The figure shows the Member Quota Defaults section, including `Default Granted Quota for New Members (credits)`, `Used quota alert threshold (%)`, `Reset Cycle`, `Day of Month`, and `Limit Policy`.
 
-The following screenshot shows Quota Request Settings.
+5. Use quick navigation to locate `Quota Request Settings` and configure automatic expiration for pending requests.
 
 ![Quota Request Settings](./images/org-quota-request-settings.png)
 
-6. After reviewing all tabs, select `Save Settings`.
+The figure shows the Quota Request Settings section and the `Auto-expire Pending Requests After (days)` field.
+
+6. After reviewing the sections in `Default Rules & Quotas`, select `Save Settings` only for an approved change.
 
 ### Verify Tenant Settings
 

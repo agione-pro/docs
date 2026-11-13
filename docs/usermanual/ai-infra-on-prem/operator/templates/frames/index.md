@@ -203,7 +203,7 @@ Add, change, or remove the ports a framework version exposes when its service ac
 | KV Cache Quantization | No | Read-only | `Not configured` | KV Cache quantization method resolved by the same match block. Unmatched entries show `Not configured`. |
 | Image | Yes | Text | `<BASE_URL>/<PROJECT>/<IMAGE>:<TAG>` | Container image required to run inference tasks. Enter the real image address in the system form. When sharing outside the console, use placeholders and do not publish real registry addresses. |
 | Image Region | Conditionally required | Text | `wuhan` | Region where the image is hosted or can be pulled. Keep it consistent with target region, cluster network, and registry permissions. |
-| Main Node Startup Command | Yes | Configuration text | `<config>` | Startup command for the main node in the task cluster. In single-node tasks, this is used directly as the node startup command. The command must run as a foreground process to avoid immediate container exit. |
+| Main Node Startup Command | Yes | Configuration text | `<config>` | Startup command for the main node in the task cluster. In single-node tasks, this directly serves as the node startup command. The command must run as a foreground process to avoid immediate container exit. |
 | Worker Node Startup Command | Required for distributed scenarios | Configuration text | `python worker.py` | Startup command for Worker nodes, used in distributed inference. Keep it consistent with main-node communication, scheduling topology, and framework version. |
 | Extra Parameters | No | Configuration text | `--max-model-len 8192` | Parameters used to dynamically supplement or adjust startup commands. They can be injected into commands through placeholders. Do not write real tokens, AK/SK, private keys, passwords, or internal addresses. |
 | Environment Variables | No | Configuration text | `ENV=prod` | Preset environment variables injected when the container starts. Use only non-sensitive variables. Use platform credentials or Secret mechanisms for sensitive values. |
@@ -268,7 +268,7 @@ Startup commands and extra parameters can use placeholders, and each command box
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | Frames opens with the target operation entry | Check Operator permission and whether the menu is available |
-| Object record | Configuration, status, and relationships on Frames is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| Object record | Configuration, status, and relationships on Frames are visible in the list or details | Reset filters and verify name, ownership, and creation result |
 | State result | The state badge in the detail header matches the state after creation or change | Check operation feedback, dependency state, and the `Updated:` time |
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 

@@ -63,7 +63,7 @@ The figure shows the Cloud Accounts list, with cloud-platform, name, and status 
 1. Click Add Cloud Account to open the dialog of the same name.
 2. Enter Account Name and select the account's platform under Select Cloud Platform.
 3. Enter credentials according to the actual form requirements for the selected platform. The blank form uses the generic labels Credential Identifier and Credential Secret; do not assume every cloud platform uses AK/SK.
-4. Review the account name, platform, and credential purpose. Click Confirm if you intend to submit. To inspect the form without submitting, click Cancel to return to the list.
+4. Review the account name, platform, and credential purpose. To submit, click Confirm. To inspect the form without submitting, click Cancel to return to the list.
 
 ![Blank Add Cloud Account form](./images/add-cloud-account.png)
 

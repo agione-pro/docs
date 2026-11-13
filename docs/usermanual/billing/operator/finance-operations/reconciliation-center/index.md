@@ -63,7 +63,7 @@ The five rounding checks have the following meanings, as described on the page:
 
 1. Go to `Billing > Finance Operations > Reconciliation Center` and click `Bilateral Ledger Check`.
 2. Read the full-history scan notice; results are not queried automatically when the page opens, so the absence of an initial result table does not mean there are no exceptions.
-3. Check the billing cycle at the top, but do not interpret it as restricting unpaired-transfer and missing-revenue-detail scans to that cycle.
+3. Check the top billing cycle; do not assume scans for unpaired transfers and missing revenue details are limited to it.
 4. When query results are available, review unpaired transfers and missing revenue details separately; use Financial Accounts and Settlement List for further inspection, without treating a tab switch as a completed query.
 
 ![Bilateral ledger check notice](./images/bilateral-ledger-check-list.png)

@@ -48,7 +48,7 @@ Model Asset Migration is like a moving inventory for asset configuration: review
 | Import History | Columns: Status, Package, Result, Progress, Operator, Created, and Action. Result is not the Assets column in Export History. |
 | Page buttons | Refresh, Import ZIP, and Export ZIP. An entry's presence does not mean an operation is complete. |
 
-The interface states that the ZIP excludes cloud account credentials, Tokens, running instances, and real-time state. This is the interface's scope description, not evidence that an actual ZIP has been inspected or a security guarantee that an export package contains no sensitive information.
+The interface states that the ZIP excludes cloud account credentials, Tokens, running instances, and real-time state. This describes the interface's stated scope. It neither proves that an actual ZIP has been inspected nor guarantees that an export package contains no sensitive information.
 
 ## Main Operations
 

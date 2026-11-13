@@ -1,8 +1,8 @@
 # Monthly Usage
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -15,7 +15,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-Monthly usage is like a monthly resource bill summary. It aggregates scattered compute, storage, and instance consumption into billing period, tenant, and resource type dimensions, and then lists the consumption as hourly metering records.
+Monthly usage is like a monthly resource bill summary. It groups compute, storage, and instance consumption by billing period, tenant, and resource type, then lists it as hourly metering records.
 
 #### Terms Quick Reference
 | Term | Description |
@@ -46,7 +46,7 @@ Use this page to query tenant resource consumption by billing period, check the 
 
 ![Monthly Usage](./images/manual-monthly-usage.png)
 
-The page header offers the `Monthly Metering` and `Usage Details` tabs; the current page is `Monthly Metering`, and the other tab opens the sibling page `Usage Details`. Under the left menu group `Quotas & Metering`, the entries `Usage Limits` and `Monthly Usage` are visible.
+The figure shows the selected `Usage Details` tab alongside `Monthly Metering`. Use `Monthly Metering` for the monthly queries below; `Usage Details` opens the sibling detail view. The empty-result figure below shows `Monthly Metering`. Under the left menu group `Quotas & Metering`, the entries `Usage Limits` and `Monthly Usage` are visible.
 
 The filter row contains `Billing Period`, `Region`, `Resource Name`, and `Tenant` from left to right, followed by `Expand`, `Search`, and `Reset`. `Billing Period` shows the placeholder `Select billing period` when unset; `Region` shows `All` when unset and displays a status dot next to the selected region; `Resource Name` shows the placeholder `Resource name`; `Tenant` defaults to `All Tenants`.
 
@@ -125,7 +125,9 @@ Use this to verify a single metering record by resource, time window, and billin
 2. Read `Resource type`, `Resource Name`, `Resource ID`, and `Flavor` to confirm the metered object; object-storage records show `--` in `Flavor`.
 3. Check the `Resource Items` chip: GPU records show a card model with `1 AI card(s)` followed by a `+3` collapse marker, and storage records show `storage 1 GiB`.
 
-![Monthly Usage right-hand columns](./images/monthly-usage-columns.png)
+![Usage Details right-hand columns](./images/monthly-usage-columns.png)
+
+The figure shows the right-hand columns on the `Usage Details` tab, not a `Monthly Metering` tab capture.
 
 4. Scroll the list horizontally and read `Start Time`, `End Time`, `Duration (h)`, `Line Type`, `Billing Method`, `Metered Amount (credits)`, `Quota Spend (h)`, `Region`, `Zone`, and `Batch Number`.
 5. Group totals by `Billing Method`: records valued `credits` are read from the `Metered Amount (credits)` column, records valued `Flavor quota` from the `Quota Spend (h)` column, and the other column shows `--`.

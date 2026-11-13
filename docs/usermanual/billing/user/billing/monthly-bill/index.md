@@ -14,7 +14,7 @@ Updated: 2026-11-05
 | Page route | `/billing/my/account/transactions/monthly-summary` |
 | Managed objects | Cross-month billing-cycle spend trends, the selected cycle's summary, deduction records, and consumption distributions |
 
-Monthly Bill selects a billing cycle, summarizes spend and top-ups, and groups distributions by consumed service or cost attribution. Use the billing-cycle transaction entries to continue checking records.
+In Monthly Bill, select a billing cycle, read spend and top-up summaries, and group distributions by consumed service or cost attribution. Review records through billing-cycle transaction entries.
 
 #### Beginner Explanation
 

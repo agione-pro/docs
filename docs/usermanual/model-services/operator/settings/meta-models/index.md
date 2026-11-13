@@ -1,8 +1,8 @@
 # Meta Models
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -70,7 +70,7 @@ The figure shows the meta model list for DeepSeek. The table lists `Meta model n
 
 ![Add Meta Model - configuration](./images/meta-models-add-step1.png)
 
-The figure shows `Basic Information`, `Description`, and the capability sections below in Step 1. Fields marked with `*`, such as `Name`, `Series`, `Scene`, and `Official Release Time`, must be filled. `Model Author` is carried in from the entry point, shown here as DeepSeek.
+The figure shows `Basic Information` and `Description` in Step 1. Fields marked with `*`, such as `Name`, `Series`, `Scene`, and `Official Release Time`, must be filled. `Model Author` is carried in from the entry point, shown here as DeepSeek.
 
 ### Filter and read the list
 

@@ -1,8 +1,8 @@
 # Members
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -65,7 +65,9 @@ The member list shows username, display name, contact details, roles, member tag
 
 ![Add Member](./images/add-member.png)
 
-4. Fill in `Username`, `Full name`, `Email`, `Password`, and `Confirm Password`.
+The figure shows the `Add Member` form, including `Username`, `Display name`, `Email`, `Password`, and `Confirm Password`.
+
+4. Fill in `Username`, `Display name`, `Email`, `Password`, and `Confirm Password`.
 5. Fill in `Contact number` as needed, including the country or region code and phone number.
 6. Select a member role from `Role`.
 7. Select `Enable` or `Disable` in `Status`.
@@ -80,9 +82,9 @@ The member list shows username, display name, contact details, roles, member tag
 4. Before clicking `Confirm`, verify the member identity, role permissions, and enabled status.
 5. Return to the list and verify the display name, roles, status, and update time.
 
-![Edit User](./images/edit-member.png)
+![Members list before opening the edit dialog](./images/edit-member.png)
 
-The dialog shows the username, full name, email, contact number, role, and status fields. Click `Cancel` when you only need to review the configuration.
+The figure shows the Members list before the edit dialog is opened. Use the row action to open the form; click `Cancel` when you only need to review the configuration.
 
 ## Parameter Quick Reference
 

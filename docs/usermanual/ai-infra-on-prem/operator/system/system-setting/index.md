@@ -1,8 +1,8 @@
 # System Setting
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -50,7 +50,7 @@ An editable item shows a pencil icon at the end of its value row. Opening edit m
 
 ## Main Operations
 
-This section is organized by configuration group. Each group documents the review actions only, and each image follows the step it supports.
+The configuration groups below cover review actions only.
 
 ### Review User Service Access Configuration
 
@@ -67,7 +67,7 @@ Use the `User service access` group to confirm the entry addresses, signing key,
 5. Check the current state of the `Use domain-based ingress` and `User-visible diagnosis events` switches, and check the port and path template of `Public Nginx endpoint`.
 6. Check which card is selected under `Default port access policy`. The four options are `Web Access (Recommended)`, `API Auth Access (Recommended)`, `Web/API Compatible Access (Unsigned)`, and `Direct Port Forwarding (Unsigned)`.
 
-The following image covers the full visible range of this group, so each configuration item name and control form above can be aligned one by one.
+The figure shows five items in `User service access`, through `Default port access policy`. `User-visible diagnosis events` is outside this capture; review it on the live page.
 
 ![User service access group: Gateway endpoints, signing key, Nginx endpoint, and port access policy](./images/user-service-access.png)
 
@@ -465,7 +465,7 @@ Use `Refresh` in the top-right corner to reload the configuration when someone e
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | System Setting opens with the target operation entry | Check Operator permission and whether the menu is available |
-| Object record | Configuration, status, and relationships on System Setting is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| Object record | Configuration, status, and relationships on System Setting are visible in the list or details | Reset filters and verify name, ownership, and creation result |
 | State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 

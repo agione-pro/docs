@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-Object storage is like cloud drive for models and data. It stores files, datasets, model packages, and output results with buckets and objects. It is suitable for uploading, downloading, and sharing files by path, but it is not the same as a directly mountable POSIX shared directory.
+Object storage is like a cloud drive for models and data. It stores files, datasets, model packages, and outputs with buckets and objects. It is suitable for uploading, downloading, and sharing files by path, but it is not the same as a directly mountable POSIX shared directory.
 
 #### Terms Quick Reference
 | Term | Description |

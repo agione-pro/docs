@@ -1,8 +1,8 @@
 # Observability Audit
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -50,7 +50,7 @@ The page provides API, node, and audit-log views for tracing rate-control decisi
 
 ![Observability Audit](./images/observability-audit-list.png)
 
-The Minute Metrics tab shows time buckets, rules, APIs, requests, blocked requests, over-limit statistics, and nodes. Switch tabs for blocked and audit logs.
+The figure shows the `Minute Metrics` tab and the `Time Bucket`, `Rule`, `API`, `Requests`, `Blocked Requests`, `Would-Be Blocks`, and `Node` column headers. This capture displays `No Data`. Switch tabs for blocked and audit logs.
 
 ## Main Operations
 

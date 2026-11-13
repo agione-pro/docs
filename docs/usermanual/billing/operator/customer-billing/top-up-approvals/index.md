@@ -62,7 +62,7 @@ The figure shows the Top-up Approvals list after entering `documentation-example
 
 1. Check `Customer & Applicant` first to identify the request being read.
 2. Read `Requested credits`, `Request details`, `Status`, `Audit info & remarks`, and `Applied at` in the same row.
-3. If the list is empty, check the current customer name and status conditions first; do not interpret this as no requests for all customers.
+3. If the list is empty, check the current customer name and status conditions first; do not conclude that no customers have requests.
 
 ## Parameter Quick Reference
 
@@ -107,7 +107,7 @@ The current result is restricted by the customer name and status conditions; its
 
 **Resolution:**
 
-Check the name input and status selection, change the query conditions as needed, and read the list for that scope. Do not infer that all customers have no requests from an empty result for one name.
+Check the name input and status selection, change the query conditions as needed, and read the list for that scope. An empty result for one name does not mean that no customers have requests.
 
 ## Notes
 

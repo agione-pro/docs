@@ -1,8 +1,8 @@
 # Platform Settings
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -39,7 +39,7 @@ The Platform Settings page groups global configuration by business impact.
 
 ![Platform Configuration](./images/platform-settings-list.png)
 
-The left side lists 10 platform configuration areas. The menu label is Platform Settings; the page title is Platform Configuration.
+The figure shows 10 platform configuration areas on the left. Both the menu label and the page title are `Platform Settings`.
 
 | Configuration Area | Main Responsibility | Typical Impact to Verify |
 | --- | --- | --- |
@@ -99,7 +99,7 @@ General Configuration shows product name, support email, and automatic review de
 
 ![Provider Relationship Configuration](./images/provider-relationship.png)
 
-Provider Relationship shows providers, relationships, enabled status, and settlement ownership. Confirm business ownership before changing it.
+The figure shows `Default Provider Binding`, with `Binding mode`, `Default Provider`, and the `Reconcile` button. Confirm business ownership before changing it.
 
 ### Edit Currency Settings
 
@@ -109,7 +109,7 @@ Provider Relationship shows providers, relationships, enabled status, and settle
 
 ![Currency Settings](./images/currency-settings.png)
 
-Currency Settings shows the default currency, display rules, precision, and conversion parameters. Confirm the impact on recharge, billing, and settlement.
+The figure shows `Currency Settings` with `Currency Code`, `Currency Name`, and `Currency Symbol`. Confirm the impact on recharge, billing, and settlement.
 
 ### View Payment Channel Settings
 
@@ -129,7 +129,7 @@ Currency Settings shows the default currency, display rules, precision, and conv
 
 ![Account and Settlement Configuration](./images/account-settlement.png)
 
-Account and Settlement shows account, settlement cycle, recharge, and Credits parameters. Confirm the impact on billing and settlement.
+The figure shows registration gifts, the default Credit exchange rate, the default Provider settlement percentage, and settlement posting confirmation timeout. Confirm the impact on billing and settlement.
 
 ### Edit Email Settings
 
@@ -139,7 +139,7 @@ Account and Settlement shows account, settlement cycle, recharge, and Credits pa
 
 ![Email Settings](./images/email-settings.png)
 
-Email Settings shows the mail service, sender, notification templates, and verification email parameters. Verify login codes and notification delivery after changes.
+The figure shows `Recharge arrival notification`, including `Login URL`, `Recharge arrival email`, and `CC recipients`; `Advanced email service configuration` is collapsed. Verify login codes and notification delivery after changes.
 
 ### Edit Language Settings
 
@@ -161,7 +161,7 @@ Language Settings shows available languages (English/Chinese/Español) and the s
 
 ![UI Configuration](./images/ui-configuration.png)
 
-UI Configuration shows login-page, platform identity, theme, and display settings. Verify the user-visible interface and branding after changes.
+The figure shows `UI Configuration` with `Brand Assets` and `Docs and Routes`. Verify the user-visible interface and branding after changes.
 
 ### Edit Platform Maintenance Notifications
 

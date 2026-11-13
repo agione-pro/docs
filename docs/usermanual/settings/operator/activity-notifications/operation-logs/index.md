@@ -1,8 +1,8 @@
 # Operation Logs
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -39,7 +39,7 @@ The page provides filters, an operation-log list, and record details for tracing
 
 ![Operation Logs](./images/operation-logs-list.png)
 
-The Operation Logs list shows time, user, product module, action summary, and details. Narrow the time range and confirm the recipient before exporting.
+The figure shows the Operation Logs filters and table, with Time, Product module, Operator, Action summary, and Details columns. Narrow the time range and confirm the recipient before exporting.
 
 | Area | Description |
 | --- | --- |

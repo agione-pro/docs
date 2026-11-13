@@ -1,8 +1,8 @@
 # Rule Management
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -39,7 +39,7 @@ The page provides rule filters, a rule list, and lifecycle actions for creating,
 
 ![Rule Management](./images/rule-management-list.png)
 
-The rule list shows rule name, API/counting key, counting scope, quota/node, window, priority, and publish status. Unpublished rules do not take effect.
+The figure shows a Rule Name search for `XAPI Model TPM`, with the matching row's API/counting key, counting scope, quota/node, window, priority, publish status, enabled switch, and actions. This is a filtered example, not the platform's full rule count. Unpublished rules do not take effect.
 
 | Area | Description |
 | --- | --- |

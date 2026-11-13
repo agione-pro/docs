@@ -1,8 +1,8 @@
 # Profile
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -68,7 +68,7 @@ User Settings provides `Change Avatar`, `Edit` next to the display name, `Edit` 
 
 ![Edit personal details](./images/edit-personal-details.png)
 
-The edit dialog allows changes to the display name and other editable fields. Protected fields such as username and user ID remain read-only.
+The figure shows the `Edit display name` dialog with a `Display name` field and `Cancel` / `Confirm` buttons.
 3. Enter the new display name in the window, confirm the impact, and save.
 4. Return to Profile and verify the new display name. If it does not change, refresh the page or sign in again.
 

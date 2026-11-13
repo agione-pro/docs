@@ -15,7 +15,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-Statistics overview serves as the resource pool cockpit, centrally presenting overall platform resource utilization and health summaries to help operators quickly evaluate system health and decide whether to open cluster, node, device, or job monitoring pages for targeted investigation.
+Statistics overview is the resource pool cockpit. It presents overall platform resource utilization and health summaries to help operators evaluate system health and decide whether to open cluster, node, device, or job monitoring pages for targeted investigation.
 
 #### Terms Quick Reference
 | Term | Description |

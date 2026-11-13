@@ -1,8 +1,8 @@
 # License
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-05
+Version: v2.2
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -43,7 +43,7 @@ The page contains:
 
 ![License Overview](./images/license-overview.png)
 
-The figure shows the upper part of the page: the tabs, subscription status and expiry at the top, and the License Overview with Platform License and Managed Objects states plus the shortened registration code.
+The figure shows the page heading and License Overview, including Platform License and Managed Objects states and the shortened registration code. Tabs and subscription expiry are outside this crop.
 
 | Area | Description |
 | --- | --- |
@@ -81,7 +81,7 @@ The figure shows the AI Infra License category under Managed Objects: the three 
 
 1. Select the `Platform License` tab.
 2. Check `Subscription status`, `Expires at`, and `Next License effective at`.
-3. In `Activate Licenses`, paste License values line by line or import them with `Choose a .lic / .license / .txt file`.
+3. For viewing only, leave the `Activate Licenses` editor and file input empty. Only when activation is required, internal approval is obtained and the License source is trusted, paste License values line by line or import them with `Choose a .lic / .license / .txt file`.
 4. Use `Auto wrap` or `No wrap` for display; this changes presentation only and does not alter License content.
 5. Check the batch limits: up to 100 items, 64 KiB per item, and 1 MiB per file.
 6. Read the batch-validation notice; stop before `Submit and activate` during read-only checks.

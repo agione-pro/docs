@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-An inference template is like an assembly list for a model service. It combines frameworks, specifications, default parameters, and visibility scope so users can quickly create services from the template during deployment.
+An inference template is like an assembly list for a model service. It combines frameworks, specifications, default parameters, and visibility scope so users can create services from the template during deployment.
 
 #### Terms Quick Reference
 | Term | Description |
@@ -184,7 +184,7 @@ Use the import/export entry to batch-maintain inference templates, or to export 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | Inference Templates opens with the target operation entry | Check Operator permission and whether the menu is available |
-| Object record | Configuration, status, and relationships on Inference Templates is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| Object record | Configuration, status, and relationships on Inference Templates are visible in the list or details | Reset filters and verify name, ownership, and creation result |
 | State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 

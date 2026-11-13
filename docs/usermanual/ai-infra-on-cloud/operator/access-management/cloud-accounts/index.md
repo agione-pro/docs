@@ -63,7 +63,7 @@ The figure shows the Cloud Accounts table with Healthy selected in the status fi
 1. Click Add Cloud Account to open the dialog of the same name.
 2. Enter Account Name and specify the platform in Select Cloud Platform.
 3. Enter credentials according to the actual selected-platform form. The blank form uses Credential Identifier and Credential Secret; do not assume all platforms use AK/SK.
-4. Check the account name, platform, and credential purpose. Click Confirm when submission is intended. For inspection without submission, use Cancel to return to the list.
+4. Check the account name, platform, and credential purpose. To submit, click Confirm. To inspect without submitting, use Cancel to return to the list.
 
 ![Blank Add Cloud Account form](./images/manual-add-cloud-account.png)
 

@@ -1,7 +1,7 @@
 # Cloud Platforms
 
 ::: info Document Information
-Version: v2.1
+Version: v2.2
 Updated: 2026-11-12
 :::
 
@@ -64,7 +64,7 @@ The figure shows Cloud Platform Access, with Available for Deployment and Schedu
 2. In Basic Information, review Cloud Platform Type; Public Cloud and Private Cloud are available options.
 3. Follow the actual type-specific form and use Select Platform to specify the target. The interface says built-in options are for reference and advises selecting a platform with existing accounts and resources.
 4. The dialog also has a Cloud Platform Usage Scope tab. Review its actual configuration before submission; it is not a field within Basic Information.
-5. Use Add at the bottom when submission is intended. To inspect without submitting, click Cancel.
+5. To submit, use Add at the bottom. To inspect without submitting, click Cancel.
 
 ![Add Cloud Platform](./images/manual-add-cloud-platform.png)
 

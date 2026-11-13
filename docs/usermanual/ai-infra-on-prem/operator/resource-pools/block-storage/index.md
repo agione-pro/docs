@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-Block Storage is like the independent disk supplier for instances. It connects Ceph RBD or compatible block device capabilities to the platform. When users create instances that require persistent volumes, the platform applies and mounts block volumes according to the storage pool, capacity thresholds, and CSI configuration maintained here.
+Block Storage connects Ceph RBD or compatible block device capabilities to the platform, like an independent disk supplier for instances. When users create instances that require persistent volumes, the platform applies and mounts block volumes according to the storage pool, capacity thresholds, and CSI configuration maintained here.
 
 #### Terms Quick Reference
 | Term | Description |
@@ -101,7 +101,7 @@ The following figure shows the New Block Storage page, used to fill in block sto
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | Block Storage opens with the target operation entry | Check Operator permission and whether the menu is available |
-| Object record | Configuration, status, and relationships on Block Storage is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| Object record | Configuration, status, and relationships on Block Storage are visible in the list or details | Reset filters and verify name, ownership, and creation result |
 | State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 

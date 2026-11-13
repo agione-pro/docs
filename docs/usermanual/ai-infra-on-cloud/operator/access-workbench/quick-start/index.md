@@ -1,8 +1,8 @@
 # Quick Access
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -10,195 +10,151 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Access Workbench > Quick Access |
-| Page Route | `/infrahub/op/workbanch/quick` |
-| Managed Objects | Completion progress for cloud platforms, platform authorization, accounts, resource pools, and pool authorization |
+| Navigation Path | AI Infra(On-Cloud) > Access Workbench > Access Overview |
+| Page Route | Legacy entry: `/infrahub/op/workbanch/quick`; redirects to `/infrahub/op/workbanch/overview?stage=cloudAccess` |
+| Managed Objects | The legacy Quick Access entry and navigation to cloud access management |
 
 #### Beginner Explanation
 
-Quick Access is a five-step checklist. It does not replace configuration pages; it shows current progress and the next responsible page.
+In the current Demo operator view, Quick Access is a legacy entry to [Access Overview](../access-overview/), not a separate five-step checklist. The current page diagnoses and navigates; all configuration changes belong to formal management pages.
 
 #### Terms Quick Reference
 | Term | Description |
 | --- | --- |
-| Access Status | The overall state of the access workflow. |
-| Completion Progress | The number of completed steps against all steps. |
-| Access Step | A workflow stage such as platform, authorization, account, or pool. |
+| Legacy entry | The former Quick Access route, which now redirects to Access Overview. |
+| Stage | One of the four dependency stages on Access Overview. |
+| Formal management page | The destination where the corresponding configuration is maintained. |
 
 #### Recommended Operation Order
 
-Start with the first incomplete step, return and refresh after completion, and open Access Overview when all steps are complete.
+Open the current Access Overview, locate the relevant stage, then use its navigation entry to reach the responsible management page. See [Access Overview](../access-overview/) for the complete diagnostic workflow.
 
 #### Beginner Checklist
 
 | Scenario | Do First | Do Not Do Directly |
 | --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| Opening an old link | Confirm that the destination is Access Overview | Wait for a separate five-step wizard |
+| Connecting a cloud | Use Connect Cloud and confirm the Cloud Platforms destination | Treat navigation as a saved platform configuration |
+| Before a configuration change | Verify dependencies, scope and the target on the formal management page | Change an unknown object or skip impact checks |
+| An unexpected destination appears | Record the current route and page title | Submit configuration repeatedly or record real credentials |
 
 ## Prerequisites
 
-1. The current account has the permission required for Quick Access.
-2. The current account can access the object pages for all five steps.
-3. Before completing a step, confirm the target platform, tenant, business, and resource scope.
+1. Use an operator account with access to Access Overview and the relevant formal management pages.
+2. Confirm the target platform, tenant, business and resource scope before changing configuration on a formal management page.
+3. Use the current Access Overview navigation path above; an existing Quick Access link redirects to that page.
 
 ## Page Description
 
-The page shows overall access status, completion progress, five access steps, and the Access Overview entry.
+The legacy route opens Access Overview at `/infrahub/op/workbanch/overview?stage=cloudAccess`. The current page has four stages: `Connect Cloud Resources`, `Open Tenant Access`, `Prepare Runtime`, and `Complete Model Onboarding`. It diagnoses and navigates rather than saving configuration.
 
-Page screenshots:
+The illustration below is retained as a legacy example:
 
 ![Quick Access page](./images/manual-quick-access.png)
 
-The image shows the Quick Start onboarding workflow page, detailing the overall connection status, completion progress across the 5 setup steps (cloud platform, platform auth, account, resource pool, and pool auth), and the shortcut to Connection Overview.
+The figure shows the illustration retained from the earlier Quick Access instructions. The current entry redirects to Access Overview; follow its current navigation rather than relying on this illustration.
 
 ## Main Operations
 
-### View Access Progress
+### Open the Legacy Entry
 
-1. Go to `AI Infra(On-Cloud) > Access Workbench > Quick Access`.
-2. Review the overall status and completion progress.
-3. Check each step from cloud platform to resource-pool authorization.
+1. Open `/infrahub/op/workbanch/quick` from an existing link.
+2. Confirm that the destination is Access Overview and the route is `/infrahub/op/workbanch/overview?stage=cloudAccess`.
+3. Use [Access Overview](../access-overview/) for current diagnostic instructions; do not wait for the old five-step checklist.
 
-### Complete Access Steps
+### Open Cloud Platforms
 
-1. Locate the first incomplete step.
-2. Open the corresponding platform, account, pool, or authorization page.
-3. Return to Quick Access, refresh, and confirm completion.
+1. On the current Access Overview page, click **"Connect Cloud"**.
+2. Confirm that the destination title is Cloud Platforms. This navigation carries `quickstart=1`, `quickstartStep=platform` and `businessId=inference` query parameters.
+3. Follow [Cloud Platforms](../../access-management/cloud-platforms/) for configuration on that management page. Opening it is not proof that a platform has been created or connected.
 
-### Open Access Overview
+### Continue Stage Review
 
-1. Confirm that all five steps are complete.
-2. Click **"View Access Overview"**.
-3. Continue with deployment-asset and authorization checks.
+1. Return to Access Overview using its current navigation entry.
+2. Read the stage guidance in dependency order and locate the responsible management page.
+3. Check configuration results on that formal management page; use [Access Overview](../access-overview/) for the full review workflow.
 
 ## Parameter Quick Reference
+
+This table lists route information and navigation entries, not configuration form fields.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Page title | System-generated | Text | `Quick Start` | Page title displayed for Quick Access. |
-| Access status | System-generated | Status | `Access Ready` | Overall status of the current access flow. |
-| Completion progress | System-generated | Number | `5/5` | Number of completed access steps and total steps. |
-| Next | System-generated | Text / entry | `Access Ready` | Next prompt provided by the page based on current access status. |
-| Cloud | System-generated | Step status | `Done` | Completion status of the cloud platform access step. |
-| Authorization | System-generated | Step status | `Done` | Completion status of the authorization step. |
-| Account | System-generated | Step status | `Done` | Completion status of the access account step. |
-| Pool | System-generated | Step status | `Done` | Completion status of the resource pool access step. |
-| Pool Authorization | System-generated | Step status | `Done` | Completion status of the pool authorization step. |
-| View Access Overview | No | Action button | `View Access Overview` | Opens Access Overview to continue checking the access foundation, operator resources, and grant status. |
+| Legacy entry | N/A | Route | `/infrahub/op/workbanch/quick` | Former Quick Access route; redirects to Access Overview. |
+| Current destination | N/A | Route | `/infrahub/op/workbanch/overview?stage=cloudAccess` | Destination observed when opening the legacy entry. |
+| Page title | System-generated | Text | `Access Overview` | Title of the current destination. |
+| Stage | No | Stage navigation | `Connect Cloud Resources` | One of four dependency stages, not an old five-step completion count. |
+| Connect Cloud | No | Navigation entry | `Connect Cloud` | Opens Cloud Platforms with the cloud-access query parameters. |
+| Management destination | N/A | Route | `/infrahub/op/access/platform?quickstart=1&quickstartStep=platform&businessId=inference` | The observed Cloud Platforms destination; configuration belongs to that management page. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The current account can access the object pages for all five steps.
-- Confirm impact before a configuration change: Before completing a step, confirm the target platform, tenant, business, and resource scope.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- The legacy entry redirects to Access Overview; do not wait for `5/5` or require the old View Access Overview button before entering it.
+- Overview diagnostics and navigation do not save configuration. Confirm scope and use the formal management page for changes.
+- A successful navigation is not proof of cloud access, authorization or model publication readiness.
 - Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Completion progress for cloud platforms, platform authorization, accounts, resource pools, and pool authorization display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Legacy entry destination | Opening the old route displays Access Overview at `/infrahub/op/workbanch/overview?stage=cloudAccess` | Use the current Access Overview menu and compare the route and title |
+| Current stages | The page shows the four stages listed in Page Description | Compare the destination with [Access Overview](../access-overview/) rather than the legacy illustration |
+| Connect Cloud destination | Connect Cloud opens Cloud Platforms with the documented query parameters | Record the actual destination route and title; do not submit configuration to troubleshoot navigation |
+| Configuration boundary | The responsible formal management page is identified | Do not treat navigation as a saved configuration or completed access workflow |
 
 ## FAQ
 
-#### Target Object Is Missing in Quick Access
+#### Why Does Quick Access Open Access Overview?
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+An existing Quick Access link opens Access Overview instead of a five-step checklist.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+The legacy route `/infrahub/op/workbanch/quick` redirects to `/infrahub/op/workbanch/overview?stage=cloudAccess`.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The current account can access the object pages for all five steps.
-3. Confirm the current role and data scope, then locate the object again.
+Use the current Access Overview menu and [Access Overview instructions](../access-overview/).
 
-#### Quick Access Action Is Unavailable
+#### Where Are Configuration Changes Made?
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+Access Overview provides diagnosis and navigation rather than a standalone configuration workflow.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The page explicitly assigns all configuration changes to formal management pages.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
+For cloud access, use Connect Cloud to open [Cloud Platforms](../../access-management/cloud-platforms/). Follow the responsible page's instructions for configuration; do not treat opening it as a saved change.
 
-#### Quick Access Change Does Not Reach Downstream
+#### Why Does the Illustration Still Describe Five Steps?
 
 **Symptom:**
 
-The page reports success, but a downstream page still shows the old state.
+The retained legacy example describes five steps, while the current Access Overview has four stages.
 
 **Possible Causes:**
 
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
+The illustration belongs to the former Quick Access workflow; the legacy entry now leads to Access Overview.
 
 **Resolution:**
 
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
-
-#### Quick Access Data Differs from Another Page
-
-**Symptom:**
-
-Counts or states differ from an associated page.
-
-**Possible Causes:**
-
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
-
-**Resolution:**
-
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
-
-#### How to Troubleshoot a Quick Access Failure
-
-**Symptom:**
-
-Submission fails or the state does not change for an extended period.
-
-**Possible Causes:**
-
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
-
-**Resolution:**
-
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Use the current page and [Access Overview](../access-overview/) for stage review. The legacy `5/5` example is not a current readiness requirement.
 
 ## Notes
 
-- Before completing a step, confirm the target platform, tenant, business, and resource scope.
+- Before changing configuration on a formal management page, confirm the target platform, tenant, business and resource scope.
 - Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
 - Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
 
 ## Next Steps
 
-1. Go to Access Overview to view the access foundation, operator resource checklist, and grant status.
-2. For incomplete steps, go to the cloud platform, resource pool, account, or authorization page to complete configuration.
-3. After confirming the access flow, go to Models, Frameworks, Runtime Images, or Policies to check deployment assets.
+1. Continue in [Access Overview](../access-overview/) for goals, stage diagnostics and the full configuration-review workflow.
+2. For cloud connection, use [Cloud Platforms](../../access-management/cloud-platforms/); maintain configuration on the formal management page.
+3. Follow the relevant stage guidance for tenant access, runtime foundations or model onboarding. Returning to the overview does not replace checking results on the responsible management page.

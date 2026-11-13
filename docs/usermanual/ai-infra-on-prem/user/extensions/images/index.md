@@ -14,7 +14,7 @@ Updated: 2026-11-04
 | Page Route | `/powerone/expand-service/image-service` |
 | Managed Object | Image groups, the repositories they contain, image tags, and the private-image upload guide |
 
-The `Applicable Role` and `Page Route` values above do not appear in any of the 5 screens of this batch, so this document does not describe them as on-screen items. The navigation path keeps the information-table row as the only form used in this page body; the screens carry no breadcrumb bar, so this document makes no claim about its on-screen segment form.
+The `Applicable Role` and `Page Route` values above do not appear in any of the 5 screens of this batch, so this document does not describe them as on-screen items. the screens carry no breadcrumb bar, so this document makes no claim about its on-screen segment form.
 
 #### Beginner Explanation
 
@@ -51,7 +51,7 @@ Use this page to maintain image groups, browse the repositories they contain, ch
 
 ![Images](./images/images-list.png)
 
-The screen has three areas: the `Image groups` panel on the left lists groups as cards below a `Search names...` box and its toolbar icons; the repository rows of the selected group follow, each with a status dot, a tag-count badge, and a row menu icon; the detail area on the right shows the repository name, its `Remote repository` address with a copy icon, and its `Update time`, above the tag area that holds `Search tags`, the `All systems` and `All architectures` dropdowns and a third scene dropdown, the tag table, and the page-level `Upload guide` and `Sync` buttons.
+The screen has three areas: the `Image groups` panel on the left lists groups as cards below a `Search names...` box and its toolbar icons. The repository rows of the selected group follow, each with a status dot, a tag-count badge, and a row menu icon. The detail area on the right shows the repository name, its `Remote repository` address with a copy icon, and its `Update time`, above the tag area that holds `Search tags`, the `All systems` and `All architectures` dropdowns and a third scene dropdown, the tag table, and the page-level `Upload guide` and `Sync` buttons.
 
 The previous version described three views named `My Images`, `Public Images`, and `Push History`; no such tabs appear in this screen, so this document does not repeat that statement.
 

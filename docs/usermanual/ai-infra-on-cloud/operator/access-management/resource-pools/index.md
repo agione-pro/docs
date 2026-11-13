@@ -58,7 +58,7 @@ The figure shows Resource Pool Access, with Public resource pool, AGIOne Dedicat
 2. Select Public resource pool or AGIOne Dedicated resource pool first.
 3. Select the target platform on the left, then select All, Enabled, or Disabled as needed.
 4. Check the target pool name and state. Use current page counts rather than treating screenshot values as fixed configuration.
-5. For operation-record review, locate Operation audit. Before using Batch Actions, check the type, platform, and target scope.
+5. For operation records, locate Operation audit. Before using Batch Actions, check the type, platform, and target scope.
 
 ### Review Enable or Disable Actions
 

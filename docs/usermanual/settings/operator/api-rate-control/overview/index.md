@@ -1,8 +1,8 @@
 # Overview
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -40,7 +40,7 @@ The page summarizes API rate-control status, rule coverage, node state, publishi
 
 ![Global API Rate Control](./images/overview-list.png)
 
-The overview shows request volume, blocked requests, block rate, enabled rules, and rule rankings. The selected time range defines the statistics scope.
+The figure shows request volume, blocked requests and block rate, would-be blocks, enabled rules, and the trend and rule-ranking panels. The panels display `No trend data` and `No blocked request data` in this capture. The selected time range defines the statistics scope.
 
 | Area | Description |
 | --- | --- |

@@ -64,7 +64,7 @@ The figure shows the Business Resource Pool Authorization overview and business 
 3. Use Search resource pool name or ID to locate a pool, and Selected only to review selected items when needed. Select all is above the resource pool list.
 4. When a change is intended, review checked items against the approved scope and check the scope on other clouds. The page describes submitting the complete selection, not just newly added items.
 5. Review Resource pools after save, Add, and Remove in the footer. These summarize the intended scope before submission; they are not proof of a save or downstream effect.
-6. Use Done when submission is intended. Reset is a separate action, not a close button. For inspection only, use the upper-right close button to exit without saving the configuration.
+6. To submit, use Done. Reset is a separate action, not a close button. For inspection only, use the upper-right close button to exit without saving the configuration.
 
 ![Configure available business resource pools](./images/manual-authorize-resource-pools.png)
 

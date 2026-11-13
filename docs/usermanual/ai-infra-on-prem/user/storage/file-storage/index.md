@@ -1,8 +1,8 @@
 # File Storage
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -45,6 +45,8 @@ Confirm that the task involves Configuration, status, and relationships on File 
 Use this page to manage shared file systems, directories, capacity, mount relationships, and access policies.
 
 ![File Storage](./images/file-storage-list.png)
+
+The figure shows File Storage displaying the message that file storage is not supported in the current region.
 
 The page is used to display file storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
 

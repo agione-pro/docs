@@ -1,8 +1,8 @@
 # My Credentials
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -65,7 +65,7 @@ The figure shows columns are `Name / Description`, `Model source`, `Status`, `Ac
 
 ![Select endpoints and workspace](./images/credentials-step2.png)
 
-The figure shows `2 Select Endpoints & Workspace` with `Selected 1 of 2 endpoints`; the China Endpoint is labeled `China`, `china`, `Fixed URL`, and lists protocols such as `openai/chat_completions` plus the service address. Endpoints with `{workspace}` require a `Workspace`.
+The figure shows `2 Select Endpoints & Workspace` with `Selected 2 of 2 endpoints`; the China Endpoint is labeled `China`, `china`, `Fixed URL`, and lists protocols such as `openai/chat_completions` plus the service address. Endpoints with `{workspace}` require a `Workspace`.
 
 ![Enter credential information](./images/credentials-step3.png)
 

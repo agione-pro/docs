@@ -1,8 +1,8 @@
 # Jobs
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -44,6 +44,8 @@ Confirm that the task involves Configuration, status, and relationships on Jobs,
 Use this page to inspect model instances, online IDEs, runtime instances, training tasks, and historical jobs.
 
 ![Jobs](./images/manual-monitoring-jobs.png)
+
+The figure shows the Jobs overview with job status, customer ranking, node utilization, a status trend, and today's job statistics.
 
 Job monitoring is used to view job queueing, running status, failure causes, and resource occupation. Operators can use it to analyze insufficient resources, image pull failures, startup exceptions, or long-running tasks.
 

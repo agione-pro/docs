@@ -1,8 +1,8 @@
 # Settings Overview
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 Settings covers accounts, members and roles, tenants, notifications, system configuration, and API rate control. Operators and users see different menus and page scopes. Confirm the current role before opening a page.
@@ -52,7 +52,7 @@ Sidebars and navigation paths use the menu label; page H1 titles use the current
 
 | Menu label | Page title |
 | --- | --- |
-| Platform Settings | Platform Configuration |
+| Platform Settings | Platform Settings |
 | Overview | Global API Rate Control |
 
 The Quota Approvals page may be opened from the **Request Quota** shortcut. The shortcut is an action name; the left menu and page title use Quota Approvals.

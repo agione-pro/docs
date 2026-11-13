@@ -205,7 +205,7 @@ Use this when the specification quotas of the selected tenants must be reset to 
 
 #### Applicable Scenarios
 
-Use this when only a few specified specifications need their quotas set to target values while the rest stay unchanged, which fits routine small corrections. This tab does not remove quotas that are not listed.
+Use this for routine small corrections that set quotas for a few specified specifications to target values while leaving the rest unchanged. This tab does not remove quotas that are not listed.
 
 #### Steps
 

@@ -1,8 +1,8 @@
 # License
 
 ::: info 文档信息
-版本：v2.1
-更新日期：2026-11-05
+版本：v2.2
+更新日期：2026-11-12
 :::
 
 ## 功能概述
@@ -43,7 +43,7 @@ Platform License 决定平台订阅能用到什么时候；Managed Objects 决�
 
 ![License 概览](./images/license-overview.png)
 
-图示为页面上部：上方切换页签、订阅状态与到期时间；中部概览显示 Platform License 与 Managed Objects 状态及系统缩略显示的注册码。
+图示为页面标题与 License 概览，显示 Platform License、Managed Objects 状态及系统缩略显示的注册码；此局部图不含切换页签或订阅到期时间。
 
 | 区域 | 说明 |
 | --- | --- |
@@ -81,7 +81,7 @@ Platform License 决定平台订阅能用到什么时候；Managed Objects 决�
 
 1. 选择 `Platform License` 页签。
 2. 核对 `订阅状态`、`到期时间` 和 `下一份 License 生效时间`。
-3. 在 `激活 License` 编辑器中按行粘贴 License，或通过 `选择 .lic / .license / .txt 文件` 导入。
+3. 仅查看时，保持 `激活 License` 编辑器和文件输入为空。确需激活且已取得内部审批、确认 License 来源可信时，才按行粘贴 License，或通过 `选择 .lic / .license / .txt 文件` 导入。
 4. 使用 `自动换行` 或 `不换行` 调整显示；该设置只影响显示，不改变 License 内容。
 5. 核对批量规则：最多 100 条、单条不超过 64 KiB、文件不超过 1 MiB。
 6. 阅读整批校验提示；只读核查应停在 `提交并激活` 前。

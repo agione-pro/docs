@@ -1,8 +1,8 @@
 # Instances
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -49,7 +49,7 @@ Use this page to view model-service instance cards and to start custom deploymen
 
 ![Instances](./images/instances-list.png)
 
-The card shows a region chip, an `Inference service ready` status chip, the instance name, elapsed runtime, `Model` with its precision tag, `Inference Framework` with its version, `Total Resources`, and CPU / memory / GPU allocations. Its service entry shows `Port: 8000`, `OpenAI Compatible · Chat Completions`, and `API`, `OpenAI API Port`, and `Inference Engine Port` chips, plus `Publish` and a `…` menu.
+The figure shows an instance card with a region chip, a `Health check passed` status chip, the instance name, elapsed runtime, `Model` with its precision tag, `Inference Framework` with its version, `Total Resources`, and CPU / memory / GPU allocations. Its service entry shows `Port: 8000`, `OpenAI Compatible · Chat Completions`, and `API`, `OpenAI API Port`, and `Inference Engine Port` chips, plus `Publish` and a `…` menu.
 
 #### Page Areas
 

@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-A file storage component is like a shared filing cabinet in the platform. It determines which clusters can mount shared directories. Operators first connect NFS or compatible shared storage to the platform, and then user-side instances and jobs can use the same directory to read data, models, and output files.
+A file storage component is like the platform's shared filing cabinet, determining which clusters can mount shared directories. Operators first connect NFS or compatible shared storage to the platform, and then user-side instances and jobs can use the same directory to read data, models, and output files.
 
 #### Terms Quick Reference
 | Term | Description |
@@ -103,7 +103,7 @@ The following figure shows the New File Storage page, used to fill in basic poli
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | File Storage opens with the target operation entry | Check Operator permission and whether the menu is available |
-| Object record | Configuration, status, and relationships on File Storage is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| Object record | Configuration, status, and relationships on File Storage are visible in the list or details | Reset filters and verify name, ownership, and creation result |
 | State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 

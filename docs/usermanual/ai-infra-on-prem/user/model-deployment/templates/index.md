@@ -1,8 +1,8 @@
 # Templates
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-Templates can be understood as an ordering page for model services. The user first selects a model, then checks the available accelerator and recommended specification, fills in deployment settings when needed, and finally reviews the preview before creating a model instance.
+Templates are like an ordering page for model services. The user first selects a model, then checks the available accelerator and recommended specification, fills in deployment settings when needed, and finally reviews the preview before creating a model instance.
 
 #### Terms Quick Reference
 | Term | Description |
@@ -46,7 +46,7 @@ Use this page to select a model, accelerator, business parameters, recommended s
 
 ![Templates](./images/templates-list.png)
 
-The page displays model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information in a wizard. The screenshot shows the templates list area.
+The page displays model library, accelerators, business parameters, recommended specifications, deployment settings, and preview information in a wizard. The figure shows the wizard's model library and model-version selection area.
 
 #### Page Areas
 
@@ -135,7 +135,7 @@ The following screen shows the business parameters and the recommended specifica
 4. In `Deployment Location`, set `Region`, such as `wuhan`, check its state, and set `Project` when the deployment needs one; the default value is `No project specified`. The `Availability Zone` field is not shown on this screen; it appears in the custom deployment flow under `Region and Zone`.
 5. In `Service Info`, check the required `Name` field, and expand `Startup Parameters` only when the inherited values do not fit your case; that section reads `Parameters used for model deployment. Most scenarios do not need changes.`
 6. Check the `Preview` panel for `Estimated VRAM required per instance`, `Framework`, `Precision / KV`, `Overall target / theoretical max concurrency`, `Actual Accelerators`, `Quantity`, `Context Length`, `VRAM Usage Ratio (single instance)`, `Model Weights`, `KV Cache`, `Framework/VL/Runtime Overhead`, `Total VRAM Usage`, and `Effective Capacity Usage`.
-7. Read the per-instance statement `Weight, KV Cache, framework overhead and utilization above are all per instance.`, then the summary line below it, such as `Per instance: required 5 GB / physical VRAM 32 GB; effective capacity after reserving 15%: 27.2 GB.`
+7. Read the per-instance statement `Weight, KV Cache, framework overhead and utilization above are all per instance.`, then the summary below it. The example requires `4.6 GiB` per instance, with `32 GiB` physical VRAM, a `15%` reserve, and `27.2 GiB` effective capacity.
 8. Read the footer hint `Confirm deployment settings and submit the quick build task`, then click `Submit`. Use `Previous` or `Back to Previous Step` to revise an earlier choice.
 
 The following screen shows the deployment settings and the preview of the same submission.

@@ -1,8 +1,8 @@
 # Clusters
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -44,6 +44,8 @@ Confirm that the task involves Configuration, status, and relationships on Clust
 Use this page to compare cluster status, resource capacity, job counts, and region ownership.
 
 ![Clusters](./images/manual-monitoring-clusters.png)
+
+The figure shows the Clusters page with the selected region, four resource gauges, and node and job ring charts.
 
 Cluster statistics are used to compare cluster capacity, health status, and resource watermarks across different regions. Operators can use the cluster dimension to determine whether there is overall capacity shortage, collection exception, or a hotspot in a single cluster.
 

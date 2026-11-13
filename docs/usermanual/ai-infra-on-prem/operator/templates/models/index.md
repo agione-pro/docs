@@ -202,7 +202,7 @@ The `Model Name`, `Model Path`, `Parameter Source`, `Environment Variables`, `St
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | Models opens with the target operation entry | Check Operator permission and whether the menu is available |
-| Object record | Configuration, status, and relationships on Models is visible in the list or details | Reset filters and verify name, ownership, and creation result |
+| Object record | Configuration, status, and relationships on Models are visible in the list or details | Reset filters and verify name, ownership, and creation result |
 | State result | State after creation or change matches the page message | Check operation feedback, dependency state, and latest update time |
 | Downstream use | A downstream page can select or associate the target | Return to prerequisites and check enabled state, ownership, and visibility |
 

@@ -71,7 +71,7 @@ The dialog states: "Submit an account credit request. After approval, the same n
 The figure shows the blank account credit request inputs: the hint below `Requested credits` reads `Request 0.01 – 10,000,000.00 credits each time`, and `Request details` shows the `0 / 200` character counter.
 
 5. Before submitting, recheck the displayed request account, the requested credits, and the request details. Read the dialog's explanation about approval and Credit Balance.
-6. Click `Submit request` when you intend to make this request, or `Cancel` if you do not want to make it now.
+6. To make this request now, click `Submit request`; otherwise, click `Cancel`.
 
 ## Parameter Quick Reference
 

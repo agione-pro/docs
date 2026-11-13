@@ -1,8 +1,8 @@
 # Usage
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-My usage is like a personal resource consumption record, used to view how much compute, storage, and service resources were used over a period of time.
+My usage is like a personal resource consumption record showing how much compute, storage, and service resources were used over a period.
 
 #### Terms Quick Reference
 | Term | Description |
@@ -60,7 +60,7 @@ The page provides `Resource Usage` and `Usage Details` tabs. In the screenshot t
 | Filter Area | Queries by `Billing Period`, `Region`, `Resource Name`, `Resource type`, and `Project`; `Expand` adds more conditions. |
 | Query Results Band | Shows `Related Resources`, `Duration`, `credits Amount`, and `Quota Spend`. |
 | Detail List | Shows resource type, flavor, time range, metered amount, and quota spend row by row. |
-| Detail Download | Opens the export dialog to choose the data type and filters before exporting metering data. |
+| Detail Download | Available only on `Usage Details`. Opens the export dialog to choose the data type and filters before exporting metering data. |
 
 ## Main Operations
 
@@ -80,7 +80,7 @@ The page provides `Resource Usage` and `Usage Details` tabs. In the screenshot t
 
 #### Result Validation
 
-- The list area shows usage results when records match, or `No matching resource usage records` when none match.
+- On `Resource Usage`, check the `Billing Period`, `Resource`, `Resource type`, `Project`, `Region`, `Zone`, `First Metered`, `Last Metered`, and `Operation` columns. The list area shows usage results when records match, or `No matching resource usage records` when none match.
 - After the query, confirm the filter values still match the conditions you submitted.
 
 #### Notes
@@ -119,7 +119,7 @@ The next figure shows the right columns of the same list.
 #### Notes
 
 - A column that shows `--` has no value for that row, which is not by itself a metering error.
-- The specification and card-count markers in `Resource Items` differ by resource type; align the caliber before cross-type comparison.
+- The specification and card-count markers in `Resource Items` differ by resource type; confirm the measurement basis before cross-type comparison.
 - Each row covers a time interval; use the `Duration` column for the per-row length.
 
 ### Download Usage Details
@@ -158,9 +158,9 @@ The figure below shows the dialog groups, fields, and buttons.
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Billing Period | No | Date | `2026-10` | Narrows usage and metering records to one billing period. |
+| Billing Period | No | Billing period selection | `2026-10` | Narrows usage and metering records to one billing period. |
 | Resource Name | No | Text | `dev-ide-qwen` | Locates the resource that generated the usage. |
-| Resource Type | No | Enum | `Online IDE` | The `Resource type` column shows values such as `Online IDE`, `Runtime Instances`, and `Object Storage`. |
+| Resource type | No | Enum | `Online IDE` | The `Resource type` column shows values such as `Online IDE`, `Runtime Instances`, and `Object Storage`. |
 | Duration | System-generated | Duration | `1.00 h` | Metered duration of a single detail row. |
 | credits Amount | System-generated | Number | `4,027.35 credits` | credits amount of the current query shown in the results band. |
 | Quota Spend | System-generated | Duration | `193.47 h` | Quota spend reading of the current query shown in the results band. |

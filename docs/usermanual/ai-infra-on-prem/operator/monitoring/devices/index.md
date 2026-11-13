@@ -1,8 +1,8 @@
 # Devices
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -44,6 +44,8 @@ Confirm that the task involves Configuration, status, and relationships on Devic
 Use this page to view monitoring trends for a selected region, cluster, and node, and to switch metric dimensions with the tabs above the charts.
 
 ![Devices](./images/manual-monitoring-devices.png)
+
+The figure shows the Common tab with cluster and node filters and host-resource charts; the companion detail image includes all five charts.
 
 Device monitoring is used to view GPU/NPU utilization, VRAM, temperature, and health status. Operators can use it to determine whether accelerators are offline, overheating, out of VRAM, or occupied by a single task for a long time.
 

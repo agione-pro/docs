@@ -1,8 +1,8 @@
 # Quotas
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -12,7 +12,7 @@ Updated: 2026-11-04
 | Applicable Role | Model Provider and Model Consumer |
 | Navigation Path | On-Prem > Quotas & Usage > Quotas |
 | Page Route | `/powerone/quota-usage/quota` |
-| Managed Object | Configuration, status, and relationships on Quotas |
+| Managed Object | AI accelerator, CPU, and memory quotas, plus resource occupancy for Runtime Instances and Online IDE |
 
 #### Beginner Explanation
 
@@ -35,7 +35,7 @@ My quota is like a personal resource balance sheet. It shows how many instances 
 
 #### First-Time User Notes
 
-Confirm that the task involves Configuration, status, and relationships on Quotas, and then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
+Confirm whether the task concerns resource quota totals or Runtime Instance and Online IDE occupation, then follow the recommended order. If fields or state differ from expectations, check prerequisites before continuing downstream.
 
 ## Prerequisites
 
@@ -48,6 +48,8 @@ Confirm that the task involves Configuration, status, and relationships on Quota
 Use this page to review AI Accelerator, CPU, and Memory quota and occupation, and the resource occupation of runtime instances and online IDEs.
 
 The page contains five panels from top to bottom: `AI Accelerator Occupancy Mix`, `Daily Peak Card Usage`, `Resource Occupancy`, `Quota Usage Overview`, and `Accelerator Models`.
+
+The current Model Consumer view is a read-only overview with workload detail entries. Its main page has no filter, export, or quota-adjustment controls.
 
 #### Page Areas
 
@@ -220,7 +222,7 @@ Use this operation to judge which resource is near its limit, or to prepare the 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | Quotas opens with the quota and occupation panels | Check menu permission, current business identity, and tenant scope |
-| Data scope | Lists or statistics match the selected time, region, and object | Reset filters and verify time boundaries, time zone, and aggregation scope |
+| Data scope | AI Accelerator, CPU, and Memory rows are visible, with separate Runtime Instances and Online IDE detail entries | Check the resource row and workload type; open the relevant detail entry if needed |
 | Data update | Update time or latest record matches the expected cycle | Check whether the source job, metering, or quota record has been generated |
 | Cross-check | Configuration, status, and relationships on Quotas matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
 
@@ -240,7 +242,7 @@ The page opens, but lists or statistics are empty.
 
 **Solution:**
 
-1. Reset filters
+1. Identify which quota panel is empty
 2. verify the source job or metering cycle
 3. check business identity and tenant scope.
 
@@ -258,7 +260,7 @@ Data does not belong to the expected time, region, or object.
 
 **Solution:**
 
-1. Select time and region again
+1. Check the resource row and workload type
 2. verify object identifiers
 3. confirm ownership in source details.
 
@@ -281,6 +283,8 @@ A source operation completed, but its record is not visible.
 3. inspect the processing task if delay persists.
 
 #### Details or Download Is Unavailable
+
+Use `View Details: Runtime Instances` or `View Details: Online IDE` to open occupation details. The main page has no export control.
 
 **Symptom:**
 
@@ -325,6 +329,6 @@ The summary differs from the total of individual records.
 ## Next Steps
 
 1. When remaining quota is insufficient, release unused instances, jobs, or storage resources.
-2. After confirming that business expansion is required, contact the operator to request credit adjustment.
-3. When instance creation fails, verify credits, specification availability, and cluster capacity together.
-4. Periodically view credit changes to avoid long-running resources occupying all quotas.
+2. After confirming that business expansion is required, contact the operator to request a resource quota adjustment.
+3. When instance creation fails, verify resource quota, specification availability, and cluster capacity together.
+4. Periodically view resource quota changes to avoid long-running resources occupying all quotas.

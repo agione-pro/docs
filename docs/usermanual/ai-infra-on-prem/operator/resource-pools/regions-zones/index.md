@@ -1,8 +1,8 @@
 # Regions & Zones
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -25,7 +25,7 @@ You can think of an On-Prem resource pool as an office system:
 - **Public Region** is like an open office area that all authorized users can share.
 - **Dedicated Region** is like an independent office with access control, available only to specified teams or tenants.
 
-Therefore, the first-time configuration order cannot be reversed: create a region first, then create an availability zone, register clusters into the availability zone, and finally submit a job to verify that the resources are usable.
+The first-time configuration order cannot be reversed: create a region first, then create an availability zone, register clusters into the availability zone, and finally submit a job to verify that the resources are usable.
 
 #### Terms Quick Reference
 | Term | Description |

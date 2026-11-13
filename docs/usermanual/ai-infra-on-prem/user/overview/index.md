@@ -1,8 +1,8 @@
 # Overview
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-The overview page can be understood as the homepage of the On-Prem user console: the upper area tells you which models can be deployed and which accelerators are available; the middle area provides quick entrypoints for Online IDE and Runtime Instance; the lower area helps you confirm whether quota is sufficient and whether resources have consumption records.
+The overview page is like the homepage of the On-Prem user console: the upper area tells you which models can be deployed and which accelerators are available; the middle area provides quick entrypoints for Online IDE and Runtime Instance; the lower area helps you confirm whether quota is sufficient and whether resources have consumption records.
 
 #### Terms Quick Reference
 | Term | Description |
@@ -47,6 +47,8 @@ Confirm that the task involves Configuration, status, and relationships on Overv
 
 Use this page to review deployment templates, accelerator resources, quick entries, specification quotas, and resource-usage trends.
 
+In the current Model Consumer main view, the visible inputs are model search, the `This Month` / `This Week` period switch, and a date range. No Region or Resource Type selector is shown in this view. Verify region ownership on the corresponding source page rather than selecting a region here.
+
 ![Overview](./images/overview-list.png)
 
 The upper area displays deployment templates and accelerator vendors; the middle area provides two quick entry cards for Online IDE and Runtime Instances; the lower area displays the specification quota table, the consumption trend chart, and the resource usage panels. The image below is a full-height capture of the page content area and does not include the fixed left menu.
@@ -64,7 +66,7 @@ The upper area displays deployment templates and accelerator vendors; the middle
 
 ## Main Operations
 
-This section is organized by page area. Each area documents the functional actions only, and each image follows the steps it supports.
+This section is organized by page area.
 
 ### View Deployable Models
 
@@ -219,8 +221,6 @@ When the deployment entry is unavailable, a target specification cannot be reque
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Region | No | Drop-down | `Sample region` | Overview statistics region. |
-| Resource Type | No | Enum | `Sample resource type` | Overview resource category. |
 | Quota | System-generated | Number | `Sample quota` | Available quota for the current account. |
 | Used Amount | System-generated | Number | `Sample used amount` | Current used resource amount. |
 | Update Time | System-generated | Date time | `Sample update time` | Overview data update time. |
@@ -238,7 +238,7 @@ When the deployment entry is unavailable, a target specification cannot be reque
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
 | Page entry | Overview opens with filters or statistics | Check menu permission, current business identity, and tenant scope |
-| Data scope | Lists or statistics match the selected time, region, and object | Reset filters and verify time boundaries, time zone, and aggregation scope |
+| Data scope | Check the model-list keyword or the trend period and date range, as applicable | Verify time boundaries and object identifiers; confirm region ownership on the corresponding source page |
 | Data update | Update time or latest record matches the expected cycle | Check whether the source job, metering, or quota record has been generated |
 | Cross-check | Configuration, status, and relationships on Overview matches its details, billing, or monitoring records | Compare the responsible detail page by object identifier and time range |
 
@@ -276,7 +276,7 @@ Data does not belong to the expected time, region, or object.
 
 **Solution:**
 
-1. Select time and region again
+1. Check the trend period and date range; verify region ownership on the corresponding source page
 2. verify object identifiers
 3. confirm ownership in source details.
 

@@ -62,7 +62,7 @@ The figure shows the Tenant-Cloud Platform Authorization title, tenant filter, a
 3. Read the Authorization Strategy descriptions and choose Append or Replace according to the approved scope. These strategies distinguish how existing authorization is handled, not whether one tenant or all tenants are targeted.
 4. Review the intended platform scope under Select Cloud Platforms.
 5. In Change Summary, review Affected tenants, Authorization mode, and Selected in this change separately. The strategy meanings above follow the UI descriptions; selections and summary values are not saved-result evidence.
-6. Use Confirm Authorization when submission is intended; for inspection only, click Cancel without submitting the configuration.
+6. To submit, use Confirm Authorization; for inspection only, click Cancel without submitting the configuration.
 
 ![Authorize Tenants form](./images/manual-add-tenant-cloud-auth.png)
 

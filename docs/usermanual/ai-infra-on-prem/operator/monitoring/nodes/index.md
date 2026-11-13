@@ -45,7 +45,7 @@ Use this page to inspect the disk, memory, CPU, and AI accelerator watermarks of
 
 ![Nodes](./images/manual-monitoring-nodes.png)
 
-Node statistics are used to view the disk, memory, CPU, and AI accelerator watermarks of each node and its job and Pod counts. Operators can use it to locate abnormal nodes and high-watermark nodes.
+Node statistics are used to view the disk, memory, CPU, and AI accelerator watermarks of each node and its job and Pod counts. Operators can use it to locate abnormal and high-watermark nodes.
 
 ## Main Operations
 ### Filter Nodes by Region and Cluster

@@ -1,8 +1,8 @@
 # Model Templates
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -47,7 +47,7 @@ The page has two parts:
 
 ![Model template list](./images/model-templates-list.png)
 
-The figure shows the filters for Alibaba-intl: `Author`, `Meta Model`, `Status`, and `Keyword`. `Total` is 0 and the list shows `No Data`.
+The figure shows the filters for AGIOne: `Author`, `Meta Model`, `Status`, and `Keyword`. `Total` is 0 and the list shows `No Data`.
 
 ## Main Operations
 

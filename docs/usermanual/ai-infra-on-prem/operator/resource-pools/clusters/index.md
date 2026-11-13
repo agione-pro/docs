@@ -259,7 +259,7 @@ The **Edit Model Repository** dialog is shown below.
 - The model repository is limited to one per cluster; editing replaces the existing configuration rather than adding a second entry.
 - The **Model Repository** card also offers **Delete**. This chapter does not document that flow, and its impact follows the prompt the page displays — verify any deployment that reads the repository before using it.
 - Changing the source path, mount path, access mode, or sharing scope can affect model loading and running deployments; confirm the impact scope before saving.
-- The dialog fields reflect the current page; treat the live page as authoritative for any additional or renamed fields.
+- Follow the live page for dialog fields, including any additional or renamed fields.
 
 ### Add Shared Storage
 

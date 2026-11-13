@@ -1,24 +1,29 @@
 # Policies
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
 
+This page describes the operator view in Demo (`https://demo.agione.pro/`) on 2026-11-12: `/infrahub/op/schedule/policy` displays `Coming Soon!`, and the sidebar has no policy entry. The policy flow and pictures below are historical references, not executable configuration instructions. This state does not establish what other versions, deployments, or backend scheduling support.
+
 | Item | Content |
 | --- | --- |
 | Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Scheduling Governance > Policies |
+| Navigation Path | Historical path: AI Infra(On-Cloud) > Scheduling Governance > Policies; this entry is not shown in the current sidebar. |
 | Page Route | `/infrahub/op/schedule/policy` |
-| Managed Objects | Application scenarios, associated models, primary/backup routes, and health probes |
+| Managed Objects | The current entry's placeholder; historical descriptions cover application scenarios, associated models, primary/backup routes, and health probes. |
 
 #### Beginner Explanation
 
-Policies defines traffic rules for model deployment. It connects a model to primary and backup targets and uses health probes to determine routing.
+Historical policy descriptions compare a policy to traffic rules for model deployment, involving models, primary/backup targets, and health probes. These concepts do not mean that the placeholder provides configuration controls.
 
 #### Terms Quick Reference
+
+These terms explain the historical policy descriptions; they are not current input fields.
+
 | Term | Description |
 | --- | --- |
 | Application Scenario | A scheduling objective such as cost priority, high availability, or low latency. |
@@ -27,225 +32,175 @@ Policies defines traffic rules for model deployment. It connects a model to prim
 
 #### Recommended Operation Order
 
-Confirm the model and targets, create a policy, complete basic information, route topology, and health probes, then validate policy state and routing.
+Read the development notice first. To leave, use `Back to Home`. Do not create, submit, or modify policies by following the historical pictures.
 
 #### Beginner Checklist
 
 | Scenario | Do First | Do Not Do Directly |
 | --- | --- | --- |
-| First visit | Review existing objects, states, and available actions | Change an unknown object |
-| Before a change | Verify upstream dependencies, impact scope, and target object | Skip dependency and impact checks |
-| After completion | Validate the current and downstream pages with Result Validation | Rely only on a success message |
-| Page error | Record the redacted object, time, and page message | Submit repeatedly or record real credentials |
+| First visit | Read the development notice | Treat the placeholder as a policy list |
+| Policy configuration is needed | Separate historical descriptions from the current interface | Fill in or submit the old wizard |
+| A return link is visible | Check the `Back to Home` destination | Treat navigation as a successful policy save |
+| The page differs from expectations | Record the route, language, and page notice | Infer a backend fault or submit repeatedly |
 
 ## Prerequisites
 
-1. The current account has the permission required for Policies.
-2. The associated model has at least one available deployment target, with confirmed framework version and resource flavor.
-3. Before changing a policy, assess live routing, capacity, cost, and failover impact.
+1. Use an authorized operator session to view the route.
+2. Before reading the historical flow, confirm that the entry is a placeholder. Do not treat old model, target, or framework pictures as a current form.
+3. Do not create, save, import, delete, probe, or switch traffic here. If another environment provides those functions, assess routing, capacity, cost, and failover impact first.
 
 ## Page Description
 
-The page lists policies and provides a three-step creation flow.
+The entry displays `Coming Soon!` and `This page is under development. Please refresh the page or click the button below to return to the homepage.` A `Back to Home` link points to `/`. The main area does not show a policy list, creation entry, wizard, save control, or health-probe controls.
 
-Page screenshots:
+Historical page screenshot:
 
 ![Policies page](./images/manual-policies.png)
 
-The image shows the Policies management page, displaying multi-cloud routing policy cards, scenario types, primary/backup topology, and runtime status, with an Add Policy button.
+The figure shows the historical Policies page with name and label-ID filters, an Add Policy entry, No Data, and Total 0. No policy cards or topology are displayed; it is not the current interface.
 
 ## Main Operations
 
-### Create Policy
+### Historical Creation Flow Reference
 
-#### Step 1: Basic Information and Model Association
+The next three pictures explain the historical flow, not steps to execute. The current page has no corresponding wizard or submit entry.
 
-1. Click **"Add Policy"** on the Policies page.
-2. Enter the policy name and select an application scenario (such as "Cost Priority", "High-Availability Production", or "Ultra-Fast Inference").
-3. Select the target model and version (such as `Qwen3-8b / v1.0`), which automatically populates the available routing node resources across cloud platforms below.
-4. Enter the description and click **"Next"**.
+### Historical Screen 1: Basic Information and Model Association
+
+The earlier description grouped the policy name, scenario, target model and version, and description into the basic-information stage, followed by a model-linked node list. Do not look for these fields or automatic updates on the current page.
 
 ![Basic information and model association](./images/basic-information-model-association-add.png)
 
-The image shows "Add Policy - Step 1: Basic Information and Model Association", entering policy name, scenario, and associated model while displaying available cloud nodes.
+The figure shows historical basic information and model association, involving the policy name, scenario, target model, and cloud nodes. It is not a current creation form.
 
-#### Step 2: Define Primary and Backup Route Topology
+### Historical Screen 2: Primary and Backup Route Topology
 
-1. In the routing configuration, select primary and backup route nodes based on multi-cloud resource specifications and costs.
-2. Configure priority rankings (P1, P2, etc.) for backup route nodes to establish traffic dispatching and failover orders.
-3. Review cloud providers, specifications, estimated costs, and inference framework versions for each node, then click **"Next"**.
+The earlier description covered primary/backup nodes, priorities, cloud providers, resource specs, cost references, and framework versions. This section does not instruct you to select nodes or configure failover, and the old picture does not establish routing behavior.
 
 ![Primary/backup route topology](./images/define-primary-backup-route-topology-add.png)
 
-The image shows "Add Policy - Step 2: Define Primary and Backup Route Topology", configuring primary and backup route nodes with priority ranks and failover paths.
+The figure shows historical primary/backup topology, including priorities and failover paths. It is not a current routing entry.
 
-#### Step 3: Define Health Probe Rules
+### Historical Screen 3: Health Probe Rules
 
-1. Configure health probe parameters for primary and backup nodes, including probe intervals, timeouts, and healthy/unhealthy threshold counts.
-2. Specify the probe endpoint path and expected response status codes to ensure unhealthy nodes are promptly evicted and traffic shifted.
-3. Confirm the probe rules and click **"Submit"** to complete policy creation, then verify the new policy in the list.
+The earlier description covered intervals, timeouts, healthy/unhealthy thresholds, endpoint paths, and response codes. The placeholder provides none of these controls and does not establish that node eviction, recovery, or traffic switching has run.
 
 ![Health probe rules](./images/define-health-probe-rules-add.png)
 
-The image shows "Add Policy - Step 3: Define Health Probe Rules", configuring probe intervals, timeouts, and failover threshold rules.
+The figure shows historical health-probe rules, including intervals, timeouts, and failover thresholds. It is not a current probe form.
 
-### View Policies
+### View the Current Entry
 
-1. Locate the target policy in the list.
-2. Verify application scenario, associated model, state, and update time.
-3. Open details and verify that topology and health probes match deployment targets.
+1. Open the page route above.
+2. Read the development notice and help text; do not use the historical pictures to locate a policy list or wizard.
+3. To leave, use `Back to Home`, whose destination is `/`. Do not treat navigation as evidence of a policy save or routing validation.
 
 ## Parameter Quick Reference
+
+There are no policy parameters to enter. This table only describes the visible placeholder and navigation link; historical field requirements, validation, and save rules do not apply to it.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Name | Yes | Text | `policy-cost-priority-demo` | Policy display name. Use sanitized examples or non-sensitive business-readable names. |
-| Label ID | No | Text | `label-demo` | List filter field used to search policies by label identifier. |
-| Scenario | Yes | Segmented control | `Cost Priority` | Selects the policy objective. The page supports cost priority, high availability production, and fast inference. |
-| Associated Model | Yes | Select | `Sample Model / v1.0` | Selects the model and version bound to the policy. |
-| Cloud Platform | No | Table field | `Sample Cloud Platform` | Cloud platform to which the related route node resource belongs. |
-| Region | No | Table field | `Sample Region` | Region where the related route node resource is located. |
-| Available specs | No | Table field | `gpu.example` | Resource specs available for the current model. |
-| Available frameworks | No | Table field | `Sample Framework` | Inference frameworks available for the current model. |
-| Description | Yes | Multiline text | `Sample policy description` | Describes the policy purpose. Do not write real customer, tenant, business, or internal test parameters. |
-| Route Node | Yes | Selection | `Primary Route Node` | Node selected in route configuration for the policy. |
-| Primary Route | Yes | Operation state | `Primary` | Route node used first by the policy. |
-| Backup Route | No | Operation state | `Backup` | Backup route node used when the primary route is unavailable. |
-| Priority | No | Ordering control | `P1` | Adjusts the priority order of backup routes or candidate nodes. |
-| Spec | No | Display field | `gpu.example` | Resource spec used by the route node. |
-| Price | No | Display field | `Sample price/hour` | Cost reference for the route node. Real amount details are not shown in documentation. |
-| Framework | No | Display field | `Sample Framework` | Inference framework used by the route node. |
-| Version | No | Table field | `v1.0` | Image or runtime configuration version. |
-| Image | No | Table field | `<BASE_URL>/namespace/image:tag` | Image address example. Use placeholders only and do not write real registry addresses. |
-| Master node startup command | No | Table field | `--model-path /models/example` | Master node startup command. Use placeholder examples only. |
-| Worker node startup command | No | Table field | `--worker` | Worker node startup command. Do not write internal startup parameters. |
-| Port | No | Number | `8000` | Service listening port. |
-| Created at | No | Date time | `2026-07-21 10:00:00` | Creation time of the route node or version configuration. |
-| Probe Type | Yes | Segmented control | `HTTP Heartbeat` | Health probe type. The page supports HTTP heartbeat, GPU performance metrics, and service status. |
-| Probe Path | No | Text | `/health` | HTTP heartbeat probe path. |
-| Check Interval | No | Number | `10` | Frequency for running health probes. |
-| Failure Threshold | No | Number | `3` | Number of consecutive failures before the service is considered abnormal. |
-| Recovery Threshold | No | Number/Rule | `2` | Rule or threshold for determining service recovery. |
-| Downtime Timeout | No | Number | `30` | Timeout before the service is judged as down. |
-| Search | No | Button | `Search` | Queries policy records with the current filters. |
-| Reset | No | Button | `Reset` | Clears filters and restores the list display. |
-| Export | No | Button | `Export` | Exports policy records and may contain sensitive operational configuration. |
-| Import | No | Button | `Import` | Imports policy records in bulk and may change multiple policy configurations. |
-| Batch Delete | No | Button | `Batch Delete` | Deletes policies in bulk. Confirm the impact scope before using it. |
-| Previous | No | Button | `Previous` | Returns to the previous configuration step. |
-| Next | No | Button | `Next` | Validates the current step and moves to the next step. |
-| Submit | Yes | Button | `Submit` | Final action that submits the policy configuration. Review carefully before clicking. |
+| Page notice | Not applicable | Read-only text | `Coming Soon!` | The visible development state, not a policy execution result. |
+| Help text | Not applicable | Read-only text | `This page is under development. Please refresh the page or click the button below to return to the homepage.` | The page's instructions do not guarantee that refreshing reveals a policy form. |
+| Back to Home | Not applicable | Navigation link | `Back to Home` | The link targets `/`; it does not establish whether a policy was saved. |
 
 ## Pitfalls
 
-- Do not skip the upstream dependency check: The associated model has at least one available deployment target, with confirmed framework version and resource flavor.
-- Confirm impact before a configuration change: Before changing a policy, assess live routing, capacity, cost, and failover impact.
-- A success message does not prove downstream synchronization. Use Result Validation afterward.
+- Do not follow historical pictures to enter policy parameters or find creation, save, import, or delete controls.
+- A missing sidebar entry or list is not enough to diagnose account permissions, upstream models, or backend scheduling faults.
+- `Back to Home` is navigation, not a signal that policy creation, persistence, or traffic switching succeeded.
 - Use only `<API_KEY>`, `<PERSONAL_KEY>`, `<ACCESS_KEY_ID>`, `<ACCESS_KEY_SECRET>`, `<BASE_URL>`, and `<ENDPOINT_PATH>` for credential and endpoint examples.
 
 ## Result Validation
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page is accessible | Title, navigation, and main content display correctly | Check role permission and navigation path |
-| Managed objects are visible | Application scenarios, associated models, primary/backup routes, and health probes display as expected | Clear filters and verify upstream dependencies |
-| Operation result is saved | The expected state or new record appears | Review page messages, required fields, and dependencies |
-| Downstream result is consistent | Associated pages show the change | Wait for synchronization, refresh, and return to the responsible object |
+| Page notice | `Coming Soon!` and the development help text are visible | If the interface differs, check the environment, role, and version first |
+| Sidebar state | No policy entry is shown | Use the actual visible menu; do not treat the historical path as a current entry |
+| Configuration area | No policy list, three-step wizard, save, or probe controls are shown | Confirm available functions instead of substituting old pictures for a real form |
+| Return link | `Back to Home` targets `/` | Check the link destination; navigation does not establish a policy save |
 
 ## FAQ
 
-#### Target Object Is Missing in Policies
+#### Why Is There No Policy List
 
 **Symptom:**
 
-The expected object is missing from the list or selector.
+The page displays `Coming Soon!` rather than a policy list.
 
 **Possible Causes:**
 
-- Active query criteria filter out the target object.
-- An upstream object is disabled, or the current role lacks visibility.
+The visible content is a development placeholder. This notice alone does not identify backend implementation or a fault cause.
 
 **Resolution:**
 
-1. Clear filters and refresh the page.
-2. Verify the prerequisite object: The associated model has at least one available deployment target, with confirmed framework version and resource flavor.
-3. Confirm the current role and data scope, then locate the object again.
+Read the notice and recognize the entry's state. Do not clear nonexistent list filters or change models or authorization on that basis.
 
-#### Policies Action Is Unavailable
+#### Why Are Create or Submit Buttons Missing
 
 **Symptom:**
 
-An expected button, menu, or state switch is unavailable.
+Creation, next-step, or submit controls from the historical description cannot be found.
 
 **Possible Causes:**
 
-- The current account lacks the required action permission.
-- Object state, references, or prerequisites block the action.
+The main area has no policy form or three-step wizard. Old pictures do not establish that those buttons are available now.
 
 **Resolution:**
 
-1. Verify the permission for the action and the current object state.
-2. Check references and prerequisites identified by the page message.
-3. Remove the blocker, refresh the page, and perform the action once.
+Do not try to create or save from an old picture; first confirm which functions the environment actually provides.
 
-#### Policies Change Does Not Reach Downstream
+#### Can I Configure a Policy from the Old Three Pictures
 
 **Symptom:**
 
-The page reports success, but a downstream page still shows the old state.
+The document retains configuration pictures, but the page has no matching controls.
 
 **Possible Causes:**
 
-- An associated page has stale cache or synchronization delay.
-- The current and downstream pages use different roles, tenants, or data scopes.
+The pictures are historical references and differ from the placeholder.
 
 **Resolution:**
 
-1. Wait for synchronization and refresh both pages.
-2. Confirm that both pages use the same role, tenant, and object scope.
-3. If they still differ, return to the responsible object and verify the saved result.
+Use the pictures only to understand the earlier flow, not to select nodes, set probes, or submit a policy.
 
-#### Policies Data Differs from Another Page
+#### Does the Placeholder Prove That No Environment Supports Policies
 
 **Symptom:**
 
-Counts or states differ from an associated page.
+You need to determine policy support in another version, deployment, or backend.
 
 **Possible Causes:**
 
-- The pages use different filters, aggregation rules, or update times.
-- The change is still synchronizing, or role-based data scopes differ.
+The notice only describes the stated entry's visible condition; it does not establish other environments' or backend capabilities.
 
 **Resolution:**
 
-1. Align filters and aggregation rules on both pages.
-2. Check update times and wait for synchronization.
-3. Compare object details instead of summary counts only.
+Check the target environment's actual menu, fields, and reliable feature descriptions separately. Do not generalize this state to every deployment.
 
-#### How to Troubleshoot a Policies Failure
+#### Does Back to Home Mean That a Policy Was Saved
 
 **Symptom:**
 
-Submission fails or the state does not change for an extended period.
+The page has `Back to Home` but no policy-save controls.
 
 **Possible Causes:**
 
-- Required fields, field combinations, or object state do not meet submission rules.
-- An upstream dependency is invalid, the request failed, or the same action is already processing.
+This is a navigation link to `/`, not a save-result notice.
 
 **Resolution:**
 
-1. Record the redacted object, time, and complete page message.
-2. Verify required fields, object state, and upstream dependencies.
-3. Confirm that no identical job is processing before one retry.
+Use it if you need to leave; do not treat it as proof of a completed save, synchronization, or failover.
 
 ## Notes
 
-- Before changing a policy, assess live routing, capacity, cost, and failover impact.
+- The placeholder does not establish policy persistence, routing, automatic failover, or health-probe execution.
 - Do not put real accounts, credentials, internal locations, or customer data in documentation, screenshots, tickets, or chat records.
-- Authorization, deployment, deletion, publication, state, or billing changes require an auditable record and recovery plan.
+- Before authorization, deployment, deletion, publication, state, or billing changes in other available functions, assess impact, retain auditable records, and prepare a recovery plan.
 
 ## Next Steps
 
-1. Use a test deployment to validate policy hits, primary/backup routes, and failover behavior.
-2. Monitor model service status, latency, cost, and availability affected by the policy.
-3. Regularly review health probe thresholds, route priority, and associated model versions.
+1. For cloud-access readiness, see [Access Overview](../../access-workbench/access-overview/). It is not an alternative policy-configuration entry.
+2. If another version or deployment provides policies, confirm its actual menu, fields, and permissions before use; do not execute the old three-picture flow directly.
+3. Until a policy entry is confirmed, do not create, import, delete, run health probes, or validate traffic switching.

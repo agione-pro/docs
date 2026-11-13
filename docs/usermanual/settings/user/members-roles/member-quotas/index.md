@@ -1,8 +1,8 @@
 # Member Quotas
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -75,7 +75,9 @@ The following screenshot shows the Member Quotas list. Member identifiers are hi
 
 The following screenshot shows member quota details.
 
-![Member Quota Details](./images/member-quota-detail.png)
+![Member Quotas list before opening details](./images/member-quota-detail.png)
+
+The figure shows the Member Quotas list; the details panel is not open in this screenshot.
 
 6. Select `Adjust Quota` to open the adjustment dialog.
 7. Select Increase or Deduct, and enter the amount and reason.
@@ -83,7 +85,9 @@ The following screenshot shows member quota details.
 
 The following screenshot shows the member quota adjustment dialog.
 
-![Adjust Member Quota](./images/adjust-member-quota.png)
+![Adjust Member Quota - no quota limit example](./images/adjust-member-quota.png)
+
+The figure shows `Adjust Quota` for a member with no quota limit. This state provides `Open policy settings`; the increase/deduct amount and reason fields are not shown in this example.
 
 9. Select `Limit` to open the member limit dialog.
 10. Configure the reset cycle, quota limit, and model allowlist.

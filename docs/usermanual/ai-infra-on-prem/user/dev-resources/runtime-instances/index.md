@@ -1,8 +1,8 @@
 # Runtime Instances
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -76,17 +76,19 @@ After you click `Create Instance`, the `Deployment Type` page appears first, and
 
 ![Select deployment type](./images/deployment-type.png)
 
-With `Single Node` selected in `Deployment Type`, the task parameter form shows seven groups from top to bottom: `Deployment Type`, `Basic Information`, `Runtime Configuration`, `Storage Configuration`, `Service Exposure`, `Startup Configuration`, and `Task Log Files`.
+The figure shows the `Single Node` deployment-type entry.
 
 ![Create runtime instance](./images/create-runtime-instance.png)
 
-Clicking `Select Image` in step 6 opens the image picker dialog: its title is `Select Image`, it contains the `Public Images` and `My Images` tabs, its list is made up of the `Image Name`, `Version`, and `Updated` columns, and the footer provides `Cancel` and `Create`.
+The figure shows the task parameter form with `Single Node` selected in `Deployment Type`. It has seven groups from top to bottom: `Deployment Type`, `Basic Information`, `Runtime Configuration`, `Storage Configuration`, `Service Exposure`, `Startup Configuration`, and `Task Log Files`.
 
 ![Select image dialog](./images/image-picker-modal.png)
 
-With nothing filled in, the `Image` area under `Runtime Configuration` shows the `Select Image` and `Select an image` placeholders, the `Specification` list shows `No Data`, and the bottom-right corner of the page pins the `Cancel` and `Create` buttons.
+The figure shows the image picker opened by `Select Image` in step 6: its title is `Select Image`, it contains the `Public Images` and `My Images` tabs, its list is made up of the `Image Name`, `Version`, and `Updated` columns, and it shows a top-right close icon. The `Cancel` and `Create` buttons belong to the background task parameter form.
 
 ![Task parameter form empty state and footer](./images/create-runtime-instance-empty.png)
+
+The figure shows the form before image selection: the `Image` area under `Runtime Configuration` shows the `Select Image` and `Select an image` placeholders, the `Specification` list shows `No Data`, and the bottom-right corner of the page pins the `Cancel` and `Create` buttons.
 
 #### Result Validation
 
@@ -121,7 +123,7 @@ The page shows no required-field marker on the field labels. For rows marked `No
 
 ### Python Training Script
 
-Used to start a training entry script. The document only describes that the entry script, data source, output location, and parameter passing method must be checked, without recording real paths or test parameters.
+Used to start a training entry script. Check the entry script, data source, output location, and parameter passing method. Do not record real paths or test parameters in the document.
 
 ### Shell Script
 

@@ -1,8 +1,8 @@
 # Block Storage
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -45,6 +45,8 @@ Confirm that the task involves Configuration, status, and relationships on Block
 Use this page to manage block volumes, capacity, mount relationships, and volume state.
 
 ![Block Storage](./images/block-storage-list.png)
+
+The figure shows Block Storage displaying the message that block storage is not supported in the current region.
 
 The page is used to display block storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
 

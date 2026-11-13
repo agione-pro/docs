@@ -1,8 +1,8 @@
 # Dashboard
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -66,7 +66,7 @@ Read the quota summary first, then review the four statistic cards. Use **"Reque
 
 ![Request Quota](./images/manual-settings-user-dashboard-request-quota-20260902.png)
 
-The screenshot shows the quota summary, requested amount, reason, and submission entry. Current quota values are redacted; field names, the default input value, and the status notice remain visible.
+The figure shows the `Request Quota` dialog with the quota summary, requested amount, reason, and `Submit Request`. The example shows `Unlimited` for current granted and remaining quota.
 
 **Result validation:** After successful submission, the request appears on Quota Approvals. After approval, Dashboard updates the quota according to the result.
 

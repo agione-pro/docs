@@ -1,8 +1,8 @@
 # Members
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-12
 :::
 
 ## Feature Overview
@@ -65,9 +65,9 @@ The member list supports search by username, name, phone, or email and filtering
 3. Select a `Role` and `Status`.
 4. Before clicking `Confirm`, verify the member identity, role permissions, and enabled status. Use `Cancel` for read-only inspection.
 
-![Add Member](./images/create-member.png)
+![Empty Members list before opening the Add Member form](./images/create-member.png)
 
-The Add Member form contains username, display name, email, phone, password, confirm password, role, and status. Saving creates a real account.
+The figure shows an empty Members list before the Add Member form is opened. The form fields are described in the steps above; saving creates a real account.
 
 ### Edit a Member
 
