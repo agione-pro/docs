@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 846" width="840" height="846" role="img" aria-labelledby="06-logging-title 06-logging-desc">
+  <title id="06-logging-title">Logging Policy and Actual Storage Location</title>
+  <desc id="06-logging-desc">Logging Policy and Actual Storage Location</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563eb" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="0" />
+  <text x="420" y="52" font-size="26" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">Logging Policy and Actual Storage Location</text>
+  <g id="notice-badge">
+    <rect x="160" y="70" width="520" height="32" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="420" y="91" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="500" fill="#475569" text-anchor="middle">Workflow diagram, not a live screenshot</text>
+  </g>
+  <g id="stage-1">
+    <rect x="40" y="120" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="134" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="152" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">STEP 1</text>
+    <text x="146" y="153" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">Choose whether to enable structured logs</text>
+    <text x="60" y="188" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">If disabled, omit this application-log persistence setup</text>
+    <text x="60" y="214" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">ClusterD task logs are a separate concept</text>
+  </g>
+  <path d="M 420 238 L 420 266" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-2">
+    <rect x="40" y="266" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="280" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="298" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">STEP 2</text>
+    <text x="146" y="299" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">When enabled, choose Local, NAS or Auto</text>
+    <text x="60" y="334" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Auto: complete NAS configuration uses NAS; else local</text>
+    <text x="60" y="360" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">NAS mount failure does not silently fall back to local</text>
+  </g>
+  <path d="M 420 384 L 420 412" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-3">
+    <rect x="40" y="412" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="426" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="444" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">STEP 3</text>
+    <text x="146" y="445" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">Set rotation and select the archive node</text>
+    <text x="60" y="480" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Example: 7 days, 64Mi per file, up to 32 files</text>
+    <text x="60" y="506" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Choose in Nodes; empty uses the first core node</text>
+  </g>
+  <path d="M 420 530 L 420 558" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-4">
+    <rect x="40" y="558" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="572" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="590" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">STEP 4</text>
+    <text x="146" y="591" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">Verify mounts and log writes after installation</text>
+    <text x="60" y="626" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Run findmnt -T for the configured log path</text>
+    <text x="60" y="652" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">An application disk does not place all log paths on it</text>
+  </g>
+  <path d="M 420 676 L 420 704" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="criteria-banner">
+    <rect x="40" y="704" width="760" height="118" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" />
+    <rect x="56" y="718" width="78" height="26" rx="4" fill="#d97706" />
+    <text x="95" y="736" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">NOTE</text>
+    <text x="144" y="737" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#b45309">Storage boundary</text>
+    <text x="60" y="769" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">NAS must exist and be writable; local logs are not HA</text>
+    <text x="60" y="795" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">Capacity limits may prune logs before retention expires</text>
+  </g>
+</svg>

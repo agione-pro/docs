@@ -27,7 +27,7 @@ next: true
 | 文档 | 说明 |
 | --- | --- |
 | [ClusterD 安装、升级与卸载](./clusterd/) | 全新环境安装、双架构与在线/离线部署，以及 ClusterD 升级和卸载 |
-| [ClusterD 部署 AGIOne 最佳实践](./clusterd-agione-best-practices) | 预留页面，正文待补充 |
+| [ClusterD 部署 AGIOne 最佳实践](./clusterd-agione-best-practices) | 单节点离线部署全流程、向导字段示例、磁盘选择、预检、验证与清理 |
 
 ### 节点纳管
 
