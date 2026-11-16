@@ -1,8 +1,8 @@
 # Overview
 
 ::: info 文档信息
-版本：v2.1
-更新日期：2026-11-12
+版本：v2.2
+更新日期：2026-11-13
 :::
 
 ## 功能概述
@@ -40,7 +40,7 @@ Overview像流量仪表盘，用来先看请求是否突然变多、拦截是否
 
 ![Global API Rate Control](./images/overview-list.png)
 
-图示为 Global API Rate Control，展示请求量、拦截量、拦截率、启用规则数和规则排行；时间范围决定统计口径。
+图示为当前 Global API Rate Control 的请求量、拦截量、统计超限、启用规则及 Top5 排行区域。趋势与拦截排行在图中当前时间范围为空态；不能据此推断全平台没有请求。
 
 | 区域 | 说明 |
 | --- | --- |

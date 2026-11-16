@@ -4,7 +4,7 @@
 
 ## 开始前准备
 
-1. 安装并打开 DeepSeek Harness。产品入口为 [DeepSeek Harness](https://harness.deepseek.com/)，下载方式以官方发布说明为准。本文从已安装的客户端开始。
+1. 安装并打开 DeepSeek Harness。产品入口为 [DeepSeek Harness](https://www.deepseek.com/harness/)，下载方式以官方发布说明为准。本文从已安装的客户端开始。
 2. 访问 [AGIOne](https://agione.cc/)，注册并登录账号。
 3. 在模型广场选择需要使用的模型，进入模型的 API 调用或快速开始页面，获取 **API 地址**、**API Key** 和完整的 **Model ID**，并确认模型支持的协议类型。
 

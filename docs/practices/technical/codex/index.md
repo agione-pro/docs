@@ -8,10 +8,10 @@
 ---
 
 ## Table of Contents
-1. [Basic Edition: 3-Minute Quick Setup](#1-basic-edition-3-minute-quick-setup)
-2. [Advanced Edition: Enable All Features (Long Context & Deep Reasoning)](#2-advanced-edition-enable-all-features-long-context-deep-reasoning)
-3. [Troubleshooting & FAQ](#3-troubleshooting-faq)
-4. [Appendix: Adding Other Models](#4-appendix-adding-other-models)
+1. [Basic Edition: 3-Minute Quick Setup](#_1-basic-edition-3-minute-quick-setup)
+2. [Advanced Edition: Enable All Features (Long Context & Deep Reasoning)](#_2-advanced-edition-enable-all-features-long-context-deep-reasoning)
+3. [Troubleshooting & FAQ](#_3-troubleshooting-faq)
+4. [Appendix: Adding Other Models](#_4-appendix-adding-other-models)
 
 ---
 

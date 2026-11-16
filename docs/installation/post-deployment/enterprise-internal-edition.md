@@ -15,7 +15,7 @@ Example:
 {{PLATFORM_BASE_URL}} = https://ai.example.com
 ```
 
-After replacement, the direct links in this document can be used for navigation. Each deployment provides three fixed business identities: `admin`, `operator`, and `provider`. The End User acceptance account may need to be registered, or it may be created after `operator` creates a Tenant. Initial platform configuration uses `admin`; Model Services baseline-data checks use `operator`; later business acceptance uses the identity specified by each checklist item. This template does not record account passwords. Login credentials must be delivered through a controlled channel.
+Addresses below are non-clickable code templates. Replace the deployment address, then copy the complete address into the browser. Each deployment provides three fixed business identities: `admin`, `operator`, and `provider`. The End User acceptance account may need to be registered, or it may be created after `operator` creates a Tenant. Initial platform configuration uses `admin`; Model Services baseline-data checks use `operator`; later business acceptance uses the identity specified by each checklist item. This template does not record account passwords. Login credentials must be delivered through a controlled channel.
 
 For each deployment, verify every direct link with the account specified for that entry. If a direct link fails, enter the page through the menu path and check the License, menu data, role permissions, and deployment routing. Links that have not been verified in a real deployment must not be marked as accepted.
 
@@ -54,32 +54,32 @@ General settings, provider relationship, currency settings, payment channels, ac
 
 | Page | Menu Path | Direct Link | Purpose |
 | --- | --- | --- | --- |
-| Login | No login required | [Open Login]({{PLATFORM_BASE_URL}}/user/login) | Login and login acceptance |
-| Register | Enter from the login page, or open directly | [Open Register]({{PLATFORM_BASE_URL}}/user/register) | Employee email self-registration acceptance after SMTP is configured |
-| License Management | User Center > License Management | [Open License Management]({{PLATFORM_BASE_URL}}/user/usercenter/license/managed-objects) | Import, activate, and check License |
-| Platform Settings | System Configuration > Platform Settings | [Open Platform Settings]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config) | Brand, currency, account, email, and related settings |
-| Login Configuration | System Configuration > Login Configuration | [Open Login Configuration]({{PLATFORM_BASE_URL}}/user/system/login-properties) | Registration role, verification code, and login security |
-| System Agreement Management | Operations Console > System Management > System Agreement Management | [Open System Agreement Management]({{PLATFORM_BASE_URL}}/deck/op/system/agreement) | Internal terms of use and privacy policy |
-| Tenant Management | System Configuration > Tenant Management | [Open Tenant Management]({{PLATFORM_BASE_URL}}/user/tenant) | Administrator-created accounts and self-registration result checks |
-| Team Members | User Space > Team Members | [Open Team Members]({{PLATFORM_BASE_URL}}/user/user-space/team-members) | Manage employee members in the same Tenant |
-| Role Management | User Space > Role Management | [Open Role Management]({{PLATFORM_BASE_URL}}/user/user-space/roles) | Configure employee access permissions |
-| Meta Models (including model authors) | Model Services > Settings > Meta Models | [Open Meta Models]({{PLATFORM_BASE_URL}}/modelone/settings/meta) | Use `operator` to check model authors and meta models |
-| Model Sources | Model Services > Settings > Model Sources | [Open Model Sources]({{PLATFORM_BASE_URL}}/modelone/settings/vendor) | Use `operator` to check sources, regions, and addresses |
-| Model Tags | Model Services > Settings > Tags | [Open Tags]({{PLATFORM_BASE_URL}}/modelone/settings/tags) | Use `operator` to check tags of the `Model` type |
-| Model Templates | Model Services > Settings > Templates | [Open Templates]({{PLATFORM_BASE_URL}}/modelone/settings/provider-template) | Use `operator` to check according to delivery scope |
+| Login | No login required | Open Login: `{{PLATFORM_BASE_URL}}/user/login` | Login and login acceptance |
+| Register | Enter from the login page, or open directly | Open Register: `{{PLATFORM_BASE_URL}}/user/register` | Employee email self-registration acceptance after SMTP is configured |
+| License Management | User Center > License Management | Open License Management: `{{PLATFORM_BASE_URL}}/user/usercenter/license/managed-objects` | Import, activate, and check License |
+| Platform Settings | System Configuration > Platform Settings | Open Platform Settings: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config` | Brand, currency, account, email, and related settings |
+| Login Configuration | System Configuration > Login Configuration | Open Login Configuration: `{{PLATFORM_BASE_URL}}/user/system/login-properties` | Registration role, verification code, and login security |
+| System Agreement Management | Operations Console > System Management > System Agreement Management | Open System Agreement Management: `{{PLATFORM_BASE_URL}}/deck/op/system/agreement` | Internal terms of use and privacy policy |
+| Tenant Management | System Configuration > Tenant Management | Open Tenant Management: `{{PLATFORM_BASE_URL}}/user/tenant` | Administrator-created accounts and self-registration result checks |
+| Team Members | User Space > Team Members | Open Team Members: `{{PLATFORM_BASE_URL}}/user/user-space/team-members` | Manage employee members in the same Tenant |
+| Role Management | User Space > Role Management | Open Role Management: `{{PLATFORM_BASE_URL}}/user/user-space/roles` | Configure employee access permissions |
+| Meta Models (including model authors) | Model Services > Settings > Meta Models | Open Meta Models: `{{PLATFORM_BASE_URL}}/modelone/settings/meta` | Use `operator` to check model authors and meta models |
+| Model Sources | Model Services > Settings > Model Sources | Open Model Sources: `{{PLATFORM_BASE_URL}}/modelone/settings/vendor` | Use `operator` to check sources, regions, and addresses |
+| Model Tags | Model Services > Settings > Tags | Open Tags: `{{PLATFORM_BASE_URL}}/modelone/settings/tags` | Use `operator` to check tags of the `Model` type |
+| Model Templates | Model Services > Settings > Templates | Open Templates: `{{PLATFORM_BASE_URL}}/modelone/settings/provider-template` | Use `operator` to check according to delivery scope |
 
 Direct links for Platform Settings tabs:
 
 | Tab | Direct Link |
 | --- | --- |
-| General | [Open General]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=general) |
-| Provider Relationship | [Open Provider Relationship]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=provider) |
-| Currency Settings | [Open Currency Settings]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=currency) |
-| Account and Settlement | [Open Account and Settlement]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=account) |
-| Email Settings | [Open Email Settings]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=email) |
-| UI Settings | [Open UI Settings]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui) |
-| Stripe | [Open Stripe]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=STRIPE) |
-| Alipay | [Open Alipay]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=ALIPAY) |
+| General | Open General: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=general` |
+| Provider Relationship | Open Provider Relationship: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=provider` |
+| Currency Settings | Open Currency Settings: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=currency` |
+| Account and Settlement | Open Account and Settlement: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=account` |
+| Email Settings | Open Email Settings: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=email` |
+| UI Settings | Open UI Settings: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui` |
+| Stripe | Open Stripe: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=STRIPE` |
+| Alipay | Open Alipay: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=ALIPAY` |
 
 Use `admin` for Platform Settings entries and `operator` for Model Services baseline-data entries. If the corresponding account still sees 403, a blank page, or a missing menu when opening a direct link, recheck through the menu path and verify the current License, menu data, role permissions, and deployment routing. Do not bypass the problem by adding frontend allowlists or relaxing permissions.
 
@@ -192,7 +192,7 @@ New deployments cannot send email by default: SMTP host, username, password, and
 
 ### 7.1 License and Delivery Purpose
 
-Entry: [Open License Management]({{PLATFORM_BASE_URL}}/user/usercenter/license/managed-objects)
+Entry: Open License Management: `{{PLATFORM_BASE_URL}}/user/usercenter/license/managed-objects`
 
 Steps:
 
@@ -208,7 +208,7 @@ Current-version note: The `enterprise/operator` version field and backend capabi
 
 ### 7.2 Enterprise Administrators and Permissions
 
-Entry: [Open Team Members]({{PLATFORM_BASE_URL}}/user/user-space/team-members); [Open Role Management]({{PLATFORM_BASE_URL}}/user/user-space/roles)
+Entry: Open Team Members: `{{PLATFORM_BASE_URL}}/user/user-space/team-members`; Open Role Management: `{{PLATFORM_BASE_URL}}/user/user-space/roles`
 
 Steps:
 
@@ -222,7 +222,7 @@ Acceptance: Enterprise administrators can manage members and roles; ordinary emp
 
 ### 7.3 Internal Terms of Use and Privacy Policy
 
-Entry: [Open System Agreement Management]({{PLATFORM_BASE_URL}}/deck/op/system/agreement)
+Entry: Open System Agreement Management: `{{PLATFORM_BASE_URL}}/deck/op/system/agreement`
 
 Steps:
 
@@ -234,7 +234,7 @@ Acceptance: When email self-registration is used, employees can read the current
 
 ### 7.4 Product Name, Support Email, Logo, Favicon, and Default Language
 
-Entry: [Open General]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=general); [Open UI Settings]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui)
+Entry: Open General: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=general`; Open UI Settings: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui`
 
 In `General`:
 
@@ -257,7 +257,7 @@ Acceptance: After logging out and reopening the platform, the login page, naviga
 
 ### 7.5 SMTP and Login URL
 
-Entry: [Open Email Settings]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=email), then expand `SMTP Service Configuration`. The current page exposes SMTP only.
+Entry: Open Email Settings: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=email`, then expand `SMTP Service Configuration`. The current page exposes SMTP only.
 
 Steps:
 
@@ -284,7 +284,7 @@ If SMTP is not configured for this deployment, email self-registration, email ve
 
 ### 7.6 Employee Registration and Login Security
 
-Entry: [Open Login Configuration]({{PLATFORM_BASE_URL}}/user/system/login-properties)
+Entry: Open Login Configuration: `{{PLATFORM_BASE_URL}}/user/system/login-properties`
 
 If administrators create accounts directly:
 
@@ -315,7 +315,7 @@ To urgently stop email registration: stop publishing the registration link immed
 
 ### 7.7 Currency, Credits Exchange Ratio, and Internal Credits
 
-Entry: [Open Currency Settings]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=currency); [Open Account and Settlement]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=account)
+Entry: Open Currency Settings: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=currency`; Open Account and Settlement: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=account`
 
 Configure internal accounting currency code, name, and symbol in `Currency Settings`; configure default credits exchange ratio and registration bonus in `Account and Settlement`.
 
@@ -331,7 +331,7 @@ Acceptance: Test accounts can see the correct currency and credits. When registr
 
 ### 7.8 Provider Relationship
 
-Entry: [Open Provider Relationship]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=provider)
+Entry: Open Provider Relationship: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=provider`
 
 Single Provider, multiple Providers, and Operator-only binding represent different AI service ownership relationships. Even if the enterprise does not operate externally, underlying model service sources may require specific binding. Product and delivery owners must determine this item; enterprise administrators should not decide it alone.
 
@@ -343,7 +343,7 @@ Acceptance: The test Tenant relationship matches the delivery solution. If Provi
 
 ### 7.9 Payment Channels and Top-Up
 
-Entry: [Open Stripe]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=STRIPE); [Open Alipay]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=ALIPAY); [Open UI Settings]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui)
+Entry: Open Stripe: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=STRIPE`; Open Alipay: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=ALIPAY`; Open UI Settings: `{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui`
 
 Enterprise Internal Edition requirements:
 
@@ -362,10 +362,10 @@ Check account: use the fixed `operator` account provided for each deployment. Du
 
 | Check Object | Deployment Requirement | Quick Check |
 | --- | --- | --- |
-| Meta Models (including model authors) | Preset data is required for every deployment | [Open Meta Models]({{PLATFORM_BASE_URL}}/modelone/settings/meta), or enter through `Model Services > Settings > Meta Models`. Confirm that both the model-author list on the left and meta models on the right have data; switch authors, run one search or filter, open one detail page, and confirm author, model type, scenario, and major capabilities display correctly. |
-| Model Sources | Preset data is required for every deployment | [Open Model Sources]({{PLATFORM_BASE_URL}}/modelone/settings/vendor), or enter through `Model Services > Settings > Model Sources`. Run one search and open one detail page. Confirm that model-source identifier, region, Base URL, and documentation URL ownership are reasonable. Request-header authentication values may show only placeholders such as `<key>` or non-sensitive constants. Real API Keys, Tokens, or passwords must not be displayed. |
-| Model Tags | Preset data is required for every deployment | [Open Tags]({{PLATFORM_BASE_URL}}/modelone/settings/tags), or enter through `Model Services > Settings > Tags`. Select the `Model` type and confirm tree tags have data; run one name search, status filter, and reset; confirm parent-child hierarchy is reasonable and meta-model scenario shows category names rather than internal IDs. |
-| Model Templates | Check according to delivery scope | [Open Templates]({{PLATFORM_BASE_URL}}/modelone/settings/provider-template), or enter through `Model Services > Settings > Templates`. Select the model source that should have templates for this deployment, then confirm template cards, filters, and details work normally, and Provider, region, and meta-model associations are correct. If this deployment explicitly does not preconfigure templates, record `Not applicable` and do not temporarily create templates just to complete the check. |
+| Meta Models (including model authors) | Preset data is required for every deployment | Open Meta Models: `{{PLATFORM_BASE_URL}}/modelone/settings/meta`, or enter through `Model Services > Settings > Meta Models`. Confirm that both the model-author list on the left and meta models on the right have data; switch authors, run one search or filter, open one detail page, and confirm author, model type, scenario, and major capabilities display correctly. |
+| Model Sources | Preset data is required for every deployment | Open Model Sources: `{{PLATFORM_BASE_URL}}/modelone/settings/vendor`, or enter through `Model Services > Settings > Model Sources`. Run one search and open one detail page. Confirm that model-source identifier, region, Base URL, and documentation URL ownership are reasonable. Request-header authentication values may show only placeholders such as `<key>` or non-sensitive constants. Real API Keys, Tokens, or passwords must not be displayed. |
+| Model Tags | Preset data is required for every deployment | Open Tags: `{{PLATFORM_BASE_URL}}/modelone/settings/tags`, or enter through `Model Services > Settings > Tags`. Select the `Model` type and confirm tree tags have data; run one name search, status filter, and reset; confirm parent-child hierarchy is reasonable and meta-model scenario shows category names rather than internal IDs. |
+| Model Templates | Check according to delivery scope | Open Templates: `{{PLATFORM_BASE_URL}}/modelone/settings/provider-template`, or enter through `Model Services > Settings > Templates`. Select the model source that should have templates for this deployment, then confirm template cards, filters, and details work normally, and Provider, region, and meta-model associations are correct. If this deployment explicitly does not preconfigure templates, record `Not applicable` and do not temporarily create templates just to complete the check. |
 
 The following situations block go-live: model authors, meta models, model sources, or model tags have no data at all; the page keeps reporting errors; lists or details cannot be opened; search, filter, or reset is clearly invalid; authors, tags, regions, model sources, or templates are obviously misbound; the page displays a real API Key, Token, or password. Individual optional descriptions, multilingual content, icons, or documentation URL issues should be recorded and submitted to the owner for judgment, not used directly to fail the whole deployment.
 

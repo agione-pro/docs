@@ -1,8 +1,8 @@
 # VRAM Config
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-13
 :::
 
 ## Feature Overview
@@ -59,20 +59,20 @@ The page is organized into six tabs, each showing its own entry count after the 
 
 #### Steps
 
-1. Go to `On-Prem > Templates > VRAM Config`. The page opens on the `Precision Spec Dictionary` tab.
+1. Go to `On-Prem > Templates > VRAM Config` and select the `Precision Spec Dictionary` tab.
 2. To add an entry, click **"+Add Precision Spec"** at the top right to open the `Add Precision Spec` dialog. To change one, click `Edit` in the `Actions` column of the target row.
 
-The image shows the `Add Precision Spec` dialog: the `Precision Name` field has the placeholder `e.g. fp16`, `Bits`, `Bytes Per Value`, and `Overhead Ratio` are steppers with the initial values `8`, `1`, and `1`, and the footer buttons are `Cancel` and `Save`.
-
 ![Add Precision Spec](./images/manual-add-vram-spec.png)
+
+The figure shows the Add Precision Spec dialog: Precision Name has the placeholder `e.g. fp16`; Bits, Bytes Per Value, and Overhead Ratio start at `8`, `1`, and `1`. Remark appears below, with Cancel and Save in the footer.
 
 3. Enter the `Precision Name`, then set `Bits`, `Bytes Per Value`, and `Overhead Ratio` according to the quantization definition of that precision.
 4. (Optional) In `Remark`, record the applicable model family or the estimation definition.
 5. Check the values and click **"Save"**. To discard the entry, click `Cancel` or the close icon at the top right of the dialog.
 
-The image shows the `Edit Precision Spec` dialog: the `auto` record carries `Bits` `16`, `Bytes Per Value` `2`, and `Overhead Ratio` `1`, the `Precision Name` field stays editable in the edit state, `Remark` shows the placeholder `Remark`, and the footer buttons are `Cancel` and `Save`.
-
 ![Edit Precision Spec](./images/edit-precision-spec.png)
+
+The figure shows the Edit Precision Spec dialog for the example record `aqlm_2bit`: Bits, Bytes Per Value, and Overhead Ratio are `2`, `0.25`, and `1.2`. Remark describes this example's estimation basis; Cancel and Save are visible in the footer.
 
 #### Result Validation
 
@@ -105,15 +105,15 @@ The image shows the `Framework Quantization` tab: configurations are grouped by 
 3. Enter the framework type in the dialog and confirm the framework version, whose label carries an information icon and whose default value is `default`.
 4. Select the supported weight quantization methods and the KV Cache quantization methods in the two dropdown lists below.
 
-The image shows the `Add Framework Quantization` dialog: the fields are `Framework Type` (placeholder `e.g. vllm`), `Framework Version` (default `default`), `Weight Quantization` (placeholder `Select weight quantization`), and `KV Cache Quantization` (placeholder `Select KV Cache quantization`), and the footer buttons are `Cancel` and `Save`.
-
 ![Add Framework Quantization](./images/add-framework-quantization-config.png)
+
+The figure shows the Add Framework Quantization dialog: Framework Type and Framework Version appear side by side, with the version initially set to `default`. Weight Quantization and KV Cache Quantization appear below, followed by Cancel and Save.
 
 5. Save the configuration. In the edit dialog the framework type and the framework version are read-only, so only the two quantization selections can be changed.
 
-The image shows the `Edit Framework Quantization` dialog: `Framework Type` and `Framework Version` are greyed out and read-only, the two quantization dropdowns stay editable, and the footer buttons are `Cancel` and `Save`.
-
 ![Edit Framework Quantization](./images/edit-framework-quantization-config.png)
+
+The figure shows the Edit Framework Quantization dialog for the example framework `ml-sharp`, version `latest`. Both fields are disabled; Weight Quantization and KV Cache Quantization show `bf16`, with Cancel and Save in the footer.
 
 #### Result Validation
 
@@ -146,16 +146,16 @@ The image shows the `Model KV Token` tab: `Model Name / UID` is the leading colu
 3. Select the target model in the model dropdown, then confirm or enter the framework type.
 4. In the single-token consumption section, enter one row per data type. Each row consists of a data-type dropdown, a numeric input, and a delete icon; use the add-row button below to configure more data types.
 
-The image shows the `Add Model KV Token Config` drawer: the three required fields are `* Model Name` (placeholder `Select model`), `* Framework Type`, and `* Single Token Cost Config`, the section note reads `Values below are measured in byte`, more rows are added with **"+ Add dtype Config"**, `Remark` shows the placeholder `Enter remark`, and the footer buttons are `Cancel` and `Save`.
-
 ![Add Model KV Token Config](./images/add-model-kv-token-config.png)
 
-5. (Optional) Record the derivation of the configured values in the remark field.
-6. Save the configuration. In the edit drawer the model field shows the selected model together with its source and context-length tags, and all configured data-type rows are listed.
+The figure shows the Add Model KV Token Config drawer: Model Name, Framework Type, and Single Token Cost Config have required markers. No model is selected; the framework initially shows `vllm`, with one `fp16` row set to `1` in `byte`. Remark, Cancel, and Save are fully visible. These initial values are not measured costs or recommended settings.
 
-The image shows the `Edit Model KV Token Config` drawer: the `Model Name` field echoes the selected model together with its author and the `text` / `262K` tags, and the configured data types `float16`, `fp16`, and `auto` each carry the value `12288`.
+5. (Optional) Record the derivation of the configured values in the remark field.
+6. Check the selected model, framework type, and configured data-type rows, then save the configuration. Read additional model tags as displayed for that record rather than expecting the example tags for every model.
 
 ![Edit Model KV Token Config](./images/edit-model-kv-token-config.png)
+
+The figure shows the Edit Model KV Token Config drawer for the example model `SHARP` and framework `ml-sharp`, with an `image` tag beside the model. The `fp16` and `bf16` rows each display `1` in `byte`; Remark is empty, and Cancel and Save are visible. These example values are not measured costs or recommendations.
 
 #### Result Validation
 
@@ -186,13 +186,13 @@ The image shows the empty `Deployment Profiles` tab: the filter area offers four
 ![Deployment Profiles Empty State](./images/deployment-profile-empty.png)
 
 3. In the matching-dimension group, complete the required fields: meta model ID, version, framework type, framework version, deployment mode, accelerator ID, and KV Cache data type.
-4. In the required estimation-field group, enter the per-card runtime overhead value in `GiB` and the effective single-token KV Cache byte count across accelerators in `B`. The group note states that both fields take part in VRAM estimation and must be filled before the profile can be saved.
+4. In the required estimation-field group, enter the per-card runtime overhead value in `GB` and the effective single-token KV Cache byte count across accelerators in `B`. The group note states that both fields take part in VRAM estimation and must be filled before the profile can be saved.
 5. Confirm the state of the toggle that controls whether this profile takes part in VRAM estimation; its label carries an information icon.
 6. Check the matching dimensions and the two estimation fields, then click the save-profile button in the dialog footer. To discard the entry, click cancel or the close icon at the top right.
 
-The image shows the `Manually Enter Deployment Profile` dialog: the two groups are `Matching Dimensions` and `VRAM Estimation Fields (Required)`, the switch at the bottom is labelled `Participate in VRAM Estimation`, and the footer buttons are `Cancel` and `Save Profile`.
-
 ![Manually Enter Deployment Profile](./images/manual-enter-deployment-profile.png)
+
+The figure shows the Manually Enter Deployment Profile dialog with four groups: Matching Dimensions, VRAM Estimation Fields (Required), Deployment Record (Optional), and Measured Reference (Optional). The two estimation fields display `GB` and `B`; the Participate in VRAM Estimation switch, optional fields, Cancel, and Save Profile are fully visible.
 
 #### Result Validation
 
@@ -303,14 +303,14 @@ The image shows the `VRAM Estimation Config Details` page: factors are shown as 
 | `Meta Model ID` | Required | Text | `qwen/qwen3.5-9b` | One of the matching dimensions of a manually entered deployment profile; the example is a placeholder. |
 | `Deployment Mode` | Required | Dropdown selection | `Single Instance` | Forms the matching dimensions together with the meta model, framework, and accelerator. |
 | `Accelerator ID` | Required | Text | `accelerator-h20-96gb` | Accelerator the profile matches; the example is a placeholder. |
-| `Estimated Runtime Overhead per Accelerator` | Required | Number (`GiB`) | — | One of the two fields that take part in VRAM estimation. |
+| `Estimated Runtime Overhead per Accelerator` | Required | Number (`GB`) | — | One of the two fields that take part in VRAM estimation. |
 | `Effective Single-Token KV Cache Bytes Across Accelerators` | Required | Number (`B`) | — | The other field that takes part in VRAM estimation. |
 | `Form Name` | Not marked on page | Text | — | Name field of the full-page form opened from the `VRAM Calculation Factors` tab; placeholder is `Enter VRAM estimation config name`. |
 | Factor / option | Not marked on page | Grouped configuration | `7` | Factors and candidate options are maintained in `User Step 2 Preview`; the list shows the count in `Factors`. |
 
 ## Pitfalls
 
-- The single-token consumption section is measured in byte, while the two deployment-profile fields use `GiB` and `B`. Confirm the unit before entering values across tabs.
+- Single-token consumption displays byte; the two deployment-profile estimation fields display `GB` and `B`. Check each field's unit before entering values across tabs.
 - Wrong bits or bytes per value in a precision spec push every estimation that references it in the same direction.
 - The framework type and framework version cannot be changed after a quantization configuration is created, so a misregistered version must be deleted and added again.
 - A VRAM factor form defines what the user must fill in step two of deployment, so a change affects every linked template.

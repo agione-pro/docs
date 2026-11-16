@@ -1,8 +1,8 @@
 # Meta Models
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-15
 :::
 
 ## Feature Overview
@@ -63,14 +63,30 @@ The figure shows the meta model list for DeepSeek. The table lists `Meta model n
 
 1. Select the target model author and click **"Add Meta Model"**.
 2. The `Add Meta Model` wizard opens with two steps: `1 Meta Model Configuration` and `2 Meta-model Details`.
-3. In step 1, check `Model Author` under `Basic Information`, then fill `Name`, `Series`, `Unique Identifier`, `Scene`, `Status`, and `Official Release Time`.
+3. In Step 1, check `Model Author` under `Basic Information`, then fill `Name`, `Series`, `Scene`, `Status`, and `Official Release Time`. The untouched current page displays the author value (openai in this example) in a disabled `Unique identifier` control; do not treat this control as an editable full model ID.
 4. Under `Description`, switch between the `English` and `Chinese` tabs and fill in `Model Description`.
 5. Continue with `Model Type and Sub-models`, `Input / Output Modalities`, `Advanced Capability Configuration`, `Token Limit`, and `Official Native Protocols and Default Advanced Parameters`.
 6. Click **"Next"** to open `Meta-model Details`, then complete the fields shown on the page. Use **"Cancel"** or the back arrow to leave the flow.
 
-![Add Meta Model - configuration](./images/meta-models-add-step1.png)
+![Meta model Step-1 Basic Information](./images/meta-models-add-step1.png)
 
-The figure shows `Basic Information` and `Description` in Step 1. Fields marked with `*`, such as `Name`, `Series`, `Scene`, and `Official Release Time`, must be filled. `Model Author` is carried in from the entry point, shown here as DeepSeek.
+The figure shows the Step-1 Basic Information card for OpenAI. The disabled Unique identifier control displays openai; the other empty fields and multilingual description are in frame. This is not the entire wizard.
+
+![Meta model type and variants](./images/meta-models-step1-types.png)
+
+The figure shows Model Type & Variants. Text and LLM Model are selected in the untouched current example; all seven model categories and both variant options are visible. Ellipsized help text is the UI's own presentation.
+
+![Meta model input and output modalities](./images/meta-models-step1-modalities.png)
+
+The figure shows Input / Output modalities, with Text selected on both sides and the Image, Audio and Video options in frame.
+
+![Meta model advanced capabilities](./images/meta-models-step1-capabilities.png)
+
+The figure shows Advanced capability configuration with Function/Tool Support and Thinking Mode both off. Neither switch nor an actual capability invocation was tested.
+
+![Meta model token limits](./images/meta-models-step1-token-limits.png)
+
+The figure shows Token Limit with empty Maximum Context Length, Maximum Input Tokens and Maximum Output Tokens controls and K suffixes. No limits or backend ranges were submitted or tested.
 
 ### Filter and read the list
 
@@ -104,7 +120,7 @@ Imported and exported files may contain protocol and capability configuration. K
 | Model Author | Carried in | Drop-down / read-only | `DeepSeek` | Author that owns the meta model |
 | Name | Required | Text | `DeepSeek-V4-Pro` | Name shown in the list and model cards |
 | Series | Required | Text | `DeepSeek-V4` | Series the meta model belongs to |
-| Unique Identifier | Required | Text | `deepseek/deepseek-v4-pro` | Unique identifier of the meta model |
+| Unique Identifier | Read-only in the current Step-1 control | Text / read-only | `deepseek/deepseek-v4-pro` | The full identifier example is not the read-only author value shown in Step 1; final identifier generation and saving rules were not tested |
 | Scene | Required | Drop-down | `Text Generation` | Business scene of the meta model |
 | Status | Required | Drop-down | `Enable` | Value shown in the `Status` column |
 | Official Release Time | Required | Date | `2026-10-27` | Official release date of the model |

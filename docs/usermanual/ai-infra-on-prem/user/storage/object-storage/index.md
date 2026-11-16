@@ -1,8 +1,8 @@
 # Object Storage
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-13
 :::
 
 ## Feature Overview
@@ -95,7 +95,7 @@ The dialog below shows `Bucket Name`, `Configured capacity`, `GiB`, `Project`, a
 #### Notes
 
 - The form shows required markers for `Bucket Name` and `Configured capacity`; naming validation, capacity limits, other units, project options, and post-submit behavior follow the actual page feedback.
-- The user-side menu has three levels and its top level is a single item that combines the platform name with `On-Prem`, but the English label of that top item is not confirmed; the storage entry appears in the left menu as the group `Storage` with the leaf `Object Storage`. The four-segment string `On-Prem > Storage Services > Object Storage` is a historical original, not a UI label.
+- This page uses `On-Prem > Storage > Object Storage` as its navigation path. Treat the combined platform/`On-Prem` entry as one item; its exact English label is not confirmed here. Check the labels visible to the current role.
 
 ### Create Path
 

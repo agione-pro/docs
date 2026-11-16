@@ -35,7 +35,7 @@ Do not change the path, query, signed headers or JSON bytes after signing. Use c
 
 ## Signing helper
 
-[Download ark-sign.py](/examples/volcengine/ark-sign.py). Requires Python 3 and curl 7.76.0+ for `--fail-with-body`. It reads credentials privately in an interactive terminal and outputs a configuration for curl to read from stdin. SK is absent from headers, URLs, process arguments and generated configuration.
+<a href="/examples/volcengine/ark-sign.py" download="ark-sign.py">Download ark-sign.py</a>. Requires Python 3 and curl 7.76.0+ for `--fail-with-body`. It reads credentials privately in an interactive terminal and outputs a configuration for curl to read from stdin. SK is absent from headers, URLs, process arguments and generated configuration.
 
 ## Video requests
 

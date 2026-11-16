@@ -10,7 +10,7 @@ Confirm the model/provider, protocol, price, and visibility with the provider or
 
 ## Before You Start
 
-- Sign in to {{DOCS_PRODUCT_NAME_EN}} at {{DOCS_LOGIN_URL_EN}} with access to the target model.
+- Sign in to {{DOCS_PRODUCT_NAME_EN}} at the [sign-in page]({{DOCS_LOGIN_URL_EN}}) with access to the target model.
 - Verify account credit, the selected provider's price and billing unit, call authorization, and personal key (the account's call-authentication credential). Free-quota claiming is not a universal step for every model.
 - Prepare non-sensitive test input. Playground and API requests can both consume credits; confirm cost and authorization first.
 

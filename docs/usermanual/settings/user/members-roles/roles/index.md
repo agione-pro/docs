@@ -1,8 +1,8 @@
 # Roles
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-09
+Version: v2.2
+Updated: 2026-11-15
 :::
 
 ## Feature Overview
@@ -72,7 +72,7 @@ Select the role on the left, then review its information and member scope on the
 
 ![Create a Role](./images/manual-settings-user-roles-add-20260902.png)
 
-The screenshot shows the create form, Initial permissions area, and service switcher. An empty permission area means that no permission has been selected yet; it does not mean Initial permissions can be skipped.
+The figure shows the inline Add Role page, not a dialog, with role name, description, Initial permissions, and the complete Cancel/Preview and save footer. Fields are empty and 0 permissions are selected; the example shows the Settings service and Dashboard permission, not the entire permission catalogue. The requirement to select at least one permission is UI help, not submission validation performed here.
 
 **Result validation:** After creation, locate and select the role on the left, then check its code, creation time, and currently available actions in the information area on the right.
 
@@ -89,7 +89,7 @@ The screenshot shows the create form, Initial permissions area, and service swit
 
 ![Edit a Role](./images/manual-settings-user-roles-edit-20260902.png)
 
-The screenshot shows the Edit Role form. Check the role name, description, and **"Save"** entry with the top menu hidden.
+The figure shows the complete Edit Role dialog for the existing example role Demo, including role name, description, and Cancel/Save buttons. It was only opened and cancelled; no name, description, or permission change was saved. This dialog is not the permission-configuration page.
 
 **Result validation:** The role name or description is updated in the list, the role code and creation time remain visible, and reopening the form shows the latest values.
 

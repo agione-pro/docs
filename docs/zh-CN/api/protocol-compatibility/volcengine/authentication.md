@@ -35,7 +35,7 @@ Authorization: HMAC-SHA256 Credential=<AGIONE_AK>/<YYYYMMDD>/cn-beijing/ark/requ
 
 ## 签名辅助脚本
 
-[下载 ark-sign.py](/examples/volcengine/ark-sign.py)。需要 Python 3 和支持 `--fail-with-body` 的 curl 7.76.0+。脚本从交互终端隐藏读取凭据，输出供 curl 从标准输入读取的配置；SK 不进入请求头、URL、命令参数或输出配置。
+<a href="/examples/volcengine/ark-sign.py" download="ark-sign.py">下载 ark-sign.py</a>。需要 Python 3 和支持 `--fail-with-body` 的 curl 7.76.0+。脚本从交互终端隐藏读取凭据，输出供 curl 从标准输入读取的配置；SK 不进入请求头、URL、命令参数或输出配置。
 
 ## 视频请求
 

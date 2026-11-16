@@ -1,8 +1,8 @@
 # Tenants
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-15
 :::
 
 ## Feature Overview
@@ -68,11 +68,13 @@ The tenant list shows the tenant, business identity, administrator, status, and 
 
 ![Create Tenant](./images/tenant-create.png)
 
+The figure shows the current demo's empty Create Tenant page with Tenant details, Tenant administrator, Access and security, and both footer actions. Role, Password and Confirm Password are fully in frame. The page describes admin email as optional; submission and backend validation were not tested.
+
 4. In `Tenant details`, fill in the required `Tenant Name`.
-5. In `Tenant administrator`, fill in `Admin name`, `Admin sign-in account`, and `Admin email`. Fill in `Admin phone` as needed.
+5. In `Tenant administrator`, review `Admin name` and `Admin username`. The current page marks `Admin email` and `Admin phone` as optional. Confirm actual inputs through the organization's authorization process before creating a tenant.
 6. In `Access and security`, select `Role`, then fill in `Password` and `Confirm Password`.
 7. Before final submission, verify the tenant name, administrator account, email, role, and initial password.
-8. For learning or screenshots only, view the fields without submitting real tenant configuration.
+8. For learning or screenshots only, leave the fields empty and click `Cancel` to return to the tenant list without submitting real tenant configuration.
 
 ### Manage Tenant Tags
 
@@ -95,8 +97,8 @@ The tenant list shows the tenant, business identity, administrator, status, and 
 | Tenant Name | Yes | Text | `Example Tenant A` | Identifies the tenant entity. |
 | Business Identity | No | Filter / tag | `Provider` | Filters or identifies the tenant business identity. |
 | Admin name | Yes | Text | `Example Admin` | The display name of the tenant administrator. |
-| Admin sign-in account | Yes | Text | `tenant-admin` | The sign-in account of the tenant administrator. |
-| Admin email | Yes | Text | `admin@example.com` | The email address of the tenant administrator. |
+| Admin username | Yes | Text | `tenant-admin` | Administrator sign-in username in the current creation page; submission rules were not tested. |
+| Admin email | Marked optional in the current page | Text | `admin@example.com` | Page help and placeholder describe it as optional; email validation was not tested by submission. |
 | Admin phone | No | Text | `188****8888` | The contact number of the tenant administrator. |
 | Role | Yes | Dropdown | `Tenant Admin` | Controls the platform access scope of the tenant administrator. |
 | Password | Yes | Password | `******` | The initial password of the tenant administrator. |

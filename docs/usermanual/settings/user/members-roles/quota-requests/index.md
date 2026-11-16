@@ -1,8 +1,8 @@
 # Quota Approvals
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-15
 :::
 
 ## Feature Overview
@@ -16,7 +16,7 @@ Updated: 2026-11-04
 
 #### Beginner Explanation
 
-Quota Requests is the ticket entry for member quota. Use it to submit and track requests for additional quota. Before submission, state the purpose, target member, and required amount clearly.
+In the current Provider Demo view, Quota Approvals reviews quota and model-access requests and quota adjustments. Open a new quota request from My Quota using Request quota; this approval view has no request-creation button. This check only opened and cancelled the request dialog, without submitting or processing a request.
 
 #### Terms Quick Reference
 
@@ -37,8 +37,8 @@ Quota Requests is the ticket entry for member quota. Use it to submit and track 
 
 | Area | Description |
 | --- | --- |
-| Top action | `Request Quota` |
-| Tabs | Request Records and Adjustment Records |
+| Top action | The current Provider view shows `Quota Request Settings ↗`; open a new request from `My Quota > Request quota`. |
+| Tabs | `Quota requests`, `Model access requests`, and `Adjustment records` in the current Provider view. |
 | Filters | Status, member / reason / request ID search, and event type |
 | Request record columns | Request ID, member, requested quota, reason, submission time, status, approver, and actions |
 | Adjustment record columns | Time, member, event type, change, operator, and note |
@@ -48,7 +48,7 @@ Quota Requests is the ticket entry for member quota. Use it to submit and track 
 
 ### View Quota Requests
 
-1. Go to `Settings > Members and Roles > Quota Requests`.
+1. Go to `Settings > Members & Roles > Quota Approvals` to review requests.
 2. Filter by requester, project, resource type, status, or request time.
 3. Check requested quota, current quota, reason, status, and processing time.
 4. If no record is returned, reset filters and check the time range. Request and quota information must be redacted before sharing.
@@ -62,15 +62,17 @@ Quota Requests is the ticket entry for member quota. Use it to submit and track 
 
 ### Submit a Quota Request
 
-1. Go to `Settings > Members & Roles > Quota Requests`.
-2. On `Request Records`, review pending, approved, rejected, canceled, and expired requests.
+1. Open `Settings > Members & Roles > Quota Approvals` to review existing requests; request creation is on `My Quota` in the current Provider view.
+2. On `Quota requests`, review the visible pending, approved, rejected, cancelled, and expired status filters; no request is processed during read-only review.
 3. Filter requests by status and search text.
 
 The following screenshot shows the Quota Requests list.
 
 ![Quota Requests list](./images/quota-requests-list.png)
 
-4. Select `Request Quota` to open the request dialog.
+The figure shows the three approval tabs, status filters, and member search. It does not show a Request quota creation button.
+
+4. Go to `Settings > Personal > My Quota` (`/user/user-space/my-quota`) and select `Request quota` to open the request dialog. Do not look for that creation button on the current Provider Quota Approvals page.
 5. Enter the requested quota and reason.
 6. Confirm that no duplicate request is pending, then submit the request.
 

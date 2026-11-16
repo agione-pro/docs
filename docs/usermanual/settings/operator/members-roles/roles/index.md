@@ -1,8 +1,8 @@
 # Roles
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-14
 :::
 
 ## Feature Overview
@@ -62,13 +62,13 @@ The role list and details show the role code, associated tenant count, assigned 
 ### Add a Role
 
 1. Click **"Add Role"** in the upper-right corner.
-2. In the role creation form, enter `Role name`, the required `Role code`, and an optional `Role description`.
+2. Inspect `Role name`, `Role description`, and `Initial permissions` in the inline editor. The current create page has no Role code input. Its help says to select at least one permission. Leave fields and permissions empty during this read-only review.
 
 ![Add Role](./images/add-role.png)
 
-The Add Role form contains role name, role code, role description, and initial permissions. Confirm the least-privilege scope before creating.
-3. Before clicking `Confirm`, verify that the name, code, and intended permission scope follow the least-privilege principle.
-4. For learning or screenshots only, review the fields and click `Cancel` without submitting a real role configuration.
+The figure shows the current inline `Add Role` editor with role name, description, and initial permissions. The example is on `Settings > My Keys` with 0 selected; the footer has `Cancel` and `Preview and save`, not the older Role code dialog. The permission menu scrolls; this is not the complete permission catalog.
+3. Before entering `Preview and save`, follow the permission-change process to confirm the role name, purpose, and least-privilege initial permissions. This flow does not enter the subsequent preview or save steps.
+4. For read-only inspection, click `Cancel` to leave the inline editor and return to the role list without submitting a role configuration.
 
 ### Edit a Role
 
@@ -97,9 +97,9 @@ The Add Role form contains role name, role code, role description, and initial p
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Role name | Yes | Text | `Audit Admin` | The display name of the operator role. |
-| Role code | Yes | Text | `audit_admin` | The unique role identifier. Use a stable, readable code that is easy to audit. |
+| Role code | Not an input on the current create page | Text | `audit_admin` | A role identifier for the existing list or detail view; the current create editor does not display this input. Code generation and reference changes were not tested. |
 | Role description | No | Text | `View audit logs and basic operator information` | Describes the role purpose and permission boundary. |
-| Permission items | Yes | Multi-select | `View Operation Logs` | Controls the services, menus, and actions available to the role. |
+| Permission items | At least one per on-screen help | Multi-select | `View Operation Logs` | The initial-permissions area selects services, menus, and actions. No permissions were selected or submitted in this review; backend validation and effectiveness were not tested. |
 | Associated tenant count | System-generated | Number | `0` | Shows how many tenants hold the role. |
 | Assigned account count | System-generated | Number | `0` | Shows how many accounts are assigned the role. |
 | Actions | System-generated | Button | `View Role / Configure Permissions / Edit / Delete` | Provides role maintenance entry points. |
@@ -110,7 +110,7 @@ The Add Role form contains role name, role code, role description, and initial p
 - Before deleting a role, confirm that no member or tenant still uses it; use the `Associated Tenants` tab as the reference.
 - Permission changes affect platform-level entry points. Record the reason and approval basis.
 - Adding a role creates a new platform permission template. Later permission configuration and member binding can affect platform administration.
-- `Confirm` is the final submit action. For learning or screenshots, only view the fields and use `Cancel`.
+- `Preview and save` is the current submission-flow entry. The subsequent preview and save steps were not opened; use `Cancel` for read-only inspection.
 - Once `Role code` is referenced, later changes may affect permission identification, auditing, and automation configuration.
 - Do not write real internal role codes, accounts, member IDs, customer names, or internal test data.
 
@@ -172,7 +172,7 @@ Confirm that you are using operator-side Settings and verify the role-management
 
 - Permission configuration changes affect menu visibility and button availability.
 - Before deleting a role, confirm that no critical member or tenant depends on it.
-- `Confirm` is the final submit action. Before adding a role, verify the role name, role code, and intended permission scope.
+- Before entering `Preview and save`, follow the permission-change process to confirm the role name, purpose, and initial permissions. This review did not preview, save, or create a role.
 - Once `Role code` is referenced, later changes may affect permission identification, auditing, and automation configuration.
 - For learning or screenshots only, open the form to view fields and use `Cancel`.
 - Do not write real internal role codes, accounts, member IDs, customer names, or internal test data.

@@ -58,8 +58,8 @@ The upper area displays deployment templates and accelerator vendors; the middle
 | Field/Area | Description |
 | --- | --- |
 | Deployment Templates | Displays deployable models and deployment entrypoints. The deployment button is usually unavailable before a model is selected. |
-| Accelerator Vendors | Displays accelerator models and adaptation status per vendor. This capture shows `Huawei` and `NVIDIA`; the Chinese capture shows `NVIDIA` only, and the earlier capture also showed `AMD` and `Intel` (see OV-05). |
-| Quick Entry Cards | The two cards titled `Online IDE` and `Runtime Instances` each provide a `Create Job` entrypoint. The page itself shows no `Quick Guide` heading (see OV-07). |
+| Accelerator Vendors | Displays accelerator models and adaptation status per vendor. This capture shows `Huawei` and `NVIDIA`; the Chinese capture shows `NVIDIA` only, and the earlier capture also showed `AMD` and `Intel`. |
+| Quick Entry Cards | The two cards titled `Online IDE` and `Runtime Instances` each provide a `Create Job` entrypoint. The page itself shows no `Quick Guide` heading. |
 | Specification Quota | Displays the specification-level `Specification`, `Quota`, and `Used` columns. |
 | Consumption Trend | Displays the consumption trend for the current cycle, with the `This Month` and `This Week` switch and a date range. If there is no job consumption, it shows an empty state. |
 | Resource Usage | Displays the `AI Accelerator`, `CPU`, `Memory`, `Online IDE`, and `Runtime Instances` panels with their total and used values. |
@@ -80,7 +80,7 @@ Use the `Deployment Templates` area to confirm which models the current tenant c
 2. In the `Model Vendors` list, check the vendor row and its counters, for example the `qwen` row shows `1 deployable · 1 cards` and `1 models`.
 3. Expand a vendor row to read the model rows. A model row gives the parameter tags and the status, for example `qwen3.5-0.8b` with `0.8B`, `qwen`, `262K`, and the status `Deployable`.
 4. Filter the list with the `Search model / author / tag` field, and restore the full list with `Clear Filters`.
-5. Click the `>` at the end of a model row to leave the overview and open the detail view of that model (the target page is outside this capture set, see OV-08). While no model is selected, the area title line shows `Select a specific model before deployment` and `Deploy` stays unclickable.
+5. Click the `>` at the end of a model row to leave the overview and open the detail view of that model (the target page is outside this capture set). While no model is selected, the area title line shows `Select a specific model before deployment` and `Deploy` stays unclickable.
 
 The image below is a close-up of the `Deployment Templates` area, so the vendor counters, model tags, status text, and deployment entry above can be aligned one by one.
 
@@ -93,7 +93,7 @@ The image below is a close-up of the `Deployment Templates` area, so the vendor 
 
 #### Notes
 
-- `Deploy` appears disabled in this capture because no model is selected. The sibling Chinese capture shows the selected state, where the area title line names the chosen model and the button becomes clickable; the English wording of that label is not captured (see OV-02, OV-09).
+- `Deploy` appears disabled in this capture because no model is selected. The sibling Chinese capture shows the selected state, where the area title line names the chosen model and the button becomes clickable; the English wording of that label is not captured.
 - The vendor and model counts and the model list come from what the operator opened for this tenant, and neither the Model Provider nor the Model Consumer can change them on this page.
 - The `Expand remaining 13 models` row in the earlier capture does not exist in this capture set (this sample has 1 model in total), so do not write it from the old image.
 
@@ -117,8 +117,8 @@ Use the `Accelerator Vendors` area to confirm which accelerator types the curren
 #### Notes
 
 - A collapsed vendor row (for example `NVIDIA` showing `1 managed` and `0 unmanaged`) gives counters only, and the card details appear after it is expanded.
-- Whether a card row offers an entry to its detail page is not confirmed in this capture set (see OV-03), so this section does not write that entry.
-- The earlier capture contains the `AMD` and `Intel` vendor rows, which are not visible in this capture set (see OV-05); the page area table records this as a version difference instead of deleting the row.
+- Whether a card row offers an entry to its detail page is not confirmed in this capture set, so this section does not write that entry.
+- The earlier capture contains the `AMD` and `Intel` vendor rows, which are not visible in this capture set; the page area table records this as a version difference instead of deleting the row.
 
 ### Create Jobs from the Quick Entry Cards
 
@@ -139,7 +139,7 @@ Use the two quick entry cards in the middle of the page to start the creation fl
 
 #### Notes
 
-- The target form fields, required marks, and submit messages of both creation flows are outside this capture set (see OV-04), so this section does not write them.
+- The target form fields, required marks, and submit messages of both creation flows are outside this capture set, so this section does not write them.
 - The cards are entrypoints only, and they do not replace the pages under `Model Deployment > Instances` or `Dev Resources`.
 - Whether creation succeeds also depends on the quota and the remaining resources, so check the `Specification Quota` table and the usage panels on this page first.
 
@@ -167,8 +167,8 @@ The image below covers the specification quota and consumption trend band, so th
 
 #### Notes
 
-- This capture shows a curve, while the bottom `Units` chart shows `No resource consumption data`; the empty-state wording of `Consumption Trend` itself is not captured (see OV-11). An empty trend does not mean the quota is 0, so verify it in `Quotas & Usage > Usage`.
-- This capture set shows no region or project selector in the upper-right corner, so whether the statistics scope can be switched by region is not confirmed (see OV-01).
+- This capture shows a curve, while the bottom `Units` chart shows `No resource consumption data`; the empty-state wording of `Consumption Trend` itself is not captured. An empty trend does not mean the quota is 0, so verify it in `Quotas & Usage > Usage`.
+- This capture set shows no region or project selector in the upper-right corner, so whether the statistics scope can be switched by region is not confirmed.
 
 ### Review Resource Usage Panels
 
@@ -204,7 +204,7 @@ When the deployment entry is unavailable, a target specification cannot be reque
 
 1. Return to the `Specification Quota` table, record the target specification row with its `Quota` and `Used` values, and record the vendor and card model.
 2. Go to `Quotas & Usage > Usage` to verify the allocated quota and the consumption records of the current tenant or project.
-3. If the quota is sufficient but the instance still fails scheduling, check `Monitoring > Overview`, `Clusters`, `Nodes`, and `Devices` to verify whether the physical cards are fully occupied; the availability-zone entry and its values are outside this capture set (see OV-06).
+3. If the quota is sufficient but the instance still fails scheduling, check `Monitoring > Overview`, `Clusters`, `Nodes`, and `Devices` to verify whether the physical cards are fully occupied; the availability-zone entry and its values are outside this capture set.
 
 #### Result Validation
 

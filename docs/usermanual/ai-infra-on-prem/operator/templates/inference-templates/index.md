@@ -1,8 +1,8 @@
 # Inference Templates
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-13
 :::
 
 ## Feature Overview
@@ -61,15 +61,15 @@ Use **"Create Inference Template"** when a model version must be offered as a de
 1. Go to `On-Prem > Templates > Inference Templates`.
 2. In the top right, click **"+ Create Inference Template"**. The dialog subtitle reads `Select a model version and a framework version to create an inference template.`
 3. In the `Model configuration` group, select the target model in `Model`, for example `qwen3.5-0.8b`.
-4. In the same group, select a version in `* Model Version`. It is the only required field in the dialog and stays unavailable until a model is selected.
+4. In the same group, select a version in `* Model Version`. The field carries the visible required marker and is disabled in the empty form before a model is selected.
 5. Read the hint under the group: `A model version can use different framework versions. The same combination cannot be created twice.`
 6. In the `Template configuration` group, select an adapted inference framework in `Framework Version`, for example `vLLM:v0.21.0`. The example is taken from the `Framework Relations` tabs on the details page, not from the dialog itself.
 7. In `Template Name`, verify or customize the name. The `Use model name by default` hint means the name is filled from the model automatically.
-8. Click **"Save"** to submit, or click **"Cancel"** and `×` to leave without creating a template. `Save` stays disabled while the required selection is incomplete.
-
-The following figure shows the `Create Inference Template` dialog in its empty state: `Model` and `* Model Version` are grouped under `Model configuration`, and `Framework Version` and `Template Name` under `Template configuration`.
+8. Click **"Save"** to submit, or click **"Cancel"** and `×` to leave without creating a template. `Save` is disabled in the empty form shown.
 
 ![Create inference template](./images/manual-create-inference-template.png)
+
+The figure shows the empty Create Inference Template dialog: Model configuration contains Model and the required-marked Model Version; Template configuration contains Framework Version and Template Name. With no model selected, Model Version and Save are disabled.
 
 #### Result Validation
 

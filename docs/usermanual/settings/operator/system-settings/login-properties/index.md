@@ -1,8 +1,8 @@
 # Login Properties
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-14
 :::
 
 ## Feature Overview
@@ -51,7 +51,7 @@ The page includes `Login security`, `Registration Settings`, `Registration Codes
 
 ![Login Properties](./images/login-properties-list.png)
 
-Login Properties has tabs for Login Security, Registration Settings, Registration Codes, Account Recovery, and Google Login. Confirm affected sign-in methods before changing them.
+The figure shows Login Configuration with five category navigation entries and Login security selected. Email-code settings, password-lockout counts and time units, and the complete send-code limits table are visible; SMS is marked Disabled. Values are current examples. Confirm affected sign-in methods before changing them.
 
 ## Main Operations
 
@@ -99,12 +99,12 @@ Registration Codes shows email/SMS code validity, maximum errors, and email/SMS 
 1. Go to `Settings > System Settings > Login Properties`.
 2. Click `Account Recovery`.
 3. Review `Account Recovery Security`: recovery email-code validity, recovery token validity, and maximum recovery-code errors.
-4. Review `Code Sending Rate Limit`: email and SMS limits per minute, hour, and day; 0 disables that dimension.
+4. Review the channels currently displayed under `Send-code limits` and their minute, hour, and day windows. Account Recovery in the current demo displays only Email; 0 disables that window. This does not establish SMS support in other configurations or deployments.
 5. Confirm the affected account scope and rollback method before changing it.
 
 ![Account Recovery Configuration](./images/account-recovery.png)
 
-Account Recovery shows recovery email-code validity, recovery token validity, maximum errors, and email/SMS rate limits.
+The figure shows current Account Recovery with recovery email-code expiration, recovery token expiration, maximum failures, and Email send-code limits. Only the Email row is displayed, with complete minute, hour, and day columns. Editing and code delivery were not tested.
 
 ### Edit Google Sign-in Settings
 

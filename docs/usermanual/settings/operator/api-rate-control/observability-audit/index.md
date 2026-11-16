@@ -1,8 +1,8 @@
 # Observability Audit
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-13
 :::
 
 ## Feature Overview

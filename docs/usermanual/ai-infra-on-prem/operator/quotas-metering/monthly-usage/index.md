@@ -1,8 +1,8 @@
 # Monthly Usage
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-15
 :::
 
 ## Feature Overview
@@ -36,13 +36,13 @@ Confirm that the task involves the billing period, region, resource name, tenant
 ## Prerequisites
 
 1. The current account has operator permissions.
-2. The target region is selected in the page `Region` filter and its status shows normal.
+2. For region-specific checks, confirm the target region and its state, then select it in the page `Region` filter. Do not treat this as a prerequisite for viewing the `All` range.
 3. Related resources, jobs, or metering tasks have reported data.
 4. When records must be filled or recalculated, the processing range and billing period have been confirmed internally.
 
 ## Page Description
 
-Use this page to query tenant resource consumption by billing period, check the usage summary, and trigger usage generation or detail export.
+In the current operator Demo, `Monthly Metering` lists resource records in eight columns: `Billing Period`, `Tenant`, `Project`, `Resource`, `Region`, `Zone`, `First Metered`, and `Last Metered`. Switch to `Usage Details` for the 19-column metering table, the `Query Results` summary, and the `Generate Usage` and `Detail Download` entries described below.
 
 ![Monthly Usage](./images/manual-monthly-usage.png)
 
@@ -50,9 +50,9 @@ The figure shows the selected `Usage Details` tab alongside `Monthly Metering`. 
 
 The filter row contains `Billing Period`, `Region`, `Resource Name`, and `Tenant` from left to right, followed by `Expand`, `Search`, and `Reset`. `Billing Period` shows the placeholder `Select billing period` when unset; `Region` shows `All` when unset and displays a status dot next to the selected region; `Resource Name` shows the placeholder `Resource name`; `Tenant` defaults to `All Tenants`.
 
-Below the filter row is the summary bar. Its left `Query Results` block shows `Related Resources`, `Duration` (unit `h`), `credits Amount` (unit `credits`), and `Quota Spend` (unit `h`). Its right side provides the `Generate Usage` and `Detail Download` buttons, where the latter uses the solid emphasis style.
+On `Usage Details`, the summary bar is below the filter row. Its left `Query Results` block shows `Related Resources`, `Duration` (unit `h`), `credits Amount` (unit `credits`), and `Quota Spend` (unit `h`). Its right side provides the `Generate Usage` and `Detail Download` buttons, where the latter uses the solid emphasis style.
 
-The main table columns are `Billing Period`, `Tenant`, `Project`, `User`, `Resource type`, `Resource Name`, `Resource ID`, `Flavor`, `Resource Items`, `Start Time`, `End Time`, `Duration (h)`, `Line Type`, `Billing Method`, `Metered Amount (credits)`, `Quota Spend (h)`, `Region`, `Zone`, and `Batch Number`. `Project` and `Flavor` show `--` when empty, `Resource Items` renders as a grey chip such as a card model with `1 AI card(s)` or `storage 1 GiB`, and GPU records carry a `+3` collapse marker after the chip.
+The `Usage Details` table columns are `Billing Period`, `Tenant`, `Project`, `User`, `Resource type`, `Resource Name`, `Resource ID`, `Flavor`, `Resource Items`, `Start Time`, `End Time`, `Duration (h)`, `Line Type`, `Billing Method`, `Metered Amount (credits)`, `Quota Spend (h)`, `Region`, `Zone`, and `Batch Number`. `Project` and `Flavor` show `--` when empty, `Resource Items` renders as a grey chip such as a card model with `1 AI card(s)` or `storage 1 GiB`, and GPU records carry a `+3` collapse marker after the chip.
 
 The same resource produces multiple hourly rows within one billing period, so the row count is not the resource count. Use the summary bar for totals and the table rows to locate a single consumption record.
 
@@ -73,8 +73,10 @@ Use this when you must locate monthly metering records within a range by billing
 
 ![Monthly Usage empty result](./images/monthly-usage-empty.png)
 
+The figure shows the historical empty-result example on `Monthly Metering`, with the four basic filters and `Search`/`Reset`. It is not the 19-column `Usage Details` table or its summary bar.
+
 5. Click `Expand` when more conditions are needed.
-6. Click `Search` to refresh the summary bar and the list, or click `Reset` to clear all filters and query again.
+6. Use `Search` for the `Monthly Metering` list or `Reset` to reset its filters. To inspect the summary and hourly detail columns described below, switch to `Usage Details`.
 
 #### Result Validation
 
@@ -84,7 +86,7 @@ Use this when you must locate monthly metering records within a range by billing
 
 #### Notes
 
-- The list is split by hour, so one resource produces multiple rows within one billing period; do not count rows as resources.
+- On `Usage Details`, one resource can have multiple hourly rows within a billing period; do not count those rows as resources.
 - The `Status` and `Creation Time` columns and the `Confirm` action are from the older layout and do not appear on this page.
 - Screenshots were sanitized per G3 before ingestion; locate records by `Resource Name` and `Resource ID` when reconciling.
 
@@ -96,7 +98,7 @@ Use this to confirm the resource scale, duration, and total consumption hit by o
 
 #### Steps
 
-1. After a query completes, read the `Query Results` block of the summary bar above the list.
+1. Switch to `Usage Details`. After a query completes, read the `Query Results` block of the summary bar above its table.
 2. Check `Related Resources`, `Duration`, `credits Amount`, and `Quota Spend`, noting that `Duration` and `Quota Spend` use the unit `h` while `credits Amount` uses `credits`.
 3. Change `Billing Period` or `Region` and click `Search` again, then observe how the four statistics move as the filter range widens or narrows.
 4. When splitting by basis, compare `credits Amount` with the `Metered Amount (credits)` column and `Quota Spend` with the `Quota Spend (h)` column.
@@ -121,7 +123,7 @@ Use this to verify a single metering record by resource, time window, and billin
 
 #### Steps
 
-1. Locate the target row and read `Billing Period`, `Tenant`, `Project`, and `User` to confirm ownership; `Project` shows `--` when empty.
+1. On `Usage Details`, locate the target row and read `Billing Period`, `Tenant`, `Project`, and `User` to confirm ownership; `Project` shows `--` when empty.
 2. Read `Resource type`, `Resource Name`, `Resource ID`, and `Flavor` to confirm the metered object; object-storage records show `--` in `Flavor`.
 3. Check the `Resource Items` chip: GPU records show a card model with `1 AI card(s)` followed by a `+3` collapse marker, and storage records show `storage 1 GiB`.
 
@@ -153,7 +155,7 @@ Use this when monthly metering records are missing, a time window is not covered
 
 #### Steps
 
-1. Click `Generate Usage` on the right of the summary bar to open the dialog of the same name.
+1. On `Usage Details`, use `Generate Usage` on the right of the summary bar to enter the generation flow. This is a write-operation entry, not a read-only validation step.
 2. Select `Hour`, `Day`, or `Month` under `* Processing range`; the dialog defaults to `Month`.
 3. To limit the month, choose it in the `Month` input of the `Select time` card. The card is marked `Optional` in its corner and states: Leave the month unselected to process last month; for this month, only completed hours are processed.
 4. In the `How to handle existing details` group, confirm the `Recalculate existing details` switch. The card states: On: fill missing details and recalculate existing ones; keep original details and record charge differences as separate adjustments. Off: fill missing details only; do not recalculate existing ones.
@@ -182,7 +184,7 @@ Use this to export details or summaries within the current filter range to a fil
 
 #### Steps
 
-1. Click `Detail Download` on the right of the summary bar to open the dialog of the same name.
+1. On `Usage Details`, use `Detail Download` on the right of the summary bar to enter the export flow; confirm the authorized data scope before proceeding.
 2. Select `Detail Data` or `Summary data` under `Data Type`; the dialog defaults to `Detail Data`.
 3. Fill `Start Time` and `End Time` in the `* Time Range` picker; this field is required.
 4. Optionally select `Billing Period`, `Resource type`, `Region`, `Zone`, `Tenant`, and `Project`, or enter `Resource Name`, `Resource ID`, and `Batch Number` to narrow the export. `Resource type` shows `All resource types` with a clear icon on the right when unset, and `Zone` is disabled and shows `All Zones` while `Region` is `All`.
@@ -224,7 +226,7 @@ Use this to export details or summaries within the current filter range to a fil
 ## Pitfalls
 
 - Monthly usage is an aggregated view; do not judge whether a specific resource is metered correctly from summary values alone.
-- The list splits records by hour, so resources running across periods and billing cycles produce multiple rows; do not infer a whole month from one period.
+- The hourly records described here are on `Usage Details`; resources spanning periods or billing cycles can produce multiple rows. Do not infer a whole month from one period.
 - Metering data may be delayed or need filling, so align `Billing Period`, `Region`, and the statistical basis before reconciling.
 - `Generate Usage` rewrites metering data, and turning on `Recalculate existing details` also creates adjustment records; neither is a validation action.
 - Files from `Detail Download` contain tenant names, resource identifiers, and usage details, so confirm the filters before exporting.
@@ -240,7 +242,7 @@ Use this to export details or summaries within the current filter range to a fil
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page entry | Monthly Usage opens with tabs, filters, and the summary bar | Check menu permission, current business identity, and tenant scope |
+| Page entry | `Monthly Metering` shows its filters and resource list; `Usage Details` shows the metering table and summary bar | Check the selected tab, menu permission, current business identity, and tenant scope |
 | Data scope | The list and summary match the selected billing period, region, resource name, and tenant | Click `Reset`, query again, and verify time boundaries and statistical basis |
 | Data update | The latest record's `End Time` and `Batch Number` match the expected cycle | Check whether the source job, metering, or quota record has been generated |
 | Cross-check | Record time ranges, billing method, and amounts correspond to usage detail records | Switch to the `Usage Details` tab and compare by `Resource ID` and time range |

@@ -1,8 +1,8 @@
 # File Storage
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-13
 :::
 
 ## Feature Overview
@@ -65,7 +65,7 @@ The page displays connected file storage components, status, service address, sh
 1. Go to `On-Prem > Resource Pools > File Storage`.
 2. Click **"Register component"** to open the **"New File Storage - File Storage"** page.
 3. Fill in `Name`, `Tenant Quota`, `Overcommit Ratio`, `Phy. Threshold`, and `Log. Threshold` according to the page fields.
-4. In `Cluster Connection Information`, provide connection configuration through `Paste Config`, `Upload File`, or `Manual Input`, and confirm that the configuration content has been sanitized.
+4. In `Cluster Connection Information`, provide authorized connection configuration from a controlled environment through `Paste Config`, `Upload File`, or `Manual Input`. Keep real configuration in the system form; do not copy it into documentation or shared validation material.
 5. If the page provides `Test Connection`, verify connectivity from target cluster nodes to the file storage service first.
 6. In `Cluster Configuration`, fill in `Description`, and continue checking cluster connection information, capacity thresholds, and description according to the actual page.
 7. Before clicking the final **"Submit"**, verify the cluster connection information, capacity thresholds, and capacity impact again.
@@ -85,7 +85,7 @@ The following figure shows the New File Storage page, used to fill in basic poli
 | Log. Threshold | Yes | Number / capacity | `<number>` | Logical capacity alarm or limit threshold after overcommit. Verify it together with the overcommit ratio. |
 | Paste Config | Conditionally required | File / configuration text | `<config>` | Enter cluster connection information by pasting kubeconfig content. Keep the real kubeconfig in the system form; do not copy it into shared material. |
 | Upload File | Conditionally required | File / configuration text | `Controlled configuration file` | Enter cluster connection information by uploading a file. Upload only authorized configuration files from controlled environments. |
-| Manual Input | Conditionally required | Text | `<config>` | Enter cluster connection information manually. Do not write real internal addresses, accounts, or secrets. |
+| Manual Input | Conditionally required | Text | `<config>` | Enter cluster connection information manually. Do not include real internal addresses, accounts, or secrets in documentation or shared material. |
 | Description | No | Multi-line text | `<description>` | Component purpose, boundary, or maintenance notes. Record non-sensitive notes only. |
 | Actions | System-generated | Action entry | `Edit` | Test Connection, Submit, Search, Reset, and similar entries. `Submit` submits real configuration. Confirm the scope and impact before executing the final action. |
 

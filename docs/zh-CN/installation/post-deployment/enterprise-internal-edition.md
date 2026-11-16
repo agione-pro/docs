@@ -15,7 +15,7 @@
 {{PLATFORM_BASE_URL}} = https://ai.example.com
 ```
 
-替换完成后，文档中的“直达链接”即可用于跳转。每次部署固定提供 `admin`、`operator`、`provider` 三个业务身份账号；EU 验收账号可能需要注册，或由 `operator` 创建 Tenant 后再建立。平台初始配置使用 `admin`，Model Services 基础数据检查使用 `operator`，后续业务验收按检查项指定身份执行。本模板不记录任何账号密码，登录凭据应通过受控渠道交付。
+下文地址以不可点击的代码模板展示；替换为实际部署地址后，复制完整地址到浏览器打开。每次部署固定提供 `admin`、`operator`、`provider` 三个业务身份账号；EU 验收账号可能需要注册，或由 `operator` 创建 Tenant 后再建立。平台初始配置使用 `admin`，Model Services 基础数据检查使用 `operator`，后续业务验收按检查项指定身份执行。本模板不记录任何账号密码，登录凭据应通过受控渠道交付。
 
 每次部署都要用该入口指定的账号验证直达链接。直达失败时按“菜单路径”进入，并核对 License、菜单数据、角色权限和部署路由；未经真实部署验证的链接不能标记为已验收。
 
@@ -54,32 +54,32 @@
 
 | 页面 | 菜单路径 | 直达链接 | 用途 |
 | --- | --- | --- | --- |
-| 登录 | 无需登录 | [打开登录页]({{PLATFORM_BASE_URL}}/user/login) | 登录和登录验收 |
-| 注册 | 登录页进入注册，或直接打开 | [打开注册页]({{PLATFORM_BASE_URL}}/user/register) | 配置 SMTP 后的员工邮箱自助注册验收 |
-| License 管理 | 用户中心 > License 管理 | [打开 License 管理]({{PLATFORM_BASE_URL}}/user/usercenter/license/managed-objects) | 导入、激活和核对 License |
-| 平台配置 | 系统配置 > 平台配置 | [打开平台配置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config) | 品牌、币种、账户、邮件等 |
-| 登录配置 | 系统配置 > 登录配置 | [打开登录配置]({{PLATFORM_BASE_URL}}/user/system/login-properties) | 注册角色、验证码和登录安全 |
-| 系统协议管理 | 运营后台 > 系统管理 > 系统协议管理 | [打开系统协议管理]({{PLATFORM_BASE_URL}}/deck/op/system/agreement) | 内部使用条款和隐私政策 |
-| 租户管理 | 系统配置 > 租户管理 | [打开租户管理]({{PLATFORM_BASE_URL}}/user/tenant) | 管理员建号和核对自助注册结果 |
-| 团队成员 | 用户空间 > 团队成员 | [打开团队成员]({{PLATFORM_BASE_URL}}/user/user-space/team-members) | 管理同一 Tenant 内的员工成员 |
-| 角色管理 | 用户空间 > 角色管理 | [打开角色管理]({{PLATFORM_BASE_URL}}/user/user-space/roles) | 配置员工访问权限 |
-| 元模型（含模型作者） | Model Services > 设置 > 元模型 | [打开元模型]({{PLATFORM_BASE_URL}}/modelone/settings/meta) | 使用 `operator` 检查模型作者和元模型 |
-| 模型来源 | Model Services > 设置 > 模型来源 | [打开模型来源]({{PLATFORM_BASE_URL}}/modelone/settings/vendor) | 使用 `operator` 检查来源、地域和地址 |
-| 模型标签 | Model Services > 设置 > 标签 | [打开标签]({{PLATFORM_BASE_URL}}/modelone/settings/tags) | 使用 `operator` 检查“模型”类标签 |
-| 模型模板 | Model Services > 设置 > 模板 | [打开模板]({{PLATFORM_BASE_URL}}/modelone/settings/provider-template) | 使用 `operator` 按交付范围检查 |
+| 登录 | 无需登录 | 打开登录页：`{{PLATFORM_BASE_URL}}/user/login` | 登录和登录验收 |
+| 注册 | 登录页进入注册，或直接打开 | 打开注册页：`{{PLATFORM_BASE_URL}}/user/register` | 配置 SMTP 后的员工邮箱自助注册验收 |
+| License 管理 | 用户中心 > License 管理 | 打开 License 管理：`{{PLATFORM_BASE_URL}}/user/usercenter/license/managed-objects` | 导入、激活和核对 License |
+| 平台配置 | 系统配置 > 平台配置 | 打开平台配置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config` | 品牌、币种、账户、邮件等 |
+| 登录配置 | 系统配置 > 登录配置 | 打开登录配置：`{{PLATFORM_BASE_URL}}/user/system/login-properties` | 注册角色、验证码和登录安全 |
+| 系统协议管理 | 运营后台 > 系统管理 > 系统协议管理 | 打开系统协议管理：`{{PLATFORM_BASE_URL}}/deck/op/system/agreement` | 内部使用条款和隐私政策 |
+| 租户管理 | 系统配置 > 租户管理 | 打开租户管理：`{{PLATFORM_BASE_URL}}/user/tenant` | 管理员建号和核对自助注册结果 |
+| 团队成员 | 用户空间 > 团队成员 | 打开团队成员：`{{PLATFORM_BASE_URL}}/user/user-space/team-members` | 管理同一 Tenant 内的员工成员 |
+| 角色管理 | 用户空间 > 角色管理 | 打开角色管理：`{{PLATFORM_BASE_URL}}/user/user-space/roles` | 配置员工访问权限 |
+| 元模型（含模型作者） | Model Services > 设置 > 元模型 | 打开元模型：`{{PLATFORM_BASE_URL}}/modelone/settings/meta` | 使用 `operator` 检查模型作者和元模型 |
+| 模型来源 | Model Services > 设置 > 模型来源 | 打开模型来源：`{{PLATFORM_BASE_URL}}/modelone/settings/vendor` | 使用 `operator` 检查来源、地域和地址 |
+| 模型标签 | Model Services > 设置 > 标签 | 打开标签：`{{PLATFORM_BASE_URL}}/modelone/settings/tags` | 使用 `operator` 检查“模型”类标签 |
+| 模型模板 | Model Services > 设置 > 模板 | 打开模板：`{{PLATFORM_BASE_URL}}/modelone/settings/provider-template` | 使用 `operator` 按交付范围检查 |
 
 平台配置子页签直达链接：
 
 | 子页签 | 直达链接 |
 | --- | --- |
-| 通用配置 | [打开通用配置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=general) |
-| 服务商关系 | [打开服务商关系]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=provider) |
-| 币种设置 | [打开币种设置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=currency) |
-| 账户与结算 | [打开账户与结算]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=account) |
-| 邮件设置 | [打开邮件设置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=email) |
-| UI 配置 | [打开 UI 配置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui) |
-| Stripe | [打开 Stripe]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=STRIPE) |
-| Alipay | [打开 Alipay]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=ALIPAY) |
+| 通用配置 | 打开通用配置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=general` |
+| 服务商关系 | 打开服务商关系：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=provider` |
+| 币种设置 | 打开币种设置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=currency` |
+| 账户与结算 | 打开账户与结算：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=account` |
+| 邮件设置 | 打开邮件设置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=email` |
+| UI 配置 | 打开 UI 配置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui` |
+| Stripe | 打开 Stripe：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=STRIPE` |
+| Alipay | 打开 Alipay：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=ALIPAY` |
 
 平台配置入口使用 `admin`，Model Services 基础数据入口使用 `operator`。对应账号打开直达链接仍显示 403、空白页或菜单不存在时，按菜单路径复核，并检查当前 License、菜单数据、角色权限和部署路由，不得通过前端白名单或放宽权限绕过。
 
@@ -192,7 +192,7 @@
 
 ### 7.1 License 与交付用途
 
-入口：[打开 License 管理]({{PLATFORM_BASE_URL}}/user/usercenter/license/managed-objects)
+入口：打开 License 管理：`{{PLATFORM_BASE_URL}}/user/usercenter/license/managed-objects`
 
 操作：
 
@@ -208,7 +208,7 @@
 
 ### 7.2 企业管理员与权限
 
-入口：[打开团队成员]({{PLATFORM_BASE_URL}}/user/user-space/team-members)；[打开角色管理]({{PLATFORM_BASE_URL}}/user/user-space/roles)
+入口：打开团队成员：`{{PLATFORM_BASE_URL}}/user/user-space/team-members`；打开角色管理：`{{PLATFORM_BASE_URL}}/user/user-space/roles`
 
 操作：
 
@@ -222,7 +222,7 @@
 
 ### 7.3 内部使用条款和隐私政策
 
-入口：[打开系统协议管理]({{PLATFORM_BASE_URL}}/deck/op/system/agreement)
+入口：打开系统协议管理：`{{PLATFORM_BASE_URL}}/deck/op/system/agreement`
 
 操作：
 
@@ -234,7 +234,7 @@
 
 ### 7.4 产品名称、支持邮箱、Logo、Favicon 和默认语言
 
-入口：[打开通用配置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=general)；[打开 UI 配置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui)
+入口：打开通用配置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=general`；打开 UI 配置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui`
 
 在“通用配置”中：
 
@@ -257,7 +257,7 @@
 
 ### 7.5 SMTP 与登录地址
 
-入口：[打开邮件设置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=email)，展开“SMTP 服务配置”。当前页面只暴露 SMTP。
+入口：打开邮件设置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=email`，展开“SMTP 服务配置”。当前页面只暴露 SMTP。
 
 操作：
 
@@ -284,7 +284,7 @@
 
 ### 7.6 员工注册与登录安全
 
-入口：[打开登录配置]({{PLATFORM_BASE_URL}}/user/system/login-properties)
+入口：打开登录配置：`{{PLATFORM_BASE_URL}}/user/system/login-properties`
 
 如果选择管理员直接创建账号：
 
@@ -315,7 +315,7 @@
 
 ### 7.7 币种、credits 兑换比例和内部 credits
 
-入口：[打开币种设置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=currency)；[打开账户与结算]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=account)
+入口：打开币种设置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=currency`；打开账户与结算：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=account`
 
 在“币种设置”中配置内部核算币种的代码、名称和符号；在“账户与结算”中配置 credits 默认兑换倍率和注册赠送。
 
@@ -331,7 +331,7 @@
 
 ### 7.8 服务商关系
 
-入口：[打开服务商关系]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=provider)
+入口：打开服务商关系：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=provider`
 
 唯一 Provider、多 Provider、仅绑定 Operator 代表不同的 AI 服务归属关系。即使企业不对外经营，也可能因底层模型服务来源需要特定绑定，因此该项必须由产品和交付确定，企业管理员不要自行判断。
 
@@ -343,7 +343,7 @@
 
 ### 7.9 支付通道与充值
 
-入口：[打开 Stripe]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=STRIPE)；[打开 Alipay]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=ALIPAY)；[打开 UI 配置]({{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui)
+入口：打开 Stripe：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=STRIPE`；打开 Alipay：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=channels&channel=ALIPAY`；打开 UI 配置：`{{PLATFORM_BASE_URL}}/user/system/platform-settings/config?tab=ui`
 
 企业自用版要求：
 
@@ -362,10 +362,10 @@
 
 | 检查对象 | 部署要求 | 快速检查 |
 | --- | --- | --- |
-| 元模型（含模型作者） | 每次部署必须有预置数据 | [打开元模型]({{PLATFORM_BASE_URL}}/modelone/settings/meta)，或按“Model Services > 设置 > 元模型”进入。确认左侧模型作者和右侧元模型都有数据；切换作者、执行一次搜索或筛选并打开一条详情，确认作者、模型类型、场景和主要能力显示正常。 |
-| 模型来源 | 每次部署必须有预置数据 | [打开模型来源]({{PLATFORM_BASE_URL}}/modelone/settings/vendor)，或按“Model Services > 设置 > 模型来源”进入。执行一次搜索并打开一条详情，确认模型源标识、地域、Base URL 和文档地址归属合理。请求头认证值只允许出现 `<key>` 等占位符或非敏感常量，不得显示真实 API Key、Token 或密码。 |
-| 模型标签 | 每次部署必须有预置数据 | [打开标签]({{PLATFORM_BASE_URL}}/modelone/settings/tags)，或按“Model Services > 设置 > 标签”进入。选择“模型”类型，确认树形标签有数据；执行一次名称搜索、状态筛选和重置，确认父子层级合理，元模型场景显示类目名称而不是内部 ID。 |
-| 模型模板 | 按本次交付范围检查 | [打开模板]({{PLATFORM_BASE_URL}}/modelone/settings/provider-template)，或按“Model Services > 设置 > 模板”进入。先选择本次应有模板的模型来源，再确认模板卡片、筛选和详情正常，供应方、地域与元模型关联正确。本次明确不预置模板时记录“不适用”，不为完成检查临时创建。 |
+| 元模型（含模型作者） | 每次部署必须有预置数据 | 打开元模型：`{{PLATFORM_BASE_URL}}/modelone/settings/meta`，或按“Model Services > 设置 > 元模型”进入。确认左侧模型作者和右侧元模型都有数据；切换作者、执行一次搜索或筛选并打开一条详情，确认作者、模型类型、场景和主要能力显示正常。 |
+| 模型来源 | 每次部署必须有预置数据 | 打开模型来源：`{{PLATFORM_BASE_URL}}/modelone/settings/vendor`，或按“Model Services > 设置 > 模型来源”进入。执行一次搜索并打开一条详情，确认模型源标识、地域、Base URL 和文档地址归属合理。请求头认证值只允许出现 `<key>` 等占位符或非敏感常量，不得显示真实 API Key、Token 或密码。 |
+| 模型标签 | 每次部署必须有预置数据 | 打开标签：`{{PLATFORM_BASE_URL}}/modelone/settings/tags`，或按“Model Services > 设置 > 标签”进入。选择“模型”类型，确认树形标签有数据；执行一次名称搜索、状态筛选和重置，确认父子层级合理，元模型场景显示类目名称而不是内部 ID。 |
+| 模型模板 | 按本次交付范围检查 | 打开模板：`{{PLATFORM_BASE_URL}}/modelone/settings/provider-template`，或按“Model Services > 设置 > 模板”进入。先选择本次应有模板的模型来源，再确认模板卡片、筛选和详情正常，供应方、地域与元模型关联正确。本次明确不预置模板时记录“不适用”，不为完成检查临时创建。 |
 
 以下情况阻断上线：模型作者、元模型、模型来源或模型标签完全无数据；页面持续报错，列表或详情无法打开；搜索、筛选或重置明显无效；作者、标签、地域、模型来源或模板存在明显错挂；页面显示真实 API Key、Token 或密码。个别可选描述、多语言内容、图标或文档地址异常先记录并交负责人判断，不直接将整体判为失败。
 

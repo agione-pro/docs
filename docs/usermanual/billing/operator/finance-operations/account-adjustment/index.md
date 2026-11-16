@@ -1,8 +1,8 @@
 # Account Adjustment
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-05
+Version: v2.2
+Updated: 2026-11-13
 :::
 
 ## Feature Overview
@@ -10,11 +10,11 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Finance Operations > Account Adjustment |
+| Navigation path | The current operator Demo sidebar has no Account Adjustment entry; use the known route below. |
 | Page route | `/billing/admin/account-adjustments` |
 | Managed objects | Current availability of the Account Adjustment page |
 
-`Account Adjustment` currently displays an under-development notice rather than an adjustment input form. This page explains how to identify the notice and use the sidebar to continue with billing queries.
+In the current operator Demo, the known Account Adjustment route displays an under-development notice without an input form, and the sidebar has no Account Adjustment entry. Use the known route to inspect this state, then use the available billing query pages; this does not establish adjustment availability in other environments.
 
 #### Beginner Explanation
 
@@ -29,7 +29,7 @@ The current page is like a service counter that has not opened yet: you can chec
 
 ## Prerequisites
 
-1. You are signed in and can open `Billing > Finance Operations > Account Adjustment` from the sidebar.
+1. Use an authorized operator session to inspect the known route listed above; do not look for an Account Adjustment entry in the current Demo sidebar.
 2. To continue with billing queries, identify whether you need account information or settlement statements.
 
 ## Page Description
@@ -49,7 +49,7 @@ The figure shows the current Account Adjustment page: the main area displays `Co
 
 ### Open the Page and Identify Its Status
 
-1. Go to `Billing > Finance Operations > Account Adjustment`.
+1. Open the known route `/billing/admin/account-adjustments`.
 2. Read the `Coming Soon!` notice in the main area.
 3. Check the message `This page is under development. Please refresh the page or click the button below to return to the homepage.` This is an under-development page, not an empty adjustment-record list.
 
@@ -78,7 +78,7 @@ The current page has no input form. The following are display items and a naviga
 
 | Check Item | Success Signal | If Abnormal |
 | --- | --- | --- |
-| Page location | You open the page through `Finance Operations > Account Adjustment`. | Locate it again through the sidebar. |
+| Page location | The known route `/billing/admin/account-adjustments` opens the page; the current operator Demo sidebar has no adjustment entry. | Check the environment, role and route rather than assuming a missing menu is a configuration failure. |
 | Status identification | The main area displays `Coming Soon!` and the under-development message. | Check that you are still on Account Adjustment; do not treat another page's status as an adjustment result. |
 | Follow-up query entries | `Financial Accounts` and `Settlement List` are visible under `Finance Operations` in the sidebar. | Select the query page you need from the sidebar. |
 

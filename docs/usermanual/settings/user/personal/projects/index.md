@@ -1,8 +1,8 @@
 # Projects
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-15
 :::
 
 ## Feature Overview
@@ -59,13 +59,17 @@ The project list shows project name, status, budget usage, model allowlist, and 
 ### Create a Project
 
 1. Click `Create Project` in the upper-right corner.
-2. Enter the project name, description, reset cycle, cycle budget, budget alert threshold, over-budget policy, and model allowlist.
+2. Use `Basics & Budget` for project name, description, reset cycle, period budget, warning threshold, and over-budget policy; open `Model Access` to review the model whitelist. During a read-only review, leave initial values unchanged, do not toggle the whitelist, and use `Cancel` to return to the list.
 3. Confirm the member scope and quota impact, then click `Create`.
 4. Return to the list and verify the new project. If it fails, check name uniqueness, required fields, and quota limits.
 
 ![Create Project](./images/create-project.png)
 
-The create form contains project name, description, reset cycle, cycle budget, alert threshold, over-budget policy, and model allowlist. Confirm member and quota scope before creating.
+The figure shows the complete Basics & Budget tab of the Create Project drawer, including the title, name, description, cycle, budget, warning, STOP/WARN options, and footer. The 10,000-credit budget, 80% warning, and monthly cycle are untouched form examples, not recommendations or a created project.
+
+![Create Project Model Access](./images/create-project-model-access.png)
+
+The figure shows Model Access in the same empty drawer, with the whitelist disabled and the complete scope help, member/tenant restrictions, and Cancel/Create footer. Help text is not proof of actual API access or enforcement.
 
 ### View Project Details
 
@@ -82,7 +86,7 @@ Project details include Overview, Members, Usage, API Keys, Activity, and Settin
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Project name | No | Text | `Example Project A` | Identifies the project. |
+| Project name | Marked required in current form | Text | `Example Project A` | Identifies the project; only the visible required marker was checked, not server-side submission validation. |
 | Budget | No | Credits | `10,000 Credits` | Limits the credits available to the project. |
 | Model count | System-generated | Number | `5` | Shows the number of models associated with the project. |
 | Project status | System-generated | Enum | `Enabled` | Indicates whether the project can continue to be used. |

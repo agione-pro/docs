@@ -1,8 +1,8 @@
 # My Keys
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-14
 :::
 
 ## Feature Overview
@@ -68,7 +68,7 @@ The figure shows the System API AK/SK list with `Key name / description`, `Prefi
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
 
-The figure shows the `Create System API AK/SK Pair` dialog with `Expire Time`, `Key Name`, and `Description`. This flow reviews the form without submitting `Create`.
+The figure shows `Create System API AK/SK Pair` with expiration, key name, description, and the expanded optional advanced area. The IP whitelist remains disabled; its explanation and the complete Cancel/Create footer are visible. The displayed expiration date is a capture-time example. This flow neither submits Create nor tests whitelist enforcement.
 
 ## Parameter Quick Reference
 

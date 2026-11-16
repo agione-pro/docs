@@ -1,8 +1,8 @@
 # My Keys
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-15
 :::
 
 ## Feature Overview
@@ -72,19 +72,19 @@ The Model API Keys list includes the member quota summary and shows Key name/des
 
 ![Create Model API Key](./images/create-key.png)
 
-The create dialog contains expiration, Key name, description, reset cycle, limit, and alert threshold. The complete secret is shown only once.
+The figure shows the Create Model API Key drawer with expiration, Key name, description, reset cycle, period limit, warning threshold, and STOP/WARN policies. Advanced Options is collapsed. Values are untouched form examples, not recommended limits or a generated credential.
 
 ### Open the System API Key Creation Dialog
 
 1. Select `System API AK/SK Pairs`.
 2. Click **"Create Key"**.
 3. Review the required `Expire Time` and `Key Name` fields and the optional `Description` field (maximum 200 characters).
-4. Confirm that this dialog does not contain Model API quota, reset-cycle, warning-threshold, or limit-reached fields.
+4. Review the optional `Advanced Options` and the default-off `Enable IP Whitelist` help without toggling it during a read-only review. This dialog does not contain Model API quota, reset-cycle, warning-threshold, or limit-reached fields.
 5. Click **"Cancel"**. Do not click the final `Create` button during documentation review.
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
 
-The create dialog contains expiration, Key name, and description. It does not include the Model API quota, reset cycle, or alert-threshold fields.
+The figure shows the Create System API AK/SK Pair dialog with expiration, Key name, description, and expanded Advanced Options. The IP whitelist is off by default; its help is visible. Model API quota, reset-cycle, and alert-threshold fields are absent. Neither the whitelist nor credential creation was executed.
 
 ### Submit a Quota Request
 
@@ -127,7 +127,7 @@ The Key quota dialog contains reset cycle, monthly reset date, limit switch, cyc
 - Tabs and row actions are role- and tenant-dependent. Use only the controls visible after entering from the current account's menu.
 - Opening a dialog is not the same as creating or saving a credential. Stop at `Cancel` during documentation review.
 - Do not add permission-scope, quota, reset-cycle, or warning fields to a credential type that does not display them in the current Demo page.
-- Never copy complete Keys, AK/SK, tokens, names, identifiers, usage values, or dates into documentation, tickets, or screenshots.
+- Use non-sensitive examples in documentation, tickets, and screenshots; never expose complete Keys, AK/SK, tokens, or private customer information. Creation-form defaults and placeholders in the figures are examples, not recommended settings.
 
 ## Result Validation
 

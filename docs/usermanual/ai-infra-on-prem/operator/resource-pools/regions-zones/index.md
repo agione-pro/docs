@@ -1,8 +1,8 @@
 # Regions & Zones
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-13
 :::
 
 ## Feature Overview
@@ -323,9 +323,9 @@ Confirm the following first:
 5. Fill in `Display name` separately on each multilingual tab (English / 中文简体 / Español); the page states which locale the current tab feeds, for example `Displayed in the English locale`.
 6. Fill in the description as needed, such as geographical location, data center number, or business purpose.
 
-The following screenshot shows the Create AZ form. The owning region is prefilled and read-only; fill in the availability zone ID, the multilingual display names, and an optional description before confirming.
-
 ![Create AZ](./images/add-availability-zone.png)
+
+The figure shows the Add Availability Zone empty form with the selected Region read-only, Availability Zone ID, multilingual Display name, and Description. Cancel and Confirm are fully visible at the bottom.
 
 7. Before clicking the final **"Confirm"**, verify the parent region, availability zone ID, display name, and description again.
 

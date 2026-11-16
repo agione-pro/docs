@@ -1,8 +1,8 @@
 # System Setting
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-13
 :::
 
 ## Feature Overview
@@ -44,9 +44,13 @@ Use this page to review the configuration groups on the left and the configurati
 
 ![System Setting](./images/manual-system-setting.png)
 
-Go to `On-Prem > System > System Setting`. The page displays system-level configuration items. The list is used to view configuration item names, configuration values, descriptions, status, and possible action entries.
+The figure shows the existing System Setting overview. The current operator Demo directory has 13 configuration groups, including `Example data`; the directory detail below shows this current list.
 
-An editable item shows a pencil icon at the end of its value row. Opening edit mode is a write action, so stop at field review and do not perform the final submit.
+![Current system configuration directory](./images/system-groups-current.png)
+
+The figure shows all 13 directory entries. Some long English labels use the interface's ellipsis; this is a directory view, not evidence of configuration values or saved changes.
+
+An editable item shows a pencil icon at the end of its value row. Opening the editor is a change-controlled step, not part of this page's read-only review. For read-only checks, do not click the pencil or submit changes; use the approved-change procedure below for maintenance.
 
 ## Main Operations
 
@@ -67,9 +71,13 @@ Use the `User service access` group to confirm the entry addresses, signing key,
 5. Check the current state of the `Use domain-based ingress` and `User-visible diagnosis events` switches, and check the port and path template of `Public Nginx endpoint`.
 6. Check which card is selected under `Default port access policy`. The four options are `Web Access (Recommended)`, `API Auth Access (Recommended)`, `Web/API Compatible Access (Unsigned)`, and `Direct Port Forwarding (Unsigned)`.
 
-The figure shows five items in `User service access`, through `Default port access policy`. `User-visible diagnosis events` is outside this capture; review it on the live page.
-
 ![User service access group: Gateway endpoints, signing key, Nginx endpoint, and port access policy](./images/user-service-access.png)
+
+The figure shows the existing User service access overview through Default port access policy. The separate detail below supplies the User-visible diagnosis events control.
+
+![User-visible diagnosis events detail](./images/user-diagnosis-events-detail.png)
+
+The figure shows the User-visible diagnosis events control and its Disabled/Enabled choices. Its description refers to JOB_DIAGNOSIS events in the user timeline.
 
 #### Result Validation
 
@@ -78,7 +86,7 @@ The figure shows five items in `User service access`, through `Default port acce
 
 #### Notes
 
-- `Reset key` is a write action and appears disabled in this capture set. Its confirmation dialog and result message are not collected, so do not click it during a read-only review.
+- `Reset key` is a write action. It is available in the current operator Demo, but availability is not permission to reset it. Never click it during a read-only review; its confirmation and outcome remain unverified.
 - Gateway addresses, signing keys, and internal endpoints must not be written into documentation, screenshots, tickets, or chats.
 
 ### Review Job Scheduling And Resource Governance Configuration
@@ -185,7 +193,7 @@ Use the `VRAM calculation` group to confirm how much VRAM is reserved for each m
 #### Notes
 
 - This group drives the VRAM estimation result. Tightening the reserve shrinks the model specifications users can request, so assess representative models first.
-- Whether `Enabled` can be turned off, and whether rules can be added, removed, or reordered, is not evidenced (see U-10).
+- Whether `Enabled` can be turned off, and whether rules can be added, removed, or reordered, is not evidenced.
 
 ### Review Cloud Region Localization Configuration
 
@@ -285,7 +293,7 @@ Use the `Billing policy` group to confirm which consumption type the platform cu
 #### Notes
 
 - Switching the consumption type changes both the quota display on the user side and the billing basis. It is a high-impact change that requires approval and a rollback plan.
-- The English control currently reads `Spec quota`, which differs in capitalization from the form used on other Quotas & Metering pages. Whether the whole site should be unified is a product decision (see U-15); this page records the literal wording from the capture.
+- The English control currently reads `Spec quota`, which differs in capitalization from the form used on other Quotas & Metering pages. Whether the whole site should be unified is a product decision; this page records the literal wording from the capture.
 
 ### Review Cluster Monitoring Metrics Configuration
 
@@ -389,7 +397,7 @@ Follow this section when a change is approved, impact-assessed, and rollback-rea
 #### Notes
 
 - System settings are global configuration. One change can affect several tenants, jobs, or services at the same time. Do not submit without approval, without a rollback plan, or outside an approved change window.
-- Write entries such as `Reset key` appear disabled in the captures, and their confirmation dialog and result message are not collected, so their outcome is not described here.
+- Do not infer safety or authorization from the availability of write entries such as `Reset key`. Their confirmation flows and outcomes have not been tested in this read-only review.
 
 ### Refresh The Configuration
 
@@ -411,7 +419,7 @@ Use `Refresh` in the top-right corner to reload the configuration when someone e
 
 #### Notes
 
-- The captures evidence `Refresh` as the only view-oriented entry. Whether `Search`, `Filter`, `Expand`, or `Details` also exist is not collected (see U-13).
+- The captures evidence `Refresh` as the only view-oriented entry. Whether `Search`, `Filter`, `Expand`, or `Details` also exist is not collected.
 - If the page still differs from expectation after a refresh, check the object state on prerequisite pages first, then judge whether it is an effective-scope issue.
 
 ## Parameter Quick Reference

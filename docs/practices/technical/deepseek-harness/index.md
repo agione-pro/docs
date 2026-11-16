@@ -4,7 +4,7 @@ This guide explains how to configure AGIOne through **Custom model API**, fetch 
 
 ## Before You Start
 
-1. Install and open DeepSeek Harness. Visit [DeepSeek Harness](https://harness.deepseek.com/) and follow the official release instructions for downloads. This guide starts with an installed client.
+1. Install and open DeepSeek Harness. Visit [DeepSeek Harness](https://www.deepseek.com/en/harness/) and follow the official release instructions for downloads. This guide starts with an installed client.
 2. Visit [AGIOne](https://agione.pro/), then register and sign in.
 3. Select a model in the model marketplace. Open its API or quick-start page to obtain the **Base URL**, **API Key**, and complete **Model ID**. Check which API protocols the model supports.
 

@@ -1,8 +1,8 @@
 # Models
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-13
 :::
 
 ## Feature Overview
@@ -110,17 +110,17 @@ The page header menu is shown below: `Import` opens the import dialog and `Expor
 2. Import: click `Import` to open the dialog titled `Import Configuration Data`, then select the ZIP package exported from the backend in the `Read File` area. The area reads `Select a backend-exported ZIP package and run precheck`, so the page runs a precheck after a file is chosen.
 3. Click `Cancel` at the bottom of the dialog, or the close icon at the top right, to discard the import. The dialog state after a file is selected and the precheck result are not shown in the screenshots for this page; follow the on-page message.
 
-The import dialog is shown below: before a file is chosen it offers only the `Read File` area and a single `Cancel` button.
-
 ![Import Configuration Data](./images/import-configuration-data.png)
+
+The figure shows the empty Import Configuration Data dialog: the Read File area describes a backend-exported ZIP package and precheck, and Cancel is the only footer button. No selected-file or precheck-result state is shown.
 
 4. Export: click `Export` to open the dialog titled `Export Configuration Package`, and use **"Select All"** or **"Clear"** in the `Select Modules` area, or tick the module cards one by one.
 5. Expand the `Templates` group (marked `Current page group`, `3 modules`) and select `Models` (module key `model`, card labelled `Includes cascade details`), together with `Framework Configurations` (`frameworkVersion`) and `Inference Templates` (`inferenceTemplate`) when needed; the collapsed groups `Resource Pools` (`3 modules`) and `VRAM Config` (`5 modules`) are also selectable.
 6. Confirm that the footer count matches the intended modules (for example `Models · 1 modules selected`), then click **"Export"** to generate the package; click **"Close"** to discard this export.
 
-The export dialog is shown below: `Models` is ticked and labelled `Includes cascade details`, and the footer count sits next to the **"Export"** button.
-
 ![Export Configuration Package](./images/export-configuration-package.png)
+
+The figure shows the Export Configuration Package selection dialog: Templates is expanded, Models (model) is selected with Includes cascade details, and the footer shows 1 module selected. Close and the final Export action are fully visible.
 
 #### Result Validation
 

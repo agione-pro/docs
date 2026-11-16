@@ -1,8 +1,8 @@
 # Rule Management
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.3
+Updated: 2026-11-15
 :::
 
 ## Feature Overview
@@ -62,10 +62,12 @@ The figure shows a Rule Name search for `XAPI Model TPM`, with the matching row'
 ### Create Rate Control Rule
 
 1. Go to `Settings > API Rate Control > Rule Management`.
-2. Click **"Create Rule"**, `Create Rate Control Rule`, or the actual create entry on the page.
-3. In the rule creation page or dialog, review the rule configuration fields.
+2. In the current demo, click **"New Rule"** to open the creation drawer.
+3. Review the configuration fields in the current demo's **"New Rate Limit Rule"** drawer without validating conditions, saving, or publishing.
 
 ![Create Rate Control Rule](./images/new-rate-limit-rule.png)
+
+The figure shows the empty New Rate Limit Rule drawer with Basic Info, Quota & Window, Request Conditions and four footer buttons. The condition table has no rows. Displayed defaults are examples, not recommended settings; this view does not demonstrate validation, saving, or publication.
 
 4. Fill in rule name, API path, request method, match conditions, rate limit threshold, and time window.
 5. Select effective scope, result handling policy, enabled status, or priority according to page fields.
