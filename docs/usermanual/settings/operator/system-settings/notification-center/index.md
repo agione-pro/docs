@@ -1,8 +1,8 @@
 # Notification Audit
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > System Settings > Notification Audit |
-| Page route | `/user/system/notification/center` |
-| Managed objects | Notification name, business topic, target tenant, source service, delivery channels, dispatch status, and trigger time |
+| Navigation Path | Settings > System Settings > Notification Audit |
+| Page Route | `/user/system/notification/center` |
+| Managed Object | Notification name, business topic, target tenant, source service, delivery channels, dispatch status, and trigger time |
 
 #### Beginner Explanation
 
@@ -63,6 +63,17 @@ The page provides Message ID, target tenant ID, notification name/code, more fil
 4. For further troubleshooting, compare Notification Governance, Contacts, and the business module state.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search | — | — | — | Query by Message ID, target tenant ID, or notification name/code. |
+| Business topic | — | — | — | All records, Account & Fund Messages, Product Messages, Security Messages, Anomaly Notifications, Activity Messages, Service Messages. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

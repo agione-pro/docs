@@ -1,18 +1,18 @@
 # Model Sources
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
-| Navigation path | **Model Services** > **Settings** > **Model Sources** |
-| Page route | List `/modelone/model-source`; configuration page `/modelone/model-source/{source ID}/edit` |
-| Managed objects | **Model Source** (unique code and multilingual names), **Endpoint** (region tag, Base URL, console URL, documentation URL), and protocols |
+| Applicable Role | Operator Admin |
+| Navigation Path | Model Services > Settings > Model Sources |
+| Page Route | List `/modelone/model-source`; configuration page `/modelone/model-source/{source ID}/edit` |
+| Managed Object | **Model Source** (unique code and multilingual names), **Endpoint** (region tag, Base URL, console URL, documentation URL), and protocols |
 
 #### Beginner Explanation
 
@@ -103,6 +103,16 @@ Use the search box or the `Status` and `Modality` filters to narrow the list. Th
 4. The configuration page header provides **"Back to Directory"** and **"Save Model Source"**; each Endpoint has its own **"Save Endpoint"**.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+As needed in the query group describes query use, not backend form validation. An em dash means that this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search keyword | As needed for querying | Text | `aliyun` | Search by source name, code, Endpoint name, or Base URL, then click the search icon. |
+| Status (filter) | As needed for filtering | Option group | `All statuses`, `Enabled`, `Disabled` | Restricts the source list; this is not a required create or edit field. |
+| Modality (filter) | As needed for filtering | Option group | `All modalities`, `Text`, `Image` | Options are All modalities, Text, Image, Video, Audio, Embedding, Rerank, and Multimodal. |
 
 ### Model Source level
 

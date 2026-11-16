@@ -1,8 +1,8 @@
 # Usage Log
 
 ::: info Document Information
-Version: v2.2
-Updated: 2026-11-12
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Tenants > Usage Log |
-| Page route | `/user/user-space/usage-log` |
-| Managed objects | Quota usage events and their read-only details |
+| Navigation Path | Settings > Tenants > Usage Log |
+| Page Route | `/user/user-space/usage-log` |
+| Managed Object | Quota usage events and their read-only details |
 
 #### Beginner Explanation
 
@@ -70,6 +70,16 @@ The usage audit list shows time, member, model, usage, and status. Filters defin
 4. If the change cannot be explained, escalate with a redacted event ID and time range. Do not modify quota directly.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Start time / End time / User ID / API Key | — | — | — | The filter bar provides `Start time`, `End time`, `User ID`, and `API Key` fields, together with `Search`, `Reset`, and `Expand` controls. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

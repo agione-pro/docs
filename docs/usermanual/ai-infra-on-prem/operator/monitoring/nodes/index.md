@@ -1,8 +1,8 @@
 # Nodes
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,6 +10,7 @@ Updated: 2026-11-04
 | --- | --- |
 | Applicable Role | Operator |
 | Navigation Path | On-Prem > Monitoring > Nodes |
+| Page Route | `/powerone/monitor/node` |
 | Managed Object | Node identifier, resource watermarks (disk / memory / CPU / AI accelerator), job count, and Pod count. |
 
 #### Beginner Explanation
@@ -165,11 +166,20 @@ The `Monitoring` group of the left menu contains `Overview`, `Clusters`, `Nodes`
 - A single-node exception does not mean the whole cluster is unavailable.
 
 ## Parameter Quick Reference
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Region | Yes | Drop-down | `wuhan` | Leftmost control of the filter bar. The badge on its right shows the region status, such as `Normal`. |
 | Cluster | Conditionally required | Drop-down | `cluster-test` | Limits the cluster to which the nodes belong. |
 | Node Status Segment | Yes | Segment | `All` | Three-state segment `All` / `Normal` / `Abnormal`. The default is `All`. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Node Identifier | System-generated | Text | Sanitized | Title row at the top of a node card. The screen shows it in IP form, and the real value must not be transcribed. |
 | Disk Usage | System-generated | Percentage | `4.56%` | First row of the bar chart and the last column of the resource table. The absolute amount is such as `20G`. |
 | Memory Usage | System-generated | Percentage | `12.84%` | Second row of the bar chart and the `Memory` column. The absolute amount is such as `32.27G`. |
@@ -178,6 +188,7 @@ The `Monitoring` group of the left menu contains `Overview`, `Clusters`, `Nodes`
 | Resource Absolute Amount | System-generated | Value | `8AI card(s)` / `80vCPU` / `251.24G` / `438.55G` | The four absolute amounts in the `Total` row of the resource table. |
 | Job Count | System-generated | Number | `Running 1 Jobs` | Five status tags: `Running` / `Completed` / `Failed` / `Paused` / `Terminated`, with the unit `Jobs`. |
 | Pod Count | System-generated | Number | `58 unit` | Large number on the right of a node card. |
+
 
 ## Pitfalls
 - Node Ready does not mean the device plugin is definitely normal. Confirm the two separately.

@@ -10,9 +10,9 @@ Updated: 2026-11-14
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > System Settings > Login Properties |
-| Page route | `/user/system/login-properties` |
-| Managed objects | Login security, registration settings, registration codes, account recovery, Google Login, and external system integration |
+| Navigation Path | Settings > System Settings > Login Properties |
+| Page Route | `/user/system/login-properties` |
+| Managed Object | Login security, registration settings, registration codes, account recovery, Google Login, and external system integration |
 
 #### Beginner Explanation
 

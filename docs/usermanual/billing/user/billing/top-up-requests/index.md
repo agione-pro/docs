@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider & User |
-| Navigation path | Billing > Top-up Requests |
-| Page route | `/billing/my/top-ups/requests` |
-| Managed objects | Account credit requests and review information visible to the current account |
+| Navigation Path | Billing > Top-up Requests |
+| Page Route | `/billing/my/top-ups/requests` |
+| Managed Object | Account credit requests and review information visible to the current account |
 
 `Top-up Requests` lets you request account credits and view request records by status. The main button is `Request credits`, which opens the `Account Credit Request` dialog. This page is for credit requests, not payment-based top-ups.
 
@@ -77,9 +77,18 @@ The figure shows the blank account credit request inputs: the hint below `Reques
 
 The table distinguishes the filter, form inputs, and display information. Display items require no input; the example credit amount illustrates the input format only.
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Status (filter) | No | Dropdown filter | Current UI options | Narrow the request list by status. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Request account | Not applicable (display item) | Account information | — | Check which account the credit request applies to. |
 | Account type | Not applicable (display item) | Account information | — | Check the type of the request account. |
 | Current balance | Not applicable (display item) | Balance information | — | Read the account's currently displayed balance in credits, not the requested amount. |
@@ -93,6 +102,7 @@ The table distinguishes the filter, form inputs, and display information. Displa
 | Request details (list) | Not applicable (display item) | List column | — | The request description in the record. |
 | Review result | Not applicable (display item) | List column | — | Review information in the record. |
 | Actions | Not applicable (display item) | List column | — | The action area for a request row. |
+
 
 ## Pitfalls
 

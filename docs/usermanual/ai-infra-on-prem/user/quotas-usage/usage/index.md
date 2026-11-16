@@ -1,8 +1,8 @@
 # Usage
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -155,6 +155,17 @@ The figure below shows the dialog groups, fields, and buttons.
 - The export scope follows the filters inside the dialog, so confirm them separately from the page list filters.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Billing Period / Region / Resource Name / Resource type / Project | — | — | — | Filter Area / Queries by `Billing Period`, `Region`, `Resource Name`, `Resource type`, and `Project`; `Expand` adds more conditions. |
+| Detail Download: Region / Project / Resource Name / Resource ID / Batch Number | — | — | — | 5. Under `Resource filters`, set `Region`, `Project`, `Resource Name`, `Resource ID`, and `Batch Number` as needed. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

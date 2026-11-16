@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Customer Billing > Business Units |
-| Page route | `/billing/customers/business-units` |
-| Managed objects | Business lines, payment channels, per-transaction top-up limits, initial balance, and maximum overdraft amount |
+| Navigation Path | Billing > Customer Billing > Business Units |
+| Page Route | `/billing/customers/business-units` |
+| Managed Object | Business lines, payment channels, per-transaction top-up limits, initial balance, and maximum overdraft amount |
 
 Use this page to find business lines and maintain their configuration through `Add Business Line` and the row-level `Edit Business Line` entry.
 
@@ -88,6 +88,16 @@ The figure shows the unfilled creation form: the name, code, and Contact Informa
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| No extra business limit | Not applicable | Button | `No extra business limit` | Appears beside both top-up limit fields; does not mean an unlimited amount. |
+
+#### Existing Fields
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Business line name | Yes | Text | `documentation-example` | Required-marked form field; also available as a list filter. |
@@ -102,10 +112,10 @@ The figure shows the unfilled creation form: the name, code, and Contact Informa
 | Remarks | No | Multiline text | `<business-description>` | Supplementary information in the form. |
 | Payment channel | No required mark | Dropdown | `<payment-channel>` | Select channels according to business requirements. |
 | Status | Optional filter | Dropdown / list value | `<status>` | Filters and displays the current status. |
-| No extra business limit | Not applicable | Button | `No extra business limit` | Appears beside both top-up limit fields; does not mean an unlimited amount. |
 | No Overdraft | Not applicable | Button | `No Overdraft` | Shortcut for the overdraft configuration. |
 | Confirm | Not applicable | Button | `Confirm` | Final form confirmation entry; complete the business review first. |
 | Cancel | Not applicable | Button | `Cancel` | Leave without submitting the current form. |
+
 
 ## Pitfalls
 

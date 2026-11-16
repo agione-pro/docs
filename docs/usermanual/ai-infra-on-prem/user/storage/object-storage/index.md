@@ -1,8 +1,8 @@
 # Object Storage
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-13
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -223,17 +223,28 @@ Remove the selected bucket only after approval of its data and dependency impact
 - This entry is distinct from file/folder row deletion. Empty-bucket restrictions, confirmation dialogs, deletion scope, and recovery follow the actual page feedback; none is established here.
 
 ## Parameter Quick Reference
+#### Query and Filters
 
-| Field Name | Requirement / Source | Meaning | Evidence Boundary |
-| --- | --- | --- | --- |
-| `Bucket Name` | Required marker in Add Bucket | Name of the bucket being created. | Naming validation follows the actual page feedback. |
-| `Configured capacity` / `GiB` | Required marker in Add Bucket | Configured bucket capacity and visible unit. | Limits and other unit options follow the actual page feedback. |
-| `Project` | Add Bucket / bucket overview | Project association; form shows `No project specified`. | Options and association behavior follow the actual page feedback. |
-| `Usage / Capacity` | Bucket overview | Bucket usage and capacity. | Do not equate this with the current directory's file count. |
-| `Current list` | Bucket overview | File count and size for the current list. | Folder-count rules follow the actual page display. |
-| `Status` | Bucket overview | Captured example: `Active`. | Other state labels and transitions do not appear in the captured views. |
-| Region | Top of the left bucket panel | Captured example: `wuhan`, `Normal`. | Region-switch side effects do not appear in the captured views. |
-| Original Resource Name / Access Path / Available | Historical quick-reference terms | Original examples: `storage-a`, `/mnt/data`, `Available`; original capacity/quota example: `100GiB`. | Their fields, mount semantics, and enum mapping do not appear in the captured views and are not declared nonexistent. |
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search bucket | — | — | — | Filters the left bucket list by bucket name. The screenshot establishes the control, not a completed search. |
+| Region (bucket panel) | — | — | — | Region selector at the top of the bucket panel; a completed region switch is not established by the screenshot. |
+
+
+An em dash means that the original reference does not separately specify that item; it does not mean optional, a default value, or a backend validation result.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| `Bucket Name` | Required marker in Add Bucket | — | — | Requirement / source: Required marker in Add Bucket；Name of the bucket being created. Naming validation follows the actual page feedback. |
+| `Configured capacity` / `GiB` | Required marker in Add Bucket | — | — | Requirement / source: Required marker in Add Bucket；Configured bucket capacity and visible unit. Limits and other unit options follow the actual page feedback. |
+| `Project` | — | — | — | Requirement / source: Add Bucket / bucket overview；Project association; form shows `No project specified`. Options and association behavior follow the actual page feedback. |
+| `Usage / Capacity` | — | — | — | Requirement / source: Bucket overview；Bucket usage and capacity. Do not equate this with the current directory's file count. |
+| `Current list` | — | — | — | Requirement / source: Bucket overview；File count and size for the current list. Folder-count rules follow the actual page display. |
+| `Status` | — | — | — | Requirement / source: Bucket overview；Captured example: `Active`. Other state labels and transitions do not appear in the captured views. |
+| Region | — | — | — | Requirement / source: Top of the left bucket panel；Captured example: `wuhan`, `Normal`. Region-switch side effects do not appear in the captured views. |
+| Original Resource Name / Access Path / Available | — | — | — | Requirement / source: Historical quick-reference terms；Original examples: `storage-a`, `/mnt/data`, `Available`; original capacity/quota example: `100GiB`. Their fields, mount semantics, and enum mapping do not appear in the captured views and are not declared nonexistent. |
 
 ## Pitfalls
 

@@ -10,7 +10,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 适用角色 | 运营管理员 |
-| 导航路径 | AI基础设施 > On-Cloud > 接入工作台 > 接入总览 |
+| 导航路径 | On-Cloud > 接入工作台 > 接入总览 |
 | 页面路由 | 旧入口：`/infrahub/op/workbanch/quick`；跳转到 `/infrahub/op/workbanch/overview?stage=cloudAccess` |
 | 管理对象 | 旧快速接入入口及云资源接入管理的导航 |
 

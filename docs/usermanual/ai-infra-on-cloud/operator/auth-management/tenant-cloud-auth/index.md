@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Authorization Management > Tenant-Cloud Auth |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Authorization Management > Tenant-Cloud Auth |
 | Page Route | `/infrahub/op/auth/platform-auth` |
-| Managed Objects | Cloud platform authorization scope available to tenants |
+| Managed Object | Cloud platform authorization scope available to tenants |
 
 #### Beginner Explanation
 
@@ -88,9 +88,18 @@ The figure shows an earlier Delete confirmation view naming the target tenant an
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Search or select a tenant | No | Search selector | Sample tenant | List lookup entry, not an authorization strategy. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Tenant Information / Account and Email | — | List information | Target record | Distinguishes tenant and account information; review both to identify the target. |
 | Cloud Platform Authorization | — | List information | Target record | Shows the record's cloud platform scope. |
 | Tenant Scope | Select before submission | Multi-select | One or more tenants | Targets of this change; there is no Authorize All Tenants mode. |
@@ -99,6 +108,7 @@ The figure shows an earlier Delete confirmation view naming the target tenant an
 | Change Summary | — | Read-only summary | Affected tenants / Authorization mode / Selected in this change | Reviews targets, strategy, and platform scope before submission. |
 | Configure / Revoke | No | Row action entry | `Configure` | Entries for existing authorization; identify the target first. |
 | Cancel / Confirm Authorization | No | Button | `Cancel` | Exit and submission entries for the authorization form. |
+
 
 ## Pitfalls
 

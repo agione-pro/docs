@@ -10,9 +10,9 @@ Updated: 2026-11-13
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > API Rate Control > Overview |
-| Page route | `/user/system/rate-control/overview` |
-| Managed objects | Global request volume, blocked requests, over-limit statistics, enabled rules, and node status |
+| Navigation Path | Settings > API Rate Control > Overview |
+| Page Route | `/user/system/rate-control/overview` |
+| Managed Object | Global request volume, blocked requests, over-limit statistics, enabled rules, and node status |
 
 #### Beginner Explanation
 
@@ -71,18 +71,28 @@ The figure shows request volume, blocked requests and block rate, would-be block
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Time Range | No | Date time | `2026-07-13 09:00 to 10:00` | The time window for API request, blocked, and hit statistics. |
 | API | No | Text | `<ENDPOINT_PATH>` | Filters overview data by API or API path. Desensitize it in documentation. |
 | Rule | No | Text | `Example rule` | Filters hit or blocked data by rate-control rule. |
 | Request Volume | System generated | Number | `12,000` | The total request volume in the current time range. |
+| Search | Operation button | Button | `Search` | Refreshes overview data by current filters. |
+| Reset | Operation button | Button | `Reset` | Restores default filters. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Blocked Volume | System generated | Number | `320` | The number of requests blocked by rate-control rules. |
 | Hit Count | System generated | Number | `800` | The number of rule hits. |
 | Result Status | No | Enum | `Blocked` | Filters data by request result or processing status. |
 | Trend Chart | System generated | Chart | `Requests per minute` | Shows request, blocked, or hit trends over time. |
-| Search | Operation button | Button | `Search` | Refreshes overview data by current filters. |
-| Reset | Operation button | Button | `Reset` | Restores default filters. |
+
 
 ## Pitfalls
 

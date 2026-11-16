@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation path | Billing > Earnings > Revenue |
-| Page route | `/billing/provider/revenue` |
-| Managed objects | Revenue account balance, current calendar-month estimate, billing cycle analysis, and account activity |
+| Navigation Path | Billing > Earnings > Revenue |
+| Page Route | `/billing/provider/revenue` |
+| Managed Object | Revenue account balance, current calendar-month estimate, billing cycle analysis, and account activity |
 
 Revenue Overview separates the current revenue account balance, unsettled estimates, and historical settlement results. It also provides daily revenue, top customers, and top models by billing cycle. Use `Settlements`, `Customers`, and `Account Activity` to continue reconciliation.
 
@@ -87,6 +87,16 @@ The figure shows `No outflow records` in the outflow area. It does not include t
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Billing Cycle | No | Month dropdown | `2025-01` | Affects only Daily Revenue, Top Customers, and Top Models analysis. |
+
+#### Existing Fields
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Overview | No | Tab | `Overview` | Shows account metrics and billing cycle analysis. |
@@ -96,13 +106,13 @@ The figure shows `No outflow records` in the outflow area. It does not include t
 | Next Settlement Cue | Not applicable | Calendar cue | — | Does not indicate that settlement has started. |
 | All-time Net Settled / NET SETTLED | Not applicable | Total amount | — | Historical net settlements; the Account Activity notice includes normal settlements, rounding-adjustment credits, and clawbacks. |
 | TOTAL PAID OUT | Not applicable | Total amount | — | Transfers to Credit; excludes settlement clawbacks. |
-| Billing Cycle | No | Month dropdown | `2025-01` | Affects only Daily Revenue, Top Customers, and Top Models analysis. |
 | Daily Revenue | Not applicable | Chart | — | Daily revenue, daily average, and weekday/weekend statistics for the selected cycle. |
 | Top Customers | Not applicable | Ranking | — | Customer revenue contributions for the selected analysis cycle. |
 | Top Models | Not applicable | Ranking | — | Model revenue contributions for the selected analysis cycle. |
 | Transferable balance | Not applicable | Display | — | Balance shown in the transfer form, not an input. |
 | Transfer amount | Yes | Numeric input | — | Required transfer-form field. |
 | Remarks | No | Multiline text | — | Transfer-form field without a required marker. |
+
 
 ## Pitfalls
 

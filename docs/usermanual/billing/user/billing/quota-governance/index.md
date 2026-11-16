@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider & User |
-| Navigation path | Billing > Quota Governance |
-| Page route | `/billing/my/quota-governance` |
-| Managed objects | Billing-cycle usage, member and project quotas, usage breakdown, risk categories, and settings entries. |
+| Navigation Path | Billing > Quota Governance |
+| Page Route | `/billing/my/quota-governance` |
+| Managed Object | Billing-cycle usage, member and project quotas, usage breakdown, risk categories, and settings entries. |
 
 Quota Governance displays quota usage and risks by member and project and provides the corresponding settings entries.
 

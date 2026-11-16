@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider |
-| Navigation | **Model Services** > **Usage & Earnings** > **Model Earnings** |
-| Route | `/modelone/accounting/useage/overview/model` |
-| Managed objects | Model earnings, tenants, models, income tokens, and earned credits |
+| Applicable Role | Model Provider |
+| Navigation Path | Model Services > Usage & Earnings > Model Earnings |
+| Page Route | `/modelone/accounting/useage/overview/model` |
+| Managed Object | Model earnings, tenants, models, income tokens, and earned credits |
 
 **New to this page**: Model Earnings is the revenue dashboard for publishers. Select a billing cycle, read tenant and model counts plus income tokens and credits, then use trends and rankings to find revenue sources.
 
@@ -73,10 +73,19 @@ The figure shows the page provides `Overview` and `Earning Details` tabs; KPI ca
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing cycle | Yes | Selector | `2026-11` | Billing period |
 | Date | No | Date range | `2026-11-01` to `2026-11-03` | Statistics date range |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Number of Tenants | System | Number | `0` | Tenants that generated revenue |
 | Number of Models | System | Number | `0` | Models that generated revenue |
 | Income Tokens | System | Number | `0` | Billed token total |
@@ -86,6 +95,7 @@ The figure shows the page provides `Overview` and `Earning Details` tabs; KPI ca
 | Proportion of Model Revenue | System | Chart | — | Revenue share by model |
 | Tenant Activity | System | Chart | — | Tenant activity |
 | Tenant Credit Consumption Ranking (Top 10) | System | Ranking | — | Tenants with the highest credit consumption |
+
 
 ## Pitfalls
 

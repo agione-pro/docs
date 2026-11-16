@@ -1,8 +1,8 @@
 # Notification Governance
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > System Settings > Notification Governance |
-| Page route | `/user/system/notification/business-config` |
-| Managed objects | Notification types, type codes, business topics, severity, platform channels, enable status, and tenant channel policy |
+| Navigation Path | Settings > System Settings > Notification Governance |
+| Page Route | `/user/system/notification/business-config` |
+| Managed Object | Notification types, type codes, business topics, severity, platform channels, enable status, and tenant channel policy |
 
 #### Beginner Explanation
 
@@ -72,6 +72,20 @@ The page provides notification-name/code, enable status, platform channel, sever
 4. Review the impact before saving. For read-only inspection, click `Cancel`.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search | — | — | — | Query by notification name or code. |
+| Enable status | — | — | — | Filter enabled or disabled types. |
+| Platform channel | — | — | — | Filter by in-app, email, and other channels. |
+| Severity | — | — | — | Filter by Info, Warning, and other levels. |
+| Business topic | — | — | — | All types, Unclassified, Account & Fund Messages, Product Messages, Security Messages, Anomaly Notifications, Activity Messages, Service Messages. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

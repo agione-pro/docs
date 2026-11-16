@@ -1,8 +1,8 @@
 # Contacts
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider & User |
-| Navigation path | Settings > Activity & Notifications > Contacts |
-| Page route | `/user/user-space/notification/contacts` |
-| Managed objects | Contact name, position, phone number, email, linked platform user, tenant general contact, status, and update time |
+| Navigation Path | Settings > Activity & Notifications > Contacts |
+| Page Route | `/user/user-space/notification/contacts` |
+| Managed Object | Contact name, position, phone number, email, linked platform user, tenant general contact, status, and update time |
 
 #### Beginner Explanation
 
@@ -70,6 +70,17 @@ The figure shows the contacts list, with contact search, status filtering, and c
 4. After saving, return to the list and verify the update time and status.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group describes list queries. An em dash means the source description does not specify a required mark, control type, or example; it is not a backend optional-field rule or a default value.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search | — | — | — | Search by name, phone number, or email. |
+| Status | — | — | — | Filter enabled or disabled contacts. |
+
+#### Contact Configuration Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

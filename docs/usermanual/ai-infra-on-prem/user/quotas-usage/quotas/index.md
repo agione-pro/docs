@@ -195,6 +195,16 @@ Use this operation to judge which resource is near its limit, or to prepare the 
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Drawer search box | Optional | Text input | `ide` | Filters the resource occupation details, used with the `Search` and `Reset` buttons. |
+
+#### Existing Fields
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | `Resource` | System-generated | Enum | `AI Accelerator` | Resource category counted in the quota overview. |
@@ -204,7 +214,7 @@ Use this operation to judge which resource is near its limit, or to prepare the 
 | `Usage Rate` | System-generated | Percentage | `20%` | Ratio of Used to Total. Shows `∞ Unlimited` when no limit is set. |
 | `Model` | System-generated | Text | `Other Models` | Grouped model label shown by the platform. |
 | `Spec Quota` | System-generated | Group | `Total` / `Used` / `Available` | The three quota values shown per model. |
-| Drawer search box | Optional | Text input | `ide` | Filters the resource occupation details, used with the `Search` and `Reset` buttons. |
+
 
 ## Pitfalls
 

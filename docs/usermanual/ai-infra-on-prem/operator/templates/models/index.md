@@ -1,8 +1,8 @@
 # Models
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-13
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -162,6 +162,16 @@ The delete confirmation is shown below: the body echoes only the target model id
 - `OK` is a high-risk final action on this page. Check that the identifier in the dialog matches the target row before clicking it.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Model author / Model / author / series / Public models / Private models | — | — | — | The left panel groups models by `Model author` with a per-author count, the `Model / author / series` box filters the list, the main area offers the `Public models` and `Private models` tabs, and the columns are `MODEL TEMPLATE`, `SERIES`, `SCENARIO`, `MODEL TYPE`, `TOKEN LIMIT`, `CATEGORY`, `VERSION`, and `MODEL DOWNLOAD`, followed by an icon-only action column that holds the trash icon. The `MODEL DOWNLOAD` column shows `No linked clusters`, `All completed`, or `Completed N`. The icon button at the top right opens the `Import` / `Export` menu, and `Add model` sits to its right. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

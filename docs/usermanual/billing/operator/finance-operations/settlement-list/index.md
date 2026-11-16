@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Finance Operations > Settlement List |
-| Page route | `/billing/admin/provider-settlements` |
-| Managed objects | Tenant settlements by billing cycle, settlement amounts, and posting confirmation |
+| Navigation Path | Billing > Finance Operations > Settlement List |
+| Page Route | `/billing/admin/provider-settlements` |
+| Managed Object | Tenant settlements by billing cycle, settlement amounts, and posting confirmation |
 
 Use this page to locate settlements by billing cycle, settlement status, and tenant, open details to check progress and underlying records, or enter the settlement generation flow.
 
@@ -105,11 +105,20 @@ The figure shows the required operation remark and final `Confirm Generate` butt
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Settlement status | As needed for queries | Status selector / result field | `<settlement status>` | List filter and current settlement status; not the posting confirmation time. |
+
+#### Existing Fields
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing Cycle | Required for generation | Month selector | `2026-10` | List filter; must be before the current month for generation. |
 | Tenant | Required for generation | Tenant selector | `<tenant>` | List filter; generation only lists tenants with eligible unsettled details in that billing cycle. |
-| Settlement status | As needed for queries | Status selector / result field | `<settlement status>` | List filter and current settlement status; not the posting confirmation time. |
 | Settlement | Displayed by system | Text | `<settlement identifier>` | Identifies the settlement and its details. |
 | Payable to tenant | Displayed by system | Amount | `0 credits` | Amount payable to the tenant in the list and details. |
 | Created at | Displayed by system | Date and time | `<creation time>` | Time when the settlement was created. |
@@ -120,6 +129,7 @@ The figure shows the required operation remark and final `Confirm Generate` butt
 | Remark | Yes | Text | `<business note>` | Required operation note before final confirmation. |
 | Confirm Generate | Business authorization required | Final button | `Confirm Generate` | Final generation action; check the approval basis first. |
 | Details | As needed | Detail entry | `Details` | Review progress, amounts, details, transactions, pairing records, and posting confirmation time. |
+
 
 ## Pitfalls
 

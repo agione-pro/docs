@@ -1,8 +1,8 @@
 # Object Storage
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -207,6 +207,15 @@ Delete a source when it is no longer used, when it must be retired, or when anot
 - To reconnect later, register the source again and re-enter its credentials.
 
 ## Parameter Quick Reference
+#### Query and Filters
+
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Provider tabs | — | — | — | Filters storage-source cards with All providers, Compatible S3, AWS S3, Alibaba Cloud OSS, or Huawei Cloud OBS. |
+| Search name, endpoint, or provider region | — | — | — | Searches storage sources by name, endpoint, or provider region; use the search icon. |
+
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

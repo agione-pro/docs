@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Finance Operations > Today Tasks |
-| Page route | `/billing/admin/tasks` |
-| Managed objects | Billing-cycle settlement metrics, platform account summary, Settlement Workbench, and Platform Account Reconciliation |
+| Navigation Path | Billing > Finance Operations > Today Tasks |
+| Page Route | `/billing/admin/tasks` |
+| Managed Object | Billing-cycle settlement metrics, platform account summary, Settlement Workbench, and Platform Account Reconciliation |
 
 `Today Tasks` summarizes settlement progress, platform account amounts, and alerts. Two task cards connect to settlement and financial account pages.
 

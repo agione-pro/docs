@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider & User |
-| Navigation path | Billing > Monthly Bill |
-| Page route | `/billing/my/account/transactions/monthly-summary` |
-| Managed objects | Cross-month billing-cycle spend trends, the selected cycle's summary, deduction records, and consumption distributions |
+| Navigation Path | Billing > Monthly Bill |
+| Page Route | `/billing/my/account/transactions/monthly-summary` |
+| Managed Object | Cross-month billing-cycle spend trends, the selected cycle's summary, deduction records, and consumption distributions |
 
 In Monthly Bill, select a billing cycle, read spend and top-up summaries, and group distributions by consumed service or cost attribution. Review records through billing-cycle transaction entries.
 
@@ -86,9 +86,18 @@ The figure shows only the `No statistics yet` empty component in the lower stati
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing cycle | Yes | Month selector | `2025-11` | Selects the current month or one of the preceding 12 months; confirm the selector's range. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Refresh data | No | Button | `Refresh data` | Refreshes the selected cycle when the entry is shown; interpret the result using the displayed update status. |
 | Billing Cycle Spend Trend | Not applicable | Cross-cycle chart | — | Uses credits; follow the instruction to click a bar for its billing cycle. |
 | Current-cycle notice | Not applicable | Notice text | — | States that the cycle is accumulating and final settlement items will be generated on the 1st of the following month. |
@@ -106,6 +115,7 @@ The figure shows only the `No statistics yet` empty component in the lower stati
 | Member | No | In-group dimension | `Member` | Belongs to By Cost Attribution. |
 | Distribution area | Not applicable | Statistics area | `No distribution data` | Displays the current grouping view's distribution or an empty state when there is nothing to display. |
 | Statistics empty state | Not applicable | Empty-result notice | `No statistics yet` | The selected cycle has no statistics; this does not establish a zero amount. |
+
 
 ## Pitfalls
 

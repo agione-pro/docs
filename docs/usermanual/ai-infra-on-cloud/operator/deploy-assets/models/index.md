@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Deploy Assets > Models |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Deploy Assets > Models |
 | Page Route | `/infrahub/op/model/model` |
-| Managed Objects | Model profiles, linked meta models, cloud deployment points, and deployment configuration |
+| Managed Object | Model profiles, linked meta models, cloud deployment points, and deployment configuration |
 
 #### Beginner Explanation
 
@@ -115,22 +115,32 @@ The figure shows the existing second-stage Deployment Configuration summary with
 
 Current list, details, and initial-catalog items appear first. Subsequent configuration fields correspond only to the existing static references above; required status follows the current form markers.
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Brand / Model Name / Model Type | No | Query criteria | `Qwen` | Brand, name, and type criteria for the list. |
+| Author / Type / Model Name | No | Catalog query | `All Authors` | Query items in the initial Add Model catalog. |
+| GPU Model / GPU Count / CPU Cores / Memory (GB) / Card Type | No | Specification filters | `1` / `4` / `16` / `GPU` | Existing deployment-specification query items. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Type & use case / Input / output | — | Result columns | `Text Generation` / `Text` | Distinguish the model use case from input/output modalities. |
 | Model ID / Meta Model UID / Author | — | Details | Sample model identifier | Identification information in Model Information. |
 | Context Window / Max Input / Max Output | — | Details | Refer to the target model | Capability summary, not deployment acceptance. |
-| Author / Type / Model Name | No | Catalog query | `All Authors` | Query items in the initial Add Model catalog. |
 | Next | — | Button | `Next` | A wizard-stage entry, not a saved-state indicator. |
 | Cloud Deployment Point | Follow current form | Selection | Sample cloud and region | Target scope in the existing deployment-point reference. |
 | Cloud Account / Cloud Model | Follow current form | Selection | Sample account / model | Selection items in the existing cloud-model assignment reference. |
 | Model Framework / Type / Version / Image | Follow current form | Table selection | `vllm` / `v1.0` | Framework information in the existing compute-plan view, not initial catalog fields. |
-| GPU Model / GPU Count / CPU Cores / Memory (GB) / Card Type | No | Specification filters | `1` / `4` / `16` / `GPU` | Existing deployment-specification query items. |
 | Specification / Price / Billing Cycle | Follow current form | Result columns | `example.spec` / `--` | Existing specification and cost display; check current quotations before use. |
 | Request URL / Request Method | Follow current form | Text / Selection | `{request_url}` / `POST` | Existing output fields; Request URL is labeled Generated after deployment in the figure. |
 | Request Headers / Request Parameters | Follow interface requirements | Parameter tables | `Authorization` / `temperature` | Two parameter groups in the existing output view; do not use real credentials as examples. |
 | Parameter type / Required | Follow interface requirements | Selection / Checkbox | `string` | Per-parameter definitions in the existing tables. |
+
 
 ## Pitfalls
 

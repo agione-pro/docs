@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Customer Billing > Top-up Orders |
-| Page route | `/billing/customers/top-ups/orders` |
-| Managed objects | Customer top-up orders, order scope, top-up source, payment amount, credits added, and status |
+| Navigation Path | Billing > Customer Billing > Top-up Orders |
+| Page Route | `/billing/customers/top-ups/orders` |
+| Managed Object | Customer top-up orders, order scope, top-up source, payment amount, credits added, and status |
 
 Use this page to locate top-up orders by order number, customer identity, status, source, and time range, then review amounts, credits added, and timestamps. Access approvals separately through [Top-up Approvals](../top-up-approvals/).
 
@@ -87,6 +87,10 @@ The figure shows the empty results for `documentation-example` in the order-numb
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Enter order no. | No | Text | `<order-number>` | Order-number query input. |
@@ -94,6 +98,11 @@ The figure shows the empty results for `documentation-example` in the order-numb
 | Top-up order status | No | Dropdown | `<order-status>` | Filters by order status. |
 | Top-up source | No | Dropdown / list text | `<top-up-source>` | Filters and displays the order source. |
 | Time range | No | Date range | `<start-date> - <end-date>` | Limits the query time range. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Order no. | Read-only | Text | `<order-number>` | Order identifier in the list. |
 | Customer | Read-only | Customer information | `<customer>` | Corresponding customer identity. |
 | Order scope | Read-only | Scope information | `<order-scope>` | Scope to which the order belongs. |
@@ -103,6 +112,7 @@ The figure shows the empty results for `documentation-example` in the order-numb
 | Completed at | Read-only | Time | `<completion-time>` | Order completion time. |
 | Created at | Read-only | Time | `<creation-time>` | Order creation time. |
 | Details | Not applicable | Row-level entry | `Details` | When records are available, open the target order to review its information. |
+
 
 ## Pitfalls
 

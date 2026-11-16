@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Personal > Dashboard |
-| Page route | `/user/user-space/workspace/overview` |
-| Managed objects | Personal Keys quota, project and member statistics, API Key statistics, and quick actions |
+| Navigation Path | Settings > Personal > Dashboard |
+| Page Route | `/user/user-space/workspace/overview` |
+| Managed Object | Personal Keys quota, project and member statistics, API Key statistics, and quick actions |
 
 #### Beginner Explanation
 

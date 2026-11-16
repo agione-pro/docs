@@ -9,10 +9,10 @@ Updated: 2026-11-11
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | User |
-| Navigation Path | AI Infra(On-Cloud) > Access Management > Access Accounts |
+| Applicable Role | User |
+| Navigation Path | On-Cloud > Access Management > Access Accounts |
 | Page Route | `/infrahub/user/access/account` |
-| Managed Objects | Cloud accounts and credentials required to access cloud-platform resources |
+| Managed Object | Cloud accounts and credentials required to access cloud-platform resources |
 
 #### Beginner Explanation
 
@@ -71,6 +71,10 @@ The figure shows the blank Add Cloud Account form. Account Name, Select Cloud Pl
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud Platform | No | Dropdown filter | `Select Cloud Platform` | Filters by cloud platform; this is not a set of cloud-platform tabs. |
@@ -78,6 +82,11 @@ The figure shows the blank Add Cloud Account form. Account Name, Select Cloud Pl
 | Status | No | Dropdown filter | `Select account status` | Filters by account status, corresponding to the Status column. |
 | Search | No | Button | `Search` | Query entry. |
 | Reset | No | Button | `Reset` | Entry for resetting query criteria. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Cloud Account Name | — | List field | `demo-cloud-account` | The account's platform and type appear beneath its name. |
 | Status | — | Status label | `Healthy` | Connectivity status of the sample record, not an enumeration of every status. |
 | Credential Identifier | — | List field | `AccessKey ID` | Displays credential type and identifier information; this sample type does not represent every cloud platform. |
@@ -92,6 +101,7 @@ The figure shows the blank Add Cloud Account form. Account Name, Select Cloud Pl
 | More actions | No | Row action | `...` | To the right of Edit; refer to the actual expanded menu. |
 | Cancel | No | Button | `Cancel` | Exits the current add form. |
 | Confirm | No | Button | `Confirm` | Form submission entry; review all inputs before clicking. |
+
 
 ## Pitfalls
 

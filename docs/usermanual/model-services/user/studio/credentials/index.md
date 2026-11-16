@@ -1,18 +1,18 @@
 # My Credentials
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider |
-| Navigation | **Model Services** > **Studio** > **My Credentials** |
-| Route | `/modelone/credentials` |
-| Managed objects | Model source credentials, Endpoint bindings, linked models, and revisions |
+| Applicable Role | Model Provider |
+| Navigation Path | Model Services > Studio > My Credentials |
+| Page Route | `/modelone/credentials` |
+| Managed Object | Model source credentials, Endpoint bindings, linked models, and revisions |
 
 #### Beginner Explanation
 
@@ -98,6 +98,18 @@ The figure shows `3 Credential information & API Key` provides required `Name` a
 3. Click **"Search"** or **"Reset"**.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search credential name or description | — | — | — | Search by credential name or description. |
+| Model source (query) | — | — | — | Filter the list by model source. |
+| Status (query) | — | — | — | Filter the list by credential status. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -10,9 +10,9 @@ Updated: 2026-11-13
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | The current operator Demo sidebar has no Account Adjustment entry; use the known route below. |
-| Page route | `/billing/admin/account-adjustments` |
-| Managed objects | Current availability of the Account Adjustment page |
+| Navigation Path | The current operator Demo sidebar has no Account Adjustment entry; use the known route below. |
+| Page Route | `/billing/admin/account-adjustments` |
+| Managed Object | Current availability of the Account Adjustment page |
 
 In the current operator Demo, the known Account Adjustment route displays an under-development notice without an input form, and the sidebar has no Account Adjustment entry. Use the known route to inspect this state, then use the available billing query pages; this does not establish adjustment availability in other environments.
 

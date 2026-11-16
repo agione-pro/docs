@@ -1,18 +1,18 @@
 # Meta Models
 
 ::: info Document Information
-Version: v2.2
-Updated: 2026-11-15
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
-| Navigation path | **Model Services** > **Settings** > **Meta Models** |
-| Page route | `/modelone/settings/meta`; add page `/modelone/settings/meta/addModel` |
-| Managed objects | Meta model name, series, unique identifier, scene, status, model type, input/output modalities, advanced capabilities, token limits, and official native protocols |
+| Applicable Role | Operator Admin |
+| Navigation Path | Model Services > Settings > Meta Models |
+| Page Route | `/modelone/settings/meta`; add page `/modelone/settings/meta/addModel` |
+| Managed Object | Meta model name, series, unique identifier, scene, status, model type, input/output modalities, advanced capabilities, token limits, and official native protocols |
 
 #### Beginner Explanation
 
@@ -114,6 +114,19 @@ Before enabling, disabling, or deleting, confirm whether templates or publishing
 Imported and exported files may contain protocol and capability configuration. Keep them in a controlled location and do not commit them to a code repository or send them to unauthorized groups.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+As needed in the query group describes query use, not backend form validation. An em dash means that this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Model Author search | As needed for querying | Text | — | Search the model author list on the left, separately from the meta model name query. |
+| Model Author selection | As needed for scope | List selection | `DeepSeek` | The selected author determines the meta model list on the right. |
+| Meta model name | As needed for querying | Text | — | Enter a name keyword and click Search; Reset clears the conditions. |
+| Two Please select drop-downs | As needed for filtering | Drop-downs | `Please select` | Narrow the list. Their business names are not specified on this page; do not equate them with the Status or type columns in the results. |
+
+#### Configuration Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

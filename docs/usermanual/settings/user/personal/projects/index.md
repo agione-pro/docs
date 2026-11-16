@@ -1,8 +1,8 @@
 # Projects
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-15
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-15
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Personal > Projects |
-| Page route | `/user/user-space/projects` |
-| Managed objects | Projects, project status, budget usage, creation time, and project details |
+| Navigation Path | Settings > Personal > Projects |
+| Page Route | `/user/user-space/projects` |
+| Managed Object | Projects, project status, budget usage, creation time, and project details |
 
 #### Beginner Explanation
 
@@ -83,6 +83,16 @@ The figure shows Model Access in the same empty drawer, with the whitelist disab
 Project details include Overview, Members, Usage, API Keys, Activity, and Settings tabs. Review budget, members, model allowlist, and status.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Filters | — | — | — | Search projects and availability status |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

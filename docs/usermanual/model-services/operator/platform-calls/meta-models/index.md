@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
-| Navigation path | **Model Services** > **Platform Call Analytics** > **Meta Models** |
-| Page route | `/modelone/model-observation/operator/meta-models` |
-| Managed objects | Requests, share, success rate, failed calls, rate-limited calls, tokens, and latency by meta model |
+| Applicable Role | Operator Admin |
+| Navigation Path | Model Services > Platform Call Analytics > Meta Models |
+| Page Route | `/modelone/model-observation/operator/meta-models` |
+| Managed Object | Requests, share, success rate, failed calls, rate-limited calls, tokens, and latency by meta model |
 
 **Beginner explanation**: This page breaks call statistics down by meta model. It answers which meta model receives the most calls and how its success rate and latency look. The meta model itself is maintained in **Settings > Meta Models**; this page is read-only.
 
@@ -57,17 +57,27 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Required | Month picker | `2026-11 (All Month)` | Statistics month |
 | By Date | Optional | Toggle | `By Date` | Time granularity |
 | Model | Optional | Text | `DeepSeek-V4-Pro` | Filter by name or ID |
 | Source | Optional | Drop-down | `All` | Filter by source |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Meta Model | System-maintained | Text | `DeepSeek-V4-Pro` | Meta model that received calls |
 | Requests / Share / Success Rate | System-maintained | Number / percentage | `1,024` / `32%` / `99.5%` | Volume and quality metrics |
 | Failed / Rate Limited | System-maintained | Number | `5` / `2` | Failed and rate-limited calls |
 | Total Tokens | System-maintained | Number | `1,200,000` | Total tokens |
 | Avg TTFT / TPOT / E2E | System-maintained | Duration | `320 ms` | Latency metrics |
+
 
 ## Pitfalls
 

@@ -1,8 +1,8 @@
 # Notification Preferences
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Activity & Notifications > Notification Preferences |
-| Page route | `/user/user-space/notification/receiving` |
-| Managed objects | Personal notification preferences, tenant notification settings, notification types, channels, and recipients |
+| Navigation Path | Settings > Activity & Notifications > Notification Preferences |
+| Page Route | `/user/user-space/notification/receiving` |
+| Managed Object | Personal notification preferences, tenant notification settings, notification types, channels, and recipients |
 
 #### Beginner Explanation
 
@@ -77,6 +77,16 @@ The personal tab provides `Refresh` and `Save personal preferences`. The tenant 
 4. Confirm the affected tenant members before saving. For read-only inspection, cancel without submitting changes.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Tenant tab: notification name / channel / severity / business topic | — | — | — | The personal tab provides `Refresh` and `Save personal preferences`. The tenant tab provides notification-name, channel, and severity filters plus business-topic buttons. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

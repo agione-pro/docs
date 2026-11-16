@@ -1,18 +1,18 @@
 # Members
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider & User |
-| Navigation | **Model Services** > **My Calls** > **Members** |
-| Route | `/modelone/model-observation/eu/members` |
-| Managed objects | Call count, share, success rate, tokens, and latency aggregated by member |
+| Applicable Role | Model Provider & User |
+| Navigation Path | Model Services > My Calls > Members |
+| Page Route | `/modelone/model-observation/eu/members` |
+| Managed Object | Call count, share, success rate, tokens, and latency aggregated by member |
 
 **New to this page**: Members answers "who is using the models". Select a month, filter by model or source, then compare members by volume, success rate, and latency.
 
@@ -58,6 +58,16 @@ The figure shows filters are month, `By Date`, `Model`, `Client Source`, and `Na
 5. Compare volume, share, success rate, and latency.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Name or ID | — | — | — | Search using the Name or ID box in this page’s filter bar. Other documented conditions remain in the original table. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Deploy Assets > Frameworks |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Deploy Assets > Frameworks |
 | Page Route | `/infrahub/op/model/framework` |
-| Managed Objects | Inference frameworks, deployment environments, and framework runtime-version configuration |
+| Managed Object | Inference frameworks, deployment environments, and framework runtime-version configuration |
 
 #### Beginner Explanation
 
@@ -91,9 +91,18 @@ The figure shows an existing runtime-version configuration drawer with version, 
 
 Step-1 fields follow the current visible form. Runtime-version fields refer only to the existing version figure; they are not shown on the initial page and do not establish verification of the current second step.
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Framework Name / Cloud Platform / Framework Type query | No | Text / Selection | Sample framework / cloud | Query items in Framework Management. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Cloud Platform | Yes | Selection | Follow current options | Step-1 deployment-environment field. |
 | Cloud Account | Yes | Selection | Sample cloud account | Step-1 current cloud account, not a secret-value input. |
 | Resource Pool | Yes | Selection | Sample resource pool | Step-1 resource pool for the deployment environment, not the legacy Region field name. |
@@ -108,6 +117,7 @@ Step-1 fields follow the current visible form. Runtime-version fields refer only
 | Master Node Startup Command / Worker Node Startup Command | Follow current form | Multiline text | Follow framework requirements | Two startup-command types in existing version configuration. |
 | Environment Variables / Extended Parameters | Follow framework requirements | Key-value configuration | `ENV_NAME=value` | Configuration items in the existing version figure; do not enter real secrets. |
 | Publish Version | — | Action entry | `Publish Version` | Present in the current list and as a submit button in the existing version figure; distinguish entry from result. |
+
 
 ## Pitfalls
 

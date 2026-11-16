@@ -1,8 +1,8 @@
 # Roles
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-14
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-14
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Members & Roles > Roles |
-| Page route | `/user/user-space/roles` |
-| Managed objects | Role names, role codes, descriptions, associated tenant count, assigned account count, and functional permissions |
+| Navigation Path | Settings > Members & Roles > Roles |
+| Page Route | `/user/user-space/roles` |
+| Managed Object | Role names, role codes, descriptions, associated tenant count, assigned account count, and functional permissions |
 
 #### Beginner Explanation
 
@@ -93,6 +93,16 @@ The figure shows the current inline `Add Role` editor with role name, descriptio
 4. Confirm that the role disappears from the left list and that member menus and actions behave as expected.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Role list | — | — | — | Search by role name or code; shows the custom role count. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

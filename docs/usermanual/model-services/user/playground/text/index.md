@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider & User |
-| Navigation | **Model Services** > **Playground** > **Text** |
-| Route | `/modelone/exploration/chat` |
-| Managed objects | Selected model or aggregate model, conversation input, and comparison results |
+| Applicable Role | Model Provider & User |
+| Navigation Path | Model Services > Playground > Text |
+| Page Route | `/modelone/exploration/chat` |
+| Managed Object | Selected model or aggregate model, conversation input, and comparison results |
 
 **New to this page**: Text is the online trial entry for catalog models. Choose a model, ask a question, and read the response; turn on **Model Compare** when you need side-by-side results.
 

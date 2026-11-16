@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider & User |
-| Navigation | **Model Services** > **Playground** > **Images** |
-| Route | `/modelone/exploration/image` |
-| Managed objects | Image model, size, image count, and generation tasks |
+| Applicable Role | Model Provider & User |
+| Navigation Path | Model Services > Playground > Images |
+| Page Route | `/modelone/exploration/image` |
+| Managed Object | Image model, size, image count, and generation tasks |
 
 **New to this page**: Images turns a text prompt into pictures. Choose an image model, set size and count, enter a description, and review results in **Task query**.
 

@@ -1,8 +1,8 @@
 # Members
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Members & Roles > Members |
-| Page route | `/user/user-space/team-members` |
-| Managed objects | Tenant administrators, members, roles, and contact information |
+| Navigation Path | Settings > Members & Roles > Members |
+| Page Route | `/user/user-space/team-members` |
+| Managed Object | Tenant administrators, members, roles, and contact information |
 
 #### Beginner Explanation
 
@@ -76,6 +76,16 @@ The figure shows an empty Members list before the Add Member form is opened. The
 3. Save, return to the list, and verify the roles, status, and update time.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Filters | — | — | — | Username and Phone Number |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

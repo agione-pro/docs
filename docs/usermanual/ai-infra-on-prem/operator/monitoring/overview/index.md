@@ -1,8 +1,8 @@
 # Overview
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -11,6 +11,7 @@ Updated: 2026-11-04
 | --- | --- |
 | Applicable Role | Operator |
 | Navigation Path | On-Prem > Monitoring > Overview |
+| Page Route | `/powerone/monitor/overview` |
 | Managed Object | Resource status, capacity watermarks, exception summaries, and dedicated monitoring entries |
 
 #### Beginner Explanation

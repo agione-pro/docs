@@ -1,18 +1,18 @@
 # Tags
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
-| Navigation path | **Model Services** > **Settings** > **Tags** |
-| Page route | `/modelone/settings/tags` |
-| Managed objects | Tag categories, subtags, multilingual names, notes, status, and hierarchy |
+| Applicable Role | Operator Admin |
+| Navigation Path | Model Services > Settings > Tags |
+| Page Route | `/modelone/settings/tags` |
+| Managed Object | Tag categories, subtags, multilingual names, notes, status, and hierarchy |
 
 **Beginner explanation**: Tags are the category shelves of the model marketplace. Create a top-level category first, then add subtags under it. Categories group related capabilities; subtags name the specific capability or scene that users filter by.
 
@@ -85,6 +85,16 @@ The figure shows the dialog contains `Code`, multilingual `Tag Content`, and `No
 - Before disabling or deleting, confirm whether models or filter entries still use the tag.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Name | — | — | — | Name keyword search, with this page’s Search and Reset buttons. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

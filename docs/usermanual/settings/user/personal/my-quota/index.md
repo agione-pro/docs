@@ -10,9 +10,9 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Personal > My Quota |
-| Page route | `/user/user-space/my-quota` |
-| Managed objects | Personal cycle quota, reset cycle, used quota, model access scope, quota/model permission requests, and Model API Key usage |
+| Navigation Path | Settings > Personal > My Quota |
+| Page Route | `/user/user-space/my-quota` |
+| Managed Object | Personal cycle quota, reset cycle, used quota, model access scope, quota/model permission requests, and Model API Key usage |
 
 #### Beginner Explanation
 

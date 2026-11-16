@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Finance Operations > Monthly Overview |
-| Page route | `/billing/admin/provider-settlements/monthly-overview` |
-| Managed objects | Billing-cycle tenant settlement statistics, amount summaries, statistical revenue mix, and task list |
+| Navigation Path | Billing > Finance Operations > Monthly Overview |
+| Page Route | `/billing/admin/provider-settlements/monthly-overview` |
+| Managed Object | Billing-cycle tenant settlement statistics, amount summaries, statistical revenue mix, and task list |
 
 `Monthly Overview` lets you select a billing cycle and refresh statistics to review tenant settlement states, Gross billing, Tenant payable total, Platform retained fee, statistical revenue mix, and pending tasks, then open settlement generation.
 
@@ -73,10 +73,19 @@ The figure shows the empty result after selecting billing cycle 2025-01 and clic
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing Cycle | Yes | Month | `2025-01` | Set the query month, then click Refresh. |
 | Refresh | Operation entry | Button | Refresh | Loads statistics for the selected billing cycle. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Total Tenants | Displayed by system | Number | `0` | Tenants included in the selected billing-cycle statistics. |
 | Settled | Displayed by system | Number | `0` | Settled tenants in the four statistic cards. |
 | Tenants in pipeline | Displayed by system | Number | `0` | Tenants pending processing in the selected billing cycle. |
@@ -92,6 +101,7 @@ The figure shows the empty result after selecting billing cycle 2025-01 and clic
 | To advance | Displayed by system | Number | `0` | Settlements to advance in the task list; empty state: “No settlements to advance”. |
 | Long unresolved | Displayed by system | Number | `0` | Long-unresolved count in the task list; empty state: “Nothing needs repair”. |
 | Generate Settlement | Operation entry | Button | Generate Settlement | Opens the settlement generation page; see Settlement List for subsequent steps. |
+
 
 ## Pitfalls
 

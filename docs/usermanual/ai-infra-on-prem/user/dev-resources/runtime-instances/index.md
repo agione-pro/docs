@@ -1,8 +1,8 @@
 # Runtime Instances
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -48,6 +48,27 @@ Use this page to view runtime instances and to start the creation flow.
 ![Runtime Instances](./images/runtime-instances-list.png)
 
 The list page organizes instances under the `Single Node` and `Cluster` tabs, and provides filtering by region and status, search by task name, clearing the filters, and the `Create Instance` entrypoint. Each instance is shown as a card with its status, image, resource specification, and open ports. The create entrypoint first selects a deployment type and then opens the task parameter form.
+
+#### Python Training Script
+
+Used to start a training entry script. Check the entry script, data source, output location, and parameter passing method. Do not record real paths or test parameters in the document.
+
+#### Shell Script
+
+Used to execute batch processing, data preparation, or multi-step tasks. Before creation, confirm that the script exists in the image or mounted directory, and that output is written to a persistent path.
+
+#### Custom Service
+
+Used to start a long-running service process. Before creation, confirm the service entrypoint, listening method, health status, and resource release method.
+
+#### Parameter Passing Methods
+
+| Area | Description |
+| --- | --- |
+| Command-line parameters: The script supports command-line parameters. | Pass parameters on the command line inside `Startup Command`. Do not record real parameters in the document. |
+| Environment variables: The framework reads environment variables to control behavior. | Describe field usage only. Do not record real tokens, passwords, or endpoints. |
+| Configuration file: Many parameters or reusable configuration is needed. | Confirm that the configuration file comes from a mounted directory or an image built-in path. |
+| Mount path: Input data, model files, or output results. | Confirm that input and output directories use persistent storage. |
 
 ## Main Operations
 
@@ -102,45 +123,38 @@ The figure shows the form before image selection: the `Image` area under `Runtim
 - Before an image is selected, `Specification` and `Storage Paths` may return no data. Complete the image selection before checking downstream configuration.
 
 ## Parameter Quick Reference
+#### Query and Filters
 
-| Field Name | Required | Field Type | Description |
-| --- | --- | --- | --- |
-| Task name | Yes | Text | Display name of the runtime instance on the list card. |
-| Deployment Type | Yes | Radio card | Select the single-node or cluster form. |
-| Region | Yes | Drop-down | Select the target region. The drop-down also shows the health status of the region. |
-| Project | Not marked | Drop-down | Set the ownership scope of the instance, which can be left unspecified. |
-| Image | Yes | Dialog picker | Select through `Select Image` or `Change Image` from `Public Images` and `My Images`. |
-| Image Version | Yes | Drop-down | Specify the `Image Version` among the versions of the selected image. |
-| Specification | Yes | List selection | Select the target specification in the list made up of `Spec`, `CPU`, `Memory`, `Accelerator`, and `Price`. |
-| Resource Spec (list card) | N/A | Card field | The label shown on the list card for the selected compute specification. The create form uses the `Specification` list. |
-| Storage Paths | Not marked | Table configuration | Configure `Container Path`, `Access Policy`, `External Storage`, `Storage Type`, and `Capacity` through `Add Storage Mount`. |
-| Container Open Ports | Not marked | Table configuration | Configure `Container Port`, `Access Policy`, and `Port Tag` through `Add Port`. |
-| Environment Variables | No | Key-value configuration | Check entries whose `Source` is `Built-in`, and add custom entries through `Add Environment Variable`. |
-| Startup Command | Yes | Text | Configure the command or script executed after container startup. |
-| Task Log Files | Not marked | List configuration | Register the log files to keep inside the instance through `Add Log File`. |
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Region (list filter) | — | — | — | Filters runtime instances by region. |
+| Status (list filter) | — | — | — | Filters runtime instances by status. |
+| Task name (list search) | — | — | — | Searches runtime instances by task name. Clearing filters is a separate list action. |
+
+
+An em dash in Example means that this page provides no example; it is not a default or a value to enter.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Task name | Yes | Text | — | Display name of the runtime instance on the list card. |
+| Deployment Type | Yes | Radio card | — | Select the single-node or cluster form. |
+| Region | Yes | Drop-down | — | Select the target region. The drop-down also shows the health status of the region. |
+| Project | Not marked | Drop-down | — | Set the ownership scope of the instance, which can be left unspecified. |
+| Image | Yes | Dialog picker | — | Select through `Select Image` or `Change Image` from `Public Images` and `My Images`. |
+| Image Version | Yes | Drop-down | — | Specify the `Image Version` among the versions of the selected image. |
+| Specification | Yes | List selection | — | Select the target specification in the list made up of `Spec`, `CPU`, `Memory`, `Accelerator`, and `Price`. |
+| Resource Spec (list card) | N/A | Card field | — | The label shown on the list card for the selected compute specification. The create form uses the `Specification` list. |
+| Storage Paths | Not marked | Table configuration | — | Configure `Container Path`, `Access Policy`, `External Storage`, `Storage Type`, and `Capacity` through `Add Storage Mount`. |
+| Container Open Ports | Not marked | Table configuration | — | Configure `Container Port`, `Access Policy`, and `Port Tag` through `Add Port`. |
+| Environment Variables | No | Key-value configuration | — | Check entries whose `Source` is `Built-in`, and add custom entries through `Add Environment Variable`. |
+| Startup Command | Yes | Text | — | Configure the command or script executed after container startup. |
+| Task Log Files | Not marked | List configuration | — | Register the log files to keep inside the instance through `Add Log File`. |
 
 The page shows no required-field marker on the field labels. For rows marked `Not marked` in the `Required` column, the submission validation result of the page prevails.
 
-### Python Training Script
-
-Used to start a training entry script. Check the entry script, data source, output location, and parameter passing method. Do not record real paths or test parameters in the document.
-
-### Shell Script
-
-Used to execute batch processing, data preparation, or multi-step tasks. Before creation, confirm that the script exists in the image or mounted directory, and that output is written to a persistent path.
-
-### Custom Service
-
-Used to start a long-running service process. Before creation, confirm the service entrypoint, listening method, health status, and resource release method.
-
-### Parameter Passing Methods
-
-| Method | Applicable Scenario | Description |
-| --- | --- | --- |
-| Command-line parameters | The script supports command-line parameters. | Pass parameters on the command line inside `Startup Command`. Do not record real parameters in the document. |
-| Environment variables | The framework reads environment variables to control behavior. | Describe field usage only. Do not record real tokens, passwords, or endpoints. |
-| Configuration file | Many parameters or reusable configuration is needed. | Confirm that the configuration file comes from a mounted directory or an image built-in path. |
-| Mount path | Input data, model files, or output results. | Confirm that input and output directories use persistent storage. |
+Script purposes and parameter passing methods are described in Page Description.
 
 ## Pitfalls
 

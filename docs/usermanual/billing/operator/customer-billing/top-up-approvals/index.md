@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Customer Billing > Top-up Approvals |
-| Page route | `/billing/customers/top-ups/approvals` |
-| Managed objects | Customer top-up requests and their audit information |
+| Navigation Path | Billing > Customer Billing > Top-up Approvals |
+| Page Route | `/billing/customers/top-ups/approvals` |
+| Managed Object | Customer top-up requests and their audit information |
 
 `Top-up Approvals` provides customer name and status filters to locate top-up requests and review requested credits, request details, audit information, and remarks.
 
@@ -68,10 +68,19 @@ The figure shows the Top-up Approvals list after entering `documentation-example
 
 The table distinguishes query inputs from list display items; display items require no input.
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Customer name | No | Text filter | `documentation-example` | Enter the customer name to query. |
 | Status (filter) | No | Dropdown filter | Current UI options | Select a status to narrow the query scope. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Customer & Applicant | Not applicable (display item) | List column | — | Identify the customer and applicant for the request. |
 | Requested credits | Not applicable (display item) | List column | — | Read the number of credits requested. |
 | Request details | Not applicable (display item) | List column | — | Read the request description. |
@@ -79,6 +88,7 @@ The table distinguishes query inputs from list display items; display items requ
 | Audit info & remarks | Not applicable (display item) | List column | — | Read audit information and remarks. |
 | Applied at | Not applicable (display item) | List column | — | Check the application time. |
 | Actions | Not applicable (display item) | List column | — | The action area for a record row. |
+
 
 ## Pitfalls
 

@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Personal > Profile |
-| Page route | `/user/user-space/profile` |
-| Managed objects | Tenant information, user settings, contact details, password status, identity roles, and language preference |
+| Navigation Path | Settings > Personal > Profile |
+| Page Route | `/user/user-space/profile` |
+| Managed Object | Tenant information, user settings, contact details, password status, identity roles, and language preference |
 
 #### Beginner Explanation
 

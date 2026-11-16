@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider & User |
-| Navigation path | Billing > Overview |
-| Page route | `/billing/my/account` |
-| Managed objects | Account balance, spending trends, alert threshold, recent transactions, and billing entries. |
+| Navigation Path | Billing > Overview |
+| Page Route | `/billing/my/account` |
+| Managed Object | Account balance, spending trends, alert threshold, recent transactions, and billing entries. |
 
 Account Overview summarizes the current account's balance and spending. Open detailed records for reconciliation.
 

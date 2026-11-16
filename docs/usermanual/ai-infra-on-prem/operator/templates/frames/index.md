@@ -1,8 +1,8 @@
 # Frames
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -57,6 +57,45 @@ The detail header shows `<FRAMEWORK> : <VERSION>`, the version state badge, the 
 Below the header the detail area reads, in order, `Quantization Config Matched`, `Weight Quantization`, `KV Cache Quantization`, `Container Runtime` with its `Image` row, `Main Node Command`, and `Worker Node Command`. Each command box shows the hint `Type $ to use placeholders`.
 
 The matched block reports `Source: VRAM Calculation - Framework Quantization Config.`, so the quantization fields are consumed here instead of being maintained on this page, and an entry without a match shows `Not configured`. Two icon buttons without text labels sit at the top right of the page, and a floating help button sits at the bottom right.
+
+#### Port Exposure Policy and Port Tags
+
+| Area | Description |
+| --- | --- |
+| Port Exposure Policy: `Web access` | Provides a Web-based access entry. Access requests carry a time-limited security token, `wmtoken`. |
+| Port Exposure Policy: `API validation access` | Provides a native API endpoint. The `Authorization` request header must carry valid signature information. |
+| Port Exposure Policy: `Web/API compatible validation access` | The port does not enable authentication. Use it only in trusted networks or test scenarios. |
+| Port Exposure Policy: `Direct port forwarding` | The port does not enable authentication and is accessed through the cluster node IP and mapped port. It is suitable for internal debugging or specific network architectures. |
+| Port Tag: `OpenAI API Port` | Identifies an inference service compatible with the OpenAI API format. The system generates corresponding API call help documents. |
+| Port Tag: `Ollama API Port` | Identifies an inference service compatible with the Ollama API format. The system generates corresponding Ollama API usage guides. |
+| Port Tag: `Custom` | Used for internal notes or special protocol identifiers. It does not trigger automatic document generation. |
+
+#### Parameter Placeholder Description
+
+Startup commands and extra parameters can use placeholders, and each command box shows the hint `Type $ to use placeholders`. When a job is created, the platform replaces placeholders with actual task cluster parameters.
+
+| Area | Description |
+| --- | --- |
+| `${regionId}` | Region ID assigned to the task cluster. |
+| `${zoneId}` | Zone ID assigned to the task cluster. |
+| `${name}` | Task cluster name. |
+| `${flavorId}` | Specification ID used by the task cluster. |
+| `${image}` | Image used by the task cluster. |
+| `${envs}` | Environment variables. |
+| `${useRdma}` | Whether to use the RDMA network. |
+| `${openSsh}` | Whether SSH is enabled. |
+| `${startCommand}` | Startup command object, including main node and worker node commands. |
+| `${clusterId}` | Cluster ID assigned to the task. |
+| `${portOpenPolicy}` | Port exposure policy. |
+| `${portTag}` | Port tag of the exposed port. |
+| `${jobType}` | Task deployment type. |
+| `${modelName}` | Fast deployment model name. |
+| `${frame}` | Fast deployment framework name. |
+| `${frameVersion}` | Fast deployment framework version. |
+| `${extraParamString}` | Extra parameter concatenation string. Parameter names do not include the `--` prefix. |
+| `${prefixExtraParamString}` | Extra parameter concatenation string. Parameter names include the `--` prefix. |
+| `${vendor}` | Model vendor. |
+| `${supportModelClusterIds}` | List of cluster IDs that support the current model. |
 
 ## Main Operations
 
@@ -193,6 +232,14 @@ Add, change, or remove the ports a framework version exposes when its service ac
 - Unauthenticated or direct forwarding policies expand the exposure scope; use them only inside a clearly controlled network boundary.
 
 ## Parameter Quick Reference
+#### Query and Filters
+
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Framework (search) | — | — | — | Filters frameworks by name; use Search to run the filter. |
+
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -214,44 +261,7 @@ Add, change, or remove the ports a framework version exposes when its service ac
 | Parameter Placeholder | No | Configuration text | `${modelName}` | Variable used in startup commands and extra parameters. Use platform-supported placeholder names and avoid unsupported variables. |
 | Actions | System-generated | Action entry | `Edit` | Add, edit, save, and similar page operations. `Save` (on the framework add and edit forms) is a high-risk final action. |
 
-#### Port Exposure Policy and Port Tags
-
-| Configuration | Value | Description |
-| --- | --- | --- |
-| Port Exposure Policy | `Web access` | Provides a Web-based access entry. Access requests carry a time-limited security token, `wmtoken`. |
-| Port Exposure Policy | `API validation access` | Provides a native API endpoint. The `Authorization` request header must carry valid signature information. |
-| Port Exposure Policy | `Web/API compatible validation access` | The port does not enable authentication. Use it only in trusted networks or test scenarios. |
-| Port Exposure Policy | `Direct port forwarding` | The port does not enable authentication and is accessed through the cluster node IP and mapped port. It is suitable for internal debugging or specific network architectures. |
-| Port Tag | `OpenAI API Port` | Identifies an inference service compatible with the OpenAI API format. The system generates corresponding API call help documents. |
-| Port Tag | `Ollama API Port` | Identifies an inference service compatible with the Ollama API format. The system generates corresponding Ollama API usage guides. |
-| Port Tag | `Custom` | Used for internal notes or special protocol identifiers. It does not trigger automatic document generation. |
-
-#### Parameter Placeholder Description
-
-Startup commands and extra parameters can use placeholders, and each command box shows the hint `Type $ to use placeholders`. When a job is created, the platform replaces placeholders with actual task cluster parameters.
-
-| Placeholder | Description |
-| --- | --- |
-| `${regionId}` | Region ID assigned to the task cluster. |
-| `${zoneId}` | Zone ID assigned to the task cluster. |
-| `${name}` | Task cluster name. |
-| `${flavorId}` | Specification ID used by the task cluster. |
-| `${image}` | Image used by the task cluster. |
-| `${envs}` | Environment variables. |
-| `${useRdma}` | Whether to use the RDMA network. |
-| `${openSsh}` | Whether SSH is enabled. |
-| `${startCommand}` | Startup command object, including main node and worker node commands. |
-| `${clusterId}` | Cluster ID assigned to the task. |
-| `${portOpenPolicy}` | Port exposure policy. |
-| `${portTag}` | Port tag of the exposed port. |
-| `${jobType}` | Task deployment type. |
-| `${modelName}` | Fast deployment model name. |
-| `${frame}` | Fast deployment framework name. |
-| `${frameVersion}` | Fast deployment framework version. |
-| `${extraParamString}` | Extra parameter concatenation string. Parameter names do not include the `--` prefix. |
-| `${prefixExtraParamString}` | Extra parameter concatenation string. Parameter names include the `--` prefix. |
-| `${vendor}` | Model vendor. |
-| `${supportModelClusterIds}` | List of cluster IDs that support the current model. |
+Port policies, tags, and placeholders are described in Page Description.
 
 ## Pitfalls
 

@@ -1,8 +1,8 @@
 # Overview
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -218,6 +218,17 @@ When the deployment entry is unavailable, a target specification cannot be reque
 - This page provides no quota adjustment entry. Quota changes are completed by the operator on the Operator side.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Period switch / date range | — | — | — | In the current Model Consumer main view, the visible inputs are model search, the `This Month` / `This Week` period switch, and a date range. No Region or Resource Type selector is shown in this view. Verify region ownership on the corresponding source page rather than selecting a region here. |
+| Search model / author / tag | — | — | — | 4. Filter the list with the `Search model / author / tag` field, and restore the full list with `Clear Filters`. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

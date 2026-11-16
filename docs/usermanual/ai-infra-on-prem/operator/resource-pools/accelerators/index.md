@@ -1,8 +1,8 @@
 # Accelerators
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -184,6 +184,16 @@ Delete accelerator basic information when a model recorded in the platform is re
 - After an accidental delete, re-create the model through **"New Accelerator"**, **"New from this"**, or the **"Import/Export"** entry.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+These are list-query controls; their descriptions retain the wording in Page Description. An em dash means no separate required mark, type, or example is specified, not a backend rule.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Vendor Filter | — | — | — | Narrows the scope by vendors such as NVIDIA, AMD, Intel, and Huawei. |
+
+#### Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

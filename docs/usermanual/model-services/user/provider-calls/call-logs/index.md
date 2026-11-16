@@ -1,18 +1,18 @@
 # Call Logs
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider |
-| Navigation | **Model Services** > **Customer Calls** > **Call Logs** |
-| Route | `/modelone/model-observation/provider/calls` |
-| Managed objects | Individual customer calls, customer, client source, status, and latency |
+| Applicable Role | Model Provider |
+| Navigation Path | Model Services > Customer Calls > Call Logs |
+| Page Route | `/modelone/model-observation/provider/calls` |
+| Managed Object | Individual customer calls, customer, client source, status, and latency |
 
 **New to this page**: This log lists each customer request from the publisher perspective. Check performance distribution first, filter or sort by outcome, then verify the customer, source, tokens, and latency of each call.
 
@@ -78,6 +78,16 @@ The figure shows filters include month, `By Date`, `Model`, `Customer`, **Expand
 3. Use `Actions` to open details.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Name or ID | — | — | — | Search using the Name or ID box in this page’s filter bar. Other documented conditions remain in the original table. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

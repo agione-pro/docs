@@ -10,9 +10,9 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | User |
-| Navigation path | Model Services > Studio > My Deployments |
-| Page route | `/modelone/my-deployments/models` |
-| Managed objects | Unified overview and fast cross-subsystem navigation entries for deployed model instances across compute environments (On-Prem Heterogeneous GPU Management and On-Cloud Multi-Platform Scheduling) |
+| Navigation Path | Model Services > Studio > My Deployments |
+| Page Route | `/modelone/my-deployments/models` |
+| Managed Object | Unified overview and fast cross-subsystem navigation entries for deployed model instances across compute environments (On-Prem Heterogeneous GPU Management and On-Cloud Multi-Platform Scheduling) |
 
 #### Beginner Explanation
 
@@ -60,12 +60,17 @@ As an aggregation dashboard, core lifecycle operations seamlessly link to the un
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Region | No | Dropdown | All | Filters model instances deployed in a specific region or availability zone |
 | Topology | No | Segmented Radio | All | Options include All, Single Instance, and Cluster to filter different deployment architectures |
 | Status | No | Dropdown | All Statuses | Options include All Statuses and specific lifecycle states to filter instances |
 | Search by instance name | No | Text Input | qwen2.5 | Enter instance name keywords for precise filtering |
+
 
 ## Pitfalls
 

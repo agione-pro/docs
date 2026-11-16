@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider & User |
-| Navigation | **Model Services** > **Discover** > **Models** |
-| Routes | List `/modelone/store/model`; details `/modelone/store/model/{model ID}` |
-| Managed objects | Published models, model authors, provider instances, pricing, and access information |
+| Applicable Role | Model Provider & User |
+| Navigation Path | Model Services > Discover > Models |
+| Page Route | List `/modelone/store/model`; details `/modelone/store/model/{model ID}` |
+| Managed Object | Published models, model authors, provider instances, pricing, and access information |
 
 **New to this page**: The Models page is the catalog of callable models. Narrow the list by capability, author, or source, open a model to compare providers and prices, then try it in Playground or copy the Quick Start details into your application.
 
@@ -85,6 +85,10 @@ Model providers can click **"Publish Model"** in the upper right. Publishing sco
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Search | No | Text | `GPT-6.1` | Search by model name, author, series, or source |
@@ -95,12 +99,18 @@ Model providers can click **"Publish Model"** in the upper right. Publishing sco
 | Model Author | No | Single select | `OpenAI` | Filter by author |
 | Model Source | No | Single select | `AGIOne` | Filter by source |
 | Scene | No | Single select | `Text Generation` | Filter by scenario |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Model scope | No | Tab | `All Models` / `Private Models` | Switch visible scope |
 | Sort | No | Dropdown | `Newest` | Control list order |
 | Weekly Calls | System | Number | `7` | Calls in the last week |
 | Weekly Tokens | System | Number | `1.2M` | Tokens in the last week |
 | Price | System | Text | `credits 200 / 1,000/M` | Token price or per-image/second price |
 | Status | System | Tag | `Released` | Current publication status |
+
 
 ## Pitfalls
 

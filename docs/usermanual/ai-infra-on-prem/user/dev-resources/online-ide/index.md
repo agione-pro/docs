@@ -1,8 +1,8 @@
 # Online IDE
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -276,17 +276,29 @@ The Console tab opens a shell session in the workspace directory of the IDE.
 - Log entries can contain internal paths of the image; redact them before sharing.
 
 ## Parameter Quick Reference
+#### Query and Filters
 
-| Field Name | Required | Field Type | Description |
-| --- | --- | --- | --- |
-| Instance name | Yes | Text | Display name of the online IDE in the creation form. |
-| Deployment Type | Yes | Radio | Select the single-node or cluster form on the deployment type page. |
-| Region | Yes | Drop-down | Target region of the online IDE, shown with its status. |
-| Project | No | Drop-down | Associates the IDE with a project; leaving the default keeps it unassociated. |
-| Image | Yes | Drop-down | Development environment image, with its image version. |
-| Run specification | Yes | Drop-down | Compute specification row with CPU, memory, accelerator, and price. |
-| Storage Configuration | No | Path | Data source and storage paths added as storage mounts. |
-| Startup Command | No | Text | Startup or runtime command of the online IDE. |
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Region (list filter) | — | — | — | Filters IDE cards by region. |
+| Status (list filter) | — | — | — | Filters IDE cards by status. |
+| Task name (list search) | — | — | — | Searches IDE cards by task name, independently of create-form instance fields. |
+
+
+An em dash in Example means that this page provides no example; it is not a default or a value to enter.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Instance name | Yes | Text | — | Display name of the online IDE in the creation form. |
+| Deployment Type | Yes | Radio | — | Select the single-node or cluster form on the deployment type page. |
+| Region | Yes | Drop-down | — | Target region of the online IDE, shown with its status. |
+| Project | No | Drop-down | — | Associates the IDE with a project; leaving the default keeps it unassociated. |
+| Image | Yes | Drop-down | — | Development environment image, with its image version. |
+| Run specification | Yes | Drop-down | — | Compute specification row with CPU, memory, accelerator, and price. |
+| Storage Configuration | No | Path | — | Data source and storage paths added as storage mounts. |
+| Startup Command | No | Text | — | Startup or runtime command of the online IDE. |
 
 ## Pitfalls
 

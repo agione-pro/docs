@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider & User |
-| Navigation | **Model Services** > **Playground** > **Video** |
-| Route | `/modelone/exploration/video` |
-| Managed objects | Video model, resolution, ratio, and generation tasks |
+| Applicable Role | Model Provider & User |
+| Navigation Path | Model Services > Playground > Video |
+| Page Route | `/modelone/exploration/video` |
+| Managed Object | Video model, resolution, ratio, and generation tasks |
 
 **New to this page**: Video turns a text prompt into a short video. Choose a video model and resolution, enter a scene description, and track the task in **Task query**. Text input and `Add attachment` are available.
 

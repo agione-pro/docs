@@ -1,8 +1,8 @@
 # Clusters
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -348,6 +348,17 @@ The **Node Resources** dimension sets per-node, per-resource ratios; node addres
 - The **Node Overall** and **Node Resources** dimensions list nodes by internal address and identifier. These are sensitive — redact them before sharing any screenshot (only blurred copies are kept in this document).
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+These are list-query controls; their descriptions retain the wording in Page Description. An em dash means no separate required mark, type, or example is specified, not a backend rule.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Region filter | — | — | — | The `All` drop-down filters clusters by **region** (for example, a region shown as `Normal` or `Invalid`). It is a region filter, not a cluster-status filter. |
+| Search area | — | — | — | Searches clusters by **cluster name**. |
+
+#### Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

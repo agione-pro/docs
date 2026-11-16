@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
-| Navigation path | **Model Services** > **Platform Call Analytics** > **Overview** |
-| Page route | `/modelone/model-observation/operator/overview` |
-| Managed objects | Total requests, platform health, tokens, latency, Peak RPM/TPM, active customers, active meta models, source coverage, client coverage, dimension breakdown, and call distribution |
+| Applicable Role | Operator Admin |
+| Navigation Path | Model Services > Platform Call Analytics > Overview |
+| Page Route | `/modelone/model-observation/operator/overview` |
+| Managed Object | Total requests, platform health, tokens, latency, Peak RPM/TPM, active customers, active meta models, source coverage, client coverage, dimension breakdown, and call distribution |
 
 #### Beginner Explanation
 
@@ -81,27 +81,39 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ### Filters
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Required | Month picker | `2026-11 (All Month)` | Statistics month |
 | By Date | Optional | Toggle | `By Date` | Time granularity |
 | Model | Optional | Text | `DeepSeek-V4-Pro` | Filter by name or ID |
 | Source | Optional | Drop-down | `All` | Filter by source |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Expand | Optional | Button | `Expand` | Shows additional filters |
+
 
 ### KPI and table labels
 
-| Metric / field | Type | Page information |
-| --- | --- | --- |
-| Total Requests | KPI | Total requests in the current range |
-| PLATFORM HEALTH | KPI | Success, failed, and rate-limited counts |
-| Input Tokens / Output Tokens | KPI | Token usage; the total token value is also shown |
-| Avg TTFT / Avg TPOT / Avg E2E | KPI | Latency metrics with a sample count `n=` |
-| Peak RPM / Peak TPM | KPI | Peak request and token rates |
-| Active Customers / Active Meta Models | KPI | Active objects in the range |
-| Source Coverage / Client Coverage | KPI | Coverage metrics |
-| Requests / Share / Success Rate / Failed / Rate Limited / Total Tokens | Table columns | Dimension breakdown table |
-| Avg TTFT / Avg E2E | Table columns | Dimension breakdown table |
+An em dash means that the original reference does not separately specify that item; it does not mean optional, a default value, or a backend validation result.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Total Requests | — | KPI | — | Total requests in the current range |
+| PLATFORM HEALTH | — | KPI | — | Success, failed, and rate-limited counts |
+| Input Tokens / Output Tokens | — | KPI | — | Token usage; the total token value is also shown |
+| Avg TTFT / Avg TPOT / Avg E2E | — | KPI | — | Latency metrics with a sample count `n=` |
+| Peak RPM / Peak TPM | — | KPI | — | Peak request and token rates |
+| Active Customers / Active Meta Models | — | KPI | — | Active objects in the range |
+| Source Coverage / Client Coverage | — | KPI | — | Coverage metrics |
+| Requests / Share / Success Rate / Failed / Rate Limited / Total Tokens | — | Table columns | — | Dimension breakdown table |
+| Avg TTFT / Avg E2E | — | Table columns | — | Dimension breakdown table |
 
 ## Pitfalls
 

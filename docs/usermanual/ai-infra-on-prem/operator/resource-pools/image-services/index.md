@@ -1,8 +1,8 @@
 # Image Services
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -233,6 +233,16 @@ The confirmation dialog states the deletion scope before anything is removed:
 - Removing the platform service record does not necessarily delete registry data. Handle registry-side content according to its retention policy.
 
 ## Parameter Quick Reference
+#### Query and Filters
+
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Provider tabs | — | — | — | Filter component cards with All, Harbor, Huawei Cloud SWR, AWS ECR, or Alibaba Cloud ACR Enterprise. |
+| Search by component name, endpoint, region or description... | — | — | — | Searches component cards by component name, endpoint, region, or description; use the search icon. |
+| Search names... (Image groups) | — | — | — | Filters the image groups in the component detail view, not the component-card list. |
+
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

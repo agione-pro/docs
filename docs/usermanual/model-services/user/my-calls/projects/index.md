@@ -1,18 +1,18 @@
 # Projects
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider & User |
-| Navigation | **Model Services** > **My Calls** > **Projects** |
-| Route | `/modelone/model-observation/eu/projects` |
-| Managed objects | Call count, share, success rate, tokens, and latency aggregated by project |
+| Applicable Role | Model Provider & User |
+| Navigation Path | Model Services > My Calls > Projects |
+| Page Route | `/modelone/model-observation/eu/projects` |
+| Managed Object | Call count, share, success rate, tokens, and latency aggregated by project |
 
 **New to this page**: Projects answers "which project is calling the models". Select a month and model, then compare projects by volume, success rate, and token consumption.
 
@@ -58,6 +58,16 @@ The figure shows filters are month, `By Date`, `Model`, `Client Source`, and `Na
 5. Compare volume, share, success rate, and latency.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Name or ID | — | — | — | Search using the Name or ID box in this page’s filter bar. Other documented conditions remain in the original table. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

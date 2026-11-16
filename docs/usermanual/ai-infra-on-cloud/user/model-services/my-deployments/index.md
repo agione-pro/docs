@@ -9,10 +9,10 @@ Updated: 2026-11-11
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | User |
-| Navigation Path | AI Infra(On-Cloud) > Model Services > My Deployments |
+| Applicable Role | User |
+| Navigation Path | On-Cloud > Model Services > My Deployments |
 | Page Route | `/infrahub/user/model/deployment` |
-| Managed Objects | Deployment queries, deployment cards, and model publishing entry |
+| Managed Object | Deployment queries, deployment cards, and model publishing entry |
 
 #### Beginner Explanation
 
@@ -92,6 +92,10 @@ The figure shows Basic Information with Meta Model, Model Source, Request URL, A
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud Platform | No | Dropdown filter | `Cloud Platform` | Queries by the deployment's cloud platform. |
@@ -100,6 +104,11 @@ The figure shows Basic Information with Meta Model, Model Source, Request URL, A
 | Status | No | Dropdown filter | `Status` | Queries by deployment status without assuming all available values. |
 | Model Name | No | Text filter | `Qwen` | Searches by partial model name. |
 | Search / Reset | No | Button | `Search` | Queries or allows criteria to be set again. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Deployment Name / Status | — | Card field | `demo_deployment` | Identifies the target record and its current state. |
 | Model / Deployment Mode | — | Card field | `Single Node` | Bound model, engine version, and deployment mode. |
 | Cloud Platform / Region | — | Card field | `Sample Cloud / Sample Region` | Resource location displayed on the card. |
@@ -111,6 +120,7 @@ The figure shows Basic Information with Meta Model, Model Source, Request URL, A
 | API Key | Yes | Secret input | `<API_KEY>` | Use real values only in the secure input area. |
 | Model source ID | Yes | Text | `demo-model-id` | Exact model name sent to the upstream provider. |
 | Region | No | Dropdown | `Sample Region` | Region field in publishing basic information. |
+
 
 ## Pitfalls
 

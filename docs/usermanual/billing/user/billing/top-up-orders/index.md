@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider & User |
-| Navigation path | Billing > Top-up Orders |
-| Page route | `/billing/my/top-ups/orders` |
-| Managed objects | The current account's top-up orders, sources, original-currency payments, credits added, and order statuses |
+| Navigation Path | Billing > Top-up Orders |
+| Page Route | `/billing/my/top-ups/orders` |
+| Managed Object | The current account's top-up orders, sources, original-currency payments, credits added, and order statuses |
 
 Top-up Orders locates records by order number, top-up order status, top-up source, and time range. Check payment amounts, credits added, and processing status separately.
 
@@ -81,12 +81,21 @@ The figure shows an empty Top-up Orders result after entering `documentation-exa
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Order number (filter) | No | Text input | `documentation-example` | The input displays `Enter order no.`; press Enter after entering a value. |
 | Top-up order status | No | Select | — | Filters processing status using the options actually displayed. |
 | Top-up source (filter) | No | Select | — | Filters by top-up source. |
 | Time range | No | Date range | — | Sets the query's start and end dates. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Order no. | Not applicable | List column | — | Order identifier, distinct from payment and billing transaction numbers. |
 | Top-up source | Not applicable | List column | — | Source displayed for the order. |
 | Payment amount | Not applicable | Original-currency amount column | `0` | Read with the row's currency, not directly as credits. |
@@ -96,6 +105,7 @@ The figure shows an empty Top-up Orders result after entering `documentation-exa
 | Created at | Not applicable | Time column | — | Creation time of the order. |
 | Actions / Details | No | Row-level entry | `Details` | Opens the corresponding top-up order. |
 | Invoice creation | No | Conditional row-level entry | — | Provided for some order rows; availability depends on the entry displayed in that row. |
+
 
 ## Pitfalls
 

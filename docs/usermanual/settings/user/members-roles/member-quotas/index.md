@@ -1,8 +1,8 @@
 # Member Quotas
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Members & Roles > Member Quotas |
-| Page route | `/user/user-space/member-quotas` |
-| Managed objects | Member Personal Key usage, authorized quota, and quota details |
+| Navigation Path | Settings > Members & Roles > Member Quotas |
+| Page Route | `/user/user-space/member-quotas` |
+| Managed Object | Member Personal Key usage, authorized quota, and quota details |
 
 #### Beginner Explanation
 
@@ -108,6 +108,16 @@ The member quota limit dialog contains the reset cycle, limit switch, cycle limi
 5. During read-only validation, do not save default changes.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Filters | — | — | — | Search by name, email, or member ID; status; and Usage sort |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

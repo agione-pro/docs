@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
-| Navigation path | **Model Services** > **Settings** > **Model Templates** |
-| Page route | `/modelone/settings/provider-template`; add page `/modelone/settings/provider-template/add` |
-| Managed objects | Model source templates, model author, provider, region, meta model, and publishing preview |
+| Applicable Role | Operator Admin |
+| Navigation Path | Model Services > Settings > Model Templates |
+| Page Route | `/modelone/settings/provider-template`; add page `/modelone/settings/provider-template/add` |
+| Managed Object | Model source templates, model author, provider, region, meta model, and publishing preview |
 
 **Beginner explanation**: A template is a preset publishing form. It combines the model author, provider, region, and meta model so providers do not repeat the same selections. The author, meta model, and model source must exist before the template can reference them.
 
@@ -82,6 +82,10 @@ The figure shows the `Select Author` cards and `Provider Information` in Step 1.
 
 ### Filters
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model Source | Required | Left list selection | `Alibaba-intl` | Determines the right-hand template list |
@@ -89,6 +93,7 @@ The figure shows the `Select Author` cards and `Provider Information` in Step 1.
 | Meta Model | Optional | Drop-down | `DeepSeek-V4-Pro` | Filters by meta model |
 | Status | Optional | Drop-down | `Enable` | Filters by template status |
 | Keyword | Optional | Text | `deepseek` | Keyword search |
+
 
 ### Add template - step 1
 

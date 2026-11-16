@@ -1,8 +1,8 @@
 # My Keys
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-15
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-15
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Personal > My Keys |
-| Page route | `/user/user-space/my-keys/model` |
-| Managed objects | Model API Keys, System API AK/SK Pairs, status, expiration, and applicable quota settings |
+| Navigation Path | Settings > Personal > My Keys |
+| Page Route | `/user/user-space/my-keys/model` |
+| Managed Object | Model API Keys, System API AK/SK Pairs, status, expiration, and applicable quota settings |
 
 #### Beginner Explanation
 
@@ -104,6 +104,16 @@ The figure shows the Create System API AK/SK Pair dialog with expiration, Key na
 The Key quota dialog contains reset cycle, monthly reset date, limit switch, cycle limit, and alert threshold. Confirm consistency with member or project quota policy.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Filters | — | — | — | `Available` / `All` and `Status`. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

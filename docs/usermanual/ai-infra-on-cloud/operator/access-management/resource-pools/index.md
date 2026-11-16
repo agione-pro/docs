@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Access Management > Resource Pools |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Access Management > Resource Pools |
 | Page Route | `/infrahub/op/access/region` |
-| Managed Objects | Public and AGIOne dedicated resource pools under cloud platforms and their enabled states |
+| Managed Object | Public and AGIOne dedicated resource pools under cloud platforms and their enabled states |
 
 #### Beginner Explanation
 
@@ -73,18 +73,28 @@ The figure shows a regional resource-pool disable prompt containing the target r
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Pool type | No | Category selector | `Public resource pool` | AGIOne Dedicated resource pool is the other category; establish query scope first. |
+| Status filter | No | Segmented control | `All` | All, Enabled, and Disabled. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Cloud platform | No | Group list | Select the target platform | Selects the platform to inspect. |
 | Resource pool count | — | Statistic | Current page value | Displayed for the selected platform and scope, not a fixed count. |
 | Resource pool name | — | List field | Check the target region | Name of the regional resource pool. |
-| Status filter | No | Segmented control | `All` | All, Enabled, and Disabled. |
 | Enabled state | — | Status and switch | `Enabled` / `Disabled` | Corresponds to the target pool; check impact before changing it. |
 | Operation audit | No | Page entry | `Operation audit` | Entry for operation review. |
 | Batch Actions | No | Action entry | `Batch Actions` | Batch-processing entry for the selected scope. |
 | Confirmation prompt | — | Dialog | Target region name | Check the region and action; do not assume every operation uses the same prompt. |
 | Cancel / OK | No | Dialog buttons | `Cancel` / `OK` | Exit and confirm entries in the pictured disable prompt; follow the actual dialog. |
+
 
 ## Pitfalls
 

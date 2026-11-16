@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
-| Navigation path | **Model Services** > **Platform Call Analytics** > **Model Sources** |
-| Page route | `/modelone/model-observation/operator/sources` |
-| Managed objects | Requests, share, success rate, failed calls, rate-limited calls, tokens, and latency by model source |
+| Applicable Role | Operator Admin |
+| Navigation Path | Model Services > Platform Call Analytics > Model Sources |
+| Page Route | `/modelone/model-observation/operator/sources` |
+| Managed Object | Requests, share, success rate, failed calls, rate-limited calls, tokens, and latency by model source |
 
 **Beginner explanation**: This page breaks call statistics down by model source. It answers which upstream source receives the most calls and how its success rate and latency look. It does not create or edit a source; use **Settings > Model Sources** for configuration.
 
@@ -72,12 +72,21 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Required | Month picker | `2026-11 (All Month)` | Statistics month |
 | By Date | Optional | Toggle | `By Date` | Time granularity |
 | Model | Optional | Text | `DeepSeek-V4-Pro` | Filter by name or ID |
 | Expand | Optional | Button | `Expand` | Shows additional filters |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Model Source | System-maintained | Text | `AGIOne` | Upstream model source |
 | Requests | System-maintained | Number | `1,024` | Requests in the range |
 | Share | System-maintained | Percentage | `32%` | Share of all requests |
@@ -87,6 +96,7 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 | Total Tokens | System-maintained | Number | `1,200,000` | Input and output tokens |
 | Avg TTFT / TPOT / E2E | System-maintained | Duration | `320 ms` | Latency metrics |
 | Actions | System-maintained | Column | `--` | No action is shown while the table is empty |
+
 
 ## Pitfalls
 

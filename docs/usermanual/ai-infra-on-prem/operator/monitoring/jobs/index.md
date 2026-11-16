@@ -1,8 +1,8 @@
 # Jobs
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -11,6 +11,7 @@ Updated: 2026-11-12
 | --- | --- |
 | Applicable Role | Operator |
 | Navigation Path | On-Prem > Monitoring > Jobs |
+| Page Route | `/powerone/monitor/work` |
 | Managed Object | Configuration, status, and relationships on Jobs |
 
 #### Beginner Explanation
@@ -180,14 +181,23 @@ The page groups five cards: `Job Info`, `Customer Ranking`, `Node Utilization`, 
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Job ID | Yes | Text | `job-20260706-001` | Locates a single job or task instance. |
 | Job Name | Conditionally required | Text | `inference-job` | Helps locate a job by business name. |
 | Job Type | Conditionally required | Enum | `Runtime Instances` | Distinguishes model instances, online IDEs, runtime instances, training tasks, or historical jobs. |
-| Job Status | System-generated | Status | `Running` | Shows whether the job is queued, running, succeeded, or failed. |
 | Tenant / User | Conditionally required | Text | `tenant-a` | Used to locate job ownership by tenant or user. |
 | Cluster | Conditionally required | Text | `cluster-prod-a` | Locates the cluster where the job is running or queued. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Job Status | System-generated | Status | `Running` | Shows whether the job is queued, running, succeeded, or failed. |
 | Node | System-generated | Text | `node-gpu-01` | Shows the node to which the job is scheduled. |
 | Resource Specification | System-generated | Text | `2 * A800` | Shows the resource specification requested or occupied by the job. |
 | GPU / Accelerator Occupation | System-generated | Number / Text | `2 * A800` | Shows accelerator specification and quantity occupied by the job. |
@@ -195,6 +205,7 @@ The page groups five cards: `Job Info`, `Customer Ranking`, `Node Utilization`, 
 | Runtime Duration | System-generated | Duration | `2 hours 15 minutes` | Determines whether the job runs longer than expected. |
 | Failure Information | System-generated | Text | `ImagePullBackOff` | Helps locate job failure causes. |
 | Time Range | Conditionally required | Date range | `Last 1 hour` | Controls the query window for statistic cards, trend charts, and list data. |
+
 
 ## Pitfalls
 

@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applicable role | Operator Admin |
-| Navigation path | **Model Services** > **Approvals** > **Model Reviews** |
-| Page route | `/modelone/audit/model` |
-| Managed objects | Pending model records, model visibility, model type, customer, version, review status, submit time, and review time |
+| Applicable Role | Operator Admin |
+| Navigation Path | Model Services > Approvals > Model Reviews |
+| Page Route | `/modelone/audit/model` |
+| Managed Object | Pending model records, model visibility, model type, customer, version, review status, submit time, and review time |
 
 **Beginner explanation**: Model review is the checkpoint before a model becomes visible or callable. The operator checks the model source, capabilities, modalities, token limits, protocols, and billing information in the review drawer, then chooses Approve or Reject.
 
@@ -84,6 +84,20 @@ The figure shows the drawer with `Review Information`, `Basic Information`, `Inp
 
 ### List fields
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Model Name | As needed | Text | — | Narrows review records by model name; not the same field as the Model Name column. |
+| Review Status | As needed | Dropdown filter | Pending review | Filters records by review status. |
+| Model Visibility | As needed | Dropdown filter | — | Filters records by model visibility. |
+| Model Type | As needed | Dropdown filter | — | Filters records by model type. |
+| Customer | As needed | Search select | Select customer | Filters records by customer. |
+
+#### Existing Fields
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Model name | System-maintained | Text | `DeepSeek-V4-Pro` | Pending model name; the identifier appears below |
@@ -95,6 +109,7 @@ The figure shows the drawer with `Review Information`, `Basic Information`, `Inp
 | Submit time | System-maintained | Date time | `Oct 27, 2026 15:20:00` | Submission time |
 | Review time | System-maintained | Date time | `--` | Shows `--` before review |
 | Actions | Permission-based | Button | `Review` | Opens the review drawer |
+
 
 ### Review drawer fields
 

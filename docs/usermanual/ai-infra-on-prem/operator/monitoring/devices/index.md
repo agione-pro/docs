@@ -1,8 +1,8 @@
 # Devices
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -11,6 +11,7 @@ Updated: 2026-11-12
 | --- | --- |
 | Applicable Role | Operator |
 | Navigation Path | On-Prem > Monitoring > Devices |
+| Page Route | `/powerone/monitor/device` |
 | Managed Object | Configuration, status, and relationships on Devices |
 
 #### Beginner Explanation
@@ -134,6 +135,16 @@ The charts below are drawn for the selected cluster, node, and time range.
 - Temperature, error counts, and health status belong to the accelerator dimension.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Cluster / node filters | — | — | — | - The `Common` tab screen exposes cluster and node filters only, so device-scoped questions go to the accelerator tab. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

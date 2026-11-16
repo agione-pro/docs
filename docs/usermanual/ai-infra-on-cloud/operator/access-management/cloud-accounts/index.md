@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Access Management > Cloud Accounts |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Access Management > Cloud Accounts |
 | Page Route | `/infrahub/op/access/account` |
-| Managed Objects | Cloud accounts, credential identifiers, and connectivity states for accessing cloud resources |
+| Managed Object | Cloud accounts, credential identifiers, and connectivity states for accessing cloud resources |
 
 #### Beginner Explanation
 
@@ -77,11 +77,20 @@ The figure shows the blank Add Cloud Account form. Account Name, Select Cloud Pl
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Cloud platform | No | Dropdown filter | `Select Cloud Platform` | Filters by the account's platform. |
 | Name | No | Input | `demo-cloud-account` | Fuzzy search by account name. |
 | Status | No | Dropdown filter | `Healthy` | Corresponds to the table's Status column; Healthy is selected in the figure. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Cloud Account Name | — | Table field | `demo-cloud-account` | Platform and type appear beneath the name. |
 | Status | — | Status label | `Healthy` / `Action required` | Examples in observed records; the figure shows only the Healthy filter, not every possible status or a new test result. |
 | Credential Identifier | — | Table field | `AccessKey ID` / `Project ID` | Displays a record's credential type and identifier; not every type is AK/SK. |
@@ -94,6 +103,7 @@ The figure shows the blank Add Cloud Account form. Account Name, Select Cloud Pl
 | Edit | No | Row action | `Edit` | Maintenance entry for an existing account. |
 | Search / Reset | No | Buttons | `Search` / `Reset` | Query and query-reset entries. |
 | Cancel / Confirm | No | Form buttons | `Cancel` / `Confirm` | Exit and submit entries in the add form. |
+
 
 ## Pitfalls
 

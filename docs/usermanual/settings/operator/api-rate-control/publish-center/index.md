@@ -10,9 +10,9 @@ Updated: 2026-11-13
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > API Rate Control > Publish Center |
-| Page route | `/user/system/rate-control/publish` |
-| Managed objects | API rate-control rule versions, publish records, node counts, publishers, and publish times |
+| Navigation Path | Settings > API Rate Control > Publish Center |
+| Page Route | `/user/system/rate-control/publish` |
+| Managed Object | API rate-control rule versions, publish records, node counts, publishers, and publish times |
 
 #### Beginner Explanation
 
@@ -73,11 +73,20 @@ The publish record list shows version, status, node count, publisher, publish ti
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Node ID | No | Text | `<node_id>` | Filters publish records by node. |
 | Start Time | No | Time | `Start Time` | Sets the start time for publish record queries. |
 | End Time | No | Time | `End Time` | Sets the end time for publish record queries. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Publish Batch | No | Text | `<publish_batch>` | Locates a specific publish task. |
 | Rule Version | No | Version | `<rule_version>` | Rule version included in the publish task. |
 | Publish Status | No | Enum | `Succeeded` | Shows the publish result. |
@@ -86,6 +95,7 @@ The publish record list shows version, status, node count, publisher, publish ti
 | Publish Time | System generated | Time | `Publish Time` | Creation or completion time of the publish task. |
 | Message | System generated | Text | `Published` | Publish result, failure reason, or internal hint. |
 | Refresh Records | No | Button | `Refresh Records` | Fetches the latest publish records again. |
+
 
 ## Pitfalls
 

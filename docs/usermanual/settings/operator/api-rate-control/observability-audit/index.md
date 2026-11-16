@@ -1,8 +1,8 @@
 # Observability Audit
 
 ::: info Document Information
-Version: v2.2
-Updated: 2026-11-13
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-13
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > API Rate Control > Observability Audit |
-| Page route | `/user/system/rate-control/observation` |
-| Managed objects | Minute statistics, blocked logs, and audit logs |
+| Navigation Path | Settings > API Rate Control > Observability Audit |
+| Page Route | `/user/system/rate-control/observation` |
+| Managed Object | Minute statistics, blocked logs, and audit logs |
 
 #### Beginner Explanation
 
@@ -87,6 +87,18 @@ Use this operation to query observability and audit data.
 5. After cleaning, refresh the page and verify the affected data range.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| API Path | — | — | — | Filter by API path. |
+| Node ID | — | — | — | Filter by node. |
+| Start Time / End Time | — | — | — | Filter by time range. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

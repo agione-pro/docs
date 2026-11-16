@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider & User |
-| Navigation | **Model Services** > **My Calls** > **Overview** |
-| Route | `/modelone/model-observation/eu/overview` |
-| Managed objects | Your call volume, token consumption, success rate, latency, call composition, and member/project rankings |
+| Applicable Role | Model Provider & User |
+| Navigation Path | Model Services > My Calls > Overview |
+| Page Route | `/modelone/model-observation/eu/overview` |
+| Managed Object | Your call volume, token consumption, success rate, latency, call composition, and member/project rankings |
 
 #### Beginner Explanation
 
@@ -100,12 +100,21 @@ The figure shows filters include month, `By Date`, `Model`, and `Client Source`;
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Month | Yes | Selector | `2026-11 (All Month)` | Statistics month |
 | By Date | No | Toggle | On | Aggregation granularity |
 | Model | No | Text | `Name or ID` | Filter by model |
 | Client Source | No | Selector | `All` | Filter by client source |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Total Requests | System | Number | `--` | Total calls in scope |
 | Input Tokens | System | Number | `--` | Total input tokens |
 | Cached Tokens | System | Number | `--` | Cached tokens and share of input |
@@ -122,6 +131,7 @@ The figure shows filters include month, `By Date`, `Model`, and `Client Source`;
 | Project Key | System | Share | `0.0%` | Project key calls, not attributed to members |
 | Key Attribution Coverage | System | Percentage | `--` | Share of attributable key calls |
 | App Coverage | System | Percentage | `--` | Share of identified client sources |
+
 
 ## Pitfalls
 

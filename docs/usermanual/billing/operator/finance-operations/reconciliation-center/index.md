@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Finance Operations > Reconciliation Center |
-| Page route | `/billing/admin/reconciliation` |
-| Managed objects | Bilateral ledger checks, rounding reconciliation, compensation queue, and revenue detail rebuild |
+| Navigation Path | Billing > Finance Operations > Reconciliation Center |
+| Page Route | `/billing/admin/reconciliation` |
+| Managed Object | Bilateral ledger checks, rounding reconciliation, compensation queue, and revenue detail rebuild |
 
 Four tabs provide ledger checks, rounding categories, pending compensation flows, and the revenue detail rebuild entry.
 
@@ -105,10 +105,19 @@ The figure shows the default scan limit of 100, Run rebuild, and the “No rebui
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing Cycle | Select as needed | Month | 2026-11 | Top-level cycle selection; it does not restrict the full settlement-intent scope of bilateral checks. |
 | Refresh | As needed | Button | Refresh | Top-level refresh entry; count changes are not a prerequisite for success. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Bilateral Ledger Check / Rounding Reconciliation / Compensation Queue / Revenue Detail Rebuild | Select as needed | Button tabs | Rounding Reconciliation | Switch between four task views. |
 | Source billing cycle window | Read-only | Cycle window | 2026-11 | Source scope identified in rounding results. |
 | Checked at | Read-only | Date and time | As displayed | Check time of rounding results. |
@@ -118,6 +127,7 @@ The figure shows the default scan limit of 100, Run rebuild, and the “No rebui
 | Scan limit | Confirm before execution | Numeric input | 100 | Defaults to 100; do not infer undisplayed minimum or maximum values. |
 | Run rebuild | Requires authorization | Button | Run rebuild | Executes a rebuild, not a read-only query. |
 | Current rebuild result | Read-only | Result area | No rebuild result yet | When results exist, inspect completion time, scan limit, and scanned, generated, and skipped counts. |
+
 
 ## Pitfalls
 

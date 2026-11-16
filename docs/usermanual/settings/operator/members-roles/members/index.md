@@ -1,8 +1,8 @@
 # Members
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Members & Roles > Members |
-| Page route | `/user/user-space/team-members` |
-| Managed objects | Members, roles, status, and contact information |
+| Navigation Path | Settings > Members & Roles > Members |
+| Page Route | `/user/user-space/team-members` |
+| Managed Object | Members, roles, status, and contact information |
 
 #### Beginner Explanation
 
@@ -87,6 +87,17 @@ The figure shows the `Add Member` form, including `Username`, `Display name`, `E
 The figure shows the Members list before the edit dialog is opened. Use the row action to open the form; click `Cancel` when you only need to review the configuration.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Username | — | — | — | Filters members by username. |
+| Phone Number | — | — | — | Filters members by phone number. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

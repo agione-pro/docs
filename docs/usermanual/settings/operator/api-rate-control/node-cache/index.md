@@ -1,8 +1,8 @@
 # Node Cache
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > API Rate Control > Node Cache |
-| Page route | `/user/system/rate-control/node-cache` |
-| Managed objects | API rate-control nodes, rule versions, rule counts, and cache status |
+| Navigation Path | Settings > API Rate Control > Node Cache |
+| Page Route | `/user/system/rate-control/node-cache` |
+| Managed Object | API rate-control nodes, rule versions, rule counts, and cache status |
 
 #### Beginner Explanation
 
@@ -75,6 +75,16 @@ Use this operation to query node cache status.
 6. For learning or screenshots, only view the list and refresh status. Do not clear, rebuild, or perform other high-risk operations.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Node ID | — | — | — | Filter by node. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

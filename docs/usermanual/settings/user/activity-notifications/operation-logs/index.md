@@ -1,8 +1,8 @@
 # Operation Logs
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Activity & Notifications > Operation Logs |
-| Page route | `/user/user-space/operation-logs` |
-| Managed objects | Tenant user-operation records, HTTP methods, results, time ranges, and operation details |
+| Navigation Path | Settings > Activity & Notifications > Operation Logs |
+| Page Route | `/user/user-space/operation-logs` |
+| Managed Object | Tenant user-operation records, HTTP methods, results, time ranges, and operation details |
 
 #### Beginner Explanation
 
@@ -64,6 +64,16 @@ The screenshot shows the filters, operation-log list, and result fields availabl
 4. Use log details only for audit and diagnosis. Do not replay high-risk operations from the page.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Filters | — | — | — | HTTP method, result, start time, and end time |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

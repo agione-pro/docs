@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > System Settings > Platform Settings |
-| Page route | `/user/system/platform-settings/config` |
-| Managed objects | General configuration, provider relationships, currency settings, payment channels, accounts and settlement, email, and UI configuration |
+| Navigation Path | Settings > System Settings > Platform Settings |
+| Page Route | `/user/system/platform-settings/config` |
+| Managed Object | General configuration, provider relationships, currency settings, payment channels, accounts and settlement, email, and UI configuration |
 
 #### Beginner Explanation
 

@@ -1,8 +1,8 @@
 # Operation Logs
 
 ::: info Document Information
-Version: v2.2
-Updated: 2026-11-13
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-13
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Activity & Notifications > Operation Logs |
-| Page route | `/user/user-space/operation-logs` |
-| Managed objects | Platform operation records, users, actions, methods, IP addresses, processing times, and results |
+| Navigation Path | Settings > Activity & Notifications > Operation Logs |
+| Page Route | `/user/user-space/operation-logs` |
+| Managed Object | Platform operation records, users, actions, methods, IP addresses, processing times, and results |
 
 #### Beginner Explanation
 
@@ -73,6 +73,16 @@ The figure shows the Operation Logs filters and table, with Time, Product module
 5. Redact the file before export and do not share complete logs with unauthorized people.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| User / product module / date range | — | — | — | 2. Set the user, product module, and date range, then click `Search` to narrow the scope. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

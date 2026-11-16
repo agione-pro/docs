@@ -9,10 +9,10 @@ Updated: 2026-11-11
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | User |
-| Navigation Path | AI Infra(On-Cloud) > Model Services > Quick Deployment |
+| Applicable Role | User |
+| Navigation Path | On-Cloud > Model Services > Quick Deployment |
 | Page Route | `/infrahub/user/model/store` |
-| Managed Objects | Deployable scope, matched models, inference engines, business strategies, and deployment plans |
+| Managed Object | Deployable scope, matched models, inference engines, business strategies, and deployment plans |
 
 #### Beginner Explanation
 
@@ -79,12 +79,21 @@ The figure shows Cloud Account, Task Name, optional Task Description, Back to Re
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Select Cloud | No | Dropdown filter | `Select Cloud` | Locates deployable scope by cloud platform. |
 | Select Resource Pool | No | Dropdown filter | `Select Resource Pool` | Locates deployable scope by resource pool. |
 | Pool section | No | Section switch | `Public pool` | Switches between AGIOne Dedicated pool and Public pool. |
 | Select type / Select series / Select scenario | No | Dropdown filter | `Select series` | Filters matched models. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Search | No | Text | `Qwen` | Searches by model, author, series, or source. |
 | Deploy | No | Action entry | `Deploy` | Opens the recommendation page from a model card; not final submission. |
 | Selected Model | — | Display field | `Sample Model` | Model for which deployment plans are being matched. |
@@ -98,6 +107,7 @@ The figure shows Cloud Account, Task Name, optional Task Description, Back to Re
 | Task Name | Yes | Text | `demo_deploy_task` | Task name in Publish Deployment. |
 | Task Description | No | Multiline text | `Sample task description` | Optional notes; do not enter secrets or internal parameters. |
 | Back to Recommendation / Launch Deployment | No / Yes | Button | `Back to Recommendation` | Returns to plans or finally submits the task, respectively. |
+
 
 ## Pitfalls
 

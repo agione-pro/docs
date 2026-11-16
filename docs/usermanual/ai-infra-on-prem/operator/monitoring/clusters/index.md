@@ -1,8 +1,8 @@
 # Clusters
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -11,6 +11,7 @@ Updated: 2026-11-12
 | --- | --- |
 | Applicable Role | Operator |
 | Navigation Path | On-Prem > Monitoring > Clusters |
+| Page Route | `/powerone/monitor/cluster` |
 | Managed Object | Configuration, status, and relationships on Clusters |
 
 #### Beginner Explanation
@@ -128,10 +129,19 @@ Use this when cluster resource utilization shows high watermarks or abnormal sta
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Region | Conditionally required | Drop-down | `wuhan` | Limits the region to which the cluster belongs. |
 | Status | Conditionally required | Drop-down | `Normal` | Shows the status of the selected region inside the region selector. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Cluster Name | System-generated | Text | `cluster-test` | Identifies the monitored cluster object. |
 | CPU Usage | System-generated | Percentage | `18.13%` | Shows the CPU resource usage level of the cluster. |
 | AI Accelerator Usage | System-generated | Percentage | `12.5%` | Shows the GPU, NPU, or other accelerator resource usage level. |
@@ -142,6 +152,7 @@ Use this when cluster resource utilization shows high watermarks or abnormal sta
 | Node Status | System-generated | Status | `Normal / Abnormal` | Shows the count distribution of normal and abnormal nodes. |
 | Total Jobs | System-generated | Number | `1` | Shows the number of jobs in the cluster. |
 | Job Status | System-generated | Status | `Running / Completed / Failed / Paused / Terminated` | Shows the count distribution of jobs across states. |
+
 
 ## Pitfalls
 

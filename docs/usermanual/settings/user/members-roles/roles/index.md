@@ -1,18 +1,18 @@
 # Roles
 
 ::: info Document Information
-Version: v2.2
-Updated: 2026-11-15
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applicable role | User |
-| Navigation path | Settings > Members & Roles > Roles |
-| Page route | `/user/user-space/roles` |
-| Managed objects | Role names, role codes, role descriptions, and permission scopes |
+| Applicable Role | User |
+| Navigation Path | Settings > Members & Roles > Roles |
+| Page Route | `/user/user-space/roles` |
+| Managed Object | Role names, role codes, role descriptions, and permission scopes |
 
 #### Beginner Explanation
 
@@ -129,6 +129,16 @@ The screenshot shows the authorization workbench, service counts, menu navigatio
 **FAQ:** If the role remains after deletion, refresh the page and check for a member-assignment, system-protection, or insufficient-permission message.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Role name/code; member username/name / tags | — | — | — | The left panel groups built-in system roles and custom roles and provides role-name/code search and an add entry. Selecting a role displays its name, code, description, creation time, and associated members on the right. The member table shows Username, Name, Contact, Tags, Created at, Status, and Actions, with username/name search and tag filtering. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

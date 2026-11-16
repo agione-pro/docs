@@ -1,8 +1,8 @@
 # Templates
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -210,17 +210,31 @@ The section names above are taken verbatim from the English screen of this step.
 
 ## Parameter Quick Reference
 
-| Field Name | Required | Field Type | Description |
-| --- | --- | --- | --- |
-| Template Name | System-generated | Text | Name of the deployable template shown by the platform. |
-| Model | Required | Selection | Model selected from the model library. |
-| Accelerator | Required | Selection | Accelerator vendor and model used for this deployment. |
-| Business Parameters | Depends on template | Form fields | Model capability, context, startup, or runtime parameters maintained by the template. |
-| Recommended Specification | Required | Selection | Resource specification recommended or allowed by the template. |
-| Region | Required when deploying | Selection | Region or resource pool where the model instance will be created. |
-| Instance Name | Required when deploying | Text | Name of the model instance to be created. Do not use real customer or sensitive names in documentation. |
-| Startup Parameters | Depends on template | Text or form fields | Startup parameters inherited from the template or adjusted for a clear business need. |
-| Status | System-generated | Enum | Whether the template or selected option can be used to create an instance. |
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Model Library: author / search / sort | — | — | — | 2. In `Model Library`, narrow the list with the author tabs, the `Search model / author / tag / accelerator` box, the sort option `Default`, or `Clear Filters`. |
+| Model Versions: version search | — | — | — | 6. In `Model Versions`, check the `Selected Model` line, narrow the list with `Search versions, parameter sizes, or frameworks`, and select a version card by its precision tag, parameter size, and framework label. |
+| Inference Framework: image / vendor | — | — | — | 2. In `Inference Framework`, filter the image list with `All images` and the vendor tabs, then select a framework card. |
+
+#### Existing Fields
+
+An em dash in Example means that this page provides no example; it is not a default or a value to enter.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Template Name | System-generated | Text | — | Name of the deployable template shown by the platform. |
+| Model | Required | Selection | — | Model selected from the model library. |
+| Accelerator | Required | Selection | — | Accelerator vendor and model used for this deployment. |
+| Business Parameters | Depends on template | Form fields | — | Model capability, context, startup, or runtime parameters maintained by the template. |
+| Recommended Specification | Required | Selection | — | Resource specification recommended or allowed by the template. |
+| Region | Required when deploying | Selection | — | Region or resource pool where the model instance will be created. |
+| Instance Name | Required when deploying | Text | — | Name of the model instance to be created. Do not use real customer or sensitive names in documentation. |
+| Startup Parameters | Depends on template | Text or form fields | — | Startup parameters inherited from the template or adjusted for a clear business need. |
+| Status | System-generated | Enum | — | Whether the template or selected option can be used to create an instance. |
 
 ## Pitfalls
 

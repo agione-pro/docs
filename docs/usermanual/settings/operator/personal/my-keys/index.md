@@ -1,8 +1,8 @@
 # My Keys
 
 ::: info Document Information
-Version: v2.2
-Updated: 2026-11-14
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-14
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator Account |
-| Navigation path | Settings > Personal > My Keys |
-| Page route | `/user/user-space/my-keys/system` |
-| Managed objects | System API AK/SK Pairs, status, expiration, and creation records |
+| Navigation Path | Settings > Personal > My Keys |
+| Page Route | `/user/user-space/my-keys/system` |
+| Managed Object | System API AK/SK Pairs, status, expiration, and creation records |
 
 #### Beginner Explanation
 
@@ -71,6 +71,17 @@ The figure shows the System API AK/SK list with `Key name / description`, `Prefi
 The figure shows `Create System API AK/SK Pair` with expiration, key name, description, and the expanded optional advanced area. The IP whitelist remains disabled; its explanation and the complete Cancel/Create footer are visible. The displayed expiration date is a capture-time example. This flow neither submits Create nor tests whitelist enforcement.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Availability | — | — | — | `Available` and `All` switch the list scope. |
+| Status | — | — | — | Filters the list by credential status. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

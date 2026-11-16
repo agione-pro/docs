@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation path | Billing > Earnings > Customers |
-| Page route | `/billing/provider/customers` |
-| Managed objects | Customer identities, customer tags, and customer revenue information for the selected billing period |
+| Navigation Path | Billing > Earnings > Customers |
+| Page Route | `/billing/provider/customers` |
+| Managed Object | Customer identities, customer tags, and customer revenue information for the selected billing period |
 
 `Customers` locates customers by billing period, a combined keyword search, and customer tags. Use it to review billing-period revenue, share, customer join time, and the latest revenue in the cycle. The page also provides the row-level `Detail` entry and `Manage Tags`.
 
@@ -101,11 +101,20 @@ The figure shows Tag Management: the five built-in tags are provided by the plat
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing period | Select for the query | Month selection | `2026-11` | Selects the billing period for reviewing customer revenue. |
 | Combined keyword | No | Text | `<query>` | Displays `Search tenant, admin, email, phone, or tenant ID`; press Enter after entering a keyword. |
 | Customer tag filter | No | Multiple selection | `VIP`, `High Potential` | A customer matches any selected tag (OR). |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Refresh statistics | No | Button | `Refresh statistics` | Entry for updating customer statistics. |
 | Customer total | Read-only | Statistic card | `<displayed count>` | Top-level customer count; do not derive it from the number of keyword-query table rows. |
 | New customers in the billing period | Read-only | Statistic card | `<displayed count>` | Customers added in the selected billing period. |
@@ -125,6 +134,7 @@ The figure shows Tag Management: the five built-in tags are provided by the plat
 | Color selection | Select as needed | Color options | `<color>` | Color selection in the custom-tag area. |
 | Create tag | No | Submission button | `Create tag` | Confirm the name, color, and Provider scope before submitting. |
 | Close | No | Button | `Close` | Exits Tag Management. |
+
 
 ## Pitfalls
 

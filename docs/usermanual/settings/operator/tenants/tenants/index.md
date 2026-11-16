@@ -1,8 +1,8 @@
 # Tenants
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-15
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-15
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Tenants & Settings > Tenants |
-| Page route | `/user/tenant` |
-| Managed objects | Tenant entities, business identities, status, roles, and tags |
+| Navigation Path | Settings > Tenants & Settings > Tenants |
+| Page Route | `/user/tenant` |
+| Managed Object | Tenant entities, business identities, status, roles, and tags |
 
 #### Beginner Explanation
 
@@ -91,6 +91,20 @@ The figure shows the current demo's empty Create Tenant page with Tenant details
 4. After saving, return to the tenant list and verify the role count and member permissions.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Business Identity | — | — | — | Filters by identities such as EU or Provider. |
+| Tenant / Administrator / Tenant ID | — | — | — | Searches by tenant, administrator, or tenant ID. |
+| Status | — | — | — | Filters by tenant status. |
+| Role | — | — | — | Filters by tenant role. |
+| Tag filter | — | — | — | Filters by tags such as VIP, High Potential, Trial, Follow-up, or Churn Risk. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

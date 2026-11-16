@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation path | Billing > Earnings > Settlements |
-| Page route | `/billing/provider/settlements` |
-| Managed objects | Billing-cycle settlement records, settlement amount, posted amount, precision adjustment, and current-cycle estimated details |
+| Navigation Path | Billing > Earnings > Settlements |
+| Page Route | `/billing/provider/settlements` |
+| Managed Object | Billing-cycle settlement records, settlement amount, posted amount, precision adjustment, and current-cycle estimated details |
 
 Settlements lists revenue settlement records by status and billing cycle. Use the row-level `Detail` entry to view the corresponding content. The current-cycle estimated row opens an estimated-details page; no settlement order has been generated and its amount is not included in the revenue account balance.
 
@@ -88,10 +88,21 @@ The figure shows current-cycle estimated details, including four header metrics,
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | All Status | No | List filter | `All Status` | Filters settlement records by status. |
 | Billing Cycle | No | List filter | `2025-01` | Selects the month to query. |
+| Revenue type | No | Estimate filter | — | Filters estimated revenue details. |
+| Deduction reference ID | No | Text input | — | Enter the deduction reference to check. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Billing Cycle | Not applicable | List column | — | Billing cycle covered by the record. |
 | Status | Not applicable | List column | `Estimated (pending)` | Visible statuses also include `Processing`; follow the row's displayed value. |
 | Settlement amount | Not applicable | List column | — | Read the settlement or estimated amount together with the row status. |
@@ -103,8 +114,6 @@ The figure shows current-cycle estimated details, including four header metrics,
 | ESTIMATED BILLING CYCLE | Not applicable | Month display | — | Billing cycle covered by the estimate. |
 | DETAIL ROWS | Not applicable | Count display | — | Counted within the current filters. |
 | CURRENT BASIS | Not applicable | Status display | `Pending settlement` | States `No settlement order yet; not posted`. |
-| Revenue type | No | Estimate filter | — | Filters estimated revenue details. |
-| Deduction reference ID | No | Text input | — | Enter the deduction reference to check. |
 | Billing date | Not applicable | Detail column | — | Billing date of the detail record. |
 | Billing time | Not applicable | Detail column | — | Billing time of the detail record. |
 | Customer | Not applicable | Detail column | — | Customer associated with the record. |
@@ -114,6 +123,7 @@ The figure shows current-cycle estimated details, including four header metrics,
 | Deduction reference ID | Not applicable | Detail column | — | Deduction reference associated with the record. |
 | Status | Not applicable | Detail column | — | Read the estimate using the status displayed in this column. |
 | Amount | Not applicable | Detail column | — | Payable amount in the estimated detail record. |
+
 
 ## Pitfalls
 

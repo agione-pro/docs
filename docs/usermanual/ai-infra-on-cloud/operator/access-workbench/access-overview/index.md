@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Access Workbench > Access Overview |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Access Workbench > Access Overview |
 | Page Route | `/infrahub/op/workbanch/overview` |
-| Managed Objects | Readiness of cloud access, tenant access scope, runtime foundations, and model onboarding configuration |
+| Managed Object | Readiness of cloud access, tenant access scope, runtime foundations, and model onboarding configuration |
 
 #### Beginner Explanation
 

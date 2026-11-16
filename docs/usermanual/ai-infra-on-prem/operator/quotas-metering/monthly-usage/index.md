@@ -1,8 +1,8 @@
 # Monthly Usage
 
 ::: info Document Information
-Version: v2.2
-Updated: 2026-11-15
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -11,6 +11,7 @@ Updated: 2026-11-15
 | --- | --- |
 | Applicable Role | Operator |
 | Navigation Path | On-Prem > Quotas & Metering > Monthly Usage |
+| Page Route | `/powerone/quota-metric/month` |
 | Managed Object | Billing period, region, resource name, and tenant filters, plus monthly metering records, usage summaries, and exports |
 
 #### Beginner Explanation
@@ -206,12 +207,21 @@ Use this to export details or summaries within the current filter range to a fil
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing Period | Optional | Month picker | `2026-07` | Filter that maps to the first column `Billing Period`. |
 | Region | Optional | Drop-down | `wuhan` | The selected value shows a status dot next to it. |
 | Resource Name | Optional | Text | `<text>` | Filters records by resource name. |
 | Tenant | Optional | Drop-down | `All Tenants` | Covers every visible tenant when unset. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Related Resources | System-generated | Number | `<number>` | Number of distinct resources in the current result. |
 | Duration | System-generated | Duration | hours | Statistic in the summary bar. |
 | credits Amount | System-generated | Number | credits | Statistic that maps to the `Metered Amount (credits)` column. |
@@ -222,6 +232,7 @@ Use this to export details or summaries within the current filter range to a fil
 | Processing range | Required | Radio chips | `Hour` / `Day` / `Month` | Field of the `Generate Usage` dialog, default `Month`. |
 | Time Range | Required | Time range | start - end | Field of the `Detail Download` dialog. |
 | Data Type | Optional | Radio chips | `Detail Data` / `Summary data` | Field of the `Detail Download` dialog, default detail data. |
+
 
 ## Pitfalls
 

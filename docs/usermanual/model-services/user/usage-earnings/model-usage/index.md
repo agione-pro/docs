@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider |
-| Navigation | **Model Services** > **Usage & Earnings** > **Model Usage** |
-| Route | `/modelone/accounting/deduction/overview/model` |
-| Managed objects | Model consumption, used model count, total credits, and tokens |
+| Applicable Role | Model Provider |
+| Navigation Path | Model Services > Usage & Earnings > Model Usage |
+| Page Route | `/modelone/accounting/deduction/overview/model` |
+| Managed Object | Model consumption, used model count, total credits, and tokens |
 
 **New to this page**: Model Usage is the consumption ledger for publishers. Select a billing cycle, read how many models were used and how many credits and tokens were consumed, then use trends and distribution to find where consumption concentrates.
 
@@ -73,10 +73,19 @@ The figure shows the page provides `Overview` and `Usage Details` tabs; KPI card
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Billing cycle | Yes | Selector | `2026-11` | Billing period |
 | Date | No | Date range | `2026-11-01` to `2026-11-03` | Statistics date range |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Number of Models Used | System | Number | `0` | Models that generated consumption |
 | Total Consumption (Credits) | System | Amount | `0.00` | Total credits consumed |
 | Total Token Consumption | System | Number | `0` | Combined input and output tokens |
@@ -85,6 +94,7 @@ The figure shows the page provides `Overview` and `Usage Details` tabs; KPI card
 | Model Usage Distribution | System | Chart | — | Consumption share by model |
 | Trend of Model Call Frequency | System | Chart | — | Call count over time |
 | Distribution of Model Call Times | System | Chart | — | Call share by model |
+
 
 ## Pitfalls
 

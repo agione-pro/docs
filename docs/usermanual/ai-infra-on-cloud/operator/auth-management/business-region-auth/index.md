@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Authorization Management > Business-Region Auth |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Authorization Management > Business-Region Auth |
 | Page Route | `/infrahub/op/auth/region-auth` |
-| Managed Objects | Cloud resource pool authorization scope maintained by business |
+| Managed Object | Cloud resource pool authorization scope maintained by business |
 
 #### Beginner Explanation
 
@@ -72,18 +72,28 @@ The figure shows Configure available business resource pools: Business, Current 
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search resource pool name or ID | No | Search field | Sample pool name or ID | Locates a resource pool. |
+| Selected only / Select all | No | Filter / selection entry | `Selected only` | Reviews selected items or makes list selections; review the current cloud first. |
+| Reset | No | Button | `Reset` | Separate action entry, not an exit control. |
+
+#### Existing Fields
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Business | — | Read-only information | `Inference Deployment` | Business being configured, not a tenant selector. |
 | Current cloud | — | Read-only information | Current selection | Identifies the cloud for the resource pool list on the right. |
 | Selected on cloud | — | Count summary | Selected / available | Current cloud's selected scope, not the total across clouds. |
 | Cloud list | No | Switch entry | Actual cloud selection | Maintains complete scope by cloud and displays per-cloud selections. |
-| Search resource pool name or ID | No | Search field | Sample pool name or ID | Locates a resource pool. |
-| Selected only / Select all | No | Filter / selection entry | `Selected only` | Reviews selected items or makes list selections; review the current cloud first. |
 | Resource pool checkboxes | Configure within approved scope | Multi-select | Actual resource pools | Business resource pool scope; the page identifies upstream-enabled pools as the source. |
 | Resource pools after save / Add / Remove | — | Change summary | Dialog values | Reviews the complete scope and changes before submission, not a saved result. |
-| Reset | No | Button | `Reset` | Separate action entry, not an exit control. |
 | Done / Upper-right close | No | Submission / exit entry | `Done` | Done submits; use the upper-right close button for inspection only. |
+
 
 ## Pitfalls
 

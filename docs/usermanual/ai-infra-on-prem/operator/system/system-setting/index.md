@@ -1,8 +1,8 @@
 # System Setting
 
 ::: info Document Information
-Version: v2.2
-Updated: 2026-11-13
+Version: v2.3
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -11,6 +11,7 @@ Updated: 2026-11-13
 | --- | --- |
 | Applicable Role | Operator |
 | Navigation Path | On-Prem > System > System Setting |
+| Page Route | `/powerone/system/config-properties` |
 | Managed Object | Configuration, status, and relationships on System Setting |
 
 #### Beginner Explanation
@@ -424,40 +425,42 @@ Use `Refresh` in the top-right corner to reload the configuration when someone e
 
 ## Parameter Quick Reference
 
-| Group | Configuration Item | Control | Example On Screen | Description |
+An em dash means that the original reference does not separately specify that item; it does not mean optional, a default value, or a backend validation result.
+
+| Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| `User service access` | `Data Gateway endpoints` | Inline edit (pencil icon) | `<internal address>` | One row per region, covering image and object storage Gateway addresses. |
-| `User service access` | `Gateway signing key` | Masked field, `Eye`/`Copy` icons, `Reset key` | `<value>` | Read-only masked display. Never record the plaintext key. |
-| `User service access` | `Use domain-based ingress` | Switch | `Disabled` | Decides whether entries resolve by domain name. |
-| `User service access` | `Public Nginx endpoint` | Inline edit (pencil icon) | `<internal address>` | External Nginx entry, including port and path template. |
-| `User service access` | `Default port access policy` | Radio cards (4) | `Web Access (Recommended)` | Sets the default access mode for job ports. |
-| `User service access` | `User-visible diagnosis events` | Switch | `Disabled` | Controls whether diagnosis events are exposed to the user side. |
-| `Job scheduling and resource governance` | `Queued job types` | Inline edit (tag set) | `<option>` | Tags on screen: `Runtime Instances`, `Online IDE`. |
-| `Job scheduling and resource governance` | `Ignore RDMA settings` | Switch | `Disabled` | Decides whether RDMA settings on a job are skipped. |
-| `Job scheduling and resource governance` | `Cluster RDMA configuration` | Inline edit (table) | `<cluster ID>` | Columns `Cluster ID` and `Network annotation value`; empty state `No items`. |
-| `Job scheduling and resource governance` | `Missing K8s entity fallback threshold` | Inline edit (number) | `<number>` | Threshold for fallback decisions when a K8s entity is missing. |
-| `Job scheduling and resource governance` | `Resource scheduling threshold` | Inline edit (percent and number) | `100% (1)` | Controls the resource watermark at which scheduling stops. |
-| `Job scheduling and resource governance` | `Ephemeral storage scheduling threshold` | Inline edit (percent and number) | `100% (1)` | The same kind of watermark threshold for ephemeral storage. |
-| `Job scheduling and resource governance` | `Job scheduling logs` | Switch | `Enabled` | Decides whether scheduling steps are logged. |
-| `Job scheduling and resource governance` | `Strict resource precheck` | Switch | `Enabled` | Decides whether a failed precheck rejects the job outright. |
-| `Job scheduling and resource governance` | `Allow duplicate K8s clusters` | Switch | `Enabled` | Decides whether the same cluster can be registered more than once. |
-| `Job runtime and storage` | `Job types using Deployment` | Inline edit (tag set) | `<option>` | Tags on screen: `Online IDE`, `Runtime Instances`. |
-| `Job runtime and storage` | `Pod DNS resolver` | Inline edit | `<internal address>` | DNS resolver address injected into job pods. |
-| `Job runtime and storage` | `Job system disk limit` | Inline edit (capacity) | `20Gi` | System disk ceiling available to one job. |
-| `Job runtime and storage` | `Default shared memory size` | Inline edit (capacity) | `4Gi` | Default shared memory size when none is specified. |
-| `Job runtime and storage` | `Cluster SHM size map` | Inline edit (table) | `<cluster ID>` | Columns `Cluster ID`, `XPU count`, `SHM size`. |
-| `Job runtime and storage` | `Default pod bandwidth` | Inline edit (bandwidth) | `10M` | Default network bandwidth of a pod. |
-| `Template framework start commands` | `Framework version base commands` | Tabs, version list, code panels | `<value>` | Split into `Main node command` and `Worker node command`, with placeholders such as `${modelName}`. |
-| `VRAM calculation` | `Framework VRAM reserve rules` | Inline edit (table) | `<number>` | Columns `Model classification`, `Modality conditions`, `Minimum reserve`, `Reserve ratio`, `Enabled`. |
-| `Cloud region localization` | `Cloud region name mappings` | Inline edit (table) | `<value>` | Columns `Cloud provider`, `Region ID`, `Locale`, `Translated name`. |
-| `Frontend page configuration` | `Page section timestamps` | Inline edit (table) | `<date>` | Columns `Page section` and `Timestamp`, one update time per section. |
-| `Specification unit conversion` | `Specification metric units` | Inline edit (table) | `<number>` | Columns `Unit` and `Conversion multiplier` for usage and billing conversion. |
-| `Billing policy` | `Consumption type` | Segmented control (2) | `Spec quota` | Mutually exclusive with `credits`; sets the billing and quota basis. |
-| `Billing policy` | `Bucket retention after insufficient credits` | Inline edit | `Retain permanently` | Retention policy for objects pending deletion when credits run out. |
-| `Cluster monitoring metrics` | `Stored monitoring metrics` | Inline edit (tag set) | `<option>` | Tags include four metric names such as `xpu_util` and `xpu_mem_util`. |
-| `Feature availability` | `Automatic deployment profile collection` | Switch | `Disabled` | Decides whether deployment profile collection runs automatically. |
-| `Disaster recovery` | `Recovery scheduling` | Switch | `Disabled` | Decides whether recovery rescheduling is used during incidents. |
-| Top-right of the page | `Refresh` | Button | `Refresh` | Reloads all configuration values without changing them. |
+| `Data Gateway endpoints` | — | Inline edit (pencil icon) | `<internal address>` | Group: `User service access`；One row per region, covering image and object storage Gateway addresses. |
+| `Gateway signing key` | — | Masked field, `Eye`/`Copy` icons, `Reset key` | `<value>` | Group: `User service access`；Read-only masked display. Never record the plaintext key. |
+| `Use domain-based ingress` | — | Switch | `Disabled` | Group: `User service access`；Decides whether entries resolve by domain name. |
+| `Public Nginx endpoint` | — | Inline edit (pencil icon) | `<internal address>` | Group: `User service access`；External Nginx entry, including port and path template. |
+| `Default port access policy` | — | Radio cards (4) | `Web Access (Recommended)` | Group: `User service access`；Sets the default access mode for job ports. |
+| `User-visible diagnosis events` | — | Switch | `Disabled` | Group: `User service access`；Controls whether diagnosis events are exposed to the user side. |
+| `Queued job types` | — | Inline edit (tag set) | `<option>` | Group: `Job scheduling and resource governance`；Tags on screen: `Runtime Instances`, `Online IDE`. |
+| `Ignore RDMA settings` | — | Switch | `Disabled` | Group: `Job scheduling and resource governance`；Decides whether RDMA settings on a job are skipped. |
+| `Cluster RDMA configuration` | — | Inline edit (table) | `<cluster ID>` | Group: `Job scheduling and resource governance`；Columns `Cluster ID` and `Network annotation value`; empty state `No items`. |
+| `Missing K8s entity fallback threshold` | — | Inline edit (number) | `<number>` | Group: `Job scheduling and resource governance`；Threshold for fallback decisions when a K8s entity is missing. |
+| `Resource scheduling threshold` | — | Inline edit (percent and number) | `100% (1)` | Group: `Job scheduling and resource governance`；Controls the resource watermark at which scheduling stops. |
+| `Ephemeral storage scheduling threshold` | — | Inline edit (percent and number) | `100% (1)` | Group: `Job scheduling and resource governance`；The same kind of watermark threshold for ephemeral storage. |
+| `Job scheduling logs` | — | Switch | `Enabled` | Group: `Job scheduling and resource governance`；Decides whether scheduling steps are logged. |
+| `Strict resource precheck` | — | Switch | `Enabled` | Group: `Job scheduling and resource governance`；Decides whether a failed precheck rejects the job outright. |
+| `Allow duplicate K8s clusters` | — | Switch | `Enabled` | Group: `Job scheduling and resource governance`；Decides whether the same cluster can be registered more than once. |
+| `Job types using Deployment` | — | Inline edit (tag set) | `<option>` | Group: `Job runtime and storage`；Tags on screen: `Online IDE`, `Runtime Instances`. |
+| `Pod DNS resolver` | — | Inline edit | `<internal address>` | Group: `Job runtime and storage`；DNS resolver address injected into job pods. |
+| `Job system disk limit` | — | Inline edit (capacity) | `20Gi` | Group: `Job runtime and storage`；System disk ceiling available to one job. |
+| `Default shared memory size` | — | Inline edit (capacity) | `4Gi` | Group: `Job runtime and storage`；Default shared memory size when none is specified. |
+| `Cluster SHM size map` | — | Inline edit (table) | `<cluster ID>` | Group: `Job runtime and storage`；Columns `Cluster ID`, `XPU count`, `SHM size`. |
+| `Default pod bandwidth` | — | Inline edit (bandwidth) | `10M` | Group: `Job runtime and storage`；Default network bandwidth of a pod. |
+| `Framework version base commands` | — | Tabs, version list, code panels | `<value>` | Group: `Template framework start commands`；Split into `Main node command` and `Worker node command`, with placeholders such as `${modelName}`. |
+| `Framework VRAM reserve rules` | — | Inline edit (table) | `<number>` | Group: `VRAM calculation`；Columns `Model classification`, `Modality conditions`, `Minimum reserve`, `Reserve ratio`, `Enabled`. |
+| `Cloud region name mappings` | — | Inline edit (table) | `<value>` | Group: `Cloud region localization`；Columns `Cloud provider`, `Region ID`, `Locale`, `Translated name`. |
+| `Page section timestamps` | — | Inline edit (table) | `<date>` | Group: `Frontend page configuration`；Columns `Page section` and `Timestamp`, one update time per section. |
+| `Specification metric units` | — | Inline edit (table) | `<number>` | Group: `Specification unit conversion`；Columns `Unit` and `Conversion multiplier` for usage and billing conversion. |
+| `Consumption type` | — | Segmented control (2) | `Spec quota` | Group: `Billing policy`；Mutually exclusive with `credits`; sets the billing and quota basis. |
+| `Bucket retention after insufficient credits` | — | Inline edit | `Retain permanently` | Group: `Billing policy`；Retention policy for objects pending deletion when credits run out. |
+| `Stored monitoring metrics` | — | Inline edit (tag set) | `<option>` | Group: `Cluster monitoring metrics`；Tags include four metric names such as `xpu_util` and `xpu_mem_util`. |
+| `Automatic deployment profile collection` | — | Switch | `Disabled` | Group: `Feature availability`；Decides whether deployment profile collection runs automatically. |
+| `Recovery scheduling` | — | Switch | `Disabled` | Group: `Disaster recovery`；Decides whether recovery rescheduling is used during incidents. |
+| `Refresh` | — | Button | `Refresh` | Group: Top-right of the page；Reloads all configuration values without changing them. |
 
 ## Pitfalls
 

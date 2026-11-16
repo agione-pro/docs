@@ -1,8 +1,8 @@
 # Usage Limits
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -11,6 +11,7 @@ Updated: 2026-11-04
 | --- | --- |
 | Applicable Role | Operator |
 | Navigation Path | On-Prem > Quotas & Metering > Usage Limits |
+| Page Route | `/powerone/quota-metric/credit` |
 | Managed Object | Tenant, resource limits, spec quota, spec ID, and quota configuration |
 
 #### Beginner Explanation
@@ -235,15 +236,24 @@ Use this for routine small corrections that set quotas for a few specified speci
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | All Tenants | No | Selector placeholder | `All Tenants` | Placeholder of the tenant selector when nothing is selected. Each selection becomes a removable tag with `×`. Area: Filter area. |
+| Reset (filter area) | No | Query action | `Reset` | Restores the filter condition. Area: Filter area. |
+| General Resource Items | — | Group title | `General Resource Items` | Group that holds CPU and memory in the expanded area and in the resource limits dialog. Area: Expanded area, Resource Limits dialog. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Tenant Name / ID | Depends on operation | Main table column / system-generated | `tenant-demo` | Locates the target tenant. Do not write real tenant names or tenant IDs in documentation or screenshots. Area: Main table. |
 | Resource Limits | Depends on operation | Header button / main table column / expanded tab | `CPU 12 vCPU / Unlimited` | Opens the resource limits dialog and shows the tenant resource limits in the main table and the expanded area. Area: Header, main table, expanded area. |
 | Spec Quota | Depends on operation | Header button / main table column / expanded tab | `6 Hour` | Opens the spec quota dialog and shows the tenant specification quotas in the main table and the expanded area. Area: Header, main table, expanded area. |
 | Search | No | Query action | `Search` | Refreshes the tenant list with the current filter condition. Area: Filter area. |
-| Reset (filter area) | No | Query action | `Reset` | Restores the filter condition. Area: Filter area. |
-| General Resource Items | — | Group title | `General Resource Items` | Group that holds CPU and memory in the expanded area and in the resource limits dialog. Area: Expanded area, Resource Limits dialog. |
 | Accelerator | — | Group title | `Accelerator` | Group that holds accelerator resource items in the expanded area and in the resource limits dialog. Area: Expanded area, Resource Limits dialog. |
 | Resource | — | Expanded column | `Memory`, `CPU`, `Total`, `Other` | Resource item names shown in the `Resource Limits` expanded tab. Area: Expanded area. |
 | Resource Limits (expanded column) | Depends on operation | Quantity / capacity | `24 GiB / Unlimited` | Current limit and usage shown in the expanded area, with a progress bar below the value. Area: Expanded area. |
@@ -263,6 +273,7 @@ Use this for routine small corrections that set quotas for a few specified speci
 | Confirm | Yes (final submit) | High-risk final action | `Confirm` | Submits the current configuration in the dialog. Area: Resource Limits dialog, Spec Quota dialog. |
 | Recharge Details | No | Read-only entry | `Recharge Details` | Opens the quota source drawer with the columns `Granted Quota`, `Quota Source`, `Acquisition Method`, `Third-party Transaction ID`, and `Recharge Time`. Area: `Spec Quota` expanded tab. |
 | Consumption Details | No | Read-only entry | `Consumption Details` | Opens the quota consumption drawer with the columns `Usage Amount`, `Consumption Source`, `Consumption Start Time`, and `Consumption End Time`. Area: `Spec Quota` expanded tab. |
+
 
 ## Pitfalls
 

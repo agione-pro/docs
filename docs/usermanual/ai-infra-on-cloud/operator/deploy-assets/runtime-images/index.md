@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Deploy Assets > Frameworks > in-page Image Resources |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Deploy Assets > Frameworks > in-page Image Resources |
 | Page Route | `/infrahub/op/model/image` |
-| Managed Objects | Framework-related runtime images, registry paths, cloud platforms, and resource pool scope |
+| Managed Object | Framework-related runtime images, registry paths, cloud platforms, and resource pool scope |
 
 #### Beginner Explanation
 
@@ -89,9 +89,19 @@ The figure shows the existing Edit Image form with Cloud Platform, Region, Publi
 
 Add fields follow the current initial form. Region is retained only as an existing maintenance-form reference and does not replace the current Resource Pool field.
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Image name / Cloud Platform / Visibility query | No | Text / Selection | Sample image / Sample cloud platform | Image Resources list filters. |
+| Search / Reset | — | Buttons | `Search` / `Reset` | List query entries. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Cloud Platform | Follow the current form | Selection | Current options | Cloud platform selection area at the top of the add form; platform-type badges do not specify image Type. |
 | Resource Pool | Yes | Selection | Sample resource pool | Marked required in the current add form; the label is Resource Pool, not the former Region label. |
 | Type | Follow the current form | Segmented control | `Public` | Visible options are Public and Private. |
@@ -101,9 +111,9 @@ Add fields follow the current initial form. Region is retained only as an existi
 | Image Resource / Cloud Platform / Resource Pool | — | List information | Target record | Identifies the image and environment scope; the name does not replace environment information. |
 | Visibility / Size / Updated At | — | List information | Target record | Separate columns in the current list; do not carry over the former Created at column label. |
 | Region | Follow the current edit form | Selection | Actual displayed value | Appears only in the existing maintenance-form reference, not as a current add field. |
-| Search / Reset | — | Buttons | `Search` / `Reset` | List query entries. |
 | Edit / Delete | — | Row entries | `Edit` / `Delete` | Currently visible action entries, not evidence of execution or completion. |
 | Cancel / Confirm | — | Buttons | `Cancel` / `Confirm` | Bottom entries in the current add form; submission results require a separate check. |
+
 
 ## Pitfalls
 

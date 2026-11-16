@@ -1,18 +1,18 @@
 # My Models
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider |
-| Navigation | **Model Services** > **Studio** > **My Models** |
-| Routes | Overview `/modelone/model/my/overview`; publish form `/modelone/model/create?isPublic=0` |
-| Managed objects | Published models, aggregate models, deployment entries, and publish configuration |
+| Applicable Role | Model Provider |
+| Navigation Path | Model Services > Studio > My Models |
+| Page Route | Overview `/modelone/model/my/overview`; publish form `/modelone/model/create?isPublic=0` |
+| Managed Object | Published models, aggregate models, deployment entries, and publish configuration |
 
 #### Beginner Explanation
 
@@ -95,6 +95,17 @@ The figure shows the wizard with `1 Basic Information`, `2 Billing Configuration
 3. Click **"Edit"** to change the configuration.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| My Published: search | — | — | — | `My Published` lists directly published models. Columns are `Model name`, `Model type`, `Billing mode`, `Billing rules`, `Status`, `Effective version`, `Pending version`, `Updated at`, and `Actions`. The toolbar provides **Publish Model**, search, and **Reset**; row actions provide **View details** and **Edit**. |
+| My Aggregate: visibility / model type / search | — | — | — | `My Aggregate` uses the same columns and provides **Create Aggregate Model**, `Public Model` / `Private Model` filters, an `All Model type` filter, search, **Reset**, and **Expand**. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

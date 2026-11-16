@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Customer Billing > Customer Overview |
-| Page route | `/billing/customers/overview` |
-| Managed objects | Customer identities, tags, consumption accounts, and revenue accounts |
+| Navigation Path | Billing > Customer Billing > Customer Overview |
+| Page Route | `/billing/customers/overview` |
+| Managed Object | Customer identities, tags, consumption accounts, and revenue accounts |
 
 `Customer Overview` locates customers by business identity, keyword, and tags, displays balances and consumption, and provides Details, Grant Credit, and Recall Credit entries.
 
@@ -120,11 +120,20 @@ The figure shows the Tag Management dialog with five locked built-in tags, an em
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Business identity | Select for query | Segmented selection | `End User` | Select `End User` or `Provider`. |
 | Enter a keyword | No | Text | `<query>` | Locates customers within the selected business identity using the entered keyword. |
 | Filter by tag | No | Multi-select | `VIP` | Matching any selected tag includes the customer (OR). |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Tenant | Read-only | Identity information | `<tenant>` | Customer tenant in the End User table. |
 | Admin | Read-only | Identity information | `<administrator>` | Administrator in the End User table. |
 | Tags | Read-only | Tag set | `VIP` | Each customer can have up to 5 tags. |
@@ -143,6 +152,7 @@ The figure shows the Tag Management dialog with five locked built-in tags, an em
 | Recall Amount | Yes | Number | `<amount>` | Required field in the Recall Credit form. |
 | Reason | Yes | Multiline text | `<business reason>` | Required in both credit forms. |
 | Recall all | No | Button | `Recall all` | A separate entry provided in the Recall Credit form. |
+
 
 ## Pitfalls
 

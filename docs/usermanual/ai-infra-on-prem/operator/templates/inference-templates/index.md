@@ -1,8 +1,8 @@
 # Inference Templates
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-13
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -142,6 +142,16 @@ Use the import/export entry to batch-maintain inference templates, or to export 
 - Template import depends on model, framework, image, and specification objects. Do not submit it when dependencies are missing in the target environment.
 - Import may update a template with the same identifier. Verify release scope, default parameter values, and downstream deployment impact first.
 ## Parameter Quick Reference
+#### Query and Filters
+
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Author filter chips | — | — | — | Narrows the template list by author. |
+| Search model / author / tag / accelerator | — | — | — | Searches the template list by model, author, tag, or accelerator. |
+| Default (sort) | — | — | — | Sort control in the template-list header; Clear filters is provided separately. |
+
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

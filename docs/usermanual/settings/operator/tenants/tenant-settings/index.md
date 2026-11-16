@@ -10,9 +10,9 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Tenants > Tenant Settings |
-| Page route | `/user/user-space/settings` |
-| Managed objects | Tenant-level security settings, IP allowlist, policy version, and current source IP |
+| Navigation Path | Settings > Tenants > Tenant Settings |
+| Page Route | `/user/user-space/settings` |
+| Managed Object | Tenant-level security settings, IP allowlist, policy version, and current source IP |
 
 #### Beginner Explanation
 

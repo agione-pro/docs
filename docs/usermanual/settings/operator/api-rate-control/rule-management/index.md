@@ -1,8 +1,8 @@
 # Rule Management
 
 ::: info Document Information
-Version: v2.3
-Updated: 2026-11-15
+Version: v2.4
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-15
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > API Rate Control > Rule Management |
-| Page route | `/user/system/rate-control/rules` |
-| Managed objects | API rate-control rules, API Patterns, enabled status, and publication status |
+| Navigation Path | Settings > API Rate Control > Rule Management |
+| Page Route | `/user/system/rate-control/rules` |
+| Managed Object | API rate-control rules, API Patterns, enabled status, and publication status |
 
 #### Beginner Explanation
 
@@ -99,6 +99,17 @@ The figure shows the empty New Rate Limit Rule drawer with Basic Info, Quota & W
 5. Review Observability Audit to verify blocked requests and rule hits.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Rule Name | — | — | — | Filters by rule name. |
+| API Pattern | — | — | — | Filters by API match pattern. |
+
+#### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Access Workbench > Access Overview |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Access Workbench > Access Overview |
 | Page Route | Legacy entry: `/infrahub/op/workbanch/quick`; redirects to `/infrahub/op/workbanch/overview?stage=cloudAccess` |
-| Managed Objects | The legacy Quick Access entry and navigation to cloud access management |
+| Managed Object | The legacy Quick Access entry and navigation to cloud access management |
 
 #### Beginner Explanation
 

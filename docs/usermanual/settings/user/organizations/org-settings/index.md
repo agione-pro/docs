@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Tenants > Tenant Settings |
-| Page route | `/user/user-space/settings` |
-| Managed objects | Credit-balance alerts, project defaults, member quota policy, and tenant-level defaults |
+| Navigation Path | Settings > Tenants > Tenant Settings |
+| Page Route | `/user/user-space/settings` |
+| Managed Object | Credit-balance alerts, project defaults, member quota policy, and tenant-level defaults |
 
 #### Beginner Explanation
 

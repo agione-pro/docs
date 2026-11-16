@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider & User |
-| Navigation path | Billing > Transactions |
-| Page route | `/billing/my/account/transactions/records` |
-| Managed objects | The current account's transactions, consumption sources, balance changes, and business references |
+| Navigation Path | Billing > Transactions |
+| Page Route | `/billing/my/account/transactions/records` |
+| Managed Object | The current account's transactions, consumption sources, balance changes, and business references |
 
 Transactions queries billing records by transaction type, direction, and date range. Use it to check each record's change amount, balance after the change, and related business information.
 
@@ -76,11 +76,20 @@ The figure shows Transaction Details with the date range set to `2025-01-01` thr
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Transaction type (filter) | No | Select | `All Transaction type` | Restricts the business category and automatically queries the list. |
 | Direction (filter) | No | Select | `All Direction` | Restricts transaction direction and automatically queries the list. |
 | Date range | No | Date range | `2025-01-01` through `2025-01-31` | Restricts the query to start and end dates. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Transaction no. | Not applicable | List column | — | Identifier of an individual transaction. |
 | Transaction time | Not applicable | Time column | — | Occurrence time displayed for the record. |
 | Direction | Not applicable | List column | — | Income or expense direction of the record. |
@@ -91,6 +100,7 @@ The figure shows Transaction Details with the date range set to `2025-01-01` thr
 | Business ref. | Not applicable | List column | — | Reference number for the related business transaction. |
 | Remarks | Not applicable | List column | — | Additional information displayed for the record. |
 | Actions / View details | No | Row-level entry | `View details` | Opens the corresponding individual record. |
+
 
 ## Pitfalls
 

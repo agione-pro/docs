@@ -1,8 +1,8 @@
 # My Notifications
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -10,9 +10,9 @@ Updated: 2026-11-04
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Activity & Notifications > My Notifications |
-| Page route | `/user/user-space/notification/inbox` |
-| Managed objects | Notifications, business topics, severity, receive time, read status, and notification details |
+| Navigation Path | Settings > Activity & Notifications > My Notifications |
+| Page Route | `/user/user-space/notification/inbox` |
+| Managed Object | Notifications, business topics, severity, receive time, read status, and notification details |
 
 #### Beginner Explanation
 
@@ -64,6 +64,20 @@ The page provides title/type, date range, read status, and severity filters, plu
 4. If follow-up is needed, open the relevant business page using the recommendation. Do not forward complete content that contains sensitive information.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+This group describes list queries. An em dash means the source description does not specify a required mark, control type, or example; it is not a backend optional-field rule or a default value.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search | — | — | — | Search by title or notification type name. |
+| Date range | — | — | — | Select a start and end date. |
+| Read status | — | — | — | Filter read or unread notifications. |
+| Severity | — | — | — | Filter by Info, Warning, and other levels. |
+| Business topic | — | — | — | All notifications, Account & Fund Messages, Product Messages, Security Messages, Anomaly Notifications, Activity Messages, Service Messages. |
+
+#### Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

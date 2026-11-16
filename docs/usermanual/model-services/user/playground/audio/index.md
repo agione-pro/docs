@@ -9,10 +9,10 @@ Updated: 2026-11-04
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider & User |
-| Navigation | **Model Services** > **Playground** > **Audio** |
-| Route | `/modelone/exploration/audio` |
-| Managed objects | Audio model, input text, and generation tasks |
+| Applicable Role | Model Provider & User |
+| Navigation Path | Model Services > Playground > Audio |
+| Page Route | `/modelone/exploration/audio` |
+| Managed Object | Audio model, input text, and generation tasks |
 
 **New to this page**: Audio converts text into speech. Choose an audio model, enter the text to read, and review the generated audio in **Task query**.
 

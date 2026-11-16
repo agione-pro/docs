@@ -1,18 +1,18 @@
 # Overview
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
-| Applies to | Model Provider |
-| Navigation | **Model Services** > **Customer Calls** > **Overview** |
-| Route | `/modelone/model-observation/provider/overview` |
-| Managed objects | Publisher-side customer requests, tokens, latency, top customers, client sources, and model distribution |
+| Applicable Role | Model Provider |
+| Navigation Path | Model Services > Customer Calls > Overview |
+| Page Route | `/modelone/model-observation/provider/overview` |
+| Managed Object | Publisher-side customer requests, tokens, latency, top customers, client sources, and model distribution |
 
 **New to this page**: This is the publisher-side dashboard for customer traffic. Select a month and model, read requests, success/failure, latency, and tokens, then use top customers, client sources, and model distribution to see where traffic comes from.
 
@@ -80,6 +80,16 @@ The figure shows filters include month, model, and customer; KPI cards show requ
 4. Click **"View All Models"** to drill down.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Name or ID | — | — | — | Search using the Name or ID box in this page’s filter bar. Other documented conditions remain in the original table. |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

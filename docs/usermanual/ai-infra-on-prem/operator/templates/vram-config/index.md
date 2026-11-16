@@ -1,8 +1,8 @@
 # VRAM Config
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-13
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -287,6 +287,19 @@ The image shows the `VRAM Estimation Config Details` page: factors are shown as 
 - Do not delete a form that is still linked to an inference template; unlink it or switch to a replacement first. The deletion confirmation dialog is not shown in the screenshots for this page, so follow the on-screen prompt.
 
 ## Parameter Quick Reference
+
+#### Query and Filters
+
+Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search precision name | — | — | — | - Use `Search precision name` with `Search` and `Reset` to locate a record, and use the page controls with `10/page` at the bottom right to paginate. |
+| Search framework type / Search framework version | — | — | — | - The tab provides two filter inputs, `Search framework type` and `Search framework version`, used with `Search` and `Reset`. |
+| Model Name / Framework Type / Quantization Method | — | — | — | - The tab filters by `Model Name`, `Framework Type`, and `Quantization Method`, used with `Search` and `Reset` to locate a record. |
+| Meta Model / Framework Type / Accelerator / Estimate Enabled | — | — | — | The image shows the empty `Deployment Profiles` tab: the filter area offers four dropdowns (`Meta Model`, `Framework Type`, `Accelerator`, and `Estimate Enabled`, all defaulting to `All`) with `Search`, `Reset`, and `More Filters` controls, and an empty list reads `No Matching Deployment Profiles` / `Adjust the filters and search again.` |
+
+#### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

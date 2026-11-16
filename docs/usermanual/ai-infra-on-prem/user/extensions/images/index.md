@@ -1,8 +1,8 @@
 # Images
 
 ::: info Document Information
-Version: v2.0
-Updated: 2026-11-04
+Version: v2.1
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -237,6 +237,18 @@ The screen in Page Description shows the detail pane of a selected repository.
 - No deletion entry for a group or a repository appears in this screen; this document does not conclude that the page supports or refuses deletion.
 
 ## Parameter Quick Reference
+#### Query and Filters
+
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Search names... | — | — | — | Filters image-group cards in the left panel. |
+| Search tags | — | — | — | Filters rows in the selected repository's tag table. |
+| All systems | — | — | — | Filters repository tags by system. |
+| All architectures | — | — | — | Filters repository tags by architecture. |
+| Scene (third dropdown) | — | — | — | The third dropdown filters by scene; this page does not enumerate its option values. |
+
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

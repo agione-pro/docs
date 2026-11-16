@@ -10,9 +10,9 @@ Updated: 2026-11-05
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operations administrator |
-| Navigation path | Billing > Finance Operations > Financial Accounts |
-| Page route | `/billing/admin/financial-accounts` |
-| Managed objects | Platform clearing account, platform revenue account, live balances, billing-cycle statistics, and transactions |
+| Navigation Path | Billing > Finance Operations > Financial Accounts |
+| Page Route | `/billing/admin/financial-accounts` |
+| Managed Object | Platform clearing account, platform revenue account, live balances, billing-cycle statistics, and transactions |
 
 Use this page to switch between two platform accounts, read live balances and clearing or revenue statistics for a selected billing cycle, and inspect transactions.
 
@@ -84,22 +84,32 @@ The figure shows the empty transaction table with Credit selected, its currently
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Billing Cycle | Select for inspection | Month | 2026-11 | Defines the scope of Billing Cycle view and Transactions. |
+| Direction | No | Select | Credit / Debit | Filters transactions by fund direction. |
+| Source system | No | Select | Select a displayed option | Filters transactions by source system. |
+
+#### Existing Fields
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Platform Clearing Account / Platform Revenue Account | Select as needed | Button tabs | Platform Clearing Account | Switch account content on the same page. |
 | Ledger balance | Read-only | Amount | 0.00 credits | Marked “Live”; read separately from billing-cycle statistics. |
-| Billing Cycle | Select for inspection | Month | 2026-11 | Defines the scope of Billing Cycle view and Transactions. |
 | Refresh | As needed | Button | Refresh | Use after selecting a billing cycle. |
 | To settle to Providers / Retained fee to transfer | Read-only | Amount | 0.00 credits | The two amounts in Clearing queue. |
 | Pending credit | Read-only | Amount | 0.00 credits | Pending amount displayed in Revenue. |
 | Retained fee / PowerOne self / Statistical revenue total | Read-only | Statistical amount | 0.00 credits | Read revenue components and total separately. |
 | Last 12 Billing Cycles / Cumulative statistical revenue | Read-only | Trend and statistical amount | 0.00 credits | Trend period range and cumulative statistical value. |
-| Direction | No | Select | Credit / Debit | Filters transactions by fund direction. |
-| Source system | No | Select | Select a displayed option | Filters transactions by source system. |
 | Time / Flow / Counterparty | Read-only | Transaction columns | — | Inspect record time, fund flow, and counterparty. |
 | Business context / Reference | Read-only | Transaction columns | — | Locate business clues and related references. |
 | Amount | Read-only | Transaction amount | 0.00 credits | Inspect with direction; do not substitute statistical revenue. |
 | Details | As needed when records exist | Row action | Details | Read-only inspection of the transaction. |
+
 
 ## Pitfalls
 

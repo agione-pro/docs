@@ -149,6 +149,8 @@ const RULE_DESC = {
   S09: '禁止容器与面向内部维护的描述',
   S10: '图片：引用有效、中英成对、命名、孤儿图',
   S11: '文档信息卡片：::: info 文档信息 必备且格式固定',
+  S12: '功能概述属性表：四行标签词表固定、必须有页面路由行',
+  S13: '导航路径写法：取值纯文本、不加粗、不带品牌前缀',
 }
 
 const argv = process.argv.slice(2)
@@ -264,6 +266,55 @@ for (const lang of ['zh', 'en']) {
         add('S11', lang, rel, infoStart + 3, `文档信息更新日期格式错误，应为「${dateLinePrefix}YYYY-MM-DD」，实际为「${d}」`)
       }
       if (end !== ':::') add('S11', lang, rel, infoStart + 4, `文档信息未按规范以「:::」闭合`)
+    }
+
+    // S12 / S13: 功能概述属性表与导航路径写法（§10.5.3 / §10.5.2）
+    {
+      const overviewName = lang === 'zh' ? '功能概述' : 'Feature Overview'
+      const startIdx = h2.find((x) => x.name === overviewName)?.line ?? -1
+      if (startIdx > 0) {
+        const endIdx = (h2.find((x) => x.line > startIdx)?.line ?? lines.length + 1) - 1
+        let tableAt = -1
+        for (let i = startIdx; i < endIdx; i++) {
+          if (isHeaderAt(lines, i)) { tableAt = i; break }
+          if (/^#{2,4}\s/.test(lines[i])) break
+        }
+        const attrLabels = lang === 'zh'
+          ? ['适用角色', '导航路径', '页面路由', '管理对象']
+          : ['Applicable Role', 'Navigation Path', 'Page Route', 'Managed Object']
+        let navValue = null
+        if (tableAt >= 0 && headerCells(lines[tableAt])[0] === (lang === 'zh' ? '项目' : 'Item')) {
+          const got = []
+          for (let i = tableAt + 2; i < endIdx; i++) {
+            if (!/^\|/.test(lines[i].trim())) break
+            const cells = headerCells(lines[i])
+            if (cells.length !== 2) break
+            got.push(cells[0])
+            if (cells[0] === attrLabels[1]) navValue = cells[1]
+          }
+          if (got.length !== attrLabels.length) {
+            add('S12', lang, rel, tableAt + 1, `属性表行数=${got.length}，应为 ${attrLabels.length} 行（${attrLabels.join(' / ')}）`)
+          } else {
+            got.forEach((name, k) => {
+              if (name !== attrLabels[k]) {
+                add('S12', lang, rel, tableAt + 2 + k, `属性表第 ${k + 1} 行标签「${name}」不在词表，应为「${attrLabels[k]}」`)
+              }
+            })
+          }
+          if (!got.includes(attrLabels[2])) {
+            add('S12', lang, rel, tableAt + 1, `属性表缺少「${attrLabels[2]}」行；功能页必须写出页面路由`)
+          }
+        }
+        if (navValue !== null) {
+          if (/\*\*/.test(navValue)) {
+            add('S13', lang, rel, 1, `导航路径取值不得加粗（**），应为纯文本：${navValue.slice(0, 60)}`)
+          }
+          const brand = lang === 'zh' ? /^(AI\s*基础设施|AGIOne)\s*[>＞]/ : /^(AI\s*Infra(?:structure)?|AGIOne)\s*[>＞]/i
+          if (brand.test(navValue.trim())) {
+            add('S13', lang, rel, 1, `导航路径应从界面可见顶层菜单写起，不以品牌前缀开头：${navValue.slice(0, 60)}`)
+          }
+        }
+      }
     }
 
     // S03 / S04

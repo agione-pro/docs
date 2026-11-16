@@ -10,9 +10,9 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Personal > Profile |
-| Page route | `/user/user-space/profile` |
-| Managed objects | Basic account information, password status, security information, phone number, and email address |
+| Navigation Path | Settings > Personal > Profile |
+| Page Route | `/user/user-space/profile` |
+| Managed Object | Basic account information, password status, security information, phone number, and email address |
 
 #### Beginner Explanation
 

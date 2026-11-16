@@ -9,10 +9,10 @@ Updated: 2026-11-12
 
 | Item | Content |
 | --- | --- |
-| Applicable Roles | Operators |
-| Navigation Path | AI Infra(On-Cloud) > Access Management > Cloud Platforms |
+| Applicable Role | Operators |
+| Navigation Path | On-Cloud > Access Management > Cloud Platforms |
 | Page Route | `/infrahub/op/access/platform` |
-| Managed Objects | Public and private cloud connection profiles, usage states, and display settings |
+| Managed Object | Public and private cloud connection profiles, usage states, and display settings |
 
 #### Beginner Explanation
 
@@ -82,9 +82,18 @@ The figure shows Provider Identifier, Display Name, language selection, Link Add
 
 ## Parameter Quick Reference
 
+#### Query and Filters
+
+The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Platform type filter | No | Segmented control | `All` | Selects all, public, or private cloud platforms. |
+
+#### Existing Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
 | Available for Deployment and Scheduling | — | Usage-state area | `Available for Deployment and Scheduling` | Available-platform area on the page. |
 | Disabled | — | Usage-state area | `Disabled` | Disabled-platform area on the page. |
 | Cloud Platform Type | Yes | Segmented control | `Public Cloud` | Platform type under Basic Information in the add dialog. |
@@ -95,6 +104,7 @@ The figure shows Provider Identifier, Display Name, language selection, Link Add
 | Link Address / Logo | No | Display settings | Follow the form | Platform link and icon. |
 | Batch Actions | No | Action entry | `Batch Actions` | Top-level entry; check targets and impact first. |
 | Add / Cancel | No | Buttons | `Add` / `Cancel` | Submit and exit entries in the add dialog. |
+
 
 ## Pitfalls
 

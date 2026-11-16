@@ -1,8 +1,8 @@
 # Instances
 
 ::: info Document Information
-Version: v2.1
-Updated: 2026-11-12
+Version: v2.2
+Updated: 2026-11-16
 :::
 
 ## Feature Overview
@@ -333,21 +333,33 @@ Decommission an instance that is no longer needed after checking its service imp
 - `Stop` and `Restart` are not documented as executable actions here.
 
 ## Parameter Quick Reference
+#### Query and Filters
 
-| Field Name | Description |
-| --- | --- |
-| Instance Name | Model-service instance name shown on the card. |
-| Instance Type | List tabs: `All`, `Single Instance`, and `Cluster`; the form offers Single Instance and Cluster deployment plans. |
-| Status | Card status, such as `Inference service ready`. |
-| Model | The deployed model and its precision tag. |
-| Inference Framework | The framework and version shown on the card. |
-| Specification | CPU, memory, and accelerator allocations selected for deployment. |
-| Region | The instance's region, shown on the card and selected in the creation form. |
-| Runtime | Elapsed runtime shown on the card; do not substitute it for creation time. |
-| Created At | Creation timestamp under Task instance in Basic Info; separate from Runtime. |
-| Updated At | Update timestamp under Task instance in Basic Info. |
-| Service Entry | Port and protocol chips, plus the Publish entry. |
-| Actions | `Publish Model` and `Delete` in the card's `…` menu. |
+These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Instance Type Filter | — | — | — | Switches the list between All, Single Instance, and Cluster. |
+| Region and Status Filters | — | — | — | Narrows the instance list with the region and status dropdowns. |
+| Search by instance name | — | — | — | Searches the instance list by name; the refresh icon reloads the list. |
+
+
+An em dash means that the original reference does not separately specify that item; it does not mean optional, a default value, or a backend validation result.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Instance Name | — | — | — | Model-service instance name shown on the card. |
+| Instance Type | — | — | — | List tabs: `All`, `Single Instance`, and `Cluster`; the form offers Single Instance and Cluster deployment plans. |
+| Status | — | — | — | Card status, such as `Inference service ready`. |
+| Model | — | — | — | The deployed model and its precision tag. |
+| Inference Framework | — | — | — | The framework and version shown on the card. |
+| Specification | — | — | — | CPU, memory, and accelerator allocations selected for deployment. |
+| Region | — | — | — | The instance's region, shown on the card and selected in the creation form. |
+| Runtime | — | — | — | Elapsed runtime shown on the card; do not substitute it for creation time. |
+| Created At | — | — | — | Creation timestamp under Task instance in Basic Info; separate from Runtime. |
+| Updated At | — | — | — | Update timestamp under Task instance in Basic Info. |
+| Service Entry | — | — | — | Port and protocol chips, plus the Publish entry. |
+| Actions | — | — | — | `Publish Model` and `Delete` in the card's `…` menu. |
 
 ## Pitfalls
 

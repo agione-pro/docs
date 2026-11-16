@@ -12,7 +12,7 @@ Updated: 2026-11-12
 | Applicable Role | Operator |
 | Navigation Path | On-Cloud > Deploy Assets > Model Asset Migration |
 | Page Route | `/infrahub/op/model/asset-migration` |
-| Managed Objects | Models, frameworks, versions, and their dependency configuration |
+| Managed Object | Models, frameworks, versions, and their dependency configuration |
 
 The page describes exporting or importing models, frameworks, versions, and their dependency configuration for migration between environments, backup, and recovery.
 
