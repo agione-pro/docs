@@ -48,26 +48,16 @@ This guide applies to x86_64 and ARM64 delivery packages using `install.sh` and 
 
 ## 1. Obtain the Release Package
 
-**ClusterD downloads (Linux x86_64):**
+**ClusterD download page:**
 
-- **Full offline package, recommended for offline delivery:** [Download full package (2026.11.10-r2)](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.10-r2-linux-x86_64.tar.gz); [Download SHA-256 checksum file](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.10-r2-linux-x86_64.tar.gz.sha256)
+[Open the AGIOne and ClusterD release download page]({{DOCS_RELEASE_PAGE_URL_EN}})
 
-Use the SHA-256 value from the checksum file linked above when verifying the downloaded full package.
+The page provides the current ClusterD light and full packages, their exact filenames, and the matching SHA-256 files. Select the package that matches the ClusterD host architecture, then copy the package URL and its corresponding SHA-256 value into the commands in section 3. Do not use a checksum from another package or release.
 
-- **Light package:** [Download light package (2026.11.09-r1)](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.09-r1-linux-x86_64.tar.gz); [Download SHA-256 checksum file](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.09-r1-linux-x86_64.tar.gz.sha256)
-
-Light package SHA-256:
-
-```text
-56ccd2ff12b372ca6a2cb7c5324ca33ea8c9764903d7dd3b0c50da3168bb7c03
-```
-
-The full package listed here is release `2026.11.10-r2`. The light package remains `2026.11.09-r1` until its matching release is published.
-
-Both links are for x86_64 hosts only. For an ARM64 host, obtain the matching package from your delivery contact; do not simply change the architecture name in a URL.
+For an ARM64 host, use the published ARM64 package shown on the page or obtain the matching package from your delivery contact; do not simply change the architecture name in a URL.
 
 ::: warning Check the filename and trusted checksum after downloading
-Before running the commands in section 3, replace `<CLUSTERD_PACKAGE_URL>` with the selected package URL, `XXX` with the selected package version (`2026.11.10-r2` for the full package or `2026.11.09-r1` for the light package), and `<TRUSTED_OUTER_ARCHIVE_SHA256>` with the matching value from its checksum file. Full and light package checksums are not interchangeable. For another version or an ARM64 package, obtain its matching URL and checksum from your delivery contact; do not use the x86_64 checksums on this page.
+Before running the commands in section 3, copy the selected package URL from the download page into `<CLUSTERD_PACKAGE_URL>`, replace `XXX` with the selected package version, and copy the matching value from the package's SHA-256 file into `<TRUSTED_OUTER_ARCHIVE_SHA256>`. Full and light package checksums are not interchangeable. For another version or an ARM64 package, use the URL and checksum published for that exact package.
 :::
 
 ### 1.1 Choose a package
