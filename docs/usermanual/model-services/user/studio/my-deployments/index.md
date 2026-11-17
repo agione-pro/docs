@@ -60,7 +60,7 @@ As an aggregation dashboard, core lifecycle operations seamlessly link to the un
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 

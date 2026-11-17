@@ -74,7 +74,7 @@ The figure shows the Operation Logs filters and table, with Time, Product module
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
 
@@ -82,7 +82,7 @@ Query controls are grouped by their documented page area. Grouped rows are not n
 | --- | --- | --- | --- | --- |
 | User / product module / date range | — | — | — | 2. Set the user, product module, and date range, then click `Search` to narrow the scope. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -59,7 +59,7 @@ The figure shows filters are month, `By Date`, `Model`, `Client Source`, and `Na
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
 
@@ -67,7 +67,7 @@ Additional query conditions documented on this page. An em dash means the column
 | --- | --- | --- | --- | --- |
 | Name or ID | — | — | — | Search using the Name or ID box in this page’s filter bar. Other documented conditions remain in the original table. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

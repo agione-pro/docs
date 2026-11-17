@@ -88,7 +88,7 @@ The figure shows the unfilled creation form: the name, code, and Contact Informa
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -96,7 +96,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | --- | --- | --- | --- | --- |
 | No extra business limit | Not applicable | Button | `No extra business limit` | Appears beside both top-up limit fields; does not mean an unlimited amount. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

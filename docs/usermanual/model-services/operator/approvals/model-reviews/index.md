@@ -82,9 +82,7 @@ The figure shows the drawer with `Review Information`, `Basic Information`, `Inp
 
 ## Parameter Quick Reference
 
-### List fields
-
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -96,7 +94,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Model Type | As needed | Dropdown filter | — | Filters records by model type. |
 | Customer | As needed | Search select | Select customer | Filters records by customer. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

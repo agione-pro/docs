@@ -210,7 +210,7 @@ The section names above are taken verbatim from the English screen of this step.
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
 
@@ -220,7 +220,7 @@ Query controls are grouped by their documented page area. Grouped rows are not n
 | Model Versions: version search | — | — | — | 6. In `Model Versions`, check the `Selected Model` line, narrow the list with `Search versions, parameter sizes, or frameworks`, and select a version card by its precision tag, parameter size, and framework label. |
 | Inference Framework: image / vendor | — | — | — | 2. In `Inference Framework`, filter the image list with `All images` and the vendor tabs, then select a framework card. |
 
-#### Existing Fields
+### Existing Fields
 
 An em dash in Example means that this page provides no example; it is not a default or a value to enter.
 

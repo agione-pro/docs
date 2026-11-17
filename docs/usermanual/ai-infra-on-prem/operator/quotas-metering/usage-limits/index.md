@@ -236,7 +236,7 @@ Use this for routine small corrections that set quotas for a few specified speci
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -246,7 +246,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Reset (filter area) | No | Query action | `Reset` | Restores the filter condition. Area: Filter area. |
 | General Resource Items | — | Group title | `General Resource Items` | Group that holds CPU and memory in the expanded area and in the resource limits dialog. Area: Expanded area, Resource Limits dialog. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

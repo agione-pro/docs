@@ -237,7 +237,7 @@ The screen in Page Description shows the detail pane of a selected repository.
 - No deletion entry for a group or a repository appears in this screen; this document does not conclude that the page supports or refuses deletion.
 
 ## Parameter Quick Reference
-#### Query and Filters
+### Query and Filters
 
 These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
 

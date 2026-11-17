@@ -276,7 +276,7 @@ The Console tab opens a shell session in the workspace directory of the IDE.
 - Log entries can contain internal paths of the image; redact them before sharing.
 
 ## Parameter Quick Reference
-#### Query and Filters
+### Query and Filters
 
 These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
 

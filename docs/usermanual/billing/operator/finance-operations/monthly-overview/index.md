@@ -73,7 +73,7 @@ The figure shows the empty result after selecting billing cycle 2025-01 and clic
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -82,7 +82,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Billing Cycle | Yes | Month | `2025-01` | Set the query month, then click Refresh. |
 | Refresh | Operation entry | Button | Refresh | Loads statistics for the selected billing cycle. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

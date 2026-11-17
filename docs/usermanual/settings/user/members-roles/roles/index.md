@@ -130,7 +130,7 @@ The screenshot shows the authorization workbench, service counts, menu navigatio
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
 
@@ -138,7 +138,7 @@ Query controls are grouped by their documented page area. Grouped rows are not n
 | --- | --- | --- | --- | --- |
 | Role name/code; member username/name / tags | — | — | — | The left panel groups built-in system roles and custom roles and provides role-name/code search and an add entry. Selecting a role displays its name, code, description, creation time, and associated members on the right. The member table shows Username, Name, Contact, Tags, Created at, Status, and Actions, with username/name search and tag filtering. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

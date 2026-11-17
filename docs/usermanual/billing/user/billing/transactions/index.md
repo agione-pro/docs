@@ -76,7 +76,7 @@ The figure shows Transaction Details with the date range set to `2025-01-01` thr
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -86,7 +86,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Direction (filter) | No | Select | `All Direction` | Restricts transaction direction and automatically queries the list. |
 | Date range | No | Date range | `2025-01-01` through `2025-01-31` | Restricts the query to start and end dates. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

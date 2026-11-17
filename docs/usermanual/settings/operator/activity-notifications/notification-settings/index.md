@@ -78,7 +78,7 @@ The personal tab provides `Refresh` and `Save personal preferences`. The tenant 
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
 
@@ -86,7 +86,7 @@ Query controls are grouped by their documented page area. Grouped rows are not n
 | --- | --- | --- | --- | --- |
 | Tenant tab: notification name / channel / severity / business topic | — | — | — | The personal tab provides `Refresh` and `Save personal preferences`. The tenant tab provides notification-name, channel, and severity filters plus business-topic buttons. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

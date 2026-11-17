@@ -123,7 +123,7 @@ The figure shows the form before image selection: the `Image` area under `Runtim
 - Before an image is selected, `Specification` and `Storage Paths` may return no data. Complete the image selection before checking downstream configuration.
 
 ## Parameter Quick Reference
-#### Query and Filters
+### Query and Filters
 
 These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
 

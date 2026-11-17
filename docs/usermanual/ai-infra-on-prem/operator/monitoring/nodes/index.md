@@ -166,7 +166,7 @@ The `Monitoring` group of the left menu contains `Overview`, `Clusters`, `Nodes`
 - A single-node exception does not mean the whole cluster is unavailable.
 
 ## Parameter Quick Reference
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -176,7 +176,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Cluster | Conditionally required | Drop-down | `cluster-test` | Limits the cluster to which the nodes belong. |
 | Node Status Segment | Yes | Segment | `All` | Three-state segment `All` / `Normal` / `Abnormal`. The default is `All`. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

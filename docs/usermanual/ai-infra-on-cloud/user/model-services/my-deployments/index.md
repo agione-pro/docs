@@ -92,7 +92,7 @@ The figure shows Basic Information with Meta Model, Model Source, Request URL, A
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -105,7 +105,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Model Name | No | Text filter | `Qwen` | Searches by partial model name. |
 | Search / Reset | No | Button | `Search` | Queries or allows criteria to be set again. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

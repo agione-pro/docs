@@ -185,7 +185,7 @@ Delete accelerator basic information when a model recorded in the platform is re
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 These are list-query controls; their descriptions retain the wording in Page Description. An em dash means no separate required mark, type, or example is specified, not a backend rule.
 
@@ -193,7 +193,7 @@ These are list-query controls; their descriptions retain the wording in Page Des
 | --- | --- | --- | --- | --- |
 | Vendor Filter | — | — | — | Narrows the scope by vendors such as NVIDIA, AMD, Intel, and Huawei. |
 
-#### Configuration and Result Fields
+### Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

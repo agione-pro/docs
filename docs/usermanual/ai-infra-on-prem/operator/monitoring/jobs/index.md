@@ -181,7 +181,7 @@ The page groups five cards: `Job Info`, `Customer Ranking`, `Node Utilization`, 
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -193,7 +193,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Tenant / User | Conditionally required | Text | `tenant-a` | Used to locate job ownership by tenant or user. |
 | Cluster | Conditionally required | Text | `cluster-prod-a` | Locates the cluster where the job is running or queued. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

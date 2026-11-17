@@ -91,7 +91,7 @@ The figure shows an existing runtime-version configuration drawer with version, 
 
 Step-1 fields follow the current visible form. Runtime-version fields refer only to the existing version figure; they are not shown on the initial page and do not establish verification of the current second step.
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -99,7 +99,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | --- | --- | --- | --- | --- |
 | Framework Name / Cloud Platform / Framework Type query | No | Text / Selection | Sample framework / cloud | Query items in Framework Management. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -84,7 +84,7 @@ The request dialog shows granted, used, and remaining quota, plus the requested 
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
 
@@ -92,7 +92,7 @@ This group is for queries and filters only. An em dash means the source does not
 | --- | --- | --- | --- | --- |
 | Filters | — | — | — | Status, member / reason / request ID search, and event type |
 
-#### Existing Configuration and Result Fields
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

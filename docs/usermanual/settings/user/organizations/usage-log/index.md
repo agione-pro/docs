@@ -71,7 +71,7 @@ The usage audit list shows time, member, model, usage, and status. Filters defin
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
 
@@ -79,7 +79,7 @@ Query controls are grouped by their documented page area. Grouped rows are not n
 | --- | --- | --- | --- | --- |
 | Start time / End time / User ID / API Key | — | — | — | The filter bar provides `Start time`, `End time`, `User ID`, and `API Key` fields, together with `Search`, `Reset`, and `Expand` controls. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

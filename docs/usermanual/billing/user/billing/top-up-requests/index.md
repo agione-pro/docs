@@ -77,7 +77,7 @@ The figure shows the blank account credit request inputs: the hint below `Reques
 
 The table distinguishes the filter, form inputs, and display information. Display items require no input; the example credit amount illustrates the input format only.
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -85,7 +85,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | --- | --- | --- | --- | --- |
 | Status (filter) | No | Dropdown filter | Current UI options | Narrow the request list by status. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

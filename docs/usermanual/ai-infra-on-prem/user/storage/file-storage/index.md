@@ -95,22 +95,22 @@ The page is used to display file storage capability in the selected region. When
 | Mount Path | Conditionally required | Text | `/mnt/shared` | Access path inside the instance or container. |
 | Share Status | System-generated | Enum | `Available` | Used to determine whether it can be mounted, expanded, or deleted. |
 
-#### Mount, Unmount, and Confirm Capacity
+### Mount, Unmount, and Confirm Capacity
 
-#### Mount
+### Mount
 
 1. Open the instance creation page or storage mount entrypoint.
 2. Select the target file storage resource.
 3. Fill in the in-container path, such as `/mnt/data` or `/mnt/output`.
 4. After submission, view instance events and logs to confirm successful mounting.
 
-#### Unmount
+### Unmount
 
 1. Confirm that no running process is reading or writing this path.
 2. Perform unmount through the instance or storage operation entrypoint.
 3. Refresh the page to confirm that the mount relationship has been removed.
 
-#### Confirm Capacity
+### Confirm Capacity
 
 1. View capacity and status in the file storage list.
 2. Run `df -h` inside the instance or perform application-side capacity checks.

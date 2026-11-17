@@ -65,7 +65,7 @@ The figure shows the notifications inbox, with title/type, date range, read stat
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 This group describes list queries. An em dash means the source description does not specify a required mark, control type, or example; it is not a backend optional-field rule or a default value.
 
@@ -77,7 +77,7 @@ This group describes list queries. An em dash means the source description does 
 | Severity | — | — | — | Filter by Info, Warning, and other levels. |
 | Business topic | — | — | — | All notifications, Account & Fund Messages, Product Messages, Security Messages, Anomaly Notifications, Activity Messages, Service Messages. |
 
-#### Result Fields
+### Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -136,7 +136,7 @@ The charts below are drawn for the selected cluster, node, and time range.
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
 
@@ -144,7 +144,7 @@ Query controls are grouped by their documented page area. Grouped rows are not n
 | --- | --- | --- | --- | --- |
 | Cluster / node filters | — | — | — | - The `Common` tab screen exposes cluster and node filters only, so device-scoped questions go to the accelerator tab. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -418,7 +418,7 @@ Disable an availability zone when new cluster registration or job use must be te
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 These are list-query controls; their descriptions retain the wording in Page Description. An em dash means no separate required mark, type, or example is specified, not a backend rule.
 
@@ -426,7 +426,7 @@ These are list-query controls; their descriptions retain the wording in Page Des
 | --- | --- | --- | --- | --- |
 | Name Search | — | — | — | Enter a region name keyword in the `Search by Name` box and press Enter to filter the list; typing alone does not filter. When no region matches, the list area shows `No regions` and the detail area shows `No data`; an empty `Dedicated Region` tab shows the same two messages, and the `Add Region` button stays available. |
 
-#### Configuration and Result Fields
+### Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

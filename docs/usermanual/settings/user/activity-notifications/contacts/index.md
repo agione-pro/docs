@@ -71,7 +71,7 @@ The figure shows the contacts list, with contact search, status filtering, and c
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 This group describes list queries. An em dash means the source description does not specify a required mark, control type, or example; it is not a backend optional-field rule or a default value.
 
@@ -80,7 +80,7 @@ This group describes list queries. An em dash means the source description does 
 | Search | — | — | — | Search by name, phone number, or email. |
 | Status | — | — | — | Filter enabled or disabled contacts. |
 
-#### Contact Configuration Fields
+### Contact Configuration Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

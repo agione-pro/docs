@@ -73,7 +73,7 @@ The publish record list shows version, status, node count, publisher, publish ti
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -83,7 +83,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Start Time | No | Time | `Start Time` | Sets the start time for publish record queries. |
 | End Time | No | Time | `End Time` | Sets the end time for publish record queries. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

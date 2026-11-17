@@ -71,7 +71,7 @@ The figure shows the blank Add Cloud Account form. Account Name, Select Cloud Pl
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -83,7 +83,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Search | No | Button | `Search` | Query entry. |
 | Reset | No | Button | `Reset` | Entry for resetting query criteria. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -86,7 +86,7 @@ The figure shows the dialog contains `Code`, multilingual `Tag Content`, and `No
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
 
@@ -94,7 +94,7 @@ Additional query conditions documented on this page. An em dash means the column
 | --- | --- | --- | --- | --- |
 | Name | — | — | — | Name keyword search, with this page’s Search and Reset buttons. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -115,7 +115,7 @@ Imported and exported files may contain protocol and capability configuration. K
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 As needed in the query group describes query use, not backend form validation. An em dash means that this page does not specify an example.
 
@@ -126,7 +126,7 @@ As needed in the query group describes query use, not backend form validation. A
 | Meta model name | As needed for querying | Text | — | Enter a name keyword and click Search; Reset clears the conditions. |
 | Two Please select drop-downs | As needed for filtering | Drop-downs | `Please select` | Narrow the list. Their business names are not specified on this page; do not equate them with the Status or type columns in the results. |
 
-#### Configuration Fields
+### Configuration Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

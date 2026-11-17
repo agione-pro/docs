@@ -72,7 +72,7 @@ The figure shows Configure available business resource pools: Business, Current 
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -82,7 +82,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Selected only / Select all | No | Filter / selection entry | `Selected only` | Reviews selected items or makes list selections; review the current cloud first. |
 | Reset | No | Button | `Reset` | Separate action entry, not an exit control. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -223,7 +223,7 @@ Remove the selected bucket only after approval of its data and dependency impact
 - This entry is distinct from file/folder row deletion. Empty-bucket restrictions, confirmation dialogs, deletion scope, and recovery follow the actual page feedback; none is established here.
 
 ## Parameter Quick Reference
-#### Query and Filters
+### Query and Filters
 
 These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
 

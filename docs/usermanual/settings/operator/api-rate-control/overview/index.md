@@ -71,7 +71,7 @@ The figure shows request volume, blocked requests and block rate, would-be block
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -84,7 +84,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Search | Operation button | Button | `Search` | Refreshes overview data by current filters. |
 | Reset | Operation button | Button | `Reset` | Restores default filters. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

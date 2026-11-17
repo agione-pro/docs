@@ -73,7 +73,7 @@ The figure shows the page provides `Overview` and `Usage Details` tabs; KPI card
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -82,7 +82,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Billing cycle | Yes | Selector | `2026-11` | Billing period |
 | Date | No | Date range | `2026-11-01` to `2026-11-03` | Statistics date range |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

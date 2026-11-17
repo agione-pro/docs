@@ -87,7 +87,7 @@ The figure shows `No outflow records` in the outflow area. It does not include t
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -95,7 +95,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | --- | --- | --- | --- | --- |
 | Billing Cycle | No | Month dropdown | `2025-01` | Affects only Daily Revenue, Top Customers, and Top Models analysis. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

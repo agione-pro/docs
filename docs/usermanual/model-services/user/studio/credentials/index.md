@@ -99,7 +99,7 @@ The figure shows `3 Credential information & API Key` provides required `Name` a
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Additional query conditions documented on this page. An em dash means the column is unspecified, not a backend rule. Existing fields remain in the following table.
 
@@ -109,7 +109,7 @@ Additional query conditions documented on this page. An em dash means the column
 | Model source (query) | — | — | — | Filter the list by model source. |
 | Status (query) | — | — | — | Filter the list by credential status. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

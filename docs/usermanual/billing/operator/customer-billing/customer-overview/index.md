@@ -120,7 +120,7 @@ The figure shows the Tag Management dialog with five locked built-in tags, an em
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -130,7 +130,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Enter a keyword | No | Text | `<query>` | Locates customers within the selected business identity using the entered keyword. |
 | Filter by tag | No | Multi-select | `VIP` | Matching any selected tag includes the customer (OR). |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

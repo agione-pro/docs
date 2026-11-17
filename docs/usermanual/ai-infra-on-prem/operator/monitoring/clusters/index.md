@@ -129,7 +129,7 @@ Use this when cluster resource utilization shows high watermarks or abnormal sta
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -138,7 +138,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Region | Conditionally required | Drop-down | `wuhan` | Limits the region to which the cluster belongs. |
 | Status | Conditionally required | Drop-down | `Normal` | Shows the status of the selected region inside the region selector. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

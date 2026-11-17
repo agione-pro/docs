@@ -72,7 +72,7 @@ The figure shows the heading is marked `Updated hourly`. The filters contain the
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -83,7 +83,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Model | Optional | Text | `DeepSeek-V4-Pro` | Filter by name or ID |
 | Expand | Optional | Button | `Expand` | Shows additional filters |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

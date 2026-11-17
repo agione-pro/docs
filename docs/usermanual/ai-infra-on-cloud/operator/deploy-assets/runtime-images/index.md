@@ -89,7 +89,7 @@ The figure shows the existing Edit Image form with Cloud Platform, Region, Publi
 
 Add fields follow the current initial form. Region is retained only as an existing maintenance-form reference and does not replace the current Resource Pool field.
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -98,7 +98,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Image name / Cloud Platform / Visibility query | No | Text / Selection | Sample image / Sample cloud platform | Image Resources list filters. |
 | Search / Reset | — | Buttons | `Search` / `Reset` | List query entries. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -288,7 +288,7 @@ The image shows the `VRAM Estimation Config Details` page: factors are shown as 
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 Query controls are grouped by their documented page area. Grouped rows are not new UI fields. An em dash means the column is unspecified; it does not establish backend requirements, types, or defaults.
 
@@ -299,7 +299,7 @@ Query controls are grouped by their documented page area. Grouped rows are not n
 | Model Name / Framework Type / Quantization Method | — | — | — | - The tab filters by `Model Name`, `Framework Type`, and `Quantization Method`, used with `Search` and `Reset` to locate a record. |
 | Meta Model / Framework Type / Accelerator / Estimate Enabled | — | — | — | The image shows the empty `Deployment Profiles` tab: the filter area offers four dropdowns (`Meta Model`, `Framework Type`, `Accelerator`, and `Estimate Enabled`, all defaulting to `All`) with `Search`, `Reset`, and `More Filters` controls, and an empty list reads `No Matching Deployment Profiles` / `Adjust the filters and search again.` |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -207,7 +207,7 @@ Delete a source when it is no longer used, when it must be retired, or when anot
 - To reconnect later, register the source again and re-enter its credentials.
 
 ## Parameter Quick Reference
-#### Query and Filters
+### Query and Filters
 
 These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
 

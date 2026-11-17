@@ -77,7 +77,7 @@ The figure shows an empty Members list before the Add Member form is opened. The
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
 
@@ -85,7 +85,7 @@ This group is for queries and filters only. An em dash means the source does not
 | --- | --- | --- | --- | --- |
 | Filters | — | — | — | Username and Phone Number |
 
-#### Existing Configuration and Result Fields
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

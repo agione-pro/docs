@@ -86,7 +86,7 @@ The figure shows only the `No statistics yet` empty component in the lower stati
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -94,7 +94,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | --- | --- | --- | --- | --- |
 | Billing cycle | Yes | Month selector | `2025-11` | Selects the current month or one of the preceding 12 months; confirm the selector's range. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

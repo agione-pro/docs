@@ -105,7 +105,7 @@ The figure shows the default scan limit of 100, Run rebuild, and the “No rebui
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -114,7 +114,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Billing Cycle | Select as needed | Month | 2026-11 | Top-level cycle selection; it does not restrict the full settlement-intent scope of bilateral checks. |
 | Refresh | As needed | Button | Refresh | Top-level refresh entry; count changes are not a prerequisite for success. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

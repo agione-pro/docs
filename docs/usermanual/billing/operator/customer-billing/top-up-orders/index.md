@@ -87,7 +87,7 @@ The figure shows the empty results for `documentation-example` in the order-numb
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -99,7 +99,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Top-up source | No | Dropdown / list text | `<top-up-source>` | Filters and displays the order source. |
 | Time range | No | Date range | `<start-date> - <end-date>` | Limits the query time range. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -105,7 +105,7 @@ The figure shows the required operation remark and final `Confirm Generate` butt
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -113,7 +113,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | --- | --- | --- | --- | --- |
 | Settlement status | As needed for queries | Status selector / result field | `<settlement status>` | List filter and current settlement status; not the posting confirmation time. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

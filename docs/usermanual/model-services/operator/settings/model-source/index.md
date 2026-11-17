@@ -104,7 +104,7 @@ Use the search box or the `Status` and `Modality` filters to narrow the list. Th
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 As needed in the query group describes query use, not backend form validation. An em dash means that this page does not specify an example.
 

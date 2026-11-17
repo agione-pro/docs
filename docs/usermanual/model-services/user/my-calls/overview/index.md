@@ -100,7 +100,7 @@ The figure shows filters include month, `By Date`, `Model`, and `Client Source`;
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -111,7 +111,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Model | No | Text | `Name or ID` | Filter by model |
 | Client Source | No | Selector | `All` | Filter by client source |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

@@ -151,6 +151,7 @@ const RULE_DESC = {
   S11: '文档信息卡片：::: info 文档信息 必备且格式固定',
   S12: '功能概述属性表：四行标签词表固定、必须有页面路由行',
   S13: '导航路径写法：取值纯文本、不加粗、不带品牌前缀',
+  S14: '参数速查表分组层级：分组标题必须用三级，不得用四级',
 }
 
 const argv = process.argv.slice(2)
@@ -349,6 +350,13 @@ for (const lang of ['zh', 'en']) {
     for (const c of H4_CANONICAL[lang]) {
       const n = h4.filter((h) => h.name === c).length
       if (n > 1) add('S05', lang, rel, 1, `标准四级块「${c}」出现 ${n} 次`)
+    }
+
+    // S14: 参数速查表分组层级（§10.6 第 5 条 / §10.4 第 4 条）
+    for (const h of h4) {
+      if (h.section === secNames[4]) {
+        add('S14', lang, rel, h.line, `参数速查表分组「${h.name}」用了四级标题，应改为三级（###）`)
+      }
     }
 
     // S06

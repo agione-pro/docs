@@ -73,7 +73,7 @@ The figure shows a regional resource-pool disable prompt containing the target r
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -82,7 +82,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Pool type | No | Category selector | `Public resource pool` | AGIOne Dedicated resource pool is the other category; establish query scope first. |
 | Status filter | No | Segmented control | `All` | All, Enabled, and Disabled. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

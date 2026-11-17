@@ -275,7 +275,7 @@ Use the import and export entry on the page header to batch-maintain resource sp
 - Import may update fields on a specification with the same identifier. Check cluster associations, job dependencies, and file scope first.
 
 ## Parameter Quick Reference
-#### Query and Filters
+### Query and Filters
 
 These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
 

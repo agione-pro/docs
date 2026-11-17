@@ -84,7 +84,7 @@ The figure shows the empty transaction table with Credit selected, its currently
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -94,7 +94,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Direction | No | Select | Credit / Debit | Filters transactions by fund direction. |
 | Source system | No | Select | Select a displayed option | Filters transactions by source system. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

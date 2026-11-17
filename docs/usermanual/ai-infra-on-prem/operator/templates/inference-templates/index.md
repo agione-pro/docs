@@ -142,7 +142,7 @@ Use the import/export entry to batch-maintain inference templates, or to export 
 - Template import depends on model, framework, image, and specification objects. Do not submit it when dependencies are missing in the target environment.
 - Import may update a template with the same identifier. Verify release scope, default parameter values, and downstream deployment impact first.
 ## Parameter Quick Reference
-#### Query and Filters
+### Query and Filters
 
 These fields come from query or filter controls described on this page. An em dash means the source gives no required mark, type, or example; it does not define backend rules.
 

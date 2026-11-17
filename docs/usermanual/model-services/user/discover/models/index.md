@@ -85,7 +85,7 @@ Model providers can click **"Publish Model"** in the upper right. Publishing sco
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -100,7 +100,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Model Source | No | Single select | `AGIOne` | Filter by source |
 | Scene | No | Single select | `Text Generation` | Filter by scenario |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

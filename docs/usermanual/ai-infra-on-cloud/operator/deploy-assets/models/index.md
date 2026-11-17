@@ -115,7 +115,7 @@ The figure shows the existing second-stage Deployment Configuration summary with
 
 Current list, details, and initial-catalog items appear first. Subsequent configuration fields correspond only to the existing static references above; required status follows the current form markers.
 
-#### Query and Filters
+### Query and Filters
 
 The query group lists the real controls of the page filter area. "As needed" describes how the control is used, not a backend required rule; "—" means this page does not specify an example.
 
@@ -125,7 +125,7 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Author / Type / Model Name | No | Catalog query | `All Authors` | Query items in the initial Add Model catalog. |
 | GPU Model / GPU Count / CPU Cores / Memory (GB) / Card Type | No | Specification filters | `1` / `4` / `16` / `GPU` | Existing deployment-specification query items. |
 
-#### Existing Fields
+### Existing Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |

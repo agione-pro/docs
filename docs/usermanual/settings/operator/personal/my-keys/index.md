@@ -72,7 +72,7 @@ The figure shows `Create System API AK/SK Pair` with expiration, key name, descr
 
 ## Parameter Quick Reference
 
-#### Query and Filters
+### Query and Filters
 
 This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
 
@@ -81,7 +81,7 @@ This group is for queries and filters only. An em dash means the source does not
 | Availability | — | — | — | `Available` and `All` switch the list scope. |
 | Status | — | — | — | Filters the list by credential status. |
 
-#### Existing Configuration and Result Fields
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
