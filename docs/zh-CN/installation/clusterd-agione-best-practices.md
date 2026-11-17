@@ -84,9 +84,11 @@
 
 ## 2. 获取并校验本例安装包
 
-**本例验证用全量包（Linux x86_64）：**
+**ClusterD 发布包下载页：**
 
-[下载 ClusterD 全量包：2026.11.14-dev19-r4](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.14-dev19-r4-linux-x86_64.tar.gz)
+[打开 AGIOne 与 ClusterD 发布包下载页]({{DOCS_RELEASE_PAGE_URL_ZH}})
+
+下载页提供当前 ClusterD 轻量包、全量包和对应的 SHA-256 文件。本次实机验证使用的 x86_64 全量包为 `agione-clusterd-full-release-2026.11.14-dev19-r4-linux-x86_64.tar.gz`。
 
 **该压缩包的 SHA-256：**
 
@@ -106,8 +108,9 @@ mkdir -p /opt/clusterd-packages
 cd /opt/clusterd-packages
 
 CLUSTERD_PACKAGE_NAME=agione-clusterd-full-release-2026.11.14-dev19-r4-linux-x86_64.tar.gz
-CLUSTERD_PACKAGE_URL="https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/$CLUSTERD_PACKAGE_NAME"
-CLUSTERD_PACKAGE_SHA256=51c07623488f10b2364474c6adcac64246b1e7735dacd3b184acf36c2a4956a2
+# 从发布包下载页复制对应的安装包 URL 和 SHA-256 值。
+CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL_FROM_DOWNLOAD_PAGE>"
+CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
 
 curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
 printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -

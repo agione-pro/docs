@@ -84,9 +84,11 @@ The reference deployment was validated on a Huawei Cloud host. Physical hosts ca
 
 ## 2. Obtain and Verify the Example Package
 
-**Full package used for this validation (Linux x86_64):**
+**ClusterD release download page:**
 
-[Download the ClusterD full package: 2026.11.14-dev19-r4](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.14-dev19-r4-linux-x86_64.tar.gz)
+[Open the AGIOne and ClusterD release download page]({{DOCS_RELEASE_PAGE_URL_EN}})
+
+The page provides the current ClusterD light and full packages and the matching SHA-256 files. The live validation used the x86_64 full package `agione-clusterd-full-release-2026.11.14-dev19-r4-linux-x86_64.tar.gz`.
 
 **SHA-256 of this archive:**
 
@@ -106,8 +108,9 @@ mkdir -p /opt/clusterd-packages
 cd /opt/clusterd-packages
 
 CLUSTERD_PACKAGE_NAME=agione-clusterd-full-release-2026.11.14-dev19-r4-linux-x86_64.tar.gz
-CLUSTERD_PACKAGE_URL="https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/$CLUSTERD_PACKAGE_NAME"
-CLUSTERD_PACKAGE_SHA256=51c07623488f10b2364474c6adcac64246b1e7735dacd3b184acf36c2a4956a2
+# Copy the package URL and matching SHA-256 value from the release download page.
+CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL_FROM_DOWNLOAD_PAGE>"
+CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
 
 curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
 printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -

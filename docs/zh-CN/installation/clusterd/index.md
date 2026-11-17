@@ -48,26 +48,16 @@
 
 ## 1. 获取安装包
 
-**ClusterD 下载地址（Linux x86_64）：**
+**ClusterD 下载页：**
 
-- **全量离线包，推荐用于离线交付：**[下载全量包（2026.11.10-r2）](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.10-r2-linux-x86_64.tar.gz)；[下载 SHA-256 校验文件](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-full-release-2026.11.10-r2-linux-x86_64.tar.gz.sha256)
+[打开 AGIOne 与 ClusterD 发布包下载页]({{DOCS_RELEASE_PAGE_URL_ZH}})
 
-校验全量包时，请使用上方校验文件中的 SHA-256 值。
+下载页提供当前 ClusterD 轻量包、全量包、准确文件名以及对应的 SHA-256 文件。请根据 ClusterD 主机架构选择安装包，再将安装包 URL 和对应 SHA-256 值填入第 3 节命令。不同安装包或不同版本的校验值不能混用。
 
-- **轻量包：**[下载轻量包（2026.11.09-r1）](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.09-r1-linux-x86_64.tar.gz)；[下载 SHA-256 校验文件](https://onepro-agione.obs.ap-southeast-2.myhuaweicloud.com/clusterD/release/agione-clusterd-release-2026.11.09-r1-linux-x86_64.tar.gz.sha256)
-
-轻量包 SHA-256：
-
-```text
-56ccd2ff12b372ca6a2cb7c5324ca33ea8c9764903d7dd3b0c50da3168bb7c03
-```
-
-本页全量包版本为 `2026.11.10-r2`；轻量包在对应版本发布前仍为 `2026.11.09-r1`。
-
-以上两个链接仅适用于 x86_64 主机。ARM64 主机请向交付方取得对应安装包，不要直接修改链接中的架构名称。
+ARM64 主机请使用下载页发布的 ARM64 包，或向交付方取得对应安装包；不要只修改 URL 中的架构名称。
 
 ::: warning 下载后核对文件名和校验值
-执行第 3 节命令前，将 `<CLUSTERD_PACKAGE_URL>` 替换为所选安装包链接，`XXX` 替换为所选安装包版本（全量包为 `2026.11.10-r2`，轻量包为 `2026.11.09-r1`），再将 `<TRUSTED_OUTER_ARCHIVE_SHA256>` 替换为对应校验文件中的值。全量包和轻量包的校验值不能混用。使用其他版本或 ARM64 包时，请向交付方取得配套地址和校验值，不要套用本页的 x86_64 校验值。
+执行第 3 节命令前，从下载页复制所选安装包 URL，填入 `<CLUSTERD_PACKAGE_URL>`；将 `XXX` 替换为所选安装包版本，并从该安装包对应的 SHA-256 文件复制值，填入 `<TRUSTED_OUTER_ARCHIVE_SHA256>`。全量包和轻量包的校验值不能混用。使用其他版本或 ARM64 包时，只能使用该安装包对应的地址和校验值。
 :::
 
 ### 1.1 选择安装包
