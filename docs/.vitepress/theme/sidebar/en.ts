@@ -83,38 +83,33 @@ export const enSidebar: DefaultTheme.Sidebar = {
           link: "/installation/agione-deployment-requirements"
         },
         {
-          text: "Deploy via GUI",
+          text: "Install AGIOne",
           collapsed: false,
           items: [
-            { text: "What Is ClusterD", link: "/installation/clusterd-overview" },
-            { text: "Installation, Upgrade & Uninstallation", link: "/installation/clusterd/" },
-            { text: "Best Practices for Deploying AGIOne with ClusterD", link: "/installation/clusterd-agione-best-practices" },
+            { text: "Install (Recommended)", link: "/installation/clusterd-agione-best-practices" },
+            {
+              text: "Command-Line Install (Retiring)",
+              collapsed: true,
+              items: [
+                { text: "Pre-install Check", link: "/installation/agione-precheck-environment-check" },
+                { text: "Single-Node Install", link: "/installation/agione-quick-install" },
+                { text: "Multi-Node Install", link: "/installation/agione-multi-node-install" },
+                { text: "Configuration Fields", link: "/installation/agione-install-config-reference" },
+              ],
+            },
           ],
         },
         {
-          text: "Deploy via CLI",
+          text: "Onboard Compute",
           collapsed: false,
           items: [
-            { text: "Pre-install Environment Check", link: "/installation/agione-precheck-environment-check" },
-            { text: "Installation & Deployment", link: "/installation/agione-quick-install" },
-            { text: "Multi-Node Installation", link: "/installation/agione-multi-node-install" },
-            { text: "Installation Configuration Reference", link: "/installation/agione-install-config-reference" },
+            { text: "Before You Start", link: "/installation/deployment-requirements-for-managing-compute-nodes" },
+            { text: "Install (Recommended)", link: "/installation/quick-install-with-agione-clusterd" },
+            { text: "Command-Line Install", link: "/installation/quick-install-for-managing-compute-nodes" },
           ],
         },
         {
-          text: "Compute Nodes-Requirements",
-          link: "/installation/deployment-requirements-for-managing-compute-nodes"
-        },
-        {
-          text: "Compute Nodes-Installation",
-          link: "/installation/quick-install-for-managing-compute-nodes"
-        },
-        {
-          text: 'Compute Nodes-Installation with ClusterD',
-          link: '/installation/quick-install-with-agione-clusterd'
-        },
-        {
-          text: "Post-Deployment",
+          text: "After Deployment",
           collapsed: false,
           items: [
             {
@@ -125,6 +120,14 @@ export const enSidebar: DefaultTheme.Sidebar = {
               text: "Enterprise Internal Edition",
               link: "/installation/post-deployment/enterprise-internal-edition"
             },
+          ],
+        },
+        {
+          text: "ClusterD",
+          collapsed: true,
+          items: [
+            { text: "What ClusterD Does", link: "/installation/clusterd-overview" },
+            { text: "Install, Upgrade, and Uninstall", link: "/installation/clusterd/" },
           ],
         },
       ],

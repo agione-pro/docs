@@ -22,7 +22,9 @@
 | 第 2 步：确认中间件方案 | 使用云厂商托管中间件，或由安装器自建中间件 | 已选定 `managed-middleware`、`hybrid` 或 `self-managed` |
 | 第 3 步：确认资源规格 | 需要的机器数量、CPU、内存、磁盘 | 资源申请清单已准备 |
 | 第 4 步：确认网络和端口 | 用户、业务节点、中间件、算力集群之间如何通信 | 安全组 / 防火墙白名单已准备 |
-| 第 5 步：进入执行文档 | 根据决策选择单节点、多节点或算力节点安装文档 | 可进入预检和安装 |
+| 第 5 步：进入执行文档 | 安装 AGIOne；有加速卡时继续安装算力 | 已打开对应安装文档 |
+
+安装 AGIOne 见 [安装 AGIOne](./clusterd-agione-best-practices)。接入 GPU / NPU 时，先看 [纳管前准备](./deployment-requirements-for-managing-compute-nodes)，再看 [安装算力](./quick-install-with-agione-clusterd)。安装时使用 ClusterD。说明见 [ClusterD 是什么](./clusterd-overview)，安装、升级和卸载见 [安装、升级与卸载](./clusterd/)。命令行安装将停用。
 
 ## 术语速查
 

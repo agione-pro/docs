@@ -1,11 +1,15 @@
 # AGIOne Environment Installation and Deployment Guide
 
+::: warning Command-line installation is being retired
+New deployments use [Install AGIOne](./clusterd-agione-best-practices). See [What ClusterD Does](./clusterd-overview). Installation, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). This page is the `./agione` single-node command-line installation.
+:::
+
 ## Introduction
 
 | Item | Content |
 |------|---------|
 | Applicable Role | First-time installer, delivery engineer, customer operations engineer |
-| Navigation Path | Deployment > AGIOne Environment Installation and Deployment Guide |
+| Navigation Path | Deployment > Install AGIOne > Command-Line Install > Single-Node Install |
 | Function Description | Guides users through AGIOne download, installation, access verification, and handover archiving on a single target host |
 
 This document applies to single-node / All in One deployment. If you are reading it for the first time, follow the timeline below first, then return to the detailed commands.

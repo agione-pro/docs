@@ -1,11 +1,15 @@
-# Managed Node Quick Deployment Guide
+# Install the Compute Cluster
+
+::: tip Use the install document by default
+Compute onboarding uses [Install Compute](./quick-install-with-agione-clusterd) by default. ClusterD is the Web program on the control host. See [What ClusterD Does](./clusterd-overview). Installation, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). This page is the command-line installation.
+:::
 
 ## Introduction
 
 | Item | Content |
 |------|---------|
 | Applicable Role | Compute cluster implementation engineer, GPU / NPU node operations engineer, customer platform administrator |
-| Navigation Path | Deployment > Managed Node Quick Deployment |
+| Navigation Path | Deployment > Onboard Compute > Command-Line Install |
 | Function Description | Guides users through managed compute node environment preparation, package initialization, Kubernetes cluster installation, and basic validation |
 
 This document is for compute node deployment scenarios where resource planning and environment survey have already been completed. If accelerator, operating system, port, or network requirements are not confirmed yet, read [Managed Compute Node Deployment Configuration Requirements](./deployment-requirements-for-managing-compute-nodes) first.

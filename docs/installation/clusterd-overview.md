@@ -62,11 +62,11 @@ The ClusterD host and an AGIOne target node may be the same physical or cloud ma
 
 | Need | Read next |
 | --- | --- |
-| Install ClusterD on a new host | [ClusterD Installation, Upgrade, and Uninstallation](./clusterd/) |
-| Deploy AGIOne through the wizard | [Best Practices for Deploying AGIOne with ClusterD](./clusterd-agione-best-practices) |
-| Prepare capacity and network requirements | [Deployment Overview](./agione-deployment-requirements) |
-| Use command-line installation instead | [Installation & Deployment](./agione-quick-install) |
+| Get ClusterD running first | [Quick Install](./clusterd/#quick-install); host checks, upgrade, and removal stay in [Install, Upgrade, and Uninstall](./clusterd/) |
+| Install AGIOne | [Install AGIOne](./clusterd-agione-best-practices) |
+| Onboard GPU / NPU nodes | [Install Compute](./quick-install-with-agione-clusterd) |
+| Plan capacity and network | [Deployment Overview](./agione-deployment-requirements) |
 
-::: warning Keep the boundaries clear
-ClusterD is the deployment control plane. AGIOne is the environment being deployed. Keep the ClusterD account, target-node SSH credentials, and AGIOne account information separate during delivery.
+::: warning Record the three accounts separately
+The ClusterD login account, the target-node SSH credentials, and the AGIOne login account are three different sets of credentials. Record each set on its own.
 :::
