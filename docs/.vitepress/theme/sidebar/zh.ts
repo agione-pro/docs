@@ -47,21 +47,22 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       items: [
         { text: '部署综述', link: '/zh-CN/installation/agione-deployment-requirements' },
         {
-          text: '命令行部署 AGIOne',
+          text: '图形化部署',
+          collapsed: false,
+          items: [
+            { text: '什么是 ClusterD', link: '/zh-CN/installation/clusterd-overview' },
+            { text: '安装、升级与卸载', link: '/zh-CN/installation/clusterd/' },
+            { text: 'ClusterD 部署 AGIOne 最佳实践', link: '/zh-CN/installation/clusterd-agione-best-practices' },
+          ],
+        },
+        {
+          text: '命令行部署',
           collapsed: false,
           items: [
             { text: '安装前环境预检指南', link: '/zh-CN/installation/agione-precheck-environment-check' },
             { text: '环境安装部署指南', link: '/zh-CN/installation/agione-quick-install' },
             { text: '多节点环境安装部署文档', link: '/zh-CN/installation/agione-multi-node-install' },
             { text: '安装配置文件字段说明', link: '/zh-CN/installation/agione-install-config-reference' },
-          ],
-        },
-        {
-          text: '图形化部署 AGIOne',
-          collapsed: false,
-          items: [
-            { text: '安装、升级与卸载', link: '/zh-CN/installation/clusterd/' },
-            { text: 'ClusterD 部署 AGIOne 最佳实践', link: '/zh-CN/installation/clusterd-agione-best-practices' },
           ],
         },
         { text: '节点纳管-部署配置要求', link: '/zh-CN/installation/deployment-requirements-for-managing-compute-nodes' },
