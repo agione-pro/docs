@@ -24,7 +24,7 @@ Only approved cloud regions are enabled as resource pools and can be selected by
 
 ### Enable or Disable Regions
 
-1. From the platform home page, select **Resource Pools**.
+1. Open **On-Cloud > Access Management > Resource Pools**.
 2. Search the currently supported cloud providers in the left panel. The list shows how many regions have been synchronized for each provider. Select a target provider, such as Alibaba Cloud or AWS.
 3. Review the region cards for the selected provider.
 4. Use the switch on each region card to enable or disable that region for business use.
@@ -33,7 +33,7 @@ Only approved cloud regions are enabled as resource pools and can be selected by
 
 ### Verify the Region and Saved State
 
-Before enabling or disabling a pool, assess tenant grants, business grants, scheduling policies, and existing deployments. After toggling the switch, review the region and action in the confirmation prompt, confirm the change, and refresh. Verify the scope again on authorization and deployment pages. Use **Enabled Only** when narrowing the list.
+Before enabling or disabling a pool, assess tenant grants, business grants, scheduling policies, and existing deployments. After toggling the switch, review the region and action in the confirmation prompt, confirm the change, and refresh. Verify the scope again on authorization and deployment pages. To narrow the list, use the status filter and select **All**, **Enabled**, or **Disabled**.
 
 The current manual documents viewing and enabling/disabling pools, not a required region-renaming flow. If a name is incorrect, have the resource owner verify the cloud region and platform record before using an action actually offered by the page.
 

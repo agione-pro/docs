@@ -33,10 +33,13 @@ The deployment reaches a healthy state, responds to a controlled request, and ca
 
 ### Publish a Model (Extended Operation)
 
-1. On the target deployment card, select **... > Publish**.
-2. Select a publication area:
-   - **Private Area**: visible only within the team or tenant.
-   - **Public Area**: listed in the public catalog with independent billing and rate-limit configuration.
+1. On the target deployment card, select the more actions icon **···**, then select **Publish**.
+2. In the **Publish Model** dialog under *Choose where to publish*, pick a destination:
+   - **Private**: visible only within the current organization and not listed publicly; select **Publish to Private**.
+   - **Public**: listed in the platform catalogue with independent pricing; select **Publish to Public**.
+
+![Private and Public destinations in the Publish Model dialog](./images/my-deployments-choose-where-to-publish.png)
+
 3. In the publishing form, verify the prefilled meta-model, model source, and upstream request URL. Maintain the API key securely and verify the Model Source ID.
 4. Complete billing and rate-limit configuration, review, and submit. Verify the model in **Studio > My Models** and continue with the [publishing guide](../../publish-model/).
 
@@ -49,8 +52,8 @@ The deployment reaches a healthy state, responds to a controlled request, and ca
 | View deployment details | Select **Details** to review basic information, API access, monitoring, and events. |
 | Start a deployment | Select **Start** for a stopped deployment. |
 | Stop a deployment | Select **Stop** for a running deployment and verify the cost change. |
-| Publish a model | Select **... > Publish**, then choose the private or public area. |
-| Delete a deployment | Select **... > Delete**. Deletion is irreversible, so confirm dependencies and data-retention requirements first. |
+| Publish a model | Select **··· > Publish**, then choose Private or Public in the Publish Model dialog |
+| Delete a deployment | Select **··· > Delete**. Deletion is irreversible, so confirm dependencies and data-retention requirements first. |
 
 ## Completion Checklist
 
