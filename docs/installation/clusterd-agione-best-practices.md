@@ -1,6 +1,10 @@
-# Best Practices for Deploying AGIOne with ClusterD
+# Install AGIOne
 
-Follow this guide in order: prepare the host, install ClusterD, create an account, complete the deployment wizard, run precheck, install, and verify the result. If ClusterD is already installed, start with [4. Create an Account and Open the Wizard](#_4-create-an-account-and-open-the-wizard).
+Follow this guide in order: prepare the host, install ClusterD, create an account, complete the deployment wizard, run precheck, install, and verify the result. If ClusterD is already available, start with [4. Create an Account and Open the Wizard](#_4-create-an-account-and-open-the-wizard).
+
+ClusterD is the Web program used during installation. It runs on the control host. Installers enter deployment parameters, check target nodes, run precheck, and start installation there. See [What ClusterD Does](./clusterd-overview).
+
+If the control host does not have ClusterD yet, install it with the [Quick Install](./clusterd/#quick-install). Host requirements, offline installation, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). Sections 2 and 3 are the package and commands used in this example.
 
 | Item | Example and scope |
 | --- | --- |
@@ -83,6 +87,8 @@ The reference deployment was validated on a Huawei Cloud host. Physical hosts ca
 - A control-host/target cross-architecture combination needs complete target-architecture resources. It is not included in this example's live acceptance. See [Deployment Overview](./agione-deployment-requirements) for production sizing and availability planning.
 
 ## 2. Obtain and Verify the Example Package
+
+The package and commands for this example follow. Installation, upgrade, and removal for other releases are in [Install, Upgrade, and Uninstall](./clusterd/).
 
 **ClusterD release download page:**
 
@@ -294,11 +300,11 @@ Tell ClusterD how to reach the actual target host. **The example uses one `node-
 | Device | Actual block device; system disks and partitions are not dedicated empty disks |
 | Mount / Type | An empty disk must be unmounted with no filesystem or child partitions. `raw` is one display form; use the eligibility result |
 | Free / Total | Mounted filesystems show free/total; unmounted disks show “Not mounted / total,” not zero free space |
-| Eligibility | Must be eligible for the current mode or show a blocking reason. The current regular capacity gate is 160 GiB; total size is not the same as free capacity |
+| Eligibility | Must be eligible for the current mode or show a blocking reason. The current regular capacity requirement is 160 GiB; total size is not the same as free capacity |
 | Data directory | Read-only selection result; reuse mode may display the source path. This does not replace actual mount verification |
 | Initialization acknowledgment | Dedicated-disk mode only; authorizes the explicitly listed devices, not every disk on the machine |
 
-Fix SSH, permissions, or disk state if probing fails. Reprobe after changing addresses, credentials, mode, or device; do not reuse stale results. Partitions, existing filesystems, mounts, signatures, or other non-empty conditions block empty-disk installation. Do not erase disks, run `mkfs`, or alter probe results to bypass the gate.
+Fix SSH, permissions, or disk state if probing fails. Reprobe after changing addresses, credentials, mode, or device; do not reuse stale results. Partitions, existing filesystems, mounts, signatures, or other non-empty conditions block empty-disk installation. Do not erase disks, run `mkfs`, or alter probe results to pass the check.
 
 ### 8.3 Reuse an Existing Filesystem
 
@@ -423,7 +429,7 @@ Complete the applicable [Purchase and Activation](../license/activation-code-act
 | ClusterD works locally but not from another computer | Listening address, routing, firewall, and security groups for `18093` | Reinstall AGIOne |
 | Online mode unavailable | Connectivity test, release-source configuration, target-architecture Release, signatures, and digests | Force it merely because the browser has internet access |
 | Offline assets not ready | Matching Bundle/Manifest, architecture, completed import, and verification | Mix Releases or rename files to imitate compatibility |
-| A “new cloud disk” is blocked | Actual partitions, filesystem, signatures, and mounts; run a fresh read-only probe | Erase the disk or disable safety gates |
+| A “new cloud disk” is blocked | Actual partitions, filesystem, signatures, and mounts; run a fresh read-only probe | Erase the disk or skip the capacity check |
 | `/data` already has ext4/xfs | Reuse mode with an eligible mount and dedicated directory | Initialize an existing filesystem as a raw disk |
 | System disk runs out of space | Separate ClusterD download/extraction/cache usage from AGIOne storage and inspect actual mounts | Assume choosing an application disk moved ClusterD caches |
 | NAS mount or writes fail | NFS client, routing, export, and write permissions on the archive node | Assume Auto falls back to local |

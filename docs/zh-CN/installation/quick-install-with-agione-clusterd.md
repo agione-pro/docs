@@ -1,28 +1,55 @@
-# 初始化 AGIOne ClusterD
+# 安装算力
 
-AGIOne ClusterD是管理多个Kubernetes集群的工具服务，可支持快速安装kubernetes集群及完成相关组件的激活，AGIOne ClusterD支持的操作系统环境包括：
-1. linux: x86_64和arm64，常见的ubuntu22.04/ubuntu20.04/CentOS7皆可支持
-2. macos: i386，Intel芯片
+本文把 GPU / NPU 节点纳管为 Kubernetes 算力集群，并激活设备插件、监控和镜像服务。开始前先完成 [纳管前准备](./deployment-requirements-for-managing-compute-nodes)。
 
-## 安装
+ClusterD 是纳管时使用的网页程序，安装在控制端。网页通过 SSH 在算力节点上添加集群、初始化节点并激活组件。说明见 [ClusterD 是什么](./clusterd-overview)。
 
-### 1. 下载安装包
+## 快捷安装 ClusterD
 
-- [macos-i386](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-macos.tar.gz)
-- [linux-x86_64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-x86_64.tar.gz)
-- [linux-arm64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-arm64.tar.gz)
+控制端使用 Ubuntu 22.04，架构为 x86_64 或 ARM64。ClusterD 安装在控制端。
 
-### 2. 解压并启动 AGIOne ClusterD
+1. 打开 [发布包下载页]({{DOCS_RELEASE_PAGE_URL_ZH}})，复制与控制端 `uname -m` 匹配的全量包 URL 和该包自己的 SHA-256。
+2. 在控制端执行：
 
-解压安装包，进入解压目录后执行 ``bash start.sh``。如需后台运行，执行 ``nohup bash start.sh > clusterd.log 2>&1 &``。
+```bash
+sudo -i
+bash
+set -e
+mkdir -p /opt/clusterd-packages
+cd /opt/clusterd-packages
 
-**备注: 默认启用8080端口，如果需要使用其他端口，更改config/config.yaml 的``addr``项，更改监听端口**
+CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL>"
+CLUSTERD_PACKAGE_NAME="agione-clusterd-full-release-XXX-linux-x86_64.tar.gz"
+CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
+
+curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
+printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -
+tar -xzf "$CLUSTERD_PACKAGE_NAME"
+cd "${CLUSTERD_PACKAGE_NAME%.tar.gz}"
+bash verify.sh
+
+CLUSTERD_INSTALL_LOG=/var/log/agione-clusterd-install.log
+if bash install.sh install > "$CLUSTERD_INSTALL_LOG" 2>&1; then
+  tail -n 20 "$CLUSTERD_INSTALL_LOG"
+else
+  tail -n 100 "$CLUSTERD_INSTALL_LOG"
+  false
+fi
+systemctl is-active agione-clusterd
+```
+
+ARM64 控制端把文件名中的 `x86_64` 改成 `arm64`，并换上该包自己的 URL 和 SHA-256。看到 `agione-clusterd-install-ok`、服务为 `active` 后，浏览器打开 `http://<控制端 IP>:18093/`，并按安装说明创建账户。
+
+主机检查、离线拷贝、轻量包、升级和卸载见 [安装、升级与卸载](./clusterd/)。同一套命令也写在该页的 [快捷安装](./clusterd/#quick-install)。
 
 ## 算力集群纳管
+
 ### 算力节点纳管
+
 ### 集群添加
-1. 默认登陆账号是admin，使用admin账号登陆
-2. 登陆后，点击添加集群按钮
+
+1. 使用安装 ClusterD 时创建的账户登录。首次打开网页时的创建步骤见 [安装并打开 ClusterD](./clusterd/#_4-安装并打开-clusterd)。
+2. 登录后，点击添加集群按钮。
    ![add-cluster01.png](./clusterd-images/add-cluster01.png)
 
 #### Maintenance节点配置

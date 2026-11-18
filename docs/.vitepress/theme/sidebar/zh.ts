@@ -47,33 +47,45 @@ export const zhSidebar: DefaultTheme.Sidebar = {
       items: [
         { text: '部署综述', link: '/zh-CN/installation/agione-deployment-requirements' },
         {
-          text: '图形化部署',
+          text: '安装 AGIOne',
           collapsed: false,
           items: [
-            { text: '什么是 ClusterD', link: '/zh-CN/installation/clusterd-overview' },
-            { text: '安装、升级与卸载', link: '/zh-CN/installation/clusterd/' },
-            { text: 'ClusterD 部署 AGIOne 最佳实践', link: '/zh-CN/installation/clusterd-agione-best-practices' },
+            { text: '安装（推荐）', link: '/zh-CN/installation/clusterd-agione-best-practices' },
+            {
+              text: '命令行安装（停用中）',
+              collapsed: true,
+              items: [
+                { text: '安装前预检', link: '/zh-CN/installation/agione-precheck-environment-check' },
+                { text: '单节点安装', link: '/zh-CN/installation/agione-quick-install' },
+                { text: '多节点安装', link: '/zh-CN/installation/agione-multi-node-install' },
+                { text: '配置字段', link: '/zh-CN/installation/agione-install-config-reference' },
+              ],
+            },
           ],
         },
         {
-          text: '命令行部署',
+          text: '纳管算力',
           collapsed: false,
           items: [
-            { text: '安装前环境预检指南', link: '/zh-CN/installation/agione-precheck-environment-check' },
-            { text: '环境安装部署指南', link: '/zh-CN/installation/agione-quick-install' },
-            { text: '多节点环境安装部署文档', link: '/zh-CN/installation/agione-multi-node-install' },
-            { text: '安装配置文件字段说明', link: '/zh-CN/installation/agione-install-config-reference' },
+            { text: '纳管前准备', link: '/zh-CN/installation/deployment-requirements-for-managing-compute-nodes' },
+            { text: '安装（推荐）', link: '/zh-CN/installation/quick-install-with-agione-clusterd' },
+            { text: '命令行安装', link: '/zh-CN/installation/quick-install-for-managing-compute-nodes' },
           ],
         },
-        { text: '节点纳管-部署配置要求', link: '/zh-CN/installation/deployment-requirements-for-managing-compute-nodes' },
-        { text: '节点纳管-快速安装指南', link: '/zh-CN/installation/quick-install-for-managing-compute-nodes' },
-        { text: '节点纳管-ClusterD快速安装', link: '/zh-CN/installation/quick-install-with-agione-clusterd' },
         {
           text: '部署后配置',
           collapsed: false,
           items: [
-            { text: '运营版部署后配置', link: '/zh-CN/installation/post-deployment/operation-edition' },
-            { text: '企业自用版部署后配置', link: '/zh-CN/installation/post-deployment/enterprise-internal-edition' },
+            { text: '运营版', link: '/zh-CN/installation/post-deployment/operation-edition' },
+            { text: '企业自用版', link: '/zh-CN/installation/post-deployment/enterprise-internal-edition' },
+          ],
+        },
+        {
+          text: 'ClusterD',
+          collapsed: true,
+          items: [
+            { text: 'ClusterD 是什么', link: '/zh-CN/installation/clusterd-overview' },
+            { text: '安装、升级与卸载', link: '/zh-CN/installation/clusterd/' },
           ],
         },
       ],

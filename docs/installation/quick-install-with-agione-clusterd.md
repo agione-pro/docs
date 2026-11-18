@@ -1,35 +1,46 @@
-# Initialize AGIOne ClusterD
+# Install Compute
 
-AGIOne ClusterD is a service for managing multiple Kubernetes clusters. It supports the rapid installation of Kubernetes clusters and activation of related components.
+Onboard GPU / NPU nodes as a Kubernetes compute cluster, then activate the device plugin, monitoring, and image service. Complete [Before You Start](./deployment-requirements-for-managing-compute-nodes) first.
 
-AGIOne ClusterD supports the following operating system environments:
+ClusterD is the Web program used when onboarding compute. It runs on the control host and uses SSH to add the cluster, initialize nodes, and activate components on the compute nodes. See [What ClusterD Does](./clusterd-overview).
 
-1. **Linux:** x86_64 and arm64; common distributions such as Ubuntu 22.04, Ubuntu 20.04, and CentOS 7 are supported.
-2. **MacOS:** i386 (Intel-based Macs).
+## Quick Install ClusterD
 
-**Note: Default port is 8080. If another port required, change ``addr`` item from config/config.yaml file.**
+Use Ubuntu 22.04 on x86_64 or ARM64 for the control host. Install ClusterD on the control host.
 
-## Installation
-
-### 1. Download the installation package
-
-- [macos-i386](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-macos.tar.gz)
-- [linux-x86_64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-x86_64.tar.gz)
-- [linux-arm64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-arm64.tar.gz)
-
-### 2. Extract and start AGIOne ClusterD
-
-Extract the package, enter the extracted directory, and run one of the following commands:
+1. Open the [release download page]({{DOCS_RELEASE_PAGE_URL_EN}}) and copy the full-package URL that matches the control host's `uname -m`, plus that package's own SHA-256.
+2. On the control host, run:
 
 ```bash
-bash start.sh
+sudo -i
+bash
+set -e
+mkdir -p /opt/clusterd-packages
+cd /opt/clusterd-packages
+
+CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL>"
+CLUSTERD_PACKAGE_NAME="agione-clusterd-full-release-XXX-linux-x86_64.tar.gz"
+CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
+
+curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
+printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -
+tar -xzf "$CLUSTERD_PACKAGE_NAME"
+cd "${CLUSTERD_PACKAGE_NAME%.tar.gz}"
+bash verify.sh
+
+CLUSTERD_INSTALL_LOG=/var/log/agione-clusterd-install.log
+if bash install.sh install > "$CLUSTERD_INSTALL_LOG" 2>&1; then
+  tail -n 20 "$CLUSTERD_INSTALL_LOG"
+else
+  tail -n 100 "$CLUSTERD_INSTALL_LOG"
+  false
+fi
+systemctl is-active agione-clusterd
 ```
 
-Or run it in the background:
+On an ARM64 control host, change `x86_64` in the filename to `arm64` and use that package's own URL and SHA-256. After `agione-clusterd-install-ok` and an `active` service, open `http://<control-host-IP>:18093/` and create an account as described in the installation guide.
 
-```bash
-nohup bash start.sh > clusterd.log 2>&1 &
-```
+Host checks, offline transfer, the light package, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). The same commands are also in that page's [Quick Install](./clusterd/#quick-install).
 
 ## Onboard a Compute Cluster
 
@@ -37,8 +48,8 @@ nohup bash start.sh > clusterd.log 2>&1 &
 
 ### Add a cluster
 
-1. The default login account is `admin`. Log in with the `admin` account.
-2. After logging in, click **Add Cluster**.
+1. Sign in with the account created when ClusterD was installed. The first-visit account steps are in [Install and Open ClusterD](./clusterd/#_4-install-and-open-clusterd).
+2. After signing in, click **Add Cluster**.
 
 ![Add cluster](./clusterd-images/add-cluster01.png)
 

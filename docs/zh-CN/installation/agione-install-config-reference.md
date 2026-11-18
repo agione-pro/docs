@@ -5,12 +5,16 @@ next: true
 
 # AGIOne 安装配置文件字段说明
 
+::: warning 命令行安装将停用
+新部署使用 [安装 AGIOne](./clusterd-agione-best-practices)，在网页向导中填写参数。ClusterD 的说明见 [ClusterD 是什么](./clusterd-overview)，安装和升级见 [安装、升级与卸载](./clusterd/)。本文说明 `./agione` 使用的 `/root/agione-install.yml`。
+:::
+
 ## 前言
 
 | 项目 | 内容 |
 | --- | --- |
 | 适用角色 | 交付工程师、实施工程师、客户运维工程师 |
-| 导航路径 | 部署 > AGIOne 安装配置文件字段说明 |
+| 导航路径 | 部署 > 安装 AGIOne > 命令行安装 > 配置字段 |
 | 功能定位 | 帮助安装人员从最小 YAML 模板开始，按必填、常用、场景、高级字段的顺序写出可执行的 `/root/agione-install.yml` |
 
 本文档说明如何编写 `/root/agione-install.yml`。建议不要一开始通读全部字段，而是先复制匹配场景的最小模板，再只补充本次交付确实需要的字段。

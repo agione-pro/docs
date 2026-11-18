@@ -19,6 +19,45 @@
 
 本指南适用于使用 `install.sh` 和 systemd 的 x86_64、ARM64 交付包。CentOS、macOS 不属于本版已核对的安装范围，请勿直接套用。旧安装包不会因源码更新而自动具备新功能，请使用包含相应能力的新版本交付包。
 
+ClusterD 是安装时使用的网页程序，安装在控制端。安装人员通过它填写参数、检查节点并启动安装。说明见 [ClusterD 是什么](../clusterd-overview)。
+
+## 快捷安装 {#quick-install}
+
+控制端为 Ubuntu 22.04，架构为 x86_64 或 ARM64 时，按下面顺序安装。主机检查、离线拷贝和轻量包见第 1～4 节。升级见 [第 6 节](#_6-升级-clusterd)，卸载见 [第 7 节](#_7-卸载-clusterd)。
+
+1. 打开 [发布包下载页]({{DOCS_RELEASE_PAGE_URL_ZH}})，复制与本机 `uname -m` 匹配的全量包 URL，以及该包自己的 SHA-256。
+2. 在控制端执行下面的命令。把 URL、文件名中的 `XXX` 和 SHA-256 换成下载页上的值。ARM64 控制端把文件名中的 `x86_64` 改成 `arm64`。
+3. 日志末尾出现 `agione-clusterd-install-ok`，并且 `systemctl is-active agione-clusterd` 输出 `active` 后，用浏览器打开 `http://<控制端 IP>:18093/`，首次访问时创建账户。
+
+```bash
+sudo -i
+bash
+set -e
+mkdir -p /opt/clusterd-packages
+cd /opt/clusterd-packages
+
+CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL>"
+CLUSTERD_PACKAGE_NAME="agione-clusterd-full-release-XXX-linux-x86_64.tar.gz"
+CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
+
+curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
+printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -
+tar -xzf "$CLUSTERD_PACKAGE_NAME"
+cd "${CLUSTERD_PACKAGE_NAME%.tar.gz}"
+bash verify.sh
+
+CLUSTERD_INSTALL_LOG=/var/log/agione-clusterd-install.log
+if bash install.sh install > "$CLUSTERD_INSTALL_LOG" 2>&1; then
+  tail -n 20 "$CLUSTERD_INSTALL_LOG"
+else
+  tail -n 100 "$CLUSTERD_INSTALL_LOG"
+  false
+fi
+systemctl is-active agione-clusterd
+```
+
+完全离线时，把同一个安装包放到 `/opt/clusterd-packages`，跳过 `curl`，仍执行校验和解压。安装 AGIOne 见 [安装 AGIOne](../clusterd-agione-best-practices)。纳管算力见 [安装算力](../quick-install-with-agione-clusterd)。
+
 ## 操作时间线
 
 | 阶段 | 你要做什么 | 完成标志 |

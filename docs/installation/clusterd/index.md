@@ -19,6 +19,45 @@ They can share a machine, but plan disk space, ports, and resources together. **
 
 This guide applies to x86_64 and ARM64 delivery packages using `install.sh` and systemd. CentOS and macOS are outside the verified installation scope; do not apply these instructions unchanged. Source updates do not add capabilities to older packages. Use a new delivery package containing the required functionality.
 
+ClusterD is the Web program used during installation. It runs on the control host. Installers use it to enter parameters, check nodes, and start installation. See [What ClusterD Does](../clusterd-overview).
+
+## Quick Install {#quick-install}
+
+Use this sequence when the control host is Ubuntu 22.04 on x86_64 or ARM64. Host checks, offline transfer, and the light package are in sections 1–4. Upgrade is in [section 6](#_6-upgrade-clusterd). Removal is in [section 7](#_7-uninstall-clusterd).
+
+1. Open the [release download page]({{DOCS_RELEASE_PAGE_URL_EN}}) and copy the full-package URL that matches this host's `uname -m`, plus that package's own SHA-256.
+2. Run the commands below on the control host. Replace the URL, `XXX` in the filename, and the SHA-256 with the values from the download page. On an ARM64 control host, change `x86_64` in the filename to `arm64`.
+3. When the log ends with `agione-clusterd-install-ok` and `systemctl is-active agione-clusterd` prints `active`, open `http://<control-host-IP>:18093/` and create an account on the first visit.
+
+```bash
+sudo -i
+bash
+set -e
+mkdir -p /opt/clusterd-packages
+cd /opt/clusterd-packages
+
+CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL>"
+CLUSTERD_PACKAGE_NAME="agione-clusterd-full-release-XXX-linux-x86_64.tar.gz"
+CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
+
+curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
+printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -
+tar -xzf "$CLUSTERD_PACKAGE_NAME"
+cd "${CLUSTERD_PACKAGE_NAME%.tar.gz}"
+bash verify.sh
+
+CLUSTERD_INSTALL_LOG=/var/log/agione-clusterd-install.log
+if bash install.sh install > "$CLUSTERD_INSTALL_LOG" 2>&1; then
+  tail -n 20 "$CLUSTERD_INSTALL_LOG"
+else
+  tail -n 100 "$CLUSTERD_INSTALL_LOG"
+  false
+fi
+systemctl is-active agione-clusterd
+```
+
+For a fully offline host, place the same package in `/opt/clusterd-packages`, skip `curl`, and still run verification and extraction. Install AGIOne from [Install AGIOne](../clusterd-agione-best-practices). Onboard compute from [Install Compute](../quick-install-with-agione-clusterd).
+
 ## Workflow Timeline
 
 | Stage | What you do | Completion signal |

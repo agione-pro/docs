@@ -5,12 +5,16 @@ next: true
 
 # AGIOne Installation Configuration Reference
 
+::: warning Command-line installation is being retired
+New deployments use [Install AGIOne](./clusterd-agione-best-practices) and enter parameters in the Web wizard. See [What ClusterD Does](./clusterd-overview). Installation and upgrade are in [Install, Upgrade, and Uninstall](./clusterd/). This page documents `/root/agione-install.yml` for `./agione`.
+:::
+
 ## Introduction
 
 | Item | Content |
 |------|---------|
 | Applicable Role | Delivery engineer, implementation engineer, or customer operations engineer who needs to write installation configuration |
-| Navigation Path | Deployment > AGIOne Installation Configuration Reference |
+| Navigation Path | Deployment > Install AGIOne > Command-Line Install > Configuration Fields |
 | Function Description | Helps users start from a minimal YAML template and write an executable `/root/agione-install.yml` in the order of required, common, scenario, and advanced fields |
 
 This document explains how to write `/root/agione-install.yml`. It is structured so installation engineers can copy a working template first, then add fields only for the required delivery scenario.

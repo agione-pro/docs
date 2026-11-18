@@ -1,11 +1,15 @@
 # AGIOne Multi-Node Environment Installation and Deployment Guide
 
+::: warning Command-line installation is being retired
+New deployments use [Install AGIOne](./clusterd-agione-best-practices). See [What ClusterD Does](./clusterd-overview). Installation, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). This page is the `./agione` multi-node command-line installation.
+:::
+
 ## Introduction
 
 | Item | Content |
 |------|---------|
 | Applicable Role | Production delivery engineer, field implementation engineer, customer platform operations engineer |
-| Navigation Path | Deployment > AGIOne Multi-Node Installation |
+| Navigation Path | Deployment > Install AGIOne > Command-Line Install > Multi-Node Install |
 | Function Description | Guides users through AGIOne host-mode multi-node deployment, including node planning, configuration preparation, precheck, installation, and acceptance |
 
 Compared with single-node deployment, multi-node deployment adds three key tasks: **plan node roles, prepare `/root/agione-install.yml`, and verify SSH and middleware connectivity**. If this is your first deployment, use the timeline below to understand the full flow before running commands.

@@ -22,7 +22,9 @@ Use this document before touching the installer. It helps you decide the deploym
 | Step 2: Confirm middleware approach | Use cloud-provider managed middleware or self-managed middleware deployed by the installer | `managed-middleware`, `hybrid`, or `self-managed` is selected |
 | Step 3: Confirm resource sizing | Required machine count, CPU, memory, and disk | Resource request list is ready |
 | Step 4: Confirm network and ports | How users, business nodes, middleware, and compute clusters communicate | Security group / firewall allowlist is ready |
-| Step 5: Enter execution docs | Choose single-node, multi-node, or compute node installation docs based on the decision | Ready for precheck and installation |
+| Step 5: Enter execution docs | Install AGIOne; continue with Install Compute when accelerators are in scope | The matching installation document is open |
+
+Install AGIOne from [Install AGIOne](./clusterd-agione-best-practices). To attach GPU / NPU nodes, read [Before You Start](./deployment-requirements-for-managing-compute-nodes), then [Install Compute](./quick-install-with-agione-clusterd). Installation uses ClusterD. See [What ClusterD Does](./clusterd-overview). Installation, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). Command-line installation is being retired.
 
 ## Terminology Quick Reference
 

@@ -62,11 +62,11 @@ ClusterD 控制端可以与 AGIOne 目标节点使用同一台物理机或云主
 
 | 你的目标 | 下一步阅读 |
 | --- | --- |
-| 在新主机上安装 ClusterD | [ClusterD 安装、升级与卸载](./clusterd/) |
-| 使用向导部署 AGIOne | [ClusterD 部署 AGIOne 最佳实践](./clusterd-agione-best-practices) |
+| 先把 ClusterD 装起来 | [快捷安装](./clusterd/#quick-install)；主机检查、升级和卸载见 [安装、升级与卸载](./clusterd/) |
+| 安装 AGIOne | [安装 AGIOne](./clusterd-agione-best-practices) |
+| 纳管 GPU / NPU | [安装算力](./quick-install-with-agione-clusterd) |
 | 准备容量和网络要求 | [部署综述](./agione-deployment-requirements) |
-| 改用命令行安装 | [环境安装部署指南](./agione-quick-install) |
 
-::: warning 先分清职责边界
-ClusterD 是部署控制层，AGIOne 是被部署的环境。交付时请分别管理 ClusterD 账户、目标节点 SSH 凭据和 AGIOne 账户信息。
+::: warning 三组账户各自保存
+ClusterD 登录账户、目标节点 SSH 凭据和 AGIOne 登录账户是三组不同的登录信息，分别记录。
 :::
