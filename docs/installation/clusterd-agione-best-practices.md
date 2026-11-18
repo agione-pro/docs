@@ -1,26 +1,21 @@
 # Install AGIOne
 
-Follow this guide in order: prepare the host, install ClusterD, create an account, complete the deployment wizard, run precheck, install, and verify the result. If ClusterD is already available, start with [4. Create an Account and Open the Wizard](#_4-create-an-account-and-open-the-wizard).
+## Introduction
 
-ClusterD is the Web program used during installation. It runs on the control host. Installers enter deployment parameters, check target nodes, run precheck, and start installation there. See [What ClusterD Does](./clusterd-overview).
+This guide walks through a single-node offline installation using the ClusterD wizard on an Ubuntu 22.04 x86_64 host. Multi-node deployments use the same wizard, but require separate topology, storage, and scheduling capacity checks. Read the [Deployment Guide](./agione-deployment-requirements) before requesting hosts.
 
-If the control host does not have ClusterD yet, install it with the [Quick Install](./clusterd/#quick-install). Host requirements, offline installation, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). Sections 2 and 3 are the package and commands used in this example.
+**Where should you start?**
 
-| Item | Example and scope |
+| Your situation | Start here |
 | --- | --- |
-| Example configuration | Ubuntu 22.04.5 LTS, x86_64, 16 vCPU / 32 GiB, a 100 GiB system disk, and a dedicated 200 GiB empty disk `/dev/vdb`; ClusterD and AGIOne on the same host, single-node offline installation |
-| Validated package | `agione-clusterd-full-release-2026.11.14-dev19-r4-linux-x86_64.tar.gz`; recheck fields, resources, and checksums for other releases |
-| Other configurations | Instructions also explain multi-node, ARM64, online installation, NAS, and existing-filesystem reuse; this does not mean every combination received the same live acceptance test |
-| Reading order | Use each section's example to follow the main path. Read the branches when you need a different configuration |
-| Illustrations | This page combines workflow diagrams with page-level live screenshots. Screenshots come from actual ClusterD pages and contain no sensitive credentials; adjacent text defines the fields, button actions, and completion criteria |
+| You have not chosen hosts or disks | Read [2. Prerequisites](#_2-prerequisites) and [3. Network Configuration](#_3-network-configuration) |
+| ClusterD is not installed | Start with [4.1 Obtain and Verify the Package](#_4-1-obtain-and-verify-the-package) |
+| ClusterD is ready | Go to [4.3 Create an Account and Open the Wizard](#_4-3-create-an-account-and-open-the-wizard); sign in directly if you already have an account |
+| A target node already has a mounted data disk | Choose [Reuse an Existing Filesystem](#reuse-existing-filesystem) when adding the node; do not authorize disk initialization |
 
-> **Screenshots and acceptance scope:** This page combines live page screenshots with workflow diagrams. Single-node installation and runtime reconciliation both succeeded; see Section 11 for the final results. Screenshots do not show passwords. Business authorization and technical deployment are separate acceptance items.
+To learn about ClusterD or maintain it later, see [What Is ClusterD?](./clusterd-overview) and [Install, Upgrade, and Uninstall](./clusterd/).
 
-::: warning Confirm the target host and disk first
-The empty-disk example authorizes initialization of `/dev/vdb` after installation confirmation. **Do not copy this device name without checking your own host.** If the disk is already mounted at `/data`, has a filesystem or partitions, or contains business data, read [8.3 Reuse an Existing Filesystem](#_8-3-reuse-an-existing-filesystem). Do not choose empty-disk initialization.
-:::
-
-## Operation Timeline
+## Deployment Timeline
 
 | Stage | Action | Continue when |
 | --- | --- | --- |
@@ -49,9 +44,23 @@ The empty-disk example authorizes initialization of `/dev/vdb` after installatio
 | NAS / NFS | Network-shared storage; log sharing here uses NFS, not SMB/CIFS |
 | Runtime verified | Actual node and service state has been checked, beyond a successful installer exit |
 
-## 1. Choose a Deployment Plan
+## 1. About This Guide
 
-### 1.1 Example Host and Access Plan
+| Item | Example scope |
+| --- | --- |
+| Installation method | ClusterD and AGIOne share one machine. The All in One deployment uses offline assets for the target architecture. |
+| Verified installation | An x86_64 full package. See the relevant steps for the tested hardware, package checksum, and results. This does not validate every release or topology. |
+| Multiple nodes and other scenarios | Select primary/standby or enterprise high availability in the wizard and enter each node individually. Validate ARM64, online installation, NAS, and existing-filesystem reuse against the release being delivered. |
+
+::: warning Confirm the host and data disk first
+The example initializes `/dev/vdb` only after installation confirmation. **Do not copy this device name.** Never treat a disk with an existing filesystem, mount, partition, or business data as an empty device. [Reuse its filesystem](#reuse-existing-filesystem) or prepare a separate empty disk.
+:::
+
+## 2. Prerequisites
+
+Target nodes need Ubuntu 22.04, a common CPU architecture, working SSH, and privilege elevation. A standard fresh install requires at least **8 vCPUs, 12 GiB of memory, and 160 GiB of data storage per node**; for a mounted filesystem, check free space rather than advertised capacity. Budget for ClusterD control-host storage separately; see the [Deployment Guide](./agione-deployment-requirements). The selected topology must still pass scheduling capacity precheck.
+
+### 2.1 Example Host and Access Plan
 
 | Item | Example value or resource | What to confirm |
 | --- | --- | --- |
@@ -66,7 +75,7 @@ The empty-disk example authorizes initialization of `/dev/vdb` after installatio
 
 The reference deployment was validated on a Huawei Cloud host. Physical hosts can use the same separation of responsibilities. Cloud provisioning, VPCs, security groups, and AK/SK management are outside the deployment wizard. Never enter cloud access keys as SSH passwords, ClusterD passwords, or AGIOne account credentials.
 
-### 1.2 Separate Program Directories from the Data Disk
+### 2.2 Separate Program Directories from the Data Disk
 
 | Path | Location | Purpose |
 | --- | --- | --- |
@@ -79,14 +88,20 @@ The reference deployment was validated on a Huawei Cloud host. Physical hosts ca
 
 **Same-host deployment still uses SSH to the host's actual node address.** Do not enter the installation operator's computer's `127.0.0.1` as the target. Installing ClusterD does not automatically place AGIOne on a data disk: select and verify storage separately in the wizard.
 
-### 1.3 Single Node, Multiple Nodes, and Architectures
+### 2.3 Single Node, Multiple Nodes, and Architectures
 
 - This example uses one node. For multiple nodes, prepare SSH information and an independent storage probe for every node; install ClusterD on the control host only once.
 - Select the ClusterD package for the **control host's architecture**. Select the wizard's CPU architecture for the **AGIOne targets**. Nodes in one AGIOne cluster should use the same architecture.
 - Obtain a genuinely published ARM64 package and its matching digest for an ARM64 host. Do not merely replace `x86_64` in this URL or reuse its digest.
 - A control-host/target cross-architecture combination needs complete target-architecture resources. It is not included in this example's live acceptance. See [Deployment Overview](./agione-deployment-requirements) for production sizing and availability planning.
 
-## 2. Obtain and Verify the Example Package
+## 3. Network Configuration
+
+Confirm that installers can reach ClusterD (TCP `18093` by default), ClusterD can reach every target node over SSH, and nodes can reach each other privately. Plan non-overlapping Pod and Service networks and verify that users can reach AGIOne (HTTPS `18090` by default). Enter the values in [4.6 Plan Networking, Console Access, and Logs](#wizard-network).
+
+## 4. Product Installation
+
+### 4.1 Obtain and Verify the Package
 
 The package and commands for this example follow. Installation, upgrade, and removal for other releases are in [Install, Upgrade, and Uninstall](./clusterd/).
 
@@ -113,7 +128,7 @@ set -e
 mkdir -p /opt/clusterd-packages
 cd /opt/clusterd-packages
 
-CLUSTERD_PACKAGE_NAME=agione-clusterd-full-release-2026.11.14-dev19-r4-linux-x86_64.tar.gz
+CLUSTERD_PACKAGE_NAME="<DOWNLOADED_PACKAGE_FILENAME.tar.gz>"
 # Copy the package URL and matching SHA-256 value from the release download page.
 CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL_FROM_DOWNLOAD_PAGE>"
 CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
@@ -127,7 +142,7 @@ bash verify.sh
 
 **Continue when:** the archive reports `OK` and the entire `verify.sh` command exits successfully. SHA-256 is not MD5. A digest calculated from the newly downloaded file is not its trusted reference. Stop on any failure, check release and integrity, and never edit manifests to bypass verification.
 
-## 3. Install and Open ClusterD
+### 4.2 Install and Open ClusterD
 
 This step starts the installation web page; it does not deploy AGIOne yet. Initial verification still needs system `python3`; the full package's embedded Python cannot replace it. See [ClusterD Installation, Upgrade, and Uninstallation](./clusterd/) for prerequisites, architecture checks, and complete upgrade/removal instructions.
 
@@ -151,7 +166,7 @@ curl --fail --silent --show-error --output /dev/null \
 
 **Success:** dry-run passes, installation reports `agione-clusterd-install-ok`, the service is `active`, and the web page returns `HTTP 200`. Open `http://<ClusterD-IP>:18093/`. **Failure:** inspect the log first. If local access works but remote access fails, check listening address, routing, and security groups instead of reinstalling. Processing a multi-GB full package can take time; wait for the current command to finish.
 
-## 4. Create an Account and Open the Wizard
+### 4.3 Create an Account and Open the Wizard
 
 First access creates a **ClusterD login account**, not the target host's SSH account or the AGIOne account supplied after deployment.
 
@@ -166,7 +181,7 @@ First access creates a **ClusterD login account**, not the target host's SSH acc
 
 After login, open **AGIOne Deployment → Deployment Wizard**. The topology page should appear. If you remain on the login page, inspect the error and account inputs; do not reinitialize an existing instance.
 
-## 5. Select a Topology
+### 4.4 Select a Topology
 
 This step determines how many hosts form the cluster. **For this example, select `All in One` and configure one node.**
 
@@ -182,7 +197,7 @@ This step determines how many hosts form the cluster. **For this example, select
 
 Node count, database architecture, availability, and fault tolerance are **read-only derived results**, not additional editable fields. Check the preview and click Next. If a one-node plan shows several core nodes, correct the topology instead of inventing extra hosts.
 
-## 6. Enter Basic Information and Select Resources
+### 4.5 Enter Basic Information and Select Resources
 
 Specify what will be deployed and which resources it uses. **This example selects Offline install and x86_64, retaining the derived runtime root.**
 
@@ -206,9 +221,9 @@ Specify what will be deployed and which resources it uses. **This example select
 
 **Offline branch:** a full package normally contains resources matching its own architecture; prepare system dependencies for air-gapped hosts too. Continue only when the resource card reports readiness. Downloading the outer archive alone is not proof of ready installation assets. Complete the fields and click Next.
 
-## 7. Plan Networking, Console Access, and Logs
+### 4.6 Plan Networking, Console Access, and Logs {#wizard-network}
 
-### 7.1 Kubernetes Networks
+#### Kubernetes Networks
 
 Avoid network conflicts first, then choose how users connect. These ranges illustrate a plan, not values every site should copy unchanged.
 
@@ -223,7 +238,7 @@ Avoid network conflicts first, then choose how users connect. These ranges illus
 | DNS domain | `cluster.local` | Internal service-discovery domain; usually retain the default unless site DNS planning requires another valid value |
 | External address | Leave empty for internal use, or `agione.example.com` | User-reachable node/entry IP or DNS hostname, without `https://`, port, or path. Configure DNS resolution separately |
 
-### 7.2 Console Protocol, Ports, and Certificate
+#### Console Protocol, Ports, and Certificate
 
 | Field | Example selection / value | Meaning and condition |
 | --- | --- | --- |
@@ -237,7 +252,7 @@ Avoid network conflicts first, then choose how users connect. These ranges illus
 
 This example uses an installer-generated self-signed certificate rather than an uploaded production certificate. If the browser does not trust it, configure a trusted certificate or have site operations confirm the trust policy. Bypassing a certificate warning is not production acceptance. Correct invalid port or certificate errors before continuing.
 
-### 7.3 Logging Policy
+#### Logging Policy
 
 Logging is a separate area in the Network step. **This example enables logging with local persistence.** Check its actual location independently; selecting an application data disk does not place every possible log path on it.
 
@@ -260,9 +275,9 @@ Logging is a separate area in the Network step. **This example enables logging w
 
 Provision NAS beforehand. The archive node needs an NFS client, network access, and write permission to the export; ClusterD does not create NAS. Local logs are not cross-node HA storage. The preview is **planned configuration**, not evidence that NAS is writable or logs are persisted. Review it and click Next.
 
-## 8. Add Nodes and Select Storage
+### 4.7 Add Nodes and Select Storage
 
-### 8.1 SSH Connection Fields
+#### SSH Connection Fields
 
 Tell ClusterD how to reach the actual target host. **The example uses one `node-1`, the host's actual private IP, and no bastion. Enter authentication material locally, not in this document.**
 
@@ -285,7 +300,7 @@ Tell ClusterD how to reach the actual target host. **The example uses one `node-
 | SSH private-key path | `/etc/agione-clusterd/keys/deploy-key` | Required for public-key authentication. The file is on the **ClusterD control host**, not the browser computer or target node. Restrict file permissions, for example `0600` |
 | sudo password | Enter if needed, or leave empty | Only in sudo mode. Empty falls back to the SSH password for password auth; with public-key auth, the target must permit passwordless sudo |
 
-### 8.2 Example: Initialize a Dedicated Empty Disk
+#### Example: Initialize a Dedicated Empty Disk
 
 1. Select **Dedicated data device**.
 2. Complete node connection information and click **Test Connection & Disks**. This probe is read-only; it does not format disks.
@@ -306,7 +321,7 @@ Tell ClusterD how to reach the actual target host. **The example uses one `node-
 
 Fix SSH, permissions, or disk state if probing fails. Reprobe after changing addresses, credentials, mode, or device; do not reuse stale results. Partitions, existing filesystems, mounts, signatures, or other non-empty conditions block empty-disk installation. Do not erase disks, run `mkfs`, or alter probe results to pass the check.
 
-### 8.3 Reuse an Existing Filesystem
+#### Reuse an Existing Filesystem {#reuse-existing-filesystem}
 
 If the disk is already mounted at `/data`, select **Existing filesystem**, run the probe, and choose the eligible mounted filesystem. The page normally derives a dedicated source directory `/data/agione`, later bind-mounted to the common `/var/lib/agione/local-path` entry. It does not format the entire `/data` disk.
 
@@ -315,11 +330,11 @@ If the disk is already mounted at `/data`, select **Existing filesystem**, run t
 - Without choosing another mounted filesystem, the default location may still use the system disk. A shared system-storage failure domain requires explicit risk acknowledgment; selecting reuse alone does not guarantee data-disk placement.
 - Probe and select independently on every node. Current probe and precheck results determine whether reuse is allowed.
 
-### 8.4 Multiple Nodes and the Archive Node
+#### Multiple Nodes and the Archive Node
 
 Fill every node required by the topology with a distinct address. Changing topology may change core nodes, database mode, and capacity requirements, so review every node and precheck again. When logging is enabled, select the archive node in this step or leave it empty to use the first core node. Continue to Services only after connectivity and storage information are correct.
 
-## 9. Review Services and Run Precheck
+### 4.8 Review Services and Run Precheck
 
 Confirm the delivered service combination. This step is **not an editor for arbitrary middleware versions or passwords**.
 
@@ -350,7 +365,7 @@ Use component identities from this release's catalog. Do not infer that untested
 
 Precheck validates node resources, time synchronization, storage, ports, Kubernetes/AGIOne configuration, and offline asset completeness. Read the **final report and blocker count**, not one log line's color. Rerun after changing inputs; an old report cannot authorize a new configuration.
 
-## 10. Confirm and Install
+### 4.9 Confirm and Install
 
 ![Live destructive-install confirmation dialog](./images/clusterd-best-practices/real-07-install-confirmation.jpg)
 
@@ -366,9 +381,9 @@ Click **Start installation**, review the final confirmation, and confirm install
 
 **Success:** the task becomes `Succeeded`, and details show installation completed with runtime verification starting or complete. In this example, task `#2` completed successfully and task `#3` (`Reconcile now`) subsequently completed successfully. **Failure:** open the corresponding task log/report and identify the failing stage; fix the cause instead of immediately deleting data and reinstalling. A successful installer exit and Runtime verified are separate evidence layers.
 
-## 11. Verify Runtime and Log In to AGIOne
+## 5. Verify the Result
 
-### 11.1 Accept Runtime First, Then Business Access
+### 5.1 Verify Runtime Status and the Data Disk
 
 ![Layered acceptance diagram for tasks, runtime, storage, and business access](./images/clusterd-best-practices/09-acceptance.svg)
 
@@ -401,7 +416,7 @@ sudo k3s kubectl get pv,pvc -A
 
 Nodes should be `Ready`, long-running services `Running`, one-time initialization Jobs may be `Completed`, and PVCs should be `Bound`. Check actual PV paths and retention policy. For `/data` reuse, check the source directory and bind mount too. If logging is enabled, run `findmnt -T <log-directory>` for the configured location and verify writes; application-disk selection alone does not prove log placement.
 
-### 11.2 Obtain the Account and Open the Console
+### 5.2 Obtain the Account and Open the Console
 
 1. Use the **Web access URL** provided in deployment details. Do not use ClusterD's `18093` to log in to AGIOne.
 2. Use the account credential view/download entry in details. Read any confirmation; do not reveal passwords in screenshots or copy the downloaded file into public locations.
@@ -416,13 +431,13 @@ https://<node-or-external-address>:18090/modelone/
 
 Use passwords through the product login page. Do not embed them in URLs, terminal commands, or improvised authentication requests. A failed handcrafted request does not prove the account file is wrong.
 
-### 11.3 An Expired Subscription Is Not an Installation Failure
+### 5.3 Verify the Subscription and Business Access
 
 If business access returns `platform_license_expired`, check the effective subscription and authorization state. **Technical deployment and licensed business availability are separate acceptance items.** A subscription result alone does not indicate a disk, Kubernetes, or account-synchronization failure.
 
 Complete the applicable [Purchase and Activation](../license/activation-code-activation) process, then verify login and business access again. Record licensing results separately from the technical runtime acceptance.
 
-## 12. Troubleshooting and Next Steps
+## 6. Troubleshooting and Next Steps
 
 | Symptom | Check first | Do not |
 | --- | --- | --- |
@@ -439,7 +454,7 @@ Complete the applicable [Purchase and Activation](../license/activation-code-act
 
 The installation wizard covers topology, resources, networking, nodes, services, and precheck. **Resource sync**, **Delivery rollout**, and **middleware external access** are later maintenance operations. Do not run synchronization/redeployment or expose middleware ports simply to solve login, licensing, or entry issues. Upgrading ClusterD does not upgrade AGIOne business services; see [ClusterD Upgrade](./clusterd/#_6-upgrade-clusterd).
 
-## 13. Clean Up a Test Environment
+## 7. Clean Up a Test Environment
 
 Use this section only when the environment is no longer needed. It is not a mandatory post-installation step. **Reading this page does not clean any host automatically.**
 
@@ -455,7 +470,7 @@ Use this section only when the environment is no longer needed. It is not a mand
 
 Environment removal is destructive; the data owner must decide retention/deletion beforehand. Resolve blocked previews instead of running `rm -rf` on the runtime root, deleting PVCs, or formatting disks. After cleanup, inspect the task, target hosts, and cloud inventory. An unavailable web page, missing record, or successful command exit alone is not proof of remote cleanup.
 
-## 14. Delivery Checklist
+## 8. Delivery Checklist
 
 - [ ] Record package version, architecture, and trusted SHA-256; both outer-archive and internal verification pass.
 - [ ] ClusterD login works; targets, networking, and storage agree with the wizard.
