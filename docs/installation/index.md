@@ -13,7 +13,15 @@ This section contains deployment, configuration, and acceptance documentation fo
 | --- | --- |
 | [Overview](./agione-deployment-requirements) | Deployment overview and requirements for AGIOne |
 
-### Deploy AGIOne via CLI
+### Deploy via GUI
+
+| Document | Purpose |
+| --- | --- |
+| [What Is ClusterD](./clusterd-overview) | Explains ClusterD's role, deployment workflow, and relationship with AGIOne |
+| [ClusterD Installation, Upgrade, and Uninstallation](./clusterd/) | New-environment installation, dual-architecture online/offline deployment, and ClusterD upgrade and removal |
+| [Best Practices for Deploying AGIOne with ClusterD](./clusterd-agione-best-practices) | Step-by-step offline single-node deployment, wizard field examples, storage selection, precheck, verification, and cleanup |
+
+### Deploy via CLI
 
 | Document | Purpose |
 | --- | --- |
@@ -21,13 +29,6 @@ This section contains deployment, configuration, and acceptance documentation fo
 | [Installation & Deployment](./agione-quick-install) | Offline or restricted-network AGIOne installation workflow and delivery handover |
 | [Multi-Node Installation](./agione-multi-node-install) | Host-mode multi-node installation workflow for AGIOne |
 | [Installation Configuration Reference](./agione-install-config-reference) | Field reference for `/root/agione-install.yml` |
-
-### Deploy AGIOne via GUI
-
-| Document | Purpose |
-| --- | --- |
-| [ClusterD Installation, Upgrade, and Uninstallation](./clusterd/) | New-environment installation, dual-architecture online/offline deployment, and ClusterD upgrade and removal |
-| [Best Practices for Deploying AGIOne with ClusterD](./clusterd-agione-best-practices) | Step-by-step offline single-node deployment, wizard field examples, storage selection, precheck, verification, and cleanup |
 
 ### Compute Node Management
 

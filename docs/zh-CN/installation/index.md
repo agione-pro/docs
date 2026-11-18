@@ -13,7 +13,15 @@ next: true
 | --- | --- |
 | [部署综述](./agione-deployment-requirements) | 部署概述及要求 |
 
-### 命令行部署 AGIOne
+### 图形化部署
+
+| 文档 | 说明 |
+| --- | --- |
+| [什么是 ClusterD](./clusterd-overview) | 解释 ClusterD 的定位、作用、部署流程及其与 AGIOne 的关系 |
+| [ClusterD 安装、升级与卸载](./clusterd/) | 全新环境安装、双架构与在线/离线部署，以及 ClusterD 升级和卸载 |
+| [ClusterD 部署 AGIOne 最佳实践](./clusterd-agione-best-practices) | 单节点离线部署全流程、向导字段示例、磁盘选择、预检、验证与清理 |
+
+### 命令行部署
 
 | 文档 | 说明 |
 | --- | --- |
@@ -21,13 +29,6 @@ next: true
 | [环境安装部署指南](./agione-quick-install) | AGIOne 离线或弱网环境安装流程与交付交接 |
 | [多节点环境安装部署文档](./agione-multi-node-install) | AGIOne host-mode 多节点安装部署流程 |
 | [安装配置文件字段说明](./agione-install-config-reference) | `/root/agione-install.yml` 配置字段说明 |
-
-### 图形化部署 AGIOne
-
-| 文档 | 说明 |
-| --- | --- |
-| [ClusterD 安装、升级与卸载](./clusterd/) | 全新环境安装、双架构与在线/离线部署，以及 ClusterD 升级和卸载 |
-| [ClusterD 部署 AGIOne 最佳实践](./clusterd-agione-best-practices) | 单节点离线部署全流程、向导字段示例、磁盘选择、预检、验证与清理 |
 
 ### 节点纳管
 
