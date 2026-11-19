@@ -23,7 +23,7 @@ Use this task to confirm whether the scheduling-policy entry is configurable, ch
 
 Open `/infrahub/op/schedule/policy`. If the page only shows `Coming Soon!` and a `Back to Home` link, the environment has no configurable policy entry: record the route, interface language, and notice text, then stop. Do not keep refreshing or resubmitting.
 
-The sidebar does not show a Policies entry; its historical path is AI Infra > On-Cloud > Scheduling Governance > Policies. The remaining sections describe prerequisites and what to do once the entry opens — do not treat historical screenshots as the current form.
+The sidebar does not show a Policies entry; its historical path under On-Cloud is **On-Cloud > Scheduling Governance > Policies** (earlier builds placed it under the AI Infra top-level group). The remaining sections describe prerequisites and what to do once the entry opens — do not treat historical screenshots as the current form.
 
 ### 2. Check Access and Authorization
 

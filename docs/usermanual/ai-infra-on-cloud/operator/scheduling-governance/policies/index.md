@@ -12,7 +12,7 @@ This page describes the operator view in Demo (`https://demo.agione.pro/`) on 20
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operators |
-| Navigation Path | Historical path: AI Infra(On-Cloud) > Scheduling Governance > Policies; this entry is not shown in the current sidebar. |
+| Navigation Path | On-Cloud > Scheduling Governance > Policies |
 | Page Route | `/infrahub/op/schedule/policy` |
 | Managed Object | The current entry's placeholder; historical descriptions cover application scenarios, associated models, primary/backup routes, and health probes. |
 

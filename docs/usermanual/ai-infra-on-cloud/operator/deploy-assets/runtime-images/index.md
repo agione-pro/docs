@@ -10,9 +10,11 @@ Updated: 2026-11-12
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operators |
-| Navigation Path | On-Cloud > Deploy Assets > Frameworks > in-page Image Resources |
+| Navigation Path | On-Cloud > Deploy Assets > Frameworks |
 | Page Route | `/infrahub/op/model/image` |
 | Managed Object | Framework-related runtime images, registry paths, cloud platforms, and resource pool scope |
+
+**Image Resources** is a tab inside the Frameworks page, not a separate sidebar entry.
 
 #### Beginner Explanation
 

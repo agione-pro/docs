@@ -20,7 +20,7 @@ Pass protocol connectivity testing, configure billing and rate limits, and verif
 
 1. Sign in to {{DOCS_PRODUCT_NAME_EN}}, open **Model Services > Studio > My Models**, and switch to **My Published**.
 2. Click **Publish Model**, choose **Public Model** in **Select publish type**, then click **Publish as Public Model**.
-3. Alternatively, start from the public entry under **Overview > BYOK**. A deployment card showing **Environment not configured.** does not provide a direct deployment action.
+3. Alternatively, start from the **02 BYOK** area on the **Overview** tab of [My Models](../../../usermanual/model-services/user/studio/my-models/). A deployment card showing **Environment not configured.** does not provide a direct deployment action.
 
 ## 2. Configure Basic Information and Test Connectivity
 

@@ -25,7 +25,7 @@ NPU means neural processing unit. A resource specification describes the request
 
 ## Steps
 
-1. Open **On-Prem > Model Deployment > Templates**, select a **Deployable** model, and verify its version and managed NPU models.
+1. Open **[On-Prem > Model Deployment > Templates](../../../../usermanual/ai-infra-on-prem/user/model-deployment/templates/)**, select a **Deployable** model, and verify its version and managed NPU models.
 2. In **Business Parameters**, confirm framework, accelerator, concurrency, context, weight format, and KV cache precision. Compare **Single Instance/Cluster** recommendations and verify card count and physical memory.
 3. Confirm name, region, specification, and replicas in deployment settings, review cost and impact, and perform the final deployment action. Do not look for image, port, and storage fields specific to Custom Deploy in this template wizard. After submission, locate the record in **Instances**.
 4. If creation stalls, inspect workload events, image pulls, and scheduling results.

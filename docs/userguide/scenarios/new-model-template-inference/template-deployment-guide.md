@@ -43,14 +43,14 @@ See [Templates](../../../usermanual/ai-infra-on-prem/user/model-deployment/templ
 
 1. Open [Model Services > Discover > Models](../../../usermanual/model-services/user/discover/models/), locate the model within its authorized scope, and verify the provider.
 2. Use the provider's **Playground** to inspect output for the intended modality, or **Quick Start** to confirm URL, protocol, and route identifier.
-3. Execute a controlled request using the current integration example, inspect valid output, then locate the time and model in **Model Services > My Calls > Call Logs**. See [Model Experience and API Calling](../model-experience-api-calling/).
+3. Execute a controlled request using the current integration example, inspect valid output, then locate the time and model in **[Model Services > My Calls > Call Logs](../../../usermanual/model-services/user/my-calls/call-logs/)**. See [Model Experience and API Calling](../model-experience-api-calling/).
 
 ## Scenario B: Prepare Model Versions and Templates (Operator)
 
 ### 1. Maintain Files and Linked Clusters
 
 1. Open **On-Prem > Templates > Models** and check whether the model exists. To create it, click **Add model** and complete Select Meta Model, Configure model information, and Configure model version information.
-2. Set category and parameter count. Under version information, verify quantization, **Model source** (file source such as ModelScope, HuggingFace, or Local), and repository information. This field is not Model Services > Settings > Model Sources.
+2. Set category and parameter count. Under version information, verify quantization, **Model source** (file source such as ModelScope, HuggingFace, or Local), and repository information. This field is not **[Model Services > Settings > Model Sources](../../../usermanual/model-services/operator/settings/model-source/)**.
 3. Select linked clusters, review state, and submit. Return to the list to check **Model Download** and version. Saving first does not establish that files are downloaded or usable by tenants.
 
 ![Model version information](./images/models-configure-model-version-information.png)

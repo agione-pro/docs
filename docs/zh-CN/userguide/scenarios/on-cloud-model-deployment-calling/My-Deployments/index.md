@@ -41,7 +41,7 @@ next: true
 ![选择发布区域弹窗中的私有区和公共区](./images/my-deployments-choose-where-to-publish.png)
 
 3. 在跳转后的发布表单核对自动带入的元模型、模型源和上游请求 URL，并在安全字段维护 API 密钥和模型源 ID。
-4. 依次完成计费配置与限流规则，复核后提交；到 **模型及AI服务 > 创作空间 > 我的模型** 确认状态，并按[发布模型指南](../../publish-model/)继续核对。
+4. 依次完成计费配置与限流规则，复核后提交；到 **[模型及AI服务 > 创作空间 > 我的模型](../../../../usermanual/model-services/user/studio/my-models/)** 确认状态，并按[发布模型指南](../../publish-model/)继续核对。
 
 ## 其他操作
 

@@ -30,7 +30,7 @@
 
 ![创建地域](./images/regions-zones-add-region.png)
 
-3. 需要为地域配置数据 Gateway 入口时，选中目标地域，在 `关联组件` 区域点击镜像组件卡片上的 **配置数据 Gateway 入口**。填写 `镜像 Gateway 地址` 和 `对象存储 Gateway 地址`（可填域名、`IP:端口` 或带协议的地址；未填协议时默认使用 `HTTPS`），点击 **保存**。弹窗中的 **前往系统设置管理全部 Gateway** 链接会打开 `On-Prem > 系统 > 系统设置`，用于集中管理全部 Gateway。
+3. 需要为地域配置数据 Gateway 入口时，选中目标地域，在 `关联组件` 区域点击镜像组件卡片上的 **配置数据 Gateway 入口**。填写 `镜像 Gateway 地址` 和 `对象存储 Gateway 地址`（可填域名、`IP:端口` 或带协议的地址；未填协议时默认使用 `HTTPS`），点击 **保存**。弹窗中的 **前往系统设置管理全部 Gateway** 链接会打开 **[On-Prem > 系统 > 系统设置](../../../../usermanual/ai-infra-on-prem/operator/system/system-setting/)**，用于集中管理全部 Gateway。
 
 4. 选中目标地域后，在可用区区块点击 **新增可用区**；`地域` 字段自动带入且只读，填写可用区 ID 和各语言页签的显示名称。
 

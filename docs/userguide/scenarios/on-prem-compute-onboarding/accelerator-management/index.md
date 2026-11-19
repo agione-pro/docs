@@ -27,7 +27,7 @@ NPU means neural processing unit. A resource key is the name used in cluster res
 2. Find the actual model and verify its family, memory, and adaptation state.
 3. If it is missing, click **New Accelerator** and enter the hardware information and the Kubernetes resource name.
 4. If a similar model already exists and only a few fields differ (for example the same series with different memory), hover over that model card and use **"New from this"** to pre-fill the dialog, then edit only the differing fields. See the user manual section **New From This Accelerator**.
-5. Associate the model with the metric used by the cluster device plugin. Existing metrics are maintained in the **Specification Metrics** panel of **Resource Pools > Resource Specs**, not in a separate left-navigation page.
+5. Associate the model with the metric used by the cluster device plugin. Existing metrics are maintained in the **Specification Metrics** panel of **[Resource Pools > Resource Specs](../../../../usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/)**, not in a separate left-navigation page.
 6. Save and verify the expected managed state.
 7. Before using the model in specifications or inference templates, confirm that its vendor, model identifier, memory, and resource key match the values reported by the cluster device plug-in.
 

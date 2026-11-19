@@ -27,7 +27,7 @@ The figure shows model search, capability categories, and the catalog. Models an
 
 ## 2. Try It Online
 
-1. For text, open **Playground > Text**, select a model, and check its provider and tags.
+1. For text, open **[Playground > Text](../../../usermanual/model-services/user/playground/text/)**, select a model, and check its provider and tags.
 2. Enter a short test prompt, use **Shift+Enter** for a new line, and send it to inspect the response. Image-input support does not imply image-generation support.
 
 ![Text playground](./images/text-playground.png)

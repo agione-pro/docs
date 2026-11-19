@@ -41,7 +41,7 @@ The deployment reaches a healthy state, responds to a controlled request, and ca
 ![Private and Public destinations in the Publish Model dialog](./images/my-deployments-choose-where-to-publish.png)
 
 3. In the publishing form, verify the prefilled meta-model, model source, and upstream request URL. Maintain the API key securely and verify the Model Source ID.
-4. Complete billing and rate-limit configuration, review, and submit. Verify the model in **Model Services > Studio > My Models** and continue with the [publishing guide](../../publish-model/).
+4. Complete billing and rate-limit configuration, review, and submit. Verify the model in **[Model Services > Studio > My Models](../../../../usermanual/model-services/user/studio/my-models/)** and continue with the [publishing guide](../../publish-model/).
 
 ## Other Operations
 

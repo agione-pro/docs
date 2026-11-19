@@ -30,7 +30,7 @@ Create the region and availability zone for a local cluster so that clusters, sp
 
 ![Create a region](./images/regions-zones-add-region.png)
 
-3. To set the region's data Gateway endpoints, select the region and, in the `Associated Components` area, click **Configure Data Gateway Endpoints** on the image component card. Fill in `Image Gateway Endpoint` and `Object Storage Gateway Endpoint` (a domain, an `IP:port`, or an address with a protocol; `HTTPS` is used when no protocol is given) and click **Save**. The dialog's **Go to System Settings to manage all Gateways** link opens `On-Prem > System > System Setting` for central Gateway management.
+3. To set the region's data Gateway endpoints, select the region and, in the `Associated Components` area, click **Configure Data Gateway Endpoints** on the image component card. Fill in `Image Gateway Endpoint` and `Object Storage Gateway Endpoint` (a domain, an `IP:port`, or an address with a protocol; `HTTPS` is used when no protocol is given) and click **Save**. The dialog's **Go to System Settings to manage all Gateways** link opens **[On-Prem > System > System Setting](../../../../usermanual/ai-infra-on-prem/operator/system/system-setting/)** for central Gateway management.
 
 4. Select the target region, then click **Create AZ** in the availability-zone section. The `Region` field is prefilled and read-only; enter the availability zone ID and localized display names.
 
