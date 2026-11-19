@@ -24,16 +24,19 @@ The model provider has a validated cloud account that quick deployment can use w
 
 ### Add a Cloud Account
 
-1. From the platform home page, select **Access Accounts** in the left navigation to open account management.
-2. Select **Add Cloud Account** in the upper-right corner to open the Add Account dialog.
+1. From the platform home page, open **On-Cloud > Access Management > Access Accounts**. **Refresh Connectivity in Batch** sits at the top right for bulk connectivity checks.
+2. Select **Add Cloud Account** in the upper-right corner to open the Add Cloud Account dialog.
 
 ![Review access accounts](./images/access-accounts-list.png)
 
 3. Configure the account:
    - Enter an **Account Name**, such as `aliyun-wh-dev`.
-   - Select a cloud platform that the current version supports and the tenant is authorized to use, such as Alibaba Cloud or AWS.
-   - Enter the cloud platform **Access Key ID**, such as `<ACCESS_KEY_ID>`.
-   - Enter the cloud platform **Access Key Secret**, such as `<ACCESS_KEY_SECRET>`.
+   - Under **Select Cloud Platform**, choose a platform that the current version supports and the tenant is authorized to use, such as Alibaba Cloud or AWS.
+   - Enter the **Credential Identifier**, such as `<CREDENTIAL_ID>`.
+   - Enter the **Credential Secret**, such as `<CREDENTIAL_SECRET>`.
+
+   These two credential labels are the generic names on the blank form. Follow the selected platform's actual requirements instead of assuming AK/SK.
+
 4. Review the information and select **Confirm** to add the account, or **Cancel** to discard the changes.
 
 ![Add an access account](./images/access-accounts-add-cloud-account.png)
@@ -43,9 +46,9 @@ The model provider has a validated cloud account that quick deployment can use w
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
 | Account Name | Text | `aliyun-wh-dev` | Required; a user-defined account identifier |
-| Cloud Platform | Select | `Alibaba Cloud` | Required; the supported platform to which the account belongs |
-| Access Key ID | Text | `<ACCESS_KEY_ID>` | Required; the cloud access-key ID |
-| Access Key Secret | Password | `<ACCESS_KEY_SECRET>` | Required; the cloud access-key secret |
+| Select Cloud Platform | Select | `Alibaba Cloud` | Required; the supported platform to which the account belongs |
+| Credential Identifier | Text | `<CREDENTIAL_ID>` | Required; the credential identifier, whose meaning depends on the selected platform |
+| Credential Secret | Password | `<CREDENTIAL_SECRET>` | Required; pairs with the identifier; never record it in documents or tickets |
 
 ## Completion Checklist
 

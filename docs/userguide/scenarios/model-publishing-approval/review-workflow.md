@@ -21,7 +21,7 @@ The provider supplies the model identifier, submitted revision, visibility, and 
 
 ## Procedure
 
-1. Open **Approvals > Model Reviews**, filter by model name, pending status, visibility, type, or customer, then click **Search**. Read submission time and revision from the table rather than assuming they are filter controls.
+1. Open **Model Services > Approvals > Model Reviews**, filter by model name, pending status, visibility, type, or customer, then click **Search**. Read submission time and revision from the table rather than assuming they are filter controls.
 2. Check customer, revision, submission time, and visibility on the target row. Click **Review** to open the right-hand drawer; there is no separate **Details** button.
 3. Review source, upstream model name, Endpoint (service access point), Model ID (platform model identifier), release channel, revision, billing, and rate limits, followed by modalities, capabilities, token limits (text-processing unit limits), and protocols.
 

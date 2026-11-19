@@ -24,7 +24,7 @@ Connect an operator-managed cloud account used to discover and deploy regional r
 
 ### Add a Cloud Account
 
-1. From the platform home page, select **Access Management > Cloud Accounts**.
+1. From the platform home page, select **On-Cloud > Access Management > Cloud Accounts**.
 2. Select **Add Cloud Account** in the upper-right corner.
 
 ![Review cloud accounts](./images/cloud-accounts-cloud-accounts.png)

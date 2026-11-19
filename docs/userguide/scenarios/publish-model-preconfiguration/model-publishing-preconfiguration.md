@@ -20,9 +20,9 @@ The operator hands over the meta model, source Code, Endpoint, and template owne
 
 ## Procedure
 
-1. In **Settings > Meta Models**, select an existing author and maintain capabilities and protocols following [Meta Models](./Meta-models/).
-2. In **Settings > Model Sources**, follow [Model Sources](./Model-Source/) to create a Code (the unique source identifier) and three language names, then configure Endpoints and protocols. Addresses belong to Endpoints; do not follow the old region-row and authentication-header flow.
-3. In **Settings > Model Templates**, follow [Model Templates](./Model-Templates/) to choose author, provider, region, and meta model. Preview, submit, and verify the list.
+1. In **Model Services > Settings > Meta Models**, select an existing author and maintain capabilities and protocols following [Meta Models](./Meta-models/).
+2. In **Model Services > Settings > Model Sources**, follow [Model Sources](./Model-Source/) to create a Code (the unique source identifier) and three language names, then configure Endpoints and protocols. Addresses belong to Endpoints; do not follow the old region-row and authentication-header flow.
+3. In **Model Services > Settings > Model Templates**, follow [Model Templates](./Model-Templates/) to choose author, provider, region, and meta model. Preview, submit, and verify the list.
 
 ![Create a model source](./images/model-source-model-sources-add.png)
 
@@ -30,7 +30,7 @@ The figure shows the model-source creation dialog. Endpoint configuration is sti
 
 4. Check model classification in [Tags](../../../usermanual/model-services/operator/settings/tags/). Confirm the pricing currency with the platform settings owner; publishing one model does not require changing the platform-wide currency.
 5. Have the provider open [My Models](../../../usermanual/model-services/user/studio/my-models/), verify meta-model, source, Endpoint, and credential choices, and pass protocol connectivity testing before proceeding.
-6. When review is required, the operator opens **Approvals > Model Reviews**, clicks the row's **Review**, and checks the revision, capabilities, protocols, and charges in the drawer. See [Model Publishing Approval](../model-publishing-approval/).
+6. When review is required, the operator opens **Model Services > Approvals > Model Reviews**, clicks the row's **Review**, and checks the revision, capabilities, protocols, and charges in the drawer. See [Model Publishing Approval](../model-publishing-approval/).
 
 ## Completion Checklist
 

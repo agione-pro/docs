@@ -19,7 +19,7 @@ End Users can select the model in quick deployment and obtain the correct API de
 
 ### Add a Model Asset
 
-1. Go to **Deploy Assets > Model Library**.
+1. Go to **On-Cloud > Deploy Assets > Models**.
 2. Select **Add Model** to start the three-step workflow.
 
 ![Review model assets](./images/models-models.png)
@@ -49,7 +49,7 @@ End Users can select the model in quick deployment and obtain the correct API de
 ![Configure model outputs](./images/models-add-output-configuration.png)
 
    - Select **Next**.
-5. **Step 3 - Confirm Configuration**: review meta-model information, capability and access constraints, cloud model, compute plan, and output configuration. Review or fill in the listed version and optional description in the configuration area actually displayed before final submission; the English Step 1 image does not show those inputs. Select **Submit**, or return to a previous step to correct the configuration.
+5. **Step 3 - Confirm Configuration / Listed Version**: review meta-model information, capability and access constraints, cloud model, compute plan, and output configuration. Review or fill in the listed version and optional description in the configuration area actually displayed; the English Step 1 image does not show those inputs. Select **Next** to finish (the page has no Submit or Confirm button), or return to a previous step to correct the configuration.
 
 ![Confirm the model configuration](./images/step-3-confirm-configuration.png)
 
@@ -57,7 +57,7 @@ End Users can select the model in quick deployment and obtain the correct API de
 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
-| Meta-Model | Single select | `Qwen3-8b` with identifier `qwen/qwen3-8b` | Required; canonical base-model definition |
+| Meta-Model | Single select | `Qwen` | Required; canonical base-model definition. Follow the sample values used in the current manual rather than copying expired model names. |
 | Listed Version | Text | `1.0.0` | Fill in the listed-version area when it appears; it is not fixed to Step 1 |
 | Version Description | Rich text | - | Optional version-change description |
 

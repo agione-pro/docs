@@ -20,7 +20,7 @@ Maintain an upstream source and its Endpoints (service access points) so publish
 
 ## Procedure
 
-1. Open **Settings > Model Sources**, not **Platform Call Analytics > Model Sources**, which only displays call data.
+1. Open **Model Services > Settings > Model Sources**. Do not confuse it with the model-source analytics page under Platform Call Analytics, which only displays call data.
 2. Click **Create Model Source**, enter a unique **Model Source Code** (identifying the upstream source, not a specific model route), and complete display names on all three language tabs: 简体中文, English, and Español.
 3. Click **Create and Configure Endpoints** to open the configuration page.
 

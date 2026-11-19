@@ -18,7 +18,7 @@ Pass protocol connectivity testing, configure billing and rate limits, and verif
 
 ## 1. Open the Publishing Entry
 
-1. Sign in to {{DOCS_PRODUCT_NAME_EN}}, open **Studio > My Models**, and switch to **My Published**.
+1. Sign in to {{DOCS_PRODUCT_NAME_EN}}, open **Model Services > Studio > My Models**, and switch to **My Published**.
 2. Click **Publish Model**, choose **Public Model** in **Select publish type**, then click **Publish as Public Model**.
 3. Alternatively, start from the public entry under **Overview > BYOK**. A deployment card showing **Environment not configured.** does not provide a direct deployment action.
 
@@ -38,7 +38,7 @@ The figure shows a private text-model example, used only to explain shared field
 1. Click **Next** to complete **Step 2 Billing Configuration**. Check the billing method, unit, and price.
 2. Complete **Step 3 Rate Limit Configuration**, confirm whether limits are enabled, and submit through the page.
 3. Return to **My Published** and check the target record's status, **Effective version**, and **Pending version**. Hand the target model, submitted revision, and publication scope to the operator and use [Model Publishing Approval](../model-publishing-approval/) when review is required; submission alone does not establish that the model is listed.
-4. With the intended user's account, open **Discover > Models**, click the model name, and check the provider card's price, route ID, and access. Use **Playground** or **Quick Start** to verify a controlled call.
+4. With the intended user's account, open **Model Services > Discover > Models**, click the model name, and check the provider card's price, route ID, and access. Use **Playground** or **Quick Start** to verify a controlled call.
 
 ## Completion Checklist
 

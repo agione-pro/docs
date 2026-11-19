@@ -41,9 +41,9 @@ See [Templates](../../../usermanual/ai-infra-on-prem/user/model-deployment/templ
 
 ### 3. Verify Calls with the Intended Account
 
-1. Open **Model Services > Discover > Models**, locate the model within its authorized scope, and verify the provider.
+1. Open [Model Services > Discover > Models](../../../usermanual/model-services/user/discover/models/), locate the model within its authorized scope, and verify the provider.
 2. Use the provider's **Playground** to inspect output for the intended modality, or **Quick Start** to confirm URL, protocol, and route identifier.
-3. Execute a controlled request using the current integration example, inspect valid output, then locate the time and model in **My Calls > Call Logs**. See [Model Experience and API Calling](../model-experience-api-calling/).
+3. Execute a controlled request using the current integration example, inspect valid output, then locate the time and model in **Model Services > My Calls > Call Logs**. See [Model Experience and API Calling](../model-experience-api-calling/).
 
 ## Scenario B: Prepare Model Versions and Templates (Operator)
 

@@ -20,7 +20,7 @@ Combine the prepared author, model-source provider, region, and meta model into 
 
 ## Procedure
 
-1. Open **Settings > Model Templates**, select the source on the left, and click **Add**.
+1. Open **Model Services > Settings > Model Templates**, select the source on the left, and click **Add**.
 2. In **1 Model Provider / Author**, choose an author card and select the provider and region under **Provider Information**. Check [Model Sources](../Model-Source/) first when a source is missing.
 
 ![Template author and provider selection](./images/model-templates-add.png)

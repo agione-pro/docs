@@ -60,7 +60,7 @@ curl -X POST "{{DOCS_API_ENDPOINT_EN}}" \
 
 ## 4. Verify Call Records
 
-1. Open **My Calls > Call Logs**, select the month, use **By Date** when needed, and narrow by Model, Client Source, or **Name or ID**.
+1. Open **Model Services > My Calls > Call Logs**, select the month, use **By Date** when needed, and narrow by Model, Client Source, or **Name or ID**.
 2. Set **Result Category** to All or the relevant failure category and locate the request by call time.
 3. Check **Model & Platform Route**, **Caller**, **Client Source**, **Usage**, and **Status & E2E**. Caller attribution and Client Source are different dimensions.
 4. Use Actions to inspect the individual call. Providers check customer calls using their own permissions and matching time ranges; this is not a prerequisite for an end user to complete the task.
