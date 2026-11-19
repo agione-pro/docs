@@ -1,4 +1,4 @@
-# Install Compute
+# Onboard Compute
 
 Onboard GPU / NPU nodes as a Kubernetes compute cluster, then activate the device plugin, monitoring, and image service. Complete [Before You Start](./deployment-requirements-for-managing-compute-nodes) first.
 
@@ -49,9 +49,13 @@ Host checks, offline transfer, the light package, upgrade, and removal are in [I
 ### Add a cluster
 
 1. Sign in with the account created when ClusterD was installed. The first-visit account steps are in [Install and Open ClusterD](./clusterd/#_4-install-and-open-clusterd).
-2. After signing in, click **Add Cluster**.
+2. The first time you open ClusterD, initialize the user and set a password for the operator account.
 
-![Add cluster](./clusterd-images/add-cluster01.png)
+   ![Initialize the operator account](./clusterd-images/prod01.png)
+
+3. After the password is set, ClusterD opens directly. Open **Compute Management** and add a cluster.
+
+   ![Add a cluster](./clusterd-images/prod02.png)
 
 #### Configure the Maintenance node
 
@@ -59,7 +63,7 @@ Host checks, offline transfer, the light package, upgrade, and removal are in [I
 
 1. Enter the cluster name and SSH connection credentials as required, and configure **Network mode**. Select **Offline maintenance** only when the nodes being onboarded cannot access the Internet.
 
-   ![Configure the Maintenance node](./clusterd-images/add-cluster01-maintenance.png)
+   ![Configure the Maintenance node](./clusterd-images/prod03.png)
 
 2. After the configuration is complete, save it. In online mode, ClusterD automatically downloads and extracts the cluster configuration and installation package.
 
@@ -67,63 +71,43 @@ Host checks, offline transfer, the light package, upgrade, and removal are in [I
 
 Configure the cluster network information as shown below. In most cases, you can submit and save the default configuration directly, unless **Service CIDR** or **Cluster CIDR** conflicts with the actual environment.
 
-![Initialize the cluster](./clusterd-images/init-cluster.png)
+![Initialize the cluster](./clusterd-images/prod04.png)
 
 #### Add and initialize nodes
 
 1. In the **Add nodes** step, click **Add node**.
 
-   ![Add and initialize a node](./clusterd-images/add-node-init.png)
+   ![Add a node](./clusterd-images/prod05.png)
 
 2. Enter the node IP address. This is usually the node's internal network IP. The Maintenance node must be able to access this IP address over SSH. The SSH credentials entered later are the credentials that the Maintenance node uses to access the corresponding node.
 
    **When fewer than three nodes are onboarded, at least one node must be selected to run the Master/Etcd services. When three or more nodes are onboarded, three nodes must be selected to run the Master/Etcd services.**
 
-3. Configure the GPU model for the node according to the actual hardware, as shown below.
+3. After adding the node, click **Check** to verify that it meets the deployment requirements, including the chip, operating system, storage, and software.
 
-   ![Configure the XPU mode](./clusterd-images/config-xpu-mode.png)
+   ![Check the node](./clusterd-images/prod06.png)
 
-   ![Configure the XPU type](./clusterd-images/config-xpu-type.png)
+   ![Node check report](./clusterd-images/prod07.png)
 
-4. After adding the node, click **Check** to verify that it meets the deployment requirements, including checks for the chip, operating system, storage, and software.
+   If the report shows a problem, repair it.
 
-   ![Check node](./clusterd-images/node-check.png)
+   ![Repair the node](./clusterd-images/prod08.png)
 
-   ![Node check report](./clusterd-images/node-report.png)
+   Run **Check** again after the repair.
 
-5. If all checks pass, click **Init** to install and deploy the node, then wait for the task to complete.
+   ![Check the node again](./clusterd-images/prod09.png)
 
-   ![Initialize the node](./clusterd-images/node-init.png)
+4. When the checks pass, click **Init** to install and deploy the node, then wait for the task to complete.
 
-### Activate middleware components
+   ![Initialize the node](./clusterd-images/prod10.png)
 
-1. After the nodes are initialized, go to **Active components**. Components marked **required** must be activated.
+### Activate components
 
-   ![Activate cluster components](./clusterd-images/cluster-activate.png)
+1. After the nodes are initialized, open **Active components**.
 
-2. **Device Plugin:** Select the appropriate plugin according to the chip type.
+   ![Activate components](./clusterd-images/prod11.png)
 
-   ![Activate Device Plugin](./clusterd-images/device-plugin-activate.png)
-
-3. **InfluxDB service:** Click **Activate** directly.
-
-   ![Activate InfluxDB service](./clusterd-images/influx-db-activate.png)
-
-4. **Monitor service:** Configure **AI Card mode** according to the actual hardware. The other options can be left at their default values.
-
-   ![Activate Monitor service](./clusterd-images/monitoring-activate.png)
-
-5. **JupyterLab Proxy:** Click **Activate** directly.
-
-   ![Activate JupyterLab Proxy](./clusterd-images/proxy-activate.png)
-
-6. **Tool images:** Click **Activate** directly.
-
-   ![Activate Tool images](./clusterd-images/tool-activate.png)
-
-After all steps are complete, the following screen is displayed, indicating that the deployment has completed successfully.
-
-![Deployment completed](./clusterd-images/full-installed.png)
+   Select the accelerator type that matches the hardware, then click **Activate all**.
 
 ## Install the Image Service
 
@@ -140,6 +124,10 @@ After all steps are complete, the following screen is displayed, indicating that
 3. Click **Install Harbor**. After installation is complete, click **View Images** to view the image repository. The repository is empty at this point.
 
    ![View images](./clusterd-images/view-images.png)
+
+4. Configure the insecure image registry. Open **Image activation wizard** and follow it to activate the new local registry.
+
+   ![Activate the local image registry](./clusterd-images/prod14.png)
 
 ### Copy images
 
@@ -166,3 +154,15 @@ Submit the form and wait for the image copy operation to complete.
 3. In the following image, remove `docker pull` from the text highlighted in red to obtain the source image address.
 
    ![SWR image registry](./clusterd-images/swr-image-registry.png)
+
+## Scale out nodes
+
+1. Open **Expansion wizard** and select the cluster to expand.
+
+   ![Select the cluster](./clusterd-images/prod12.png)
+
+2. Add the new node, then enter its SSH credentials and role.
+
+   ![Add an expansion node](./clusterd-images/prod13.png)
+
+3. After the node is added, check and repair it the same way as during the initial deployment. When the checks pass, initialize the new nodes together.
