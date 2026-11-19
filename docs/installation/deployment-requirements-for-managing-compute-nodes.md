@@ -64,9 +64,9 @@ Before formal deployment, a complete environment survey must be conducted on eve
 
 | Category | Item | Example / Guidance | Notes |
 | --- | --- | --- | --- |
-| System | Operating system | CentOS 7 / Ubuntu 20.04 / Ubuntu 22.04 / OpenEuler 22.03 LTS | Ubuntu 22.04 is not supported on arm64 |
+| System | Operating system | Ubuntu 22 | See [3.2.2 Operating System Support Matrix](#_3-2-2-operating-system-support-matrix) |
 | System | Accelerator driver installed | Yes / No | Must be installed and operational |
-| System | Accelerator driver version | NVIDIA 570 / CANN 8.x | Version must match the card model |
+| System | Accelerator driver version | NVIDIA 570 / Ascend HDK | Ascend HDK is listed in [2.1.2 Huawei Ascend](#_2-1-2-huawei-ascend) |
 | System | RDMA NIC driver installed | Yes / No | Mandatory for RDMA scenarios |
 | System | RDMA NIC driver version | MLNX_OFED-23.07-0.5.1.2 | 23.07 or later recommended |
 | System | Docker already installed | Yes / No | **If yes, confirm whether it can be removed** |
@@ -104,6 +104,20 @@ The accelerator models that have been validated against the AGIOne platform span
 | Architecture / Series | Models |
 | --- | --- |
 | Ascend 910 | Ascend 910B, Ascend 910C |
+| Ascend 950 | Ascend 950 series |
+
+The onboarding components use MindCluster 26.1.0 with CANN 9.1.0.
+
+Ascend 910B and Ascend 910C pair with HDK 26.1.0. Compatible HDK versions are 25.5.X, 26.0.X, and 26.1.X.
+
+Ascend 950 HDK in MindCluster 26.1.0 does not include 26.1.0:
+
+| Product | HDK |
+| --- | --- |
+| Atlas 950 SuperPoD | 25.1.RC1 |
+| Atlas 850E SuperPoD, Atlas 650E server | 25.6.RC1 |
+
+MindCluster 26.2.0 adds HDK 26.2.X for these products. HDK 26.1.X is not compatible.
 
 #### 2.1.3 Other Domestic Accelerators
 
@@ -173,8 +187,8 @@ Worker nodes carry the actual inference workloads and must be equipped with at l
 
 | CPU Architecture | Supported Operating Systems |
 | --- | --- |
-| x86_64 | Ubuntu 20.04, Ubuntu 22.04, CentOS 7 |
-| arm64 | Ubuntu 20.04, CentOS 7, OpenEuler 22.03 LTS |
+| x86_64 | AlmaLinux 8, AlmaLinux 9, Debian 12, Debian 13, Fedora 36, Fedora 37, openEuler 22, openEuler 24, openSUSE Leap 15, Rocky Linux 8, Rocky Linux 9, Ubuntu 22, Ubuntu 24 |
+| arm64 | AlmaLinux 8, AlmaLinux 9, Debian 12, Debian 13, Fedora 36, Fedora 37, openEuler 22, openEuler 24, openSUSE Leap 15, Rocky Linux 8, Rocky Linux 9, Ubuntu 22, Ubuntu 24 |
 
 > Within a single Kubernetes cluster, all Master, etcd, and Worker nodes must share the same CPU architecture.
 
