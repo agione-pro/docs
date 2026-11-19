@@ -22,33 +22,34 @@ Each business type, such as inference deployment, can schedule only to its appro
 
 ## Procedure
 
-### Authorize Regions
+### Configure Available Resource Pools
 
-1. From the platform home page, select **Authorization Management > Business-Region Authorization**.
-2. Expand a business type to review cards showing the number of authorized regions for each currently supported cloud platform, such as AWS, Alibaba Cloud, or {{DOCS_CLOUD_PLATFORM_EN}}.
-3. Select **+ Authorize Regions** for the business type to open the authorization dialog.
+1. From the platform home page, open **On-Cloud > Authorization Management > Business-Region Auth**.
+2. Review the authorized resource pools, cloud coverage, and status of the target business in the business list. The lower area explains Upstream scope, Save contract, and Downstream effect; the save contract is a complete-scope, one-atomic-update submission.
 
 ![Review business-region authorization](./images/business-region-auth-business-region-auth.png)
 
-The image shows the authorization list before its business type is expanded. It locates **Authorize Regions**, not a saved authorization result.
+3. Select **Authorize Resource Pools** for the target business to open the Configure available business resource pools dialog.
+4. Review **Business**, **Current cloud**, and **Selected on cloud** at the top of the dialog to confirm the target business and cloud.
+5. Use the cloud list on the left to switch clouds, then locate a pool with **Search resource pool name or ID** and check it. **Selected only** reviews current selections; **Select all** sits above the pool list. Unchecked pools remain unauthorized.
+6. Review **Resource pools after save**, **Add**, and **Remove** in the footer to confirm the complete selection is submitted rather than only the newly added items.
+7. Select **Done** to submit. **Reset** clears the current selection and is not a close button. For inspection only, use the upper-right close button to exit without saving.
 
-4. Confirm the current business type shown in the information bar.
-5. In the dialog, select the cloud platform and check only the resource pools approved for the business. Unchecked pools remain unauthorized.
-6. Select **Done** to save the authorization, or close the dialog without saving.
+![Configure available resource pools](./images/business-region-auth-authorize-resource-pools.png)
 
-![Select authorized regions](./images/business-region-auth-authorize-resource-pools.png)
+The figure shows the Configure available business resource pools dialog: business, current cloud, and selected-on-cloud at the top, cloud switching on the left, pool search and selection on the right, and the footer summary with Reset and Done. It does not prove a successful save or effective downstream access; after saving, verify the business list and the deployment entry.
 
-The figure shows the resource-pool selection dialog with per-cloud selected counts and a searchable pool list. It does not prove a successful save or effective downstream access; after saving, verify the list and deployment entry.
-
-> This authorization assigns regions to a specific business scenario. A tenant can use only regions covered by both tenant-cloud and business-region authorization.
+> This authorization defines the resource pools available to one business. Whether a tenant may use a given cloud still depends on tenant-cloud authorization.
 
 #### Parameter Reference
 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
-| Business Type | Single select | `Inference Deployment` | Required; the business scenario receiving access |
-| Cloud Platform | Checkbox | `Alibaba Cloud / AWS` | Required; platform groups in the region tree |
-| Region | Checkbox | `China East 2 (Shanghai) / Hong Kong` | Required; approved regions under the selected platforms |
+| Business | Read-only | `Inference Deployment` | The business being authorized, shown at the top of the dialog |
+| Current cloud | Read-only | `Alibaba Cloud` | The cloud whose pool list appears on the right after switching on the left |
+| Selected on cloud | Read-only | `3 / 8` | Selected and available pool counts for the current cloud |
+| Resource Pool | Checkbox | `China East 2 (Shanghai)` | Pools authorized for the business; unchecked pools stay unauthorized |
+| Resource pools after save / Add / Remove | Read-only summary | `5 / 2 / 1` | Pre-submission scope review, not a saved result |
 
 ## Completion Checklist
 
@@ -56,15 +57,15 @@ Check the results below; resolve failed items using the troubleshooting section 
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | The business type has only the intended regions. |
-| 2 | Saved authorization persists after refresh. |
-| 3 | User deployment options follow the granted region set. |
+| 1 | The business contains only the intended clouds and resource pools. |
+| 2 | Saved authorization persists after refresh, and cloud coverage in the business list is updated. |
+| 3 | User deployment options follow the granted resource pools. |
 
 ## Troubleshooting
 
 | Symptom | Check First |
 | --- | --- |
-| No region can be selected | Resource-pool enablement and cloud-platform status |
+| No pool can be selected | Resource-pool enablement and cloud-platform status |
 | Deployment shows an unexpected region | Business type, saved region selection, and current tenant authorization |
 
 ## User Manual

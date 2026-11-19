@@ -5,7 +5,7 @@ next: true
 
 # Configure and Validate an On-Cloud Scheduling Policy
 
-Use this task to configure primary/backup route topology and health probes for an associated model version, then verify the result through an approved test deployment.
+Use this task to confirm whether the scheduling-policy entry is configurable, check the access and authorization prerequisites, and then, once the entry opens, follow the historical flow documented in the manual and verify the result with a test deployment.
 
 ## Applicable Roles
 
@@ -19,49 +19,44 @@ Use this task to configure primary/backup route topology and health probes for a
 
 ## Procedure
 
-### 1. Check Access and Authorization
+### 1. Confirm Whether the Entry Is Configurable
+
+Open `/infrahub/op/schedule/policy`. If the page only shows `Coming Soon!` and a `Back to Home` link, the environment has no configurable policy entry: record the route, interface language, and notice text, then stop. Do not keep refreshing or resubmitting.
+
+The sidebar does not show a Policies entry; its historical path is AI Infra > On-Cloud > Scheduling Governance > Policies. The remaining sections describe prerequisites and what to do once the entry opens — do not treat historical screenshots as the current form.
+
+### 2. Check Access and Authorization
 
 Open [Access Overview](../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) and confirm target cloud-account and resource-pool state. Then review tenant-cloud authorization, business-region authorization, and available capacity. Do not create a scheduling policy while required authorization is missing.
 
-![Review on-cloud access and resource state](./images/access-overview-list.png)
+![Review on-cloud access and resource state](./images/access-overview-stages.png)
 
-### 2. Configure the Scheduling Policy
+### 3. Read the Historical Configuration Flow (Not Executable Today)
 
-Open **On-Cloud > Scheduling Governance > [Policies](../../../usermanual/ai-infra-on-cloud/operator/scheduling-governance/policies/)** and use the current three-step wizard:
+The [Policies manual page](../../../usermanual/ai-infra-on-cloud/operator/scheduling-governance/policies/) keeps three historical sections — basic information and model association, primary and backup route topology, and health probe rules — that explain the concepts a policy involves. The current placeholder page shows no policy list, add entry, configuration wizard, save, or probe controls, so do not look for **Add Policy**, **Next**, or **Submit** from the historical screenshots.
 
-1. **Basic Information and Model Association**: select **Add Policy**, enter the name, scenario, and description, select the target model and version, verify available routing nodes, and select **Next**.
-2. **Define Primary and Backup Route Topology**: select primary and backup route nodes, set backup priority, and review platform, region, specification, framework version, and cost.
-3. **Define Health Probe Rules**: configure the probe type and required path, interval, failure threshold, recovery rule, and timeout. Review the configuration before selecting **Submit**.
+### 4. Validate Once the Entry Opens
 
-![Policies](./images/policies-list.png)
+Once the entry opens, deploy a low-risk model and record the selected resource pool, region, deployment state, and events. Validate the preferred pool first, then validate fallback or a clear failure under controlled conditions. Afterwards review actual cost, startup latency, and resource usage, and periodically re-check pool capacity, authorization, and policy priority.
 
-Tenant grants and regional capacity are prerequisites, not tenant-scope or capacity-threshold fields in this wizard. Assess cross-cloud or cross-region cost and compliance before the change; saving a policy does not prove those requirements are satisfied.
-
-### 3. Run a Test Deployment
-
-Deploy a low-risk model and record the selected resource pool, region, deployment state, and events. Validate the preferred pool first. Under controlled conditions, validate fallback or a clear failure when preferred capacity is unavailable.
-
-### 4. Review Results and Establish Routine Checks
-
-Confirm that the deployment result matches the policy and record actual cost, startup latency, and resource usage. Review pool capacity, authorization, and policy priority periodically so that prerequisite changes do not invalidate the policy.
+Tenant grants and regional capacity are prerequisites, not the "applicable tenant" or "capacity threshold" fields of the wizard. Assess cross-cloud or cross-region cost and compliance before the change; a saved policy does not prove those requirements are satisfied.
 
 ## Completion Checklist
 
-Verify the policy with an authorized test deployment; resolve failed authorization, capacity, or configuration checks.
+The first two checks close the task while the entry shows only the placeholder; the remaining checks run once the entry opens.
 
 | Check | Pass Criteria |
 | --- | --- |
+| Entry state | The notice, route, and interface language are confirmed; when only the placeholder shows, the notice is recorded and the task stops. |
 | Authorization foundation | Preferred and fallback pools are available to the target scope. |
-| Policy configuration | The associated model/version, primary/backup routes, priority, and health probes match the plan. |
-| Preferred validation | With normal capacity, the test deployment selects the preferred pool. |
-| Fallback validation | When the preferred pool is unavailable, the policy falls back or returns a clear reason. |
+| Validation plan | The test deployment and fallback validation steps, model, and resource pools are written down, and the historical flow is not treated as current capability. |
 | Operational review | Capacity, cost, latency, and compliance impact are recorded. |
 
 ## Troubleshooting
 
 | Symptom | Check First |
 | --- | --- |
-| Deployment does not select the preferred pool | Capacity, enabled state, business-region authorization, and policy priority |
-| No fallback when the preferred pool is unavailable | Fallback configuration, authorization, capacity, and cross-region constraints |
-| Policy and deployment results differ | Check the model version, route nodes, and effective configuration used by the deployment; retain events for the policy owner instead of recreating existing instances |
-| Cost or latency rises after fallback | Resource pricing, region distance, network, and SLA (service-level agreement) constraints |
+| The page only shows `Coming Soon!` | The entry is not open in this environment; record the notice and wait for release instead of refreshing or resubmitting |
+| No Policies entry in the sidebar | The entry is not in the current sidebar; open `/infrahub/op/schedule/policy` directly and check the page notice |
+| After the entry opens, the deployment does not select the preferred pool | Capacity, enabled state, business-region authorization, and policy priority |
+| After the entry opens, no fallback occurs when the preferred pool is unavailable | Fallback configuration, authorization, capacity, and cross-region constraints |

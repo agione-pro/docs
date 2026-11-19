@@ -9,6 +9,10 @@ This scenario helps operators configure associated models, primary/backup routes
 
 The primary route is the preferred service node; a backup route can take over under the configured rules. Health probes check whether a node service is available.
 
+::: warning The policy entry is not open in this environment yet
+Opening `/infrahub/op/schedule/policy` shows only "Coming Soon!" and a "Back to Home" link, and the sidebar has no Policies entry. Run the configuration steps below only after the entry opens; until then, complete only the access and authorization checks and record the page notice.
+:::
+
 ## Applicable Roles
 
 - Platform Operators, multi-cloud resource administrators, and deployment-policy administrators

@@ -23,13 +23,12 @@ The framework version references the intended image and startup configuration an
 
 ![Frameworks](./images/frameworks-frameworks.png)
 
-2. Select **Add Framework**, provide basic information such as cloud account, region, framework name and type, and add an initial version.
-3. Select the prepared runtime image, check the port and master-node command, and add worker commands, environment variables, and extended parameters only as required by the framework. Never include real secrets in commands or descriptions.
-4. Select **Confirm**, then open details to read back the version, image, and startup configuration.
+2. Select **Add Framework** to open the two-step Add Inference Framework drawer. Step 1, **Framework and Environment**, shows Cloud Platform, Cloud Account, Resource Pool, Target Meta Model, Framework Type, Framework Name, and Framework Description; check the displayed values first.
+3. Select **Next Step** to open step 2, **First Runtime Version**. Choose the prepared runtime image, check the port and master-node command, and add worker commands, environment variables, and extended parameters only as required by the framework. Never include real secrets in commands or descriptions. The drawer footer offers **Cancel** and **Next Step** rather than a Confirm button; use **Cancel** when only inspecting.
 
 ![Add Framework](./images/frameworks-add-framework.png)
 
-5. Locate the version in framework details, select **Publish**, review its image and scope, and confirm. Verify the published version is selectable in Models. Saving configuration alone does not prove publication or successful service startup.
+4. After the first runtime version is saved, return to the list and select **Publish Version** on that row; review the version, image, and scope, then submit. Verify the published version is selectable in Models. Saving configuration alone does not prove publication or successful service startup.
 
 ## Completion Checklist
 

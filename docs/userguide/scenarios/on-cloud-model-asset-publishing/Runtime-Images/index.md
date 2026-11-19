@@ -19,17 +19,17 @@ The target cloud environment can pull the image, and inference-framework configu
 
 ### Add an Image
 
-1. Open **On-Cloud > Deploy Assets > Runtime Images** and review existing records for the target cloud platform and region.
+1. From the sidebar, open **On-Cloud > Deploy Assets > Frameworks**, switch to **Image Resources** on the page, and review existing records for the target cloud platform and resource pool.
 
-![Runtime Images](./images/runtime-images-runtime-images.png)
+![Image Resources in-page navigation and query area inside Frameworks](./images/runtime-images-runtime-images.png)
 
-2. Select **Add Runtime Image**, choose the cloud platform, region, and public/private type, and enter the name, complete registry path, and description. Verify the applicable architecture and pool scope on the form.
+2. Select **Add Runtime Image**, choose the cloud platform, resource pool, and public/private type, and enter the name, complete registry path, and description. Do not fill in architecture fields that the initial form does not ask for.
 3. Use an explicit version in the complete path, such as `registry.example.com/ai/runtime:example-tag`; this example is not a real pullable image.
 4. Select **Confirm**, verify the record and scope, and check that the image can be selected by the framework version.
 
-![Add Runtime Image](./images/runtime-images-add-runtime-image.png)
+![Initial Add Runtime Image form](./images/runtime-images-add-runtime-image.png)
 
-If the entry only shows an unavailable-feature notice, stop this configuration step rather than treating registration as an available capability. Ask the operator to confirm the required image source. See the linked manual for complete fields and editing.
+Image Resources is not a standalone sidebar entry: open **Frameworks** first, then switch to **Image Resources** on that page. If the entry is missing, check that the account can access Deploy Assets instead of searching the sidebar for “Runtime Images”. See the linked manual for complete fields and editing.
 
 ## Completion Checklist
 

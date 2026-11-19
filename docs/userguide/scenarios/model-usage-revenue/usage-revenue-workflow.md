@@ -21,13 +21,13 @@ For handoff, the caller provides the time range and log identifiers; the provide
 ## Procedure
 
 1. Open [My Calls logs](../../../usermanual/model-services/user/my-calls/call-logs/), narrow by month, model, and client source, and inspect call time, route, caller attribution, usage, and status. Caller attribution is a member/project dimension, not the application-source dimension.
-2. Open **Usage & Earnings > Model Usage**, align **Billing cycle** and **Date**, and read **Used Models**, **Total Consumption (Credit)**, and **Total Token Consumption**. Open **Usage Details** for itemized checks. Do not assume the overview provides Model ID or member/project filters.
+2. Open **Model Services > Usage & Earnings > Model Usage**, align **Billing cycle** and **Date**, and read **Used Models**, **Total Consumption (Credit)**, and **Total Token Consumption**. Open **Usage Details** for itemized checks. Do not assume the overview provides Model ID or member/project filters.
 
 ![Model usage overview](./images/model-usage-usage-overview.png)
 
 The figure shows consumption metrics and trends for the selected period; it is not a complete bill for an individual request.
 
-3. The provider opens **Usage & Earnings > Model Earnings**, aligns cycle and dates, reads tenants, models, income tokens, and credits earned, then opens **Earning Details**.
+3. The provider opens **Model Services > Usage & Earnings > Model Earnings**, aligns cycle and dates, reads tenants, models, income tokens, and credits earned, then opens **Earning Details**.
 
 ![Model earnings overview](./images/model-earnings-earnings-overview.png)
 
