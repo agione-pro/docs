@@ -876,6 +876,7 @@ export const zhSidebar: DefaultTheme.Sidebar = {
               items: [
                 { text: 'Dify', link: '/zh-CN/practices/technical/dify/' },
                 { text: 'n8n', link: '/zh-CN/practices/technical/n8n/' },
+                { text: 'New API', link: '/zh-CN/practices/technical/new-api/' },
                 { text: 'Open WebUI', link: '/zh-CN/practices/technical/open-webui/' },
                 { text: 'OpenClaw', link: '/zh-CN/practices/technical/openclaw/' },
               ],

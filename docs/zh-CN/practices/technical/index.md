@@ -29,5 +29,6 @@
 |------|------|
 | [Dify](./dify/) | 使用 Dify 构建定时天气信息检索工作流 |
 | [n8n](./n8n/) | 使用 n8n 构建定时天气邮件工作流 |
+| [New API](./new-api/) | 在 New API 中接入 AGIOne 豆包视频生成模型 |
 | [Open WebUI](./open-webui/) | 使用 Open WebUI 创建模型对话 |
 | [OpenClaw](./openclaw/) | 将 AGIOne 集成到 OpenClaw |

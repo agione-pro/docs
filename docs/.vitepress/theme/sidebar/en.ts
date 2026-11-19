@@ -915,6 +915,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               items: [
                 { text: "Dify", link: "/practices/technical/dify/" },
                 { text: "n8n", link: "/practices/technical/n8n/" },
+                { text: "New API", link: "/practices/technical/new-api/" },
                 { text: "Open WebUI", link: "/practices/technical/open-webui/" },
                 { text: "OpenClaw", link: "/practices/technical/openclaw/" },
               ]

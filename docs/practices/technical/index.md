@@ -29,5 +29,6 @@ Call AGIOne models from application orchestration and workflow platforms to comp
 |------|-------------|
 | [Dify](./dify/) | Build a scheduled weather retrieval workflow with Dify |
 | [n8n](./n8n/) | Build a scheduled weather email workflow with n8n |
+| [New API](./new-api/) | Integrate AGIOne Doubao video generation models into New API |
 | [Open WebUI](./open-webui/) | Create model conversations with Open WebUI |
 | [OpenClaw](./openclaw/) | Integrate AGIOne with OpenClaw |
