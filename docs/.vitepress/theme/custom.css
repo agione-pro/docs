@@ -1,3 +1,8 @@
+/* 固定垂直滚动条槽位，避免短页与长页切换时整个布局横向跳动。 */
+html {
+  overflow-y: scroll;
+}
+
 .medium-zoom-overlay {
   z-index: 100;
 }
@@ -43,23 +48,26 @@ html[lang="en"] .VPHomeHero .tagline {
 }
 
 /* ============================================================
-   现代 API 开发者门户增强样式 (Modern API Portal Styles)
+   文档内容宽度与 API 开发者门户样式
    ============================================================ */
 
-.Layout.api-page {
-  --vp-layout-max-width: 1560px;
+:root {
+  /* 共享主内容宽度：随视口平滑变化，但保留可读性下限和桌面上限。 */
+  --docs-content-max-width: clamp(688px, calc(100vw - 400px), 1040px);
+  --docs-prose-max-width: 760px;
 }
 
 @media (min-width: 960px) {
-  .Layout.api-page .VPDoc.has-aside .content-container {
-    max-width: 980px;
+  /* 所有带侧栏的文档共享 API 参考的宽度策略。父容器不足时仍会自动收缩。 */
+  .Layout .VPDoc.has-aside .content-container {
+    max-width: var(--docs-content-max-width);
   }
 }
 
-@media (min-width: 1440px) {
-  .Layout.api-page .VPDoc.has-aside .content-container {
-    max-width: 1040px;
-  }
+/* API 与普通文档共用同一套外层导航布局，避免路由切换时 Logo、侧栏和正文整体横向跳动。 */
+/* 主容器变宽后，普通段落和列表保留适合长时间阅读的行长。表格、代码块等不受此限制。 */
+.vp-doc > div > :is(p, ul, ol, blockquote) {
+  max-width: var(--docs-prose-max-width);
 }
 
 /* 1. API 概览卡片网格系统 */
