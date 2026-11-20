@@ -1,8 +1,8 @@
-# Use Quick Access and Access Overview
+# Use Access Overview to Understand the Access Sequence
 
 ## Target Outcome
 
-Understand the on-cloud access sequence before configuring individual items and confirm the overall state of cloud platforms, accounts, resource pools, and authorization from one view.
+Understand the on-cloud access sequence before configuring individual items and confirm the overall state of cloud platforms, accounts, resource pools, and authorization in Access Overview.
 
 ## Applicable Roles
 
@@ -13,22 +13,22 @@ Understand the on-cloud access sequence before configuring individual items and 
 - Identify the cloud platform, accounts, regions, business types, and tenants to onboard.
 - Prepare minimum-privilege account materials and network connectivity.
 
+
+> Access Overview replaces the former Quick Access entry: the legacy path `/infrahub/op/workbanch/quick` now redirects to Access Overview. The page is organized in four stages — connect cloud resources, open tenant usage, prepare runtime foundation, and complete model onboarding — and no longer offers the old five-step checklist. Overview counts and grants do not prove successful credential validation or a working deployment.
+
 ## Steps
 
-1. Open [Quick Access](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/quick-start/) and review the dependency order for platforms, accounts, resource pools, and authorization.
+1. Open [Access Overview](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) and review the dependency order for platforms, accounts, resource pools, and authorization.
 
-![Review configuration order in Quick Access](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/quick-start/images/quick-start-list.png)
+![Review stage states in Access Overview](./images/access-overview-stages.png)
 
-2. Open [Access Overview](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/) and review onboarded platforms, valid accounts, available resource pools, and authorization exceptions.
-
-![Review global state in Access Overview](../../../../usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/images/access-overview-list.png)
-
+2. Review onboarded platforms, valid accounts, available resource pools, and authorization exceptions; when a stage reports a missing item, complete that stage before continuing.
 3. Follow missing-item entries to Cloud Platforms, Cloud Accounts, Resource Pools, Business-Region Authorization, or Tenant-Cloud Authorization.
 4. After configuration, refresh Access Overview and confirm that exception counts and target-object states update.
 
 ## Completion Checklist
 
-> **Purpose:** These checks confirm that on-cloud access dependencies form a complete path. Individual records may exist while the overall path remains unusable.
+Check the full access path, not just the existence of individual records.
 
 | Check | Pass Criteria |
 | --- | --- |
@@ -44,3 +44,7 @@ Understand the on-cloud access sequence before configuring individual items and 
 | Account or resource pool is abnormal in the overview | Account validation, network, region enablement, and synchronization state |
 | Individual page is healthy but overview remains abnormal | Refresh time, object association, and authorization chain |
 | User still cannot see cloud resources | Business-region authorization, tenant-cloud authorization, account role, and a fresh session |
+
+## Reference Manual
+
+[Read the stage descriptions, metric definitions, and exception handling in Access Overview](/usermanual/ai-infra-on-cloud/operator/access-workbench/access-overview/)

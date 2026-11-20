@@ -13,7 +13,7 @@ A deployment request is created with an understood resource plan and cost estima
 
 ## Applicable Roles
 
-- End User
+- Model Provider
 
 ## Before You Start
 
@@ -24,67 +24,60 @@ A deployment request is created with an understood resource plan and cost estima
 
 ### Step 1: Select a Cloud Account and Model
 
-1. From the platform home page, select **Quick Deployment** in the left navigation to open the model catalog.
-2. In **Deployable Scope**, select the target cloud and region, such as **Alibaba Cloud - China East 2 (Shanghai)**. The platform filters models for that scope.
-3. In **Matching Models**, use the model, series, and scenario selects, the search box, and the sort control to find the target model.
-4. Locate the model row, such as **Qwen3-8b**, and select **Deploy Model** to open Step 2.
+1. Open **On-Cloud > Model Services > Quick Deployment**.
+2. In **Deployable Scope**, use **Select Cloud** and **Select Resource Pool** to locate the target resources; the page splits them into the **AGIOne Dedicated pool** and the **Public pool**, and each card shows its authorization and deployment availability.
+3. In **Matched Models**, filter by **Select type**, **Select series**, or **Select scenario**, or search by model, author, series, or source.
+4. Verify the model name, capability tags, and supported pools, then select **Deploy** on the model card to open Step 2.
 
-![Select the account, region, and model](./images/step-1.png)
+![Select the cloud, pool, and model](./images/quick-deployment-deployable-scope.png)
 
 #### Parameter Reference
 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
-| Current Scope | Label | `Alibaba Cloud / China East 2 (Shanghai)` | Displays the selected cloud-account and region combination |
-| Cloud Filter | Select | `All Clouds` | Required; filters deployable scopes by cloud provider |
-| Region Filter | Select | `All Regions` | Required; filters deployable scopes by region |
-| Cloud Provider | Single-select card | `Alibaba Cloud - China East 2 (Shanghai)` | Required; selects the target cloud account and region |
-| Model Filter | Select | `All Models` | Optional; filters by model name |
-| Series Filter | Select | `All Series` | Optional; filters by model series |
-| Scenario Filter | Select | `All Scenarios` | Optional; filters by application scenario |
-| Search | Text | `Qwen3` | Optional; locates a model by keyword |
-| Sort | Select | `Default Sort` | Optional; changes model-list ordering |
-| Model | Model row | `Qwen3-8b` | Required; select **Deploy Model** to continue |
+| Select Cloud | Dropdown filter | `Alibaba Cloud` | Locates deployable resources by cloud platform |
+| Select Resource Pool | Dropdown filter | `China East 2 (Shanghai)` | Required; sets the resource scope that determines the models and compute plans available next |
+| Pool section | Section switch | `AGIOne Dedicated pool` / `Public pool` | Splits resource pools into two sections, with authorization and deployment availability shown per card |
+| Select type | Dropdown filter | `Text Generation` | Optional; filters matched models by model type |
+| Select series | Dropdown filter | `Qwen` | Optional; filters matched models by model series |
+| Select scenario | Dropdown filter | `General Chat` | Optional; filters matched models by application scenario |
+| Search | Text | `Qwen` | Optional; searches by model, author, series, or source |
+| Model card | Model row | `Qwen` series model with capability tags | Required; select **Deploy** to open Smart Deployment Recommendation |
 
 ### Step 2: Review the Recommended Deployment
 
-1. After selecting **Deploy Model**, review the **Recommended Deployment** page.
-2. Confirm the selected-model card, including model name, series, capabilities, version, and context. Select **Single Node** or **High Availability** for the deployment mode.
-3. Select an inference engine:
-   - **vLLM** for throughput, ecosystem maturity, and OpenAI API compatibility.
-   - **SGLang** for complex inference chains, multi-turn orchestration, and cache-hit optimization.
-4. Select a business strategy:
-   - **Cost Effective** prioritizes hourly price and resource utilization.
-   - **High Performance** prioritizes high-performance GPUs, bandwidth, and newer engines.
-   - **Available Now** prioritizes capacity that can start immediately.
-   - **GPU Count** prioritizes multi-card parallelism and scaling requirements.
-5. Review the recommended model-compute plan, including provider and region, engine, instance type, GPU, CPU and memory, capacity, and hourly, daily, monthly, and annual estimates.
-6. After verifying the engine, strategy, resource plan, and estimated cost, select **Confirm Deployment**. Track the result in **My Deployments**.
+1. After selecting **Deploy** on a model card, the **Smart Deployment Recommendation** page opens and shows the selected model at the top.
+2. Choose the **Deployment Mode** — **Single Node** or **High Availability** — using the options enabled on the current page.
+3. Under **Inference Engine**, select **vLLM**, **SGLang**, or **Other frameworks**.
+4. Under **Business Strategy**, select **Economy**, **Performance**, **Fast Stock**, or **GPU Quantity**; the matching plans appear on the right.
+5. Review the cloud platform, region, resource specifications, and cost estimate in the Model Compute Matching Plans. If **No recommended plans yet.** appears, no plan in the result area can be confirmed, so resource specifications, cost, and the deployment result cannot be established from this page.
 
-![Review the deployment plan](./images/step-2.png)
+![Review the deployment plan](./images/quick-deployment-smart-deployment-recommendation.png)
+
+6. Select **Confirm Deployment** to open **Publish Deployment**; this does not yet submit a task. Select the **Cloud Account**, enter the **Task Name**, and optionally add a **Task Description**. Select **Launch Deployment** to submit, or **Back to Recommendation** without submitting. Verify the new record and state in **My Deployments**; do not repeatedly submit the same failed task.
+
+![Publish Deployment dialog with cloud account, task name, task description, and actions](./images/quick-deployment-publish-deployment.png)
 
 #### Parameter Reference
 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
-| Deployment Mode | Single-select tab | `Single Node` / `High Availability` | Required; selects the deployment architecture |
-| Inference Engine | Single-select card | `vLLM` | Required; selects the model inference framework |
-| Business Strategy | Single-select card | `Cost Effective` | Required; selects the compute filtering and ranking policy |
-| Model-Compute Plan | Recommendation card | `Alibaba Cloud / cn-shanghai / vLLM` | Required; calculated from account, region, engine, and strategy |
-| GPU | Label | `NVIDIA T4 x 1` | Required; GPU model and count |
-| CPU / Memory | Label | `4C / 15G` | Required; CPU and memory allocation |
-| Hourly Estimate | Number | `CNY 12.78/hour` | Required; estimated hourly cost |
-| Daily Estimate | Number | `CNY 306.72/day` | Required; estimated daily cost |
-| Monthly Estimate | Number | `CNY 9201.60/month` | Required; estimated monthly cost |
-| Annual Estimate | Number | `CNY 111952.80/year` | Required; estimated annual cost |
+| Deployment Mode | Single-select tab | `Single Node` / `High Availability` | Selects the deployment architecture, subject to the options enabled on the current page |
+| Inference Engine | Single-select card | `vLLM` / `SGLang` / `Other frameworks` | Required; selects the inference framework used to serve the model |
+| Business Strategy | Single-select card | `Economy` / `Performance` / `Fast Stock` / `GPU Quantity` | Required; ranks candidate plans by price, performance, stock, and GPU count |
+| Model Compute Matching Plan | Recommendation card | `Alibaba Cloud / cn-shanghai / vLLM / ecs.gn6i-c4g1.xlarge` | Shows cloud platform, region, resource specifications, and cost estimates; displays `No recommended plans yet.` when nothing can be confirmed |
+| Publish Deployment - Cloud Account | Select | `Alibaba Cloud` | Required; selects the cloud account that executes this deployment |
+| Publish Deployment - Task Name | Text | `qwen-demo-deploy` | Required; identifies the task in My Deployments |
+| Publish Deployment - Task Description | Text area | `Validate the quick deployment flow` | Optional; describes the purpose of this deployment |
+| Publish Deployment - Actions | Button | `Back to Recommendation` / `Launch Deployment` | Adjust the plan before submitting; do not submit the same failed task twice |
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |
-| 1 | Account, region, model, engine, and compute plan are selectable. |
+| 1 | Cloud, resource pool, model, inference engine, and compute plan are selectable. |
 | 2 | The request is submitted with the expected cost and scope. |
 | 3 | My Deployments contains the new record. |
 

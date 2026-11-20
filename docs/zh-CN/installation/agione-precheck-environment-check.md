@@ -1,11 +1,15 @@
 # AGIOne 安装前环境预检指南
 
+::: warning 命令行安装将停用
+新部署使用 [安装 AGIOne](./clusterd-agione-best-practices)。ClusterD 的说明见 [ClusterD 是什么](./clusterd-overview)，安装和升级见 [安装、升级与卸载](./clusterd/)。本文是 `./agione` 安装前的环境预检。
+:::
+
 ## 前言
 
 | 项目 | 内容 |
 | --- | --- |
 | 适用角色 | 安装前检查人员、交付工程师、客户运维工程师 |
-| 导航路径 | 部署 > AGIOne 安装前环境预检 |
+| 导航路径 | 部署 > 安装 AGIOne > 命令行安装 > 安装前预检 |
 | 功能定位 | 在执行 `./agione quick` 或 `./agione install` 前，识别资源、端口、权限、Docker、SSH、离线包和中间件连通性风险 |
 
 预检不会安装产品。它的目标是在正式安装前暴露阻塞项。第一次执行时记住基本顺序：**先跑 `doctor`，修复 `FAIL`，再决定如何处理 `WARN`**。

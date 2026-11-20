@@ -1,18 +1,22 @@
-# Managed Node Quick Deployment Guide
+# Install the Compute Cluster
+
+::: tip Use the install document by default
+Compute onboarding uses [Install Compute](./quick-install-with-agione-clusterd) by default. ClusterD is the Web program on the control host. See [What ClusterD Does](./clusterd-overview). Installation, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). This page is the command-line installation.
+:::
 
 ## Introduction
 
 | Item | Content |
 |------|---------|
 | Applicable Role | Compute cluster implementation engineer, GPU / NPU node operations engineer, customer platform administrator |
-| Navigation Path | Deployment > Managed Node Quick Deployment |
-| Function Description | Guides users through managed compute node environment preparation, package initialization, Kubernetes cluster installation, and basic validation |
+| Navigation Path | Deployment > Onboard Compute > Command-Line Install |
+| Function Description | Guides users through managed compute node environment preparation, package initialization, Kubernetes cluster installation, component installation, and basic validation |
 
 This document is for compute node deployment scenarios where resource planning and environment survey have already been completed. If accelerator, operating system, port, or network requirements are not confirmed yet, read [Managed Compute Node Deployment Configuration Requirements](./deployment-requirements-for-managing-compute-nodes) first.
 
 ### Beginner Explanation
 
-Use this document after the compute nodes have passed planning and survey. It turns the prepared machines into a Kubernetes compute cluster, then verifies accelerators, monitoring, registry, and storage.
+Use this document after the compute nodes have passed planning and survey. It installs the prepared machines as a Kubernetes compute cluster, then uses `plugincli` to install accelerator, monitoring, and image-registry components.
 
 ## Deployment Timeline
 
@@ -20,8 +24,8 @@ Use this document after the compute nodes have passed planning and survey. It tu
 | --- | --- | --- |
 | Step 1: Prepare node environment | Initialize OS, install drivers, configure passwordless SSH, and verify network connectivity | Every node can be accessed from the deployment node |
 | Step 2: Prepare package | Download and initialize the resource bundle matching the CPU architecture | `installer/kubemore` toolkit is generated |
-| Step 3: Install cluster | Run `morecli install` with Master, etcd, Worker, and accelerator parameters | Kubernetes cluster installation completes |
-| Step 4: Validate services | Check nodes, Pods, device-plugin, image registry, and object storage | Compute resources can be recognized by the platform |
+| Step 3: Install cluster | Run `morecli install` with Master, etcd, and Worker parameters | Kubernetes cluster installation completes |
+| Step 4: Install components | Use `plugincli` to install accelerator components and monitoring, and install the image registry when needed | The accelerator resource from this installation appears on the nodes |
 
 ## 1 Document Overview
 
@@ -36,7 +40,7 @@ Use this document after the compute nodes have passed planning and survey. It tu
 | OFED | Mellanox InfiniBand/RoCE NIC driver suite |
 | SR-IOV | Single Root I/O Virtualization, used for splitting RDMA NICs into virtual functions |
 | Harbor | Enterprise-grade container image registry |
-| MinIO | S3-compatible object storage service |
+| plugincli | Component installation command in `installer/kube-plugin` |
 
 ---
 
@@ -220,60 +224,54 @@ vim /etc/kubemore/roles/prepare/tasks/main.yml
   ```yaml
   when: 'inventory_hostname in ["<local IP>"]'
   ```
-- Change line 48 from `line: " ansible_env.SSH_CLIENT.split(' ')[0]    easzlab.io.local"` to:
+- Change line 48 from <span v-pre>`line: "{{ ansible_env.SSH_CLIENT.split(' ')[0] }}    easzlab.io.local"`</span> to:
   ```yaml
   line: "<local IP>    easzlab.io.local"
   ```
 - Replace the Ansible config: `cp ansible.cfg.not_root ansible.cfg`
 
+A root installation leaves this file unchanged.
+
 ### 4.3 Cluster Installation Command
 
 #### 4.3.1 Standard Installation Example
 
+Cluster installation does not select the accelerator vendor or model. `plugincli` handles that during component installation.
+
+`./morecli install --help` prints `--etcd` in its example. Passing `--etcd` makes the install script report `Bad command`. The command accepts `--etcds` and `-e`.
+
 ```bash
 ./morecli install \
     --masters 192.168.1.3,192.168.1.4 \
-    --etcd 192.168.1.3,192.168.1.4 \
-    --workers 192.168.1.5,192.168.1.6 \
-    --xpu-mode nvidia \
-    --xpu-type nvidia-a10080g \
-    --kubelet-root-data /data/kubelet \
-    --containerd-root-data /data/containerd
+    --etcds 192.168.1.3,192.168.1.4 \
+    --workers 192.168.1.5,192.168.1.6
 ```
+
+For a non-root user, pass `--ssh-user`, `--password`, and `--ssh-port`, and run `cp ansible.cfg.not_root ansible.cfg`. When `ssh-user` is not root, the install script makes the same copy.
 
 #### 4.3.2 Key Parameter Reference
 
 | Parameter | Required | Description |
 | --- | --- | --- |
-| `--masters / -m` | ✔ | Comma-separated list of Master node IPs |
-| `--etcds / -e` | ✔ | Comma-separated list of etcd node IPs; co-locating with Masters is recommended (≥ 3 nodes in production) |
-| `--workers / -w` | ✔ | Comma-separated list of Worker node IPs |
-| `--service-cidr` |   | Service CIDR; default `10.68.0.0/16` |
-| `--cluster-cidr` |   | Pod CIDR; default `172.20.0.0/16` |
-| `--password` |   | Unified password for all nodes (mandatory for non-root users) |
-| `--ssh-user` |   | SSH login user; default `root` |
-| `--ssh-port` |   | SSH port; default `22` |
-| `--ntp-server` |   | NTP server address |
-| `--port-range / -p` |   | NodePort range; default `30000-32767` |
-| `--max-pods` |   | Maximum Pods per node; default `110` |
-| `--exter-eip` |   | External elastic IP for the cluster (if any) |
-| `--dns-domain / -d` |   | Cluster DNS domain; default `cluster.local` |
-| `--xpu-mode` |   | Accelerator mode: `nvidia` / `ascend910` / `enflame`; applied only to Worker nodes |
-| `--xpu-type` |   | Accelerator model; see the table below |
-| `--kubelet-root-data` |   | kubelet data directory; default `/var/lib/kubelet`; **point to a data disk in production** |
-| `--containerd-root-data` |   | containerd data directory; default `/var/lib/containerd`; **point to a data disk in production** |
-
-#### 4.3.3 Accelerator Model Reference (`--xpu-type`)
-
-| Vendor (`--xpu-mode`) | Available Models |
-| --- | --- |
-| nvidia | `nvidia-v10032g`, `nvidia-v10016g`, `nvidia-t4`, `nvidia-a10040g`, `nvidia-a10080g` |
-| ascend910 | `ascend-910a`, `ascend-910b` |
-| enflame | `enflame-s60` |
-
-> For models that are not in the list above (such as H20, L20, or H200), please contact the AGIOne team for the latest parameter inventory.
+| `--masters / -m` | ✔ | Comma-separated Master node IPs |
+| `--etcds / -e` | ✔ | Comma-separated etcd node IPs |
+| `--workers / -w` | ✔ | Comma-separated Worker node IPs |
+| `--service-cidr` |   | Service CIDR. Default `10.68.0.0/16` |
+| `--cluster-cidr` |   | Pod CIDR. Default `172.20.0.0/16` |
+| `--password` |   | Password used on every node. Required for a non-root user |
+| `--ssh-user` |   | SSH user. Default `root` |
+| `--ssh-port` |   | SSH port. Default `22` |
+| `--ntp-server` |   | NTP server for the cluster |
+| `--port-range / -p` |   | NodePort range. Default `30000-32767` |
+| `--max-pods` |   | Maximum Pods per node. Default `110` |
+| `--exter-eip` |   | External EIP of the cluster |
+| `--dns-domain / -d` |   | Cluster DNS domain. Default `cluster.local` |
+| `--kubelet-root-data` |   | kubelet data directory. Default `/var/lib/kubelet` |
+| `--containerd-root-data` |   | containerd data directory. Default `/var/lib/containerd` |
 
 ### 4.4 Cluster Operations
+
+Adding and removing nodes use `--etcds` or `-e`. The help examples print `--etcd`. Passing that flag makes the script report `Bad command`.
 
 #### 4.4.1 Add Nodes
 
@@ -329,106 +327,163 @@ All nodes should be in the `Ready` state, and every system Pod should be `Runnin
 
 ---
 
-## 5 Core Component Activation
+## 5 Component Installation
 
-Once the underlying infrastructure is ready, activate the AGIOne core components in the following order.
-
-### 5.1 Accelerator device-plugin Component
-
-Activate the device-plugin matching the accelerator vendor on the Worker nodes:
+Component installation is separate from cluster installation. Run `plugincli` in the package directory `installer/kube-plugin`. `morecli` stays in `/etc/kubemore`.
 
 ```bash
-# NVIDIA GPUs
-./morecli activate-kdp nvidia
-
-# Huawei Ascend 910 series
-./morecli activate-kdp ascend910
-
-# Enflame accelerators
-./morecli activate-kdp enflame
-
-# HAMI memory over-subscription for NVIDIA GPUs (multi-model card-sharing scenarios)
-./morecli activate-kdp hami
+cd installer/kube-plugin
 ```
 
-> **HAMI use case**: when several small models need to share the same NVIDIA GPU, HAMI enforces logical memory partitioning and quota control, increasing overall GPU utilization. **HAMI and the native NVIDIA device-plugin are mutually exclusive — pick one.**
+The machine that runs `plugincli` needs Docker installed and started. The command exits when Docker is unavailable.
 
-Validation after activation:
+### 5.1 Label Accelerator Nodes
+
+This step is optional. Both `--mode` and `--type` are required. The example from the installation description:
 
 ```bash
-kubectl get pods -n kube-system | grep -E 'nvidia|ascend|enflame|hami'
-kubectl describe node <worker-node> | grep -A 5 'Allocatable'
-# Resources such as nvidia.com/gpu or huawei.com/Ascend910 should appear
+./plugincli label-xpu --mode nvidia --type nvidia-a10080g
 ```
 
-### 5.2 Monitoring Components
+`--mode` is one of `nvidia`, `ascend910`, `ascend950`, `amd-gpu`, `google-tpu`, `biren`, `enflame`, `cambricon`, `hygon`, `iluvatar`, `kunlunxin`, `metax`, or `moore-threads`. `--nodes node1,node2` selects nodes. Without `--nodes`, the command labels nodes that do not yet have `kubemore_xpu_device_mode`.
 
-#### 5.2.1 Deploy the Monitoring Database (KubeDB)
+The command writes `kubemore_xpu_device_mode` and `kubemore_xpu_type`. NVIDIA nodes also receive `gpu=on`. Ascend nodes also receive `ascend=on`. Every other `--mode` also receives `kubemore_accelerator_scheduling=volcano-direct`.
+
+### 5.2 Install Volcano
+
+`--backend` is required. The values are `none`, `hami`, `mindcluster`, and `direct`.
+
+Whole-card scheduling also installs the matching native Device Plugin:
 
 ```bash
-# 1. Set the database storage path; placing it on shared NAS storage attached to the management nodes is recommended
-export DB_DATA=/opt/kubedb
-
-# 2. Install KubeDB
-./morecli install-kubedb
-
-# 3. Retrieve the KubeDB password (used by downstream monitoring components)
-cat ./kubedb/kubedb.yaml
+./plugincli component install volcano --backend none nvidia
+./plugincli component install volcano --backend none ascend
+./plugincli component install volcano --backend none ascend950
 ```
 
-#### 5.2.2 Deploy the Base Monitoring Stack
+`ascend` is the same as `ascend910`. One command accepts one device. The Ascend 910 whole-card resource is `huawei.com/Ascend910`. The 950 resource is `huawei.com/npu`.
 
-Choose the monitoring mode that matches the Worker node accelerator vendor:
+NVIDIA uses HAMi vGPU. The example values of `--gpu-split` and `--mem-split` are `4` and `1`:
 
 ```bash
-# Pick one — must align with the device-plugin mode
-./morecli activate-monitor --xpu-mode ascend910
-./morecli activate-monitor --xpu-mode hami
-./morecli activate-monitor --xpu-mode nvidia
-./morecli activate-monitor --xpu-mode enflame
-./morecli activate-monitor --xpu-mode biren
+./plugincli component install volcano --backend hami nvidia
+./plugincli component install volcano --backend hami nvidia --gpu-split 4 --mem-split 1
 ```
 
-The monitoring stack automatically collects GPU/NPU utilization, memory, temperature, and power-draw metrics, and exposes them via a Prometheus endpoint.
-
-#### 5.2.3 [Optional] Kubernetes Cluster Monitoring
-
-Install only when the customer explicitly requires a cluster-level dashboard:
+Ascend can use HAMi vNPU or MindCluster. HAMi does not accept `ascend950`:
 
 ```bash
-./morecli activate-k8s-monitor
-# Default Grafana port: 32765
-# Access via http://<any-node-IP>:32765
+./plugincli component install volcano --backend hami ascend
+./plugincli component install volcano --backend mindcluster ascend
+./plugincli component install volcano --backend mindcluster ascend950
 ```
 
-### 5.3 Jupyter Proxy Component
-
-Provides remote Jupyter Notebook access for R&D users:
+MindCluster has two modes:
 
 ```bash
-./morecli activate-jupy-proxy test
+# Soft sharing. Prepare vCANN-RT on the nodes first
+./plugincli component install volcano --backend mindcluster ascend --mindcluster-mode soft-share
+
+# Whole card
+./plugincli component install volcano --backend mindcluster ascend --mindcluster-mode whole-card
 ```
 
-### 5.4 Toolkit Activation
+Without `--mindcluster-mode`, `plugincli` uses `whole-card`. Kubernetes 1.36 is outside the validated range, and the install refuses it. An acceptance environment can pass `--allow-unvalidated-k8s`.
 
-Activate the following three commonly used utilities:
+MindCluster uses its own scheduler. Jobs set `schedulerName: mindcluster-volcano`. The vendor Device Plugin reports `huawei.com/Ascend910`. Training jobs use `AscendJob` from `mindxdl.gitee.com/v1`. The cluster container backend is containerd. Ascend nodes need the Ascend container runtime. The chart only changes containerd's runc `BinaryName`.
+
+For direct extended resources, with the vendor Device Plugin supplied outside this command:
 
 ```bash
-./morecli activate-tools
+./plugincli component install volcano \
+    --backend direct \
+    --direct-backends amd-gpu,google-tpu,biren,enflame,cambricon,hygon,iluvatar,kunlunxin,metax,moore-threads
 ```
 
-The toolkit includes:
+Installation updates Volcano for the selected backend and removes the other Ascend plugin, so two Device Plugins do not claim the same node.
 
-1. **nerdctl** — image-build utility for containerd-based environments
-2. **model-downloader** — automated model download tool supporting Hugging Face, ModelScope, and similar registries
-3. **s3fs** — dynamically mount object storage buckets as POSIX file systems
-
-### 5.5 [Optional] Storage CSI Component
-
-Install only when an object storage service is configured for the cluster:
+Uninstall:
 
 ```bash
-./morecli activate-osc
+./plugincli component uninstall hami
+./plugincli component uninstall mindcluster
+./plugincli component uninstall volcano
+```
+
+### 5.3 Native Kubernetes Scheduler
+
+The native Kubernetes default-scheduler uses these commands:
+
+```bash
+./plugincli component install device-plugin nvidia
+./plugincli component install device-plugin ascend910
+./plugincli component install device-plugin ascend950
+```
+
+`device-plugin ascend` is the same as `ascend910`. 910 reports `huawei.com/Ascend910`. 950 reports `huawei.com/npu`.
+
+### 5.4 Resource Names Requested by Jobs
+
+A Volcano job that is not using MindCluster sets `schedulerName: volcano`.
+
+NVIDIA HAMi:
+
+```yaml
+resources:
+  limits:
+    volcano.sh/vgpu-number: 1
+    volcano.sh/vgpu-memory: 4096
+    volcano.sh/vgpu-cores: 50
+```
+
+Ascend HAMi. 910B3 uses `huawei.com/Ascend910B`. 910B2 and 910B2C use `huawei.com/Ascend910B2`. Memory is in MiB:
+
+```yaml
+resources:
+  limits:
+    huawei.com/Ascend910B2: "1"
+    huawei.com/Ascend910B2-memory: "4096"
+```
+
+After installation, check the node resources:
+
+```bash
+kubectl get pods -A
+kubectl describe node <worker-node>
+```
+
+`Allocatable` should show the resource name installed by this command.
+
+### 5.5 Monitoring Components
+
+Change the monitoring database path for the site. The installation description places it on shared NAS attached to the management nodes when possible.
+
+```bash
+./plugincli component install influxdb --data-path /opt/kubedb
+./plugincli component install monitor --xpu-mode ascend910 --server-port 32761
+./plugincli component install monitor --xpu-mode ascend950 --server-port 32761
+```
+
+Without `--xpu-mode`, the command reads the node label `kubemore_xpu_device_mode`. When that label is `nvidia`, the current command exits and reports that the NVIDIA exporter archive is not included. A validated dcgm-exporter image has to be added first. The `plugincli` help text still shows `--xpu-mode nvidia`.
+
+Cluster monitoring itself is installed when a dashboard for the cluster is required. It provides a Grafana dashboard. The command has no port:
+
+```bash
+./plugincli component install k8s-monitor
+```
+
+### 5.6 Jupyter Proxy Component
+
+```bash
+./plugincli component install jupyterlab-proxy --proxy-port 32762
+```
+
+### 5.7 Tools
+
+The following command installs `nerdctl`, `model-downloader`, and `s3fs`:
+
+```bash
+./plugincli images push-tools
 ```
 
 ---
@@ -491,11 +546,11 @@ lspci -nn | grep Virtual
 ### 6.3 RDMA Component Activation
 
 ```bash
-# RoCE network
-./morecli activate-rdma roce
+# RDMA network is RoCE
+bash /etc/kubemore/utils/activate-rdma roce
 
-# InfiniBand network
-./morecli activate-ib roce
+# RDMA network is IB
+bash /etc/kubemore/utils/activate-rdma ib
 ```
 
 ---
@@ -512,7 +567,7 @@ The image registry is the backbone for distributing inference-engine and model-s
 | Memory | ≥ 8 GB | ≥ 16 GB |
 | System disk | ≥ 100 GB | ≥ 200 GB |
 | Data disk | Optional, ≥ 500 GB (NAS recommended) | ≥ 2 TB (NAS recommended) |
-| Port requirements | Cluster reachable on 8090 | 8090 + 8443 (if HTTPS is enabled) |
+| Port requirements | Cluster reachable on 8090 | 8090 |
 | Operating system | Ubuntu 20.04 / 22.04, CentOS 7, OpenEuler 22.03 | Same as minimum |
 
 ### 7.2 Harbor Installation
@@ -567,64 +622,11 @@ After integration, push the inference-engine images supplied by AGIOne (vLLM, Mi
 
 ---
 
-## 8 [Optional] Object Storage Deployment
-
-Deploy object storage only when the customer requires an S3-compatible store (e.g., for model repositories, log archives, or training data).
-
-### 8.1 Node Specifications
-
-| Item | Minimum | Recommended (Production) |
-| --- | --- | --- |
-| CPU cores | ≥ 4 | ≥ 8 |
-| Memory | ≥ 8 GB | ≥ 16 GB |
-| System disk | ≥ 100 GB | ≥ 200 GB |
-| Data disk | Optional, ≥ 500 GB (NAS recommended) | ≥ 4 TB (more for multi-replica deployments) |
-| Port requirements | Cluster reachable on 9000, 9001 | Same as minimum |
-
-### 8.2 Single-Node MinIO Installation
-
-Suitable for R&D or small-scale environments:
-
-```bash
-export MINIO_HOME=/opt/kubestore
-export MINIO_ROOT_USER=kubestoreadmin
-export MINIO_ROOT_PASSWORD=kubestoreadmin
-
-bash storecli install-minio
-```
-
-### 8.3 Multi-Node Cluster Installation
-
-Required for production environments; at least 4 nodes are needed for erasure-coding availability:
-
-```bash
-export MINIO_SIZE=1024
-export MINIO_PATH=/data
-
-./morecli install-kubestore \
-    192.168.1.21 \
-    192.168.1.22 \
-    192.168.1.23 \
-    192.168.1.24
-```
-
-### 8.4 Mounting Object Storage in the Cluster
-
-After object storage is deployed, activate the Storage CSI component on the K8s side to enable dynamic PVC mounts:
-
-```bash
-./morecli activate-osc
-```
-
-Workloads can then claim object-storage volumes via PVCs.
-
----
-
-## 9 Deployment Acceptance Checklist
+## 8 Deployment Acceptance Checklist
 
 Once every component is activated, walk through the checklist below, verifying each item and obtaining sign-off.
 
-### 9.1 Cluster Foundation
+### 8.1 Cluster Foundation
 
 | # | Item | Method | Expected Result |
 | --- | --- | --- | --- |
@@ -632,26 +634,26 @@ Once every component is activated, walk through the checklist below, verifying e
 | 2 | System Pods | `kubectl get pods -A` | All `Running` or `Completed` |
 | 3 | etcd health | `kubectl -n kube-system exec etcd-<master> -- etcdctl endpoint health` | Every endpoint `is healthy` |
 | 4 | DNS resolution | `kubectl run -it --rm test --image=busybox -- nslookup kubernetes` | Resolution succeeds |
-| 5 | NodePort reachability | `curl http://<node>:32765` | Monitoring page is accessible |
+| 5 | Monitoring component | `kubectl get pods -n kube-system \| grep monitor` | The monitor Pod is `Running`. The port in the install command is `32761` |
 
-### 9.2 Accelerator Resources
+### 8.2 Accelerator Resources
 
 | # | Item | Method | Expected Result |
 | --- | --- | --- | --- |
-| 1 | GPU resource registration | `kubectl describe node <worker> \| grep -A 3 Allocatable` | `nvidia.com/gpu: <N>` (or the equivalent vendor key) is present |
-| 2 | Accelerator metrics | Open Grafana → GPU Monitoring dashboard | Utilization, memory, temperature, and power values are present |
-| 3 | Test Pod scheduling | Deploy a Pod requesting 1 GPU and run `nvidia-smi` inside | The allocated GPU is visible |
+| 1 | Accelerator registration | `kubectl describe node <worker>` | `Allocatable` shows the resource name from this installation |
+| 2 | Test Pod scheduling | Submit a Pod that requests the resource name from section 5.4 | The Pod is scheduled onto a Worker |
 
-### 9.3 Image Registry and Storage
+NVIDIA HAMi uses `volcano.sh/vgpu-number`, `volcano.sh/vgpu-memory`, and `volcano.sh/vgpu-cores`. Ascend HAMi uses `huawei.com/Ascend910B` for 910B3, and `huawei.com/Ascend910B2` for 910B2 and 910B2C. Whole-card or native Device Plugin uses `huawei.com/Ascend910` for 910 and `huawei.com/npu` for 950.
+
+### 8.3 Image Registry
 
 | # | Item | Method | Expected Result |
 | --- | --- | --- | --- |
 | 1 | Harbor login | Browse to `http://<harbor>:8090` | Login succeeds |
 | 2 | Image push | `nerdctl push <harbor>/library/test:v1` | Push succeeds |
 | 3 | Node image pull | On a Worker node: `crictl pull <harbor>/library/test:v1` | Pull succeeds |
-| 4 | Object storage (if enabled) | Connect with the `mc` client, create a bucket, and upload a file | Operations succeed |
 
-### 9.4 RDMA (If Enabled)
+### 8.4 RDMA (If Enabled)
 
 | # | Item | Method | Expected Result |
 | --- | --- | --- | --- |
@@ -661,9 +663,9 @@ Once every component is activated, walk through the checklist below, verifying e
 
 ---
 
-## 10 Common Issues and Troubleshooting
+## 9 Common Issues and Troubleshooting
 
-### 10.1 SSH Trust Failure
+### 9.1 SSH Trust Failure
 
 **Symptom**: `./morecli install` reports `Permission denied (publickey,password)`.
 
@@ -674,18 +676,18 @@ Once every component is activated, walk through the checklist below, verifying e
 3. Verify file permissions: `~/.ssh` should be `700` and `authorized_keys` should be `600`
 4. For non-root scenarios, confirm that `ansible.cfg.not_root` has been copied to `ansible.cfg`
 
-### 10.2 GPU Resources Not Registered with Kubernetes
+### 9.2 Accelerator Resources Not Registered with Kubernetes
 
-**Symptom**: `kubectl describe node` does not show `nvidia.com/gpu`.
+**Symptom**: `kubectl describe node` does not show the resource name from this installation, such as `volcano.sh/vgpu-number`, `huawei.com/Ascend910B2`, `huawei.com/Ascend910`, or `huawei.com/npu`.
 
 **Investigation steps**:
 
-1. Confirm that `nvidia-smi` works on the affected node
-2. Inspect the device-plugin Pod: `kubectl get pods -n kube-system | grep nvidia`
-3. Read the plugin logs: `kubectl logs -n kube-system <plugin-pod>`
-4. Restart kubelet: `systemctl restart kubelet`
+1. Confirm the vendor command works on the node, such as `nvidia-smi` for NVIDIA or `npu-smi info` for Ascend
+2. Confirm the matching `plugincli component install` was run in `installer/kube-plugin`
+3. Check component Pods: `kubectl get pods -A`
+4. Read the Pod log: `kubectl logs -n <namespace> <pod>`
 
-### 10.3 Node Power Draw Exceeds Rack Capacity
+### 9.3 Node Power Draw Exceeds Rack Capacity
 
 **Symptom**: rack circuit-breaker trips or alarms when many users invoke the service.
 
@@ -695,7 +697,7 @@ Once every component is activated, walk through the checklist below, verifying e
 - Enable concurrency caps in the AGIOne scheduling policy to suppress instantaneous spikes
 - For sustained ceiling-hitting workloads, distribute nodes across multiple racks
 
-### 10.4 Node Fails to Self-Recover After OS Reimage
+### 9.4 Node Fails to Self-Recover After OS Reimage
 
 **Symptom**: an Ascend node cannot rejoin the cluster after the operating system is reimaged.
 
@@ -706,7 +708,7 @@ Once every component is activated, walk through the checklist below, verifying e
 3. Test management-plane connectivity to the node (dedicated line / VPC)
 4. Inspect the AGIOne Agent startup logs and confirm the registration call to the control plane succeeded
 
-### 10.5 Harbor Push Timeout
+### 9.5 Harbor Push Timeout
 
 **Symptom**: pushing large images (>10 GB) to Harbor is interrupted mid-transfer.
 
@@ -718,9 +720,9 @@ Once every component is activated, walk through the checklist below, verifying e
 
 ---
 
-## 11 Appendix
+## 10 Appendix
 
-### 11.1 Deployment Node Inventory Template
+### 10.1 Deployment Node Inventory Template
 
 | # | Role | Hostname | Mgmt IP | Data IP | RDMA IP | CPU/RAM | Data Disk | Accelerator | OS |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -730,7 +732,7 @@ Once every component is activated, walk through the checklist below, verifying e
 | 4 | Worker | gpu-01 | 192.168.1.11 | 10.0.1.11 | 10.10.1.11 | 64C / 512G | 4 TB | 8 × A800-80G | Ubuntu 22.04 |
 | 5 | Worker | gpu-02 | 192.168.1.12 | 10.0.1.12 | 10.10.1.12 | 64C / 512G | 4 TB | 8 × H20-96G | Ubuntu 22.04 |
 
-### 11.2 Port Reference
+### 10.2 Port Reference
 
 | Service | Port | Description |
 | --- | --- | --- |
@@ -739,30 +741,28 @@ Once every component is activated, walk through the checklist below, verifying e
 | etcd Peer | 2380 | Between etcd nodes |
 | kubelet | 10250 | All nodes |
 | Harbor HTTP | 8090 | Harbor host |
-| Harbor HTTPS (optional) | 8443 | Harbor host |
-| MinIO API | 9000 | Object storage host |
-| MinIO Console | 9001 | Object storage host |
-| AGIOne Service NodePort | 32761 – 32765 | All Workers |
-| Grafana | 32765 | Monitoring entry point |
-| Default NodePort range | 30000 – 32767 | Business model services |
+| Monitoring component | 32761 | `plugincli component install monitor --server-port` |
+| Jupyter proxy | 32762 | `plugincli component install jupyterlab-proxy --proxy-port` |
+| Default NodePort range | 30000 - 32767 | `morecli install --port-range` |
 
-### 11.3 morecli Command Reference
+### 10.3 Command Reference
 
 | Category | Command |
 | --- | --- |
-| Install cluster | `./morecli install --masters ... --etcd ... --workers ...` |
-| Add nodes | `./morecli add --workers 192.168.1.7,192.168.1.8` |
-| Remove nodes | `./morecli del --workers 192.168.1.7,192.168.1.8` |
+| Install cluster | `./morecli install --masters ... --etcds ... --workers ...` |
+| Add nodes | `./morecli add --masters ... --etcds ... --workers ...` |
+| Remove nodes | `./morecli del --masters ... --etcds ... --workers ...` |
 | Destroy cluster | `./morecli destroy` |
-| Activate NVIDIA plugin | `./morecli activate-kdp nvidia` |
-| Activate Ascend plugin | `./morecli activate-kdp ascend910` |
-| Activate HAMI memory over-subscription | `./morecli activate-kdp hami` |
-| Install KubeDB | `./morecli install-kubedb` |
-| Activate monitoring | `./morecli activate-monitor --xpu-mode nvidia` |
-| Activate K8s monitoring | `./morecli activate-k8s-monitor` |
-| Activate Jupyter | `./morecli activate-jupy-proxy test` |
-| Activate toolkit | `./morecli activate-tools` |
-| Activate object-storage CSI | `./morecli activate-osc` |
-| Activate RoCE | `./morecli activate-rdma roce` |
-| Activate InfiniBand | `./morecli activate-ib roce` |
-| Install multi-node MinIO | `./morecli install-kubestore <ip1> <ip2> ...` |
+| Accelerator label | `./plugincli label-xpu --mode nvidia --type nvidia-a10080g` |
+| Volcano whole card | `./plugincli component install volcano --backend none nvidia` |
+| Volcano + HAMi | `./plugincli component install volcano --backend hami nvidia` |
+| Ascend HAMi | `./plugincli component install volcano --backend hami ascend` |
+| Ascend MindCluster | `./plugincli component install volcano --backend mindcluster ascend` |
+| Native Device Plugin | `./plugincli component install device-plugin nvidia` |
+| Monitoring database | `./plugincli component install influxdb --data-path /opt/kubedb` |
+| Monitoring component | `./plugincli component install monitor --xpu-mode ascend910 --server-port 32761` |
+| Cluster monitoring | `./plugincli component install k8s-monitor` |
+| Jupyter proxy | `./plugincli component install jupyterlab-proxy --proxy-port 32762` |
+| Tools | `./plugincli images push-tools` |
+| RoCE | `bash /etc/kubemore/utils/activate-rdma roce` |
+| IB | `bash /etc/kubemore/utils/activate-rdma ib` |

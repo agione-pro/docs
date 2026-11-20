@@ -5,10 +5,10 @@
 | 项目 | 内容 |
 | --- | --- |
 | 适用角色 | 算力资源规划人员、实施工程师、客户基础设施管理员 |
-| 导航路径 | 部署 > 纳管算力节点部署配置要求 |
+| 导航路径 | 部署 > 纳管算力 > 纳管前准备 |
 | 功能定位 | 在算力节点安装前，帮助用户完成环境调研、加速卡兼容性确认、资源规格、端口和网络规划 |
 
-本文回答的是“这些算力节点是否已经具备纳管条件”。如果只需要安装命令，也建议先完成本文检查，再阅读 [纳管节点快速部署](./quick-install-for-managing-compute-nodes)。
+本文说明这些算力节点是否已经具备纳管条件。检查完成后，按 [安装算力](./quick-install-with-agione-clusterd) 继续。命令行安装见 [安装算力集群](./quick-install-for-managing-compute-nodes)。ClusterD 的说明见 [ClusterD 是什么](./clusterd-overview)，安装和升级见 [安装、升级与卸载](./clusterd/)。
 
 ### 新手理解
 
@@ -22,7 +22,7 @@
 | 第 2 步：兼容性确认 | 确认 GPU / NPU 型号、CPU 架构和操作系统支持情况 | 加速卡和操作系统组合可部署 |
 | 第 3 步：资源规划 | 确认 Master、etcd、Worker 节点数量和规格 | 节点角色和规格清单已确认 |
 | 第 4 步：网络与端口规划 | 放通 Kubernetes API、Harbor、AGIOne 访问和监控端口 | 防火墙 / 安全组规则已准备 |
-| 第 5 步：进入部署 | 准备安装包并按快速部署文档安装集群 | 可开始算力集群部署 |
+| 第 5 步：进入部署 | 按安装算力文档纳管集群；不使用网页时改用命令行安装 | 可开始算力集群纳管 |
 
 ## 术语速查
 
@@ -64,9 +64,9 @@
 
 | 类别 | 关键项 | 示例 / 填写说明 | 备注 |
 | --- | --- | --- | --- |
-| 系统环境 | 操作系统 | CentOS 7 / Ubuntu 20.04 / Ubuntu 22.04 / OpenEuler 22.03 LTS | Arm64 架构不支持 Ubuntu 22.04 |
+| 系统环境 | 操作系统 | Ubuntu 22 | 支持范围见 [3.2.2 操作系统支持矩阵](#_3-2-2-操作系统支持矩阵) |
 | 系统环境 | 是否安装加速卡驱动 | 是 / 否 | 必须安装到位 |
-| 系统环境 | 加速卡驱动版本 | NVIDIA 570 / CANN 8.x | 版本需与卡型号匹配 |
+| 系统环境 | 加速卡驱动版本 | NVIDIA 570 / 昇腾 HDK | 昇腾 HDK 见 [2.1.2 华为昇腾](#_2-1-2-华为昇腾) |
 | 系统环境 | 是否安装 RDMA 网卡驱动 | 是 / 否 | RDMA 场景必装 |
 | 系统环境 | RDMA 网卡驱动版本 | MLNX_OFED-23.07-0.5.1.2 | 推荐 23.07 及以上 |
 | 系统环境 | 是否已安装 Docker | 是 / 否 | **若已安装，需确认是否可清理** |
@@ -104,6 +104,20 @@ AGIOne 平台当前已完成兼容性验证的加速卡型号涵盖英伟达、�
 | 架构 / 系列 | 型号 |
 | --- | --- |
 | Ascend 910 | Ascend 910B、Ascend 910C |
+| Ascend 950 | Ascend 950 系列 |
+
+纳管组件使用 MindCluster 26.1.0，配套 CANN 9.1.0。
+
+Ascend 910B、Ascend 910C 配套 HDK 26.1.0，兼容 HDK 25.5.X、26.0.X、26.1.X。
+
+Ascend 950 系列在 MindCluster 26.1.0 中的 HDK 如下，不含 26.1.0：
+
+| 产品 | HDK |
+| --- | --- |
+| Atlas 950 SuperPoD 超节点 | 25.1.RC1 |
+| Atlas 850E 超节点、Atlas 650E 服务器 | 25.6.RC1 |
+
+MindCluster 26.2.0 为上述产品增加 HDK 26.2.X。26.1.X 不可配套。
 
 #### 2.1.3 其他国产芯片
 
@@ -173,8 +187,8 @@ Worker 节点承载实际推理负载，至少配置 1 张加速卡。
 
 | CPU 架构 | 支持的操作系统 |
 | --- | --- |
-| x86_64 | Ubuntu 20.04、Ubuntu 22.04、CentOS 7 |
-| arm64 | Ubuntu 20.04、CentOS 7、OpenEuler 22.03 LTS |
+| x86_64 | AlmaLinux 8、AlmaLinux 9、Debian 12、Debian 13、Fedora 36、Fedora 37、openEuler 22、openEuler 24、openSUSE Leap 15、Rocky Linux 8、Rocky Linux 9、Ubuntu 22、Ubuntu 24 |
+| arm64 | AlmaLinux 8、AlmaLinux 9、Debian 12、Debian 13、Fedora 36、Fedora 37、openEuler 22、openEuler 24、openSUSE Leap 15、Rocky Linux 8、Rocky Linux 9、Ubuntu 22、Ubuntu 24 |
 
 > 同一 Kubernetes 集群内，所有 Master、etcd、Worker 节点的 CPU 架构必须保持一致。
 

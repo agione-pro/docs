@@ -7,26 +7,34 @@ next: true
 
 This scenario guides Platform Operators through connecting external cloud platforms, accounts, and regions to {{DOCS_PRODUCT_NAME_EN}} and authorizing them for business and tenant use.
 
+A resource pool here is a regional cloud-resource scope available for authorization. Tenant grants define who may use a cloud platform; business grants define which regions the business may use.
+
 ## Applicable Roles
 
 - Platform Operator
+
+
+**Role handoff:** The Platform Operator completes onboarding and grants and hands over the cloud platform, regions, and approved scope. The Model Provider then checks availability in their own access-account and quick-deployment pages. Callers do not perform operator configuration, and real credentials are not included in handoff records.
 
 ## Scenario Goals
 
 - The cloud platform, cloud account, and target regions are available.
 - Business types and tenants receive the correct cloud-resource authorization.
-- End Users can see the authorized cloud platforms and regions.
+- Authorized Model Providers can see their permitted cloud platforms and regions.
 
 ## Scenario Flow
 
-**Main path:** Connect the cloud platform -> Validate the account and regions -> Grant business and tenant access -> Verify with a user account
+**Main path:** Connect the cloud platform -> Validate the account and regions -> Grant business and tenant access -> Verify with the authorized Model Provider account
 
 | Stage | Key Result |
 | --- | --- |
 | 1. Connect the platform | A public- or private-cloud type becomes a managed resource source |
 | 2. Connect resources | Account validation passes and target regions and pools are available |
 | 3. Grant access | Business types and target tenants receive the correct cloud scope |
-| 4. Verify as a user | End Users see and use only authorized platforms and regions |
+| 4. Verify as a user | Authorized Model Providers see and use only their permitted platforms and regions |
+
+
+> Availability prerequisite: use only entries opened in the current environment. If Quick Access or Runtime Images displays an unavailable-feature notice, do not continue from historical screenshots. Ask the operator to confirm dependencies before proceeding with available configuration pages.
 
 ## Before You Start
 
@@ -38,7 +46,7 @@ This scenario guides Platform Operators through connecting external cloud platfo
 1. Start with Quick Access and Access Overview to understand global progress.
 2. Connect the cloud platform, account, and resource pools.
 3. Grant business-region access.
-4. Grant tenant-cloud access and validate with a End User.
+4. Grant tenant-cloud access and validate with an authorized Model Provider.
 
 ## Document Index
 
@@ -61,14 +69,14 @@ This scenario guides Platform Operators through connecting external cloud platfo
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to confirm that the result is observable and reviewable before continuing. If any check fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |
 | 1 | The cloud platform, account, and target regions are available. |
 | 2 | The business type has the intended regional access. |
 | 3 | The target tenant has cloud-platform access. |
-| 4 | A End User sees only the authorized platforms, regions, and access-account entries. |
+| 4 | An authorized Model Provider sees only the permitted platforms, regions, and access-account entries. |
 
 ## Troubleshooting
 

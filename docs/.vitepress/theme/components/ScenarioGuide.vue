@@ -507,26 +507,6 @@ const commonTasks: CommonTask[] = [
     ],
   },
   {
-    id: 'application-review',
-    question: { zh: '如何发布应用并完成审核？', en: 'How do I publish and approve an application?' },
-    keywords: { zh: '应用 发布 审核 客户 可见 调用 参数映射', en: 'application publish review customer visibility calling parameter mapping' },
-    goal: {
-      zh: '核对应用绑定模型、调用入口和客户范围，完成审核及客户侧调用验证。',
-      en: 'Review the bound model, calling entry, and customer scope, then validate approval and customer calls.',
-    },
-    roles: ['operator'],
-    steps: [
-      {
-        scenarioId: 24,
-        stage: { zh: '发布与审核', en: 'Publish and review' },
-        description: {
-          zh: '检查发布材料，记录审核意见，并验证目标客户可见和可调用。',
-          en: 'Review publishing materials, record the decision, and validate intended-customer visibility and calls.',
-        },
-      },
-    ],
-  },
-  {
     id: 'cloud-scheduling',
     question: { zh: '如何接入多云资源并配置调度策略？', en: 'How do I onboard multi-cloud resources and configure scheduling?' },
     keywords: { zh: '多云 云账号 资源池 授权 调度 策略 回退', en: 'multi-cloud cloud account resource pool authorization scheduling policy fallback' },
@@ -548,8 +528,8 @@ const commonTasks: CommonTask[] = [
         scenarioId: 27,
         stage: { zh: '配置调度', en: 'Configure scheduling' },
         description: {
-          zh: '设置首选资源池、容量阈值、优先级和回退约束。',
-          en: 'Set preferred pools, capacity thresholds, priority, and fallback constraints.',
+          zh: '关联目标模型，配置主备路由拓扑和健康探测规则。',
+          en: 'Associate the target model and configure primary/backup routing and health probes.',
         },
       },
       {
@@ -576,7 +556,7 @@ const commonTasks: CommonTask[] = [
         scenarioId: 4,
         stage: { zh: '准备配置', en: 'Prepare' },
         description: {
-          zh: '准备元模型、模型来源、模板、标签和审核条件。',
+          zh: '准备元模型、模型源、模板、标签和审核条件。',
           en: 'Prepare Meta Models, model sources, templates, tags, and review conditions.',
         },
       },
@@ -584,7 +564,7 @@ const commonTasks: CommonTask[] = [
         scenarioId: 3,
         stage: { zh: '发布模型', en: 'Publish' },
         description: {
-          zh: '配置模型来源、协议、计费和流控并提交发布。',
+          zh: '配置模型源、协议、计费和流控并提交发布。',
           en: 'Configure the source, protocol, billing, and rate control, then submit the model.',
         },
       },
@@ -696,8 +676,8 @@ const commonTasks: CommonTask[] = [
         scenarioId: 27,
         stage: { zh: '配置策略', en: 'Configure policy' },
         description: {
-          zh: '设置资源选择、容量阈值、优先级和回退规则。',
-          en: 'Set resource selection, capacity thresholds, priorities, and fallback rules.',
+          zh: '按模型关联、主备路由拓扑、健康探测三步配置策略。',
+          en: 'Configure policy through model association, primary/backup topology, and health probes.',
         },
       },
       {
@@ -762,7 +742,7 @@ const scenarios: Scenario[] = [
     guideSlug: 'publish-model-preconfiguration',
     title: { zh: '发布模型（预设置）', en: 'Publish Models Preconfiguration' },
     description: {
-      zh: '为发布准备标准化的元模型、模型来源、模板和标签，降低模型提供方的重复配置。',
+      zh: '为发布准备标准化的元模型、模型源、模板和标签，降低模型提供方的重复配置。',
       en: 'Prepare standardized meta-models, model sources, templates, and tags to reduce repeated provider configuration.',
     },
     roles: ['operator'],
@@ -906,10 +886,10 @@ const scenarios: Scenario[] = [
     guideSlug: 'on-cloud-model-deployment-calling',
     title: { zh: '多平台调度：模型部署与调用', en: 'On Cloud Model Deployment & Calling' },
     description: {
-      zh: '从云上模型广场选模型，完成部署并获得 API 调用能力。',
-      en: 'Select models from the cloud model marketplace, deploy them, and obtain API calling capability.',
+      zh: '模型提供方选择模型、确认接入账号并发起部署，核对发布与调用结果。',
+      en: 'Providers select a model, confirm the access account, submit a deployment, and verify publishing and calls.',
     },
-    roles: ['provider', 'enduser'],
+    roles: ['provider'],
     subsystems: ['on-cloud'],
     tasks: ['gpu', 'call'],
   },
@@ -998,18 +978,6 @@ const scenarios: Scenario[] = [
     tasks: ['account', 'call', 'bill'],
   },
   {
-    id: 24,
-    guideSlug: 'application-publishing-approval',
-    title: { zh: '应用发布与审核', en: 'Application Publishing & Approval' },
-    description: {
-      zh: '核对应用绑定模型、调用入口和客户范围，完成审核并验证客户可见性与调用。',
-      en: 'Review bound models, calling entries, and customer scope, then validate approval, visibility, and calls.',
-    },
-    roles: ['operator'],
-    subsystems: ['model-services'],
-    tasks: ['publish'],
-  },
-  {
     id: 25,
     guideSlug: 'on-prem-runtime-storage-foundation',
     title: { zh: '异构卡纳管：运行镜像与存储', en: 'On-Prem Runtime Images & Storage' },
@@ -1038,8 +1006,8 @@ const scenarios: Scenario[] = [
     guideSlug: 'on-cloud-scheduling-policy',
     title: { zh: '多平台调度：调度策略', en: 'On-Cloud Scheduling Policies' },
     description: {
-      zh: '配置首选资源池、容量阈值和故障回退，并用测试部署验证实际调度结果。',
-      en: 'Configure preferred pools, capacity thresholds, and failure fallback and validate actual scheduling with a test deployment.',
+      zh: '关联模型和版本，配置主备路由与健康探测，再核对策略状态和实际路由。',
+      en: 'Associate a model and version, configure primary/backup routing and health probes, then verify policy state and actual routing.',
     },
     roles: ['operator'],
     subsystems: ['on-cloud'],
@@ -1062,8 +1030,8 @@ const scenarios: Scenario[] = [
     guideSlug: 'new-model-template-inference',
     title: { zh: '异构卡纳管：新模型模板准备与部署调用', en: 'On-Prem New Model Template Preparation & Deployment' },
     description: {
-      zh: '完成 ModelScope 模型下载与昇腾 910B 推理模板制作，并由模型提供方完成实例部署、发布与调用验证。',
-      en: 'Complete ModelScope model download, Ascend 910B inference template creation, and validate instance deployment, publishing, and API calls.',
+      zh: '按实际硬件与框架准备模型版本和推理模板，由提供方部署实例、检测并登记私有服务，再验证授权调用。',
+      en: 'Prepare model versions and inference templates for the actual hardware and framework, then deploy, probe, register a private service, and validate authorized calls.',
     },
     roles: ['operator', 'provider'],
     subsystems: ['on-prem', 'model-services'],

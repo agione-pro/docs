@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - License Lifecycle Management
 
-This scenario helps operators distinguish Platform License from Managed Objects authorization, complete the correct activation flow, and continuously review subscription state, authorized versions, validity, quota, and managed objects.
+This scenario helps operators distinguish Platform License from Managed Objects authorization, complete the correct activation flow, and continuously review subscription state, authorized versions, validity, quota, and managed objects. A License grants usage authorization: Platform License covers the platform subscription, while Managed Objects covers managed-object capacity. Check these two dimensions separately.
 
 ## Applicable Roles
 
@@ -55,7 +55,7 @@ This scenario helps operators distinguish Platform License from Managed Objects 
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. They confirm that the License works on the correct instance and supports the intended resource scale. A successful activation response alone is not completion.
+Verify authorization on the correct deployment and the required capacity; activation success alone is insufficient.
 
 | Check | Pass Criteria |
 | --- | --- |

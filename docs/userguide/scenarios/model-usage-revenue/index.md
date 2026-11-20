@@ -11,9 +11,13 @@ This scenario shows callers how to review usage and providers how to reconcile c
 
 - End User and Model Provider
 
+The caller supplies the reconciliation scope and model/request identifiers from logs; the provider adds the effective revision, billing unit, and price basis. Hand unexplained differences to the operator without exchanging real keys or full request bodies.
+
 ## Goals
 
-- Match usage data with call logs by time, Model ID, and Attribution.
+The billing cycle is the accounting period; dates narrow the viewing range. Tokens are model text-processing units, not monetary amounts.
+
+- Read usage by billing cycle and date; verify model route, caller attribution, and source in logs.
 - Trace revenue back to valid calls and pricing rules.
 - Locate discrepancies by Model ID, attribution scope, caller, billing period, or configuration.
 
@@ -25,8 +29,8 @@ This scenario shows callers how to review usage and providers how to reconcile c
 | --- | --- |
 | 1. Align scope | User, model, Model ID, provider, currency, and time range are consistent |
 | 2. Check calls | Model ID, Attribution, success, failure, token, or duration records are traceable |
-| 3. Check usage | Usage details map to valid calls by Model ID and Attribution in the same scope |
-| 4. Reconcile settlement | User charges, provider revenue, and publication pricing explain each other |
+| 3. Check usage | Read overview and details by cycle and dates without assuming additional filters |
+| 4. Reconcile settlement | Read caller consumption, provider income, and active prices separately rather than equating them |
 
 ## Before You Start
 
@@ -48,10 +52,10 @@ This scenario shows callers how to review usage and providers how to reconcile c
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |
 | 1 | Successful and failed calls can be located over one consistent time range. |
-| 2 | Model ID, Attribution, tokens, requests, or duration in Model Usage map to valid call records. |
-| 3 | User charges, provider revenue, billing units, currency, and publication pricing explain each other. |
+| 2 | Review Model Usage by cycle and date, and inspect route and caller attribution separately in logs. |
+| 3 | Read consumption and provider income separately, handing differences over with aligned scope and effective prices. |

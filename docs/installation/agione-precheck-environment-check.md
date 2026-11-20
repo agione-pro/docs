@@ -1,11 +1,15 @@
 # AGIOne Pre-install Environment Check Guide
 
+::: warning Command-line installation is being retired
+New deployments use [Install AGIOne](./clusterd-agione-best-practices). See [What ClusterD Does](./clusterd-overview). Installation and upgrade are in [Install, Upgrade, and Uninstall](./clusterd/). This page is the pre-install check for `./agione`.
+:::
+
 ## Introduction
 
 | Item | Content |
 |------|---------|
 | Applicable Role | Pre-install checker, delivery engineer, customer operations engineer |
-| Navigation Path | Deployment > AGIOne Pre-install Environment Check |
+| Navigation Path | Deployment > Install AGIOne > Command-Line Install > Pre-install Check |
 | Function Description | Identifies resource, port, permission, Docker, SSH, offline bundle, and middleware connectivity risks before `./agione quick` or `./agione install` |
 
 The precheck does not install the product. Its purpose is to expose blockers before formal installation. For a first run, remember the basic order: **run `doctor`, fix `FAIL`, then decide how to handle `WARN`**.

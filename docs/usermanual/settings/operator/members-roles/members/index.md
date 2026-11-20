@@ -1,13 +1,18 @@
 # Members
 
+::: info Document Information
+Version: v2.2
+Updated: 2026-11-16
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Members & Roles > Members |
-| Page route | `/user/user-space/team-members` |
-| Managed objects | Members, roles, status, and contact information |
+| Navigation Path | Settings > Members & Roles > Members |
+| Page Route | `/user/user-space/team-members` |
+| Managed Object | Members, roles, status, and contact information |
 
 #### Beginner Explanation
 
@@ -17,10 +22,10 @@ Operator members are the platform-console duty roster. They determine who can en
 
 | Term | Description |
 | --- | --- |
-| Operator member | A member with access to platform administration functions.; Assign a role based on job responsibilities. |
-| Platform role | A role that controls which operator modules a member can manage.; Do not grant more permission than required. |
-| Member status | Indicates whether a member is enabled, disabled, or pending activation.; Check status first when login fails. |
-| Management scope | The tenants or system settings visible to a member.; Confirm the scope during troubleshooting. |
+| Operator member | A member with access to platform administration functions. Assign a role based on job responsibilities. |
+| Platform role | A role that controls which operator modules a member can manage. Do not grant more permission than required. |
+| Member status | Indicates whether a member is enabled, disabled, or pending activation. Check status first when login fails. |
+| Management scope | The tenants or system settings visible to a member. Confirm the scope during troubleshooting. |
 
 ## Prerequisites
 
@@ -33,6 +38,8 @@ Operator members are the platform-console duty roster. They determine who can en
 The page provides member filters, a member list, and row actions for adding members, reviewing account state, and maintaining role assignments.
 
 ![Members](./images/members-list.png)
+
+The member list shows username, display name, contact details, roles, member tags, and status. Adding a member creates a real account.
 
 | Area | Description |
 | --- | --- |
@@ -58,7 +65,9 @@ The page provides member filters, a member list, and row actions for adding memb
 
 ![Add Member](./images/add-member.png)
 
-4. Fill in `Username`, `Full name`, `Email`, `Password`, and `Confirm Password`.
+The figure shows the `Add Member` form, including `Username`, `Display name`, `Email`, `Password`, and `Confirm Password`.
+
+4. Fill in `Username`, `Display name`, `Email`, `Password`, and `Confirm Password`.
 5. Fill in `Contact number` as needed, including the country or region code and phone number.
 6. Select a member role from `Role`.
 7. Select `Enable` or `Disable` in `Status`.
@@ -67,17 +76,28 @@ The page provides member filters, a member list, and row actions for adding memb
 
 ### Edit a Member
 
-1. Open `Settings > Members & Roles > Members`.
-2. Locate the target Members and click **"Edit"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > Members & Roles > Members`.
+2. Locate the target member in the list and click `Edit`.
+3. Review or change the display name, email, phone number, roles, and status as provided. The username is usually read-only.
+4. Before clicking `Confirm`, verify the member identity, role permissions, and enabled status.
+5. Return to the list and verify the display name, roles, status, and update time.
 
-![Edit User](./images/edit-member.png)
+![Members list before opening the edit dialog](./images/edit-member.png)
 
-The dialog shows the username, full name, email, contact number, role, and status fields. Click `Cancel` when you only need to review the configuration.
+The figure shows the Members list before the edit dialog is opened. Use the row action to open the form; click `Cancel` when you only need to review the configuration.
 
 ## Parameter Quick Reference
+
+### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Username | — | — | — | Filters members by username. |
+| Phone Number | — | — | — | Filters members by phone number. |
+
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -154,34 +174,6 @@ The current account is not in the platform administration tenant, the members be
 **Resolution:**
 
 Confirm that you are using the operator entry and verify the platform tenant and administrator role. Ask a super administrator to grant operator-member access when required.
-
-#### How should the Members page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Members page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

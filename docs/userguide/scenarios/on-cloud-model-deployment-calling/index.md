@@ -7,10 +7,14 @@ next: true
 
 This scenario guides tenant users through quickly deploying a model from the cloud marketplace and obtaining API calling capability.
 
+An API (application programming interface) is the entry for calling the deployed service. Deployment allocates runtime resources; model publication determines how downstream users discover and call the service. They are separate steps.
+
 ## Applicable Roles
 
 - Model Provider
-- End User
+
+
+**Role handoff:** The Platform Operator first provides authorized resources and available model assets. The Model Provider connects an account, deploys, and publishes as required within their permissions. End Users try or call the published service only after authorization; they do not submit deployments for the provider.
 
 ## Scenario Goals
 
@@ -33,7 +37,7 @@ This scenario guides tenant users through quickly deploying a model from the clo
 
 - The Platform Operator has completed cloud-resource, business-region, and tenant authorization.
 - The target model asset is published.
-- A redacted example of the user cloud-account credential is prepared.
+- The model provider has obtained valid least-privilege cloud credentials through a secure channel; shared materials contain placeholders only.
 
 ## Recommended Reading Order
 
@@ -67,15 +71,15 @@ This scenario guides tenant users through quickly deploying a model from the clo
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to confirm that the result is observable and reviewable before continuing. If any check fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |
 | 1 | The access account passes validation and authorized regions are visible. |
 | 2 | Quick deployment can select the target model, inference engine, and compute plan. |
 | 3 | Deployment reaches Running without repeated errors in events or monitoring. |
-| 4 | A controlled request succeeds with redacted endpoint and API key handling. |
-| 5 | Stopping or deleting a test deployment releases resources as expected. |
+| 4 | A controlled request succeeds with a valid endpoint and credentials, with no real secrets stored in documentation. |
+| 5 | Before stopping or deleting a test deployment, assess impact; afterward check instance state, cloud resources, and cost separately. Stopping does not itself prove full release or zero cost. |
 
 ## Troubleshooting
 

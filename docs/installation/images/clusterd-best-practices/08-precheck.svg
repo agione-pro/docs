@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 846" width="840" height="846" role="img" aria-labelledby="08-precheck-title 08-precheck-desc">
+  <title id="08-precheck-title">Precheck, Confirmation and Installation</title>
+  <desc id="08-precheck-desc">Precheck, Confirmation and Installation</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563eb" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="0" />
+  <text x="420" y="52" font-size="26" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">Precheck, Confirmation and Installation</text>
+  <g id="notice-badge">
+    <rect x="160" y="70" width="520" height="32" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="420" y="91" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="500" fill="#475569" text-anchor="middle">Workflow diagram, not a live screenshot</text>
+  </g>
+  <g id="stage-1">
+    <rect x="40" y="120" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="134" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="152" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">STEP 1</text>
+    <text x="146" y="153" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">Review services and run precheck</text>
+    <text x="60" y="188" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Review services delivered by this Release</text>
+    <text x="60" y="214" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Click Run precheck and wait for the complete report</text>
+  </g>
+  <path d="M 420 238 L 420 266" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-2">
+    <rect x="40" y="266" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="280" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="298" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">STEP 2</text>
+    <text x="146" y="299" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">Handle results without bypassing blockers</text>
+    <text x="60" y="334" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Technical blocker: fix it and rerun precheck</text>
+    <text x="60" y="360" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Overridable risk: understand and accept individually</text>
+  </g>
+  <path d="M 420 384 L 420 412" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-3">
+    <rect x="40" y="412" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="426" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="444" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">STEP 3</text>
+    <text x="146" y="445" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">Review scope only when the result allows it</text>
+    <text x="60" y="480" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Check current inputs, nodes and target disks</text>
+    <text x="60" y="506" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Risk acknowledgment never bypasses technical blockers</text>
+  </g>
+  <path d="M 420 530 L 420 558" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-4">
+    <rect x="40" y="558" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="572" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="590" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">STEP 4</text>
+    <text x="146" y="591" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">Start installation and confirm</text>
+    <text x="60" y="626" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Click Start installation and review final confirmation</text>
+    <text x="60" y="652" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">Submit once and wait for the current task</text>
+  </g>
+  <path d="M 420 676 L 420 704" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="criteria-banner">
+    <rect x="40" y="704" width="760" height="118" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" />
+    <rect x="56" y="718" width="78" height="26" rx="4" fill="#d97706" />
+    <text x="95" y="736" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">NOTE</text>
+    <text x="144" y="737" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#b45309">Report validity</text>
+    <text x="60" y="769" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">Rerun precheck after changes; an old report is not valid</text>
+    <text x="60" y="795" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">Inspect failed-task logs before considering a reinstall</text>
+  </g>
+</svg>

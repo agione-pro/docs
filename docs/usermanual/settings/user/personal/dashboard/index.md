@@ -1,13 +1,18 @@
 # Dashboard
 
+::: info Document Information
+Version: v2.1
+Updated: 2026-11-12
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Personal > Dashboard |
-| Page route | `/user/user-space/workspace/overview` |
-| Managed objects | Personal Keys quota, project and member statistics, API Key statistics, and quick actions |
+| Navigation Path | Settings > Personal > Dashboard |
+| Page Route | `/user/user-space/workspace/overview` |
+| Managed Object | Personal Keys quota, project and member statistics, API Key statistics, and quick actions |
 
 #### Beginner Explanation
 
@@ -47,7 +52,7 @@ Read the quota summary first, then review the four statistic cards. Use **"Reque
 
 **Result validation:** All four summary cards show a statistic or quota state, and Projects, My Keys, and Member Quota Requests are available below them.
 
-**Note:** Dashboard provides a quick summary. Use the Projects, Keys, Members, and Quota Requests pages for details.
+**Note:** Dashboard provides a quick summary. Use the Projects, Keys, Members, and Quota Approvals pages for details.
 
 **FAQ:** If a card is empty or does not update, confirm the current tenant and member scope, then check the corresponding details page.
 
@@ -61,9 +66,9 @@ Read the quota summary first, then review the four statistic cards. Use **"Reque
 
 ![Request Quota](./images/manual-settings-user-dashboard-request-quota-20260902.png)
 
-The screenshot shows the quota summary, requested amount, reason, and submission entry. Current quota values are redacted; field names, the default input value, and the status notice remain visible.
+The figure shows the `Request Quota` dialog with the quota summary, requested amount, reason, and `Submit Request`. The example shows `Unlimited` for current granted and remaining quota.
 
-**Result validation:** After successful submission, the request appears on Quota Requests. After approval, Dashboard updates the quota according to the result.
+**Result validation:** After successful submission, the request appears on Quota Approvals. After approval, Dashboard updates the quota according to the result.
 
 **Note:** Confirm the quota unit and reason before submission. Do not submit duplicate requests for the same purpose.
 
@@ -99,14 +104,14 @@ The screenshot shows the quota summary, requested amount, reason, and submission
 
 1. Go to `Settings > Personal > Dashboard`.
 2. Locate the `Member Quota Requests` card under `Quick Actions`.
-3. Click the card or **"Open queue"** to open Quota Requests.
+3. Click the card or **"Open queue"** to open Quota Approvals (the quick-action button is labeled Quota Requests).
 4. On the target page, review the requester, requested amount, status, and submission time, then continue according to the current permissions.
 
-**Result validation:** The page opens `/user/user-space/quota-requests`, and `Quota Requests` is selected in the left navigation.
+**Result validation:** The page opens `/user/user-space/quota-requests`, and `Quota Approvals` is selected in the left navigation.
 
 **Note:** The Dashboard entry only opens the queue. It does not indicate that the current account can approve or withdraw requests.
 
-**FAQ:** If the queue is unavailable, check Quota Requests menu permission, tenant scope, and whether any visible request exists.
+**FAQ:** If the queue is unavailable, check Quota Approvals menu permission, tenant scope, and whether any visible request exists.
 
 ## Parameter Quick Reference
 
@@ -233,3 +238,5 @@ Projects, My Keys, or Member Quota Requests cannot be selected, or the target pa
 1. Open Projects to review project members and budgets.
 2. Open My Keys to manage personal Keys and confirm their valid scope.
 3. Open Quota Requests to review request status, or open Member Quotas to check granted quota.
+
+Related pages: [Projects](../projects/)、[My Keys](../my-keys/)、[Quota Approvals](../../members-roles/quota-requests/)、[Member Quotas](../../members-roles/member-quotas/)

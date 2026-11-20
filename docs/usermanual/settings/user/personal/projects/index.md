@@ -1,13 +1,18 @@
 # Projects
 
+::: info Document Information
+Version: v2.2
+Updated: 2026-11-16
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Personal > Projects |
-| Page route | `/user/user-space/projects` |
-| Managed objects | Projects, project status, budget usage, creation time, and project details |
+| Navigation Path | Settings > Personal > Projects |
+| Page Route | `/user/user-space/projects` |
+| Managed Object | Projects, project status, budget usage, creation time, and project details |
 
 #### Beginner Explanation
 
@@ -17,10 +22,10 @@ Projects is the project ledger for a provider account. It shows project names, b
 
 | Term | Description |
 | --- | --- |
-| Project | A business workspace for model calls, budgets, and member collaboration.; Confirm project ownership before creation or troubleshooting. |
-| Project budget | The quota or amount limit available to a project.; Reaching it can block calls. |
-| Model count | The models associated with or available to a project.; Check model authorization when it is unexpected. |
-| Member | An account that collaborates in a project.; Verify the member role for permission problems. |
+| Project | A business workspace for model calls, budgets, and member collaboration. Confirm project ownership before creation or troubleshooting. |
+| Project budget | The quota or amount limit available to a project. Reaching it can block calls. |
+| Model count | The models associated with or available to a project. Check model authorization when it is unexpected. |
+| Member | An account that collaborates in a project. Verify the member role for permission problems. |
 
 ## Prerequisites
 
@@ -43,55 +48,55 @@ Projects is the project ledger for a provider account. It shows project names, b
 ### View Projects
 
 1. Go to `Settings > Personal > Projects`.
-2. Filter by project name, status, member, or update time.
-3. Open details and check members, quota, defaults, and status.
-4. If no record is returned, reset filters and check the tenant context. Project information must be redacted before sharing.
-
-### Create a Project
-
-1. Click **"Create Project"**.
-2. Check the name, members, quota, and defaults.
-3. Before saving, confirm quota and member scope. Close the form without submission during read-only validation.
-4. After an approved save, verify the new state in the list and details. If it fails, check name uniqueness, required fields, and quota limits.
-
-### Edit a Project
-
-1. Go to `Settings > Personal > Projects`.
-2. Use search or status filters to locate the project.
-3. Review project name, status, budget usage, and creation time.
-
-The following screenshot shows the project list. Filters are above the list and row actions are on the right.
+2. Filter by the `Available` / `All` scope, the search box, and status.
+3. Review project name, status, budget usage, model allowlist, and creation time.
+4. If no record appears, click `Reset` and confirm the current tenant. Redact project information before sharing.
 
 ![Projects list](./images/projects-list.png)
 
-4. Select `Create Project` to open the form.
-5. Enter project name, description, reset cycle, cycle budget, budget alert threshold, over-budget policy, and model allowlist.
-6. Confirm the impact before selecting `Create`.
+The project list shows project name, status, budget usage, model allowlist, and creation time. An empty list shows the empty state and create entry.
 
-The following screenshot shows the Create Project form.
+### Create a Project
+
+1. Click `Create Project` in the upper-right corner.
+2. Use `Basics & Budget` for project name, description, reset cycle, period budget, warning threshold, and over-budget policy; open `Model Access` to review the model whitelist. During a read-only review, leave initial values unchanged, do not toggle the whitelist, and use `Cancel` to return to the list.
+3. Confirm the member scope and quota impact, then click `Create`.
+4. Return to the list and verify the new project. If it fails, check name uniqueness, required fields, and quota limits.
 
 ![Create Project](./images/create-project.png)
 
-7. Select `View` in the project row to open project details.
-8. Use Overview, Members, Usage, API Keys, Activity, and Settings to review project configuration.
+The figure shows the complete Basics & Budget tab of the Create Project drawer, including the title, name, description, cycle, budget, warning, STOP/WARN options, and footer. The 10,000-credit budget, 80% warning, and monthly cycle are untouched form examples, not recommendations or a created project.
 
-The following screenshot shows project details.
+![Create Project Model Access](./images/create-project-model-access.png)
 
-![Project Details](./images/project-detail.png)
+The figure shows Model Access in the same empty drawer, with the whitelist disabled and the complete scope help, member/tenant restrictions, and Cancel/Create footer. Help text is not proof of actual API access or enforcement.
 
 ### View Project Details
 
-1. Open `Settings > Personal > Projects`.
-2. Locate the target Projects and click **"View"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Click `View` on the target project.
+2. Switch between `Overview`, `Members`, `Usage`, `API Keys`, `Activity`, and `Settings`.
+3. Review budget, remaining credits, members, model allowlist, and status.
+4. During read-only validation, do not change budgets, members, or Key configuration.
+
+![Project Details](./images/project-detail.png)
+
+Project details include Overview, Members, Usage, API Keys, Activity, and Settings tabs. Review budget, members, model allowlist, and status.
 
 ## Parameter Quick Reference
 
+### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| Project name | No | Text | `Example Project A` | Identifies the project. |
+| Filters | — | — | — | Search projects and availability status |
+
+### Existing Configuration and Result Fields
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Project name | Marked required in current form | Text | `Example Project A` | Identifies the project; only the visible required marker was checked, not server-side submission validation. |
 | Budget | No | Credits | `10,000 Credits` | Limits the credits available to the project. |
 | Model count | System-generated | Number | `5` | Shows the number of models associated with the project. |
 | Project status | System-generated | Enum | `Enabled` | Indicates whether the project can continue to be used. |
@@ -159,34 +164,6 @@ The current account is not a project administrator, the tenant disables self-ser
 
 Verify the project role and tenant project policy. Ask a project or tenant administrator to make the change, then verify it in project details.
 
-#### How should the Projects page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Projects page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - `Archive` affects later project use. Confirm that the project no longer serves calls before archiving it.
@@ -197,3 +174,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 1. Maintain members and API Keys in project details.
 2. Review project usage and activity.
 3. Adjust budget, allowlist, and over-budget policy when required.
+
+Related pages: [My Keys](../my-keys/)、[Members](../../members-roles/team-members/)

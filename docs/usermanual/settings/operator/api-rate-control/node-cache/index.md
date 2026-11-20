@@ -1,13 +1,18 @@
 # Node Cache
 
+::: info Document Information
+Version: v2.2
+Updated: 2026-11-16
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > API Rate Control > Node Cache |
-| Page route | `/user/system/rate-control/node-cache` |
-| Managed objects | API rate-control nodes, rule versions, rule counts, and cache status |
+| Navigation Path | Settings > API Rate Control > Node Cache |
+| Page Route | `/user/system/rate-control/node-cache` |
+| Managed Object | API rate-control nodes, rule versions, rule counts, and cache status |
 
 #### Beginner Explanation
 
@@ -17,10 +22,10 @@ Node Cache works like a synchronization status table for rate-control rules on e
 
 | Term | Description |
 | --- | --- |
-| Node cache | Rate-control rule status stored locally on a node.; Check versions after publishing. |
-| Rule version | The rule version currently loaded by a node.; Troubleshoot publishing when versions differ. |
-| Synchronization status | Whether a node has completed rule synchronization.; Check Publish Center when abnormal. |
-| Refresh | Reload node cache status.; Use it after publishing to confirm status. |
+| Node cache | Rate-control rule status stored locally on a node. Check versions after publishing. |
+| Rule version | The rule version currently loaded by a node. Troubleshoot publishing when versions differ. |
+| Synchronization status | Whether a node has completed rule synchronization. Check Publish Center when abnormal. |
+| Refresh | Reload node cache status. Use it after publishing to confirm status. |
 
 ## Prerequisites
 
@@ -40,6 +45,8 @@ The page lists rate-control nodes and cache state so that Operators can verify s
 
 ![Node Cache](./images/node-cache-list.png)
 
+The Node Cache list shows nodes, rule versions, rule counts, and cache status. Compare versions before refreshing when they differ.
+
 ## Main Operations
 
 ### View Node Cache
@@ -56,7 +63,7 @@ The page lists rate-control nodes and cache state so that Operators can verify s
 3. A healthy node should show the same version or synchronized status. For a mismatch, first confirm that publishing completed, then escalate to authorized personnel.
 4. Do not repeatedly publish or clear cache to test the issue because online requests may be affected.
 
-Use this operation to query node cache status. Do not add create or publish operations to this query-oriented workflow.
+Use this operation to query node cache status.
 
 ### Refresh Node Cache
 
@@ -68,6 +75,16 @@ Use this operation to query node cache status. Do not add create or publish oper
 6. For learning or screenshots, only view the list and refresh status. Do not clear, rebuild, or perform other high-risk operations.
 
 ## Parameter Quick Reference
+
+### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Node ID | — | — | — | Filter by node. |
+
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -135,34 +152,6 @@ The current account has view-only permission, the node is offline, or cache clea
 **Resolution:**
 
 Confirm rate-control operation permissions and node online status. Record the impact scope before cleanup and let an authorized administrator perform the action.
-
-#### How should the Node Cache page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Node Cache page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

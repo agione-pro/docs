@@ -1,11 +1,15 @@
 # AGIOne 多节点环境安装部署文档
 
+::: warning 命令行安装将停用
+新部署使用 [安装 AGIOne](./clusterd-agione-best-practices)。ClusterD 的说明见 [ClusterD 是什么](./clusterd-overview)，安装、升级和卸载见 [安装、升级与卸载](./clusterd/)。本文是 `./agione` 多节点命令行安装。
+:::
+
 ## 前言
 
 | 项目 | 内容 |
 | --- | --- |
 | 适用角色 | 生产交付工程师、现场实施工程师、客户平台运维工程师 |
-| 导航路径 | 部署 > AGIOne 多节点环境安装部署 |
+| 导航路径 | 部署 > 安装 AGIOne > 命令行安装 > 多节点安装 |
 | 功能定位 | 指导用户完成 AGIOne host-mode 多节点部署，包括节点规划、配置准备、预检、安装和验收 |
 
 相比单节点部署，多节点部署多了三个关键动作：**规划节点角色、准备 `/root/agione-install.yml`、验证 SSH 和中间件连通性**。如果你是第一次做多节点交付，先用下面的时间线理解全流程，再执行命令。
@@ -365,7 +369,7 @@ host-mode 会在同步 bundle 前确认所有目标节点至少具备 `sha256sum
 ### 4.4 执行安装
 
 ::: warning 使用 `/root/agione-install.yml` 前，先打开配置字段说明
-如果使用配置文件安装，请不要从空白 YAML 开始猜字段。先打开[安装配置文件字段说明](https://docs-preview.agione.cc/zh-CN/installation/agione-install-config-reference.html)，根据部署场景复制 2.1、2.2 或 2.3 的最小配置，再替换节点 IP、SSH 凭据、中间件地址、密码和域名等占位值。
+如果使用配置文件安装，请不要从空白 YAML 开始猜字段。先打开[安装配置文件字段说明](/zh-CN/installation/agione-install-config-reference)，根据部署场景复制 2.1、2.2 或 2.3 的最小配置，再替换节点 IP、SSH 凭据、中间件地址、密码和域名等占位值。
 
 配置文件准备好后，先用同一份文件执行 `doctor` 预检，再执行下面的 `quick` 安装命令。
 :::

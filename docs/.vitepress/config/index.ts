@@ -7,7 +7,12 @@ import { installDocsProfile } from './profile'
 
 export default defineConfig({
   ...baseConfig,
-  ignoreDeadLinks: true,
+  ignoreDeadLinks: false,
+  transformPageData(pageData) {
+    if (pageData.relativePath.startsWith('api/') || pageData.relativePath.startsWith('zh-CN/api/')) {
+      pageData.frontmatter.pageClass = (pageData.frontmatter.pageClass ? pageData.frontmatter.pageClass + ' ' : '') + 'api-page'
+    }
+  },
   markdown: {
     config(md) {
       installDocsProfile(md)

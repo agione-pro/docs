@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - Project, Key, and Budget Governance
 
-This scenario helps platform operators configure the display currency and default Credit exchange rate, then helps provider accounts and end users create projects, set budgets and model allowlists, and create controlled, purpose-specific keys that can be rotated.
+This scenario helps platform operators configure the display currency and default Credit exchange rate, then helps provider accounts and end users create projects, set budgets and model allowlists, and create controlled, purpose-specific keys that can be rotated. Credit is the account’s accounting unit; a key is a program’s calling credential. A budget limits spending rather than replacing credential authorization.
 
 ## Applicable Roles
 
@@ -17,15 +17,15 @@ This scenario helps platform operators configure the display currency and defaul
 - Keep the model allowlist aligned with the project's business scope.
 - Make each key's purpose, expiry, limit, and owner clear.
 - Validate controlled calls and trace project and key activity in logs.
-- Configure the platform currency and default Credit exchange rate before recharge and usage validation.
+- Review the existing platform currency and default Credit exchange rate; only an authorized operator performs a required approved change.
 
 ## Scenario Flow
 
-**Main path:** Set platform currency and Credit exchange rate -> Create project -> Configure budget and model scope -> Create key -> Set limits -> Validate calls and audit records
+**Main path:** Verify existing billing settings (change only if required) -> Create project -> Configure budget and model scope -> Create key -> Set limits -> Validate calls and audit records
 
 | Stage | Key Result |
 | --- | --- |
-| 1. Set the billing foundation | Display currency and default Credit exchange rate are saved |
+| 1. Set the billing foundation | Existing currency and exchange rate are verified; any required change is approved |
 | 2. Define the project | Purpose, owner, and member scope are clear |
 | 3. Govern the budget | Cycle budget, alert threshold, and over-budget policy are saved |
 | 4. Restrict access | Model allowlist and key scope match the project |
@@ -38,23 +38,9 @@ This scenario helps platform operators configure the display currency and defaul
 - Identify the project owner, budget cycle, model scope, and over-budget policy.
 - Decide whether the workload needs a Model API Key or System API AK/SK pair.
 
-## Operator Setup: Currency and Default Credit Exchange Rate
+## Operator Prerequisite
 
-Complete this setup before validating recharge, project budgets, or model consumption. It requires an operator account with platform-settings permission.
-
-1. Open [Platform Settings](../../../usermanual/settings/operator/system-settings/platform-settings/) from `Settings > Platform Settings`, then select `Currency Settings`.
-2. Click `Edit` and set `Currency Code`, `Currency Name`, and `Currency Symbol`. Click `Save` after confirming the platform-wide display and settlement impact.
-3. In the same Platform Settings page, select `Account & Settlement` and click `Edit`.
-4. Set `Default Credit exchange rate` in the form `1 <currency code> = <N> credits`, then click `Save`. Use the currency and rate displayed in the current environment.
-
-The exchange rate is used to convert a recharge amount in the configured currency into account Credits. It does not replace the billing price configured for a model.
-
-## How Credits Are Used
-
-1. An end user completes an authorized recharge and receives Credits according to the configured currency and default Credit exchange rate.
-2. The end user calls a model that the account, project, member, and Key are authorized to use.
-3. The platform applies the model's billing mode and price to billable tokens, images, characters, duration, or other units, converting the usage to Credits.
-4. The platform deducts the calculated Credits from the account balance and records the change in usage, transaction, or billing details.
+Only initial setup or an approved change requires an operator to review the platform currency and default Credit exchange rate. If existing settings are correct, proceed to project configuration without resaving global settings. The [Project and Key Configuration Workflow](./project-key-workflow) contains the operating steps and Credit-conversion explanation; this overview does not duplicate them.
 
 ## Recommended Reading Order
 
@@ -72,7 +58,7 @@ The exchange rate is used to convert a recharge amount in the configured currenc
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to confirm that project spending and API credentials have enforceable boundaries and a traceable owner before production use.
+Before production use, verify project costs, credential boundaries, and ownership.
 
 | Check | Pass Criteria |
 | --- | --- |

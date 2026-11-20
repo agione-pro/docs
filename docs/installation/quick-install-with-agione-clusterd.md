@@ -1,35 +1,46 @@
-# Initialize AGIOne ClusterD
+# Onboard Compute
 
-AGIOne ClusterD is a service for managing multiple Kubernetes clusters. It supports the rapid installation of Kubernetes clusters and activation of related components.
+Onboard GPU / NPU nodes as a Kubernetes compute cluster, then activate the device plugin, monitoring, and image service. Complete [Before You Start](./deployment-requirements-for-managing-compute-nodes) first.
 
-AGIOne ClusterD supports the following operating system environments:
+ClusterD is the Web program used when onboarding compute. It runs on the control host and uses SSH to add the cluster, initialize nodes, and activate components on the compute nodes. See [What ClusterD Does](./clusterd-overview).
 
-1. **Linux:** x86_64 and arm64; common distributions such as Ubuntu 22.04, Ubuntu 20.04, and CentOS 7 are supported.
-2. **MacOS:** i386 (Intel-based Macs).
+## Quick Install ClusterD
 
-**Note: Default port is 8080. If another port required, change ``addr`` item from config/config.yaml file.**
+Use Ubuntu 22.04 on x86_64 or ARM64 for the control host. Install ClusterD on the control host.
 
-## Installation
-
-### 1. Download the installation package
-
-- [macos-i386](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-macos.tar.gz)
-- [linux-x86_64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-x86_64.tar.gz)
-- [linux-arm64](https://wanm.oss-cn-beijing.aliyuncs.com/agione-clusterd/agione-clusterd-linux-arm64.tar.gz)
-
-### 2. Extract and start AGIOne ClusterD
-
-Extract the package, enter the extracted directory, and run one of the following commands:
+1. Open the [release download page]({{DOCS_RELEASE_PAGE_URL_EN}}) and copy the full-package URL that matches the control host's `uname -m`, plus that package's own SHA-256.
+2. On the control host, run:
 
 ```bash
-bash start.sh
+sudo -i
+bash
+set -e
+mkdir -p /opt/clusterd-packages
+cd /opt/clusterd-packages
+
+CLUSTERD_PACKAGE_URL="<CLUSTERD_PACKAGE_URL>"
+CLUSTERD_PACKAGE_NAME="agione-clusterd-full-release-XXX-linux-x86_64.tar.gz"
+CLUSTERD_PACKAGE_SHA256="<TRUSTED_OUTER_ARCHIVE_SHA256>"
+
+curl --fail --location --output "$CLUSTERD_PACKAGE_NAME" "$CLUSTERD_PACKAGE_URL"
+printf '%s  %s\n' "$CLUSTERD_PACKAGE_SHA256" "$CLUSTERD_PACKAGE_NAME" | sha256sum -c -
+tar -xzf "$CLUSTERD_PACKAGE_NAME"
+cd "${CLUSTERD_PACKAGE_NAME%.tar.gz}"
+bash verify.sh
+
+CLUSTERD_INSTALL_LOG=/var/log/agione-clusterd-install.log
+if bash install.sh install > "$CLUSTERD_INSTALL_LOG" 2>&1; then
+  tail -n 20 "$CLUSTERD_INSTALL_LOG"
+else
+  tail -n 100 "$CLUSTERD_INSTALL_LOG"
+  false
+fi
+systemctl is-active agione-clusterd
 ```
 
-Or run it in the background:
+On an ARM64 control host, change `x86_64` in the filename to `arm64` and use that package's own URL and SHA-256. After `agione-clusterd-install-ok` and an `active` service, open `http://<control-host-IP>:18093/` and create an account as described in the installation guide.
 
-```bash
-nohup bash start.sh > clusterd.log 2>&1 &
-```
+Host checks, offline transfer, the light package, upgrade, and removal are in [Install, Upgrade, and Uninstall](./clusterd/). The same commands are also in that page's [Quick Install](./clusterd/#quick-install).
 
 ## Onboard a Compute Cluster
 
@@ -37,10 +48,14 @@ nohup bash start.sh > clusterd.log 2>&1 &
 
 ### Add a cluster
 
-1. The default login account is `admin`. Log in with the `admin` account.
-2. After logging in, click **Add Cluster**.
+1. Sign in with the account created when ClusterD was installed. The first-visit account steps are in [Install and Open ClusterD](./clusterd/#_4-install-and-open-clusterd).
+2. The first time you open ClusterD, initialize the user and set a password for the operator account.
 
-![Add cluster](./clusterd-images/add-cluster01.png)
+   ![Initialize the operator account](./clusterd-images/prod01.png)
+
+3. After the password is set, ClusterD opens directly. Open **Compute Management** and add a cluster.
+
+   ![Add a cluster](./clusterd-images/prod02.png)
 
 #### Configure the Maintenance node
 
@@ -48,7 +63,7 @@ nohup bash start.sh > clusterd.log 2>&1 &
 
 1. Enter the cluster name and SSH connection credentials as required, and configure **Network mode**. Select **Offline maintenance** only when the nodes being onboarded cannot access the Internet.
 
-   ![Configure the Maintenance node](./clusterd-images/add-cluster01-maintenance.png)
+   ![Configure the Maintenance node](./clusterd-images/prod03.png)
 
 2. After the configuration is complete, save it. In online mode, ClusterD automatically downloads and extracts the cluster configuration and installation package.
 
@@ -56,63 +71,43 @@ nohup bash start.sh > clusterd.log 2>&1 &
 
 Configure the cluster network information as shown below. In most cases, you can submit and save the default configuration directly, unless **Service CIDR** or **Cluster CIDR** conflicts with the actual environment.
 
-![Initialize the cluster](./clusterd-images/init-cluster.png)
+![Initialize the cluster](./clusterd-images/prod04.png)
 
 #### Add and initialize nodes
 
 1. In the **Add nodes** step, click **Add node**.
 
-   ![Add and initialize a node](./clusterd-images/add-node-init.png)
+   ![Add a node](./clusterd-images/prod05.png)
 
 2. Enter the node IP address. This is usually the node's internal network IP. The Maintenance node must be able to access this IP address over SSH. The SSH credentials entered later are the credentials that the Maintenance node uses to access the corresponding node.
 
    **When fewer than three nodes are onboarded, at least one node must be selected to run the Master/Etcd services. When three or more nodes are onboarded, three nodes must be selected to run the Master/Etcd services.**
 
-3. Configure the GPU model for the node according to the actual hardware, as shown below.
+3. After adding the node, click **Check** to verify that it meets the deployment requirements, including the chip, operating system, storage, and software.
 
-   ![Configure the XPU mode](./clusterd-images/config-xpu-mode.png)
+   ![Check the node](./clusterd-images/prod06.png)
 
-   ![Configure the XPU type](./clusterd-images/config-xpu-type.png)
+   ![Node check report](./clusterd-images/prod07.png)
 
-4. After adding the node, click **Check** to verify that it meets the deployment requirements, including checks for the chip, operating system, storage, and software.
+   If the report shows a problem, repair it.
 
-   ![Check node](./clusterd-images/node-check.png)
+   ![Repair the node](./clusterd-images/prod08.png)
 
-   ![Node check report](./clusterd-images/node-report.png)
+   Run **Check** again after the repair.
 
-5. If all checks pass, click **Init** to install and deploy the node, then wait for the task to complete.
+   ![Check the node again](./clusterd-images/prod09.png)
 
-   ![Initialize the node](./clusterd-images/node-init.png)
+4. When the checks pass, click **Init** to install and deploy the node, then wait for the task to complete.
 
-### Activate middleware components
+   ![Initialize the node](./clusterd-images/prod10.png)
 
-1. After the nodes are initialized, go to **Active components**. Components marked **required** must be activated.
+### Activate components
 
-   ![Activate cluster components](./clusterd-images/cluster-activate.png)
+1. After the nodes are initialized, open **Active components**.
 
-2. **Device Plugin:** Select the appropriate plugin according to the chip type.
+   ![Activate components](./clusterd-images/prod11.png)
 
-   ![Activate Device Plugin](./clusterd-images/device-plugin-activate.png)
-
-3. **InfluxDB service:** Click **Activate** directly.
-
-   ![Activate InfluxDB service](./clusterd-images/influx-db-activate.png)
-
-4. **Monitor service:** Configure **AI Card mode** according to the actual hardware. The other options can be left at their default values.
-
-   ![Activate Monitor service](./clusterd-images/monitoring-activate.png)
-
-5. **JupyterLab Proxy:** Click **Activate** directly.
-
-   ![Activate JupyterLab Proxy](./clusterd-images/proxy-activate.png)
-
-6. **Tool images:** Click **Activate** directly.
-
-   ![Activate Tool images](./clusterd-images/tool-activate.png)
-
-After all steps are complete, the following screen is displayed, indicating that the deployment has completed successfully.
-
-![Deployment completed](./clusterd-images/full-installed.png)
+   Select the accelerator type that matches the hardware, then click **Activate all**.
 
 ## Install the Image Service
 
@@ -129,6 +124,10 @@ After all steps are complete, the following screen is displayed, indicating that
 3. Click **Install Harbor**. After installation is complete, click **View Images** to view the image repository. The repository is empty at this point.
 
    ![View images](./clusterd-images/view-images.png)
+
+4. Configure the insecure image registry. Open **Image activation wizard** and follow it to activate the new local registry.
+
+   ![Activate the local image registry](./clusterd-images/prod14.png)
 
 ### Copy images
 
@@ -155,3 +154,15 @@ Submit the form and wait for the image copy operation to complete.
 3. In the following image, remove `docker pull` from the text highlighted in red to obtain the source image address.
 
    ![SWR image registry](./clusterd-images/swr-image-registry.png)
+
+## Scale out nodes
+
+1. Open **Expansion wizard** and select the cluster to expand.
+
+   ![Select the cluster](./clusterd-images/prod12.png)
+
+2. Add the new node, then enter its SSH credentials and role.
+
+   ![Add an expansion node](./clusterd-images/prod13.png)
+
+3. After the node is added, check and repair it the same way as during the initial deployment. When the checks pass, initialize the new nodes together.

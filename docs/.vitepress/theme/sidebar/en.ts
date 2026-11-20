@@ -83,35 +83,33 @@ export const enSidebar: DefaultTheme.Sidebar = {
           link: "/installation/agione-deployment-requirements"
         },
         {
-          text: "Pre-install Environment Check",
-          link: "/installation/agione-precheck-environment-check"
+          text: "Install AGIOne",
+          collapsed: false,
+          items: [
+            { text: "Install (Recommended)", link: "/installation/clusterd-agione-best-practices" },
+            {
+              text: "Command-Line Install (Retiring)",
+              collapsed: true,
+              items: [
+                { text: "Pre-install Check", link: "/installation/agione-precheck-environment-check" },
+                { text: "Single-Node Install", link: "/installation/agione-quick-install" },
+                { text: "Multi-Node Install", link: "/installation/agione-multi-node-install" },
+                { text: "Configuration Fields", link: "/installation/agione-install-config-reference" },
+              ],
+            },
+          ],
         },
         {
-          text: "Installation & Deployment",
-          link: "/installation/agione-quick-install"
+          text: "Onboard Compute",
+          collapsed: false,
+          items: [
+            { text: "Before You Start", link: "/installation/deployment-requirements-for-managing-compute-nodes" },
+            { text: "Install (Recommended)", link: "/installation/quick-install-with-agione-clusterd" },
+            { text: "Command-Line Install", link: "/installation/quick-install-for-managing-compute-nodes" },
+          ],
         },
         {
-          text: "Multi-Node Installation",
-          link: "/installation/agione-multi-node-install"
-        },
-        {
-          text: "Installation Configuration Reference",
-          link: "/installation/agione-install-config-reference"
-        },
-        {
-          text: "Compute Nodes-Requirements",
-          link: "/installation/deployment-requirements-for-managing-compute-nodes"
-        },
-        {
-          text: "Compute Nodes-Installation",
-          link: "/installation/quick-install-for-managing-compute-nodes"
-        },
-        {
-          text: 'Compute Nodes-Installation with ClusterD',
-          link: '/installation/quick-install-with-agione-clusterd'
-        },
-        {
-          text: "Post-Deployment",
+          text: "After Deployment",
           collapsed: false,
           items: [
             {
@@ -122,6 +120,14 @@ export const enSidebar: DefaultTheme.Sidebar = {
               text: "Enterprise Internal Edition",
               link: "/installation/post-deployment/enterprise-internal-edition"
             },
+          ],
+        },
+        {
+          text: "ClusterD",
+          collapsed: true,
+          items: [
+            { text: "What ClusterD Does", link: "/installation/clusterd-overview" },
+            { text: "Install, Upgrade, and Uninstall", link: "/installation/clusterd/" },
           ],
         },
       ],
@@ -364,14 +370,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Application Publishing & Approval",
-              collapsed: true,
-              items: [
-                { text: "Scenario Overview", link: "/userguide/scenarios/application-publishing-approval/" },
-                { text: "Application Publishing and Approval Workflow", link: "/userguide/scenarios/application-publishing-approval/application-review-workflow" },
-              ],
-            },
-            {
               text: "On-Prem Runtime Images & Storage",
               collapsed: true,
               items: [
@@ -427,16 +425,9 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Meta Models", link: "/usermanual/model-services/operator/settings/meta-models/" },
-                    { text: "Model Sources", link: "/usermanual/model-services/operator/settings/model-source/" },
                     { text: "Model Templates", link: "/usermanual/model-services/operator/settings/model-templates/" },
                     { text: "Tags", link: "/usermanual/model-services/operator/settings/tags/" },
-                  ]
-                },
-                {
-                  text: "Publishing",
-                  collapsed: false,
-                  items: [
-                    { text: "Apps", link: "/usermanual/model-services/operator/publishing/apps/" },
+                    { text: "Model Sources", link: "/usermanual/model-services/operator/settings/model-source/" },
                   ]
                 },
                 {
@@ -444,13 +435,23 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Model Reviews", link: "/usermanual/model-services/operator/approvals/model-reviews/" },
-                    { text: "App Reviews", link: "/usermanual/model-services/operator/approvals/app-reviews/" },
+                  ]
+                },
+                {
+                  text: "Platform Call Analytics",
+                  collapsed: false,
+                  items: [
+                    { text: "Overview", link: "/usermanual/model-services/operator/platform-calls/overview/" },
+                    { text: "Model Sources", link: "/usermanual/model-services/operator/platform-calls/model-sources/" },
+                    { text: "Meta Models", link: "/usermanual/model-services/operator/platform-calls/meta-models/" },
+                    { text: "Customers", link: "/usermanual/model-services/operator/platform-calls/customers/" },
+                    { text: "Client Sources", link: "/usermanual/model-services/operator/platform-calls/call-sources/" },
                   ]
                 },
               ]
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {
@@ -476,6 +477,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "My Models", link: "/usermanual/model-services/user/studio/my-models/" },
                     { text: "My Deployments", link: "/usermanual/model-services/user/studio/my-deployments/" },
+                    { text: "My Credentials", link: "/usermanual/model-services/user/studio/credentials/" },
                   ]
                 },
                 {
@@ -491,7 +493,10 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Overview", link: "/usermanual/model-services/user/my-calls/overview/" },
-                    { text: "Call Analytics", link: "/usermanual/model-services/user/my-calls/call-analytics/" },
+                    { text: "Members", link: "/usermanual/model-services/user/my-calls/members/" },
+                    { text: "Projects", link: "/usermanual/model-services/user/my-calls/projects/" },
+                    { text: "Client Sources", link: "/usermanual/model-services/user/my-calls/client-sources/" },
+                    { text: "Models", link: "/usermanual/model-services/user/my-calls/models/" },
                     { text: "Call Logs", link: "/usermanual/model-services/user/my-calls/call-logs/" },
                   ]
                 },
@@ -499,9 +504,11 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Customer Calls",
                   collapsed: false,
                   items: [
-                    { text: "Overview", link: "/usermanual/model-services/user/customer-calls/overview/" },
-                    { text: "Call Analytics", link: "/usermanual/model-services/user/customer-calls/call-analytics/" },
-                    { text: "Call Logs", link: "/usermanual/model-services/user/customer-calls/call-logs/" },
+                    { text: "Overview", link: "/usermanual/model-services/user/provider-calls/overview/" },
+                    { text: "Models", link: "/usermanual/model-services/user/provider-calls/models/" },
+                    { text: "Customers", link: "/usermanual/model-services/user/provider-calls/customers/" },
+                    { text: "Client Sources", link: "/usermanual/model-services/user/provider-calls/client-sources/" },
+                    { text: "Call Logs", link: "/usermanual/model-services/user/provider-calls/call-logs/" },
                   ]
                 },
               ]
@@ -547,6 +554,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "Models", link: "/usermanual/ai-infra-on-cloud/operator/deploy-assets/models/" },
                     { text: "Frameworks", link: "/usermanual/ai-infra-on-cloud/operator/deploy-assets/frameworks/" },
+                    { text: "Model Asset Migration", link: "/usermanual/ai-infra-on-cloud/operator/deploy-assets/asset-migration/" },
                     { text: "Runtime Images", link: "/usermanual/ai-infra-on-cloud/operator/deploy-assets/runtime-images/" },
                   ]
                 },
@@ -597,9 +605,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                     { text: "Regions & Zones", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/regions-zones/" },
                     { text: "Clusters", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/clusters/" },
                     { text: "Accelerators", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/accelerators/" },
-                    { text: "Spec Metrics", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/spec-metrics/" },
                     { text: "Resource Specs", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/resource-specs/" },
-                    { text: "Images", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/images/" },
                     { text: "Image Services", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/image-services/" },
                     { text: "Object Storage", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/object-storage/" },
                     { text: "Block Storage", link: "/usermanual/ai-infra-on-prem/operator/resource-pools/block-storage/" },
@@ -622,7 +628,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "Usage Limits", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/usage-limits/" },
                     { text: "Monthly Usage", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/monthly-usage/" },
-                    { text: "Metering Details", link: "/usermanual/ai-infra-on-prem/operator/quotas-metering/metering-details/" },
                   ],
                 },
                 {
@@ -688,18 +693,6 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "Usage", link: "/usermanual/ai-infra-on-prem/user/quotas-usage/usage/" },
                     { text: "Quotas", link: "/usermanual/ai-infra-on-prem/user/quotas-usage/quotas/" },
-                    { text: "Top-up Records", link: "/usermanual/ai-infra-on-prem/user/quotas-usage/top-up-records/" },
-                  ],
-                },
-                {
-                  text: "Monitoring",
-                  collapsed: false,
-                  items: [
-                    { text: "Overview", link: "/usermanual/ai-infra-on-prem/user/monitoring/overview/" },
-                    { text: "Clusters", link: "/usermanual/ai-infra-on-prem/user/monitoring/clusters/" },
-                    { text: "Nodes", link: "/usermanual/ai-infra-on-prem/user/monitoring/nodes/" },
-                    { text: "Devices", link: "/usermanual/ai-infra-on-prem/user/monitoring/devices/" },
-                    { text: "Jobs", link: "/usermanual/ai-infra-on-prem/user/monitoring/jobs/" },
                   ],
                 },
               ],
@@ -730,9 +723,10 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   text: "Customer Billing",
                   collapsed: false,
                   items: [
-                    { text: "Business Units", link: "/usermanual/billing/operator/customer-billing/business-units/" },
                     { text: "Customer Overview", link: "/usermanual/billing/operator/customer-billing/customer-overview/" },
                     { text: "Top-up Orders", link: "/usermanual/billing/operator/customer-billing/top-up-orders/" },
+                    { text: "Top-up Approvals", link: "/usermanual/billing/operator/customer-billing/top-up-approvals/" },
+                    { text: "Business Units", link: "/usermanual/billing/operator/customer-billing/business-units/" },
                   ],
                 },
                 {
@@ -745,7 +739,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {
@@ -766,6 +760,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                     { text: "Transactions", link: "/usermanual/billing/user/billing/transactions/" },
                     { text: "Top-up Orders", link: "/usermanual/billing/user/billing/top-up-orders/" },
                     { text: "Monthly Bill", link: "/usermanual/billing/user/billing/monthly-bill/" },
+                    { text: "Top-up Requests", link: "/usermanual/billing/user/billing/top-up-requests/" },
                   ],
                 },
               ],
@@ -801,6 +796,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Tenants", link: "/usermanual/settings/operator/tenants/tenants/" },
+                    { text: "Tenant Settings", link: "/usermanual/settings/operator/tenants/tenant-settings/" },
                   ],
                 },
                 {
@@ -808,6 +804,9 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Operation Logs", link: "/usermanual/settings/operator/activity-notifications/operation-logs/" },
+                    { text: "Notification Preferences", link: "/usermanual/settings/operator/activity-notifications/notification-settings/" },
+                    { text: "Contacts", link: "/usermanual/settings/operator/activity-notifications/contacts/" },
+                    { text: "My Notifications", link: "/usermanual/settings/operator/activity-notifications/inbox/" },
                   ],
                 },
                 {
@@ -816,6 +815,8 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   items: [
                     { text: "Platform Settings", link: "/usermanual/settings/operator/system-settings/platform-settings/" },
                     { text: "Login Properties", link: "/usermanual/settings/operator/system-settings/login-properties/" },
+                    { text: "Notification Audit", link: "/usermanual/settings/operator/system-settings/notification-center/" },
+                    { text: "Notification Governance", link: "/usermanual/settings/operator/system-settings/notification-config/" },
                   ],
                 },
                 {
@@ -832,7 +833,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
               ],
             },
             {
-              text: "Provider&End User",
+              text: "Provider & End User",
               collapsed: false,
               items: [
                 {
@@ -840,6 +841,7 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Dashboard", link: "/usermanual/settings/user/personal/dashboard/" },
+                    { text: "My Quota", link: "/usermanual/settings/user/personal/my-quota/" },
                     { text: "Projects", link: "/usermanual/settings/user/personal/projects/" },
                     { text: "My Keys", link: "/usermanual/settings/user/personal/my-keys/" },
                     { text: "Profile", link: "/usermanual/settings/user/personal/profile/" },
@@ -852,15 +854,15 @@ export const enSidebar: DefaultTheme.Sidebar = {
                     { text: "Members", link: "/usermanual/settings/user/members-roles/team-members/" },
                     { text: "Roles", link: "/usermanual/settings/user/members-roles/roles/" },
                     { text: "Member Quotas", link: "/usermanual/settings/user/members-roles/member-quotas/" },
-                    { text: "Quota Requests", link: "/usermanual/settings/user/members-roles/quota-requests/" },
+                    { text: "Quota Approvals", link: "/usermanual/settings/user/members-roles/quota-requests/" },
                   ],
                 },
                 {
                   text: "Tenants",
                   collapsed: false,
                   items: [
-                    { text: "Tenant Settings", link: "/usermanual/settings/user/organizations/org-settings/" },
                     { text: "Usage Log", link: "/usermanual/settings/user/organizations/usage-log/" },
+                    { text: "Tenant Settings", link: "/usermanual/settings/user/organizations/org-settings/" },
                   ],
                 },
                 {
@@ -868,6 +870,9 @@ export const enSidebar: DefaultTheme.Sidebar = {
                   collapsed: false,
                   items: [
                     { text: "Operation Logs", link: "/usermanual/settings/user/activity-notifications/operation-logs/" },
+                    { text: "Notification Preferences", link: "/usermanual/settings/user/activity-notifications/notification-settings/" },
+                    { text: "Contacts", link: "/usermanual/settings/user/activity-notifications/contacts/" },
+                    { text: "My Notifications", link: "/usermanual/settings/user/activity-notifications/inbox/" },
                   ],
                 },
               ],
@@ -883,10 +888,11 @@ export const enSidebar: DefaultTheme.Sidebar = {
       items: [
         {
           text: "Technical Practices",
+          link: "/practices/technical/",
           collapsed: false,
           items: [
             {
-              text: "AI Coding Integration",
+              text: "AI Coding Tool Integration",
               collapsed: false,
               items: [
                 { text: "Cherry Studio", link: "/practices/technical/cherry-studio/" },
@@ -894,36 +900,130 @@ export const enSidebar: DefaultTheme.Sidebar = {
                 { text: "Claude Code Plugin", link: "/practices/technical/claude-code-plugin/" },
                 { text: "Cline", link: "/practices/technical/cline/" },
                 { text: "Codex", link: "/practices/technical/codex/" },
-                { text: 'Codex Desktop(CC Switch)', link: '/practices/technical/codex-desktop/' },
-            { text: "Crush", link: "/practices/technical/crush/" },
+                { text: 'Codex Desktop (CC Switch)', link: '/practices/technical/codex-desktop/' },
+                { text: "Crush", link: "/practices/technical/crush/" },
                 { text: "Cursor", link: "/practices/technical/cursor/" },
-                { text: "Dify", link: "/practices/technical/dify/" },
+                { text: "DeepSeek Harness", link: "/practices/technical/deepseek-harness/" },
                 { text: "Kilo Code", link: "/practices/technical/kilo-code/" },
-                { text: "n8n", link: "/practices/technical/n8n/" },
-                { text: "Open WebUI", link: "/practices/technical/open-webui/" },
-                { text: "OpenClaw", link: "/practices/technical/openclaw/" },
                 { text: "Open Code", link: "/practices/technical/open-code/" },
                 { text: "Roo Code", link: "/practices/technical/roo-code/" },
+              ]
+            },
+            {
+              text: "AI Applications and Workflows",
+              collapsed: false,
+              items: [
+                { text: "Dify", link: "/practices/technical/dify/" },
+                { text: "n8n", link: "/practices/technical/n8n/" },
+                { text: "New API", link: "/practices/technical/new-api/" },
+                { text: "Open WebUI", link: "/practices/technical/open-webui/" },
+                { text: "OpenClaw", link: "/practices/technical/openclaw/" },
               ]
             },
           ]
         },
         {
           text: "Project Practices",
+          link: "/practices/project/",
           collapsed: false,
           items: [
             { text: "Multi-Compute Pool Heterogeneous Inference Scheduling Best Practice", link: "/practices/project/multi-compute-pool-heterogeneous-inference-scheduling" },
             { text: "Single-Node Multi-Card Multi-Model Deployment Best Practice", link: "/practices/project/single-node-multi-card-multi-model-deployment" },
             { text: "Model Auto-Download and Inference Template Validation Best Practice", link: "/practices/project/model-auto-download-and-inference-template-validation" }
           ]
+        }
+      ]
+    }
+  ],
+  "/api/": [
+    {
+      text: "API Reference",
+      link: "/api/",
+      items: [
+        {
+          text: "Model API (OpenAPI)",
+          collapsed: false,
+          items: [
+            { text: "Overview", link: "/api/openapi/" },
+          ],
         },
+        {
+          text: "Platform API",
+          collapsed: false,
+          items: [
+            { text: "Overview", link: "/api/system-api/" },
+            { text: "Authentication and signing", link: "/api/system-api/authentication" },
+            { text: "Get caller roles", link: "/api/system-api/endpoints" },
+          ],
+        },
+        {
+          text: "Protocol Compatibility",
+          collapsed: false,
+          items: [
+            {
+              text: "Volcengine Ark Compatible API",
+              collapsed: false,
+              items: [
+                { text: "Overview", link: "/api/protocol-compatibility/volcengine/" },
+                { text: "Authentication and signing", link: "/api/protocol-compatibility/volcengine/authentication" },
+                { text: "Private portrait asset workflow", link: "/api/protocol-compatibility/volcengine/guide" },
+                {
+                  text: "Real-person verification",
+                  collapsed: true,
+                  items: [
+                    { text: "Start real-person verification H5", link: "/api/protocol-compatibility/volcengine/verification/create-session" },
+                    { text: "Get the verified person’s Asset Group ID", link: "/api/protocol-compatibility/volcengine/verification/get-result" },
+                  ],
+                },
+                {
+                  text: "Asset group management",
+                  collapsed: true,
+                  items: [
+                    { text: "Create an asset group", link: "/api/protocol-compatibility/volcengine/asset-groups/create" },
+                    { text: "Get an asset group", link: "/api/protocol-compatibility/volcengine/asset-groups/get" },
+                    { text: "List asset groups", link: "/api/protocol-compatibility/volcengine/asset-groups/list" },
+                    { text: "Update an asset group", link: "/api/protocol-compatibility/volcengine/asset-groups/update" },
+                    { text: "Delete an asset group", link: "/api/protocol-compatibility/volcengine/asset-groups/delete" },
+                  ],
+                },
+                {
+                  text: "Asset management",
+                  collapsed: true,
+                  items: [
+                    { text: "Create an asset", link: "/api/protocol-compatibility/volcengine/assets/create" },
+                    { text: "Get an asset", link: "/api/protocol-compatibility/volcengine/assets/get" },
+                    { text: "List assets", link: "/api/protocol-compatibility/volcengine/assets/list" },
+                    { text: "Update an asset", link: "/api/protocol-compatibility/volcengine/assets/update" },
+                    { text: "Delete an asset", link: "/api/protocol-compatibility/volcengine/assets/delete" },
+                  ],
+                },
+                {
+                  text: "Video generation",
+                  collapsed: true,
+                  items: [
+                    { text: "Create a video generation task", link: "/api/protocol-compatibility/volcengine/video/create-task" },
+                    { text: "Get a video generation task", link: "/api/protocol-compatibility/volcengine/video/get-task" },
+                  ],
+                },
+                { text: "Error handling and troubleshooting", link: "/api/protocol-compatibility/volcengine/errors" },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  "/operations/": [
+    {
+      text: "Operations Center",
+      items: [
         {
           text: "Monitor Matrix",
           collapsed: false,
           items: [
             {
               text: "Metis InfluxDB Data Dictionary",
-              link: "/practices/monitor-matrix/metis-influxdb-data-dictionary"
+              link: "/operations/monitor-matrix/metis-influxdb-data-dictionary"
             }
           ]
         }
@@ -964,6 +1064,18 @@ export const enSidebar: DefaultTheme.Sidebar = {
           { text: "Inference", link: "/others/faq/inference" },
           { text: "Ops & Security", link: "/others/faq/ops" },
       ]
+    }
+  ],
+  "/others/upgrade/": [
+    {
+      text: "Upgrade Notes",
+      collapsed: false,
+      items: [
+        {
+          text: "Model Business Upgrade (2026-11-02)",
+          link: "/others/upgrade/model-business-upgrade-2026-11/",
+        },
+      ],
     }
   ],
   "/others/release-notes/": [

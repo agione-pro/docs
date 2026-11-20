@@ -1,13 +1,18 @@
 # Operation Logs
 
+::: info Document Information
+Version: v2.1
+Updated: 2026-11-16
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Activity & Notifications > Operation Logs |
-| Page route | `/user/user-space/operation-logs` |
-| Managed objects | Tenant user-operation records, HTTP methods, results, time ranges, and operation details |
+| Navigation Path | Settings > Activity & Notifications > Operation Logs |
+| Page Route | `/user/user-space/operation-logs` |
+| Managed Object | Tenant user-operation records, HTTP methods, results, time ranges, and operation details |
 
 #### Beginner Explanation
 
@@ -17,10 +22,10 @@ Operation Logs is the audit trail for Settings. It shows who performed an action
 
 | Term | Description |
 | --- | --- |
-| Operation log | Audit information that records a user action and its processing result.; Keep only desensitized clues during troubleshooting. |
-| Operator | The account that performed the action.; Confirm that the person was expected to perform it. |
-| Target object | The configuration, member, or rule that was viewed or changed.; Use it to identify the impact scope. |
-| Operation result | Success, failure, processing, or another action result.; Investigate the cause when it is not successful. |
+| Operation log | Audit information that records a user action and its processing result. Keep only desensitized clues during troubleshooting. |
+| Operator | The account that performed the action. Confirm that the person was expected to perform it. |
+| Target object | The configuration, member, or rule that was viewed or changed. Use it to identify the impact scope. |
+| Operation result | Success, failure, processing, or another action result. Investigate the cause when it is not successful. |
 
 ## Prerequisites
 
@@ -59,6 +64,16 @@ The screenshot shows the filters, operation-log list, and result fields availabl
 4. Use log details only for audit and diagnosis. Do not replay high-risk operations from the page.
 
 ## Parameter Quick Reference
+
+### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Filters | — | — | — | HTTP method, result, start time, and end time |
+
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -130,34 +145,6 @@ The current account lacks audit-export permission, the record is outside the vie
 
 Verify audit permission and the log retention range. Before sending logs outside the tenant, request export permission and follow desensitization requirements.
 
-#### How should the Operation Logs page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Operation Logs page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Exported CSV files may contain users, IP addresses, and audit information. Handle them according to tenant data-security requirements.
@@ -167,3 +154,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. Retain audit records for critical operations.
 2. Compare member, role, and quota pages to identify the source of a change.
+
+Related pages: [Profile](../../personal/profile/)、[Members](../../members-roles/team-members/)

@@ -7,15 +7,20 @@ next: true
 
 This scenario guides Platform Operators through preparing runtime assets after cloud-resource onboarding, then assembling them into deployable model assets for downstream deployment and calling.
 
+A runtime image supplies the container environment required by an inference framework; a framework version combines that image and startup configuration for a model asset to reference.
+
 ## Applicable Roles
 
 - Platform Operator
+
+
+**Role handoff:** The Platform Operator prepares images, published framework versions, and model deployment targets. The Model Provider receives the available model/version, regions, and plan scope and checks them in Quick Deployment. Saving an asset or publishing a framework is not a running service.
 
 ## Scenario Goals
 
 - Runtime images can be pulled in the target cloud environment.
 - Inference frameworks contain the correct service ports and startup commands.
-- Model assets can be selected by End Users during quick deployment.
+- Authorized Model Providers can select the model assets during quick deployment.
 
 ## Scenario Flow
 
@@ -26,7 +31,10 @@ This scenario guides Platform Operators through preparing runtime assets after c
 | 1. Register the image | The target cloud environment can pull a controlled runtime-image version |
 | 2. Build the framework | Image, startup command, port, and framework type are compatible |
 | 3. Create the model asset | Meta-model, deployment point, cloud model, compute plan, and output protocol are linked |
-| 4. Verify availability | End Users see the model and available plan in quick deployment |
+| 4. Verify availability | Authorized Model Providers see the model and available plan in quick deployment |
+
+
+> Availability prerequisite: use only entries opened in the current environment. If Quick Access or Runtime Images displays an unavailable-feature notice, do not continue from historical screenshots. Ask the operator to confirm dependencies before proceeding with available configuration pages.
 
 ## Before You Start
 
@@ -56,14 +64,14 @@ This scenario guides Platform Operators through preparing runtime assets after c
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to confirm that the result is observable and reviewable before continuing. If any check fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |
 | 1 | The runtime image can be pulled in the target cloud environment, with the correct framework type and version. |
 | 2 | Framework startup command, port, and output protocol match the model. |
 | 3 | The model asset links its meta-model, cloud deployment point, compute plan, and output configuration. |
-| 4 | A End User can see the model and available plan in quick deployment. |
+| 4 | An authorized Model Provider can see the model and available plan in quick deployment. |
 
 ## Troubleshooting
 

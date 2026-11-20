@@ -1,17 +1,21 @@
 
 {
   "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "devDependencies": {
     "vitepress": "^1.6.4"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
-    "docs:build": "npm run check:docs-profile && vitepress build docs && npm run check:docs-profile:dist",
+    "docs:build": "npm run check:docs-profile && vitepress build docs && npm run check:docs-links && npm run check:docs-profile:dist",
     "docs:preview": "vitepress preview docs",
     "build": "npm run docs:build",
     "check:docs-profile": "node scripts/check-docs-profile.mjs --profile public --scope source",
     "check:docs-profile:dist": "node scripts/check-docs-profile.mjs --profile public --scope dist",
-    "check:docs-images": "node scripts/check-docs-images.mjs"
+    "check:docs-images": "node scripts/check-docs-images.mjs",
+    "check:docs-links": "node scripts/check-docs-links.mjs docs/.vitepress/dist"
   },
   "dependencies": {
     "medium-zoom": "^1.1.0"

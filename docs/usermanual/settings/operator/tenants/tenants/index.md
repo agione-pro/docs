@@ -1,13 +1,18 @@
 # Tenants
 
+::: info Document Information
+Version: v2.2
+Updated: 2026-11-16
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Operator |
-| Navigation path | Settings > Tenants & Settings > Tenants |
-| Page route | `/user/tenant` |
-| Managed objects | Tenant entities, business identities, status, roles, and tags |
+| Navigation Path | Settings > Tenants & Settings > Tenants |
+| Page Route | `/user/tenant` |
+| Managed Object | Tenant entities, business identities, status, roles, and tags |
 
 #### Beginner Explanation
 
@@ -17,10 +22,10 @@ Tenants is the platform's directory of business entities. It maintains tenants, 
 
 | Term | Description |
 | --- | --- |
-| Tenant | A business entity on the platform.; Confirm its unique identity before an action. |
-| Tenant administrator | The account responsible for tenant administration.; Verify it before contact or authorization. |
-| Tenant role | A permission set available to a tenant.; Confirm the impact before changing it. |
-| Tenant tag | A label used to classify tenants.; Use it for filtering and operations. |
+| Tenant | A business entity on the platform. Confirm its unique identity before an action. |
+| Tenant administrator | The account responsible for tenant administration. Verify it before contact or authorization. |
+| Tenant role | A permission set available to a tenant. Confirm the impact before changing it. |
+| Tenant tag | A label used to classify tenants. Use it for filtering and operations. |
 
 ## Prerequisites
 
@@ -33,6 +38,8 @@ Tenants is the platform's directory of business entities. It maintains tenants, 
 The tenant list uses the tenant `Name` for display and search. Before opening an action, confirm the target by its `Name`, tenant ID, administrator, and business identity. Tenant names, administrator information, and email addresses are desensitized in the following screenshot.
 
 ![Tenants](./images/tenants-list.png)
+
+The tenant list shows the tenant, business identity, administrator, status, and tags. Filter by business identity or tag before opening details.
 
 | Area | Description |
 | --- | --- |
@@ -61,37 +68,51 @@ The tenant list uses the tenant `Name` for display and search. Before opening an
 
 ![Create Tenant](./images/tenant-create.png)
 
+The figure shows the current demo's empty Create Tenant page with Tenant details, Tenant administrator, Access and security, and both footer actions. Role, Password and Confirm Password are fully in frame. The page describes admin email as optional; submission and backend validation were not tested.
+
 4. In `Tenant details`, fill in the required `Tenant Name`.
-5. In `Tenant administrator`, fill in `Admin name`, `Admin sign-in account`, and `Admin email`. Fill in `Admin phone` as needed.
+5. In `Tenant administrator`, review `Admin name` and `Admin username`. The current page marks `Admin email` and `Admin phone` as optional. Confirm actual inputs through the organization's authorization process before creating a tenant.
 6. In `Access and security`, select `Role`, then fill in `Password` and `Confirm Password`.
 7. Before final submission, verify the tenant name, administrator account, email, role, and initial password.
-8. For learning or screenshots only, view the fields without submitting real tenant configuration.
+8. For learning or screenshots only, leave the fields empty and click `Cancel` to return to the tenant list without submitting real tenant configuration.
 
 ### Manage Tenant Tags
 
-1. Open `Settings > Tenants & Settings > Tenants`.
-2. Locate the target Tenants and click **"Manage Tags"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > Tenants & Settings > Tenants`.
+2. Locate the target tenant in the list and click `Manage Tags`.
+3. Select, add, or remove tags in the tag panel.
+4. Confirm that tags affect filtering and business grouping, then save and verify the result in the list.
 
 ### Manage Tenant Roles
 
-1. Open `Settings > Tenants & Settings > Tenants`.
-2. Locate the target Tenants and click **"Manage Roles"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+1. Go to `Settings > Tenants & Settings > Tenants`.
+2. Locate the target tenant in the list and click `Manage Roles`.
+3. Assign or remove roles using the options provided and confirm the affected member scope.
+4. After saving, return to the tenant list and verify the role count and member permissions.
 
 ## Parameter Quick Reference
+
+### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Business Identity | — | — | — | Filters by identities such as EU or Provider. |
+| Tenant / Administrator / Tenant ID | — | — | — | Searches by tenant, administrator, or tenant ID. |
+| Status | — | — | — | Filters by tenant status. |
+| Role | — | — | — | Filters by tenant role. |
+| Tag filter | — | — | — | Filters by tags such as VIP, High Potential, Trial, Follow-up, or Churn Risk. |
+
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
 | Tenant Name | Yes | Text | `Example Tenant A` | Identifies the tenant entity. |
 | Business Identity | No | Filter / tag | `Provider` | Filters or identifies the tenant business identity. |
 | Admin name | Yes | Text | `Example Admin` | The display name of the tenant administrator. |
-| Admin sign-in account | Yes | Text | `tenant-admin` | The sign-in account of the tenant administrator. |
-| Admin email | Yes | Text | `admin@example.com` | The email address of the tenant administrator. |
+| Admin username | Yes | Text | `tenant-admin` | Administrator sign-in username in the current creation page; submission rules were not tested. |
+| Admin email | Marked optional in the current page | Text | `admin@example.com` | Page help and placeholder describe it as optional; email validation was not tested by submission. |
 | Admin phone | No | Text | `188****8888` | The contact number of the tenant administrator. |
 | Role | Yes | Dropdown | `Tenant Admin` | Controls the platform access scope of the tenant administrator. |
 | Password | Yes | Password | `******` | The initial password of the tenant administrator. |
@@ -164,34 +185,6 @@ The tenant was not created, is disabled, or is outside the current operator acco
 **Resolution:**
 
 Clear the tenant name, status, and region filters. Confirm the tenant creation record and status. If the tenant is still missing, ask a platform administrator to check tenant authorization.
-
-#### How should the Tenants page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Tenants page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
 
 ## Notes
 

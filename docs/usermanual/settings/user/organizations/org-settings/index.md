@@ -1,13 +1,18 @@
 # Tenant Settings
 
+::: info Document Information
+Version: v2.1
+Updated: 2026-11-12
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Tenants & Settings > Tenant Settings |
-| Page route | `/user/user-space/settings` |
-| Managed objects | Credit-balance alerts, project defaults, member quota policy, and tenant-level defaults |
+| Navigation Path | Settings > Tenants > Tenant Settings |
+| Page Route | `/user/user-space/settings` |
+| Managed Object | Credit-balance alerts, project defaults, member quota policy, and tenant-level defaults |
 
 #### Beginner Explanation
 
@@ -17,10 +22,10 @@ Tenant Settings is the tenant default-rule panel. It defines the initial policy 
 
 | Term | Description |
 | --- | --- |
-| Tenant Settings | The entry for tenant-level default configuration.; Confirm the applicable scope before changing it. |
-| Default rule | A rule inherited when a new object is created.; It does not necessarily update existing objects. |
-| Tenant context | The tenant that owns the current settings.; Confirm it before switching tenant scope. |
-| Member default policy | The initial rule applied when a new member joins.; Verify it with a new member after a change. |
+| Tenant Settings | The entry for tenant-level default configuration. Confirm the applicable scope before changing it. |
+| Default rule | A rule inherited when a new object is created. It does not necessarily update existing objects. |
+| Tenant context | The tenant that owns the current settings. Confirm it before switching tenant scope. |
+| Member default policy | The initial rule applied when a new member joins. Verify it with a new member after a change. |
 
 ## Prerequisites
 
@@ -30,51 +35,54 @@ Tenant Settings is the tenant default-rule panel. It defines the initial policy 
 
 ## Page Description
 
-| Tab | Description |
+The page has two top-level tabs: `Default Rules & Quotas` and `Security Settings`. The five configuration sections below belong to `Default Rules & Quotas` and are located through its quick navigation.
+
+| Area | Description |
 | --- | --- |
 | Credit Balance Alert | Configures an alert when tenant balance falls below a threshold. |
 | Project Defaults | Configures the reset cycle, alert threshold, and limit policy for new projects. |
 | Member Quota Defaults | Configures initial quota, reset cycle, and limit policy for new members. |
-| Quota Request Settings | Configures automatic expiration and request rules for pending requests. |
-| Bottom actions | Reset to Defaults and Save Settings |
+| Model Visibility Policy for Members | A separate configuration section in Default Rules & Quotas. |
+| Quota Request Settings | Shows Auto-expire Pending Requests After (days). |
+| Default Rules & Quotas bottom action | Save Settings |
 
 ## Main Operations
 
 ### View Tenant Settings
 
-1. Go to `Settings > Tenants and Settings > Tenant Settings`.
-2. Review organization information, quota-request settings, project defaults, and member-quota defaults.
+1. Go to `Settings > Tenants > Tenant Settings`.
+2. In `Default Rules & Quotas`, use quick navigation to review Credit Balance Alert, Project Defaults, Member Quota Defaults, Model Visibility Policy for Members, and Quota Request Settings.
 3. Record the current state and confirm that each setting applies to the current tenant.
-4. If information is missing, refresh and check administrative permission. Hide organization identifiers and quota before screenshots or sharing.
+4. If information is missing, refresh and check administrative permission.
 
 ### Edit Tenant Settings
 
-1. Go to `Tenants & Settings > Tenant Settings`.
-2. On `Credit Balance Alert`, configure the alert threshold.
-
-The following screenshot shows the balance-alert tab.
+1. Go to `Tenants > Tenant Settings` and select `Default Rules & Quotas`.
+2. Use quick navigation to locate `Credit Balance Alert` and configure the alert threshold.
 
 ![Tenant Settings](./images/org-settings.png)
 
-3. Open `Project Defaults` and configure the reset cycle, alert threshold, and limit policy for new projects.
+The figure shows the Credit Balance Alert section and its `Alert Threshold (credits)` field.
 
-The following screenshot shows Project Defaults.
+3. Use quick navigation to locate `Project Defaults` and configure the reset cycle, alert threshold, and limit policy for new projects.
 
 ![Project Defaults](./images/org-project-defaults.png)
 
-4. Open `Member Quota Defaults` and configure initial quota, reset cycle, and limit policy for new members.
+The figure shows the Project Defaults section, including `Used quota alert threshold (%)`, `Reset Cycle`, `Day of Month`, and `Limit Policy`.
 
-The following screenshot shows Member Quota Defaults.
+4. Use quick navigation to locate `Member Quota Defaults` and configure initial quota, reset cycle, and limit policy for new members.
 
 ![Member Quota Defaults](./images/org-member-quota-defaults.png)
 
-5. Open `Quota Request Settings` and configure automatic expiration for pending requests.
+The figure shows the Member Quota Defaults section, including `Default Granted Quota for New Members (credits)`, `Used quota alert threshold (%)`, `Reset Cycle`, `Day of Month`, and `Limit Policy`.
 
-The following screenshot shows Quota Request Settings.
+5. Use quick navigation to locate `Quota Request Settings` and configure automatic expiration for pending requests.
 
 ![Quota Request Settings](./images/org-quota-request-settings.png)
 
-6. After reviewing all tabs, select `Save Settings`.
+The figure shows the Quota Request Settings section and the `Auto-expire Pending Requests After (days)` field.
+
+6. After reviewing the sections in `Default Rules & Quotas`, select `Save Settings` only for an approved change.
 
 ### Verify Tenant Settings
 
@@ -153,34 +161,6 @@ The current account lacks Tenant Settings permission, an upstream platform manag
 
 Verify Tenant Settings permission and configuration source. Ask the platform operator to change managed configuration, or wait until approval finishes.
 
-#### How should the Tenant Settings page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Tenant Settings page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Saving settings affects later tenant-management flows. Confirm each value first.
@@ -191,3 +171,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 1. Create a new project to verify Project Defaults.
 2. Add a new member to verify Member Quota Defaults.
 3. Review Quota Requests to verify request rules.
+
+Related pages: [Member Quotas](../../members-roles/member-quotas/)、[Quota Approvals](../../members-roles/quota-requests/)、[Usage Log](../usage-log/)

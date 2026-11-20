@@ -1,11 +1,16 @@
 # File Storage
 
+::: info Document Information
+Version: v2.1
+Updated: 2026-11-12
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation Path | AI Infra(On-Prem) > Storage > File Storage |
+| Navigation Path | On-Prem > Storage > File Storage |
 | Page Route | `/powerone/storage-service/file` |
 | Managed Object | Configuration, status, and relationships on File Storage |
 
@@ -13,8 +18,7 @@
 
 File storage is like a team shared folder, suitable for multiple instances or jobs to read the same data, model files, or output directories. It emphasizes directory and file semantics, which are different from the independent disk semantics of block storage.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Shared Directory | File system directory accessible by multiple instances or jobs. |
@@ -41,6 +45,8 @@ Confirm that the task involves Configuration, status, and relationships on File 
 Use this page to manage shared file systems, directories, capacity, mount relationships, and access policies.
 
 ![File Storage](./images/file-storage-list.png)
+
+The figure shows File Storage displaying the message that file storage is not supported in the current region.
 
 The page is used to display file storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
 
@@ -89,22 +95,22 @@ The page is used to display file storage capability in the selected region. When
 | Mount Path | Conditionally required | Text | `/mnt/shared` | Access path inside the instance or container. |
 | Share Status | System-generated | Enum | `Available` | Used to determine whether it can be mounted, expanded, or deleted. |
 
-#### Mount, Unmount, and Confirm Capacity
+### Mount, Unmount, and Confirm Capacity
 
-#### Mount
+### Mount
 
 1. Open the instance creation page or storage mount entrypoint.
 2. Select the target file storage resource.
 3. Fill in the in-container path, such as `/mnt/data` or `/mnt/output`.
 4. After submission, view instance events and logs to confirm successful mounting.
 
-#### Unmount
+### Unmount
 
 1. Confirm that no running process is reading or writing this path.
 2. Perform unmount through the instance or storage operation entrypoint.
 3. Refresh the page to confirm that the mount relationship has been removed.
 
-#### Confirm Capacity
+### Confirm Capacity
 
 1. View capacity and status in the file storage list.
 2. Run `df -h` inside the instance or perform application-side capacity checks.

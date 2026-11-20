@@ -5,7 +5,9 @@ next: true
 
 # 成员额度申请与分配
 
-本任务用于为目标成员申请额度、调整额度并设置调用限额。
+本任务用于为目标成员申请额度、调整额度并设置调用限额。成员额度是该成员可消费的 credits 上限，Key 是调用凭据，二者不是同一层限制。
+
+申请人交付目标成员、所需额度和业务原因，具备审批权限的人员反馈申请状态与处理意见；成员据此核对额度和调整记录。管理员只在仍需独立变更且获授权时调整额度，不把审批通过当成再次调增的指令。
 
 ## 适用角色
 
@@ -23,13 +25,13 @@ next: true
 
 进入[成员额度](../../../usermanual/settings/user/members-roles/member-quotas/)，定位成员，核对授权额度、已用、剩余、模型范围和状态。
 
-![查看成员额度和剩余值](../../../usermanual/settings/user/members-roles/member-quotas/images/member-quotas-list.png)
+![查看成员额度和剩余值](./images/member-quotas-list.png)
 
 ### 2. 发起额度申请
 
-进入[额度申请](../../../usermanual/settings/user/members-roles/quota-requests/)，确认没有重复待审批记录后，填写申请额度和业务原因并提交。
+进入 `设置 > 成员与角色 > 额度审批` 的[申请记录](../../../usermanual/settings/user/members-roles/quota-requests/)，确认没有重复待审批记录，点击 **申请额度**，填写额度和业务原因。确认申请对象与数量后才提交；仅查看时关闭弹窗。菜单名为“额度审批”，“申请额度”是页面内按钮。
 
-![填写额度申请数量和原因](../../../usermanual/settings/user/members-roles/quota-requests/images/request-quota.png)
+![填写额度申请数量和原因](./images/quota-requests-request-quota.png)
 
 ### 3. 跟踪申请与审批结果
 
@@ -37,13 +39,15 @@ next: true
 
 ### 4. 调整成员额度和限额
 
-在成员详情中执行增加或扣减，填写原因；再设置重置周期、限额和模型白名单。保存前核对项目预算和 Key 限额，避免多层限制互相冲突。
+审批后先核对成员授权额度、剩余和调整记录，不因申请通过就再次增加同一笔额度。确需额外调整且当前账号有权操作时，在成员详情中选择增加或扣减并填写原因；按需设置重置周期、限额和模型白名单。确认目标成员、调整数量与业务授权后才保存，并核对项目预算和 Key 限额。只读核对不提交变更。
 
-![调整成员额度并记录原因](../../../usermanual/settings/user/members-roles/member-quotas/images/adjust-member-quota.png)
+![不限额成员的额度调整提示](./images/member-quotas-adjust-member-quota.png)
+
+图示为“不限额”成员分支：当前没有固定额度可增加或扣减，窗口提供取消和前往策略设置，不含数量、原因输入框，也不是额度调整成功结果。准备获准的变更前，先按实际成员状态核对可用入口。
 
 ## 完成检查
 
-> **用途：** 以下检查用于确认申请和分配已经形成可追溯的成员级结果。任一项不满足时，不应依赖新额度执行正式调用。
+申请、成员余额和限制未核对一致前，不依赖新额度执行正式调用。
 
 | 检查项 | 通过标准 |
 | --- | --- |

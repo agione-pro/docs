@@ -7,7 +7,7 @@ next: true
 
 ## Target Outcome
 
-A new End User completes registration and email verification; all roles can enter the correct workspace and recover access after forgetting a password.
+A new End User completes registration and email verification; all roles can enter the correct workspace and recover access after forgetting a password. An email code is time-limited verification information, not a long-term password.
 
 ## Applicable Roles
 
@@ -17,7 +17,10 @@ A new End User completes registration and email verification; all roles can ente
 ## Before You Start
 
 - Prepare an email address that can receive verification codes and a password that meets the tenant policy.
-- Confirm the platform URL, tenant, expected role, and whether self-registration is allowed with the tenant administrator.
+- Confirm the platform URL, tenant, expected role, and whether self-registration, verification-code sign-in, and Google sign-in are enabled with the tenant administrator.
+- Available methods, code validity, and sending limits are governed by [Login Properties](../../../usermanual/settings/operator/system-settings/login-properties/). Follow only the entries enabled on the current page. A resend timer is not the code's validity period; contact the administrator when an entry is unavailable rather than repeatedly submitting.
+
+**Role handoff:** The administrator supplies the confirmed platform entry and allowed sign-in methods; the user signs in with their own account. For a failure, return the time, visible message, and sanitized screenshot so the administrator can check settings and account membership before retrying. Do not hand over passwords, verification codes, or recovery links.
 
 ## Procedure
 
@@ -29,8 +32,8 @@ A new End User completes registration and email verification; all roles can ente
    - **Username**: account username.
    - **Password**: account password.
    - **Confirm Password**: enter the same password again.
-   - **Corporate Email**: address used to receive the verification code.
-4. Select **Send Verification Code**.
+   - **Work Email**: address used to receive the verification code.
+4. Select **Send Code**.
 5. Enter the six-digit code received by email.
 6. Read and accept the Privacy Policy and Terms of Service.
 7. Select **Create Account**. After registration succeeds, use the new account to sign in.
@@ -45,8 +48,8 @@ A new End User completes registration and email verification; all roles can ente
 | Username | Text | `new-user-001` | Required; new account username |
 | Password | Password | `********` | Required; new account password |
 | Confirm Password | Password | `********` | Required; must match Password |
-| Corporate Email | Text | `user@example.com` | Required; receives verification codes |
-| Send Verification Code | Button | Not applicable | Required; sends a six-digit code |
+| Work Email | Text | `user@example.com` | Required; receives verification codes |
+| Send Code | Button | Not applicable | Required; sends a six-digit code |
 | Verification Code | Text | `4 4 2 5 6 8` | Required; six-digit code received by email |
 | Privacy Policy and Terms | Checkbox | Selected | Required; accepts the user agreements |
 | Create Account | Button | Not applicable | Required; submits registration |
@@ -81,7 +84,7 @@ A new End User completes registration and email verification; all roles can ente
 1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in URL provided by the tenant.
 2. Select the **Verification Code** tab.
 3. Enter the registered corporate email.
-4. Select **Send Verification Code**.
+4. Select **Send Code**.
 5. Enter the six-digit code before it expires.
 6. Read and accept the Privacy Policy and Terms of Service.
 7. Select **Sign in** and verify that the correct workspace opens.
@@ -93,8 +96,8 @@ A new End User completes registration and email verification; all roles can ente
 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
-| Corporate Email | Text | `user@example.com` | Required; registered email |
-| Send Verification Code | Button | Not applicable | Required; sends a six-digit code |
+| Work Email | Text | `user@example.com` | Required; registered email |
+| Send Code | Button | Not applicable | Required; sends a six-digit code |
 | Verification Code | Text | `4 4 2 5 6 8` | Required; code received by email before expiry |
 | Privacy Policy and Terms | Checkbox | Selected | Required; accepts the user agreements |
 | Sign in | Button | Not applicable | Required; submits verification-code sign-in |
@@ -109,7 +112,7 @@ Password recovery has three steps: verify the email, reset the password, and com
 1. Open the {{DOCS_PRODUCT_NAME_EN}} sign-in URL provided by the tenant.
 2. Select **Forgot Password**.
 3. Enter the registered corporate email.
-4. Select **Send Verification Code** and wait for the resend timer before requesting another code.
+4. Select **Send Code** and wait for the resend timer before requesting another code.
 5. Enter the six-digit code received by email.
 6. Select **Continue**.
 7. Select **Contact Us** if the code does not arrive after the checks below.
@@ -123,7 +126,7 @@ Password recovery has three steps: verify the email, reset the password, and com
 2. Enter the new password and enter it again under Confirm Password.
 3. Resolve any validation message, such as an empty password or mismatched values.
 4. Select **Reset Password**.
-5. Select **Previous** to return to email verification when needed.
+5. Select **Back** to return to email verification when needed.
 
 ![Set a new password](./images/reset-password.png)
 
@@ -136,20 +139,20 @@ Password recovery has three steps: verify the email, reset the password, and com
 
 | Field | Type | Example | Description |
 | --- | --- | --- | --- |
-| Corporate Email | Text | `user@example.com` | Required; registered email |
-| Send Verification Code | Button | Not applicable | Required; sends a six-digit code after the resend timer |
+| Work Email | Text | `user@example.com` | Required; registered email |
+| Send Code | Button | Not applicable | Required; sends a six-digit code after the resend timer |
 | Verification Code | Text | `4 4 2 5 6 8` | Required; six-digit code received by email |
 | Continue | Button | Not applicable | Required; submits email verification |
 | Contact Us | Link | Not applicable | Optional; requests help when no code arrives |
 | Back to Sign In | Link | Not applicable | Optional; returns to sign-in |
 | New Password | Password | `********` | Required; new account password |
 | Confirm Password | Password | `********` | Required; must match New Password |
-| Previous | Button | Not applicable | Optional; returns to email verification |
+| Back | Button | Not applicable | Optional; returns to email verification |
 | Reset Password | Button | Not applicable | Required; submits the new password |
 
 ## Completion Checklist
 
-> **Purpose:** These are the exit criteria for the current feature task. Use them to decide whether the result is observable and reviewable and whether you can continue to the next step in the scenario. They do not repeat the procedure; if any item fails, follow the troubleshooting section below.
+Check the results below; resolve failed items using the troubleshooting section before continuing.
 
 | Check | Pass Criteria |
 | --- | --- |

@@ -5,10 +5,10 @@
 | Item | Content |
 |------|---------|
 | Applicable Role | Compute resource planner, implementation engineer, customer infrastructure administrator |
-| Navigation Path | Deployment > Managed Compute Node Deployment Configuration Requirements |
+| Navigation Path | Deployment > Onboard Compute > Before You Start |
 | Function Description | Helps users complete environment survey, accelerator compatibility validation, resource sizing, port, and network planning before compute node installation |
 
-This document answers "whether the compute nodes are ready for onboarding". If you only need installation commands, complete the checks in this document first and then read [Managed Node Quick Deployment](./quick-install-for-managing-compute-nodes).
+This document describes whether the compute nodes are ready for onboarding. After the checks, continue with [Install Compute](./quick-install-with-agione-clusterd). The command-line installation is [Install the Compute Cluster](./quick-install-for-managing-compute-nodes). See [What ClusterD Does](./clusterd-overview). Installation and upgrade are in [Install, Upgrade, and Uninstall](./clusterd/).
 
 ### Beginner Explanation
 
@@ -22,7 +22,7 @@ This document is the preparation checklist for GPU / NPU nodes. It helps you con
 | Step 2: Compatibility validation | Confirm GPU / NPU model, CPU architecture, and operating system support | Accelerator and OS combination is deployable |
 | Step 3: Resource planning | Confirm Master, etcd, and Worker node count and specifications | Node role and sizing list is confirmed |
 | Step 4: Network and port planning | Allow Kubernetes API, Harbor, AGIOne access, and monitoring ports | Firewall / security group rules are ready |
-| Step 5: Enter deployment | Prepare the package and install the cluster according to the quick deployment guide | Compute cluster deployment can start |
+| Step 5: Enter deployment | Onboard the cluster with Install Compute; use the command line when the Web path is not used | Compute cluster onboarding can start |
 
 ## Terminology Quick Reference
 
@@ -64,9 +64,9 @@ Before formal deployment, a complete environment survey must be conducted on eve
 
 | Category | Item | Example / Guidance | Notes |
 | --- | --- | --- | --- |
-| System | Operating system | CentOS 7 / Ubuntu 20.04 / Ubuntu 22.04 / OpenEuler 22.03 LTS | Ubuntu 22.04 is not supported on arm64 |
+| System | Operating system | Ubuntu 22 | See [3.2.2 Operating System Support Matrix](#_3-2-2-operating-system-support-matrix) |
 | System | Accelerator driver installed | Yes / No | Must be installed and operational |
-| System | Accelerator driver version | NVIDIA 570 / CANN 8.x | Version must match the card model |
+| System | Accelerator driver version | NVIDIA 570 / Ascend HDK | Ascend HDK is listed in [2.1.2 Huawei Ascend](#_2-1-2-huawei-ascend) |
 | System | RDMA NIC driver installed | Yes / No | Mandatory for RDMA scenarios |
 | System | RDMA NIC driver version | MLNX_OFED-23.07-0.5.1.2 | 23.07 or later recommended |
 | System | Docker already installed | Yes / No | **If yes, confirm whether it can be removed** |
@@ -104,6 +104,20 @@ The accelerator models that have been validated against the AGIOne platform span
 | Architecture / Series | Models |
 | --- | --- |
 | Ascend 910 | Ascend 910B, Ascend 910C |
+| Ascend 950 | Ascend 950 series |
+
+The onboarding components use MindCluster 26.1.0 with CANN 9.1.0.
+
+Ascend 910B and Ascend 910C pair with HDK 26.1.0. Compatible HDK versions are 25.5.X, 26.0.X, and 26.1.X.
+
+Ascend 950 HDK in MindCluster 26.1.0 does not include 26.1.0:
+
+| Product | HDK |
+| --- | --- |
+| Atlas 950 SuperPoD | 25.1.RC1 |
+| Atlas 850E SuperPoD, Atlas 650E server | 25.6.RC1 |
+
+MindCluster 26.2.0 adds HDK 26.2.X for these products. HDK 26.1.X is not compatible.
 
 #### 2.1.3 Other Domestic Accelerators
 
@@ -173,8 +187,8 @@ Worker nodes carry the actual inference workloads and must be equipped with at l
 
 | CPU Architecture | Supported Operating Systems |
 | --- | --- |
-| x86_64 | Ubuntu 20.04, Ubuntu 22.04, CentOS 7 |
-| arm64 | Ubuntu 20.04, CentOS 7, OpenEuler 22.03 LTS |
+| x86_64 | AlmaLinux 8, AlmaLinux 9, Debian 12, Debian 13, Fedora 36, Fedora 37, openEuler 22, openEuler 24, openSUSE Leap 15, Rocky Linux 8, Rocky Linux 9, Ubuntu 22, Ubuntu 24 |
+| arm64 | AlmaLinux 8, AlmaLinux 9, Debian 12, Debian 13, Fedora 36, Fedora 37, openEuler 22, openEuler 24, openSUSE Leap 15, Rocky Linux 8, Rocky Linux 9, Ubuntu 22, Ubuntu 24 |
 
 > Within a single Kubernetes cluster, all Master, etcd, and Worker nodes must share the same CPU architecture.
 

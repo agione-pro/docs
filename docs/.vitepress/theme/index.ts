@@ -32,6 +32,22 @@ export default {
       )
     }
 
-    onMounted(init)
+    const updateApiPageClass = () => {
+      const isApi = route.path.includes('/api/')
+      const layoutEl = document.querySelector('.Layout')
+      if (layoutEl) {
+        layoutEl.classList.toggle('api-page', isApi)
+      }
+    }
+
+    onMounted(() => {
+      init()
+      updateApiPageClass()
+    })
+
+    watch(
+      () => route.path,
+      () => nextTick(() => updateApiPageClass())
+    )
   },
 }

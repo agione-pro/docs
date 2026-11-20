@@ -1,18 +1,22 @@
-# 纳管节点快速部署
+# 安装算力集群
+
+::: tip 默认使用安装文档
+纳管算力默认使用 [安装算力](./quick-install-with-agione-clusterd)。ClusterD 是其中的网页程序，安装在控制端。说明见 [ClusterD 是什么](./clusterd-overview)，安装、升级和卸载见 [安装、升级与卸载](./clusterd/)。本文是命令行安装。
+:::
 
 ## 前言
 
 | 项目 | 内容 |
 | --- | --- |
 | 适用角色 | 算力集群实施工程师、GPU / NPU 节点运维工程师、客户平台管理员 |
-| 导航路径 | 部署 > 纳管节点快速部署 |
-| 功能定位 | 指导用户完成纳管算力节点环境准备、安装包初始化、Kubernetes 集群安装和基础验证 |
+| 导航路径 | 部署 > 纳管算力 > 命令行安装 |
+| 功能定位 | 指导用户完成纳管算力节点环境准备、安装包初始化、Kubernetes 集群安装、组件安装和基础验证 |
 
 本文适用于已经完成资源规划和环境调研的算力节点部署场景。如果加速卡、操作系统、端口或网络要求尚未确认，请先阅读 [纳管算力节点部署配置要求](./deployment-requirements-for-managing-compute-nodes)。
 
 ### 新手理解
 
-这篇文档要在算力节点通过规划和调研后使用。它会把已准备好的机器部署成 Kubernetes 算力集群，并验证加速卡、监控、镜像仓库和对象存储。
+这篇文档要在算力节点通过规划和调研后使用。它会把已准备好的机器安装成 Kubernetes 算力集群，再用 `plugincli` 安装加速卡、监控和镜像仓库组件。
 
 ## 部署时间线
 
@@ -20,8 +24,8 @@
 | --- | --- | --- |
 | 第 1 步：准备节点环境 | 初始化 OS、安装驱动、配置 SSH 免密并验证网络 | 每台节点可从部署节点访问 |
 | 第 2 步：准备安装包 | 下载并初始化匹配 CPU 架构的资源包 | 生成 `installer/kubemore` 工具 |
-| 第 3 步：安装集群 | 使用 Master、etcd、Worker 和加速卡参数执行 `morecli install` | Kubernetes 集群安装完成 |
-| 第 4 步：验证服务 | 检查节点、Pod、device-plugin、镜像仓库和对象存储 | 平台可识别算力资源 |
+| 第 3 步：安装集群 | 使用 Master、etcd、Worker 参数执行 `morecli install` | Kubernetes 集群安装完成 |
+| 第 4 步：安装组件 | 用 `plugincli` 安装加速卡组件和监控，并按需安装镜像仓库 | 节点上出现本次安装对应的加速卡资源 |
 
 ## 1 文档概述
 
@@ -36,7 +40,7 @@
 | OFED | Mellanox InfiniBand/RoCE 网卡驱动套件 |
 | SR-IOV | 单根 I/O 虚拟化，用于 RDMA 网卡虚拟功能切分 |
 | Harbor | 企业级容器镜像仓库 |
-| MinIO | 兼容 S3 协议的对象存储服务 |
+| plugincli | `installer/kube-plugin` 中的组件安装命令 |
 
 ## 2 节点环境准备
 
@@ -218,60 +222,54 @@ vim /etc/kubemore/roles/prepare/tasks/main.yml
   ```yaml
   when: 'inventory_hostname in ["<本机IP>"]'
   ```
-- 将第 48 行 `line: " ansible_env.SSH_CLIENT.split(' ')[0]    easzlab.io.local"` 修改为：
+- 将第 48 行 <span v-pre>`line: "{{ ansible_env.SSH_CLIENT.split(' ')[0] }}    easzlab.io.local"`</span> 修改为：
   ```yaml
   line: "<本机IP>    easzlab.io.local"
   ```
 - 拷贝非 root 配置：`cp ansible.cfg.not_root ansible.cfg`
 
+使用 root 执行安装时，保持这个文件原样。
+
 ### 4.3 集群安装命令
 
 #### 4.3.1 标准安装示例
 
+集群安装不处理显卡类型。显卡厂商和型号在组件安装阶段通过 `plugincli` 处理。
+
+`./morecli install --help` 的示例写成 `--etcd`。传入 `--etcd` 时安装脚本报 `Bad command`。命令接受 `--etcds` 和 `-e`。
+
 ```bash
 ./morecli install \
     --masters 192.168.1.3,192.168.1.4 \
-    --etcd 192.168.1.3,192.168.1.4 \
-    --workers 192.168.1.5,192.168.1.6 \
-    --xpu-mode nvidia \
-    --xpu-type nvidia-a10080g \
-    --kubelet-root-data /data/kubelet \
-    --containerd-root-data /data/containerd
+    --etcds 192.168.1.3,192.168.1.4 \
+    --workers 192.168.1.5,192.168.1.6
 ```
+
+非 root 用户执行时，加上 `--ssh-user`、`--password` 和 `--ssh-port`，并执行 `cp ansible.cfg.not_root ansible.cfg`。`ssh-user` 不是 root 时，安装脚本也会做这一次复制。
 
 #### 4.3.2 关键参数说明
 
 | 参数 | 必选 | 说明 |
 | --- | --- | --- |
 | `--masters / -m` | ✔ | Master 节点 IP 列表，逗号分隔 |
-| `--etcds / -e` | ✔ | etcd 节点 IP 列表，建议与 Master 重合（生产 ≥ 3 节点） |
-| `--workers / -w` | ✔ | Worker 节点 IP 列表 |
+| `--etcds / -e` | ✔ | etcd 节点 IP 列表，逗号分隔 |
+| `--workers / -w` | ✔ | Worker 节点 IP 列表，逗号分隔 |
 | `--service-cidr` |   | Service 网段，默认 `10.68.0.0/16` |
 | `--cluster-cidr` |   | Pod 网段，默认 `172.20.0.0/16` |
-| `--password` |   | 所有节点的统一密码（非 root 用户必填） |
-| `--ssh-user` |   | SSH 登录用户，默认 root |
-| `--ssh-port` |   | SSH 端口，默认 22 |
-| `--ntp-server` |   | NTP 服务器地址 |
+| `--password` |   | 所有节点的统一密码。非 root 用户需要填写 |
+| `--ssh-user` |   | SSH 登录用户，默认 `root` |
+| `--ssh-port` |   | SSH 端口，默认 `22` |
+| `--ntp-server` |   | 集群 NTP 服务器 |
 | `--port-range / -p` |   | NodePort 区间，默认 `30000-32767` |
-| `--max-pods` |   | 单节点 Pod 上限，默认 110 |
-| `--exter-eip` |   | 集群外部弹性 IP（如有） |
+| `--max-pods` |   | 单节点最大 Pod 数，默认 `110` |
+| `--exter-eip` |   | 集群外部 EIP |
 | `--dns-domain / -d` |   | 集群 DNS 域名，默认 `cluster.local` |
-| `--xpu-mode` |   | 显卡模式：`nvidia` / `ascend910` / `enflame`，仅设置给 Worker 节点 |
-| `--xpu-type` |   | 显卡型号，详见下表 |
-| `--kubelet-root-data` |   | kubelet 数据目录，默认 `/var/lib/kubelet`，**生产建议指向数据盘** |
-| `--containerd-root-data` |   | containerd 数据目录，默认 `/var/lib/containerd`，**生产建议指向数据盘** |
-
-#### 4.3.3 显卡型号对照表（`--xpu-type`）
-
-| 厂商（`--xpu-mode`）| 可选型号 |
-| --- | --- |
-| nvidia | `nvidia-v10032g`、`nvidia-v10016g`、`nvidia-t4`、`nvidia-a10040g`、`nvidia-a10080g` |
-| ascend910 | `ascend-910a`、`ascend-910b` |
-| enflame | `enflame-s60` |
-
-> 实际部署时如遇清单外型号（如 H20、L20、H200），请联系 AGIOne 团队获取最新参数清单。
+| `--kubelet-root-data` |   | kubelet 数据目录，默认 `/var/lib/kubelet` |
+| `--containerd-root-data` |   | containerd 数据目录，默认 `/var/lib/containerd` |
 
 ### 4.4 集群运维操作
+
+新增和移除节点使用 `--etcds` 或 `-e`。帮助示例写成 `--etcd`，传入后安装脚本报 `Bad command`。
 
 #### 4.4.1 新增节点
 
@@ -327,106 +325,163 @@ kubectl -n kube-system get pod | grep etcd
 
 ---
 
-## 5 核心组件激活
+## 5 组件安装
 
-集群基础设施就绪后，按以下顺序激活 AGIOne 所需核心组件。
-
-### 5.1 显卡 device-plugin 组件
-
-根据 Worker 节点的显卡厂商激活对应 device-plugin：
+组件安装与集群安装分开。在安装包的 `installer/kube-plugin` 目录执行 `plugincli`。`morecli` 仍在 `/etc/kubemore`。
 
 ```bash
-# NVIDIA 显卡
-./morecli activate-kdp nvidia
-
-# 华为昇腾 910 系列
-./morecli activate-kdp ascend910
-
-# 燧原显卡
-./morecli activate-kdp enflame
-
-# NVIDIA 显卡 HAMI 显存超分（多模型共卡场景）
-./morecli activate-kdp hami
+cd installer/kube-plugin
 ```
 
-> **HAMI 适用场景**：当多个小模型需共享同一张 NVIDIA 卡时，通过 HAMI 实现显存逻辑切分与配额管控，提升 GPU 利用率。**HAMI 与原生 nvidia device-plugin 互斥，二选一即可。**
+执行 `plugincli` 的机器需要已经安装并启动 Docker。Docker 不可用时命令退出。
 
-激活后验证：
+### 5.1 给节点打加速卡标签
+
+这一步可选。`--mode` 和 `--type` 都要填写。安装说明中的示例：
 
 ```bash
-kubectl get pods -n kube-system | grep -E 'nvidia|ascend|enflame|hami'
-kubectl describe node <worker-node> | grep -A 5 'Allocatable'
-# 应能看到 nvidia.com/gpu 或 huawei.com/Ascend910 等资源
+./plugincli label-xpu --mode nvidia --type nvidia-a10080g
 ```
 
-### 5.2 监控组件
+`--mode` 取值为 `nvidia`、`ascend910`、`ascend950`、`amd-gpu`、`google-tpu`、`biren`、`enflame`、`cambricon`、`hygon`、`iluvatar`、`kunlunxin`、`metax`、`moore-threads`。`--nodes node1,node2` 指定节点。不写 `--nodes` 时，命令给还没有 `kubemore_xpu_device_mode` 标签的节点打标签。
 
-#### 5.2.1 部署监控数据库（KubeDB）
+标签写入 `kubemore_xpu_device_mode` 和 `kubemore_xpu_type`。NVIDIA 节点同时写入 `gpu=on`，昇腾节点同时写入 `ascend=on`。其余 `--mode` 同时写入 `kubemore_accelerator_scheduling=volcano-direct`。
+
+### 5.2 安装 Volcano
+
+`--backend` 必填，取值为 `none`、`hami`、`mindcluster`、`direct`。
+
+整卡调度，同时安装对应的原生 Device Plugin：
 
 ```bash
-# 1. 设置监控数据库存储路径，建议放在管理节点的共享 NAS 存储上
-export DB_DATA=/opt/kubedb
-
-# 2. 安装 KubeDB
-./morecli install-kubedb
-
-# 3. 查看 KubeDB 密码（用于后续监控组件配置）
-cat ./kubedb/kubedb.yaml
+./plugincli component install volcano --backend none nvidia
+./plugincli component install volcano --backend none ascend
+./plugincli component install volcano --backend none ascend950
 ```
 
-#### 5.2.2 部署基础监控组件
+`ascend` 与 `ascend910` 相同。一次只接受一种设备。昇腾 910 整卡资源名是 `huawei.com/Ascend910`，950 是 `huawei.com/npu`。
 
-按 Worker 节点的显卡厂商选择监控模式：
+NVIDIA 使用 HAMi vGPU。`--gpu-split` 和 `--mem-split` 的示例值是 `4` 和 `1`：
 
 ```bash
-# 选项任选其一，与 device-plugin 模式对应
-./morecli activate-monitor --xpu-mode ascend910
-./morecli activate-monitor --xpu-mode hami
-./morecli activate-monitor --xpu-mode nvidia
-./morecli activate-monitor --xpu-mode enflame
-./morecli activate-monitor --xpu-mode biren
+./plugincli component install volcano --backend hami nvidia
+./plugincli component install volcano --backend hami nvidia --gpu-split 4 --mem-split 1
 ```
 
-监控组件会自动采集 GPU/NPU 利用率、显存、温度、功耗等指标，并提供 Prometheus 指标接口。
-
-#### 5.2.3 [可选] Kubernetes 集群监控
-
-仅在客户明确要求集群级监控大盘时安装：
+昇腾可在 HAMi vNPU 与 MindCluster 之间选择。HAMi 不接受 `ascend950`：
 
 ```bash
-./morecli activate-k8s-monitor
-# 默认 Grafana 端口为 32765
-# 访问 http://<任一节点IP>:32765
+./plugincli component install volcano --backend hami ascend
+./plugincli component install volcano --backend mindcluster ascend
+./plugincli component install volcano --backend mindcluster ascend950
 ```
 
-### 5.3 Jupyter 转发组件
-
-为研发用户提供 Jupyter Notebook 远程访问能力：
+MindCluster 的两种模式：
 
 ```bash
-./morecli activate-jupy-proxy test
+# 软切分。节点需要先准备 vCANN-RT
+./plugincli component install volcano --backend mindcluster ascend --mindcluster-mode soft-share
+
+# 整卡
+./plugincli component install volcano --backend mindcluster ascend --mindcluster-mode whole-card
 ```
 
-### 5.4 工具集激活
+不写 `--mindcluster-mode` 时，`plugincli` 使用 `whole-card`。Kubernetes 1.36 超出已验证范围，安装会拒绝。验收环境可以传入 `--allow-unvalidated-k8s`。
 
-激活以下三类常用工具：
+MindCluster 使用独立调度器，作业写 `schedulerName: mindcluster-volcano`。官方 Device Plugin 上报 `huawei.com/Ascend910`。训练任务使用 `mindxdl.gitee.com/v1` 的 `AscendJob`。集群容器后端是 containerd。昇腾节点需要 Ascend 容器运行时，chart 只修改 containerd 的 runc `BinaryName`。
+
+不做设备切分、由外部提供厂商 Device Plugin 时：
 
 ```bash
-./morecli activate-tools
+./plugincli component install volcano \
+    --backend direct \
+    --direct-backends amd-gpu,google-tpu,biren,enflame,cambricon,hygon,iluvatar,kunlunxin,metax,moore-threads
 ```
 
-包含：
+安装会按所选后端更新 Volcano，并卸掉另一套昇腾插件，避免两个 Device Plugin 同时占用节点。
 
-1. **nerdctl**：镜像打包工具，用于 containerd 环境下的镜像构建
-2. **model-downloader**：模型自动下载工具，支持 HuggingFace、ModelScope 等仓库
-3. **s3fs**：将对象存储桶动态挂载为 POSIX 文件系统
-
-### 5.5 [可选] 存储 CSI 组件
-
-仅在集群配置了对象存储服务时安装：
+卸载：
 
 ```bash
-./morecli activate-osc
+./plugincli component uninstall hami
+./plugincli component uninstall mindcluster
+./plugincli component uninstall volcano
+```
+
+### 5.3 原生 Kubernetes 调度器
+
+原生 Kubernetes default-scheduler 使用下面的命令：
+
+```bash
+./plugincli component install device-plugin nvidia
+./plugincli component install device-plugin ascend910
+./plugincli component install device-plugin ascend950
+```
+
+`device-plugin ascend` 与 `ascend910` 相同。910 上报 `huawei.com/Ascend910`，950 上报 `huawei.com/npu`。
+
+### 5.4 作业申请的资源名
+
+Volcano（非 MindCluster）作业写 `schedulerName: volcano`。
+
+NVIDIA HAMi：
+
+```yaml
+resources:
+  limits:
+    volcano.sh/vgpu-number: 1
+    volcano.sh/vgpu-memory: 4096
+    volcano.sh/vgpu-cores: 50
+```
+
+昇腾 HAMi。910B3 使用 `huawei.com/Ascend910B`，910B2 和 910B2C 使用 `huawei.com/Ascend910B2`。显存单位是 MiB：
+
+```yaml
+resources:
+  limits:
+    huawei.com/Ascend910B2: "1"
+    huawei.com/Ascend910B2-memory: "4096"
+```
+
+安装后查看节点资源：
+
+```bash
+kubectl get pods -A
+kubectl describe node <worker-node>
+```
+
+`Allocatable` 中应出现本次安装对应的资源名。
+
+### 5.5 监控组件
+
+监控数据库路径按现场修改。安装说明建议放在管理节点的共享 NAS 上。
+
+```bash
+./plugincli component install influxdb --data-path /opt/kubedb
+./plugincli component install monitor --xpu-mode ascend910 --server-port 32761
+./plugincli component install monitor --xpu-mode ascend950 --server-port 32761
+```
+
+不写 `--xpu-mode` 时，命令读取节点标签 `kubemore_xpu_device_mode`。标签为 `nvidia` 时，当前命令退出，提示 NVIDIA exporter 归档未包含，需要先加入已验证的 dcgm-exporter 镜像。`plugincli` 帮助文本中的对应示例是 `--xpu-mode nvidia`。
+
+集群自身的监控按需安装。它提供 Grafana 看板，命令不带端口：
+
+```bash
+./plugincli component install k8s-monitor
+```
+
+### 5.6 Jupyter 转发组件
+
+```bash
+./plugincli component install jupyterlab-proxy --proxy-port 32762
+```
+
+### 5.7 工具
+
+下面的命令安装 `nerdctl`、`model-downloader` 和 `s3fs`：
+
+```bash
+./plugincli images push-tools
 ```
 
 ---
@@ -442,7 +497,7 @@ cat ./kubedb/kubedb.yaml
 
 ### 6.2 SR-IOV 配置步骤
 
-#### 10.2.1 进入配置目录
+#### 6.2.1 进入配置目录
 
 ```bash
 cd install/kubemore/sriov
@@ -489,11 +544,11 @@ lspci -nn | grep Virtual
 ### 6.3 RDMA 组件激活
 
 ```bash
-# RoCE 网络
-./morecli activate-rdma roce
+# RDMA 网络为 RoCE
+bash /etc/kubemore/utils/activate-rdma roce
 
-# InfiniBand 网络
-./morecli activate-ib roce
+# RDMA 网络为 IB
+bash /etc/kubemore/utils/activate-rdma ib
 ```
 
 ---
@@ -510,12 +565,12 @@ lspci -nn | grep Virtual
 | 内存 | ≥ 8 GB | ≥ 16 GB |
 | 系统盘 | ≥ 100 GB | ≥ 200 GB |
 | 数据盘 | 可选 ≥ 500 GB（推荐 NAS） | ≥ 2 TB（推荐 NAS） |
-| 端口要求 | 集群可访问 8090 | 8090 + 8443（如启用 HTTPS） |
+| 端口要求 | 集群可访问 8090 | 8090 |
 | 操作系统 | Ubuntu 20.04 / 22.04 / CentOS 7 / OpenEuler 22.03 | 同前 |
 
 ### 7.2 Harbor 安装
 
-#### 11.2.1 进入工作目录
+#### 7.2.1 进入工作目录
 
 ```bash
 cd install/kubeimg
@@ -565,64 +620,11 @@ bash install.sh
 
 ---
 
-## 8 [可选] 对象存储部署
-
-仅在客户场景中需要 S3 兼容对象存储（用于模型仓库、日志归档、训练数据等）时部署。
-
-### 8.1 节点规格
-
-| 项目 | 最低要求 | 生产推荐 |
-| --- | --- | --- |
-| CPU 核数 | ≥ 4 核 | ≥ 8 核 |
-| 内存 | ≥ 8 GB | ≥ 16 GB |
-| 系统盘 | ≥ 100 GB | ≥ 200 GB |
-| 数据盘 | 可选 ≥ 500 GB（推荐 NAS） | ≥ 4 TB（多副本部署需更大）|
-| 端口要求 | 集群可访问 9000、9001 | 同前 |
-
-### 8.2 单节点 MinIO 安装
-
-适用于研发或小规模场景：
-
-```bash
-export MINIO_HOME=/opt/kubestore
-export MINIO_ROOT_USER=kubestoreadmin
-export MINIO_ROOT_PASSWORD=kubestoreadmin
-
-bash storecli install-minio
-```
-
-### 8.3 多节点集群化安装
-
-适用于生产环境，需 ≥ 4 节点保证 EC 纠删码可用：
-
-```bash
-export MINIO_SIZE=1024
-export MINIO_PATH=/data
-
-./morecli install-kubestore \
-    192.168.1.21 \
-    192.168.1.22 \
-    192.168.1.23 \
-    192.168.1.24
-```
-
-### 8.4 集群挂载对象存储
-
-完成对象存储部署后，需在 K8s 集群侧激活存储 CSI 组件，实现 PVC 动态挂载：
-
-```bash
-./morecli activate-osc
-```
-
-随后即可在工作负载中通过 PVC 申请对象存储卷。
-
----
-
-## 9 部署验收清单
+## 8 部署验收清单
 
 所有组件激活完成后，须按以下清单逐项验证，签字归档。
 
-### 9.1 集群基础验收
+### 8.1 集群基础验收
 
 | # | 验证项 | 验证方法 | 预期结果 |
 | --- | --- | --- | --- |
@@ -630,26 +632,26 @@ export MINIO_PATH=/data
 | 2 | 系统 Pod | `kubectl get pods -A` | 全部 `Running` 或 `Completed` |
 | 3 | etcd 健康 | `kubectl -n kube-system exec etcd-<master> -- etcdctl endpoint health` | 所有 endpoint `is healthy` |
 | 4 | DNS 解析 | `kubectl run -it --rm test --image=busybox -- nslookup kubernetes` | 解析成功 |
-| 5 | NodePort 可达 | `curl http://<node>:32765` | 监控页面可访问 |
+| 5 | 监控组件 | `kubectl get pods -n kube-system \| grep monitor` | 监控 Pod 为 `Running`。安装命令中的端口是 `32761` |
 
-### 9.2 显卡资源验收
+### 8.2 显卡资源验收
 
 | # | 验证项 | 验证方法 | 预期结果 |
 | --- | --- | --- | --- |
-| 1 | GPU 资源注册 | `kubectl describe node <worker> \| grep -A 3 Allocatable` | 出现 `nvidia.com/gpu: <N>` 或对应厂商资源键 |
-| 2 | 显卡监控指标 | 访问 Grafana → GPU 监控大盘 | 利用率、显存、温度、功耗均有数据 |
-| 3 | 测试 Pod 调度 | 部署一个请求 1 GPU 的 Pod，进入容器执行 `nvidia-smi` | 看到分配的 GPU |
+| 1 | 加速卡资源注册 | `kubectl describe node <worker>` | `Allocatable` 出现本次安装对应的资源名 |
+| 2 | 测试 Pod 调度 | 按第 5.4 节的资源名提交一个申请加速卡的 Pod | Pod 被调度到 Worker |
 
-### 9.3 镜像与存储验收
+NVIDIA HAMi 的资源名是 `volcano.sh/vgpu-number`、`volcano.sh/vgpu-memory`、`volcano.sh/vgpu-cores`。昇腾 HAMi 的 910B3 是 `huawei.com/Ascend910B`，910B2 和 910B2C 是 `huawei.com/Ascend910B2`。整卡或原生 Device Plugin 的 910 是 `huawei.com/Ascend910`，950 是 `huawei.com/npu`。
+
+### 8.3 镜像仓库验收
 
 | # | 验证项 | 验证方法 | 预期结果 |
 | --- | --- | --- | --- |
 | 1 | Harbor 登录 | 浏览器访问 `http://<harbor>:8090` | 登录成功 |
 | 2 | 镜像推送 | `nerdctl push <harbor>/library/test:v1` | 推送成功 |
 | 3 | 节点拉取 | Worker 节点上 `crictl pull <harbor>/library/test:v1` | 拉取成功 |
-| 4 | 对象存储（如启用） | 用 `mc` 客户端连接 MinIO，创建桶并上传文件 | 操作成功 |
 
-### 9.4 RDMA 验收（如启用）
+### 8.4 RDMA 验收（如启用）
 
 | # | 验证项 | 验证方法 | 预期结果 |
 | --- | --- | --- | --- |
@@ -659,9 +661,9 @@ export MINIO_PATH=/data
 
 ---
 
-## 10 常见问题与故障排查
+## 9 常见问题与故障排查
 
-### 10.1 SSH 互信失败
+### 9.1 SSH 互信失败
 
 **现象**：`./morecli install` 报错 `Permission denied (publickey,password)`
 
@@ -672,18 +674,18 @@ export MINIO_PATH=/data
 3. 检查权限：`~/.ssh` 应为 700，`authorized_keys` 应为 600
 4. 非 root 用户场景，须确认已拷贝 `ansible.cfg.not_root` 为 `ansible.cfg`
 
-### 10.2 GPU 资源未注册到 K8s
+### 9.2 加速卡资源未注册到 Kubernetes
 
-**现象**：`kubectl describe node` 看不到 `nvidia.com/gpu` 资源
+**现象**：`kubectl describe node` 看不到本次安装对应的资源名，例如 `volcano.sh/vgpu-number`、`huawei.com/Ascend910B2`、`huawei.com/Ascend910` 或 `huawei.com/npu`。
 
 **排查**：
 
-1. 确认 `nvidia-smi` 在节点上正常工作
-2. 确认 device-plugin Pod 状态：`kubectl get pods -n kube-system | grep nvidia`
-3. 查看插件日志：`kubectl logs -n kube-system <plugin-pod>`
-4. 重启节点 kubelet：`systemctl restart kubelet`
+1. 确认节点上对应厂商的驱动命令可用，例如 NVIDIA 的 `nvidia-smi`、昇腾的 `npu-smi info`
+2. 确认已经在 `installer/kube-plugin` 执行了对应的 `plugincli component install`
+3. 查看组件 Pod：`kubectl get pods -A`
+4. 查看对应 Pod 日志：`kubectl logs -n <namespace> <pod>`
 
-### 10.3 节点功耗超出机柜配电
+### 9.3 节点功耗超出机柜配电
 
 **现象**：服务器节点调用人数多时，机房机柜跳闸或告警
 
@@ -693,7 +695,7 @@ export MINIO_PATH=/data
 - 在 AGIOne 调度策略中启用并发数上限，防止瞬时峰值
 - 若长期触顶，考虑分摊到不同机柜的节点上
 
-### 10.4 OS 重装后节点自动恢复失败
+### 9.4 OS 重装后节点自动恢复失败
 
 **现象**：昇腾节点 OS 重装后无法自动重新加入集群
 
@@ -704,7 +706,7 @@ export MINIO_PATH=/data
 3. 检查管理平面与节点的网络可达性（专线 / VPC）
 4. 确认 AGIOne Agent 启动日志中节点注册接口调用成功
 
-### 10.5 Harbor 推送超时
+### 9.5 Harbor 推送超时
 
 **现象**：大镜像（>10GB）推送 Harbor 时连接中断
 
@@ -716,9 +718,9 @@ export MINIO_PATH=/data
 
 ---
 
-## 11 附录
+## 10 附录
 
-### 11.1 部署节点清单模板
+### 10.1 部署节点清单模板
 
 | 序号 | 角色 | 主机名 | 管理 IP | 业务 IP | RDMA IP | CPU/内存 | 数据盘 | 加速卡 | 操作系统 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -728,7 +730,7 @@ export MINIO_PATH=/data
 | 4 | Worker | gpu-01 | 192.168.1.11 | 10.0.1.11 | 10.10.1.11 | 64C / 512G | 4 TB | 8 × A800-80G | Ubuntu 22.04 |
 | 5 | Worker | gpu-02 | 192.168.1.12 | 10.0.1.12 | 10.10.1.12 | 64C / 512G | 4 TB | 8 × H20-96G | Ubuntu 22.04 |
 
-### 11.2 端口规划速查表
+### 10.2 端口规划速查表
 
 | 服务 | 端口 | 说明 |
 | --- | --- | --- |
@@ -737,30 +739,28 @@ export MINIO_PATH=/data
 | etcd Peer | 2380 | etcd 节点之间 |
 | kubelet | 10250 | 所有节点 |
 | Harbor HTTP | 8090 | Harbor 节点 |
-| Harbor HTTPS（可选） | 8443 | Harbor 节点 |
-| MinIO API | 9000 | 对象存储节点 |
-| MinIO Console | 9001 | 对象存储节点 |
-| AGIOne 业务 NodePort | 32761 - 32765 | 所有 Worker |
-| Grafana | 32765 | 监控访问入口 |
-| 默认 NodePort 区间 | 30000 - 32767 | 业务模型服务 |
+| 监控组件 | 32761 | `plugincli component install monitor --server-port` |
+| Jupyter 转发 | 32762 | `plugincli component install jupyterlab-proxy --proxy-port` |
+| 默认 NodePort 区间 | 30000 - 32767 | `morecli install --port-range` |
 
-### 11.3 morecli 命令速查
+### 10.3 命令速查
 
 | 类别 | 命令 |
 | --- | --- |
-| 安装集群 | `./morecli install --masters ... --etcd ... --workers ...` |
-| 增加节点 | `./morecli add --workers 192.168.1.7,192.168.1.8` |
-| 移除节点 | `./morecli del --workers 192.168.1.7,192.168.1.8` |
+| 安装集群 | `./morecli install --masters ... --etcds ... --workers ...` |
+| 增加节点 | `./morecli add --masters ... --etcds ... --workers ...` |
+| 移除节点 | `./morecli del --masters ... --etcds ... --workers ...` |
 | 销毁集群 | `./morecli destroy` |
-| 激活 NVIDIA 插件 | `./morecli activate-kdp nvidia` |
-| 激活 Ascend 插件 | `./morecli activate-kdp ascend910` |
-| 激活 HAMI 显存超分 | `./morecli activate-kdp hami` |
-| 安装 KubeDB | `./morecli install-kubedb` |
-| 激活监控组件 | `./morecli activate-monitor --xpu-mode nvidia` |
-| 激活 K8s 监控 | `./morecli activate-k8s-monitor` |
-| 激活 Jupyter | `./morecli activate-jupy-proxy test` |
-| 激活工具集 | `./morecli activate-tools` |
-| 激活对象存储 CSI | `./morecli activate-osc` |
-| 激活 RoCE | `./morecli activate-rdma roce` |
-| 激活 IB | `./morecli activate-ib roce` |
-| 安装多节点 MinIO | `./morecli install-kubestore <ip1> <ip2> ...` |
+| 加速卡标签 | `./plugincli label-xpu --mode nvidia --type nvidia-a10080g` |
+| Volcano 整卡 | `./plugincli component install volcano --backend none nvidia` |
+| Volcano + HAMi | `./plugincli component install volcano --backend hami nvidia` |
+| 昇腾 HAMi | `./plugincli component install volcano --backend hami ascend` |
+| 昇腾 MindCluster | `./plugincli component install volcano --backend mindcluster ascend` |
+| 原生 Device Plugin | `./plugincli component install device-plugin nvidia` |
+| 监控数据库 | `./plugincli component install influxdb --data-path /opt/kubedb` |
+| 监控组件 | `./plugincli component install monitor --xpu-mode ascend910 --server-port 32761` |
+| 集群监控 | `./plugincli component install k8s-monitor` |
+| Jupyter 转发 | `./plugincli component install jupyterlab-proxy --proxy-port 32762` |
+| 工具 | `./plugincli images push-tools` |
+| RoCE | `bash /etc/kubemore/utils/activate-rdma roce` |
+| IB | `bash /etc/kubemore/utils/activate-rdma ib` |

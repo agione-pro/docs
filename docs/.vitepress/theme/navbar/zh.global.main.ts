@@ -13,13 +13,27 @@ export const zhNavbar = [
         items: [
           { text: '技术实践', link: '/zh-CN/practices/technical/' },
           { text: '项目实践', link: '/zh-CN/practices/project/' },
-          { text: '监控矩阵', link: '/zh-CN/practices/monitor-matrix/' },
+        ]
+      },
+      {
+        text: 'API 参考',
+        items: [
+          { text: '模型 API（OpenAPI）', link: '/zh-CN/api/openapi/' },
+          { text: '平台 API', link: '/zh-CN/api/system-api/' },
+          { text: '协议兼容', link: '/zh-CN/api/protocol-compatibility/' },
+        ]
+      },
+      {
+        text: '运维中心',
+        items: [
+          { text: '监控矩阵', link: '/zh-CN/operations/monitor-matrix/' },
         ]
       },
       {
         text: '其他',
         items: [
           { text: 'FAQ', link: '/zh-CN/others/faq/' },
+          { text: '升级说明', link: '/zh-CN/others/upgrade/model-business-upgrade-2026-11/' },
           { text: '版本说明', link: '/zh-CN/others/release-notes/' },
         ]
       },

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 700" width="840" height="700" role="img" aria-labelledby="09-acceptance-title 09-acceptance-desc">
+  <title id="09-acceptance-title">技术部署与业务访问分开验收</title>
+  <desc id="09-acceptance-desc">技术部署与业务访问分开验收</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563eb" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="0" />
+  <text x="420" y="52" font-size="26" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">技术部署与业务访问分开验收</text>
+  <g id="notice-badge">
+    <rect x="160" y="70" width="520" height="32" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="420" y="91" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="500" fill="#475569" text-anchor="middle">流程示意图，非实机截图</text>
+  </g>
+  <g id="stage-1">
+    <rect x="40" y="120" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="134" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="152" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 1</text>
+    <text x="146" y="153" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">检查安装任务和实际服务</text>
+    <text x="60" y="188" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">检查目标：Succeeded，节点 Ready，服务就绪</text>
+    <text x="60" y="214" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">数量按本 Release 核对，不照抄其他版本</text>
+  </g>
+  <path d="M 420 238 L 420 266" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-2">
+    <rect x="40" y="266" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="280" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="298" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 2</text>
+    <text x="146" y="299" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">检查 Runtime verified 与存储</text>
+    <text x="60" y="334" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">核对 PV / PVC、实际挂载源与日志写入</text>
+    <text x="60" y="360" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">不能只看安装脚本退出码或同名目录</text>
+  </g>
+  <path d="M 420 384 L 420 412" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-3">
+    <rect x="40" y="412" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="426" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="444" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 3</text>
+    <text x="146" y="445" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">取得账户并另验登录与订阅</text>
+    <text x="60" y="480" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">受控保存账户文件，使用 AGIOne 访问地址</text>
+    <text x="60" y="506" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">用现场授权状态验证业务页面是否可用</text>
+  </g>
+  <path d="M 420 530 L 420 558" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="criteria-banner">
+    <rect x="40" y="558" width="760" height="118" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" />
+    <rect x="56" y="572" width="78" height="26" rx="4" fill="#d97706" />
+    <text x="95" y="590" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">注意</text>
+    <text x="144" y="591" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#b45309">分层验收</text>
+    <text x="60" y="623" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">图中状态是检查目标，不是实机结果截图</text>
+    <text x="60" y="649" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">订阅过期不等于安装失败，也不等于业务验收通过</text>
+  </g>
+</svg>

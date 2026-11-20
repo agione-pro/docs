@@ -35,6 +35,7 @@ Local development uses `http://localhost:5173/` by default.
 | Purchase & Activation | `/license/` | `/zh-CN/license/` |
 | User Guide | `/userguide/` | `/zh-CN/userguide/` |
 | User Manual | `/usermanual/` | `/zh-CN/usermanual/` |
+| API Reference | `/api/` | `/zh-CN/api/` |
 | Best Practices | `/practices/` | `/zh-CN/practices/` |
 | Operations | `/operations/` | `/zh-CN/operations/` |
 | Others | `/others/` | `/zh-CN/others/` |
@@ -47,6 +48,7 @@ Local development uses `http://localhost:5173/` by default.
 │   ├── .vitepress/
 │   │   ├── config/
 │   │   │   ├── index.ts
+│   │   │   ├── profile.ts
 │   │   │   └── shared.ts
 │   │   └── theme/
 │   │       ├── components/
@@ -66,6 +68,18 @@ Local development uses `http://localhost:5173/` by default.
 │   ├── index.md
 │   └── zh-CN/
 │       └── index.md
+├── .github/workflows/          # CI/CD: main.yml (production), preview.yml (preview)
+├── scripts/                    # validation and screenshot scripts
+│   ├── check-docs-profile.mjs  # brand placeholder / domain consistency check
+│   ├── check-docs-images.mjs   # image reference and filename casing check
+│   ├── check-manual-style.mjs  # user-manual style gate (S01–S10), with manual-style-baseline.json
+│   ├── manual-style-baseline.json
+│   └── render-shot.py          # browser-rendered screenshot tooling (see SCREENSHOT_GUIDE.md)
+├── AGENTS.md                   # repository agent rules and Required Workflow
+├── GUIDE.md                    # VitePress maintenance guide
+├── USER_MANUAL_PAGE_STRUCTURE_GUIDE.md
+├── SCREENSHOT_GUIDE.md
+├── PROJECT_CONTEXT.md          # dated historical work log (see header note; not current state)
 ├── package.json
 ├── package-lock.json
 └── README.md

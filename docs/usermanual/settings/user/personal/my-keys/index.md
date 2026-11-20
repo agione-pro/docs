@@ -1,13 +1,18 @@
 # My Keys
 
+::: info Document Information
+Version: v2.2
+Updated: 2026-11-16
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Personal > My Keys |
-| Page route | Enter through the visible menu; do not paste a hidden route. |
-| Managed objects | Model API Keys, System API AK/SK Pairs, status, expiration, and applicable quota settings |
+| Navigation Path | Settings > Personal > My Keys |
+| Page Route | `/user/user-space/my-keys/model` |
+| Managed Object | Model API Keys, System API AK/SK Pairs, status, expiration, and applicable quota settings |
 
 #### Beginner Explanation
 
@@ -17,10 +22,10 @@ Use a separate credential for each application or workload. Give it a clear name
 
 | Term | Description |
 | --- | --- |
-| Model API Key | A credential used to call model APIs.; Use separate Keys for separate workloads. |
-| System API AK/SK Pair | A credential pair used to call system APIs.; Never place the complete pair in documentation or frontend code. |
-| Member quota | The current-cycle allowance shared by the account's Model API Keys.; Check it before diagnosing a quota failure. |
-| Key limit | A per-Key cycle limit, when the page enables it.; Keep it consistent with the project or member policy. |
+| Model API Key | A credential used to call model APIs. Use separate Keys for separate workloads. |
+| System API AK/SK Pair | A credential pair used to call platform APIs. Never place the complete pair in documentation or frontend code. |
+| Member quota | The current-cycle allowance shared by the account's Model API Keys. Check it before diagnosing a quota failure. |
+| Key limit | A per-Key cycle limit, when the page enables it. Keep it consistent with the project or member policy. |
 
 ## Prerequisites
 
@@ -30,9 +35,13 @@ Use a separate credential for each application or workload. Give it a clear name
 
 ## Page Description
 
+The page defaults to the `Model API Keys` tab; `System API AK/SK Pairs` is another tab on the same page.
+
 On the visible personal page, the Model API tab provides the member-quota summary, `Available` / `All` scope buttons, a `Status` filter, and the credential table. The table shows Key name / description, prefix, status, expiration, used / limit, created time, and row actions. The `System API AK/SK Pairs` tab uses the same filters but omits the member-quota summary and the `Used / limit` column.
 
 ![My Keys list](./images/my-keys-list.png)
+
+The Model API Keys list includes the member quota summary and shows Key name/description, prefix, status, expiration, used/limit, and actions.
 
 | Area | Description |
 | --- | --- |
@@ -63,15 +72,19 @@ On the visible personal page, the Model API tab provides the member-quota summar
 
 ![Create Model API Key](./images/create-key.png)
 
+The figure shows the Create Model API Key drawer with expiration, Key name, description, reset cycle, period limit, warning threshold, and STOP/WARN policies. Advanced Options is collapsed. Values are untouched form examples, not recommended limits or a generated credential.
+
 ### Open the System API Key Creation Dialog
 
 1. Select `System API AK/SK Pairs`.
 2. Click **"Create Key"**.
 3. Review the required `Expire Time` and `Key Name` fields and the optional `Description` field (maximum 200 characters).
-4. Confirm that this dialog does not contain Model API quota, reset-cycle, warning-threshold, or limit-reached fields.
+4. Review the optional `Advanced Options` and the default-off `Enable IP Whitelist` help without toggling it during a read-only review. This dialog does not contain Model API quota, reset-cycle, warning-threshold, or limit-reached fields.
 5. Click **"Cancel"**. Do not click the final `Create` button during documentation review.
 
 ![Create System API AK/SK Pair](./images/create-system-api-pair.png)
+
+The figure shows the Create System API AK/SK Pair dialog with expiration, Key name, description, and expanded Advanced Options. The IP whitelist is off by default; its help is visible. Model API quota, reset-cycle, and alert-threshold fields are absent. Neither the whitelist nor credential creation was executed.
 
 ### Submit a Quota Request
 
@@ -88,7 +101,19 @@ On the visible personal page, the Model API tab provides the member-quota summar
 
 ![Key quota](./images/key-quota.png)
 
+The Key quota dialog contains reset cycle, monthly reset date, limit switch, cycle limit, and alert threshold. Confirm consistency with member or project quota policy.
+
 ## Parameter Quick Reference
+
+### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Filters | — | — | — | `Available` / `All` and `Status`. |
+
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -112,7 +137,7 @@ On the visible personal page, the Model API tab provides the member-quota summar
 - Tabs and row actions are role- and tenant-dependent. Use only the controls visible after entering from the current account's menu.
 - Opening a dialog is not the same as creating or saving a credential. Stop at `Cancel` during documentation review.
 - Do not add permission-scope, quota, reset-cycle, or warning fields to a credential type that does not display them in the current Demo page.
-- Never copy complete Keys, AK/SK, tokens, names, identifiers, usage values, or dates into documentation, tickets, or screenshots.
+- Use non-sensitive examples in documentation, tickets, and screenshots; never expose complete Keys, AK/SK, tokens, or private customer information. Creation-form defaults and placeholders in the figures are examples, not recommended settings.
 
 ## Result Validation
 
@@ -145,34 +170,6 @@ On the visible personal page, the Model API tab provides the member-quota summar
 
 **Resolution:** The action may depend on role, tenant policy, Key state, or the selected credential type. Use the visible menu and current row state as the source of truth.
 
-#### How should the My Keys page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the My Keys page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Never expose a complete Key, AK/SK pair, token, or private key in documentation, screenshots, or chat.
@@ -182,3 +179,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 
 1. Return to Settings > Personal > My Keys and verify the status and update time.
 2. If a related object must be processed, open the next business entry shown on the page.
+
+Related pages: [Projects](../projects/)、[Quota Approvals](../../members-roles/quota-requests/)、[Profile](../profile/)

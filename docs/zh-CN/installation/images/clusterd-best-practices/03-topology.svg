@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 726" width="840" height="726" role="img" aria-labelledby="03-topology-title 03-topology-desc">
+  <title id="03-topology-title">选择一种部署拓扑</title>
+  <desc id="03-topology-desc">选择一种部署拓扑</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563eb" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="0" />
+  <text x="420" y="52" font-size="26" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">选择一种部署拓扑</text>
+  <g id="notice-badge">
+    <rect x="160" y="70" width="520" height="32" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="420" y="91" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="500" fill="#475569" text-anchor="middle">流程示意图，非实机截图</text>
+  </g>
+  <g id="stage-1">
+    <rect x="40" y="120" width="760" height="144" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="134" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="152" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 1</text>
+    <text x="146" y="153" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">三种拓扑，仅选一种</text>
+    <text x="60" y="188" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">All in One：1 节点，无节点级高可用</text>
+    <text x="60" y="214" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">主备：2 节点，数据库受控切换</text>
+    <text x="60" y="240" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">企业级高可用：至少 3 节点</text>
+  </g>
+  <path d="M 420 264 L 420 292" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-2">
+    <rect x="40" y="292" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="306" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="324" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 2</text>
+    <text x="146" y="325" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">核对只读拓扑预览</text>
+    <text x="60" y="360" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">检查节点数、数据库模式与故障容忍说明</text>
+    <text x="60" y="386" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">预览不符时返回修改，不填写虚构节点</text>
+  </g>
+  <path d="M 420 410 L 420 438" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-3">
+    <rect x="40" y="438" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="452" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="470" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 3</text>
+    <text x="146" y="471" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">确认规划，再进入基础信息</text>
+    <text x="60" y="506" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">本例选择 All in One，只填写一台节点</text>
+    <text x="60" y="532" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">其他拓扑需独立核对资源与可用性要求</text>
+  </g>
+  <path d="M 420 556 L 420 584" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="criteria-banner">
+    <rect x="40" y="584" width="760" height="118" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" />
+    <rect x="56" y="598" width="78" height="26" rx="4" fill="#d97706" />
+    <text x="95" y="616" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">注意</text>
+    <text x="144" y="617" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#b45309">验证边界</text>
+    <text x="60" y="649" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">本例仅完成单节点离线方案的实机验证</text>
+    <text x="60" y="675" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">两节点不表示全部服务自动高可用</text>
+  </g>
+</svg>

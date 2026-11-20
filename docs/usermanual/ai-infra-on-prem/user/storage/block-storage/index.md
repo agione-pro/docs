@@ -1,11 +1,16 @@
 # Block Storage
 
+::: info Document Information
+Version: v2.1
+Updated: 2026-11-12
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Provider |
-| Navigation Path | AI Infra(On-Prem) > Storage > Block Storage |
+| Navigation Path | On-Prem > Storage > Block Storage |
 | Page Route | `/powerone/storage-service/block` |
 | Managed Object | Configuration, status, and relationships on Block Storage |
 
@@ -13,8 +18,7 @@
 
 Block storage is like attaching an independent disk to an instance. It is suitable for tasks that require persistent writes, independent volumes, or block device semantics. It is not a shared directory. Before multiple instances read and write simultaneously, confirm whether the platform supports the corresponding mount mode.
 
-#### Terms
-
+#### Terms Quick Reference
 | Term | Description |
 | --- | --- |
 | Volume | Persistent block device that can be mounted by an instance. |
@@ -41,6 +45,8 @@ Confirm that the task involves Configuration, status, and relationships on Block
 Use this page to manage block volumes, capacity, mount relationships, and volume state.
 
 ![Block Storage](./images/block-storage-list.png)
+
+The figure shows Block Storage displaying the message that block storage is not supported in the current region.
 
 The page is used to display block storage capability in the selected region. When the capability is opened, it usually displays list, capacity, status, creation entrypoint, mount entrypoint, and operation entrypoint. When the capability is not opened, the page shows a capability unavailable prompt.
 
@@ -89,22 +95,22 @@ The page is used to display block storage capability in the selected region. Whe
 | Mount Path | Conditionally required | Text | `/mnt/data` | Access path inside the instance or container. |
 | Volume Status | System-generated | Enum | `Available` | Used to determine whether it can be mounted, expanded, or deleted. |
 
-#### Mount, Unmount, and Confirm Capacity
+### Mount, Unmount, and Confirm Capacity
 
-#### Mount
+### Mount
 
 1. Open the instance creation page or storage mount entrypoint.
 2. Select the target block storage resource.
 3. Fill in the in-container path, such as `/mnt/data` or `/mnt/output`.
 4. After submission, view instance events and logs to confirm successful mounting.
 
-#### Unmount
+### Unmount
 
 1. Confirm that no running process is reading or writing this path.
 2. Perform unmount through the instance or storage operation entrypoint.
 3. Refresh the page to confirm that the mount relationship has been removed.
 
-#### Confirm Capacity
+### Confirm Capacity
 
 1. View capacity and status in the block storage list.
 2. Run `df -h` inside the instance or perform application-side capacity checks.

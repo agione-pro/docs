@@ -1,13 +1,18 @@
 # Member Quotas
 
+::: info Document Information
+Version: v2.2
+Updated: 2026-11-16
+:::
+
 ## Feature Overview
 
 | Item | Content |
 | --- | --- |
 | Applicable Role | Model Consumer |
-| Navigation path | Settings > Members & Roles > Member Quotas |
-| Page route | `/user/user-space/member-quotas` |
-| Managed objects | Member Personal Key usage, authorized quota, and quota details |
+| Navigation Path | Settings > Members & Roles > Member Quotas |
+| Page Route | `/user/user-space/member-quotas` |
+| Managed Object | Member Personal Key usage, authorized quota, and quota details |
 
 #### Beginner Explanation
 
@@ -17,10 +22,10 @@ Member Quotas is the team's quota allocation table. It shows each member's avail
 
 | Term | Description |
 | --- | --- |
-| Member quota | Quota allocated to a member.; Check it when a call fails. |
-| Used quota | Quota already consumed by the member.; Adjust the limit when usage approaches it. |
-| Quota limit | The maximum quota that the member can consume.; Confirm the impact before changing it. |
-| Quota request | A member's request for additional quota.; Direct the member to submit one when quota is insufficient. |
+| Member quota | Quota allocated to a member. Check it when a call fails. |
+| Used quota | Quota already consumed by the member. Adjust the limit when usage approaches it. |
+| Quota limit | The maximum quota that the member can consume. Confirm the impact before changing it. |
+| Quota request | A member's request for additional quota. Direct the member to submit one when quota is insufficient. |
 
 ## Prerequisites
 
@@ -70,7 +75,9 @@ The following screenshot shows the Member Quotas list. Member identifiers are hi
 
 The following screenshot shows member quota details.
 
-![Member Quota Details](./images/member-quota-detail.png)
+![Member Quotas list before opening details](./images/member-quota-detail.png)
+
+The figure shows the Member Quotas list; the details panel is not open in this screenshot.
 
 6. Select `Adjust Quota` to open the adjustment dialog.
 7. Select Increase or Deduct, and enter the amount and reason.
@@ -78,7 +85,9 @@ The following screenshot shows member quota details.
 
 The following screenshot shows the member quota adjustment dialog.
 
-![Adjust Member Quota](./images/adjust-member-quota.png)
+![Adjust Member Quota - no quota limit example](./images/adjust-member-quota.png)
+
+The figure shows `Adjust Quota` for a member with no quota limit. This state provides `Open policy settings`; the increase/deduct amount and reason fields are not shown in this example.
 
 9. Select `Limit` to open the member limit dialog.
 10. Configure the reset cycle, quota limit, and model allowlist.
@@ -88,15 +97,27 @@ The following screenshot shows the member quota limit dialog.
 
 ![Member Quota Limit](./images/member-quota-limit.png)
 
-### Set Member Quota Limits
+The member quota limit dialog contains the reset cycle, limit switch, cycle limit, and model allowlist. Confirm the affected member scope before saving.
 
-1. Open `Settings > Members & Roles > Member Quotas`.
-2. Locate the target Member Quotas and click **"Limit"**.
-3. Review or complete the required fields shown on the page, and confirm the target object, scope, and current status.
-4. For an action that changes data, permissions, status, or an external setting, confirm the impact and rollback path before clicking the final confirmation button.
-5. After the action, return to the list or details page and verify the status, update time, or result message.
+### Set Member Quota Defaults
+
+1. Go to `Settings > Members & Roles > Member Quotas`.
+2. Click the `Member Quota Defaults` entry at the top.
+3. Review the default quota, reset cycle, alert threshold, and applicable model scope.
+4. Confirm the affected member scope before saving. Defaults apply to new members; existing members can be adjusted individually.
+5. During read-only validation, do not save default changes.
 
 ## Parameter Quick Reference
+
+### Query and Filters
+
+This group is for queries and filters only. An em dash means the source does not specify required status, type, or example; it is not a backend rule. Grouped controls list their conditions in the Description column.
+
+| Field Name | Required | Field Type | Example | Description |
+| --- | --- | --- | --- | --- |
+| Filters | — | — | — | Search by name, email, or member ID; status; and Usage sort |
+
+### Existing Configuration and Result Fields
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
@@ -168,34 +189,6 @@ The current account lacks quota-administrator permission, the member status does
 
 Confirm the member status and quota-management permission. Submit the required quota request first, then return to Member Quotas after approval.
 
-#### How should the Member Quotas page be exported or captured safely?
-
-**Symptom:**
-
-Page information is needed for troubleshooting, audit, or delivery.
-
-**Possible causes:**
-
-The page may contain accounts, email addresses, IP addresses, internal paths, tenant identifiers, Keys, or amounts.
-
-**Resolution:**
-
-Keep only the necessary fields and action context. Use opaque light-gray pixel mosaics for sensitive text and never share complete credentials or internal addresses.
-
-#### What should I do when the Member Quotas page shows unexpected data?
-
-**Symptom:**
-
-A field, status, metric, or related object differs from the expectation.
-
-**Possible causes:**
-
-The page scope, time condition, role permission, or upstream setting does not match.
-
-**Resolution:**
-
-Record the redacted object, time, and result. Verify the entry and filters first, then check related pages and Operation Logs.
-
 ## Notes
 
 - Adjusting quota affects a member's calling ability. Confirm the member and amount first.
@@ -206,3 +199,5 @@ Record the redacted object, time, and result. Verify the entry and filters first
 1. Review member requests on Quota Requests.
 2. Adjust default quota for new members in Tenant Settings.
 3. Verify quota adjustments in Operation Logs.
+
+Related pages: [Quota Approvals](../quota-requests/)、[Members](../team-members/)

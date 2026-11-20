@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 846" width="840" height="846" role="img" aria-labelledby="08-precheck-title 08-precheck-desc">
+  <title id="08-precheck-title">预检、确认与开始安装</title>
+  <desc id="08-precheck-desc">预检、确认与开始安装</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563eb" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="0" />
+  <text x="420" y="52" font-size="26" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#0f172a" text-anchor="middle">预检、确认与开始安装</text>
+  <g id="notice-badge">
+    <rect x="160" y="70" width="520" height="32" rx="16" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="420" y="91" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="500" fill="#475569" text-anchor="middle">流程示意图，非实机截图</text>
+  </g>
+  <g id="stage-1">
+    <rect x="40" y="120" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="134" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="152" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 1</text>
+    <text x="146" y="153" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">核对服务并运行预检</text>
+    <text x="60" y="188" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">核对本 Release 交付的服务组合</text>
+    <text x="60" y="214" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">点击 Run precheck，等待完整报告</text>
+  </g>
+  <path d="M 420 238 L 420 266" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-2">
+    <rect x="40" y="266" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="280" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="298" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 2</text>
+    <text x="146" y="299" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">按结果处理，不跳过阻断</text>
+    <text x="60" y="334" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">技术阻断：修复后重新预检</text>
+    <text x="60" y="360" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">可接受风险：阅读影响后逐项确认</text>
+  </g>
+  <path d="M 420 384 L 420 412" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-3">
+    <rect x="40" y="412" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="426" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="444" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 3</text>
+    <text x="146" y="445" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">结论允许继续时核对安装范围</text>
+    <text x="60" y="480" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">检查本次配置、节点与目标磁盘</text>
+    <text x="60" y="506" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">风险确认不能绕过技术阻断</text>
+  </g>
+  <path d="M 420 530 L 420 558" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="stage-4">
+    <rect x="40" y="558" width="760" height="118" rx="8" fill="#f8faff" stroke="#2563eb" stroke-width="1.5" />
+    <rect x="56" y="572" width="78" height="26" rx="4" fill="#2563eb" />
+    <text x="95" y="590" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">步骤 4</text>
+    <text x="146" y="591" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#1d4ed8">开始安装并最终确认</text>
+    <text x="60" y="626" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">点击 Start installation，再核对最终确认内容</text>
+    <text x="60" y="652" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#334155">只提交一次，等待当前任务完成</text>
+  </g>
+  <path d="M 420 676 L 420 704" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)" fill="none" />
+  <g id="criteria-banner">
+    <rect x="40" y="704" width="760" height="118" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5" />
+    <rect x="56" y="718" width="78" height="26" rx="4" fill="#d97706" />
+    <text x="95" y="736" font-size="18" font-family="system-ui, -apple-system, sans-serif" font-weight="600" fill="#ffffff" text-anchor="middle">注意</text>
+    <text x="144" y="737" font-size="20" font-family="system-ui, -apple-system, sans-serif" font-weight="700" fill="#b45309">报告有效性</text>
+    <text x="60" y="769" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">配置变化后必须重新预检，旧报告不授权新配置</text>
+    <text x="60" y="795" font-size="18" font-family="system-ui, -apple-system, sans-serif" fill="#1e293b">安装失败先看对应任务日志，不直接删数据重装</text>
+  </g>
+</svg>

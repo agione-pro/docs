@@ -7,10 +7,15 @@ next: true
 
 This scenario covers development environments, training workloads, and the durable storage of models, images, datasets, and outputs.
 
+An IDE (integrated development environment) supports online coding and debugging. Images provide the runtime environment; persistent storage holds data that must outlive an instance. An arbitrary container path is not automatically persistent.
+
 ## Applicable Roles
 
 - End User
 - Operator maintaining images, storage, and compute resources
+
+
+**Role handoff:** The Platform Operator first prepares available images, storage, specifications, and quota. Users create IDEs or runtime instances and preserve their artifacts. For infrastructure problems, users provide the task identifier, time, and relevant logs for the operator to investigate the resource side.
 
 ## Goals
 
@@ -29,13 +34,13 @@ This scenario covers development environments, training workloads, and the durab
 | 3. Run workloads | Runtime instances execute normally and emit logs and monitoring data |
 | 4. Preserve assets | Models, images, data, and results are stored in reusable locations |
 
-The following screenshot corresponds to Stage 2 and confirms that the development environment is available for online IDE debugging.
+The image shows an Online IDE example card marked **Running**, with active service entries. It illustrates list filters, the creation entry, and card fields; it is not evidence that the IDE created for this task is ready.
 
-![Development environments](./images/dev-environments.png)
+![Development environments](./images/online-ide-list.png)
 
-The following screenshot corresponds to Stage 3 and confirms the training workload instance, runtime status, and task entry.
+The image shows a Runtime Instances example card marked **Starting**, with an **Unknown** port state. It illustrates task and resource fields, not a completed training run.
 
-![Model training](./images/model-training.png)
+![Model training](./images/runtime-instances-list.png)
 
 ## Before You Start
 
@@ -46,7 +51,7 @@ The following screenshot corresponds to Stage 3 and confirms the training worklo
 
 1. Create a development environment
 2. Mount code, data, and storage
-3. Submit a training workload
+3. Configure and run the training script in Runtime Instances
 4. Save models, logs, and outputs
 
 ## Document Index
@@ -57,7 +62,7 @@ The following screenshot corresponds to Stage 3 and confirms the training worklo
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. Use them to decide whether the outcome is observable and reviewable and whether you can continue to the next scenario. They do not repeat the procedure; if any item fails, return to the relevant feature guide and follow its troubleshooting section.
+Confirm the results below before moving on; use the linked procedure to resolve failed checks.
 
 | Check | Pass Criteria |
 | --- | --- |

@@ -5,7 +5,7 @@ next: true
 
 # Scenario Overview - API Rate-Control Release and Audit
 
-This scenario helps operators start from a traffic baseline, design, release, and validate API rate-control rules, and use node cache, release records, and audit details to confirm that rules work as intended.
+This scenario helps operators start from a traffic baseline, design, release, and validate API rate-control rules, and use node cache, release records, and audit details to confirm that rules work as intended. API means application programming interface. Rate control limits request frequency; it does not replace account or model-access authorization.
 
 ## Applicable Roles
 
@@ -51,7 +51,7 @@ This scenario helps operators start from a traffic baseline, design, release, an
 
 ## Completion Checklist
 
-> **Purpose:** These are the scenario exit criteria. They confirm that the rule version is active on the correct nodes and that statistics or blocks match expectations. A successful release click alone is not completion.
+Verify the active node version and observed statistics or blocks; a successful publish click is not completion.
 
 | Check | Pass Criteria |
 | --- | --- |
