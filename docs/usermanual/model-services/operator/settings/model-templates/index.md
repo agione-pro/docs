@@ -93,7 +93,9 @@ The query group lists the real controls of the page filter area. "As needed" des
 | Keyword | Optional | Text | `deepseek` | Keyword search |
 
 
-### Add template - step 1
+### Step 1 Fields
+
+The table lists the fields on step 1 of the add-template wizard.
 
 | Field Name | Required | Field Type | Example | Description |
 | --- | --- | --- | --- | --- |
