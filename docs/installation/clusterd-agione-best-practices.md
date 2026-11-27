@@ -58,14 +58,14 @@ The example initializes `/dev/vdb` only after installation confirmation. **Do no
 
 ## 2. Prerequisites
 
-Target nodes need Ubuntu 22.04, a common CPU architecture, working SSH, and privilege elevation. A standard fresh install requires at least **8 vCPUs, 12 GiB of memory, and 160 GiB of data storage per node**; for a mounted filesystem, check free space rather than advertised capacity. Budget for ClusterD control-host storage separately; see the [Deployment Guide](./agione-deployment-requirements). The selected topology must still pass scheduling capacity precheck.
+Target nodes need Ubuntu 22.04, a common CPU architecture, working SSH, and privilege elevation. For production delivery, request **16 vCPUs, 32 GiB of memory, and 160 GiB of data storage per node**; for a mounted filesystem, check free space rather than advertised capacity. Budget for ClusterD control-host storage separately; see the [Deployment Guide](./agione-deployment-requirements). The selected topology must still pass scheduling capacity precheck.
 
 ### 2.1 Example Host and Access Plan
 
 | Item | Example value or resource | What to confirm |
 | --- | --- | --- |
 | OS and architecture | Ubuntu 22.04.5 LTS, `x86_64` | A fresh host; architecture matches the package and resources |
-| CPU / memory | 16 vCPU / 32 GiB | This is the tested size, not a universal capacity guarantee for every topology or workload |
+| CPU / memory | 16 vCPU / 32 GiB | Production request baseline; the selected topology and workload must still pass precheck |
 | System disk | 100 GiB | Space for the OS, archive, extracted files, ClusterD resources, and temporary files; do not budget only for archive size |
 | AGIOne data disk | 200 GiB whole disk `/dev/vdb` | Empty before installation; select the actual device returned by probing |
 | Node name / private IP | `node-1` / `10.10.0.11` | All addresses here are examples. Replace them with real, unique, routable addresses |

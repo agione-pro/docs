@@ -56,8 +56,8 @@ Recommended request profile:
 | Item | Recommended Value | Description |
 | --- | --- | --- |
 | Operating system | Linux | Ubuntu 22.04 |
-| CPU | 8 cores | CPU must be at least 8 cores |
-| Memory | 16 GiB recommended | The installer requires at least `12GiB` detected memory; 16 GiB remains the recommended request profile |
+| CPU | 16 cores | Production deployments should request 16 cores |
+| Memory | 32 GiB recommended | Production deployments should request 32 GiB |
 | Free disk | 200 GiB | When `runtime_root` keeps the default value, the installer prefers a data disk that has at least about `160GiB` free, and falls back to the system disk only when no suitable data disk is available |
 | Execution user | `root` | Root installation is recommended to avoid Docker, directory permission, and system service permission issues |
 
@@ -534,9 +534,9 @@ Restore changes runtime data and requires the confirmation environment variables
 
 No manual installation is required. The bundle includes an offline Python runtime, and the installer prepares `/opt/agione-python` first.
 
-### Q3: Why is detected memory not exactly 16 GiB after requesting 16G?
+### Q3: Why is detected memory not exactly 32 GiB after requesting 32G?
 
-Cloud hosts, virtualization platforms, and operating systems reserve part of the memory, so the detected value can be lower than the purchased specification. The installer requires at least `12GiB` detected memory, while 16 GiB remains the recommended request profile for smoother startup and operation.
+Cloud hosts, virtualization platforms, and operating systems reserve part of the memory, so the detected value can be lower than the purchased specification. For production delivery, request 16 cores and 32 GiB memory, then use the installer's precheck result as the final acceptance evidence.
 
 ### Q4: How does the installer choose the disk for runtime data?
 

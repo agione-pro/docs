@@ -50,12 +50,12 @@ Availability also depends on failure domains, remaining capacity, storage, ingre
 | Check | ClusterD control host | AGIOne target nodes (each) |
 | --- | --- | --- |
 | OS and architecture | Ubuntu 22.04; select a published ClusterD package for the control host's x86_64 or ARM64 architecture | Ubuntu 22.04; use the same CPU architecture across the cluster and obtain matching deployment assets |
-| CPU / memory | Allow headroom for the control service, extraction, and asset processing. Include the target-node workload when sharing a host. | At least **8 vCPUs / 12 GiB** per node. **16 GiB** is the recommended starting point for node memory; the selected services and replicas must still pass scheduling capacity checks. |
+| CPU / memory | Allow headroom for the control service, extraction, and asset processing. Include the target-node workload when sharing a host. | For production delivery, request **16 vCPUs / 32 GiB** per target node; the selected services and replicas must still pass scheduling capacity checks. |
 | System and release storage | Budget for the downloaded archive, extracted files, ClusterD data, and offline assets | Reserve space for the OS, system logs, and temporary deployment files separately from AGIOne data |
 | AGIOne data storage | Not needed on a control-only host; required if it also serves as a target node | At least **160 GiB** per node for a standard fresh install: total capacity for an empty device, or free capacity for an existing filesystem |
 | Access | Installing ClusterD requires root or sudo | Prepare each node's unique name, private IP, SSH port, account, and authentication method. The account must be able to elevate privileges as required for installation. |
 
-**Do not size production hosts at the precheck floor.** Precheck also evaluates CPU, memory, and Pod scheduling capacity for the selected topology and service replicas. Allow room for data growth, request load, and failover. The [single-node offline installation example](./clusterd-agione-best-practices) used 16 vCPUs / 32 GiB, a 100 GiB system disk, and a 200 GiB dedicated empty disk. This was a tested configuration, not a universal minimum or recommendation.
+**Production request baseline: 16 vCPUs / 32 GiB per target node.** Precheck also evaluates CPU, memory, and Pod scheduling capacity for the selected topology and service replicas. Allow room for data growth, request load, and failover. The [single-node offline installation example](./clusterd-agione-best-practices) uses this baseline together with a 100 GiB system disk and a 200 GiB dedicated empty disk; the actual delivery must still pass the release-specific precheck.
 
 ## 4. Plan Storage
 

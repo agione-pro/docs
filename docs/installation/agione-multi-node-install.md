@@ -265,8 +265,8 @@ The following requirements apply to each machine:
 | Item | Recommended value | Current installer check |
 | --- | --- | --- |
 | Operating system | Linux | Ubuntu 22.04 is recommended |
-| CPU | 8 cores | CPU count must be at least 8 cores |
-| Memory | 16 GiB recommended | The installer requires at least `12GiB` detected memory; 16 GiB remains the recommended request profile |
+| CPU | 16 cores | Production deployments should request 16 cores |
+| Memory | 32 GiB recommended | Production deployments should request 32 GiB |
 | Free disk | 200 GiB | With the default `runtime_root`, each node prefers a data disk with about `160GiB` or more free space; if no suitable data disk exists, the system disk path `/opt/hyperone` is checked |
 
 Architecture support: AGIOne can be deployed on both x86_64 and ARM64 / AArch64 machines. For one multi-node deployment batch, use the installation bundle that matches the target CPU architecture and keep node architectures consistent unless the release note explicitly states mixed-architecture support.
