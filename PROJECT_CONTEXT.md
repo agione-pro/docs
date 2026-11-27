@@ -2629,3 +2629,102 @@ npm run docs:build
 - 静态文档检查不能证明 Linux 安装、升级、卸载、在线权限或备份恢复已实际验证；本轮未执行这些操作。
 - 大 chunk 警告与上一轮一致，性能敏感发布前仍需评估初始加载影响。
 - 本文件的 10 月 13 日记录仍未提交，本轮追加也仅保留在本地工作区；历史内容及其他用户改动不自动处理。
+
+## 2026-10-23 日终自动化复核（2026-11-20 补记）
+
+### 当日设计决策
+
+- 规格指标的文档入口收敛到「资源池 > 资源规格」页面的「规格组导航」面板。加速卡管理手册改指该入口；中英文独立 `spec-metrics/` 页面、配图、侧边栏条目及相关链接随合并移除。
+- On-Prem 资源池手册以集群、加速卡、地域 / 可用区及镜像和存储组件的实际操作为主线。中英文侧边栏保留「镜像组件 / Image Services」，移除独立「镜像管理 / Images」条目及对应手册页。
+
+### 当日代码 / 文档更新
+
+- 按触发时间查询 10 月 23 日 00:00 至 17:34:50（`Asia/Shanghai`），当前分支可达历史包含三次进入 `preview` 的合并：`5255da6f`（加速卡规格指标入口）、`bc2f5c1a`（On-Prem 手册治理）、`ef572a62`（移除独立规格指标页）。最后一次合并与第一父提交 `bc2f5c1a` 的文件树相同，不重复计算改动。
+- `git diff --stat 5255da6f^1 ef572a62`：合并前后共 148 个文件、增加 3103 行、删除 3508 行。变更集中在 `docs/usermanual/` 与 `docs/zh-CN/usermanual/` 的 On-Prem 资源池页面及配图（`accelerators/`、`clusters/`、`regions-zones/`、`resource-specs/`、`image-services/`、`object-storage/` 等），并同步两侧侧边栏、场景指南引用及多节点安装指南。
+- 补记时 `git branch --show-current` 为 `my-doc-change`，HEAD 为 `efa3cc12`（2026-11-18，重写 ClusterD 部署文档）。修改前 `git status --short`、`git diff --stat` 和 `git diff --cached --stat` 均无输出；这一状态是 11 月 20 日的本机快照，无法据此还原 10 月 23 日的未提交改动。
+
+### 本轮复核命令与结果
+
+- `git log --since='2026-10-23 00:00:00 +0800' --until='2026-10-23 17:34:50 +0800' --stat`：返回上述 3 个合并提交。文件范围按合并前后树的净差异核对。
+- `git diff --check` 和 `git diff --cached --check`：补记前均通过。历史范围 `git diff --check 5255da6f^1 ef572a62` 在默认规则下报告 CRLF 行尾空白；仅对该命令设置 `core.whitespace=cr-at-eol` 后通过，未修改 Git 配置或历史文件。
+- 11 月 20 日在 `efa3cc12` 上执行 `npm run docs:build`：退出码 `0`，约 17.3 秒。VitePress 1.6.4 完成构建和页面渲染，源文件及产物 public Profile 检查均通过，静态链接检查报告 0 个断链，中英文首页产物均存在且非空。日志：`/tmp/agione-pro-docs-build-20261120-1795148901266.log`。
+
+### 后续风险与关注
+
+- 当前构建仍有超过 500 kB 的 chunk 警告。静态链接检查不访问网络；历史版本未重建，也未复验 Demo 的角色菜单、操作步骤及截图。
+- 引用旧「规格指标」或「镜像管理」页面的站外链接仍需单独核对；当前构建中的 0 个断链不覆盖这些入口。本轮仅更新 `PROJECT_CONTEXT.md`，未提交或推送。
+
+## 2026-11-24 日终自动化复核
+
+### 今日设计决策
+
+- 今日没有新增提交或其他代码 / 文档变更，因此没有可从当日仓库事实归纳的新设计决策。
+
+### 今日代码 / 文档更新
+
+- `git log` 按 `Asia/Shanghai` 查询 2026-11-24 00:00 至 2026-11-25 00:00：无输出，当日无新增提交。当前分支为 `my-doc-change`，HEAD 为 `efa3cc12`（2026-11-18 14:57:35 +08:00，`docs(installation): 重写部署文档为 ClusterD 安装指南`）。
+- 无新增变更（本轮例行上下文追加除外）。本轮开始时工作区仅有 `PROJECT_CONTEXT.md` 未提交修改，`git diff --stat` 为 24 行新增；该既有差异是上方 2026-10-23 复核的 2026-11-20 补记。本轮保留该内容，未发现其他已跟踪、未跟踪或暂存文件变更。
+- 本轮只在本文件末尾追加 2026-11-24 记录，不提交、不推送、不回滚。
+
+### 本轮复核命令与结果
+
+- 已读取项目 `AGENTS.md`、`README.md`、`GUIDE.md` 及本文件结构，并据此保持本轮仅更新上下文记录。
+- `git status --short`：修改前仅 ` M PROJECT_CONTEXT.md`。`git branch --show-current`：`my-doc-change`。`git diff --cached --stat`：无输出。
+- `git diff --check`、`git diff --cached --check`：修改前均通过，退出码 `0`。
+- `npm run docs:build`：通过，退出码 `0`，耗时约 14.7 秒；VitePress 1.6.4 构建完成，public Profile 源文件和产物检查通过；链接检查覆盖 619 个 HTML 页面及 82,542 个内部链接引用，报告 0 个断链、0 次网络请求。中英文首页 HTML 产物均存在且非空。日志：`/tmp/agione-pro-docs-build-20261124.log`。
+
+### 后续风险与关注
+
+- 构建仍提示有超过 500 kB 的压缩后 chunk；该警告未阻断构建，性能敏感发布前仍可评估代码分割。
+- 链接检查未验证外部站点可用性（网络请求为 0）；在线链接、Demo 角色菜单及操作行为未在本轮复核。
+- 原有 `PROJECT_CONTEXT.md` 未提交差异与本轮追加均保留在工作区；未自动处理或覆盖其他用户改动。
+
+## 2026-11-25 日终自动化复核
+
+### 今日设计决策
+
+- 当日没有新增提交或代码 / 文档改动；未发现可据本地事实归纳的新设计决策。
+
+### 今日代码 / 文档更新
+
+- `git log` 按 `Asia/Shanghai` 查询 2026-11-25 00:00 至 2026-11-26 00:00：无输出，当日无新增提交。当前分支为 `my-doc-change`，HEAD 仍为 `efa3cc12`（2026-11-18 14:57:35 +08:00，`docs(installation): 重写部署文档为 ClusterD 安装指南`）。
+- 无新增变更（不含本轮上下文追加）。本轮开始时 `git status --short` 仅显示 ` M PROJECT_CONTEXT.md`，`git diff --stat` 为 49 行新增；这些既有未提交内容包含 2026-10-23 记录的 11-20 补记及 2026-11-24 日终记录。本轮保留原文，未发现其他已跟踪、未跟踪或暂存变更。
+- 本轮只在本文件末尾追加 2026-11-25 记录，不提交、不推送、不回滚。
+
+### 本轮复核命令与结果
+
+- 已读取项目 `AGENTS.md`、`README.md`、`GUIDE.md` 和本文件现有结构；本轮范围限定为上下文记录。
+- `git status --short`：修改前仅 ` M PROJECT_CONTEXT.md`。`git branch --show-current`：`my-doc-change`。`git diff --cached --stat`：无输出。
+- `git diff --check`、`git diff --cached --check`：修改前均通过，退出码 `0`。
+- `npm run docs:build`：通过，退出码 `0`，总耗时约 15.3 秒；VitePress 1.6.4 构建完成，public Profile 源文件及产物检查通过。链接检查覆盖 619 个 HTML 页面、82,542 个内部链接引用，报告 0 个断链、0 次网络请求；中英文首页产物均存在且非空。日志：`/tmp/agione-pro-docs-build-20261125.log`。
+
+### 后续风险与关注
+
+- 构建仍提示有超过 500 kB 的压缩后 chunk；未影响构建结果，性能敏感发布前可评估代码分割。
+- 链接检查不访问外部站点；外部链接、Demo 当前角色菜单及操作行为未在本轮复核。
+- 原有 `PROJECT_CONTEXT.md` 未提交内容及本轮追加均保留在工作区，未自动提交、推送或覆盖其他用户改动。
+
+## 2026-11-26 日终自动化复核
+
+### 今日设计决策
+
+- 当日没有新增提交或代码 / 文档改动；未发现可据本地事实归纳的新设计决策。
+
+### 今日代码 / 文档更新
+
+- `git log` 按 `Asia/Shanghai` 查询 2026-11-26 00:00 至 2026-11-27 00:00：无输出，当日无新增提交。当前分支为 `my-doc-change`，HEAD 仍为 `efa3cc12`（2026-11-18 14:57:35 +08:00，`docs(installation): 重写部署文档为 ClusterD 安装指南`）。
+- 无新增变更（不含本轮上下文追加）。本轮开始时 `git status --short` 仅显示 ` M PROJECT_CONTEXT.md`，`git diff --stat` 为 74 行新增；此前未提交内容包含 2026-10-23 记录的补记及 2026-11-24、11-25 日终记录。本轮保留原文，未发现其他已跟踪、未跟踪或暂存变更。
+- 本轮仅在本文件末尾追加 2026-11-26 记录，不提交、不推送、不回滚。
+
+### 本轮复核命令与结果
+
+- 已读取项目 `AGENTS.md`、`README.md`、`GUIDE.md` 和本文件现有结构；本轮仅更新项目上下文。
+- `git status --short`：修改前仅 ` M PROJECT_CONTEXT.md`。`git branch --show-current`：`my-doc-change`。`git diff --cached --stat`：无输出。
+- `git diff --check`、`git diff --cached --check`：修改前均通过，退出码 `0`。
+- `npm run docs:build`：通过，退出码 `0`，总耗时约 24.0 秒；VitePress 1.6.4 构建完成，public Profile 源文件及产物检查通过。链接检查覆盖 619 个 HTML 页面和 82,542 个内部链接引用，报告 0 个断链、0 次网络请求；中英文首页产物均存在且非空。日志：`/tmp/agione-pro-docs-build-20261126.log`。
+
+### 后续风险与关注
+
+- 构建仍提示有超过 500 kB 的压缩后 chunk；未影响构建结果，性能敏感发布前可评估代码分割。
+- 链接检查未验证外部站点可用性，且本轮未复验 Demo 的当前角色菜单及操作行为。
+- 原有 `PROJECT_CONTEXT.md` 未提交内容与本轮追加均保留在工作区，未自动提交、推送或覆盖其他用户改动。
